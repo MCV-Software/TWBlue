@@ -1,0 +1,77 @@
+# -*- coding: utf-8 -*-
+import wx
+import platform
+
+class list(object):
+ def __init__(self, parent, *columns, **listArguments):
+  self.system = platform.system()
+  self.columns = columns
+  self.listArguments = listArguments
+  self.create_list(parent)
+#  self.set_size()
+
+ def set_windows_size(self, column, characters_max):
+  it = wx.ListItem()
+  dc = wx.WindowDC(self.list)
+  dc.SetFont(it.GetFont())
+  (x, y) = dc.GetTextExtent("r"*characters_max)
+  self.list.SetColumnWidth(column, x)
+
+ def set_size(self):
+  self.list.SetSize(self.list.GetBestSize())
+
+ def create_list(self, parent):
+  if self.system == "Windows":
+   self.list = wx.ListCtrl(parent, -1, **self.listArguments)
+   for i in xrange(0, len(self.columns)):
+    self.list.InsertColumn(i, u"%s" % (self.columns[i]))
+  else:
+   self.list = wx.ListBox(parent, -1, choices=[])
+
+ def insert_item(self, reversed, *item):
+  """ Inserts an item on the list, depending on the OS."""
+  if self.system == "Windows":
+   if reversed == False: items = self.list.GetItemCount()
+   else: items = 0
+   self.list.InsertStringItem(items, item[0])
+   for i in xrange(1, len(self.columns)):
+    self.list.SetStringItem(items, i, item[i])
+  else:
+   self.list.Append(" ".join(item))
+
+ def remove_item(self, pos):
+  """ Deletes an item from the list."""
+  if self.system == "Windows":
+   if pos > 0: self.list.Focus(pos-1)
+   self.list.DeleteItem(pos)
+  else:
+   if pos > 0: self.list.SetSelection(pos-1)
+   self.list.Delete(pos)
+
+ def clear(self):
+  if self.system == "Windows":
+   self.list.DeleteAllItems()
+  else:
+   self.list.Clear()
+
+ def get_selected(self):
+  if self.system == "Windows":
+   return self.list.GetFocusedItem()
+  else:
+   return self.list.GetSelection()
+
+ def select_item(self, pos):
+  if self.system == "Windows":
+   self.list.Focus(pos)
+  else:
+   self.list.SetSelection(pos)
+
+ def get_count(self):
+  if self.system == "Windows":
+   selected = self.list.GetItemCount()
+  else:
+   selected = self.list.GetCount()
+  if selected == -1:
+   return 0
+  else:
+   return selected
