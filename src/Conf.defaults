@@ -14,6 +14,7 @@ max_tweets_per_call = integer(default=100)
 reverse_timelines = boolean(default=False)
 time_to_check_streams = integer(default=30)
 announce_stream_status = boolean(default=True)
+auto_connect_streams = boolean(default=True)
 
 [sound]
 volume = float(default=1.0)
@@ -85,4 +86,4 @@ search = string(default="control+win+-")
 edit_keystrokes = string(default="control+win+k")
 view_user_lists = string(default="control+win+l")
 get_more_items = string(default="alt+win+pageup")
-connect_streams = string(default="win+alt+c")
+connect_streams = string(default="win+alt+s")

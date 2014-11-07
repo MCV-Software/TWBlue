@@ -59,3 +59,6 @@ class searchUsersPanel(peoplePanel):
      pos = self.db.settings["buffers"].index(self.name_buffer)
      self.db.settings["buffers"].remove(self.name_buffer)
      return pos
+
+ def get_more_items(self):
+  output.speak(_(u"This action is not supported for this buffer"))

@@ -124,6 +124,7 @@ class TwythonStreamer(object):
                 except requests.exceptions.Timeout:
                     self.on_timeout()
                 else:
+#                    self.connected = False
                     if response.status_code != 200:
                         self.on_error(response.status_code, response.content)
 

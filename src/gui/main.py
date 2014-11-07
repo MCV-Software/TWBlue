@@ -33,7 +33,6 @@ import platform
 import urllib2
 import sysTrayIcon
 import languageHandler
-from issueReporter import gui as issueReporterGUI
 from sessionmanager import manager
 from mysc import event
 from mysc.thread_utils import call_threaded
@@ -124,6 +123,8 @@ class mainFrame(wx.Frame):
 
   # buffer menu
   buffer = wx.Menu()
+  load_more_items = buffer.Append(wx.NewId(), _(u"Load more items"))
+  self.Bind(wx.EVT_MENU, self.get_more_items, load_more_items)
   mute = buffer.Append(wx.NewId(), _(u"&Mute"))
   self.Bind(wx.EVT_MENU, self.toggle_mute, mute)
   autoread = buffer.Append(wx.NewId(), _(u"&Autoread tweets for this buffer"))
@@ -342,8 +343,9 @@ class mainFrame(wx.Frame):
   if run_streams == True:
    self.get_home()
    self.get_tls()
-   self.check_streams = RepeatingTimer(config.main["general"]["time_to_check_streams"], self.check_stream_up)
-   self.check_streams.start()
+   if config.main["general"]["auto_connect_streams"] == True:
+    self.check_streams = RepeatingTimer(config.main["general"]["time_to_check_streams"], self.check_stream_up)
+    self.check_streams.start()
   # If all it's done, then play a nice sound saying that all it's OK.
   sound.player.play("ready.ogg")
 
@@ -368,15 +370,15 @@ class mainFrame(wx.Frame):
 
  def setup_twitter(self, panel):
   """ Setting up the connection for twitter, or authenticate if the config file has valid credentials."""
-#  try:
-  self.twitter.login(self.user_key, self.user_secret)
-  self.logging_in_twblue(panel)
-  log.info("Authorized in Twitter.")
-  del self.user_key; del self.user_secret
-#  except:
-#   dlg1 = wx.MessageDialog(panel, _(u"Connection error. Try again later."), _(u"Error!"), wx.ICON_ERROR)
-#   dlg1.ShowModal()
-#   self.Close(True)
+  try:
+   self.twitter.login(self.user_key, self.user_secret)
+   self.logging_in_twblue(panel)
+   log.info("Authorized in Twitter.")
+   del self.user_key; del self.user_secret
+  except:
+   dlg1 = wx.MessageDialog(panel, _(u"Connection error. Try again later."), _(u"Error!"), wx.ICON_ERROR)
+   dlg1.ShowModal()
+   self.Close(True)
 
  def get_home(self):
   """ Gets the home stream, that manages home timeline, mentions, direct messages and sent."""
@@ -545,7 +547,8 @@ class mainFrame(wx.Frame):
   webbrowser.open("http://twblue.com.mx")
 
  def onReportBug(self, ev):
-  issueReporterGUI.reportBug(self.db.settings["user_name"]).ShowModal()
+  webbrowser.open("https://github.com/manuelcortez/TWBlue/issues")
+#  issueReporterGUI.reportBug(self.db.settings["user_name"]).ShowModal()
 
  def onCheckForUpdates(self, ev):
   updater.update_manager.check_for_update(msg=True)
