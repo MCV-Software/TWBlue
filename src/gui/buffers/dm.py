@@ -41,7 +41,7 @@ class dmPanel(basePanel):
    sound.player.play("error.ogg")
 
  def onResponse(self, ev):
-  dlg = gui.dialogs.message.dm(_("Direct message to %s") % (self.db.settings[self.name_buffer][self.list.get_selected()]["sender"]["screen_name"]), "", "", self)
+  dlg = gui.dialogs.message.dm(_("Direct message to %s") % (self.db.settings[self.name_buffer][self.list.get_selected()]["sender"]["screen_name"]), _(u"New direct message"), "", self)
   if dlg.ShowModal() == wx.ID_OK:
    call_threaded(self.twitter.api_call, call_name="send_direct_message", _sound="dm_sent.ogg", text=dlg.text.GetValue(), screen_name=dlg.cb.GetValue())
   if ev != None:

@@ -53,7 +53,7 @@ class peoplePanel(basePanel):
    self.onResponse(ev)
   else:
    user = self.db.settings[self.name_buffer][self.list.get_selected()]["screen_name"]
-   dlg = gui.dialogs.message.dm(_("Direct message to %s") % (user,), "", "", self)
+   dlg = gui.dialogs.message.dm(_("Direct message to %s") % (user,), _(u"New direct message"), "", self)
    if dlg.ShowModal() == wx.ID_OK:
     call_threaded(self.twitter.api_call, call_name="send_direct_message", _sound="dm_sent.ogg", text=dlg.text.GetValue(), screen_name=dlg.cb.GetValue())
 #   dlg.Destroy()
@@ -61,7 +61,7 @@ class peoplePanel(basePanel):
    self.list.list.SetFocus()
 
  def onResponse(self, ev):
-  dlg = gui.dialogs.message.reply(_(u"Reply to %s") % (self.db.settings[self.name_buffer][self.list.get_selected()]["screen_name"]), "", u"@%s " % (self.db.settings[self.name_buffer][self.list.get_selected()]["screen_name"]), self)
+  dlg = gui.dialogs.message.reply(_(u"Mention to %s") % (self.db.settings[self.name_buffer][self.list.get_selected()]["screen_name"]), _(u"Mention"), u"@%s " % (self.db.settings[self.name_buffer][self.list.get_selected()]["screen_name"]), self)
   if dlg.ShowModal() == wx.ID_OK:
    if dlg.image == None:
     call_threaded(self.twitter.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=dlg.in_reply_to, status=dlg.text.GetValue())
