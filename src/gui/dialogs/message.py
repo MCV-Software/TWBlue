@@ -39,11 +39,12 @@ class textLimited(wx.Dialog):
   wx.Dialog.__init__(self, parent)
   self.twitter = parent.twitter
   self.parent = parent
-  self.SetTitle(_(u"New tweet"))
+  self.title = title
+  self.SetTitle(_(u"%s - %s of 140 characters") % (self.title, str(len(text))))
   self.panel = wx.Panel(self)
 
  def createTextArea(self, message, text):
-  self.label = wx.StaticText(self.panel, -1, str(len(text)))
+  self.label = wx.StaticText(self.panel, -1, message)
   self.text = wx.TextCtrl(self.panel, -1, text)
   font = self.text.GetFont()
   dc = wx.WindowDC(self.text)
@@ -139,7 +140,7 @@ class textLimited(wx.Dialog):
   self.text.SetFocus()
 
  def onTimer(self, ev):
-  self.label.SetLabel(str(len(self.text.GetValue())))
+  self.SetTitle(_(u"%s - %s of 140 characters") % (self.title, str(len(self.text.GetValue()))))
   if len(self.text.GetValue()) > 1:
    self.shortenButton.Enable()
    self.unshortenButton.Enable()

@@ -217,7 +217,7 @@ class basePanel(wx.Panel):
    self.onResponse(ev)
   else:
    user = self.db.settings[self.name_buffer][self.list.get_selected()]["user"]["screen_name"]
-   dlg = gui.dialogs.message.dm(_("Direct message to %s") % (user,), "", "", self)
+   dlg = gui.dialogs.message.dm(_("Direct message to %s") % (user,), _(u"New direct message"), "", self)
    if dlg.ShowModal() == wx.ID_OK:
     call_threaded(self.twitter.api_call, call_name="send_direct_message", _sound="dm_sent.ogg", text=dlg.text.GetValue(), screen_name=dlg.cb.GetValue())
 #   dlg.Destroy()
@@ -240,7 +240,7 @@ class basePanel(wx.Panel):
    ask = wx.MessageDialog(self.parent, _(u"Would you like to add a comment to this tweet?"), _("Retweet"), wx.YES_NO|wx.CANCEL|wx.ICON_QUESTION)
    response = ask.ShowModal()
    if response == wx.ID_YES:
-    dlg = gui.dialogs.message.retweet(_(u"Add your comment to the tweet"), "", u"“@%s: %s ”" % (self.db.settings[self.name_buffer][self.list.get_selected()]["user"]["screen_name"], self.db.settings[self.name_buffer][self.list.get_selected()]["text"]), self)
+    dlg = gui.dialogs.message.retweet(_(u"Add your comment to the tweet"), _(u"Retweet"), u"“@%s: %s ”" % (self.db.settings[self.name_buffer][self.list.get_selected()]["user"]["screen_name"], self.db.settings[self.name_buffer][self.list.get_selected()]["text"]), self)
     if dlg.ShowModal() == wx.ID_OK:
      if dlg.image == None:
       call_threaded(self.twitter.api_call, call_name="update_status", _sound="retweet_send.ogg", status=dlg.text.GetValue(), in_reply_to_status_id=dlg.in_reply_to)
@@ -256,7 +256,7 @@ class basePanel(wx.Panel):
 
  def onResponse(self, ev):
   if self.name_buffer == "sent": return
-  dlg = gui.dialogs.message.reply(_(u"Reply to %s") % (self.db.settings[self.name_buffer][self.list.get_selected()]["user"]["screen_name"]), "", u"@%s " % (self.db.settings[self.name_buffer][self.list.get_selected()]["user"]["screen_name"]), self)
+  dlg = gui.dialogs.message.reply(_(u"Reply to %s") % (self.db.settings[self.name_buffer][self.list.get_selected()]["user"]["screen_name"]), _(u"Reply"), u"@%s " % (self.db.settings[self.name_buffer][self.list.get_selected()]["user"]["screen_name"]), self)
   if dlg.ShowModal() == wx.ID_OK:
    if dlg.image == None:
     call_threaded(self.twitter.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=dlg.in_reply_to, status=dlg.text.GetValue())
