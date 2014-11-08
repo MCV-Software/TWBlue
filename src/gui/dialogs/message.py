@@ -85,6 +85,9 @@ class textLimited(wx.Dialog):
    else:
     url = base_url
    self.uploader = transfer.Upload(field='file', url=url, filename=self.recording.file, completed_callback=self.upload_completed, wxDialog=self.uploaderDialog)
+  elif self.recording.services.GetValue() == "TwUp":
+   url = 'http://api.twup.me/post.json'
+   self.uploader = transfer.Upload(field='file', url=url, filename=self.recording.file, completed_callback=self.upload_completed, wxDialog=self.uploaderDialog)
   self.uploaderDialog.Show()
   self.uploader.perform_threaded()
 

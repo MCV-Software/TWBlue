@@ -44,13 +44,13 @@ def convert_twup(url):
  audio_id = result.group("audio_id")
  return 'http://twup.me/%s' % audio_id
 
-@matches_url('http://sndup.net')
-def convert_sndup(url):
- result = re.match("^http://sndup.net/(?P<audio_id>[a-z0-9]+/?)(|d|l|a)/?$", url, re.I)
- if not result or result.group("audio_id") is None:
-  raise TypeError('%r is not a valid URL' % url)
- audio_id = result.group("audio_id")
- return 'http://sndup.net/%s/a' % audio_id
+#@matches_url('http://sndup.net')
+#def convert_sndup(url):
+# result = re.match("^http://sndup.net/(?P<audio_id>[a-z0-9]+/?)(|d|l|a)/?$", url, re.I)
+# if not result or result.group("audio_id") is None:
+#  raise TypeError('%r is not a valid URL' % url)
+# audio_id = result.group("audio_id")
+# return 'http://sndup.net/%s/a' % audio_id
 
 def convert_generic_audio(url):
  return url

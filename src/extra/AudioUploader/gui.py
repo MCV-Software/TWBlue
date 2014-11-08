@@ -68,6 +68,7 @@ class audioDialog(wx.Dialog):
   services = []
   if config.main["services"]["dropbox_token"] != "":
    services.append("Dropbox")
+  services.append("TwUp")
   services.append("SNDUp")
   return services
 
