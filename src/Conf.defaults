@@ -15,6 +15,7 @@ reverse_timelines = boolean(default=False)
 time_to_check_streams = integer(default=30)
 announce_stream_status = boolean(default=True)
 auto_connect_streams = boolean(default=True)
+ask_at_exit = boolean(default=True)
 
 [sound]
 volume = float(default=1.0)

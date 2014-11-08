@@ -50,6 +50,9 @@ class general(wx.Panel):
   langBox.Add(language, 0, wx.ALL, 5)
   langBox.Add(self.language, 0, wx.ALL, 5)
   sizer.Add(langBox, 0, wx.ALL, 5)
+  self.ask_at_exit = wx.CheckBox(self, -1, _(U"Ask to exit TWBlue"))
+  self.ask_at_exit.SetValue(config.main["general"]["ask_at_exit"])
+  sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
   self.relative_time = wx.CheckBox(self, -1, _(U"Relative times"))
   self.relative_time.SetValue(config.main["general"]["relative_times"])
   sizer.Add(self.relative_time, 0, wx.ALL, 5)
@@ -372,6 +375,7 @@ class configurationDialog(wx.Dialog):
    need_restart = True
   if platform.system() == "Windows":
    config.main["general"]["voice_enabled"] = self.general.disable_sapi5.GetValue()
+   config.main["general"]["ask_at_exit"] = self.general.ask_at_exit.GetValue()
    config.main["general"]["hide_gui"] = self.general.show_gui.GetValue()
   config.main["general"]["max_api_calls"] = self.general.apiCalls.GetValue()
   config.main["general"]["max_tweets_per_call"] = self.general.itemsPerApiCall.GetValue()

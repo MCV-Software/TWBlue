@@ -579,13 +579,14 @@ class mainFrame(wx.Frame):
    self.nb.AdvanceSelection(forward)
 
  def close(self, ev=None):
-#  if ev == None  or hasattr(ev, "GetLoggingOff") == False:
-  dlg = wx.MessageDialog(self, _(u"Do you really want to close TW Blue?"), _(u"Exit"), wx.YES_NO|wx.ICON_QUESTION)
-  if dlg.ShowModal() == wx.ID_YES:
+  if config.main["general"]["ask_at_exit"] == True:
+   dlg = wx.MessageDialog(self, _(u"Do you really want to close TW Blue?"), _(u"Exit"), wx.YES_NO|wx.ICON_QUESTION)
+   if dlg.ShowModal() == wx.ID_YES:
+    self.exit()
+   dlg.Destroy()
+  else:
+   output.speak(_(u"Exiting..."))
    self.exit()
-  dlg.Destroy()
-#  elif  hasattr(ev, "GetLoggingOff") == True:
-#   self.exit()
 
  def exit(self, event=None):
   config.main.write()
