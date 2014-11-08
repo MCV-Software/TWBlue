@@ -946,7 +946,7 @@ class mainFrame(wx.Frame):
   except:
    pass
 
- def get_more_items(self):
+ def get_more_items(self, event=None):
   self.nb.GetCurrentPage().get_more_items()
 
  def connect_streams(self):

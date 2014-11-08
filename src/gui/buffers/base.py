@@ -177,7 +177,7 @@ class basePanel(wx.Panel):
   else:
    last_id = self.db.settings[self.name_buffer][-1]["id"]
   try:
-   items = twitter.starting.get_more_items(self.function, self.twitter, count=config.main["general"]["max_tweets_per_call"], max_id=last_id)
+   items = twitter.starting.get_more_items(self.function, self.twitter, count=config.main["general"]["max_tweets_per_call"], max_id=last_id, screen_name=self.argumento)
   except TwythonError as e:
    output.speak(e.message)
   for i in items:
