@@ -19,13 +19,15 @@ class streamer(TwythonStreamer):
   log.debug("%s: %s" % (status_code, data))
 
  def check_tls(self, data):
+  print "checking timelines..."
   for i in config.main["other_buffers"]["timelines"]:
    if data["user"]["screen_name"] == i:
+    print "I found it"
     tweet_event = event.event(event.EVT_OBJECT, 1)
     tweet_event.SetItem(data)
     announce = _(u"One tweet from %s") % (data["user"]["name"])
     tweet_event.SetAnnounce(announce)
-    wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index(i)), tweet_event)
+    wx.PostEvent(self.parent.search_buffer(buffer_type="timeline", name_buffer=data["user"]["screen_name"]), tweet_event)
   for i in range(0, self.parent.nb.GetPageCount()):
    if self.parent.nb.GetPage(i).type == "list":
     try:
@@ -34,13 +36,13 @@ class streamer(TwythonStreamer):
      tweet_event.SetItem(data)
      announce = _(u"One tweet from %s in the list %s") % (data["user"]["name"], self.parent.nb.GetPage(i).name_buffer[:-5])
      tweet_event.SetAnnounce(announce)
-     wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index(self.parent.nb.GetPage(i).name_buffer)), tweet_event)
+     wx.PostEvent(self.parent.nb.GetPage(i), tweet_event)
     except ValueError:
      pass
 
  def on_success(self, data):
   try:
-   if "text" in data:
+   if data.has_key("text"):
     self.check_tls(data)
   except:
    pass

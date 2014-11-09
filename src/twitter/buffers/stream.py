@@ -27,7 +27,7 @@ class streamer(TwythonStreamer):
   if config.main["other_buffers"]["show_blocks"] == True:
    tweet_event = event.event(event.EVT_OBJECT, 1)
    tweet_event.SetItem(data["target"])
-   wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("blocks")), tweet_event)
+   wx.PostEvent(self.parent.search_buffer("people", "blocks"), tweet_event)
 
  def unblock(self, data):
   if config.main["other_buffers"]["show_blocks"] == True:
@@ -35,20 +35,20 @@ class streamer(TwythonStreamer):
    self.db.settings["blocks"].pop(item)
    deleted_event = event.event(event.EVT_DELETED, 1)
    deleted_event.SetItem(item)
-   wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("blocks")), deleted_event)
+   wx.PostEvent(self.parent.search_buffer("people", "blocks"), deleted_event)
    wx.PostEvent(self.parent, event.ResultEvent())
 
  def check_send(self, data):
   if self.db.settings["user_name"] == data["user"]["screen_name"]:
    tweet_event = event.event(event.EVT_OBJECT, 1)
    tweet_event.SetItem(data)
-   wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("sent")), tweet_event)
+   wx.PostEvent(self.parent.search_buffer("buffer", "sent"), tweet_event)
 
  def check_favs(self, data):
   if data["source"]["screen_name"] == self.db.settings["user_name"]:
    tweet_event = event.event(event.EVT_OBJECT, 1)
    tweet_event.SetItem(data["target_object"])
-   wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("favs")), tweet_event)
+   wx.PostEvent(self.parent.search_buffer("buffer", "favs"), tweet_event)
 
  def check_mentions(self, data):
   if "@%s" % (self.db.settings["user_name"]) in data["text"]:
@@ -56,30 +56,30 @@ class streamer(TwythonStreamer):
    tweet_event.SetItem(data)
    text = _(u"One mention from %s ") % (data["user"]["name"])
    tweet_event.SetAnnounce(text)
-   wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("mentions")), tweet_event)
+   wx.PostEvent(self.parent.search_buffer("buffer", "mentions"), tweet_event)
 
  def process_dm(self, data):
   if self.db.settings["user_name"] == data["direct_message"]["sender"]["screen_name"]:
    tweet_event = event.event(event.EVT_OBJECT, 1)
    tweet_event.SetItem(data["direct_message"])
-   wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("sent")), tweet_event)
+   wx.PostEvent(self.parent.search_buffer("buffer", "sent"), tweet_event)
   if self.db.settings["user_name"] != data["direct_message"]["sender"]["screen_name"]:
    tweet_event = event.event(event.EVT_OBJECT, 1)
    tweet_event.SetItem(data["direct_message"])
    text = _(u"One direct message")
    tweet_event.SetAnnounce(text)
-   wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("direct_messages")), tweet_event)
+   wx.PostEvent(self.parent.search_buffer("buffer", "direct_messages"), tweet_event)
 
  def check_follower(self, data):
   if data["target"]["screen_name"] == self.db.settings["user_name"]:
    if config.main["other_buffers"]["show_followers"] == True:
     tweet_event = event.event(event.EVT_OBJECT, 1)
     tweet_event.SetItem(data["source"])
-    wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("followers")), tweet_event)
+    wx.PostEvent(self.parent.search_buffer("people", "followers"), tweet_event)
   elif data["source"]["screen_name"] == self.db.settings["user_name"] and config.main["other_buffers"]["show_friends"] == True:
    tweet_event = event.event(event.EVT_OBJECT, 1)
    tweet_event.SetItem(data["target"])
-   wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("friends")), tweet_event)
+   wx.PostEvent(self.parent.search_buffer("people", "friends"), tweet_event)
 
  def remove_fav(self, data):
   if self.db.settings["user_name"] == data["source"]["screen_name"]:
@@ -88,7 +88,7 @@ class streamer(TwythonStreamer):
    self.db.settings["favs"].pop(item)
    deleted_event = event.event(event.EVT_DELETED, 1)
    deleted_event.SetItem(item)
-   wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("favs")), deleted_event)
+   wx.PostEvent(self.parent.search_buffer("buffer", "favs"), deleted_event)
 
  def remove_friend(self, data):
   if config.main["other_buffers"]["show_friends"] == True:
@@ -98,7 +98,7 @@ class streamer(TwythonStreamer):
     deleted_event.SetItem(item)
     self.friends.pop(item)
     self.db.settings["friends"].pop(item)
-    wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("friends")), deleted_event)
+    wx.PostEvent(self.parent.search_buffer("people", "friends"), deleted_event)
 
  def on_success(self, data):
   try:
@@ -113,7 +113,7 @@ class streamer(TwythonStreamer):
     if data["user"]["id"] in self.friends or data["user"]["screen_name"] == self.db.settings["user_name"]:
      tweet_event = event.event(event.EVT_OBJECT, 1)
      tweet_event.SetItem(data)
-     wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("home_timeline")), tweet_event)
+     wx.PostEvent(self.parent.search_buffer("buffer", "home_timeline"), tweet_event)
    elif data.has_key("event"):
     if "favorite" == data["event"] and config.main["other_buffers"]["show_favourites"] == True:
      self.check_favs(data)
@@ -163,7 +163,7 @@ class streamer(TwythonStreamer):
      tweet_event.SetAnnounce(text)
 #     deleted_event = event.event(event.EVT_DELETED, 1)
 #     deleted_event.SetItem(evento)
-     wx.PostEvent(self.parent.nb.GetPage(self.db.settings["buffers"].index("events")), tweet_event)
+     wx.PostEvent(self.parent.search_buffer("event", "events"), tweet_event)
 #     self.sound.play("new_event.ogg")
   except:
    pass

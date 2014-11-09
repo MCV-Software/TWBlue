@@ -50,7 +50,7 @@ class general(wx.Panel):
   langBox.Add(language, 0, wx.ALL, 5)
   langBox.Add(self.language, 0, wx.ALL, 5)
   sizer.Add(langBox, 0, wx.ALL, 5)
-  self.ask_at_exit = wx.CheckBox(self, -1, _(U"Ask to exit TWBlue"))
+  self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting TwBlue?"))
   self.ask_at_exit.SetValue(config.main["general"]["ask_at_exit"])
   sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
   self.relative_time = wx.CheckBox(self, -1, _(U"Relative times"))

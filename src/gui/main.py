@@ -123,8 +123,8 @@ class mainFrame(wx.Frame):
 
   # buffer menu
   buffer = wx.Menu()
-  load_more_items = buffer.Append(wx.NewId(), _(u"Load more items"))
-  self.Bind(wx.EVT_MENU, self.get_more_items, load_more_items)
+  load_previous_items = buffer.Append(wx.NewId(), _(u"&Load previous items"))
+  self.Bind(wx.EVT_MENU, self.get_more_items, load_previous_items)
   mute = buffer.Append(wx.NewId(), _(u"&Mute"))
   self.Bind(wx.EVT_MENU, self.toggle_mute, mute)
   autoread = buffer.Append(wx.NewId(), _(u"&Autoread tweets for this buffer"))
@@ -343,9 +343,8 @@ class mainFrame(wx.Frame):
   if run_streams == True:
    self.get_home()
    self.get_tls()
-   if config.main["general"]["auto_connect_streams"] == True:
-    self.check_streams = RepeatingTimer(config.main["general"]["time_to_check_streams"], self.check_stream_up)
-    self.check_streams.start()
+   self.check_streams = RepeatingTimer(config.main["general"]["time_to_check_streams"], self.check_stream_up)
+   self.check_streams.start()
   # If all it's done, then play a nice sound saying that all it's OK.
   sound.player.play("ready.ogg")
 
@@ -394,24 +393,24 @@ class mainFrame(wx.Frame):
 
  def get_tls(self):
   """ Setting the stream for individual user timelines."""
-  try:
-   self.stream2 = twitter.buffers.indibidual.streamer(application.app_key, application.app_secret, config.main["twitter"]["user_key"], config.main["twitter"]["user_secret"], parent=self)
+#  try:
+  self.stream2 = twitter.buffers.indibidual.streamer(application.app_key, application.app_secret, config.main["twitter"]["user_key"], config.main["twitter"]["user_secret"], parent=self)
   # The self.ids contains all IDS for the follow argument of the stream.
-   ids = ""
+  ids = ""
    # If we have more than 0 items on a list, then.
-   for i in config.main["other_buffers"]["timelines"]:
-    ids = ids+self.db.settings[i][0]["user"]["id_str"]+", "
-   for i in range(0, self.nb.GetPageCount()):
-    if self.nb.GetPage(i).type == "list":
-     for z in self.nb.GetPage(i).users:
-      ids+= str(z)+", "
-   if ids != "":
+  for i in config.main["other_buffers"]["timelines"]:
+   ids = ids+self.db.settings[i][0]["user"]["id_str"]+", "
+  for i in range(0, self.nb.GetPageCount()):
+   if self.nb.GetPage(i).type == "list":
+    for z in self.nb.GetPage(i).users:
+     ids+= str(z)+", "
+  if ids != "":
  #   try:
-    call_threaded(self.stream2.statuses.filter, follow=ids)
+   call_threaded(self.stream2.statuses.filter, follow=ids)
  #   except:
  #    pass
-  except:
-   self.stream2.disconnect()
+#  except:
+#   self.stream2.disconnect()
 
  def check_stream_up(self):
   try:
@@ -950,22 +949,15 @@ class mainFrame(wx.Frame):
  def get_more_items(self, event=None):
   self.nb.GetCurrentPage().get_more_items()
 
- def connect_streams(self):
-  disconnect = False
-  if self.stream.connected == False:
-   output.speak(_(u"Trying to reconnect the main stream"))
-   disconnect = True
-   del self.stream
-   call_threaded(self.init)
-   self.get_home()
-  if hasattr(self, "stream2") and self.stream2.connected == False:
-   output.speak(_(u"Trying to reconnect the buffers stream"))
-   disconnect = True
-   log.debug("Trying reconnects the timelines stream...")
-   del self.stream2
-   self.get_tls()
-  if disconnect == False:
-   output.speak(_(u"All streams are working properly"))
+ def search_buffer(self, buffer_type=None, name_buffer=None):
+  page = None
+  for i in range(0, self.nb.GetPageCount()):
+   page = self.nb.GetPage(i)
+   if page.type != buffer_type:
+    continue
+   if page.name_buffer == name_buffer:
+    return page
+  return page
 
 ### Close App
  def Destroy(self):
