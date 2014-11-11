@@ -19,7 +19,6 @@ def get_more_items(update_function, twitter_object, users=False, name=None, *arg
   for i in data["users"]: results.append(i)
  else:
   results.extend(data[1:])
- if config.main["general"]["reverse_timelines"] == True: results.reverse()
  return results
 
 def call_paged(update_function, twitter_object, *args, **kwargs):

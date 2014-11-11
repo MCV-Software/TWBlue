@@ -19,10 +19,8 @@ class streamer(TwythonStreamer):
   log.debug("%s: %s" % (status_code, data))
 
  def check_tls(self, data):
-  print "checking timelines..."
   for i in config.main["other_buffers"]["timelines"]:
    if data["user"]["screen_name"] == i:
-    print "I found it"
     tweet_event = event.event(event.EVT_OBJECT, 1)
     tweet_event.SetItem(data)
     announce = _(u"One tweet from %s") % (data["user"]["name"])
