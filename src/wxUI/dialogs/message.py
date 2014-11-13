@@ -24,6 +24,9 @@ class textLimited(baseDialog.BaseWXDialog):
  def get_text(self):
   return self.text.GetValue()
 
+ def set_text(self, text):
+  return self.text.ChangeValue(text)
+
  def onSelect(self, ev):
   self.text.SelectAll()
 

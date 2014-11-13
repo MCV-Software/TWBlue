@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from wxUI import (view, dialogs)
 import buffersController
+import messages
 from sessionmanager import session
 from pubsub import pub
 import sound
@@ -217,8 +218,12 @@ class Controller(object):
  def action(self, do_action):
   pass
 
- def post_tweet(self):
-  pass
+ def post_tweet(self, event=None):
+  buffer = self.get_best_buffer()
+  tweet = messages.tweet(buffer.session)
+  if tweet.message.get_response() == widgetUtils.OK:
+   text = tweet.message.get_text()
+   call_threaded(buffer.session.api_call, call_name="update_status", _sound="tweet_send.ogg", status=text)
 
  def post_reply(self):
   pass
@@ -337,7 +342,7 @@ class Controller(object):
   buffer.remove_item(item)
 
  def manage_item_in_timeline(self, data, user, who):
-  buffer = self.search_buffer("%i-timeline" % (who,), user)
+  buffer = self.search_buffer("%s-timeline" % (who,), user)
   play_sound = "tweet_timeline.ogg"
   buffer.add_new_item(data)
   self.notify(play_sound=play_sound)

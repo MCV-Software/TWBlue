@@ -31,7 +31,7 @@ class mainFrame(wx.Frame):
   # Tweet menu
   tweet = wx.Menu()
   compose = tweet.Append(wx.NewId(), _(u"&Tweet"))
-#  self.view.Bind(wx.EVT_MENU, self.compose, compose)
+  self.Bind(wx.EVT_MENU, self.controller.post_tweet, compose)
   response = tweet.Append(wx.NewId(), _(u"Re&ply"))
 #  self.view.Bind(wx.EVT_MENU, self.reply, response)
   retweet = tweet.Append(wx.NewId(), _(u"&Retweet"))

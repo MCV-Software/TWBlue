@@ -16,10 +16,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
+import translator
 import wx
 from wxUI.dialogs import baseDialog
 
-class translateDialog(baseDialog.BaseDialog):
+class translateDialog(baseDialog.BaseWXDialog):
  def __init__(self):
   super(translateDialog, self).__init__(None, -1, title=_(u"Translate message"))
   panel = wx.Panel(self)
@@ -39,3 +40,6 @@ class translateDialog(baseDialog.BaseDialog):
   ok.SetDefault()
   cancel = wx.Button(panel, wx.ID_CANCEL)
   self.SetEscapeId(wx.ID_CANCEL)
+
+ def get(self, control):
+  return getattr(self, control).GetSelection()
