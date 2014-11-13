@@ -6,11 +6,6 @@ import datetime
 import time
 import output
 import gettext, paths, locale, gettext_windows
-import config, languageHandler
-if config.main != None:
- languageHandler.setLanguage(config.main["general"]["language"])
-else:
- languageHandler.setLanguage("system")
 import platform
 system = platform.system()
 
@@ -133,14 +128,14 @@ def translate_short(string):
 
 chars = "abcdefghijklmnopqrstuvwxyz"
 
-def compose_tweet(tweet, db):
+def compose_tweet(tweet, db, relative_times):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
 # original_date = datetime.datetime.strptime(translate_short(tweet["created_at"]).encode("utf-8"), "%a %b %d %H:%M:%S +0000 %Y")
  original_date = datetime.datetime.strptime(tweet["created_at"], "%a %b %d %H:%M:%S +0000 %Y")
 # else:
 #  original_date = datetime.datetime.strptime(tweet["created_at"], '%a %b %d %H:%M:%S +0000 %Y')
- date = original_date-datetime.timedelta(seconds=-db.settings["utc_offset"])
- if config.main["general"]["relative_times"] == True:
+ date = original_date-datetime.timedelta(seconds=-db["utc_offset"])
+ if relative_times == True:
   ts = prettydate(original_date)
  else:
 #  ts = translate(datetime.datetime.strftime(date, _("%A, %B %d, %Y at %I:%M:%S %p".encode("utf-8"))).decode("utf-8"))
@@ -149,7 +144,7 @@ def compose_tweet(tweet, db):
  text = StripChars(tweet["text"])
  if tweet.has_key("sender"):
   source = "DM"
-  if db.settings["user_name"] == tweet["sender"]["screen_name"]: user = _(u"Dm to %s ") % (tweet["recipient"]["name"],)
+  if db["user_name"] == tweet["sender"]["screen_name"]: user = _(u"Dm to %s ") % (tweet["recipient"]["name"],)
   else: user = tweet["sender"]["name"]
  elif tweet.has_key("user"):
   user = tweet["user"]["name"]
@@ -162,13 +157,13 @@ def compose_tweet(tweet, db):
   try:  text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
   except IndexError: pass
  tweet["text"] = text
- return [user+", ", tweet["text"], ts+", ", source]
+ return [user+", ", text, ts+", ", source]
 
-def compose_followers_list(tweet, db):
+def compose_followers_list(tweet, db, relative_time=True):
 # original_date = datetime.datetime.strptime(translate_short(tweet["created_at"]).encode("utf-8"), '%a %b %d %H:%M:%S +0000 %Y')
  original_date = datetime.datetime.strptime(tweet["created_at"], '%a %b %d %H:%M:%S +0000 %Y')
- date = original_date-datetime.timedelta(seconds=-db.settings["utc_offset"])
- if config.main["general"]["relative_times"] == True:
+ date = original_date-datetime.timedelta(seconds=-db["utc_offset"])
+ if relative_time == True:
   ts = prettydate(original_date)
  else:
   ts = translate(datetime.datetime.strftime(date, _(u"%A, %B %d, %Y at %I:%M:%S %p")))
@@ -177,8 +172,8 @@ def compose_followers_list(tweet, db):
   if len(tweet["status"]) > 4:
 #   original_date2 = datetime.datetime.strptime(translate_short(tweet["status"]["created_at"]).encode("utf-8"), '%a %b %d %H:%M:%S +0000 %Y')
    original_date2 = datetime.datetime.strptime(tweet["status"]["created_at"], '%a %b %d %H:%M:%S +0000 %Y')
-   date2 = original_date2-datetime.timedelta(seconds=-db.settings["utc_offset"])
-   if config.main["general"]["relative_times"]:
+   date2 = original_date2-datetime.timedelta(seconds=-db["utc_offset"])
+   if relative_time == True:
     ts2 = prettydate(original_date2)
    else:
     ts2 = translate(datetime.datetime.strftime(date2, _(u"%A, %B %d, %Y at %I:%M:%S %p")))

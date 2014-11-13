@@ -9,8 +9,6 @@ __version__ = 0.1
 __doc__ = "Find urls in tweets and #audio hashtag."
 
 url_re = re.compile(r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))")
-#"(?:\w+://|www\.)[^ ,.?!#%=+][^ ]*")
-#bad_chars = '\'\\.,[](){}:;"'
 
 url_re2 = re.compile("(?:\w+://|www\.)[^ ,.?!#%=+][^ ]*")
 bad_chars = '\'\\.,[](){}:;"'
@@ -20,13 +18,6 @@ def find_urls_in_text(text):
 
 def find_urls (tweet):
  urls = []
-# for i in tweet["entities"]["urls"]:
-#  unshortened = url_shortener.unshorten(i["expanded_url"])
-#  if unshortened == None:
-#   urls.append(i["expanded_url"])
-#  else:
-#   urls.append(unshortened)
-# return urls
  return [s[0] for s in url_re.findall(tweet["text"])]
 
 def find_item(id, listItem):
@@ -44,9 +35,6 @@ def find_previous_reply(id, listItem):
  return None
 
 def find_next_reply(id, listItem):
-# r = range(0, len(listItem))
-# r.reverse()
-# for i in r:
  for i in range(0, len(listItem)):
   if listItem[i]["in_reply_to_status_id_str"] == str(id): return i
  return None

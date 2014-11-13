@@ -10,14 +10,6 @@ def convert_audioboom(url):
  audio_id = url.split('.com/')[-1]
  return 'https://audioboom.com/%s.mp3' % audio_id
 
-@matches_url('http://q-audio.net')
-def convert_q_audio(url):
- result = re.match("^https?://q-audio.net/(i|d|download)/(?P<audio_id>[a-z0-9]+/?)$", url, re.I)
- if not result or result.group("audio_id") is None:
-  raise TypeError('%r is not a valid URL' % url)
- audio_id = result.group("audio_id")
- return 'http://q-audio.net/download/%s' % audio_id
-
 @matches_url ('http://soundcloud.com/')
 def convert_soundcloud (url):
  client_id = "df8113ca95c157b6c9731f54b105b473"

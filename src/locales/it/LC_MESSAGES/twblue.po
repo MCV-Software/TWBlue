@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.48\n"
 "POT-Creation-Date: 2014-11-08 16:42+Hora estándar central (México)\n"
-"PO-Revision-Date: 2014-11-08 23:52+0100\n"
-"Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
+"PO-Revision-Date: 2014-11-12 12:03+0100\n"
+"Last-Translator: Chris Leo Mameli <llajta2012@gmail.com>\n"
 "Language-Team: Manuel Cortez <info@twblue.com.mx>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.6.3\n"
 
 #: ../src\extra\AudioUploader\gui.py:31 ../src\gui\dialogs\message.py:173
 #: ../src\gui\dialogs\message.py:261
@@ -752,9 +752,8 @@ msgstr "Messaggio diretto a %s"
 
 #: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
 #: ../src\gui\buffers\people.py:56
-#, fuzzy
 msgid "New direct message"
-msgstr "Un messaggio diretto"
+msgstr "Nuovo  messaggio diretto"
 
 #: ../src\gui\buffers\base.py:228 ../src\gui\buffers\events.py:78
 msgid "Write the tweet here"
@@ -854,11 +853,11 @@ msgstr "Lingua"
 
 #: ../src\gui\dialogs\configuration.py:53
 msgid "ask before exiting TwBlue?"
-msgstr ""
+msgstr "Richiedere conferma prima di uscire da  TwBlue?"
 
 #: ../src\gui\dialogs\configuration.py:56
 msgid "Relative times"
-msgstr "Relative times"
+msgstr "Mostra tempo di ricezione trascorso"
 
 #: ../src\gui\dialogs\configuration.py:60
 msgid "Activate Sapi5 when any other screen reader is not being run"
@@ -885,8 +884,8 @@ msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning of the "
 "lists while the oldest at the end"
 msgstr ""
-"Elenco invertito: I più nuovi tweets verranno mostrate all'inizio delle "
-"liste, mentre il più antico alla fine"
+"Inverti elenco: I nuovi tweets verranno mostrate in cima all'elenco, i "
+"precedenti alla fine"
 
 #: ../src\gui\dialogs\configuration.py:97
 msgid "Show followers"
@@ -1224,9 +1223,8 @@ msgid "Select a list to remove the user"
 msgstr "Seleziona una lista per rimuovere l'utente"
 
 #: ../src\gui\dialogs\message.py:43 ../src\gui\dialogs\message.py:146
-#, fuzzy
 msgid "%s - %s of 140 characters"
-msgstr "Tweet -% i caratteri "
+msgstr "%s - %s di 140 caratteri"
 
 #: ../src\gui\dialogs\message.py:77
 msgid "Attaching..."
@@ -1440,7 +1438,7 @@ msgstr "&Tutorial dei suoni"
 
 #: ../src\gui\main.py:69
 msgid "&Edit keystrokes"
-msgstr "&Modifica"
+msgstr "&Modifica comandi"
 
 #: ../src\gui\main.py:71
 msgid "&Preferences"
@@ -1536,7 +1534,7 @@ msgstr "Visualizza &preferiti"
 
 #: ../src\gui\main.py:126
 msgid "&Load previous items"
-msgstr ""
+msgstr "&Carica le voci precedenti"
 
 #: ../src\gui\main.py:130
 msgid "&Autoread tweets for this buffer"
@@ -1643,9 +1641,8 @@ msgid "%s favourites from %s"
 msgstr "%s preferiti da %s"
 
 #: ../src\gui\main.py:378
-#, fuzzy
 msgid "Connection error. Try again later."
-msgstr "Errore durante l'autorizzazione. Riprovare più tardi."
+msgstr "Errore durante la connessione. Riprovare più tardi."
 
 #: ../src\gui\main.py:421
 msgid "Streams disconnected. TW Blue will try to reconnect in a minute."
@@ -1688,9 +1685,8 @@ msgid "Exit"
 msgstr "Esci"
 
 #: ../src\gui\main.py:587
-#, fuzzy
 msgid "Exiting..."
-msgstr "Allegando..."
+msgstr "Chiusura in corso..."
 
 #: ../src\gui\main.py:673
 msgid "Error while adding to favourites."
@@ -1850,7 +1846,7 @@ msgstr "Rimuovi dai favoriti"
 
 #: ../src\keystrokeEditor\constants.py:17
 msgid "Open the actions dialogue"
-msgstr "Open the actions dialogue"
+msgstr "Apre una finestra per selezionare un'azione"
 
 #: ../src\keystrokeEditor\constants.py:18
 msgid "See user details"
@@ -1924,7 +1920,7 @@ msgstr "Ascolta il messaggio corrente"
 
 #: ../src\keystrokeEditor\constants.py:35
 msgid "Copy to clipboard"
-msgstr "Copiato negli appunti"
+msgstr "Copia negli appunti"
 
 #: ../src\keystrokeEditor\constants.py:36
 msgid "Add to list"
@@ -1936,7 +1932,7 @@ msgstr "Rimuovi dalla lista"
 
 #: ../src\keystrokeEditor\constants.py:38
 msgid "Mutes/unmutes the active buffer"
-msgstr "Mutes/unmutes the active buffer"
+msgstr "Mutes/unmutes il buffer corrente"
 
 #: ../src\keystrokeEditor\constants.py:39
 msgid "Globally mute/unmute TW Blue"
@@ -1962,7 +1958,7 @@ msgstr "Mostra le liste di un utente"
 
 #: ../src\keystrokeEditor\constants.py:44
 msgid "loads previous items to any buffer"
-msgstr ""
+msgstr "Carica voci precedenti per tutti i buffer"
 
 #: ../src\keystrokeEditor\gui.py:10
 msgid "Keystroke editor"
@@ -1970,7 +1966,7 @@ msgstr "Modifica comando"
 
 #: ../src\keystrokeEditor\gui.py:16
 msgid "Select a keystroke to edit"
-msgstr "Select a keystroke to edit"
+msgstr "Seleziona il comando da modificare:"
 
 #: ../src\keystrokeEditor\gui.py:17
 msgid "Keystroke"
@@ -1978,11 +1974,11 @@ msgstr "Comando"
 
 #: ../src\keystrokeEditor\gui.py:54
 msgid "Editing keystroke"
-msgstr "Editing keystroke"
+msgstr "Modifica comando"
 
 #: ../src\keystrokeEditor\gui.py:61
 msgid "Control"
-msgstr "Comandi"
+msgstr "Control"
 
 #: ../src\keystrokeEditor\gui.py:62
 msgid "Alt"

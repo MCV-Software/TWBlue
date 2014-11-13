@@ -2,15 +2,14 @@
 from config_utils import Configuration, ConfigurationResetException
 import paths
 
-MAINFILE = "session.conf"
-MAINSPEC = "Conf.defaults"
+MAINFILE = "twblue.conf"
+MAINSPEC = "app-configuration.defaults"
 
-main = None
+app = None
 
 def setup ():
- global main
+ global app
  try:
-  main = Configuration(paths.config_path(MAINFILE), paths.app_path(MAINSPEC))
+  app = Configuration(paths.config_path(MAINFILE), paths.app_path(MAINSPEC))
  except ConfigurationResetException:
   pass
-# return main

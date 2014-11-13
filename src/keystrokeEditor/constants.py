@@ -41,5 +41,5 @@ actions = {
 "search": _(u"Search on twitter"),
 "edit_keystrokes": _(u"Shows the keystroke editor"),
 "view_user_lists": _(u"Show lists for a specified user"),
-"get_more_items": _(u"loads previous items to any buffer"),
+"get_more_items": _(u"Loads more items for the current buffer"),
 }

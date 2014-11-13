@@ -21,7 +21,7 @@ class SAPI5(Output):
  priority = 101
 
  def __init__(self):
-  if config.main["general"]["voice_enabled"] == False: raise OutputError
+  if config.app["app-settings"]["voice_enabled"] == False: raise OutputError
   try:
    self.object = load_com("SAPI.SPVoice")
    self._voices = self._available_voices()

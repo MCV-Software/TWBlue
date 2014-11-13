@@ -27,8 +27,8 @@ class RepeatingTimer(threading.Thread):
   while not self.finished.is_set():
    self.finished.wait(self.interval)
    if not self.finished.is_set():  #In case someone has canceled while waiting
-    try:
-     self.function(*self.args, **self.kwargs)
-    except:
-     pass
+#    try:
+    self.function(*self.args, **self.kwargs)
+#    except:
+#     pass
 #     logging.exception("Execution failed. Function: %r args: %r and kwargs: %r" % (self.function, self.args, self.kwargs))

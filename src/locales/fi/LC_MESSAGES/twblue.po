@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.48\n"
 "POT-Creation-Date: 2014-11-08 16:42+Hora estándar central (México)\n"
-"PO-Revision-Date: 2014-11-08 23:50+0100\n"
-"Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
+"PO-Revision-Date: 2014-11-11 19:16+0200\n"
+"Last-Translator: Jani Kinnunen <jani.kinnunen@wippies.fi>\n"
 "Language-Team: Jani Kinnunen <jani.kinnunen@wippies.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -750,9 +750,8 @@ msgstr "Yksityisviesti käyttäjälle %s"
 
 #: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
 #: ../src\gui\buffers\people.py:56
-#, fuzzy
 msgid "New direct message"
-msgstr "Yksityisviesti"
+msgstr "Uusi yksityisviesti"
 
 #: ../src\gui\buffers\base.py:228 ../src\gui\buffers\events.py:78
 msgid "Write the tweet here"
@@ -838,9 +837,8 @@ msgid "Mention"
 msgstr "Mainitse"
 
 #: ../src\gui\buffers\people.py:64
-#, fuzzy
 msgid "Mention to %s"
-msgstr "Mainitse kaikille"
+msgstr "Maininta käyttäjälle %s"
 
 #: ../src\gui\buffers\trends.py:41 ../src\gui\buffers\tweet_searches.py:45
 #: ../src\gui\buffers\user_searches.py:56
@@ -853,7 +851,7 @@ msgstr "Kieli"
 
 #: ../src\gui\dialogs\configuration.py:53
 msgid "ask before exiting TwBlue?"
-msgstr ""
+msgstr "Kysy vahvistus ennen sulkemista"
 
 #: ../src\gui\dialogs\configuration.py:56
 msgid "Relative times"
@@ -1222,9 +1220,8 @@ msgid "Select a list to remove the user"
 msgstr "Valitse lista, jolta käyttäjä poistetaan"
 
 #: ../src\gui\dialogs\message.py:43 ../src\gui\dialogs\message.py:146
-#, fuzzy
 msgid "%s - %s of 140 characters"
-msgstr "Twiitti - %i merkkiä"
+msgstr "%s - %s / 140 merkkiä"
 
 #: ../src\gui\dialogs\message.py:77
 msgid "Attaching..."
@@ -1534,7 +1531,7 @@ msgstr "&Näytä suosikit"
 
 #: ../src\gui\main.py:126
 msgid "&Load previous items"
-msgstr ""
+msgstr "&Lataa edelliset kohteet"
 
 #: ../src\gui\main.py:130
 msgid "&Autoread tweets for this buffer"
@@ -1641,9 +1638,8 @@ msgid "%s favourites from %s"
 msgstr "%s suosikkia käyttäjältä %s"
 
 #: ../src\gui\main.py:378
-#, fuzzy
 msgid "Connection error. Try again later."
-msgstr "Valtuutuksessa tapahtui virhe. Yritä myöhemmin uudelleen."
+msgstr "Yhteysvirhe. Yritä myöhemmin uudelleen."
 
 #: ../src\gui\main.py:421
 msgid "Streams disconnected. TW Blue will try to reconnect in a minute."
@@ -1687,9 +1683,8 @@ msgid "Exit"
 msgstr "Lopeta"
 
 #: ../src\gui\main.py:587
-#, fuzzy
 msgid "Exiting..."
-msgstr "Lisätään liitettä..."
+msgstr "Suljetaan..."
 
 #: ../src\gui\main.py:673
 msgid "Error while adding to favourites."
@@ -1960,7 +1955,7 @@ msgstr "Näytä valitun käyttäjän listat"
 
 #: ../src\keystrokeEditor\constants.py:44
 msgid "loads previous items to any buffer"
-msgstr ""
+msgstr "Lataa edelliset kohteet mihin tahansa puskuriin"
 
 #: ../src\keystrokeEditor\gui.py:10
 msgid "Keystroke editor"
