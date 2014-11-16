@@ -27,6 +27,17 @@ class textLimited(baseDialog.BaseWXDialog):
  def set_text(self, text):
   return self.text.ChangeValue(text)
 
+ def set_title(self, new_title):
+  return self.SetTitle(new_title)
+
+ def enable_button(self, buttonName):
+  if getattr(self, buttonName):
+   return getattr(self, buttonName).Enable()
+
+ def disable_button(self, buttonName):
+  if getattr(self, buttonName):
+   return getattr(self, buttonName).Disable()
+
  def onSelect(self, ev):
   self.text.SelectAll()
 

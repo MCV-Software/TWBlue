@@ -10,6 +10,7 @@ NO = wx.ID_NO
 #events
 CLOSE_EVENT = wx.EVT_CLOSE
 BUTTON_PRESSED = wx.EVT_BUTTON
+ENTERED_TEXT = wx.EVT_TEXT
 
 def exit_application():
  wx.GetApp().ExitMainLoop()
