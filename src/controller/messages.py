@@ -4,14 +4,14 @@ import output
 import url_shortener
 import sound
 from wxUI.dialogs import message, urlList
-from extra import translator
+from extra import translator, SpellChecker
 from twitter import utils
 
 class tweet(object):
  def __init__(self, session):
   super(tweet, self).__init__()
   self.message = message.tweet(_(u"Write the tweet here"), _(u"tweet - 0 characters"), "")
-#  widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
+  widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
 #  widgetUtils.connect_event(self.message.attach, widgetUtils.BUTTON_PRESSED, self.attach)
   widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
   widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
@@ -71,3 +71,9 @@ class tweet(object):
    self.message.disable_button("unshortenButton")
   if len(self.message.get_text()) > 140:
    sound.player.play("max_length.ogg")
+
+ def spellcheck(self, event=None):
+  text = self.message.get_text()
+  checker = SpellChecker.spellchecker.spellChecker(text, "")
+  if hasattr(checker, "fixed_text"):
+   self.message.set_text(checker.fixed_text)
