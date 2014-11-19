@@ -9,7 +9,7 @@ In this document you will also find links to each dependency website.
 If you want to build manually some of the following libraries, you need Microsoft Visual studio 2008 professional.
 
 Dependencies list:
-- Python, version 2.7.6: http://www.python.org
+- Python, version 2.7.8: http://www.python.org
 - wxPython for Python 2.7, version 3.0.0 (2.9.5 to avoid problems in windows xp): http://www.wxpython.org
 -Python windows extensions (pywin32) for python 2.7, build 218: http://www.sourceforge.net/projects/pywin32/
 - ConfigObj, version 4.7.2: http://www.voidspace.org.uk/python/configobj.html
