@@ -41,8 +41,8 @@ class peoplePanel(basePanel):
   self.list = widgets.list(self, _(u"User"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL, size=(800, 800))
 
  def __init__(self, parent, window, name_buffer, function, argumento=None, sound="", timeline=False):
-  self.type = "people"
   super(peoplePanel, self).__init__(parent, window, name_buffer, function, argumento=argumento, sound=sound)
+  self.type = "people"
   self.responseBtn.SetLabel(_(u"Mention"))
   self.retweetBtn.Disable()
   self.compose_function = twitter.compose.compose_followers_list

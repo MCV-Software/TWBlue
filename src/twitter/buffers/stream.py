@@ -71,12 +71,11 @@ class streamer(TwythonStreamer):
    wx.PostEvent(self.parent.search_buffer("buffer", "direct_messages"), tweet_event)
 
  def check_follower(self, data):
-  if data["target"]["screen_name"] == self.db.settings["user_name"]:
-   if config.main["other_buffers"]["show_followers"] == True:
-    tweet_event = event.event(event.EVT_OBJECT, 1)
-    tweet_event.SetItem(data["source"])
-    wx.PostEvent(self.parent.search_buffer("people", "followers"), tweet_event)
-  elif data["source"]["screen_name"] == self.db.settings["user_name"] and config.main["other_buffers"]["show_friends"] == True:
+  if data["target"]["screen_name"] == self.db.settings["user_name"] and config.main["other_buffers"]["show_followers"] == True:
+   tweet_event = event.event(event.EVT_OBJECT, 1)
+   tweet_event.SetItem(data["source"])
+   wx.PostEvent(self.parent.search_buffer("people", "followers"), tweet_event)
+  elif data["source"]["screen_name"] == self.db.settings["user_name"]:
    tweet_event = event.event(event.EVT_OBJECT, 1)
    tweet_event.SetItem(data["target"])
    wx.PostEvent(self.parent.search_buffer("people", "friends"), tweet_event)
@@ -119,7 +118,7 @@ class streamer(TwythonStreamer):
      self.check_favs(data)
     elif "unfavorite" == data["event"] and config.main["other_buffers"]["show_favourites"] == True:
      self.remove_fav(data)
-    elif "follow" == data["event"] and config.main["other_buffers"]["show_followers"] == True:
+    elif "follow" == data["event"]:
      self.check_follower(data)
     elif "unfollow" == data["event"] and config.main["other_buffers"]["show_followers"] == True:
      self.remove_friend(data)
