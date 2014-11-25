@@ -25,6 +25,7 @@ class handler(BaseHTTPServer.BaseHTTPRequestHandler):
         verifier = params.get('oauth_verifier', [None])[0]
         self.wfile.write("You have successfully logged in to Twitter with TW Blue. "
                              "You can close this window now.")
+        self.wfile.close()
 
 class twitter(object):
 
@@ -48,6 +49,8 @@ class twitter(object):
   self.twitter = Twython(application.app_key, application.app_secret, auth['oauth_token'], auth['oauth_token_secret'])
   final = self.twitter.get_authorized_tokens(verifier)
   self.save_configuration(final["oauth_token"], final["oauth_token_secret"])
+  httpd.server_close()
+
 
  def save_configuration(self, user_key=None, user_secret=None):
   if user_key != None and user_secret != None:
