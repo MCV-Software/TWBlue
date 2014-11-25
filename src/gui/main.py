@@ -211,7 +211,7 @@ class mainFrame(wx.Frame):
   self.Bind(wx.EVT_QUERY_END_SESSION, self.exit)
   self.Bind(wx.EVT_END_SESSION, self.exit)
   log.debug(u"Creating the system tray icon... ")
-  sysTray=sysTrayIcon.SysTrayIcon(self)
+  self.sysTray=sysTrayIcon.SysTrayIcon(self)
   panel = wx.Panel(self)
   self.sizer = wx.BoxSizer(wx.VERTICAL)
   self.SetTitle("TW Blue")
@@ -590,6 +590,7 @@ class mainFrame(wx.Frame):
  def exit(self, event=None):
   config.main.write()
   log.debug("Exiting...")
+  self.sysTray.RemoveIcon()
   try:
    self.check_streams.cancel()
   except AttributeError:

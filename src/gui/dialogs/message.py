@@ -30,6 +30,7 @@ from twython import TwythonError
 from extra import translator, AudioUploader
 import platform
 from extra.AudioUploader import transfer
+from extra.autocompletionUsers  import completion
 if platform.system() != "Darwin":
  from extra.AudioUploader import dropbox_transfer
  from extra.SpellChecker import gui as spellCheckerGUI
@@ -183,6 +184,8 @@ class tweet(textLimited):
   self.okButton = wx.Button(self.panel, wx.ID_OK, _(u"Send"), size=wx.DefaultSize)
   self.okButton.Bind(wx.EVT_BUTTON, self.onSend)
   self.okButton.SetDefault()
+  autocompletionButton = wx.Button(self.panel, -1, _(u"&Autocomplete users"))
+  self.Bind(wx.EVT_BUTTON, self.autocompletion, autocompletionButton)
   cancelButton = wx.Button(self.panel, wx.ID_CANCEL, _(u"Close"), size=wx.DefaultSize)
   cancelButton.Bind(wx.EVT_BUTTON, self.onCancel)
   self.buttonsBox1 = wx.BoxSizer(wx.HORIZONTAL)
@@ -202,8 +205,11 @@ class tweet(textLimited):
   self.mainBox.Add(self.ok_cancelSizer)
   selectId = wx.NewId()
   self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
+#  autocompletionId = wx.NewId()
+#  self.Bind(wx.EVT_MENU, self.autocompletion, id=autocompletionId)
   self.accel_tbl = wx.AcceleratorTable([
 (wx.ACCEL_CTRL, ord('A'), selectId),
+#(wx.ACCEL_ALT, ord('A'), autocompletionId),
 ])
   self.SetAcceleratorTable(self.accel_tbl)
   self.panel.SetSizer(self.mainBox)
@@ -214,6 +220,10 @@ class tweet(textLimited):
   self.createControls(message, title, text)
   self.onTimer(wx.EVT_CHAR_HOOK)
   self.SetClientSize(self.mainBox.CalcMin())
+
+ def autocompletion(self, event=None):
+  c = completion.autocompletionUsers(self)
+  c.show_menu()
 
  def onUpload_image(self, ev):
   if self.upload_image.GetLabel() == _(u"Discard image"):

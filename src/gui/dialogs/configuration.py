@@ -29,6 +29,7 @@ import webbrowser
 import paths
 import platform
 from mysc import restart
+from extra.autocompletionUsers import settings
 log = original_logger.getLogger("configuration")
 
 system = platform.system()
@@ -50,6 +51,8 @@ class general(wx.Panel):
   langBox.Add(language, 0, wx.ALL, 5)
   langBox.Add(self.language, 0, wx.ALL, 5)
   sizer.Add(langBox, 0, wx.ALL, 5)
+  self.au = wx.Button(self, -1, u"Configure autocompltion")
+#  self.Bind(wx.EVT_BUTTON, self.autocompletion, au)
   self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting TwBlue?"))
   self.ask_at_exit.SetValue(config.main["general"]["ask_at_exit"])
   sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
@@ -84,6 +87,7 @@ class general(wx.Panel):
   sizer.Add(self.reverse_timelines, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
+  
 class other_buffers(wx.Panel):
  def __init__(self, parent):
   wx.Panel.__init__(self, parent)
@@ -264,6 +268,7 @@ class configurationDialog(wx.Dialog):
   self.general = general(notebook)
   notebook.AddPage(self.general, _(u"General"))
   self.general.SetFocus()
+  self.Bind(wx.EVT_BUTTON, self.autocompletion, self.general.au)
   self.buffers = other_buffers(notebook)
   notebook.AddPage(self.buffers, _(u"Show other buffers"))
   self.ignored_clients = ignoredClients(notebook)
@@ -284,6 +289,9 @@ class configurationDialog(wx.Dialog):
   sizer.Add(ok_cancel_box, 0, wx.ALL, 5)
   panel.SetSizer(sizer)
   self.SetClientSize(sizer.CalcMin())
+
+ def autocompletion(self, ev):
+  configuration = settings.autocompletionSettings(self.parent)
 
  def check_followers_change(self):
   if self.buffers.followers.GetValue() != self.buffers.followers_value:
