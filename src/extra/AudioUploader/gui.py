@@ -68,7 +68,8 @@ class audioDialog(wx.Dialog):
   services = []
   if config.main["services"]["dropbox_token"] != "":
    services.append("Dropbox")
-  services.append("SNDUp")
+   service.append("TwUp")
+   services.append("SNDUp")
   return services
 
  def onPause(self, ev):
