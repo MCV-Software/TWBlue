@@ -68,7 +68,7 @@ class streamer(TwythonStreamer):
    tweet_event.SetItem(data["direct_message"])
    text = _(u"One direct message")
    tweet_event.SetAnnounce(text)
-   wx.PostEvent(self.parent.search_buffer("buffer", "direct_messages"), tweet_event)
+   wx.PostEvent(self.parent.search_buffer("direct_message", "direct_messages"), tweet_event)
 
  def check_follower(self, data):
   if data["target"]["screen_name"] == self.db.settings["user_name"] and config.main["other_buffers"]["show_followers"] == True:
