@@ -24,28 +24,26 @@ class sessionManagerWindow(wx.Dialog):
   label = wx.StaticText(panel, -1, _(u"Select a twitter account to start TW Blue"), size=wx.DefaultSize)
   listSizer = wx.BoxSizer(wx.HORIZONTAL)
   self.list = widgets.list(panel, _(u"Account"), style=wx.LC_SINGLE_SEL|wx.LC_REPORT)
-  self.fill_list()
   listSizer.Add(label, 0, wx.ALL, 5)
   listSizer.Add(self.list.list, 0, wx.ALL, 5)
   sizer.Add(listSizer, 0, wx.ALL, 5)
   new = wx.Button(panel, -1, _(u"New account"), size=wx.DefaultSize)
   new.Bind(wx.EVT_BUTTON, self.new_account)
+  self.removeSession = wx.Button(panel, -1, _(u"Remove session"))
+  self.removeSession.Disable()
+  self.removeSession.Bind(wx.EVT_BUTTON, self.remove)
   ok = wx.Button(panel, wx.ID_OK, size=wx.DefaultSize)
   ok.SetDefault()
   ok.Bind(wx.EVT_BUTTON, self.ok)
   cancel = wx.Button(panel, wx.ID_CANCEL, size=wx.DefaultSize)
   buttons = wx.BoxSizer(wx.HORIZONTAL)
   buttons.Add(new, 0, wx.ALL, 5)
+  buttons.Add(self.removeSession, 0, wx.ALL, 5)
   buttons.Add(ok, 0, wx.ALL, 5)
   buttons.Add(cancel, 0, wx.ALL, 5)
   sizer.Add(buttons, 0, wx.ALL, 5)
   panel.SetSizer(sizer)
-#  sizer.Layout()
-#  self.Fit()
-#  self.SetSize(panel.GetBestSize())
-#  panelSizer.Add(panel)
-#  self.SetSizerAndFit(sizer)
-#  sizer.Layout()
+  self.fill_list()
   min = sizer.CalcMin()
   self.SetClientSize(min)
 
@@ -65,6 +63,7 @@ class sessionManagerWindow(wx.Dialog):
   if self.list.get_count() > 0:
    self.list.select_item(0)
   self.list.list.SetSize(self.list.list.GetBestSize())
+  self.removeSession.Enable()
 
  def ok(self, ev):
   if self.list.get_count() == 0:
@@ -78,8 +77,6 @@ class sessionManagerWindow(wx.Dialog):
   languageHandler.setLanguage(lang)
   sound.setup()
   output.setup()
-# else:
-#   self.name = current_session
   self.EndModal(wx.ID_OK)
 
  def new_account(self, ev):
@@ -103,3 +100,12 @@ class sessionManagerWindow(wx.Dialog):
    if self.list.get_count() == 1:
     self.list.select_item(0)
    self.sessions.append(location)
+
+ def remove(self, ev):
+  selected_item = self.list.get_selected()
+  selected_session = self.sessions[selected_item]
+  ask = wx.MessageDialog(self, _(u"Do you really want delete this account?"), _(u"Remove account"), wx.YES_NO)
+  if ask.ShowModal() == wx.ID_YES:
+   self.sessions.remove(selected_session)
+   shutil.rmtree(path=paths.config_path(selected_session), ignore_errors=True)
+   self.list.remove_item(selected_item)
