@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import shutil
 import time
 import wx
 import manager
@@ -55,9 +56,12 @@ class sessionManagerWindow(wx.Dialog):
     strconfig = "%s/session.conf" % (paths.config_path(i))
     config_test = Configuration(strconfig)
     name = config_test["twitter"]["user_name"]
-    if name != "" and config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
+    if name != "" or (config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != ""):
      self.list.insert_item(False, name)
      self.sessions.append(i)
+    else:
+     del config_test
+     shutil.rmtree(path=paths.config_path(i), ignore_errors=True)
   if self.list.get_count() > 0:
    self.list.select_item(0)
   self.list.list.SetSize(self.list.list.GetBestSize())
