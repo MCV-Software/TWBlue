@@ -40,7 +40,7 @@ class searchUsersPanel(peoplePanel):
   self.create_list()
   self.args = args
   self.kwargs = kwargs
-  self.type = "timeline"
+  self.type = "user_search"
 
  def start_streams(self):
   num = twitter.starting.search_users(self.db, self.twitter, self.name_buffer, **self.kwargs)
