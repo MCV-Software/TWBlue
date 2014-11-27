@@ -32,6 +32,7 @@ import output
 import platform
 import urllib2
 import sysTrayIcon
+import switchModule
 import languageHandler
 from sessionmanager import manager
 from mysc import event
@@ -56,6 +57,8 @@ class mainFrame(wx.Frame):
 
   # Application menu
   app = wx.Menu()
+  switch_account = app.Append(wx.NewId(), _(u"S&witch account"))
+  self.Bind(wx.EVT_MENU, self.switch_account)
   updateProfile = app.Append(wx.NewId(), _(u"&Update profile"))
   self.Bind(wx.EVT_MENU, self.update_profile, updateProfile)
   show_hide = app.Append(wx.NewId(), _(u"&Hide window"))
@@ -662,8 +665,18 @@ class mainFrame(wx.Frame):
    self.nb.GetCurrentPage().onRetweet(ev)
 
  def view(self, ev=None):
-  tweet = self.nb.GetCurrentPage().get_message(dialog=True)
-  dialogs.message.viewTweet(tweet).ShowModal()
+  tp = self.nb.GetCurrentPage().type
+  if tp == "buffer" or tp == "timeline" or tp == "favourites_timeline" or tp == "list" or tp == "search":
+   try:
+    id = self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["id"]
+    tweet = self.twitter.twitter.show_status(id=id)
+    dialogs.message.viewTweet(tweet).ShowModal()
+   except TwythonError as e:
+    non_tweet = self.nb.GetCurrentPage().get_message(dialog=True)
+    dialogs.message.viewNonTweet(non_tweet).ShowModal()
+  else:
+   non_tweet = self.nb.GetCurrentPage().get_message(dialog=True)
+   dialogs.message.viewNonTweet(non_tweet).ShowModal()
 
  def fav(self, ev=None):
   if self.nb.GetCurrentPage().name_buffer != "direct_messages" and self.nb.GetCurrentPage().name_buffer != "followers" and self.nb.GetCurrentPage().name_buffer != "friends":
@@ -959,6 +972,9 @@ class mainFrame(wx.Frame):
    if page.name_buffer == name_buffer:
     return page
   return page
+
+ def switch_account(self, ev):
+  switchModule.switcher(self)
 
 ### Close App
  def Destroy(self):

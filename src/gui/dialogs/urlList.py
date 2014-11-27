@@ -46,8 +46,7 @@ class urlList(wx.Dialog):
   self.SetClientSize(sizer.CalcMin())
 
  def onGo(self, ev):
-  webbrowser.open(self.lista.GetStringSelection())
-  self.Destroy()
+  self.EndModal(wx.ID_OK)
 
  def populate_list(self):
   for i in self.urls:

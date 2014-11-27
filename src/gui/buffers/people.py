@@ -140,3 +140,9 @@ class peoplePanel(basePanel):
  def remove_buffer(self):
   pos = None
   return pos
+
+ def get_message(self, dialog=False):
+  if dialog == False: return " ".join(self.compose_function(self.db.settings[self.name_buffer][self.list.get_selected()], self.db))
+  else:
+   list = self.compose_function(self.db.settings[self.name_buffer][self.list.get_selected()], self.db)
+   return " ".join(list)

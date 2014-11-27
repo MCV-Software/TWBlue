@@ -30,6 +30,7 @@ class dmPanel(basePanel):
   super(dmPanel, self).__init__(parent, window, name_buffer, function, argumento=argumento, sound=sound)
   self.retweetBtn.Disable()
   self.responseBtn.Disable()
+  self.type = "direct_message"
 
  def destroy_status(self, ev):
   index = self.list.get_selected()
