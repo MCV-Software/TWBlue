@@ -342,10 +342,10 @@ class reply(tweet):
 class viewTweet(wx.Dialog):
  def __init__(self, tweet):
   super(viewTweet, self).__init__(None, size=(850,850))
-  self.SetTitle(_(u"Tweet - %i characters ") % (len(tweet)))
+  self.SetTitle(_(u"Tweet - %i characters ") % (len(tweet["text"])))
   panel = wx.Panel(self)
   label = wx.StaticText(panel, -1, _(u"Tweet"))
-  self.text = wx.TextCtrl(panel, -1, tweet, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
+  self.text = wx.TextCtrl(panel, -1, tweet["text"], style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
   dc = wx.WindowDC(self.text)
   dc.SetFont(self.text.GetFont())
   (x, y, z) = dc.GetMultiLineTextExtent("0"*140)
@@ -356,6 +356,20 @@ class viewTweet(wx.Dialog):
   textBox.Add(self.text, 1, wx.EXPAND, 5)
   mainBox = wx.BoxSizer(wx.VERTICAL)
   mainBox.Add(textBox, 0, wx.ALL, 5)
+  rtCountLabel = wx.StaticText(panel, -1, _(u"Retweets: "))
+  rtCount = wx.TextCtrl(panel, -1, str(tweet["retweet_count"]), size=wx.DefaultSize, style=wx.TE_READONLY|wx.TE_MULTILINE)
+  rtBox = wx.BoxSizer(wx.HORIZONTAL)
+  rtBox.Add(rtCountLabel, 0, wx.ALL, 5)
+  rtBox.Add(rtCount, 0, wx.ALL, 5)
+  favsCountLabel = wx.StaticText(panel, -1, _(u"Favourites: "))
+  favsCount = wx.TextCtrl(panel, -1, str(tweet["favorite_count"]), size=wx.DefaultSize, style=wx.TE_READONLY|wx.TE_MULTILINE)
+  favsBox = wx.BoxSizer(wx.HORIZONTAL)
+  favsBox.Add(favsCountLabel, 0, wx.ALL, 5)
+  favsBox.Add(favsCount, 0, wx.ALL, 5)
+  infoBox = wx.BoxSizer(wx.HORIZONTAL)
+  infoBox.Add(rtBox, 0, wx.ALL, 5)
+  infoBox.Add(favsBox, 0, wx.ALL, 5)
+  mainBox.Add(infoBox, 0, wx.ALL, 5)
   if platform.system() != "Darwin":
    spellcheck = wx.Button(panel, -1, _("Spelling correction"), size=wx.DefaultSize)
    spellcheck.Bind(wx.EVT_BUTTON, self.onCheck)
@@ -427,3 +441,87 @@ class viewTweet(wx.Dialog):
    urlList.unshorten(urls, self).ShowModal()
   self.text.SetFocus()
 
+class viewNonTweet(wx.Dialog):
+ def __init__(self, tweet):
+  super(viewNonTweet, self).__init__(None, size=(850,850))
+  self.SetTitle(_(u"View"))
+  panel = wx.Panel(self)
+  label = wx.StaticText(panel, -1, _(u"Item"))
+  self.text = wx.TextCtrl(parent=panel, id=-1, value=tweet, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
+  dc = wx.WindowDC(self.text)
+  dc.SetFont(self.text.GetFont())
+  (x, y, z) = dc.GetMultiLineTextExtent("0"*140)
+  self.text.SetSize((x, y))
+  self.text.SetFocus()
+  textBox = wx.BoxSizer(wx.HORIZONTAL)
+  textBox.Add(label, 0, wx.ALL, 5)
+  textBox.Add(self.text, 1, wx.EXPAND, 5)
+  mainBox = wx.BoxSizer(wx.VERTICAL)
+  mainBox.Add(textBox, 0, wx.ALL, 5)
+  spellcheck = wx.Button(panel, -1, _("Spelling correction"), size=wx.DefaultSize)
+  spellcheck.Bind(wx.EVT_BUTTON, self.onCheck)
+  self.unshortenButton = wx.Button(panel, -1, _(u"Expand URL"), size=wx.DefaultSize)
+  self.unshortenButton.Bind(wx.EVT_BUTTON, self.onUnshorten)
+  self.unshortenButton.Disable()
+  translateButton = wx.Button(panel, -1, _(u"Translate message"), size=wx.DefaultSize)
+  translateButton.Bind(wx.EVT_BUTTON, self.onTranslate)
+  cancelButton = wx.Button(panel, wx.ID_CANCEL, _(u"Close"), size=wx.DefaultSize)
+  cancelButton.SetDefault()
+  buttonsBox = wx.BoxSizer(wx.HORIZONTAL)
+  buttonsBox.Add(spellcheck, 0, wx.ALL, 5)
+  buttonsBox.Add(self.unshortenButton, 0, wx.ALL, 5)
+  buttonsBox.Add(translateButton, 0, wx.ALL, 5)
+  buttonsBox.Add(cancelButton, 0, wx.ALL, 5)
+  mainBox.Add(buttonsBox, 0, wx.ALL, 5)
+  selectId = wx.NewId()
+  self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
+  self.accel_tbl = wx.AcceleratorTable([
+(wx.ACCEL_CTRL, ord('A'), selectId),
+])
+  self.SetAcceleratorTable(self.accel_tbl)
+  panel.SetSizer(mainBox)
+  self.SetClientSize(mainBox.CalcMin())
+  self.check_urls()
+
+ def check_urls(self):
+  if len(twitter.utils.find_urls_in_text(self.text.GetValue())) > 0:
+   self.unshortenButton.Enable()
+
+ def onCheck(self, ev):
+  text = self.text.GetValue()
+  dlg = spellCheckerGUI.spellCheckerDialog(text, "")
+  if dlg.ShowModal() == wx.ID_OK:
+   self.text.ChangeValue(dlg.checker.get_text())
+   dlg.Destroy()
+
+ def onTranslate(self, ev):
+  dlg = translator.gui.translateDialog()
+  selection = dlg.ShowModal()
+  if selection != wx.ID_CANCEL:
+   text_to_translate = self.text.GetValue().encode("utf-8")
+   source = [x[0] for x in translator.available_languages()][dlg.source_lang.GetSelection()]
+   dest = [x[0] for x in translator.available_languages()][dlg.dest_lang.GetSelection()]
+   t = translator.translator.Translator()
+   t.from_lang = source
+   t.to_lang = dest
+   msg = t.translate(text_to_translate)
+   self.text.ChangeValue(msg)
+   output.speak(_(u"Translated"))
+   self.text.SetFocus()
+  else:
+   return
+  dlg.Destroy()
+
+ def onSelect(self, ev):
+  self.text.SelectAll()
+
+ def onUnshorten(self, ev):
+  urls =  twitter.utils.find_urls_in_text(self.text.GetValue())
+  if len(urls) == 0:
+   output.speak(_(u"There's no URL to be expanded"))
+  elif len(urls) == 1:
+   self.text.SetValue(self.text.GetValue().replace(urls[0], url_shortener.unshorten(urls[0])))
+   output.speak(_(u"URL expanded"))
+  elif len(urls) > 1:
+   urlList.unshorten(urls, self).ShowModal()
+  self.text.SetFocus()

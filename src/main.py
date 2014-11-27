@@ -20,56 +20,53 @@ A twitter accessible, easy of use and cross platform application."""
 #
 ############################################################
 import wx
-
+import os
 ssmg = None
 import gui
 import paths
 import config
 import commandline
 import platform
-if platform.system() == "Windows":
- from logger import logger as logging
-if platform.system() == "Darwin":
- import osx_prepare
- osx_prepare.setup()
+from logger import logger as logging
 from sessionmanager import manager
 from sessionmanager import gui as smGUI
 manager.setup()
 import sys
+import config
+import output
+import sound
+import languageHandler
 
 if hasattr(sys, 'frozen'):
   sys.stderr = open(paths.logs_path("stderr.log"), 'w')
   sys.stdout = open(paths.logs_path("stdout.log"), 'w')
 
-class app(wx.App):
- def __init__(self, *args, **kwargs):
-  super(app, self).__init__(*args, **kwargs)
-  if platform.system() != "Darwin":
-   self.start()
-  else:
-   self.mac()
-
- def mac(self):
-  self.hold_frame = wx.Frame(title="None", parent=None)
-  self.hold_frame.Show()
-  wx.CallLater(10, self.start)
-
- def start(self):
-  ssmg = smGUI.sessionManagerWindow()
-  if ssmg.ShowModal() == wx.ID_OK:
-   frame = gui.main.mainFrame()
-   frame.Show()
-   frame.showing = True
-   if config.main != None and config.main["general"]["hide_gui"] == True and platform.system() == "Windows":
-    frame.show_hide()
-    frame.Hide()
-   self.SetTopWindow(frame)
-   if hasattr(self, "frame"): self.hold_frame.Hide()
-  # If the user press on cancel.
-  else:
-   self.Exit()
-
-ap = app()
+app = wx.App()
+configured = False
+configs = []
+for i in os.listdir(paths.config_path()):
+ if os.path.isdir(paths.config_path(i)): configs.append(i)
+if len(configs) == 1:
+ manager.manager.set_current_session(configs[0])
+ config.MAINFILE = "%s/session.conf" % (manager.manager.get_current_session())
+ config.setup()
+ lang=config.main['general']['language']
+ languageHandler.setLanguage(lang)
+ sound.setup()
+ output.setup()
+ configured = True
+else:
+ ssmg = smGUI.sessionManagerWindow()
+if configured == True or ssmg.ShowModal() == wx.ID_OK:
+ frame = gui.main.mainFrame()
+ frame.Show()
+ frame.showing = True
+ if config.main != None and config.main["general"]["hide_gui"] == True and platform.system() == "Windows":
+  frame.show_hide()
+  frame.Hide()
+ app.SetTopWindow(frame)
+else:
+ app.Exit()
  ### I should uncomment this
 #if platform.system() != "Windows":
 # local = wx.Locale(wx.LANGUAGE_DEFAULT)
@@ -77,5 +74,5 @@ ap = app()
 # local.AddCatalog("twblue")
 #ap = app(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
 #wx.CallLater(10, start)
-ap.MainLoop()
+app.MainLoop()
 

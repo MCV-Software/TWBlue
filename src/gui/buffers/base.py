@@ -297,14 +297,21 @@ class basePanel(wx.Panel):
     ev.Skip()
     return
   if event == "audio"  and len(urls) > 0:
-   self.streamer(urls[0])
+   if len(urls) == 1:
+    self.streamer(urls[0])
+   elif len(urls) > 1:
+    urlList = gui.dialogs.urlList.urlList(urls)
+    if urlList.ShowModal() == wx.ID_OK:
+     self.streamer(urls[urlList.lista.GetSelection()])
   elif event == "url":
    if len(urls) == 0: return
    elif len(urls) == 1:
     output.speak(_(u"Opening URL..."), True)
     webbrowser.open(urls[0])
    elif len(urls) > 1:
-    gui.dialogs.urlList.urlList(urls).ShowModal()
+    urlList = gui.dialogs.urlList.urlList(urls)
+    if urlList.ShowModal() == wx.ID_OK:
+     webbrowser.open_new_tab(urls[urlList.lista.GetSelection()])
   elif event == "volume_down":
    if config.main["sound"]["volume"] > 0.05:
     config.main["sound"]["volume"] = config.main["sound"]["volume"]-0.05

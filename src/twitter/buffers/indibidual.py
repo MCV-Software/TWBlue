@@ -34,7 +34,11 @@ class streamer(TwythonStreamer):
      tweet_event.SetItem(data)
      announce = _(u"One tweet from %s in the list %s") % (data["user"]["name"], self.parent.nb.GetPage(i).name_buffer[:-5])
      tweet_event.SetAnnounce(announce)
-     wx.PostEvent(self.parent.nb.GetPage(i), tweet_event)
+     usr = data["in_reply_to_user_id"]
+     if (usr != None and usr in self.friends) or data.has_key("retweeted_status"):
+      wx.PostEvent(self.parent.nb.GetPage(i), tweet_event)
+     elif usr == None:
+      wx.PostEvent(self.parent.nb.GetPage(i), tweet_event)
     except ValueError:
      pass
 
@@ -42,5 +46,7 @@ class streamer(TwythonStreamer):
   try:
    if data.has_key("text"):
     self.check_tls(data)
+   elif "friends" in data:
+    self.friends = data["friends"]
   except:
    pass
