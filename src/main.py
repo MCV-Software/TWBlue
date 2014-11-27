@@ -20,7 +20,7 @@ A twitter accessible, easy of use and cross platform application."""
 #
 ############################################################
 import wx
-
+import os
 ssmg = None
 import gui
 import paths
@@ -32,14 +32,32 @@ from sessionmanager import manager
 from sessionmanager import gui as smGUI
 manager.setup()
 import sys
+import config
+import output
+import sound
+import languageHandler
 
 if hasattr(sys, 'frozen'):
   sys.stderr = open(paths.logs_path("stderr.log"), 'w')
   sys.stdout = open(paths.logs_path("stdout.log"), 'w')
 
 app = wx.App()
-ssmg = smGUI.sessionManagerWindow()
-if ssmg.ShowModal() == wx.ID_OK:
+configured = False
+configs = []
+for i in os.listdir(paths.config_path()):
+ if os.path.isdir(paths.config_path(i)): configs.append(i)
+if len(configs) == 1:
+ manager.manager.set_current_session(configs[0])
+ config.MAINFILE = "%s/session.conf" % (manager.manager.get_current_session())
+ config.setup()
+ lang=config.main['general']['language']
+ languageHandler.setLanguage(lang)
+ sound.setup()
+ output.setup()
+ configured = True
+else:
+ ssmg = smGUI.sessionManagerWindow()
+if configured == True or ssmg.ShowModal() == wx.ID_OK:
  frame = gui.main.mainFrame()
  frame.Show()
  frame.showing = True
