@@ -504,7 +504,7 @@ class mainFrame(wx.Frame):
   dlg = dialogs.lists.removeUserListDialog(self)
   if dlg.ShowModal() == wx.ID_OK:
    try:
-    list = self.twitter.twitter.delete_list_member(list_id=self.db.settings["lists"][dlg.get_selected()]["id"], screen_name=user)
+    list = self.twitter.twitter.delete_list_member(list_id=self.db.settings["lists"][dlg.lista.get_selected()]["id"], screen_name=user)
     older_list = twitter.utils.find_item(self.db.settings["lists"][dlg.get_selected()]["id"], self.db.settings["lists"])
     if list["mode"] == "private":
      self.db.settings["lists"].pop(older_list)
