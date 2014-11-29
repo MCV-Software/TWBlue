@@ -3,7 +3,7 @@ import wx
 
 class autocompletionSettingsDialog(wx.Dialog):
  def __init__(self):
-  super(autocompletionSettingsDialog, self).__init__(parent=None, id=-1, title=_(u"Autocompletion settings"))
+  super(autocompletionSettingsDialog, self).__init__(parent=None, id=-1, title=_(u"Autocomplete users’ settings"))
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
   self.followers_buffer = wx.CheckBox(panel, -1, _(u"Add users from followers buffer"))

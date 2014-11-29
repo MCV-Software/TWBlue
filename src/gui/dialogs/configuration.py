@@ -51,7 +51,7 @@ class general(wx.Panel):
   langBox.Add(language, 0, wx.ALL, 5)
   langBox.Add(self.language, 0, wx.ALL, 5)
   sizer.Add(langBox, 0, wx.ALL, 5)
-  self.au = wx.Button(self, -1, u"Configure autocompltion")
+  self.au = wx.Button(self, -1, _(u"Set the autocomplete function"))
 #  self.Bind(wx.EVT_BUTTON, self.autocompletion, au)
   self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting TwBlue?"))
   self.ask_at_exit.SetValue(config.main["general"]["ask_at_exit"])
