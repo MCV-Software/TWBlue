@@ -55,7 +55,7 @@ class SysTrayIcon(wx.TaskBarIcon):
 		if (self.frame.showing):
 			self.frame.SetFocus()
 		else:
-			self.frame.onShow_hide()
+			self.frame.show_hide()
 
 	def Destroy(self):
 		self.menu.Destroy()
