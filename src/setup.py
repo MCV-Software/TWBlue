@@ -34,7 +34,7 @@ def get_architecture_files():
   ("Microsoft.VC90.MFC", glob("../windows-dependencies/x86/Microsoft.VC90.MFC/*")),]
  elif platform.architecture()[0][:2] == "64":
   return [
-  ("", ["../windows-dependencies/x64/oggenc2.exe", "../windows-dependencies/x86/bootstrap.exe"]),
+  ("", ["../windows-dependencies/x64/oggenc2.exe", "../windows-dependencies/x64/bootstrap.exe"]),
   ("Microsoft.VC90.CRT", glob("../windows-dependencies/x64/Microsoft.VC90.CRT/*")),
   ("Microsoft.VC90.MFC", glob("../windows-dependencies/x64/Microsoft.VC90.MFC/*")),]
 
