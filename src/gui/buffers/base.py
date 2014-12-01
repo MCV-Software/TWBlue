@@ -158,6 +158,8 @@ class basePanel(wx.Panel):
     self.list.list.SetString(self.list.get_selected(), " ".join(self.compose_function(self.db.settings[self.name_buffer][self.list.get_selected()], self.db)))
   if twitter.utils.is_audio(tweet):
    sound.player.play("audio.ogg", False)
+  if twitter.utils.is_geocoded(tweet):
+   sound.player.play("geo.mp3", False)
 
  def start_streams(self):
   if self.name_buffer == "sent":

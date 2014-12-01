@@ -34,6 +34,8 @@ import urllib2
 import sysTrayIcon
 import switchModule
 import languageHandler
+import pygeocoder
+from pygeolib import GeocoderError
 from sessionmanager import manager
 from mysc import event
 from mysc.thread_utils import call_threaded
@@ -47,6 +49,7 @@ from extra import SoundsTutorial
 from keystrokeEditor import gui as keystrokeEditorGUI
 log = original_logger.getLogger("gui.main")
 
+geocoder = pygeocoder.Geocoder()
 class mainFrame(wx.Frame):
  """ Main class of the Frame. This is the Main Window."""
 
@@ -90,6 +93,8 @@ class mainFrame(wx.Frame):
   self.Bind(wx.EVT_MENU, self.unfav, unfav)
   view = tweet.Append(wx.NewId(), _(u"&Show tweet"))
   self.Bind(wx.EVT_MENU, self.view, view)
+  view_coordinates = tweet.Append(wx.NewId(), _(u"View &address"))
+  self.Bind(wx.EVT_MENU, self.reverse_geocode, view_coordinates)
   delete = tweet.Append(wx.NewId(), _(u"&Delete"))
   self.Bind(wx.EVT_MENU, self.delete, delete)
 
@@ -975,6 +980,39 @@ class mainFrame(wx.Frame):
 
  def switch_account(self, ev):
   switchModule.switcher(self)
+
+ def reverse_geocode(self, event=None):
+  try:
+   if self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"] != None:
+    x = self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"]["coordinates"][0]
+    y = self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"]["coordinates"][1]
+    address = geocoder.reverse_geocode(y, x)
+    if event == None: output.speak(address[0].__str__().decode("utf-8"))
+    else: wx.MessageDialog(self, address[0].__str__().decode("utf-8"), _(u"Address"), wx.OK).ShowModal()
+   else:
+    output.speak(_(u"There are no coordinates in this tweet"))
+  except GeocoderError:
+   output.speak(_(u"There are no results for the coordinates in this tweet"))
+  except ValueError:
+   output.speak(_(u"Error decoding coordinates. Try again later."))
+  except KeyError:
+   pass
+
+ def view_reverse_geocode(self, event=None):
+  try:
+   if self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"] != None:
+    x = self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"]["coordinates"][0]
+    y = self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"]["coordinates"][1]
+    address = geocoder.reverse_geocode(y, x)
+    dialogs.message.viewNonTweet(address[0].__str__().decode("utf-8")).ShowModal()
+   else:
+    output.speak(_(u"There are no coordinates in this tweet"))
+  except GeocoderError:
+   output.speak(_(u"There are no results for the coordinates in this tweet"))
+  except ValueError:
+   output.speak(_(u"Error decoding coordinates. Try again later."))
+  except KeyError:
+   pass
 
 ### Close App
  def Destroy(self):
