@@ -21,6 +21,7 @@ import sound
 import config
 import twitter
 import gui.dialogs
+import menus
 import logging as original_logger
 import output
 from multiplatform_widgets import widgets
@@ -36,6 +37,8 @@ class peoplePanel(basePanel):
   self.Bind(event.MyEVT_OBJECT, self.update)
   self.Bind(event.MyEVT_DELETED, self.Remove)
   self.list.list.Bind(wx.EVT_CHAR_HOOK, self.interact)
+  self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, self.showMenu, self.list.list)
+  self.Bind(wx.EVT_LIST_KEY_DOWN, self.showMenuByKey, self.list.list)
 
  def create_list(self):
   self.list = widgets.list(self, _(u"User"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL, size=(800, 800))
@@ -146,3 +149,12 @@ class peoplePanel(basePanel):
   else:
    list = self.compose_function(self.db.settings[self.name_buffer][self.list.get_selected()], self.db)
    return " ".join(list)
+
+ def showMenu(self, ev):
+  if self.list.get_count() == 0: return
+  self.PopupMenu(menus.peoplePanelMenu(self), ev.GetPosition())
+
+ def showMenuByKey(self, ev):
+  if self.list.get_count() == 0: return
+  if ev.GetKeyCode() == wx.WXK_WINDOWS_MENU:
+   self.PopupMenu(menus.peoplePanelMenu(self), self.list.list.GetPosition())

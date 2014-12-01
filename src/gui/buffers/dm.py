@@ -19,6 +19,7 @@
 import wx
 import sound
 import gui.dialogs
+import menus
 import logging as original_logger
 from base import basePanel
 from mysc.thread_utils import call_threaded
@@ -47,3 +48,12 @@ class dmPanel(basePanel):
    call_threaded(self.twitter.api_call, call_name="send_direct_message", _sound="dm_sent.ogg", text=dlg.text.GetValue(), screen_name=dlg.cb.GetValue())
   if ev != None:
    self.list.list.SetFocus()
+
+ def showMenu(self, ev):
+  if self.list.get_count() == 0: return
+  self.PopupMenu(menus.dmPanelMenu(self), ev.GetPosition())
+
+ def showMenuByKey(self, ev):
+  if self.list.get_count() == 0: return
+  if ev.GetKeyCode() == wx.WXK_WINDOWS_MENU:
+   self.PopupMenu(menus.dmPanelMenu(self), self.list.list.GetPosition())
