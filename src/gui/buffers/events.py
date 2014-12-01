@@ -21,6 +21,7 @@ import sound
 import config
 import platform
 import gui.dialogs
+import menus
 import output
 import logging as original_logger
 from multiplatform_widgets import widgets
@@ -36,6 +37,8 @@ class eventsPanel(wx.Panel):
 
  def bind_events(self):
   self.Bind(event.MyEVT_OBJECT, self.update)
+  self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, self.showMenu, self.list.list)
+  self.Bind(wx.EVT_LIST_KEY_DOWN, self.showMenuByKey, self.list.list)
 
  def put_items(self, items):
   pass
@@ -132,3 +135,12 @@ class eventsPanel(wx.Panel):
    ev.Skip()
   except:
    pass
+
+ def showMenu(self, ev):
+  if self.list.get_count() == 0: return
+  self.PopupMenu(menus.eventsPanelMenu(self), ev.GetPosition())
+
+ def showMenuByKey(self, ev):
+  if self.list.get_count() == 0: return
+  if ev.GetKeyCode() == wx.WXK_WINDOWS_MENU:
+   self.PopupMenu(menus.eventsPanelMenu(self), self.list.list.GetPosition())

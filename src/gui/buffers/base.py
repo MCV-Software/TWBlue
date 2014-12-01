@@ -27,6 +27,7 @@ import logging as original_logger
 import output
 import platform
 import datetime
+import menus
 from twitter import prettydate
 from multiplatform_widgets import widgets
 from mysc import event
@@ -39,6 +40,8 @@ class basePanel(wx.Panel):
  def bind_events(self):
   self.Bind(event.MyEVT_OBJECT, self.update)
   self.Bind(event.MyEVT_DELETED, self.Remove)
+  self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, self.showMenu, self.list.list)
+  self.Bind(wx.EVT_LIST_KEY_DOWN, self.showMenuByKey, self.list.list)
   self.list.list.Bind(wx.EVT_CHAR_HOOK, self.interact)
   if self.system == "Windows":
    self.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, self.onFocus)
@@ -369,3 +372,18 @@ class basePanel(wx.Panel):
    self.list.select_item(len(self.db.settings[self.name_buffer])-1)
   else:
    self.list.select_item(0)
+
+ def showMenu(self, ev):
+  if self.list.get_count() == 0: return
+  if self.name_buffer == "sent":
+   self.PopupMenu(menus.sentPanelMenu(self), ev.GetPosition())
+  else:
+   self.PopupMenu(menus.basePanelMenu(self), ev.GetPosition())
+
+ def showMenuByKey(self, ev):
+  if self.list.get_count() == 0: return
+  if ev.GetKeyCode() == wx.WXK_WINDOWS_MENU:
+   if self.name_buffer == "sent":
+    self.PopupMenu(menus.sentPanelMenu(self), self.list.list.GetPosition())
+   else:
+    self.PopupMenu(menus.basePanelMenu(self), self.list.list.GetPosition())
