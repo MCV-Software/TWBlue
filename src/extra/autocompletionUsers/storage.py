@@ -21,19 +21,27 @@ class storage(object):
   self.cursor.execute("""SELECT * FROM users WHERE user LIKE ?""", ('{}%'.format(term),))
   return self.cursor.fetchall()
 
- def set_user(self, screen_name, user_name):
-  self.cursor.execute("""insert or ignore into users values(?, ?)""", (screen_name, user_name))
+ def set_user(self, screen_name, user_name, from_a_buffer):
+  self.cursor.execute("""insert or ignore into users values(?, ?, ?)""", (screen_name, user_name, from_a_buffer))
   self.connection.commit()
 
  def remove_user(self, user):
   self.cursor.execute("""DELETE FROM users WHERE user = ?""", (user,))
+  self.connection.commit()
+  return self.cursor.fetchone()
+
+ def remove_by_buffer(self, bufferType):
+  """ Removes all users saved on a buffer. BufferType is 0 for no buffer, 1 for friends and 2 for followers"""
+  self.cursor.execute("""DELETE  FROM users WHERE from_a_buffer = ?""", (bufferType,))
+  self.connection.commit()
   return self.cursor.fetchone()
 
  def create_table(self):
   self.cursor.execute("""
   create table users(
 user TEXT UNIQUE,
-name TEXT
+name TEXT,
+from_a_buffer INTEGER
 )""")
 
  def __del__(self):
