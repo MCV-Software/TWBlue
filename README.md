@@ -40,6 +40,7 @@ Dependencies list:
 * [Requests](http://www.python-requests.org/en/latest/) 2.2.1: [Recommended download site](https://pypi.python.org/pypi/requests/2.2.1)
 * [Requests-oauthlib](https://github.com/requests/requests-oauthlib) 0.4.0
 * [Suds](https://fedorahosted.org/suds) 0.4: [Recommended download site](https://pypi.python.org/pypi/suds/0.4)
+* [Pygeocoder: ](http://code.xster.net/pygeocoder/wiki/Home) You can install this dependency by using pip or easy_install.
 * Bootstrap 1.2.1: included in dependencies directory.  
 Copy the bootstrap.exe file corresponding to the desired platform in the windows folder, inside this repository.  
 This dependency has been built using pure basic 4.61. Its source can be found at http://hg.q-continuum.net/updater
