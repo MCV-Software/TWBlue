@@ -345,7 +345,11 @@ class viewTweet(wx.Dialog):
   self.SetTitle(_(u"Tweet - %i characters ") % (len(tweet["text"])))
   panel = wx.Panel(self)
   label = wx.StaticText(panel, -1, _(u"Tweet"))
-  self.text = wx.TextCtrl(panel, -1, tweet["text"], style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
+  if tweet.has_key("retweeted_status"):
+   text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
+  else:
+   text = tweet["text"]
+  self.text = wx.TextCtrl(panel, -1, text, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
   dc = wx.WindowDC(self.text)
   dc.SetFont(self.text.GetFont())
   (x, y, z) = dc.GetMultiLineTextExtent("0"*140)

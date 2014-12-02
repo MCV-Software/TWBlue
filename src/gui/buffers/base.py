@@ -283,10 +283,15 @@ class basePanel(wx.Panel):
    if self.name_buffer in config.main["other_buffers"]["autoread_buffers"]:
     output.speak(" ".join(tweet[:2]))
 
+ def get_tweet(self):
+  """ Gets a tweet or retweet."""
+  if self.db.settings[self.name_buffer][self.list.get_selected()].has_key("retweeted_status"):  tweet = self.db.settings[self.name_buffer][self.list.get_selected()]["retweeted_status"]
+  else: tweet = self.db.settings[self.name_buffer][self.list.get_selected()]
+  return tweet
+
  def interact(self, ev):
   try:
-   if self.db.settings[self.name_buffer][self.list.get_selected()].has_key("retweeted_status"):  tweet = self.db.settings[self.name_buffer][self.list.get_selected()]["retweeted_status"]
-   else: tweet = self.db.settings[self.name_buffer][self.list.get_selected()]
+   tweet = self.get_tweet()
    urls = twitter.utils.find_urls_in_text(tweet["text"])
   except:
    urls = []

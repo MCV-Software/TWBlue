@@ -983,9 +983,10 @@ class mainFrame(wx.Frame):
 
  def reverse_geocode(self, event=None):
   try:
-   if self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"] != None:
-    x = self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"]["coordinates"][0]
-    y = self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"]["coordinates"][1]
+   tweet = self.nb.GetCurrentPage().get_tweet()
+   if tweet["coordinates"] != None:
+    x = tweet["coordinates"]["coordinates"][0]
+    y = tweet["coordinates"]["coordinates"][1]
     address = geocoder.reverse_geocode(y, x)
     if event == None: output.speak(address[0].__str__().decode("utf-8"))
     else: wx.MessageDialog(self, address[0].__str__().decode("utf-8"), _(u"Address"), wx.OK).ShowModal()
@@ -1000,9 +1001,10 @@ class mainFrame(wx.Frame):
 
  def view_reverse_geocode(self, event=None):
   try:
-   if self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"] != None:
-    x = self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"]["coordinates"][0]
-    y = self.db.settings[self.nb.GetCurrentPage().name_buffer][self.nb.GetCurrentPage().list.get_selected()]["coordinates"]["coordinates"][1]
+   tweet = self.nb.GetCurrentPage().get_tweet()
+   if tweet["coordinates"] != None:
+    x = tweet["coordinates"]["coordinates"][0]
+    y = tweet["coordinates"]["coordinates"][1]
     address = geocoder.reverse_geocode(y, x)
     dialogs.message.viewNonTweet(address[0].__str__().decode("utf-8")).ShowModal()
    else:
