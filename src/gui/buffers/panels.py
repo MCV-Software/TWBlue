@@ -20,18 +20,20 @@ import wx
 from multiplatform_widgets import widgets
 
 class accountPanel(wx.Panel):
- def __init__(self, parent):
+ def __init__(self, parent, name_buffer):
   super(accountPanel, self).__init__(parent=parent)
   self.type = "account"
+  self.name_buffer = name_buffer
   sizer = wx.BoxSizer(wx.VERTICAL)
   self.list = widgets.list(self, _(u"Announce"))
   sizer.Add(self.list.list, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
-class emptyPanel(accountPanel):
- def __init__(self, parent):
-  super(emptyPanel, self).__init__(parent=parent)
-  self.type = "empty"
-
  def get_more_items(self):
   output.speak(_(u"This action is not supported for this buffer"))
+ 
+class emptyPanel(accountPanel):
+ def __init__(self, parent):
+  super(emptyPanel, self).__init__(parent=parent, name_buffer="")
+  self.type = "empty"
+

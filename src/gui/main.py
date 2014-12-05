@@ -34,6 +34,7 @@ import urllib2
 import sysTrayIcon
 import switchModule
 import languageHandler
+from extra.autocompletionUsers import settings as autocompletionUsersSettings
 import pygeocoder
 from pygeolib import GeocoderError
 from sessionmanager import manager
@@ -226,7 +227,7 @@ class mainFrame(wx.Frame):
   try:
    updater.update_manager.check_for_update()
   except:
-   pass
+   wx.MessageDialog(self, _(u"An error occurred while looking for an update. It may be due to any problem either on our server or on your DNS servers. Please, try again later."), _(u"Error!"), wx.OK|wx.ICON_ERROR).ShowModal()
   self.SetMenuBar(self.makeMenus())
   self.setup_twitter(panel)
 
@@ -241,7 +242,7 @@ class mainFrame(wx.Frame):
   # Gets the tabs for home, mentions, send and direct messages.
   log.debug("Creating buffers...")
   self.db.settings["buffers"] = []
-  account = buffers.accountPanel(self.nb)
+  account = buffers.accountPanel(self.nb, self.db.settings["user_name"])
   self.nb.AddPage(account, self.db.settings["user_name"])
   self.db.settings["buffers"].append(self.db.settings["user_name"])
   account_index = self.db.settings["buffers"].index(self.db.settings["user_name"])
@@ -355,6 +356,7 @@ class mainFrame(wx.Frame):
    self.check_streams.start()
   # If all it's done, then play a nice sound saying that all it's OK.
   sound.player.play("ready.ogg")
+  autocompletionUsersSettings.execute_at_startup(window=self)
 
  def remove_list(self, id):
   for i in range(0, self.nb.GetPageCount()):
@@ -1015,6 +1017,21 @@ class mainFrame(wx.Frame):
    output.speak(_(u"Error decoding coordinates. Try again later."))
   except KeyError:
    pass
+
+ def get_trending_topics(self, event=None):
+  info = self.twitter.twitter.get_available_trends()
+  trendingDialog = dialogs.trending.trendingTopicsDialog(info)
+  if trendingDialog.ShowModal() == wx.ID_OK:
+   if trendingDialog.country.GetValue() == True:
+    woeid = trendingDialog.countries[trendingDialog.location.GetStringSelection()]
+   elif trendingDialog.city.GetValue() == True:
+    woeid = trendingDialog.cities[trendingDialog.location.GetStringSelection()]
+   buff = buffers.trendsPanel(self.nb, self, "%s_tt" % (woeid,), argumento=woeid, sound="tweet_timeline.ogg")
+   self.nb.InsertSubPage(self.db.settings["buffers"].index(self.db.settings["user_name"]), buff, _(u"Trending topics for %s") % (trendingDialog.location.GetStringSelection(),))
+   timer = RepeatingTimer(180, buff.start_streams)
+   timer.start()
+   num = buff.start_streams()
+   buff.put_items(num)
 
 ### Close App
  def Destroy(self):

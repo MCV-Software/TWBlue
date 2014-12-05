@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: TW Blue 0.48\n"
-"POT-Creation-Date: 2014-11-08 16:42+Hora estándar central (México)\n"
-"PO-Revision-Date: 2014-11-10 00:55+0300\n"
+"Project-Id-Version: TW Blue 0.50\n"
+"POT-Creation-Date: 2014-12-05 11:32+Hora estándar central (México)\n"
+"PO-Revision-Date: 2014-12-05 18:49+0100\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Alexander Jaszyn <a.jaszyn@ya.ru>\n"
 "Language: ru\n"
@@ -19,8 +19,8 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../src\extra\AudioUploader\gui.py:31 ../src\gui\dialogs\message.py:173
-#: ../src\gui\dialogs\message.py:261
+#: ../src\extra\AudioUploader\gui.py:31 ../src\gui\dialogs\message.py:174
+#: ../src\gui\dialogs\message.py:271
 msgid "Attach audio"
 msgstr "Добавить аудио"
 
@@ -74,13 +74,13 @@ msgstr "Запись"
 msgid "Stopped"
 msgstr "Остановлено"
 
-#: ../src\extra\AudioUploader\gui.py:129 ../src\gui\dialogs\message.py:222
+#: ../src\extra\AudioUploader\gui.py:129 ../src\gui\dialogs\message.py:232
 #: ../src\gui\dialogs\update_profile.py:87
 msgid "Discarded"
 msgstr "Отменено"
 
-#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:339
-#: ../src\gui\buffers\base.py:351
+#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:356
+#: ../src\gui\buffers\base.py:368
 msgid "Playing..."
 msgstr "Воспроизводится"
 
@@ -250,8 +250,8 @@ msgstr ""
 "корректной работы.   Произведите, пожалуйста, обновление пакета."
 
 #: ../src\extra\SoundsTutorial\gui.py:36 ../src\extra\SpellChecker\gui.py:34
-#: ../src\gui\dialogs\show_user.py:63 ../src\gui\main.py:689
-#: ../src\gui\main.py:721
+#: ../src\gui\dialogs\show_user.py:63 ../src\gui\main.py:708
+#: ../src\gui\main.py:740
 msgid "Error"
 msgstr "Ошибка"
 
@@ -309,8 +309,53 @@ msgstr "Готово"
 msgid "The spelling review has finished."
 msgstr "Орфография проверена."
 
-#: ../src\extra\translator\gui.py:24 ../src\gui\dialogs\message.py:181
-#: ../src\gui\dialogs\message.py:269 ../src\gui\dialogs\message.py:355
+#: ../src\extra\autocompletionUsers\completion.py:18
+#, fuzzy
+msgid "You have to start writing"
+msgstr "Вы должны начать писать"
+
+#: ../src\extra\autocompletionUsers\completion.py:29
+#, fuzzy
+msgid "There are not results in your users database"
+msgstr "Отсутствуют результаты в базе данных"
+
+#: ../src\extra\autocompletionUsers\completion.py:31
+msgid "Autocompletion only works for users."
+msgstr "Автозавершения работает только для пользователей."
+
+#: ../src\extra\autocompletionUsers\settings.py:22
+msgid ""
+"Updating database... You can close this window now. A message will tell you "
+"when the process finishes."
+msgstr ""
+"Обновление базы данных ... Вы можете закрыть это окно сейчас. Вам будет "
+"сообщено, когда процесс завершится."
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:6
+#, fuzzy
+msgid "Autocomplete users’ settings"
+msgstr "Настройки автозавершения"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:9
+msgid "Add users from followers buffer"
+msgstr "Добавить пользователей из буфера читающих"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:10
+msgid "Add users from friends buffer"
+msgstr "Добавить пользователей из буфера читаемых"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:23
+msgid "Done"
+msgstr "Готово"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:23
+#, fuzzy
+msgid "TWBlue's database of users has been updated."
+msgstr "Обновление завершено"
+
+#: ../src\extra\translator\gui.py:24 ../src\gui\dialogs\message.py:182
+#: ../src\gui\dialogs\message.py:279 ../src\gui\dialogs\message.py:383
+#: ../src\gui\dialogs\message.py:470
 msgid "Translate message"
 msgstr "Перевести сообщение"
 
@@ -690,92 +735,95 @@ msgstr "Идиш"
 msgid "autodetect"
 msgstr "автоопределение"
 
-#: ../src\gui\buffers\base.py:55
+#: ../src\gui\buffers\base.py:58
 msgid "Client"
 msgstr "Клиент"
 
-#: ../src\gui\buffers\base.py:55
+#: ../src\gui\buffers\base.py:58
 msgid "Text"
 msgstr "Текст"
 
-#: ../src\gui\buffers\base.py:55 ../src\gui\buffers\events.py:61
+#: ../src\gui\buffers\base.py:58 ../src\gui\buffers\events.py:64
 msgid "Date"
 msgstr "Дата"
 
-#: ../src\gui\buffers\base.py:55 ../src\gui\buffers\people.py:41
+#: ../src\gui\buffers\base.py:58 ../src\gui\buffers\people.py:44
 #: ../src\gui\buffers\user_searches.py:31 ../src\gui\dialogs\utils.py:36
 msgid "User"
 msgstr "Пользователь"
 
-#: ../src\gui\buffers\base.py:80 ../src\gui\buffers\base.py:228
-#: ../src\gui\buffers\events.py:62 ../src\gui\buffers\events.py:78
-#: ../src\gui\dialogs\message.py:337 ../src\gui\sysTrayIcon.py:34
+#: ../src\gui\buffers\base.py:83 ../src\gui\buffers\base.py:233
+#: ../src\gui\buffers\events.py:65 ../src\gui\buffers\events.py:81
+#: ../src\gui\buffers\trends.py:64 ../src\gui\buffers\trends.py:114
+#: ../src\gui\buffers\trends.py:126 ../src\gui\dialogs\message.py:347
+#: ../src\gui\sysTrayIcon.py:34
 msgid "Tweet"
 msgstr "Твит"
 
-#: ../src\gui\buffers\base.py:82 ../src\gui\buffers\base.py:240
-#: ../src\gui\buffers\base.py:243 ../src\keystrokeEditor\constants.py:13
+#: ../src\gui\buffers\base.py:85 ../src\gui\buffers\base.py:245
+#: ../src\gui\buffers\base.py:248 ../src\keystrokeEditor\constants.py:13
 msgid "Retweet"
 msgstr "Ретвит"
 
-#: ../src\gui\buffers\base.py:84 ../src\gui\buffers\base.py:259
+#: ../src\gui\buffers\base.py:87 ../src\gui\buffers\base.py:264
 msgid "Reply"
 msgstr "Ответ"
 
-#: ../src\gui\buffers\base.py:86
+#: ../src\gui\buffers\base.py:89
 msgid "Direct message"
 msgstr "Личное сообщение"
 
-#: ../src\gui\buffers\base.py:100
+#: ../src\gui\buffers\base.py:103
 msgid "Do you really want to delete this timeline?"
 msgstr "Вы желаете удалить буфер или ленту?"
 
-#: ../src\gui\buffers\base.py:100 ../src\gui\buffers\favourites.py:41
-#: ../src\gui\buffers\lists.py:46 ../src\gui\buffers\trends.py:41
+#: ../src\gui\buffers\base.py:103 ../src\gui\buffers\favourites.py:41
+#: ../src\gui\buffers\lists.py:46 ../src\gui\buffers\trends.py:77
 #: ../src\gui\buffers\tweet_searches.py:45
 #: ../src\gui\buffers\user_searches.py:56
 msgid "Attention"
 msgstr "Внимание!"
 
-#: ../src\gui\buffers\base.py:112
+#: ../src\gui\buffers\base.py:115
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Этот буфер не является лентой и его невозможно удалить."
 
-#: ../src\gui\buffers\base.py:196 ../src\gui\buffers\people.py:114
+#: ../src\gui\buffers\base.py:201 ../src\gui\buffers\people.py:117
 msgid "%s items retrieved"
 msgstr "%s элементов показано"
 
-#: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
-#: ../src\gui\buffers\people.py:56
+#: ../src\gui\buffers\base.py:225 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\people.py:59
 msgid "Direct message to %s"
 msgstr "Личное сообщение для  %s"
 
-#: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
-#: ../src\gui\buffers\people.py:56
+#: ../src\gui\buffers\base.py:225 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\people.py:59
 msgid "New direct message"
 msgstr "Новое личное сообщение"
 
-#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\events.py:78
+#: ../src\gui\buffers\base.py:233 ../src\gui\buffers\events.py:81
+#: ../src\gui\buffers\trends.py:114 ../src\gui\buffers\trends.py:126
 msgid "Write the tweet here"
 msgstr "Напишите текст твита здесь"
 
-#: ../src\gui\buffers\base.py:240
+#: ../src\gui\buffers\base.py:245
 msgid "Would you like to add a comment to this tweet?"
 msgstr "Желаете ли вы добавить комментарий к этому твиту?"
 
-#: ../src\gui\buffers\base.py:243
+#: ../src\gui\buffers\base.py:248
 msgid "Add your comment to the tweet"
 msgstr "Напишите ваш комментарий к этому твиту"
 
-#: ../src\gui\buffers\base.py:259
+#: ../src\gui\buffers\base.py:264
 msgid "Reply to %s"
 msgstr "Ответ %s"
 
-#: ../src\gui\buffers\base.py:304
+#: ../src\gui\buffers\base.py:319
 msgid "Opening URL..."
 msgstr "Открытие ссылки"
 
-#: ../src\gui\buffers\base.py:321 ../src\gui\buffers\events.py:122
+#: ../src\gui\buffers\base.py:338 ../src\gui\buffers\events.py:125
 msgid ""
 "Do you really want to empty this buffer? It's tweets will be removed from "
 "the list but not from Twitter"
@@ -783,42 +831,43 @@ msgstr ""
 "Вы действительно хотите очистить этот буфер? Твиты останутся на сервере, но "
 "будут удалены из списка."
 
-#: ../src\gui\buffers\base.py:321 ../src\gui\buffers\events.py:122
+#: ../src\gui\buffers\base.py:338 ../src\gui\buffers\events.py:125
+#: ../src\gui\buffers\trends.py:156
 msgid "Empty buffer"
 msgstr "Пустой буфер"
 
-#: ../src\gui\buffers\base.py:326 ../src\gui\buffers\events.py:126
+#: ../src\gui\buffers\base.py:343 ../src\gui\buffers\events.py:129
 msgid "Do you really want to delete this message?"
 msgstr "Вы действительно хотите удалить это сообщение?"
 
-#: ../src\gui\buffers\base.py:326 ../src\gui\buffers\events.py:126
-#: ../src\gui\dialogs\lists.py:107 ../src\gui\main.py:565
+#: ../src\gui\buffers\base.py:343 ../src\gui\buffers\events.py:129
+#: ../src\gui\dialogs\lists.py:107 ../src\gui\main.py:573
 msgid "Delete"
 msgstr "Удалить"
 
-#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\base.py:357
+#: ../src\gui\buffers\base.py:363 ../src\gui\buffers\base.py:374
 msgid "Unable to play audio."
 msgstr "Воспроизведение невозможно."
 
-#: ../src\gui\buffers\base.py:348
+#: ../src\gui\buffers\base.py:365
 msgid "Audio stopped."
 msgstr "Воспроизведение остановлено."
 
-#: ../src\gui\buffers\events.py:35 ../src\gui\buffers\panels.py:37
-#: ../src\gui\buffers\tweet_searches.py:58
+#: ../src\gui\buffers\events.py:36 ../src\gui\buffers\panels.py:33
+#: ../src\gui\buffers\trends.py:93 ../src\gui\buffers\tweet_searches.py:58
 #: ../src\gui\buffers\user_searches.py:64
 msgid "This action is not supported for this buffer"
 msgstr "Это действие не поддерживается в данном буфере"
 
-#: ../src\gui\buffers\events.py:44
+#: ../src\gui\buffers\events.py:47
 msgid "Empty"
 msgstr "Пусто"
 
-#: ../src\gui\buffers\events.py:61
+#: ../src\gui\buffers\events.py:64
 msgid "Event"
 msgstr "Событие"
 
-#: ../src\gui\buffers\events.py:64
+#: ../src\gui\buffers\events.py:67
 msgid "Remove event"
 msgstr "Удалить событие"
 
@@ -830,54 +879,160 @@ msgstr "Вы желаете удалить эту ленту избранног�
 msgid "Do you really want to delete this list?"
 msgstr "Вы желаете удалить этот лист?"
 
-#: ../src\gui\buffers\panels.py:27
+#: ../src\gui\buffers\menus.py:8 ../src\gui\main.py:88
+msgid "&Retweet"
+msgstr "&Ретвит"
+
+#: ../src\gui\buffers\menus.py:11 ../src\gui\buffers\menus.py:43
+#: ../src\gui\main.py:86
+msgid "Re&ply"
+msgstr "Отве&тить"
+
+#: ../src\gui\buffers\menus.py:14 ../src\gui\main.py:90
+msgid "Add to &favourites"
+msgstr "&Добавить в избранное"
+
+#: ../src\gui\buffers\menus.py:17 ../src\gui\main.py:92
+msgid "Remove from favo&urites"
+msgstr "&Удалить из избранного"
+
+#: ../src\gui\buffers\menus.py:20 ../src\gui\buffers\menus.py:46
+#: ../src\gui\buffers\menus.py:69
+#, fuzzy
+msgid "&Open URL"
+msgstr "Открытие ссылки"
+
+#: ../src\gui\buffers\menus.py:23 ../src\gui\buffers\menus.py:49
+#: ../src\gui\buffers\menus.py:72
+#, fuzzy
+msgid "&Play audio"
+msgstr "Добавить аудио"
+
+#: ../src\gui\buffers\menus.py:26 ../src\gui\buffers\menus.py:75
+#: ../src\gui\main.py:94
+msgid "&Show tweet"
+msgstr "&Показать твит"
+
+#: ../src\gui\buffers\menus.py:29 ../src\gui\buffers\menus.py:55
+#: ../src\gui\buffers\menus.py:78 ../src\gui\buffers\menus.py:92
+#: ../src\gui\buffers\menus.py:115
+#, fuzzy
+msgid "&Copy to clipboard"
+msgstr "Скопировать в буфер обмена"
+
+#: ../src\gui\buffers\menus.py:32 ../src\gui\buffers\menus.py:58
+#: ../src\gui\buffers\menus.py:81 ../src\gui\buffers\menus.py:95
+#: ../src\gui\main.py:98
+msgid "&Delete"
+msgstr "&Удалить"
+
+#: ../src\gui\buffers\menus.py:35 ../src\gui\buffers\menus.py:61
+#: ../src\gui\buffers\menus.py:118
+msgid "&User actions..."
+msgstr ""
+
+#: ../src\gui\buffers\menus.py:52
+#, fuzzy
+msgid "&Show direct message"
+msgstr "Новое личное сообщение"
+
+#: ../src\gui\buffers\menus.py:89
+#, fuzzy
+msgid "&Show event"
+msgstr "Показать события"
+
+#: ../src\gui\buffers\menus.py:103
+#, fuzzy
+msgid "&Mention"
+msgstr "Упоминание"
+
+#: ../src\gui\buffers\menus.py:106 ../src\gui\main.py:123
+msgid "&View lists"
+msgstr "&Просмотр списков"
+
+#: ../src\gui\buffers\menus.py:109 ../src\gui\main.py:125
+msgid "Show user &profile"
+msgstr "&Показать профиль пользователя"
+
+#: ../src\gui\buffers\menus.py:112
+#, fuzzy
+msgid "&Show user"
+msgstr "Показать приглушённых пользователей"
+
+#: ../src\gui\buffers\panels.py:28
 msgid "Announce"
 msgstr "Объявление"
 
-#: ../src\gui\buffers\people.py:46 ../src\gui\buffers\people.py:64
+#: ../src\gui\buffers\people.py:49 ../src\gui\buffers\people.py:67
 msgid "Mention"
 msgstr "Упоминание"
 
-#: ../src\gui\buffers\people.py:64
+#: ../src\gui\buffers\people.py:67
 msgid "Mention to %s"
 msgstr "Упоминание   %s"
 
-#: ../src\gui\buffers\trends.py:41 ../src\gui\buffers\tweet_searches.py:45
+#: ../src\gui\buffers\trends.py:47
+msgid "Trending topic"
+msgstr ""
+
+#: ../src\gui\buffers\trends.py:66
+msgid "Tweet about this trend"
+msgstr ""
+
+#: ../src\gui\buffers\trends.py:77
+#, fuzzy
+msgid "Do you really want to delete this buffer?"
+msgstr "Вы желаете удалить этот лист?"
+
+#: ../src\gui\buffers\trends.py:156
+#, fuzzy
+msgid ""
+"Do you really want to empty this buffer? It's items will be removed from the "
+"list"
+msgstr ""
+"Вы действительно хотите очистить этот буфер? Твиты останутся на сервере, но "
+"будут удалены из списка."
+
+#: ../src\gui\buffers\tweet_searches.py:45
 #: ../src\gui\buffers\user_searches.py:56
 msgid "Do you really want to delete this search term?"
 msgstr "Вы действительно хотите удалить этот результат поиска?"
 
-#: ../src\gui\dialogs\configuration.py:39
+#: ../src\gui\dialogs\configuration.py:40
 msgid "Language"
 msgstr "Язык"
 
-#: ../src\gui\dialogs\configuration.py:53
+#: ../src\gui\dialogs\configuration.py:54
+msgid "Set the autocomplete function"
+msgstr ""
+
+#: ../src\gui\dialogs\configuration.py:56
 msgid "ask before exiting TwBlue?"
 msgstr "Спрашивать перед выходом"
 
-#: ../src\gui\dialogs\configuration.py:56
+#: ../src\gui\dialogs\configuration.py:59
 msgid "Relative times"
 msgstr "Относительное время"
 
-#: ../src\gui\dialogs\configuration.py:60
+#: ../src\gui\dialogs\configuration.py:63
 msgid "Activate Sapi5 when any other screen reader is not being run"
 msgstr "Активировать sapi5, когда не один скринридер не запущен"
 
-#: ../src\gui\dialogs\configuration.py:63
+#: ../src\gui\dialogs\configuration.py:66
 msgid "Activate the auto-start of the invisible interface"
 msgstr "Автозапуск невидимого интерфейса"
 
-#: ../src\gui\dialogs\configuration.py:67
+#: ../src\gui\dialogs\configuration.py:70
 msgid ""
 "API calls when the stream is started (One API call equals to 200 tweetts, "
 "two API calls equals 400 tweets, etc):"
 msgstr "Количество вызовов  Api. 1 вызов равен 200 твитам."
 
-#: ../src\gui\dialogs\configuration.py:75
+#: ../src\gui\dialogs\configuration.py:78
 msgid "Items on each API call"
 msgstr "Элементов при каждом вызове API"
 
-#: ../src\gui\dialogs\configuration.py:82
+#: ../src\gui\dialogs\configuration.py:85
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning of the "
 "lists while the oldest at the end"
@@ -885,72 +1040,72 @@ msgstr ""
 "Отображение твитов:  Самые новые  твиты будут показаны в начале списка, а  "
 "самые старые в конце"
 
-#: ../src\gui\dialogs\configuration.py:97
+#: ../src\gui\dialogs\configuration.py:101
 msgid "Show followers"
 msgstr "Показать читающих"
 
-#: ../src\gui\dialogs\configuration.py:100
+#: ../src\gui\dialogs\configuration.py:104
 msgid "Show friends"
 msgstr "Показать читаемых"
 
-#: ../src\gui\dialogs\configuration.py:103
+#: ../src\gui\dialogs\configuration.py:107
 msgid "Show favourites"
 msgstr "Показать избранное"
 
-#: ../src\gui\dialogs\configuration.py:106
+#: ../src\gui\dialogs\configuration.py:110
 msgid "Show blocked users"
 msgstr "Показать заблокированных пользователей"
 
-#: ../src\gui\dialogs\configuration.py:109
+#: ../src\gui\dialogs\configuration.py:113
 msgid "Show muted users"
 msgstr "Показать приглушённых пользователей"
 
-#: ../src\gui\dialogs\configuration.py:112
+#: ../src\gui\dialogs\configuration.py:116
 msgid "Show events"
 msgstr "Показать события"
 
-#: ../src\gui\dialogs\configuration.py:122
-#: ../src\gui\dialogs\configuration.py:270
+#: ../src\gui\dialogs\configuration.py:126
+#: ../src\gui\dialogs\configuration.py:275
 msgid "Ignored clients"
 msgstr "Игнорируемые клиенты"
 
-#: ../src\gui\dialogs\configuration.py:128
+#: ../src\gui\dialogs\configuration.py:132
 msgid "Add client"
 msgstr "Добавить клиент"
 
-#: ../src\gui\dialogs\configuration.py:129
+#: ../src\gui\dialogs\configuration.py:133
 msgid "Remove client"
 msgstr "Удалить  клиент"
 
-#: ../src\gui\dialogs\configuration.py:140
+#: ../src\gui\dialogs\configuration.py:144
 msgid "Add a new ignored client"
 msgstr "Добавить клиент для игнорирования"
 
-#: ../src\gui\dialogs\configuration.py:140
+#: ../src\gui\dialogs\configuration.py:144
 msgid "Enter the name of the client here"
 msgstr "Введите имя клиента здесь"
 
-#: ../src\gui\dialogs\configuration.py:157
+#: ../src\gui\dialogs\configuration.py:161
 msgid "Volume"
 msgstr "Громкость"
 
-#: ../src\gui\dialogs\configuration.py:166
+#: ../src\gui\dialogs\configuration.py:170
 msgid "Global mute"
 msgstr "Режим полной  тишины"
 
-#: ../src\gui\dialogs\configuration.py:170
+#: ../src\gui\dialogs\configuration.py:174
 msgid "Output device"
 msgstr "Устройства воспроизведения"
 
-#: ../src\gui\dialogs\configuration.py:179
+#: ../src\gui\dialogs\configuration.py:183
 msgid "Input device"
 msgstr "Устройство записи"
 
-#: ../src\gui\dialogs\configuration.py:190
+#: ../src\gui\dialogs\configuration.py:194
 msgid "Sound pack"
 msgstr "Пакет звуков"
 
-#: ../src\gui\dialogs\configuration.py:203
+#: ../src\gui\dialogs\configuration.py:207
 msgid ""
 "If you've got a SndUp account, enter your API Key here. Whether the API Key "
 "is wrong, the App will fail to upload anything to the server. Whether "
@@ -959,20 +1114,20 @@ msgstr ""
 "Если у вас есть учётная запись SndUp, введите свой API Key здесь. При "
 "неверно указанном API Key  загрузка аудио будет невозможна."
 
-#: ../src\gui\dialogs\configuration.py:216
-#: ../src\gui\dialogs\configuration.py:240
+#: ../src\gui\dialogs\configuration.py:220
+#: ../src\gui\dialogs\configuration.py:244
 msgid "Unlink your Dropbox account"
 msgstr "Отключить от аккаунта dropbox"
 
-#: ../src\gui\dialogs\configuration.py:218
-#: ../src\gui\dialogs\configuration.py:235
-#: ../src\gui\dialogs\configuration.py:243
+#: ../src\gui\dialogs\configuration.py:222
+#: ../src\gui\dialogs\configuration.py:239
 #: ../src\gui\dialogs\configuration.py:247
-#: ../src\gui\dialogs\configuration.py:254
+#: ../src\gui\dialogs\configuration.py:251
+#: ../src\gui\dialogs\configuration.py:258
 msgid "Link your Dropbox account"
 msgstr "Подключить к аккаунту dropbox"
 
-#: ../src\gui\dialogs\configuration.py:228
+#: ../src\gui\dialogs\configuration.py:232
 msgid ""
 "The authorisation request will be shown on your browser. Copy the code tat "
 "Dropbox will provide and, in the text box that will appear on TW Blue, paste "
@@ -983,89 +1138,89 @@ msgstr ""
 "отображен на странице. Вставьте этот код в окно клиента. Вы должны сделать "
 "это только один раз."
 
-#: ../src\gui\dialogs\configuration.py:228 ../src\sessionmanager\gui.py:83
+#: ../src\gui\dialogs\configuration.py:232 ../src\sessionmanager\gui.py:84
 msgid "Authorisation"
 msgstr "Авторизация"
 
-#: ../src\gui\dialogs\configuration.py:230
+#: ../src\gui\dialogs\configuration.py:234
 msgid "Enter the code here."
 msgstr "Введите код здесь."
 
-#: ../src\gui\dialogs\configuration.py:230
+#: ../src\gui\dialogs\configuration.py:234
 msgid "Verification code"
 msgstr "Код"
 
-#: ../src\gui\dialogs\configuration.py:242
+#: ../src\gui\dialogs\configuration.py:246
 msgid "Error during authorisation. Try again later."
 msgstr "Ошибка при авторизации. Повторите попытку позже."
 
-#: ../src\gui\dialogs\configuration.py:242 ../src\gui\main.py:378
-#: ../src\gui\main.py:703 ../src\gui\main.py:736
+#: ../src\gui\dialogs\configuration.py:246 ../src\gui\main.py:229
+#: ../src\gui\main.py:386 ../src\gui\main.py:722 ../src\gui\main.py:755
 msgid "Error!"
 msgstr "Ошибка"
 
-#: ../src\gui\dialogs\configuration.py:261
+#: ../src\gui\dialogs\configuration.py:265
 msgid "TW Blue preferences"
 msgstr "Настройки TW Blue"
 
-#: ../src\gui\dialogs\configuration.py:265
+#: ../src\gui\dialogs\configuration.py:269
 msgid "General"
 msgstr "Общие"
 
-#: ../src\gui\dialogs\configuration.py:268
+#: ../src\gui\dialogs\configuration.py:273
 msgid "Show other buffers"
 msgstr "Показать"
 
-#: ../src\gui\dialogs\configuration.py:272
+#: ../src\gui\dialogs\configuration.py:277
 msgid "Sound"
 msgstr "Звук"
 
-#: ../src\gui\dialogs\configuration.py:274
+#: ../src\gui\dialogs\configuration.py:279
 msgid "Audio Services"
 msgstr "Аудиосервисы"
 
-#: ../src\gui\dialogs\configuration.py:277
+#: ../src\gui\dialogs\configuration.py:282
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../src\gui\dialogs\configuration.py:280 ../src\gui\dialogs\follow.py:64
-#: ../src\gui\dialogs\message.py:186 ../src\gui\dialogs\message.py:274
-#: ../src\gui\dialogs\message.py:357 ../src\gui\dialogs\search.py:42
-#: ../src\gui\dialogs\show_user.py:42 ../src\gui\dialogs\trending.py:42
-#: ../src\gui\dialogs\update_profile.py:56 ../src\gui\dialogs\utils.py:42
-#: ../src\keystrokeEditor\gui.py:26
+#: ../src\gui\dialogs\configuration.py:285 ../src\gui\dialogs\follow.py:64
+#: ../src\gui\dialogs\message.py:189 ../src\gui\dialogs\message.py:284
+#: ../src\gui\dialogs\message.py:385 ../src\gui\dialogs\message.py:472
+#: ../src\gui\dialogs\search.py:42 ../src\gui\dialogs\show_user.py:42
+#: ../src\gui\dialogs\trending.py:52 ../src\gui\dialogs\update_profile.py:56
+#: ../src\gui\dialogs\utils.py:42 ../src\keystrokeEditor\gui.py:26
 msgid "Close"
 msgstr "Закрыть"
 
-#: ../src\gui\dialogs\configuration.py:293 ../src\gui\main.py:264
+#: ../src\gui\dialogs\configuration.py:301 ../src\gui\main.py:272
 msgid "Followers"
 msgstr "Читающие"
 
-#: ../src\gui\dialogs\configuration.py:307
+#: ../src\gui\dialogs\configuration.py:315
 msgid "friends"
 msgstr "Читаемые"
 
-#: ../src\gui\dialogs\configuration.py:321
+#: ../src\gui\dialogs\configuration.py:329
 msgid "Favorites"
 msgstr "Избранное"
 
-#: ../src\gui\dialogs\configuration.py:335 ../src\gui\main.py:282
+#: ../src\gui\dialogs\configuration.py:343 ../src\gui\main.py:290
 msgid "Events"
 msgstr "События"
 
-#: ../src\gui\dialogs\configuration.py:346 ../src\gui\main.py:274
+#: ../src\gui\dialogs\configuration.py:354 ../src\gui\main.py:282
 msgid "Blocked users"
 msgstr "Заблокированные пользователи"
 
-#: ../src\gui\dialogs\configuration.py:360 ../src\gui\main.py:278
+#: ../src\gui\dialogs\configuration.py:368 ../src\gui\main.py:286
 msgid "Muted users"
 msgstr "Приглушенные пользователи"
 
-#: ../src\gui\dialogs\configuration.py:420
+#: ../src\gui\dialogs\configuration.py:428
 msgid "Restart TW Blue"
 msgstr "Перезагрузка TW Blue"
 
-#: ../src\gui\dialogs\configuration.py:420
+#: ../src\gui\dialogs\configuration.py:428
 msgid ""
 "The application requires to be restarted to save these changes. Press OK to "
 "do it now."
@@ -1107,7 +1262,7 @@ msgid "Report as spam"
 msgstr "Сообщить о спаме"
 
 #: ../src\gui\dialogs\follow.py:61 ../src\gui\dialogs\search.py:40
-#: ../src\gui\dialogs\trending.py:40 ../src\gui\dialogs\utils.py:39
+#: ../src\gui\dialogs\trending.py:50 ../src\gui\dialogs\utils.py:39
 #: ../src\keystrokeEditor\gui.py:76
 msgid "OK"
 msgstr "OK"
@@ -1124,7 +1279,7 @@ msgstr "Вы будете вновь слышать твиты от %s "
 msgid "Lists manager"
 msgstr "Менеджер Списков"
 
-#: ../src\gui\dialogs\lists.py:38 ../src\gui\main.py:298
+#: ../src\gui\dialogs\lists.py:38 ../src\gui\main.py:306
 msgid "Lists"
 msgstr "Списки"
 
@@ -1172,7 +1327,7 @@ msgstr "Список открыт"
 msgid "This list is arready opened."
 msgstr "Этот список уже открыт"
 
-#: ../src\gui\dialogs\lists.py:130 ../src\gui\main.py:301
+#: ../src\gui\dialogs\lists.py:130 ../src\gui\main.py:309
 msgid "List for %s"
 msgstr "Список %s"
 
@@ -1220,105 +1375,129 @@ msgstr "Добавить"
 msgid "Select a list to remove the user"
 msgstr "Из какого списка вы хотите удалить пользователя?"
 
-#: ../src\gui\dialogs\message.py:43 ../src\gui\dialogs\message.py:146
+#: ../src\gui\dialogs\message.py:44 ../src\gui\dialogs\message.py:147
 msgid "%s - %s of 140 characters"
 msgstr "%s - %s из ста сорока символов"
 
-#: ../src\gui\dialogs\message.py:77
+#: ../src\gui\dialogs\message.py:78
 msgid "Attaching..."
 msgstr "Добавление"
 
-#: ../src\gui\dialogs\message.py:78
+#: ../src\gui\dialogs\message.py:79
 msgid "Uploading..."
 msgstr "Загрузка"
 
-#: ../src\gui\dialogs\message.py:100
+#: ../src\gui\dialogs\message.py:101
 msgid "Unable to upload the audio"
 msgstr "Невозможно загрузить аудио"
 
-#: ../src\gui\dialogs\message.py:114 ../src\gui\dialogs\message.py:400
+#: ../src\gui\dialogs\message.py:115 ../src\gui\dialogs\message.py:428
+#: ../src\gui\dialogs\message.py:513
 msgid "Translated"
 msgstr "Переведено"
 
-#: ../src\gui\dialogs\message.py:126
+#: ../src\gui\dialogs\message.py:127
 msgid "There's no URL to be shortened"
 msgstr "В сообщении нет ссылки"
 
-#: ../src\gui\dialogs\message.py:129
+#: ../src\gui\dialogs\message.py:130
 msgid "URL shortened"
 msgstr "Ссылка сокращена"
 
-#: ../src\gui\dialogs\message.py:137 ../src\gui\dialogs\message.py:412
+#: ../src\gui\dialogs\message.py:138 ../src\gui\dialogs\message.py:440
+#: ../src\gui\dialogs\message.py:525
 msgid "There's no URL to be expanded"
 msgstr "В сообщении нет ссылки"
 
-#: ../src\gui\dialogs\message.py:140 ../src\gui\dialogs\message.py:415
+#: ../src\gui\dialogs\message.py:141 ../src\gui\dialogs\message.py:443
+#: ../src\gui\dialogs\message.py:528
 msgid "URL expanded"
 msgstr "Ссылка развёрнута"
 
-#: ../src\gui\dialogs\message.py:168 ../src\gui\dialogs\message.py:223
+#: ../src\gui\dialogs\message.py:169 ../src\gui\dialogs\message.py:233
 #: ../src\gui\dialogs\update_profile.py:51
 #: ../src\gui\dialogs\update_profile.py:88
 msgid "Upload a picture"
 msgstr "Загрузить фото"
 
-#: ../src\gui\dialogs\message.py:171 ../src\gui\dialogs\message.py:259
-#: ../src\gui\dialogs\message.py:350
+#: ../src\gui\dialogs\message.py:172 ../src\gui\dialogs\message.py:269
+#: ../src\gui\dialogs\message.py:378 ../src\gui\dialogs\message.py:465
 msgid "Spelling correction"
 msgstr "Проверка орфографии"
 
-#: ../src\gui\dialogs\message.py:175 ../src\gui\dialogs\message.py:263
+#: ../src\gui\dialogs\message.py:176 ../src\gui\dialogs\message.py:273
 msgid "Shorten URL"
 msgstr "Сократить ссылку"
 
-#: ../src\gui\dialogs\message.py:177 ../src\gui\dialogs\message.py:265
-#: ../src\gui\dialogs\message.py:352
+#: ../src\gui\dialogs\message.py:178 ../src\gui\dialogs\message.py:275
+#: ../src\gui\dialogs\message.py:380 ../src\gui\dialogs\message.py:467
 msgid "Expand URL"
 msgstr "Развернуть ссылку"
 
-#: ../src\gui\dialogs\message.py:183 ../src\gui\dialogs\message.py:271
+#: ../src\gui\dialogs\message.py:184 ../src\gui\dialogs\message.py:281
 msgid "Send"
 msgstr "Отправить"
 
-#: ../src\gui\dialogs\message.py:219 ../src\gui\dialogs\message.py:230
+#: ../src\gui\dialogs\message.py:187
+msgid "&Autocomplete users"
+msgstr "&Автозаполнение"
+
+#: ../src\gui\dialogs\message.py:229 ../src\gui\dialogs\message.py:240
 #: ../src\gui\dialogs\update_profile.py:84
 #: ../src\gui\dialogs\update_profile.py:95
 msgid "Discard image"
 msgstr "Очистить"
 
-#: ../src\gui\dialogs\message.py:225 ../src\gui\dialogs\update_profile.py:90
+#: ../src\gui\dialogs\message.py:235 ../src\gui\dialogs\update_profile.py:90
 msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 msgstr "Файлы изображений (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 
-#: ../src\gui\dialogs\message.py:225 ../src\gui\dialogs\update_profile.py:90
+#: ../src\gui\dialogs\message.py:235 ../src\gui\dialogs\update_profile.py:90
 msgid "Select the picture to be uploaded"
 msgstr "Выберите картинку, которую желаете загрузить"
 
-#: ../src\gui\dialogs\message.py:253
+#: ../src\gui\dialogs\message.py:263
 msgid "Recipient"
 msgstr "Получатель"
 
-#: ../src\gui\dialogs\message.py:308
-msgid "Mention to all"
+#: ../src\gui\dialogs\message.py:318
+#, fuzzy
+msgid "Mention &to all"
 msgstr "Упомянуть всех"
 
-#: ../src\gui\dialogs\message.py:335
+#: ../src\gui\dialogs\message.py:345
 msgid "Tweet - %i characters "
 msgstr "Твит - Написано  %i символов"
 
-#: ../src\gui\dialogs\search.py:26 ../src\gui\dialogs\trending.py:26
+#: ../src\gui\dialogs\message.py:363
+msgid "Retweets: "
+msgstr "Ретвиты:"
+
+#: ../src\gui\dialogs\message.py:368
+msgid "Favourites: "
+msgstr "Избранное:"
+
+#: ../src\gui\dialogs\message.py:451
+msgid "View"
+msgstr "Вид"
+
+#: ../src\gui\dialogs\message.py:453
+msgid "Item"
+msgstr "Элемент"
+
+#: ../src\gui\dialogs\search.py:26
 msgid "Search on Twitter"
 msgstr "Поиск в твиттере"
 
-#: ../src\gui\dialogs\search.py:27 ../src\gui\dialogs\trending.py:27
+#: ../src\gui\dialogs\search.py:27
 msgid "Search"
 msgstr "Поиск"
 
-#: ../src\gui\dialogs\search.py:34 ../src\gui\dialogs\trending.py:34
+#: ../src\gui\dialogs\search.py:34
 msgid "Tweets"
 msgstr "Твиты"
 
-#: ../src\gui\dialogs\search.py:35 ../src\gui\dialogs\trending.py:35
+#: ../src\gui\dialogs\search.py:35
 msgid "Users"
 msgstr "Пользователи"
 
@@ -1386,6 +1565,26 @@ msgstr "Твитов: %s\n"
 msgid "Favourites: %s"
 msgstr "Твитов в избранном: %s"
 
+#: ../src\gui\dialogs\trending.py:30
+msgid "View trending topics"
+msgstr ""
+
+#: ../src\gui\dialogs\trending.py:31
+msgid "Trending topics by"
+msgstr ""
+
+#: ../src\gui\dialogs\trending.py:33
+msgid "Country"
+msgstr ""
+
+#: ../src\gui\dialogs\trending.py:34
+msgid "City"
+msgstr ""
+
+#: ../src\gui\dialogs\trending.py:43 ../src\gui\dialogs\update_profile.py:35
+msgid "Location"
+msgstr "Местоположение"
+
 #: ../src\gui\dialogs\update_profile.py:27
 msgid "Update your profile"
 msgstr "Обновить свой профиль"
@@ -1393,10 +1592,6 @@ msgstr "Обновить свой профиль"
 #: ../src\gui\dialogs\update_profile.py:29
 msgid "Name (20 characters maximum)"
 msgstr "Имя (максимум 20 символов)"
-
-#: ../src\gui\dialogs\update_profile.py:35
-msgid "Location"
-msgstr "Местоположение"
 
 #: ../src\gui\dialogs\update_profile.py:40
 msgid "Website"
@@ -1414,364 +1609,371 @@ msgstr "Обновить профиль"
 msgid "Select an URL"
 msgstr "Выберите ссылку "
 
-#: ../src\gui\main.py:59
+#: ../src\gui\main.py:63
+#, fuzzy
+msgid "S&witch account"
+msgstr "Добавить аккаунт"
+
+#: ../src\gui\main.py:65
 msgid "&Update profile"
 msgstr "&Обновить профиль"
 
-#: ../src\gui\main.py:61
+#: ../src\gui\main.py:67
 msgid "&Hide window"
 msgstr "& Скрыть окно"
 
-#: ../src\gui\main.py:63
+#: ../src\gui\main.py:69
 msgid "&Search"
 msgstr "&Поиск"
 
-#: ../src\gui\main.py:65
+#: ../src\gui\main.py:71
 msgid "&Lists manager"
 msgstr "&Менеджер списков"
 
-#: ../src\gui\main.py:67
+#: ../src\gui\main.py:73
 msgid "Sounds &tutorial"
 msgstr "&Гид по звукам"
 
-#: ../src\gui\main.py:69
+#: ../src\gui\main.py:75
 msgid "&Edit keystrokes"
 msgstr "&Редактировать горячие клавиши"
 
-#: ../src\gui\main.py:71
+#: ../src\gui\main.py:77
 msgid "&Preferences"
 msgstr "&Настройки"
 
-#: ../src\gui\main.py:73
+#: ../src\gui\main.py:79
 msgid "E&xit"
 msgstr "Вы&ход"
 
-#: ../src\gui\main.py:78 ../src\gui\main.py:154
+#: ../src\gui\main.py:84 ../src\gui\main.py:162
 msgid "&Tweet"
 msgstr "&Твит"
 
-#: ../src\gui\main.py:80
-msgid "Re&ply"
-msgstr "Отве&тить"
+#: ../src\gui\main.py:96
+#, fuzzy
+msgid "View &address"
+msgstr "&Показать  избранное"
 
-#: ../src\gui\main.py:82
-msgid "&Retweet"
-msgstr "&Ретвит"
-
-#: ../src\gui\main.py:84
-msgid "Add to &favourites"
-msgstr "&Добавить в избранное"
-
-#: ../src\gui\main.py:86
-msgid "Remove from favo&urites"
-msgstr "&Удалить из избранного"
-
-#: ../src\gui\main.py:88
-msgid "&Show tweet"
-msgstr "&Показать твит"
-
-#: ../src\gui\main.py:90
-msgid "&Delete"
-msgstr "&Удалить"
-
-#: ../src\gui\main.py:95
+#: ../src\gui\main.py:103
 msgid "&Follow"
 msgstr "&Начать читать"
 
-#: ../src\gui\main.py:97
+#: ../src\gui\main.py:105
 msgid "&Unfollow"
 msgstr "&Удалить из читаемых"
 
-#: ../src\gui\main.py:99 ../src\gui\main.py:128
+#: ../src\gui\main.py:107 ../src\gui\main.py:136
 msgid "&Mute"
 msgstr "&Выключить звук"
 
-#: ../src\gui\main.py:101
+#: ../src\gui\main.py:109
 msgid "U&nmute"
 msgstr "&Включить звук"
 
-#: ../src\gui\main.py:103
+#: ../src\gui\main.py:111
 msgid "&Report as spam"
 msgstr "&Сообщить о спаме"
 
-#: ../src\gui\main.py:105
+#: ../src\gui\main.py:113
 msgid "&Block"
 msgstr "&Заблокировать"
 
-#: ../src\gui\main.py:107
+#: ../src\gui\main.py:115
 msgid "Unb&lock"
 msgstr "&Разблокировать"
 
-#: ../src\gui\main.py:109
+#: ../src\gui\main.py:117
 msgid "Direct me&ssage"
 msgstr "&Личное сообщение"
 
-#: ../src\gui\main.py:111
+#: ../src\gui\main.py:119
 msgid "&Add to list"
 msgstr "&Добавить в список"
 
-#: ../src\gui\main.py:113
+#: ../src\gui\main.py:121
 msgid "R&emove from list"
 msgstr "&Удалить из списка"
 
-#: ../src\gui\main.py:115
-msgid "&View lists"
-msgstr "&Просмотр списков"
-
-#: ../src\gui\main.py:117
-msgid "Show user &profile"
-msgstr "&Показать профиль пользователя"
-
-#: ../src\gui\main.py:119
+#: ../src\gui\main.py:127
 msgid "&Timeline"
 msgstr "&Лента"
 
-#: ../src\gui\main.py:121
+#: ../src\gui\main.py:129
 msgid "V&iew favourites"
 msgstr "&Показать  избранное"
 
-#: ../src\gui\main.py:126
+#: ../src\gui\main.py:134
 msgid "&Load previous items"
 msgstr "&Загрузить предыдущие твиты"
 
-#: ../src\gui\main.py:130
+#: ../src\gui\main.py:138
 msgid "&Autoread tweets for this buffer"
 msgstr "&Авточтение твитов этого буфера"
 
-#: ../src\gui\main.py:132
+#: ../src\gui\main.py:140
 msgid "&Clear buffer"
 msgstr "&Очистить буфер"
 
-#: ../src\gui\main.py:134
+#: ../src\gui\main.py:142
 msgid "&Remove buffer"
 msgstr "&Удалить буфер"
 
-#: ../src\gui\main.py:139
+#: ../src\gui\main.py:147
 msgid "&Documentation"
 msgstr "&Документация"
 
-#: ../src\gui\main.py:141
+#: ../src\gui\main.py:149
 msgid "&What's new in this version?"
 msgstr "&Что нового в этой версии?"
 
-#: ../src\gui\main.py:143
+#: ../src\gui\main.py:151
 msgid "&Check for updates"
 msgstr "&Проверить обновления"
 
-#: ../src\gui\main.py:145
+#: ../src\gui\main.py:153
 msgid "&Report an error"
 msgstr "&Сообщить об ошибке"
 
-#: ../src\gui\main.py:147
+#: ../src\gui\main.py:155
 msgid "TW Blue &website"
 msgstr "&Сайт TW Blue"
 
-#: ../src\gui\main.py:149
+#: ../src\gui\main.py:157
 msgid "About &TW Blue"
 msgstr "&О программе"
 
-#: ../src\gui\main.py:153
+#: ../src\gui\main.py:161
 msgid "&Application"
 msgstr "&Приложение"
 
-#: ../src\gui\main.py:155
+#: ../src\gui\main.py:163
 msgid "&User"
 msgstr "&Пользователь"
 
-#: ../src\gui\main.py:156
+#: ../src\gui\main.py:164
 msgid "&Buffer"
 msgstr "&Буфер"
 
-#: ../src\gui\main.py:157
+#: ../src\gui\main.py:165
 msgid "&Help"
 msgstr "&Помощь"
 
-#: ../src\gui\main.py:241
+#: ../src\gui\main.py:229
+msgid ""
+"An error occurred while looking for an update. It may be due to any problem "
+"either on our server or on your DNS servers. Please, try again later."
+msgstr ""
+
+#: ../src\gui\main.py:249
 msgid "Home"
 msgstr "Ваша лента"
 
-#: ../src\gui\main.py:246
+#: ../src\gui\main.py:254
 msgid "Mentions"
 msgstr "Упоминания"
 
-#: ../src\gui\main.py:249
+#: ../src\gui\main.py:257
 msgid "Direct messages"
 msgstr "Личные сообщения"
 
-#: ../src\gui\main.py:252
+#: ../src\gui\main.py:260
 msgid "Sent"
 msgstr "Отправленные"
 
-#: ../src\gui\main.py:258
+#: ../src\gui\main.py:266
 msgid "Favourites"
 msgstr "Избранное"
 
-#: ../src\gui\main.py:270
+#: ../src\gui\main.py:278
 msgid "Friends"
 msgstr "Читаемые"
 
-#: ../src\gui\main.py:285
+#: ../src\gui\main.py:293
 msgid "Searches"
 msgstr "Поиск"
 
-#: ../src\gui\main.py:292
+#: ../src\gui\main.py:300
 msgid "Timelines"
 msgstr "Ленты"
 
-#: ../src\gui\main.py:295 ../src\gui\main.py:708
+#: ../src\gui\main.py:303 ../src\gui\main.py:727
 msgid "Timeline for %s"
 msgstr "Лента твитов %s"
 
-#: ../src\gui\main.py:306
+#: ../src\gui\main.py:314
 msgid "Favourites timelines"
 msgstr "Ленты избранного"
 
-#: ../src\gui\main.py:309 ../src\gui\main.py:732
+#: ../src\gui\main.py:317 ../src\gui\main.py:751
 msgid "Favourites for %s"
 msgstr "Избранное пользователя %s"
 
-#: ../src\gui\main.py:341
+#: ../src\gui\main.py:349
 msgid "Ready"
 msgstr "Готово"
 
-#: ../src\gui\main.py:368
+#: ../src\gui\main.py:376
 msgid "%s favourites from %s"
 msgstr "%s избранных твитов пользователя %s"
 
-#: ../src\gui\main.py:378
+#: ../src\gui\main.py:386
 msgid "Connection error. Try again later."
 msgstr "Ошибка соединения. Попробуйте еще раз позже."
 
-#: ../src\gui\main.py:421
+#: ../src\gui\main.py:429
 msgid "Streams disconnected. TW Blue will try to reconnect in a minute."
 msgstr "Ошибка потока.  TW Blue  будет пытаться возобновить соединение."
 
-#: ../src\gui\main.py:425
+#: ../src\gui\main.py:433
 msgid "Reconnecting streams..."
 msgstr "Повторное подключение к потоку"
 
-#: ../src\gui\main.py:449
+#: ../src\gui\main.py:457
 msgid "search for %s"
 msgstr "Поиск %s"
 
-#: ../src\gui\main.py:454
+#: ../src\gui\main.py:462
 msgid "search users for %s"
 msgstr "Поиск пользователей %s"
 
-#: ../src\gui\main.py:466 ../src\gui\main.py:477 ../src\gui\main.py:496
+#: ../src\gui\main.py:474 ../src\gui\main.py:485 ../src\gui\main.py:504
 msgid "Select the user"
 msgstr "Выберите пользователя"
 
-#: ../src\gui\main.py:557
+#: ../src\gui\main.py:565
 msgid "User details"
 msgstr "Профиль"
 
-#: ../src\gui\main.py:565
+#: ../src\gui\main.py:573
 msgid ""
 "Do you really want to delete this message? It will be eliminated from "
 "Twitter as well."
 msgstr ""
 "Вы желаете удалить это сообщение? Оно также будет удалено и из твиттера."
 
-#: ../src\gui\main.py:582
+#: ../src\gui\main.py:590
 msgid "Do you really want to close TW Blue?"
 msgstr "Вы действительно хотите выйти из TW Blue?"
 
-#: ../src\gui\main.py:582 ../src\gui\sysTrayIcon.py:46
+#: ../src\gui\main.py:590 ../src\gui\sysTrayIcon.py:46
 msgid "Exit"
 msgstr "Выйти"
 
-#: ../src\gui\main.py:587
+#: ../src\gui\main.py:595
 msgid "Exiting..."
 msgstr "Выход"
 
-#: ../src\gui\main.py:673
+#: ../src\gui\main.py:692
 msgid "Error while adding to favourites."
 msgstr "Ошибка при добавлении в избранное."
 
-#: ../src\gui\main.py:681
+#: ../src\gui\main.py:700
 msgid "Error while removing from favourites."
 msgstr "Ошибка при удалении из избранного."
 
-#: ../src\gui\main.py:685
+#: ../src\gui\main.py:704
 msgid "Individual timeline"
 msgstr "Лента твитов"
 
-#: ../src\gui\main.py:689 ../src\gui\main.py:721
+#: ../src\gui\main.py:708 ../src\gui\main.py:740
 msgid "The user does not exist"
 msgstr "Пользователь не существует"
 
-#: ../src\gui\main.py:695
+#: ../src\gui\main.py:714
 msgid "Existing timeline"
 msgstr "Существующая лента"
 
-#: ../src\gui\main.py:695
+#: ../src\gui\main.py:714
 msgid ""
 "There's currently a timeline for this user. You are not able to open another"
 msgstr "Сейчас открыта лента пользователя и вы не можете открыть другую ленту."
 
-#: ../src\gui\main.py:703
+#: ../src\gui\main.py:722
 msgid "This user has no tweets. You can't open a timeline for this user"
 msgstr "Пользователь ещё ничего не твитнул. Невозможно открыть его ленту."
 
-#: ../src\gui\main.py:717
+#: ../src\gui\main.py:736
 msgid "List of favourites"
 msgstr "Список избранного"
 
-#: ../src\gui\main.py:727
+#: ../src\gui\main.py:746
 msgid "Existing list"
 msgstr "Существующий лист"
 
-#: ../src\gui\main.py:727
+#: ../src\gui\main.py:746
 msgid ""
 "There's already a list of favourites for this user. You can't create another."
 msgstr "Список избранного для данного пользователя уже открыт. "
 
-#: ../src\gui\main.py:736
+#: ../src\gui\main.py:755
 msgid ""
 "This user has no favourites. You can't create a list of favourites for this "
 "user."
 msgstr "Пользователь ничего не добавил в избранное."
 
-#: ../src\gui\main.py:777 ../src\gui\main.py:790
+#: ../src\gui\main.py:796 ../src\gui\main.py:809
 msgid "%s, %s of %s"
 msgstr "%s, %s из %s"
 
-#: ../src\gui\main.py:779 ../src\gui\main.py:792
+#: ../src\gui\main.py:798 ../src\gui\main.py:811
 msgid "%s. Empty"
 msgstr "%s. Пусто"
 
-#: ../src\gui\main.py:815
+#: ../src\gui\main.py:834
 msgid "Global mute on"
 msgstr "Режим тишины включён"
 
-#: ../src\gui\main.py:818
+#: ../src\gui\main.py:837
 msgid "Global mute off"
 msgstr "Режим тишины выключен"
 
-#: ../src\gui\main.py:824
+#: ../src\gui\main.py:843
 msgid "Buffer mute on"
 msgstr "Звуки в буфере отключены"
 
-#: ../src\gui\main.py:827
+#: ../src\gui\main.py:846
 msgid "Buffer mute off"
 msgstr "Звуки в буфере включены"
 
-#: ../src\gui\main.py:833
+#: ../src\gui\main.py:852
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "Авточтение новых твитов в этом буфере включено"
 
-#: ../src\gui\main.py:836
+#: ../src\gui\main.py:855
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "Авточтение новых твитов в этом буфере выключено"
 
-#: ../src\gui\main.py:843
+#: ../src\gui\main.py:862
 msgid "Copied"
 msgstr "Скопировано"
 
-#: ../src\gui\main.py:857 ../src\gui\main.py:870
+#: ../src\gui\main.py:876 ../src\gui\main.py:889
 msgid "%s"
 msgstr "%s"
+
+#: ../src\gui\main.py:992
+msgid "Address"
+msgstr ""
+
+#: ../src\gui\main.py:994 ../src\gui\main.py:1011
+#, fuzzy
+msgid "There are no coordinates in this tweet"
+msgstr "Отсутствуют твиты для чтения"
+
+#: ../src\gui\main.py:996 ../src\gui\main.py:1013
+msgid "There are no results for the coordinates in this tweet"
+msgstr ""
+
+#: ../src\gui\main.py:998 ../src\gui\main.py:1015
+#, fuzzy
+msgid "Error decoding coordinates. Try again later."
+msgstr "Ошибка при авторизации. Повторите попытку позже."
+
+#: ../src\gui\main.py:1028
+#, fuzzy
+msgid "Trending topics for %s"
+msgstr "Просмотр списков пользователя  %s"
 
 #: ../src\gui\sysTrayIcon.py:36
 msgid "Preferences"
@@ -2005,15 +2207,15 @@ msgstr "Вы должны указать букву при создании го
 msgid "User default"
 msgstr "По умолчанию"
 
-#: ../src\sessionmanager\gui.py:19
+#: ../src\sessionmanager\gui.py:20
 msgid "Session manager"
 msgstr "Менеджер сессий"
 
-#: ../src\sessionmanager\gui.py:23
+#: ../src\sessionmanager\gui.py:24
 msgid "Select a twitter account to start TW Blue"
 msgstr "Выберите аккаунт, который вы хотите использовать"
 
-#: ../src\sessionmanager\gui.py:25
+#: ../src\sessionmanager\gui.py:26
 msgid "Account"
 msgstr "Аккаунт"
 
@@ -2021,15 +2223,20 @@ msgstr "Аккаунт"
 msgid "New account"
 msgstr "Добавить аккаунт"
 
-#: ../src\sessionmanager\gui.py:67
+#: ../src\sessionmanager\gui.py:32
+#, fuzzy
+msgid "Remove session"
+msgstr "Удалить событие"
+
+#: ../src\sessionmanager\gui.py:70
 msgid "Account Error"
 msgstr "Ошибка при создании аккаунта"
 
-#: ../src\sessionmanager\gui.py:67
+#: ../src\sessionmanager\gui.py:70
 msgid "You need to configure an account."
 msgstr "Вам нужно настроить учетную запись."
 
-#: ../src\sessionmanager\gui.py:83
+#: ../src\sessionmanager\gui.py:84
 msgid ""
 "The request for the required Twitter authorization to continue will be "
 "opened on your browser. You only need to do it once. Would you like to "
@@ -2041,11 +2248,11 @@ msgstr ""
 "потребуется авторизовываться каждый раз. Новая авторизация будет нужна "
 "только тогда, когда вы захотите добавить дополнительный аккаунт в клиент. "
 
-#: ../src\sessionmanager\gui.py:94
+#: ../src\sessionmanager\gui.py:95
 msgid "Invalid user token"
 msgstr "Неверный маркер"
 
-#: ../src\sessionmanager\gui.py:94
+#: ../src\sessionmanager\gui.py:95
 msgid ""
 "Your access token is invalid or the authorisation has failed. Please try "
 "again."
@@ -2053,9 +2260,19 @@ msgstr ""
 "Возникла ошибка при авторизации. Кроме того,  ключ доступа приложения  может "
 "быть неправильным.   Попробуйте, пожалуйста, ещё раз."
 
-#: ../src\sessionmanager\gui.py:97
+#: ../src\sessionmanager\gui.py:98
 msgid "Authorised account %d"
 msgstr "Авторизованный аккаунт %d"
+
+#: ../src\sessionmanager\gui.py:107
+#, fuzzy
+msgid "Do you really want delete this account?"
+msgstr "Вы желаете удалить этот лист?"
+
+#: ../src\sessionmanager\gui.py:107
+#, fuzzy
+msgid "Remove account"
+msgstr "Удалить  клиент"
 
 #: ../src\twitter\buffers\indibidual.py:26
 msgid "One tweet from %s"
@@ -2398,11 +2615,11 @@ msgstr "Личный"
 msgid "public"
 msgstr "Публичный"
 
-#: ../src\twitter\twitter.py:74
+#: ../src\twitter\twitter.py:77
 msgid "%s failed.  Reason: %s"
 msgstr "%s неудалось.  Причина: %s"
 
-#: ../src\twitter\twitter.py:81
+#: ../src\twitter\twitter.py:84
 msgid "%s succeeded."
 msgstr "%s успешно."
 
@@ -2444,9 +2661,6 @@ msgstr "Программа была загружена и установлена
 
 #~ msgid "always"
 #~ msgstr "Ошибка возникает всегда"
-
-#~ msgid "have not tried"
-#~ msgstr "Ошибка возникала только у моих знакомых"
 
 #~ msgid "random"
 #~ msgstr "Ошибка возникает часто"

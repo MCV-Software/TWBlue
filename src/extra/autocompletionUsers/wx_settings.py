@@ -20,4 +20,4 @@ class autocompletionSettingsDialog(wx.Dialog):
   self.SetClientSize(sizer.CalcMin())
 
 def show_success_dialog():
- wx.MessageDialog(None, _(u"Users TwBlue-database has been updated with new users."), _(u"Done"), wx.OK).ShowModal()
+ wx.MessageDialog(None, _(u"TWBlue's database of users has been updated."), _(u"Done"), wx.OK).ShowModal()

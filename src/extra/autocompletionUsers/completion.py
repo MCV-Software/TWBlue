@@ -15,7 +15,7 @@ class autocompletionUsers(object):
   try:
    pattern = text.split()[-1]
   except IndexError:
-   output.speak(_(u"You have to start to write"))
+   output.speak(_(u"You have to start writing"))
    return
   if pattern.startswith("@") == True:
    db = storage.storage()
@@ -26,6 +26,6 @@ class autocompletionUsers(object):
     self.window.PopupMenu(menu, self.window.text.GetPosition())
     menu.Destroy()
    else:
-    output.speak(_(u"There is not results in your users database"))
+    output.speak(_(u"There are not results in your users database"))
   else:
    output.speak(_(u"Autocompletion only works for users."))
