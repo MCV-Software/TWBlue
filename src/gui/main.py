@@ -34,6 +34,7 @@ import urllib2
 import sysTrayIcon
 import switchModule
 import languageHandler
+from extra.autocompletionUsers import settings as autocompletionUsersSettings
 import pygeocoder
 from pygeolib import GeocoderError
 from sessionmanager import manager
@@ -355,6 +356,7 @@ class mainFrame(wx.Frame):
    self.check_streams.start()
   # If all it's done, then play a nice sound saying that all it's OK.
   sound.player.play("ready.ogg")
+  autocompletionUsersSettings.execute_at_startup(window=self)
 
  def remove_list(self, id):
   for i in range(0, self.nb.GetPageCount()):
