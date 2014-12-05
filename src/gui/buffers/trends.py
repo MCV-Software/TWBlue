@@ -85,8 +85,11 @@ class trendsPanel(wx.Panel):
 
  def start_streams(self):
   data = self.twitter.twitter.get_place_trends(id=self.argumento)
+  if not hasattr(self, "name"):
+   self.name = data[0]["locations"][0]["name"]
   self.trends = data[0]["trends"]
-  sound.player.play(self.sound)
+  # We need to get the trends sound, so the next line is commented.
+#  sound.player.play(self.sound)
   return len(self.trends)
 
  def get_more_items(self):
@@ -94,20 +97,11 @@ class trendsPanel(wx.Panel):
 
  def put_items(self, num):
   selected_item = self.list.get_selected()
-  if self.list.get_count() == 0:
-   for i in self.trends:
-    tweet = self.compose_function(i)
-    self.list.insert_item(False, *tweet)
+  self.list.clear()
+  for i in self.trends:
+   tweet = self.compose_function(i)
+   self.list.insert_item(False, *tweet)
    self.set_list_position()
-  elif self.list.get_count() > 0:
-   if config.main["general"]["reverse_timelines"] == False:
-    for i in self.trends:
-     tweet = self.compose_function(i)
-     self.list.insert_item(False, *tweet)
-   else:
-    for i in self.trends:
-     tweet = self.compose_function(i)
-     self.list.insert_item(True, *tweet)
   self.list.select_item(selected_item)
 
  def post_status(self, ev=None):
