@@ -17,35 +17,162 @@
 #
 ############################################################
 import wx
-import sound
-import config
-import twitter
 import gui.dialogs
+import twitter
+import config
+import sound
 import logging as original_logger
-from base import basePanel
+import output
+import platform
+import menus
+from multiplatform_widgets import widgets
+from mysc.thread_utils import call_threaded
 log = original_logger.getLogger("buffers.base")
 
-class trendPanel(basePanel):
- def __init__(self, parent, window, name_buffer, *args, **kwargs):
-  super(searchPanel, self).__init__(parent, window, name_buffer, sound)
-  self.type = "trend"
-  self.args = kwargs
+class trendsPanel(wx.Panel):
+ 
+ def compose_function(self, trend):
+  return [trend["name"]]
 
- def start_streams(self):
-  num = twitter.starting.search(self.db, self.twitter, self.name_buffer, **self.args)
-  if num > 0: sound.player.play("search_updated.ogg")
-  self.put_items(num)
-  return num
+ def bind_events(self):
+  self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, self.showMenu, self.list.list)
+  self.Bind(wx.EVT_LIST_KEY_DOWN, self.showMenuByKey, self.list.list)
+  self.list.list.Bind(wx.EVT_CHAR_HOOK, self.interact)
+
+ def get_message(self, dialog=False):
+  return self.compose_function(self.trends[self.list.get_selected()])[0]
+
+
+ def create_list(self):
+  self.list = widgets.list(self, _(u"Trending topic"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
+  if self.system == "Windows":
+   self.list.set_windows_size(0, 30)
+   self.list.set_size()
+
+ def __init__(self, parent, window, name_buffer, argumento=None, sound=""):
+  self.type = "trends"
+  self.twitter = window.twitter
+  self.name_buffer = name_buffer
+  self.argumento = argumento
+  self.sound = sound
+  self.parent = window
+  self.system = platform.system()
+  wx.Panel.__init__(self, parent)
+  self.trends = []
+  self.sizer = wx.BoxSizer(wx.VERTICAL)
+  self.create_list()
+  self.btn = wx.Button(self, -1, _(u"Tweet"))
+  self.btn.Bind(wx.EVT_BUTTON, self.post_status)
+  self.tweetTrendBtn = wx.Button(self, -1, _(u"Tweet about this trend"))
+  self.tweetTrendBtn.Bind(wx.EVT_BUTTON, self.onResponse)
+  btnSizer = wx.BoxSizer(wx.HORIZONTAL)
+  btnSizer.Add(self.btn, 0, wx.ALL, 5)
+  btnSizer.Add(self.tweetTrendBtn, 0, wx.ALL, 5)
+  self.sizer.Add(btnSizer, 0, wx.ALL, 5)
+  self.sizer.Add(self.list.list, 0, wx.ALL, 5)
+  self.bind_events()
+  self.SetSizer(self.sizer)
 
  def remove_buffer(self):
-  dlg = wx.MessageDialog(self, _(u"Do you really want to delete this search term?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO)
+  dlg = wx.MessageDialog(self, _(u"Do you really want to delete this buffer?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO)
   if dlg.ShowModal() == wx.ID_YES:
-    names = config.main["other_buffers"]["tweet_searches"]
-    user = self.name_buffer[:-7]
-    log.info(u"Deleting %s's search term" % user)
-    if user in names:
-     names.remove(user)
-     self.db.settings.pop(self.name_buffer)
-     pos = self.db.settings["buffers"].index(self.name_buffer)
-     self.db.settings["buffers"].remove(self.name_buffer)
-     return pos
+   topics = config.main["other_buffers"]["trending_topic_buffers"]
+   topic = self.name_buffer
+   log.info(u"Deleting %s's trending topics buffer" % topic)
+   if topic in topics:
+    topics.remove(topic)
+   return 0
+
+ def start_streams(self):
+  data = self.twitter.twitter.get_place_trends(id=self.argumento)
+  self.trends = data[0]["trends"]
+  sound.player.play(self.sound)
+  return len(self.trends)
+
+ def get_more_items(self):
+  output.speak(_(u"This action is not supported for this buffer"))
+
+ def put_items(self, num):
+  selected_item = self.list.get_selected()
+  if self.list.get_count() == 0:
+   for i in self.trends:
+    tweet = self.compose_function(i)
+    self.list.insert_item(False, *tweet)
+   self.set_list_position()
+  elif self.list.get_count() > 0:
+   if config.main["general"]["reverse_timelines"] == False:
+    for i in self.trends:
+     tweet = self.compose_function(i)
+     self.list.insert_item(False, *tweet)
+   else:
+    for i in self.trends:
+     tweet = self.compose_function(i)
+     self.list.insert_item(True, *tweet)
+  self.list.select_item(selected_item)
+
+ def post_status(self, ev=None):
+  text = gui.dialogs.message.tweet(_(u"Write the tweet here"), _(u"Tweet"), "", self)
+  if text.ShowModal() == wx.ID_OK:
+   if text.image == None:
+    call_threaded(self.twitter.api_call, call_name="update_status", _sound="tweet_send.ogg", status=text.text.GetValue())
+   else:
+    call_threaded(self.twitter.api_call, call_name="update_status_with_media", _sound="tweet_send.ogg", status=text.text.GetValue(), media=text.file)
+  if ev != None: self.list.list.SetFocus()
+
+ def onRetweet(self, event=None): pass
+
+ def onResponse(self, ev):
+  trend = self.trends[self.list.get_selected()]["name"]
+  text = gui.dialogs.message.tweet(_(u"Write the tweet here"), _(u"Tweet"), trend, self)
+  if text.ShowModal() == wx.ID_OK:
+   if text.image == None:
+    call_threaded(self.twitter.api_call, call_name="update_status", _sound="tweet_send.ogg", status=text.text.GetValue())
+   else:
+    call_threaded(self.twitter.api_call, call_name="update_status_with_media", _sound="tweet_send.ogg", status=text.text.GetValue(), media=text.file)
+  if ev != None: self.list.list.SetFocus()
+
+ def interact(self, ev):
+  if type(ev) is str: event = ev
+  else:
+   if ev.GetKeyCode() == wx.WXK_F5: event = "volume_down"
+   elif ev.GetKeyCode() == wx.WXK_F6: event = "volume_up"
+   elif ev.GetKeyCode() == wx.WXK_DELETE and ev.ShiftDown(): event = "clear_list"
+   else:
+    ev.Skip()
+    return
+  if event == "volume_down":
+   if config.main["sound"]["volume"] > 0.05:
+    config.main["sound"]["volume"] = config.main["sound"]["volume"]-0.05
+    sound.player.play("volume_changed.ogg", False)
+    if hasattr(self.parent, "audioStream"):
+     self.parent.audioStream.stream.volume = config.main["sound"]["volume"]
+  elif event == "volume_up":
+   if config.main["sound"]["volume"] < 0.95:
+    config.main["sound"]["volume"] = config.main["sound"]["volume"]+0.05
+    sound.player.play("volume_changed.ogg", False)
+    if hasattr(self.parent, "audioStream"):
+     self.parent.audioStream.stream.volume = config.main["sound"]["volume"]
+  elif event == "clear_list" and self.list.get_count() > 0:
+   dlg = wx.MessageDialog(self, _(u"Do you really want to empty this buffer? It's items will be removed from the list"), _(u"Empty buffer"), wx.ICON_QUESTION|wx.YES_NO)
+   if dlg.ShowModal() == wx.ID_YES:
+    self.trends = []
+    self.list.clear()
+  try:
+   ev.Skip()
+  except:
+   pass
+
+ def set_list_position(self):
+  if config.main["general"]["reverse_timelines"] == False:
+   self.list.select_item(len(self.trends)-1)
+  else:
+   self.list.select_item(0)
+
+ def showMenu(self, ev):
+  if self.list.get_count() == 0: return
+  self.PopupMenu(menus.trendsPanelMenu(self), ev.GetPosition())
+
+ def showMenuByKey(self, ev):
+  if self.list.get_count() == 0: return
+  if ev.GetKeyCode() == wx.WXK_WINDOWS_MENU:
+   self.PopupMenu(menus.trendsPanelMenu(self), self.list.list.GetPosition())

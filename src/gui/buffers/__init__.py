@@ -8,3 +8,4 @@ from lists import *
 from people import *
 from tweet_searches import *
 from user_searches import *
+from trends import *
