@@ -159,7 +159,7 @@ class basePanel(wx.Panel):
   if twitter.utils.is_audio(tweet):
    sound.player.play("audio.ogg", False)
   if twitter.utils.is_geocoded(tweet):
-   sound.player.play("geo.mp3", False)
+   sound.player.play("geo.ogg", False)
 
  def start_streams(self):
   if self.name_buffer == "sent":
