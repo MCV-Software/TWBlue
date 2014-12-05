@@ -150,7 +150,7 @@ class basePanel(wx.Panel):
   if config.main["general"]["relative_times"] == True:
    # On windows we need only put the new date on the column, but under linux and mac it isn't possible.
    if self.system == "Windows":
-    original_date = datetime.datetime.strptime(tweet["created_at"], "%a %b %d %H:%M:%S +0000 %Y")
+    original_date = datetime.datetime.strptime(self.db.settings[self.name_buffer][self.list.get_selected()]["created_at"], "%a %b %d %H:%M:%S +0000 %Y")
     date = original_date-datetime.timedelta(seconds=-self.db.settings["utc_offset"])
     ts = prettydate(original_date)
     self.list.list.SetStringItem(self.list.get_selected(), 2, ts)
