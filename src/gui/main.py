@@ -319,6 +319,13 @@ class mainFrame(wx.Frame):
    self.db.settings["buffers"].append(i+"favs")
   self.fav_stream = RepeatingTimer(180, self.get_fav_buffers)
   self.fav_stream.start()
+  for i in config.main["other_buffers"]["trending_topic_buffers"]:
+   buff = buffers.trendsPanel(self.nb, self, "%s_tt" % (i,), argumento=i, sound="trendd_updated.ogg")
+   timer = RepeatingTimer(300, buff.start_streams)
+   timer.start()
+   num = buff.start_streams()
+   buff.put_items(num)
+   self.nb.InsertSubPage(self.db.settings["buffers"].index(self.db.settings["user_name"]), buff, _(u"Trending topics for %s") % (buff.name,))
   self.sizer.Add(self.nb, 0, wx.ALL, 5)
   panel.SetSizer(self.sizer)
   self.SetClientSize(self.sizer.CalcMin())
@@ -1026,11 +1033,12 @@ class mainFrame(wx.Frame):
     woeid = trendingDialog.countries[trendingDialog.location.GetStringSelection()]
    elif trendingDialog.city.GetValue() == True:
     woeid = trendingDialog.cities[trendingDialog.location.GetStringSelection()]
-   buff = buffers.trendsPanel(self.nb, self, "%s_tt" % (woeid,), argumento=woeid, sound="tweet_timeline.ogg")
+   buff = buffers.trendsPanel(self.nb, self, "%s_tt" % (woeid,), argumento=woeid, sound="trend_updated.ogg")
    self.nb.InsertSubPage(self.db.settings["buffers"].index(self.db.settings["user_name"]), buff, _(u"Trending topics for %s") % (trendingDialog.location.GetStringSelection(),))
-   timer = RepeatingTimer(180, buff.start_streams)
+   timer = RepeatingTimer(300, buff.start_streams)
    timer.start()
    num = buff.start_streams()
+   config.main["other_buffers"]["trending_topic_buffers"].append(woeid)
    buff.put_items(num)
 
 ### Close App
