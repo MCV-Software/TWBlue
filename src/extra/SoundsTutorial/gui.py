@@ -16,6 +16,7 @@ class soundsTutorial(wx.Dialog):
     _(u"A bug has happened"),
   _(u"You've added a tweet to your favourites"),
   _(u"Someone's favourites have been updated"),
+  _(u"The tweet has coordinates to determine its location"),
   _(u"There are no more tweets to read"),
     _(u"A list has a new tweet"),
     _(u"You can't add any more characters on the tweet"),

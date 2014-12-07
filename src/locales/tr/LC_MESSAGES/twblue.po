@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.50\n"
 "POT-Creation-Date: 2014-12-05 11:32+Hora estándar central (México)\n"
-"PO-Revision-Date: 2014-12-05 18:49+0100\n"
-"Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
+"PO-Revision-Date: 2014-12-05 22:46+0200\n"
+"Last-Translator: Burak <burakyuksek252@hotmail.com>\n"
 "Language-Team: Burak <burakyuksek252@hotmail.com>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -307,12 +307,10 @@ msgid "The spelling review has finished."
 msgstr "Yazım hatası denetimi tamamlandı."
 
 #: ../src\extra\autocompletionUsers\completion.py:18
-#, fuzzy
 msgid "You have to start writing"
-msgstr "Yazmak için başlamalısınız"
+msgstr "Yazmaya başlamak zorundasınız"
 
 #: ../src\extra\autocompletionUsers\completion.py:29
-#, fuzzy
 msgid "There are not results in your users database"
 msgstr "Kullanıcı veritabanında sonuç yok"
 
@@ -329,9 +327,8 @@ msgstr ""
 "tamamlandığında bilgilendirileceksiniz."
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:6
-#, fuzzy
 msgid "Autocomplete users’ settings"
-msgstr "Otomatik tamamlama ayarları"
+msgstr "Otomatik kullanıcı tamamlama ayarları"
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:9
 msgid "Add users from followers buffer"
@@ -346,7 +343,6 @@ msgid "Done"
 msgstr "Bitti"
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:23
-#, fuzzy
 msgid "TWBlue's database of users has been updated."
 msgstr "TWBlue veritabanı yeni kullanıcılarla güncellenmiştir."
 
@@ -895,15 +891,13 @@ msgstr "Favorilerden &kaldır"
 
 #: ../src\gui\buffers\menus.py:20 ../src\gui\buffers\menus.py:46
 #: ../src\gui\buffers\menus.py:69
-#, fuzzy
 msgid "&Open URL"
-msgstr "Adres açılıyor... "
+msgstr "&adres aç"
 
 #: ../src\gui\buffers\menus.py:23 ../src\gui\buffers\menus.py:49
 #: ../src\gui\buffers\menus.py:72
-#, fuzzy
 msgid "&Play audio"
-msgstr "Ses ekle"
+msgstr "&ses çal"
 
 #: ../src\gui\buffers\menus.py:26 ../src\gui\buffers\menus.py:75
 #: ../src\gui\main.py:94
@@ -913,9 +907,8 @@ msgstr "&Tweet göster"
 #: ../src\gui\buffers\menus.py:29 ../src\gui\buffers\menus.py:55
 #: ../src\gui\buffers\menus.py:78 ../src\gui\buffers\menus.py:92
 #: ../src\gui\buffers\menus.py:115
-#, fuzzy
 msgid "&Copy to clipboard"
-msgstr "Panoya kopyala"
+msgstr "&Panoya kopyala"
 
 #: ../src\gui\buffers\menus.py:32 ../src\gui\buffers\menus.py:58
 #: ../src\gui\buffers\menus.py:81 ../src\gui\buffers\menus.py:95
@@ -926,22 +919,19 @@ msgstr "&sil"
 #: ../src\gui\buffers\menus.py:35 ../src\gui\buffers\menus.py:61
 #: ../src\gui\buffers\menus.py:118
 msgid "&User actions..."
-msgstr ""
+msgstr "&kullanıcı eylemleri..."
 
 #: ../src\gui\buffers\menus.py:52
-#, fuzzy
 msgid "&Show direct message"
-msgstr "Yeni dm"
+msgstr "&dmi göster"
 
 #: ../src\gui\buffers\menus.py:89
-#, fuzzy
 msgid "&Show event"
-msgstr "Olayları göster"
+msgstr "&olayı göster"
 
 #: ../src\gui\buffers\menus.py:103
-#, fuzzy
 msgid "&Mention"
-msgstr "mention"
+msgstr "&mention"
 
 #: ../src\gui\buffers\menus.py:106 ../src\gui\main.py:123
 msgid "&View lists"
@@ -952,9 +942,8 @@ msgid "Show user &profile"
 msgstr "&Kullanıcı profilini göster"
 
 #: ../src\gui\buffers\menus.py:112
-#, fuzzy
 msgid "&Show user"
-msgstr "Susturulmuş kullanıcıları göster"
+msgstr "&Kullanıcıyı göster"
 
 #: ../src\gui\buffers\panels.py:28
 msgid "Announce"
@@ -970,19 +959,17 @@ msgstr "mention:"
 
 #: ../src\gui\buffers\trends.py:47
 msgid "Trending topic"
-msgstr ""
+msgstr "Trend konu"
 
 #: ../src\gui\buffers\trends.py:66
 msgid "Tweet about this trend"
-msgstr ""
+msgstr "Bu trend hakkında tweetle"
 
 #: ../src\gui\buffers\trends.py:77
-#, fuzzy
 msgid "Do you really want to delete this buffer?"
 msgstr "Bu listeyi gerçekten silmek istediğinize emin misiniz?"
 
 #: ../src\gui\buffers\trends.py:156
-#, fuzzy
 msgid ""
 "Do you really want to empty this buffer? It's items will be removed from the "
 "list"
@@ -1001,7 +988,7 @@ msgstr "Dil"
 
 #: ../src\gui\dialogs\configuration.py:54
 msgid "Set the autocomplete function"
-msgstr ""
+msgstr "Otomatik tamamlama özelliğini ayarla"
 
 #: ../src\gui\dialogs\configuration.py:56
 msgid "ask before exiting TwBlue?"
@@ -1458,9 +1445,8 @@ msgid "Recipient"
 msgstr "Alıcı"
 
 #: ../src\gui\dialogs\message.py:318
-#, fuzzy
 msgid "Mention &to all"
-msgstr "Konuşmadaki tüm kullanıcılara mention at"
+msgstr "&Konuşmadaki tüm kullanıcılara mention at"
 
 #: ../src\gui\dialogs\message.py:345
 msgid "Tweet - %i characters "
@@ -1564,19 +1550,19 @@ msgstr "Favoriler: %s"
 
 #: ../src\gui\dialogs\trending.py:30
 msgid "View trending topics"
-msgstr ""
+msgstr "Trend konuları gör"
 
 #: ../src\gui\dialogs\trending.py:31
 msgid "Trending topics by"
-msgstr ""
+msgstr "Trending topics by"
 
 #: ../src\gui\dialogs\trending.py:33
 msgid "Country"
-msgstr ""
+msgstr "Ülke"
 
 #: ../src\gui\dialogs\trending.py:34
 msgid "City"
-msgstr ""
+msgstr "Şehir"
 
 #: ../src\gui\dialogs\trending.py:43 ../src\gui\dialogs\update_profile.py:35
 msgid "Location"
@@ -1607,9 +1593,8 @@ msgid "Select an URL"
 msgstr "bir adres seçin"
 
 #: ../src\gui\main.py:63
-#, fuzzy
 msgid "S&witch account"
-msgstr "Yeni hesap"
+msgstr "&Hesap değiştir"
 
 #: ../src\gui\main.py:65
 msgid "&Update profile"
@@ -1648,9 +1633,8 @@ msgid "&Tweet"
 msgstr "&Tweet"
 
 #: ../src\gui\main.py:96
-#, fuzzy
 msgid "View &address"
-msgstr "&Favorileri göster"
+msgstr "&Adresi görüntüle"
 
 #: ../src\gui\main.py:103
 msgid "&Follow"
@@ -1761,6 +1745,8 @@ msgid ""
 "An error occurred while looking for an update. It may be due to any problem "
 "either on our server or on your DNS servers. Please, try again later."
 msgstr ""
+"Güncelleme kontrolü yaparken hata oluştu. Sunucuda ya da bağlantınızda sorun "
+"olabilir."
 
 #: ../src\gui\main.py:249
 msgid "Home"
@@ -1955,26 +1941,23 @@ msgstr "%s"
 
 #: ../src\gui\main.py:992
 msgid "Address"
-msgstr ""
+msgstr "Adres"
 
 #: ../src\gui\main.py:994 ../src\gui\main.py:1011
-#, fuzzy
 msgid "There are no coordinates in this tweet"
-msgstr "Okuyaca tweet yok"
+msgstr "Bu tweette koordinatlar yok"
 
 #: ../src\gui\main.py:996 ../src\gui\main.py:1013
 msgid "There are no results for the coordinates in this tweet"
-msgstr ""
+msgstr "Bu tweetin koordinatları için bir sonuç bulunamadı"
 
 #: ../src\gui\main.py:998 ../src\gui\main.py:1015
-#, fuzzy
 msgid "Error decoding coordinates. Try again later."
-msgstr "İzin hatası. Daha sonra yeniden deneyin"
+msgstr "Koordinat bulma hatası. Lütfen yeniden deneyin."
 
 #: ../src\gui\main.py:1028
-#, fuzzy
 msgid "Trending topics for %s"
-msgstr "%s için listeler görüntüleniyor"
+msgstr "%s için trend konular"
 
 #: ../src\gui\sysTrayIcon.py:36
 msgid "Preferences"
@@ -2225,9 +2208,8 @@ msgid "New account"
 msgstr "Yeni hesap"
 
 #: ../src\sessionmanager\gui.py:32
-#, fuzzy
 msgid "Remove session"
-msgstr "Olayı kaldır"
+msgstr "Hesabı kaldır"
 
 #: ../src\sessionmanager\gui.py:70
 msgid "Account Error"
@@ -2261,14 +2243,12 @@ msgid "Authorised account %d"
 msgstr "İzin verilmiş hesap %d"
 
 #: ../src\sessionmanager\gui.py:107
-#, fuzzy
 msgid "Do you really want delete this account?"
-msgstr "Bu listeyi gerçekten silmek istediğinize emin misiniz?"
+msgstr "Bu hesabı gerçekten silmek ister misiniz?"
 
 #: ../src\sessionmanager\gui.py:107
-#, fuzzy
 msgid "Remove account"
-msgstr "İstemci kaldır"
+msgstr "Hesabı kaldır"
 
 #: ../src\twitter\buffers\indibidual.py:26
 msgid "One tweet from %s"

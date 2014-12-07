@@ -58,6 +58,8 @@ class trendingTopicsDialog(wx.Dialog):
   self.SetClientSize(sizer.CalcMin())
 
  def split_information(self):
+#  self.countries["World wide"] = 1
+#  self.cities["World wide"] = 1
   for i in self.information:
    if i["placeType"]["name"] == "Country":
     self.countries[i["name"]] = i["woeid"]
