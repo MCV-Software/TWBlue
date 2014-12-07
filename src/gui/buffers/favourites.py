@@ -30,7 +30,7 @@ class favsPanel(basePanel):
   self.type = "favourites_timeline"
 
  def start_streams(self):
-  num = twitter.starting.get_favourites_timeline(self.db, self.twitter, self.name_buffer, param=self.argumento, count=200)
+  num = twitter.starting.get_favourites_timeline(self.db, self.twitter, self.name_buffer, param=self.argumento, count=config.main["general"]["max_tweets_per_call"])
   if self.sound != "" and num > 0: 
    sound.player.play(self.sound)
    if self.list.get_count() > 0: self.put_items(num)

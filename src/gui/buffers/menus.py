@@ -118,3 +118,17 @@ class peoplePanelMenu(wx.Menu):
   userActions = wx.MenuItem(self, wx.NewId(), _(u"&User actions..."))
   self.Bind(wx.EVT_MENU, self.window.parent.onFollow, userActions)
   self.AppendItem(userActions)
+
+class trendsPanelMenu(wx.Menu):
+ def __init__(self, parent):
+  super(trendsPanelMenu, self).__init__()
+  self.window = parent
+  tweetThisTrend = wx.MenuItem(self, wx.NewId(), _(u"&Tweet about this trend"))
+  self.Bind(wx.EVT_MENU, self.window.onResponse, tweetThisTrend)
+  self.AppendItem(reply)
+  view = wx.MenuItem(self, wx.NewId(), _(u"&Show item"))
+  self.Bind(wx.EVT_MENU, self.window.parent.view, view)
+  self.AppendItem(view)
+  copy = wx.MenuItem(self, wx.NewId(), _(u"&Copy to clipboard"))
+  self.Bind(wx.EVT_MENU, self.window.parent.copy_to_clipboard, copy)
+  self.AppendItem(copy)

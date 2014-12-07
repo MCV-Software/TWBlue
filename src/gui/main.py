@@ -69,6 +69,8 @@ class mainFrame(wx.Frame):
   self.Bind(wx.EVT_MENU, self.show_hide, show_hide)
   search = app.Append(wx.NewId(), _(u"&Search"))
   self.Bind(wx.EVT_MENU, self.search, search)
+  trends = app.Append(wx.NewId(), _(u"View &trending topics"))
+  self.Bind(wx.EVT_MENU, self.get_trending_topics, trends)
   lists = app.Append(wx.NewId(), _(u"&Lists manager"))
   self.Bind(wx.EVT_MENU, self.list_manager, lists)
   sounds_tutorial = app.Append(wx.NewId(), _(u"Sounds &tutorial"))
@@ -608,6 +610,7 @@ class mainFrame(wx.Frame):
   config.main.write()
   log.debug("Exiting...")
   self.sysTray.RemoveIcon()
+  self.sysTray.Destroy()
   try:
    self.check_streams.cancel()
   except AttributeError:

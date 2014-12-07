@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.50\n"
 "POT-Creation-Date: 2014-12-05 11:32+Hora estándar central (México)\n"
-"PO-Revision-Date: 2014-12-05 18:47+0100\n"
-"Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
+"PO-Revision-Date: 2014-12-05 21:18+0100\n"
+"Last-Translator: Rémy Ruiz <remyruiz@gmail.com>\n"
 "Language-Team: Rémy Ruiz <remyruiz@gmail.com>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -310,14 +310,12 @@ msgid "The spelling review has finished."
 msgstr "La correction orthographique est terminée."
 
 #: ../src\extra\autocompletionUsers\completion.py:18
-#, fuzzy
 msgid "You have to start writing"
 msgstr "Vous devez commencer à écrire"
 
 #: ../src\extra\autocompletionUsers\completion.py:29
-#, fuzzy
 msgid "There are not results in your users database"
-msgstr "Il n'y a pas de résultats dans votre base de données d'utilisateur"
+msgstr "Il n'y a pas de résultats dans votre base de données des utilisateurs"
 
 #: ../src\extra\autocompletionUsers\completion.py:31
 msgid "Autocompletion only works for users."
@@ -333,9 +331,8 @@ msgstr ""
 "terminé."
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:6
-#, fuzzy
 msgid "Autocomplete users’ settings"
-msgstr "Paramètres pour la saisie automatique"
+msgstr "Paramètres pour la saisie automatique des utilisateurs"
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:9
 msgid "Add users from followers buffer"
@@ -350,11 +347,8 @@ msgid "Done"
 msgstr "Terminé"
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:23
-#, fuzzy
 msgid "TWBlue's database of users has been updated."
-msgstr ""
-"La base de données de TWBlue a été mise à jour avec les nouveaux "
-"utilisateurs."
+msgstr "La base de données des utilisateurs de TWBlue a été mis à jour."
 
 #: ../src\extra\translator\gui.py:24 ../src\gui\dialogs\message.py:182
 #: ../src\gui\dialogs\message.py:279 ../src\gui\dialogs\message.py:383
@@ -901,15 +895,13 @@ msgstr "Supprimer des favo&ris"
 
 #: ../src\gui\buffers\menus.py:20 ../src\gui\buffers\menus.py:46
 #: ../src\gui\buffers\menus.py:69
-#, fuzzy
 msgid "&Open URL"
-msgstr "Ouverture en cours de l'URL..."
+msgstr "&Ouvrir l'URL"
 
 #: ../src\gui\buffers\menus.py:23 ../src\gui\buffers\menus.py:49
 #: ../src\gui\buffers\menus.py:72
-#, fuzzy
 msgid "&Play audio"
-msgstr "Ajouter audio"
+msgstr "&Lire audio"
 
 #: ../src\gui\buffers\menus.py:26 ../src\gui\buffers\menus.py:75
 #: ../src\gui\main.py:94
@@ -919,9 +911,8 @@ msgstr "&Voir tweet"
 #: ../src\gui\buffers\menus.py:29 ../src\gui\buffers\menus.py:55
 #: ../src\gui\buffers\menus.py:78 ../src\gui\buffers\menus.py:92
 #: ../src\gui\buffers\menus.py:115
-#, fuzzy
 msgid "&Copy to clipboard"
-msgstr "Copier dans le Presse-papiers"
+msgstr "&Copier dans le Presse-papiers"
 
 #: ../src\gui\buffers\menus.py:32 ../src\gui\buffers\menus.py:58
 #: ../src\gui\buffers\menus.py:81 ../src\gui\buffers\menus.py:95
@@ -932,22 +923,19 @@ msgstr "&Supprimer Tweet"
 #: ../src\gui\buffers\menus.py:35 ../src\gui\buffers\menus.py:61
 #: ../src\gui\buffers\menus.py:118
 msgid "&User actions..."
-msgstr ""
+msgstr "&Actions de l'utilisateur..."
 
 #: ../src\gui\buffers\menus.py:52
-#, fuzzy
 msgid "&Show direct message"
-msgstr "Nouveau message direct"
+msgstr "&Afficher le message direct"
 
 #: ../src\gui\buffers\menus.py:89
-#, fuzzy
 msgid "&Show event"
-msgstr "Afficher les événements"
+msgstr "&Afficher l'événement"
 
 #: ../src\gui\buffers\menus.py:103
-#, fuzzy
 msgid "&Mention"
-msgstr "Mention"
+msgstr "&Mention"
 
 #: ../src\gui\buffers\menus.py:106 ../src\gui\main.py:123
 msgid "&View lists"
@@ -958,9 +946,8 @@ msgid "Show user &profile"
 msgstr "Voir le &profil de l'utilisateur"
 
 #: ../src\gui\buffers\menus.py:112
-#, fuzzy
 msgid "&Show user"
-msgstr "Afficher les utilisateurs muet"
+msgstr "&Afficher l'utilisateur"
 
 #: ../src\gui\buffers\panels.py:28
 msgid "Announce"
@@ -976,25 +963,23 @@ msgstr "Mencionar a %s"
 
 #: ../src\gui\buffers\trends.py:47
 msgid "Trending topic"
-msgstr ""
+msgstr "Sujet à la une"
 
 #: ../src\gui\buffers\trends.py:66
 msgid "Tweet about this trend"
-msgstr ""
+msgstr "Tweet sur ce sujet à la une"
 
 #: ../src\gui\buffers\trends.py:77
-#, fuzzy
 msgid "Do you really want to delete this buffer?"
-msgstr "Voulez-vous vraiment supprimer cette liste ?"
+msgstr "Voulez-vous vraiment supprimer ce tampon ?"
 
 #: ../src\gui\buffers\trends.py:156
-#, fuzzy
 msgid ""
 "Do you really want to empty this buffer? It's items will be removed from the "
 "list"
 msgstr ""
-"Voulez-vous vraiment vider ce tampon ? C'est tweets seront supprimés de la "
-"liste, mais pas de Twitter"
+"Voulez-vous vraiment vider ce tampon ? Ses éléments seront supprimés de la "
+"liste"
 
 #: ../src\gui\buffers\tweet_searches.py:45
 #: ../src\gui\buffers\user_searches.py:56
@@ -1007,7 +992,7 @@ msgstr "Langue"
 
 #: ../src\gui\dialogs\configuration.py:54
 msgid "Set the autocomplete function"
-msgstr ""
+msgstr "Définir la fonction pour la saisie automatique"
 
 #: ../src\gui\dialogs\configuration.py:56
 msgid "ask before exiting TwBlue?"
@@ -1469,9 +1454,8 @@ msgid "Recipient"
 msgstr "Destinataire"
 
 #: ../src\gui\dialogs\message.py:318
-#, fuzzy
 msgid "Mention &to all"
-msgstr "Mentionner à tous"
+msgstr "Mentionner &à tous"
 
 #: ../src\gui\dialogs\message.py:345
 msgid "Tweet - %i characters "
@@ -1575,19 +1559,19 @@ msgstr "Favoris: %s"
 
 #: ../src\gui\dialogs\trending.py:30
 msgid "View trending topics"
-msgstr ""
+msgstr "Afficher les sujets à la une"
 
 #: ../src\gui\dialogs\trending.py:31
 msgid "Trending topics by"
-msgstr ""
+msgstr "Sujets à la une par"
 
 #: ../src\gui\dialogs\trending.py:33
 msgid "Country"
-msgstr ""
+msgstr "Pays"
 
 #: ../src\gui\dialogs\trending.py:34
 msgid "City"
-msgstr ""
+msgstr "Ville"
 
 #: ../src\gui\dialogs\trending.py:43 ../src\gui\dialogs\update_profile.py:35
 msgid "Location"
@@ -1618,9 +1602,8 @@ msgid "Select an URL"
 msgstr "Sélectionnez une URL"
 
 #: ../src\gui\main.py:63
-#, fuzzy
 msgid "S&witch account"
-msgstr "Nouveau compte"
+msgstr "B&asculer le compte"
 
 #: ../src\gui\main.py:65
 msgid "&Update profile"
@@ -1659,9 +1642,8 @@ msgid "&Tweet"
 msgstr "&Tweet"
 
 #: ../src\gui\main.py:96
-#, fuzzy
 msgid "View &address"
-msgstr "V&oir favoris"
+msgstr "Voir &adresse"
 
 #: ../src\gui\main.py:103
 msgid "&Follow"
@@ -1772,6 +1754,9 @@ msgid ""
 "An error occurred while looking for an update. It may be due to any problem "
 "either on our server or on your DNS servers. Please, try again later."
 msgstr ""
+"Une erreur s'est produite lors de la recherche d'une mise à jour. Il peut "
+"être dû à un problème sur notre serveur ou sur votre serveur DNS. S'il vous "
+"plaît, réessayez plus tard."
 
 #: ../src\gui\main.py:249
 msgid "Home"
@@ -1972,26 +1957,23 @@ msgstr "%s"
 
 #: ../src\gui\main.py:992
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #: ../src\gui\main.py:994 ../src\gui\main.py:1011
-#, fuzzy
 msgid "There are no coordinates in this tweet"
-msgstr "Il n'y a aucun tweet non lu"
+msgstr "Il n'y a aucune coordonnée dans ce tweet"
 
 #: ../src\gui\main.py:996 ../src\gui\main.py:1013
 msgid "There are no results for the coordinates in this tweet"
-msgstr ""
+msgstr "Il n'y a aucun résultat pour les coordonnées dans ce tweet"
 
 #: ../src\gui\main.py:998 ../src\gui\main.py:1015
-#, fuzzy
 msgid "Error decoding coordinates. Try again later."
-msgstr "Erreur pendant l'autorisation. Réessayez plus tard."
+msgstr "Erreur pendant le décodage des coordonnées. Réessayez plus tard."
 
 #: ../src\gui\main.py:1028
-#, fuzzy
 msgid "Trending topics for %s"
-msgstr "Affichage des listes pour %s"
+msgstr "Sujets à la une pour %s"
 
 #: ../src\gui\sysTrayIcon.py:36
 msgid "Preferences"
@@ -2244,9 +2226,8 @@ msgid "New account"
 msgstr "Nouveau compte"
 
 #: ../src\sessionmanager\gui.py:32
-#, fuzzy
 msgid "Remove session"
-msgstr "Supprimer l'événement"
+msgstr "Supprimer la session"
 
 #: ../src\sessionmanager\gui.py:70
 msgid "Account Error"
@@ -2283,14 +2264,12 @@ msgid "Authorised account %d"
 msgstr "Compte autorisé %d"
 
 #: ../src\sessionmanager\gui.py:107
-#, fuzzy
 msgid "Do you really want delete this account?"
-msgstr "Voulez-vous vraiment supprimer cette liste ?"
+msgstr "Voulez-vous vraiment supprimer ce compte ?"
 
 #: ../src\sessionmanager\gui.py:107
-#, fuzzy
 msgid "Remove account"
-msgstr "Supprimer le client"
+msgstr "Supprimer le compte"
 
 #: ../src\twitter\buffers\indibidual.py:26
 msgid "One tweet from %s"

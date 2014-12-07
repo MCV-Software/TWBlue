@@ -171,7 +171,7 @@ def start_sent(db, twitter, name, function, param=None):
    num = num+1
  return num
 
-def start_list(db, twitter, name, list_id):
+def start_list(db, twitter, name, list_id, *args, **kwargs):
  num = 0
  if db.settings.has_key(name):
   try:
@@ -181,9 +181,9 @@ def start_list(db, twitter, name, list_id):
     last_id = db.settings[name][-1]["id"]
   except IndexError:
    pass
-  tl = twitter.twitter.get_list_statuses(list_id=list_id, count=200)
+  tl = twitter.twitter.get_list_statuses(list_id=list_id, *args, **kwargs)
  else:
-  tl = twitter.twitter.get_list_statuses(list_id=list_id, count=200)
+  tl = twitter.twitter.get_list_statuses(list_id=list_id, *args, **kwargs)
   tl.reverse()
   db.settings[name] = []
   last_id = 0

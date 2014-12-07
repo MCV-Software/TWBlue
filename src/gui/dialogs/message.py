@@ -315,7 +315,7 @@ class reply(tweet):
   super(reply, self).__init__(message, title, text, parent)
   self.in_reply_to = parent.db.settings[parent.name_buffer][parent.list.get_selected()]["id"]
   self.text.SetInsertionPoint(len(self.text.GetValue()))
-  self.mentionAll = wx.Button(self, -1, _(u"Mention &to all"), size=wx.DefaultSize)
+  self.mentionAll = wx.Button(self, -1, _(u"Men&tion all"), size=wx.DefaultSize)
   self.mentionAll.Disable()
   self.mentionAll.Bind(wx.EVT_BUTTON, self.mentionAllUsers)
   self.buttonsBox1.Add(self.mentionAll, 0, wx.ALL, 5)

@@ -35,7 +35,7 @@ class listPanel(basePanel):
 
  def start_streams(self):
   self.retrieve_ids()
-  num = twitter.starting.start_list(self.db, self.twitter, self.name_buffer, list_id=self.argumento)
+  num = twitter.starting.start_list(self.db, self.twitter, self.name_buffer, list_id=self.argumento, count=config.main["general"]["max_tweets_per_call"])
   return num
 
  def retrieve_ids(self):

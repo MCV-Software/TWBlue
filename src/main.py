@@ -41,8 +41,8 @@ if hasattr(sys, 'frozen'):
   sys.stderr = open(paths.logs_path("stderr.log"), 'w')
   sys.stdout = open(paths.logs_path("stdout.log"), 'w')
 
-app = wx.App()
-#app = wx.App(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
+#app = wx.App()
+app = wx.App(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
 configured = False
 configs = []
 for i in os.listdir(paths.config_path()):
