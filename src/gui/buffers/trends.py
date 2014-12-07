@@ -77,7 +77,7 @@ class trendsPanel(wx.Panel):
   dlg = wx.MessageDialog(self, _(u"Do you really want to delete this buffer?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO)
   if dlg.ShowModal() == wx.ID_YES:
    topics = config.main["other_buffers"]["trending_topic_buffers"]
-   topic = self.name_buffer
+   topic = self.name_buffer[:-3]
    log.info(u"Deleting %s's trending topics buffer" % topic)
    if topic in topics:
     topics.remove(topic)
