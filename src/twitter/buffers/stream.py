@@ -51,7 +51,7 @@ class streamer(TwythonStreamer):
    wx.PostEvent(self.parent.search_buffer("buffer", "favs"), tweet_event)
 
  def check_mentions(self, data):
-  if "@%s" % (self.db.settings["user_name"]) in data["text"]:
+  if "@%s" % (self.db.settings["user_name"].lower()) in data["text"].lower():
    tweet_event = event.event(event.EVT_OBJECT, 1)
    tweet_event.SetItem(data)
    text = _(u"One mention from %s ") % (data["user"]["name"])
