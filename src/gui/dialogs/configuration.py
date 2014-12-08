@@ -52,10 +52,12 @@ class general(wx.Panel):
   langBox.Add(self.language, 0, wx.ALL, 5)
   sizer.Add(langBox, 0, wx.ALL, 5)
   self.au = wx.Button(self, -1, _(u"Set the autocomplete function"))
-#  self.Bind(wx.EVT_BUTTON, self.autocompletion, au)
   self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting TwBlue?"))
   self.ask_at_exit.SetValue(config.main["general"]["ask_at_exit"])
   sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
+  self.use_invisible_shorcuts = wx.CheckBox(self, -1, _(u"Use invisible interface's keyboard shorcuts even if the window is displayed"))
+  self.use_invisible_shorcuts.SetValue(config.main["general"]["use_invisible_keyboard_shorcuts"])
+  sizer.Add(self.use_invisible_shorcuts, 0, wx.ALL, 5)
   self.relative_time = wx.CheckBox(self, -1, _(U"Relative times"))
   self.relative_time.SetValue(config.main["general"]["relative_times"])
   sizer.Add(self.relative_time, 0, wx.ALL, 5)
@@ -384,6 +386,13 @@ class configurationDialog(wx.Dialog):
   if platform.system() == "Windows":
    config.main["general"]["voice_enabled"] = self.general.disable_sapi5.GetValue()
    config.main["general"]["ask_at_exit"] = self.general.ask_at_exit.GetValue()
+   if (self.general.use_invisible_shorcuts.GetValue() == True and config.main["general"]["use_invisible_keyboard_shorcuts"] != True) and self.parent.showing == True:
+    km = self.parent.create_invisible_keyboard_shorcuts()
+    self.parent.register_invisible_keyboard_shorcuts(km)
+   elif (self.general.use_invisible_shorcuts.GetValue() == False and config.main["general"]["use_invisible_keyboard_shorcuts"] != False) and self.parent.showing == True:
+    km = self.parent.create_invisible_keyboard_shorcuts()
+    self.parent.unregister_invisible_keyboard_shorcuts(km)
+   config.main["general"]["use_invisible_keyboard_shorcuts"] = self.general.use_invisible_shorcuts.GetValue()
    config.main["general"]["hide_gui"] = self.general.show_gui.GetValue()
   config.main["general"]["max_api_calls"] = self.general.apiCalls.GetValue()
   config.main["general"]["max_tweets_per_call"] = self.general.itemsPerApiCall.GetValue()

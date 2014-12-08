@@ -19,5 +19,5 @@ class switcher(object):
     self.window.Hide()
    wx.GetApp().SetTopWindow(self.window)
   else:
-   self.window.Show()
+   self.hold_window.Show()
    

@@ -64,7 +64,6 @@ def is_geocoded(tweet):
 
 def get_all_mentioned(tweet, config):
  """ Gets all users that has been mentioned."""
- if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
  string = []
  for i in tweet["entities"]["user_mentions"]:
   if i["screen_name"] != config.settings["user_name"] and i["screen_name"] != tweet["user"]["screen_name"]:

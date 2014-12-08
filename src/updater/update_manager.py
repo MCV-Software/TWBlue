@@ -26,8 +26,9 @@ def check_for_update(msg=False):
     else:
      progress.Update(percent, _(u"Update"))
    def update_complete():
-    wx.MessageDialog(None, _(u"The new TW Blue version has been downloaded and installed. Press OK to start the application."), _(u"Done!")).ShowModal()
-    sys.exit()
+    ms = wx.MessageDialog(None, _(u"The new TW Blue version has been downloaded and installed. Press OK to start the application."), _(u"Done!"))
+    if ms.ShowModal() == wx.ID_OK:
+     sys.exit()
    app_updater = updater.AutoUpdater(url, new_path, 'bootstrap.exe', app_path=paths.app_path(), postexecute=paths.app_path("TWBlue.exe"), finish_callback=update_complete, percentage_callback=update)
    app_updater.start_update()
    progress.ShowModal()
