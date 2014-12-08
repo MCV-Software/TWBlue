@@ -329,6 +329,9 @@ class mainFrame(wx.Frame):
    buff.put_items(num)
    self.nb.InsertSubPage(self.db.settings["buffers"].index(self.db.settings["user_name"]), buff, _(u"Trending topics for %s") % (buff.name,))
   self.sizer.Add(self.nb, 0, wx.ALL, 5)
+  if config.main["general"]["use_invisible_keyboard_shorcuts"] == True:
+   km = self.create_invisible_keyboard_shorcuts()
+   self.register_invisible_keyboard_shorcuts(km)
   panel.SetSizer(self.sizer)
   self.SetClientSize(self.sizer.CalcMin())
   self.Bind(event.MyEVT_STARTED, self.onInit)
@@ -823,20 +826,34 @@ class mainFrame(wx.Frame):
    msg = _(u"%s. Empty") % (self.nb.GetPageText(self.nb.GetSelection()))
   output.speak(msg, 1)
 
- def show_hide(self, ev=None):
-#  if platform.system() == "Linux" or platform.system() == "Darwin": return
+ def create_invisible_keyboard_shorcuts(self):
   keymap = {}
   for i in config.main["keymap"]:
    if hasattr(self, i):
     keymap[config.main["keymap"][i]] = getattr(self, i)
+  return keymap
+
+ def register_invisible_keyboard_shorcuts(self, keymap):
+  self.keyboard_handler = WXKeyboardHandler(self)
+  self.keyboard_handler.register_keys(keymap)
+
+ def unregister_invisible_keyboard_shorcuts(self, keymap):
+  try:
+   self.keyboard_handler.unregister_keys(keymap)
+   del self.keyboard_handler
+  except AttributeError:
+   pass
+
+ def show_hide(self, ev=None):
+  km = self.create_invisible_keyboard_shorcuts()
   if self.showing == True:
-   self.keyboard_handler = WXKeyboardHandler(self)
-   self.keyboard_handler.register_keys(keymap)
+   if config.main["general"]["use_invisible_keyboard_shorcuts"] == False:
+    self.register_invisible_keyboard_shorcuts(km)
    self.Hide()
    self.showing = False
   else:
-   self.keyboard_handler.unregister_keys(keymap)
-   del self.keyboard_handler
+   if config.main["general"]["use_invisible_keyboard_shorcuts"] == False:
+    self.unregister_invisible_keyboard_shorcuts(km)
    self.Show()
    self.showing = True
 
