@@ -3,6 +3,7 @@ import storage
 import wx
 import config
 import wx_settings
+import manage
 import output
 from mysc.thread_utils import call_threaded
 
@@ -13,6 +14,7 @@ class autocompletionSettings(object):
   self.dialog = wx_settings.autocompletionSettingsDialog()
   self.dialog.friends_buffer.SetValue(config.main["mysc"]["save_friends_in_autocompletion_db"])
   self.dialog.followers_buffer.SetValue(config.main["mysc"]["save_followers_in_autocompletion_db"])
+  self.dialog.viewList.Bind(wx.EVT_BUTTON, self.view_list)
   if self.dialog.ShowModal() == wx.ID_OK:
    call_threaded(self.add_users_to_database)
 
@@ -36,6 +38,10 @@ class autocompletionSettings(object):
   wx_settings.show_success_dialog()
   self.dialog.Destroy()
   
+ def view_list(self, ev):
+  q = manage.autocompletionManage(self.window)
+
+
 def execute_at_startup(window):
  database = storage.storage()
  if config.main["mysc"]["save_followers_in_autocompletion_db"] == True:

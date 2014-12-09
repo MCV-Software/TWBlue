@@ -17,6 +17,10 @@ class storage(object):
   else:
    return True
 
+ def get_all_users(self):
+  self.cursor.execute("""select * from users""")
+  return self.cursor.fetchall()
+
  def get_users(self, term):
   self.cursor.execute("""SELECT * FROM users WHERE user LIKE ?""", ('{}%'.format(term),))
   return self.cursor.fetchall()
