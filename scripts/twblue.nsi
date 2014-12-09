@@ -17,6 +17,7 @@ VIAddVersionKey ProductVersion "0.50"
 VIAddVersionKey FileVersion "0.50"
 VIProductVersion "0.50.0.0"
 !insertmacro MUI_PAGE_WELCOME
+!define MUI_LICENSEPAGE_RADIOBUTTONS
 !insertmacro MUI_PAGE_LICENSE "license.txt"
 !insertmacro MUI_PAGE_DIRECTORY
 var StartMenuFolder
