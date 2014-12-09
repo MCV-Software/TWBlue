@@ -596,7 +596,7 @@ class mainFrame(wx.Frame):
    output.speak(self.nb.GetPageText(self.nb.GetSelection())+",", True)
 
  def skip_blank_pages(self, forward=True):
-  if self.nb.GetCurrentPage().type == "account" or self.nb.GetCurrentPage().type == "empty" and (self.showing == False or platform.system() == "Darwin"):
+  if self.nb.GetCurrentPage().type == "account" or self.nb.GetCurrentPage().type == "empty":
    self.nb.AdvanceSelection(forward)
 
  def close(self, ev=None):
