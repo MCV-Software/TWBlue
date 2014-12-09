@@ -38,6 +38,7 @@ from extra.autocompletionUsers import settings as autocompletionUsersSettings
 import pygeocoder
 from pygeolib import GeocoderError
 from sessionmanager import manager
+from issueReporter import gui as issueReporterGUI
 from mysc import event
 from mysc.thread_utils import call_threaded
 from twython import TwythonError
@@ -568,8 +569,7 @@ class mainFrame(wx.Frame):
   webbrowser.open("http://twblue.com.mx")
 
  def onReportBug(self, ev):
-  webbrowser.open("https://github.com/manuelcortez/TWBlue/issues")
-#  issueReporterGUI.reportBug(self.db.settings["user_name"]).ShowModal()
+  issueReporterGUI.reportBug(self.db.settings["user_name"]).ShowModal()
 
  def onCheckForUpdates(self, ev):
   updater.update_manager.check_for_update(msg=True)
