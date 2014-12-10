@@ -10,6 +10,8 @@ class autocompletionSettingsDialog(wx.Dialog):
   self.friends_buffer = wx.CheckBox(panel, -1, _(u"Add users from friends buffer"))
   sizer.Add(self.followers_buffer, 0, wx.ALL, 5)
   sizer.Add(self.friends_buffer, 0, wx.ALL, 5)
+  self.viewList = wx.Button(panel, -1, _(u"See the user list"))
+  sizer.Add(self.viewList, 0, wx.ALL, 5)
   ok = wx.Button(panel, wx.ID_OK)
   cancel = wx.Button(panel, wx.ID_CANCEL)
   sizerBtn = wx.BoxSizer(wx.HORIZONTAL)

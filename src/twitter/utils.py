@@ -109,9 +109,12 @@ def api_call(parent=None, call_name=None, preexec_message="", success="", succes
  return val
 
 def is_allowed(tweet):
- allowed = True
- if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
- source = re.sub(r"(?s)<.*?>", "", tweet["source"])
- for i in config.main["twitter"]["ignored_clients"]:
-  if i.lower() == source.lower(): allowed = False
- return allowed
+  try:
+   allowed = True
+   if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
+   source = re.sub(r"(?s)<.*?>", "", tweet["source"])
+   for i in config.main["twitter"]["ignored_clients"]:
+    if i.lower() == source.lower(): allowed = False
+   return allowed
+  except KeyError:
+   return True

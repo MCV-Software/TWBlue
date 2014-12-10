@@ -75,15 +75,16 @@ def start_stream(db, twitter, name, function, param=None):
   last_id = 0
  if len(db.settings[name]) > 0:
   for i in tl:
-   if int(i["id"]) > int(last_id):
+   if int(i["id"]) > int(last_id) and utils.is_allowed(i) == True:
     if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
     else: db.settings[name].insert(0, i)
     num = num+1
  elif len(db.settings[name]) == 0:
   for i in tl:
-   if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
-   else: db.settings[name].insert(0, i)
-   num = num+1
+   if utils.is_allowed(i) == True:
+    if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
+    else: db.settings[name].insert(0, i)
+    num = num+1
 # db.settings.update()
  return num
 
@@ -121,7 +122,7 @@ def update_stream(config, twitter, name, function, param=None, sndFile=""):
  tl = function(sinze_id=config.settings[name][-1]["id"], screen_name=param, count=config.main["general"]["max_tweets_per_call"])
  tl.reverse()
  for i in tl:
-  if i["id"] > config.settings[name][-1]["id"]:
+  if i["id"] > config.settings[name][-1]["id"] and utils.is_allowed(i) == True:
    config.settings[name].append(i)
    sounded = True
    num = num+1
@@ -189,15 +190,16 @@ def start_list(db, twitter, name, list_id, *args, **kwargs):
   last_id = 0
  if len(db.settings[name]) > 0:
   for i in tl:
-   if int(i["id"]) > int(last_id):
+   if int(i["id"]) > int(last_id) and utils.is_allowed(i) == True:
     if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
     else: db.settings[name].insert(0, i)
     num = num+1
  elif len(db.settings[name]) == 0:
   for i in tl:
-   if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
-   else: db.settings[name].insert(0, i)
-   num = num+1
+   if utils.is_allowed(i) == True:
+    if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
+    else: db.settings[name].insert(0, i)
+    num = num+1
  db.settings.update()
  return num
 
@@ -209,15 +211,16 @@ def search(db, twitter, name, *args, **kwargs):
  tl["statuses"].reverse()
  if len(db.settings[name]) > 0:
   for i in tl["statuses"]:
-   if utils.find_item(i["id"], db.settings[name]) == None:
+   if utils.find_item(i["id"], db.settings[name]) == None and utils.is_allowed(i):
     if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
     else: db.settings[name].insert(0, i)
     num = num+1
  elif len(db.settings[name]) == 0:
   for i in tl["statuses"]:
-   if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
-   else: db.settings[name].insert(0, i)
-   num = num+1
+   if utils.is_allowed(i) == True:
+    if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
+    else: db.settings[name].insert(0, i)
+    num = num+1
  return num
 
 def search_users(db, twitter, name, *args, **kwargs):
@@ -247,13 +250,14 @@ def get_favourites_timeline(db, twitter, name, param, *args, **kwargs):
  tl.reverse()
  if len(db.settings[name]) > 0:
   for i in tl:
-   if utils.find_item(i["id"], db.settings[name]) == None:
+   if utils.find_item(i["id"], db.settings[name]) == None and utils.is_allowed(i) == True:
     if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
     else: db.settings[name].insert(0, i)
     num = num+1
  elif len(db.settings[name]) == 0:
   for i in tl:
-   if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
-   else: db.settings[name].insert(0, i)
-   num = num+1
+   if utils.is_allowed(i) == True:
+    if config.main["general"]["reverse_timelines"] == False: db.settings[name].append(i)
+    else: db.settings[name].insert(0, i)
+    num = num+1
  return num

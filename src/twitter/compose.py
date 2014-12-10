@@ -153,7 +153,7 @@ def compose_tweet(tweet, db):
   else: user = tweet["sender"]["name"]
  elif tweet.has_key("user"):
   user = tweet["user"]["name"]
-  source = re.sub(r"(?s)<.*?>", " ", tweet["source"])
+  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
   try: text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet["retweeted_status"]["text"]))
   except KeyError: text = "%s" % (StripChars(tweet["text"]))
   if text[-1] in chars: text=text+"."
