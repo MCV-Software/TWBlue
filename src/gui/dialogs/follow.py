@@ -23,6 +23,7 @@ import twitter
 from twitter import utils
 from twython import TwythonError
 import output
+import re
 
 class follow(wx.Dialog):
  def __init__(self, parent, default="follow"):
@@ -48,6 +49,7 @@ class follow(wx.Dialog):
   self.block = wx.RadioButton(panel, -1, _(u"Block"))
   self.unblock = wx.RadioButton(panel, -1, _(u"Unblock"))
   self.reportSpam = wx.RadioButton(panel, -1, _(u"Report as spam"))
+  self.ignore_client = wx.RadioButton(panel, -1, _(u"Ignore tweets from this client"))
   self.setup_default(default)
   actionSizer.Add(label2)
   actionSizer.Add(self.follow)
@@ -57,6 +59,7 @@ class follow(wx.Dialog):
   actionSizer.Add(self.block)
   actionSizer.Add(self.unblock)
   actionSizer.Add(self.reportSpam)
+  actionSizer.Add(self.ignore_client)
   sizer = wx.BoxSizer(wx.VERTICAL)
   ok = wx.Button(panel, wx.ID_OK, _(u"OK"))
   ok.Bind(wx.EVT_BUTTON, self.onok)
@@ -133,6 +136,15 @@ class follow(wx.Dialog):
     self.Destroy()
    except TwythonError as err:
     output.speak("Error %s: %s" % (err.error_code, err.msg), True)
+  elif self.ignore_client.GetValue() == True:
+   tweet = self.parent.get_tweet()
+   if tweet.has_key("sender"):
+    output.speak(_(u"You can't ignore direct messages"))
+    return
+   else:
+    client = re.sub(r"(?s)<.*?>", "", tweet["source"])
+   if client not in config.main["twitter"]["ignored_clients"]:
+    config.main["twitter"]["ignored_clients"].append(client)
 
  def setup_default(self, default):
   if default == "follow":

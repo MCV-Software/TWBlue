@@ -186,18 +186,21 @@ class basePanel(wx.Panel):
   except TwythonError as e:
    output.speak(e.message)
   for i in items:
-   if config.main["general"]["reverse_timelines"] == False:
-    self.db.settings[self.name_buffer].insert(0, i)
-   else:
-    self.db.settings[self.name_buffer].append(i)
+   if twitter.utils.is_allowed(i) == True:
+    if config.main["general"]["reverse_timelines"] == False:
+     self.db.settings[self.name_buffer].insert(0, i)
+    else:
+     self.db.settings[self.name_buffer].append(i)
   if config.main["general"]["reverse_timelines"] == False:
    for i in items:
-    tweet = self.compose_function(i, self.db)
-    self.list.insert_item(True, *tweet)
+    if twitter.utils.is_allowed(i) == True:
+     tweet = self.compose_function(i, self.db)
+     self.list.insert_item(True, *tweet)
   else:
    for i in items:
-    tweet = self.compose_function(i, self.db)
-    self.list.insert_item(False, *tweet)
+    if twitter.utils.is_allowed(i) == True:
+     tweet = self.compose_function(i, self.db)
+     self.list.insert_item(False, *tweet)
   output.speak(_(u"%s items retrieved") % (len(items)))
 
  def put_items(self, num):
@@ -205,7 +208,7 @@ class basePanel(wx.Panel):
    for i in self.db.settings[self.name_buffer]:
     tweet = self.compose_function(i, self.db)
     self.list.insert_item(False, *tweet)
-   self.set_list_position()
+    self.set_list_position()
   elif self.list.get_count() > 0:
    if config.main["general"]["reverse_timelines"] == False:
     for i in self.db.settings[self.name_buffer][:num]:
