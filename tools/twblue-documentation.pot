@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-12-05 11:32+Hora estándar central (México)\n"
+"POT-Creation-Date: 2014-12-10 23:20+Hora estándar central (México)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,8 +75,8 @@ msgstr ""
 msgid "Discarded"
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:356
-#: ../src\gui\buffers\base.py:368
+#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:359
+#: ../src\gui\buffers\base.py:371
 msgid "Playing..."
 msgstr ""
 
@@ -181,75 +181,79 @@ msgid "Someone's favourites have been updated"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:19
-msgid "There are no more tweets to read"
+msgid "The tweet has coordinates to determine its location"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:20
-msgid "A list has a new tweet"
+msgid "There are no more tweets to read"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:21
-msgid "You can't add any more characters on the tweet"
+msgid "A list has a new tweet"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:22
-msgid "You've been mentioned "
+msgid "You can't add any more characters on the tweet"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:23
-msgid "A new event has happened"
+msgid "You've been mentioned "
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:24
-msgid "TW Blue is ready "
+msgid "A new event has happened"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:25
-msgid "You've replied"
+msgid "TW Blue is ready "
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:26
-msgid "You've retweeted"
+msgid "You've replied"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:27
-msgid "A search has been updated"
+msgid "You've retweeted"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:28
-msgid "There's a new tweet in the main buffer"
+msgid "A search has been updated"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:29
-msgid "You've sent a tweet"
+msgid "There's a new tweet in the main buffer"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:30
-msgid "There's a new tweet in a timeline"
+msgid "You've sent a tweet"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:31
-msgid "You have a new follower"
+msgid "There's a new tweet in a timeline"
 msgstr ""
 
 #: ../src\extra\SoundsTutorial\gui.py:32
+msgid "You have a new follower"
+msgstr ""
+
+#: ../src\extra\SoundsTutorial\gui.py:33
 msgid "You've turned the volume up or down"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:36
+#: ../src\extra\SoundsTutorial\gui.py:37
 msgid "It seems as though the currently used sound pack needs an update. %i fails are still be required to use this function. Make sure to obtain the needed lacking sounds or to contact with the sound pack developer."
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:36 ../src\extra\SpellChecker\gui.py:34
+#: ../src\extra\SoundsTutorial\gui.py:37 ../src\extra\SpellChecker\gui.py:34
 #: ../src\gui\dialogs\show_user.py:63
 msgid "Error"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:38
+#: ../src\extra\SoundsTutorial\gui.py:39
 msgid "Sounds tutorial"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:41
+#: ../src\extra\SoundsTutorial\gui.py:42
 msgid "Press enter to listen to the sound for the selected event"
 msgstr ""
 
@@ -309,8 +313,57 @@ msgstr ""
 msgid "Autocompletion only works for users."
 msgstr ""
 
-#: ../src\extra\autocompletionUsers\settings.py:22
+#: ../src\extra\autocompletionUsers\manage.py:38
+msgid "Are you sure you want to delete this user from the database? This user will not appear on the autocomplete results anymore."
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\manage.py:38
+msgid "Confirm"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\settings.py:24
 msgid "Updating database... You can close this window now. A message will tell you when the process finishes."
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:7
+msgid "Manage Autocomplete users\342\200\231 database"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:10
+msgid "Editing TWBlue users database"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Name"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Username"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:14
+msgid "Add user"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:15
+msgid "Remove user"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:36
+msgid "Add user to database"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:36
+msgid "Twitter username"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:42
+msgid "The user does not exist"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:42
+#: ../src\gui\dialogs\configuration.py:248
+msgid "Error!"
 msgstr ""
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:6
@@ -325,11 +378,15 @@ msgstr ""
 msgid "Add users from friends buffer"
 msgstr ""
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:23
+#: ../src\extra\autocompletionUsers\wx_settings.py:13
+msgid "See the users list"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:25
 msgid "Done"
 msgstr ""
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:23
+#: ../src\extra\autocompletionUsers\wx_settings.py:25
 msgid "TWBlue's database of users has been updated."
 msgstr ""
 
@@ -732,19 +789,19 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:83 ../src\gui\buffers\base.py:233
+#: ../src\gui\buffers\base.py:83 ../src\gui\buffers\base.py:236
 #: ../src\gui\buffers\events.py:65 ../src\gui\buffers\events.py:81
-#: ../src\gui\buffers\trends.py:64 ../src\gui\buffers\trends.py:114
-#: ../src\gui\buffers\trends.py:126 ../src\gui\dialogs\message.py:347
+#: ../src\gui\buffers\trends.py:64 ../src\gui\buffers\trends.py:108
+#: ../src\gui\buffers\trends.py:120 ../src\gui\dialogs\message.py:347
 msgid "Tweet"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:85 ../src\gui\buffers\base.py:245
-#: ../src\gui\buffers\base.py:248
+#: ../src\gui\buffers\base.py:85 ../src\gui\buffers\base.py:248
+#: ../src\gui\buffers\base.py:251
 msgid "Retweet"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:87 ../src\gui\buffers\base.py:264
+#: ../src\gui\buffers\base.py:87 ../src\gui\buffers\base.py:267
 msgid "Reply"
 msgstr ""
 
@@ -767,69 +824,69 @@ msgstr ""
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr ""
 
-#: ../src\gui\buffers\base.py:201 ../src\gui\buffers\people.py:117
+#: ../src\gui\buffers\base.py:204 ../src\gui\buffers\people.py:117
 msgid "%s items retrieved"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:225 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\dm.py:46
 #: ../src\gui\buffers\people.py:59
 msgid "Direct message to %s"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:225 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\dm.py:46
 #: ../src\gui\buffers\people.py:59
 msgid "New direct message"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:233 ../src\gui\buffers\events.py:81
-#: ../src\gui\buffers\trends.py:114 ../src\gui\buffers\trends.py:126
+#: ../src\gui\buffers\base.py:236 ../src\gui\buffers\events.py:81
+#: ../src\gui\buffers\trends.py:108 ../src\gui\buffers\trends.py:120
 msgid "Write the tweet here"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:245
+#: ../src\gui\buffers\base.py:248
 msgid "Would you like to add a comment to this tweet?"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:248
+#: ../src\gui\buffers\base.py:251
 msgid "Add your comment to the tweet"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:264
+#: ../src\gui\buffers\base.py:267
 msgid "Reply to %s"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:319
+#: ../src\gui\buffers\base.py:322
 msgid "Opening URL..."
 msgstr ""
 
-#: ../src\gui\buffers\base.py:338 ../src\gui\buffers\events.py:125
+#: ../src\gui\buffers\base.py:341 ../src\gui\buffers\events.py:125
 msgid "Do you really want to empty this buffer? It's tweets will be removed from the list but not from Twitter"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:338 ../src\gui\buffers\events.py:125
-#: ../src\gui\buffers\trends.py:156
+#: ../src\gui\buffers\base.py:341 ../src\gui\buffers\events.py:125
+#: ../src\gui\buffers\trends.py:150
 msgid "Empty buffer"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:343 ../src\gui\buffers\events.py:129
+#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\events.py:129
 msgid "Do you really want to delete this message?"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:343 ../src\gui\buffers\events.py:129
+#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\events.py:129
 #: ../src\gui\dialogs\lists.py:107
 msgid "Delete"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:363 ../src\gui\buffers\base.py:374
+#: ../src\gui\buffers\base.py:366 ../src\gui\buffers\base.py:377
 msgid "Unable to play audio."
 msgstr ""
 
-#: ../src\gui\buffers\base.py:365
+#: ../src\gui\buffers\base.py:368
 msgid "Audio stopped."
 msgstr ""
 
 #: ../src\gui\buffers\events.py:36 ../src\gui\buffers\panels.py:33
-#: ../src\gui\buffers\trends.py:93 ../src\gui\buffers\tweet_searches.py:58
+#: ../src\gui\buffers\trends.py:96 ../src\gui\buffers\tweet_searches.py:58
 #: ../src\gui\buffers\user_searches.py:64
 msgid "This action is not supported for this buffer"
 msgstr ""
@@ -886,7 +943,7 @@ msgstr ""
 
 #: ../src\gui\buffers\menus.py:29 ../src\gui\buffers\menus.py:55
 #: ../src\gui\buffers\menus.py:78 ../src\gui\buffers\menus.py:92
-#: ../src\gui\buffers\menus.py:115
+#: ../src\gui\buffers\menus.py:115 ../src\gui\buffers\menus.py:132
 msgid "&Copy to clipboard"
 msgstr ""
 
@@ -924,6 +981,14 @@ msgstr ""
 msgid "&Show user"
 msgstr ""
 
+#: ../src\gui\buffers\menus.py:126
+msgid "&Tweet about this trend"
+msgstr ""
+
+#: ../src\gui\buffers\menus.py:129
+msgid "&Show item"
+msgstr ""
+
 #: ../src\gui\buffers\panels.py:28
 msgid "Announce"
 msgstr ""
@@ -948,7 +1013,7 @@ msgstr ""
 msgid "Do you really want to delete this buffer?"
 msgstr ""
 
-#: ../src\gui\buffers\trends.py:156
+#: ../src\gui\buffers\trends.py:150
 msgid "Do you really want to empty this buffer? It's items will be removed from the list"
 msgstr ""
 
@@ -965,165 +1030,165 @@ msgstr ""
 msgid "Set the autocomplete function"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:56
+#: ../src\gui\dialogs\configuration.py:55
 msgid "ask before exiting TwBlue?"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:59
+#: ../src\gui\dialogs\configuration.py:58
+msgid "Use invisible interface's keyboard shorcuts on the GUI"
+msgstr ""
+
+#: ../src\gui\dialogs\configuration.py:61
 msgid "Relative times"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:63
+#: ../src\gui\dialogs\configuration.py:65
 msgid "Activate Sapi5 when any other screen reader is not being run"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:66
+#: ../src\gui\dialogs\configuration.py:68
 msgid "Activate the auto-start of the invisible interface"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:70
+#: ../src\gui\dialogs\configuration.py:72
 msgid "API calls when the stream is started (One API call equals to 200 tweetts, two API calls equals 400 tweets, etc):"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:78
+#: ../src\gui\dialogs\configuration.py:80
 msgid "Items on each API call"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:85
+#: ../src\gui\dialogs\configuration.py:87
 msgid "Inverted buffers: The newest tweets will be shown at the beginning of the lists while the oldest at the end"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:101
+#: ../src\gui\dialogs\configuration.py:103
 msgid "Show followers"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:104
+#: ../src\gui\dialogs\configuration.py:106
 msgid "Show friends"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:107
+#: ../src\gui\dialogs\configuration.py:109
 msgid "Show favourites"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:110
+#: ../src\gui\dialogs\configuration.py:112
 msgid "Show blocked users"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:113
+#: ../src\gui\dialogs\configuration.py:115
 msgid "Show muted users"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:116
+#: ../src\gui\dialogs\configuration.py:118
 msgid "Show events"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:126
-#: ../src\gui\dialogs\configuration.py:275
+#: ../src\gui\dialogs\configuration.py:128
+#: ../src\gui\dialogs\configuration.py:277
 msgid "Ignored clients"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:132
+#: ../src\gui\dialogs\configuration.py:134
 msgid "Add client"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:133
+#: ../src\gui\dialogs\configuration.py:135
 msgid "Remove client"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:144
+#: ../src\gui\dialogs\configuration.py:146
 msgid "Add a new ignored client"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:144
+#: ../src\gui\dialogs\configuration.py:146
 msgid "Enter the name of the client here"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:161
+#: ../src\gui\dialogs\configuration.py:163
 msgid "Volume"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:170
+#: ../src\gui\dialogs\configuration.py:172
 msgid "Global mute"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:174
+#: ../src\gui\dialogs\configuration.py:176
 msgid "Output device"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:183
+#: ../src\gui\dialogs\configuration.py:185
 msgid "Input device"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:194
+#: ../src\gui\dialogs\configuration.py:196
 msgid "Sound pack"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:207
+#: ../src\gui\dialogs\configuration.py:209
 msgid "If you've got a SndUp account, enter your API Key here. Whether the API Key is wrong, the App will fail to upload anything to the server. Whether there's no API Key here, then the audio files will be uploaded anonimously"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:220
-#: ../src\gui\dialogs\configuration.py:244
+#: ../src\gui\dialogs\configuration.py:222
+#: ../src\gui\dialogs\configuration.py:246
 msgid "Unlink your Dropbox account"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:222
-#: ../src\gui\dialogs\configuration.py:239
-#: ../src\gui\dialogs\configuration.py:247
-#: ../src\gui\dialogs\configuration.py:251
-#: ../src\gui\dialogs\configuration.py:258
+#: ../src\gui\dialogs\configuration.py:224
+#: ../src\gui\dialogs\configuration.py:241
+#: ../src\gui\dialogs\configuration.py:249
+#: ../src\gui\dialogs\configuration.py:253
+#: ../src\gui\dialogs\configuration.py:260
 msgid "Link your Dropbox account"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:232
+#: ../src\gui\dialogs\configuration.py:234
 msgid "Authorisation"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:232
+#: ../src\gui\dialogs\configuration.py:234
 msgid "The authorisation request will be shown on your browser. Copy the code tat Dropbox will provide and, in the text box that will appear on TW Blue, paste it. This code is necessary to continue. You only need to do it once."
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:234
+#: ../src\gui\dialogs\configuration.py:236
 msgid "Enter the code here."
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:234
+#: ../src\gui\dialogs\configuration.py:236
 msgid "Verification code"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:246
+#: ../src\gui\dialogs\configuration.py:248
 msgid "Error during authorisation. Try again later."
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:246
-msgid "Error!"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:265
+#: ../src\gui\dialogs\configuration.py:267
 msgid "TW Blue preferences"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:269
+#: ../src\gui\dialogs\configuration.py:271
 msgid "General"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:273
+#: ../src\gui\dialogs\configuration.py:275
 msgid "Show other buffers"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:277
+#: ../src\gui\dialogs\configuration.py:279
 msgid "Sound"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:279
+#: ../src\gui\dialogs\configuration.py:281
 msgid "Audio Services"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:282
+#: ../src\gui\dialogs\configuration.py:284
 msgid "Save"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:285 ../src\gui\dialogs\follow.py:64
+#: ../src\gui\dialogs\configuration.py:287 ../src\gui\dialogs\follow.py:67
 #: ../src\gui\dialogs\message.py:189 ../src\gui\dialogs\message.py:284
 #: ../src\gui\dialogs\message.py:385 ../src\gui\dialogs\message.py:472
 #: ../src\gui\dialogs\search.py:42 ../src\gui\dialogs\show_user.py:42
@@ -1132,81 +1197,89 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:301
+#: ../src\gui\dialogs\configuration.py:303
 msgid "Followers"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:315
+#: ../src\gui\dialogs\configuration.py:317
 msgid "friends"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:329
+#: ../src\gui\dialogs\configuration.py:331
 msgid "Favorites"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:343
+#: ../src\gui\dialogs\configuration.py:345
 msgid "Events"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:354
+#: ../src\gui\dialogs\configuration.py:356
 msgid "Blocked users"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:368
+#: ../src\gui\dialogs\configuration.py:370
 msgid "Muted users"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:428
+#: ../src\gui\dialogs\configuration.py:437
 msgid "Restart TW Blue"
 msgstr ""
 
-#: ../src\gui\dialogs\configuration.py:428
+#: ../src\gui\dialogs\configuration.py:437
 msgid "The application requires to be restarted to save these changes. Press OK to do it now."
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:33 ../src\gui\dialogs\follow.py:43
+#: ../src\gui\dialogs\follow.py:34 ../src\gui\dialogs\follow.py:44
 msgid "Action"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:44
+#: ../src\gui\dialogs\follow.py:45
 msgid "Follow"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:45
+#: ../src\gui\dialogs\follow.py:46
 msgid "Unfollow"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:46
+#: ../src\gui\dialogs\follow.py:47
 msgid "Mute"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:47
+#: ../src\gui\dialogs\follow.py:48
 msgid "Unmute"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:48
+#: ../src\gui\dialogs\follow.py:49
 msgid "Block"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:49
+#: ../src\gui\dialogs\follow.py:50
 msgid "Unblock"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:50
+#: ../src\gui\dialogs\follow.py:51
 msgid "Report as spam"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:61 ../src\gui\dialogs\search.py:40
+#: ../src\gui\dialogs\follow.py:52
+msgid "Ignore tweets from this client"
+msgstr ""
+
+#: ../src\gui\dialogs\follow.py:64 ../src\gui\dialogs\search.py:40
 #: ../src\gui\dialogs\trending.py:50 ../src\gui\dialogs\utils.py:39
 msgid "OK"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:101
+#: ../src\gui\dialogs\follow.py:104
 msgid "You've muted to %s"
 msgstr ""
 
-#: ../src\gui\dialogs\follow.py:115
+#: ../src\gui\dialogs\follow.py:118
 msgid "You've unmuted to %s"
+msgstr ""
+
+#: ../src\gui\dialogs\follow.py:142
+msgid "You can't ignore direct messages"
 msgstr ""
 
 #: ../src\gui\dialogs\lists.py:36
@@ -1395,7 +1468,7 @@ msgid "Recipient"
 msgstr ""
 
 #: ../src\gui\dialogs\message.py:318
-msgid "Mention &to all"
+msgid "Men&tion all"
 msgstr ""
 
 #: ../src\gui\dialogs\message.py:345

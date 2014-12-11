@@ -55,7 +55,7 @@ class general(wx.Panel):
   self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting TwBlue?"))
   self.ask_at_exit.SetValue(config.main["general"]["ask_at_exit"])
   sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
-  self.use_invisible_shorcuts = wx.CheckBox(self, -1, _(u"Use invisible interface's keyboard shorcuts even if the window is displayed"))
+  self.use_invisible_shorcuts = wx.CheckBox(self, -1, _(u"Use invisible interface's keyboard shorcuts on the GUI"))
   self.use_invisible_shorcuts.SetValue(config.main["general"]["use_invisible_keyboard_shorcuts"])
   sizer.Add(self.use_invisible_shorcuts, 0, wx.ALL, 5)
   self.relative_time = wx.CheckBox(self, -1, _(U"Relative times"))

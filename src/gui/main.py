@@ -33,6 +33,7 @@ import platform
 import urllib2
 import sysTrayIcon
 import switchModule
+from pubsub import pub
 import languageHandler
 from extra.autocompletionUsers import settings as autocompletionUsersSettings
 import pygeocoder
@@ -40,7 +41,7 @@ from pygeolib import GeocoderError
 from sessionmanager import manager
 from issueReporter import gui as issueReporterGUI
 from mysc import event
-from mysc.thread_utils import call_threaded
+from mysc.thread_utils import call_threaded, stream_threaded
 from twython import TwythonError
 from urllib2 import URLError
 from mysc.repeating_timer import RepeatingTimer
@@ -337,6 +338,7 @@ class mainFrame(wx.Frame):
   self.SetClientSize(self.sizer.CalcMin())
   self.Bind(event.MyEVT_STARTED, self.onInit)
   self.Bind(event.EVT_RESULT, self.onMemberAdded)
+  pub.subscribe(self.listen_streamerror, "streamError")
   call_threaded(self.init, run_streams=True)
 
  def init(self, run_streams=False):
@@ -392,21 +394,21 @@ class mainFrame(wx.Frame):
 
  def setup_twitter(self, panel):
   """ Setting up the connection for twitter, or authenticate if the config file has valid credentials."""
-  try:
-   self.twitter.login(self.user_key, self.user_secret)
-   self.logging_in_twblue(panel)
-   log.info("Authorized in Twitter.")
-   del self.user_key; del self.user_secret
-  except:
-   dlg1 = wx.MessageDialog(panel, _(u"Connection error. Try again later."), _(u"Error!"), wx.ICON_ERROR)
-   dlg1.ShowModal()
-   self.Close(True)
+#  try:
+  self.twitter.login(self.user_key, self.user_secret)
+  self.logging_in_twblue(panel)
+  log.info("Authorized in Twitter.")
+  del self.user_key; del self.user_secret
+#  except:
+#   dlg1 = wx.MessageDialog(panel, _(u"Connection error. Try again later."), _(u"Error!"), wx.ICON_ERROR)
+#   dlg1.ShowModal()
+#   self.Close(True)
 
  def get_home(self):
   """ Gets the home stream, that manages home timeline, mentions, direct messages and sent."""
   try:
    self.stream = twitter.buffers.stream.streamer(application.app_key, application.app_secret, config.main["twitter"]["user_key"], config.main["twitter"]["user_secret"], parent=self)
-   call_threaded(self.stream.user)
+   stream_threaded(self.stream.user)
   except:
    self.stream.disconnect()
 
@@ -429,13 +431,16 @@ class mainFrame(wx.Frame):
      ids+= str(z)+", "
   if ids != "":
  #   try:
-   call_threaded(self.stream2.statuses.filter, follow=ids)
+   stream_threaded(self.stream2.statuses.filter, follow=ids)
  #   except:
  #    pass
 #  except:
 #   self.stream2.disconnect()
 
  def check_stream_up(self):
+  if not hasattr(self, "stream") and not hasattr(self, "stream2"):
+   self.init(run_streams=True)
+   return
   try:
    urllib2.urlopen("http://74.125.228.231", timeout=5)
   except urllib2.URLError:
@@ -1060,6 +1065,15 @@ class mainFrame(wx.Frame):
    num = buff.start_streams()
    config.main["other_buffers"]["trending_topic_buffers"].append(woeid)
    buff.put_items(num)
+
+ def listen_streamerror(self):
+  log.error("There is a connection error")
+  print "Connection error"
+  self.stream.disconnect()
+  if hasattr(self, "stream2"):
+   self.stream2.disconnect()
+   del self.stream2
+  del self.stream
 
 ### Close App
  def Destroy(self):
