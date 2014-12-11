@@ -19,6 +19,14 @@ A twitter accessible, easy of use and cross platform application."""
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
+import sys
+from StringIO import StringIO
+#redirect the original stdout and stderr
+stdout=sys.stdout
+stderr=sys.stderr
+# Set a StringIO object as stdout and stderr to avoid problems using the installed version.
+sys.stdout = StringIO()
+sys.stderr = StringIO()
 import wx
 import os
 ssmg = None
@@ -31,16 +39,21 @@ from logger import logger as logging
 from sessionmanager import manager
 from sessionmanager import gui as smGUI
 manager.setup()
-import sys
 import config
 import output
 import sound
 import languageHandler
-
+#close the memory buffers for stdout and stderr
+sys.stdout.close()
+sys.stderr.close()
+#if it's a binary version
 if hasattr(sys, 'frozen'):
-  sys.stderr = open(paths.logs_path("stderr.log"), 'w')
-  sys.stdout = open(paths.logs_path("stdout.log"), 'w')
-
+ sys.stderr = open(paths.logs_path("stderr.log"), 'w')
+ sys.stdout = open(paths.logs_path("stdout.log"), 'w')
+else:
+ sys.stdout=stdout
+ sys.stderr=stderr
+   
 app = wx.App()
 #app = wx.App(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
 configured = False
