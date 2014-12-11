@@ -3,6 +3,7 @@ import threading
 import wx
 from twython import TwythonRateLimitError
 import time
+from pubsub import pub
 
 def call_threaded(func, *args, **kwargs):
  #Call the given function in a daemonized thread and return the thread.
@@ -15,6 +16,17 @@ def call_threaded(func, *args, **kwargs):
    call_threaded(func, *args, **kwargs)
 #  except:
 #   pass
+ thread = threading.Thread(target=new_func, args=args, kwargs=kwargs)
+ thread.daemon = True
+ thread.start()
+ return thread
+
+def stream_threaded(func, *args, **kwargs):
+ def new_func(*a, **k):
+  try:
+   func(*a, **k)
+  except:
+   pub.sendMessage("streamError")
  thread = threading.Thread(target=new_func, args=args, kwargs=kwargs)
  thread.daemon = True
  thread.start()

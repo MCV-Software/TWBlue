@@ -42,7 +42,7 @@ actions = {
 "edit_keystrokes": _(u"Shows the keystroke editor"),
 "view_user_lists": _(u"Show lists for a specified user"),
 "get_more_items": _(u"loads previous items to any buffer"),
-"reverse_geocode": _(u"Get the location for tweets"),
+"reverse_geocode": _(u"Get location of any tweet"),
 "view_reverse_geocode": _(u"Displays the tweet's location in a dialog"),
 "get_trending_topics": _(u"Creates a buffer for displaying trends for a desired place"),
 }
