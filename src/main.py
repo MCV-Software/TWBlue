@@ -54,8 +54,8 @@ else:
  sys.stdout=stdout
  sys.stderr=stderr
    
-app = wx.App()
-#app = wx.App(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
+#app = wx.App()
+app = wx.App(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
 configured = False
 configs = []
 for i in os.listdir(paths.config_path()):

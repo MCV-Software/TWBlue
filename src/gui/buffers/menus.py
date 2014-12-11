@@ -125,7 +125,7 @@ class trendsPanelMenu(wx.Menu):
   self.window = parent
   tweetThisTrend = wx.MenuItem(self, wx.NewId(), _(u"&Tweet about this trend"))
   self.Bind(wx.EVT_MENU, self.window.onResponse, tweetThisTrend)
-  self.AppendItem(reply)
+  self.AppendItem(tweetThisTrend)
   view = wx.MenuItem(self, wx.NewId(), _(u"&Show item"))
   self.Bind(wx.EVT_MENU, self.window.parent.view, view)
   self.AppendItem(view)
