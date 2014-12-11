@@ -33,7 +33,7 @@ import platform
 import urllib2
 import sysTrayIcon
 import switchModule
-from pubsub import pub
+from wx.lib.pubsub import pub
 import languageHandler
 from extra.autocompletionUsers import settings as autocompletionUsersSettings
 import pygeocoder

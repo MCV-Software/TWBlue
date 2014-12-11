@@ -3,7 +3,7 @@ import threading
 import wx
 from twython import TwythonRateLimitError
 import time
-from pubsub import pub
+from wx.lib.pubsub import pub
 
 def call_threaded(func, *args, **kwargs):
  #Call the given function in a daemonized thread and return the thread.
