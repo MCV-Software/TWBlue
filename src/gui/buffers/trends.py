@@ -117,7 +117,7 @@ class trendsPanel(wx.Panel):
 
  def onResponse(self, ev):
   trend = self.trends[self.list.get_selected()]["name"]
-  text = gui.dialogs.message.tweet(_(u"Write the tweet here"), _(u"Tweet"), trend, self)
+  text = gui.dialogs.message.tweet(_(u"Write the tweet here"), _(u"Tweet"), trend+" ", self)
   if text.ShowModal() == wx.ID_OK:
    if text.image == None:
     call_threaded(self.twitter.api_call, call_name="update_status", _sound="tweet_send.ogg", status=text.text.GetValue())
