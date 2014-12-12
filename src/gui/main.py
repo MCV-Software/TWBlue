@@ -817,6 +817,8 @@ class mainFrame(wx.Frame):
   except:
    msg = _(u"%s. Empty") % (self.nb.GetPageText(self.nb.GetSelection()))
   output.speak(msg, 1)
+  if self.showing == True:
+   self.nb.GetCurrentPage().list.list.SetFocus()
 
  def right(self, event=None):
   num = self.nb.GetSelection()
@@ -830,6 +832,8 @@ class mainFrame(wx.Frame):
   except:
    msg = _(u"%s. Empty") % (self.nb.GetPageText(self.nb.GetSelection()))
   output.speak(msg, 1)
+  if self.showing == True:
+   self.nb.GetCurrentPage().list.list.SetFocus()
 
  def create_invisible_keyboard_shorcuts(self):
   keymap = {}
