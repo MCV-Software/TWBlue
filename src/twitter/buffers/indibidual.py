@@ -42,11 +42,12 @@ class streamer(TwythonStreamer):
     except ValueError:
      pass
 
+ def set_friends(self, friends):
+  self.friends = friends
+
  def on_success(self, data):
   try:
    if data.has_key("text") and utils.is_allowed(data):
     self.check_tls(data)
-   elif "friends" in data:
-    self.friends = data["friends"]
   except:
    pass

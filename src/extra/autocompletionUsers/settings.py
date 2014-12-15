@@ -44,13 +44,13 @@ class autocompletionSettings(object):
 
 def execute_at_startup(window):
  database = storage.storage()
- if config.main["mysc"]["save_followers_in_autocompletion_db"] == True:
+ if config.main["mysc"]["save_followers_in_autocompletion_db"] == True and config.main["other_buffers"]["show_followers"] == True:
   buffer = window.search_buffer("people", "followers")
   for i in buffer.db.settings[buffer.name_buffer]:
    database.set_user(i["screen_name"], i["name"], 1)
  else:
   database.remove_by_buffer(1)
- if config.main["mysc"]["save_friends_in_autocompletion_db"] == True:
+ if config.main["mysc"]["save_friends_in_autocompletion_db"] == True and config.main["other_buffers"]["show_friends"] == True:
   buffer = window.search_buffer("people", "friends")
   for i in buffer.db.settings[buffer.name_buffer]:
    database.set_user(i["screen_name"], i["name"], 2)

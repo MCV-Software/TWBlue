@@ -8,6 +8,7 @@ import config
 import logging as original_logger
 log = original_logger.getLogger("MainStream")
 import output
+from wx.lib.pubsub import pub
 
 class streamer(TwythonStreamer):
  def __init__(self, app_key, app_secret, oauth_token, oauth_token_secret, timeout=300, retry_count=None, retry_in=10, client_args=None, handlers=None, chunk_size=1, parent=None):
@@ -105,6 +106,7 @@ class streamer(TwythonStreamer):
     self.process_dm(data)
    elif "friends" in data:
     self.friends = data["friends"]
+    pub.sendMessage("friendsReceived")
    elif "text" in data and utils.is_allowed(data) == True:
     if data["user"]["id"] in self.muted_users: return
     self.check_mentions(data)
