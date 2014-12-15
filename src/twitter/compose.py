@@ -13,6 +13,8 @@ else:
  languageHandler.setLanguage("system")
 import platform
 system = platform.system()
+import logging as original_logger
+log = original_logger.getLogger("events")
 
 def prettydate(d):
  """ Converts a string to the relative time."""
@@ -224,7 +226,9 @@ def compose_event(data, username):
  elif data["event"] == "list_user_unsubscribed":
   if data["source"]["screen_name"] == username: event = _(u"You've unsubscribed from the list %s, which is owned by %s(@%s)") % (data["target_object"]["name"], data["target"]["name"], data["target"]["screen_name"])
   else: event = _("You've been unsubscribed from the list %s, which is owned by %s(@%s)") % (data["target_object"]["name"], data["source"]["name"], data["source"]["screen_name"])
- else: event = _("Unknown")
+ else:
+  log.error("event: %s\n target: %s\n source: %s\n" % (data["event"], data["target"], data["source"]))
+  event = _("Unknown")
 # output.speak(event)
  return [time.strftime("%I:%M %p"), event]
 
