@@ -339,6 +339,7 @@ class mainFrame(wx.Frame):
   self.Bind(event.MyEVT_STARTED, self.onInit)
   self.Bind(event.EVT_RESULT, self.onMemberAdded)
   pub.subscribe(self.listen_streamerror, "streamError")
+  pub.subscribe(self.listen_for_friends, "friendsReceived")
   call_threaded(self.init, run_streams=True)
 
  def init(self, run_streams=False):
@@ -1072,12 +1073,15 @@ class mainFrame(wx.Frame):
 
  def listen_streamerror(self):
   log.error("There is a connection error")
-  print "Connection error"
-  self.stream.disconnect()
+  if hasattr(self, "stream"):
+   self.stream.disconnect()
+   del self.stream
   if hasattr(self, "stream2"):
    self.stream2.disconnect()
    del self.stream2
-  del self.stream
+
+ def listen_for_friends(self):
+   self.stream2.set_friends(self.stream.friends)
 
 ### Close App
  def Destroy(self):

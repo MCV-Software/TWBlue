@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 documentation = []
-documentation.append(_(u"""Documentation for TW Blue 0.46"""))
+documentation.append(_(u"""Documentation for TW Blue 0.50"""))
 # Translators: This is the new line character, don't change it in the translations.
 documentation.append(_(u"""
 """))
@@ -47,16 +47,16 @@ documentation.append(_(u"""
 documentation.append(_(u"""First off, it's necessary to authorise the program so it can access your Twitter account and act on your behalf. The authorisation process is quite simple, and the program never gets data such as your username and password. In order to authorise the application, you just need to run the main executable file, called TWBlue.exe (on some computers it may appear simply as TWBlue)."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""When executed, if you have not previously configured the program, it will show a dialogue box where it tells you'll be taken to Twitter in order to authorise the application as soon as you press OK. To begin the authorisation process, press the only available button on the box."""))
+#$documentation.append(_(u"""When executed, if you have not previously configured the program, it will show a dialogue box where it tells you'll be taken to Twitter in order to authorise the application as soon as you press OK. To begin the authorisation process, press the only available button on the box."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""Your default browser will open on the Twitter page to request authorisation. Enter your user name and password if you're not already logged in, look for the authorise button, and press it."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Read the instructions you will get if the process is successful. In summary, you will be given a numeric code with several digits you must paste on an edit field open by the application on another window."""))
+#$documentation.append(_(u"""Read the instructions you will get if the process is successful. In summary, you will be given a numeric code with several digits you must paste on an edit field open by the application on another window."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Paste the verification code, and press the enter key. """))
+#$documentation.append(_(u"""Paste the verification code, and press the enter key. """))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""If all went well, the application will start playing sounds, indicating your data are being updated."""))
@@ -65,10 +65,10 @@ documentation.append(_(u"""
 documentation.append(_(u"""When the process is finished,the program will play another sound, and the screen reader will say "ready"."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""## The program's interface {#interface}"""))
+documentation.append(_(u"""## The program's interface"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""The easiest way to describe the graphical interface of the application is a window with a menu bar with four menus (application, tweet, user and help), a list with several elements, and, in most cases, three buttons: tweet, retweet and reply. The actions available for each element are described below."""))
+documentation.append(_(u"""The easiest way to describe the graphical interface of the application is a window with a menu bar with five menus (application, tweet, user, buffer and help), a list with several elements, and, in most cases, three buttons: tweet, retweet and reply. The actions available for each element are described below."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""Elements on the lists may be tweets, direct messages or users. TW Blue creates different tabs for each list, which can be sent tweets, main timeline tweets, favourites, or direct messages, and each tab contains a single type of tweet. These tabs are called lists or buffers."""))

@@ -127,7 +127,7 @@ class listViewer(wx.Dialog):
    output.speak(_(u"This list is arready opened."))
    return
   listUI = gui.buffers.lists.listPanel(self.nb, self.parent, list_updated["slug"]+"-list", argumento=utils.find_list(list_updated["slug"], self.db.settings["lists"]))
-  self.nb.AddPage(listUI, _(u"List for %s") % (list_updated["slug"],))
+  self.nb.InsertSubPage(self.db.settings["buffers"].index("lists"), listUI, _(u"List for %s") % (list_updated["slug"],))
   self.db.settings["buffers"].append(list_updated["slug"]+"-list")
   num = listUI.start_streams()
   listUI.put_items(num)

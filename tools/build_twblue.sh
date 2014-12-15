@@ -1,7 +1,7 @@
 #!/bin/bash
 # Define paths for a regular use, if there are not paths for python32 or 64, these commands will be taken.
-pythonpath32="C:/python27x86"
-pythonpath64="C:/python27"
+pythonpath32="/C/python27x86"
+pythonpath64="/C/python27"
 nsyspath=$PROGRAMFILES/NSIS
 
 help () {
@@ -46,10 +46,10 @@ if [ -d dist/ ];
 	rm -rf dist
 fi
 $pythonpath32/python.exe "setup.py" "py2exe" "--quiet"
-mv -f dist ../scripts/TWBlue64
+mv -f dist ../scripts/TWBlue
 rm -rf build
 $pythonpath64/python.exe "setup.py" "py2exe" "--quiet"
-mv -f dist ../scripts/TWBlue
+mv -f dist ../scripts/TWBlue64
 rm -rf build
 cd ../scripts
 $nsispath/Unicode/makensis.exe "twblue.nsi"

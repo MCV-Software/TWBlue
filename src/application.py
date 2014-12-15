@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 name = 'TW Blue'
-snapshot = True
+snapshot = False
 if snapshot == False:
- version = "0.48"
+ version = "0.50"
  update_url = 'http://twblue.com.mx/updates/tw_blue.json'
 else:
  version = "6"
