@@ -324,7 +324,7 @@ class mainFrame(wx.Frame):
   self.fav_stream = RepeatingTimer(180, self.get_fav_buffers)
   self.fav_stream.start()
   for i in config.main["other_buffers"]["trending_topic_buffers"]:
-   buff = buffers.trendsPanel(self.nb, self, "%s_tt" % (i,), argumento=i, sound="trendd_updated.ogg")
+   buff = buffers.trendsPanel(self.nb, self, "%s_tt" % (i,), argumento=i, sound="trends_updated.ogg")
    timer = RepeatingTimer(300, buff.start_streams)
    timer.start()
    num = buff.start_streams()
@@ -1063,7 +1063,7 @@ class mainFrame(wx.Frame):
     woeid = trendingDialog.countries[trendingDialog.location.GetStringSelection()]
    elif trendingDialog.city.GetValue() == True:
     woeid = trendingDialog.cities[trendingDialog.location.GetStringSelection()]
-   buff = buffers.trendsPanel(self.nb, self, "%s_tt" % (woeid,), argumento=woeid, sound="trend_updated.ogg")
+   buff = buffers.trendsPanel(self.nb, self, "%s_tt" % (woeid,), argumento=woeid, sound="trends_updated.ogg")
    self.nb.InsertSubPage(self.db.settings["buffers"].index(self.db.settings["user_name"]), buff, _(u"Trending topics for %s") % (trendingDialog.location.GetStringSelection(),))
    timer = RepeatingTimer(300, buff.start_streams)
    timer.start()

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.50\n"
-"POT-Creation-Date: 2014-12-05 11:32+Hora estándar central (México)\n"
-"PO-Revision-Date: 2014-12-06 10:17+0300\n"
+"POT-Creation-Date: 2014-12-10 23:20+Hora estándar central (México)\n"
+"PO-Revision-Date: 2014-12-11 15:57+0100\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Mohammed Al Shara <mohammed@atexplorer.com>\n"
 "Language: ar\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.1\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,-1,409,-1,-1,-1\n"
@@ -55,7 +55,7 @@ msgstr "إرفع إلى"
 msgid "Attach"
 msgstr "إرفق"
 
-#: ../src\extra\AudioUploader\gui.py:59
+#: ../src\extra\AudioUploader\gui.py:59 ../src\issueReporter\gui.py:88
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -80,8 +80,8 @@ msgstr "تم إيقافه"
 msgid "Discarded"
 msgstr "تم التراجع"
 
-#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:356
-#: ../src\gui\buffers\base.py:368
+#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:359
+#: ../src\gui\buffers\base.py:371
 msgid "Playing..."
 msgstr "جاري التشغيل"
 
@@ -186,62 +186,66 @@ msgid "Someone's favourites have been updated"
 msgstr "تم تحديث مفضلات شخص ما"
 
 #: ../src\extra\SoundsTutorial\gui.py:19
+msgid "The tweet has coordinates to determine its location"
+msgstr ""
+
+#: ../src\extra\SoundsTutorial\gui.py:20
 msgid "There are no more tweets to read"
 msgstr "لا يوجد أي تغريدات للقراءة"
 
-#: ../src\extra\SoundsTutorial\gui.py:20
+#: ../src\extra\SoundsTutorial\gui.py:21
 msgid "A list has a new tweet"
 msgstr "تمت إضافة تغريدة إلى قائمة"
 
-#: ../src\extra\SoundsTutorial\gui.py:21
+#: ../src\extra\SoundsTutorial\gui.py:22
 msgid "You can't add any more characters on the tweet"
 msgstr "لا يمكن إضافة أي تحرف إلى التغريدة"
 
-#: ../src\extra\SoundsTutorial\gui.py:22
+#: ../src\extra\SoundsTutorial\gui.py:23
 msgid "You've been mentioned "
 msgstr "تمت الإشارة إليك"
 
-#: ../src\extra\SoundsTutorial\gui.py:23
+#: ../src\extra\SoundsTutorial\gui.py:24
 msgid "A new event has happened"
 msgstr "هناك حدث جديد"
 
-#: ../src\extra\SoundsTutorial\gui.py:24
+#: ../src\extra\SoundsTutorial\gui.py:25
 msgid "TW Blue is ready "
 msgstr "برنامج TW Blue جاهز"
 
-#: ../src\extra\SoundsTutorial\gui.py:25
+#: ../src\extra\SoundsTutorial\gui.py:26
 msgid "You've replied"
 msgstr "لقد قمت بالرد"
 
-#: ../src\extra\SoundsTutorial\gui.py:26
+#: ../src\extra\SoundsTutorial\gui.py:27
 msgid "You've retweeted"
 msgstr "لقد قمت بإعادة التغريد"
 
-#: ../src\extra\SoundsTutorial\gui.py:27
+#: ../src\extra\SoundsTutorial\gui.py:28
 msgid "A search has been updated"
 msgstr "تم تحديث بحث"
 
-#: ../src\extra\SoundsTutorial\gui.py:28
+#: ../src\extra\SoundsTutorial\gui.py:29
 msgid "There's a new tweet in the main buffer"
 msgstr "هناك تغريدة جديدة في الصفحة الرئيسية"
 
-#: ../src\extra\SoundsTutorial\gui.py:29
+#: ../src\extra\SoundsTutorial\gui.py:30
 msgid "You've sent a tweet"
 msgstr "لقد قمت بإرسال تغريدة جديدة"
 
-#: ../src\extra\SoundsTutorial\gui.py:30
+#: ../src\extra\SoundsTutorial\gui.py:31
 msgid "There's a new tweet in a timeline"
 msgstr "هناك تغريدة جديدة في السياق الزمني"
 
-#: ../src\extra\SoundsTutorial\gui.py:31
+#: ../src\extra\SoundsTutorial\gui.py:32
 msgid "You have a new follower"
 msgstr "لديك متابع جديد"
 
-#: ../src\extra\SoundsTutorial\gui.py:32
+#: ../src\extra\SoundsTutorial\gui.py:33
 msgid "You've turned the volume up or down"
 msgstr "لقد قمت بتخفيض أو رفع مستوى الصوت"
 
-#: ../src\extra\SoundsTutorial\gui.py:36
+#: ../src\extra\SoundsTutorial\gui.py:37
 msgid ""
 "It seems as though the currently used sound pack needs an update. %i fails "
 "are still be required to use this function. Make sure to obtain the needed "
@@ -250,17 +254,18 @@ msgstr ""
 "يبدو أن حزمة الأصوات المستخدمة حاليا تحتاج إلى ترقية. قم بالتأكد من حصولك "
 "على الأصوات الناقصة أو تواصل مع مطور حزمة الأصوات هذه."
 
-#: ../src\extra\SoundsTutorial\gui.py:36 ../src\extra\SpellChecker\gui.py:34
-#: ../src\gui\dialogs\show_user.py:63 ../src\gui\main.py:708
-#: ../src\gui\main.py:740
+#: ../src\extra\SoundsTutorial\gui.py:37 ../src\extra\SpellChecker\gui.py:34
+#: ../src\gui\dialogs\show_user.py:63 ../src\gui\main.py:728
+#: ../src\gui\main.py:760 ../src\issueReporter\gui.py:98
+#: ../src\issueReporter\gui.py:101
 msgid "Error"
 msgstr "خطء"
 
-#: ../src\extra\SoundsTutorial\gui.py:38
+#: ../src\extra\SoundsTutorial\gui.py:39
 msgid "Sounds tutorial"
 msgstr "مُعَلِم الأصوات"
 
-#: ../src\extra\SoundsTutorial\gui.py:41
+#: ../src\extra\SoundsTutorial\gui.py:42
 msgid "Press enter to listen to the sound for the selected event"
 msgstr "إضغط مفتاح الدخول لسماع الصوت"
 
@@ -322,13 +327,66 @@ msgstr "لا توجد نتائج فيقاعدة البيانات الخاصة ب
 msgid "Autocompletion only works for users."
 msgstr "خاصية التعبئة التلقائية لا تعمل إلى مع المستخدمون"
 
-#: ../src\extra\autocompletionUsers\settings.py:22
+#: ../src\extra\autocompletionUsers\manage.py:38
+msgid ""
+"Are you sure you want to delete this user from the database? This user will "
+"not appear on the autocomplete results anymore."
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\manage.py:38
+msgid "Confirm"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\settings.py:24
 msgid ""
 "Updating database... You can close this window now. A message will tell you "
 "when the process finishes."
 msgstr ""
 "يتم الآن تحديث قاعدة البيانات. بإمكانك إغلاق هذه الشاشة. سوف تظهر لك رسالة "
 "تخبرك عندما تنتهي هذه العملية."
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:7
+msgid "Manage Autocomplete users’ database"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:10
+msgid "Editing TWBlue users database"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Name"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Username"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:14
+msgid "Add user"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:15
+msgid "Remove user"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:36
+msgid "Add user to database"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:36
+msgid "Twitter username"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:42
+#: ../src\gui\dialogs\configuration.py:248 ../src\gui\main.py:234
+#: ../src\gui\main.py:742 ../src\gui\main.py:775
+msgid "Error!"
+msgstr "خطء"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:42 ../src\gui\main.py:728
+#: ../src\gui\main.py:760
+msgid "The user does not exist"
+msgstr "المستخدم غير موجود"
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:6
 msgid "Autocomplete users’ settings"
@@ -342,11 +400,15 @@ msgstr "إضف مستخدمون من صفحة المتابعين"
 msgid "Add users from friends buffer"
 msgstr "إضف مستخدمون من صفحة الأصدقاء"
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:23
+#: ../src\extra\autocompletionUsers\wx_settings.py:13
+msgid "See the users list"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:25
 msgid "Done"
 msgstr "تم الإنتهاء."
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:23
+#: ../src\extra\autocompletionUsers\wx_settings.py:25
 msgid "TWBlue's database of users has been updated."
 msgstr "لقد تم تحديثقاعدة بيانات البرنامج للمستخدمون"
 
@@ -749,20 +811,20 @@ msgstr "تاريخ"
 msgid "User"
 msgstr "المستخدم"
 
-#: ../src\gui\buffers\base.py:83 ../src\gui\buffers\base.py:233
+#: ../src\gui\buffers\base.py:83 ../src\gui\buffers\base.py:236
 #: ../src\gui\buffers\events.py:65 ../src\gui\buffers\events.py:81
-#: ../src\gui\buffers\trends.py:64 ../src\gui\buffers\trends.py:114
-#: ../src\gui\buffers\trends.py:126 ../src\gui\dialogs\message.py:347
+#: ../src\gui\buffers\trends.py:64 ../src\gui\buffers\trends.py:108
+#: ../src\gui\buffers\trends.py:120 ../src\gui\dialogs\message.py:347
 #: ../src\gui\sysTrayIcon.py:34
 msgid "Tweet"
 msgstr "تغريدة"
 
-#: ../src\gui\buffers\base.py:85 ../src\gui\buffers\base.py:245
-#: ../src\gui\buffers\base.py:248 ../src\keystrokeEditor\constants.py:13
+#: ../src\gui\buffers\base.py:85 ../src\gui\buffers\base.py:248
+#: ../src\gui\buffers\base.py:251 ../src\keystrokeEditor\constants.py:13
 msgid "Retweet"
 msgstr "إعادة التغريد"
 
-#: ../src\gui\buffers\base.py:87 ../src\gui\buffers\base.py:264
+#: ../src\gui\buffers\base.py:87 ../src\gui\buffers\base.py:267
 msgid "Reply"
 msgstr "الرد"
 
@@ -785,42 +847,42 @@ msgstr "تنبيه"
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "هذه الصفحة ليست سياق زمني ولا يمكن حذفها"
 
-#: ../src\gui\buffers\base.py:201 ../src\gui\buffers\people.py:117
+#: ../src\gui\buffers\base.py:204 ../src\gui\buffers\people.py:117
 msgid "%s items retrieved"
 msgstr "تم جلب %s عناصر"
 
-#: ../src\gui\buffers\base.py:225 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\dm.py:46
 #: ../src\gui\buffers\people.py:59
 msgid "Direct message to %s"
 msgstr "رسالة خاصة ل%s"
 
-#: ../src\gui\buffers\base.py:225 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\dm.py:46
 #: ../src\gui\buffers\people.py:59
 msgid "New direct message"
 msgstr "رسالة خاصة جديدة"
 
-#: ../src\gui\buffers\base.py:233 ../src\gui\buffers\events.py:81
-#: ../src\gui\buffers\trends.py:114 ../src\gui\buffers\trends.py:126
+#: ../src\gui\buffers\base.py:236 ../src\gui\buffers\events.py:81
+#: ../src\gui\buffers\trends.py:108 ../src\gui\buffers\trends.py:120
 msgid "Write the tweet here"
 msgstr "إكتب التغريدة هنا"
 
-#: ../src\gui\buffers\base.py:245
+#: ../src\gui\buffers\base.py:248
 msgid "Would you like to add a comment to this tweet?"
 msgstr "هل ترغب بإضافة تعليق إلى هذه التغريدة؟"
 
-#: ../src\gui\buffers\base.py:248
+#: ../src\gui\buffers\base.py:251
 msgid "Add your comment to the tweet"
 msgstr "إضف تعليقك للتغريدة"
 
-#: ../src\gui\buffers\base.py:264
+#: ../src\gui\buffers\base.py:267
 msgid "Reply to %s"
 msgstr "الرد على %s"
 
-#: ../src\gui\buffers\base.py:319
+#: ../src\gui\buffers\base.py:322
 msgid "Opening URL..."
 msgstr "إفتح عنوان جديد"
 
-#: ../src\gui\buffers\base.py:338 ../src\gui\buffers\events.py:125
+#: ../src\gui\buffers\base.py:341 ../src\gui\buffers\events.py:125
 msgid ""
 "Do you really want to empty this buffer? It's tweets will be removed from "
 "the list but not from Twitter"
@@ -828,30 +890,30 @@ msgstr ""
 "هل أنت متأكد من رغبتك بإفراغ هذه الصفحة؟ ستزال التغريدات من هذه الصفحة وليس "
 "من تويتر"
 
-#: ../src\gui\buffers\base.py:338 ../src\gui\buffers\events.py:125
-#: ../src\gui\buffers\trends.py:156
+#: ../src\gui\buffers\base.py:341 ../src\gui\buffers\events.py:125
+#: ../src\gui\buffers\trends.py:150
 msgid "Empty buffer"
 msgstr "إفراغ السياق الزمني"
 
-#: ../src\gui\buffers\base.py:343 ../src\gui\buffers\events.py:129
+#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\events.py:129
 msgid "Do you really want to delete this message?"
 msgstr "هل أنت متأكد من رغبتك بحذف هذه الرسالة؟"
 
-#: ../src\gui\buffers\base.py:343 ../src\gui\buffers\events.py:129
-#: ../src\gui\dialogs\lists.py:107 ../src\gui\main.py:573
+#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\events.py:129
+#: ../src\gui\dialogs\lists.py:107 ../src\gui\main.py:592
 msgid "Delete"
 msgstr "حذف"
 
-#: ../src\gui\buffers\base.py:363 ../src\gui\buffers\base.py:374
+#: ../src\gui\buffers\base.py:366 ../src\gui\buffers\base.py:377
 msgid "Unable to play audio."
 msgstr "لا يمكن تشغيل المقطع الصوتي"
 
-#: ../src\gui\buffers\base.py:365
+#: ../src\gui\buffers\base.py:368
 msgid "Audio stopped."
 msgstr "تم إيقاف تشغيل المقطع الصوتي"
 
 #: ../src\gui\buffers\events.py:36 ../src\gui\buffers\panels.py:33
-#: ../src\gui\buffers\trends.py:93 ../src\gui\buffers\tweet_searches.py:58
+#: ../src\gui\buffers\trends.py:96 ../src\gui\buffers\tweet_searches.py:58
 #: ../src\gui\buffers\user_searches.py:64
 msgid "This action is not supported for this buffer"
 msgstr "هذا إجراء غير ممكن في هذه الصفحة"
@@ -876,20 +938,20 @@ msgstr "هل أنت متأكد من رغبتك بحذف السياق الزمن�
 msgid "Do you really want to delete this list?"
 msgstr "هل أنت متأكد من رغبتك بإزالة هذه القائمة؟"
 
-#: ../src\gui\buffers\menus.py:8 ../src\gui\main.py:88
+#: ../src\gui\buffers\menus.py:8 ../src\gui\main.py:93
 msgid "&Retweet"
 msgstr "إعادة التغريد"
 
 #: ../src\gui\buffers\menus.py:11 ../src\gui\buffers\menus.py:43
-#: ../src\gui\main.py:86
+#: ../src\gui\main.py:91
 msgid "Re&ply"
 msgstr "الرد"
 
-#: ../src\gui\buffers\menus.py:14 ../src\gui\main.py:90
+#: ../src\gui\buffers\menus.py:14 ../src\gui\main.py:95
 msgid "Add to &favourites"
 msgstr "إضف إلى التفضيلات"
 
-#: ../src\gui\buffers\menus.py:17 ../src\gui\main.py:92
+#: ../src\gui\buffers\menus.py:17 ../src\gui\main.py:97
 msgid "Remove from favo&urites"
 msgstr "حذف  من التفضيلات"
 
@@ -904,19 +966,19 @@ msgid "&Play audio"
 msgstr "&شغل  مقطع صوتي"
 
 #: ../src\gui\buffers\menus.py:26 ../src\gui\buffers\menus.py:75
-#: ../src\gui\main.py:94
+#: ../src\gui\main.py:99
 msgid "&Show tweet"
 msgstr "إظهار التغريدة"
 
 #: ../src\gui\buffers\menus.py:29 ../src\gui\buffers\menus.py:55
 #: ../src\gui\buffers\menus.py:78 ../src\gui\buffers\menus.py:92
-#: ../src\gui\buffers\menus.py:115
+#: ../src\gui\buffers\menus.py:115 ../src\gui\buffers\menus.py:132
 msgid "&Copy to clipboard"
 msgstr "&إنسخ إلى الحافظة"
 
 #: ../src\gui\buffers\menus.py:32 ../src\gui\buffers\menus.py:58
 #: ../src\gui\buffers\menus.py:81 ../src\gui\buffers\menus.py:95
-#: ../src\gui\main.py:98
+#: ../src\gui\main.py:103
 msgid "&Delete"
 msgstr "حذف"
 
@@ -937,17 +999,25 @@ msgstr "&إظهر الحدث"
 msgid "&Mention"
 msgstr "&إشارة"
 
-#: ../src\gui\buffers\menus.py:106 ../src\gui\main.py:123
+#: ../src\gui\buffers\menus.py:106 ../src\gui\main.py:128
 msgid "&View lists"
 msgstr "عرض القوائم"
 
-#: ../src\gui\buffers\menus.py:109 ../src\gui\main.py:125
+#: ../src\gui\buffers\menus.py:109 ../src\gui\main.py:130
 msgid "Show user &profile"
 msgstr "إظهار الملف الشخصي للمستخدم"
 
 #: ../src\gui\buffers\menus.py:112
 msgid "&Show user"
 msgstr "&إظهر المستخدمين"
+
+#: ../src\gui\buffers\menus.py:126
+msgid "&Tweet about this trend"
+msgstr ""
+
+#: ../src\gui\buffers\menus.py:129
+msgid "&Show item"
+msgstr ""
 
 #: ../src\gui\buffers\panels.py:28
 msgid "Announce"
@@ -973,7 +1043,7 @@ msgstr "غرد عن هذاالأمر المتداول "
 msgid "Do you really want to delete this buffer?"
 msgstr "هل أنت متأكد من رغبتك بإزالة هذه الصفحة"
 
-#: ../src\gui\buffers\trends.py:156
+#: ../src\gui\buffers\trends.py:150
 msgid ""
 "Do you really want to empty this buffer? It's items will be removed from the "
 "list"
@@ -993,23 +1063,27 @@ msgstr "اللغة"
 msgid "Set the autocomplete function"
 msgstr "إضبط خاصية التكملة الأوتوماتيكية"
 
-#: ../src\gui\dialogs\configuration.py:56
+#: ../src\gui\dialogs\configuration.py:55
 msgid "ask before exiting TwBlue?"
 msgstr "إسأل قبل الخروج من البرنامج؟"
 
-#: ../src\gui\dialogs\configuration.py:59
+#: ../src\gui\dialogs\configuration.py:58
+msgid "Use invisible interface's keyboard shorcuts on the GUI"
+msgstr ""
+
+#: ../src\gui\dialogs\configuration.py:61
 msgid "Relative times"
 msgstr "أوقات نسبية"
 
-#: ../src\gui\dialogs\configuration.py:63
+#: ../src\gui\dialogs\configuration.py:65
 msgid "Activate Sapi5 when any other screen reader is not being run"
 msgstr "تشغيل sapi5 عندما لا يكون أي قارء للشاشة يعمل"
 
-#: ../src\gui\dialogs\configuration.py:66
+#: ../src\gui\dialogs\configuration.py:68
 msgid "Activate the auto-start of the invisible interface"
 msgstr "التشغيل التلقائي لواجهة التطبيق الخفية"
 
-#: ../src\gui\dialogs\configuration.py:70
+#: ../src\gui\dialogs\configuration.py:72
 msgid ""
 "API calls when the stream is started (One API call equals to 200 tweetts, "
 "two API calls equals 400 tweets, etc):"
@@ -1017,11 +1091,11 @@ msgstr ""
 "عدد مرات طلبات تويتر في المرة الواحدة. مرة واحدة تعني مئتين تغريدة ومرتين "
 "تعني 400 تغريدة"
 
-#: ../src\gui\dialogs\configuration.py:78
+#: ../src\gui\dialogs\configuration.py:80
 msgid "Items on each API call"
 msgstr "عدد العناصر في كل تحديث"
 
-#: ../src\gui\dialogs\configuration.py:85
+#: ../src\gui\dialogs\configuration.py:87
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning of the "
 "lists while the oldest at the end"
@@ -1029,72 +1103,72 @@ msgstr ""
 "عكس عرض التغريدات بحيث تكون التغريدة الأحدث في بداية القائمة فيما تكةن "
 "التغريدة الأقدم في نهايتها."
 
-#: ../src\gui\dialogs\configuration.py:101
+#: ../src\gui\dialogs\configuration.py:103
 msgid "Show followers"
 msgstr "أظهر قائمة في المتابعين"
 
-#: ../src\gui\dialogs\configuration.py:104
+#: ../src\gui\dialogs\configuration.py:106
 msgid "Show friends"
 msgstr "إظهار قائمة في الأصدقاء"
 
-#: ../src\gui\dialogs\configuration.py:107
+#: ../src\gui\dialogs\configuration.py:109
 msgid "Show favourites"
 msgstr "إظهار قائمة المفضلات"
 
-#: ../src\gui\dialogs\configuration.py:110
+#: ../src\gui\dialogs\configuration.py:112
 msgid "Show blocked users"
 msgstr "إظهر المستخدمين المحذورين"
 
-#: ../src\gui\dialogs\configuration.py:113
+#: ../src\gui\dialogs\configuration.py:115
 msgid "Show muted users"
 msgstr "إظهر المستخدمين المكتومين"
 
-#: ../src\gui\dialogs\configuration.py:116
+#: ../src\gui\dialogs\configuration.py:118
 msgid "Show events"
 msgstr "إظهار الأحداث"
 
-#: ../src\gui\dialogs\configuration.py:126
-#: ../src\gui\dialogs\configuration.py:275
+#: ../src\gui\dialogs\configuration.py:128
+#: ../src\gui\dialogs\configuration.py:277
 msgid "Ignored clients"
 msgstr "التطبيقات التي تم تجاهلها"
 
-#: ../src\gui\dialogs\configuration.py:132
+#: ../src\gui\dialogs\configuration.py:134
 msgid "Add client"
 msgstr "أضف تطبيق"
 
-#: ../src\gui\dialogs\configuration.py:133
+#: ../src\gui\dialogs\configuration.py:135
 msgid "Remove client"
 msgstr "إحذف تطبيق"
 
-#: ../src\gui\dialogs\configuration.py:144
+#: ../src\gui\dialogs\configuration.py:146
 msgid "Add a new ignored client"
 msgstr "إضف تطبيق متجاهل جديد"
 
-#: ../src\gui\dialogs\configuration.py:144
+#: ../src\gui\dialogs\configuration.py:146
 msgid "Enter the name of the client here"
 msgstr "أدخل إسم التطبيق هنا"
 
-#: ../src\gui\dialogs\configuration.py:161
+#: ../src\gui\dialogs\configuration.py:163
 msgid "Volume"
 msgstr "مستوا الصوت"
 
-#: ../src\gui\dialogs\configuration.py:170
+#: ../src\gui\dialogs\configuration.py:172
 msgid "Global mute"
 msgstr "الكتم العام"
 
-#: ../src\gui\dialogs\configuration.py:174
+#: ../src\gui\dialogs\configuration.py:176
 msgid "Output device"
 msgstr "جهاز إخراج الصوت"
 
-#: ../src\gui\dialogs\configuration.py:183
+#: ../src\gui\dialogs\configuration.py:185
 msgid "Input device"
 msgstr "جهاز إدخال الصوت"
 
-#: ../src\gui\dialogs\configuration.py:194
+#: ../src\gui\dialogs\configuration.py:196
 msgid "Sound pack"
 msgstr "حزمة صوت"
 
-#: ../src\gui\dialogs\configuration.py:207
+#: ../src\gui\dialogs\configuration.py:209
 msgid ""
 "If you've got a SndUp account, enter your API Key here. Whether the API Key "
 "is wrong, the App will fail to upload anything to the server. Whether "
@@ -1104,20 +1178,20 @@ msgstr ""
 "خاطئا  فإن التطبيق سيفشل برفع أي شيء إلى الخادم. أما إذا لم يكن لديك حساب "
 "فإن الملفات سترفع بإسم مجهول."
 
-#: ../src\gui\dialogs\configuration.py:220
-#: ../src\gui\dialogs\configuration.py:244
+#: ../src\gui\dialogs\configuration.py:222
+#: ../src\gui\dialogs\configuration.py:246
 msgid "Unlink your Dropbox account"
 msgstr "فك ربط حساب الدروب بوكس."
 
-#: ../src\gui\dialogs\configuration.py:222
-#: ../src\gui\dialogs\configuration.py:239
-#: ../src\gui\dialogs\configuration.py:247
-#: ../src\gui\dialogs\configuration.py:251
-#: ../src\gui\dialogs\configuration.py:258
+#: ../src\gui\dialogs\configuration.py:224
+#: ../src\gui\dialogs\configuration.py:241
+#: ../src\gui\dialogs\configuration.py:249
+#: ../src\gui\dialogs\configuration.py:253
+#: ../src\gui\dialogs\configuration.py:260
 msgid "Link your Dropbox account"
 msgstr "إربط حساب الدروب بوكس الخاص بك."
 
-#: ../src\gui\dialogs\configuration.py:232
+#: ../src\gui\dialogs\configuration.py:234
 msgid ""
 "The authorisation request will be shown on your browser. Copy the code tat "
 "Dropbox will provide and, in the text box that will appear on TW Blue, paste "
@@ -1127,54 +1201,49 @@ msgstr ""
 "وإلصقه في المربع الذي سيظهره TW Blue. هذا الرمز ضروري كي تتمكن من المتابعة. "
 "تحتاج إلى فعل ذلك مرة واحدة فقط."
 
-#: ../src\gui\dialogs\configuration.py:232 ../src\sessionmanager\gui.py:84
+#: ../src\gui\dialogs\configuration.py:234 ../src\sessionmanager\gui.py:84
 msgid "Authorisation"
 msgstr "التحقق"
 
-#: ../src\gui\dialogs\configuration.py:234
+#: ../src\gui\dialogs\configuration.py:236
 msgid "Enter the code here."
 msgstr "إدخل الرمزهنا."
 
-#: ../src\gui\dialogs\configuration.py:234
+#: ../src\gui\dialogs\configuration.py:236
 msgid "Verification code"
 msgstr "رمز التحقق"
 
-#: ../src\gui\dialogs\configuration.py:246
+#: ../src\gui\dialogs\configuration.py:248
 msgid "Error during authorisation. Try again later."
 msgstr ""
 "حدث خطء في السماح. يرجى المحاولة مرة أخرى لاحقا.خطء في الإتصال. الرجاء "
 "المحاولة مرة أخرى لاحقا."
 
-#: ../src\gui\dialogs\configuration.py:246 ../src\gui\main.py:229
-#: ../src\gui\main.py:386 ../src\gui\main.py:722 ../src\gui\main.py:755
-msgid "Error!"
-msgstr "خطء"
-
-#: ../src\gui\dialogs\configuration.py:265
+#: ../src\gui\dialogs\configuration.py:267
 msgid "TW Blue preferences"
 msgstr "خيارات إعداد  TW Blue"
 
-#: ../src\gui\dialogs\configuration.py:269
+#: ../src\gui\dialogs\configuration.py:271 ../src\issueReporter\gui.py:30
 msgid "General"
 msgstr "عام"
 
-#: ../src\gui\dialogs\configuration.py:273
+#: ../src\gui\dialogs\configuration.py:275
 msgid "Show other buffers"
 msgstr "إظهر الصفحات الأخرى"
 
-#: ../src\gui\dialogs\configuration.py:277
+#: ../src\gui\dialogs\configuration.py:279
 msgid "Sound"
 msgstr "الصوت"
 
-#: ../src\gui\dialogs\configuration.py:279
+#: ../src\gui\dialogs\configuration.py:281
 msgid "Audio Services"
 msgstr "خدمات الصوت"
 
-#: ../src\gui\dialogs\configuration.py:282
+#: ../src\gui\dialogs\configuration.py:284
 msgid "Save"
 msgstr "حفظ"
 
-#: ../src\gui\dialogs\configuration.py:285 ../src\gui\dialogs\follow.py:64
+#: ../src\gui\dialogs\configuration.py:287 ../src\gui\dialogs\follow.py:67
 #: ../src\gui\dialogs\message.py:189 ../src\gui\dialogs\message.py:284
 #: ../src\gui\dialogs\message.py:385 ../src\gui\dialogs\message.py:472
 #: ../src\gui\dialogs\search.py:42 ../src\gui\dialogs\show_user.py:42
@@ -1183,35 +1252,35 @@ msgstr "حفظ"
 msgid "Close"
 msgstr "إغلاق"
 
-#: ../src\gui\dialogs\configuration.py:301 ../src\gui\main.py:272
+#: ../src\gui\dialogs\configuration.py:303 ../src\gui\main.py:277
 msgid "Followers"
 msgstr "المتابعين"
 
-#: ../src\gui\dialogs\configuration.py:315
+#: ../src\gui\dialogs\configuration.py:317
 msgid "friends"
 msgstr "الأصدقاء"
 
-#: ../src\gui\dialogs\configuration.py:329
+#: ../src\gui\dialogs\configuration.py:331
 msgid "Favorites"
 msgstr "المفضلات"
 
-#: ../src\gui\dialogs\configuration.py:343 ../src\gui\main.py:290
+#: ../src\gui\dialogs\configuration.py:345 ../src\gui\main.py:295
 msgid "Events"
 msgstr "الأحداث"
 
-#: ../src\gui\dialogs\configuration.py:354 ../src\gui\main.py:282
+#: ../src\gui\dialogs\configuration.py:356 ../src\gui\main.py:287
 msgid "Blocked users"
 msgstr "المستخدمين المحذورين"
 
-#: ../src\gui\dialogs\configuration.py:368 ../src\gui\main.py:286
+#: ../src\gui\dialogs\configuration.py:370 ../src\gui\main.py:291
 msgid "Muted users"
 msgstr "المستخدمين الذين تم كتمهم"
 
-#: ../src\gui\dialogs\configuration.py:428
+#: ../src\gui\dialogs\configuration.py:437
 msgid "Restart TW Blue"
 msgstr "إعادة تشغيل TW Blue"
 
-#: ../src\gui\dialogs\configuration.py:428
+#: ../src\gui\dialogs\configuration.py:437
 msgid ""
 "The application requires to be restarted to save these changes. Press OK to "
 "do it now."
@@ -1219,58 +1288,66 @@ msgstr ""
 "يحتاج التطبيق إلى إعادة التشغيل لحفظ التغيرات. إضغط على زر موافق لتفعل ذلك "
 "الآن."
 
-#: ../src\gui\dialogs\follow.py:33 ../src\gui\dialogs\follow.py:43
+#: ../src\gui\dialogs\follow.py:34 ../src\gui\dialogs\follow.py:44
 #: ../src\keystrokeEditor\gui.py:17
 msgid "Action"
 msgstr "الإجراء"
 
-#: ../src\gui\dialogs\follow.py:44
+#: ../src\gui\dialogs\follow.py:45
 msgid "Follow"
 msgstr "متابعة"
 
-#: ../src\gui\dialogs\follow.py:45
+#: ../src\gui\dialogs\follow.py:46
 msgid "Unfollow"
 msgstr "إلغاء المتابعة"
 
-#: ../src\gui\dialogs\follow.py:46
+#: ../src\gui\dialogs\follow.py:47
 msgid "Mute"
 msgstr "كتم"
 
-#: ../src\gui\dialogs\follow.py:47
+#: ../src\gui\dialogs\follow.py:48
 msgid "Unmute"
 msgstr "ألغاء الكتم"
 
-#: ../src\gui\dialogs\follow.py:48
+#: ../src\gui\dialogs\follow.py:49
 msgid "Block"
 msgstr "حذر"
 
-#: ../src\gui\dialogs\follow.py:49
+#: ../src\gui\dialogs\follow.py:50
 msgid "Unblock"
 msgstr "إلغاء الحذر"
 
-#: ../src\gui\dialogs\follow.py:50
+#: ../src\gui\dialogs\follow.py:51
 msgid "Report as spam"
 msgstr "إبلاغ برسائل غير مرغوب بها"
 
-#: ../src\gui\dialogs\follow.py:61 ../src\gui\dialogs\search.py:40
+#: ../src\gui\dialogs\follow.py:52
+msgid "Ignore tweets from this client"
+msgstr ""
+
+#: ../src\gui\dialogs\follow.py:64 ../src\gui\dialogs\search.py:40
 #: ../src\gui\dialogs\trending.py:50 ../src\gui\dialogs\utils.py:39
 #: ../src\keystrokeEditor\gui.py:76
 msgid "OK"
 msgstr "موافق"
 
-#: ../src\gui\dialogs\follow.py:101
+#: ../src\gui\dialogs\follow.py:104
 msgid "You've muted to %s"
 msgstr "لقد قمت بكتم %s"
 
-#: ../src\gui\dialogs\follow.py:115
+#: ../src\gui\dialogs\follow.py:118
 msgid "You've unmuted to %s"
 msgstr "لقد قمت بإلغاء كتم %s"
+
+#: ../src\gui\dialogs\follow.py:142
+msgid "You can't ignore direct messages"
+msgstr ""
 
 #: ../src\gui\dialogs\lists.py:36
 msgid "Lists manager"
 msgstr "مدير القوائم"
 
-#: ../src\gui\dialogs\lists.py:38 ../src\gui\main.py:306
+#: ../src\gui\dialogs\lists.py:38 ../src\gui\main.py:311
 msgid "Lists"
 msgstr "القوائم"
 
@@ -1318,7 +1395,7 @@ msgstr "تم فتح القائمة"
 msgid "This list is arready opened."
 msgstr "هذه القائمة بالفعل مفتوحة"
 
-#: ../src\gui\dialogs\lists.py:130 ../src\gui\main.py:309
+#: ../src\gui\dialogs\lists.py:130 ../src\gui\main.py:314
 msgid "List for %s"
 msgstr "قوائم %s"
 
@@ -1452,8 +1529,8 @@ msgid "Recipient"
 msgstr "المرسل إليه"
 
 #: ../src\gui\dialogs\message.py:318
-msgid "Mention &to all"
-msgstr "الإشارة &إلى الجميع"
+msgid "Men&tion all"
+msgstr ""
 
 #: ../src\gui\dialogs\message.py:345
 msgid "Tweet - %i characters "
@@ -1599,155 +1676,159 @@ msgstr "حدث ملفك الشخصي"
 msgid "Select an URL"
 msgstr "إختر رابط"
 
-#: ../src\gui\main.py:63
+#: ../src\gui\main.py:66
 msgid "S&witch account"
 msgstr "s&في أي حساب"
 
-#: ../src\gui\main.py:65
+#: ../src\gui\main.py:68
 msgid "&Update profile"
 msgstr "حدث ملفك الشخصي"
 
-#: ../src\gui\main.py:67
+#: ../src\gui\main.py:70
 msgid "&Hide window"
 msgstr "إخفاء  شاشة التطبيق"
 
-#: ../src\gui\main.py:69
+#: ../src\gui\main.py:72
 msgid "&Search"
 msgstr "البحث"
 
-#: ../src\gui\main.py:71
+#: ../src\gui\main.py:74
+msgid "View &trending topics"
+msgstr ""
+
+#: ../src\gui\main.py:76
 msgid "&Lists manager"
 msgstr "مدير القوائم"
 
-#: ../src\gui\main.py:73
+#: ../src\gui\main.py:78
 msgid "Sounds &tutorial"
 msgstr "مُعَلِم الأصوات"
 
-#: ../src\gui\main.py:75
+#: ../src\gui\main.py:80
 msgid "&Edit keystrokes"
 msgstr "حرر مفاتيح الإختصار"
 
-#: ../src\gui\main.py:77
+#: ../src\gui\main.py:82
 msgid "&Preferences"
 msgstr "الخيارات"
 
-#: ../src\gui\main.py:79
+#: ../src\gui\main.py:84
 msgid "E&xit"
 msgstr "الخروج"
 
-#: ../src\gui\main.py:84 ../src\gui\main.py:162
+#: ../src\gui\main.py:89 ../src\gui\main.py:167
 msgid "&Tweet"
 msgstr "تغريدة"
 
-#: ../src\gui\main.py:96
+#: ../src\gui\main.py:101
 msgid "View &address"
 msgstr "عرض &العنوان"
 
-#: ../src\gui\main.py:103
+#: ../src\gui\main.py:108
 msgid "&Follow"
 msgstr "متابعة"
 
-#: ../src\gui\main.py:105
+#: ../src\gui\main.py:110
 msgid "&Unfollow"
 msgstr "إلغاء المتابعة"
 
-#: ../src\gui\main.py:107 ../src\gui\main.py:136
+#: ../src\gui\main.py:112 ../src\gui\main.py:141
 msgid "&Mute"
 msgstr "كتم"
 
-#: ../src\gui\main.py:109
+#: ../src\gui\main.py:114
 msgid "U&nmute"
 msgstr "ألغاء الكتم"
 
-#: ../src\gui\main.py:111
+#: ../src\gui\main.py:116
 msgid "&Report as spam"
 msgstr "إبلاغ برسائل غير مرغوب بها"
 
-#: ../src\gui\main.py:113
+#: ../src\gui\main.py:118
 msgid "&Block"
 msgstr "حذر"
 
-#: ../src\gui\main.py:115
+#: ../src\gui\main.py:120
 msgid "Unb&lock"
 msgstr "إلغاء الحذر"
 
-#: ../src\gui\main.py:117
+#: ../src\gui\main.py:122
 msgid "Direct me&ssage"
 msgstr "رسالة خاصة"
 
-#: ../src\gui\main.py:119
+#: ../src\gui\main.py:124
 msgid "&Add to list"
 msgstr "الإضافة إلى قائمة"
 
-#: ../src\gui\main.py:121
+#: ../src\gui\main.py:126
 msgid "R&emove from list"
 msgstr "حذف من قائمة"
 
-#: ../src\gui\main.py:127
+#: ../src\gui\main.py:132
 msgid "&Timeline"
 msgstr "السياق الزمني"
 
-#: ../src\gui\main.py:129
+#: ../src\gui\main.py:134
 msgid "V&iew favourites"
 msgstr "عرض التفضيلات"
 
-#: ../src\gui\main.py:134
+#: ../src\gui\main.py:139
 msgid "&Load previous items"
 msgstr "&تحميل العناصر السابقة"
 
-#: ../src\gui\main.py:138
+#: ../src\gui\main.py:143
 msgid "&Autoread tweets for this buffer"
 msgstr "التغريدات التلقائية لهذه الصفحة"
 
-#: ../src\gui\main.py:140
+#: ../src\gui\main.py:145
 msgid "&Clear buffer"
 msgstr "مسح التغريدات من الصفحة"
 
-#: ../src\gui\main.py:142
+#: ../src\gui\main.py:147
 msgid "&Remove buffer"
 msgstr "حذف الصفحة"
 
-#: ../src\gui\main.py:147
+#: ../src\gui\main.py:152
 msgid "&Documentation"
 msgstr "دليل المستخدم"
 
-#: ../src\gui\main.py:149
+#: ../src\gui\main.py:154
 msgid "&What's new in this version?"
 msgstr "ما هو الجديد في هذا الإصدار"
 
-#: ../src\gui\main.py:151
+#: ../src\gui\main.py:156
 msgid "&Check for updates"
 msgstr "فحص التحديثات الجديدة"
 
-#: ../src\gui\main.py:153
+#: ../src\gui\main.py:158
 msgid "&Report an error"
 msgstr "إبلغ عن عطل"
 
-#: ../src\gui\main.py:155
+#: ../src\gui\main.py:160
 msgid "TW Blue &website"
 msgstr "موقع TW Blue الإلكتروني"
 
-#: ../src\gui\main.py:157
+#: ../src\gui\main.py:162
 msgid "About &TW Blue"
 msgstr "حول TW Blue"
 
-#: ../src\gui\main.py:161
+#: ../src\gui\main.py:166
 msgid "&Application"
 msgstr "خيارات التطبيق"
 
-#: ../src\gui\main.py:163
+#: ../src\gui\main.py:168
 msgid "&User"
 msgstr "المستخدم"
 
-#: ../src\gui\main.py:164
+#: ../src\gui\main.py:169
 msgid "&Buffer"
 msgstr "الصفحة"
 
-#: ../src\gui\main.py:165
+#: ../src\gui\main.py:170
 msgid "&Help"
 msgstr "المساعدة"
 
-#: ../src\gui\main.py:229
+#: ../src\gui\main.py:234
 msgid ""
 "An error occurred while looking for an update. It may be due to any problem "
 "either on our server or on your DNS servers. Please, try again later."
@@ -1755,213 +1836,203 @@ msgstr ""
 "حدث خطء أثناء البحث عن تحديث. قد يكون هذا ناتج عن مشكلة في خوادمنا أو خادمات "
 "الDNS الخاصة بك. يرجا المحاولة لاحقا."
 
-#: ../src\gui\main.py:249
+#: ../src\gui\main.py:254
 msgid "Home"
 msgstr "الصفحة الرئيسية"
 
-#: ../src\gui\main.py:254
+#: ../src\gui\main.py:259
 msgid "Mentions"
 msgstr "الإشارات"
 
-#: ../src\gui\main.py:257
+#: ../src\gui\main.py:262
 msgid "Direct messages"
 msgstr "الرسائل الخاصة"
 
-#: ../src\gui\main.py:260
+#: ../src\gui\main.py:265
 msgid "Sent"
 msgstr "المرسلات"
 
-#: ../src\gui\main.py:266
+#: ../src\gui\main.py:271
 msgid "Favourites"
 msgstr "التفضيلات"
 
-#: ../src\gui\main.py:278
+#: ../src\gui\main.py:283
 msgid "Friends"
 msgstr "الإصدقاء"
 
-#: ../src\gui\main.py:293
+#: ../src\gui\main.py:298
 msgid "Searches"
 msgstr "البحوث"
 
-#: ../src\gui\main.py:300
+#: ../src\gui\main.py:305
 msgid "Timelines"
 msgstr "الأسيقة  الزمنية"
 
-#: ../src\gui\main.py:303 ../src\gui\main.py:727
+#: ../src\gui\main.py:308 ../src\gui\main.py:747
 msgid "Timeline for %s"
 msgstr "السياق الزمني الخاص ب%s"
 
-#: ../src\gui\main.py:314
+#: ../src\gui\main.py:319
 msgid "Favourites timelines"
 msgstr "السياقات الزمنية للمفضلين"
 
-#: ../src\gui\main.py:317 ../src\gui\main.py:751
+#: ../src\gui\main.py:322 ../src\gui\main.py:771
 msgid "Favourites for %s"
 msgstr "التفضيلات الخاصة ب%s"
 
-#: ../src\gui\main.py:349
+#: ../src\gui\main.py:332 ../src\gui\main.py:1062
+msgid "Trending topics for %s"
+msgstr "المواضيع المتداولة ل %s"
+
+#: ../src\gui\main.py:365
 msgid "Ready"
 msgstr "جاهز"
 
-#: ../src\gui\main.py:376
+#: ../src\gui\main.py:393
 msgid "%s favourites from %s"
 msgstr "%s التفضيلات من %s"
 
-#: ../src\gui\main.py:386
-msgid "Connection error. Try again later."
-msgstr ""
-"خطء في الإتصال, الرجاء المحاولة في وقت أخرحدث خطء في السماح. يرجى المحاولة "
-"مرة أخرى لاحقا.خطء في الإتصال. الرجاء المحاولة مرة أخرى لاحقا."
-
-#: ../src\gui\main.py:429
+#: ../src\gui\main.py:449
 msgid "Streams disconnected. TW Blue will try to reconnect in a minute."
 msgstr "تم قطع الإتصال. سيحاول TW Blue إعادة الإتصال في خلال دقيقة"
 
-#: ../src\gui\main.py:433
+#: ../src\gui\main.py:453
 msgid "Reconnecting streams..."
 msgstr "جاري إعادة الإتصال"
 
-#: ../src\gui\main.py:457
+#: ../src\gui\main.py:477
 msgid "search for %s"
 msgstr "البحث عن %s"
 
-#: ../src\gui\main.py:462
+#: ../src\gui\main.py:482
 msgid "search users for %s"
 msgstr "البحث في المستخدمين عن المستخدم %s"
 
-#: ../src\gui\main.py:474 ../src\gui\main.py:485 ../src\gui\main.py:504
+#: ../src\gui\main.py:494 ../src\gui\main.py:505 ../src\gui\main.py:524
 msgid "Select the user"
 msgstr "إختر المستخدم"
 
-#: ../src\gui\main.py:565
+#: ../src\gui\main.py:584
 msgid "User details"
 msgstr "تفاصيل المستخدم"
 
-#: ../src\gui\main.py:573
+#: ../src\gui\main.py:592
 msgid ""
 "Do you really want to delete this message? It will be eliminated from "
 "Twitter as well."
 msgstr "هل أنت متأكد من رغبة بحذف هذه الرسالة؟ سيتم إزالتها من تويتر."
 
-#: ../src\gui\main.py:590
+#: ../src\gui\main.py:609
 msgid "Do you really want to close TW Blue?"
 msgstr "هل أنت متأكد من رغبتك في إغلاق TW Blue?"
 
-#: ../src\gui\main.py:590 ../src\gui\sysTrayIcon.py:46
+#: ../src\gui\main.py:609 ../src\gui\sysTrayIcon.py:46
 msgid "Exit"
 msgstr "الخروج"
 
-#: ../src\gui\main.py:595
+#: ../src\gui\main.py:614
 msgid "Exiting..."
 msgstr "جاري الخروج..."
 
-#: ../src\gui\main.py:692
+#: ../src\gui\main.py:712
 msgid "Error while adding to favourites."
 msgstr "حدث خطء أثناء الإضافة إلى التفضيلات"
 
-#: ../src\gui\main.py:700
+#: ../src\gui\main.py:720
 msgid "Error while removing from favourites."
 msgstr "حدث خطء أثناء الإزالة من التفضيلات"
 
-#: ../src\gui\main.py:704
+#: ../src\gui\main.py:724
 msgid "Individual timeline"
 msgstr "السياق الزمني الفردي"
 
-#: ../src\gui\main.py:708 ../src\gui\main.py:740
-msgid "The user does not exist"
-msgstr "المستخدم غير موجود"
-
-#: ../src\gui\main.py:714
+#: ../src\gui\main.py:734
 msgid "Existing timeline"
 msgstr "السياق الزمني موجود مسبقا"
 
-#: ../src\gui\main.py:714
+#: ../src\gui\main.py:734
 msgid ""
 "There's currently a timeline for this user. You are not able to open another"
 msgstr "يوجد بالفعل سياق زمني مفتوح خاص بهذا المستخدم. لا يمكن فتح آخر."
 
-#: ../src\gui\main.py:722
+#: ../src\gui\main.py:742
 msgid "This user has no tweets. You can't open a timeline for this user"
 msgstr "هذا المستخدم لا يوجد له أي تغريدات. لا يمكن فتح سياق زمني خاص به."
 
-#: ../src\gui\main.py:736
+#: ../src\gui\main.py:756
 msgid "List of favourites"
 msgstr "إظهار تفضيلاتك"
 
-#: ../src\gui\main.py:746
+#: ../src\gui\main.py:766
 msgid "Existing list"
 msgstr "القوائم الموجودة"
 
-#: ../src\gui\main.py:746
+#: ../src\gui\main.py:766
 msgid ""
 "There's already a list of favourites for this user. You can't create another."
 msgstr "يوجد بالفعل قائمة بالتفضيلات لهذا المستخدم. لا يمكن إنشاء أخرى."
 
-#: ../src\gui\main.py:755
+#: ../src\gui\main.py:775
 msgid ""
 "This user has no favourites. You can't create a list of favourites for this "
 "user."
 msgstr "لا توجد تفضيلات لهذا المستخدم, لا يمكن إنشاء قائمة بتفضيلاته."
 
-#: ../src\gui\main.py:796 ../src\gui\main.py:809
+#: ../src\gui\main.py:816 ../src\gui\main.py:829
 msgid "%s, %s of %s"
 msgstr "%s, %sالخاصة ب%s"
 
-#: ../src\gui\main.py:798 ../src\gui\main.py:811
+#: ../src\gui\main.py:818 ../src\gui\main.py:831
 msgid "%s. Empty"
 msgstr "%s فارغة"
 
-#: ../src\gui\main.py:834
+#: ../src\gui\main.py:868
 msgid "Global mute on"
 msgstr "تم تشغيل الكتم الكلي."
 
-#: ../src\gui\main.py:837
+#: ../src\gui\main.py:871
 msgid "Global mute off"
 msgstr "تم تعطيل الكتم الكلي"
 
-#: ../src\gui\main.py:843
+#: ../src\gui\main.py:877
 msgid "Buffer mute on"
 msgstr "تم تشغيل الكتم الخاص بهذه الصفحة."
 
-#: ../src\gui\main.py:846
+#: ../src\gui\main.py:880
 msgid "Buffer mute off"
 msgstr "تم تعطيل الكتم الخاص بهذه الصفحة."
 
-#: ../src\gui\main.py:852
+#: ../src\gui\main.py:886
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "القراءة التلقائية للتغريدات الجديدة مفعلة لهذه الصفحة."
 
-#: ../src\gui\main.py:855
+#: ../src\gui\main.py:889
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "القراءة التلقائية للتغريدات الجديدة معطلة لهذه الصفحة."
 
-#: ../src\gui\main.py:862
+#: ../src\gui\main.py:896
 msgid "Copied"
 msgstr "تم النسخ"
 
-#: ../src\gui\main.py:876 ../src\gui\main.py:889
+#: ../src\gui\main.py:910 ../src\gui\main.py:923
 msgid "%s"
 msgstr "%s"
 
-#: ../src\gui\main.py:992
+#: ../src\gui\main.py:1026
 msgid "Address"
 msgstr "عنوان"
 
-#: ../src\gui\main.py:994 ../src\gui\main.py:1011
+#: ../src\gui\main.py:1028 ../src\gui\main.py:1045
 msgid "There are no coordinates in this tweet"
 msgstr "لا توجد إحداثيات في هذه التغريدة"
 
-#: ../src\gui\main.py:996 ../src\gui\main.py:1013
+#: ../src\gui\main.py:1030 ../src\gui\main.py:1047
 msgid "There are no results for the coordinates in this tweet"
 msgstr "لا توجد نتائج للإحداثيات التي في هذه التغريدة"
 
-#: ../src\gui\main.py:998 ../src\gui\main.py:1015
+#: ../src\gui\main.py:1032 ../src\gui\main.py:1049
 msgid "Error decoding coordinates. Try again later."
 msgstr "حدث خطء في فكة تشفيرة الإحداثيات. يرجى المحاولة مرة أخرى لاحقا."
-
-#: ../src\gui\main.py:1028
-msgid "Trending topics for %s"
-msgstr "المواضيع المتداولة ل %s"
 
 #: ../src\gui\sysTrayIcon.py:36
 msgid "Preferences"
@@ -1971,13 +2042,130 @@ msgstr "الخيارات"
 msgid "Show / hide"
 msgstr "الإظهار او الإخفاء"
 
-#: ../src\gui\sysTrayIcon.py:42
+#: ../src\gui\sysTrayIcon.py:42 ../src\issueReporter\gui.py:30
 msgid "Documentation"
 msgstr "دليل المستخدم"
 
 #: ../src\gui\sysTrayIcon.py:44
 msgid "Check for updates"
 msgstr "فحص التحديثات الجديدة"
+
+#: ../src\issueReporter\gui.py:30
+msgid "Translation"
+msgstr ""
+
+#: ../src\issueReporter\gui.py:31
+msgid "always"
+msgstr "دائما"
+
+#: ../src\issueReporter\gui.py:31
+msgid "have not tried"
+msgstr ""
+
+#: ../src\issueReporter\gui.py:31
+msgid "random"
+msgstr "عشوائي"
+
+#: ../src\issueReporter\gui.py:31
+msgid "sometimes"
+msgstr "بعض الأحيان"
+
+#: ../src\issueReporter\gui.py:31
+msgid "unable to duplicate"
+msgstr "غير قادر على الإعادة"
+
+#: ../src\issueReporter\gui.py:32
+msgid "block"
+msgstr "إحذر"
+
+#: ../src\issueReporter\gui.py:32
+msgid "crash"
+msgstr "توقف عن العمل"
+
+#: ../src\issueReporter\gui.py:32
+msgid "feature"
+msgstr "ميزة"
+
+#: ../src\issueReporter\gui.py:32
+msgid "major"
+msgstr "مهم جدا"
+
+#: ../src\issueReporter\gui.py:32
+msgid "minor"
+msgstr "متوسط الأهمية"
+
+#: ../src\issueReporter\gui.py:32
+msgid "text"
+msgstr "النص"
+
+#: ../src\issueReporter\gui.py:32
+msgid "trivial"
+msgstr "قليل الأهمية"
+
+#: ../src\issueReporter\gui.py:32
+msgid "tweak"
+msgstr "تعديل"
+
+#: ../src\issueReporter\gui.py:34
+msgid "Report an error"
+msgstr "إبلغ عن عطل"
+
+#: ../src\issueReporter\gui.py:37
+msgid "Select a category"
+msgstr "إختر الفئة"
+
+#: ../src\issueReporter\gui.py:46
+msgid ""
+"Briefly describe what happened. You will be able to thoroughly explain it "
+"later"
+msgstr "إوصف ما حدث بإختصار. ستكون قادر على تفسيره لاحقا."
+
+#: ../src\issueReporter\gui.py:56
+msgid "Here, you can describe the bug in detail"
+msgstr "هنا بإمكانك وصف العطل بالتفاصيل"
+
+#: ../src\issueReporter\gui.py:66
+msgid "how often does this bug happen?"
+msgstr "كم يتكرر هذا الخطء؟"
+
+#: ../src\issueReporter\gui.py:74
+msgid "Select the importance that you think this bug has"
+msgstr "إختر الأهمية التي تعتقد أنها أنسب لهذا الخطء"
+
+#: ../src\issueReporter\gui.py:82
+msgid ""
+"I know that the TW Blue bug system will get my Twitter username to contact "
+"me and fix the bug quickly"
+msgstr ""
+"انا أعلم بأن نظام الإعلام عن الأخطاء في هذا البرنامج سوف يسجل إسمي في تويتر "
+"لكي يسهل في حل المشكلة."
+
+#: ../src\issueReporter\gui.py:85
+msgid "Send report"
+msgstr "إرسال بلاغ العطل"
+
+#: ../src\issueReporter\gui.py:98
+msgid "You must fill out both fields"
+msgstr "يجب تعبئة كِلا الحقلين"
+
+#: ../src\issueReporter\gui.py:101
+msgid ""
+"You need to mark the checkbox to provide us your twitter username to contact "
+"to you if is necessary."
+msgstr ""
+"يجب عليك تحديد هذا الصندوق  إذا أردت أن يتصل بك فريق البرنامج لحل المشكلة."
+
+#: ../src\issueReporter\gui.py:120
+msgid ""
+"Thanks for reporting this bug! In future versions, you may be able to find "
+"it in the changes list. You've reported the bug number %i"
+msgstr ""
+"شكرا على الإبلاغ بهذا العطل. قد يتم إصلاحه فيي إصدارات قادمة. لقد قمت "
+"بالإبلاغ بالعطل رقم %i"
+
+#: ../src\issueReporter\gui.py:120
+msgid "reported"
+msgstr "تم التبليغ"
 
 #: ../src\keystrokeEditor\constants.py:4
 msgid "Go up up on the current list"
@@ -2140,6 +2328,18 @@ msgstr "إظهار القوائم لمستخدم محدد"
 #: ../src\keystrokeEditor\constants.py:44
 msgid "loads previous items to any buffer"
 msgstr "يحمل العناصر السابقة في أي صفحة"
+
+#: ../src\keystrokeEditor\constants.py:45
+msgid "Get location of any tweet"
+msgstr ""
+
+#: ../src\keystrokeEditor\constants.py:46
+msgid "Displays the tweet's location in a dialog"
+msgstr ""
+
+#: ../src\keystrokeEditor\constants.py:47
+msgid "Creates a buffer for displaying trends for a desired place"
+msgstr ""
 
 #: ../src\keystrokeEditor\gui.py:10
 msgid "Keystroke editor"
@@ -2640,90 +2840,13 @@ msgstr ""
 "الإصدار الجديد من TW Blue تم تحميله وتنصيبه. إضغط على زر موافق لبدء تشغيل "
 "التطبيق."
 
-#~ msgid "always"
-#~ msgstr "دائما"
+#~ msgid "Mention &to all"
+#~ msgstr "الإشارة &إلى الجميع"
 
-#~ msgid "random"
-#~ msgstr "عشوائي"
-
-#~ msgid "sometimes"
-#~ msgstr "بعض الأحيان"
-
-#~ msgid "unable to duplicate"
-#~ msgstr "غير قادر على الإعادة"
-
-#~ msgid "block"
-#~ msgstr "إحذر"
-
-#~ msgid "crash"
-#~ msgstr "توقف عن العمل"
-
-#~ msgid "feature"
-#~ msgstr "ميزة"
-
-#~ msgid "major"
-#~ msgstr "مهم جدا"
-
-#~ msgid "minor"
-#~ msgstr "متوسط الأهمية"
-
-#~ msgid "text"
-#~ msgstr "النص"
-
-#~ msgid "trivial"
-#~ msgstr "قليل الأهمية"
-
-#~ msgid "tweak"
-#~ msgstr "تعديل"
-
-#~ msgid "Report an error"
-#~ msgstr "إبلغ عن عطل"
-
-#~ msgid "Select a category"
-#~ msgstr "إختر الفئة"
-
-#~ msgid ""
-#~ "Briefly describe what happened. You will be able to thoroughly explain it "
-#~ "later"
-#~ msgstr "إوصف ما حدث بإختصار. ستكون قادر على تفسيره لاحقا."
-
-#~ msgid "Here, you can describe the bug in detail"
-#~ msgstr "هنا بإمكانك وصف العطل بالتفاصيل"
-
-#~ msgid "how often does this bug happen?"
-#~ msgstr "كم يتكرر هذا الخطء؟"
-
-#~ msgid "Select the importance that you think this bug has"
-#~ msgstr "إختر الأهمية التي تعتقد أنها أنسب لهذا الخطء"
-
-#~ msgid ""
-#~ "I know that the TW Blue bug system will get my Twitter username to "
-#~ "contact me and fix the bug quickly"
+#~ msgid "Connection error. Try again later."
 #~ msgstr ""
-#~ "انا أعلم بأن نظام الإعلام عن الأخطاء في هذا البرنامج سوف يسجل إسمي في "
-#~ "تويتر لكي يسهل في حل المشكلة."
-
-#~ msgid "Send report"
-#~ msgstr "إرسال بلاغ العطل"
-
-#~ msgid "You must fill out both fields"
-#~ msgstr "يجب تعبئة كِلا الحقلين"
-
-#~ msgid ""
-#~ "You need to mark the checkbox to provide us your twitter username to "
-#~ "contact to you if is necessary."
-#~ msgstr ""
-#~ "يجب عليك تحديد هذا الصندوق  إذا أردت أن يتصل بك فريق البرنامج لحل المشكلة."
-
-#~ msgid ""
-#~ "Thanks for reporting this bug! In future versions, you may be able to "
-#~ "find it in the changes list. You've reported the bug number %i"
-#~ msgstr ""
-#~ "شكرا على الإبلاغ بهذا العطل. قد يتم إصلاحه فيي إصدارات قادمة. لقد قمت "
-#~ "بالإبلاغ بالعطل رقم %i"
-
-#~ msgid "reported"
-#~ msgstr "تم التبليغ"
+#~ "خطء في الإتصال, الرجاء المحاولة في وقت أخرحدث خطء في السماح. يرجى "
+#~ "المحاولة مرة أخرى لاحقا.خطء في الإتصال. الرجاء المحاولة مرة أخرى لاحقا."
 
 #~ msgid "Error while reporting"
 #~ msgstr "حدث خطء أثناء التبليغ عن العطل"

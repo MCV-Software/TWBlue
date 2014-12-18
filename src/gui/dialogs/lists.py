@@ -165,6 +165,14 @@ class userListViewer(listViewer):
    self.db.settings["lists"].append(list)
   except TwythonError as e:
    output.speak("error %s: %s" % (e.status_code, e.msg))
+ def onDelete(self, event=None):
+  list_id = self.lists[self.lista.get_selected()]["id"]
+  try:
+   list = self.twitter.twitter.unsubscribe_from_list(list_id=list_id)
+   item = utils.find_item(list["id"], self.db.settings["lists"])
+   self.db.settings["lists"].remove(list)
+  except TwythonError as e:
+   output.speak("error %s: %s" % (e.msg))
 
 class createListDialog(wx.Dialog):
 

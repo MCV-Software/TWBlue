@@ -145,6 +145,7 @@ class follow(wx.Dialog):
     client = re.sub(r"(?s)<.*?>", "", tweet["source"])
    if client not in config.main["twitter"]["ignored_clients"]:
     config.main["twitter"]["ignored_clients"].append(client)
+   self.Destroy()
 
  def setup_default(self, default):
   if default == "follow":

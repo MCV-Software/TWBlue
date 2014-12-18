@@ -88,8 +88,7 @@ class trendsPanel(wx.Panel):
   if not hasattr(self, "name"):
    self.name = data[0]["locations"][0]["name"]
   self.trends = data[0]["trends"]
-  # We need to get the trends sound, so the next line is commented.
-#  sound.player.play(self.sound)
+  sound.player.play(self.sound)
   return len(self.trends)
 
  def get_more_items(self):
