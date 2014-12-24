@@ -18,6 +18,8 @@
 ############################################################
 import wx
 import gui.dialogs
+import arrow
+import languageHandler
 import twitter
 import webbrowser
 import config
@@ -28,7 +30,6 @@ import output
 import platform
 import datetime
 import menus
-from twitter import prettydate
 from multiplatform_widgets import widgets
 from mysc import event
 from mysc.thread_utils import call_threaded
@@ -150,9 +151,12 @@ class basePanel(wx.Panel):
   if config.main["general"]["relative_times"] == True:
    # On windows we need only put the new date on the column, but under linux and mac it isn't possible.
    if self.system == "Windows":
-    original_date = datetime.datetime.strptime(self.db.settings[self.name_buffer][self.list.get_selected()]["created_at"], "%a %b %d %H:%M:%S +0000 %Y")
-    date = original_date-datetime.timedelta(seconds=-self.db.settings["utc_offset"])
-    ts = prettydate(original_date)
+#    self.db.settings[self.name_buffer][self.list.get_selected()]["created_at"] = tweet["created_at"].replace("+0000 ", "")
+    original_date = arrow.get(self.db.settings[self.name_buffer][self.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
+#    original_date = datetime.datetime.strptime(self.db.settings[self.name_buffer][self.list.get_selected()]["created_at"], "%a %b %d %H:%M:%S +0000 %Y")
+#    date = original_date-datetime.timedelta(seconds=-self.db.settings["utc_offset"])
+    ts = original_date.humanize(locale=languageHandler.getLanguage())
+#	prettydate(original_date)
     self.list.list.SetStringItem(self.list.get_selected(), 2, ts)
    else:
     self.list.list.SetString(self.list.get_selected(), " ".join(self.compose_function(self.db.settings[self.name_buffer][self.list.get_selected()], self.db)))

@@ -350,7 +350,7 @@ class mainFrame(wx.Frame):
    if i == self.nb.GetPageCount() and deleted > 0:
     i = i-1
     deleted = deleted-1
-   log.debug("Starting stream for %s..." % self.nb.GetPage(i).name_buffer)
+#   log.debug(u"Starting stream for %s..." % self.nb.GetPage(i).name_buffer)
    info_event = event.infoEvent(event.EVT_STARTED, 1)
    try:
     if self.nb.GetPage(i).type == "search":

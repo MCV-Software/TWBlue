@@ -22,20 +22,21 @@ A twitter accessible, easy of use and cross platform application."""
 import sys
 from StringIO import StringIO
 #redirect the original stdout and stderr
-stdout=sys.stdout
-stderr=sys.stderr
+#stdout=sys.stdout
+#stderr=sys.stderr
 # Set a StringIO object as stdout and stderr to avoid problems using the installed version.
-sys.stdout = StringIO()
-sys.stderr = StringIO()
+#sys.stdout = StringIO()
+#sys.stderr = StringIO()
 import wx
 import os
 ssmg = None
 import gui
+import wxLangs
 import paths
 import config
 import commandline
 import platform
-from logger import logger as logging
+#from logger import logger as logging
 from sessionmanager import manager
 from sessionmanager import gui as smGUI
 manager.setup()
@@ -44,15 +45,15 @@ import output
 import sound
 import languageHandler
 #close the memory buffers for stdout and stderr
-sys.stdout.close()
-sys.stderr.close()
+#sys.stdout.close()
+#sys.stderr.close()
 #if it's a binary version
-if hasattr(sys, 'frozen'):
- sys.stderr = open(paths.logs_path("stderr.log"), 'w')
- sys.stdout = open(paths.logs_path("stdout.log"), 'w')
-else:
- sys.stdout=stdout
- sys.stderr=stderr
+#if hasattr(sys, 'frozen'):
+# sys.stderr = open(paths.logs_path("stderr.log"), 'w')
+# sys.stdout = open(paths.logs_path("stdout.log"), 'w')
+#else:
+# sys.stdout=stdout
+# sys.stderr=stderr
    
 app = wx.App()
 #app = wx.App(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
@@ -83,9 +84,11 @@ else:
  app.Exit()
  ### I should uncomment this
 #if platform.system() != "Windows":
-# local = wx.Locale(wx.LANGUAGE_DEFAULT)
-# local.AddCatalogLookupPathPrefix(paths.locale_path())
-# local.AddCatalog("twblue")
+if languageHandler.getLanguage() != "en":
+ local = wx.Locale(wxLangs.getLanguage())
+ local.AddCatalogLookupPathPrefix(paths.locale_path())
+ local.AddCatalog("twblue")
+#languageHandler.setLanguage(lang)
 #ap = app(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
 #wx.CallLater(10, start)
 app.MainLoop()

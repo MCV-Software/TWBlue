@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from twitter import compose, utils
+from twitter.compose import compose_event
+from twitter import utils
 from twython import TwythonStreamer
 import sound
 from mysc import event
@@ -157,7 +158,7 @@ class streamer(TwythonStreamer):
      if list != None: self.db.settings["lists"].pop(list)
      self.parent.remove_list(data["target_object"]["id"])
     if config.main["other_buffers"]["show_events"] == True:
-     evento = compose.compose_event(data, self.db.settings["user_name"])
+     evento = compose_event(data, self.db.settings["user_name"])
      tweet_event = event.event(event.EVT_OBJECT, 1)
      tweet_event.SetItem(evento)
      text = evento[1]
