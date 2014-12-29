@@ -24,7 +24,7 @@ This document describes how to run tw blue from source, and, after that, how to 
 ### Required dependencies.
 
 Although most dependencies can be found in the windows-dependencies directory, we provide links to their official websites. If you are cloning with git, don't forget to initialize and update the submodules to get the windows-dependencies folder. You can use these two commands to perform this task from git bash:  
-    git submodule init
+    git submodule init  
     git submodule update
 
 	All the dependencies provided in this folder are prebuilt. If you want to build them from source, you will need Microsoft visual Studio 2008.
@@ -65,6 +65,7 @@ setuptools install a script, called easy_install. You can find it in the python 
 * future
 * pygeocoder
 * suds
+* arrow
 * markdown
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
