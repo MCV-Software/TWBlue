@@ -21,7 +21,6 @@
 from setuptools import setup, find_packages
 import py2exe
 import os
-import gettext, gettext_windows; gettext_windows.setup_env_windows()
 import application
 import platform
 from glob import glob

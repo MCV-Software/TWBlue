@@ -53,6 +53,7 @@ from keystrokeEditor import gui as keystrokeEditorGUI
 log = original_logger.getLogger("gui.main")
 
 geocoder = pygeocoder.Geocoder()
+function_reconnect_streams_running = False
 class mainFrame(wx.Frame):
  """ Main class of the Frame. This is the Main Window."""
 
@@ -439,25 +440,29 @@ class mainFrame(wx.Frame):
 #   self.stream2.disconnect()
 
  def check_stream_up(self):
+  global function_reconnect_streams_running
+  if function_reconnect_streams_running == True: return
   if not hasattr(self, "stream") and not hasattr(self, "stream2"):
+   function_reconnect_streams_running = True
    self.init(run_streams=True)
    return
-  try:
-   urllib2.urlopen("http://74.125.228.231", timeout=5)
-  except urllib2.URLError:
-   if self.stream.connected == True: self.stream.disconnect()
-   if hasattr(self, "stream2") and self.stream2.connected: self.stream2.disconnect()
-   if config.main["general"]["announce_stream_status"] == True: output.speak(_(u"Streams disconnected. TW Blue will try to reconnect in a minute."))
-   return
-  if self.stream.connected == False:
-   del self.stream
-   if config.main["general"]["announce_stream_status"] == True: output.speak(_(u"Reconnecting streams..."))
-   call_threaded(self.init)
-   self.get_home()
-  if hasattr(self, "stream2") and self.stream2.connected == False:
-   log.debug("Trying reconnects the timelines stream...")
-   del self.stream2
-   self.get_tls()
+#  try:
+#   urllib2.urlopen("http://74.125.228.231", timeout=5)
+#  except urllib2.URLError:
+#   if self.stream.connected == True: self.stream.disconnect()
+#   if hasattr(self, "stream2") and self.stream2.connected: self.stream2.disconnect()
+#   if config.main["general"]["announce_stream_status"] == True: output.speak(_(u"Streams disconnected. TW Blue will try to reconnect in a minute."))
+#   return
+#  if self.stream.connected == False:
+#   del self.stream
+#   if config.main["general"]["announce_stream_status"] == True: output.speak(_(u"Reconnecting streams..."))
+#   call_threaded(self.init)
+#   self.get_home()
+#  if hasattr(self, "stream2") and self.stream2.connected == False:
+#   log.debug("Trying reconnects the timelines stream...")
+#   del self.stream2
+#   self.get_tls()
+  function_reconnect_streams_running = False
 
  ### Events
 

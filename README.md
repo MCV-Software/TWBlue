@@ -23,49 +23,83 @@ This document describes how to run tw blue from source, and, after that, how to 
 
 ### Required dependencies.
 
-The following dependencies need to be installed in your system. If you want to build tw blue for 32-bit versions of Windows, you will find the required software in the x86 folder, inside windows-dependencies directory. If you want to build tw blue for 64-bit windows versions, use the x64 folder.
+Although most dependencies can be found in the windows-dependencies directory, we provide links to their official websites. If you are cloning with git, don't forget to initialize and update the submodules to get the windows-dependencies folder. You can use these two commands to perform this task from git bash:  
+    git submodule init
+    git submodule update
 
-In this document you will also find links to each dependency website.
+	All the dependencies provided in this folder are prebuilt. If you want to build them from source, you will need Microsoft visual Studio 2008.
 
-If you want to build manually some of the following libraries, you need Microsoft Visual studio 2008 professional.
+#### Dependencies packaged in windows installers
 
-Dependencies list:
+* [Python,](http://python.org) version 2.7.9  
+If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
+* [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2
+* [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 219
+* [Pycurl](http://pycurl.sourceforge.net) 7.19.5 for Python 2.7: [32-bit downloads,](https://pypi.python.org/pypi/pycurl/7.19.3.1) [64-bit downloads](http://www.lfd.uci.edu/~gohlke/pythonlibs/)
+* [PyEnchand,](http://pythonhosted.org/pyenchant/) version 1.6.5.  
+x64 version has been built by TW Blue developers, so you only will find it in windows-dependencies folder
 
-* [Python,](http://python.org) version 2.7.8
-* [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.0 (2.9.5 to avoid problems in windows xp)
-* [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 218
-* [ConfigObj,](http://www.voidspace.org.uk/python/configobj.html) version 4.7.2
-* [oauthlib](https://pypi.python.org/pypi/oauthlib/0.6.1) 0.6.1
-* [Pycurl](http://pycurl.sourceforge.net) 7.19.3.1 for Python 2.7: [32-bit downloads,](https://pypi.python.org/pypi/pycurl/7.19.3.1) [64-bit downloads](http://www.lfd.uci.edu/~gohlke/pythonlibs/)
-* [Requests](http://www.python-requests.org/en/latest/) 2.2.1: [Recommended download site](https://pypi.python.org/pypi/requests/2.2.1)
-* [Requests-oauthlib](https://github.com/requests/requests-oauthlib) 0.4.0
-* [Suds](https://fedorahosted.org/suds) 0.4: [Recommended download site](https://pypi.python.org/pypi/suds/0.4)
-* [Pygeocoder: ](http://code.xster.net/pygeocoder/wiki/Home) You can install this dependency by using pip or easy_install.
+The windows installers are available only in the windows-dependencies folder
+
+To build a binary version:
+
+* [Py2exe](http://www.sourceforge.net/projects/py2exe/) for Python 2.7, version 0.6.9
+
+#### Dependencies that must be installed using easy_install
+
+setuptools install a script, called easy_install. You can find it in the python scripts directory. To install packages using easy_install, you have to navigate to the scripts directory using a command prompt, for example:
+
+    cd C:\python27x64\scripts
+
+	You can also add the scripts folder to your path environment variable.
+
+	After that, run the following command to install a package, replacing packagename with the names listed below:
+
+    easy_install -Z package
+
+	The -z switch unzips the package, instead of installing it compressed. The following packages need to be installed:
+
+* dropbox
+* configobj
+* requests-oauthlib
+* future
+* pygeocoder
+* suds
+* markdown
+
+easy_install will automatically get the additional libraries that these packages need to work properly.
+
+#### Other dependencies
+
+These dependencies are located in the windows-dependencies directory. You don't need to install or modify them.
+
 * Bootstrap 1.2.1: included in dependencies directory.  
-Copy the bootstrap.exe file corresponding to the desired platform in the windows folder, inside this repository.  
 This dependency has been built using pure basic 4.61. Its source can be found at http://hg.q-continuum.net/updater
 * [oggenc2.exe,](http://www.rarewares.org/ogg-oggenc.php) version 2.87  
 Copy the oggenc2.exe file corresponding to the desired platform in the windows folder, inside this repository.
-* Visual C++ 2008 dlls, included in vcredist-x86.7z and vcredist-x64.7z:  
-Extract the file corresponding to your platform to the src folder.
+* Microsoft Visual c++ 2008 redistributable dlls.
 
-If you want to build the binary version:
+#### Dependencies required to build the installer
 
-* [Py2exe](http://www.sourceforge.net/projects/py2exe/) for Python 2.7, version 0.6.9
-* [Setuptools](https://pypi.python.org/pypi/setuptools) 2.1
-- [7-zip](http://7-zip.org)
+* [NSIS unicode,](http://www.scratchpaper.com/) version 2.46.5
 
-### How to run tw blue from source
+### Running TW Blue from source
 
-Run the file main.py located in the src folder. If you have a x64 system, you can install both 32-bit and 64-bit python versions, and test tw blue in these platforms.
+Now that you have installed all these packages, you can run TW Blue from source using a command from. Navigate to the src directory into the repo, and type the following command:
 
-### How to build a binary version
+    python main.py
 
-You must type the following command. In this example, we will assume that python is the path to the python executable (x86 or x64) and that you have navigated to the src directory:
+	If necesary, change the first part of the command to reflect where is your python executable. You can run TW Blue using python x86 and x64
+
+### Building a binary version
+
+A binary version doesn't need python and the other dependencies to run, it's the same version that you will find in TW Blue website if you download the zip files.
+
+To build it, run the following command from the src folder:
 
     python setup.py py2exe
 
-	You will find the binary version in the dist directory. You can compress this folder using 7-zip and you will get the zip version.
+	You will find the binaries in the dist directory.
 
 ### How to generate a translation template
 
