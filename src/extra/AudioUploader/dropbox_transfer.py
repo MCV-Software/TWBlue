@@ -3,13 +3,11 @@ import threading
 import time
 import os
 import exceptions
-import wx
 import dropbox
-import config
-from mysc import event
 from utils import *
 from dropbox.rest import ErrorResponse
 from StringIO import StringIO
+from pubsub import pub
 
 class UnauthorisedError(exceptions.Exception):
  def __init__(self, *args, **kwargs):
@@ -39,10 +37,11 @@ class newChunkedUploader(dropbox.client.ChunkedUploader):
       self.offset = reply['offset']
 
 class dropboxLogin(object):
- def __init__(self):
+ def __init__(self, config):
   self.logged = False
   self.app_key = "c8ikm0gexqvovol"
   self.app_secret = "gvvi6fzfecooast"
+  self.config = config
 
  def get_url(self):
   self.flow = dropbox.client.DropboxOAuth2FlowNoRedirect(self.app_key, self.app_secret)
@@ -50,18 +49,17 @@ class dropboxLogin(object):
 
  def authorise(self, code):
   access_token, user_id = self.flow.finish(code)
-  config.main["services"]["dropbox_token"] = access_token
+  config["services"]["dropbox_token"] = access_token
   self.logged = True
 
 class dropboxUploader(object):
- def __init__(self, filename, completed_callback, wxDialog, short_url=False):
-  if config.main["services"]["dropbox_token"] != "":
-   self.client = dropbox.client.DropboxClient(config.main["services"]["dropbox_token"])
+ def __init__(self, config, filename, completed_callback, short_url=False):
+  if config["services"]["dropbox_token"] != "":
+   self.client = dropbox.client.DropboxClient(config["services"]["dropbox_token"])
   else:
    raise UnauthorisedError("You need authorise TWBlue")
   self.filename = filename
   self.short_url = short_url
-  self.wxDialog = wxDialog
   self.file = open(self.filename, "rb")
   self.file_size = os.path.getsize(self.filename)
   self.uploader = newChunkedUploader(client=self.client, file_obj=self.file, length=self.file_size, callback=self.process)
@@ -94,9 +92,7 @@ class dropboxUploader(object):
    progress["eta"] = (progress["total"] - progress["current"]) / self.transfer_rate
   else:
    progress["eta"] = 0
-  info = event.event(event.EVT_OBJECT, 1)
-  info.SetItem(progress)
-  wx.PostEvent(self.wxDialog, info)
+  pub.sendMessage("uploading", data=progress)
 
  def perform_threaded(self):
   self.background_thread = threading.Thread(target=self.perform_transfer)
@@ -109,5 +105,6 @@ class dropboxUploader(object):
    self.completed_callback()
 
  def get_url(self):
-  original = "%s" % (self.client.share(os.path.basename(self.filename), False)["url"])
-  return original.replace("dl=0", "dl=1")
+  original = "%s" % (self.client.media(os.path.basename(self.filename))["url"])
+  return original
+#  .replace("dl=0", "dl=1")

@@ -3,16 +3,19 @@ import widgetUtils
 import output
 import url_shortener
 import sound
+from pubsub import pub
 from wxUI.dialogs import message, urlList
 from extra import translator, SpellChecker
+from extra.AudioUploader import audioUploader
 from twitter import utils
 
 class tweet(object):
  def __init__(self, session):
   super(tweet, self).__init__()
+  self.session = session
   self.message = message.tweet(_(u"Write the tweet here"), _(u"tweet - 0 characters"), "")
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
-#  widgetUtils.connect_event(self.message.attach, widgetUtils.BUTTON_PRESSED, self.attach)
+  widgetUtils.connect_event(self.message.attach, widgetUtils.BUTTON_PRESSED, self.attach)
   widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
   widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
   widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
@@ -77,3 +80,15 @@ class tweet(object):
   checker = SpellChecker.spellchecker.spellChecker(text, "")
   if hasattr(checker, "fixed_text"):
    self.message.set_text(checker.fixed_text)
+
+ def attach(self, *args, **kwargs):
+  def completed_callback():
+   url = dlg.uploaderFunction.get_url()
+   pub.unsubscribe(dlg.uploaderDialog.update, "uploading")
+   dlg.uploaderDialog.destroy()
+   if url != 0:
+    self.message.set_text(self.message.get_text()+url+" #audio")
+   else:
+    output.speak(_(u"Unable to upload the audio"))
+   dlg.cleanup()
+  dlg = audioUploader.audioUploader(self.session.settings, completed_callback)

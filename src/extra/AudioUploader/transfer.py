@@ -4,15 +4,12 @@ import sys
 import threading
 import time
 import json
-import wx
-from mysc import event
 from utils import *
-
-#__all__ = ['TransferDialog', 'DownloadDialog', 'UploadDialog']
+from pubsub import pub
 
 class Transfer(object):
 
- def __init__(self, url=None, filename=None, follow_location=True, completed_callback=None, verbose=False, wxDialog=None, *args, **kwargs):
+ def __init__(self, url=None, filename=None, follow_location=True, completed_callback=None, verbose=False, *args, **kwargs):
   self.url = url
   self.filename = filename
   self.curl = pycurl.Curl()
@@ -26,7 +23,6 @@ class Transfer(object):
   self.curl.setopt(self.curl.HTTP_VERSION, self.curl.CURL_HTTP_VERSION_1_0)
   self.curl.setopt(self.curl.FOLLOWLOCATION, int(follow_location))
   self.curl.setopt(self.curl.VERBOSE, int(verbose))
-  self.wxDialog = wxDialog
   super(Transfer, self).__init__(*args, **kwargs)
 
  def elapsed_time(self):
@@ -52,15 +48,13 @@ class Transfer(object):
    progress["eta"] = (progress["total"] - progress["current"]) / self.transfer_rate
   else:
    progress["eta"] = 0
-  info = event.event(event.EVT_OBJECT, 1)
-  info.SetItem(progress)
-  wx.PostEvent(self.wxDialog, info)
+  pub.sendMessage("uploading", data=progress)
 
  def perform_transfer(self):
   self.start_time = time.time()
   self.curl.perform()
   self.curl.close()
-  wx.CallAfter(self.complete_transfer)
+  self.complete_transfer()
 
  def perform_threaded(self):
   self.background_thread = threading.Thread(target=self.perform_transfer)

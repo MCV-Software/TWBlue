@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 import wx
-from mysc import event
 from utils import *
+import widgetUtils
 
-__all__ = ['TransferDialog', 'DownloadDialog', 'UploadDialog']
-
-class TransferDialog(wx.Dialog):
+class TransferDialog(widgetUtils.BaseDialog):
 
  def __init__(self, filename, *args, **kwargs):
-  super(TransferDialog, self).__init__(*args, **kwargs)
+  super(TransferDialog, self).__init__(parent=None, id=wx.NewId(), *args, **kwargs)
   self.pane = wx.Panel(self)
   self.progress_bar = wx.Gauge(parent=self.pane)
   fileBox = wx.BoxSizer(wx.HORIZONTAL)
@@ -37,7 +35,7 @@ class TransferDialog(wx.Dialog):
   self.eta = wx.TextCtrl(self.pane, -1, style=wx.TE_READONLY|wx.TE_MULTILINE, value="Unknown", size=(200, 100))
   etaBox.Add(etaLabel)
   etaBox.Add(self.eta)
-#  self.create_buttons()
+  self.create_buttons()
   sizer = wx.BoxSizer(wx.VERTICAL)
   sizer.Add(fileBox)
   sizer.Add(currentAmountBox)
@@ -46,10 +44,8 @@ class TransferDialog(wx.Dialog):
   sizer.Add(etaBox)
   sizer.Add(self.progress_bar)
   self.pane.SetSizerAndFit(sizer)
-  self.Bind(event.MyEVT_OBJECT, self.update)
 
- def update(self, ev):
-  data = ev.GetItem()
+ def update(self, data):
   wx.CallAfter(self.progress_bar.SetValue, data["percent"])
   wx.CallAfter(self.current_amount.SetValue, '%s (%d%%)' % (convert_bytes(data["current"]), data["percent"]))
   wx.CallAfter(self.total_size.SetValue, convert_bytes(data["total"]))
@@ -59,7 +55,12 @@ class TransferDialog(wx.Dialog):
 
  def create_buttons(self):
   self.cancel_button = wx.Button(parent=self.pane, id=wx.ID_CANCEL)
-  self.cancel_button.Bind(wx.EVT_BUTTON, self.on_cancel)
+
+ def get_response(self):
+  self.Show()
+
+ def destroy(self):
+  self.Destroy()
 
 class UploadDialog(TransferDialog):
 

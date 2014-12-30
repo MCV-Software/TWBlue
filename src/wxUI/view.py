@@ -20,7 +20,7 @@ class mainFrame(wx.Frame):
   lists = app.Append(wx.NewId(), _(u"&Lists manager"))
 #  self.view.Bind(wx.EVT_MENU, self.list_manager, lists)
   sounds_tutorial = app.Append(wx.NewId(), _(u"Sounds &tutorial"))
-#  self.view.Bind(wx.EVT_MENU, self.learn_sounds, sounds_tutorial)
+  self.Bind(wx.EVT_MENU, self.controller.learn_sounds, sounds_tutorial)
   keystroke_editor = app.Append(wx.NewId(), _(u"&Edit keystrokes"))
   self.Bind(wx.EVT_MENU, self.controller.edit_keystrokes, keystroke_editor)
   prefs = app.Append(wx.ID_PREFERENCES, _(u"&Preferences"))

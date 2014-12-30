@@ -11,6 +11,7 @@ from mysc.repeating_timer import RepeatingTimer
 import config
 import widgetUtils
 import platform
+from extra import SoundsTutorial
 if platform.system() == "Windows":
  import keystrokeEditor
 
@@ -173,6 +174,9 @@ class Controller(object):
   dlg.put_keystrokes(**config.app["keymap"])
   dlg.ShowModal()
   dlg.Destroy()
+
+ def learn_sounds(self, *args, **kwargs):
+  SoundsTutorial.soundsTutorial()
 
  def view_user_lists(self, users):
   pass
