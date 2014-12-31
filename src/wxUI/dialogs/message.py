@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import wx
-import baseDialog
+import widgetUtils
 
-class textLimited(baseDialog.BaseWXDialog):
+class textLimited(widgetUtils.BaseDialog):
  def __init__(self, *args, **kwargs):
   super(textLimited, self).__init__(parent=None, *args, **kwargs)
 
@@ -20,6 +20,9 @@ class textLimited(baseDialog.BaseWXDialog):
   self.textBox = wx.BoxSizer(wx.HORIZONTAL)
   self.textBox.Add(self.label, 0, wx.ALL, 5)
   self.textBox.Add(self.text, 0, wx.ALL, 5)
+
+ def text_focus(self):
+  self.text.SetFocus()
 
  def get_text(self):
   return self.text.GetValue()
@@ -85,6 +88,12 @@ class tweet(textLimited):
 #  self.onTimer(wx.EVT_CHAR_HOOK)
   self.SetClientSize(self.mainBox.CalcMin())
 
+ def get_image(self):
+  openFileDialog = wx.FileDialog(self, _(u"Select the picture to be uploaded"), "", "", _("Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+  if openFileDialog.ShowModal() == wx.ID_CANCEL:
+   return None
+  return open(openFileDialog.GetPath(), "rb")
+   
 class dm(textLimited):
  def createControls(self, message, title, users):
   self.panel = wx.Panel(self)

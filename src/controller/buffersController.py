@@ -18,6 +18,7 @@ class bufferController(object):
   self.kwargs = kwargs
   self.buffer = None
   self.account = ""
+  self.needs_init = True
 
  def get_event(self, ev):
   if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
@@ -85,6 +86,8 @@ class accountPanel(bufferController):
   self.buffer = buffers.accountPanel(parent, name)
   self.type = self.buffer.type
   self.compose_function = None
+  self.session = None
+  self.needs_init = False
   self.id = self.buffer.GetId()
   self.account = account
   self.buffer.account = account
@@ -100,7 +103,8 @@ class emptyPanel(bufferController):
   self.account = account
   self.buffer.account = account
   self.name = name
-
+  self.session = None
+  self.needs_init = True
 class baseBufferController(bufferController):
  def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
   super(baseBufferController, self).__init__(parent, function, *args, **kwargs)

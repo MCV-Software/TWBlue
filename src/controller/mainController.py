@@ -67,10 +67,11 @@ class Controller(object):
   self.bind_stream_events()
   self.bind_other_events()
   self.do_work()
-  
+
  def do_work(self):
   for i in session.sessions:
    self.create_buffers(session.sessions[i])
+   call_threaded(self.start_buffers, session.sessions[i])
   sound.player.play("tweet_timeline.ogg")
 
  def create_buffers(self, session):
@@ -80,50 +81,41 @@ class Controller(object):
   self.view.add_buffer(account.buffer , name=session.db["user_name"])
   home = buffersController.baseBufferController(self.view.nb, "get_home_timeline", "home_timeline", session, session.db["user_name"])
   self.buffers.append(home)
-  home.start_stream()
   self.view.insert_buffer(home.buffer, name=_(u"Home"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   mentions = buffersController.baseBufferController(self.view.nb, "get_mentions_timeline", "mentions", session, session.db["user_name"])
   self.buffers.append(mentions)
-  mentions.start_stream()
   self.view.insert_buffer(mentions.buffer, name=_(u"Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   sound.player.play("mention_received.ogg")
   dm = buffersController.baseBufferController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel")
   self.buffers.append(dm)
-  dm.start_stream()
   self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   sound.player.play("dm_received.ogg")
   sent_dm = buffersController.baseBufferController(self.view.nb, "get_sent_messages", "sent_direct_messages", session, session.db["user_name"], bufferType="dmPanel")
   self.buffers.append(sent_dm)
-  sent_dm.start_stream()
   self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   sent_tweets = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "sent_tweets", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"])
   self.buffers.append(sent_tweets)
-  sent_tweets.start_stream()
   self.view.insert_buffer(sent_tweets.buffer, name=_(u"Sent tweets"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   if session.settings["other_buffers"]["show_favourites"] == True:
    favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", session, session.db["user_name"])
    self.buffers.append(favourites)
-   favourites.start_stream()
+
    self.view.insert_buffer(favourites.buffer, name=_(u"Favourites"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   if session.settings["other_buffers"]["show_followers"] == True:
    followers = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "followers", session, session.db["user_name"], screen_name=session.db["user_name"])
    self.buffers.append(followers)
-   followers.start_stream()
    self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   if session.settings["other_buffers"]["show_friends"] == True:
    friends = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "friends", session, session.db["user_name"], screen_name=session.db["user_name"])
    self.buffers.append(friends)
-   friends.start_stream()
    self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   if session.settings["other_buffers"]["show_blocks"] == True:
    blocks = buffersController.peopleBufferController(self.view.nb, "list_blocks", "blocked", session, session.db["user_name"])
    self.buffers.append(blocks)
-   blocks.start_stream()
    self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   if session.settings["other_buffers"]["show_muted_users"] == True:
    muted = buffersController.peopleBufferController(self.view.nb, "get_muted_users_list", "muted", session, session.db["user_name"])
    self.buffers.append(muted)
-   muted.start_stream()
    self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   if session.settings["other_buffers"]["show_events"] == True:
    events = buffersController.eventsBufferController(self.view.nb, "events", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"])
@@ -135,7 +127,6 @@ class Controller(object):
   for i in session.settings["other_buffers"]["timelines"]:
    tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (i,), session, session.db["user_name"], bufferType=None, screen_name=i)
    self.buffers.append(tl)
-   tl.start_stream()
    self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}".format(i)), pos=self.view.search("timelines", session.db["user_name"]))
   searches = buffersController.emptyPanel(self.view.nb, "searches", session.db["user_name"])
   self.buffers.append(searches)
@@ -143,11 +134,9 @@ class Controller(object):
   for i in session.settings["other_buffers"]["tweet_searches"]:
    tl = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (i,), session, session.db["user_name"], bufferType="searchPanel", q=i)
    self.buffers.append(tl)
-   tl.start_stream()
    self.view.insert_buffer(tl.buffer, name=_(u"Search for {}".format(i)), pos=self.view.search("searches", session.db["user_name"]))
    tl.timer = RepeatingTimer(180, tl.start_stream)
    tl.timer.start()
-  session.start_streaming()
 
  def search(self, event=None):
   dlg = dialogs.search.searchDialog()
@@ -227,7 +216,10 @@ class Controller(object):
   tweet = messages.tweet(buffer.session)
   if tweet.message.get_response() == widgetUtils.OK:
    text = tweet.message.get_text()
-   call_threaded(buffer.session.api_call, call_name="update_status", _sound="tweet_send.ogg", status=text)
+   if tweet.image == None:
+    call_threaded(buffer.session.api_call, call_name="update_status", _sound="tweet_send.ogg", status=text)
+   else:
+    call_threaded(buffer.session.api_call, call_name="update_status_with_media", _sound="tweet_send.ogg", status=text, media=tweet.image)
 
  def post_reply(self):
   pass
@@ -353,6 +345,12 @@ class Controller(object):
 
  def editing_keystroke(self, action, parentDialog):
   print "i've pressed"
+
+ def start_buffers(self, session):
+  for i in self.buffers:
+   if i.session == session and i.needs_init == True:
+    i.start_stream()
+  session.start_streaming()
 
  def __del__(self):
   config.app.write()

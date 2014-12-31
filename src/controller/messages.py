@@ -9,9 +9,10 @@ from extra import translator, SpellChecker
 from extra.AudioUploader import audioUploader
 from twitter import utils
 
-class tweet(object):
+class basicTweet(object):
+ """ This class handles the tweet main features. Other classes should derive from this class."""
  def __init__(self, session):
-  super(tweet, self).__init__()
+  super(basicTweet, self).__init__()
   self.session = session
   self.message = message.tweet(_(u"Write the tweet here"), _(u"tweet - 0 characters"), "")
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
@@ -92,3 +93,19 @@ class tweet(object):
     output.speak(_(u"Unable to upload the audio"))
    dlg.cleanup()
   dlg = audioUploader.audioUploader(self.session.settings, completed_callback)
+
+class tweet(basicTweet):
+ def __init__(self, session):
+  super(tweet, self).__init__(session)
+  self.image = None
+  widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
+
+ def upload_image(self, *args, **kwargs):
+  if self.message.get("upload_image") == _(u"Discard image"):
+   del self.image
+   self.image = None
+   output.speak(_(u"Discarded"))
+   self.message.set("upload_image", _(u"Upload a picture"))
+  else:
+   self.image = self.message.get_image()
+   self.message.set("upload_image", _(u"Discard image"))
