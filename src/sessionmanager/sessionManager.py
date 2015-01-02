@@ -7,6 +7,7 @@ import os
 import session
 import manager
 from config_utils import Configuration
+import config
 
 class sessionManagerController(object):
  def __init__(self):
@@ -17,7 +18,7 @@ class sessionManagerController(object):
   sessionsList = []
   self.sessions = []
   for i in os.listdir(paths.config_path()):
-   if os.path.isdir(paths.config_path(i)):
+   if os.path.isdir(paths.config_path(i)) and i not in config.app["sessions"]["ignored_sessions"]:
     strconfig = "%s/session.conf" % (paths.config_path(i))
     config_test = Configuration(strconfig)
     name = config_test["twitter"]["user_name"]
