@@ -58,10 +58,14 @@ class Controller(object):
 
  def bind_other_events(self):
   pub.subscribe(self.editing_keystroke, "editing_keystroke")
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_tweet, self.view.compose)
 
  def __init__(self):
   super(Controller, self).__init__()
-  self.view = view.mainFrame(self)
+  self.view = view.mainFrame()
   self.buffers = []
   self.view.prepare()
   self.bind_stream_events()
@@ -138,7 +142,7 @@ class Controller(object):
    tl.timer = RepeatingTimer(180, tl.start_stream)
    tl.timer.start()
 
- def search(self, event=None):
+ def search(self, *args, **kwargs):
   dlg = dialogs.search.searchDialog()
   if dlg.get_response() == widgetUtils.OK:
    term = dlg.get("term")
@@ -200,7 +204,7 @@ class Controller(object):
  def delete(self):
   pass
 
- def exit(self, event=None):
+ def exit(self, *args, **kwargs):
   for item in session.sessions:
    session.sessions[item].settings.write()
    session.sessions[item].main_stream.disconnect()
