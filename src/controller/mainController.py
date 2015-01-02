@@ -63,6 +63,9 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_tweet, self.view.compose)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_retweet, self.view.retweet)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_favourites, self.view.fav)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.unfav)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
 
  def __init__(self):
@@ -243,17 +246,28 @@ class Controller(object):
   else:
    buffer.direct_message()
 
- def post_retweet(self):
-  pass
+ def post_retweet(self, *args, **kwargs):
+  buffer = self.get_best_buffer()
+  if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
+   return
+  else:
+   buffer.retweet()
 
- def viewTweet(self):
-  pass
+ def add_to_favourites(self, *args, **kwargs):
+  buffer = self.get_best_buffer()
+  if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
+   return
+  else:
+   id = buffer.get_tweet()["id"]
+   call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
 
- def add_to_favourites(self):
-  pass
-
- def remove_from_favourites(self):
-  pass
+ def remove_from_favourites(self, *args, **kwargs):
+  buffer = self.get_best_buffer()
+  if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
+   return
+  else:
+   id = buffer.get_tweet()["id"]
+   call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
 
  def open_timeline(self, user, timeline_tipe):
   pass

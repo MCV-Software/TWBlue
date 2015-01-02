@@ -8,7 +8,7 @@ import config
 import sound
 import messages
 from twitter import compose, prettydate, utils
-from wxUI import buffers, dialogs
+from wxUI import buffers, dialogs, commonMessageDialogs
 from mysc.thread_utils import call_threaded
 
 class bufferController(object):
@@ -86,6 +86,9 @@ class bufferController(object):
   pass
 
  def direct_message(self):
+  pass
+
+ def retweet(self):
   pass
 
 class accountPanel(bufferController):
@@ -199,6 +202,20 @@ class baseBufferController(bufferController):
   dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
   if dm.message.get_response() == widgetUtils.OK:
    call_threaded(self.session.api_call, call_name="send_direct_message", _sound="dm_sent.ogg", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
+
+ def retweet(self):
+  tweet = self.get_right_tweet()
+  id = tweet["id"]
+  answer = commonMessageDialogs.retweet_question(self.buffer)
+  if answer == widgetUtils.YES:
+   retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]))
+   if retweet.message.get_response() == widgetUtils.OK:
+    if retweet.image == None:
+     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=retweet.message.get_text(), in_reply_to_status_id=id)
+    else:
+     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=retweet.message.get_text(), in_reply_to_status_id=id, media=retweet.image)
+  elif answer == widgetUtils.NO:
+   call_threaded(self.session.api_call, call_name="retweet", _sound="retweet_send.ogg", id=id)
 
  def onFocus(self, ev):
   tweet = self.get_tweet()
