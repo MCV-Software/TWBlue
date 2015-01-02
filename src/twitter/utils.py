@@ -46,17 +46,16 @@ def is_audio(tweet):
     return True
  return False
 
-def get_all_mentioned(tweet, config):
+def get_all_mentioned(tweet, conf):
  """ Gets all users that has been mentioned."""
- if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
  string = []
  for i in tweet["entities"]["user_mentions"]:
-  if i["screen_name"] != config.settings["user_name"] and i["screen_name"] != tweet["user"]["screen_name"]:
+  if i["screen_name"] != conf["user_name"] and i["screen_name"] != tweet["user"]["screen_name"]:
    if "@"+i["screen_name"] not in string:
     string.append("@"+i["screen_name"])
  return " ".join(string)+" "
 
-def get_all_users(tweet, config):
+def get_all_users(tweet, conf):
  string = []
  if tweet.has_key("retweeted_status"):
   string.append(tweet["user"]["screen_name"])
@@ -64,10 +63,10 @@ def get_all_users(tweet, config):
  if tweet.has_key("sender"):
   string.append(tweet["sender"]["screen_name"])
  else:
-  if tweet["user"]["screen_name"] != config.settings["user_name"]:
+  if tweet["user"]["screen_name"] != conf["user_name"]:
    string.append(tweet["user"]["screen_name"])
   for i in tweet["entities"]["user_mentions"]:
-   if i["screen_name"] != config.settings["user_name"] and i["screen_name"] != tweet["user"]["screen_name"]:
+   if i["screen_name"] != conf["user_name"] and i["screen_name"] != tweet["user"]["screen_name"]:
     if i["screen_name"] not in string:
      string.append(i["screen_name"])
  if len(string) == 0:

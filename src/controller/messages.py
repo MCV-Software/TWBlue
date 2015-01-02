@@ -11,16 +11,18 @@ from twitter import utils
 
 class basicTweet(object):
  """ This class handles the tweet main features. Other classes should derive from this class."""
- def __init__(self, session):
+ def __init__(self, session, title, caption, text, messageType="tweet"):
   super(basicTweet, self).__init__()
+  self.title = title
   self.session = session
-  self.message = message.tweet(_(u"Write the tweet here"), _(u"tweet - 0 characters"), "")
+  self.message = getattr(message, messageType)(title, caption, text)
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
   widgetUtils.connect_event(self.message.attach, widgetUtils.BUTTON_PRESSED, self.attach)
   widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
   widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
   widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
   widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
+  self.text_processor()
 
  def translate(self, event=None):
   dlg = translator.gui.translateDialog()
@@ -65,8 +67,8 @@ class basicTweet(object):
     self.message.set_text(self.message.get_text().replace(urls[list_urls.get_item()], url_shortener.unshorten(list_urls.get_string())))
     output.speak(_(u"URL expanded"))
 
- def text_processor(self, event=None):
-  self.message.set_title("%s of 140 characters" % (len(self.message.get_text())))
+ def text_processor(self, *args, **kwargs):
+  self.message.set_title(_(u"%s - %s of 140 characters") % (self.title, len(self.message.get_text())))
   if len(self.message.get_text()) > 1:
    self.message.enable_button("shortenButton")
    self.message.enable_button("unshortenButton")
@@ -95,8 +97,8 @@ class basicTweet(object):
   dlg = audioUploader.audioUploader(self.session.settings, completed_callback)
 
 class tweet(basicTweet):
- def __init__(self, session):
-  super(tweet, self).__init__(session)
+ def __init__(self, session, title, caption, text, messageType="tweet"):
+  super(tweet, self).__init__(session, title, caption, text, messageType)
   self.image = None
   widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
 
@@ -109,3 +111,20 @@ class tweet(basicTweet):
   else:
    self.image = self.message.get_image()
    self.message.set("upload_image", _(u"Discard image"))
+
+class reply(tweet):
+ def __init__(self, session, title, caption, text, users=None):
+  super(reply, self).__init__(session, title, caption, text, messageType="reply")
+  self.users = users
+  if self.users != None:
+   widgetUtils.connect_event(self.message.mentionAll, widgetUtils.BUTTON_PRESSED, self.mention_all)
+   self.message.enable_button("mentionAll")
+  self.message.set_cursor_at_end()
+
+ def mention_all(self, *args, **kwargs):
+  self.message.set_text(self.message.get_text()+self.users)
+  self.message.set_cursor_at_end()
+
+class dm(basicTweet):
+ def __init__(self, session, title, caption, text):
+  super(dm, self).__init__(session, title, caption, text, messageType="dm")

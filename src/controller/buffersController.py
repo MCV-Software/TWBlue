@@ -6,8 +6,10 @@ import webbrowser
 import output
 import config
 import sound
+import messages
 from twitter import compose, prettydate, utils
 from wxUI import buffers, dialogs
+from mysc.thread_utils import call_threaded
 
 class bufferController(object):
  def __init__(self, parent=None, function=None, session=None, *args, **kwargs):
@@ -80,6 +82,12 @@ class bufferController(object):
   else:
    self.buffer.list.select_item(0)
 
+ def reply(self):
+  pass
+
+ def direct_message(self):
+  pass
+
 class accountPanel(bufferController):
  def __init__(self, parent, name, account):
   super(accountPanel, self).__init__(parent, None, name)
@@ -105,6 +113,7 @@ class emptyPanel(bufferController):
   self.name = name
   self.session = None
   self.needs_init = True
+
 class baseBufferController(bufferController):
  def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
   super(baseBufferController, self).__init__(parent, function, *args, **kwargs)
@@ -159,6 +168,37 @@ class baseBufferController(bufferController):
   else:
    tweet = self.session.db[self.name][self.buffer.list.get_selected()]
   return tweet
+
+ def get_right_tweet(self):
+  tweet = self.session.db[self.name][self.buffer.list.get_selected()]
+  return tweet
+
+ def reply(self):
+  tweet = self.get_right_tweet()
+  screen_name = tweet["user"]["screen_name"]
+  id = tweet["id"]
+  users =  utils.get_all_mentioned(tweet, self.session.db)
+  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "@%s" % (screen_name,), users)
+  if message.message.get_response() == widgetUtils.OK:
+   if message.image == None:
+    call_threaded(self.session.twitter.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text())
+   else:
+    call_threaded(self.session.twitter.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text(), media=message.file)
+
+ def direct_message(self):
+  tweet = self.get_tweet()
+  if self.type == "dm":
+   screen_name = tweet["sender"]["screen_name"]
+   users = utils.get_all_users(tweet, self.session.db)
+  elif self.type == "people":
+   screen_name = tweet["screen_name"]
+   users = [screen_name]
+  else:
+   screen_name = tweet["user"]["screen_name"]
+   users = utils.get_all_users(tweet, self.session.db)
+  dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
+  if dm.message.get_response() == widgetUtils.OK:
+   call_threaded(self.session.api_call, call_name="send_direct_message", _sound="dm_sent.ogg", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
 
  def onFocus(self, ev):
   tweet = self.get_tweet()
@@ -220,6 +260,7 @@ class eventsBufferController(bufferController):
   self.name = name
   self.account = account
   self.id = self.buffer.GetId()
+  self.buffer.account = self.account
   self.compose_function = compose.compose_event
   self.session = session
 
@@ -234,6 +275,7 @@ class peopleBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
   super(peopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel")
   self.compose_function = compose.compose_followers_list
+  self.get_tweet = self.get_right_tweet
 
  def onFocus(self, ev):
   pass
@@ -260,6 +302,10 @@ class peopleBufferController(baseBufferController):
     for i in self.session.db[self.name]["items"][0:number_of_items]:
      tweet = self.compose_function(i, self.session.db)
      self.buffer.list.insert_item(True, *tweet)
+
+ def get_right_tweet(self):
+  tweet = self.session.db[self.name]["items"][self.buffer.list.get_selected()]
+  return tweet
 
 class searchBufferController(baseBufferController):
  def start_stream(self):

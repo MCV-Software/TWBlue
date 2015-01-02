@@ -1,22 +1,22 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TW Blue 0.48\n"
-"POT-Creation-Date: 2014-11-08 16:42+Hora estándar central (México)\n"
-"PO-Revision-Date: 2014-11-09 00:47+0200\n"
+"Project-Id-Version: TW Blue 0.50\n"
+"POT-Creation-Date: 2014-12-10 23:20+Hora estándar central (México)\n"
+"PO-Revision-Date: 2014-12-11 20:26+0200\n"
 "Last-Translator: Burak <burakyuksek252@hotmail.com>\n"
 "Language-Team: Burak <burakyuksek252@hotmail.com>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../src\extra\AudioUploader\gui.py:31 ../src\gui\dialogs\message.py:173
-#: ../src\gui\dialogs\message.py:261
+#: ../src\extra\AudioUploader\gui.py:31 ../src\gui\dialogs\message.py:174
+#: ../src\gui\dialogs\message.py:271
 msgid "Attach audio"
 msgstr "Ses ekle"
 
@@ -50,7 +50,7 @@ msgstr "Yükle"
 msgid "Attach"
 msgstr "Ekle"
 
-#: ../src\extra\AudioUploader\gui.py:59
+#: ../src\extra\AudioUploader\gui.py:59 ../src\issueReporter\gui.py:88
 msgid "Cancel"
 msgstr "İptal"
 
@@ -70,13 +70,13 @@ msgstr "Kaydediliyor..."
 msgid "Stopped"
 msgstr "Durduruldu"
 
-#: ../src\extra\AudioUploader\gui.py:129 ../src\gui\dialogs\message.py:222
+#: ../src\extra\AudioUploader\gui.py:129 ../src\gui\dialogs\message.py:232
 #: ../src\gui\dialogs\update_profile.py:87
 msgid "Discarded"
 msgstr "Ses silindi"
 
-#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:339
-#: ../src\gui\buffers\base.py:351
+#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:359
+#: ../src\gui\buffers\base.py:371
 msgid "Playing..."
 msgstr "Çalınıyor..."
 
@@ -181,62 +181,66 @@ msgid "Someone's favourites have been updated"
 msgstr "Bir kişinin favorileri güncellendi"
 
 #: ../src\extra\SoundsTutorial\gui.py:19
+msgid "The tweet has coordinates to determine its location"
+msgstr "Tweet yer belirtmek için koordinatlara sahip"
+
+#: ../src\extra\SoundsTutorial\gui.py:20
 msgid "There are no more tweets to read"
 msgstr "Okuyaca tweet yok"
 
-#: ../src\extra\SoundsTutorial\gui.py:20
+#: ../src\extra\SoundsTutorial\gui.py:21
 msgid "A list has a new tweet"
 msgstr "Bir listede yeni bir tweet var"
 
-#: ../src\extra\SoundsTutorial\gui.py:21
+#: ../src\extra\SoundsTutorial\gui.py:22
 msgid "You can't add any more characters on the tweet"
 msgstr "Tweete daha fazla karakter ekleyemezsiniz"
 
-#: ../src\extra\SoundsTutorial\gui.py:22
+#: ../src\extra\SoundsTutorial\gui.py:23
 msgid "You've been mentioned "
 msgstr "Mention alındı"
 
-#: ../src\extra\SoundsTutorial\gui.py:23
+#: ../src\extra\SoundsTutorial\gui.py:24
 msgid "A new event has happened"
 msgstr "Yeni olay oldu"
 
-#: ../src\extra\SoundsTutorial\gui.py:24
+#: ../src\extra\SoundsTutorial\gui.py:25
 msgid "TW Blue is ready "
 msgstr "TWBlue hazır"
 
-#: ../src\extra\SoundsTutorial\gui.py:25
+#: ../src\extra\SoundsTutorial\gui.py:26
 msgid "You've replied"
 msgstr "Mention gönderildi"
 
-#: ../src\extra\SoundsTutorial\gui.py:26
+#: ../src\extra\SoundsTutorial\gui.py:27
 msgid "You've retweeted"
 msgstr "Retweet yaptınız"
 
-#: ../src\extra\SoundsTutorial\gui.py:27
+#: ../src\extra\SoundsTutorial\gui.py:28
 msgid "A search has been updated"
 msgstr "Arama güncellendi"
 
-#: ../src\extra\SoundsTutorial\gui.py:28
+#: ../src\extra\SoundsTutorial\gui.py:29
 msgid "There's a new tweet in the main buffer"
 msgstr "Ana bufferda yeni tweet var"
 
-#: ../src\extra\SoundsTutorial\gui.py:29
+#: ../src\extra\SoundsTutorial\gui.py:30
 msgid "You've sent a tweet"
 msgstr "Tweet gönderdiniz"
 
-#: ../src\extra\SoundsTutorial\gui.py:30
+#: ../src\extra\SoundsTutorial\gui.py:31
 msgid "There's a new tweet in a timeline"
 msgstr "Yeni çizelgede yeni tweet var"
 
-#: ../src\extra\SoundsTutorial\gui.py:31
+#: ../src\extra\SoundsTutorial\gui.py:32
 msgid "You have a new follower"
 msgstr "Yeni takipçiniz var"
 
-#: ../src\extra\SoundsTutorial\gui.py:32
+#: ../src\extra\SoundsTutorial\gui.py:33
 msgid "You've turned the volume up or down"
 msgstr "Sesi kıstınız veya açtınız"
 
-#: ../src\extra\SoundsTutorial\gui.py:36
+#: ../src\extra\SoundsTutorial\gui.py:37
 msgid ""
 "It seems as though the currently used sound pack needs an update. %i fails "
 "are still be required to use this function. Make sure to obtain the needed "
@@ -245,17 +249,18 @@ msgstr ""
 "Şu an kullandığınız ses paketinin bir güncellemeye ihtiyacı var. Lütfen "
 "paketin üreticisine ulaşıp eksik sesleri edindiğinizden emin olun."
 
-#: ../src\extra\SoundsTutorial\gui.py:36 ../src\extra\SpellChecker\gui.py:34
-#: ../src\gui\dialogs\show_user.py:63 ../src\gui\main.py:689
-#: ../src\gui\main.py:721
+#: ../src\extra\SoundsTutorial\gui.py:37 ../src\extra\SpellChecker\gui.py:34
+#: ../src\gui\dialogs\show_user.py:63 ../src\gui\main.py:728
+#: ../src\gui\main.py:760 ../src\issueReporter\gui.py:98
+#: ../src\issueReporter\gui.py:101
 msgid "Error"
 msgstr "Hata"
 
-#: ../src\extra\SoundsTutorial\gui.py:38
+#: ../src\extra\SoundsTutorial\gui.py:39
 msgid "Sounds tutorial"
 msgstr "Ses denemesi"
 
-#: ../src\extra\SoundsTutorial\gui.py:41
+#: ../src\extra\SoundsTutorial\gui.py:42
 msgid "Press enter to listen to the sound for the selected event"
 msgstr "Seçilen olay için sesi dinlemek için enter tuşuna basınız."
 
@@ -306,8 +311,108 @@ msgstr "Bitti"
 msgid "The spelling review has finished."
 msgstr "Yazım hatası denetimi tamamlandı."
 
-#: ../src\extra\translator\gui.py:24 ../src\gui\dialogs\message.py:181
-#: ../src\gui\dialogs\message.py:269 ../src\gui\dialogs\message.py:355
+#: ../src\extra\autocompletionUsers\completion.py:18
+msgid "You have to start writing"
+msgstr "Yazmaya başlamak zorundasınız"
+
+#: ../src\extra\autocompletionUsers\completion.py:29
+msgid "There are not results in your users database"
+msgstr "Kullanıcı veritabanında sonuç yok"
+
+#: ../src\extra\autocompletionUsers\completion.py:31
+msgid "Autocompletion only works for users."
+msgstr "Otomatik tamamlama sadece kullanıcılar için çalışır."
+
+#: ../src\extra\autocompletionUsers\manage.py:38
+msgid ""
+"Are you sure you want to delete this user from the database? This user will "
+"not appear on the autocomplete results anymore."
+msgstr ""
+"Bu kullanıcıyı veritabanından silmek istediğinize emin misiniz? Silindikten "
+"sonra otomatik tamamlama özelliğinde artık görülmeyecektir."
+
+#: ../src\extra\autocompletionUsers\manage.py:38
+msgid "Confirm"
+msgstr "Onayla"
+
+#: ../src\extra\autocompletionUsers\settings.py:24
+msgid ""
+"Updating database... You can close this window now. A message will tell you "
+"when the process finishes."
+msgstr ""
+"Veritabanı güncelleniyor... Pencereyi kapatabilirsiniz. İşlem "
+"tamamlandığında bilgilendirileceksiniz."
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:7
+msgid "Manage Autocomplete users’ database"
+msgstr "Otomatik tamamlamayı yönet"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:10
+msgid "Editing TWBlue users database"
+msgstr "TWBlue kullanıcı veritabanı düzenleniyor"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Name"
+msgstr "Ad"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Username"
+msgstr "Kullanıcı adı"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:14
+msgid "Add user"
+msgstr "Kullanıcı ekle"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:15
+msgid "Remove user"
+msgstr "Kullanıcı kaldır"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:36
+msgid "Add user to database"
+msgstr "Kullanıcıyı veritabanına ekle"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:36
+msgid "Twitter username"
+msgstr "Twitter kullanıcı adı"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:42
+#: ../src\gui\dialogs\configuration.py:248 ../src\gui\main.py:234
+#: ../src\gui\main.py:742 ../src\gui\main.py:775
+msgid "Error!"
+msgstr "Hata!"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:42 ../src\gui\main.py:728
+#: ../src\gui\main.py:760
+msgid "The user does not exist"
+msgstr "Kullanıcı bulunamadı"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:6
+msgid "Autocomplete users’ settings"
+msgstr "Otomatik kullanıcı tamamlama ayarları"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:9
+msgid "Add users from followers buffer"
+msgstr "Takipçi bufferindan kullanıcı ekle"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:10
+msgid "Add users from friends buffer"
+msgstr "Arkadaşlar bufferindan kullaınıcı ekle"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:13
+msgid "See the users list"
+msgstr "Kullanıcı listesini görüntüle"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:25
+msgid "Done"
+msgstr "Bitti"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:25
+msgid "TWBlue's database of users has been updated."
+msgstr "TWBlue veritabanı yeni kullanıcılarla güncellenmiştir."
+
+#: ../src\extra\translator\gui.py:24 ../src\gui\dialogs\message.py:182
+#: ../src\gui\dialogs\message.py:279 ../src\gui\dialogs\message.py:383
+#: ../src\gui\dialogs\message.py:470
 msgid "Translate message"
 msgstr "Mesajı çevir"
 
@@ -687,92 +792,95 @@ msgstr "eskenazi dili"
 msgid "autodetect"
 msgstr "Otomatik algılama"
 
-#: ../src\gui\buffers\base.py:55
+#: ../src\gui\buffers\base.py:58
 msgid "Client"
 msgstr "İstemci"
 
-#: ../src\gui\buffers\base.py:55
+#: ../src\gui\buffers\base.py:58
 msgid "Text"
 msgstr "Metin"
 
-#: ../src\gui\buffers\base.py:55 ../src\gui\buffers\events.py:61
+#: ../src\gui\buffers\base.py:58 ../src\gui\buffers\events.py:64
 msgid "Date"
 msgstr "Tarih"
 
-#: ../src\gui\buffers\base.py:55 ../src\gui\buffers\people.py:41
+#: ../src\gui\buffers\base.py:58 ../src\gui\buffers\people.py:44
 #: ../src\gui\buffers\user_searches.py:31 ../src\gui\dialogs\utils.py:36
 msgid "User"
 msgstr "Kullanıcı"
 
-#: ../src\gui\buffers\base.py:80 ../src\gui\buffers\base.py:228
-#: ../src\gui\buffers\events.py:62 ../src\gui\buffers\events.py:78
-#: ../src\gui\dialogs\message.py:337 ../src\gui\sysTrayIcon.py:34
+#: ../src\gui\buffers\base.py:83 ../src\gui\buffers\base.py:236
+#: ../src\gui\buffers\events.py:65 ../src\gui\buffers\events.py:81
+#: ../src\gui\buffers\trends.py:64 ../src\gui\buffers\trends.py:108
+#: ../src\gui\buffers\trends.py:120 ../src\gui\dialogs\message.py:347
+#: ../src\gui\sysTrayIcon.py:34
 msgid "Tweet"
 msgstr "Tweet"
 
-#: ../src\gui\buffers\base.py:82 ../src\gui\buffers\base.py:240
-#: ../src\gui\buffers\base.py:243 ../src\keystrokeEditor\constants.py:13
+#: ../src\gui\buffers\base.py:85 ../src\gui\buffers\base.py:248
+#: ../src\gui\buffers\base.py:251 ../src\keystrokeEditor\constants.py:13
 msgid "Retweet"
 msgstr "Retweet"
 
-#: ../src\gui\buffers\base.py:84 ../src\gui\buffers\base.py:259
+#: ../src\gui\buffers\base.py:87 ../src\gui\buffers\base.py:267
 msgid "Reply"
 msgstr "Yanıt"
 
-#: ../src\gui\buffers\base.py:86
+#: ../src\gui\buffers\base.py:89
 msgid "Direct message"
 msgstr "Dm"
 
-#: ../src\gui\buffers\base.py:100
+#: ../src\gui\buffers\base.py:103
 msgid "Do you really want to delete this timeline?"
 msgstr "Bu çizelgeyi silmek istediğinizdden emin misiniz?"
 
-#: ../src\gui\buffers\base.py:100 ../src\gui\buffers\favourites.py:41
-#: ../src\gui\buffers\lists.py:46 ../src\gui\buffers\trends.py:41
+#: ../src\gui\buffers\base.py:103 ../src\gui\buffers\favourites.py:41
+#: ../src\gui\buffers\lists.py:46 ../src\gui\buffers\trends.py:77
 #: ../src\gui\buffers\tweet_searches.py:45
 #: ../src\gui\buffers\user_searches.py:56
 msgid "Attention"
 msgstr "Dikkat"
 
-#: ../src\gui\buffers\base.py:112
+#: ../src\gui\buffers\base.py:115
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Bu bir çizelge değildir, silinemez."
 
-#: ../src\gui\buffers\base.py:196 ../src\gui\buffers\people.py:114
+#: ../src\gui\buffers\base.py:204 ../src\gui\buffers\people.py:117
 msgid "%s items retrieved"
 msgstr "%s öğe alındı"
 
-#: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
-#: ../src\gui\buffers\people.py:56
+#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\people.py:59
 msgid "Direct message to %s"
 msgstr "%s Kişisine dm"
 
-#: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
-#: ../src\gui\buffers\people.py:56
+#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\people.py:59
 msgid "New direct message"
 msgstr "Yeni dm"
 
-#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\events.py:78
+#: ../src\gui\buffers\base.py:236 ../src\gui\buffers\events.py:81
+#: ../src\gui\buffers\trends.py:108 ../src\gui\buffers\trends.py:120
 msgid "Write the tweet here"
 msgstr "Tweetinizi yazın"
 
-#: ../src\gui\buffers\base.py:240
+#: ../src\gui\buffers\base.py:248
 msgid "Would you like to add a comment to this tweet?"
 msgstr "Bu tweete yorum eklemek ister misiniz?"
 
-#: ../src\gui\buffers\base.py:243
+#: ../src\gui\buffers\base.py:251
 msgid "Add your comment to the tweet"
 msgstr "Tweete yorumunuzu ekleyin"
 
-#: ../src\gui\buffers\base.py:259
+#: ../src\gui\buffers\base.py:267
 msgid "Reply to %s"
 msgstr "%s Kişisine yanıt"
 
-#: ../src\gui\buffers\base.py:304
+#: ../src\gui\buffers\base.py:322
 msgid "Opening URL..."
 msgstr "Adres açılıyor... "
 
-#: ../src\gui\buffers\base.py:321 ../src\gui\buffers\events.py:122
+#: ../src\gui\buffers\base.py:341 ../src\gui\buffers\events.py:125
 msgid ""
 "Do you really want to empty this buffer? It's tweets will be removed from "
 "the list but not from Twitter"
@@ -780,42 +888,43 @@ msgstr ""
 "Boşaltmak istiyor musunuz? Tweetler listeden kaldırılacaktır, twitter "
 "etkilenmeyecektir."
 
-#: ../src\gui\buffers\base.py:321 ../src\gui\buffers\events.py:122
+#: ../src\gui\buffers\base.py:341 ../src\gui\buffers\events.py:125
+#: ../src\gui\buffers\trends.py:150
 msgid "Empty buffer"
 msgstr "bufferi boşalt"
 
-#: ../src\gui\buffers\base.py:326 ../src\gui\buffers\events.py:126
+#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\events.py:129
 msgid "Do you really want to delete this message?"
 msgstr "Bu mesajı gerçekten silmek istiyor musunuz?"
 
-#: ../src\gui\buffers\base.py:326 ../src\gui\buffers\events.py:126
-#: ../src\gui\dialogs\lists.py:107 ../src\gui\main.py:565
+#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\events.py:129
+#: ../src\gui\dialogs\lists.py:107 ../src\gui\main.py:592
 msgid "Delete"
 msgstr "sil"
 
-#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\base.py:357
+#: ../src\gui\buffers\base.py:366 ../src\gui\buffers\base.py:377
 msgid "Unable to play audio."
 msgstr "Ses çalınamıyor"
 
-#: ../src\gui\buffers\base.py:348
+#: ../src\gui\buffers\base.py:368
 msgid "Audio stopped."
 msgstr "Ses durduruldu."
 
-#: ../src\gui\buffers\events.py:35 ../src\gui\buffers\panels.py:37
-#: ../src\gui\buffers\tweet_searches.py:58
+#: ../src\gui\buffers\events.py:36 ../src\gui\buffers\panels.py:33
+#: ../src\gui\buffers\trends.py:96 ../src\gui\buffers\tweet_searches.py:58
 #: ../src\gui\buffers\user_searches.py:64
 msgid "This action is not supported for this buffer"
 msgstr "Bu eylem şu anki buffer için geçerli değil"
 
-#: ../src\gui\buffers\events.py:44
+#: ../src\gui\buffers\events.py:47
 msgid "Empty"
 msgstr "Boş"
 
-#: ../src\gui\buffers\events.py:61
+#: ../src\gui\buffers\events.py:64
 msgid "Event"
 msgstr "Olay"
 
-#: ../src\gui\buffers\events.py:64
+#: ../src\gui\buffers\events.py:67
 msgid "Remove event"
 msgstr "Olayı kaldır"
 
@@ -827,44 +936,153 @@ msgstr "Bu favori çizelgesini gerçekten silmek istiyor musunuz?"
 msgid "Do you really want to delete this list?"
 msgstr "Bu listeyi gerçekten silmek istediğinize emin misiniz?"
 
-#: ../src\gui\buffers\panels.py:27
+#: ../src\gui\buffers\menus.py:8 ../src\gui\main.py:93
+msgid "&Retweet"
+msgstr "&Retweet"
+
+#: ../src\gui\buffers\menus.py:11 ../src\gui\buffers\menus.py:43
+#: ../src\gui\main.py:91
+msgid "Re&ply"
+msgstr "ya&nıt"
+
+#: ../src\gui\buffers\menus.py:14 ../src\gui\main.py:95
+msgid "Add to &favourites"
+msgstr "Favorilere &ekle"
+
+#: ../src\gui\buffers\menus.py:17 ../src\gui\main.py:97
+msgid "Remove from favo&urites"
+msgstr "Favorilerden &kaldır"
+
+#: ../src\gui\buffers\menus.py:20 ../src\gui\buffers\menus.py:46
+#: ../src\gui\buffers\menus.py:69
+msgid "&Open URL"
+msgstr "&adres aç"
+
+#: ../src\gui\buffers\menus.py:23 ../src\gui\buffers\menus.py:49
+#: ../src\gui\buffers\menus.py:72
+msgid "&Play audio"
+msgstr "&ses çal"
+
+#: ../src\gui\buffers\menus.py:26 ../src\gui\buffers\menus.py:75
+#: ../src\gui\main.py:99
+msgid "&Show tweet"
+msgstr "&Tweet göster"
+
+#: ../src\gui\buffers\menus.py:29 ../src\gui\buffers\menus.py:55
+#: ../src\gui\buffers\menus.py:78 ../src\gui\buffers\menus.py:92
+#: ../src\gui\buffers\menus.py:115 ../src\gui\buffers\menus.py:132
+msgid "&Copy to clipboard"
+msgstr "&Panoya kopyala"
+
+#: ../src\gui\buffers\menus.py:32 ../src\gui\buffers\menus.py:58
+#: ../src\gui\buffers\menus.py:81 ../src\gui\buffers\menus.py:95
+#: ../src\gui\main.py:103
+msgid "&Delete"
+msgstr "&sil"
+
+#: ../src\gui\buffers\menus.py:35 ../src\gui\buffers\menus.py:61
+#: ../src\gui\buffers\menus.py:118
+msgid "&User actions..."
+msgstr "&kullanıcı eylemleri..."
+
+#: ../src\gui\buffers\menus.py:52
+msgid "&Show direct message"
+msgstr "&dmi göster"
+
+#: ../src\gui\buffers\menus.py:89
+msgid "&Show event"
+msgstr "&olayı göster"
+
+#: ../src\gui\buffers\menus.py:103
+msgid "&Mention"
+msgstr "&mention"
+
+#: ../src\gui\buffers\menus.py:106 ../src\gui\main.py:128
+msgid "&View lists"
+msgstr "Listeleri &görüntüle"
+
+#: ../src\gui\buffers\menus.py:109 ../src\gui\main.py:130
+msgid "Show user &profile"
+msgstr "&Kullanıcı profilini göster"
+
+#: ../src\gui\buffers\menus.py:112
+msgid "&Show user"
+msgstr "&Kullanıcıyı göster"
+
+#: ../src\gui\buffers\menus.py:126
+msgid "&Tweet about this trend"
+msgstr "&Bu trend hakkında tweetle"
+
+#: ../src\gui\buffers\menus.py:129
+msgid "&Show item"
+msgstr "&Öğeyi göster"
+
+#: ../src\gui\buffers\panels.py:28
 msgid "Announce"
 msgstr "söyle"
 
-#: ../src\gui\buffers\people.py:46 ../src\gui\buffers\people.py:64
+#: ../src\gui\buffers\people.py:49 ../src\gui\buffers\people.py:67
 msgid "Mention"
 msgstr "mention"
 
-#: ../src\gui\buffers\people.py:64
+#: ../src\gui\buffers\people.py:67
 msgid "Mention to %s"
 msgstr "mention:"
 
-#: ../src\gui\buffers\trends.py:41 ../src\gui\buffers\tweet_searches.py:45
+#: ../src\gui\buffers\trends.py:47
+msgid "Trending topic"
+msgstr "Trend konu"
+
+#: ../src\gui\buffers\trends.py:66
+msgid "Tweet about this trend"
+msgstr "Bu trend hakkında tweetle"
+
+#: ../src\gui\buffers\trends.py:77
+msgid "Do you really want to delete this buffer?"
+msgstr "Bu listeyi gerçekten silmek istediğinize emin misiniz?"
+
+#: ../src\gui\buffers\trends.py:150
+msgid ""
+"Do you really want to empty this buffer? It's items will be removed from the "
+"list"
+msgstr ""
+"Boşaltmak istiyor musunuz? Tweetler listeden kaldırılacaktır, twitter "
+"etkilenmeyecektir."
+
+#: ../src\gui\buffers\tweet_searches.py:45
 #: ../src\gui\buffers\user_searches.py:56
 msgid "Do you really want to delete this search term?"
 msgstr "Bu arama terimini gerçekten silmek istediğinize emin misiniz?"
 
-#: ../src\gui\dialogs\configuration.py:39
+#: ../src\gui\dialogs\configuration.py:40
 msgid "Language"
 msgstr "Dil"
 
-#: ../src\gui\dialogs\configuration.py:53
+#: ../src\gui\dialogs\configuration.py:54
+msgid "Set the autocomplete function"
+msgstr "Otomatik tamamlama özelliğini ayarla"
+
+#: ../src\gui\dialogs\configuration.py:55
 msgid "ask before exiting TwBlue?"
 msgstr "Programdan çıkıldığında sorulsun"
 
-#: ../src\gui\dialogs\configuration.py:56
+#: ../src\gui\dialogs\configuration.py:58
+msgid "Use invisible interface's keyboard shorcuts on the GUI"
+msgstr "Görünür arayüzde görünmez arayüz kısayollarını kullan"
+
+#: ../src\gui\dialogs\configuration.py:61
 msgid "Relative times"
 msgstr "Relative times"
 
-#: ../src\gui\dialogs\configuration.py:60
+#: ../src\gui\dialogs\configuration.py:65
 msgid "Activate Sapi5 when any other screen reader is not being run"
 msgstr "Bir ekran okuyucu çalışmadığında sapi 5'i etkinleştir"
 
-#: ../src\gui\dialogs\configuration.py:63
+#: ../src\gui\dialogs\configuration.py:68
 msgid "Activate the auto-start of the invisible interface"
 msgstr "Görünmez arayüzü otomatik olarak başlat"
 
-#: ../src\gui\dialogs\configuration.py:67
+#: ../src\gui\dialogs\configuration.py:72
 msgid ""
 "API calls when the stream is started (One API call equals to 200 tweetts, "
 "two API calls equals 400 tweets, etc):"
@@ -872,83 +1090,83 @@ msgstr ""
 "Bağlantı başladığında kullanılacak API çağrısı (1 API çağrısı=200 tweet, 2 "
 "API çağrısı=400 tweet, vb.):"
 
-#: ../src\gui\dialogs\configuration.py:75
+#: ../src\gui\dialogs\configuration.py:80
 msgid "Items on each API call"
 msgstr "Her API çağrısındaki öğeler"
 
-#: ../src\gui\dialogs\configuration.py:82
+#: ../src\gui\dialogs\configuration.py:87
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning of the "
 "lists while the oldest at the end"
 msgstr ""
 "Bufferleri ters çevir: Yeni tweetler başta, eski tweetler sonda gösterilir"
 
-#: ../src\gui\dialogs\configuration.py:97
+#: ../src\gui\dialogs\configuration.py:103
 msgid "Show followers"
 msgstr "Takipçileri göster"
 
-#: ../src\gui\dialogs\configuration.py:100
+#: ../src\gui\dialogs\configuration.py:106
 msgid "Show friends"
 msgstr "Arkadaşları göster"
 
-#: ../src\gui\dialogs\configuration.py:103
+#: ../src\gui\dialogs\configuration.py:109
 msgid "Show favourites"
 msgstr "Favorileri göster"
 
-#: ../src\gui\dialogs\configuration.py:106
+#: ../src\gui\dialogs\configuration.py:112
 msgid "Show blocked users"
 msgstr "Engellenmiş kullanıcıları görüntüle"
 
-#: ../src\gui\dialogs\configuration.py:109
+#: ../src\gui\dialogs\configuration.py:115
 msgid "Show muted users"
 msgstr "Susturulmuş kullanıcıları göster"
 
-#: ../src\gui\dialogs\configuration.py:112
+#: ../src\gui\dialogs\configuration.py:118
 msgid "Show events"
 msgstr "Olayları göster"
 
-#: ../src\gui\dialogs\configuration.py:122
-#: ../src\gui\dialogs\configuration.py:270
+#: ../src\gui\dialogs\configuration.py:128
+#: ../src\gui\dialogs\configuration.py:277
 msgid "Ignored clients"
 msgstr "Yoksayılan istemciler"
 
-#: ../src\gui\dialogs\configuration.py:128
+#: ../src\gui\dialogs\configuration.py:134
 msgid "Add client"
 msgstr "İstemci ekle"
 
-#: ../src\gui\dialogs\configuration.py:129
+#: ../src\gui\dialogs\configuration.py:135
 msgid "Remove client"
 msgstr "İstemci kaldır"
 
-#: ../src\gui\dialogs\configuration.py:140
+#: ../src\gui\dialogs\configuration.py:146
 msgid "Add a new ignored client"
 msgstr "Yeni yoksayılmış istemci ekle"
 
-#: ../src\gui\dialogs\configuration.py:140
+#: ../src\gui\dialogs\configuration.py:146
 msgid "Enter the name of the client here"
 msgstr "İstemci adını yazın"
 
-#: ../src\gui\dialogs\configuration.py:157
+#: ../src\gui\dialogs\configuration.py:163
 msgid "Volume"
 msgstr "Ses yüksekliği"
 
-#: ../src\gui\dialogs\configuration.py:166
+#: ../src\gui\dialogs\configuration.py:172
 msgid "Global mute"
 msgstr "Tümünü sustur"
 
-#: ../src\gui\dialogs\configuration.py:170
+#: ../src\gui\dialogs\configuration.py:176
 msgid "Output device"
 msgstr "Çıkış cihazı"
 
-#: ../src\gui\dialogs\configuration.py:179
+#: ../src\gui\dialogs\configuration.py:185
 msgid "Input device"
 msgstr "Giriş cihazı"
 
-#: ../src\gui\dialogs\configuration.py:190
+#: ../src\gui\dialogs\configuration.py:196
 msgid "Sound pack"
 msgstr "Ses paketi"
 
-#: ../src\gui\dialogs\configuration.py:203
+#: ../src\gui\dialogs\configuration.py:209
 msgid ""
 "If you've got a SndUp account, enter your API Key here. Whether the API Key "
 "is wrong, the App will fail to upload anything to the server. Whether "
@@ -958,20 +1176,20 @@ msgstr ""
 "yanlışsa, dosyanız sunucuya yüklenemeyecektir. Eğer API anahtarınız yoksa, "
 "dosya isimsiz olarak yüklenecektir."
 
-#: ../src\gui\dialogs\configuration.py:216
-#: ../src\gui\dialogs\configuration.py:240
+#: ../src\gui\dialogs\configuration.py:222
+#: ../src\gui\dialogs\configuration.py:246
 msgid "Unlink your Dropbox account"
 msgstr "Dropbox hesssabınızın bağlantısını kesin"
 
-#: ../src\gui\dialogs\configuration.py:218
-#: ../src\gui\dialogs\configuration.py:235
-#: ../src\gui\dialogs\configuration.py:243
-#: ../src\gui\dialogs\configuration.py:247
-#: ../src\gui\dialogs\configuration.py:254
+#: ../src\gui\dialogs\configuration.py:224
+#: ../src\gui\dialogs\configuration.py:241
+#: ../src\gui\dialogs\configuration.py:249
+#: ../src\gui\dialogs\configuration.py:253
+#: ../src\gui\dialogs\configuration.py:260
 msgid "Link your Dropbox account"
 msgstr "Dropbox hesabınızı bağlayın"
 
-#: ../src\gui\dialogs\configuration.py:228
+#: ../src\gui\dialogs\configuration.py:234
 msgid ""
 "The authorisation request will be shown on your browser. Copy the code tat "
 "Dropbox will provide and, in the text box that will appear on TW Blue, paste "
@@ -980,89 +1198,84 @@ msgstr ""
 "Kod onaylama sayfası açılacaktır. Dropboxun sunduğu kodu alıp aşağıdaki "
 "kutuya yapıştırın. Bunu bir kez yapmanız yeterli olacaktır."
 
-#: ../src\gui\dialogs\configuration.py:228 ../src\sessionmanager\gui.py:83
+#: ../src\gui\dialogs\configuration.py:234 ../src\sessionmanager\gui.py:84
 msgid "Authorisation"
 msgstr "İzin"
 
-#: ../src\gui\dialogs\configuration.py:230
+#: ../src\gui\dialogs\configuration.py:236
 msgid "Enter the code here."
 msgstr "Kodu girin."
 
-#: ../src\gui\dialogs\configuration.py:230
+#: ../src\gui\dialogs\configuration.py:236
 msgid "Verification code"
 msgstr "Doğrulama kodu"
 
-#: ../src\gui\dialogs\configuration.py:242
+#: ../src\gui\dialogs\configuration.py:248
 msgid "Error during authorisation. Try again later."
 msgstr "İzin hatası. Daha sonra yeniden deneyin"
 
-#: ../src\gui\dialogs\configuration.py:242 ../src\gui\main.py:378
-#: ../src\gui\main.py:703 ../src\gui\main.py:736
-msgid "Error!"
-msgstr "Hata!"
-
-#: ../src\gui\dialogs\configuration.py:261
+#: ../src\gui\dialogs\configuration.py:267
 msgid "TW Blue preferences"
 msgstr "TWBlue ayarları"
 
-#: ../src\gui\dialogs\configuration.py:265
+#: ../src\gui\dialogs\configuration.py:271 ../src\issueReporter\gui.py:30
 msgid "General"
 msgstr "Genel"
 
-#: ../src\gui\dialogs\configuration.py:268
+#: ../src\gui\dialogs\configuration.py:275
 msgid "Show other buffers"
 msgstr "Diğer bufferleri göster"
 
-#: ../src\gui\dialogs\configuration.py:272
+#: ../src\gui\dialogs\configuration.py:279
 msgid "Sound"
 msgstr "ses"
 
-#: ../src\gui\dialogs\configuration.py:274
+#: ../src\gui\dialogs\configuration.py:281
 msgid "Audio Services"
 msgstr "Ses hizmetleri"
 
-#: ../src\gui\dialogs\configuration.py:277
+#: ../src\gui\dialogs\configuration.py:284
 msgid "Save"
 msgstr "Kaydet"
 
-#: ../src\gui\dialogs\configuration.py:280 ../src\gui\dialogs\follow.py:64
-#: ../src\gui\dialogs\message.py:186 ../src\gui\dialogs\message.py:274
-#: ../src\gui\dialogs\message.py:357 ../src\gui\dialogs\search.py:42
-#: ../src\gui\dialogs\show_user.py:42 ../src\gui\dialogs\trending.py:42
-#: ../src\gui\dialogs\update_profile.py:56 ../src\gui\dialogs\utils.py:42
-#: ../src\keystrokeEditor\gui.py:26
+#: ../src\gui\dialogs\configuration.py:287 ../src\gui\dialogs\follow.py:67
+#: ../src\gui\dialogs\message.py:189 ../src\gui\dialogs\message.py:284
+#: ../src\gui\dialogs\message.py:385 ../src\gui\dialogs\message.py:472
+#: ../src\gui\dialogs\search.py:42 ../src\gui\dialogs\show_user.py:42
+#: ../src\gui\dialogs\trending.py:52 ../src\gui\dialogs\update_profile.py:56
+#: ../src\gui\dialogs\utils.py:42 ../src\keystrokeEditor\gui.py:26
 msgid "Close"
 msgstr "Kapat"
 
-#: ../src\gui\dialogs\configuration.py:293 ../src\gui\main.py:264
+#: ../src\gui\dialogs\configuration.py:303 ../src\gui\main.py:277
 msgid "Followers"
 msgstr "Takipçiler"
 
-#: ../src\gui\dialogs\configuration.py:307
+#: ../src\gui\dialogs\configuration.py:317
 msgid "friends"
 msgstr "Arkadaşlar"
 
-#: ../src\gui\dialogs\configuration.py:321
+#: ../src\gui\dialogs\configuration.py:331
 msgid "Favorites"
 msgstr "Favoriler"
 
-#: ../src\gui\dialogs\configuration.py:335 ../src\gui\main.py:282
+#: ../src\gui\dialogs\configuration.py:345 ../src\gui\main.py:295
 msgid "Events"
 msgstr "Olaylar"
 
-#: ../src\gui\dialogs\configuration.py:346 ../src\gui\main.py:274
+#: ../src\gui\dialogs\configuration.py:356 ../src\gui\main.py:287
 msgid "Blocked users"
 msgstr "Engellenmiş kullanıcılar"
 
-#: ../src\gui\dialogs\configuration.py:360 ../src\gui\main.py:278
+#: ../src\gui\dialogs\configuration.py:370 ../src\gui\main.py:291
 msgid "Muted users"
 msgstr "susturulmuş kullanıcılar"
 
-#: ../src\gui\dialogs\configuration.py:420
+#: ../src\gui\dialogs\configuration.py:437
 msgid "Restart TW Blue"
 msgstr "TWBlue programını yeniden başlat"
 
-#: ../src\gui\dialogs\configuration.py:420
+#: ../src\gui\dialogs\configuration.py:437
 msgid ""
 "The application requires to be restarted to save these changes. Press OK to "
 "do it now."
@@ -1070,58 +1283,66 @@ msgstr ""
 "Program ayarların etkili olabilmesi için yeniden başlatacaktır. Tamama "
 "tıklayarak programı yeniden başlatabilirsiniz."
 
-#: ../src\gui\dialogs\follow.py:33 ../src\gui\dialogs\follow.py:43
+#: ../src\gui\dialogs\follow.py:34 ../src\gui\dialogs\follow.py:44
 #: ../src\keystrokeEditor\gui.py:17
 msgid "Action"
 msgstr "Eylem"
 
-#: ../src\gui\dialogs\follow.py:44
+#: ../src\gui\dialogs\follow.py:45
 msgid "Follow"
 msgstr "Takip et"
 
-#: ../src\gui\dialogs\follow.py:45
+#: ../src\gui\dialogs\follow.py:46
 msgid "Unfollow"
 msgstr "Takibi bırak"
 
-#: ../src\gui\dialogs\follow.py:46
+#: ../src\gui\dialogs\follow.py:47
 msgid "Mute"
 msgstr "Sustur"
 
-#: ../src\gui\dialogs\follow.py:47
+#: ../src\gui\dialogs\follow.py:48
 msgid "Unmute"
 msgstr "Susturmayı kaldır"
 
-#: ../src\gui\dialogs\follow.py:48
+#: ../src\gui\dialogs\follow.py:49
 msgid "Block"
 msgstr "Engelle"
 
-#: ../src\gui\dialogs\follow.py:49
+#: ../src\gui\dialogs\follow.py:50
 msgid "Unblock"
 msgstr "Engeli kaldır"
 
-#: ../src\gui\dialogs\follow.py:50
+#: ../src\gui\dialogs\follow.py:51
 msgid "Report as spam"
 msgstr "Spam olarak raporla"
 
-#: ../src\gui\dialogs\follow.py:61 ../src\gui\dialogs\search.py:40
-#: ../src\gui\dialogs\trending.py:40 ../src\gui\dialogs\utils.py:39
+#: ../src\gui\dialogs\follow.py:52
+msgid "Ignore tweets from this client"
+msgstr "Bu istemciden gelen tweetleri yoksay"
+
+#: ../src\gui\dialogs\follow.py:64 ../src\gui\dialogs\search.py:40
+#: ../src\gui\dialogs\trending.py:50 ../src\gui\dialogs\utils.py:39
 #: ../src\keystrokeEditor\gui.py:76
 msgid "OK"
 msgstr "Tamam"
 
-#: ../src\gui\dialogs\follow.py:101
+#: ../src\gui\dialogs\follow.py:104
 msgid "You've muted to %s"
 msgstr "%s kişisini susturdunuz"
 
-#: ../src\gui\dialogs\follow.py:115
+#: ../src\gui\dialogs\follow.py:118
 msgid "You've unmuted to %s"
 msgstr "%s kişisinin susturmasını kaldırdınız"
+
+#: ../src\gui\dialogs\follow.py:142
+msgid "You can't ignore direct messages"
+msgstr "Dmleri yoksayamazsınız"
 
 #: ../src\gui\dialogs\lists.py:36
 msgid "Lists manager"
 msgstr "Liste yöneticisi"
 
-#: ../src\gui\dialogs\lists.py:38 ../src\gui\main.py:298
+#: ../src\gui\dialogs\lists.py:38 ../src\gui\main.py:311
 msgid "Lists"
 msgstr "Listeler"
 
@@ -1169,7 +1390,7 @@ msgstr "Liste açıldı"
 msgid "This list is arready opened."
 msgstr "Bu liste zaten açılmış."
 
-#: ../src\gui\dialogs\lists.py:130 ../src\gui\main.py:301
+#: ../src\gui\dialogs\lists.py:130 ../src\gui\main.py:314
 msgid "List for %s"
 msgstr "%s için liste"
 
@@ -1217,105 +1438,128 @@ msgstr "Ekle"
 msgid "Select a list to remove the user"
 msgstr "Kullanıcıyı kaldırmak için bir liste seçin"
 
-#: ../src\gui\dialogs\message.py:43 ../src\gui\dialogs\message.py:146
+#: ../src\gui\dialogs\message.py:44 ../src\gui\dialogs\message.py:147
 msgid "%s - %s of 140 characters"
 msgstr "%s - %s 140 karakter"
 
-#: ../src\gui\dialogs\message.py:77
+#: ../src\gui\dialogs\message.py:78
 msgid "Attaching..."
 msgstr "Ekleniyor..."
 
-#: ../src\gui\dialogs\message.py:78
+#: ../src\gui\dialogs\message.py:79
 msgid "Uploading..."
 msgstr "Yükleniyor..."
 
-#: ../src\gui\dialogs\message.py:100
+#: ../src\gui\dialogs\message.py:101
 msgid "Unable to upload the audio"
 msgstr "Ses yüklenemiyor"
 
-#: ../src\gui\dialogs\message.py:114 ../src\gui\dialogs\message.py:400
+#: ../src\gui\dialogs\message.py:115 ../src\gui\dialogs\message.py:428
+#: ../src\gui\dialogs\message.py:513
 msgid "Translated"
 msgstr "Mesaj çevirildi"
 
-#: ../src\gui\dialogs\message.py:126
+#: ../src\gui\dialogs\message.py:127
 msgid "There's no URL to be shortened"
 msgstr "Kısaltılacak adres yok"
 
-#: ../src\gui\dialogs\message.py:129
+#: ../src\gui\dialogs\message.py:130
 msgid "URL shortened"
 msgstr "Adres kısaltıldı"
 
-#: ../src\gui\dialogs\message.py:137 ../src\gui\dialogs\message.py:412
+#: ../src\gui\dialogs\message.py:138 ../src\gui\dialogs\message.py:440
+#: ../src\gui\dialogs\message.py:525
 msgid "There's no URL to be expanded"
 msgstr "Genişletilecek adres yok"
 
-#: ../src\gui\dialogs\message.py:140 ../src\gui\dialogs\message.py:415
+#: ../src\gui\dialogs\message.py:141 ../src\gui\dialogs\message.py:443
+#: ../src\gui\dialogs\message.py:528
 msgid "URL expanded"
 msgstr "Adres genişletildi"
 
-#: ../src\gui\dialogs\message.py:168 ../src\gui\dialogs\message.py:223
+#: ../src\gui\dialogs\message.py:169 ../src\gui\dialogs\message.py:233
 #: ../src\gui\dialogs\update_profile.py:51
 #: ../src\gui\dialogs\update_profile.py:88
 msgid "Upload a picture"
 msgstr "Resim yükle"
 
-#: ../src\gui\dialogs\message.py:171 ../src\gui\dialogs\message.py:259
-#: ../src\gui\dialogs\message.py:350
+#: ../src\gui\dialogs\message.py:172 ../src\gui\dialogs\message.py:269
+#: ../src\gui\dialogs\message.py:378 ../src\gui\dialogs\message.py:465
 msgid "Spelling correction"
 msgstr "Yazım hatası denetimi"
 
-#: ../src\gui\dialogs\message.py:175 ../src\gui\dialogs\message.py:263
+#: ../src\gui\dialogs\message.py:176 ../src\gui\dialogs\message.py:273
 msgid "Shorten URL"
 msgstr "Adresi kısalt"
 
-#: ../src\gui\dialogs\message.py:177 ../src\gui\dialogs\message.py:265
-#: ../src\gui\dialogs\message.py:352
+#: ../src\gui\dialogs\message.py:178 ../src\gui\dialogs\message.py:275
+#: ../src\gui\dialogs\message.py:380 ../src\gui\dialogs\message.py:467
 msgid "Expand URL"
 msgstr "Adresi genişlet"
 
-#: ../src\gui\dialogs\message.py:183 ../src\gui\dialogs\message.py:271
+#: ../src\gui\dialogs\message.py:184 ../src\gui\dialogs\message.py:281
 msgid "Send"
 msgstr "Gönder"
 
-#: ../src\gui\dialogs\message.py:219 ../src\gui\dialogs\message.py:230
+#: ../src\gui\dialogs\message.py:187
+msgid "&Autocomplete users"
+msgstr "Kullaınıcıları otomatik tamamla"
+
+#: ../src\gui\dialogs\message.py:229 ../src\gui\dialogs\message.py:240
 #: ../src\gui\dialogs\update_profile.py:84
 #: ../src\gui\dialogs\update_profile.py:95
 msgid "Discard image"
 msgstr "Resmi sil"
 
-#: ../src\gui\dialogs\message.py:225 ../src\gui\dialogs\update_profile.py:90
+#: ../src\gui\dialogs\message.py:235 ../src\gui\dialogs\update_profile.py:90
 msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 msgstr "Resim dosyaları (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 
-#: ../src\gui\dialogs\message.py:225 ../src\gui\dialogs\update_profile.py:90
+#: ../src\gui\dialogs\message.py:235 ../src\gui\dialogs\update_profile.py:90
 msgid "Select the picture to be uploaded"
 msgstr "Yüklenecek resim seçin"
 
-#: ../src\gui\dialogs\message.py:253
+#: ../src\gui\dialogs\message.py:263
 msgid "Recipient"
 msgstr "Alıcı"
 
-#: ../src\gui\dialogs\message.py:308
-msgid "Mention to all"
-msgstr "Konuşmadaki tüm kullanıcılara mention at"
+#: ../src\gui\dialogs\message.py:318
+msgid "Men&tion all"
+msgstr "&Tümünü yanıtla"
 
-#: ../src\gui\dialogs\message.py:335
+#: ../src\gui\dialogs\message.py:345
 msgid "Tweet - %i characters "
 msgstr "Yeni tweet- %i karakter"
 
-#: ../src\gui\dialogs\search.py:26 ../src\gui\dialogs\trending.py:26
+#: ../src\gui\dialogs\message.py:363
+msgid "Retweets: "
+msgstr "Retweetler: "
+
+#: ../src\gui\dialogs\message.py:368
+msgid "Favourites: "
+msgstr "Favoriler: "
+
+#: ../src\gui\dialogs\message.py:451
+msgid "View"
+msgstr "Görünüm"
+
+#: ../src\gui\dialogs\message.py:453
+msgid "Item"
+msgstr "Öğe"
+
+#: ../src\gui\dialogs\search.py:26
 msgid "Search on Twitter"
 msgstr "Twitter'da ara"
 
-#: ../src\gui\dialogs\search.py:27 ../src\gui\dialogs\trending.py:27
+#: ../src\gui\dialogs\search.py:27
 msgid "Search"
 msgstr "ara"
 
-#: ../src\gui\dialogs\search.py:34 ../src\gui\dialogs\trending.py:34
+#: ../src\gui\dialogs\search.py:34
 msgid "Tweets"
 msgstr "Tweetler"
 
-#: ../src\gui\dialogs\search.py:35 ../src\gui\dialogs\trending.py:35
+#: ../src\gui\dialogs\search.py:35
 msgid "Users"
 msgstr "Kullanıcılar"
 
@@ -1383,6 +1627,26 @@ msgstr "Tweetler: %s\n"
 msgid "Favourites: %s"
 msgstr "Favoriler: %s"
 
+#: ../src\gui\dialogs\trending.py:30
+msgid "View trending topics"
+msgstr "Trend konuları gör"
+
+#: ../src\gui\dialogs\trending.py:31
+msgid "Trending topics by"
+msgstr "Trending topics by"
+
+#: ../src\gui\dialogs\trending.py:33
+msgid "Country"
+msgstr "Ülke"
+
+#: ../src\gui\dialogs\trending.py:34
+msgid "City"
+msgstr "Şehir"
+
+#: ../src\gui\dialogs\trending.py:43 ../src\gui\dialogs\update_profile.py:35
+msgid "Location"
+msgstr "Yer"
+
 #: ../src\gui\dialogs\update_profile.py:27
 msgid "Update your profile"
 msgstr "Profilinizi güncelleyin"
@@ -1390,10 +1654,6 @@ msgstr "Profilinizi güncelleyin"
 #: ../src\gui\dialogs\update_profile.py:29
 msgid "Name (20 characters maximum)"
 msgstr "ad (20 harf)"
-
-#: ../src\gui\dialogs\update_profile.py:35
-msgid "Location"
-msgstr "Yer"
 
 #: ../src\gui\dialogs\update_profile.py:40
 msgid "Website"
@@ -1411,322 +1671,306 @@ msgstr "Profili güncelle"
 msgid "Select an URL"
 msgstr "bir adres seçin"
 
-#: ../src\gui\main.py:59
+#: ../src\gui\main.py:66
+msgid "S&witch account"
+msgstr "&Hesap değiştir"
+
+#: ../src\gui\main.py:68
 msgid "&Update profile"
 msgstr "&Profili güncelle"
 
-#: ../src\gui\main.py:61
+#: ../src\gui\main.py:70
 msgid "&Hide window"
 msgstr "&Pencereyi gizle"
 
-#: ../src\gui\main.py:63
+#: ../src\gui\main.py:72
 msgid "&Search"
 msgstr "&Ara"
 
-#: ../src\gui\main.py:65
+#: ../src\gui\main.py:74
+msgid "View &trending topics"
+msgstr "&&Trend konuları görüntüle"
+
+#: ../src\gui\main.py:76
 msgid "&Lists manager"
 msgstr "&Liste yöneticisi"
 
-#: ../src\gui\main.py:67
+#: ../src\gui\main.py:78
 msgid "Sounds &tutorial"
 msgstr "Ses &denemesi"
 
-#: ../src\gui\main.py:69
+#: ../src\gui\main.py:80
 msgid "&Edit keystrokes"
 msgstr "&Kısayolları düzenle"
 
-#: ../src\gui\main.py:71
+#: ../src\gui\main.py:82
 msgid "&Preferences"
 msgstr "&Ayarlar"
 
-#: ../src\gui\main.py:73
+#: ../src\gui\main.py:84
 msgid "E&xit"
-msgstr "ç&kış"
+msgstr "ç&ıkış"
 
-#: ../src\gui\main.py:78 ../src\gui\main.py:154
+#: ../src\gui\main.py:89 ../src\gui\main.py:167
 msgid "&Tweet"
 msgstr "&Tweet"
 
-#: ../src\gui\main.py:80
-msgid "Re&ply"
-msgstr "ya&nıt"
+#: ../src\gui\main.py:101
+msgid "View &address"
+msgstr "&Adresi görüntüle"
 
-#: ../src\gui\main.py:82
-msgid "&Retweet"
-msgstr "&Retweet"
-
-#: ../src\gui\main.py:84
-msgid "Add to &favourites"
-msgstr "Favorilere &ekle"
-
-#: ../src\gui\main.py:86
-msgid "Remove from favo&urites"
-msgstr "Favorilerden &kaldır"
-
-#: ../src\gui\main.py:88
-msgid "&Show tweet"
-msgstr "&Tweet göster"
-
-#: ../src\gui\main.py:90
-msgid "&Delete"
-msgstr "&sil"
-
-#: ../src\gui\main.py:95
+#: ../src\gui\main.py:108
 msgid "&Follow"
 msgstr "&Takip et"
 
-#: ../src\gui\main.py:97
+#: ../src\gui\main.py:110
 msgid "&Unfollow"
 msgstr "&Takibi bırak"
 
-#: ../src\gui\main.py:99 ../src\gui\main.py:128
+#: ../src\gui\main.py:112 ../src\gui\main.py:141
 msgid "&Mute"
 msgstr "&Sustur"
 
-#: ../src\gui\main.py:101
+#: ../src\gui\main.py:114
 msgid "U&nmute"
 msgstr "Susturmayı &kaldır"
 
-#: ../src\gui\main.py:103
+#: ../src\gui\main.py:116
 msgid "&Report as spam"
 msgstr "&Spam olarak raporla"
 
-#: ../src\gui\main.py:105
+#: ../src\gui\main.py:118
 msgid "&Block"
 msgstr "&Engelle"
 
-#: ../src\gui\main.py:107
+#: ../src\gui\main.py:120
 msgid "Unb&lock"
 msgstr "Engeli &kaldır"
 
-#: ../src\gui\main.py:109
+#: ../src\gui\main.py:122
 msgid "Direct me&ssage"
 msgstr "&Dm"
 
-#: ../src\gui\main.py:111
+#: ../src\gui\main.py:124
 msgid "&Add to list"
 msgstr "Listeye e&kle"
 
-#: ../src\gui\main.py:113
+#: ../src\gui\main.py:126
 msgid "R&emove from list"
 msgstr "Listeden ka&ldır"
 
-#: ../src\gui\main.py:115
-msgid "&View lists"
-msgstr "Listeleri &görüntüle"
-
-#: ../src\gui\main.py:117
-msgid "Show user &profile"
-msgstr "&Kullanıcı profilini göster"
-
-#: ../src\gui\main.py:119
+#: ../src\gui\main.py:132
 msgid "&Timeline"
 msgstr "&Çizelge"
 
-#: ../src\gui\main.py:121
+#: ../src\gui\main.py:134
 msgid "V&iew favourites"
 msgstr "&Favorileri göster"
 
-#: ../src\gui\main.py:126
+#: ../src\gui\main.py:139
 msgid "&Load previous items"
 msgstr "Önceki öğeleri yükle"
 
-#: ../src\gui\main.py:130
+#: ../src\gui\main.py:143
 msgid "&Autoread tweets for this buffer"
 msgstr "&Bu bufferin tweetlerini otomatik olarak oku"
 
-#: ../src\gui\main.py:132
+#: ../src\gui\main.py:145
 msgid "&Clear buffer"
 msgstr "Bufferi te&mizle"
 
-#: ../src\gui\main.py:134
+#: ../src\gui\main.py:147
 msgid "&Remove buffer"
 msgstr "&Bufferi kaldır"
 
-#: ../src\gui\main.py:139
+#: ../src\gui\main.py:152
 msgid "&Documentation"
 msgstr "&Dökümantasyon"
 
-#: ../src\gui\main.py:141
+#: ../src\gui\main.py:154
 msgid "&What's new in this version?"
 msgstr "&Bu versiyondaki yenilikler"
 
-#: ../src\gui\main.py:143
+#: ../src\gui\main.py:156
 msgid "&Check for updates"
 msgstr "&Güncellemeleri denetle"
 
-#: ../src\gui\main.py:145
+#: ../src\gui\main.py:158
 msgid "&Report an error"
 msgstr "&Hata raporla"
 
-#: ../src\gui\main.py:147
+#: ../src\gui\main.py:160
 msgid "TW Blue &website"
 msgstr "&TWBlue web sitesi"
 
-#: ../src\gui\main.py:149
+#: ../src\gui\main.py:162
 msgid "About &TW Blue"
 msgstr "&TWBlue hakkında"
 
-#: ../src\gui\main.py:153
+#: ../src\gui\main.py:166
 msgid "&Application"
 msgstr "&Uygulama"
 
-#: ../src\gui\main.py:155
+#: ../src\gui\main.py:168
 msgid "&User"
 msgstr "&Kullanıcı"
 
-#: ../src\gui\main.py:156
+#: ../src\gui\main.py:169
 msgid "&Buffer"
 msgstr "&buffer"
 
-#: ../src\gui\main.py:157
+#: ../src\gui\main.py:170
 msgid "&Help"
 msgstr "&Yardım"
 
-#: ../src\gui\main.py:241
+#: ../src\gui\main.py:234
+msgid ""
+"An error occurred while looking for an update. It may be due to any problem "
+"either on our server or on your DNS servers. Please, try again later."
+msgstr ""
+"Güncelleme kontrolü yaparken hata oluştu. Sunucuda ya da bağlantınızda sorun "
+"olabilir."
+
+#: ../src\gui\main.py:254
 msgid "Home"
 msgstr "Anasayfa"
 
-#: ../src\gui\main.py:246
+#: ../src\gui\main.py:259
 msgid "Mentions"
 msgstr "Yanıtlar"
 
-#: ../src\gui\main.py:249
+#: ../src\gui\main.py:262
 msgid "Direct messages"
 msgstr "DM'ler"
 
-#: ../src\gui\main.py:252
+#: ../src\gui\main.py:265
 msgid "Sent"
 msgstr "Gönderilmiş tweetler"
 
-#: ../src\gui\main.py:258
+#: ../src\gui\main.py:271
 msgid "Favourites"
 msgstr "Favoriler"
 
-#: ../src\gui\main.py:270
+#: ../src\gui\main.py:283
 msgid "Friends"
 msgstr "Arkadaşlar"
 
-#: ../src\gui\main.py:285
+#: ../src\gui\main.py:298
 msgid "Searches"
 msgstr "aramalar"
 
-#: ../src\gui\main.py:292
+#: ../src\gui\main.py:305
 msgid "Timelines"
 msgstr "çizelgeler"
 
-#: ../src\gui\main.py:295 ../src\gui\main.py:708
+#: ../src\gui\main.py:308 ../src\gui\main.py:747
 msgid "Timeline for %s"
 msgstr "%s için çizelge"
 
-#: ../src\gui\main.py:306
+#: ../src\gui\main.py:319
 msgid "Favourites timelines"
 msgstr "Favori çizelgeleri"
 
-#: ../src\gui\main.py:309 ../src\gui\main.py:732
+#: ../src\gui\main.py:322 ../src\gui\main.py:771
 msgid "Favourites for %s"
 msgstr "%s kişisi için favoriler"
 
-#: ../src\gui\main.py:341
+#: ../src\gui\main.py:332 ../src\gui\main.py:1062
+msgid "Trending topics for %s"
+msgstr "%s için trend konular"
+
+#: ../src\gui\main.py:365
 msgid "Ready"
 msgstr "TWBlue Hazır"
 
-#: ../src\gui\main.py:368
+#: ../src\gui\main.py:393
 msgid "%s favourites from %s"
 msgstr "%s favourites from %s"
 
-#: ../src\gui\main.py:378
-msgid "Connection error. Try again later."
-msgstr "Bağlantı hatası. Daha sonra yeniden deneyin"
-
-#: ../src\gui\main.py:421
+#: ../src\gui\main.py:449
 msgid "Streams disconnected. TW Blue will try to reconnect in a minute."
 msgstr ""
 "Bağlantı kesildi. TWBlue bir dakika içinde yeniden bağlanmayı deneyecek."
 
-#: ../src\gui\main.py:425
+#: ../src\gui\main.py:453
 msgid "Reconnecting streams..."
 msgstr "Bağlanılıyor..."
 
-#: ../src\gui\main.py:449
+#: ../src\gui\main.py:477
 msgid "search for %s"
 msgstr "%s kişisi için arama"
 
-#: ../src\gui\main.py:454
+#: ../src\gui\main.py:482
 msgid "search users for %s"
 msgstr "%s için kullanıcı ara"
 
-#: ../src\gui\main.py:466 ../src\gui\main.py:477 ../src\gui\main.py:496
+#: ../src\gui\main.py:494 ../src\gui\main.py:505 ../src\gui\main.py:524
 msgid "Select the user"
 msgstr "Kullanıcı seçin"
 
-#: ../src\gui\main.py:557
+#: ../src\gui\main.py:584
 msgid "User details"
 msgstr "Kullanıcı Ayrıntıları"
 
-#: ../src\gui\main.py:565
+#: ../src\gui\main.py:592
 msgid ""
 "Do you really want to delete this message? It will be eliminated from "
 "Twitter as well."
 msgstr ""
 "Mesajı silmek istediğinizden emin misiniz? Mesaj twitterdan da silinecektir."
 
-#: ../src\gui\main.py:582
+#: ../src\gui\main.py:609
 msgid "Do you really want to close TW Blue?"
 msgstr "TWBlue programını kapatmak istiyor musunuz?"
 
-#: ../src\gui\main.py:582 ../src\gui\sysTrayIcon.py:46
+#: ../src\gui\main.py:609 ../src\gui\sysTrayIcon.py:46
 msgid "Exit"
 msgstr "Çıkış"
 
-#: ../src\gui\main.py:587
+#: ../src\gui\main.py:614
 msgid "Exiting..."
 msgstr "Çıkılıyor..."
 
-#: ../src\gui\main.py:673
+#: ../src\gui\main.py:712
 msgid "Error while adding to favourites."
 msgstr "Favorilere eklerken hata oluştu."
 
-#: ../src\gui\main.py:681
+#: ../src\gui\main.py:720
 msgid "Error while removing from favourites."
 msgstr "Favorilerden kaldırırken hata oluştu."
 
-#: ../src\gui\main.py:685
+#: ../src\gui\main.py:724
 msgid "Individual timeline"
 msgstr "Kullanıcının çizelgesi"
 
-#: ../src\gui\main.py:689 ../src\gui\main.py:721
-msgid "The user does not exist"
-msgstr "Kullanıcı bulunamadı"
-
-#: ../src\gui\main.py:695
+#: ../src\gui\main.py:734
 msgid "Existing timeline"
 msgstr "Varolan çizelge"
 
-#: ../src\gui\main.py:695
+#: ../src\gui\main.py:734
 msgid ""
 "There's currently a timeline for this user. You are not able to open another"
 msgstr "Bu kullanıcı için zaten bir çizelge var. Bir tane daha açamazsınız"
 
-#: ../src\gui\main.py:703
+#: ../src\gui\main.py:742
 msgid "This user has no tweets. You can't open a timeline for this user"
 msgstr "Bu kullanıcının tweeti yok. Bu kullanıcı için çizelge açamazsınız."
 
-#: ../src\gui\main.py:717
+#: ../src\gui\main.py:756
 msgid "List of favourites"
 msgstr "Favori listesi"
 
-#: ../src\gui\main.py:727
+#: ../src\gui\main.py:766
 msgid "Existing list"
 msgstr "Varolan liste"
 
-#: ../src\gui\main.py:727
+#: ../src\gui\main.py:766
 msgid ""
 "There's already a list of favourites for this user. You can't create another."
 msgstr ""
 "Bu kullanıcı için zaten bir favori listesi var. bir tane daha açamazsınız."
 
-#: ../src\gui\main.py:736
+#: ../src\gui\main.py:775
 msgid ""
 "This user has no favourites. You can't create a list of favourites for this "
 "user."
@@ -1734,45 +1978,61 @@ msgstr ""
 "Bu kullanıcının hiçbir favorisi yok. Bu yüzden bu kullanıcı için favori "
 "listesi yapamazsınız."
 
-#: ../src\gui\main.py:777 ../src\gui\main.py:790
+#: ../src\gui\main.py:816 ../src\gui\main.py:829
 msgid "%s, %s of %s"
 msgstr "%s, %s/%s"
 
-#: ../src\gui\main.py:779 ../src\gui\main.py:792
+#: ../src\gui\main.py:818 ../src\gui\main.py:831
 msgid "%s. Empty"
 msgstr "%s. boş"
 
-#: ../src\gui\main.py:815
+#: ../src\gui\main.py:868
 msgid "Global mute on"
 msgstr "Tümünü susturma açık"
 
-#: ../src\gui\main.py:818
+#: ../src\gui\main.py:871
 msgid "Global mute off"
 msgstr "Tümünü susturma kapalı"
 
-#: ../src\gui\main.py:824
+#: ../src\gui\main.py:877
 msgid "Buffer mute on"
 msgstr "Buffer susturma açık"
 
-#: ../src\gui\main.py:827
+#: ../src\gui\main.py:880
 msgid "Buffer mute off"
 msgstr "Buffer susturma kapalı"
 
-#: ../src\gui\main.py:833
+#: ../src\gui\main.py:886
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "Yeni tweetlerin okunması bu buffer için etkin"
 
-#: ../src\gui\main.py:836
+#: ../src\gui\main.py:889
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "Yeni tweetlerin okunması bu buffer için etkin değil"
 
-#: ../src\gui\main.py:843
+#: ../src\gui\main.py:896
 msgid "Copied"
 msgstr "Kopyalandı"
 
-#: ../src\gui\main.py:857 ../src\gui\main.py:870
+#: ../src\gui\main.py:910 ../src\gui\main.py:923
 msgid "%s"
 msgstr "%s"
+
+#: ../src\gui\main.py:1026
+msgid "Address"
+msgstr "Adres"
+
+#: ../src\gui\main.py:1028 ../src\gui\main.py:1045
+msgid "There are no coordinates in this tweet"
+msgstr "Bu tweette koordinatlar yok"
+
+#: ../src\gui\main.py:1030 ../src\gui\main.py:1047
+msgid "There are no results for the coordinates in this tweet"
+msgstr "Bu tweetin koordinatları için bir sonuç bulunamadı"
+
+#: ../src\gui\main.py:1032 ../src\gui\main.py:1049
+msgid "Error decoding coordinates. Try again later."
+msgstr "Koordinat bulma hatası. Lütfen yeniden deneyin."
 
 #: ../src\gui\sysTrayIcon.py:36
 msgid "Preferences"
@@ -1782,13 +2042,128 @@ msgstr "Ayarlar"
 msgid "Show / hide"
 msgstr "Göster / gizle"
 
-#: ../src\gui\sysTrayIcon.py:42
+#: ../src\gui\sysTrayIcon.py:42 ../src\issueReporter\gui.py:30
 msgid "Documentation"
 msgstr "Dökümantasyon"
 
 #: ../src\gui\sysTrayIcon.py:44
 msgid "Check for updates"
 msgstr "Güncellemeleri denetle"
+
+#: ../src\issueReporter\gui.py:30
+msgid "Translation"
+msgstr "Çeviri"
+
+#: ../src\issueReporter\gui.py:31
+msgid "always"
+msgstr "her zaman"
+
+#: ../src\issueReporter\gui.py:31
+msgid "have not tried"
+msgstr "Denenmedi"
+
+#: ../src\issueReporter\gui.py:31
+msgid "random"
+msgstr "rastgele"
+
+#: ../src\issueReporter\gui.py:31
+msgid "sometimes"
+msgstr "bazen"
+
+#: ../src\issueReporter\gui.py:31
+msgid "unable to duplicate"
+msgstr "Çoğaltılamıyor"
+
+#: ../src\issueReporter\gui.py:32
+msgid "block"
+msgstr "Engel"
+
+#: ../src\issueReporter\gui.py:32
+msgid "crash"
+msgstr "çökme"
+
+#: ../src\issueReporter\gui.py:32
+msgid "feature"
+msgstr "özellik"
+
+#: ../src\issueReporter\gui.py:32
+msgid "major"
+msgstr "büyük"
+
+#: ../src\issueReporter\gui.py:32
+msgid "minor"
+msgstr "küçük"
+
+#: ../src\issueReporter\gui.py:32
+msgid "text"
+msgstr "Metin"
+
+#: ../src\issueReporter\gui.py:32
+msgid "trivial"
+msgstr "önemsiz"
+
+#: ../src\issueReporter\gui.py:32
+msgid "tweak"
+msgstr "tweak"
+
+#: ../src\issueReporter\gui.py:34
+msgid "Report an error"
+msgstr "Hata raporla"
+
+#: ../src\issueReporter\gui.py:37
+msgid "Select a category"
+msgstr "Kategori seçin"
+
+#: ../src\issueReporter\gui.py:46
+msgid ""
+"Briefly describe what happened. You will be able to thoroughly explain it "
+"later"
+msgstr "Ne olduğunu kısaca yazın. detayları sonraki kutuya yazın"
+
+#: ../src\issueReporter\gui.py:56
+msgid "Here, you can describe the bug in detail"
+msgstr "Hatayı detaylarıyla açıklayın"
+
+#: ../src\issueReporter\gui.py:66
+msgid "how often does this bug happen?"
+msgstr "Bu hata ne sıklıkta oluyor"
+
+#: ../src\issueReporter\gui.py:74
+msgid "Select the importance that you think this bug has"
+msgstr "Bu hatanın önceliğini seçin"
+
+#: ../src\issueReporter\gui.py:82
+msgid ""
+"I know that the TW Blue bug system will get my Twitter username to contact "
+"me and fix the bug quickly"
+msgstr ""
+"TWBlue hata sisteminin bana twitter kullanıcı adımla ulaşacağını biliyorum"
+
+#: ../src\issueReporter\gui.py:85
+msgid "Send report"
+msgstr "Raporu gönder"
+
+#: ../src\issueReporter\gui.py:98
+msgid "You must fill out both fields"
+msgstr "İki kutuyu da doldurmalısınız"
+
+#: ../src\issueReporter\gui.py:101
+msgid ""
+"You need to mark the checkbox to provide us your twitter username to contact "
+"to you if is necessary."
+msgstr "Size ulaşım sağlamanız için ulaşım onaykutusunu işaretlemelisiniz"
+
+#: ../src\issueReporter\gui.py:120
+msgid ""
+"Thanks for reporting this bug! In future versions, you may be able to find "
+"it in the changes list. You've reported the bug number %i"
+msgstr ""
+"Hata raporladığınız için teşekkür ederiz! Eğer hata düzeltilirse değişiklik "
+"listesinde hatayı bulabilirsiniz. %i numaralı hatayı raporladınız."
+
+#: ../src\issueReporter\gui.py:120
+msgid "reported"
+msgstr "Raporlandı"
 
 #: ../src\keystrokeEditor\constants.py:4
 msgid "Go up up on the current list"
@@ -1954,6 +2329,18 @@ msgstr "Bir kullanıcı için listeleri göster"
 msgid "loads previous items to any buffer"
 msgstr "Bufferlerda önceki öğeleri yükler"
 
+#: ../src\keystrokeEditor\constants.py:45
+msgid "Get location of any tweet"
+msgstr "Tweetin yerini al"
+
+#: ../src\keystrokeEditor\constants.py:46
+msgid "Displays the tweet's location in a dialog"
+msgstr "Tweetin yerini kutuda görüntüler"
+
+#: ../src\keystrokeEditor\constants.py:47
+msgid "Creates a buffer for displaying trends for a desired place"
+msgstr "İstenen bir yer için trend konuları görüntüleyen bir liste açar"
+
 #: ../src\keystrokeEditor\gui.py:10
 msgid "Keystroke editor"
 msgstr "Kısayol düzenleyicisi"
@@ -2006,15 +2393,15 @@ msgstr "Kısayol için bir harf girmeniz gerekir"
 msgid "User default"
 msgstr "Kullanıcı varsayılanı"
 
-#: ../src\sessionmanager\gui.py:19
+#: ../src\sessionmanager\gui.py:20
 msgid "Session manager"
 msgstr "Hesap yöneticisi"
 
-#: ../src\sessionmanager\gui.py:23
+#: ../src\sessionmanager\gui.py:24
 msgid "Select a twitter account to start TW Blue"
 msgstr "TwBlu programını başlatmak için bir twitter hesabı seçin"
 
-#: ../src\sessionmanager\gui.py:25
+#: ../src\sessionmanager\gui.py:26
 msgid "Account"
 msgstr "hesap"
 
@@ -2022,15 +2409,19 @@ msgstr "hesap"
 msgid "New account"
 msgstr "Yeni hesap"
 
-#: ../src\sessionmanager\gui.py:67
+#: ../src\sessionmanager\gui.py:32
+msgid "Remove session"
+msgstr "Hesabı kaldır"
+
+#: ../src\sessionmanager\gui.py:70
 msgid "Account Error"
 msgstr "Hesap hatası"
 
-#: ../src\sessionmanager\gui.py:67
+#: ../src\sessionmanager\gui.py:70
 msgid "You need to configure an account."
 msgstr "Bir hesap ayarlamanız gerekir"
 
-#: ../src\sessionmanager\gui.py:83
+#: ../src\sessionmanager\gui.py:84
 msgid ""
 "The request for the required Twitter authorization to continue will be "
 "opened on your browser. You only need to do it once. Would you like to "
@@ -2039,19 +2430,27 @@ msgstr ""
 "Yeni hesabınız için Twitter kod onaylama sayfası açılacaktır. Bu işlemi bir "
 "kez yapmanız yeterlidir. İzin vermek istiyor musunuz?"
 
-#: ../src\sessionmanager\gui.py:94
+#: ../src\sessionmanager\gui.py:95
 msgid "Invalid user token"
 msgstr "Yanlış kullanıcı kodu"
 
-#: ../src\sessionmanager\gui.py:94
+#: ../src\sessionmanager\gui.py:95
 msgid ""
 "Your access token is invalid or the authorisation has failed. Please try "
 "again."
 msgstr "Erişim kodunuz yanlış ya da erişim başarısız oldu"
 
-#: ../src\sessionmanager\gui.py:97
+#: ../src\sessionmanager\gui.py:98
 msgid "Authorised account %d"
 msgstr "İzin verilmiş hesap %d"
+
+#: ../src\sessionmanager\gui.py:107
+msgid "Do you really want delete this account?"
+msgstr "Bu hesabı gerçekten silmek ister misiniz?"
+
+#: ../src\sessionmanager\gui.py:107
+msgid "Remove account"
+msgstr "Hesabı kaldır"
 
 #: ../src\twitter\buffers\indibidual.py:26
 msgid "One tweet from %s"
@@ -2394,11 +2793,11 @@ msgstr "Özel"
 msgid "public"
 msgstr "Herkese açık"
 
-#: ../src\twitter\twitter.py:74
+#: ../src\twitter\twitter.py:77
 msgid "%s failed.  Reason: %s"
 msgstr "%s başarısız oldu.  Neden: %s"
 
-#: ../src\twitter\twitter.py:81
+#: ../src\twitter\twitter.py:84
 msgid "%s succeeded."
 msgstr "%s başarılı oldu"
 
@@ -2439,92 +2838,11 @@ msgstr ""
 "Yeni TWBlue versiyonu kuruldu. Tamama basarak programı yeniden "
 "başlatabilirsiniz."
 
-#~ msgid "always"
-#~ msgstr "her zaman"
+#~ msgid "Mention &to all"
+#~ msgstr "&Konuşmadaki tüm kullanıcılara mention at"
 
-#~ msgid "have not tried"
-#~ msgstr "Denenmedi"
-
-#~ msgid "random"
-#~ msgstr "rastgele"
-
-#~ msgid "sometimes"
-#~ msgstr "bazen"
-
-#~ msgid "unable to duplicate"
-#~ msgstr "Çoğaltılamıyor"
-
-#~ msgid "block"
-#~ msgstr "Engel"
-
-#~ msgid "crash"
-#~ msgstr "çökme"
-
-#~ msgid "feature"
-#~ msgstr "özellik"
-
-#~ msgid "major"
-#~ msgstr "büyük"
-
-#~ msgid "minor"
-#~ msgstr "küçük"
-
-#~ msgid "text"
-#~ msgstr "Metin"
-
-#~ msgid "trivial"
-#~ msgstr "önemsiz"
-
-#~ msgid "tweak"
-#~ msgstr "tweak"
-
-#~ msgid "Report an error"
-#~ msgstr "Hata raporla"
-
-#~ msgid "Select a category"
-#~ msgstr "Kategori seçin"
-
-#~ msgid ""
-#~ "Briefly describe what happened. You will be able to thoroughly explain it "
-#~ "later"
-#~ msgstr "Ne olduğunu kısaca yazın. detayları sonraki kutuya yazın"
-
-#~ msgid "Here, you can describe the bug in detail"
-#~ msgstr "Hatayı detaylarıyla açıklayın"
-
-#~ msgid "how often does this bug happen?"
-#~ msgstr "Bu hata ne sıklıkta oluyor"
-
-#~ msgid "Select the importance that you think this bug has"
-#~ msgstr "Bu hatanın önceliğini seçin"
-
-#~ msgid ""
-#~ "I know that the TW Blue bug system will get my Twitter username to "
-#~ "contact me and fix the bug quickly"
-#~ msgstr ""
-#~ "TWBlue hata sisteminin bana twitter kullanıcı adımla ulaşacağını biliyorum"
-
-#~ msgid "Send report"
-#~ msgstr "Raporu gönder"
-
-#~ msgid "You must fill out both fields"
-#~ msgstr "İki kutuyu da doldurmalısınız"
-
-#~ msgid ""
-#~ "You need to mark the checkbox to provide us your twitter username to "
-#~ "contact to you if is necessary."
-#~ msgstr "Size ulaşım sağlamanız için ulaşım onaykutusunu işaretlemelisiniz"
-
-#~ msgid ""
-#~ "Thanks for reporting this bug! In future versions, you may be able to "
-#~ "find it in the changes list. You've reported the bug number %i"
-#~ msgstr ""
-#~ "Hata raporladığınız için teşekkür ederiz! Eğer hata düzeltilirse "
-#~ "değişiklik listesinde hatayı bulabilirsiniz. %i numaralı hatayı "
-#~ "raporladınız."
-
-#~ msgid "reported"
-#~ msgstr "Raporlandı"
+#~ msgid "Connection error. Try again later."
+#~ msgstr "Bağlantı hatası. Daha sonra yeniden deneyin"
 
 #~ msgid "Error while reporting"
 #~ msgstr "Raporlanırken hatayla karşılaşıldı"

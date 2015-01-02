@@ -1,22 +1,22 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TW Blue 0.48\n"
-"POT-Creation-Date: 2014-11-08 16:42+Hora estándar central (México)\n"
-"PO-Revision-Date: 2014-11-09 22:50+0100\n"
+"Project-Id-Version: TW Blue 0.50\n"
+"POT-Creation-Date: 2014-12-10 23:20+Hora estándar central (México)\n"
+"PO-Revision-Date: 2014-12-15 20:17+0100\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Sukil Etxenike Arizaleta <sukiletxe@yahoo.es>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../src\extra\AudioUploader\gui.py:31 ../src\gui\dialogs\message.py:173
-#: ../src\gui\dialogs\message.py:261
+#: ../src\extra\AudioUploader\gui.py:31 ../src\gui\dialogs\message.py:174
+#: ../src\gui\dialogs\message.py:271
 msgid "Attach audio"
 msgstr "Audioa atxiki"
 
@@ -50,7 +50,7 @@ msgstr "Nora igo:"
 msgid "Attach"
 msgstr "Atxiki"
 
-#: ../src\extra\AudioUploader\gui.py:59
+#: ../src\extra\AudioUploader\gui.py:59 ../src\issueReporter\gui.py:88
 msgid "Cancel"
 msgstr "Utzi"
 
@@ -70,13 +70,13 @@ msgstr "Grabatzen"
 msgid "Stopped"
 msgstr "Gelditua"
 
-#: ../src\extra\AudioUploader\gui.py:129 ../src\gui\dialogs\message.py:222
+#: ../src\extra\AudioUploader\gui.py:129 ../src\gui\dialogs\message.py:232
 #: ../src\gui\dialogs\update_profile.py:87
 msgid "Discarded"
 msgstr "Baztertua"
 
-#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:339
-#: ../src\gui\buffers\base.py:351
+#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:359
+#: ../src\gui\buffers\base.py:371
 msgid "Playing..."
 msgstr "Erreproduzitzen..."
 
@@ -181,62 +181,66 @@ msgid "Someone's favourites have been updated"
 msgstr "Norbaiten gogokoak eguneratuak izan dira"
 
 #: ../src\extra\SoundsTutorial\gui.py:19
+msgid "The tweet has coordinates to determine its location"
+msgstr "Txioak bidalketa tokia identifikatzeko koordinatuak ditu "
+
+#: ../src\extra\SoundsTutorial\gui.py:20
 msgid "There are no more tweets to read"
 msgstr "Ez dago txio gehiago"
 
-#: ../src\extra\SoundsTutorial\gui.py:20
+#: ../src\extra\SoundsTutorial\gui.py:21
 msgid "A list has a new tweet"
 msgstr "Txio berri bat dago zerrenda batean"
 
-#: ../src\extra\SoundsTutorial\gui.py:21
+#: ../src\extra\SoundsTutorial\gui.py:22
 msgid "You can't add any more characters on the tweet"
 msgstr "You can't add any more characters on the tweet"
 
-#: ../src\extra\SoundsTutorial\gui.py:22
+#: ../src\extra\SoundsTutorial\gui.py:23
 msgid "You've been mentioned "
 msgstr "Aipatua izan zara"
 
-#: ../src\extra\SoundsTutorial\gui.py:23
+#: ../src\extra\SoundsTutorial\gui.py:24
 msgid "A new event has happened"
 msgstr "Gertaera bat gertatu da"
 
-#: ../src\extra\SoundsTutorial\gui.py:24
+#: ../src\extra\SoundsTutorial\gui.py:25
 msgid "TW Blue is ready "
 msgstr "TW Blue prest dago"
 
-#: ../src\extra\SoundsTutorial\gui.py:25
+#: ../src\extra\SoundsTutorial\gui.py:26
 msgid "You've replied"
 msgstr "Erantzun duzu"
 
-#: ../src\extra\SoundsTutorial\gui.py:26
+#: ../src\extra\SoundsTutorial\gui.py:27
 msgid "You've retweeted"
 msgstr "Bertxiotu duzu"
 
-#: ../src\extra\SoundsTutorial\gui.py:27
+#: ../src\extra\SoundsTutorial\gui.py:28
 msgid "A search has been updated"
 msgstr "Bilaketa bat eguneratu da"
 
-#: ../src\extra\SoundsTutorial\gui.py:28
+#: ../src\extra\SoundsTutorial\gui.py:29
 msgid "There's a new tweet in the main buffer"
 msgstr "Txio berri bat dago \"hasiera\" bufferrean"
 
-#: ../src\extra\SoundsTutorial\gui.py:29
+#: ../src\extra\SoundsTutorial\gui.py:30
 msgid "You've sent a tweet"
 msgstr "Txio bat bidali duzu"
 
-#: ../src\extra\SoundsTutorial\gui.py:30
+#: ../src\extra\SoundsTutorial\gui.py:31
 msgid "There's a new tweet in a timeline"
 msgstr "Denbora lerro batean txio bat dago"
 
-#: ../src\extra\SoundsTutorial\gui.py:31
+#: ../src\extra\SoundsTutorial\gui.py:32
 msgid "You have a new follower"
 msgstr "Jarraitzaile berri bat duzu"
 
-#: ../src\extra\SoundsTutorial\gui.py:32
+#: ../src\extra\SoundsTutorial\gui.py:33
 msgid "You've turned the volume up or down"
 msgstr "Bolumena jaitsi edo igo duzu"
 
-#: ../src\extra\SoundsTutorial\gui.py:36
+#: ../src\extra\SoundsTutorial\gui.py:37
 msgid ""
 "It seems as though the currently used sound pack needs an update. %i fails "
 "are still be required to use this function. Make sure to obtain the needed "
@@ -246,17 +250,18 @@ msgstr ""
 "fitxategi falta dira funtzio hau erabiltzeko. Jaitsi behar diren soinuak edo "
 "jarri harremanetan garatzailearekin."
 
-#: ../src\extra\SoundsTutorial\gui.py:36 ../src\extra\SpellChecker\gui.py:34
-#: ../src\gui\dialogs\show_user.py:63 ../src\gui\main.py:689
-#: ../src\gui\main.py:721
+#: ../src\extra\SoundsTutorial\gui.py:37 ../src\extra\SpellChecker\gui.py:34
+#: ../src\gui\dialogs\show_user.py:63 ../src\gui\main.py:728
+#: ../src\gui\main.py:760 ../src\issueReporter\gui.py:98
+#: ../src\issueReporter\gui.py:101
 msgid "Error"
 msgstr "Errorea"
 
-#: ../src\extra\SoundsTutorial\gui.py:38
+#: ../src\extra\SoundsTutorial\gui.py:39
 msgid "Sounds tutorial"
 msgstr "Soinuen tutoriala"
 
-#: ../src\extra\SoundsTutorial\gui.py:41
+#: ../src\extra\SoundsTutorial\gui.py:42
 msgid "Press enter to listen to the sound for the selected event"
 msgstr "Sakatu enter aukeratutako gertaeraren soinua entzuteko"
 
@@ -308,8 +313,107 @@ msgstr "Bukatua"
 msgid "The spelling review has finished."
 msgstr "Ortografiaren egiaztapena bukatu da"
 
-#: ../src\extra\translator\gui.py:24 ../src\gui\dialogs\message.py:181
-#: ../src\gui\dialogs\message.py:269 ../src\gui\dialogs\message.py:355
+#: ../src\extra\autocompletionUsers\completion.py:18
+msgid "You have to start writing"
+msgstr "Idazten hasi behar zara"
+
+#: ../src\extra\autocompletionUsers\completion.py:29
+msgid "There are not results in your users database"
+msgstr "Ez dago emaitzarik zure erabiltzaileen datu basean."
+
+#: ../src\extra\autocompletionUsers\completion.py:31
+msgid "Autocompletion only works for users."
+msgstr ""
+"Automatikoki osatzeko funtzioak erabiltzaileekin soilik funtzionatzen du."
+
+#: ../src\extra\autocompletionUsers\manage.py:38
+msgid ""
+"Are you sure you want to delete this user from the database? This user will "
+"not appear on the autocomplete results anymore."
+msgstr "Ziur zaude erabiltzaile hau datu-basetik kendu nahi duzula?"
+
+#: ../src\extra\autocompletionUsers\manage.py:38
+msgid "Confirm"
+msgstr "Baieztatu"
+
+#: ../src\extra\autocompletionUsers\settings.py:24
+msgid ""
+"Updating database... You can close this window now. A message will tell you "
+"when the process finishes."
+msgstr ""
+"Datu basea eguneratzen ari da. Leiho hau itxi dezakezu. Mezu bat agertuko da "
+"prozesua bukatzean."
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:7
+msgid "Manage Autocomplete users’ database"
+msgstr "Administratu automatikoki osatzeko erabiltzaileen datu-basea"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:10
+msgid "Editing TWBlue users database"
+msgstr "TW Blueren erabiltzaileen datu-basea editatzen"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Name"
+msgstr "Izena"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Username"
+msgstr "Erabiltzaile-izena"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:14
+msgid "Add user"
+msgstr "Erabiltzailea gehitu"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:15
+msgid "Remove user"
+msgstr "Erabiltzailea kendu"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:36
+msgid "Add user to database"
+msgstr "Erabiltzailea datu-basera gehitu"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:36
+msgid "Twitter username"
+msgstr "Twitterreko erabiltzaile-izena"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:42
+#: ../src\gui\dialogs\configuration.py:248 ../src\gui\main.py:234
+#: ../src\gui\main.py:742 ../src\gui\main.py:775
+msgid "Error!"
+msgstr "Errorea!"
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:42 ../src\gui\main.py:728
+#: ../src\gui\main.py:760
+msgid "The user does not exist"
+msgstr "Erabiltzailea ez da existitzen"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:6
+msgid "Autocomplete users’ settings"
+msgstr "Automatikoki osatzeko erabiltzaileen aukerak"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:9
+msgid "Add users from followers buffer"
+msgstr "Erabiltzaileak jarraitzaileen bufferretik gehitu"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:10
+msgid "Add users from friends buffer"
+msgstr "Erabiltzaileak lagunen bufferretik gehitu"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:13
+msgid "See the users list"
+msgstr "Ikusi erabiltzaileeen zerrenda"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:25
+msgid "Done"
+msgstr "Egina"
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:25
+msgid "TWBlue's database of users has been updated."
+msgstr "TW Blueren erabiltzaileen datu-basea eguneratua izan da."
+
+#: ../src\extra\translator\gui.py:24 ../src\gui\dialogs\message.py:182
+#: ../src\gui\dialogs\message.py:279 ../src\gui\dialogs\message.py:383
+#: ../src\gui\dialogs\message.py:470
 msgid "Translate message"
 msgstr "Mezua itzuli"
 
@@ -689,92 +793,95 @@ msgstr "Yiddisha"
 msgid "autodetect"
 msgstr "Hauteman automatikoki"
 
-#: ../src\gui\buffers\base.py:55
+#: ../src\gui\buffers\base.py:58
 msgid "Client"
 msgstr "Aplikazioa"
 
-#: ../src\gui\buffers\base.py:55
+#: ../src\gui\buffers\base.py:58
 msgid "Text"
 msgstr "Testua"
 
-#: ../src\gui\buffers\base.py:55 ../src\gui\buffers\events.py:61
+#: ../src\gui\buffers\base.py:58 ../src\gui\buffers\events.py:64
 msgid "Date"
 msgstr "Data"
 
-#: ../src\gui\buffers\base.py:55 ../src\gui\buffers\people.py:41
+#: ../src\gui\buffers\base.py:58 ../src\gui\buffers\people.py:44
 #: ../src\gui\buffers\user_searches.py:31 ../src\gui\dialogs\utils.py:36
 msgid "User"
 msgstr "Erabiltzailea"
 
-#: ../src\gui\buffers\base.py:80 ../src\gui\buffers\base.py:228
-#: ../src\gui\buffers\events.py:62 ../src\gui\buffers\events.py:78
-#: ../src\gui\dialogs\message.py:337 ../src\gui\sysTrayIcon.py:34
+#: ../src\gui\buffers\base.py:83 ../src\gui\buffers\base.py:236
+#: ../src\gui\buffers\events.py:65 ../src\gui\buffers\events.py:81
+#: ../src\gui\buffers\trends.py:64 ../src\gui\buffers\trends.py:108
+#: ../src\gui\buffers\trends.py:120 ../src\gui\dialogs\message.py:347
+#: ../src\gui\sysTrayIcon.py:34
 msgid "Tweet"
 msgstr "Txio"
 
-#: ../src\gui\buffers\base.py:82 ../src\gui\buffers\base.py:240
-#: ../src\gui\buffers\base.py:243 ../src\keystrokeEditor\constants.py:13
+#: ../src\gui\buffers\base.py:85 ../src\gui\buffers\base.py:248
+#: ../src\gui\buffers\base.py:251 ../src\keystrokeEditor\constants.py:13
 msgid "Retweet"
 msgstr "Bertxiotu"
 
-#: ../src\gui\buffers\base.py:84 ../src\gui\buffers\base.py:259
+#: ../src\gui\buffers\base.py:87 ../src\gui\buffers\base.py:267
 msgid "Reply"
 msgstr "erantzun"
 
-#: ../src\gui\buffers\base.py:86
+#: ../src\gui\buffers\base.py:89
 msgid "Direct message"
 msgstr "Zuzeneko mezua"
 
-#: ../src\gui\buffers\base.py:100
+#: ../src\gui\buffers\base.py:103
 msgid "Do you really want to delete this timeline?"
 msgstr "Ziur zaude denbora lerro hau ezabatu nahi duzula?"
 
-#: ../src\gui\buffers\base.py:100 ../src\gui\buffers\favourites.py:41
-#: ../src\gui\buffers\lists.py:46 ../src\gui\buffers\trends.py:41
+#: ../src\gui\buffers\base.py:103 ../src\gui\buffers\favourites.py:41
+#: ../src\gui\buffers\lists.py:46 ../src\gui\buffers\trends.py:77
 #: ../src\gui\buffers\tweet_searches.py:45
 #: ../src\gui\buffers\user_searches.py:56
 msgid "Attention"
 msgstr "Atentzioa"
 
-#: ../src\gui\buffers\base.py:112
+#: ../src\gui\buffers\base.py:115
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "buffer hau ez da denbora lerro bat, ezin da ezabatu."
 
-#: ../src\gui\buffers\base.py:196 ../src\gui\buffers\people.py:114
+#: ../src\gui\buffers\base.py:204 ../src\gui\buffers\people.py:117
 msgid "%s items retrieved"
 msgstr "%s elementu jasota"
 
-#: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
-#: ../src\gui\buffers\people.py:56
+#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\people.py:59
 msgid "Direct message to %s"
 msgstr "Zuzeneko mezua %s(r)i"
 
-#: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
-#: ../src\gui\buffers\people.py:56
+#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\dm.py:46
+#: ../src\gui\buffers\people.py:59
 msgid "New direct message"
 msgstr "Zuzeneko mezu bat"
 
-#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\events.py:78
+#: ../src\gui\buffers\base.py:236 ../src\gui\buffers\events.py:81
+#: ../src\gui\buffers\trends.py:108 ../src\gui\buffers\trends.py:120
 msgid "Write the tweet here"
 msgstr "Idatzi txioa hemen"
 
-#: ../src\gui\buffers\base.py:240
+#: ../src\gui\buffers\base.py:248
 msgid "Would you like to add a comment to this tweet?"
 msgstr "Txio honi iruzkin bat gehitu nahi al zenioke?"
 
-#: ../src\gui\buffers\base.py:243
+#: ../src\gui\buffers\base.py:251
 msgid "Add your comment to the tweet"
 msgstr "Txioari iruzkin bat erantsi"
 
-#: ../src\gui\buffers\base.py:259
+#: ../src\gui\buffers\base.py:267
 msgid "Reply to %s"
 msgstr "%s(r)i erantzun"
 
-#: ../src\gui\buffers\base.py:304
+#: ../src\gui\buffers\base.py:322
 msgid "Opening URL..."
 msgstr "URLa irekitzen..."
 
-#: ../src\gui\buffers\base.py:321 ../src\gui\buffers\events.py:122
+#: ../src\gui\buffers\base.py:341 ../src\gui\buffers\events.py:125
 msgid ""
 "Do you really want to empty this buffer? It's tweets will be removed from "
 "the list but not from Twitter"
@@ -782,42 +889,43 @@ msgstr ""
 "Ziur zaude buffer honen osagaiak  ezabatu nahi dituzula? Txioak bufferretik "
 "kenduko dira, baina ez twitterretik."
 
-#: ../src\gui\buffers\base.py:321 ../src\gui\buffers\events.py:122
+#: ../src\gui\buffers\base.py:341 ../src\gui\buffers\events.py:125
+#: ../src\gui\buffers\trends.py:150
 msgid "Empty buffer"
 msgstr "Bufferraren osagaiak ezabatu"
 
-#: ../src\gui\buffers\base.py:326 ../src\gui\buffers\events.py:126
+#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\events.py:129
 msgid "Do you really want to delete this message?"
 msgstr "Ziur zaude mezu hau ezabatu nahi duzula?"
 
-#: ../src\gui\buffers\base.py:326 ../src\gui\buffers\events.py:126
-#: ../src\gui\dialogs\lists.py:107 ../src\gui\main.py:565
+#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\events.py:129
+#: ../src\gui\dialogs\lists.py:107 ../src\gui\main.py:592
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\base.py:357
+#: ../src\gui\buffers\base.py:366 ../src\gui\buffers\base.py:377
 msgid "Unable to play audio."
 msgstr "Ezin izan da audioa erreproduzitu"
 
-#: ../src\gui\buffers\base.py:348
+#: ../src\gui\buffers\base.py:368
 msgid "Audio stopped."
 msgstr "Audioa gelditua"
 
-#: ../src\gui\buffers\events.py:35 ../src\gui\buffers\panels.py:37
-#: ../src\gui\buffers\tweet_searches.py:58
+#: ../src\gui\buffers\events.py:36 ../src\gui\buffers\panels.py:33
+#: ../src\gui\buffers\trends.py:96 ../src\gui\buffers\tweet_searches.py:58
 #: ../src\gui\buffers\user_searches.py:64
 msgid "This action is not supported for this buffer"
 msgstr "Eragiketa hau ez da buffer honetarako onargarria"
 
-#: ../src\gui\buffers\events.py:44
+#: ../src\gui\buffers\events.py:47
 msgid "Empty"
 msgstr "Hutsa"
 
-#: ../src\gui\buffers\events.py:61
+#: ../src\gui\buffers\events.py:64
 msgid "Event"
 msgstr "Gertaera"
 
-#: ../src\gui\buffers\events.py:64
+#: ../src\gui\buffers\events.py:67
 msgid "Remove event"
 msgstr "Gertaera ezabatu"
 
@@ -829,55 +937,165 @@ msgstr "Ziur zaude gogokoen denbora lerro hau ezabatu nahi duzula?"
 msgid "Do you really want to delete this list?"
 msgstr "Ziur zaude zerrenda hau ezabatu nahi duzula?"
 
-#: ../src\gui\buffers\panels.py:27
+#: ../src\gui\buffers\menus.py:8 ../src\gui\main.py:93
+msgid "&Retweet"
+msgstr "Bert&xiotu"
+
+#: ../src\gui\buffers\menus.py:11 ../src\gui\buffers\menus.py:43
+#: ../src\gui\main.py:91
+msgid "Re&ply"
+msgstr "E&rantzun"
+
+#: ../src\gui\buffers\menus.py:14 ../src\gui\main.py:95
+msgid "Add to &favourites"
+msgstr "Gogokoetara &gehitu"
+
+#: ../src\gui\buffers\menus.py:17 ../src\gui\main.py:97
+msgid "Remove from favo&urites"
+msgstr "Gogokoetatik &kendu"
+
+#: ../src\gui\buffers\menus.py:20 ../src\gui\buffers\menus.py:46
+#: ../src\gui\buffers\menus.py:69
+msgid "&Open URL"
+msgstr "URLa &ireki"
+
+#: ../src\gui\buffers\menus.py:23 ../src\gui\buffers\menus.py:49
+#: ../src\gui\buffers\menus.py:72
+msgid "&Play audio"
+msgstr "Audioa e&rreproduzitu"
+
+#: ../src\gui\buffers\menus.py:26 ../src\gui\buffers\menus.py:75
+#: ../src\gui\main.py:99
+msgid "&Show tweet"
+msgstr "Txioa &ikusi"
+
+#: ../src\gui\buffers\menus.py:29 ../src\gui\buffers\menus.py:55
+#: ../src\gui\buffers\menus.py:78 ../src\gui\buffers\menus.py:92
+#: ../src\gui\buffers\menus.py:115 ../src\gui\buffers\menus.py:132
+msgid "&Copy to clipboard"
+msgstr "&Kopiatu"
+
+#: ../src\gui\buffers\menus.py:32 ../src\gui\buffers\menus.py:58
+#: ../src\gui\buffers\menus.py:81 ../src\gui\buffers\menus.py:95
+#: ../src\gui\main.py:103
+msgid "&Delete"
+msgstr "&Ezabatu"
+
+#: ../src\gui\buffers\menus.py:35 ../src\gui\buffers\menus.py:61
+#: ../src\gui\buffers\menus.py:118
+msgid "&User actions..."
+msgstr "E&rabiltzailearen ekintzak"
+
+#: ../src\gui\buffers\menus.py:52
+msgid "&Show direct message"
+msgstr "ç&Zuzeneko mezua erakutsi"
+
+#: ../src\gui\buffers\menus.py:89
+msgid "&Show event"
+msgstr "&Gertaera erakutsi"
+
+#: ../src\gui\buffers\menus.py:103
+msgid "&Mention"
+msgstr "&Aipatu"
+
+#: ../src\gui\buffers\menus.py:106 ../src\gui\main.py:128
+msgid "&View lists"
+msgstr "&Zerrendak ikusi"
+
+#: ../src\gui\buffers\menus.py:109 ../src\gui\main.py:130
+msgid "Show user &profile"
+msgstr "Erabiltzailearen &profila ikusi"
+
+#: ../src\gui\buffers\menus.py:112
+msgid "&Show user"
+msgstr "&Erabiltzailea erakutsi"
+
+#: ../src\gui\buffers\menus.py:126
+msgid "&Tweet about this trend"
+msgstr "Tendentzia honetaz &txiokatu"
+
+#: ../src\gui\buffers\menus.py:129
+msgid "&Show item"
+msgstr "Osagaia e&rakutsi"
+
+#: ../src\gui\buffers\panels.py:28
 msgid "Announce"
 msgstr "Berriak"
 
-#: ../src\gui\buffers\people.py:46 ../src\gui\buffers\people.py:64
+#: ../src\gui\buffers\people.py:49 ../src\gui\buffers\people.py:67
 msgid "Mention"
 msgstr "Aipamena"
 
-#: ../src\gui\buffers\people.py:64
+#: ../src\gui\buffers\people.py:67
 msgid "Mention to %s"
 msgstr "Aipamena %s-(r)i"
 
-#: ../src\gui\buffers\trends.py:41 ../src\gui\buffers\tweet_searches.py:45
+#: ../src\gui\buffers\trends.py:47
+msgid "Trending topic"
+msgstr "&Tendentziak"
+
+#: ../src\gui\buffers\trends.py:66
+msgid "Tweet about this trend"
+msgstr "Tendentzia honi buruz txiokatu"
+
+#: ../src\gui\buffers\trends.py:77
+msgid "Do you really want to delete this buffer?"
+msgstr "Ziur zaude buffer hau ezabatu nahi duzula?"
+
+#: ../src\gui\buffers\trends.py:150
+msgid ""
+"Do you really want to empty this buffer? It's items will be removed from the "
+"list"
+msgstr ""
+"Ziur zaude buffer honen osagaiak  ezabatu nahi dituzula? Txioak bufferretik "
+"kenduko dira, baina ez twitterretik."
+
+#: ../src\gui\buffers\tweet_searches.py:45
 #: ../src\gui\buffers\user_searches.py:56
 msgid "Do you really want to delete this search term?"
 msgstr "Ziur zaude bilaketa hau ezabatu nahi duzula?"
 
-#: ../src\gui\dialogs\configuration.py:39
+#: ../src\gui\dialogs\configuration.py:40
 msgid "Language"
 msgstr "Hizkuntza"
 
-#: ../src\gui\dialogs\configuration.py:53
+#: ../src\gui\dialogs\configuration.py:54
+msgid "Set the autocomplete function"
+msgstr "Automatikoki osatzeko funtzioa konfiguratu"
+
+#: ../src\gui\dialogs\configuration.py:55
 msgid "ask before exiting TwBlue?"
 msgstr "TWBluetik atera aurretik galdetu?"
 
-#: ../src\gui\dialogs\configuration.py:56
+#: ../src\gui\dialogs\configuration.py:58
+msgid "Use invisible interface's keyboard shorcuts on the GUI"
+msgstr ""
+"Erabili interfaze ikusezinaren teklatu lasterbideak interfaze grafikoan"
+
+#: ../src\gui\dialogs\configuration.py:61
 msgid "Relative times"
 msgstr "Denbora erlatiboa"
 
-#: ../src\gui\dialogs\configuration.py:60
+#: ../src\gui\dialogs\configuration.py:65
 msgid "Activate Sapi5 when any other screen reader is not being run"
 msgstr "Aktibatu SAPI 5 beste pantaila irakurgailu bat piztua ez dagoenean"
 
-#: ../src\gui\dialogs\configuration.py:63
+#: ../src\gui\dialogs\configuration.py:68
 msgid "Activate the auto-start of the invisible interface"
 msgstr "Interfaze ikusezinaren hasiera automatikoa aktibatu"
 
-#: ../src\gui\dialogs\configuration.py:67
+#: ../src\gui\dialogs\configuration.py:72
 msgid ""
 "API calls when the stream is started (One API call equals to 200 tweetts, "
 "two API calls equals 400 tweets, etc):"
 msgstr ""
 "APIari deiak Streama hastean (dei bat = 200 txio, 2 dei = 400 txio, etab.):"
 
-#: ../src\gui\dialogs\configuration.py:75
+#: ../src\gui\dialogs\configuration.py:80
 msgid "Items on each API call"
 msgstr "item kopurua APIari dei bakoitzean "
 
-#: ../src\gui\dialogs\configuration.py:82
+#: ../src\gui\dialogs\configuration.py:87
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning of the "
 "lists while the oldest at the end"
@@ -885,72 +1103,72 @@ msgstr ""
 "Buffer alderantzizkatuak: Txio berriak zerrenden hasieran agertuko dira, "
 "zaharrenak bukaeran"
 
-#: ../src\gui\dialogs\configuration.py:97
+#: ../src\gui\dialogs\configuration.py:103
 msgid "Show followers"
 msgstr "Jarraitzaileak erakutsi"
 
-#: ../src\gui\dialogs\configuration.py:100
+#: ../src\gui\dialogs\configuration.py:106
 msgid "Show friends"
 msgstr "Lagunak erakutsi"
 
-#: ../src\gui\dialogs\configuration.py:103
+#: ../src\gui\dialogs\configuration.py:109
 msgid "Show favourites"
 msgstr "Gogokoak erakutsi"
 
-#: ../src\gui\dialogs\configuration.py:106
+#: ../src\gui\dialogs\configuration.py:112
 msgid "Show blocked users"
 msgstr "Blokeatutako erabiltzaileak erakutsi"
 
-#: ../src\gui\dialogs\configuration.py:109
+#: ../src\gui\dialogs\configuration.py:115
 msgid "Show muted users"
 msgstr "Isildutako erabiltzaileak ikusi"
 
-#: ../src\gui\dialogs\configuration.py:112
+#: ../src\gui\dialogs\configuration.py:118
 msgid "Show events"
 msgstr "Gertaerak erakutsi"
 
-#: ../src\gui\dialogs\configuration.py:122
-#: ../src\gui\dialogs\configuration.py:270
+#: ../src\gui\dialogs\configuration.py:128
+#: ../src\gui\dialogs\configuration.py:277
 msgid "Ignored clients"
 msgstr "Aplikazio ezikusiak"
 
-#: ../src\gui\dialogs\configuration.py:128
+#: ../src\gui\dialogs\configuration.py:134
 msgid "Add client"
 msgstr "Aplikazioa gehitu"
 
-#: ../src\gui\dialogs\configuration.py:129
+#: ../src\gui\dialogs\configuration.py:135
 msgid "Remove client"
 msgstr "Aplikazioa kendu"
 
-#: ../src\gui\dialogs\configuration.py:140
+#: ../src\gui\dialogs\configuration.py:146
 msgid "Add a new ignored client"
 msgstr "Aplikazio ezikusi bat gehitu"
 
-#: ../src\gui\dialogs\configuration.py:140
+#: ../src\gui\dialogs\configuration.py:146
 msgid "Enter the name of the client here"
 msgstr "Sartu aplikazioaren izena hemen"
 
-#: ../src\gui\dialogs\configuration.py:157
+#: ../src\gui\dialogs\configuration.py:163
 msgid "Volume"
 msgstr "Bolumena"
 
-#: ../src\gui\dialogs\configuration.py:166
+#: ../src\gui\dialogs\configuration.py:172
 msgid "Global mute"
 msgstr "Isiltze orokorra"
 
-#: ../src\gui\dialogs\configuration.py:170
+#: ../src\gui\dialogs\configuration.py:176
 msgid "Output device"
 msgstr "Irteera dispositiboa"
 
-#: ../src\gui\dialogs\configuration.py:179
+#: ../src\gui\dialogs\configuration.py:185
 msgid "Input device"
 msgstr "Sarrera dispositiboa"
 
-#: ../src\gui\dialogs\configuration.py:190
+#: ../src\gui\dialogs\configuration.py:196
 msgid "Sound pack"
 msgstr "Soinu packa"
 
-#: ../src\gui\dialogs\configuration.py:203
+#: ../src\gui\dialogs\configuration.py:209
 msgid ""
 "If you've got a SndUp account, enter your API Key here. Whether the API Key "
 "is wrong, the App will fail to upload anything to the server. Whether "
@@ -960,20 +1178,20 @@ msgstr ""
 "aplikazioak ezingo du ezer zerbitzura igo. Ez baduzu API koderik idazten, "
 "audioak igorlerik gabe igoko dira."
 
-#: ../src\gui\dialogs\configuration.py:216
-#: ../src\gui\dialogs\configuration.py:240
+#: ../src\gui\dialogs\configuration.py:222
+#: ../src\gui\dialogs\configuration.py:246
 msgid "Unlink your Dropbox account"
 msgstr "Zure dropbox kontua elkartzeari utzi"
 
-#: ../src\gui\dialogs\configuration.py:218
-#: ../src\gui\dialogs\configuration.py:235
-#: ../src\gui\dialogs\configuration.py:243
-#: ../src\gui\dialogs\configuration.py:247
-#: ../src\gui\dialogs\configuration.py:254
+#: ../src\gui\dialogs\configuration.py:224
+#: ../src\gui\dialogs\configuration.py:241
+#: ../src\gui\dialogs\configuration.py:249
+#: ../src\gui\dialogs\configuration.py:253
+#: ../src\gui\dialogs\configuration.py:260
 msgid "Link your Dropbox account"
 msgstr "Zure dropbox kontua elkartu"
 
-#: ../src\gui\dialogs\configuration.py:228
+#: ../src\gui\dialogs\configuration.py:234
 msgid ""
 "The authorisation request will be shown on your browser. Copy the code tat "
 "Dropbox will provide and, in the text box that will appear on TW Blue, paste "
@@ -983,89 +1201,84 @@ msgstr ""
 "Kopiatu eta itsasi koadroan Dropboxek emango dizun kodea. Behin soilik egin "
 "behar da hau."
 
-#: ../src\gui\dialogs\configuration.py:228 ../src\sessionmanager\gui.py:83
+#: ../src\gui\dialogs\configuration.py:234 ../src\sessionmanager\gui.py:84
 msgid "Authorisation"
 msgstr "Baimena"
 
-#: ../src\gui\dialogs\configuration.py:230
+#: ../src\gui\dialogs\configuration.py:236
 msgid "Enter the code here."
 msgstr "Sartu kodea hemen"
 
-#: ../src\gui\dialogs\configuration.py:230
+#: ../src\gui\dialogs\configuration.py:236
 msgid "Verification code"
 msgstr "Baimentzeko kodea"
 
-#: ../src\gui\dialogs\configuration.py:242
+#: ../src\gui\dialogs\configuration.py:248
 msgid "Error during authorisation. Try again later."
 msgstr "Errorea baimentzean. Mesedez, saiatu beranduago."
 
-#: ../src\gui\dialogs\configuration.py:242 ../src\gui\main.py:378
-#: ../src\gui\main.py:703 ../src\gui\main.py:736
-msgid "Error!"
-msgstr "Errorea!"
-
-#: ../src\gui\dialogs\configuration.py:261
+#: ../src\gui\dialogs\configuration.py:267
 msgid "TW Blue preferences"
 msgstr "TW Blueren hobespenak"
 
-#: ../src\gui\dialogs\configuration.py:265
+#: ../src\gui\dialogs\configuration.py:271 ../src\issueReporter\gui.py:30
 msgid "General"
 msgstr "Orokorra"
 
-#: ../src\gui\dialogs\configuration.py:268
+#: ../src\gui\dialogs\configuration.py:275
 msgid "Show other buffers"
 msgstr "Erakutsi beste bufferrak"
 
-#: ../src\gui\dialogs\configuration.py:272
+#: ../src\gui\dialogs\configuration.py:279
 msgid "Sound"
 msgstr "Soinua"
 
-#: ../src\gui\dialogs\configuration.py:274
+#: ../src\gui\dialogs\configuration.py:281
 msgid "Audio Services"
 msgstr "Audio zerbitzua"
 
-#: ../src\gui\dialogs\configuration.py:277
+#: ../src\gui\dialogs\configuration.py:284
 msgid "Save"
 msgstr "gorde"
 
-#: ../src\gui\dialogs\configuration.py:280 ../src\gui\dialogs\follow.py:64
-#: ../src\gui\dialogs\message.py:186 ../src\gui\dialogs\message.py:274
-#: ../src\gui\dialogs\message.py:357 ../src\gui\dialogs\search.py:42
-#: ../src\gui\dialogs\show_user.py:42 ../src\gui\dialogs\trending.py:42
-#: ../src\gui\dialogs\update_profile.py:56 ../src\gui\dialogs\utils.py:42
-#: ../src\keystrokeEditor\gui.py:26
+#: ../src\gui\dialogs\configuration.py:287 ../src\gui\dialogs\follow.py:67
+#: ../src\gui\dialogs\message.py:189 ../src\gui\dialogs\message.py:284
+#: ../src\gui\dialogs\message.py:385 ../src\gui\dialogs\message.py:472
+#: ../src\gui\dialogs\search.py:42 ../src\gui\dialogs\show_user.py:42
+#: ../src\gui\dialogs\trending.py:52 ../src\gui\dialogs\update_profile.py:56
+#: ../src\gui\dialogs\utils.py:42 ../src\keystrokeEditor\gui.py:26
 msgid "Close"
 msgstr "Itxi"
 
-#: ../src\gui\dialogs\configuration.py:293 ../src\gui\main.py:264
+#: ../src\gui\dialogs\configuration.py:303 ../src\gui\main.py:277
 msgid "Followers"
 msgstr "Jarraitzaileak"
 
-#: ../src\gui\dialogs\configuration.py:307
+#: ../src\gui\dialogs\configuration.py:317
 msgid "friends"
 msgstr "Lagunak"
 
-#: ../src\gui\dialogs\configuration.py:321
+#: ../src\gui\dialogs\configuration.py:331
 msgid "Favorites"
 msgstr "Gogokoak"
 
-#: ../src\gui\dialogs\configuration.py:335 ../src\gui\main.py:282
+#: ../src\gui\dialogs\configuration.py:345 ../src\gui\main.py:295
 msgid "Events"
 msgstr "Gertaerak"
 
-#: ../src\gui\dialogs\configuration.py:346 ../src\gui\main.py:274
+#: ../src\gui\dialogs\configuration.py:356 ../src\gui\main.py:287
 msgid "Blocked users"
 msgstr "Blokeatutako erabiltzaileak"
 
-#: ../src\gui\dialogs\configuration.py:360 ../src\gui\main.py:278
+#: ../src\gui\dialogs\configuration.py:370 ../src\gui\main.py:291
 msgid "Muted users"
 msgstr "Isildutako erabiltzaileak"
 
-#: ../src\gui\dialogs\configuration.py:420
+#: ../src\gui\dialogs\configuration.py:437
 msgid "Restart TW Blue"
 msgstr "TW Blue berrabiazi"
 
-#: ../src\gui\dialogs\configuration.py:420
+#: ../src\gui\dialogs\configuration.py:437
 msgid ""
 "The application requires to be restarted to save these changes. Press OK to "
 "do it now."
@@ -1073,58 +1286,66 @@ msgstr ""
 "Aplikazioa berrabiazi behar da aldaketa hauek gertatzeko. Sakatu OK orain "
 "egiteko."
 
-#: ../src\gui\dialogs\follow.py:33 ../src\gui\dialogs\follow.py:43
+#: ../src\gui\dialogs\follow.py:34 ../src\gui\dialogs\follow.py:44
 #: ../src\keystrokeEditor\gui.py:17
 msgid "Action"
 msgstr "Eragiketa"
 
-#: ../src\gui\dialogs\follow.py:44
+#: ../src\gui\dialogs\follow.py:45
 msgid "Follow"
 msgstr "Jarraitu"
 
-#: ../src\gui\dialogs\follow.py:45
+#: ../src\gui\dialogs\follow.py:46
 msgid "Unfollow"
 msgstr "Jarraitzeari utzi"
 
-#: ../src\gui\dialogs\follow.py:46
+#: ../src\gui\dialogs\follow.py:47
 msgid "Mute"
 msgstr "Isildu"
 
-#: ../src\gui\dialogs\follow.py:47
+#: ../src\gui\dialogs\follow.py:48
 msgid "Unmute"
 msgstr "Isiltzeari utzi"
 
-#: ../src\gui\dialogs\follow.py:48
+#: ../src\gui\dialogs\follow.py:49
 msgid "Block"
 msgstr "Blokeatu"
 
-#: ../src\gui\dialogs\follow.py:49
+#: ../src\gui\dialogs\follow.py:50
 msgid "Unblock"
 msgstr "Desblokeatu"
 
-#: ../src\gui\dialogs\follow.py:50
+#: ../src\gui\dialogs\follow.py:51
 msgid "Report as spam"
 msgstr "Spam bezala salatu"
 
-#: ../src\gui\dialogs\follow.py:61 ../src\gui\dialogs\search.py:40
-#: ../src\gui\dialogs\trending.py:40 ../src\gui\dialogs\utils.py:39
+#: ../src\gui\dialogs\follow.py:52
+msgid "Ignore tweets from this client"
+msgstr "Aplikazio honetako txioak ezikusi"
+
+#: ../src\gui\dialogs\follow.py:64 ../src\gui\dialogs\search.py:40
+#: ../src\gui\dialogs\trending.py:50 ../src\gui\dialogs\utils.py:39
 #: ../src\keystrokeEditor\gui.py:76
 msgid "OK"
 msgstr "Onartu"
 
-#: ../src\gui\dialogs\follow.py:101
+#: ../src\gui\dialogs\follow.py:104
 msgid "You've muted to %s"
 msgstr "%s isildu duzu"
 
-#: ../src\gui\dialogs\follow.py:115
+#: ../src\gui\dialogs\follow.py:118
 msgid "You've unmuted to %s"
 msgstr "%s isiltzeari utzi duzu"
+
+#: ../src\gui\dialogs\follow.py:142
+msgid "You can't ignore direct messages"
+msgstr "Ezin dituzu zuzeneko mezuak ezikusi"
 
 #: ../src\gui\dialogs\lists.py:36
 msgid "Lists manager"
 msgstr "Zerrenden kudeatzailea"
 
-#: ../src\gui\dialogs\lists.py:38 ../src\gui\main.py:298
+#: ../src\gui\dialogs\lists.py:38 ../src\gui\main.py:311
 msgid "Lists"
 msgstr "Zerrendak"
 
@@ -1172,7 +1393,7 @@ msgstr "Zerrenda ireki"
 msgid "This list is arready opened."
 msgstr "Zerrenda hau jada irekita dago"
 
-#: ../src\gui\dialogs\lists.py:130 ../src\gui\main.py:301
+#: ../src\gui\dialogs\lists.py:130 ../src\gui\main.py:314
 msgid "List for %s"
 msgstr "%s zerrenda"
 
@@ -1220,105 +1441,128 @@ msgstr "Gehitu"
 msgid "Select a list to remove the user"
 msgstr "Hautatu zerrenda bat erabiltzailea bertatik kentzeko"
 
-#: ../src\gui\dialogs\message.py:43 ../src\gui\dialogs\message.py:146
+#: ../src\gui\dialogs\message.py:44 ../src\gui\dialogs\message.py:147
 msgid "%s - %s of 140 characters"
 msgstr "%s - %s 140 karakteretik"
 
-#: ../src\gui\dialogs\message.py:77
+#: ../src\gui\dialogs\message.py:78
 msgid "Attaching..."
 msgstr "Atxikitzen..."
 
-#: ../src\gui\dialogs\message.py:78
+#: ../src\gui\dialogs\message.py:79
 msgid "Uploading..."
 msgstr "Igotzen..."
 
-#: ../src\gui\dialogs\message.py:100
+#: ../src\gui\dialogs\message.py:101
 msgid "Unable to upload the audio"
 msgstr "Ezinezkoa izan da audioa igotzea"
 
-#: ../src\gui\dialogs\message.py:114 ../src\gui\dialogs\message.py:400
+#: ../src\gui\dialogs\message.py:115 ../src\gui\dialogs\message.py:428
+#: ../src\gui\dialogs\message.py:513
 msgid "Translated"
 msgstr "Itzulia"
 
-#: ../src\gui\dialogs\message.py:126
+#: ../src\gui\dialogs\message.py:127
 msgid "There's no URL to be shortened"
 msgstr "Ez dago laburtzeko URLrik "
 
-#: ../src\gui\dialogs\message.py:129
+#: ../src\gui\dialogs\message.py:130
 msgid "URL shortened"
 msgstr "URLa laburtua"
 
-#: ../src\gui\dialogs\message.py:137 ../src\gui\dialogs\message.py:412
+#: ../src\gui\dialogs\message.py:138 ../src\gui\dialogs\message.py:440
+#: ../src\gui\dialogs\message.py:525
 msgid "There's no URL to be expanded"
 msgstr "Ez dago zabaltzeko URLrik"
 
-#: ../src\gui\dialogs\message.py:140 ../src\gui\dialogs\message.py:415
+#: ../src\gui\dialogs\message.py:141 ../src\gui\dialogs\message.py:443
+#: ../src\gui\dialogs\message.py:528
 msgid "URL expanded"
 msgstr "URLa zabalduta"
 
-#: ../src\gui\dialogs\message.py:168 ../src\gui\dialogs\message.py:223
+#: ../src\gui\dialogs\message.py:169 ../src\gui\dialogs\message.py:233
 #: ../src\gui\dialogs\update_profile.py:51
 #: ../src\gui\dialogs\update_profile.py:88
 msgid "Upload a picture"
 msgstr "Argazki bat igo"
 
-#: ../src\gui\dialogs\message.py:171 ../src\gui\dialogs\message.py:259
-#: ../src\gui\dialogs\message.py:350
+#: ../src\gui\dialogs\message.py:172 ../src\gui\dialogs\message.py:269
+#: ../src\gui\dialogs\message.py:378 ../src\gui\dialogs\message.py:465
 msgid "Spelling correction"
 msgstr "Ortografiaren egiaztapena "
 
-#: ../src\gui\dialogs\message.py:175 ../src\gui\dialogs\message.py:263
+#: ../src\gui\dialogs\message.py:176 ../src\gui\dialogs\message.py:273
 msgid "Shorten URL"
 msgstr "URLa laburtu"
 
-#: ../src\gui\dialogs\message.py:177 ../src\gui\dialogs\message.py:265
-#: ../src\gui\dialogs\message.py:352
+#: ../src\gui\dialogs\message.py:178 ../src\gui\dialogs\message.py:275
+#: ../src\gui\dialogs\message.py:380 ../src\gui\dialogs\message.py:467
 msgid "Expand URL"
 msgstr "URLa zabaldu"
 
-#: ../src\gui\dialogs\message.py:183 ../src\gui\dialogs\message.py:271
+#: ../src\gui\dialogs\message.py:184 ../src\gui\dialogs\message.py:281
 msgid "Send"
 msgstr "Bidali"
 
-#: ../src\gui\dialogs\message.py:219 ../src\gui\dialogs\message.py:230
+#: ../src\gui\dialogs\message.py:187
+msgid "&Autocomplete users"
+msgstr "Erabiltzaileaak &automatikoki osatu"
+
+#: ../src\gui\dialogs\message.py:229 ../src\gui\dialogs\message.py:240
 #: ../src\gui\dialogs\update_profile.py:84
 #: ../src\gui\dialogs\update_profile.py:95
 msgid "Discard image"
 msgstr "Irudia baztertu"
 
-#: ../src\gui\dialogs\message.py:225 ../src\gui\dialogs\update_profile.py:90
+#: ../src\gui\dialogs\message.py:235 ../src\gui\dialogs\update_profile.py:90
 msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 msgstr "Irudiak (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 
-#: ../src\gui\dialogs\message.py:225 ../src\gui\dialogs\update_profile.py:90
+#: ../src\gui\dialogs\message.py:235 ../src\gui\dialogs\update_profile.py:90
 msgid "Select the picture to be uploaded"
 msgstr "Aukeratu igo nahi duzun irudia"
 
-#: ../src\gui\dialogs\message.py:253
+#: ../src\gui\dialogs\message.py:263
 msgid "Recipient"
 msgstr "hartzailea"
 
-#: ../src\gui\dialogs\message.py:308
-msgid "Mention to all"
-msgstr "Aipamena guztiei"
+#: ../src\gui\dialogs\message.py:318
+msgid "Men&tion all"
+msgstr "Aipatu &guztiak"
 
-#: ../src\gui\dialogs\message.py:335
+#: ../src\gui\dialogs\message.py:345
 msgid "Tweet - %i characters "
 msgstr "Txioa - %i karaktere"
 
-#: ../src\gui\dialogs\search.py:26 ../src\gui\dialogs\trending.py:26
+#: ../src\gui\dialogs\message.py:363
+msgid "Retweets: "
+msgstr "Bertxioak:"
+
+#: ../src\gui\dialogs\message.py:368
+msgid "Favourites: "
+msgstr "Gogokoak:"
+
+#: ../src\gui\dialogs\message.py:451
+msgid "View"
+msgstr "Ikusi"
+
+#: ../src\gui\dialogs\message.py:453
+msgid "Item"
+msgstr "Elementua"
+
+#: ../src\gui\dialogs\search.py:26
 msgid "Search on Twitter"
 msgstr "Bilatu Twitterren"
 
-#: ../src\gui\dialogs\search.py:27 ../src\gui\dialogs\trending.py:27
+#: ../src\gui\dialogs\search.py:27
 msgid "Search"
 msgstr "Bilatu"
 
-#: ../src\gui\dialogs\search.py:34 ../src\gui\dialogs\trending.py:34
+#: ../src\gui\dialogs\search.py:34
 msgid "Tweets"
 msgstr "Txioak"
 
-#: ../src\gui\dialogs\search.py:35 ../src\gui\dialogs\trending.py:35
+#: ../src\gui\dialogs\search.py:35
 msgid "Users"
 msgstr "Erabiltzaileak"
 
@@ -1386,6 +1630,26 @@ msgstr "Txioak: %s\n"
 msgid "Favourites: %s"
 msgstr "Gogokoak: %s"
 
+#: ../src\gui\dialogs\trending.py:30
+msgid "View trending topics"
+msgstr "Tendentziak ikusi"
+
+#: ../src\gui\dialogs\trending.py:31
+msgid "Trending topics by"
+msgstr "Tendentziak honen arabera"
+
+#: ../src\gui\dialogs\trending.py:33
+msgid "Country"
+msgstr "Herrialdea"
+
+#: ../src\gui\dialogs\trending.py:34
+msgid "City"
+msgstr "Hiria"
+
+#: ../src\gui\dialogs\trending.py:43 ../src\gui\dialogs\update_profile.py:35
+msgid "Location"
+msgstr "Kokapena"
+
 #: ../src\gui\dialogs\update_profile.py:27
 msgid "Update your profile"
 msgstr "Zure profila eguneratu"
@@ -1393,10 +1657,6 @@ msgstr "Zure profila eguneratu"
 #: ../src\gui\dialogs\update_profile.py:29
 msgid "Name (20 characters maximum)"
 msgstr "Izena (gehienez 20 karaktere)"
-
-#: ../src\gui\dialogs\update_profile.py:35
-msgid "Location"
-msgstr "Kokapena"
 
 #: ../src\gui\dialogs\update_profile.py:40
 msgid "Website"
@@ -1414,368 +1674,368 @@ msgstr "Profila eguneratu"
 msgid "Select an URL"
 msgstr "Aukeratu URL bat"
 
-#: ../src\gui\main.py:59
+#: ../src\gui\main.py:66
+msgid "S&witch account"
+msgstr "Kontua &aldatu"
+
+#: ../src\gui\main.py:68
 msgid "&Update profile"
 msgstr "&Profila eguneratu"
 
-#: ../src\gui\main.py:61
+#: ../src\gui\main.py:70
 msgid "&Hide window"
 msgstr "Leihoa &ezkutatu"
 
-#: ../src\gui\main.py:63
+#: ../src\gui\main.py:72
 msgid "&Search"
 msgstr "&Bilatu"
 
-#: ../src\gui\main.py:65
+#: ../src\gui\main.py:74
+msgid "View &trending topics"
+msgstr "Erakutsi &tendentziak"
+
+#: ../src\gui\main.py:76
 msgid "&Lists manager"
 msgstr "&Zerrenden kudeatzailea"
 
-#: ../src\gui\main.py:67
+#: ../src\gui\main.py:78
 msgid "Sounds &tutorial"
 msgstr "Soinuen &tutoriala"
 
-#: ../src\gui\main.py:69
+#: ../src\gui\main.py:80
 msgid "&Edit keystrokes"
 msgstr "Teklatu lasterbidea&k aldatu"
 
-#: ../src\gui\main.py:71
+#: ../src\gui\main.py:82
 msgid "&Preferences"
 msgstr "&Hobespenak"
 
-#: ../src\gui\main.py:73
+#: ../src\gui\main.py:84
 msgid "E&xit"
 msgstr "&Irten"
 
-#: ../src\gui\main.py:78 ../src\gui\main.py:154
+#: ../src\gui\main.py:89 ../src\gui\main.py:167
 msgid "&Tweet"
 msgstr "&Txio"
 
-#: ../src\gui\main.py:80
-msgid "Re&ply"
-msgstr "E&rantzun"
+#: ../src\gui\main.py:101
+msgid "View &address"
+msgstr "&Helbidea ikusi"
 
-#: ../src\gui\main.py:82
-msgid "&Retweet"
-msgstr "Bert&xiotu"
-
-#: ../src\gui\main.py:84
-msgid "Add to &favourites"
-msgstr "Gogokoetara &gehitu"
-
-#: ../src\gui\main.py:86
-msgid "Remove from favo&urites"
-msgstr "Gogokoetatik &kendu"
-
-#: ../src\gui\main.py:88
-msgid "&Show tweet"
-msgstr "Txioa &ikusi"
-
-#: ../src\gui\main.py:90
-msgid "&Delete"
-msgstr "&Ezabatu"
-
-#: ../src\gui\main.py:95
+#: ../src\gui\main.py:108
 msgid "&Follow"
 msgstr "&Jarraitu"
 
-#: ../src\gui\main.py:97
+#: ../src\gui\main.py:110
 msgid "&Unfollow"
 msgstr "Jarrai&tzeari utzi"
 
-#: ../src\gui\main.py:99 ../src\gui\main.py:128
+#: ../src\gui\main.py:112 ../src\gui\main.py:141
 msgid "&Mute"
 msgstr "&Isildu"
 
-#: ../src\gui\main.py:101
+#: ../src\gui\main.py:114
 msgid "U&nmute"
 msgstr "Isiltzeari &utzi"
 
-#: ../src\gui\main.py:103
+#: ../src\gui\main.py:116
 msgid "&Report as spam"
 msgstr "&Spam bezala salatu"
 
-#: ../src\gui\main.py:105
+#: ../src\gui\main.py:118
 msgid "&Block"
 msgstr "&Blokeatu"
 
-#: ../src\gui\main.py:107
+#: ../src\gui\main.py:120
 msgid "Unb&lock"
 msgstr "&Desblokeatu"
 
-#: ../src\gui\main.py:109
+#: ../src\gui\main.py:122
 msgid "Direct me&ssage"
 msgstr "Zuzeneko &mezua"
 
-#: ../src\gui\main.py:111
+#: ../src\gui\main.py:124
 msgid "&Add to list"
 msgstr "Zerrendara &gehitu"
 
-#: ../src\gui\main.py:113
+#: ../src\gui\main.py:126
 msgid "R&emove from list"
 msgstr "Zerrendatik &kendu"
 
-#: ../src\gui\main.py:115
-msgid "&View lists"
-msgstr "&Zerrendak ikusi"
-
-#: ../src\gui\main.py:117
-msgid "Show user &profile"
-msgstr "Erabiltzailearen &profila ikusi"
-
-#: ../src\gui\main.py:119
+#: ../src\gui\main.py:132
 msgid "&Timeline"
 msgstr "Denbora &lerroa"
 
-#: ../src\gui\main.py:121
+#: ../src\gui\main.py:134
 msgid "V&iew favourites"
 msgstr "&Gogokoak ikusi"
 
-#: ../src\gui\main.py:126
+#: ../src\gui\main.py:139
 msgid "&Load previous items"
 msgstr "Aurreko elementuak &kargatu"
 
-#: ../src\gui\main.py:130
+#: ../src\gui\main.py:143
 msgid "&Autoread tweets for this buffer"
 msgstr "Buffer honetako txioak &automatikoki irakurri"
 
-#: ../src\gui\main.py:132
+#: ../src\gui\main.py:145
 msgid "&Clear buffer"
 msgstr "Bufferraren osa&gaiak ezabatu"
 
-#: ../src\gui\main.py:134
+#: ../src\gui\main.py:147
 msgid "&Remove buffer"
 msgstr "Bufferra &kendu"
 
-#: ../src\gui\main.py:139
+#: ../src\gui\main.py:152
 msgid "&Documentation"
 msgstr "&Dokumentazioa"
 
-#: ../src\gui\main.py:141
+#: ../src\gui\main.py:154
 msgid "&What's new in this version?"
 msgstr "&Zer da berri bertsio honetan?"
 
-#: ../src\gui\main.py:143
+#: ../src\gui\main.py:156
 msgid "&Check for updates"
 msgstr "E&guneratzeak bilatu"
 
-#: ../src\gui\main.py:145
+#: ../src\gui\main.py:158
 msgid "&Report an error"
 msgstr "E&rrore bati buruz berri eman"
 
-#: ../src\gui\main.py:147
+#: ../src\gui\main.py:160
 msgid "TW Blue &website"
 msgstr "TW Blueren &webgunea"
 
-#: ../src\gui\main.py:149
+#: ../src\gui\main.py:162
 msgid "About &TW Blue"
 msgstr "TW Blueri &buruz"
 
-#: ../src\gui\main.py:153
+#: ../src\gui\main.py:166
 msgid "&Application"
 msgstr "&Aplikazioa"
 
-#: ../src\gui\main.py:155
+#: ../src\gui\main.py:168
 msgid "&User"
 msgstr "&Erabiltzailea"
 
-#: ../src\gui\main.py:156
+#: ../src\gui\main.py:169
 msgid "&Buffer"
 msgstr "&Bufferra"
 
-#: ../src\gui\main.py:157
+#: ../src\gui\main.py:170
 msgid "&Help"
 msgstr "&Laguntza"
 
-#: ../src\gui\main.py:241
+#: ../src\gui\main.py:234
+msgid ""
+"An error occurred while looking for an update. It may be due to any problem "
+"either on our server or on your DNS servers. Please, try again later."
+msgstr ""
+"Errore bat egon da eguneratzea bilatzean. Gure zerbitzarien errore bat izan "
+"daiteke, edo zure DNS zerbitzariena."
+
+#: ../src\gui\main.py:254
 msgid "Home"
 msgstr "Hasiera"
 
-#: ../src\gui\main.py:246
+#: ../src\gui\main.py:259
 msgid "Mentions"
 msgstr "Aipamenak"
 
-#: ../src\gui\main.py:249
+#: ../src\gui\main.py:262
 msgid "Direct messages"
 msgstr "Zuzeneko mezuak"
 
-#: ../src\gui\main.py:252
+#: ../src\gui\main.py:265
 msgid "Sent"
 msgstr "Bidaliak"
 
-#: ../src\gui\main.py:258
+#: ../src\gui\main.py:271
 msgid "Favourites"
 msgstr "Gogokoak"
 
-#: ../src\gui\main.py:270
+#: ../src\gui\main.py:283
 msgid "Friends"
 msgstr "Lagunak"
 
-#: ../src\gui\main.py:285
+#: ../src\gui\main.py:298
 msgid "Searches"
 msgstr "Bilaketak"
 
-#: ../src\gui\main.py:292
+#: ../src\gui\main.py:305
 msgid "Timelines"
 msgstr "Denbora lerroak"
 
-#: ../src\gui\main.py:295 ../src\gui\main.py:708
+#: ../src\gui\main.py:308 ../src\gui\main.py:747
 msgid "Timeline for %s"
 msgstr "%s(r)en denbora lerroa"
 
-#: ../src\gui\main.py:306
+#: ../src\gui\main.py:319
 msgid "Favourites timelines"
 msgstr "Gogokoen denbora lerroa"
 
-#: ../src\gui\main.py:309 ../src\gui\main.py:732
+#: ../src\gui\main.py:322 ../src\gui\main.py:771
 msgid "Favourites for %s"
 msgstr "%s(r)en gogokoak"
 
-#: ../src\gui\main.py:341
+#: ../src\gui\main.py:332 ../src\gui\main.py:1062
+msgid "Trending topics for %s"
+msgstr "%s(e)rako tendentziak"
+
+#: ../src\gui\main.py:365
 msgid "Ready"
 msgstr "Prest"
 
-#: ../src\gui\main.py:368
+#: ../src\gui\main.py:393
 msgid "%s favourites from %s"
 msgstr "%s gogoko %s(r)enak"
 
-#: ../src\gui\main.py:378
-msgid "Connection error. Try again later."
-msgstr "Errorea konektatzean. Mesedez, saiatu beranduago."
-
-#: ../src\gui\main.py:421
+#: ../src\gui\main.py:449
 msgid "Streams disconnected. TW Blue will try to reconnect in a minute."
 msgstr "Streamak deskonektatuak. TW Blue berriz konektatzen saiatuko da."
 
-#: ../src\gui\main.py:425
+#: ../src\gui\main.py:453
 msgid "Reconnecting streams..."
 msgstr "Streamak konektatzen"
 
-#: ../src\gui\main.py:449
+#: ../src\gui\main.py:477
 msgid "search for %s"
 msgstr "%s bilatu"
 
-#: ../src\gui\main.py:454
+#: ../src\gui\main.py:482
 msgid "search users for %s"
 msgstr "%s bilatu erabiltzaileetan"
 
-#: ../src\gui\main.py:466 ../src\gui\main.py:477 ../src\gui\main.py:496
+#: ../src\gui\main.py:494 ../src\gui\main.py:505 ../src\gui\main.py:524
 msgid "Select the user"
 msgstr "Erabiltzailea aukeratu"
 
-#: ../src\gui\main.py:557
+#: ../src\gui\main.py:584
 msgid "User details"
 msgstr "Erabiltzailearen Xehetasunak"
 
-#: ../src\gui\main.py:565
+#: ../src\gui\main.py:592
 msgid ""
 "Do you really want to delete this message? It will be eliminated from "
 "Twitter as well."
 msgstr "Mezu hau ezabatu nahi duzu? Twitterretik ere ezabatuko da."
 
-#: ../src\gui\main.py:582
+#: ../src\gui\main.py:609
 msgid "Do you really want to close TW Blue?"
 msgstr "TW Bluetik irten nahi duzu?"
 
-#: ../src\gui\main.py:582 ../src\gui\sysTrayIcon.py:46
+#: ../src\gui\main.py:609 ../src\gui\sysTrayIcon.py:46
 msgid "Exit"
 msgstr "Irten"
 
-#: ../src\gui\main.py:587
+#: ../src\gui\main.py:614
 msgid "Exiting..."
 msgstr "Irteten..."
 
-#: ../src\gui\main.py:673
+#: ../src\gui\main.py:712
 msgid "Error while adding to favourites."
 msgstr "Errorea gogokoetara gehitzean."
 
-#: ../src\gui\main.py:681
+#: ../src\gui\main.py:720
 msgid "Error while removing from favourites."
 msgstr "Errorea gogokoetatik kentzean."
 
-#: ../src\gui\main.py:685
+#: ../src\gui\main.py:724
 msgid "Individual timeline"
 msgstr "Denbora lerro indibiduala"
 
-#: ../src\gui\main.py:689 ../src\gui\main.py:721
-msgid "The user does not exist"
-msgstr "Erabiltzailea ez da existitzen"
-
-#: ../src\gui\main.py:695
+#: ../src\gui\main.py:734
 msgid "Existing timeline"
 msgstr "Denbora lerro hau existitzen da"
 
-#: ../src\gui\main.py:695
+#: ../src\gui\main.py:734
 msgid ""
 "There's currently a timeline for this user. You are not able to open another"
 msgstr ""
 "Erabiltzaile honetarako jada denbora lerro bat dago. Ezin da beste bat ireki."
 
-#: ../src\gui\main.py:703
+#: ../src\gui\main.py:742
 msgid "This user has no tweets. You can't open a timeline for this user"
 msgstr "Erabiltzaile honek ez du Txiorik. Ezin duzu denbora lerro bat ireki."
 
-#: ../src\gui\main.py:717
+#: ../src\gui\main.py:756
 msgid "List of favourites"
 msgstr "Gogokoen zerrenda"
 
-#: ../src\gui\main.py:727
+#: ../src\gui\main.py:766
 msgid "Existing list"
 msgstr "Zerrenda hau existitzen da"
 
-#: ../src\gui\main.py:727
+#: ../src\gui\main.py:766
 msgid ""
 "There's already a list of favourites for this user. You can't create another."
 msgstr ""
 "Erabiltzaile honetarako jada gogokoen buffer bat dago. Ezin da beste bat "
 "ireki."
 
-#: ../src\gui\main.py:736
+#: ../src\gui\main.py:775
 msgid ""
 "This user has no favourites. You can't create a list of favourites for this "
 "user."
 msgstr ""
 "Erabiltzaile honek ez du gogokorik. Ezin duzu gogokoen zerrenda bat ireki."
 
-#: ../src\gui\main.py:777 ../src\gui\main.py:790
+#: ../src\gui\main.py:816 ../src\gui\main.py:829
 msgid "%s, %s of %s"
 msgstr "%s, %s %s(e)tik"
 
-#: ../src\gui\main.py:779 ../src\gui\main.py:792
+#: ../src\gui\main.py:818 ../src\gui\main.py:831
 msgid "%s. Empty"
 msgstr "%s. Hutsa"
 
-#: ../src\gui\main.py:815
+#: ../src\gui\main.py:868
 msgid "Global mute on"
 msgstr "Isiltasun orokorra aktibatua"
 
-#: ../src\gui\main.py:818
+#: ../src\gui\main.py:871
 msgid "Global mute off"
 msgstr "Isiltasun globala desaktibatua"
 
-#: ../src\gui\main.py:824
+#: ../src\gui\main.py:877
 msgid "Buffer mute on"
 msgstr "Bufferra isildu aktibatua"
 
-#: ../src\gui\main.py:827
+#: ../src\gui\main.py:880
 msgid "Buffer mute off"
 msgstr "Bufferra isildu desaktibatua"
 
-#: ../src\gui\main.py:833
+#: ../src\gui\main.py:886
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "Tweet berrien irakurketa automatikoa aktibatua dago buffer honetarako "
 
-#: ../src\gui\main.py:836
+#: ../src\gui\main.py:889
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr ""
 "Tweet berrien irakurketa automatikoa desaktibatua dago buffer honetarako "
 
-#: ../src\gui\main.py:843
+#: ../src\gui\main.py:896
 msgid "Copied"
 msgstr "Kopiatua"
 
-#: ../src\gui\main.py:857 ../src\gui\main.py:870
+#: ../src\gui\main.py:910 ../src\gui\main.py:923
 msgid "%s"
 msgstr "%s"
+
+#: ../src\gui\main.py:1026
+msgid "Address"
+msgstr "Helbidea"
+
+#: ../src\gui\main.py:1028 ../src\gui\main.py:1045
+msgid "There are no coordinates in this tweet"
+msgstr "Txio honetan ez dago koordenaturik"
+
+#: ../src\gui\main.py:1030 ../src\gui\main.py:1047
+msgid "There are no results for the coordinates in this tweet"
+msgstr "Ez dago emaitzarik txio honen koordenatuetarako"
+
+#: ../src\gui\main.py:1032 ../src\gui\main.py:1049
+msgid "Error decoding coordinates. Try again later."
+msgstr "Errorea koordenatuak dekodetzean. Mesedez, saiatu berriro beranduago"
 
 #: ../src\gui\sysTrayIcon.py:36
 msgid "Preferences"
@@ -1785,13 +2045,134 @@ msgstr "Hobespenak"
 msgid "Show / hide"
 msgstr "Erakutsi / ezkutatu"
 
-#: ../src\gui\sysTrayIcon.py:42
+#: ../src\gui\sysTrayIcon.py:42 ../src\issueReporter\gui.py:30
 msgid "Documentation"
 msgstr "Laguntza"
 
 #: ../src\gui\sysTrayIcon.py:44
 msgid "Check for updates"
 msgstr "Eguneratzeak bilatu"
+
+#: ../src\issueReporter\gui.py:30
+msgid "Translation"
+msgstr "Itzulpena"
+
+#: ../src\issueReporter\gui.py:31
+msgid "always"
+msgstr "Beti"
+
+#: ../src\issueReporter\gui.py:31
+msgid "have not tried"
+msgstr "Ez naiz saiatu"
+
+#: ../src\issueReporter\gui.py:31
+msgid "random"
+msgstr "Ausaz"
+
+#: ../src\issueReporter\gui.py:31
+msgid "sometimes"
+msgstr "Batzutan"
+
+#: ../src\issueReporter\gui.py:31
+msgid "unable to duplicate"
+msgstr "Ezin izan da "
+
+#: ../src\issueReporter\gui.py:32
+msgid "block"
+msgstr "Blokeoa"
+
+#: ../src\issueReporter\gui.py:32
+msgid "crash"
+msgstr "Errorea"
+
+#: ../src\issueReporter\gui.py:32
+msgid "feature"
+msgstr "Ezaugarria"
+
+#: ../src\issueReporter\gui.py:32
+msgid "major"
+msgstr "Handia"
+
+#: ../src\issueReporter\gui.py:32
+msgid "minor"
+msgstr "Txikia"
+
+#: ../src\issueReporter\gui.py:32
+msgid "text"
+msgstr "Testua"
+
+#: ../src\issueReporter\gui.py:32
+msgid "trivial"
+msgstr "Tribiala"
+
+#: ../src\issueReporter\gui.py:32
+msgid "tweak"
+msgstr "Aldaketa"
+
+#: ../src\issueReporter\gui.py:34
+msgid "Report an error"
+msgstr "Errore bati buruz berri eman"
+
+#: ../src\issueReporter\gui.py:37
+msgid "Select a category"
+msgstr "Kategoria bat aukeratu"
+
+#: ../src\issueReporter\gui.py:46
+msgid ""
+"Briefly describe what happened. You will be able to thoroughly explain it "
+"later"
+msgstr ""
+"Deskribatu laburki zer gertatu den. Gero gehiago zehazteko aukera edukiko "
+"duzu."
+
+#: ../src\issueReporter\gui.py:56
+msgid "Here, you can describe the bug in detail"
+msgstr "Hemen, errorea deskriba dezakezu"
+
+#: ../src\issueReporter\gui.py:66
+msgid "how often does this bug happen?"
+msgstr "Zenbat aldiz gertatzen da errore hau?"
+
+#: ../src\issueReporter\gui.py:74
+msgid "Select the importance that you think this bug has"
+msgstr "Aukeratu zure ustez errore honek duen garrantzia:"
+
+#: ../src\issueReporter\gui.py:82
+msgid ""
+"I know that the TW Blue bug system will get my Twitter username to contact "
+"me and fix the bug quickly"
+msgstr ""
+"Badakit TW Blueren errore sistemak nire Twitter erabiltzailea hartuko duela, "
+"nirekin kontaktuan jartzeko eta ahal den azkarren errorea konpontzeko"
+
+#: ../src\issueReporter\gui.py:85
+msgid "Send report"
+msgstr "Informazioa bidali"
+
+#: ../src\issueReporter\gui.py:98
+msgid "You must fill out both fields"
+msgstr "Bi koadroak bete behar dituzu"
+
+#: ../src\issueReporter\gui.py:101
+msgid ""
+"You need to mark the checkbox to provide us your twitter username to contact "
+"to you if is necessary."
+msgstr ""
+"Kontrol-laukia markatu behar duzu zure erabiltzaile izena emateko. Horrela, "
+"beharrezkoa baldin bada zurekin kontaktuan jarriko gara."
+
+#: ../src\issueReporter\gui.py:120
+msgid ""
+"Thanks for reporting this bug! In future versions, you may be able to find "
+"it in the changes list. You've reported the bug number %i"
+msgstr ""
+"Mila esker errore honi buruz berri emateagatik! Agian hurrengo bertsioko "
+"aldaketa zerrendan ikusiko duzu. %i zenbakidun erroreari buruz eman duzu "
+"informazioa."
+
+#: ../src\issueReporter\gui.py:120
+msgid "reported"
+msgstr "Berri emanda"
 
 #: ../src\keystrokeEditor\constants.py:4
 msgid "Go up up on the current list"
@@ -1957,6 +2338,18 @@ msgstr "Erabiltzaile baten zerrendak ikusi"
 msgid "loads previous items to any buffer"
 msgstr "Aurreko elementuak kargatzen ditu edozein bufferretan"
 
+#: ../src\keystrokeEditor\constants.py:45
+msgid "Get location of any tweet"
+msgstr "Edozein txioren kokalekua jakin"
+
+#: ../src\keystrokeEditor\constants.py:46
+msgid "Displays the tweet's location in a dialog"
+msgstr "Txio baten kokalekua erakusten du elkarrizketa koadro batean"
+
+#: ../src\keystrokeEditor\constants.py:47
+msgid "Creates a buffer for displaying trends for a desired place"
+msgstr "Leku bateko tendentziak erakusten dituen buffer bat egiten du"
+
 #: ../src\keystrokeEditor\gui.py:10
 msgid "Keystroke editor"
 msgstr "Teklatu lastrbideen editorea"
@@ -2009,15 +2402,15 @@ msgstr "Konbinazioak karaktere bat eduki behar du"
 msgid "User default"
 msgstr "Lehenetsia"
 
-#: ../src\sessionmanager\gui.py:19
+#: ../src\sessionmanager\gui.py:20
 msgid "Session manager"
 msgstr "Sesioen kudeatzailea"
 
-#: ../src\sessionmanager\gui.py:23
+#: ../src\sessionmanager\gui.py:24
 msgid "Select a twitter account to start TW Blue"
 msgstr "Aukeratu Twitter kontu bat TW Blue hasteko"
 
-#: ../src\sessionmanager\gui.py:25
+#: ../src\sessionmanager\gui.py:26
 msgid "Account"
 msgstr "Kontua"
 
@@ -2025,15 +2418,19 @@ msgstr "Kontua"
 msgid "New account"
 msgstr "Kontu berria"
 
-#: ../src\sessionmanager\gui.py:67
+#: ../src\sessionmanager\gui.py:32
+msgid "Remove session"
+msgstr "Sesioa ezabatu"
+
+#: ../src\sessionmanager\gui.py:70
 msgid "Account Error"
 msgstr "Errorea kontuarekin"
 
-#: ../src\sessionmanager\gui.py:67
+#: ../src\sessionmanager\gui.py:70
 msgid "You need to configure an account."
 msgstr "Kontu bat konfiguratuta izan behar duzu"
 
-#: ../src\sessionmanager\gui.py:83
+#: ../src\sessionmanager\gui.py:84
 msgid ""
 "The request for the required Twitter authorization to continue will be "
 "opened on your browser. You only need to do it once. Would you like to "
@@ -2042,11 +2439,11 @@ msgstr ""
 "Jarraitzeko beharrezkoa den Twiterren baimenaren eskaria irekiko da "
 "nabigatzailean. Behin soilik egin behar da hau."
 
-#: ../src\sessionmanager\gui.py:94
+#: ../src\sessionmanager\gui.py:95
 msgid "Invalid user token"
 msgstr "Baliogabeko egiaztapen kodea"
 
-#: ../src\sessionmanager\gui.py:94
+#: ../src\sessionmanager\gui.py:95
 msgid ""
 "Your access token is invalid or the authorisation has failed. Please try "
 "again."
@@ -2054,9 +2451,17 @@ msgstr ""
 "Zure egiaztapen kodea okerra da edo autorizazioak akats bat izan du. "
 "Mesedez, saiatu berriro."
 
-#: ../src\sessionmanager\gui.py:97
+#: ../src\sessionmanager\gui.py:98
 msgid "Authorised account %d"
 msgstr "Baimendutako kontua %d"
+
+#: ../src\sessionmanager\gui.py:107
+msgid "Do you really want delete this account?"
+msgstr "Ziur zaude kontu hau ezabatu nahi duzula?"
+
+#: ../src\sessionmanager\gui.py:107
+msgid "Remove account"
+msgstr "Kontua kendu"
 
 #: ../src\twitter\buffers\indibidual.py:26
 msgid "One tweet from %s"
@@ -2401,11 +2806,11 @@ msgstr "Pribatua"
 msgid "public"
 msgstr "Publikoa"
 
-#: ../src\twitter\twitter.py:74
+#: ../src\twitter\twitter.py:77
 msgid "%s failed.  Reason: %s"
 msgstr "%s eragiketak ez du arrakasta izan. Arrazoia: %s"
 
-#: ../src\twitter\twitter.py:81
+#: ../src\twitter\twitter.py:84
 msgid "%s succeeded."
 msgstr "%s eragiketak arrakasta izan du."
 
@@ -2446,98 +2851,12 @@ msgstr ""
 "TW Blueren bertsio berria jaitsia eta instalatua izan da. Sakatu OK "
 "aplikazioa abiatzeko."
 
-#~ msgid "always"
-#~ msgstr "Beti"
+#, fuzzy
+#~ msgid "Mention &to all"
+#~ msgstr "Aipamena guztiei"
 
-#~ msgid "have not tried"
-#~ msgstr "Ez da saiakerarik egin"
-
-#~ msgid "random"
-#~ msgstr "Ausaz"
-
-#~ msgid "sometimes"
-#~ msgstr "Batzutan"
-
-#~ msgid "unable to duplicate"
-#~ msgstr "Ezin izan da "
-
-#~ msgid "block"
-#~ msgstr "Blokeoa"
-
-#~ msgid "crash"
-#~ msgstr "Errorea"
-
-#~ msgid "feature"
-#~ msgstr "Ezaugarria"
-
-#~ msgid "major"
-#~ msgstr "Handia"
-
-#~ msgid "minor"
-#~ msgstr "Txikia"
-
-#~ msgid "text"
-#~ msgstr "Testua"
-
-#~ msgid "trivial"
-#~ msgstr "Tribiala"
-
-#~ msgid "tweak"
-#~ msgstr "Aldaketa"
-
-#~ msgid "Report an error"
-#~ msgstr "Errore bati buruz berri eman"
-
-#~ msgid "Select a category"
-#~ msgstr "Kategoria bat aukeratu"
-
-#~ msgid ""
-#~ "Briefly describe what happened. You will be able to thoroughly explain it "
-#~ "later"
-#~ msgstr ""
-#~ "Deskribatu laburki zer gertatu den. Gero gehiago zehazteko aukera edukiko "
-#~ "duzu."
-
-#~ msgid "Here, you can describe the bug in detail"
-#~ msgstr "Hemen, errorea deskriba dezakezu"
-
-#~ msgid "how often does this bug happen?"
-#~ msgstr "Zenbat aldiz gertatzen da errore hau?"
-
-#~ msgid "Select the importance that you think this bug has"
-#~ msgstr "Aukeratu zure ustez errore honek duen garrantzia:"
-
-#~ msgid ""
-#~ "I know that the TW Blue bug system will get my Twitter username to "
-#~ "contact me and fix the bug quickly"
-#~ msgstr ""
-#~ "Badakit TW Blueren errore sistemak nire Twitter erabiltzailea hartuko "
-#~ "duela, nirekin kontaktuan jartzeko eta ahal den azkarren errorea "
-#~ "konpontzeko"
-
-#~ msgid "Send report"
-#~ msgstr "Informazioa bidali"
-
-#~ msgid "You must fill out both fields"
-#~ msgstr "Bi koadroak bete behar dituzu"
-
-#~ msgid ""
-#~ "You need to mark the checkbox to provide us your twitter username to "
-#~ "contact to you if is necessary."
-#~ msgstr ""
-#~ "Kontrol-laukia markatu behar duzu zure erabiltzaile izena emateko. "
-#~ "Horrela, beharrezkoa baldin bada zurekin kontaktuan jarriko gara."
-
-#~ msgid ""
-#~ "Thanks for reporting this bug! In future versions, you may be able to "
-#~ "find it in the changes list. You've reported the bug number %i"
-#~ msgstr ""
-#~ "Mila esker errore honi buruz berri emateagatik! Agian hurrengo bertsioko "
-#~ "aldaketa zerrendan ikusiko duzu. %i zenbakidun erroreari buruz eman duzu "
-#~ "informazioa."
-
-#~ msgid "reported"
-#~ msgstr "Berri emanda"
+#~ msgid "Connection error. Try again later."
+#~ msgstr "Errorea konektatzean. Mesedez, saiatu beranduago."
 
 #~ msgid "Error while reporting"
 #~ msgstr "Errorea berri ematean"

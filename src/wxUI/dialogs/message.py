@@ -44,8 +44,15 @@ class textLimited(widgetUtils.BaseDialog):
  def onSelect(self, ev):
   self.text.SelectAll()
 
+ def set_cursor_at_end(self):
+  self.text.SetInsertionPoint(len(self.text.GetValue()))
+
+ def set_cursor_at_position(self, position):
+  self.text.SetInsertionPoint(position)
+
+
 class tweet(textLimited):
- def createControls(self, message, title, text):
+ def createControls(self, title, message,  text):
   self.mainBox = wx.BoxSizer(wx.VERTICAL)
   self.createTextArea(message, text)
   self.mainBox.Add(self.textBox, 0, wx.ALL, 5)
@@ -82,7 +89,7 @@ class tweet(textLimited):
   self.SetAcceleratorTable(self.accel_tbl)
   self.panel.SetSizer(self.mainBox)
 
- def __init__(self, message, title, text):
+ def __init__(self, title, message, text):
   super(tweet, self).__init__()
   self.createControls(message, title, text)
 #  self.onTimer(wx.EVT_CHAR_HOOK)
@@ -95,7 +102,7 @@ class tweet(textLimited):
   return open(openFileDialog.GetPath(), "rb")
    
 class dm(textLimited):
- def createControls(self, message, title, users):
+ def createControls(self, title, message,  users):
   self.panel = wx.Panel(self)
   self.mainBox = wx.BoxSizer(wx.VERTICAL)
   label = wx.StaticText(self.panel, -1, _(u"Recipient"))
@@ -128,14 +135,17 @@ class dm(textLimited):
   self.mainBox.Add(self.buttonsBox3, 0, wx.ALL, 5)
   self.panel.SetSizer(self.mainBox)
   
- def __init__(self, message, title, users):
+ def __init__(self, title, message,  users):
   super(dm, self).__init__()
   self.createControls(message, title, users)
 #  self.onTimer(wx.EVT_CHAR_HOOK)
   self.SetClientSize(self.mainBox.CalcMin())
-  
+
+ def get_user(self):
+  return self.cb.GetValue()
+ 
 class reply(tweet):
- def __init__(self, message, title, text):
+ def __init__(self, title, message,  text):
   super(reply, self).__init__(message, title, text)
   self.text.SetInsertionPoint(len(self.text.GetValue()))
   self.mentionAll = wx.Button(self, -1, _(u"Mention to all"), size=wx.DefaultSize)

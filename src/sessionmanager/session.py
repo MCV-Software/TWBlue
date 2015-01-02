@@ -2,7 +2,6 @@
 """ The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
 import twitter
 import application
-import db
 import session_exceptions as Exceptions
 import paths
 import output

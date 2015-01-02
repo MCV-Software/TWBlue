@@ -62,6 +62,8 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_tweet, self.view.compose)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
 
  def __init__(self):
   super(Controller, self).__init__()
@@ -217,7 +219,9 @@ class Controller(object):
 
  def post_tweet(self, event=None):
   buffer = self.get_best_buffer()
-  tweet = messages.tweet(buffer.session)
+  title = _(u"Tweet")
+  caption = _(u"Write the tweet here")
+  tweet = messages.tweet(buffer.session, title, caption, "")
   if tweet.message.get_response() == widgetUtils.OK:
    text = tweet.message.get_text()
    if tweet.image == None:
@@ -225,11 +229,19 @@ class Controller(object):
    else:
     call_threaded(buffer.session.api_call, call_name="update_status_with_media", _sound="tweet_send.ogg", status=text, media=tweet.image)
 
- def post_reply(self):
-  pass
+ def post_reply(self, *args, **kwargs):
+  buffer = self.get_best_buffer()
+  if buffer.name == "sent_direct_messages" or buffer.name == "sent-tweets": return
+  elif buffer.name == "direct_messages":
+   buffer.direct_message()
+  else:
+   buffer.reply()
 
  def send_dm(self, user):
-  pass
+  buffer = self.get_best_buffer()
+  if buffer.name == "sent_direct_messages" or buffer.name == "sent-tweets": return
+  else:
+   buffer.direct_message()
 
  def post_retweet(self):
   pass
