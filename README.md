@@ -36,7 +36,7 @@ If you want to build both x86 and x64 binaries, you can install python x86 to C:
 * [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2
 * [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 219
 * [Pycurl](http://pycurl.sourceforge.net) 7.19.5 for Python 2.7: [32-bit downloads,](https://pypi.python.org/pypi/pycurl/7.19.3.1) [64-bit downloads](http://www.lfd.uci.edu/~gohlke/pythonlibs/)
-* [PyEnchand,](http://pythonhosted.org/pyenchant/) version 1.6.5.  
+* [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
 x64 version has been built by TW Blue developers, so you only will find it in windows-dependencies folder
 
 The windows installers are available only in the windows-dependencies folder
@@ -57,7 +57,7 @@ setuptools install a script, called easy_install. You can find it in the python 
 
     easy_install -Z package
 
-	The -z switch unzips the package, instead of installing it compressed. The following packages need to be installed:
+	The -z switch unzips the package, instead of installing it compressed. If you add the --upgrade switch, you can upgrade a package to its latest version. The following packages need to be installed:
 
 * dropbox
 * configobj
@@ -67,6 +67,7 @@ setuptools install a script, called easy_install. You can find it in the python 
 * suds
 * arrow
 * markdown
+* arrow
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
 
@@ -77,7 +78,6 @@ These dependencies are located in the windows-dependencies directory. You don't 
 * Bootstrap 1.2.1: included in dependencies directory.  
 This dependency has been built using pure basic 4.61. Its source can be found at http://hg.q-continuum.net/updater
 * [oggenc2.exe,](http://www.rarewares.org/ogg-oggenc.php) version 2.87  
-Copy the oggenc2.exe file corresponding to the desired platform in the windows folder, inside this repository.
 * Microsoft Visual c++ 2008 redistributable dlls.
 
 #### Dependencies required to build the installer
@@ -86,7 +86,7 @@ Copy the oggenc2.exe file corresponding to the desired platform in the windows f
 
 ### Running TW Blue from source
 
-Now that you have installed all these packages, you can run TW Blue from source using a command from. Navigate to the src directory into the repo, and type the following command:
+Now that you have installed all these packages, you can run TW Blue from source using a command prompt. Navigate to the src directory into the repo, and type the following command:
 
     python main.py
 
