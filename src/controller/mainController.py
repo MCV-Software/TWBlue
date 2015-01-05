@@ -234,15 +234,7 @@ class Controller(object):
 
  def post_tweet(self, event=None):
   buffer = self.get_best_buffer()
-  title = _(u"Tweet")
-  caption = _(u"Write the tweet here")
-  tweet = messages.tweet(buffer.session, title, caption, "")
-  if tweet.message.get_response() == widgetUtils.OK:
-   text = tweet.message.get_text()
-   if tweet.image == None:
-    call_threaded(buffer.session.api_call, call_name="update_status", _sound="tweet_send.ogg", status=text)
-   else:
-    call_threaded(buffer.session.api_call, call_name="update_status_with_media", _sound="tweet_send.ogg", status=text, media=tweet.image)
+  buffer.post_tweet()
 
  def post_reply(self, *args, **kwargs):
   buffer = self.get_current_buffer()

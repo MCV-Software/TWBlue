@@ -2,93 +2,10 @@
 import utils
 import re
 import htmlentitydefs
-import datetime
 import time
 import output
-import gettext, paths, locale, gettext_windows
-import platform
-system = platform.system()
-
-def prettydate(d):
- """ Converts a string to the relative time."""
- diff = datetime.datetime.utcnow() - d
- s = diff.seconds
- if diff.days > 7 and diff.days < 14:
-  return _(u"About a week ago")
- elif diff.days > 14 and diff.days < 31:
-  return _(u"About {} weeks ago").format(diff.days/7)
- elif diff.days > 31 and diff.days <= 62:
-  return _(u"A month ago")
- elif diff.days >62 and diff.days <= 365:
-  return _(u"About {} months ago").format(diff.days/30)
- elif diff.days > 365 and diff.days <= 730:
-  return _(u"About a year ago")
- elif diff.days > 730:
-  return _(u"About {} years ago").format(diff.days/365)
- elif diff.days == 1:
-  return _(u"About 1 day ago")
- elif diff.days > 1:
-  return _(u"About {} days ago").format(diff.days)
- elif s <= 1:
-  return _(u"just now")
- elif s < 60:
-  return _(u"{} seconds ago").format(s)
- elif s < 120:
-  return _(u"1 minute ago")
- elif s < 3600:
-  return _(u"{} minutes ago").format(s/60)
- elif s < 7200:
-  return _(u"About 1 hour ago")
- else:
-  return _(u"About {} hours ago").format(s/3600)
-
-# Months, days, short_months and short_days are used to translate the string that Twitter gives to us with the date and time.
-months = {
-"January": _(u"January"),
-"February": _(u"February"),
-"March": _(u"March"),
-"April": _(u"April"),
-"May": _(u"May"),
-"June": _(u"June"),
-"July": _(u"July"),
-"August": _(u"August"),
-"September": _(u"September"),
-"October": _(u"October"),
-"November": _(u"November"),
-"December": _(u"December"),
-}
-
-days = {"Sunday": _(u"Sunday"),
-"Monday": _(u"Monday"),
-"Tuesday": _(u"Tuesday"),
-"Wednesday": _(u"Wednesday"),
-"Thursday": _(u"Thursday"),
-"Friday": _(u"Friday"),
-"Saturday": _(u"Saturday")}
-
-short_days = {
-	"Sun": _(u"sun"),
-	"Mon": _(u"mon"),
-	"Tue": _(u"tue"),
-	"Wed": _(u"wed"),
-	"Thu": _(u"thu"),
-	"Fri": _(u"fri"),
-	"Sat": _(u"sat")
-	}
-
-short_months = {
-	"Jan": _(u"jan"),
-	"Feb": _(u"feb"),
-	"Mar": _(u"mar"),
-	"Apr": _(u"apr"),
-	"May": _(u"may"),
-	"Jun": _(u"jun"),
-	"Jul": _(u"jul"),
-	"Aug": _(u"aug"),
-	"Sep": _(u"sep"),
-	"Oct": _(u"oct"),
-	"Nov": _(u"nov"),
-	"Dec": _(u"dec")}
+import languageHandler
+import arrow
 
 def StripChars(s):
  """Converts any html entities in s to their unicode-decoded equivalents and returns a string."""
@@ -103,44 +20,15 @@ def StripChars(s):
   return replacement.decode('iso-8859-1')
  return unicode(entity_re.sub(matchFunc, s))
 
-def translate(string):
- """ Changes the days in English for the current language. Needed for Windows."""
- if system != "Windows": return string
- else:
-  global months, days
-  for d in months:
-   string = string.replace(d, months[d])
-  for d in days:
-   string = string.replace(d, days[d])
-  return string
-
-def translate_short(string):
- """ Changes the English date from Twitter to a local date and time. Needed for datetime on Linux."""
- if system != "Linux": return string
- else:
-# if 1 == 1:
-  global short_months, short_days
-  for d in short_months:
-   string = string.replace(d, short_months[d])
-  for d in short_days:
-   string = string.replace(d, short_days[d])
-  return string
-
 chars = "abcdefghijklmnopqrstuvwxyz"
 
 def compose_tweet(tweet, db, relative_times):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
-# original_date = datetime.datetime.strptime(translate_short(tweet["created_at"]).encode("utf-8"), "%a %b %d %H:%M:%S +0000 %Y")
- original_date = datetime.datetime.strptime(tweet["created_at"], "%a %b %d %H:%M:%S +0000 %Y")
-# else:
-#  original_date = datetime.datetime.strptime(tweet["created_at"], '%a %b %d %H:%M:%S +0000 %Y')
- date = original_date-datetime.timedelta(seconds=-db["utc_offset"])
+ original_date = arrow.get(tweet["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
  if relative_times == True:
-  ts = prettydate(original_date)
+  ts = original_date.humanize(locale=languageHandler.getLanguage())
  else:
-#  ts = translate(datetime.datetime.strftime(date, _("%A, %B %d, %Y at %I:%M:%S %p".encode("utf-8"))).decode("utf-8"))
-  ts = translate(datetime.datetime.strftime(date, _("%A, %B %d, %Y at %I:%M:%S %p")))
-# ts = tweet["created_at"]
+  ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  text = StripChars(tweet["text"])
  if tweet.has_key("sender"):
   source = "DM"
@@ -148,7 +36,7 @@ def compose_tweet(tweet, db, relative_times):
   else: user = tweet["sender"]["name"]
  elif tweet.has_key("user"):
   user = tweet["user"]["name"]
-  source = re.sub(r"(?s)<.*?>", " ", tweet["source"])
+  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
   try: text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet["retweeted_status"]["text"]))
   except KeyError: text = "%s" % (StripChars(tweet["text"]))
   if text[-1] in chars: text=text+"."
@@ -157,26 +45,21 @@ def compose_tweet(tweet, db, relative_times):
   try:  text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
   except IndexError: pass
  tweet["text"] = text
- return [user+", ", text, ts+", ", source]
+ return [user+", ", tweet["text"], ts+", ", source]
 
-def compose_followers_list(tweet, db, relative_time=True):
-# original_date = datetime.datetime.strptime(translate_short(tweet["created_at"]).encode("utf-8"), '%a %b %d %H:%M:%S +0000 %Y')
- original_date = datetime.datetime.strptime(tweet["created_at"], '%a %b %d %H:%M:%S +0000 %Y')
- date = original_date-datetime.timedelta(seconds=-db["utc_offset"])
- if relative_time == True:
-  ts = prettydate(original_date)
+def compose_followers_list(tweet, db, relative_times=True):
+ original_date = arrow.get(tweet["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
+ if relative_times == True:
+  ts = original_date.humanize(locale=languageHandler.getLanguage())
  else:
-  ts = translate(datetime.datetime.strftime(date, _(u"%A, %B %d, %Y at %I:%M:%S %p")))
-# ts = tweet["created_at"]
+  ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  if tweet.has_key("status"):
   if len(tweet["status"]) > 4:
-#   original_date2 = datetime.datetime.strptime(translate_short(tweet["status"]["created_at"]).encode("utf-8"), '%a %b %d %H:%M:%S +0000 %Y')
-   original_date2 = datetime.datetime.strptime(tweet["status"]["created_at"], '%a %b %d %H:%M:%S +0000 %Y')
-   date2 = original_date2-datetime.timedelta(seconds=-db["utc_offset"])
-   if relative_time == True:
-    ts2 = prettydate(original_date2)
+   original_date2 = arrow.get(tweet["status"]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
+   if relative_times:
+    ts2 = original_date2.humanize(locale=languageHandler.getLanguage())
    else:
-    ts2 = translate(datetime.datetime.strftime(date2, _(u"%A, %B %d, %Y at %I:%M:%S %p")))
+    ts2 = original_date2.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
   ts2 = _("Unavailable")
  return [_(u"%s (@%s). %s followers, %s friends, %s tweets. Last tweet on %s. Joined Twitter on %s") % (tweet["name"], tweet["screen_name"], tweet["followers_count"], tweet["friends_count"],  tweet["statuses_count"], ts2, ts)]

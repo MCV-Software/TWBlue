@@ -126,23 +126,27 @@ def setLanguage(lang):
 			elif system == "Darwin":
 				import Foundation
 				localeName = Foundation.NSLocale.currentLocale().identifier()
-#			trans=gettext.translation('twblue', localedir=paths.locale_path(), languages=[localeName])
-#			curLang=localeName
-			else:
-				localeName=locale.getdefaultlocale()[0]
 			trans=gettext.translation('twblue', localedir=paths.locale_path(), languages=[localeName])
 			curLang=localeName
+#			else:
+#				localeName=locale.getdefaultlocale()[0]
+#			trans=gettext.translation('twblue', localedir=paths.locale_path(), languages=[localeName])
+#			curLang=localeName
 
 		else:
 			trans=gettext.translation("twblue", localedir=paths.locale_path(), languages=[lang])
 			curLang=lang
 			localeChanged=False
 			#Try setting Python's locale to lang
-			try:
+#			try:
+			if system == "Windows":
+				locale.setlocale(locale.LC_ALL, langToWindowsLocale(lang))
+				localeChanged=True
+			else:
 				locale.setlocale(locale.LC_ALL, lang)
 				localeChanged=True
-			except:
-				pass
+#			except:
+#				pass
 			if not localeChanged and '_' in lang:
 				#Python couldn'tsupport the language_country locale, just try language.
 				try:
@@ -158,7 +162,7 @@ def setLanguage(lang):
 		curLang="en"
 	trans.install(unicode=True)
 	# Install our pgettext function.
-	__builtin__.__dict__["pgettext"] = makePgettext(trans)
+#	__builtin__.__dict__["pgettext"] = makePgettext(trans)
 
 def getLanguage():
 	return curLang
@@ -178,3 +182,20 @@ def normalizeLanguage(lang):
 		ld[1]=ld[1].upper()
 	return "_".join(ld)
 
+def langToWindowsLocale(lang):
+	languages = {"en": "eng",
+	"ar": "ara",
+	"ca": "cat",
+	"es": "esp",
+	"fi": "fin",
+	"fr": "fre_FRA",
+	"gl": "glc",
+	"eu": "euq",
+	"hu": "hun",
+	"it": "ita",
+	"pl": "plk",
+	"pt": "ptb",
+	"ru": "rus",
+	"tr": "trk"
+	}
+	return languages[lang]

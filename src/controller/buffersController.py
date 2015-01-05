@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 import wx
 import widgetUtils
-import datetime
+import arrow
 import webbrowser
 import output
 import config
 import sound
 import messages
-from twitter import compose, prettydate, utils
+import languageHandler
+from twitter import compose, utils
 from wxUI import buffers, dialogs, commonMessageDialogs
 from mysc.thread_utils import call_threaded
 from twython import TwythonError
@@ -98,6 +99,17 @@ class bufferController(object):
  def destroy_status(self):
   pass
 
+ def post_tweet(self, *args, **kwargs):
+  title = _(u"Tweet")
+  caption = _(u"Write the tweet here")
+  tweet = messages.tweet(self.session, title, caption, "")
+  if tweet.message.get_response() == widgetUtils.OK:
+   text = tweet.message.get_text()
+   if tweet.image == None:
+    call_threaded(buffer.session.api_call, call_name="update_status", _sound="tweet_send.ogg", status=text)
+   else:
+    call_threaded(buffer.session.api_call, call_name="update_status_with_media", _sound="tweet_send.ogg", status=text, media=tweet.image)
+
 class accountPanel(bufferController):
  def __init__(self, parent, name, account):
   super(accountPanel, self).__init__(parent, None, name)
@@ -174,6 +186,11 @@ class baseBufferController(bufferController):
  def bind_events(self):
   self.buffer.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, self.onFocus)
   self.buffer.list.list.Bind(wx.EVT_CHAR_HOOK, self.get_event)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
+#  if self.type == "baseBuffer":
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.retweet, self.buffer.retweet)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.direct_message, self.buffer.dm)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
 
  def get_tweet(self):
   if self.session.db[self.name][self.buffer.list.get_selected()].has_key("retweeted_status"):
@@ -186,7 +203,7 @@ class baseBufferController(bufferController):
   tweet = self.session.db[self.name][self.buffer.list.get_selected()]
   return tweet
 
- def reply(self):
+ def reply(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   screen_name = tweet["user"]["screen_name"]
   id = tweet["id"]
@@ -198,7 +215,7 @@ class baseBufferController(bufferController):
    else:
     call_threaded(self.session.twitter.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text(), media=message.file)
 
- def direct_message(self):
+ def direct_message(self, *args, **kwargs):
   tweet = self.get_tweet()
   if self.type == "dm":
    screen_name = tweet["sender"]["screen_name"]
@@ -213,7 +230,7 @@ class baseBufferController(bufferController):
   if dm.message.get_response() == widgetUtils.OK:
    call_threaded(self.session.api_call, call_name="send_direct_message", _sound="dm_sent.ogg", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
 
- def retweet(self):
+ def retweet(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   id = tweet["id"]
   answer = commonMessageDialogs.retweet_question(self.buffer)
@@ -230,8 +247,9 @@ class baseBufferController(bufferController):
  def onFocus(self, ev):
   tweet = self.get_tweet()
   if self.session.settings["general"]["relative_times"] == True:
-   original_date = datetime.datetime.strptime(self.session.db[self.name][self.buffer.list.get_selected()]["created_at"], "%a %b %d %H:%M:%S +0000 %Y")
-   ts = prettydate(original_date)
+   # fix this:
+   original_date = arrow.get(self.session.db[self.name_buffer][self.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
+   ts = original_date.humanize(locale=languageHandler.getLanguage())
    self.buffer.list.list.SetStringItem(self.buffer.list.get_selected(), 2, ts)
   if utils.is_audio(tweet):
    sound.player.play("audio.ogg")

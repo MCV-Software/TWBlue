@@ -12,5 +12,5 @@ class peoplePanel(basePanel):
  def __init__(self, parent, name):
   super(peoplePanel, self).__init__(parent, name)
   self.type = "people"
-  self.responseBtn.SetLabel(_(u"Mention"))
-  self.retweetBtn.Disable()
+  self.reply.SetLabel(_(u"Mention"))
+  self.retweet.Disable()
