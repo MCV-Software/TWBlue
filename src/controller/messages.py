@@ -128,3 +128,28 @@ class reply(tweet):
 class dm(basicTweet):
  def __init__(self, session, title, caption, text):
   super(dm, self).__init__(session, title, caption, text, messageType="dm")
+
+class viewTweet(basicTweet):
+ def __init__(self, tweet, is_tweet=True):
+  if is_tweet == True:
+   if tweet.has_key("retweeted_status"):
+    text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
+   else:
+    text = tweet["text"]
+   rt_count = str(tweet["retweet_count"])
+   favs_count = str(tweet["favorite_count"])
+   self.message = message.viewTweet(text, rt_count, favs_count)
+   self.message.set_title(len(text))
+  else:
+   text = tweet
+   self.message = message.viewNonTweet(text)
+  widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
+  widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
+  if self.contain_urls() == True:
+   widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
+  self.message.get_response()
+
+ def contain_urls(self):
+  if len(utils.find_urls_in_text(self.message.get_text())) > 0:
+   return True
+  return False

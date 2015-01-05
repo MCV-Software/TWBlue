@@ -10,6 +10,7 @@ import messages
 from twitter import compose, prettydate, utils
 from wxUI import buffers, dialogs, commonMessageDialogs
 from mysc.thread_utils import call_threaded
+from twython import TwythonError
 
 class bufferController(object):
  def __init__(self, parent=None, function=None, session=None, *args, **kwargs):
@@ -28,7 +29,7 @@ class bufferController(object):
   elif ev.GetKeyCode() == wx.WXK_F5: event = "volume_down"
   elif ev.GetKeyCode() == wx.WXK_F6: event = "volume_up"
   elif ev.GetKeyCode() == wx.WXK_DELETE and ev.ShiftDown(): event = "clear_list"
-  elif ev.GetKeyCode() == wx.WXK_DELETE: event = "delete_item"
+  elif ev.GetKeyCode() == wx.WXK_DELETE: event = "destroy_status"
   else:
    event = None
    ev.Skip()
@@ -76,6 +77,9 @@ class bufferController(object):
  def get_object(self):
   return self.buffer
 
+ def get_message(self):
+  pass
+
  def set_list_position(self, reversed=False):
   if reversed == False:
    self.buffer.list.select_item(-1)
@@ -89,6 +93,9 @@ class bufferController(object):
   pass
 
  def retweet(self):
+  pass
+
+ def destroy_status(self):
   pass
 
 class accountPanel(bufferController):
@@ -132,6 +139,9 @@ class baseBufferController(bufferController):
   self.account = account
   self.buffer.account = account
   self.bind_events()
+
+ def get_message(self):
+  return " ".join(self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"])[1:-2])
 
  def start_stream(self):
   val = self.session.call_paged(self.function, *self.args, **self.kwargs)
@@ -257,18 +267,22 @@ class baseBufferController(bufferController):
    self.buffer.list.clear()
   dlg.Destroy()
 
- def delete_item(self):
-  dlg = wx.MessageDialog(None, _(u"Do you really want to delete this message?"), _(u"Delete"), wx.ICON_QUESTION|wx.YES_NO)
-  if dlg.ShowModal() == widgetUtils.YES:
-   index = self.buffer.list.get_selected()
-   try:
-    self.session.twitter.twitter.destroy_status(id=self.session.db[self.name][index]["id"])
-    self.session.db[self.name].pop(index)
-    self.buffer.list.remove_item(index)
-    if index > 0:
-     self.buffer.list.select_item(index-1)
-   except:
-    sound.player.play("error.ogg")
+ def destroy_status(self, *args, **kwargs):
+  index = self.buffer.list.get_selected()
+  if self.type == "events" or self.type == "people" or self.type == "empty" or self.type == "account": return
+  answer = commonMessageDialogs.delete_tweet_dialog(None)
+  if answer == widgetUtils.YES:
+#   try:
+   if self.name == "direct_messages":
+    self.session.twitter.twitter.destroy_direct_message(id=self.get_right_tweet()["id"])
+   else:
+    self.session.twitter.twitter.destroy_status(id=self.get_right_tweet()["id"])
+   self.session.db[self.name].pop(index)
+   self.buffer.list.remove_item(index)
+   if index > 0:
+    self.buffer.list.select_item(index-1)
+#   except TwythonError:
+#    sound.player.play("error.ogg")
 
 class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):
@@ -280,6 +294,15 @@ class eventsBufferController(bufferController):
   self.buffer.account = self.account
   self.compose_function = compose.compose_event
   self.session = session
+  self.type = self.buffer.type
+
+ def get_message(self):
+  if self.list.get_count() == 0: return _(u"Empty")
+  # fix this:
+  if platform.system() == "Windows":
+   return "%s. %s" % (self.buffer.list.list.GetItemText(self.buffer.list.get_selected()), self.buffer.list.list.GetItemText(self.buffer.list.get_selected(), 1))
+  else:
+   return self.buffer.list.list.GetStringSelection()
 
  def add_new_item(self, item):
   tweet = self.compose_function(item, self.session.db["user_name"])
@@ -296,6 +319,9 @@ class peopleBufferController(baseBufferController):
 
  def onFocus(self, ev):
   pass
+
+ def get_message(self):
+  return " ".join(self.compose_function(self.get_tweet(), self.session.db, self.session.settings["general"]["relative_times"]))
 
  def delete_item(self): pass
 

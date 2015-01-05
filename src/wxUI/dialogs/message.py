@@ -155,13 +155,15 @@ class reply(tweet):
   self.mainBox.Layout()
   self.SetClientSize(self.mainBox.CalcMin())
 
-class viewTweet(wx.Dialog):
- def __init__(self, tweet):
+class viewTweet(widgetUtils.BaseDialog):
+ def set_title(self, lenght):
+  self.SetTitle(_(u"Tweet - %i characters ") % (lenght,))
+
+ def __init__(self, text, rt_count, favs_count):
   super(viewTweet, self).__init__(None, size=(850,850))
-  self.SetTitle(_(u"Tweet - %i characters ") % (len(tweet)))
   panel = wx.Panel(self)
   label = wx.StaticText(panel, -1, _(u"Tweet"))
-  self.text = wx.TextCtrl(panel, -1, tweet, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
+  self.text = wx.TextCtrl(panel, -1, text, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
   dc = wx.WindowDC(self.text)
   dc.SetFont(self.text.GetFont())
   (x, y, z) = dc.GetMultiLineTextExtent("0"*140)
@@ -172,15 +174,81 @@ class viewTweet(wx.Dialog):
   textBox.Add(self.text, 1, wx.EXPAND, 5)
   mainBox = wx.BoxSizer(wx.VERTICAL)
   mainBox.Add(textBox, 0, wx.ALL, 5)
-  spellcheck = wx.Button(panel, -1, _("Spelling correction"), size=wx.DefaultSize)
+  rtCountLabel = wx.StaticText(panel, -1, _(u"Retweets: "))
+  rtCount = wx.TextCtrl(panel, -1, rt_count, size=wx.DefaultSize, style=wx.TE_READONLY|wx.TE_MULTILINE)
+  rtBox = wx.BoxSizer(wx.HORIZONTAL)
+  rtBox.Add(rtCountLabel, 0, wx.ALL, 5)
+  rtBox.Add(rtCount, 0, wx.ALL, 5)
+  favsCountLabel = wx.StaticText(panel, -1, _(u"Favourites: "))
+  favsCount = wx.TextCtrl(panel, -1, favs_count, size=wx.DefaultSize, style=wx.TE_READONLY|wx.TE_MULTILINE)
+  favsBox = wx.BoxSizer(wx.HORIZONTAL)
+  favsBox.Add(favsCountLabel, 0, wx.ALL, 5)
+  favsBox.Add(favsCount, 0, wx.ALL, 5)
+  infoBox = wx.BoxSizer(wx.HORIZONTAL)
+  infoBox.Add(rtBox, 0, wx.ALL, 5)
+  infoBox.Add(favsBox, 0, wx.ALL, 5)
+  mainBox.Add(infoBox, 0, wx.ALL, 5)
+  self.spellcheck = wx.Button(panel, -1, _("Spelling correction"), size=wx.DefaultSize)
   self.unshortenButton = wx.Button(panel, -1, _(u"Expand URL"), size=wx.DefaultSize)
   self.unshortenButton.Disable()
-  translateButton = wx.Button(panel, -1, _(u"Translate message"), size=wx.DefaultSize)
+  self.translateButton = wx.Button(panel, -1, _(u"Translate message"), size=wx.DefaultSize)
   cancelButton = wx.Button(panel, wx.ID_CANCEL, _(u"Close"), size=wx.DefaultSize)
+  cancelButton.SetDefault()
   buttonsBox = wx.BoxSizer(wx.HORIZONTAL)
-  buttonsBox.Add(spellcheck, 0, wx.ALL, 5)
+  buttonsBox.Add(self.spellcheck, 0, wx.ALL, 5)
   buttonsBox.Add(self.unshortenButton, 0, wx.ALL, 5)
-  buttonsBox.Add(translateButton, 0, wx.ALL, 5)
+  buttonsBox.Add(self.translateButton, 0, wx.ALL, 5)
+  buttonsBox.Add(cancelButton, 0, wx.ALL, 5)
+  mainBox.Add(buttonsBox, 0, wx.ALL, 5)
+  selectId = wx.NewId()
+  self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
+  self.accel_tbl = wx.AcceleratorTable([
+(wx.ACCEL_CTRL, ord('A'), selectId),
+])
+  self.SetAcceleratorTable(self.accel_tbl)
+  panel.SetSizer(mainBox)
+  self.SetClientSize(mainBox.CalcMin())
+
+ def set_text(self, text):
+  self.text.ChangeValue()
+
+ def get_text(self):
+  return self.text.GetValue()
+
+ def text_focus(self):
+  self.text.SetFocus()
+
+ def onSelect(self, ev):
+  self.text.SelectAll()
+
+class viewNonTweet(widgetUtils.BaseDialog):
+
+ def __init__(self, text):
+  super(viewNonTweet, self).__init__(None, size=(850,850))
+  self.SetTitle(_(u"View"))
+  panel = wx.Panel(self)
+  label = wx.StaticText(panel, -1, _(u"Item"))
+  self.text = wx.TextCtrl(parent=panel, id=-1, value=text, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
+  dc = wx.WindowDC(self.text)
+  dc.SetFont(self.text.GetFont())
+  (x, y, z) = dc.GetMultiLineTextExtent("0"*140)
+  self.text.SetSize((x, y))
+  self.text.SetFocus()
+  textBox = wx.BoxSizer(wx.HORIZONTAL)
+  textBox.Add(label, 0, wx.ALL, 5)
+  textBox.Add(self.text, 1, wx.EXPAND, 5)
+  mainBox = wx.BoxSizer(wx.VERTICAL)
+  mainBox.Add(textBox, 0, wx.ALL, 5)
+  self.spellcheck = wx.Button(panel, -1, _("Spelling correction"), size=wx.DefaultSize)
+  self.unshortenButton = wx.Button(panel, -1, _(u"Expand URL"), size=wx.DefaultSize)
+  self.unshortenButton.Disable()
+  self.translateButton = wx.Button(panel, -1, _(u"Translate message"), size=wx.DefaultSize)
+  cancelButton = wx.Button(panel, wx.ID_CANCEL, _(u"Close"), size=wx.DefaultSize)
+  cancelButton.SetDefault()
+  buttonsBox = wx.BoxSizer(wx.HORIZONTAL)
+  buttonsBox.Add(self.spellcheck, 0, wx.ALL, 5)
+  buttonsBox.Add(self.unshortenButton, 0, wx.ALL, 5)
+  buttonsBox.Add(self.translateButton, 0, wx.ALL, 5)
   buttonsBox.Add(cancelButton, 0, wx.ALL, 5)
   mainBox.Add(buttonsBox, 0, wx.ALL, 5)
   selectId = wx.NewId()
@@ -194,3 +262,12 @@ class viewTweet(wx.Dialog):
 
  def onSelect(self, ev):
   self.text.SelectAll()
+
+ def set_text(self, text):
+  self.text.ChangeValue()
+
+ def get_text(self):
+  return self.text.GetValue()
+
+ def text_focus(self):
+  self.text.SetFocus()

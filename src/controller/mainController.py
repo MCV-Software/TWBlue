@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from wxUI import (view, dialogs)
+from wxUI import (view, dialogs, commonMessageDialogs)
 import buffersController
 import messages
 from sessionmanager import session
 from pubsub import pub
 import sound
 import output
+from twython import TwythonError
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 import config
@@ -28,6 +29,12 @@ class Controller(object):
   returns buffersController.buffer object with the result if there is one."""
   for i in self.buffers:
    if i.name == name_ and i.account == user: return i
+
+ def get_current_buffer(self):
+  buffer = self.view.get_current_buffer()
+  if hasattr(buffer, "account"):
+   buffer = self.search_buffer(buffer.name, buffer.account)
+   return buffer
 
  def get_best_buffer(self):
   # Gets the parent buffer to know what account is doing an action
@@ -66,6 +73,8 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_retweet, self.view.retweet)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_favourites, self.view.fav)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.unfav)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_item, self.view.view)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
 
  def __init__(self):
@@ -206,8 +215,11 @@ class Controller(object):
  def show_details_for_user(self, user):
   pass
 
- def delete(self):
-  pass
+ def delete(self, *args, **kwargs):
+  buffer = self.view.get_current_buffer()
+  if hasattr(buffer, "account"):
+   buffer = self.search_buffer(buffer.name, buffer.account)
+   buffer.destroy_status()
 
  def exit(self, *args, **kwargs):
   for item in session.sessions:
@@ -233,7 +245,7 @@ class Controller(object):
     call_threaded(buffer.session.api_call, call_name="update_status_with_media", _sound="tweet_send.ogg", status=text, media=tweet.image)
 
  def post_reply(self, *args, **kwargs):
-  buffer = self.get_best_buffer()
+  buffer = self.get_current_buffer()
   if buffer.name == "sent_direct_messages" or buffer.name == "sent-tweets": return
   elif buffer.name == "direct_messages":
    buffer.direct_message()
@@ -241,20 +253,20 @@ class Controller(object):
    buffer.reply()
 
  def send_dm(self, user):
-  buffer = self.get_best_buffer()
+  buffer = self.get_current_buffer()
   if buffer.name == "sent_direct_messages" or buffer.name == "sent-tweets": return
   else:
    buffer.direct_message()
 
  def post_retweet(self, *args, **kwargs):
-  buffer = self.get_best_buffer()
+  buffer = self.get_current_buffer()
   if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
    return
   else:
    buffer.retweet()
 
  def add_to_favourites(self, *args, **kwargs):
-  buffer = self.get_best_buffer()
+  buffer = self.get_current_buffer()
   if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
    return
   else:
@@ -262,12 +274,27 @@ class Controller(object):
    call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
 
  def remove_from_favourites(self, *args, **kwargs):
-  buffer = self.get_best_buffer()
+  buffer = self.get_current_buffer()
   if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
    return
   else:
    id = buffer.get_tweet()["id"]
    call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
+
+ def view_item(self, *args, **kwargs):
+  buffer = self.get_current_buffer()
+  if buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
+   try:
+    tweet = buffer.get_right_tweet()
+    msg = messages.viewTweet(tweet, )
+   except TwythonError:
+    non_tweet = buffer.get_message()
+    msg = messages.viewTweet(non_tweet, False)
+  elif buffer.type == "account" or buffer.type == "empty":
+   return
+  else:
+   non_tweet = buffer.get_message()
+   msg = messages.viewTweet(non_tweet, False)
 
  def open_timeline(self, user, timeline_tipe):
   pass
