@@ -106,9 +106,9 @@ class bufferController(object):
   if tweet.message.get_response() == widgetUtils.OK:
    text = tweet.message.get_text()
    if tweet.image == None:
-    call_threaded(buffer.session.api_call, call_name="update_status", _sound="tweet_send.ogg", status=text)
+    call_threaded(self.session.api_call, call_name="update_status", status=text)
    else:
-    call_threaded(buffer.session.api_call, call_name="update_status_with_media", _sound="tweet_send.ogg", status=text, media=tweet.image)
+    call_threaded(self.session.api_call, call_name="update_status_with_media", status=text, media=tweet.image)
 
 class accountPanel(bufferController):
  def __init__(self, parent, name, account):
@@ -228,7 +228,7 @@ class baseBufferController(bufferController):
    users = utils.get_all_users(tweet, self.session.db)
   dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
   if dm.message.get_response() == widgetUtils.OK:
-   call_threaded(self.session.api_call, call_name="send_direct_message", _sound="dm_sent.ogg", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
+   call_threaded(self.session.api_call, call_name="send_direct_message", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
 
  def retweet(self, *args, **kwargs):
   tweet = self.get_right_tweet()
