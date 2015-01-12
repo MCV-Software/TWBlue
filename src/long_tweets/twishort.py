@@ -17,4 +17,16 @@
 #
 ############################################################
 import requests
+import re
+
+api_key = "d757b8e7f9221d8b95880a02bab524b7"
+
+def get_tweet(uri):
+ global api_key
+ data = requests.get("http://api.twishort.com/1.1/get.json", params={"uri": uri, "api_key": api_key})
+ return data.json()["text"]
+
+def get_uri(url):
+ url_ = re.search("twishort.com/", url)
+ return url[url_.end():]
 
