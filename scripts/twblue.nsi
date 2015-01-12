@@ -24,7 +24,7 @@ var StartMenuFolder
 !insertmacro MUI_PAGE_STARTMENU startmenu $StartMenuFolder
 !insertmacro MUI_PAGE_INSTFILES
 !define MUI_FINISHPAGE_LINK "Visit TW Blue website"
-!define MUI_FINISHPAGE_LINK_LOCATION "http://twblue.com.mx"
+!define MUI_FINISHPAGE_LINK_LOCATION "http://twblue.es"
 !define MUI_FINISHPAGE_RUN "$INSTDIR\TWBlue.exe"
 !define MUI_FINISHPAGE_RUN_PARAMETERS "-i"
 !insertmacro MUI_PAGE_FINISH
@@ -58,7 +58,7 @@ CreateShortCut "$DESKTOP\TW Blue.lnk" "$INSTDIR\TWBlue.exe" "-i"
 !insertmacro MUI_STARTMENU_WRITE_BEGIN startmenu
 CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
 CreateShortCut "$SMPROGRAMS\$StartMenuFolder\TW Blue.lnk" "$INSTDIR\TWBlue.exe" "-i"
-CreateShortCut "$SMPROGRAMS\$StartMenuFolder\TW Blue on the web.lnk" "http://twblue.com.mx"
+CreateShortCut "$SMPROGRAMS\$StartMenuFolder\TW Blue on the web.lnk" "http://twblue.es"
 CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
 !insertmacro MUI_STARTMENU_WRITE_END
 WriteUninstaller "$INSTDIR\Uninstall.exe"
