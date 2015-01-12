@@ -20,15 +20,13 @@ A twitter accessible, easy of use and cross platform application."""
 #
 ############################################################
 import sys
-from StringIO import StringIO
-#redirect the original stdout and stderr
-#stdout=sys.stdout
-#stderr=sys.stderr
-# Set a StringIO object as stdout and stderr to avoid problems using the installed version.
-#sys.stdout = StringIO()
-#sys.stderr = StringIO()
-import wx
 import os
+#redirect the original stdout and stderr
+stdout=sys.stdout
+stderr=sys.stderr
+sys.stdout = open(os.path.join(os.getenv("temp"), "stdout.log"), "w")
+sys.stderr = open(os.path.join(os.getenv("temp"), "stderr.log"), "w")
+import wx
 ssmg = None
 import gui
 import wxLangs
@@ -44,17 +42,22 @@ import config
 import output
 import sound
 import languageHandler
-#close the memory buffers for stdout and stderr
-#sys.stdout.close()
-#sys.stderr.close()
+#extra variables to control the temporal stdout and stderr, while the final files are opened. We understand that some errors could happen while all outputs are closed, so let's try to avoid it.
+stdout_temp=sys.stdout
+stderr_temp=sys.stderr
 #if it's a binary version
-#if hasattr(sys, 'frozen'):
-# sys.stderr = open(paths.logs_path("stderr.log"), 'w')
-# sys.stdout = open(paths.logs_path("stdout.log"), 'w')
-#else:
-# sys.stdout=stdout
-# sys.stderr=stderr
-   
+if hasattr(sys, 'frozen'):
+ sys.stderr = open(paths.logs_path("stderr.log"), 'w')
+ sys.stdout = open(paths.logs_path("stdout.log"), 'w')
+else:
+ sys.stdout=stdout
+ sys.stderr=stderr
+#the final log files have been opened succesfully, let's close the temporal files
+stdout_temp.close()
+stderr_temp.close()
+#finally, remove the temporal files. TW Blue doesn't need them anymore, and we will get more free space on the harddrive
+os.remove(stdout_temp.name)
+os.remove(stderr_temp.name)
 #app = wx.App()
 app = wx.App(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
 configured = False

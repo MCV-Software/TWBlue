@@ -2,7 +2,7 @@
 name = 'TWBlue'
 snapshot = False
 if snapshot == False:
- version = "0.52"
+ version = "0.51"
  update_url = 'http://twblue.es/updates/tw_blue.json'
 else:
  version = "7"
