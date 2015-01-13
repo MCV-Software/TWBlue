@@ -26,6 +26,7 @@ class soundsTutorial(wx.Dialog):
     _(u"You've replied"),
     _(u"You've retweeted"),
     _(u"A search has been updated"),
+	_(u"the buffer for trending topics has been updated"),
     _(u"There's a new tweet in the main buffer"),
     _(u"You've sent a tweet"),
   _(u"There's a new tweet in a timeline"),

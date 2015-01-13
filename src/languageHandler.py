@@ -186,6 +186,7 @@ def langToWindowsLocale(lang):
 	languages = {"en": "eng",
 	"ar": "ara",
 	"ca": "cat",
+"de": "deu",
 	"es": "esp",
 	"fi": "fin",
 	"fr": "fre_FRA",

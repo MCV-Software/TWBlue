@@ -2,7 +2,8 @@ import wx
 import languageHandler
 
 def getLanguage():
-	lang = languageHandler.getLanguage()
+	lang = languageHandler.curLang
+	lang = lang[:2]
 	languages = {"ar": wx.LANGUAGE_ARABIC,
 	"ca": wx.LANGUAGE_CATALAN,
 	"en": wx.LANGUAGE_ENGLISH,
@@ -15,6 +16,7 @@ def getLanguage():
 	"it": wx.LANGUAGE_ITALIAN,
 	"pl": wx.LANGUAGE_POLISH,
 	"pt": wx.LANGUAGE_PORTUGUESE,
+	"de": wx.LANGUAGE_GERMAN,
 	"ru": wx.LANGUAGE_RUSSIAN,
 	"tr": wx.LANGUAGE_TURKISH,
 	}

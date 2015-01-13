@@ -58,8 +58,8 @@ stderr_temp.close()
 #finally, remove the temporal files. TW Blue doesn't need them anymore, and we will get more free space on the harddrive
 os.remove(stdout_temp.name)
 os.remove(stderr_temp.name)
-#app = wx.App()
-app = wx.App(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
+app = wx.App()
+#app = wx.App(redirect=True, useBestVisual=True, filename=paths.logs_path('tracebacks.log'))
 configured = False
 configs = []
 for i in os.listdir(paths.config_path()):
