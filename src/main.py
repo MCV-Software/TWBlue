@@ -6,6 +6,7 @@ import commandline
 import config
 import sound
 import output
+from logger import logger as logging
 
 def setup():
  config.setup()

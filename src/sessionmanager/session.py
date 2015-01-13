@@ -10,7 +10,7 @@ import sound
 from twitter import utils
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
 from config_utils import Configuration, ConfigurationResetException
-from mysc.thread_utils import call_threaded
+from mysc.thread_utils import stream_threaded
 
 sessions = {}
 
@@ -88,6 +88,7 @@ class Session(object):
   self.settings = None
   self.twitter = twitter.twitter.twitter()
   self.db = {}
+  self.reconnection_function_active = False
 
  def get_configuration(self):
 
@@ -102,7 +103,7 @@ class Session(object):
  @_require_configuration
  def login(self):
 
-  """ Login into twitter using  credentials from settings.
+  """ Login in to twitter using  credentials from settings.
   if the user account isn't authorised, it needs to call self.authorise() before login."""
 
   if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
@@ -257,12 +258,34 @@ class Session(object):
  def start_streaming(self):
 
   """ Start the streaming for sending tweets in realtime."""
+  self.get_main_stream()
+  self.get_timelines()
+
+ def get_main_stream(self):
   self.main_stream = twitter.buffers.stream.streamer(application.app_key, application.app_secret, self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], self)
-  call_threaded(self.main_stream.user)
+  stream_threaded(self.main_stream.user, self.session_id)
+
+ def get_timelines(self):
   self.timelinesStream = twitter.buffers.indibidual.timelinesStreamer(application.app_key, application.app_secret, self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], session=self)
   ids = ""
   for i in self.settings["other_buffers"]["timelines"]:
    ids = ids + "%s, " % (self.db[i+"-timeline"][0]["user"]["id_str"])
   #   if ids != "":
-  call_threaded(self.timelinesStream.statuses.filter, follow=ids)
-   
+  stream_threaded(self.timelinesStream.statuses.filter, self.session_id, follow=ids)
+
+ def listen_stream_error(self):
+  if hasattr(self, "main_stream"):
+   self.main_stream.disconnect()
+   del self.main_stream
+  if hasattr(self, "timelinesStream"):
+   self.timelinesStream.disconnect()
+   del self.timelinesStream
+
+ def check_connection(self):
+  if self.reconnection_function_active == True:  return
+  self.reconnection_function_active = True
+  if not hasattr(self, "main_stream"):
+   self.get_main_stream()
+  if not hasattr(self, "timelinesStream"):
+   self.get_timelines()
+  self.reconnection_function_active = False

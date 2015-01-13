@@ -210,7 +210,7 @@ class viewTweet(widgetUtils.BaseDialog):
   self.SetClientSize(mainBox.CalcMin())
 
  def set_text(self, text):
-  self.text.ChangeValue()
+  self.text.ChangeValue(text)
 
  def get_text(self):
   return self.text.GetValue()
@@ -264,7 +264,7 @@ class viewNonTweet(widgetUtils.BaseDialog):
   self.text.SelectAll()
 
  def set_text(self, text):
-  self.text.ChangeValue()
+  self.text.ChangeValue(text)
 
  def get_text(self):
   return self.text.GetValue()

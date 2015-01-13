@@ -211,9 +211,9 @@ class baseBufferController(bufferController):
   message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "@%s" % (screen_name,), users)
   if message.message.get_response() == widgetUtils.OK:
    if message.image == None:
-    call_threaded(self.session.twitter.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text())
+    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text())
    else:
-    call_threaded(self.session.twitter.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text(), media=message.file)
+    call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text(), media=message.file)
 
  def direct_message(self, *args, **kwargs):
   tweet = self.get_tweet()

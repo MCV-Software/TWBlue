@@ -2,7 +2,7 @@
 from wxUI import (view, dialogs, commonMessageDialogs)
 import buffersController
 import messages
-from sessionmanager import session
+from sessionmanager import session as session_
 from pubsub import pub
 import sound
 import output
@@ -13,8 +13,11 @@ import config
 import widgetUtils
 import platform
 from extra import SoundsTutorial
+import logging
 if platform.system() == "Windows":
  import keystrokeEditor
+
+log = logging.getLogger("mainController")
 
 class Controller(object):
 
@@ -65,6 +68,7 @@ class Controller(object):
 
  def bind_other_events(self):
   pub.subscribe(self.editing_keystroke, "editing_keystroke")
+  pub.subscribe(self.manage_stream_errors, "stream-error")
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
@@ -87,10 +91,14 @@ class Controller(object):
   self.do_work()
 
  def do_work(self):
-  for i in session.sessions:
-   self.create_buffers(session.sessions[i])
-   call_threaded(self.start_buffers, session.sessions[i])
+  log.debug("Creating buffers for all sessions...")
+  for i in session_.sessions:
+   log.debug("Working on session %s" % (i,))
+   self.create_buffers(session_.sessions[i])
+   call_threaded(self.start_buffers, session_.sessions[i])
   sound.player.play("tweet_timeline.ogg")
+  self.checker_function = RepeatingTimer(60, self.check_connection)
+  self.checker_function.start()
 
  def create_buffers(self, session):
   session.get_user_info()
@@ -222,10 +230,10 @@ class Controller(object):
    buffer.destroy_status()
 
  def exit(self, *args, **kwargs):
-  for item in session.sessions:
-   session.sessions[item].settings.write()
-   session.sessions[item].main_stream.disconnect()
-   session.sessions[item].timelinesStream.disconnect()
+  for item in session_.sessions:
+   session_.sessions[item].settings.write()
+   session_.sessions[item].main_stream.disconnect()
+   session_.sessions[item].timelinesStream.disconnect()
   sound.player.cleaner.cancel()
   widgetUtils.exit_application()
 
@@ -396,10 +404,22 @@ class Controller(object):
   print "i've pressed"
 
  def start_buffers(self, session):
+  log.debug("starting buffers... Session %s" % (session,))
   for i in self.buffers:
+   log.debug("Starting %s for %s" % (i.name, session))
    if i.session == session and i.needs_init == True:
     i.start_stream()
+  log.debug("Starting the streaming endpoint")
   session.start_streaming()
+
+ def manage_stream_errors(self, session):
+  log.error("An error ocurred with the stream for the %s session. It will be destroyed" % (session,))
+  s = sessions_.session[session]
+  s.listen_stream_error()
+
+ def check_connection(self):
+  for i in session_.sessions:
+   session_.sessions[i].check_connection()
 
  def __del__(self):
   config.app.write()

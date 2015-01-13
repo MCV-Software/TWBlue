@@ -74,7 +74,6 @@ class streamer(TwythonStreamer):
  def remove_fav(self, data):
   if self.session.db["user_name"] == data["source"]["screen_name"]:
    item = utils.find_item(data["target_object"]["id"], self.session.db["favourites"])
-   print item
    self.session.db["favourites"].pop(item)
    pub.sendMessage("unfavourite", item=item, user=self.get_user())
 
