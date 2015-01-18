@@ -4,14 +4,17 @@ import sys
 import threading
 import time
 import json
+import logging
 from utils import *
 from pubsub import pub
 
+log = logging.getLogger("extra.AudioUploader.transfer")
 class Transfer(object):
 
  def __init__(self, url=None, filename=None, follow_location=True, completed_callback=None, verbose=False, *args, **kwargs):
   self.url = url
   self.filename = filename
+  log.debug("Uploading audio to %s, filename %s" % (url, filename))
   self.curl = pycurl.Curl()
   self.start_time = None
   self.completed_callback = completed_callback
@@ -51,9 +54,11 @@ class Transfer(object):
   pub.sendMessage("uploading", data=progress)
 
  def perform_transfer(self):
+  log.debug("starting upload...")
   self.start_time = time.time()
   self.curl.perform()
   self.curl.close()
+  log.debug("Upload finished.")
   self.complete_transfer()
 
  def perform_threaded(self):

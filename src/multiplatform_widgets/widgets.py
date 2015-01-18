@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 import wx
 import platform
+import logging
+log = logging.getLogger("multiplatform_widgets.widgets")
 
 class list(object):
  def __init__(self, parent, *columns, **listArguments):
   self.system = platform.system()
   self.columns = columns
   self.listArguments = listArguments
+  log.debug("Creating list: Columns: %s, arguments: %s" % (self.columns, self.listArguments))
   self.create_list(parent)
 #  self.set_size()
 

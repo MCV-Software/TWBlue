@@ -19,8 +19,10 @@ player = URLPlayer = None
 def setup():
  global player, URLPlayer
  if not player:
+  log.debug("Creating sound player...")
   player = soundSystem()
  if not URLPlayer:
+  log.debug("creating stream URL player...")
   URLPlayer = URLStream()
 
 def recode_audio(filename, quality=4.5):
@@ -44,9 +46,11 @@ class soundSystem(object):
    self.path = paths.sound_path(config.app["app-settings"]["current_soundpack"])
    self.soundpack_OK = True
   elif os.path.exists(paths.sound_path("default")):
+   log.error("The soundpack does not exist, using default...")
    self.path = paths.sound_path("default")
    self.soundpack_OK = True
   else:
+   log.error("Path for the current soundpack does not exist and the default soundpack is deleted, TWBlue will not play sounds.")
    self.soundpack_OK = False
 
  def __init__(self):
@@ -56,9 +60,11 @@ class soundSystem(object):
   self.input = sound_lib.input.Input()
   # Try to use the selected device from the configuration. It can fail if the machine does not has a mic.
   try:
+   log.debug("Setting input and output devices...")
    self.output.set_device(self.output.find_device_by_name(config.app["app-settings"]["output_device"]))
    self.input.set_device(self.input.find_device_by_name(config.app["app-settings"]["input_device"]))
   except:
+   log.error("Error in input or output devices, using defaults...")
    config.app["app-settings"]["output_device"] = "Default"
    config.app["app-settings"]["input_device"] = "Default"
 

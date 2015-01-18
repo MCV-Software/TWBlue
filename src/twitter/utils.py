@@ -97,5 +97,7 @@ def is_allowed(tweet):
  if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
  for i in config.main["twitter"]["ignored_clients"]:
-  if i.lower() == source.lower(): allowed = False
+  if i.lower() == source.lower():
+   allowed = False
+   log.exception("Tuit not allowed: %s" % (tweet["text"],))
  return allowed

@@ -19,9 +19,12 @@
 import wx
 import widgetUtils
 import output
+import logging
+log = logging.getLogger("extra.AudioUploader.wx_UI")
 
 class audioDialog(widgetUtils.BaseDialog):
  def __init__(self, services):
+  log.debug("creating audio  dialog.")
   super(audioDialog, self).__init__(None, -1, _(u"Attach audio"))
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
@@ -50,10 +53,12 @@ class audioDialog(widgetUtils.BaseDialog):
   sizer.Add(self.attach)
 
  def enable_control(self, control):
+  log.debug("Enabling control %s" % (control,))
   if hasattr(self, control):
    getattr(self, control).Enable()
 
  def disable_control(self, control):
+  log.debug("Disabling control %s" % (control,))
   if hasattr(self, control):
    getattr(self, control).Disable()
 

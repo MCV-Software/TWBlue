@@ -13,6 +13,10 @@ class timelinesStreamer(TwythonStreamer):
  def on_error(self, status_code, data):
   log.debug("%s: %s" % (status_code, data))
 
+ def on_timeout(self, *args, **kwargs):
+  log.debug("Twitter timeout Error")
+  pub.sendMessage("stream-error")
+
  def check_tls(self, data):
   for i in self.session.settings["other_buffers"]["timelines"]:
    if data["user"]["screen_name"] == i:

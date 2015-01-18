@@ -3,6 +3,8 @@
 import config
 import paths
 import os
+import logging
+log = logging.getLogger("sessionmanager.manager")
 import session_exceptions
 
 manager = None
@@ -26,8 +28,10 @@ class sessionManager(object):
    return False
 
  def add_session(self, id):
+  log.debug("Adding a new session: %s" % (id,))
   path = paths.config_path(id)
   if not os.path.exists(path):
+   log.debug("Creating %s path" % (paths.config_path(path),))
    os.mkdir(path)
    config.app["sessions"]["sessions"].append(id)
 

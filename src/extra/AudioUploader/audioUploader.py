@@ -28,7 +28,9 @@ import config
 from pubsub import pub
 from mysc.thread_utils import call_threaded
 import sound_lib
+import logging
 
+log = logging.getLogger("extra.AudioUploader.audioUploader")
 class audioUploader(object):
  def __init__(self, configFile, completed_callback):
   self.config = configFile
@@ -45,6 +47,7 @@ class audioUploader(object):
   widgetUtils.connect_event(self.dialog.discard, widgetUtils.BUTTON_PRESSED, self.on_discard)
   if self.dialog.get_response() == widgetUtils.OK:
    self.postprocess()
+   log.debug("Uploading file %s to %s..." % (self.file, self.dialog.get("services")))
    self.uploaderDialog = wx_transfer_dialogs.UploadDialog(self.file)
    output.speak(_(u"Attaching..."))
    if self.dialog.get("services") == "Dropbox":

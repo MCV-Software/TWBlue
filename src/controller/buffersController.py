@@ -8,11 +8,13 @@ import config
 import sound
 import messages
 import languageHandler
+import logging
 from twitter import compose, utils
 from wxUI import buffers, dialogs, commonMessageDialogs
 from mysc.thread_utils import call_threaded
 from twython import TwythonError
 
+log = logging.getLogger("controller.buffers")
 class bufferController(object):
  def __init__(self, parent=None, function=None, session=None, *args, **kwargs):
   super(bufferController, self).__init__()
@@ -113,6 +115,7 @@ class bufferController(object):
 class accountPanel(bufferController):
  def __init__(self, parent, name, account):
   super(accountPanel, self).__init__(parent, None, name)
+  log.debug("Initializing buffer %s, account %s" % (name, account,))
   self.buffer = buffers.accountPanel(parent, name)
   self.type = self.buffer.type
   self.compose_function = None
@@ -126,6 +129,7 @@ class accountPanel(bufferController):
 class emptyPanel(bufferController):
  def __init__(self, parent, name, account):
   super(emptyPanel, self).__init__(parent, None, name)
+  log.debug("Initializing buffer %s, account %s" % (name, account,))
   self.buffer = buffers.emptyPanel(parent, name)
   self.type = self.buffer.type
   self.compose_function = None
@@ -139,6 +143,7 @@ class emptyPanel(bufferController):
 class baseBufferController(bufferController):
  def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
   super(baseBufferController, self).__init__(parent, function, *args, **kwargs)
+  log.debug("Initializing buffer %s, account %s" % (name, account,))
   if bufferType != None:
    self.buffer = getattr(buffers, bufferType)(parent, name)
   else:
@@ -148,6 +153,7 @@ class baseBufferController(bufferController):
   self.id = self.buffer.GetId()
   self.session = sessionObject
   self.compose_function = compose.compose_tweet
+  log.debug("Compose_function: %s" % (self.compose_function,))
   self.account = account
   self.buffer.account = account
   self.bind_events()
@@ -156,11 +162,16 @@ class baseBufferController(bufferController):
   return " ".join(self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"])[1:-2])
 
  def start_stream(self):
+  log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
+  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
   val = self.session.call_paged(self.function, *self.args, **self.kwargs)
   number_of_items = self.session.order_buffer(self.name, val)
+  log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
 
  def put_items_on_list(self, number_of_items):
+  log.debug("The list contains %d items " % (self.buffer.list.get_count(),))
+  log.debug("Putting %d items on the list" % (number_of_items,))
   if self.buffer.list.get_count() == 0:
    for i in self.session.db[self.name]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
@@ -175,6 +186,7 @@ class baseBufferController(bufferController):
     for i in self.session.db[self.name][0:number_of_items]:
      tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
      self.buffer.list.insert_item(True, *tweet)
+  log.debug("Now the list contains %d items " % (self.buffer.list.get_count(),))
 
  def add_new_item(self, item):
   tweet = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"])
@@ -184,6 +196,7 @@ class baseBufferController(bufferController):
    self.buffer.list.insert_item(True, *tweet)
 
  def bind_events(self):
+  log.debug("Binding events...")
   self.buffer.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, self.onFocus)
   self.buffer.list.list.Bind(wx.EVT_CHAR_HOOK, self.get_event)
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
@@ -305,6 +318,7 @@ class baseBufferController(bufferController):
 class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):
   super(eventsBufferController, self).__init__(parent, *args, **kwargs)
+  log.debug("Initializing buffer %s, account %s" % (name, account,))
   self.buffer = buffers.eventsPanel(parent, name)
   self.name = name
   self.account = account
@@ -332,7 +346,9 @@ class eventsBufferController(bufferController):
 class peopleBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
   super(peopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel")
+  log.debug("Initializing buffer %s, account %s" % (name, account,))
   self.compose_function = compose.compose_followers_list
+  log.debug("Compose_function: self.compose_function" % (self.compose_function,))
   self.get_tweet = self.get_right_tweet
 
  def onFocus(self, ev):
@@ -344,11 +360,16 @@ class peopleBufferController(baseBufferController):
  def delete_item(self): pass
 
  def start_stream(self):
+  log.debug("Starting stream for %s buffer, %s account" % (self.name, self.account,))
+  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
   val = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
 #  self.session.order_cursored_buffer(self.name, self.session.db[self.name])
+  log.debug("Number of items retrieved:  %d" % (val,))
   self.put_items_on_list(val)
 
  def put_items_on_list(self, number_of_items):
+  log.debug("The list contains %d items" % (self.buffer.list.get_count(),))
+  log.debug("Putting %d items on the list..." % (number_of_items,))
   if self.buffer.list.get_count() == 0:
    for i in self.session.db[self.name]["items"]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
@@ -363,6 +384,7 @@ class peopleBufferController(baseBufferController):
     for i in self.session.db[self.name]["items"][0:number_of_items]:
      tweet = self.compose_function(i, self.session.db)
      self.buffer.list.insert_item(True, *tweet)
+  log.debug("now the list contains %d items" % (self.buffer.list.get_count(),))
 
  def get_right_tweet(self):
   tweet = self.session.db[self.name]["items"][self.buffer.list.get_selected()]
@@ -370,8 +392,12 @@ class peopleBufferController(baseBufferController):
 
 class searchBufferController(baseBufferController):
  def start_stream(self):
+  log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
+  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
+  log.debug("Function: %s" % (self.function,))
   val = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
   number_of_items = self.session.order_buffer(self.name, val["statuses"])
+  log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
   if number_of_items > 0:
    sound.player.play("search_updated.ogg")
@@ -380,11 +406,17 @@ class searchPeopleBufferController(searchBufferController):
 
  def __init__(self, parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs):
   super(searchPeopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs)
+  log.debug("Initializing buffer %s, account %s" % (name, account,))
   self.compose_function = compose.compose_followers_list
-  
+  log.debug("Compose_function: %s" % (self.compose_function,))
+
  def start_stream(self):
+  log.debug("starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
+  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
+  log.debug("Function: %s" % (self.function,))
   val = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
   number_of_items = self.session.order_buffer(self.name, val)
+  log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
   if number_of_items > 0:
    sound.player.play("search_updated.ogg")

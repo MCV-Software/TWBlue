@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import logging
+log = logging.getLogger("extra.SpellChecker.spellChecker")
 import wx_ui
 import widgetUtils
 import output
@@ -10,15 +12,22 @@ from enchant.errors import DictNotFoundError
 class spellChecker(object):
  def __init__(self, text, dictionary):
   super(spellChecker, self).__init__()
+  log.debug("Creating the SpellChecker object. Dictionary: %s" % (dictionary,))
   self.active = True
   try:
-   if config.app["app-settings"]["language"] == "system": self.checker = SpellChecker()
-   else: self.checker = SpellChecker(languageHandler.getLanguage())
+   if config.app["app-settings"]["language"] == "system":
+    log.debug("Using the system language")
+    self.checker = SpellChecker()
+   else:
+    log.debug("Using language: %s" % (languageHandler.getLanguage(),))
+    self.checker = SpellChecker(languageHandler.getLanguage())
    self.checker.set_text(text)
   except DictNotFoundError:
+   log.exception("Dictionary for language %s not found." % (dictionary,))
    wx_ui.dict_not_found_error()
    self.active = False
   if self.active == True:
+   log.debug("Creating dialog...")
    self.dialog = wx_ui.spellCheckerDialog()
    widgetUtils.connect_event(self.dialog.ignore, widgetUtils.BUTTON_PRESSED, self.ignore)
    widgetUtils.connect_event(self.dialog.ignoreAll, widgetUtils.BUTTON_PRESSED, self.ignoreAll)
@@ -37,6 +46,7 @@ class spellChecker(object):
    output.speak(textToSay)
    self.dialog.set_word_and_suggestions(word=self.checker.word, context=context, suggestions=self.checker.suggest())
   except StopIteration:
+   log.debug("Process finished.")
    wx_ui.finished()
    self.dialog.Destroy()
 #  except AttributeError:

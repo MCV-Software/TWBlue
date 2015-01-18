@@ -50,6 +50,7 @@ class Controller(object):
   return buffer
 
  def bind_stream_events(self):
+  log.debug("Binding events for the Twitter stream API...")
   pub.subscribe(self.manage_home_timelines, "item-in-home")
   pub.subscribe(self.manage_mentions, "mention")
   pub.subscribe(self.manage_direct_messages, "direct-message")
@@ -67,6 +68,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit)
 
  def bind_other_events(self):
+  log.debug("Binding other application events...")
   pub.subscribe(self.editing_keystroke, "editing_keystroke")
   pub.subscribe(self.manage_stream_errors, "stream-error")
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
@@ -165,6 +167,7 @@ class Controller(object):
    tl.timer.start()
 
  def search(self, *args, **kwargs):
+  log.debug("Creating a new search...")
   dlg = dialogs.search.searchDialog()
   if dlg.get_response() == widgetUtils.OK:
    term = dlg.get("term")
@@ -174,6 +177,7 @@ class Controller(object):
      buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
      search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term)
     else:
+     log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
      return
    elif dlg.get("users") == True:
     search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term)
@@ -230,8 +234,11 @@ class Controller(object):
    buffer.destroy_status()
 
  def exit(self, *args, **kwargs):
+  log.debug("Exiting...")
   for item in session_.sessions:
+   log.debug("Saving config for %s session" % (session_.sessions[item].session_id,))
    session_.sessions[item].settings.write()
+   log.debug("Disconnecting streams for %s session" % (session_.sessions[item].session_id,))
    session_.sessions[item].main_stream.disconnect()
    session_.sessions[item].timelinesStream.disconnect()
   sound.player.cleaner.cancel()
@@ -404,9 +411,8 @@ class Controller(object):
   print "i've pressed"
 
  def start_buffers(self, session):
-  log.debug("starting buffers... Session %s" % (session,))
+  log.debug("starting buffers... Session %s" % (session.session_id,))
   for i in self.buffers:
-   log.debug("Starting %s for %s" % (i.name, session))
    if i.session == session and i.needs_init == True:
     i.start_stream()
   log.debug("Starting the streaming endpoint")

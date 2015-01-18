@@ -2,12 +2,15 @@
 import platform
 import os
 import sys
+import logging
 from platform_utils import paths as paths_
 
 from functools import wraps
 
 mode = None
 directory = None
+
+log = logging.getLogger("paths")
 
 def merge_paths(func):
  @wraps(func)
@@ -28,6 +31,7 @@ def config_path():
  elif mode == "installed":
   path = data_path("config")
  if not os.path.exists(path):
+  log.debug("%s path does not exist, creating..." % (path,))
   os.mkdir(path)
  return path
 
@@ -40,6 +44,7 @@ def logs_path():
  elif mode == "installed":
   path = data_path("logs")
  if not os.path.exists(path):
+  log.debug("%s path does not exist, creating..." % (path,))
   os.mkdir(path)
  return path
 

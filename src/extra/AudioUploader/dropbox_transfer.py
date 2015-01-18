@@ -4,11 +4,13 @@ import time
 import os
 import exceptions
 import dropbox
+import logging
 from utils import *
 from dropbox.rest import ErrorResponse
 from StringIO import StringIO
 from pubsub import pub
 
+log = logging.getLogger("extra.AudioUploader.dropbox_transfer")
 class UnauthorisedError(exceptions.Exception):
  def __init__(self, *args, **kwargs):
   super(UnauthorisedError, self).__init__(*args, **kwargs)
@@ -38,25 +40,31 @@ class newChunkedUploader(dropbox.client.ChunkedUploader):
 
 class dropboxLogin(object):
  def __init__(self, config):
+  log.debug("Trying to login in Dropbox...")
   self.logged = False
   self.app_key = "c8ikm0gexqvovol"
   self.app_secret = "gvvi6fzfecooast"
   self.config = config
 
  def get_url(self):
+  log.debug("Getting autorisation URL...")
   self.flow = dropbox.client.DropboxOAuth2FlowNoRedirect(self.app_key, self.app_secret)
   return self.flow.start()
 
  def authorise(self, code):
+  log.debug("Authorising TWBlue in Dropbox...")
   access_token, user_id = self.flow.finish(code)
+  log.debug("Saving tokens...")
   config["services"]["dropbox_token"] = access_token
   self.logged = True
 
 class dropboxUploader(object):
  def __init__(self, config, filename, completed_callback, short_url=False):
   if config["services"]["dropbox_token"] != "":
+   log.debug("logging in Dropbox...")
    self.client = dropbox.client.DropboxClient(config["services"]["dropbox_token"])
   else:
+   log.error("Dropbox is not authorised for this session.")
    raise UnauthorisedError("You need authorise TWBlue")
   self.filename = filename
   self.short_url = short_url
@@ -68,6 +76,7 @@ class dropboxUploader(object):
   self.background_thread = None
   self.current = 0
   self.transfer_rate = 0
+  log.debug("File Size: %d " % (self.file_size,))
 
  def elapsed_time(self):
   if not self.start_time:
@@ -75,6 +84,7 @@ class dropboxUploader(object):
   return time.time() - self.start_time
 
  def perform_transfer(self):
+  log.debug("Starting transfer...")
   self.start_time = time.time()
   while self.uploader.offset < self.file_size:
    self.uploader.upload_chunked(self.file_size/100)
@@ -100,6 +110,7 @@ class dropboxUploader(object):
   self.background_thread.start()
 
  def transfer_completed(self):
+  log.debug("Transfer completed")
   self.uploader.finish(os.path.basename(self.filename))
   if callable(self.completed_callback):
    self.completed_callback()

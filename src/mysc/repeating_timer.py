@@ -1,4 +1,6 @@
 import threading
+import logging
+log = logging.getLogger("mysc.repeating_timer")
 
 class RepeatingTimer(threading.Thread):
  """Call a function after a specified number of seconds, it will then repeat again after the specified number of seconds
@@ -20,6 +22,7 @@ class RepeatingTimer(threading.Thread):
 
  def cancel(self):
   """Stop the timer if it hasn't finished yet"""
+  log.debug("Stopping repeater for %s" % (self.function,))
   self.finished.set()
  stop = cancel
 
@@ -27,8 +30,7 @@ class RepeatingTimer(threading.Thread):
   while not self.finished.is_set():
    self.finished.wait(self.interval)
    if not self.finished.is_set():  #In case someone has canceled while waiting
-#    try:
-    self.function(*self.args, **self.kwargs)
-#    except:
-#     pass
-#     logging.exception("Execution failed. Function: %r args: %r and kwargs: %r" % (self.function, self.args, self.kwargs))
+    try:
+     self.function(*self.args, **self.kwargs)
+    except:
+     log.exception("Execution failed. Function: %r args: %r and kwargs: %r" % (self.function, self.args, self.kwargs))

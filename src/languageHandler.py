@@ -6,6 +6,9 @@ import locale
 import gettext
 import paths
 import platform
+import logging
+
+log = logging.getLogger("languageHandler")
 
 # A fix for the mac locales
 #if platform.system() == 'Darwin':
@@ -116,6 +119,7 @@ def makePgettext(translations):
 	return pgettext
 
 def setLanguage(lang):
+	log.debug("Setting language for: %s" % (lang,))
 	system = platform.system()
 	global curLang
 	try:
@@ -161,6 +165,7 @@ def setLanguage(lang):
 		trans=gettext.translation("twblue",fallback=True)
 		curLang="en"
 	trans.install(unicode=True)
+	log.debug("Current language: %s" % (curLang,))
 	# Install our pgettext function.
 #	__builtin__.__dict__["pgettext"] = makePgettext(trans)
 

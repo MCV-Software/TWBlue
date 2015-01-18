@@ -12,7 +12,8 @@ def call_threaded(func, *args, **kwargs):
    func(*a, **k)
   except TwythonRateLimitError:
    pass
-#  except:
+  except:
+   logging.exception("Thread %d with function %r, args of %r, and kwargs of %r failed to run." % (threading.current_thread().ident, func, a, k))
 #   pass
  thread = threading.Thread(target=new_func, args=args, kwargs=kwargs)
  thread.daemon = True
@@ -21,7 +22,6 @@ def call_threaded(func, *args, **kwargs):
 
 def stream_threaded(func, *args, **kwargs):
  def new_func(*a, **k):
-#  global session
   try:
    func(**k)
   except:

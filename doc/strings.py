@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+import application
 documentation = []
-documentation.append(_(u"""Documentation for TW Blue 0.46"""))
+documentation.append(_(u"""Documentation for {0} - {1}""").format(application.name, application.version))
 # Translators: This is the new line character, don't change it in the translations.
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""## Table of contents"""))
+# Table of contents for the python markdown extension
 documentation.append("""[TOC]""")
-#documentation.append(_(u"""# Version 0.46 (alpha)"""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""## Warning!"""))
@@ -41,22 +42,25 @@ documentation.append(_(u"""
 documentation.append(_(u"""In order to use an application like TW Blue which allows you to manage your Twitter account, you must first be registered on it. It's beyond the scope of this document to explain how to do so. We'll start from the premise that you have an account with its corresponding user name and password."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""## Authorising the application"""))
+documentation.append(_(u"""### Authorising the application"""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""First off, it's necessary to authorise the program so it can access your Twitter account and act on your behalf. The authorisation process is quite simple, and the program never gets data such as your username and password. In order to authorise the application, you just need to run the main executable file, called TWBlue.exe (on some computers it may appear simply as TWBlue)."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""When executed, if you have not previously configured the program, it will show a dialogue box where it tells you'll be taken to Twitter in order to authorise the application as soon as you press OK. To begin the authorisation process, press the only available button on the box."""))
+documentation.append(_(u"""Whether this is the first time you open TWBlue or you don't have any session, you will see the session manager. This dialog allows you to authorise as many accounts as you wish, though by now you can open only one session a time. If you press the "new account" button a dialog will tell you that your default browser will be opened in order to authorise the application. Press "yes" so the process may star."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""Your default browser will open on the Twitter page to request authorisation. Enter your user name and password if you're not already logged in, look for the authorise button, and press it."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Read the instructions you will get if the process is successful. In summary, you will be given a numeric code with several digits you must paste on an edit field open by the application on another window."""))
+documentation.append(_(u"""Once you've authorised your twitter account, Twitter will redirect you to a web page which will notify you that TWBlue has been authorised successfully. Now you are able to close that window and come back to the session manager. You will see on the session list a new item temporally called "Authorised account x" -where x is a number. The session name will change once you open that session."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Paste the verification code, and press the enter key. """))
+documentation.append(_(u"""Note: For any strange reason, it is not possible to authorise more than one session at the time of executing TWBlue. A solution for this issue is to authorise your first session and close the software, and repeat this process every time you need authorise any new account. That is to say, you must authorise only one session every time you execute TWBlue. We are working in finding out what causes this issue so that we may solve it efficiently."""))
+documentation.append(_(u"""
+"""))
+documentation.append(_(u"""To start running TWBlue, select from the session list the one you wish open and press the Ok button."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""If all went well, the application will start playing sounds, indicating your data are being updated."""))
@@ -65,16 +69,16 @@ documentation.append(_(u"""
 documentation.append(_(u"""When the process is finished,the program will play another sound, and the screen reader will say "ready"."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""## The program's interface {#interface}"""))
+documentation.append(_(u"""## The program's interface"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""The easiest way to describe the graphical interface of the application is a window with a menu bar with four menus (application, tweet, user and help), a list with several elements, and, in most cases, three buttons: tweet, retweet and reply. The actions available for each element are described below."""))
+documentation.append(_(u"""The easiest way to describe the graphical user interface of TWBlue is saying that the application has a window which contains a menu bar with five menus (application, tweet, user, buffer and help); one tree view, one list of items and, mostly in every case, three buttons: Tweet, retweet and reply. The actions that are available for every item will be described later."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Elements on the lists may be tweets, direct messages or users. TW Blue creates different tabs for each list, which can be sent tweets, main timeline tweets, favourites, or direct messages, and each tab contains a single type of tweet. These tabs are called lists or buffers."""))
+documentation.append(_(u"""In the tree view are inserted buffers which are lists to manage the processed data. When you configure a new session on TWBlue and start it, your account is the root of the tree view. Inside of it are created many buffers. Every one of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you were, you will be able to make different actions with these items."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""To switch from list to list press control-tab to go forward, and control-shift-tab to go back. Screen readers will announce the list that gains the focus at all times. These are the basic lists of TW Blue, which are configured by default."""))
+documentation.append(_(u"""The following is a description for every kind of TWBlue's buffer and the kind of items they work with."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""* Home: it shows all the tweets on the main timeline. These are the tweets by users you follow."""))
@@ -86,38 +90,39 @@ documentation.append(_(u"""* Followers: when users follow you, you'll be able to
 documentation.append(_(u"""* Friends: the same as the previous list, but these are the users you follow."""))
 documentation.append(_(u"""* User timelines: these are lists you may create. They contain only the tweets by a specific user. They're used so you can see the tweets by a single person and you don't want to look all over your timeline. You may create as many as you like."""))
 documentation.append(_(u"""* Events: An event is anything that happens on Twitter, such as when someone follows you, when someone adds or removes one of your tweets from their favorites list, or when you subscribe to a list.  There are many more but TW Blue shows the most common ones in the events buffer so that you can easily keep track of what is happening on your account."""))
-documentation.append(_(u"""* Lists: A list is similar to a temporary timeline, except that you can configure it to contain tweets from multiple users.  This is currently an experimental feature.  If you decide to use it, please report any problems you encounter."""))
+documentation.append(_(u"""* Lists: A list is similar to a temporary timeline, except that you can configure it to contain tweets from multiple users."""))
 documentation.append(_(u"""* Search: A search buffer contains the results of a search operation."""))
 documentation.append(_(u"""* User favorites: You can have TW Blue create a buffer containing tweets favorited by a particular user."""))
+### add here the trending buffers description.
+documentation.append(_(u"""* Trending Topics: a trend buffer shows the top ten most used terms in a geographical region. This region may be a country or a city. Trends are updated every five minutes."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Note: In this version of TW Blue, you will be able to see up to (or around) 400 friends and followers in their respective buffers.  In the next version, we will provide a solution for those who have more to be able to see them."""))
-documentation.append(_(u"""
-"""))
-documentation.append(_(u"""Bear in mind the default configuration only allows getting the last 200 tweets for the home,, mentions, direct messages, and user timeline lists. You can change this on the setup dialogue. For the sent list, the last 200 tweets and the last 200 sent direct messages will be retrieved. Future versions will allow changing this parameter."""))
-documentation.append(_(u"""
-"""))
-documentation.append(_(u"""If there's a URL on a tweet TW Blue will try to open it when you press enter on it. If there are several, it will show you a list with all of them so you choose the one you want. If you're on the followers or friends dialogue, the enter key will show you additional information on them."""))
+documentation.append(_(u"""If there's a URL on a tweet TW Blue will try to open it when you press enter on it. If there are several, it will show you a list with all of them so you choose the one you want. If you're on the followers or friends buffer, the enter key will show you additional information on them."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""If you press control-enter, TW Blue will try to play the audio from the focused tweet, as long as it has a URL. If it has the #audio hashtag, you will hear a sound when it is selected, letting you know you can try to play it. However, a tweet can be missing the hashtag and TW Blue will still be able to play it so long as it contains a URL with audio."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""## Controls {#controls}"""))
+documentation.append(_(u"""Also, you will hear a sound when you see any tweet containing geographical information. You can see someone's location by selecting the option "view address" from the tweet menu on the menu bar."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Beginning with the latest version, there's support for an interface which does not require a visible window. It can be activated by pressing control-m, or choosing hide window from the application menu. This interface is entirely driven through shortcut keys. These shortcuts are different from those used to drive the graphical interface. Each interface can use only its own shortcuts, so you may not use the invisible shortcuts if you have the graphical interface opened. This section describes both the graphical and the invisible interface."""))
+documentation.append(_(u"""## Controls"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""### The graphical user interface (GUI) {#gui}"""))
+### add more information about using invisible shorcuts in the GUI mode in the next variable.
+documentation.append(_(u"""Beginning with the 0.36 version, there's support for an interface which does not require a visible window. It can be activated by pressing control-m, or choosing hide window from the application menu. This interface is entirely driven through shortcut keys. These shortcuts are different from those used to drive the graphical interface.  By default, you can't use the invisible interface shortcuts on the GUI. It has been made this way to keep  compatibility with applications like TheQube and Chicken nugget which may use the same shortcuts. If you wish to have available the invisible interface shortcuts even if you are using the GUI, activate this option on the General tab of the preferences dialogue. This section describes both the graphical and the invisible interface."""))
+documentation.append(_(u"""
+"""))
+documentation.append(_(u"""### The graphical user interface (GUI)"""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""Here you have a list divided into two parts. On the one hand, the buttons you will find while tabbing around on the program's interface, and on the other, the different elements present on the menu bar."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""#### Buttons on the application {#buttons}"""))
+documentation.append(_(u"""#### Buttons on the application"""))
 documentation.append(_(u"""
 """))
+### Add information on spell correction, translate, attach images and audio.
 documentation.append(_(u"""* Tweet: this button opens up a dialogue box to write your tweet. The message must not exceed 140 characters. If you write past this limit, a sound will play to warn you. You may use the shorten and expand URL buttons to comply with the character limit. Press enter to send the tweet. If all goes well, you'll hear a sound confirming it. Otherwise, the screen reader will say an error message in English describing the problem."""))
 documentation.append(_(u"""* Retweet: this button retweets the message you're reading. After you press it, you'll be asked if you want to add a comment or simply send it as written."""))
 documentation.append(_(u"""* Reply: when you're viewing a tweet, you can reply to the user who sent it by pressing this button. A dialogue will open up like the one for tweeting, but with the name of the user already filled in (for example @user) so you only need to write your message. If there are more users mentioned on the tweet, you can press shift-tab and press the mention all users button. When you're on the friends or followers lists, the button will be called mention instead."""))
@@ -127,13 +132,13 @@ documentation.append(_(u"""
 documentation.append(_(u"""Bear in mind that buttons will appear according to which actions are possible on the list you are browsing. For example, on the home timeline, mentions, sent, favourites and user timelines you will see the four buttons, while on the direct messages list you'll only get the direct message and tweet buttons, and on friends and followers lists you will get the direct message, tweet, and mention buttons."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""#### Menus {#menus}"""))
+documentation.append(_(u"""#### Menus"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""On top of the program window there's a menu bar which has the same functions, and some more. To access the menu bar, press alt. You will find four menus: application, tweet, user and help. This section describes the items on each one of them."""))
+documentation.append(_(u"""On top of the program window there's a menu bar which has the same functions, and some more. To access the menu bar, press alt. You will find five: application, tweet, user, buffer and help. This section describes the items on each one of them."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""##### Application menu {#app}"""))
+documentation.append(_(u"""##### Application menu"""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""* Update profile: opens a dialogue box where you can update your information on Twitter: name, location, URL and bio. If you have already set this up the fields will be prefilled with the existing information. Also, you can upload a photo to your profile."""))

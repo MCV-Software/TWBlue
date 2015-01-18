@@ -7,10 +7,12 @@ import paths
 import output
 import time
 import sound
+import logging
 from twitter import utils
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
 from config_utils import Configuration, ConfigurationResetException
 from mysc.thread_utils import stream_threaded
+log = logging.getLogger("sessionmanager.session")
 
 sessions = {}
 
@@ -96,8 +98,10 @@ class Session(object):
 
   file_ = "%s/session.conf" % (self.session_id,)
   try:
+   log.debug("Creating config file %s" % (file_,))
    self.settings = Configuration(paths.config_path(file_), paths.app_path("Conf.defaults"))
   except:
+   log.exception("The session configuration has failed.")
    self.settings = None
 
  @_require_configuration
@@ -107,8 +111,10 @@ class Session(object):
   if the user account isn't authorised, it needs to call self.authorise() before login."""
 
   if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
+   log.debug("Logging in to twitter...")
    self.twitter.login(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
    self.logged = True
+   log.debug("Logged.")
   else:
    self.logged = False
    raise Exceptions.RequireCredentialsSessionError
@@ -262,10 +268,12 @@ class Session(object):
   self.get_timelines()
 
  def get_main_stream(self):
+  log.debug("Starting the main stream...")
   self.main_stream = twitter.buffers.stream.streamer(application.app_key, application.app_secret, self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], self)
   stream_threaded(self.main_stream.user, self.session_id)
 
  def get_timelines(self):
+  log.debug("Starting the timelines stream...")
   self.timelinesStream = twitter.buffers.indibidual.timelinesStreamer(application.app_key, application.app_secret, self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], session=self)
   ids = ""
   for i in self.settings["other_buffers"]["timelines"]:
@@ -275,9 +283,11 @@ class Session(object):
 
  def listen_stream_error(self):
   if hasattr(self, "main_stream"):
+   log.debug("Disconnecting the main stream...")
    self.main_stream.disconnect()
    del self.main_stream
   if hasattr(self, "timelinesStream"):
+   log.debug("disconnecting the timelines stream...")
    self.timelinesStream.disconnect()
    del self.timelinesStream
 
