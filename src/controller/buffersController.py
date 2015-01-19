@@ -25,6 +25,7 @@ class bufferController(object):
   self.buffer = None
   self.account = ""
   self.needs_init = True
+  self.invisible = False # False if the buffer will be ignored on the invisible interface.
 
  def get_event(self, ev):
   if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
@@ -148,6 +149,7 @@ class baseBufferController(bufferController):
    self.buffer = getattr(buffers, bufferType)(parent, name)
   else:
    self.buffer = buffers.basePanel(parent, name)
+  self.invisible = True
   self.name = name
   self.type = self.buffer.type
   self.id = self.buffer.GetId()
@@ -159,7 +161,7 @@ class baseBufferController(bufferController):
   self.bind_events()
 
  def get_message(self):
-  return " ".join(self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"])[1:-2])
+  return " ".join(self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"]))
 
  def start_stream(self):
   log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
@@ -261,7 +263,7 @@ class baseBufferController(bufferController):
   tweet = self.get_tweet()
   if self.session.settings["general"]["relative_times"] == True:
    # fix this:
-   original_date = arrow.get(self.session.db[self.name_buffer][self.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
+   original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
    ts = original_date.humanize(locale=languageHandler.getLanguage())
    self.buffer.list.list.SetStringItem(self.buffer.list.get_selected(), 2, ts)
   if utils.is_audio(tweet):
@@ -319,6 +321,7 @@ class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):
   super(eventsBufferController, self).__init__(parent, *args, **kwargs)
   log.debug("Initializing buffer %s, account %s" % (name, account,))
+  self.invisible = True
   self.buffer = buffers.eventsPanel(parent, name)
   self.name = name
   self.account = account
@@ -329,12 +332,9 @@ class eventsBufferController(bufferController):
   self.type = self.buffer.type
 
  def get_message(self):
-  if self.list.get_count() == 0: return _(u"Empty")
+  if self.buffer.list.get_count() == 0: return _(u"Empty")
   # fix this:
-  if platform.system() == "Windows":
-   return "%s. %s" % (self.buffer.list.list.GetItemText(self.buffer.list.get_selected()), self.buffer.list.list.GetItemText(self.buffer.list.get_selected(), 1))
-  else:
-   return self.buffer.list.list.GetStringSelection()
+  return "%s. %s" % (self.buffer.list.list.GetItemText(self.buffer.list.get_selected()), self.buffer.list.list.GetItemText(self.buffer.list.get_selected(), 1))
 
  def add_new_item(self, item):
   tweet = self.compose_function(item, self.session.db["user_name"])
@@ -348,7 +348,7 @@ class peopleBufferController(baseBufferController):
   super(peopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel")
   log.debug("Initializing buffer %s, account %s" % (name, account,))
   self.compose_function = compose.compose_followers_list
-  log.debug("Compose_function: self.compose_function" % (self.compose_function,))
+  log.debug("Compose_function: %s" % (self.compose_function,))
   self.get_tweet = self.get_right_tweet
 
  def onFocus(self, ev):
@@ -364,12 +364,12 @@ class peopleBufferController(baseBufferController):
   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
   val = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
 #  self.session.order_cursored_buffer(self.name, self.session.db[self.name])
-  log.debug("Number of items retrieved:  %d" % (val,))
+#  log.debug("Number of items retrieved:  %d" % (val,))
   self.put_items_on_list(val)
 
  def put_items_on_list(self, number_of_items):
   log.debug("The list contains %d items" % (self.buffer.list.get_count(),))
-  log.debug("Putting %d items on the list..." % (number_of_items,))
+#  log.debug("Putting %d items on the list..." % (number_of_items,))
   if self.buffer.list.get_count() == 0:
    for i in self.session.db[self.name]["items"]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])

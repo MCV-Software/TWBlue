@@ -22,7 +22,7 @@ ENTERED_TEXT = wx.EVT_TEXT
 MENU = wx.EVT_MENU
 KEYPRESS = wx.EVT_CHAR_HOOK
 KEYUP = wx.EVT_KEY_UP
-NOTEBOOK_PAGE_CHANGED = wx.EVT_NOTEBOOK_PAGE_CHANGED
+NOTEBOOK_PAGE_CHANGED = wx.EVT_TREEBOOK_PAGE_CHANGED
 def exit_application():
  """ Closes the current window cleanly. """
  wx.GetApp().ExitMainLoop()

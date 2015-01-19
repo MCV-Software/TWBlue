@@ -6,10 +6,18 @@ import commandline
 import config
 import sound
 import output
-from logger import logger as logging
+from logger import logger
+import logging
+import platform
+import application
+log = logging.getLogger("main")
 
 def setup():
+ log.debug("Starting TWBlue %s" % (application.version,))
  config.setup()
+ log.debug("Using %s %s" % (platform.system(), platform.architecture()[0]))
+ log.debug("Application path is %s" % (paths.app_path(),))
+ log.debug("Data path is %s" % (paths.data_path(),))
  sound.setup()
  output.setup()
  languageHandler.setLanguage(config.app["app-settings"]["language"])

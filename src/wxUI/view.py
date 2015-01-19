@@ -104,6 +104,9 @@ class mainFrame(wx.Frame):
   self.nb = wx.Treebook(self.panel, wx.NewId())
   self.buffers = {}
 
+ def get_buffer_count(self):
+  return self.nb.GetPageCount()
+
  def add_buffer(self, buffer, name):
   self.nb.AddPage(buffer, name)
   self.buffers[name] = buffer.GetId()
@@ -124,11 +127,22 @@ class mainFrame(wx.Frame):
  def get_current_buffer(self):
   return self.nb.GetCurrentPage()
 
+ def get_current_buffer_pos(self):
+  return self.nb.GetSelection()
+
  def get_buffer(self, pos):
   return self.GetPage(pos)
 
+ def change_buffer(self, position):
+  self.nb.ChangeSelection(position)
+
+ def get_buffer_text(self):
+  return self.nb.GetPageText(self.nb.GetSelection())
+
  def get_buffer_by_id(self, id):
   return self.nb.FindWindowById(id)
+ def advance_selection(self, forward):
+  self.nb.AdvanceSelection(forward)
 
  def show(self):
   self.Show()

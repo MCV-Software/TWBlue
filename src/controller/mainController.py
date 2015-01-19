@@ -11,13 +11,18 @@ from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 import config
 import widgetUtils
+import pygeocoder
+from pygeolib import GeocoderError
 import platform
 from extra import SoundsTutorial
 import logging
 if platform.system() == "Windows":
  import keystrokeEditor
+ from keyboard_handler.wx_handler import WXKeyboardHandler
 
 log = logging.getLogger("mainController")
+
+geocoder = pygeocoder.Geocoder()
 
 class Controller(object):
 
@@ -49,6 +54,18 @@ class Controller(object):
    buffer = self.search_buffer(view_buffer.name, view_buffer.account)
   return buffer
 
+ def get_first_buffer(self, account):
+  for i in self.buffers:
+   if i.account == account:
+    buff = i
+    break
+  return self.view.search(buff.name, buff.account)
+
+ def get_last_buffer(self, account):
+  results = []
+  [results.append(i) for i in self.buffers if i.account == account]
+  return self.view.search(results[-1].name, results[-1].account)
+
  def bind_stream_events(self):
   log.debug("Binding events for the Twitter stream API...")
   pub.subscribe(self.manage_home_timelines, "item-in-home")
@@ -71,6 +88,7 @@ class Controller(object):
   log.debug("Binding other application events...")
   pub.subscribe(self.editing_keystroke, "editing_keystroke")
   pub.subscribe(self.manage_stream_errors, "stream-error")
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
@@ -82,11 +100,16 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_item, self.view.view)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
+  widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def __init__(self):
   super(Controller, self).__init__()
+  self.showing = True
   self.view = view.mainFrame()
   self.buffers = []
+  self.accounts = []
+  self.buffer_positions = {}
+  self.current_account = ""
   self.view.prepare()
   self.bind_stream_events()
   self.bind_other_events()
@@ -104,6 +127,8 @@ class Controller(object):
 
  def create_buffers(self, session):
   session.get_user_info()
+  self.accounts.append(session.db["user_name"])
+  self.buffer_positions[session.db["user_name"]] = 1
   account = buffersController.accountPanel(self.view.nb, session.db["user_name"], session.db["user_name"])
   self.buffers.append(account)
   self.view.add_buffer(account.buffer , name=session.db["user_name"])
@@ -259,7 +284,7 @@ class Controller(object):
   else:
    buffer.reply()
 
- def send_dm(self, user):
+ def send_dm(self, *args, **kwargs):
   buffer = self.get_current_buffer()
   if buffer.name == "sent_direct_messages" or buffer.name == "sent-tweets": return
   else:
@@ -309,8 +334,18 @@ class Controller(object):
  def remove_buffer(self):
   pass
 
- def show_hide(self):
-  pass
+ def show_hide(self, *args, **kwargs):
+  km = self.create_invisible_keyboard_shorcuts()
+  if self.showing == True:
+   if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] == False:
+    self.register_invisible_keyboard_shorcuts(km)
+   self.view.Hide()
+   self.showing = False
+  else:
+   if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] == False:
+    self.unregister_invisible_keyboard_shorcuts(km)
+   self.view.Show()
+   self.showing = True
 
  def toggle_global_mute(self):
   pass
@@ -321,8 +356,125 @@ class Controller(object):
  def toggle_autoread(self):
   pass
 
- def go_conversation(self, orientation):
-  pass
+ def skip_buffer(self, forward=True):
+  buff = self.get_current_buffer()
+  if buff.invisible == False:
+   self.view.advance_selection(forward)
+
+ def buffer_changed(self, *args, **kwargs):
+  if self.get_current_buffer().account != self.current_account: self.current_account = self.get_current_buffer().account
+
+ def up(self, *args, **kwargs):
+  page = self.get_current_buffer()
+  position = page.buffer.list.get_selected()
+  index = position-1
+  try:
+   page.buffer.list.select_item(index)
+  except:
+   pass
+  if position == page.buffer.list.get_selected():
+   sound.player.play("limit.ogg")
+  try:
+   output.speak(page.get_message())
+  except:
+   pass
+
+ def down(self, *args, **kwargs):
+  page = self.get_current_buffer()
+  position = page.buffer.list.get_selected()
+  index = position+1
+  try:
+   page.buffer.list.select_item(index)
+  except:
+   pass
+  if position == page.buffer.list.get_selected():
+   sound.player.play("limit.ogg")
+  try:
+   output.speak(page.get_message())
+  except:
+   pass
+
+ def left(self, *args, **kwargs):
+  buff = self.view.get_current_buffer_pos()
+  buffer = self.get_current_buffer()
+  if buff == self.get_first_buffer(buffer.account) or buff == 0:
+   self.view.change_buffer(self.get_last_buffer(buffer.account))
+  else:
+   self.view.change_buffer(buff-1)
+  while self.get_current_buffer().invisible == False: self.skip_buffer(False)
+  buffer = self.get_current_buffer()
+  try:
+   msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
+  except:
+   msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
+  output.speak(msg)
+
+ def right(self, *args, **kwargs):
+  buff = self.view.get_current_buffer_pos()
+  buffer = self.get_current_buffer()
+  if buff == self.get_last_buffer(buffer.account) or buff+1 == self.view.get_buffer_count():
+   self.view.change_buffer(self.get_first_buffer(buffer.account))
+  else:
+   self.view.change_buffer(buff+1)
+  while self.get_current_buffer().invisible == False: self.skip_buffer(True)
+  buffer = self.get_current_buffer()
+  try:
+   msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
+  except:
+   msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
+  output.speak(msg)
+
+ def next_account(self, *args, **kwargs):
+  index = self.accounts.index(self.current_account)
+  if index+1 == len(self.accounts):
+   index = 0
+  else:
+   index = index+1
+  account = self.accounts[index]
+  self.current_account = account
+  buff = self.view.search("home_timeline", account)
+  self.view.change_buffer(buff)
+  buffer = self.get_current_buffer()
+  try:
+   msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
+  except:
+   msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
+  output.speak(msg)
+
+ def previous_account(self, *args, **kwargs):
+  index = self.accounts.index(self.current_account)
+  if index-1 < 0:
+   index = len(self.accounts)-1
+  else:
+   index = index-1
+  account = self.accounts[index]
+  self.current_account = account
+  buff = self.view.search("home_timeline", account)
+  self.view.change_buffer(buff)
+  buffer = self.get_current_buffer()
+  try:
+   msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
+  except:
+   msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
+  output.speak(msg)
+
+ def create_invisible_keyboard_shorcuts(self):
+  keymap = {}
+  for i in config.app["keymap"]:
+   if hasattr(self, i):
+    keymap[config.app["keymap"][i]] = getattr(self, i)
+  return keymap
+
+ def register_invisible_keyboard_shorcuts(self, keymap):
+  self.keyboard_handler = WXKeyboardHandler(self.view)
+  self.keyboard_handler.register_keys(keymap)
+
+ def unregister_invisible_keyboard_shorcuts(self, keymap):
+  try:
+   self.keyboard_handler.unregister_keys(keymap)
+   del self.keyboard_handler
+  except AttributeError:
+   pass
 
  def notify(self, play_sound=None, message=None, notification=False):
   if play_sound != None:

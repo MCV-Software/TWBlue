@@ -2,11 +2,11 @@
 name = 'TW Blue'
 snapshot = False
 if snapshot == False:
- version = "0.47"
- update_url = 'http://twblue.com.mx/updates/tw_blue.json'
+ version = "0.90"
+ update_url = 'http://twblue.es/updates/tw_blue.json'
 else:
- version = "4"
- update_url = 'http://twblue.com.mx/updates/snapshots.json'
+ version = "7"
+ update_url = 'http://twblue.es/updates/snapshots.json'
 author = u"Manuel Cortéz"
 authorEmail = "info@twblue.com.mx"
 copyright = u"copyright (C) 2013-2014, Manuel cortéz"
