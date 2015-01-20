@@ -2,6 +2,7 @@
 from wxUI import (view, dialogs, commonMessageDialogs)
 import buffersController
 import messages
+import settings
 from sessionmanager import session as session_
 from pubsub import pub
 import sound
@@ -56,14 +57,14 @@ class Controller(object):
 
  def get_first_buffer(self, account):
   for i in self.buffers:
-   if i.account == account:
+   if i.account == account and i.invisible == True:
     buff = i
     break
   return self.view.search(buff.name, buff.account)
 
  def get_last_buffer(self, account):
   results = []
-  [results.append(i) for i in self.buffers if i.account == account]
+  [results.append(i) for i in self.buffers if i.account == account and i.invisible == True]
   return self.view.search(results[-1].name, results[-1].account)
 
  def bind_stream_events(self):
@@ -91,6 +92,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_tweet, self.view.compose)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
@@ -113,6 +115,13 @@ class Controller(object):
   self.view.prepare()
   self.bind_stream_events()
   self.bind_other_events()
+  if config.app["app-settings"]["hide_gui"] == True:
+   self.show_hide()
+   self.view.Show()
+   self.view.Hide()
+  if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] == True:
+   km = self.create_invisible_keyboard_shorcuts()
+   self.register_invisible_keyboard_shorcuts(km)
   self.do_work()
 
  def do_work(self):
@@ -121,7 +130,7 @@ class Controller(object):
    log.debug("Working on session %s" % (i,))
    self.create_buffers(session_.sessions[i])
    call_threaded(self.start_buffers, session_.sessions[i])
-  sound.player.play("tweet_timeline.ogg")
+  session_.sessions[session_.sessions.keys()[0]].sound.play("tweet_timeline.ogg")
   self.checker_function = RepeatingTimer(60, self.check_connection)
   self.checker_function.start()
 
@@ -138,11 +147,11 @@ class Controller(object):
   mentions = buffersController.baseBufferController(self.view.nb, "get_mentions_timeline", "mentions", session, session.db["user_name"])
   self.buffers.append(mentions)
   self.view.insert_buffer(mentions.buffer, name=_(u"Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  sound.player.play("mention_received.ogg")
+  session.sound.play("mention_received.ogg")
   dm = buffersController.baseBufferController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel")
   self.buffers.append(dm)
   self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  sound.player.play("dm_received.ogg")
+  session.sound.play("dm_received.ogg")
   sent_dm = buffersController.baseBufferController(self.view.nb, "get_sent_messages", "sent_direct_messages", session, session.db["user_name"], bufferType="dmPanel")
   self.buffers.append(sent_dm)
   self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
@@ -220,7 +229,8 @@ class Controller(object):
   dlg.Destroy()
 
  def learn_sounds(self, *args, **kwargs):
-  SoundsTutorial.soundsTutorial()
+  buffer = self.get_best_buffer()
+  SoundsTutorial.soundsTutorial(buffer.session)
 
  def view_user_lists(self, users):
   pass
@@ -234,8 +244,11 @@ class Controller(object):
  def lists_manager(self):
   pass
 
- def configuration(self):
-  pass
+ def configuration(self, *args, **kwargs):
+  d = settings.globalSettingsController()
+  if d.response == widgetUtils.OK:
+   d.save_configuration()
+
 
  def update_profile(self):
   pass
@@ -259,14 +272,19 @@ class Controller(object):
    buffer.destroy_status()
 
  def exit(self, *args, **kwargs):
+  if config.app["app-settings"]["ask_at_exit"] == True:
+   answer = commonMessageDialogs.exit_dialog()
+   if answer == widgetUtils.NO: return
   log.debug("Exiting...")
+  log.debug("Saving global configuration...")
+  config.app.write()
   for item in session_.sessions:
    log.debug("Saving config for %s session" % (session_.sessions[item].session_id,))
    session_.sessions[item].settings.write()
    log.debug("Disconnecting streams for %s session" % (session_.sessions[item].session_id,))
    session_.sessions[item].main_stream.disconnect()
    session_.sessions[item].timelinesStream.disconnect()
-  sound.player.cleaner.cancel()
+   session_.sessions[item].sound.cleaner.cancel()
   widgetUtils.exit_application()
 
  def action(self, do_action):
@@ -317,7 +335,8 @@ class Controller(object):
   buffer = self.get_current_buffer()
   if buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
    try:
-    tweet = buffer.get_right_tweet()
+    tweet_id = buffer.get_right_tweet()["id"]
+    tweet = buffer.session.twitter.twitter.show_status(id=tweet_id)
     msg = messages.viewTweet(tweet, )
    except TwythonError:
     non_tweet = buffer.get_message()
@@ -373,7 +392,7 @@ class Controller(object):
   except:
    pass
   if position == page.buffer.list.get_selected():
-   sound.player.play("limit.ogg")
+   page.session.sound.play("limit.ogg")
   try:
    output.speak(page.get_message())
   except:
@@ -388,7 +407,7 @@ class Controller(object):
   except:
    pass
   if position == page.buffer.list.get_selected():
-   sound.player.play("limit.ogg")
+   page.session.sound.play("limit.ogg")
   try:
    output.speak(page.get_message())
   except:
@@ -458,6 +477,17 @@ class Controller(object):
    msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
   output.speak(msg)
 
+ def url(self, *args, **kwargs):
+  self.get_current_buffer().url()
+
+ def audio(self, *args, **kwargs):
+  self.get_current_buffer().audio()
+ def volume_down(self, *args, **kwargs):
+  self.get_current_buffer().volume_down()
+
+ def volume_up(self, *args, **kwargs):
+  self.get_current_buffer().volume_up()
+
  def create_invisible_keyboard_shorcuts(self):
   keymap = {}
   for i in config.app["keymap"]:
@@ -476,9 +506,9 @@ class Controller(object):
   except AttributeError:
    pass
 
- def notify(self, play_sound=None, message=None, notification=False):
+ def notify(self, session, play_sound=None, message=None, notification=False):
   if play_sound != None:
-   sound.player.play(play_sound)
+   session.sound.play(play_sound)
   if message != None:
    output.speak(message)
 
@@ -486,45 +516,45 @@ class Controller(object):
   buffer = self.search_buffer("home_timeline", user)
   play_sound = "tweet_received.ogg"
   buffer.add_new_item(data)
-  self.notify(play_sound=play_sound)
+  self.notify(buffer.session, play_sound=play_sound)
 
  def manage_mentions(self, data, user):
   buffer = self.search_buffer("mentions", user)
   play_sound = "mention_received.ogg"
   buffer.add_new_item(data)
   message = _(u"New mention")
-  self.notify(play_sound=play_sound, message=message)
+  self.notify(buffer.session, play_sound=play_sound, message=message)
 
  def manage_direct_messages(self, data, user):
   buffer = self.search_buffer("direct_messages", user)
   play_sound = "dm_received.ogg"
   buffer.add_new_item(data)
   message = _(u"New direct message")
-  self.notify(play_sound=play_sound, message=message)
+  self.notify(buffer.session, play_sound=play_sound, message=message)
 
  def manage_sent_dm(self, data, user):
   buffer = self.search_buffer("sent_direct_messages", user)
   play_sound = "dm_sent.ogg"
   buffer.add_new_item(data)
-  self.notify(play_sound=play_sound)
+  self.notify(buffer.session, play_sound=play_sound)
 
  def manage_sent_tweets(self, data, user):
   buffer = self.search_buffer("sent_tweets", user)
   play_sound = "tweet_send.ogg"
   buffer.add_new_item(data)
-  self.notify(play_sound=play_sound)
+  self.notify(buffer.session, play_sound=play_sound)
 
  def manage_events(self, data, user):
   buffer = self.search_buffer("events", user)
   play_sound = "new_event.ogg"
   buffer.add_new_item(data)
-  self.notify(play_sound=play_sound)
+  self.notify(buffer.session, play_sound=play_sound)
 
  def manage_followers(self, data, user):
   buffer = self.search_buffer("followers", user)
   play_sound = "update_followers.ogg"
   buffer.add_new_item(data)
-  self.notify(play_sound=play_sound)
+  self.notify(buffer.session, play_sound=play_sound)
 
  def manage_friend(self, data, user):
   buffer = self.search_buffer("friends", user)
@@ -539,7 +569,7 @@ class Controller(object):
   buffer = self.search_buffer("favourites", user)
   play_sound = "favourite.ogg"
   buffer.add_new_item(data)
-  self.notify(play_sound=play_sound)
+  self.notify(buffer.session, play_sound=play_sound)
 
  def manage_unfavourite(self, item, user):
   buffer = self.search_buffer("favourites", user)
@@ -557,7 +587,7 @@ class Controller(object):
   buffer = self.search_buffer("%s-timeline" % (who,), user)
   play_sound = "tweet_timeline.ogg"
   buffer.add_new_item(data)
-  self.notify(play_sound=play_sound)
+  self.notify(buffer.session, play_sound=play_sound)
 
  def editing_keystroke(self, action, parentDialog):
   print "i've pressed"

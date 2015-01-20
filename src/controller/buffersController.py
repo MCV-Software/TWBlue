@@ -44,24 +44,24 @@ class bufferController(object):
    #pass
  
  def volume_down(self):
-  if config.app["app-settings"]["volume"] > 0.0:
-   if config.app["app-settings"]["volume"] <= 0.05:
-    config.app["app-settings"]["volume"] = 0.0
+  if self.session.settings["sound"]["volume"] > 0.0:
+   if self.session.settings["sound"]["volume"] <= 0.05:
+    self.session.settings["sound"]["volume"] = 0.0
    else:
-    config.app["app-settings"]["volume"] -=0.05
+    self.session.settings["sound"]["volume"] -=0.05
   if hasattr(sound.URLStream, "stream"):
-   sound.URLStream.stream.volume = config.app["app-settings"]["volume"]
-  sound.player.play("volume_changed.ogg")
+   sound.URLStream.stream.volume = self.session.settings["sound"]["volume"]
+  self.session.sound.play("volume_changed.ogg")
 
  def volume_up(self):
-  if config.app["app-settings"]["volume"] < 1.0:
-   if config.app["app-settings"]["volume"] >= 0.95:
-    config.app["app-settings"]["volume"] = 1.0
+  if self.session.settings["sound"]["volume"] < 1.0:
+   if self.session.settings["sound"]["volume"] >= 0.95:
+    self.session.settings["sound"]["volume"] = 1.0
    else:
-    config.app["app-settings"]["volume"] +=0.05
+    self.session.settings["sound"]["volume"] +=0.05
   if hasattr(sound.URLStream, "stream"):
-   sound.URLStream.stream.volume = config.app["app-settings"]["volume"]
-  sound.player.play("volume_changed.ogg")
+   sound.URLStream.stream.volume = self.session.settings["sound"]["volume"]
+  self.session.sound.play("volume_changed.ogg")
 
  def start_stream(self):
   pass
@@ -223,7 +223,7 @@ class baseBufferController(bufferController):
   screen_name = tweet["user"]["screen_name"]
   id = tweet["id"]
   users =  utils.get_all_mentioned(tweet, self.session.db)
-  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "@%s" % (screen_name,), users)
+  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "@%s " % (screen_name,), users)
   if message.message.get_response() == widgetUtils.OK:
    if message.image == None:
     call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text())
@@ -267,7 +267,7 @@ class baseBufferController(bufferController):
    ts = original_date.humanize(locale=languageHandler.getLanguage())
    self.buffer.list.list.SetStringItem(self.buffer.list.get_selected(), 2, ts)
   if utils.is_audio(tweet):
-   sound.player.play("audio.ogg")
+   self.session.sound.play("audio.ogg")
 
  def audio(self):
   tweet = self.get_tweet()
@@ -390,6 +390,14 @@ class peopleBufferController(baseBufferController):
   tweet = self.session.db[self.name]["items"][self.buffer.list.get_selected()]
   return tweet
 
+ def add_new_item(self, item):
+  self.session.db[self.name]["items"].append(item)
+  tweet = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"])
+  if self.session.settings["general"]["reverse_timelines"] == False:
+   self.buffer.list.insert_item(False, *tweet)
+  else:
+   self.buffer.list.insert_item(True, *tweet)
+
 class searchBufferController(baseBufferController):
  def start_stream(self):
   log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
@@ -400,7 +408,7 @@ class searchBufferController(baseBufferController):
   log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
   if number_of_items > 0:
-   sound.player.play("search_updated.ogg")
+   self.session.sound.play("search_updated.ogg")
 
 class searchPeopleBufferController(searchBufferController):
 
@@ -419,4 +427,4 @@ class searchPeopleBufferController(searchBufferController):
   log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
   if number_of_items > 0:
-   sound.player.play("search_updated.ogg")
+   self.session.sound.play("search_updated.ogg")

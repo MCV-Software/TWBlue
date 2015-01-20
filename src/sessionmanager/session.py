@@ -94,15 +94,19 @@ class Session(object):
 
  def get_configuration(self):
 
-  """ Gets settings for a session."""
-
-  file_ = "%s/session.conf" % (self.session_id,)
-  try:
+   """ Gets settings for a session."""
+ 
+   file_ = "%s/session.conf" % (self.session_id,)
+#  try:
    log.debug("Creating config file %s" % (file_,))
    self.settings = Configuration(paths.config_path(file_), paths.app_path("Conf.defaults"))
-  except:
-   log.exception("The session configuration has failed.")
-   self.settings = None
+   self.init_sound()
+#  except:
+#   log.exception("The session configuration has failed.")
+#   self.settings = None
+
+ def init_sound(self):
+  self.sound = sound.soundSystem(self.settings["sound"])
 
  @_require_configuration
  def login(self):

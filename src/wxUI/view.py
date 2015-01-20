@@ -146,3 +146,4 @@ class mainFrame(wx.Frame):
 
  def show(self):
   self.Show()
+

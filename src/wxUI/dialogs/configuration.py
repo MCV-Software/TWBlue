@@ -14,28 +14,14 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   langBox.Add(language, 0, wx.ALL, 5)
   langBox.Add(self.language, 0, wx.ALL, 5)
   sizer.Add(langBox, 0, wx.ALL, 5)
-  self.relative_time = wx.CheckBox(self, -1, _(U"Relative times"))
-  sizer.Add(self.relative_time, 0, wx.ALL, 5)
+  self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting TwBlue?"))
+  sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
+  self.use_invisible_shorcuts = wx.CheckBox(self, -1, _(u"Use invisible interface's keyboard shorcuts on the GUI"))
+  sizer.Add(self.use_invisible_shorcuts, 0, wx.ALL, 5)
   self.disable_sapi5 = wx.CheckBox(self, -1, _(u"Activate Sapi5 when any other screen reader is not being run"))
   sizer.Add(self.disable_sapi5, 0, wx.ALL, 5)
-  self.show_gui = wx.CheckBox(self, -1, _(u"Activate the auto-start of the invisible interface"))
-  sizer.Add(self.show_gui, 0, wx.ALL, 5)
-  apiCallsBox = wx.BoxSizer(wx.HORIZONTAL)
-  apiCallsBox.Add(wx.StaticText(self, -1, _(u"API calls when the stream is started (One API call equals to 200 tweetts, two API calls equals 400 tweets, etc):")), 0, wx.ALL, 5)
-  self.apiCalls = wx.SpinCtrl(self, -1)
-  self.apiCalls.SetRange(1, 10)
-  self.apiCalls.SetSize(self.apiCalls.GetBestSize())
-  apiCallsBox.Add(self.apiCalls, 0, wx.ALL, 5)
-  sizer.Add(apiCallsBox, 0, wx.ALL, 5)
-  tweetsPerCallBox = wx.BoxSizer(wx.HORIZONTAL)
-  tweetsPerCallBox.Add(wx.StaticText(self, -1, _(u"Items on each API call")), 0, wx.ALL, 5)
-  self.itemsPerApiCall = wx.SpinCtrl(self, -1)
-  self.itemsPerApiCall.SetRange(0, 200)
-  self.itemsPerApiCall.SetSize(self.itemsPerApiCall.GetBestSize())
-  tweetsPerCallBox.Add(self.itemsPerApiCall, 0, wx.ALL, 5)
-  sizer.Add(tweetsPerCallBox, 0, wx.ALL, 5)
-  self.reverse_timelines = wx.CheckBox(self, -1, _(u"Inverted buffers: The newest tweets will be shown at the beginning of the lists while the oldest at the end"))
-  sizer.Add(self.reverse_timelines, 0, wx.ALL, 5)
+  self.hide_gui = wx.CheckBox(self, -1, _(u"Activate the auto-start of the invisible interface"))
+  sizer.Add(self.hide_gui, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
 class other_buffers(wx.Panel):
@@ -131,7 +117,7 @@ class audioServicesPanel(wx.Panel):
   mainSizer.Add(first_sizer, 0, wx.ALL, 5)
   self.SetSizer(mainSizer)
 
-class configurationDialog(wx.Dialog):
+class configurationDialog(baseDialog.BaseWXDialog):
  def __init__(self):
   super(configurationDialog, self).__init__(None, -1)
   self.panel = wx.Panel(self)
@@ -176,7 +162,8 @@ class configurationDialog(wx.Dialog):
   p = getattr(self, panel)
   return getattr(p, key).GetValue()
 
- def set_value(self, panel, key):
+ def set_value(self, panel, key, value):
   p = getattr(self, panel)
-  getattr(self, p).SetValue(key)
+  control = getattr(p, key)
+  getattr(control, "SetValue")(value)
 

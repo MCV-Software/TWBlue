@@ -76,7 +76,7 @@ class basicTweet(object):
    self.message.disable_button("shortenButton")
    self.message.disable_button("unshortenButton")
   if len(self.message.get_text()) > 140:
-   sound.player.play("max_length.ogg")
+   self.session.sound.play("max_length.ogg")
 
  def spellcheck(self, event=None):
   text = self.message.get_text()

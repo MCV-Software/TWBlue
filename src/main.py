@@ -32,7 +32,6 @@ def setup():
  del sm
  r = mainController.Controller()
  r.view.Show()
- sound.player.play("ready.ogg")
  app.MainLoop()
 
 setup()

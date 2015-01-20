@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 import widgetUtils
-import config
 import os
 import paths
 import logging
 log = logging.getLogger("extra.SoundsTutorial.soundsTutorial")
-import sound
 import wx_ui
 import soundsTutorial_constants
 
 class soundsTutorial(object):
- def __init__(self):
+ def __init__(self, sessionObject):
   log.debug("Creating sounds tutorial object...")
   super(soundsTutorial, self).__init__()
+  self.session = sessionObject
   self.actions = []
   log.debug("Loading actions for sounds tutorial...")
   [self.actions.append(i[1]) for i in soundsTutorial_constants.actions]
@@ -26,6 +25,6 @@ class soundsTutorial(object):
 
  def on_play(self, *args, **kwargs):
   try:
-   sound.player.play(self.files[self.dialog.items.GetSelection()]+".ogg")
+   self.session.sound.play(self.files[self.dialog.items.GetSelection()]+".ogg")
   except:
    log.exception("Error playing the %s sound" % (self.files[self.dialog.items.GetSelection()],))

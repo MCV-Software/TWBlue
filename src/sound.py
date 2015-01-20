@@ -14,13 +14,10 @@ import output
 system = platform.system()
 from mysc.repeating_timer import RepeatingTimer
 
-player = URLPlayer = None
+URLPlayer = None
 
 def setup():
- global player, URLPlayer
- if not player:
-  log.debug("Creating sound player...")
-  player = soundSystem()
+ global URLPlayer
  if not URLPlayer:
   log.debug("creating stream URL player...")
   URLPlayer = URLStream()
@@ -42,8 +39,8 @@ class soundSystem(object):
  def check_soundpack(self):
   """ Checks if the folder where live the current soundpack exists."""
   self.soundpack_OK = False
-  if os.path.exists(paths.sound_path(config.app["app-settings"]["current_soundpack"])):
-   self.path = paths.sound_path(config.app["app-settings"]["current_soundpack"])
+  if os.path.exists(paths.sound_path(self.config["current_soundpack"])):
+   self.path = paths.sound_path(self.config["current_soundpack"])
    self.soundpack_OK = True
   elif os.path.exists(paths.sound_path("default")):
    log.error("The soundpack does not exist, using default...")
@@ -53,20 +50,24 @@ class soundSystem(object):
    log.error("Path for the current soundpack does not exist and the default soundpack is deleted, TWBlue will not play sounds.")
    self.soundpack_OK = False
 
- def __init__(self):
+ def __init__(self, soundConfig):
   """ Sound Player."""
+  self.config = soundConfig
   # Set the output and input default devices.
-  self.output = sound_lib.output.Output()
-  self.input = sound_lib.input.Input()
-  # Try to use the selected device from the configuration. It can fail if the machine does not has a mic.
+  try:
+   self.output = sound_lib.output.Output()
+   self.input = sound_lib.input.Input()
+  except:
+   pass
+   # Try to use the selected device from the configuration. It can fail if the machine does not has a mic.
   try:
    log.debug("Setting input and output devices...")
-   self.output.set_device(self.output.find_device_by_name(config.app["app-settings"]["output_device"]))
-   self.input.set_device(self.input.find_device_by_name(config.app["app-settings"]["input_device"]))
+   self.output.set_device(self.output.find_device_by_name(self.config["output_device"]))
+   self.input.set_device(self.input.find_device_by_name(self.config["input_device"]))
   except:
    log.error("Error in input or output devices, using defaults...")
-   config.app["app-settings"]["output_device"] = "Default"
-   config.app["app-settings"]["input_device"] = "Default"
+   self.config["output_device"] = "Default"
+   self.config["input_device"] = "Default"
 
   self.files = []
   self.cleaner = RepeatingTimer(60, self.clear_list)
@@ -87,9 +88,9 @@ class soundSystem(object):
 
  def play(self, sound, argument=False):
   if self.soundpack_OK == False: return
-  if config.app["app-settings"]["global_mute"] == True: return
+  if self.config["global_mute"] == True: return
   sound_object = sound_lib.stream.FileStream(file="%s/%s" % (self.path, sound))
-  sound_object.volume = float(config.app["app-settings"]["volume"])
+  sound_object.volume = float(self.config["volume"])
   self.files.append(sound_object)
   sound_object.play()
 
