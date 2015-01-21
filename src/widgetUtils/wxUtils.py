@@ -1,5 +1,6 @@
 import wx
 
+toolkit = "wx"
 # Code responses for WX dialogs.
 # this is when an user presses OK on a dialogue.
 OK = wx.ID_OK
@@ -36,3 +37,6 @@ def connect_event(parent, event, func, menuitem=None, *args, **kwargs):
   return getattr(parent, "Bind")(event, func, *args, **kwargs)
  else:
   return getattr(parent, "Bind")(event, func, menuitem, *args, **kwargs)
+
+def connectExitFunction(exitFunction):
+ wx.GetApp().Bind(wx.EVT_END_SESSION, exitFunction)

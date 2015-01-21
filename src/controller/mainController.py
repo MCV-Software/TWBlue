@@ -94,6 +94,8 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
+  if widgetUtils.toolkit == "wx":
+   widgetUtils.connectExitFunction(self.exit)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_tweet, self.view.compose)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_retweet, self.view.retweet)
@@ -359,6 +361,7 @@ class Controller(object):
    if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] == False:
     self.register_invisible_keyboard_shorcuts(km)
    self.view.Hide()
+   self.fix_wrong_buffer()
    self.showing = False
   else:
    if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] == False:
@@ -382,6 +385,11 @@ class Controller(object):
 
  def buffer_changed(self, *args, **kwargs):
   if self.get_current_buffer().account != self.current_account: self.current_account = self.get_current_buffer().account
+
+ def fix_wrong_buffer(self):
+  buffer = self.get_current_buffer()
+  if buffer.session == None:
+   self.right()
 
  def up(self, *args, **kwargs):
   page = self.get_current_buffer()

@@ -1,5 +1,6 @@
 from gi.repository import Gtk, Gdk
 
+toolkit = "gtk"
 # Code responses for GTK +3 dialogs.
 # this is when an user presses OK on a dialogue.
 OK = Gtk.ResponseType.OK

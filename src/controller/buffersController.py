@@ -49,8 +49,8 @@ class bufferController(object):
     self.session.settings["sound"]["volume"] = 0.0
    else:
     self.session.settings["sound"]["volume"] -=0.05
-  if hasattr(sound.URLStream, "stream"):
-   sound.URLStream.stream.volume = self.session.settings["sound"]["volume"]
+  if hasattr(sound.URLPlayer, "stream"):
+   sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
   self.session.sound.play("volume_changed.ogg")
 
  def volume_up(self):
@@ -59,9 +59,9 @@ class bufferController(object):
     self.session.settings["sound"]["volume"] = 1.0
    else:
     self.session.settings["sound"]["volume"] +=0.05
-  if hasattr(sound.URLStream, "stream"):
-   sound.URLStream.stream.volume = self.session.settings["sound"]["volume"]
-  self.session.sound.play("volume_changed.ogg")
+  if hasattr(sound.URLPlayer, "stream"):
+   sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
+   self.session.sound.play("volume_changed.ogg")
 
  def start_stream(self):
   pass
