@@ -20,8 +20,8 @@ class timelinesStreamer(TwythonStreamer):
  def check_tls(self, data):
   for i in self.session.settings["other_buffers"]["timelines"]:
    if data["user"]["screen_name"] == i:
-    if self.session.settings["general"]["reverse_timelines"] == False: self.session.db[i].append(data)
-    else: self.session.db[i].insert(0, data)
+    if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s-timeline" % (i,)].append(data)
+    else: self.session.db["%s-timeline" % (i,)].insert(0, data)
     pub.sendMessage("item-in-timeline", data= data, user= self.session.db["user_name"], who= i)
 
  def on_success(self, data):

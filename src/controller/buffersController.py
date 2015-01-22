@@ -61,7 +61,7 @@ class bufferController(object):
     self.session.settings["sound"]["volume"] +=0.05
   if hasattr(sound.URLPlayer, "stream"):
    sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
-   self.session.sound.play("volume_changed.ogg")
+  self.session.sound.play("volume_changed.ogg")
 
  def start_stream(self):
   pass
@@ -178,6 +178,7 @@ class baseBufferController(bufferController):
    for i in self.session.db[self.name]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
     self.buffer.list.insert_item(False, *tweet)
+   self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
 #   self.buffer.set_list_position()
   elif self.buffer.list.get_count() > 0:
    if self.session.settings["general"]["reverse_timelines"] == False:
@@ -374,6 +375,7 @@ class peopleBufferController(baseBufferController):
    for i in self.session.db[self.name]["items"]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
     self.buffer.list.insert_item(False, *tweet)
+   self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
 #   self.buffer.set_list_position()
   elif self.buffer.list.get_count() > 0:
    if self.session.settings["general"]["reverse_timelines"] == False:

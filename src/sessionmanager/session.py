@@ -157,12 +157,12 @@ class Session(object):
     if report_failure and hasattr(e, 'message'):
      output.speak(_("%s failed.  Reason: %s") % (action, e.message))
     finished = True
-   except:
-    tries = tries + 1
-    time.sleep(5)
+#   except:
+#    tries = tries + 1
+#    time.sleep(5)
   if report_success:
    output.speak(_("%s succeeded.") % action)
-  if _sound != None: sound.player.play(_sound)
+  if _sound != None: self.sound.play(_sound)
 
  @_require_login
  def get_favourites_timeline(self, name, *args, **kwargs):

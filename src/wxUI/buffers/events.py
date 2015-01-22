@@ -13,3 +13,9 @@ class eventsPanel(wx.Panel):
   self.list = widgets.list(self, _(u"Date"), _(u"Event"), size=(600,600), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
   self.tweet = wx.Button(self, -1, _(u"Tweet"))
   self.delete_event = wx.Button(self, -1, _(u"Remove event"))
+
+ def set_position(self, reversed=False):
+  if reversed == False:
+   self.list.select_item(self.list.get_count()-1)
+  else:
+   self.list.select_item(0)

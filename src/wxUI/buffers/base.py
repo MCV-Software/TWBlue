@@ -30,3 +30,9 @@ class basePanel(wx.Panel):
   self.sizer.Add(btnSizer, 0, wx.ALL, 5)
   self.sizer.Add(self.list.list, 0, wx.ALL, 5)
   self.SetSizer(self.sizer)
+
+ def set_position(self, reversed=False):
+  if reversed == False:
+   self.list.select_item(self.list.get_count()-1)
+  else:
+   self.list.select_item(0)

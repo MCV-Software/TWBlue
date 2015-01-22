@@ -2,6 +2,6 @@
 name = 'TWBlue'
 snapshot = False
 if snapshot == False:
- version = "0.51"
+ version = "0.80"
 else:
  version = "7"
