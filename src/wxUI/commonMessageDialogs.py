@@ -10,3 +10,6 @@ def delete_tweet_dialog(parent):
 def exit_dialog():
  dlg = wx.MessageDialog(None, _(u"Do you really want to close TW Blue?"), _(u"Exit"), wx.YES_NO|wx.ICON_QUESTION)
  return dlg.ShowModal()
+
+def needs_restart():
+ wx.MessageDialog(None, _(u"The application requires to be restarted to save these changes. Press OK to do it now."), _("Restart TW Blue"), wx.OK).ShowModal()

@@ -24,6 +24,32 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(self.hide_gui, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
+class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
+ def __init__(self, parent):
+  super(generalAccount, self).__init__(parent)
+  sizer = wx.BoxSizer(wx.VERTICAL)
+  self.au = wx.Button(self, wx.NewId(), _(u"Set the autocomplete function"))
+  sizer.Add(self.au, 0, wx.ALL, 5)
+  self.relative_time = wx.CheckBox(self, wx.NewId(), _(U"Relative times"))
+  sizer.Add(self.relative_time, 0, wx.ALL, 5)
+  apiCallsBox = wx.BoxSizer(wx.HORIZONTAL)
+  apiCallsBox.Add(wx.StaticText(self, -1, _(u"API calls when the stream is started (One API call equals to 200 tweetts, two API calls equals 400 tweets, etc):")), 0, wx.ALL, 5)
+  self.apiCalls = wx.SpinCtrl(self, wx.NewId())
+  self.apiCalls.SetRange(1, 10)
+  self.apiCalls.SetSize(self.apiCalls.GetBestSize())
+  apiCallsBox.Add(self.apiCalls, 0, wx.ALL, 5)
+  sizer.Add(apiCallsBox, 0, wx.ALL, 5)
+  tweetsPerCallBox = wx.BoxSizer(wx.HORIZONTAL)
+  tweetsPerCallBox.Add(wx.StaticText(self, -1, _(u"Items on each API call")), 0, wx.ALL, 5)
+  self.itemsPerApiCall = wx.SpinCtrl(self, wx.NewId())
+  self.itemsPerApiCall.SetRange(0, 200)
+  self.itemsPerApiCall.SetSize(self.itemsPerApiCall.GetBestSize())
+  tweetsPerCallBox.Add(self.itemsPerApiCall, 0, wx.ALL, 5)
+  sizer.Add(tweetsPerCallBox, 0, wx.ALL, 5)
+  self.reverse_timelines = wx.CheckBox(self, wx.NewId(), _(u"Inverted buffers: The newest tweets will be shown at the beginning of the lists while the oldest at the end"))
+  sizer.Add(self.reverse_timelines, 0, wx.ALL, 5)
+  self.SetSizer(sizer)
+
 class other_buffers(wx.Panel):
  def __init__(self, parent):
   super(other_buffers, self).__init__(parent)
@@ -52,11 +78,11 @@ class ignoredClients(wx.Panel):
   clientsBox = wx.BoxSizer(wx.HORIZONTAL)
   clientsBox.Add(label, 0, wx.ALL, 5)
   clientsBox.Add(self.clients, 0, wx.ALL, 5)
-  add = wx.Button(self, -1, _(u"Add client"))
-  remove = wx.Button(self, -1, _(u"Remove client"))
+  self.add = wx.Button(self, -1, _(u"Add client"))
+  self.remove = wx.Button(self, -1, _(u"Remove client"))
   btnBox = wx.BoxSizer(wx.HORIZONTAL)
-  btnBox.Add(add, 0, wx.ALL, 5)
-  btnBox.Add(remove, 0, wx.ALL, 5)
+  btnBox.Add(self.add, 0, wx.ALL, 5)
+  btnBox.Add(self.remove, 0, wx.ALL, 5)
   sizer.Add(clientsBox, 0, wx.ALL, 5)
   sizer.Add(btnBox, 0, wx.ALL, 5)
   self.SetSizer(sizer)
@@ -118,6 +144,10 @@ class audioServicesPanel(wx.Panel):
   self.SetSizer(mainSizer)
 
 class configurationDialog(baseDialog.BaseWXDialog):
+
+ def set_title(self, title):
+  self.SetTitle(title)
+
  def __init__(self):
   super(configurationDialog, self).__init__(None, -1)
   self.panel = wx.Panel(self)
@@ -127,6 +157,11 @@ class configurationDialog(baseDialog.BaseWXDialog):
 
  def create_general(self, languageList):
   self.general = general(self.notebook, languageList)
+  self.notebook.AddPage(self.general, _(u"General"))
+  self.general.SetFocus()
+
+ def create_general_account(self):
+  self.general = generalAccount(self.notebook)
   self.notebook.AddPage(self.general, _(u"General"))
   self.general.SetFocus()
 

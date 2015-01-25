@@ -10,6 +10,7 @@ import output
 from twython import TwythonError
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
+from mysc import restart
 import config
 import widgetUtils
 import pygeocoder
@@ -92,9 +93,11 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
   if widgetUtils.toolkit == "wx":
+   log.debug("Binding the exit function...")
    widgetUtils.connectExitFunction(self.exit)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_tweet, self.view.compose)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
@@ -250,7 +253,18 @@ class Controller(object):
   d = settings.globalSettingsController()
   if d.response == widgetUtils.OK:
    d.save_configuration()
+   if d.needs_restart == True:
+    commonMessageDialogs.needs_restart()
+    restart.restart_program()
 
+ def accountConfiguration(self, *args, **kwargs):
+  buff = self.get_best_buffer()
+  d = settings.accountSettingsController(buff.session.settings, buff.session.db["user_name"])
+#  if d.response == widgetUtils.OK:
+#   d.save_configuration()
+#   if d.needs_restart == True:
+#    commonMessageDialogs.needs_restart()
+#    restart.restart_program()
 
  def update_profile(self):
   pass
@@ -341,12 +355,12 @@ class Controller(object):
     tweet = buffer.session.twitter.twitter.show_status(id=tweet_id)
     msg = messages.viewTweet(tweet, )
    except TwythonError:
-    non_tweet = buffer.get_message()
+    non_tweet = buffer.get_formatted_message()
     msg = messages.viewTweet(non_tweet, False)
   elif buffer.type == "account" or buffer.type == "empty":
    return
   else:
-   non_tweet = buffer.get_message()
+   non_tweet = buffer.get_formatted_message()
    msg = messages.viewTweet(non_tweet, False)
 
  def open_timeline(self, user, timeline_tipe):
@@ -484,6 +498,46 @@ class Controller(object):
   except:
    msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
   output.speak(msg)
+
+ def go_home(self):
+  buffer = self.get_current_buffer()
+  buffer.buffer.list.select_item(0)
+  try:
+   output.speak(buffer.get_message())
+  except:
+   pass
+
+ def go_end(self):
+  buffer = self.get_current_buffer()
+  buffer.buffer.list.select_item(buffer.buffer.list.get_count()-1)
+  try:
+   output.speak(buffer.get_message())
+  except:
+   pass
+
+ def go_page_up(self):
+  buffer = self.get_current_buffer()
+  if buffer.buffer.list.get_selected() <= 20:
+   index = 0
+  else:
+   index = buffer.buffer.list.get_selected() - 20
+  buffer.buffer.list.select_item(index)
+  try:
+   output.speak(buffer.get_message())
+  except:
+   pass
+
+ def go_page_down(self):
+  buffer = self.get_current_buffer()
+  if buffer.buffer.list.get_selected() >= buffer.buffer.list.get_count() - 20:
+   index = buffer.buffer.list.get_count()-1
+  else:
+   index = buffer.buffer.list.get_selected() + 20
+  buffer.buffer.list.select_item(index)
+  try:
+   output.speak(buffer.get_message())
+  except:
+   pass
 
  def url(self, *args, **kwargs):
   self.get_current_buffer().url()

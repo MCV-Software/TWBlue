@@ -17,7 +17,8 @@ class mainFrame(wx.Frame):
   self.lists = app.Append(wx.NewId(), _(u"&Lists manager"))
   self.sounds_tutorial = app.Append(wx.NewId(), _(u"Sounds &tutorial"))
   self.keystroke_editor = app.Append(wx.NewId(), _(u"&Edit keystrokes"))
-  self.prefs = app.Append(wx.ID_PREFERENCES, _(u"&Preferences"))
+  self.account_settings = app.Append(wx.NewId(), _(u"Account se&ttings"))
+  self.prefs = app.Append(wx.ID_PREFERENCES, _(u"&Global settings"))
   self.close = app.Append(wx.ID_EXIT, _(u"E&xit"))
 
   # Tweet menu

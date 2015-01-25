@@ -160,6 +160,10 @@ class baseBufferController(bufferController):
   self.buffer.account = account
   self.bind_events()
 
+ def get_formatted_message(self):
+  if self.type == "dm" or self.name == "sent_tweets" or self.name == "sent_direct_messages":   return self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"])[1]
+  return self.get_message()
+
  def get_message(self):
   return " ".join(self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"]))
 
@@ -331,6 +335,7 @@ class eventsBufferController(bufferController):
   self.compose_function = compose.compose_event
   self.session = session
   self.type = self.buffer.type
+  self.get_formatted_message = self.get_message
 
  def get_message(self):
   if self.buffer.list.get_count() == 0: return _(u"Empty")

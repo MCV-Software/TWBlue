@@ -1,9 +1,8 @@
 # -*- coding: cp1252
-import sys, os, config
+import sys, os
 
 def restart_program():
  """ Function that restarts the application if is executed."""
- config.main.write()
  args = sys.argv[:]
  if not hasattr(sys, "frozen"):
   args.insert(0, sys.executable)
