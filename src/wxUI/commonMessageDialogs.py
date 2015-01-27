@@ -13,3 +13,11 @@ def exit_dialog():
 
 def needs_restart():
  wx.MessageDialog(None, _(u"The application requires to be restarted to save these changes. Press OK to do it now."), _("Restart TW Blue"), wx.OK).ShowModal()
+def delete_user_from_db():
+ return wx.MessageDialog(None, _(u"Are you sure you want to delete this user from the database? This user will not appear on the autocomplete results anymore."), _(u"Confirm"), wx.YES_NO|wx.ICON_QUESTION).ShowModal()
+
+def get_ignored_client():
+ entry = wx.TextEntryDialog(None, _(u"Enter the name of the client here"), _(u"Add a new ignored client"))
+ if entry.ShowModal() == wx.ID_OK:
+  return entry.GetValue()
+ return None

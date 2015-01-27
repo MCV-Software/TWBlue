@@ -10,6 +10,7 @@ from logger import logger
 import logging
 import platform
 import application
+from mysc.thread_utils import call_threaded
 log = logging.getLogger("main")
 
 def setup():
@@ -32,6 +33,8 @@ def setup():
  del sm
  r = mainController.Controller()
  r.view.Show()
+ r.do_work()
+ call_threaded(r.start)
  app.MainLoop()
 
 setup()

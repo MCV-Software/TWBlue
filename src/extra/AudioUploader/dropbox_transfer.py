@@ -55,7 +55,7 @@ class dropboxLogin(object):
   log.debug("Authorising TWBlue in Dropbox...")
   access_token, user_id = self.flow.finish(code)
   log.debug("Saving tokens...")
-  config["services"]["dropbox_token"] = access_token
+  self.config["services"]["dropbox_token"] = access_token
   self.logged = True
 
 class dropboxUploader(object):

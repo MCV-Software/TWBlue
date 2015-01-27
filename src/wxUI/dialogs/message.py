@@ -50,6 +50,11 @@ class textLimited(widgetUtils.BaseDialog):
  def set_cursor_at_position(self, position):
   self.text.SetInsertionPoint(position)
 
+ def get_position(self):
+  return self.text.GetInsertionPoint()
+
+ def popup_menu(self, menu):
+  self.PopupMenu(menu, self.text.GetPosition())
 
 class tweet(textLimited):
  def createControls(self, title, message,  text):
@@ -64,6 +69,7 @@ class tweet(textLimited):
   self.shortenButton.Disable()
   self.unshortenButton.Disable()
   self.translateButton = wx.Button(self.panel, -1, _(u"Translate message"), size=wx.DefaultSize)
+  self.autocompletionButton = wx.Button(self.panel, -1, _(u"&Autocomplete users"))
   self.okButton = wx.Button(self.panel, wx.ID_OK, _(u"Send"), size=wx.DefaultSize)
   self.okButton.SetDefault()
   cancelButton = wx.Button(self.panel, wx.ID_CANCEL, _(u"Close"), size=wx.DefaultSize)
@@ -78,6 +84,7 @@ class tweet(textLimited):
   self.buttonsBox2.Add(self.translateButton, 0, wx.ALL, 5)
   self.mainBox.Add(self.buttonsBox2, 0, wx.ALL, 5)
   self.ok_cancelSizer = wx.BoxSizer(wx.HORIZONTAL)
+  self.ok_cancelSizer.Add(self.autocompletionButton, 0, wx.ALL, 5)
   self.ok_cancelSizer.Add(self.okButton, 0, wx.ALL, 5)
   self.ok_cancelSizer.Add(cancelButton, 0, wx.ALL, 5)
   self.mainBox.Add(self.ok_cancelSizer)

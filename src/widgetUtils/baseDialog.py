@@ -23,3 +23,6 @@ class BaseDialog(wx.Dialog):
    elif hasattr(control, "ChangeValue"): return getattr(control, "ChangeValue")(text)
    else: return -1
   else: return 0
+
+ def destroy(self):
+  self.Destroy()

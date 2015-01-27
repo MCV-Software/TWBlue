@@ -28,7 +28,7 @@ logger.setLevel(logging.DEBUG)
 
 #handlers
 
-app_handler = RotatingFileHandler(paths.logs_path(APP_LOG_FILE), maxBytes=1000000, mode="w")
+app_handler = RotatingFileHandler(paths.logs_path(APP_LOG_FILE), mode="w")
 app_handler.setFormatter(formatter)
 app_handler.setLevel(logging.DEBUG)
 logger.addHandler(app_handler)

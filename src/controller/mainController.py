@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from wxUI import (view, dialogs, commonMessageDialogs)
+from sessionmanager import manager
 import buffersController
 import messages
 import settings
@@ -90,6 +91,7 @@ class Controller(object):
   log.debug("Binding other application events...")
   pub.subscribe(self.editing_keystroke, "editing_keystroke")
   pub.subscribe(self.manage_stream_errors, "stream-error")
+  pub.subscribe(self.create_new_buffer, "create-new-buffer")
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
@@ -127,17 +129,19 @@ class Controller(object):
   if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] == True:
    km = self.create_invisible_keyboard_shorcuts()
    self.register_invisible_keyboard_shorcuts(km)
-  self.do_work()
 
  def do_work(self):
   log.debug("Creating buffers for all sessions...")
   for i in session_.sessions:
    log.debug("Working on session %s" % (i,))
    self.create_buffers(session_.sessions[i])
-   call_threaded(self.start_buffers, session_.sessions[i])
-  session_.sessions[session_.sessions.keys()[0]].sound.play("tweet_timeline.ogg")
   self.checker_function = RepeatingTimer(60, self.check_connection)
   self.checker_function.start()
+ def start(self):
+  for i in session_.sessions:
+   self.start_buffers(session_.sessions[i])
+  session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
+  output.speak(_(u"Ready"))
 
  def create_buffers(self, session):
   session.get_user_info()
@@ -149,14 +153,12 @@ class Controller(object):
   home = buffersController.baseBufferController(self.view.nb, "get_home_timeline", "home_timeline", session, session.db["user_name"])
   self.buffers.append(home)
   self.view.insert_buffer(home.buffer, name=_(u"Home"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  mentions = buffersController.baseBufferController(self.view.nb, "get_mentions_timeline", "mentions", session, session.db["user_name"])
+  mentions = buffersController.baseBufferController(self.view.nb, "get_mentions_timeline", "mentions", session, session.db["user_name"], sound="mention_received.ogg")
   self.buffers.append(mentions)
   self.view.insert_buffer(mentions.buffer, name=_(u"Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  session.sound.play("mention_received.ogg")
-  dm = buffersController.baseBufferController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel")
+  dm = buffersController.baseBufferController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", sound="dm_received.ogg")
   self.buffers.append(dm)
   self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  session.sound.play("dm_received.ogg")
   sent_dm = buffersController.baseBufferController(self.view.nb, "get_sent_messages", "sent_direct_messages", session, session.db["user_name"], bufferType="dmPanel")
   self.buffers.append(sent_dm)
   self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
@@ -259,12 +261,14 @@ class Controller(object):
 
  def accountConfiguration(self, *args, **kwargs):
   buff = self.get_best_buffer()
-  d = settings.accountSettingsController(buff.session.settings, buff.session.db["user_name"])
-#  if d.response == widgetUtils.OK:
-#   d.save_configuration()
-#   if d.needs_restart == True:
-#    commonMessageDialogs.needs_restart()
-#    restart.restart_program()
+  manager.manager.set_current_session(buff.session.session_id)
+  d = settings.accountSettingsController(buff, self)
+  if d.response == widgetUtils.OK:
+   d.save_configuration()
+   if d.needs_restart == True:
+    commonMessageDialogs.needs_restart()
+    buff.session.settings.write()
+    restart.restart_program()
 
  def update_profile(self):
   pass
@@ -398,7 +402,8 @@ class Controller(object):
    self.view.advance_selection(forward)
 
  def buffer_changed(self, *args, **kwargs):
-  if self.get_current_buffer().account != self.current_account: self.current_account = self.get_current_buffer().account
+  if self.get_current_buffer().account != self.current_account:
+   self.current_account = self.get_current_buffer().account
 
  def fix_wrong_buffer(self):
   buffer = self.get_current_buffer()
@@ -670,6 +675,39 @@ class Controller(object):
  def check_connection(self):
   for i in session_.sessions:
    session_.sessions[i].check_connection()
+
+ def create_new_buffer(self, buffer, account, create):
+  buff = self.search_buffer("home_timeline", account)
+  if create == True:
+   if buffer == "favourites":
+    favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"])
+    self.buffers.append(favourites)
+    self.view.insert_buffer(favourites.buffer, name=_(u"Favourites"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    favourites.start_stream()
+   if buffer == "followers":
+    followers = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "followers", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
+    self.buffers.append(followers)
+    self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    followers.start_stream()
+   elif buffer == "friends":
+    friends = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "friends", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
+    self.buffers.append(friends)
+    self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    friends.start_stream()
+   elif buffer == "blocks":
+    blocks = buffersController.peopleBufferController(self.view.nb, "list_blocks", "blocked", buff.session, buff.session.db["user_name"])
+    self.buffers.append(blocks)
+    self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    blocks.start_stream()
+   elif buffer == "mutes":
+    muted = buffersController.peopleBufferController(self.view.nb, "get_muted_users_list", "muted", buff.session, buff.session.db["user_name"])
+    self.buffers.append(muted)
+    self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    muted.start_stream()
+   elif buffer == "events":
+    events = buffersController.eventsBufferController(self.view.nb, "events", buff.session, buff.session.db["user_name"], bufferType="dmPanel", screen_name=buff.session.db["user_name"])
+    self.buffers.append(events)
+    self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
 
  def __del__(self):
   config.app.write()

@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import os
+import webbrowser
 import sound_lib
 import paths
 import widgetUtils
 import config
 import languageHandler
 from wxUI.dialogs import configuration
+from extra.autocompletionUsers import settings
+from extra.AudioUploader import dropbox_transfer
 from pubsub import pub
 import logging
 log = logging.getLogger("Settings")
@@ -15,6 +18,7 @@ class globalSettingsController(object):
   super(globalSettingsController, self).__init__()
   self.dialog = configuration.configurationDialog()
   self.create_config()
+  self.needs_restart = False
 
  def create_config(self):
   self.langs = languageHandler.getAvailableLanguages()
@@ -30,7 +34,6 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
   self.dialog.realize()
-  self.needs_restart = False
   self.response = self.dialog.get_response()
 
  def save_configuration(self):
@@ -46,9 +49,11 @@ class globalSettingsController(object):
   config.app.write()
 
 class accountSettingsController(globalSettingsController):
- def __init__(self, config, user_name):
-  self.config = config
-  self.user = user_name
+ def __init__(self, buffer, window):
+  self.user = buffer.session.db["user_name"]
+  self.buffer = buffer
+  self.window = window
+  self.config = buffer.session.settings
   super(accountSettingsController, self).__init__()
 
  def create_config(self):
@@ -66,6 +71,8 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("buffers", "mutes", self.config["other_buffers"]["show_muted_users"])
   self.dialog.set_value("buffers", "events", self.config["other_buffers"]["show_events"])
   self.dialog.create_ignored_clients(self.config["twitter"]["ignored_clients"])
+  widgetUtils.connect_event(self.dialog.ignored_clients.add, widgetUtils.BUTTON_PRESSED, self.add_ignored_client)
+  widgetUtils.connect_event(self.dialog.ignored_clients.remove, widgetUtils.BUTTON_PRESSED, self.remove_ignored_client)
   self.input_devices = sound_lib.input.Input.get_device_names()
   self.output_devices = sound_lib.output.Output.get_device_names()
   self.soundpacks = []
@@ -77,9 +84,100 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("sound", "global_mute", self.config["sound"]["global_mute"])
   self.dialog.set_value("sound", "soundpack", self.config["sound"]["current_soundpack"])
   self.dialog.create_audio_services()
+  if self.config["services"]["dropbox_token"] == "":
+   self.dialog.services.set_dropbox(False)
+  else:
+   self.dialog.services.set_dropbox(True)
+  widgetUtils.connect_event(self.dialog.services.dropbox, widgetUtils.BUTTON_PRESSED, self.manage_dropbox)
+  self.dialog.set_value("services", "apiKey", self.config["sound"]["sndup_api_key"])
   self.dialog.realize()
   self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
   self.response = self.dialog.get_response()
 
- def save_config(self): pass
- def manage_autocomplete(self, *args, **kwargs): pass
+ def save_configuration(self):
+  if self.config["general"]["relative_times"] != self.dialog.get_value("general", "relative_time"):
+   self.needs_restart = True
+   self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
+  self.config["general"]["max_api_calls"] = self.dialog.get_value("general", "apiCalls")
+  self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
+  if self.config["general"]["reverse_timelines"] != self.dialog.get_value("general", "reverse_timelines"):
+   self.needs_restart = True
+   self.config["general"]["reverse_timelines"] = self.dialog.get_value("general", "reverse_timelines")
+  if self.config["other_buffers"]["show_followers"] != self.dialog.get_value("buffers", "followers"):
+   self.config["other_buffers"]["show_followers"] = self.dialog.get_value("buffers", "followers")
+   pub.sendMessage("create-new-buffer", buffer="followers", account=self.user, create=self.config["other_buffers"]["show_followers"])
+  if self.config["other_buffers"]["show_friends"] != self.dialog.get_value("buffers", "friends"):
+   self.config["other_buffers"]["show_friends"] = self.dialog.get_value("buffers", "friends")
+   pub.sendMessage("create-new-buffer", buffer="friends", account=self.user, create=self.config["other_buffers"]["show_friends"])
+  if self.config["other_buffers"]["show_favourites"] != self.dialog.get_value("buffers", "favs"):
+   self.config["other_buffers"]["show_favourites"] = self.dialog.get_value("buffers", "favs")
+   pub.sendMessage("create-new-buffer", buffer="favourites", account=self.user, create=self.config["other_buffers"]["show_favourites"])
+  if self.config["other_buffers"]["show_blocks"] != self.dialog.get_value("buffers", "blocks"):
+   self.config["other_buffers"]["show_blocks"] = self.dialog.get_value("buffers", "blocks")
+   pub.sendMessage("create-new-buffer", buffer="blocks", account=self.user, create=self.config["other_buffers"]["show_blocks"])
+  if self.config["other_buffers"]["show_muted_users"] != self.dialog.get_value("buffers", "mutes"):
+   self.config["other_buffers"]["show_muted_users"] = self.dialog.get_value("buffers", "mutes")
+   pub.sendMessage("create-new-buffer", buffer="mutes", account=self.user, create=self.config["other_buffers"]["show_muted_users"])
+  if self.config["other_buffers"]["show_events"] != self.dialog.get_value("buffers", "events"):
+   self.config["other_buffers"]["show_events"] = self.dialog.get_value("buffers", "events")
+   pub.sendMessage("create-new-buffer", buffer="events", account=self.user, create=self.config["other_buffers"]["show_events"])
+  if self.config["sound"]["input_device"] != self.dialog.sound.get("input"):
+   self.config["sound"]["input_device"] = self.dialog.sound.get("input")
+   try:
+    self.buffer.session.sound.input.set_device(self.buffer.session.sound.input.find_device_by_name(self.config["sound"]["input_device"]))
+   except:
+    self.config["sound"]["input_device"] = "default"
+  if self.config["sound"]["output_device"] != self.dialog.sound.get("output"):
+   self.config["sound"]["output_device"] = self.dialog.sound.get("output")
+   try:
+    self.buffer.session.sound.output.set_device(self.buffer.session.sound.output.find_device_by_name(self.config["sound"]["output_device"]))
+   except:
+    self.config["sound"]["output_device"] = "default"
+  self.config["sound"]["volume"] = self.dialog.get_value("sound", "volumeCtrl")/100.0
+  self.config["sound"]["global_mute"] = self.dialog.get_value("sound", "global_mute")
+  self.config["sound"]["soundpack"] = self.dialog.sound.get("soundpack")
+  self.buffer.session.sound.check_soundpack()
+  self.config["sound"]["sndup_api_key"] = self.dialog.get_value("services", "apiKey")
+
+
+ def manage_autocomplete(self, *args, **kwargs):
+  configuration = settings.autocompletionSettings(self.buffer.session.settings, self.buffer, self.window)
+
+ def add_ignored_client(self, *args, **kwargs):
+  client = commonMessageDialogs.get_ignored_client()
+  if client == None: return
+  if client not in self.config["twitter"]["ignored_clients"]:
+   self.config["twitter"]["ignored_clients"].append(client)
+   self.dialog.ignored_clients.append(client)
+
+ def remove_ignored_client(self, *args, **kwargs):
+  if self.dialog.ignored_clients.get_clients() == 0: return
+  id = self.dialog.ignored_clients.get_client_id()
+  self.config["twitter"]["ignored_clients"].pop(id)
+  self.dialog.ignored_clients.remove(id)
+
+ def manage_dropbox(self, *args, **kwargs):
+  if self.dialog.services.get_dropbox() == _(u"Link your Dropbox account"):
+   self.connect_dropbox()
+  else:
+   self.disconnect_dropbox()
+
+ def connect_dropbox(self):
+  auth = dropbox_transfer.dropboxLogin(self.config)
+  url = auth.get_url()
+  self.dialog.services.show_dialog()
+  webbrowser.open(url)
+  resp = self.dialog.services.get_response()
+  if resp == "":
+   self.dialog.services.set_dropbox(False)
+  else:
+   try:
+    auth.authorise(resp)
+    self.dialog.services.set_dropbox()
+   except:
+    self.dialog.services.show_error()
+    self.dialog.services.set_dropbox(False)
+
+ def disconnect_dropbox(self):
+  self.config["services"]["dropbox_token"] = ""
+  self.dialog.services.set_dropbox(False)

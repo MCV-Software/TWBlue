@@ -187,7 +187,7 @@ class Session(object):
   for i in range(0, max):
    if i == 0: max_id = results[-1]["id"]
    else: max_id = results[0]["id"]
-   data = update_function(max_id=max_id, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+   data = getattr(self.twitter.twitter, update_function)(max_id=max_id, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
    results.extend(data)
   results.reverse()
   return results

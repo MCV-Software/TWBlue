@@ -142,7 +142,7 @@ class emptyPanel(bufferController):
   self.needs_init = True
 
 class baseBufferController(bufferController):
- def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
+ def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, *args, **kwargs):
   super(baseBufferController, self).__init__(parent, function, *args, **kwargs)
   log.debug("Initializing buffer %s, account %s" % (name, account,))
   if bufferType != None:
@@ -159,6 +159,7 @@ class baseBufferController(bufferController):
   self.account = account
   self.buffer.account = account
   self.bind_events()
+  self.sound = sound
 
  def get_formatted_message(self):
   if self.type == "dm" or self.name == "sent_tweets" or self.name == "sent_direct_messages":   return self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"])[1]
@@ -174,6 +175,9 @@ class baseBufferController(bufferController):
   number_of_items = self.session.order_buffer(self.name, val)
   log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
+  if self.sound == None: return
+  if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages":
+   self.session.sound.play(self.sound)
 
  def put_items_on_list(self, number_of_items):
   log.debug("The list contains %d items " % (self.buffer.list.get_count(),))

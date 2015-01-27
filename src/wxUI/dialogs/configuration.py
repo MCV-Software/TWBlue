@@ -87,6 +87,18 @@ class ignoredClients(wx.Panel):
   sizer.Add(btnBox, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
+ def append(self, client):
+  self.clients.Append(client)
+
+ def get_clients(self):
+  return self.clients.GetCount()
+
+ def get_client_id(self):
+  return self.clients.GetSelection()
+
+ def remove(self, id):
+  self.clients.Delete(id)
+
 class sound(wx.Panel):
  def __init__(self, parent, input_devices, output_devices, soundpacks):
   wx.Panel.__init__(self, parent)
@@ -124,6 +136,9 @@ class sound(wx.Panel):
   sizer.Add(soundBox, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
+ def get(self, control):
+  return getattr(self, control).GetStringSelection()
+
 class audioServicesPanel(wx.Panel):
  def __init__(self, parent):
   super(audioServicesPanel, self).__init__(parent)
@@ -142,6 +157,27 @@ class audioServicesPanel(wx.Panel):
   first_sizer.Add(self.dropbox, 0, wx.ALL, 5)
   mainSizer.Add(first_sizer, 0, wx.ALL, 5)
   self.SetSizer(mainSizer)
+
+ def set_dropbox(self, active=True):
+  if active == True:
+   self.dropbox.SetLabel(_(u"Unlink your Dropbox account"))
+  else:
+   self.dropbox.SetLabel(_(u"Link your Dropbox account"))
+   
+ def show_dialog(self):
+  wx.MessageDialog(self, _(u"The authorisation request will be shown on your browser. Copy the code tat Dropbox will provide and, in the text box that will appear on TW Blue, paste it. This code is necessary to continue. You only need to do it once."), _(u"Authorisation"), wx.OK).ShowModal()
+
+ def get_response(self):
+  dlg = wx.TextEntryDialog(self, _(u"Enter the code here."), _(u"Verification code"))
+  if dlg.ShowModal() == wx.ID_CANCEL:
+   return False
+  return dlg.GetValue()
+
+ def show_error(self):
+  wx.MessageDialog(self, _(u"Error during authorisation. Try again later."), _(u"Error!"), wx.ICON_ERROR).ShowModal()
+
+ def get_dropbox(self):
+  return self.dropbox.GetLabel()
 
 class configurationDialog(baseDialog.BaseWXDialog):
 

@@ -5,7 +5,7 @@ import url_shortener
 import sound
 from pubsub import pub
 from wxUI.dialogs import message, urlList
-from extra import translator, SpellChecker
+from extra import translator, SpellChecker, autocompletionUsers
 from extra.AudioUploader import audioUploader
 from twitter import utils
 
@@ -101,6 +101,7 @@ class tweet(basicTweet):
   super(tweet, self).__init__(session, title, caption, text, messageType)
   self.image = None
   widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
+  widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
 
  def upload_image(self, *args, **kwargs):
   if self.message.get("upload_image") == _(u"Discard image"):
@@ -111,6 +112,10 @@ class tweet(basicTweet):
   else:
    self.image = self.message.get_image()
    self.message.set("upload_image", _(u"Discard image"))
+
+ def autocomplete_users(self, *args, **kwargs):
+  c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
+  c.show_menu()
 
 class reply(tweet):
  def __init__(self, session, title, caption, text, users=None):
