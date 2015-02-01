@@ -96,7 +96,7 @@ class ignoredClients(wx.Panel):
  def get_client_id(self):
   return self.clients.GetSelection()
 
- def remove(self, id):
+ def remove_(self, id):
   self.clients.Delete(id)
 
 class sound(wx.Panel):

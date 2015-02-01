@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
+import urllib2
 import twitter
 import application
 import session_exceptions as Exceptions
@@ -303,3 +304,7 @@ class Session(object):
   if not hasattr(self, "timelinesStream"):
    self.get_timelines()
   self.reconnection_function_active = False
+  try:
+   urllib2.urlopen("http://74.125.228.231", timeout=5)
+  except urllib2.URLError:
+   pub.sendMessage("stream-error", session=self.session_id)

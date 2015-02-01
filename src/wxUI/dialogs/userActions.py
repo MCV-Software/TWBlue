@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import wx
 
-class actionDialog(wx.Dialog):
- def __init__(self, user=[], default="follow", *args, **kwargs):
-  super(actionDialog, self).__init__(parent=None, *args, **kwargs)
+class UserActionsDialog(wx.Dialog):
+ def __init__(self, users=[], default="follow", *args, **kwargs):
+  super(UserActionsDialog, self).__init__(parent=None, *args, **kwargs)
   panel = wx.Panel(self)
   userSizer = wx.BoxSizer()
   self.SetTitle(_(u"Action"))
-  self.cb = wx.ComboBox(panel, -1, choices=user, value=user[0])
+  self.cb = wx.ComboBox(panel, -1, choices=users, value=users[0])
   self.cb.SetFocus()
   userSizer.Add(self.cb)
   actionSizer = wx.BoxSizer(wx.VERTICAL)
@@ -19,6 +19,7 @@ class actionDialog(wx.Dialog):
   self.block = wx.RadioButton(panel, -1, _(u"Block"))
   self.unblock = wx.RadioButton(panel, -1, _(u"Unblock"))
   self.reportSpam = wx.RadioButton(panel, -1, _(u"Report as spam"))
+  self.ignore_client = wx.RadioButton(panel, -1, _(u"Ignore tweets from this client"))
   self.setup_default(default)
   actionSizer.Add(label2)
   actionSizer.Add(self.follow)
@@ -28,6 +29,7 @@ class actionDialog(wx.Dialog):
   actionSizer.Add(self.block)
   actionSizer.Add(self.unblock)
   actionSizer.Add(self.reportSpam)
+  actionSizer.Add(self.ignore_client)
   sizer = wx.BoxSizer(wx.VERTICAL)
   ok = wx.Button(panel, wx.ID_OK, _(u"OK"))
   ok.SetDefault()
@@ -48,6 +50,7 @@ class actionDialog(wx.Dialog):
   elif self.reportSpam.GetValue() == True: return "report"
   elif self.block.GetValue() == True: return "block"
   elif self.unblock.GetValue() == True: return "unblock"
+  elif self.ignore_client.GetValue() == True: return "ignore_client"
 
  def setup_default(self, default):
   if default == "follow":
@@ -64,3 +67,11 @@ class actionDialog(wx.Dialog):
    self.block.SetValue(True)
   elif default == "unblock":
    self.unblock.SetValue(True)
+  elif default == "ignore_client":
+   self.ignore_client.SetValue(True)
+
+ def get_response(self):
+  return self.ShowModal()
+
+ def get_user(self):
+  return self.cb.GetValue()

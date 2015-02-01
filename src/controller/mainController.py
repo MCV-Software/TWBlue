@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from wxUI import (view, dialogs, commonMessageDialogs)
+from twitter import utils
 from sessionmanager import manager
 import buffersController
 import messages
@@ -22,6 +23,7 @@ import logging
 if platform.system() == "Windows":
  import keystrokeEditor
  from keyboard_handler.wx_handler import WXKeyboardHandler
+import userActionsController
 
 log = logging.getLogger("mainController")
 
@@ -108,7 +110,15 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.unfav)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_item, self.view.view)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.follow, menuitem=self.view.follow)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.unfollow, menuitem=self.view.unfollow)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.mute, menuitem=self.view.mute)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.unmute, menuitem=self.view.unmute)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report, menuitem=self.view.report)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.block, menuitem=self.view.block)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.unblock, menuitem=self.view.unblock)
+
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def __init__(self):
@@ -307,8 +317,75 @@ class Controller(object):
    session_.sessions[item].sound.cleaner.cancel()
   widgetUtils.exit_application()
 
- def action(self, do_action):
-  pass
+ def follow(self, *args, **kwargs):
+  buff = self.get_current_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  u = userActionsController.userActionsController(buff, users)
+
+ def unfollow(self, *args, **kwargs):
+  buff = self.get_current_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  u = userActionsController.userActionsController(buff, users, "unfollow")
+
+ def mute(self, *args, **kwargs):
+  buff = self.get_current_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  u = userActionsController.userActionsController(buff, users, "mute")
+
+ def unmute(self, *args, **kwargs):
+  buff = self.get_current_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  u = userActionsController.userActionsController(buff, users, "unmute")
+
+ def block(self, *args, **kwargs):
+  buff = self.get_current_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  u = userActionsController.userActionsController(buff, users, "block")
+
+ def unblock(self, *args, **kwargs):
+  buff = self.get_current_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  u = userActionsController.userActionsController(buff, users, "unblock")
+
+ def report(self, *args, **kwargs):
+  buff = self.get_current_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  u = userActionsController.userActionsController(buff, users, "report")
 
  def post_tweet(self, event=None):
   buffer = self.get_best_buffer()

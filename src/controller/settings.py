@@ -7,6 +7,7 @@ import widgetUtils
 import config
 import languageHandler
 from wxUI.dialogs import configuration
+from wxUI import commonMessageDialogs
 from extra.autocompletionUsers import settings
 from extra.AudioUploader import dropbox_transfer
 from pubsub import pub
@@ -154,7 +155,7 @@ class accountSettingsController(globalSettingsController):
   if self.dialog.ignored_clients.get_clients() == 0: return
   id = self.dialog.ignored_clients.get_client_id()
   self.config["twitter"]["ignored_clients"].pop(id)
-  self.dialog.ignored_clients.remove(id)
+  self.dialog.ignored_clients.remove_(id)
 
  def manage_dropbox(self, *args, **kwargs):
   if self.dialog.services.get_dropbox() == _(u"Link your Dropbox account"):

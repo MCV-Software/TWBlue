@@ -8,6 +8,8 @@ import config
 import languageHandler
 from enchant.checker import SpellChecker
 from enchant.errors import DictNotFoundError
+from enchant import tokenize
+import twitterFilter
 
 class spellChecker(object):
  def __init__(self, text, dictionary):
@@ -17,10 +19,10 @@ class spellChecker(object):
   try:
    if config.app["app-settings"]["language"] == "system":
     log.debug("Using the system language")
-    self.checker = SpellChecker()
+    self.checker = SpellChecker(filters=[twitterFilter.TwitterFilter, tokenize.EmailFilter, tokenize.URLFilter])
    else:
     log.debug("Using language: %s" % (languageHandler.getLanguage(),))
-    self.checker = SpellChecker(languageHandler.getLanguage())
+    self.checker = SpellChecker(languageHandler.getLanguage(), filters=[twitterFilter.TwitterFilter, tokenize.EmailFilter, tokenize.URLFilter])
    self.checker.set_text(text)
   except DictNotFoundError:
    log.exception("Dictionary for language %s not found." % (dictionary,))
