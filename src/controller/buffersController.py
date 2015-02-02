@@ -439,3 +439,52 @@ class searchPeopleBufferController(searchBufferController):
   self.put_items_on_list(number_of_items)
   if number_of_items > 0:
    self.session.sound.play("search_updated.ogg")
+
+class trendsBufferController(bufferController):
+ def __init__(self, parent, name, session, account, trendsFor, *args, **kwargs):
+  super(trendsBufferController, self).__init__(parent=parent, session=session)
+  self.trendsFor = trendsFor
+  self.session = session
+  self.account = account
+  self.invisible = True
+  self.buffer = buffers.trendsPanel(parent, name)
+  self.buffer.account = account
+  self.type = self.buffer.type
+  self.bind_events()
+  self.sound = "trends_updated.ogg"
+  self.trends = []
+  self.name = name
+  self.buffer.name = name
+  self.compose_function = self.compose_function_
+  self.get_formatted_message = self.get_message
+
+ def start_stream(self):
+  data = self.session.twitter.twitter.get_place_trends(id=self.trendsFor)
+  if not hasattr(self, "name"):
+   self.name = data[0]["locations"][0]["name"]
+  self.trends = data[0]["trends"]
+  self.put_items_on_the_list()
+  self.session.sound.play(self.sound)
+
+ def put_items_on_the_list(self):
+  selected_item = self.buffer.list.get_selected()
+  self.buffer.list.clear()
+  for i in self.trends:
+   tweet = self.compose_function(i)
+   self.buffer.list.insert_item(False, *tweet)
+  self.buffer.list.select_item(selected_item)
+
+ def compose_function_(self, trend):
+  return [trend["name"]]
+
+ def bind_events(self):
+  log.debug("Binding events...")
+  self.buffer.list.list.Bind(wx.EVT_CHAR_HOOK, self.get_event)
+#  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
+#  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.retweet, self.buffer.retweet)
+#  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.direct_message, self.buffer.dm)
+#  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
+
+ def get_message(self):
+  return self.compose_function(self.trends[self.buffer.list.get_selected()])[0]
+

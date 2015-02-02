@@ -24,6 +24,7 @@ if platform.system() == "Windows":
  import keystrokeEditor
  from keyboard_handler.wx_handler import WXKeyboardHandler
 import userActionsController
+import trendingTopics
 
 log = logging.getLogger("mainController")
 
@@ -96,6 +97,7 @@ class Controller(object):
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
@@ -473,6 +475,19 @@ class Controller(object):
  def toggle_autoread(self):
   pass
 
+ def get_trending_topics(self, *args, **kwargs):
+  buff = self.get_best_buffer()
+  trends = trendingTopics.trendingTopicsController(buff.session)
+  if trends.dialog.get_response() == widgetUtils.OK:
+   woeid = trends.get_woeid()
+   buffer = buffersController.trendsBufferController(self.view.nb, "%s_tt" % (woeid,), buff.session, buff.account, woeid)
+   self.buffers.append(buffer)
+   self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (trends.get_string()), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+   buffer.start_stream()
+   timer = RepeatingTimer(300, buffer.start_stream)
+   timer.start()
+   buffer.session.settings["other_buffers"]["trending_topic_buffers"].append(woeid)
+
  def skip_buffer(self, forward=True):
   buff = self.get_current_buffer()
   if buff.invisible == False:
@@ -626,6 +641,7 @@ class Controller(object):
 
  def audio(self, *args, **kwargs):
   self.get_current_buffer().audio()
+
  def volume_down(self, *args, **kwargs):
   self.get_current_buffer().volume_down()
 

@@ -13,6 +13,7 @@ from twitter import utils
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
 from config_utils import Configuration, ConfigurationResetException
 from mysc.thread_utils import stream_threaded
+from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
 
 sessions = {}

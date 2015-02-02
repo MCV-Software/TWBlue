@@ -24,6 +24,7 @@ MENU = wx.EVT_MENU
 KEYPRESS = wx.EVT_CHAR_HOOK
 KEYUP = wx.EVT_KEY_UP
 NOTEBOOK_PAGE_CHANGED = wx.EVT_TREEBOOK_PAGE_CHANGED
+RADIOBUTTON = wx.EVT_RADIOBUTTON
 def exit_application():
  """ Closes the current window cleanly. """
  wx.GetApp().ExitMainLoop()

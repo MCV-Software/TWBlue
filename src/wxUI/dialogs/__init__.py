@@ -1,1 +1,1 @@
-import baseDialog, configuration, lists, message, search, show_user, update_profile, urlList
+import baseDialog, trends, configuration, lists, message, search, show_user, update_profile, urlList
