@@ -218,6 +218,13 @@ class Controller(object):
    self.view.insert_buffer(tl.buffer, name=_(u"Search for {}".format(i)), pos=self.view.search("searches", session.db["user_name"]))
    tl.timer = RepeatingTimer(180, tl.start_stream)
    tl.timer.start()
+  for i in session.settings["other_buffers"]["trending_topic_buffers"]:
+   buffer = buffersController.trendsBufferController(self.view.nb, "%s_tt" % (i,), session, session.db["user_name"], i)
+   buffer.start_stream()
+   self.buffers.append(buffer)
+   self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   timer = RepeatingTimer(300, buffer.start_stream)
+   timer.start()
 
  def search(self, *args, **kwargs):
   log.debug("Creating a new search...")
@@ -306,7 +313,12 @@ class Controller(object):
  def exit(self, *args, **kwargs):
   if config.app["app-settings"]["ask_at_exit"] == True:
    answer = commonMessageDialogs.exit_dialog()
-   if answer == widgetUtils.NO: return
+   if answer == widgetUtils.YES:
+    self.exit_()
+  else:
+   self.exit_()
+
+ def exit_(self):
   log.debug("Exiting...")
   log.debug("Saving global configuration...")
   config.app.write()
@@ -480,6 +492,7 @@ class Controller(object):
   trends = trendingTopics.trendingTopicsController(buff.session)
   if trends.dialog.get_response() == widgetUtils.OK:
    woeid = trends.get_woeid()
+   if woeid in buff.session.settings["other_buffers"]["trending_topic_buffers"]: return
    buffer = buffersController.trendsBufferController(self.view.nb, "%s_tt" % (woeid,), buff.session, buff.account, woeid)
    self.buffers.append(buffer)
    self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (trends.get_string()), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))

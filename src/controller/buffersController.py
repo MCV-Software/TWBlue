@@ -185,9 +185,8 @@ class baseBufferController(bufferController):
   if self.buffer.list.get_count() == 0:
    for i in self.session.db[self.name]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
-    self.buffer.list.insert_item(False, *tweet)
+    self.buffer.list.insert_item(self.session.settings["general"]["reverse_timelines"], *tweet)
    self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
-#   self.buffer.set_list_position()
   elif self.buffer.list.get_count() > 0:
    if self.session.settings["general"]["reverse_timelines"] == False:
     for i in self.session.db[self.name][:number_of_items]:
@@ -460,8 +459,8 @@ class trendsBufferController(bufferController):
 
  def start_stream(self):
   data = self.session.twitter.twitter.get_place_trends(id=self.trendsFor)
-  if not hasattr(self, "name"):
-   self.name = data[0]["locations"][0]["name"]
+  if not hasattr(self, "name_"):
+   self.name_ = data[0]["locations"][0]["name"]
   self.trends = data[0]["trends"]
   self.put_items_on_the_list()
   self.session.sound.play(self.sound)
@@ -472,7 +471,7 @@ class trendsBufferController(bufferController):
   for i in self.trends:
    tweet = self.compose_function(i)
    self.buffer.list.insert_item(False, *tweet)
-  self.buffer.list.select_item(selected_item)
+   self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
 
  def compose_function_(self, trend):
   return [trend["name"]]
