@@ -121,7 +121,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report, menuitem=self.view.report)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.block, menuitem=self.view.block)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.unblock, menuitem=self.view.unblock)
-
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_more_items, menuitem=self.view.load_previous_items)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def __init__(self):
@@ -540,6 +540,9 @@ class Controller(object):
    pass
   except AttributeError:
    pass
+
+ def get_more_items(self, *args, **kwargs):
+  self.get_current_buffer().get_more_items()
 
  def skip_buffer(self, forward=True):
   buff = self.get_current_buffer()

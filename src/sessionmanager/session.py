@@ -135,6 +135,16 @@ class Session(object):
   else:
    self.twitter.authorise(self.settings)
 
+ def get_more_items(self, update_function, users=False, name=None, *args, **kwargs):
+  results = []
+  data = getattr(self.twitter.twitter, update_function)(*args, **kwargs)
+  if users == True:
+   self.db[name]["cursor"] = data["next_cursor"]
+   for i in data["users"]: results.append(i)
+  else:
+   results.extend(data[1:])
+  return results
+
  def api_call(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
 
   """ Make a call to the Twitter API. If there is a connectionError or another exception not related to Twitter, It will call to the method  at least 25 times, waiting a while between calls. Useful for  post methods.
@@ -159,9 +169,9 @@ class Session(object):
     if report_failure and hasattr(e, 'message'):
      output.speak(_("%s failed.  Reason: %s") % (action, e.message))
     finished = True
-#   except:
-#    tries = tries + 1
-#    time.sleep(5)
+   except:
+    tries = tries + 1
+    time.sleep(5)
   if report_success:
    output.speak(_("%s succeeded.") % action)
   if _sound != None: self.sound.play(_sound)
@@ -255,16 +265,16 @@ class Session(object):
 
   items_ = []
   try:
-   if self.db[name].has_key("next_cursor"):
-    next_cursor = self.db[name]["next_cursor"]
+   if self.db[name].has_key("cursor"):
+    cursor = self.db[name]["cursor"]
    else:
-    next_cursor = -1
+    cursor = -1
   except KeyError:
-   next_cursor = -1
-  tl = getattr(self.twitter.twitter, function)(cursor=next_cursor, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+   cursor = -1
+  tl = getattr(self.twitter.twitter, function)(cursor=cursor, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
   tl[items].reverse()
   num = self.order_cursored_buffer(name, tl[items])
-  self.db[name]["next_cursor"] = tl["next_cursor"]
+  self.db[name]["cursor"] = tl["next_cursor"]
   return num
 
  def start_streaming(self):

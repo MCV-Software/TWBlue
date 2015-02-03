@@ -60,6 +60,7 @@ class mainFrame(wx.Frame):
 
   # buffer menu
   buffer = wx.Menu()
+  self.load_previous_items = buffer.Append(wx.NewId(), _(u"&Load previous items"))
   self.mute = buffer.Append(wx.NewId(), _(u"&Mute"))
   self.mute.Enable(False)
   self.autoread = buffer.Append(wx.NewId(), _(u"&Autoread tweets for this buffer"))

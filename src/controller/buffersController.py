@@ -66,6 +66,9 @@ class bufferController(object):
  def start_stream(self):
   pass
 
+ def get_more_items(self):
+  output.speak(_(u"This action is not supported for this buffer"))
+
  def put_items_on_list(self, items):
   pass
 
@@ -178,6 +181,28 @@ class baseBufferController(bufferController):
   if self.sound == None: return
   if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages":
    self.session.sound.play(self.sound)
+
+ def get_more_items(self):
+  elements = 0
+  if self.session.settings["general"]["reverse_timelines"] == False:
+   last_id = self.session.db[self.name][0]["id"]
+  else:
+   last_id = self.session.db[self.name_buffer][-1]["id"]
+  try:
+   items = self.session.get_more_items(self.function, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
+  except TwythonError as e:
+   output.speak(e.message)
+  for i in items:
+   if utils.is_allowed(i, self.session.settings["twitter"]["ignored_clients"]) == True:
+    elements +=1
+    if self.session.settings["general"]["reverse_timelines"] == False:
+     self.session.db[self.name].insert(0, i)
+    else:
+     self.session.db[self.name].append(i)
+  selection = self.buffer.list.get_selected()
+  self.put_items_on_list(elements)
+  self.buffer.list.select_item(selection+elements)
+  output.speak(_(u"%s items retrieved") % (str(elements)))
 
  def put_items_on_list(self, number_of_items):
   log.debug("The list contains %d items " % (self.buffer.list.get_count(),))
@@ -378,6 +403,22 @@ class peopleBufferController(baseBufferController):
 #  log.debug("Number of items retrieved:  %d" % (val,))
   self.put_items_on_list(val)
 
+ def get_more_items(self):
+  try:
+   items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"])
+  except TwythonError as e:
+   output.speak(e.message)
+   return
+  for i in items:
+   if self.session.settings["general"]["reverse_timelines"] == False:
+    self.session.db[self.name]["items"].insert(0, i)
+   else:
+    self.session.db[self.name]["items"].append(i)
+  selected = self.buffer.list.get_selected()
+  self.put_items_on_list(len(items))
+  self.buffer.list.select_item(selected+len(items))
+  output.speak(_(u"%s items retrieved") % (len(items)))
+
  def put_items_on_list(self, number_of_items):
   log.debug("The list contains %d items" % (self.buffer.list.get_count(),))
 #  log.debug("Putting %d items on the list..." % (number_of_items,))
@@ -391,7 +432,7 @@ class peopleBufferController(baseBufferController):
    if self.session.settings["general"]["reverse_timelines"] == False:
     for i in self.session.db[self.name]["items"][:number_of_items]:
      tweet = self.compose_function(i, self.session.db)
-     self.buffers.list.insert_item(False, *tweet)
+     self.buffer.list.insert_item(False, *tweet)
    else:
     for i in self.session.db[self.name]["items"][0:number_of_items]:
      tweet = self.compose_function(i, self.session.db)

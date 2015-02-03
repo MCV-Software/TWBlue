@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import url_shortener, re
-""" Some utilities for the twitter interface."""
 import output
 from twython import TwythonError
 import config
+import logging
+log = logging.getLogger("twitter.utils")
+""" Some utilities for the twitter interface."""
 
 __version__ = 0.1
 __doc__ = "Find urls in tweets and #audio hashtag."
@@ -96,11 +98,11 @@ def api_call(parent=None, call_name=None, preexec_message="", success="", succes
   parent.parent.sound.play("error.wav")
  return val
 
-def is_allowed(tweet):
+def is_allowed(tweet, clients):
  allowed = True
  if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
- for i in config.main["twitter"]["ignored_clients"]:
+ for i in clients:
   if i.lower() == source.lower():
    allowed = False
    log.exception("Tuit not allowed: %s" % (tweet["text"],))
