@@ -111,6 +111,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_favourites, self.view.fav)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.unfav)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_item, self.view.view)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.reverse_geocode, menuitem=self.view.view_coordinates)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.follow, menuitem=self.view.follow)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
@@ -500,6 +501,45 @@ class Controller(object):
    timer = RepeatingTimer(300, buffer.start_stream)
    timer.start()
    buffer.session.settings["other_buffers"]["trending_topic_buffers"].append(woeid)
+
+ def reverse_geocode(self, event=None):
+  try:
+   tweet = self.get_current_buffer().get_right_tweet()
+   if tweet["coordinates"] != None:
+    x = tweet["coordinates"]["coordinates"][0]
+    y = tweet["coordinates"]["coordinates"][1]
+    address = geocoder.reverse_geocode(y, x)
+    if event == None: output.speak(address[0].__str__().decode("utf-8"))
+    else: self.view.show_address(address[0].__str__().decode("utf-8"))
+   else:
+    output.speak(_(u"There are no coordinates in this tweet"))
+  except GeocoderError:
+   output.speak(_(u"There are no results for the coordinates in this tweet"))
+  except ValueError:
+   output.speak(_(u"Error decoding coordinates. Try again later."))
+  except KeyError:
+   pass
+  except AttributeError:
+   pass
+
+ def view_reverse_geocode(self, event=None):
+  try:
+   tweet = self.get_current_buffer().get_right_tweet()
+   if tweet["coordinates"] != None:
+    x = tweet["coordinates"]["coordinates"][0]
+    y = tweet["coordinates"]["coordinates"][1]
+    address = geocoder.reverse_geocode(y, x)
+    dlg = messages.viewTweet(address[0].__str__(), False)
+   else:
+    output.speak(_(u"There are no coordinates in this tweet"))
+  except GeocoderError:
+   output.speak(_(u"There are no results for the coordinates in this tweet"))
+  except ValueError:
+   output.speak(_(u"Error decoding coordinates. Try again later."))
+  except KeyError:
+   pass
+  except AttributeError:
+   pass
 
  def skip_buffer(self, forward=True):
   buff = self.get_current_buffer()

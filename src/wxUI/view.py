@@ -32,6 +32,7 @@ class mainFrame(wx.Frame):
   self.fav = tweet.Append(wx.NewId(), _(u"Add to &favourites"))
   self.unfav = tweet.Append(wx.NewId(), _(u"Remove from favo&urites"))
   self.view = tweet.Append(wx.NewId(), _(u"&Show tweet"))
+  self.view_coordinates = tweet.Append(wx.NewId(), _(u"View &address"))
   self.delete = tweet.Append(wx.NewId(), _(u"&Delete"))
 
   # User menu
@@ -167,3 +168,5 @@ class mainFrame(wx.Frame):
  def show(self):
   self.Show()
 
+ def show_address(self, address):
+  wx.MessageDialog(self, address, _(u"Address"), wx.OK).ShowModal()

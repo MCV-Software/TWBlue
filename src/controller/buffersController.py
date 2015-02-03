@@ -276,6 +276,8 @@ class baseBufferController(bufferController):
    self.buffer.list.list.SetStringItem(self.buffer.list.get_selected(), 2, ts)
   if utils.is_audio(tweet):
    self.session.sound.play("audio.ogg")
+  if utils.is_geocoded(tweet):
+   self.session.sound.play("geo.ogg")
 
  def audio(self):
   tweet = self.get_tweet()

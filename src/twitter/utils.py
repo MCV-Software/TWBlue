@@ -46,6 +46,10 @@ def is_audio(tweet):
     return True
  return False
 
+def is_geocoded(tweet):
+ if tweet.has_key("coordinates") and tweet["coordinates"] != None:
+  return True
+
 def get_all_mentioned(tweet, conf):
  """ Gets all users that has been mentioned."""
  string = []
