@@ -5,6 +5,7 @@ import os
 import exceptions
 import dropbox
 import logging
+from keys import keyring
 from utils import *
 from dropbox.rest import ErrorResponse
 from StringIO import StringIO
@@ -42,13 +43,11 @@ class dropboxLogin(object):
  def __init__(self, config):
   log.debug("Trying to login in Dropbox...")
   self.logged = False
-  self.app_key = "c8ikm0gexqvovol"
-  self.app_secret = "gvvi6fzfecooast"
   self.config = config
 
  def get_url(self):
   log.debug("Getting autorisation URL...")
-  self.flow = dropbox.client.DropboxOAuth2FlowNoRedirect(self.app_key, self.app_secret)
+  self.flow = dropbox.client.DropboxOAuth2FlowNoRedirect(keyring.get("dropbox_app_key"), keyring.get("dropbox_app_secret"))
   return self.flow.start()
 
  def authorise(self, code):

@@ -10,6 +10,7 @@ from logger import logger
 import logging
 import platform
 import application
+import keys
 from mysc.thread_utils import call_threaded
 log = logging.getLogger("main")
 
@@ -22,6 +23,7 @@ def setup():
  sound.setup()
  output.setup()
  languageHandler.setLanguage(config.app["app-settings"]["language"])
+ keys.setup()
  from controller import mainController
  from sessionmanager import sessionManager
  app = wx.App()

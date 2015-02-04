@@ -2,7 +2,7 @@
 """ The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
 import urllib2
 import twitter
-import application
+from keys import keyring
 import session_exceptions as Exceptions
 import paths
 import output
@@ -285,12 +285,12 @@ class Session(object):
 
  def get_main_stream(self):
   log.debug("Starting the main stream...")
-  self.main_stream = twitter.buffers.stream.streamer(application.app_key, application.app_secret, self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], self)
+  self.main_stream = twitter.buffers.stream.streamer(keyring.get("api_key"), keyring.get("api_secret"), self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], self)
   stream_threaded(self.main_stream.user, self.session_id)
 
  def get_timelines(self):
   log.debug("Starting the timelines stream...")
-  self.timelinesStream = twitter.buffers.indibidual.timelinesStreamer(application.app_key, application.app_secret, self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], session=self)
+  self.timelinesStream = twitter.buffers.indibidual.timelinesStreamer(keyring.get("api_key"), keyring.get("api_secret"), self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], session=self)
   ids = ""
   for i in self.settings["other_buffers"]["timelines"]:
    ids = ids + "%s, " % (self.db[i+"-timeline"][0]["user"]["id_str"])

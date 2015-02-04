@@ -88,7 +88,7 @@ class Controller(object):
   pub.subscribe(self.manage_blocked_user, "blocked-user")
   pub.subscribe(self.manage_unblocked_user, "unblocked-user")
   pub.subscribe(self.manage_item_in_timeline, "item-in-timeline")
-  widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit)
+  widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
 
  def bind_other_events(self):
   log.debug("Binding other application events...")
@@ -104,7 +104,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
   if widgetUtils.toolkit == "wx":
    log.debug("Binding the exit function...")
-   widgetUtils.connectExitFunction(self.exit)
+   widgetUtils.connectExitFunction(self.exit_)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_tweet, self.view.compose)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_retweet, self.view.retweet)
