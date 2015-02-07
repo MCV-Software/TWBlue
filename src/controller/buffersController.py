@@ -15,6 +15,14 @@ from mysc.thread_utils import call_threaded
 from twython import TwythonError
 
 log = logging.getLogger("controller.buffers")
+
+def _tweets_exist(function):
+ """ A decorator to execute a function only if the selected buffer contains at least one item."""
+ def function_(self, *args, **kwargs):
+  if self.buffer.list.get_count() > 0:
+   function(self, *args, **kwargs)
+ return function_
+
 class bufferController(object):
  def __init__(self, parent=None, function=None, session=None, *args, **kwargs):
   super(bufferController, self).__init__()
@@ -255,6 +263,7 @@ class baseBufferController(bufferController):
   tweet = self.session.db[self.name][self.buffer.list.get_selected()]
   return tweet
 
+ @_tweets_exist
  def reply(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   screen_name = tweet["user"]["screen_name"]
@@ -267,6 +276,7 @@ class baseBufferController(bufferController):
    else:
     call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text(), media=message.file)
 
+ @_tweets_exist
  def direct_message(self, *args, **kwargs):
   tweet = self.get_tweet()
   if self.type == "dm":
@@ -282,6 +292,7 @@ class baseBufferController(bufferController):
   if dm.message.get_response() == widgetUtils.OK:
    call_threaded(self.session.api_call, call_name="send_direct_message", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
 
+ @_tweets_exist
  def retweet(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   id = tweet["id"]
@@ -308,8 +319,10 @@ class baseBufferController(bufferController):
   if utils.is_geocoded(tweet):
    self.session.sound.play("geo.ogg")
 
+ @_tweets_exist
  def audio(self):
   tweet = self.get_tweet()
+  if tweet == None: return
   urls = utils.find_urls(tweet)
   if len(urls) == 1:
    sound.URLPlayer.play(urls[0])
@@ -319,6 +332,7 @@ class baseBufferController(bufferController):
    if urls_list.get_response() == widgetUtils.OK:
     sound.URLPlayer.play(urls_list.get_string())
 
+ @_tweets_exist
  def url(self):
   tweet = self.get_tweet()
   urls = utils.find_urls(tweet)
@@ -338,6 +352,7 @@ class baseBufferController(bufferController):
    self.session.db[self.name] = []
    self.buffer.list.clear()
 
+ @_tweets_exist
  def destroy_status(self, *args, **kwargs):
   index = self.buffer.list.get_selected()
   if self.type == "events" or self.type == "people" or self.type == "empty" or self.type == "account": return
@@ -399,6 +414,7 @@ class peopleBufferController(baseBufferController):
  def onFocus(self, ev):
   pass
 
+ @_tweets_exist
  def get_message(self):
   return " ".join(self.compose_function(self.get_tweet(), self.session.db, self.session.settings["general"]["relative_times"]))
 
@@ -545,6 +561,7 @@ class trendsBufferController(bufferController):
 #  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.direct_message, self.buffer.dm)
 #  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
 
+ @_tweets_exist
  def get_message(self):
   return self.compose_function(self.trends[self.buffer.list.get_selected()])[0]
 
