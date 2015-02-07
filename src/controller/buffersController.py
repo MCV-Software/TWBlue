@@ -27,6 +27,8 @@ class bufferController(object):
   self.needs_init = True
   self.invisible = False # False if the buffer will be ignored on the invisible interface.
 
+ def clear_list(self): pass
+
  def get_event(self, ev):
   if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
   elif ev.GetKeyCode() == wx.WXK_RETURN: event = "url"
@@ -229,6 +231,8 @@ class baseBufferController(bufferController):
    self.buffer.list.insert_item(False, *tweet)
   else:
    self.buffer.list.insert_item(True, *tweet)
+  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.session.settings["sound"]["global_mute"] == False:
+   output.speak(" ".join(tweet[:2]))
 
  def bind_events(self):
   log.debug("Binding events...")
@@ -329,28 +333,26 @@ class baseBufferController(bufferController):
     webbrowser.open_new_tab(urls_list.get_string())
 
  def clear_list(self):
-  dlg = wx.MessageDialog(None, _(u"Do you really want to empty this buffer? It's tweets will be removed from the list but not from Twitter"), _(u"Empty buffer"), wx.ICON_QUESTION|wx.YES_NO)
-  if dlg.ShowModal() == widgetUtils.YES:
+  dlg = commonMessageDialogs.clear_list()
+  if dlg == widgetUtils.YES:
    self.session.db[self.name] = []
    self.buffer.list.clear()
-  dlg.Destroy()
 
  def destroy_status(self, *args, **kwargs):
   index = self.buffer.list.get_selected()
   if self.type == "events" or self.type == "people" or self.type == "empty" or self.type == "account": return
   answer = commonMessageDialogs.delete_tweet_dialog(None)
   if answer == widgetUtils.YES:
-#   try:
-   if self.name == "direct_messages":
-    self.session.twitter.twitter.destroy_direct_message(id=self.get_right_tweet()["id"])
-   else:
-    self.session.twitter.twitter.destroy_status(id=self.get_right_tweet()["id"])
-   self.session.db[self.name].pop(index)
-   self.buffer.list.remove_item(index)
-   if index > 0:
-    self.buffer.list.select_item(index-1)
-#   except TwythonError:
-#    sound.player.play("error.ogg")
+   try:
+    if self.name == "direct_messages":
+     self.session.twitter.twitter.destroy_direct_message(id=self.get_right_tweet()["id"])
+    else:
+     self.session.twitter.twitter.destroy_status(id=self.get_right_tweet()["id"])
+    self.session.db[self.name].pop(index)
+    self.buffer.list.remove_item(index)
+#    if index > 0:
+   except TwythonError:
+    sound.player.play("error.ogg")
 
 class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):
@@ -378,6 +380,13 @@ class eventsBufferController(bufferController):
    self.buffer.list.insert_item(False, *tweet)
   else:
    self.buffer.list.insert_item(True, *tweet)
+  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.session.settings["sound"]["global_mute"] == False:
+   output.speak(" ".join(tweet))
+
+ def clear_list(self):
+  dlg = commonMessageDialogs.clear_list()
+  if dlg == widgetUtils.YES:
+   self.buffer.list.clear()
 
 class peopleBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
@@ -450,6 +459,15 @@ class peopleBufferController(baseBufferController):
    self.buffer.list.insert_item(False, *tweet)
   else:
    self.buffer.list.insert_item(True, *tweet)
+  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.session.settings["sound"]["global_mute"] == False:
+   output.speak(" ".join(tweet))
+
+ def clear_list(self):
+  dlg = commonMessageDialogs.clear_list()
+  if dlg == widgetUtils.YES:
+   self.session.db[self.name]["items"] = []
+   self.session.db[self.name]["cursor"] = -1
+   self.buffer.list.clear()
 
 class searchBufferController(baseBufferController):
  def start_stream(self):

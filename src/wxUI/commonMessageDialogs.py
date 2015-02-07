@@ -21,3 +21,7 @@ def get_ignored_client():
  if entry.ShowModal() == wx.ID_OK:
   return entry.GetValue()
  return None
+
+def clear_list():
+ dlg = wx.MessageDialog(None, _(u"Do you really want to empty this buffer? It's  items will be removed from the list but not from Twitter"), _(u"Empty buffer"), wx.ICON_QUESTION|wx.YES_NO)
+ return dlg.ShowModal()
