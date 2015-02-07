@@ -102,6 +102,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
+  widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit)
   if widgetUtils.toolkit == "wx":
    log.debug("Binding the exit function...")
    widgetUtils.connectExitFunction(self.exit_)

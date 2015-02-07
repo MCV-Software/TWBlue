@@ -414,7 +414,6 @@ class peopleBufferController(baseBufferController):
  def onFocus(self, ev):
   pass
 
- @_tweets_exist
  def get_message(self):
   return " ".join(self.compose_function(self.get_tweet(), self.session.db, self.session.settings["general"]["relative_times"]))
 
@@ -490,7 +489,10 @@ class searchBufferController(baseBufferController):
   log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
   log.debug("Function: %s" % (self.function,))
-  val = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
+  try:
+   val = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
+  except:
+   return None
   number_of_items = self.session.order_buffer(self.name, val["statuses"])
   log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
@@ -509,7 +511,10 @@ class searchPeopleBufferController(searchBufferController):
   log.debug("starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
   log.debug("Function: %s" % (self.function,))
-  val = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
+  try:
+   val = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
+  except:
+   return
   number_of_items = self.session.order_buffer(self.name, val)
   log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
@@ -535,7 +540,10 @@ class trendsBufferController(bufferController):
   self.get_formatted_message = self.get_message
 
  def start_stream(self):
-  data = self.session.twitter.twitter.get_place_trends(id=self.trendsFor)
+  try:
+   data = self.session.twitter.twitter.get_place_trends(id=self.trendsFor)
+  except:
+   return
   if not hasattr(self, "name_"):
    self.name_ = data[0]["locations"][0]["name"]
   self.trends = data[0]["trends"]
@@ -561,7 +569,6 @@ class trendsBufferController(bufferController):
 #  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.direct_message, self.buffer.dm)
 #  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
 
- @_tweets_exist
  def get_message(self):
   return self.compose_function(self.trends[self.buffer.list.get_selected()])[0]
 
