@@ -99,6 +99,7 @@ def api_call(parent=None, call_name=None, preexec_message="", success="", succes
  return val
 
 def is_allowed(tweet, clients):
+ if tweet.has_key("sender"): return True
  allowed = True
  if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])

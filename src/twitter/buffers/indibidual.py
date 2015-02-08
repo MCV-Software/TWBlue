@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from twitter import compose
+from twitter import compose, utils
 from twython import TwythonStreamer
 from pubsub import pub
 import logging as original_logger
@@ -26,7 +26,7 @@ class timelinesStreamer(TwythonStreamer):
 
  def on_success(self, data):
 #  try:
-  if "text" in data:
+  if "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
    self.check_tls(data)
 #  except:
 #   pass
