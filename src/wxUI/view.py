@@ -67,7 +67,7 @@ class mainFrame(wx.Frame):
   self.autoread.Enable(False)
   self.clear = buffer.Append(wx.NewId(), _(u"&Clear buffer"))
   self.deleteTl = buffer.Append(wx.NewId(), _(u"&Remove buffer"))
-  self.deleteTl.Enable(False)
+#  self.deleteTl.Enable(False)
 
  # Help Menu
   help = wx.Menu()
@@ -170,3 +170,6 @@ class mainFrame(wx.Frame):
 
  def show_address(self, address):
   wx.MessageDialog(self, address, _(u"Address"), wx.OK).ShowModal()
+
+ def delete_buffer(self, pos):
+  self.nb.DeletePage(pos)

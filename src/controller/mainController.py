@@ -124,6 +124,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.unblock, menuitem=self.view.unblock)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_more_items, menuitem=self.view.load_previous_items)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.clear_buffer, menuitem=self.view.clear)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_buffer, self.view.deleteTl)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def __init__(self):
@@ -464,9 +465,6 @@ class Controller(object):
  def open_timeline(self, user, timeline_tipe):
   pass
 
- def remove_buffer(self):
-  pass
-
  def show_hide(self, *args, **kwargs):
   km = self.create_invisible_keyboard_shorcuts()
   if self.showing == True:
@@ -506,7 +504,7 @@ class Controller(object):
 
  def reverse_geocode(self, event=None):
   try:
-   tweet = self.get_current_buffer().get_right_tweet()
+   tweet = self.get_current_buffer().get_tweet()
    if tweet["coordinates"] != None:
     x = tweet["coordinates"]["coordinates"][0]
     y = tweet["coordinates"]["coordinates"][1]
@@ -548,6 +546,16 @@ class Controller(object):
 
  def clear_buffer(self, *args, **kwargs):
   self.get_current_buffer().clear_list()
+
+ def remove_buffer(self, *args, **kwargs):
+  buffer = self.get_current_buffer()
+  if not hasattr(buffer, "account"): return
+  buff = self.view.search(buffer.name, buffer.account)
+  buffer.remove_buffer()
+  self.view.delete_buffer(buff)
+  buffer.session.sound.play("delete_timeline.ogg")
+  self.buffers.remove(buffer)
+  del buffer
 
  def skip_buffer(self, forward=True):
   buff = self.get_current_buffer()
@@ -832,7 +840,7 @@ class Controller(object):
 
  def manage_stream_errors(self, session):
   log.error("An error ocurred with the stream for the %s session. It will be destroyed" % (session,))
-  s = sessions_.session[session]
+  s = session_.sessions[session]
   s.listen_stream_error()
 
  def check_connection(self):

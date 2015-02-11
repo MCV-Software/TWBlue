@@ -25,3 +25,5 @@ def get_ignored_client():
 def clear_list():
  dlg = wx.MessageDialog(None, _(u"Do you really want to empty this buffer? It's  items will be removed from the list but not from Twitter"), _(u"Empty buffer"), wx.ICON_QUESTION|wx.YES_NO)
  return dlg.ShowModal()
+def remove_buffer():
+  return wx.MessageDialog(None, _(u"Do you really want to delete this timeline?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO).ShowModal()

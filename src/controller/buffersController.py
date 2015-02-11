@@ -214,6 +214,15 @@ class baseBufferController(bufferController):
   self.buffer.list.select_item(selection+elements)
   output.speak(_(u"%s items retrieved") % (str(elements)))
 
+ def remove_buffer(self):
+  if "timeline" in self.name:
+   dlg = commonMessageDialogs.remove_buffer()
+   if dlg == widgetUtils.YES:
+    if self.name[:9] in self.session.settings["other_buffers"]["timelines"]:
+     self.session.settings["other_buffers"]["timelines"].remove(self.name[:9])
+  else:
+   output.speak(_(u"This buffer is not a timeline; it can't be deleted."))
+
  def put_items_on_list(self, number_of_items):
   log.debug("The list contains %d items " % (self.buffer.list.get_count(),))
   log.debug("Putting %d items on the list" % (number_of_items,))
