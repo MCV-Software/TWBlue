@@ -319,3 +319,11 @@ class Session(object):
    urllib2.urlopen("http://74.125.228.231", timeout=5)
   except urllib2.URLError:
    pub.sendMessage("stream-error", session=self.session_id)
+
+ def remove_stream(self, stream):
+  if stream == "timelinesStream":
+   self.timelinesStream.disconnect()
+   del self.timelinesStream
+  else:
+   self.main_stream.disconnect()
+   del self.main_stream

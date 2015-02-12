@@ -95,6 +95,7 @@ class Controller(object):
   pub.subscribe(self.editing_keystroke, "editing_keystroke")
   pub.subscribe(self.manage_stream_errors, "stream-error")
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
+  pub.subscribe(self.restart_streams, "restart-streams")
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
@@ -462,8 +463,31 @@ class Controller(object):
    non_tweet = buffer.get_formatted_message()
    msg = messages.viewTweet(non_tweet, False)
 
- def open_timeline(self, user, timeline_tipe):
-  pass
+ def open_timeline(self, *args, **kwargs):
+  buff = self.get_current_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  dlg = dialogs.userSelection.selectUserDialog(users=users)
+  if dlg.get_response() == widgetUtils.OK:
+   buffer = self.get_best_buffer()
+   if utils.if_user_exists(buffer.session.twitter.twitter, dlg.get_user()) != None:
+    if dlg.get_action() == "tweets":
+     if dlg.get_user() in buffer.session.settings["other_buffers"]["timelines"]:
+      commonMessageDialogs.timeline_exist()
+      return
+     tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
+     tl.start_stream()
+     self.buffers.append(tl)
+     self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}".format(dlg.get_user())), pos=self.view.search("timelines", buffer.session.db["user_name"]))
+     buffer.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
+     pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buffer.session)
+     buffer.session.sound.play("create_timeline.ogg")
+   else:
+    commonMessageDialogs.user_not_exist()
 
  def show_hide(self, *args, **kwargs):
   km = self.create_invisible_keyboard_shorcuts()
@@ -796,6 +820,7 @@ class Controller(object):
  def manage_friend(self, data, user):
   buffer = self.search_buffer("friends", user)
   buffer.add_new_item(data)
+  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_unfollowing(self, item, user):
   buffer = self.search_buffer("friends", user)
@@ -879,6 +904,12 @@ class Controller(object):
     events = buffersController.eventsBufferController(self.view.nb, "events", buff.session, buff.session.db["user_name"], bufferType="dmPanel", screen_name=buff.session.db["user_name"])
     self.buffers.append(events)
     self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+
+ def restart_streams(self, streams=[], session=None):
+  for i in streams:
+   log.debug("RReconnecting the %s stream" % (i,))
+   session.remove_stream(i)
+  session.check_connection()
 
  def __del__(self):
   config.app.write()

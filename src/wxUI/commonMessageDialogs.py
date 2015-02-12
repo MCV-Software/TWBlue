@@ -13,6 +13,7 @@ def exit_dialog():
 
 def needs_restart():
  wx.MessageDialog(None, _(u"The application requires to be restarted to save these changes. Press OK to do it now."), _("Restart TW Blue"), wx.OK).ShowModal()
+
 def delete_user_from_db():
  return wx.MessageDialog(None, _(u"Are you sure you want to delete this user from the database? This user will not appear on the autocomplete results anymore."), _(u"Confirm"), wx.YES_NO|wx.ICON_QUESTION).ShowModal()
 
@@ -25,5 +26,15 @@ def get_ignored_client():
 def clear_list():
  dlg = wx.MessageDialog(None, _(u"Do you really want to empty this buffer? It's  items will be removed from the list but not from Twitter"), _(u"Empty buffer"), wx.ICON_QUESTION|wx.YES_NO)
  return dlg.ShowModal()
+
 def remove_buffer():
-  return wx.MessageDialog(None, _(u"Do you really want to delete this timeline?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO).ShowModal()
+ return wx.MessageDialog(None, _(u"Do you really want to delete this timeline?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO).ShowModal()
+
+def user_not_exist():
+ return wx.MessageDialog(None, _(u"The user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
+
+def timeline_exist():
+ return wx.MessageDialog(None, _(u"There's currently a timeline for this user. You are not able to open another"), _(u"Existing timeline"), wx.ICON_ERROR).ShowModal()
+
+def no_tweets():
+ return wx.MessageDialog(None, _(u"This user has no tweets. You can't open a timeline for this user"), _(u"Error!"), wx.ICON_ERROR).ShowModal()
