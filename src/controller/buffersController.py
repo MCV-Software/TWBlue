@@ -218,8 +218,8 @@ class baseBufferController(bufferController):
   if "timeline" in self.name:
    dlg = commonMessageDialogs.remove_buffer()
    if dlg == widgetUtils.YES:
-    if self.name[:9] in self.session.settings["other_buffers"]["timelines"]:
-     self.session.settings["other_buffers"]["timelines"].remove(self.name[:9])
+    if self.name[:-9] in self.session.settings["other_buffers"]["timelines"]:
+     self.session.settings["other_buffers"]["timelines"].remove(self.name[:-9])
      return True
    elif dlg == widgetUtils.NO:
     return False
@@ -602,8 +602,8 @@ class trendsBufferController(bufferController):
  def remove_buffer(self):
   dlg = commonMessageDialogs.remove_buffer()
   if dlg == widgetUtils.YES:
-   if self.name in self.session.settings["other_buffers"]["trending_topic_buffers"]:
-    self.session.settings["other_buffers"]["trending_topic_buffers"].remove(self.name)
+   if self.name[:-3] in self.session.settings["other_buffers"]["trending_topic_buffers"]:
+    self.session.settings["other_buffers"]["trending_topic_buffers"].remove(self.name[:-3])
     return True
   elif dlg == widgetUtils.NO:
    return False
