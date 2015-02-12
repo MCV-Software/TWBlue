@@ -220,8 +220,12 @@ class baseBufferController(bufferController):
    if dlg == widgetUtils.YES:
     if self.name[:9] in self.session.settings["other_buffers"]["timelines"]:
      self.session.settings["other_buffers"]["timelines"].remove(self.name[:9])
+     return True
+   elif dlg == widgetUtils.NO:
+    return False
   else:
    output.speak(_(u"This buffer is not a timeline; it can't be deleted."))
+   return False
 
  def put_items_on_list(self, number_of_items):
   log.debug("The list contains %d items " % (self.buffer.list.get_count(),))

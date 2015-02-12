@@ -575,7 +575,8 @@ class Controller(object):
   buffer = self.get_current_buffer()
   if not hasattr(buffer, "account"): return
   buff = self.view.search(buffer.name, buffer.account)
-  buffer.remove_buffer()
+  answer = buffer.remove_buffer()
+  if answer == False: return
   self.view.delete_buffer(buff)
   buffer.session.sound.play("delete_timeline.ogg")
   self.buffers.remove(buffer)
