@@ -424,6 +424,9 @@ class peopleBufferController(baseBufferController):
   log.debug("Compose_function: %s" % (self.compose_function,))
   self.get_tweet = self.get_right_tweet
 
+ def remove_buffer(self):
+  return False
+
  def onFocus(self, ev):
   pass
 
@@ -431,6 +434,17 @@ class peopleBufferController(baseBufferController):
   return " ".join(self.compose_function(self.get_tweet(), self.session.db, self.session.settings["general"]["relative_times"]))
 
  def delete_item(self): pass
+
+ @_tweets_exist
+ def reply(self, *args, **kwargs):
+  tweet = self.get_right_tweet()
+  screen_name = tweet["screen_name"]
+  message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
+  if message.message.get_response() == widgetUtils.OK:
+   if message.image == None:
+    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
+   else:
+    call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
 
  def start_stream(self):
   log.debug("Starting stream for %s buffer, %s account" % (self.name, self.account,))
@@ -585,3 +599,11 @@ class trendsBufferController(bufferController):
  def get_message(self):
   return self.compose_function(self.trends[self.buffer.list.get_selected()])[0]
 
+ def remove_buffer(self):
+  dlg = commonMessageDialogs.remove_buffer()
+  if dlg == widgetUtils.YES:
+   if self.name in self.session.settings["other_buffers"]["trending_topic_buffers"]:
+    self.session.settings["other_buffers"]["trending_topic_buffers"].remove(self.name)
+    return True
+  elif dlg == widgetUtils.NO:
+   return False
