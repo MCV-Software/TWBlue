@@ -526,6 +526,15 @@ class searchBufferController(baseBufferController):
   if number_of_items > 0:
    self.session.sound.play("search_updated.ogg")
 
+ def remove_buffer(self):
+  dlg = commonMessageDialogs.remove_buffer()
+  if dlg == widgetUtils.YES:
+   if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
+    self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
+    return True
+  elif dlg == widgetUtils.NO:
+   return False
+
 class searchPeopleBufferController(searchBufferController):
 
  def __init__(self, parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs):
