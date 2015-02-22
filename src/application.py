@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-name = 'TW Blue'
-snapshot = False
+name = 'TWBlue'
+snapshot = True
 if snapshot == False:
  version = "0.80"
- update_url = 'http://twblue.es/updates/tw_blue.json'
+ update_url = 'http://twblue.es/updates/twblue_ngen.json'
 else:
  version = "7"
- update_url = 'http://twblue.es/updates/snapshots.json'
+ update_url = 'http://twblue.es/updates/snapshots_ngen.json'
 author = u"Manuel Cortéz"
-authorEmail = "info@twblue.com.mx"
-copyright = u"copyright (C) 2013-2014, Manuel cortéz"
+authorEmail = "manuel@manuelcortez.net"
+copyright = u"copyright (C) 2013-2015, Manuel cortéz"
 description = u"TW Blue is an app designed to use Twitter in a simple and fast way and avoiding, as far as possible, the consumtion of excessive resources of the machine where it’s running. With this app you’ll have access to most twitter features."
-translators = [u"Bryner Villalobos (English)", u"Mohammed Al Shara (Arabic)", u"Salva Doménech, Juan Carlos Rivilla(Catalan)", u"Manuel cortéz(Spanish)", u"Sukil Etxenike Arizaleta(Basque)", u"Jani Kinnunen(finnish)", u"Javier Currás, José Manuel Delicado, Alba Quinteiro(Galician)", u"Robert Osztolykan(Hungarian)", u"Paweł Masarczyk(Polish)", u"Odenilton Júnior Santos(Portuguese)", u"Alexander Jaszyn(Russian)", u"Burak (Turkish)"]
-url = u"http://twblue.com.mx"
-report_bugs_url = "http://twblue.com.mx/errores/api/soap/mantisconnect.php?wsdl"
+translators = [u"Bryner Villalobos (English)", u"Mohammed Al Shara (Arabic)", u"Joan Rabat, Juan Carlos Rivilla (Catalan)", u"Manuel cortéz (Spanish)", u"Sukil Etxenike Arizaleta (Basque)", u"Jani Kinnunen (finnish)", u"Rémy Ruiz (French)", u"Alba Quinteiro (Galician)", u"Steffen Schultz (German)", u"Robert Osztolykan (Hungarian)", u"Paweł Masarczyk (Polish)", u"Odenilton Júnior Santos (Portuguese)", u"Alexander Jaszyn (Russian)", u"Burak (Turkish)"]
+url = u"http://twblue.es"
+report_bugs_url = "http://twblue.es/bugs/api/soap/mantisconnect.php?wsdl"

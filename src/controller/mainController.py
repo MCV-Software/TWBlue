@@ -464,7 +464,7 @@ class Controller(object):
    msg = messages.viewTweet(non_tweet, False)
 
  def open_timeline(self, *args, **kwargs):
-  buff = self.get_current_buffer()
+  buff = self.get_best_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type != "people":

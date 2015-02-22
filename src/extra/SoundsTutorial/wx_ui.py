@@ -23,3 +23,4 @@ class soundsTutorialDialog(widgetUtils.BaseDialog):
   sizer.Add(listBox)
   sizer.Add(btnBox)
   panel.SetSizer(sizer)
+  self.SetClientSize(sizer.CalcMin())

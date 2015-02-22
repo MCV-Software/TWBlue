@@ -12,6 +12,7 @@ import platform
 import application
 import keys
 from mysc.thread_utils import call_threaded
+from update import updater
 log = logging.getLogger("main")
 
 def setup():
@@ -19,7 +20,7 @@ def setup():
  config.setup()
  log.debug("Using %s %s" % (platform.system(), platform.architecture()[0]))
  log.debug("Application path is %s" % (paths.app_path(),))
- log.debug("Data path is %s" % (paths.data_path(),))
+ log.debug("config path  is %s" % (paths.config_path(),))
  sound.setup()
  output.setup()
  languageHandler.setLanguage(config.app["app-settings"]["language"])
@@ -27,6 +28,7 @@ def setup():
  from controller import mainController
  from sessionmanager import sessionManager
  app = wx.App()
+ updater.do_update()
  sm = sessionManager.sessionManagerController()
  sm.fill_list()
  if len(sm.sessions) == 0: sm.show()

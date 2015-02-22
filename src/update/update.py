@@ -18,12 +18,14 @@ def perform_update(endpoint, current_version, app_name='', password=None, update
  requests_session = create_requests_session(app_name=app_name, version=current_version)
  available_update = find_update(endpoint, requests_session=requests_session)
  if not available_update:
+  logger.debug("No update available")
   return
  available_version = available_update['current_version']
- if not str(available_version) > str(current_version) or platform.system() not in available_update['downloads']:
+ if not str(available_version) > str(current_version) or platform.system()+platform.architecture()[0][:2] not in available_update['downloads']:
+  logger.debug("No update for this architecture")
   return
  available_description = available_update.get('description', None)
- update_url = available_update ['downloads'][platform.system()]
+ update_url = available_update ['downloads'][platform.system()+platform.architecture()[0][:2]]
  logger.info("A new update is available. Version %s" % available_version)
  if callable(update_available_callback) and not update_available_callback(version=available_version, description=available_description): #update_available_callback should return a falsy value to stop the process
   logger.info("User canceled update.")
