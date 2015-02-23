@@ -13,6 +13,7 @@ import application
 import keys
 from mysc.thread_utils import call_threaded
 from update import updater
+import fixes
 log = logging.getLogger("main")
 
 def setup():
@@ -35,6 +36,7 @@ def setup():
  else:
   sm.do_ok()
  del sm
+ fixes.setup()
  r = mainController.Controller()
  r.view.Show()
  r.do_work()
