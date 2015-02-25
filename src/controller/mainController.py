@@ -45,12 +45,16 @@ class Controller(object):
    if i.name == name_ and i.account == user: return i
 
  def get_current_buffer(self):
+  """ Get the current bufferObject"""
   buffer = self.view.get_current_buffer()
   if hasattr(buffer, "account"):
    buffer = self.search_buffer(buffer.name, buffer.account)
    return buffer
 
  def get_best_buffer(self):
+  """ Gets the best buffer for doing  something using the session object.
+  This function is useful when you need to open a timeline or post a tweet, and the user is in a buffer without a session, for example the events buffer.
+  This returns a bufferObject."""
   # Gets the parent buffer to know what account is doing an action
   view_buffer = self.view.get_current_buffer()
   # If the account has no session attached, we will need to search the home_timeline for that account to use its session.
@@ -61,6 +65,9 @@ class Controller(object):
   return buffer
 
  def get_first_buffer(self, account):
+  """ Gets the first valid buffer for an account.
+  account str: A twitter username.
+  The first valid buffer is the home timeline."""
   for i in self.buffers:
    if i.account == account and i.invisible == True:
     buff = i
@@ -68,11 +75,15 @@ class Controller(object):
   return self.view.search(buff.name, buff.account)
 
  def get_last_buffer(self, account):
+  """ Gets the last valid buffer for an account.
+  account str: A twitter username.
+  The last valid buffer is the last buffer that contains a session object assigned."""
   results = []
   [results.append(i) for i in self.buffers if i.account == account and i.invisible == True]
   return self.view.search(results[-1].name, results[-1].account)
 
  def bind_stream_events(self):
+  """ Binds all the streaming events with their functions."""
   log.debug("Binding events for the Twitter stream API...")
   pub.subscribe(self.manage_home_timelines, "item-in-home")
   pub.subscribe(self.manage_mentions, "mention")
@@ -91,6 +102,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
 
  def bind_other_events(self):
+  """ Binds the local application events with their functions."""
   log.debug("Binding other application events...")
   pub.subscribe(self.editing_keystroke, "editing_keystroke")
   pub.subscribe(self.manage_stream_errors, "stream-error")
@@ -130,37 +142,51 @@ class Controller(object):
 
  def __init__(self):
   super(Controller, self).__init__()
+  # Visibility state.
   self.showing = True
+  # main window
   self.view = view.mainFrame()
+  # buffers list.
   self.buffers = []
+  # accounts list.
   self.accounts = []
+  # a dict for saving the current buffer position for each account (future)
   self.buffer_positions = {}
+  # This saves the current account (important in invisible mode)
   self.current_account = ""
   self.view.prepare()
   self.bind_stream_events()
   self.bind_other_events()
+  # Visibility check
   if config.app["app-settings"]["hide_gui"] == True:
    self.show_hide()
    self.view.Show()
    self.view.Hide()
+  # Invisible keyboard Shorcuts check.
   if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] == True:
    km = self.create_invisible_keyboard_shorcuts()
    self.register_invisible_keyboard_shorcuts(km)
 
  def do_work(self):
+  """ Creates the buffer objects for all accounts. This does not starts the buffer streams, only creates the objects."""
   log.debug("Creating buffers for all sessions...")
   for i in session_.sessions:
    log.debug("Working on session %s" % (i,))
    self.create_buffers(session_.sessions[i])
+  # Connection checker executed each minute.
   self.checker_function = RepeatingTimer(60, self.check_connection)
   self.checker_function.start()
+
  def start(self):
+  """ Starts all buffer objects. Loads their items."""
   for i in session_.sessions:
    self.start_buffers(session_.sessions[i])
   session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
   output.speak(_(u"Ready"))
 
  def create_buffers(self, session):
+  """ Generates buffer objects for an user account.
+  session SessionObject: a sessionmanager.session.Session Object"""
   session.get_user_info()
   self.accounts.append(session.db["user_name"])
   self.buffer_positions[session.db["user_name"]] = 1
@@ -232,6 +258,7 @@ class Controller(object):
    timer.start()
 
  def search(self, *args, **kwargs):
+  """ Searches words or users in twitter. This creates a new buffer containing the search results."""
   log.debug("Creating a new search...")
   dlg = dialogs.search.searchDialog()
   if dlg.get_response() == widgetUtils.OK:
@@ -260,6 +287,7 @@ class Controller(object):
   dlg.Destroy()
 
  def learn_sounds(self, *args, **kwargs):
+  """ Opens the sounds tutorial for the current account."""
   buffer = self.get_best_buffer()
   SoundsTutorial.soundsTutorial(buffer.session)
 
@@ -276,6 +304,7 @@ class Controller(object):
   pass
 
  def configuration(self, *args, **kwargs):
+  """ Opens the global settings dialogue."""
   d = settings.globalSettingsController()
   if d.response == widgetUtils.OK:
    d.save_configuration()
@@ -284,6 +313,7 @@ class Controller(object):
     restart.restart_program()
 
  def accountConfiguration(self, *args, **kwargs):
+  """ Opens the account settings dialogue for the current account."""
   buff = self.get_best_buffer()
   manager.manager.set_current_session(buff.session.session_id)
   d = settings.accountSettingsController(buff, self)
@@ -310,6 +340,8 @@ class Controller(object):
   pass
 
  def delete(self, *args, **kwargs):
+  """ Deletes an item in the current buffer.
+  Users can only remove their tweets and direct messages, other users' tweets and people (followers, friends, blocked, etc) can not be removed using this method."""
   buffer = self.view.get_current_buffer()
   if hasattr(buffer, "account"):
    buffer = self.search_buffer(buffer.name, buffer.account)
@@ -323,7 +355,7 @@ class Controller(object):
   else:
    self.exit_()
 
- def exit_(self):
+ def exit_(self, *args, **kwargs):
   log.debug("Exiting...")
   log.debug("Saving global configuration...")
   config.app.write()
@@ -908,7 +940,7 @@ class Controller(object):
 
  def restart_streams(self, streams=[], session=None):
   for i in streams:
-   log.debug("RReconnecting the %s stream" % (i,))
+   log.debug("Reconnecting the %s stream" % (i,))
    session.remove_stream(i)
   session.check_connection()
 

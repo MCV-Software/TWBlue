@@ -83,7 +83,7 @@ class bufferController(object):
   pass
 
  def remove_buffer(self):
-  pass
+  return False
 
  def remove_item(self, item):
   self.buffer.list.remove_item(item)
