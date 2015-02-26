@@ -19,11 +19,11 @@ def perform_update(endpoint, current_version, app_name='', password=None, update
  available_update = find_update(endpoint, requests_session=requests_session)
  if not available_update:
   logger.debug("No update available")
-  return
+  return False
  available_version = available_update['current_version']
  if not str(available_version) > str(current_version) or platform.system()+platform.architecture()[0][:2] not in available_update['downloads']:
   logger.debug("No update for this architecture")
-  return
+  return False
  available_description = available_update.get('description', None)
  update_url = available_update ['downloads'][platform.system()+platform.architecture()[0][:2]]
  logger.info("A new update is available. Version %s" % available_version)

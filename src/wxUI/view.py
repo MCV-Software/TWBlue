@@ -76,7 +76,6 @@ class mainFrame(wx.Frame):
   self.changelog = help.Append(wx.NewId(), _(u"&What's new in this version?"))
   self.changelog.Enable(False)
   self.check_for_updates = help.Append(wx.NewId(), _(u"&Check for updates"))
-  self.check_for_updates.Enable(False)
   self.reportError = help.Append(wx.NewId(), _(u"&Report an error"))
   self.reportError.Enable(False)
   self.visit_website = help.Append(-1, _(u"TW Blue &website"))
@@ -173,3 +172,6 @@ class mainFrame(wx.Frame):
 
  def delete_buffer(self, pos):
   self.nb.DeletePage(pos)
+
+def no_update_available():
+ wx.MessageDialog(None, _(u"Your TW Blue version is up to date"), _(u"Update"), style=wx.OK).ShowModal()

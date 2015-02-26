@@ -2,6 +2,7 @@
 from wxUI import (view, dialogs, commonMessageDialogs)
 from twitter import utils
 from sessionmanager import manager
+from update import updater
 import buffersController
 import messages
 import settings
@@ -138,6 +139,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_more_items, menuitem=self.view.load_previous_items)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.clear_buffer, menuitem=self.view.clear)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_buffer, self.view.deleteTl)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.check_for_updates, self.view.check_for_updates)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def __init__(self):
@@ -344,8 +346,10 @@ class Controller(object):
  def report_error(self):
   pass
 
- def check_for_updates(self, show_msg=True):
-  pass
+ def check_for_updates(self, *args, **kwargs):
+  update = updater.do_update()
+  if update == False:
+   view.no_update_available()
 
  def show_details_for_user(self, user):
   pass
