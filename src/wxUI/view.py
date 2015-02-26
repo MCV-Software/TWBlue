@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import wx
+import application
 
 class mainFrame(wx.Frame):
  """ Main class of the Frame. This is the Main Window."""
@@ -79,9 +80,7 @@ class mainFrame(wx.Frame):
   self.reportError = help.Append(wx.NewId(), _(u"&Report an error"))
   self.reportError.Enable(False)
   self.visit_website = help.Append(-1, _(u"TW Blue &website"))
-  self.visit_website.Enable(False)
   self.about = help.Append(-1, _(u"About &TW Blue"))
-  self.about.Enable(False)
 
   # Add all to the menu Bar
   menuBar.Append(app, _(u"&Application"))
@@ -172,6 +171,17 @@ class mainFrame(wx.Frame):
 
  def delete_buffer(self, pos):
   self.nb.DeletePage(pos)
+
+ def about_dialog(self):
+  info = wx.AboutDialogInfo()
+  info.SetName(application.name)
+  info.SetVersion(application.version)
+  info.SetDescription(application.description)
+  info.SetCopyright(application.copyright)
+  info.SetTranslators(application.translators)
+#  info.SetLicence(application.licence)
+  info.AddDeveloper(application.author)
+  wx.AboutBox(info)
 
 def no_update_available():
  wx.MessageDialog(None, _(u"Your TW Blue version is up to date"), _(u"Update"), style=wx.OK).ShowModal()

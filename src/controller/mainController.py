@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import application
 from wxUI import (view, dialogs, commonMessageDialogs)
 from twitter import utils
 from sessionmanager import manager
@@ -26,6 +27,7 @@ if platform.system() == "Windows":
  from keyboard_handler.wx_handler import WXKeyboardHandler
 import userActionsController
 import trendingTopics
+import webbrowser
 
 log = logging.getLogger("mainController")
 
@@ -142,6 +144,9 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.clear_buffer, menuitem=self.view.clear)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_buffer, self.view.deleteTl)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.check_for_updates, self.view.check_for_updates)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.about, menuitem=self.view.about)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.visit_website, menuitem=self.view.visit_website)
+  
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def __init__(self):
@@ -1043,6 +1048,12 @@ class Controller(object):
   elif registered == False:
    km = self.create_invisible_keyboard_shorcuts()
    self.unregister_invisible_keyboard_shorcuts(km)
+
+ def about(self, *args, **kwargs):
+  self.view.about_dialog()
+
+ def visit_website(self, *args, **kwargs):
+  webbrowser.open(application.url)
 
  def __del__(self):
   config.app.write()
