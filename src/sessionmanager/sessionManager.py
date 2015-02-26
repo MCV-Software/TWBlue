@@ -23,7 +23,7 @@ class sessionManagerController(object):
   log.debug("Filling the sessions list.")
   self.sessions = []
   for i in os.listdir(paths.config_path()):
-   if os.path.isdir(paths.config_path(i)) and i not in config.app["sessions"]["ignored_sessions"]:
+   if os.path.isdir(paths.config_path(i)):
     log.debug("Adding session %s" % (i,))
     strconfig = "%s/session.conf" % (paths.config_path(i))
     config_test = Configuration(strconfig)
@@ -31,8 +31,8 @@ class sessionManagerController(object):
     if name != "" and config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
      sessionsList.append(name)
      self.sessions.append(i)
-   else:
-    log.debug("Ignoring session %s" % (i,))
+#   else:
+#    log.debug("Ignoring session %s" % (i,))
   if hasattr(self, "view"): self.view.fill_list(sessionsList)
 
  def show(self):
@@ -45,7 +45,8 @@ class sessionManagerController(object):
   for i in self.sessions:
    s = session.Session(i)
    s.get_configuration()
-   s.login()
+   if i not in config.app["sessions"]["ignored_sessions"]:
+    s.login()
    session.sessions[i] = s
 
  def manage_new_account(self):

@@ -18,6 +18,7 @@ NO = wx.ID_NO
 CLOSE_EVENT = wx.EVT_CLOSE
 # This is activated when a button  is pressed.
 BUTTON_PRESSED = wx.EVT_BUTTON
+CHECKBOX = wx.EVT_CHECKBOX
 # This is activated when an user enter text on an edit box.
 ENTERED_TEXT = wx.EVT_TEXT
 MENU = wx.EVT_MENU

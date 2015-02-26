@@ -94,6 +94,10 @@ class Session(object):
   self.db = {}
   self.reconnection_function_active = False
 
+ @property
+ def is_logged(self):
+  return self.logged
+
  def get_configuration(self):
 
    """ Gets settings for a session."""

@@ -105,6 +105,8 @@ class Controller(object):
  def bind_other_events(self):
   """ Binds the local application events with their functions."""
   log.debug("Binding other application events...")
+  pub.subscribe(self.logout_account, "logout")
+  pub.subscribe(self.login_account, "login")
   pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
   pub.subscribe(self.manage_stream_errors, "stream-error")
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
@@ -174,6 +176,9 @@ class Controller(object):
   log.debug("Creating buffers for all sessions...")
   for i in session_.sessions:
    log.debug("Working on session %s" % (i,))
+   if session_.sessions[i].is_logged == False:
+    self.create_ignored_session_buffer(session_.sessions[i])
+    continue
    self.create_buffers(session_.sessions[i])
   # Connection checker executed each minute.
   self.checker_function = RepeatingTimer(60, self.check_connection)
@@ -182,19 +187,38 @@ class Controller(object):
  def start(self):
   """ Starts all buffer objects. Loads their items."""
   for i in session_.sessions:
+   if session_.sessions[i].is_logged == False: continue
    self.start_buffers(session_.sessions[i])
   session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
   output.speak(_(u"Ready"))
 
- def create_buffers(self, session):
+ def create_ignored_session_buffer(self, session):
+  self.accounts.append(session.settings["twitter"]["user_name"])
+  account = buffersController.accountPanel(self.view.nb, session.settings["twitter"]["user_name"], session.settings["twitter"]["user_name"], session.session_id)
+  account.logged = False
+  account.setup_account()
+  self.buffers.append(account)
+  self.view.add_buffer(account.buffer , name=session.settings["twitter"]["user_name"])
+  self.buffer_positions[session.settings["twitter"]["user_name"]] = 1
+
+ def login_account(self, session_id):
+  for i in session_.sessions:
+   if session_.sessions[i].session_id == session_id: session = session_.sessions[i]
+  session.login()
+  self.create_buffers(session, False)
+  self.start_buffers(session)
+
+ def create_buffers(self, session, createAccounts=True):
   """ Generates buffer objects for an user account.
   session SessionObject: a sessionmanager.session.Session Object"""
   session.get_user_info()
-  self.accounts.append(session.db["user_name"])
-  self.buffer_positions[session.db["user_name"]] = 1
-  account = buffersController.accountPanel(self.view.nb, session.db["user_name"], session.db["user_name"])
-  self.buffers.append(account)
-  self.view.add_buffer(account.buffer , name=session.db["user_name"])
+  if createAccounts == True:
+   self.accounts.append(session.db["user_name"])
+   self.buffer_positions[session.db["user_name"]] = 1
+   account = buffersController.accountPanel(self.view.nb, session.db["user_name"], session.db["user_name"], session.session_id)
+   account.setup_account()
+   self.buffers.append(account)
+   self.view.add_buffer(account.buffer , name=session.db["user_name"])
   home = buffersController.baseBufferController(self.view.nb, "get_home_timeline", "home_timeline", session, session.db["user_name"])
   self.buffers.append(home)
   self.view.insert_buffer(home.buffer, name=_(u"Home"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
@@ -256,8 +280,41 @@ class Controller(object):
    buffer.start_stream()
    self.buffers.append(buffer)
    self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-   timer = RepeatingTimer(300, buffer.start_stream)
-   timer.start()
+   buffer.timer = RepeatingTimer(300, buffer.start_stream)
+   buffer.timer.start()
+
+ def logout_account(self, session_id):
+  for i in session_.sessions:
+   if session_.sessions[i].session_id == session_id: session = session_.sessions[i]
+  user = session.db["user_name"]
+  self.destroy_buffer("home_timeline", user)
+  self.destroy_buffer("mentions", user)
+  self.destroy_buffer("direct_messages", user)
+  self.destroy_buffer("sent_direct_messages", user)
+  self.destroy_buffer("sent_tweets", user)
+  self.destroy_buffer("favourites", user)
+  self.destroy_buffer("followers", user)
+  self.destroy_buffer("friends", user)
+  self.destroy_buffer("blocked", user)
+  self.destroy_buffer("muted", user)
+  self.destroy_buffer("events", user)
+  self.destroy_buffer("timelines", user)
+  for i in session.settings["other_buffers"]["timelines"]:
+   self.destroy_buffer("%s-timeline" % (i,), user)
+  self.destroy_buffer("searches", user)
+  for i in session.settings["other_buffers"]["tweet_searches"]:
+   self.destroy_buffer("%s-searchterm" % (i,), user)
+  for i in session.settings["other_buffers"]["trending_topic_buffers"]:
+   self.destroy_buffer("%s_tt" % (i,), user)
+  
+ def destroy_buffer(self, buffer_name, account):
+  buffer = self.search_buffer(buffer_name, account)
+  if buffer == None: return
+  buff = self.view.search(buffer.name, buffer.account)
+  if buff == None: return
+  self.view.delete_buffer(buff)
+  self.buffers.remove(buffer)
+  del buffer
 
  def search(self, *args, **kwargs):
   """ Searches words or users in twitter. This creates a new buffer containing the search results."""
@@ -375,6 +432,7 @@ class Controller(object):
   log.debug("Saving global configuration...")
   config.app.write()
   for item in session_.sessions:
+   if session_.sessions[item]: continue
    log.debug("Saving config for %s session" % (session_.sessions[item].session_id,))
    session_.sessions[item].settings.write()
    log.debug("Disconnecting streams for %s session" % (session_.sessions[item].session_id,))
@@ -645,6 +703,9 @@ class Controller(object):
 
  def up(self, *args, **kwargs):
   page = self.get_current_buffer()
+  if not hasattr(page.buffer, "list"):
+   output.speak(_(u"This account is not logged in twitter."))
+   return
   position = page.buffer.list.get_selected()
   index = position-1
   try:
@@ -660,6 +721,9 @@ class Controller(object):
 
  def down(self, *args, **kwargs):
   page = self.get_current_buffer()
+  if not hasattr(page.buffer, "list"):
+   output.speak(_(u"This account is not logged in twitter."))
+   return
   position = page.buffer.list.get_selected()
   index = position+1
   try:
@@ -676,6 +740,9 @@ class Controller(object):
  def left(self, *args, **kwargs):
   buff = self.view.get_current_buffer_pos()
   buffer = self.get_current_buffer()
+  if not hasattr(buffer.buffer, "list"):
+   output.speak(_(u"This account is not logged in twitter."))
+   return
   if buff == self.get_first_buffer(buffer.account) or buff == 0:
    self.view.change_buffer(self.get_last_buffer(buffer.account))
   else:
@@ -691,6 +758,9 @@ class Controller(object):
  def right(self, *args, **kwargs):
   buff = self.view.get_current_buffer_pos()
   buffer = self.get_current_buffer()
+  if not hasattr(buffer.buffer, "list"):
+   output.speak(_(u"This account is not logged in twitter."))
+   return
   if buff == self.get_last_buffer(buffer.account) or buff+1 == self.view.get_buffer_count():
    self.view.change_buffer(self.get_first_buffer(buffer.account))
   else:
@@ -712,6 +782,9 @@ class Controller(object):
   account = self.accounts[index]
   self.current_account = account
   buff = self.view.search("home_timeline", account)
+  if buff == None:
+   output.speak(_(u"This account is not logged in twitter."))
+   return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
   try:
@@ -729,6 +802,9 @@ class Controller(object):
   account = self.accounts[index]
   self.current_account = account
   buff = self.view.search("home_timeline", account)
+  if buff == None:
+   output.speak(_(u"This account is not logged in twitter."))
+   return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
   try:
@@ -918,6 +994,7 @@ class Controller(object):
 
  def check_connection(self):
   for i in session_.sessions:
+   if session_.sessions[i].is_logged == False: continue
    session_.sessions[i].check_connection()
 
  def create_new_buffer(self, buffer, account, create):
