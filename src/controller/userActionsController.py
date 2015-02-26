@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from wxUI.dialogs import userActions
+from pubsub import pub
 import re
 import widgetUtils
 import output
@@ -23,6 +24,7 @@ class userActionsController(object):
  def follow(self, user):
   try:
    self.session.twitter.twitter.create_friendship(screen_name=user )
+   pub.sendMessage("restart-streams", streams=["main_stream"], session=self.session)
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
@@ -35,12 +37,14 @@ class userActionsController(object):
  def mute(self, user):
   try:
    id = self.session.twitter.twitter.create_mute(screen_name=user )
+   pub.sendMessage("restart-streams", streams=["main_stream"], session=self.session)
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
  def unmute(self, user):
   try:
    id = self.session.twitter.twitter.destroy_mute(screen_name=user )
+   pub.sendMessage("restart-streams", streams=["main_stream"], session=self.session)
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
@@ -53,12 +57,14 @@ class userActionsController(object):
  def block(self, user):
   try:
    id = self.session.twitter.twitter.create_block(screen_name=user )
+   pub.sendMessage("restart-streams", streams=["main_stream"], session=self.session)
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
  def unblock(self, user):
   try:
    id = self.session.twitter.twitter.destroy_block(screen_name=user )
+   pub.sendMessage("restart-streams", streams=["main_stream"], session=self.session)
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 

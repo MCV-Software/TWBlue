@@ -104,7 +104,7 @@ class Controller(object):
  def bind_other_events(self):
   """ Binds the local application events with their functions."""
   log.debug("Binding other application events...")
-  pub.subscribe(self.editing_keystroke, "editing_keystroke")
+  pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
   pub.subscribe(self.manage_stream_errors, "stream-error")
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
   pub.subscribe(self.restart_streams, "restart-streams")
@@ -280,11 +280,22 @@ class Controller(object):
    search.timer.start()
   dlg.Destroy()
 
- def edit_keystrokes(self, event=None):
-  dlg = keystrokeEditor.keystrokeEditor()
-  dlg.put_keystrokes(**config.app["keymap"])
-  dlg.ShowModal()
-  dlg.Destroy()
+ def edit_keystrokes(self, *args, **kwargs):
+  editor = keystrokeEditor.KeystrokeEditor()
+  if editor.changed == True:
+   register = False
+   # determines if we need to reassign the keymap.
+   if self.showing == False:
+    register = True
+   elif config.app["app-settings"]["use_invisible_keyboard_shorcuts"] == True:
+    register = True
+   # If there is a keyboard handler instance we need unregister all old keystrokes before register the new ones.
+   if hasattr(self, "keyboard_handler"):
+    keymap = {}
+    for i in editor.hold_map:
+     if hasattr(self, i): keymap[editor.hold_map[i]] = getattr(self, i)
+    self.unregister_invisible_keyboard_shorcuts(keymap)
+   self.invisible_shorcuts_changed(registered=register)
 
  def learn_sounds(self, *args, **kwargs):
   """ Opens the sounds tutorial for the current account."""
@@ -849,11 +860,11 @@ class Controller(object):
   if "followers" in buffer.session.settings["other_buffers"]["muted_buffers"]: return
   self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
+  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_friend(self, data, user):
   buffer = self.search_buffer("friends", user)
   buffer.add_new_item(data)
-  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_unfollowing(self, item, user):
   buffer = self.search_buffer("friends", user)
@@ -940,9 +951,17 @@ class Controller(object):
 
  def restart_streams(self, streams=[], session=None):
   for i in streams:
-   log.debug("Reconnecting the %s stream" % (i,))
+   log.debug("Restarting the %s stream" % (i,))
    session.remove_stream(i)
   session.check_connection()
+
+ def invisible_shorcuts_changed(self, registered):
+  if registered == True:
+   km = self.create_invisible_keyboard_shorcuts()
+   self.register_invisible_keyboard_shorcuts(km)
+  elif registered == False:
+   km = self.create_invisible_keyboard_shorcuts()
+   self.unregister_invisible_keyboard_shorcuts(km)
 
  def __del__(self):
   config.app.write()

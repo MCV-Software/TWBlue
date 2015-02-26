@@ -1,3 +1,1 @@
-import platform
-if platform.system() == "Windows":
- from wxUI import *
+from keystrokeEditor import KeystrokeEditor
