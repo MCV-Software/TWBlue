@@ -3,12 +3,12 @@ import json
 import re
 import urllib
 
-@matches_url('https://audioboom.com')
-def convert_audioboom(url):
- if "audioboom.com" not in url.lower():
-  raise TypeError('%r is not a valid URL' % url)
- audio_id = url.split('.com/')[-1]
- return 'https://audioboom.com/%s.mp3' % audio_id
+#@matches_url('https://audioboom.com')
+#def convert_audioboom(url):
+# if "audioboom.com" not in url.lower():
+#  raise TypeError('%r is not a valid URL' % url)
+# audio_id = url.split('.com/')[-1]
+# return 'https://audioboom.com/%s.mp3' % audio_id
 
 @matches_url ('http://soundcloud.com/')
 def convert_soundcloud (url):
