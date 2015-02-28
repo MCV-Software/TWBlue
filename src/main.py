@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+import sys
+import os
+#redirect the original stdout and stderr
+stdout=sys.stdout
+stderr=sys.stderr
+sys.stdout = open(os.path.join(os.getenv("temp"), "stdout.log"), "w")
+sys.stderr = open(os.path.join(os.getenv("temp"), "stderr.log"), "w")
 import languageHandler
 import wx
 import paths
@@ -14,6 +21,22 @@ import keys
 from mysc.thread_utils import call_threaded
 from update import updater
 import fixes
+#extra variables to control the temporal stdout and stderr, while the final files are opened. We understand that some errors could happen while all outputs are closed, so let's try to avoid it.
+stdout_temp=sys.stdout
+stderr_temp=sys.stderr
+#if it's a binary version
+if hasattr(sys, 'frozen'):
+ sys.stderr = open(paths.logs_path("stderr.log"), 'w')
+ sys.stdout = open(paths.logs_path("stdout.log"), 'w')
+else:
+ sys.stdout=stdout
+ sys.stderr=stderr
+#the final log files have been opened succesfully, let's close the temporal files
+stdout_temp.close()
+stderr_temp.close()
+#finally, remove the temporal files. TW Blue doesn't need them anymore, and we will get more free space on the harddrive
+os.remove(stdout_temp.name)
+os.remove(stderr_temp.name)
 log = logging.getLogger("main")
 
 def setup():
