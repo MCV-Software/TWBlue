@@ -898,52 +898,52 @@ class Controller(object):
  def manage_home_timelines(self, data, user):
   buffer = self.search_buffer("home_timeline", user)
   play_sound = "tweet_received.ogg"
-  if "home_timeline" in buffer.session.settings["other_buffers"]["muted_buffers"]: return
-  self.notify(buffer.session, play_sound=play_sound)
+  if "home_timeline" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
 
  def manage_mentions(self, data, user):
   buffer = self.search_buffer("mentions", user)
   play_sound = "mention_received.ogg"
   message = _(u"New mention")
-  if "mentions"  in buffer.session.settings["other_buffers"]["muted_buffers"]: return
-  self.notify(buffer.session, play_sound=play_sound, message=message)
+  if "mentions"  not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound, message=message)
   buffer.add_new_item(data)
 
  def manage_direct_messages(self, data, user):
   buffer = self.search_buffer("direct_messages", user)
   play_sound = "dm_received.ogg"
   message = _(u"New direct message")
-  if "direct_messages"  in buffer.session.settings["other_buffers"]["muted_buffers"]: return
-  self.notify(buffer.session, play_sound=play_sound, message=message)
+  if "direct_messages"  not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound, message=message)
   buffer.add_new_item(data)
 
  def manage_sent_dm(self, data, user):
   buffer = self.search_buffer("sent_direct_messages", user)
   play_sound = "dm_sent.ogg"
-  if "sent_direct_messages" in buffer.session.settings["other_buffers"]["muted_buffers"]: return
-  self.notify(buffer.session, play_sound=play_sound)
+  if "sent_direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
 
  def manage_sent_tweets(self, data, user):
   buffer = self.search_buffer("sent_tweets", user)
   play_sound = "tweet_send.ogg"
-  if "sent_tweets" in buffer.session.settings["other_buffers"]["muted_buffers"]: return
-  self.notify(buffer.session, play_sound=play_sound)
+  if "sent_tweets" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
 
  def manage_events(self, data, user):
   buffer = self.search_buffer("events", user)
   play_sound = "new_event.ogg"
-  if "events" in buffer.session.settings["other_buffers"]["muted_buffers"]: return
-  self.notify(buffer.session, play_sound=play_sound)
+  if "events" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
 
  def manage_followers(self, data, user):
   buffer = self.search_buffer("followers", user)
   play_sound = "update_followers.ogg"
-  if "followers" in buffer.session.settings["other_buffers"]["muted_buffers"]: return
-  self.notify(buffer.session, play_sound=play_sound)
+  if "followers" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
   pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
@@ -958,8 +958,8 @@ class Controller(object):
  def manage_favourite(self, data, user):
   buffer = self.search_buffer("favourites", user)
   play_sound = "favourite.ogg"
-  if "favourites" in buffer.session.settings["other_buffers"]["muted_buffers"]: return
-  self.notify(buffer.session, play_sound=play_sound)
+  if "favourites" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
 
  def manage_unfavourite(self, item, user):
@@ -977,12 +977,9 @@ class Controller(object):
  def manage_item_in_timeline(self, data, user, who):
   buffer = self.search_buffer("%s-timeline" % (who,), user)
   play_sound = "tweet_timeline.ogg"
-  if "%s-timeline" % (who,) in buffer.session.settings["other_buffers"]["muted_buffers"]: return
-  self.notify(buffer.session, play_sound=play_sound)
+  if "%s-timeline" % (who,) not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
-
- def editing_keystroke(self, action, parentDialog):
-  print "i've pressed"
 
  def start_buffers(self, session):
   log.debug("starting buffers... Session %s" % (session.session_id,))
