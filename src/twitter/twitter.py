@@ -14,7 +14,7 @@ class twitter(object):
 
  def authorise(self, settings):
   httpd = BaseHTTPServer.HTTPServer(('127.0.0.1', 8080), authorisationHandler.handler)
-  twitter = Twython(keyring.get("app_key"), keyring.get("app_secret"), auth_endpoint='authorize')
+  twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), auth_endpoint='authorize')
   auth = twitter.get_authentication_tokens("http://127.0.0.1:8080")
   webbrowser.open_new_tab(auth['auth_url'])
 #  global logged, verifier

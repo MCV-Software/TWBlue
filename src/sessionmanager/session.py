@@ -170,7 +170,10 @@ class Session(object):
     finished = True
    except TwythonError as e:
     output.speak(e.message)
-    if report_failure and hasattr(e, 'message'):
+    if e.error_code != 403 and e.error_code != 404:
+     tries = tries+1
+     time.sleep(5)
+    elif report_failure and hasattr(e, 'message'):
      output.speak(_("%s failed.  Reason: %s") % (action, e.message))
     finished = True
    except:

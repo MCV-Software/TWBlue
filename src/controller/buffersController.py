@@ -412,7 +412,7 @@ class baseBufferController(bufferController):
     self.buffer.list.remove_item(index)
 #    if index > 0:
    except TwythonError:
-    sound.player.play("error.ogg")
+    self.session.sound.play("error.ogg")
 
 class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):
