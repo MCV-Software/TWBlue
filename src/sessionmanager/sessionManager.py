@@ -50,7 +50,7 @@ class sessionManagerController(object):
    session.sessions[i] = s
 
  def manage_new_account(self):
-  location = (str(time.time())[:6])
+  location = (str(time.time())[-6:])
   log.debug("Creating session in the %s path" % (location,))
   s = session.Session(location)
   manager.manager.add_session(location)
