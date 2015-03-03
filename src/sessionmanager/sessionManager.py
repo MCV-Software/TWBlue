@@ -28,7 +28,7 @@ class sessionManagerController(object):
     strconfig = "%s/session.conf" % (paths.config_path(i))
     config_test = Configuration(strconfig)
     name = config_test["twitter"]["user_name"]
-    if name != "" and config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
+    if config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
      sessionsList.append(name)
      self.sessions.append(i)
 #   else:

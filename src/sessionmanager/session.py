@@ -218,6 +218,7 @@ class Session(object):
 
   f = self.twitter.twitter.get_account_settings()
   sn = f["screen_name"]
+  self.settings["twitter"]["user_name"] = sn
   self.db["user_name"] = sn
   self.db["user_id"] = self.twitter.twitter.show_user(screen_name=sn)["id_str"]
   try:
