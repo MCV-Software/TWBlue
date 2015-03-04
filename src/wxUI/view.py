@@ -12,6 +12,7 @@ class mainFrame(wx.Frame):
 
   # Application menu
   app = wx.Menu()
+  self.manage_accounts = app.Append(wx.NewId(), _(u"Manage accounts"))
   self.updateProfile = app.Append(wx.NewId(), _(u"&Update profile"))
   self.updateProfile.Enable(False)
   self.show_hide = app.Append(wx.NewId(), _(u"&Hide window"))

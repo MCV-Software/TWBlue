@@ -17,6 +17,8 @@ class sessionManagerController(object):
   super(sessionManagerController, self).__init__()
   log.debug("Setting up the session manager.")
   manager.setup()
+  self.view = view.sessionManagerWindow(self)
+  self.new_sessions = {}
 
  def fill_list(self):
   sessionsList = []
@@ -36,18 +38,19 @@ class sessionManagerController(object):
   if hasattr(self, "view"): self.view.fill_list(sessionsList)
 
  def show(self):
-  self.view = view.sessionManagerWindow(self)
   if self.view.ShowModal() == wx.ID_CANCEL:
    self.view.Destroy()
 
  def do_ok(self):
   log.debug("Starting sessions...")
   for i in self.sessions:
+   if session.sessions.has_key(i) == True: continue
    s = session.Session(i)
    s.get_configuration()
    if i not in config.app["sessions"]["ignored_sessions"]:
     s.login()
    session.sessions[i] = s
+   self.new_sessions[i] = s
 
  def manage_new_account(self):
   location = (str(time.time())[-6:])

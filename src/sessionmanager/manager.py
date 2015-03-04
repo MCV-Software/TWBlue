@@ -10,7 +10,8 @@ import session_exceptions
 manager = None
 def setup():
  global manager
- manager = sessionManager()
+ if not manager:
+  manager = sessionManager()
 
 class sessionManager(object):
 # def __init__(self):

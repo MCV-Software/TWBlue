@@ -2,7 +2,8 @@
 import application
 from wxUI import (view, dialogs, commonMessageDialogs)
 from twitter import utils
-from sessionmanager import manager
+from sessionmanager import manager, sessionManager
+
 from update import updater
 import buffersController
 import messages
@@ -146,7 +147,8 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.check_for_updates, self.view.check_for_updates)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.about, menuitem=self.view.about)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.visit_website, menuitem=self.view.visit_website)
-  
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.edit_keystrokes, menuitem=self.view.keystroke_editor)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_accounts, self.view.manage_accounts)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def __init__(self):
@@ -1051,6 +1053,17 @@ class Controller(object):
 
  def visit_website(self, *args, **kwargs):
   webbrowser.open(application.url)
+
+ def manage_accounts(self, *args, **kwargs):
+  sm = sessionManager.sessionManagerController()
+  sm.fill_list()
+  sm.show()
+  for i in sm.new_sessions:
+   call_threaded(self.add_account, i)
+
+ def add_account(self, i):
+  self.create_buffers(session_.sessions[i])
+  self.start_buffers(session_.sessions[i])
 
  def __del__(self):
   config.app.write()
