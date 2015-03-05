@@ -3,9 +3,8 @@ import wx
 from multiplatform_widgets import widgets
 
 class sessionManagerWindow(wx.Dialog):
- def __init__(self, controller):
+ def __init__(self):
   super(sessionManagerWindow, self).__init__(parent=None, title="Session manager", size=wx.DefaultSize)
-  self.controller = controller
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
   label = wx.StaticText(panel, -1, u"Select a twitter account to start TW Blue", size=wx.DefaultSize)
@@ -14,14 +13,13 @@ class sessionManagerWindow(wx.Dialog):
   listSizer.Add(label, 0, wx.ALL, 5)
   listSizer.Add(self.list.list, 0, wx.ALL, 5)
   sizer.Add(listSizer, 0, wx.ALL, 5)
-  new = wx.Button(panel, -1, u"New account", size=wx.DefaultSize)
-  new.Bind(wx.EVT_BUTTON, self.new_account)
+  self.new = wx.Button(panel, -1, u"New account", size=wx.DefaultSize)
+  self.remove = wx.Button(panel, -1, _(u"Remove account"))
   ok = wx.Button(panel, wx.ID_OK, size=wx.DefaultSize)
   ok.SetDefault()
-  ok.Bind(wx.EVT_BUTTON, self.ok)
   cancel = wx.Button(panel, wx.ID_CANCEL, size=wx.DefaultSize)
   buttons = wx.BoxSizer(wx.HORIZONTAL)
-  buttons.Add(new, 0, wx.ALL, 5)
+  buttons.Add(self.new, 0, wx.ALL, 5)
   buttons.Add(ok, 0, wx.ALL, 5)
   buttons.Add(cancel, 0, wx.ALL, 5)
   sizer.Add(buttons, 0, wx.ALL, 5)
@@ -43,12 +41,8 @@ class sessionManagerWindow(wx.Dialog):
   self.controller.do_ok()
   self.EndModal(wx.ID_OK)
 
- def new_account(self, ev):
-  dlg = wx.MessageDialog(self, _(u"The request for the required Twitter authorization to continue will be opened on your browser. You only need to do it once. Would you like to autorhise a new account now?"), _(u"Authorisation"), wx.YES_NO)
-  if dlg.ShowModal() == wx.ID_NO:
-   return
-  else:
-   self.controller.manage_new_account()
+ def new_account_dialog(self):
+  return wx.MessageDialog(self, _(u"The request for the required Twitter authorization to continue will be opened on your browser. You only need to do it once. Would you like to autorhise a new account now?"), _(u"Authorisation"), wx.YES_NO).ShowModal()
 
  def add_new_session_to_list(self):
   total = self.list.get_count()
@@ -56,5 +50,19 @@ class sessionManagerWindow(wx.Dialog):
   self.list.insert_item(False, name)
   if self.list.get_count() == 1:
    self.list.select_item(0)
+
  def show_unauthorised_error(self):
   wx.MessageDialog(None, _(u"Your access token is invalid or the authorisation has failed. Please try again."), _(u"Invalid user token"), wx.ICON_ERROR).ShowModal()
+
+ def get_response(self):
+  return self.ShowModal()
+
+ def remove_account_dialog(self):
+  return wx.MessageDialog(self, _(u"Do you really want delete this account?"), _(u"Remove account"), wx.YES_NO).ShowModal()
+
+ def get_selected(self):
+  return self.list.get_selected()
+
+ def remove_session(self, sessionID):
+  self.list.remove_item(sessionID)
+

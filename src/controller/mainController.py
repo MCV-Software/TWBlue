@@ -1059,11 +1059,14 @@ class Controller(object):
   sm.fill_list()
   sm.show()
   for i in sm.new_sessions:
-   call_threaded(self.add_account, i)
-
- def add_account(self, i):
-  self.create_buffers(session_.sessions[i])
-  self.start_buffers(session_.sessions[i])
+   self.create_buffers(session_.sessions[i])
+   call_threaded(self.start_buffers, session_.sessions[i])
+  for i in sm.removed_sessions:
+   if session_.sessions[i].logged == True:
+    self.logout_account(session_.sessions[i].session_id)
+   self.destroy_buffer(session_.sessions[i].settings["twitter"]["user_name"], session_.sessions[i].settings["twitter"]["user_name"])
+   self.accounts.remove(session_.sessions[i].settings["twitter"]["user_name"])
+   session_.sessions.pop(i)
 
  def __del__(self):
   config.app.write()

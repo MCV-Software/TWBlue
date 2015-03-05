@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import wx
+import shutil
+import widgetUtils
 import wxUI as view
 import paths
 import time
@@ -17,8 +18,11 @@ class sessionManagerController(object):
   super(sessionManagerController, self).__init__()
   log.debug("Setting up the session manager.")
   manager.setup()
-  self.view = view.sessionManagerWindow(self)
+  self.view = view.sessionManagerWindow()
+  widgetUtils.connect_event(self.view.new, widgetUtils.BUTTON_PRESSED, self.manage_new_account)
+  widgetUtils.connect_event(self.view.remove, widgetUtils.BUTTON_PRESSED, self.remove)
   self.new_sessions = {}
+  self.removed_sessions = []
 
  def fill_list(self):
   sessionsList = []
@@ -35,11 +39,11 @@ class sessionManagerController(object):
      self.sessions.append(i)
 #   else:
 #    log.debug("Ignoring session %s" % (i,))
-  if hasattr(self, "view"): self.view.fill_list(sessionsList)
+  self.view.fill_list(sessionsList)
 
  def show(self):
-  if self.view.ShowModal() == wx.ID_CANCEL:
-   self.view.Destroy()
+  if self.view.get_response() == widgetUtils.OK:
+   self.do_ok()
 
  def do_ok(self):
   log.debug("Starting sessions...")
@@ -52,17 +56,26 @@ class sessionManagerController(object):
    session.sessions[i] = s
    self.new_sessions[i] = s
 
- def manage_new_account(self):
-  location = (str(time.time())[-6:])
-  log.debug("Creating session in the %s path" % (location,))
-  s = session.Session(location)
-  manager.manager.add_session(location)
-  s.get_configuration()
-  try:
-   s.authorise()
-   self.sessions.append(location)
-   self.view.add_new_session_to_list()
-  except:
-   log.exception("Error authorising the session")
-   self.view.show_unauthorised_error()
-   return
+ def manage_new_account(self, *args, **kwargs):
+  if self.view.new_account_dialog() == widgetUtils.YES:
+   location = (str(time.time())[-6:])
+   log.debug("Creating session in the %s path" % (location,))
+   s = session.Session(location)
+   manager.manager.add_session(location)
+   s.get_configuration()
+   try:
+    s.authorise()
+    self.sessions.append(location)
+    self.view.add_new_session_to_list()
+   except:
+    log.exception("Error authorising the session")
+    self.view.show_unauthorised_error()
+    return
+
+ def remove(self, *args, **kwargs):
+  if self.view.remove_account_dialog() == widgetUtils.YES:
+   selected_account = self.sessions[self.view.get_selected()]
+   self.view.remove_session(self.view.get_selected())
+   self.removed_sessions.append(selected_account)
+   self.sessions.remove(selected_account)
+   shutil.rmtree(path=paths.config_path(selected_account), ignore_errors=True)
