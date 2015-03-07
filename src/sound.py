@@ -2,7 +2,6 @@
 import sys
 import url_shortener
 import audio_services
-import config
 import os
 import logging as original_logger 
 log = original_logger.getLogger("sound")
@@ -107,7 +106,7 @@ class URLStream(object):
    self.url = transformer(self.url)
    self.prepared = True
 
- def play(self, url):
+ def play(self, url, volume=1.0):
   if hasattr(self, "stream") and self.stream.is_playing:
    output.speak(_(u"Stopped"))
    self.stream.stop()
@@ -117,7 +116,7 @@ class URLStream(object):
    self.prepare(url)
    if self.prepared == True:
     self.stream = sound_lib.stream.URLStream(url=self.url)
-    self.stream.volume = float(config.app["app-settings"]["volume"])
+    self.stream.volume = float(volume)
     self.stream.play()
 
  @staticmethod

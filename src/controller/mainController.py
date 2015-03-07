@@ -28,6 +28,7 @@ if platform.system() == "Windows":
  from keyboard_handler.wx_handler import WXKeyboardHandler
 import userActionsController
 import trendingTopics
+import updateProfile
 import webbrowser
 
 log = logging.getLogger("mainController")
@@ -149,6 +150,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.visit_website, menuitem=self.view.visit_website)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.edit_keystrokes, menuitem=self.view.keystroke_editor)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_accounts, self.view.manage_accounts)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_profile, menuitem=self.view.updateProfile)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def __init__(self):
@@ -1067,6 +1069,9 @@ class Controller(object):
    self.destroy_buffer(session_.sessions[i].settings["twitter"]["user_name"], session_.sessions[i].settings["twitter"]["user_name"])
    self.accounts.remove(session_.sessions[i].settings["twitter"]["user_name"])
    session_.sessions.pop(i)
+
+ def update_profile(self, *args, **kwargs):
+  r = updateProfile.updateProfileController(self.get_best_buffer().session)
 
  def __del__(self):
   config.app.write()

@@ -14,7 +14,6 @@ class mainFrame(wx.Frame):
   app = wx.Menu()
   self.manage_accounts = app.Append(wx.NewId(), _(u"Manage accounts"))
   self.updateProfile = app.Append(wx.NewId(), _(u"&Update profile"))
-  self.updateProfile.Enable(False)
   self.show_hide = app.Append(wx.NewId(), _(u"&Hide window"))
   self.menuitem_search = app.Append(wx.NewId(), _(u"&Search"))
   self.trends = app.Append(wx.NewId(), _(u"View &trending topics"))

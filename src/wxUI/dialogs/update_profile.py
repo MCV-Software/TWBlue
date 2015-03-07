@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import wx
+import baseDialog
 
-class updateProfile(wx.Dialog):
- def __init__(self, parent):
-  super(updateProfile, self).__init__(parent=None, id=-1)
+class updateProfileDialog(baseDialog.BaseWXDialog):
+ def __init__(self):
+  super(updateProfileDialog, self).__init__(parent=None, id=-1)
   self.SetTitle(_(u"Update your profile"))
   panel = wx.Panel(self)
   labelName = wx.StaticText(panel, -1, _(u"Name (20 characters maximum)"))
@@ -29,10 +30,8 @@ class updateProfile(wx.Dialog):
   self.description.SetSize(dc.GetTextExtent("0"*160))
   self.image = None
   self.upload_image = wx.Button(panel, -1, _(u"Upload a picture"))
-  self.upload_image.Bind(wx.EVT_BUTTON, self.onUpload_picture)
-  ok = wx.Button(panel, wx.ID_OK, _(u"Update profile"))
-  ok.Bind(wx.EVT_BUTTON, self.onUpdateProfile)
-  ok.SetDefault()
+  self.ok = wx.Button(panel, wx.ID_OK, _(u"Update profile"))
+  self.ok.SetDefault()
   close = wx.Button(panel, wx.ID_CANCEL, _("Close"))
   sizer = wx.BoxSizer(wx.VERTICAL)
   nameBox = wx.BoxSizer(wx.HORIZONTAL)
@@ -53,23 +52,47 @@ class updateProfile(wx.Dialog):
   sizer.Add(descriptionBox, 0, wx.ALL, 5)
   sizer.Add(self.upload_image, 5, wx.CENTER, 5)
   btnBox = wx.BoxSizer(wx.HORIZONTAL)
-  btnBox.Add(ok, 0, wx.ALL, 5)
+  btnBox.Add(self.ok, 0, wx.ALL, 5)
   btnBox.Add(close, 0, wx.ALL, 5)
   sizer.Add(btnBox, 0, wx.ALL, 5)
   panel.SetSizer(sizer)
   self.SetClientSize(sizer.CalcMin())
 
- def onUpload_picture(self, ev):
-  if self.upload_image.GetLabel() == _(u"Discard image"):
-   self.upload_image.SetLabel(_(u"Upload a picture"))
-   self.controller.clear_file()
-  else:
-   openFileDialog = wx.FileDialog(self, _(u"Select the picture to be uploaded"), "", "", _("Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
-   if openFileDialog.ShowModal() == wx.ID_CANCEL:
-    return
-   self.controller.get_file(openFileDialog.GetPath())
-   self.upload_image.SetLabel(_(u"Discard image"))
-  ev.Skip()
+ def set_name(self, name):
+  self.set("name", name)
 
- def get_response(self):
-  return self.ShowModal()
+ def set_description(self, description):
+  self.set("description", description)
+
+ def set_location(self, location):
+  self.set("location", location)
+
+ def set_url(self, url):
+  self.set("url", url)
+
+ def change_upload_button(self, uploaded=False):
+  if uploaded == False:
+   self.upload_image.SetLabel(_(u"Upload a picture"))
+  else:
+   self.upload_image.SetLabel(_(u"Discard image"))
+
+ def upload_picture(self):
+  openFileDialog = wx.FileDialog(self, _(u"Select the picture to be uploaded"), "", "", _("Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+  if openFileDialog.ShowModal() == wx.ID_CANCEL:
+   return None
+  return openFileDialog.GetPath()
+
+ def hide_upload_button(self, hide):
+  self.upload_image.Enable(hide)
+
+ def set_readonly(self):
+  self.name.style = wx.TE_READONLY
+  self.name.Refresh()
+  self.description.style = wx.TE_READONLY
+  self.description.Refresh()
+  self.location.style = wx.TE_READONLY
+  self.location.Refresh()
+  self.url.style = wx.TE_READONLY
+  self.url.Refresh()
+  self.hide_upload_button(False)
+  self.ok.Enable(False)

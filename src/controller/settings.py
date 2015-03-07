@@ -79,7 +79,7 @@ class accountSettingsController(globalSettingsController):
   self.soundpacks = []
   [self.soundpacks.append(i) for i in os.listdir(paths.sound_path()) if os.path.isdir(paths.sound_path(i)) == True ]
   self.dialog.create_sound(self.input_devices, self.output_devices, self.soundpacks)
-  self.dialog.set_value("sound", "volumeCtrl", self.config["sound"]["volume"])
+  self.dialog.set_value("sound", "volumeCtrl", self.config["sound"]["volume"]*100)
   self.dialog.set_value("sound", "input", self.config["sound"]["input_device"])
   self.dialog.set_value("sound", "output", self.config["sound"]["output_device"])
   self.dialog.set_value("sound", "global_mute", self.config["sound"]["global_mute"])
@@ -136,7 +136,9 @@ class accountSettingsController(globalSettingsController):
     self.config["sound"]["output_device"] = "default"
   self.config["sound"]["volume"] = self.dialog.get_value("sound", "volumeCtrl")/100.0
   self.config["sound"]["global_mute"] = self.dialog.get_value("sound", "global_mute")
+  print self.dialog.sound.get("soundpack")
   self.config["sound"]["soundpack"] = self.dialog.sound.get("soundpack")
+  self.buffer.session.sound.config = self.config["sound"]
   self.buffer.session.sound.check_soundpack()
   self.config["sound"]["sndup_api_key"] = self.dialog.get_value("services", "apiKey")
 

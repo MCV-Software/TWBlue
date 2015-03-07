@@ -7,6 +7,7 @@ import output
 import config
 import sound
 import messages
+import updateProfile
 import languageHandler
 import logging
 from twitter import compose, utils
@@ -370,12 +371,12 @@ class baseBufferController(bufferController):
   if tweet == None: return
   urls = utils.find_urls(tweet)
   if len(urls) == 1:
-   sound.URLPlayer.play(urls[0])
+   sound.URLPlayer.play(urls[0], self.session.settings["sound"]["volume"])
   else:
    urls_list = dialogs.urlList.urlList()
    urls_list.populate_list(urls)
    if urls_list.get_response() == widgetUtils.OK:
-    sound.URLPlayer.play(urls_list.get_string())
+    sound.URLPlayer.play(urls_list.get_string(), self.session.settings["sound"]["volume"])
 
  @_tweets_exist
  def url(self):
@@ -542,6 +543,9 @@ class peopleBufferController(baseBufferController):
    self.session.db[self.name]["items"] = []
    self.session.db[self.name]["cursor"] = -1
    self.buffer.list.clear()
+
+ def url(self):
+  updateProfile.updateProfileController(self.session, user=self.get_right_tweet()["screen_name"])
 
 class searchBufferController(baseBufferController):
  def start_stream(self):

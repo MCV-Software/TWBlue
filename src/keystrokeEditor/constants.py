@@ -16,7 +16,7 @@ actions = {
 "send_dm": _(u"Send direct message"),
 "add_to_favourites": _(u"Mark as favourite"),
 "remove_from_favourites": _(u"Remove from favourites"),
-"action": _(u"Open the actions dialogue"),
+"follow": _(u"Open the actions dialogue"),
 "details": _(u"See user details"),
 "view_item": _(u"Show tweet"),
 "exit": _(u"Quit"),
