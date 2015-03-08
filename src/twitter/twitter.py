@@ -9,9 +9,10 @@ import authorisationHandler
 
 class twitter(object):
 
- def login(self, user_key, user_secret):
+ def login(self, user_key, user_secret, verify_credentials):
   self.twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), user_key, user_secret)
-  self.credentials = self.twitter.verify_credentials()
+  if verify_credentials == True:
+   self.credentials = self.twitter.verify_credentials()
 
  def authorise(self, settings):
   authorisationHandler.logged = False

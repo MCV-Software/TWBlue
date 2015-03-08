@@ -117,14 +117,14 @@ class Session(object):
   self.sound = sound.soundSystem(self.settings["sound"])
 
  @_require_configuration
- def login(self):
+ def login(self, verify_credentials=True):
 
   """ Login in to twitter using  credentials from settings.
   if the user account isn't authorised, it needs to call self.authorise() before login."""
 
   if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
    log.debug("Logging in to twitter...")
-   self.twitter.login(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
+   self.twitter.login(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], verify_credentials)
    self.logged = True
    log.debug("Logged.")
   else:
@@ -325,7 +325,7 @@ class Session(object):
    del self.twitter
    self.logged = False
    self.twitter = twitter.twitter.twitter()
-   self.login()
+   self.login(False)
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
   if not hasattr(self, "main_stream"):
