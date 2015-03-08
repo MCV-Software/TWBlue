@@ -17,7 +17,7 @@ actions = {
 "add_to_favourites": _(u"Mark as favourite"),
 "remove_from_favourites": _(u"Remove from favourites"),
 "follow": _(u"Open the actions dialogue"),
-"details": _(u"See user details"),
+"user_details": _(u"See user details"),
 "view_item": _(u"Show tweet"),
 "exit": _(u"Quit"),
 "open_timeline": _(u"Open user timeline"),

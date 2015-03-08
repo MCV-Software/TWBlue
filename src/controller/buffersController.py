@@ -7,7 +7,7 @@ import output
 import config
 import sound
 import messages
-import updateProfile
+import user
 import languageHandler
 import logging
 from twitter import compose, utils
@@ -415,6 +415,19 @@ class baseBufferController(bufferController):
    except TwythonError:
     self.session.sound.play("error.ogg")
 
+ @_tweets_exist
+ def user_details(self):
+  tweet = self.get_tweet()
+  if self.type == "dm":
+   users = utils.get_all_users(tweet, self.session.db)
+  elif self.type == "people":
+   users = [tweet["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, self.session.db)
+  dlg = dialogs.utils.selectUserDialog(title=_(u"User details"), users=users)
+  if dlg.get_response() == widgetUtils.OK:
+   user.profileController(session=self.session, user=dlg.get_user())
+
 class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):
   super(eventsBufferController, self).__init__(parent, *args, **kwargs)
@@ -545,7 +558,7 @@ class peopleBufferController(baseBufferController):
    self.buffer.list.clear()
 
  def url(self):
-  updateProfile.updateProfileController(self.session, user=self.get_right_tweet()["screen_name"])
+  user.profileController(self.session, user=self.get_right_tweet()["screen_name"])
 
 class searchBufferController(baseBufferController):
  def start_stream(self):

@@ -23,3 +23,6 @@ class BaseWXDialog(wx.Dialog):
    elif hasattr(control, "ChangeValue"): return getattr(control, "ChangeValue")(text)
    else: return -1
   else: return 0
+
+ def set_title(self, title):
+  self.SetTitle(title)
