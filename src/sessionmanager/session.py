@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
+import gc
 import urllib2
 import twitter
 from keys import keyring
@@ -93,6 +94,7 @@ class Session(object):
   self.twitter = twitter.twitter.twitter()
   self.db = {}
   self.reconnection_function_active = False
+  self.counter = 0
 
  @property
  def is_logged(self):
@@ -303,7 +305,8 @@ class Session(object):
   for i in self.settings["other_buffers"]["timelines"]:
    ids = ids + "%s, " % (self.db[i+"-timeline"][0]["user"]["id_str"])
   #   if ids != "":
-  stream_threaded(self.timelinesStream.statuses.filter, self.session_id, follow=ids)
+  if ids != "":
+   stream_threaded(self.timelinesStream.statuses.filter, self.session_id, follow=ids)
 
  def listen_stream_error(self):
   if hasattr(self, "main_stream"):
@@ -316,6 +319,13 @@ class Session(object):
    del self.timelinesStream
 
  def check_connection(self):
+  instan = 0
+  self.counter += 1
+  if self.counter >= 4:
+   del self.twitter
+   self.logged = False
+   self.twitter = twitter.twitter.twitter()
+   self.login()
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
   if not hasattr(self, "main_stream"):

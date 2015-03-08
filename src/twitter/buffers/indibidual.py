@@ -3,7 +3,7 @@ from twitter import compose, utils
 from twython import TwythonStreamer
 from pubsub import pub
 import logging as original_logger
-log = original_logger.getLogger("MainStream")
+log = original_logger.getLogger("TimelinesStream")
 
 class timelinesStreamer(TwythonStreamer):
  def __init__(self, app_key, app_secret, oauth_token, oauth_token_secret, timeout=300, retry_count=None, retry_in=10, client_args=None, handlers=None, chunk_size=1, session=None):

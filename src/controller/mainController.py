@@ -707,7 +707,9 @@ class Controller(object):
 
  def fix_wrong_buffer(self):
   buffer = self.get_current_buffer()
-  if buffer.session == None:
+  if isinstance(buffer, buffersController.accountPanel) and hasattr(buffer, "logged") and buffer.logged == False:
+   self.next_account()
+  elif buffer.session == None:
    self.right()
 
  def up(self, *args, **kwargs):
@@ -792,7 +794,7 @@ class Controller(object):
   self.current_account = account
   buff = self.view.search("home_timeline", account)
   if buff == None:
-   output.speak(_(u"This account is not logged in twitter."))
+   output.speak(_(u"{0}: This account is not logged in twitter.").format(account))
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
@@ -812,7 +814,7 @@ class Controller(object):
   self.current_account = account
   buff = self.view.search("home_timeline", account)
   if buff == None:
-   output.speak(_(u"This account is not logged in twitter."))
+   output.speak(_(u"{0}: This account is not logged in twitter.").format(account))
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()

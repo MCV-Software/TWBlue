@@ -20,7 +20,7 @@ TW Blue is an app designed to use Twitter in a simple and fast way and avoiding,
 * Play various file and URL types which contain audio
 * and more!
 
-See the [TWBlue's webpage](http://twblue.com.mx) for more details.
+See the [TWBlue's webpage](http://twblue.es) for more details.
 
 ## Using TWBlue from sources
 
