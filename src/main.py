@@ -63,6 +63,7 @@ def setup():
  r = mainController.Controller()
  r.view.Show()
  r.do_work()
+ r.check_invisible_at_startup()
  call_threaded(r.start)
  app.MainLoop()
 

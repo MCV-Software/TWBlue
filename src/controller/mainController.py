@@ -171,6 +171,8 @@ class Controller(object):
   self.view.prepare()
   self.bind_stream_events()
   self.bind_other_events()
+
+ def check_invisible_at_startup(self):
   # Visibility check
   if config.app["app-settings"]["hide_gui"] == True:
    self.show_hide()
