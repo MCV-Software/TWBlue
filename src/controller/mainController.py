@@ -442,7 +442,7 @@ class Controller(object):
   log.debug("Saving global configuration...")
   config.app.write()
   for item in session_.sessions:
-   if session_.sessions[item]: continue
+   if session_.sessions[item].logged == False: continue
    log.debug("Saving config for %s session" % (session_.sessions[item].session_id,))
    session_.sessions[item].settings.write()
    log.debug("Disconnecting streams for %s session" % (session_.sessions[item].session_id,))
