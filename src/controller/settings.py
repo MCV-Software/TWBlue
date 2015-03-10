@@ -115,10 +115,10 @@ class accountSettingsController(globalSettingsController):
    pub.sendMessage("create-new-buffer", buffer="favourites", account=self.user, create=self.config["other_buffers"]["show_favourites"])
   if self.config["other_buffers"]["show_blocks"] != self.dialog.get_value("buffers", "blocks"):
    self.config["other_buffers"]["show_blocks"] = self.dialog.get_value("buffers", "blocks")
-   pub.sendMessage("create-new-buffer", buffer="blocks", account=self.user, create=self.config["other_buffers"]["show_blocks"])
+   pub.sendMessage("create-new-buffer", buffer="blocked", account=self.user, create=self.config["other_buffers"]["show_blocks"])
   if self.config["other_buffers"]["show_muted_users"] != self.dialog.get_value("buffers", "mutes"):
    self.config["other_buffers"]["show_muted_users"] = self.dialog.get_value("buffers", "mutes")
-   pub.sendMessage("create-new-buffer", buffer="mutes", account=self.user, create=self.config["other_buffers"]["show_muted_users"])
+   pub.sendMessage("create-new-buffer", buffer="muted", account=self.user, create=self.config["other_buffers"]["show_muted_users"])
   if self.config["other_buffers"]["show_events"] != self.dialog.get_value("buffers", "events"):
    self.config["other_buffers"]["show_events"] = self.dialog.get_value("buffers", "events")
    pub.sendMessage("create-new-buffer", buffer="events", account=self.user, create=self.config["other_buffers"]["show_events"])

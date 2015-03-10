@@ -1026,12 +1026,12 @@ class Controller(object):
     self.buffers.append(friends)
     self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     friends.start_stream()
-   elif buffer == "blocks":
+   elif buffer == "blocked":
     blocks = buffersController.peopleBufferController(self.view.nb, "list_blocks", "blocked", buff.session, buff.session.db["user_name"])
     self.buffers.append(blocks)
     self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     blocks.start_stream()
-   elif buffer == "mutes":
+   elif buffer == "muted":
     muted = buffersController.peopleBufferController(self.view.nb, "get_muted_users_list", "muted", buff.session, buff.session.db["user_name"])
     self.buffers.append(muted)
     self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
@@ -1040,6 +1040,8 @@ class Controller(object):
     events = buffersController.eventsBufferController(self.view.nb, "events", buff.session, buff.session.db["user_name"], bufferType="dmPanel", screen_name=buff.session.db["user_name"])
     self.buffers.append(events)
     self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+  elif create == False:
+   self.destroy_buffer(buffer, buff.session.db["user_name"])
 
  def restart_streams(self, streams=[], session=None):
   for i in streams:
