@@ -87,7 +87,7 @@ class soundSystem(object):
 
  def play(self, sound, argument=False):
   if self.soundpack_OK == False: return
-  if self.config["global_mute"] == True: return
+  if self.config["session_mute"] == True: return
   sound_object = sound_lib.stream.FileStream(file="%s/%s" % (self.path, sound))
   sound_object.volume = float(self.config["volume"])
   self.files.append(sound_object)

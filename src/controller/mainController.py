@@ -899,7 +899,7 @@ class Controller(object):
    pass
 
  def notify(self, session, play_sound=None, message=None, notification=False):
-  if session.settings["sound"]["global_mute"] == True: return
+  if session.settings["sound"]["session_mute"] == True: return
   if play_sound != None:
    session.sound.play(play_sound)
   if message != None:
@@ -1096,6 +1096,25 @@ class Controller(object):
   elif buffer.name in buffer.session.settings["other_buffers"]["autoread_buffers"]:
    buffer.session.settings["other_buffers"]["autoread_buffers"].remove(buffer.name)
    output.speak(_(u"The auto-reading of new tweets is disabled for this buffer"))
+
+ def toggle_session_mute(self, *args, **kwargs):
+  buffer = self.get_best_buffer()
+  if buffer.session.settings["sound"]["session_mute"] == False:
+   buffer.session.settings["sound"]["session_mute"] = True
+   output.speak(_(u"Session mute on"))
+  elif buffer.session.settings["sound"]["session_mute"] == True:
+   buffer.session.settings["sound"]["session_mute"] = False
+   output.speak(_(u"Global mute off"))
+
+ def toggle_buffer_mute(self, *args, **kwargs):
+  buffer = self.get_current_buffer()
+  if hasattr(buffer, "session") and buffer.session == None: return
+  if buffer.name not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   buffer.session.settings["other_buffers"]["muted_buffers"].append(buffer.name)
+   output.speak(_(u"Buffer mute on"))
+  elif buffer.name in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   buffer.session.settings["other_buffers"]["muted_buffers"].remove(buffer.name)
+   output.speak(_(u"Buffer mute off"))
 
  def __del__(self):
   config.app.write()

@@ -82,7 +82,7 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("sound", "volumeCtrl", self.config["sound"]["volume"]*100)
   self.dialog.set_value("sound", "input", self.config["sound"]["input_device"])
   self.dialog.set_value("sound", "output", self.config["sound"]["output_device"])
-  self.dialog.set_value("sound", "global_mute", self.config["sound"]["global_mute"])
+  self.dialog.set_value("sound", "session_mute", self.config["sound"]["session_mute"])
   self.dialog.set_value("sound", "soundpack", self.config["sound"]["current_soundpack"])
   self.dialog.create_audio_services()
   if self.config["services"]["dropbox_token"] == "":
@@ -135,7 +135,7 @@ class accountSettingsController(globalSettingsController):
    except:
     self.config["sound"]["output_device"] = "default"
   self.config["sound"]["volume"] = self.dialog.get_value("sound", "volumeCtrl")/100.0
-  self.config["sound"]["global_mute"] = self.dialog.get_value("sound", "global_mute")
+  self.config["sound"]["session_mute"] = self.dialog.get_value("sound", "session_mute")
   self.config["sound"]["current_soundpack"] = self.dialog.sound.get("soundpack")
   self.buffer.session.sound.config = self.config["sound"]
   self.buffer.session.sound.check_soundpack()

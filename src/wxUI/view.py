@@ -62,11 +62,9 @@ class mainFrame(wx.Frame):
   buffer = wx.Menu()
   self.load_previous_items = buffer.Append(wx.NewId(), _(u"&Load previous items"))
   self.mute = buffer.Append(wx.NewId(), _(u"&Mute"))
-  self.mute.Enable(False)
   self.autoread = buffer.Append(wx.NewId(), _(u"&Autoread tweets for this buffer"))
   self.clear = buffer.Append(wx.NewId(), _(u"&Clear buffer"))
   self.deleteTl = buffer.Append(wx.NewId(), _(u"&Remove buffer"))
-#  self.deleteTl.Enable(False)
 
  # Help Menu
   help = wx.Menu()

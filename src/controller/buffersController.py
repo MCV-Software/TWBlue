@@ -285,7 +285,7 @@ class baseBufferController(bufferController):
    self.buffer.list.insert_item(False, *tweet)
   else:
    self.buffer.list.insert_item(True, *tweet)
-  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.session.settings["sound"]["global_mute"] == False:
+  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(" ".join(tweet[:2]))
 
  def bind_events(self):
@@ -454,7 +454,7 @@ class eventsBufferController(bufferController):
    self.buffer.list.insert_item(False, *tweet)
   else:
    self.buffer.list.insert_item(True, *tweet)
-  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.session.settings["sound"]["global_mute"] == False:
+  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(" ".join(tweet))
 
  def clear_list(self):
@@ -547,7 +547,7 @@ class peopleBufferController(baseBufferController):
    self.buffer.list.insert_item(False, *tweet)
   else:
    self.buffer.list.insert_item(True, *tweet)
-  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.session.settings["sound"]["global_mute"] == False:
+  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(" ".join(tweet))
 
  def clear_list(self):

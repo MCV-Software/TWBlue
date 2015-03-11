@@ -16,7 +16,7 @@ announce_stream_status = boolean(default=True)
 volume = float(default=1.0)
 input_device = string(default="Default")
 output_device = string(default="Default")
-global_mute = boolean(default=False)
+session_mute = boolean(default=False)
 current_soundpack = string(default="default")
 sndup_api_key = string(default="")
 
