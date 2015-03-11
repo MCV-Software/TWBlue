@@ -97,13 +97,21 @@ class URLStream(object):
  def __init__(self):
   self.url = None
   self.prepared = False
+  log.debug("URL Player initialized")
 
  def prepare(self, url):
+  log.debug("Preparing URL: %s" % (url,))
   self.prepared = False
   self.url = url_shortener.unshorten(url)
+  log.debug("Expanded URL: %s" % (self.url,))
   if self.url != None:
    transformer = audio_services.find_url_transformer(self.url)
    self.url = transformer(self.url)
+   log.debug("Transformed URL: %s. Prepared" % (self.url,))
+   self.prepared = True
+  else:
+   self.url = url
+   log.debug("Transformed URL: %s. Prepared" % (self.url,))
    self.prepared = True
 
  def play(self, url, volume=1.0):
@@ -111,13 +119,16 @@ class URLStream(object):
    output.speak(_(u"Stopped"))
    self.stream.stop()
    del self.stream
+   log.debug("Stream stopped")
   else:
    output.speak(_(u"Playing..."))
+   log.debug("Attempting to play an URL...")
    self.prepare(url)
    if self.prepared == True:
     self.stream = sound_lib.stream.URLStream(url=self.url)
     self.stream.volume = float(volume)
     self.stream.play()
+    log.debug("played")
 
  @staticmethod
  def delete_old_tempfiles():
