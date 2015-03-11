@@ -136,8 +136,7 @@ class accountSettingsController(globalSettingsController):
     self.config["sound"]["output_device"] = "default"
   self.config["sound"]["volume"] = self.dialog.get_value("sound", "volumeCtrl")/100.0
   self.config["sound"]["global_mute"] = self.dialog.get_value("sound", "global_mute")
-  print self.dialog.sound.get("soundpack")
-  self.config["sound"]["soundpack"] = self.dialog.sound.get("soundpack")
+  self.config["sound"]["current_soundpack"] = self.dialog.sound.get("soundpack")
   self.buffer.session.sound.config = self.config["sound"]
   self.buffer.session.sound.check_soundpack()
   self.config["sound"]["sndup_api_key"] = self.dialog.get_value("services", "apiKey")
