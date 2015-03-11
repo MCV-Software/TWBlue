@@ -324,7 +324,7 @@ class baseBufferController(bufferController):
 
  @_tweets_exist
  def direct_message(self, *args, **kwargs):
-  tweet = self.get_tweet()
+  tweet = self.get_right_tweet()
   if self.type == "dm":
    screen_name = tweet["sender"]["screen_name"]
    users = utils.get_all_users(tweet, self.session.db)
@@ -372,7 +372,7 @@ class baseBufferController(bufferController):
   urls = utils.find_urls(tweet)
   if len(urls) == 1:
    sound.URLPlayer.play(urls[0], self.session.settings["sound"]["volume"])
-  else:
+  elif len(urls) > 1:
    urls_list = dialogs.urlList.urlList()
    urls_list.populate_list(urls)
    if urls_list.get_response() == widgetUtils.OK:

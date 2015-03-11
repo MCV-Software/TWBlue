@@ -152,6 +152,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_accounts, self.view.manage_accounts)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_profile, menuitem=self.view.updateProfile)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.user_details, menuitem=self.view.details)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_autoread, menuitem=self.view.autoread)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def __init__(self):
@@ -1085,6 +1086,16 @@ class Controller(object):
   if not hasattr(buffer, "session") or buffer.session == None: return
   if hasattr(buffer, "user_details"):
    buffer.user_details()
+
+ def toggle_autoread(self, *args, **kwargs):
+  buffer = self.get_current_buffer()
+  if hasattr(buffer, "session") and buffer.session == None: return
+  if buffer.name not in buffer.session.settings["other_buffers"]["autoread_buffers"]:
+   buffer.session.settings["other_buffers"]["autoread_buffers"].append(buffer.name)
+   output.speak(_(u"The auto-reading of new tweets is enabled for this buffer"))
+  elif buffer.name in buffer.session.settings["other_buffers"]["autoread_buffers"]:
+   buffer.session.settings["other_buffers"]["autoread_buffers"].remove(buffer.name)
+   output.speak(_(u"The auto-reading of new tweets is disabled for this buffer"))
 
  def __del__(self):
   config.app.write()

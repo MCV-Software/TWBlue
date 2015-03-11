@@ -64,7 +64,6 @@ class mainFrame(wx.Frame):
   self.mute = buffer.Append(wx.NewId(), _(u"&Mute"))
   self.mute.Enable(False)
   self.autoread = buffer.Append(wx.NewId(), _(u"&Autoread tweets for this buffer"))
-  self.autoread.Enable(False)
   self.clear = buffer.Append(wx.NewId(), _(u"&Clear buffer"))
   self.deleteTl = buffer.Append(wx.NewId(), _(u"&Remove buffer"))
 #  self.deleteTl.Enable(False)
