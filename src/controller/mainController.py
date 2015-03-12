@@ -153,6 +153,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_profile, menuitem=self.view.updateProfile)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.user_details, menuitem=self.view.details)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_autoread, menuitem=self.view.autoread)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_buffer_mute, self.view.mute_buffer)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def set_systray_icon(self):
@@ -720,8 +721,17 @@ class Controller(object):
    self.view.advance_selection(forward)
 
  def buffer_changed(self, *args, **kwargs):
-  if self.get_current_buffer().account != self.current_account:
-   self.current_account = self.get_current_buffer().account
+  buffer = self.get_current_buffer()
+  if buffer.account != self.current_account:
+   self.current_account = buffer.account
+  if not hasattr(buffer, "session") or buffer.session == None: return
+  muted = autoread = False
+  if buffer.name in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   muted = True
+  elif buffer.name in buffer.session.settings["other_buffers"]["autoread_buffers"]:
+   autoread = True
+  self.view.check_menuitem("mute_buffer", muted)
+  self.view.check_menuitem("autoread", autoread)
 
  def fix_wrong_buffer(self):
   buffer = self.get_current_buffer()

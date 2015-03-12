@@ -61,8 +61,9 @@ class mainFrame(wx.Frame):
   # buffer menu
   buffer = wx.Menu()
   self.load_previous_items = buffer.Append(wx.NewId(), _(u"&Load previous items"))
-  self.mute = buffer.Append(wx.NewId(), _(u"&Mute"))
-  self.autoread = buffer.Append(wx.NewId(), _(u"&Autoread tweets for this buffer"))
+  buffer.AppendSeparator()
+  self.mute_buffer = buffer.AppendCheckItem(wx.NewId(), _(u"&Mute"))
+  self.autoread = buffer.AppendCheckItem(wx.NewId(), _(u"&Autoread tweets for this buffer"))
   self.clear = buffer.Append(wx.NewId(), _(u"&Clear buffer"))
   self.deleteTl = buffer.Append(wx.NewId(), _(u"&Remove buffer"))
 
@@ -180,6 +181,10 @@ class mainFrame(wx.Frame):
   wx.AboutBox(info)
  def set_focus(self):
   self.SetFocus()
+
+ def check_menuitem(self, menuitem, check=True):
+  if hasattr(self, menuitem):
+   getattr(self, menuitem).Check(check)
 
 def no_update_available():
  wx.MessageDialog(None, _(u"Your TW Blue version is up to date"), _(u"Update"), style=wx.OK).ShowModal()
