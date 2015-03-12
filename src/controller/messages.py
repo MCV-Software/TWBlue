@@ -159,6 +159,7 @@ class viewTweet(basicTweet):
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
   widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
   if self.contain_urls() == True:
+   self.message.enable_button("unshortenButton")
    widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
   self.message.get_response()
 

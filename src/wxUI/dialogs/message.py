@@ -228,6 +228,10 @@ class viewTweet(widgetUtils.BaseDialog):
  def onSelect(self, ev):
   self.text.SelectAll()
 
+ def enable_button(self, buttonName):
+  if getattr(self, buttonName):
+   return getattr(self, buttonName).Enable()
+
 class viewNonTweet(widgetUtils.BaseDialog):
 
  def __init__(self, text):
@@ -278,3 +282,7 @@ class viewNonTweet(widgetUtils.BaseDialog):
 
  def text_focus(self):
   self.text.SetFocus()
+
+ def enable_button(self, buttonName):
+  if getattr(self, buttonName):
+   return getattr(self, buttonName).Enable()

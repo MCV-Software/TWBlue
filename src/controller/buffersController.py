@@ -580,6 +580,7 @@ class searchBufferController(baseBufferController):
   if dlg == widgetUtils.YES:
    if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
+    self.timer.cancel()
     return True
   elif dlg == widgetUtils.NO:
    return False
@@ -662,6 +663,7 @@ class trendsBufferController(bufferController):
   if dlg == widgetUtils.YES:
    if self.name[:-3] in self.session.settings["other_buffers"]["trending_topic_buffers"]:
     self.session.settings["other_buffers"]["trending_topic_buffers"].remove(self.name[:-3])
+    self.timer.cancel()
     return True
   elif dlg == widgetUtils.NO:
    return False
