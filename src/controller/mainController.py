@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import application
-from wxUI import (view, dialogs, commonMessageDialogs)
+from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
 from twitter import utils
 from sessionmanager import manager, sessionManager
 
@@ -155,6 +155,27 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_autoread, menuitem=self.view.autoread)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
+ def set_systray_icon(self):
+  self.systrayIcon = sysTrayIcon.SysTrayIcon()
+  widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.post_tweet, menuitem=self.systrayIcon.tweet)
+  widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.configuration, menuitem=self.systrayIcon.global_settings)
+  widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.accountConfiguration, menuitem=self.systrayIcon.account_settings)
+  widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.update_profile, menuitem=self.systrayIcon.update_profile)
+  widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.show_hide, menuitem=self.systrayIcon.show_hide)
+  widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.check_for_updates, menuitem=self.systrayIcon.check_for_updates)
+  widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.exit, menuitem=self.systrayIcon.exit)
+  widgetUtils.connect_event(self.systrayIcon, widgetUtils.TASKBAR_LEFT_CLICK, self.taskbar_left_click)
+  widgetUtils.connect_event(self.systrayIcon, widgetUtils.TASKBAR_RIGHT_CLICK, self.taskbar_right_click)
+
+ def taskbar_left_click(self, *args, **kwargs):
+  if self.showing == True:
+   self.view.set_focus()
+  else:
+   self.show_hide()
+
+ def taskbar_right_click(self, *args, **kwargs):
+  self.systrayIcon.show_menu()
+
  def __init__(self):
   super(Controller, self).__init__()
   # Visibility state.
@@ -172,6 +193,7 @@ class Controller(object):
   self.view.prepare()
   self.bind_stream_events()
   self.bind_other_events()
+  self.set_systray_icon()
 
  def check_invisible_at_startup(self):
   # Visibility check
@@ -407,12 +429,6 @@ class Controller(object):
     buff.session.settings.write()
     restart.restart_program()
 
- def update_profile(self):
-  pass
-
- def show_document(self, document):
-  pass
-
  def report_error(self):
   pass
 
@@ -420,9 +436,6 @@ class Controller(object):
   update = updater.do_update()
   if update == False:
    view.no_update_available()
-
- def show_details_for_user(self, user):
-  pass
 
  def delete(self, *args, **kwargs):
   """ Deletes an item in the current buffer.
@@ -452,6 +465,7 @@ class Controller(object):
    session_.sessions[item].main_stream.disconnect()
    session_.sessions[item].timelinesStream.disconnect()
    session_.sessions[item].sound.cleaner.cancel()
+  self.systrayIcon.Destroy()
   widgetUtils.exit_application()
 
  def follow(self, *args, **kwargs):

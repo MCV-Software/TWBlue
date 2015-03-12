@@ -25,37 +25,23 @@ import os
 
 class SysTrayIcon(wx.TaskBarIcon):
 
-	def __init__(self, frame):
+	def __init__(self):
 		super(SysTrayIcon, self).__init__()
-		self.frame=frame
 		icon=wx.Icon(os.path.join(paths.app_path(), "icon.ico"), wx.BITMAP_TYPE_ICO)
 		self.SetIcon(icon, application.name)
 		self.menu=wx.Menu()
-		item=self.menu.Append(wx.ID_ANY, _(u"Tweet"))
-		self.Bind(wx.EVT_MENU, frame.compose, item)
-		item=self.menu.Append(wx.ID_ANY, _(u"Preferences"))
-		self.Bind(wx.EVT_MENU, frame.preferences, item)
-		item=self.menu.Append(wx.ID_ANY, _(u"Update profile"))
-		self.Bind(wx.EVT_MENU, frame.update_profile, item)
-		item=self.menu.Append(wx.ID_ANY, _(u"Show / hide"))
-		self.Bind(wx.EVT_MENU, frame.show_hide, item)
-		item=self.menu.Append(wx.ID_ANY, _(u"Documentation"))
-		self.Bind(wx.EVT_MENU, frame.onManual, item)
-		item=self.menu.Append(wx.ID_ANY, _(u"Check for updates"))
-		self.Bind(wx.EVT_MENU, frame.onCheckForUpdates, item)
-		item=self.menu.Append(wx.ID_ANY, _(u"Exit"))
-		self.Bind(wx.EVT_MENU, frame.close, item)
-		self.Bind(wx.EVT_TASKBAR_RIGHT_DOWN, self.onRightClick)
-		self.Bind(wx.EVT_TASKBAR_LEFT_DOWN, self.onLeftClick)
+		self.tweet = self.menu.Append(wx.ID_ANY, _(u"Tweet"))
+		self.global_settings = self.menu.Append(wx.ID_ANY, _(u"Global settings"))
+		self.account_settings = self.menu.Append(wx.ID_ANY, _(u"Account settings"))
+		self.update_profile = self.menu.Append(wx.ID_ANY, _(u"Update profile"))
+		self.show_hide = self.menu.Append(wx.ID_ANY, _(u"Show / hide"))
+		self.doc = self.menu.Append(wx.ID_ANY, _(u"Documentation"))
+		self.doc.Enable(False)
+		self.check_for_updates = self.menu.Append(wx.ID_ANY, _(u"Check for updates"))
+		self.exit = self.menu.Append(wx.ID_ANY, _(u"Exit"))
 
-	def onRightClick(self, evt):
+	def show_menu(self):
 		self.PopupMenu(self.menu)
-
-	def onLeftClick(self, evt):
-		if (self.frame.showing):
-			self.frame.SetFocus()
-		else:
-			self.frame.onShow_hide()
 
 	def Destroy(self):
 		self.menu.Destroy()

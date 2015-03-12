@@ -178,6 +178,8 @@ class mainFrame(wx.Frame):
 #  info.SetLicence(application.licence)
   info.AddDeveloper(application.author)
   wx.AboutBox(info)
+ def set_focus(self):
+  self.SetFocus()
 
 def no_update_available():
  wx.MessageDialog(None, _(u"Your TW Blue version is up to date"), _(u"Update"), style=wx.OK).ShowModal()
