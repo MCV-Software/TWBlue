@@ -114,8 +114,14 @@ class dm(textLimited):
   self.mainBox = wx.BoxSizer(wx.VERTICAL)
   label = wx.StaticText(self.panel, -1, _(u"Recipient"))
   self.cb = wx.ComboBox(self.panel, -1, choices=users, value=users[0], size=wx.DefaultSize)
+  self.autocompletionButton = wx.Button(self.panel, -1, _(u"&Autocomplete users"))
   self.createTextArea(message, text="")
-  self.mainBox.Add(self.cb, 0, wx.ALL, 5)
+  userBox = wx.BoxSizer(wx.HORIZONTAL)
+  userBox.Add(label, 0, wx.ALL, 5)
+  userBox.Add(self.cb, 0, wx.ALL, 5)
+  userBox.Add(self.autocompletionButton, 0, wx.ALL, 5)
+  self.mainBox.Add(userBox, 0, wx.ALL, 5)
+#  self.mainBox.Add(self.cb, 0, wx.ALL, 5)
   self.mainBox.Add(self.textBox, 0, wx.ALL, 5)
   self.spellcheck = wx.Button(self.panel, -1, _("Spelling correction"), size=wx.DefaultSize)
   self.attach = wx.Button(self.panel, -1, _(u"Attach audio"), size=wx.DefaultSize)
@@ -150,7 +156,10 @@ class dm(textLimited):
 
  def get_user(self):
   return self.cb.GetValue()
- 
+
+ def set_user(self, user):
+  return self.cb.SetValue(user)
+
 class reply(tweet):
  def __init__(self, title, message,  text):
   super(reply, self).__init__(message, title, text)

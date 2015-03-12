@@ -9,23 +9,39 @@ class autocompletionUsers(object):
   self.window = window
   self.db = storage.storage(session_id)
 
- def show_menu(self):
+ def show_menu(self, mode="tweet"):
   position = self.window.get_position()
-  text = self.window.get_text()
-  text = text[:position]
-  try:
-   pattern = text.split()[-1]
-  except IndexError:
-   output.speak(_(u"You have to start writing"))
-   return
-  if pattern.startswith("@") == True:
-   menu = wx_menu.menu(self.window.text, pattern[1:])
-   users = self.db.get_users(pattern[1:])
+  if mode == "tweet":
+   text = self.window.get_text()
+   text = text[:position]
+   try:
+    pattern = text.split()[-1]
+   except IndexError:
+    output.speak(_(u"You have to start writing"))
+    return
+   if pattern.startswith("@") == True:
+    menu = wx_menu.menu(self.window.text, pattern[1:], mode=mode)
+    users = self.db.get_users(pattern[1:])
+    if len(users) > 0:
+     menu.append_options(users)
+     self.window.popup_menu(menu)
+     menu.destroy()
+    else:
+     output.speak(_(u"There are no results in your users database"))
+   else:
+    output.speak(_(u"Autocompletion only works for users."))
+  elif mode == "dm":
+   text = self.window.get_user()
+   try:
+    pattern = text.split()[-1]
+   except IndexError:
+    output.speak(_(u"You have to start writing"))
+    return
+   menu = wx_menu.menu(self.window.cb, pattern, mode=mode)
+   users = self.db.get_users(pattern)
    if len(users) > 0:
     menu.append_options(users)
     self.window.popup_menu(menu)
     menu.destroy()
    else:
     output.speak(_(u"There are no results in your users database"))
-  else:
-   output.speak(_(u"Autocompletion only works for users."))

@@ -141,6 +141,11 @@ class reply(tweet):
 class dm(basicTweet):
  def __init__(self, session, title, caption, text):
   super(dm, self).__init__(session, title, caption, text, messageType="dm")
+  widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
+
+ def autocomplete_users(self, *args, **kwargs):
+  c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
+  c.show_menu("dm")
 
 class viewTweet(basicTweet):
  def __init__(self, tweet, is_tweet=True):
