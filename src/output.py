@@ -7,11 +7,11 @@ import sys
 
 speaker = None
 
-def speak(text, interrupt=False):
+def speak(text, interrupt=0):
  global speaker
  if not speaker:
   setup()
- speaker.speak(text,interrupt)
+ speaker.speak(text, interrupt)
 
 def setup ():
  global speaker

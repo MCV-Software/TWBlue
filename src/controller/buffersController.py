@@ -153,6 +153,7 @@ class accountPanel(bufferController):
    self.buffer.change_login(login=False)
    widgetUtils.connect_event(self.buffer.login, widgetUtils.BUTTON_PRESSED, self.logout)
   else:
+   self.buffer.change_login(login=True)
    widgetUtils.connect_event(self.buffer.login, widgetUtils.BUTTON_PRESSED, self.login)
  
  def login(self, *args, **kwargs):
