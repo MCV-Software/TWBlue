@@ -734,11 +734,10 @@ class Controller(object):
   self.view.check_menuitem("autoread", autoread)
 
  def fix_wrong_buffer(self):
-  buffer = self.get_current_buffer()
-  if isinstance(buffer, buffersController.accountPanel) and hasattr(buffer, "logged") and buffer.logged == False:
-   self.next_account()
-  elif buffer.session == None:
-   self.right()
+  for i in self.accounts:
+   buffer = self.view.search("home_timeline", i)
+   if buffer != None: break
+  self.view.change_buffer(buffer)
 
  def up(self, *args, **kwargs):
   page = self.get_current_buffer()
