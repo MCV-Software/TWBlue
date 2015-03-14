@@ -710,6 +710,7 @@ class Controller(object):
   buff = self.view.search(buffer.name, buffer.account)
   answer = buffer.remove_buffer()
   if answer == False: return
+  self.right()
   self.view.delete_buffer(buff)
   buffer.session.sound.play("delete_timeline.ogg")
   self.buffers.remove(buffer)
@@ -1012,6 +1013,7 @@ class Controller(object):
   play_sound = "tweet_timeline.ogg"
   if "%s-timeline" % (who,) not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
+   output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
   buffer.add_new_item(data)
 
  def start_buffers(self, session):
