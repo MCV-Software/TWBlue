@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-11-08 16:42+Hora estándar central (México)\n"
+"POT-Creation-Date: 2015-03-14 17:59+Hora estándar central (México)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,105 +15,60 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ../src\extra\AudioUploader\gui.py:31 ../src\gui\dialogs\message.py:173
-#: ../src\gui\dialogs\message.py:261
-msgid "Attach audio"
+#: ../src\extra\AudioUploader\audioUploader.py:52
+msgid "Attaching..."
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:38 ../src\extra\AudioUploader\gui.py:147
-#: ../src\extra\AudioUploader\gui.py:157
-msgid "Play"
-msgstr ""
-
-#: ../src\extra\AudioUploader\gui.py:41 ../src\extra\AudioUploader\gui.py:76
-#: ../src\extra\AudioUploader\gui.py:81 ../src\extra\AudioUploader\gui.py:108
+#: ../src\extra\AudioUploader\audioUploader.py:78
+#: ../src\extra\AudioUploader\audioUploader.py:83
+#: ../src\extra\AudioUploader\audioUploader.py:110
+#: ../src\extra\AudioUploader\wx_ui.py:33
 msgid "Pause"
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:44 ../src\extra\AudioUploader\gui.py:104
-msgid "Record"
-msgstr ""
-
-#: ../src\extra\AudioUploader\gui.py:47
-msgid "Add an existing file"
-msgstr ""
-
-#: ../src\extra\AudioUploader\gui.py:49
-msgid "Discard"
-msgstr ""
-
-#: ../src\extra\AudioUploader\gui.py:52
-msgid "Upload to"
-msgstr ""
-
-#: ../src\extra\AudioUploader\gui.py:57
-msgid "Attach"
-msgstr ""
-
-#: ../src\extra\AudioUploader\gui.py:59
-msgid "Cancel"
-msgstr ""
-
-#: ../src\extra\AudioUploader\gui.py:78 ../src\extra\AudioUploader\gui.py:79
+#: ../src\extra\AudioUploader\audioUploader.py:80
+#: ../src\extra\AudioUploader\audioUploader.py:81
 msgid "Resume"
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:96
+#: ../src\extra\AudioUploader\audioUploader.py:98
 msgid "Stop recording"
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:97
+#: ../src\extra\AudioUploader\audioUploader.py:99
 msgid "Recording"
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:102 ../src\extra\AudioUploader\gui.py:154
+#: ../src\extra\AudioUploader\audioUploader.py:104
+#: ../src\extra\AudioUploader\audioUploader.py:154 ../src\sound.py:119
 msgid "Stopped"
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:129 ../src\gui\dialogs\message.py:222
-#: ../src\gui\dialogs\update_profile.py:87
+#: ../src\extra\AudioUploader\audioUploader.py:106
+#: ../src\extra\AudioUploader\wx_ui.py:35
+msgid "Record"
+msgstr ""
+
+#: ../src\extra\AudioUploader\audioUploader.py:130
 msgid "Discarded"
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:139 ../src\gui\buffers\base.py:339
-#: ../src\gui\buffers\base.py:351
+#: ../src\extra\AudioUploader\audioUploader.py:139 ../src\sound.py:124
 msgid "Playing..."
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:143
+#: ../src\extra\AudioUploader\audioUploader.py:143
 msgid "Stop"
 msgstr ""
 
-#: ../src\extra\AudioUploader\gui.py:162
+#: ../src\extra\AudioUploader\audioUploader.py:147
+#: ../src\extra\AudioUploader\audioUploader.py:157
+#: ../src\extra\AudioUploader\wx_ui.py:31
+msgid "Play"
+msgstr ""
+
+#: ../src\extra\AudioUploader\audioUploader.py:162
 msgid "Recoding audio..."
-msgstr ""
-
-#: ../src\extra\AudioUploader\gui.py:186
-msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
-msgstr ""
-
-#: ../src\extra\AudioUploader\gui.py:186
-msgid "Select the audio file to be uploaded"
-msgstr ""
-
-#: ../src\extra\AudioUploader\transfer_dialogs.py:15
-msgid "File"
-msgstr ""
-
-#: ../src\extra\AudioUploader\transfer_dialogs.py:21
-msgid "Transferred"
-msgstr ""
-
-#: ../src\extra\AudioUploader\transfer_dialogs.py:26
-msgid "Total file size"
-msgstr ""
-
-#: ../src\extra\AudioUploader\transfer_dialogs.py:31
-msgid "Transfer rate"
-msgstr ""
-
-#: ../src\extra\AudioUploader\transfer_dialogs.py:36
-msgid "Time left"
 msgstr ""
 
 #: ../src\extra\AudioUploader\utils.py:27
@@ -148,166 +103,292 @@ msgstr ""
 msgid "%s seconds"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:11
+#: ../src\extra\AudioUploader\wx_transfer_dialogs.py:13
+msgid "File"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_transfer_dialogs.py:19
+msgid "Transferred"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_transfer_dialogs.py:24
+msgid "Total file size"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_transfer_dialogs.py:29
+msgid "Transfer rate"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_transfer_dialogs.py:34
+msgid "Time left"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_ui.py:28 ../src\wxUI\dialogs\message.py:66
+#: ../src\wxUI\dialogs\message.py:127
+msgid "Attach audio"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_ui.py:37
+msgid "Add an existing file"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_ui.py:38
+msgid "Discard"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_ui.py:40
+msgid "Upload to"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_ui.py:45
+msgid "Attach"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_ui.py:47
+msgid "Cancel"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_ui.py:66
+msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+msgstr ""
+
+#: ../src\extra\AudioUploader\wx_ui.py:66
+msgid "Select the audio file to be uploaded"
+msgstr ""
+
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:2
 msgid "The tweet may contain a playable audio"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:12
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:3
 msgid "A timeline has been created"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:13
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:4
 msgid "A timeline has been deleted"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:14
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:5
 msgid "You've received a direct message"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:15
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:6
 msgid "You've sent a direct message"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:16
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:7
 msgid "A bug has happened"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:17
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:8
 msgid "You've added a tweet to your favourites"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:18
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:9
 msgid "Someone's favourites have been updated"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:19
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
+msgid "The tweet has coordinates to determine its location"
+msgstr ""
+
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "There are no more tweets to read"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:20
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
 msgid "A list has a new tweet"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:21
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:13
 msgid "You can't add any more characters on the tweet"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:22
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:14
 msgid "You've been mentioned "
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:23
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:15
 msgid "A new event has happened"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:24
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:16
 msgid "TW Blue is ready "
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:25
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:17
 msgid "You've replied"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:26
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:18
 msgid "You've retweeted"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:27
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:19
 msgid "A search has been updated"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:28
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:20
 msgid "There's a new tweet in the main buffer"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:29
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:21
 msgid "You've sent a tweet"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:30
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:22
+msgid "A trending topic buffer has been updated"
+msgstr ""
+
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:23
 msgid "There's a new tweet in a timeline"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:31
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:24
 msgid "You have a new follower"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:32
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:25
 msgid "You've turned the volume up or down"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:36
-msgid "It seems as though the currently used sound pack needs an update. %i fails are still be required to use this function. Make sure to obtain the needed lacking sounds or to contact with the sound pack developer."
-msgstr ""
-
-#: ../src\extra\SoundsTutorial\gui.py:36 ../src\extra\SpellChecker\gui.py:34
-#: ../src\gui\dialogs\show_user.py:63
-msgid "Error"
-msgstr ""
-
-#: ../src\extra\SoundsTutorial\gui.py:38
+#: ../src\extra\SoundsTutorial\wx_ui.py:8
 msgid "Sounds tutorial"
 msgstr ""
 
-#: ../src\extra\SoundsTutorial\gui.py:41
+#: ../src\extra\SoundsTutorial\wx_ui.py:11
 msgid "Press enter to listen to the sound for the selected event"
 msgstr ""
 
-#: ../src\extra\SpellChecker\gui.py:34
-msgid "A bug has happened. There are no dictionaries available for the selected language in TW Blue"
-msgstr ""
-
-#: ../src\extra\SpellChecker\gui.py:38
-msgid "Mis-spelled word"
-msgstr ""
-
-#: ../src\extra\SpellChecker\gui.py:43
-msgid "Context"
-msgstr ""
-
-#: ../src\extra\SpellChecker\gui.py:48
-msgid "Suggestions"
-msgstr ""
-
-#: ../src\extra\SpellChecker\gui.py:53
-msgid "Ignore"
-msgstr ""
-
-#: ../src\extra\SpellChecker\gui.py:55
-msgid "Ignore all"
-msgstr ""
-
-#: ../src\extra\SpellChecker\gui.py:57
-msgid "Replace"
-msgstr ""
-
-#: ../src\extra\SpellChecker\gui.py:59
-msgid "Replace all"
-msgstr ""
-
-#: ../src\extra\SpellChecker\gui.py:78
+#: ../src\extra\SpellChecker\spellchecker.py:45
 msgid "Mis-spelled word: %s"
 msgstr ""
 
-#: ../src\extra\SpellChecker\gui.py:87
+#: ../src\extra\SpellChecker\wx_ui.py:26
+msgid "Mis-spelled word"
+msgstr ""
+
+#: ../src\extra\SpellChecker\wx_ui.py:31
+msgid "Context"
+msgstr ""
+
+#: ../src\extra\SpellChecker\wx_ui.py:36
+msgid "Suggestions"
+msgstr ""
+
+#: ../src\extra\SpellChecker\wx_ui.py:41
+msgid "Ignore"
+msgstr ""
+
+#: ../src\extra\SpellChecker\wx_ui.py:42
+msgid "Ignore all"
+msgstr ""
+
+#: ../src\extra\SpellChecker\wx_ui.py:43
+msgid "Replace"
+msgstr ""
+
+#: ../src\extra\SpellChecker\wx_ui.py:44
+msgid "Replace all"
+msgstr ""
+
+#: ../src\extra\SpellChecker\wx_ui.py:75
+msgid "A bug has happened. There are no dictionaries available for the selected language in TW Blue"
+msgstr ""
+
+#: ../src\extra\SpellChecker\wx_ui.py:75
+msgid "Error"
+msgstr ""
+
+#: ../src\extra\SpellChecker\wx_ui.py:78
 msgid "Finished"
 msgstr ""
 
-#: ../src\extra\SpellChecker\gui.py:87
+#: ../src\extra\SpellChecker\wx_ui.py:78
 msgid "The spelling review has finished."
 msgstr ""
 
-#: ../src\extra\translator\gui.py:24 ../src\gui\dialogs\message.py:181
-#: ../src\gui\dialogs\message.py:269 ../src\gui\dialogs\message.py:355
-msgid "Translate message"
+#: ../src\extra\autocompletionUsers\completion.py:20
+#: ../src\extra\autocompletionUsers\completion.py:38
+msgid "You have to start writing"
 msgstr ""
 
-#: ../src\extra\translator\gui.py:27
-msgid "Source language"
+#: ../src\extra\autocompletionUsers\completion.py:30
+#: ../src\extra\autocompletionUsers\completion.py:47
+msgid "There are no results in your users database"
 msgstr ""
 
-#: ../src\extra\translator\gui.py:30
-msgid "Target language"
+#: ../src\extra\autocompletionUsers\completion.py:32
+msgid "Autocompletion only works for users."
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\settings.py:25
+msgid "Updating database... You can close this window now. A message will tell you when the process finishes."
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:8
+msgid "Manage Autocomplete users\342\200\231 database"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Editing TWBlue users database"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:12
+msgid "Name"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:12
+msgid "Username"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:15
+msgid "Add user"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:16
+msgid "Remove user"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:37
+msgid "Add user to database"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:37
+msgid "Twitter username"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:43
+msgid "The user does not exist"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_manage.py:43
+#: ../src\wxUI\dialogs\configuration.py:177
+msgid "Error!"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:7
+msgid "Autocomplete users\342\200\231 settings"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:10
+msgid "Add users from followers buffer"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:11
+msgid "Add users from friends buffer"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:14
+msgid "See the users list"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:26
+msgid "Done"
+msgstr ""
+
+#: ../src\extra\autocompletionUsers\wx_settings.py:26
+msgid "TWBlue's database of users has been updated."
 msgstr ""
 
 #: ../src\extra\translator\translator.py:53
@@ -678,722 +759,530 @@ msgstr ""
 msgid "autodetect"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:55
-msgid "Client"
+#: ../src\extra\translator\wx_ui.py:25 ../src\wxUI\dialogs\message.py:71
+#: ../src\wxUI\dialogs\message.py:132 ../src\wxUI\dialogs\message.py:210
+#: ../src\wxUI\dialogs\message.py:265
+msgid "Translate message"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:55
-msgid "Text"
+#: ../src\extra\translator\wx_ui.py:28
+msgid "Source language"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:55 ../src\gui\buffers\events.py:61
-msgid "Date"
+#: ../src\extra\translator\wx_ui.py:31
+msgid "Target language"
 msgstr ""
 
-#: ../src\gui\buffers\base.py:55 ../src\gui\buffers\people.py:41
-#: ../src\gui\buffers\user_searches.py:31 ../src\gui\dialogs\utils.py:36
-msgid "User"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:80 ../src\gui\buffers\base.py:228
-#: ../src\gui\buffers\events.py:62 ../src\gui\buffers\events.py:78
-#: ../src\gui\dialogs\message.py:337
-msgid "Tweet"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:82 ../src\gui\buffers\base.py:240
-#: ../src\gui\buffers\base.py:243
-msgid "Retweet"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:84 ../src\gui\buffers\base.py:259
-msgid "Reply"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:86
-msgid "Direct message"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:100
-msgid "Do you really want to delete this timeline?"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:100 ../src\gui\buffers\favourites.py:41
-#: ../src\gui\buffers\lists.py:46 ../src\gui\buffers\trends.py:41
-#: ../src\gui\buffers\tweet_searches.py:45
-#: ../src\gui\buffers\user_searches.py:56
-msgid "Attention"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:112
-msgid "This buffer is not a timeline; it can't be deleted."
-msgstr ""
-
-#: ../src\gui\buffers\base.py:196 ../src\gui\buffers\people.py:114
-msgid "%s items retrieved"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
-#: ../src\gui\buffers\people.py:56
-msgid "Direct message to %s"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:220 ../src\gui\buffers\dm.py:44
-#: ../src\gui\buffers\people.py:56
-msgid "New direct message"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:228 ../src\gui\buffers\events.py:78
-msgid "Write the tweet here"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:240
-msgid "Would you like to add a comment to this tweet?"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:243
-msgid "Add your comment to the tweet"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:259
-msgid "Reply to %s"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:304
-msgid "Opening URL..."
-msgstr ""
-
-#: ../src\gui\buffers\base.py:321 ../src\gui\buffers\events.py:122
-msgid "Do you really want to empty this buffer? It's tweets will be removed from the list but not from Twitter"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:321 ../src\gui\buffers\events.py:122
-msgid "Empty buffer"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:326 ../src\gui\buffers\events.py:126
-msgid "Do you really want to delete this message?"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:326 ../src\gui\buffers\events.py:126
-#: ../src\gui\dialogs\lists.py:107
-msgid "Delete"
-msgstr ""
-
-#: ../src\gui\buffers\base.py:346 ../src\gui\buffers\base.py:357
-msgid "Unable to play audio."
-msgstr ""
-
-#: ../src\gui\buffers\base.py:348
-msgid "Audio stopped."
-msgstr ""
-
-#: ../src\gui\buffers\events.py:35 ../src\gui\buffers\panels.py:37
-#: ../src\gui\buffers\tweet_searches.py:58
-#: ../src\gui\buffers\user_searches.py:64
-msgid "This action is not supported for this buffer"
-msgstr ""
-
-#: ../src\gui\buffers\events.py:44
-msgid "Empty"
-msgstr ""
-
-#: ../src\gui\buffers\events.py:61
-msgid "Event"
-msgstr ""
-
-#: ../src\gui\buffers\events.py:64
-msgid "Remove event"
-msgstr ""
-
-#: ../src\gui\buffers\favourites.py:41
-msgid "Do you really want to delete this favourites timeline?"
-msgstr ""
-
-#: ../src\gui\buffers\lists.py:46 ../src\gui\dialogs\lists.py:107
-msgid "Do you really want to delete this list?"
-msgstr ""
-
-#: ../src\gui\buffers\panels.py:27
-msgid "Announce"
-msgstr ""
-
-#: ../src\gui\buffers\people.py:46 ../src\gui\buffers\people.py:64
-msgid "Mention"
-msgstr ""
-
-#: ../src\gui\buffers\people.py:64
-msgid "Mention to %s"
-msgstr ""
-
-#: ../src\gui\buffers\trends.py:41 ../src\gui\buffers\tweet_searches.py:45
-#: ../src\gui\buffers\user_searches.py:56
-msgid "Do you really want to delete this search term?"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:39
-msgid "Language"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:53
-msgid "ask before exiting TwBlue?"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:56
-msgid "Relative times"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:60
-msgid "Activate Sapi5 when any other screen reader is not being run"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:63
-msgid "Activate the auto-start of the invisible interface"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:67
-msgid "API calls when the stream is started (One API call equals to 200 tweetts, two API calls equals 400 tweets, etc):"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:75
-msgid "Items on each API call"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:82
-msgid "Inverted buffers: The newest tweets will be shown at the beginning of the lists while the oldest at the end"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:97
-msgid "Show followers"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:100
-msgid "Show friends"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:103
-msgid "Show favourites"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:106
-msgid "Show blocked users"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:109
-msgid "Show muted users"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:112
-msgid "Show events"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:122
-#: ../src\gui\dialogs\configuration.py:270
-msgid "Ignored clients"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:128
-msgid "Add client"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:129
-msgid "Remove client"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:140
-msgid "Add a new ignored client"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:140
-msgid "Enter the name of the client here"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:157
-msgid "Volume"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:166
-msgid "Global mute"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:170
-msgid "Output device"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:179
-msgid "Input device"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:190
-msgid "Sound pack"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:203
-msgid "If you've got a SndUp account, enter your API Key here. Whether the API Key is wrong, the App will fail to upload anything to the server. Whether there's no API Key here, then the audio files will be uploaded anonimously"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:216
-#: ../src\gui\dialogs\configuration.py:240
-msgid "Unlink your Dropbox account"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:218
-#: ../src\gui\dialogs\configuration.py:235
-#: ../src\gui\dialogs\configuration.py:243
-#: ../src\gui\dialogs\configuration.py:247
-#: ../src\gui\dialogs\configuration.py:254
-msgid "Link your Dropbox account"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:228
-msgid "Authorisation"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:228
-msgid "The authorisation request will be shown on your browser. Copy the code tat Dropbox will provide and, in the text box that will appear on TW Blue, paste it. This code is necessary to continue. You only need to do it once."
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:230
-msgid "Enter the code here."
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:230
-msgid "Verification code"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:242
-msgid "Error during authorisation. Try again later."
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:242
-msgid "Error!"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:261
-msgid "TW Blue preferences"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:265
-msgid "General"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:268
-msgid "Show other buffers"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:272
-msgid "Sound"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:274
-msgid "Audio Services"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:277
-msgid "Save"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:280 ../src\gui\dialogs\follow.py:64
-#: ../src\gui\dialogs\message.py:186 ../src\gui\dialogs\message.py:274
-#: ../src\gui\dialogs\message.py:357 ../src\gui\dialogs\search.py:42
-#: ../src\gui\dialogs\show_user.py:42 ../src\gui\dialogs\trending.py:42
-#: ../src\gui\dialogs\update_profile.py:56 ../src\gui\dialogs\utils.py:42
-msgid "Close"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:293
-msgid "Followers"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:307
-msgid "friends"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:321
-msgid "Favorites"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:335
-msgid "Events"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:346
-msgid "Blocked users"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:360
-msgid "Muted users"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:420
-msgid "Restart TW Blue"
-msgstr ""
-
-#: ../src\gui\dialogs\configuration.py:420
-msgid "The application requires to be restarted to save these changes. Press OK to do it now."
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:33 ../src\gui\dialogs\follow.py:43
-msgid "Action"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:44
-msgid "Follow"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:45
-msgid "Unfollow"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:46
-msgid "Mute"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:47
-msgid "Unmute"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:48
-msgid "Block"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:49
-msgid "Unblock"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:50
-msgid "Report as spam"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:61 ../src\gui\dialogs\search.py:40
-#: ../src\gui\dialogs\trending.py:40 ../src\gui\dialogs\utils.py:39
-msgid "OK"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:101
-msgid "You've muted to %s"
-msgstr ""
-
-#: ../src\gui\dialogs\follow.py:115
-msgid "You've unmuted to %s"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:36
-msgid "Lists manager"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:38
-msgid "Lists"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:39
-msgid "List"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:39
-msgid "Members"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:39
-msgid "Owner"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:39
-msgid "mode"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:39 ../src\gui\dialogs\lists.py:181
-msgid "Description"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:44 ../src\gui\dialogs\lists.py:173
-msgid "Create a new list"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:46
-msgid "Edit"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:48 ../src\gui\dialogs\lists.py:235
-msgid "Remove"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:50
-msgid "Open in buffer"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:125
-msgid "List opened"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:127
-msgid "This list is arready opened."
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:130
-msgid "List for %s"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:148
-msgid "Viewing lists for %s"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:149
-msgid "Subscribe"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:150
-msgid "Unsubscribe"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:176
-msgid "Name (20 characters maximun)"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:186
-msgid "Mode"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:187
-msgid "Public"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:188
-msgid "Private"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:208
-msgid "Editing the list %s"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:219
-msgid "Select a list to add the user"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:220
-msgid "Add"
-msgstr ""
-
-#: ../src\gui\dialogs\lists.py:234
-msgid "Select a list to remove the user"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:43 ../src\gui\dialogs\message.py:146
-msgid "%s - %s of 140 characters"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:77
-msgid "Attaching..."
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:78
-msgid "Uploading..."
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:100
-msgid "Unable to upload the audio"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:114 ../src\gui\dialogs\message.py:400
-msgid "Translated"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:126
-msgid "There's no URL to be shortened"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:129
-msgid "URL shortened"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:137 ../src\gui\dialogs\message.py:412
-msgid "There's no URL to be expanded"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:140 ../src\gui\dialogs\message.py:415
-msgid "URL expanded"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:168 ../src\gui\dialogs\message.py:223
-#: ../src\gui\dialogs\update_profile.py:51
-#: ../src\gui\dialogs\update_profile.py:88
-msgid "Upload a picture"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:171 ../src\gui\dialogs\message.py:259
-#: ../src\gui\dialogs\message.py:350
-msgid "Spelling correction"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:175 ../src\gui\dialogs\message.py:263
-msgid "Shorten URL"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:177 ../src\gui\dialogs\message.py:265
-#: ../src\gui\dialogs\message.py:352
-msgid "Expand URL"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:183 ../src\gui\dialogs\message.py:271
-msgid "Send"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:219 ../src\gui\dialogs\message.py:230
-#: ../src\gui\dialogs\update_profile.py:84
-#: ../src\gui\dialogs\update_profile.py:95
-msgid "Discard image"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:225 ../src\gui\dialogs\update_profile.py:90
-msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:225 ../src\gui\dialogs\update_profile.py:90
-msgid "Select the picture to be uploaded"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:253
-msgid "Recipient"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:308
-msgid "Mention to all"
-msgstr ""
-
-#: ../src\gui\dialogs\message.py:335
-msgid "Tweet - %i characters "
-msgstr ""
-
-#: ../src\gui\dialogs\search.py:26 ../src\gui\dialogs\trending.py:26
-msgid "Search on Twitter"
-msgstr ""
-
-#: ../src\gui\dialogs\search.py:27 ../src\gui\dialogs\trending.py:27
-msgid "Search"
-msgstr ""
-
-#: ../src\gui\dialogs\search.py:34 ../src\gui\dialogs\trending.py:34
-msgid "Tweets"
-msgstr ""
-
-#: ../src\gui\dialogs\search.py:35 ../src\gui\dialogs\trending.py:35
-msgid "Users"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:26
-msgid "Information for %s"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:30
-msgid "Details"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:39
-msgid "Go to URL"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:63
-msgid "This user does not exist on Twitter"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:68
-msgid ""
-"Username: @%s\n"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:69
-msgid ""
-"Name: %s\n"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:71
-msgid ""
-"Location: %s\n"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:73
-msgid ""
-"URL: %s\n"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:76
-msgid ""
-"Bio: %s\n"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:77
-msgid "Yes"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:78
-msgid "No"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:79
-msgid ""
-"Protected: %s\n"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:80
-msgid ""
-"Followers: %s\n"
-" Friends: %s\n"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:81
-msgid ""
-"Tweets: %s\n"
-msgstr ""
-
-#: ../src\gui\dialogs\show_user.py:82
-msgid "Favourites: %s"
-msgstr ""
-
-#: ../src\gui\dialogs\update_profile.py:27
-msgid "Update your profile"
-msgstr ""
-
-#: ../src\gui\dialogs\update_profile.py:29
-msgid "Name (20 characters maximum)"
-msgstr ""
-
-#: ../src\gui\dialogs\update_profile.py:35
-msgid "Location"
-msgstr ""
-
-#: ../src\gui\dialogs\update_profile.py:40
-msgid "Website"
-msgstr ""
-
-#: ../src\gui\dialogs\update_profile.py:45
-msgid "Bio (160 characters maximum)"
-msgstr ""
-
-#: ../src\gui\dialogs\update_profile.py:53
-msgid "Update profile"
-msgstr ""
-
-#: ../src\gui\dialogs\urlList.py:26
-msgid "Select an URL"
-msgstr ""
-
-#: ../src\languageHandler.py:95
+#: ../src\languageHandler.py:98
 msgid "User default"
 msgstr ""
 
-#: ../src\twitter\buffers\indibidual.py:26
-msgid "One tweet from %s"
+#: ../src\wxUI\buffers\base.py:8
+msgid "Client"
 msgstr ""
 
-#: ../src\twitter\buffers\indibidual.py:35
-msgid "One tweet from %s in the list %s"
+#: ../src\wxUI\buffers\base.py:8
+msgid "Text"
 msgstr ""
 
-#: ../src\twitter\buffers\stream.py:57
-msgid "One mention from %s "
+#: ../src\wxUI\buffers\base.py:8 ../src\wxUI\buffers\events.py:13
+msgid "Date"
 msgstr ""
 
-#: ../src\twitter\buffers\stream.py:69
-msgid "One direct message"
+#: ../src\wxUI\buffers\base.py:8 ../src\wxUI\buffers\people.py:10
+#: ../src\wxUI\buffers\user_searches.py:9
+#: ../src\wxUI\dialogs\userActions.py:10
+#: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:29
+msgid "User"
+msgstr ""
+
+#: ../src\wxUI\buffers\base.py:21 ../src\wxUI\buffers\events.py:14
+#: ../src\wxUI\buffers\trends.py:17 ../src\wxUI\dialogs\message.py:181
+msgid "Tweet"
+msgstr ""
+
+#: ../src\wxUI\buffers\base.py:22
+msgid "Retweet"
+msgstr ""
+
+#: ../src\wxUI\buffers\base.py:23
+msgid "Reply"
+msgstr ""
+
+#: ../src\wxUI\buffers\base.py:24
+msgid "Direct message"
+msgstr ""
+
+#: ../src\wxUI\buffers\events.py:13
+msgid "Event"
+msgstr ""
+
+#: ../src\wxUI\buffers\events.py:15
+msgid "Remove event"
+msgstr ""
+
+#: ../src\wxUI\buffers\panels.py:11 ../src\wxUI\buffers\panels.py:19
+msgid "Login"
+msgstr ""
+
+#: ../src\wxUI\buffers\panels.py:13
+msgid "Start account automatically"
+msgstr ""
+
+#: ../src\wxUI\buffers\panels.py:21
+msgid "Logout"
+msgstr ""
+
+#: ../src\wxUI\buffers\people.py:15
+msgid "Mention"
+msgstr ""
+
+#: ../src\wxUI\buffers\trends.py:8
+msgid "Trending topic"
+msgstr ""
+
+#: ../src\wxUI\buffers\trends.py:18
+msgid "Tweet about this trend"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:10
+msgid "Language"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:17
+msgid "ask before exiting TwBlue?"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:19
+msgid "Use invisible interface's keyboard shorcuts on the GUI"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:21
+msgid "Activate Sapi5 when any other screen reader is not being run"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:23
+msgid "Activate the auto-start of the invisible interface"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:31
+msgid "Set the autocomplete function"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:33
+msgid "Relative times"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:36
+msgid "API calls when the stream is started (One API call equals to 200 tweetts, two API calls equals 400 tweets, etc):"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:43
+msgid "Items on each API call"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:49
+msgid "Inverted buffers: The newest tweets will be shown at the beginning of the lists while the oldest at the end"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:57
+msgid "Show followers"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:59
+msgid "Show friends"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:61
+msgid "Show favourites"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:63
+msgid "Show blocked users"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:65
+msgid "Show muted users"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:67
+msgid "Show events"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:75
+#: ../src\wxUI\dialogs\configuration.py:210
+msgid "Ignored clients"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:81
+msgid "Add client"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:82
+msgid "Remove client"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:106
+msgid "Volume"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:114
+msgid "Session mute"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:116
+msgid "Output device"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:123
+msgid "Input device"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:131
+msgid "Sound pack"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:146
+msgid "If you've got a SndUp account, enter your API Key here. Whether the API Key is wrong, the App will fail to upload anything to the server. Whether there's no API Key here, then the audio files will be uploaded anonimously"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:163
+msgid "Unlink your Dropbox account"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:165
+msgid "Link your Dropbox account"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:168
+msgid "Authorisation"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:168
+msgid "The authorisation request will be shown on your browser. Copy the code tat Dropbox will provide and, in the text box that will appear on TW Blue, paste it. This code is necessary to continue. You only need to do it once."
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:171
+msgid "Enter the code here."
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:171
+msgid "Verification code"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:177
+msgid "Error during authorisation. Try again later."
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:190
+msgid "TW Blue preferences"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:196
+#: ../src\wxUI\dialogs\configuration.py:201
+msgid "General"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:206
+msgid "Show other buffers"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:214
+msgid "Sound"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:217
+msgid "Audio Services"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:222
+msgid "Save"
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:224 ../src\wxUI\dialogs\message.py:75
+#: ../src\wxUI\dialogs\message.py:135 ../src\wxUI\dialogs\message.py:211
+#: ../src\wxUI\dialogs\message.py:266 ../src\wxUI\dialogs\search.py:26
+#: ../src\wxUI\dialogs\show_user.py:17 ../src\wxUI\dialogs\trends.py:28
+#: ../src\wxUI\dialogs\update_profile.py:35
+#: ../src\wxUI\dialogs\userActions.py:40
+#: ../src\wxUI\dialogs\userSelection.py:28 ../src\wxUI\dialogs\utils.py:35
+msgid "Close"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:9
+msgid "Lists manager"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:11
+msgid "Lists"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:12
+msgid "List"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:12
+msgid "Members"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:12
+msgid "Owner"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:12
+msgid "mode"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:12 ../src\wxUI\dialogs\lists.py:63
+msgid "Description"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:17 ../src\wxUI\dialogs\lists.py:55
+msgid "Create a new list"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:18
+msgid "Edit"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:19 ../src\wxUI\dialogs\lists.py:117
+msgid "Remove"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:20
+msgid "Open in buffer"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:45
+msgid "Viewing lists for %s"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:46
+msgid "Subscribe"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:47
+msgid "Unsubscribe"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:58
+msgid "Name (20 characters maximun)"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:68
+msgid "Mode"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:69
+msgid "Public"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:70
+msgid "Private"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:93
+msgid "Editing the list %s"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:104
+msgid "Select a list to add the user"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:105
+msgid "Add"
+msgstr ""
+
+#: ../src\wxUI\dialogs\lists.py:116
+msgid "Select a list to remove the user"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:64 ../src\wxUI\dialogs\update_profile.py:32
+#: ../src\wxUI\dialogs\update_profile.py:75
+msgid "Upload a picture"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:65 ../src\wxUI\dialogs\message.py:126
+#: ../src\wxUI\dialogs\message.py:207 ../src\wxUI\dialogs\message.py:262
+msgid "Spelling correction"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:67 ../src\wxUI\dialogs\message.py:128
+msgid "Shorten URL"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:68 ../src\wxUI\dialogs\message.py:129
+#: ../src\wxUI\dialogs\message.py:208 ../src\wxUI\dialogs\message.py:263
+msgid "Expand URL"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:72 ../src\wxUI\dialogs\message.py:117
+msgid "&Autocomplete users"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:73 ../src\wxUI\dialogs\message.py:133
+msgid "Send"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:106 ../src\wxUI\dialogs\update_profile.py:80
+msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:106 ../src\wxUI\dialogs\update_profile.py:80
+msgid "Select the picture to be uploaded"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:115
+msgid "Recipient"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:167
+msgid "Mention to all"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:176
+msgid "Tweet - %i characters "
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:193
+msgid "Retweets: "
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:198
+msgid "Favourites: "
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:248
+msgid "View"
+msgstr ""
+
+#: ../src\wxUI\dialogs\message.py:250
+msgid "Item"
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:10
+msgid "Search on Twitter"
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:11
+msgid "Search"
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:18 ../src\wxUI\dialogs\userSelection.py:17
+msgid "Tweets"
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:19
+msgid "Users"
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:24 ../src\wxUI\dialogs\trends.py:26
+#: ../src\wxUI\dialogs\userActions.py:38
+#: ../src\wxUI\dialogs\userSelection.py:26 ../src\wxUI\dialogs\utils.py:32
+msgid "OK"
+msgstr ""
+
+#: ../src\wxUI\dialogs\show_user.py:10
+msgid "Details"
+msgstr ""
+
+#: ../src\wxUI\dialogs\show_user.py:15
+msgid "Go to URL"
+msgstr ""
+
+#: ../src\wxUI\dialogs\trends.py:10
+msgid "View trending topics"
+msgstr ""
+
+#: ../src\wxUI\dialogs\trends.py:11
+msgid "Trending topics by"
+msgstr ""
+
+#: ../src\wxUI\dialogs\trends.py:13
+msgid "Country"
+msgstr ""
+
+#: ../src\wxUI\dialogs\trends.py:14
+msgid "City"
+msgstr ""
+
+#: ../src\wxUI\dialogs\trends.py:20 ../src\wxUI\dialogs\update_profile.py:16
+msgid "Location"
+msgstr ""
+
+#: ../src\wxUI\dialogs\update_profile.py:8
+msgid "Update your profile"
+msgstr ""
+
+#: ../src\wxUI\dialogs\update_profile.py:10
+msgid "Name (20 characters maximum)"
+msgstr ""
+
+#: ../src\wxUI\dialogs\update_profile.py:21
+msgid "Website"
+msgstr ""
+
+#: ../src\wxUI\dialogs\update_profile.py:26
+msgid "Bio (160 characters maximum)"
+msgstr ""
+
+#: ../src\wxUI\dialogs\update_profile.py:33
+msgid "Update profile"
+msgstr ""
+
+#: ../src\wxUI\dialogs\update_profile.py:77
+msgid "Discard image"
+msgstr ""
+
+#: ../src\wxUI\dialogs\urlList.py:6
+msgid "Select an URL"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userActions.py:9 ../src\wxUI\dialogs\userActions.py:16
+msgid "Action"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userActions.py:17
+msgid "Follow"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userActions.py:18
+msgid "Unfollow"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userActions.py:19
+msgid "Mute"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userActions.py:20
+msgid "Unmute"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userActions.py:21
+msgid "Block"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userActions.py:22
+msgid "Unblock"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userActions.py:23
+msgid "Report as spam"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userActions.py:24
+msgid "Ignore tweets from this client"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userSelection.py:9
+msgid "Timeline for %s"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userSelection.py:16
+msgid "Buffer type"
+msgstr ""
+
+#: ../src\wxUI\dialogs\userSelection.py:18
+msgid "Favourites"
 msgstr ""
 

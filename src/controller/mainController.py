@@ -939,7 +939,7 @@ class Controller(object):
  def manage_mentions(self, data, user):
   buffer = self.search_buffer("mentions", user)
   play_sound = "mention_received.ogg"
-  message = _(u"New mention")
+  message = _(u"One mention from %s ") % (data["user"]["name"])
   if "mentions"  not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound, message=message)
   buffer.add_new_item(data)

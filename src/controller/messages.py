@@ -60,7 +60,7 @@ class basicTweet(object):
  def unshorten(self, event=None):
   urls = utils.find_urls_in_text(self.message.get_text())
   if len(urls) == 0:
-   output.speak(_(u"There's no URL to be sexpanded"))
+   output.speak(_(u"There's no URL to be expanded"))
    self.message.text_focus()
   elif len(urls) == 1:
    self.message.set_text(self.message.get_text().replace(urls[0], url_shortener.unshorten(urls[0])))

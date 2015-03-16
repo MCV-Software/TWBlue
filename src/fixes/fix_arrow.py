@@ -3,10 +3,13 @@ from arrow import locales
 from arrow.locales import Locale
 
 def fix():
-	''' This function adds the Catala, Basque and galician locales to the list of locales supported in Arrow'''
+	''' This function adds the Catala, Basque and galician locales to the list of locales supported in Arrow.
+	it also fixes capitalizations in names from turkish and arabian locales.'''
 	locales.CatalaLocale = CatalaLocale
 	locales.GalicianLocale = GalicianLocale
 	locales.BasqueLocale = BasqueLocale
+	locales.TurkishLocale.names[-1] = "tr_tr"
+	locales.ArabicLocale.names[-1] = "ar_eg"
 	# We need to reassign the locales list for updating the list with our new contents.
 	locales._locales = locales._map_locales()
 

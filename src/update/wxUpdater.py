@@ -27,4 +27,4 @@ def progress_callback(total_downloaded, total_size):
 		progress_dialog.Update((total_downloaded*100)/total_size, _(u"Updating... %s of %s") % (str(utils.convert_bytes(total_downloaded)), str(utils.convert_bytes(total_size))))
 
 def update_finished():
-	ms = wx.MessageDialog(None, _(u"The new Lees version has been downloaded and installed. Press OK to start the application."), _(u"Done!")).ShowModal()
+	ms = wx.MessageDialog(None, _(u"The new TWBlue version has been downloaded and installed. Press OK to start the application."), _(u"Done!")).ShowModal()
