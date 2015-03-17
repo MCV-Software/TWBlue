@@ -418,7 +418,7 @@ class baseBufferController(bufferController):
 
  @_tweets_exist
  def user_details(self):
-  tweet = self.get_tweet()
+  tweet = self.get_right_tweet()
   if self.type == "dm":
    users = utils.get_all_users(tweet, self.session.db)
   elif self.type == "people":
@@ -586,13 +586,16 @@ class searchBufferController(baseBufferController):
   elif dlg == widgetUtils.NO:
    return False
 
-class searchPeopleBufferController(searchBufferController):
+class searchPeopleBufferController(peopleBufferController):
 
  def __init__(self, parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs):
   super(searchPeopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs)
   log.debug("Initializing buffer %s, account %s" % (name, account,))
-  self.compose_function = compose.compose_followers_list
+#  self.compose_function = compose.compose_followers_list
   log.debug("Compose_function: %s" % (self.compose_function,))
+  self.args = args
+  self.kwargs = kwargs
+  self.function = function
 
  def start_stream(self):
   log.debug("starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
@@ -602,11 +605,21 @@ class searchPeopleBufferController(searchBufferController):
    val = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
   except:
    return
-  number_of_items = self.session.order_buffer(self.name, val)
+  number_of_items = self.session.order_cursored_buffer(self.name, val)
   log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
   if number_of_items > 0:
    self.session.sound.play("search_updated.ogg")
+
+ def remove_buffer(self):
+  dlg = commonMessageDialogs.remove_buffer()
+  if dlg == widgetUtils.YES:
+   if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
+    self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
+    self.timer.cancel()
+    return True
+  elif dlg == widgetUtils.NO:
+   return False
 
 class trendsBufferController(bufferController):
  def __init__(self, parent, name, session, account, trendsFor, *args, **kwargs):
