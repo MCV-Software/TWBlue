@@ -302,6 +302,15 @@ class Controller(object):
    tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (i,), session, session.db["user_name"], bufferType=None, screen_name=i)
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}".format(i)), pos=self.view.search("timelines", session.db["user_name"]))
+  favs_timelines = buffersController.emptyPanel(self.view.nb, "favs_timelines", session.db["user_name"])
+  self.buffers.append(favs_timelines)
+  self.view.insert_buffer(favs_timelines.buffer , name=_(u"Favourites timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  for i in session.settings["other_buffers"]["favourites_timelines"]:
+   tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (i,), session, session.db["user_name"], bufferType=None, screen_name=i)
+   self.buffers.append(tl)
+   self.view.insert_buffer(tl.buffer, name=_(u"Favourites timeline for {}".format(i)), pos=self.view.search("favs_timelines", session.db["user_name"]))
+   tl.timer = RepeatingTimer(300, tl.start_stream)
+   tl.timer.start()
   searches = buffersController.emptyPanel(self.view.nb, "searches", session.db["user_name"])
   self.buffers.append(searches)
   self.view.insert_buffer(searches.buffer , name=_(u"Searches"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
@@ -618,6 +627,18 @@ class Controller(object):
      self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}".format(dlg.get_user())), pos=self.view.search("timelines", buffer.session.db["user_name"]))
      buffer.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
      pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buffer.session)
+     buffer.session.sound.play("create_timeline.ogg")
+    else:
+     if dlg.get_user() in buffer.session.settings["other_buffers"]["favourites_timelines"]:
+      commonMessageDialogs.timeline_exist()
+      return
+     tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
+     self.buffers.append(tl)
+     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Favourites timeline for {}".format(dlg.get_user())), pos=self.view.search("favs_timelines", buffer.session.db["user_name"]))
+     tl.start_stream()
+     tl.timer = RepeatingTimer(300, tl.start_stream)
+     tl.timer.start()
+     buffer.session.settings["other_buffers"]["favourites_timelines"].append(dlg.get_user())
      buffer.session.sound.play("create_timeline.ogg")
    else:
     commonMessageDialogs.user_not_exist()

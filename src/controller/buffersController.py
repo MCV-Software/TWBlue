@@ -257,6 +257,14 @@ class baseBufferController(bufferController):
      return True
    elif dlg == widgetUtils.NO:
     return False
+  elif "favorite" in self.name:
+   dlg = commonMessageDialogs.remove_buffer()
+   if dlg == widgetUtils.YES:
+    if self.name[:-9] in self.session.settings["other_buffers"]["favourites_timelines"]:
+     self.session.settings["other_buffers"]["favourites_timelines"].remove(self.name[:-9])
+     return True
+   elif dlg == widgetUtils.NO:
+    return False
   else:
    output.speak(_(u"This buffer is not a timeline; it can't be deleted."))
    return False
