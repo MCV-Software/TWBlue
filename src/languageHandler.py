@@ -165,7 +165,7 @@ def setLanguage(lang):
 		trans=gettext.translation("twblue",fallback=True)
 		curLang="en"
 	trans.install(unicode=True)
-	log.debug("Current language: %s" % (curLang,))
+#	log.debug(u"Current language: %s" % (curLang,))
 	# Install our pgettext function.
 #	__builtin__.__dict__["pgettext"] = makePgettext(trans)
 
@@ -191,11 +191,13 @@ def langToWindowsLocale(lang):
 	languages = {"en": "eng",
 	"ar": "ara",
 	"ca": "cat",
+	"de": "deu",
 	"es": "esp",
 	"fi": "fin",
 	"fr": "fre_FRA",
 	"gl": "glc",
 	"eu": "euq",
+	"hr": "hrv",
 	"hu": "hun",
 	"it": "ita",
 	"pl": "plk",
