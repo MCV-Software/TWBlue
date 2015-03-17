@@ -325,6 +325,7 @@ class Controller(object):
   for i in session.settings["other_buffers"]["trending_topic_buffers"]:
    buffer = buffersController.trendsBufferController(self.view.nb, "%s_tt" % (i,), session, session.db["user_name"], i)
    buffer.start_stream()
+   buffer.searchfunction = self.search
    self.buffers.append(buffer)
    self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    buffer.timer = RepeatingTimer(300, buffer.start_stream)
@@ -363,10 +364,10 @@ class Controller(object):
   self.buffers.remove(buffer)
   del buffer
 
- def search(self, *args, **kwargs):
+ def search(self, value="", *args, **kwargs):
   """ Searches words or users in twitter. This creates a new buffer containing the search results."""
   log.debug("Creating a new search...")
-  dlg = dialogs.search.searchDialog()
+  dlg = dialogs.search.searchDialog(value)
   if dlg.get_response() == widgetUtils.OK:
    term = dlg.get("term")
    buffer = self.get_best_buffer()
@@ -662,15 +663,6 @@ class Controller(object):
    self.view.Show()
    self.showing = True
 
- def toggle_global_mute(self):
-  pass
-
- def toggle_mute(self):
-  pass
-
- def toggle_autoread(self):
-  pass
-
  def get_trending_topics(self, *args, **kwargs):
   buff = self.get_best_buffer()
   trends = trendingTopics.trendingTopicsController(buff.session)
@@ -678,6 +670,7 @@ class Controller(object):
    woeid = trends.get_woeid()
    if woeid in buff.session.settings["other_buffers"]["trending_topic_buffers"]: return
    buffer = buffersController.trendsBufferController(self.view.nb, "%s_tt" % (woeid,), buff.session, buff.account, woeid)
+   buffer.searchfunction = self.search
    self.buffers.append(buffer)
    self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (trends.get_string()), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
    buffer.start_stream()
@@ -919,7 +912,8 @@ class Controller(object):
    pass
 
  def url(self, *args, **kwargs):
-  self.get_current_buffer().url()
+  buffer = self.get_current_buffer()
+  buffer.url()
 
  def audio(self, *args, **kwargs):
   self.get_current_buffer().audio()

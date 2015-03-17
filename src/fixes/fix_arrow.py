@@ -4,7 +4,8 @@ from arrow.locales import Locale
 
 def fix():
 	''' This function adds the Catala, Basque and galician locales to the list of locales supported in Arrow.
-	it also fixes capitalizations in names from turkish and arabian locales.'''
+	it also fixes capitalizations in names from turkish and arabian locales.
+	see https://github.com/crsmithdev/arrow/pull/207 for following the pull request.'''
 	locales.CatalaLocale = CatalaLocale
 	locales.GalicianLocale = GalicianLocale
 	locales.BasqueLocale = BasqueLocale

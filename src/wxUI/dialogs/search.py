@@ -3,13 +3,13 @@ import baseDialog
 import wx
 
 class searchDialog(baseDialog.BaseWXDialog):
- def __init__(self):
+ def __init__(self, value=""):
   super(searchDialog, self).__init__(None, -1)
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
   self.SetTitle(_(u"Search on Twitter"))
   label = wx.StaticText(panel, -1, _(u"Search"))
-  self.term = wx.TextCtrl(panel, -1,)
+  self.term = wx.TextCtrl(panel, -1, value)
   dc = wx.WindowDC(self.term)
   dc.SetFont(self.term.GetFont())
   self.term.SetSize(dc.GetTextExtent("0"*40))

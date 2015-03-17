@@ -50,10 +50,10 @@ class bufferController(object):
    event = None
    ev.Skip()
   if event != None:
-#   try:
-   getattr(self, event)()
-#   except AttributeError:
-   #pass
+   try:
+    getattr(self, event)()
+   except AttributeError:
+    pass
  
  def volume_down(self):
   if self.session.settings["sound"]["volume"] > 0.0:
@@ -689,3 +689,6 @@ class trendsBufferController(bufferController):
     return True
   elif dlg == widgetUtils.NO:
    return False
+
+ def url(self, *args, **kwargs):
+  self.searchfunction(value=self.get_message())
