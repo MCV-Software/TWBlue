@@ -154,6 +154,8 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.user_details, menuitem=self.view.details)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_autoread, menuitem=self.view.autoread)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_buffer_mute, self.view.mute_buffer)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_timeline, self.view.timeline)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_favs_timeline, self.view.favs)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
 
  def set_systray_icon(self):
@@ -605,7 +607,10 @@ class Controller(object):
    non_tweet = buffer.get_formatted_message()
    msg = messages.viewTweet(non_tweet, False)
 
- def open_timeline(self, *args, **kwargs):
+ def open_favs_timeline(self, *args, **kwargs):
+  self.open_timeline(default="favourites")
+
+ def open_timeline(self, default="tweets", *args, **kwargs):
   buff = self.get_best_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
@@ -613,7 +618,7 @@ class Controller(object):
    users = utils.get_all_users(tweet, buff.session.db)
   else:
    users = [tweet["screen_name"]]
-  dlg = dialogs.userSelection.selectUserDialog(users=users)
+  dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
   if dlg.get_response() == widgetUtils.OK:
    buffer = self.get_best_buffer()
    if utils.if_user_exists(buffer.session.twitter.twitter, dlg.get_user()) != None:

@@ -54,9 +54,7 @@ class mainFrame(wx.Frame):
   self.viewLists.Enable(False)
   self.details = user.Append(wx.NewId(), _(u"Show user &profile"))
   self.timeline = user.Append(wx.NewId(), _(u"&Timeline"))
-  self.timeline.Enable(False)
   self.favs = user.Append(wx.NewId(), _(u"V&iew favourites"))
-  self.favs.Enable(False)
 
   # buffer menu
   buffer = wx.Menu()
