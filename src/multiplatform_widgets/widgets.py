@@ -21,7 +21,9 @@ class list(object):
   self.list.SetColumnWidth(column, x)
 
  def set_size(self):
-  self.list.SetSize(self.list.GetBestSize())
+#  self.list.SetSize(self.list.GetBestSize())
+#  print self.list.GetBestSize()
+  self.list.SetSize((1439, 1000))
 
  def create_list(self, parent):
   if self.system == "Windows":

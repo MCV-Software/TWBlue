@@ -22,7 +22,7 @@ class Jaws (Output):
   self.object.RunFunction("BrailleString(\"%s\")" % text)
 
  def speak(self, text, interrupt=False):
-  self.object.SayString('      %s' % text, interrupt)
+  self.object.SayString('      %s' % text, True)
 
  def is_active(self):
   try:

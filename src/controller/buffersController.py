@@ -692,3 +692,31 @@ class trendsBufferController(bufferController):
 
  def url(self, *args, **kwargs):
   self.searchfunction(value=self.get_message())
+
+class conversationBufferController(searchBufferController):
+
+ def start_stream(self, start=False):
+  if start == True:
+   self.statuses = []
+   self.ids = []
+   self.statuses.append(self.tweet)
+   self.ids.append(self.tweet["id"])
+   tweet = self.tweet
+   while tweet["in_reply_to_status_id"] != None:
+    tweet = self.session.twitter.twitter.show_status(id=tweet["in_reply_to_status_id"])
+    self.statuses.insert(0, tweet)
+    self.ids.append(tweet["id"])
+   if tweet["in_reply_to_status_id"] == None:
+    self.kwargs["since_id"] = tweet["id"]
+    self.ids.append(tweet["id"])
+  val2 = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
+  for i in val2["statuses"]:
+   if i["in_reply_to_status_id"] in self.ids:
+    self.statuses.append(i)
+    self.ids.append(i["id"])
+    tweet = i
+  number_of_items = self.session.order_buffer(self.name, self.statuses)
+  log.debug("Number of items retrieved: %d" % (number_of_items,))
+  self.put_items_on_list(number_of_items)
+  if number_of_items > 0:
+   self.session.sound.play("search_updated.ogg")

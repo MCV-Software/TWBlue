@@ -28,8 +28,9 @@ class basePanel(wx.Panel):
   btnSizer.Add(self.reply, 0, wx.ALL, 5)
   btnSizer.Add(self.dm, 0, wx.ALL, 5)
   self.sizer.Add(btnSizer, 0, wx.ALL, 5)
-  self.sizer.Add(self.list.list, 0, wx.ALL, 5)
+  self.sizer.Add(self.list.list, 0, wx.ALL|wx.EXPAND, 5)
   self.SetSizer(self.sizer)
+  self.SetClientSize(self.sizer.CalcMin())
 
  def set_position(self, reversed=False):
   if reversed == False:

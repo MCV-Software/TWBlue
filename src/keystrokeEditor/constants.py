@@ -47,4 +47,5 @@ actions = {
 "reverse_geocode": _(u"Get location of any tweet"),
 "view_reverse_geocode": _(u"Displays the tweet's location in a dialog"),
 "get_trending_topics": _(u"Creates a buffer for displaying trends for a desired place"),
+"open_conversation": _(u"Opens up a conversation buffer"),
 }

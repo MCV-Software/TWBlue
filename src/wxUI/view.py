@@ -132,6 +132,8 @@ class mainFrame(wx.Frame):
  def prepare(self):
   self.sizer.Add(self.nb, 0, wx.ALL, 5)
   self.panel.SetSizer(self.sizer)
+#  self.Maximize()
+  self.sizer.Layout()
   self.SetClientSize(self.sizer.CalcMin())
 
  def search(self, name_, account):
