@@ -34,6 +34,7 @@ class mainFrame(wx.Frame):
   self.unfav = tweet.Append(wx.NewId(), _(u"Remove from favo&urites"))
   self.view = tweet.Append(wx.NewId(), _(u"&Show tweet"))
   self.view_coordinates = tweet.Append(wx.NewId(), _(u"View &address"))
+  self.view_conversation = tweet.Append(wx.NewId(), _(u"View conversa&tion"))
   self.delete = tweet.Append(wx.NewId(), _(u"&Delete"))
 
   # User menu
