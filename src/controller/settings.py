@@ -47,6 +47,7 @@ class globalSettingsController(object):
    pub.sendMessage("invisible-shorcuts-changed", registered=self.dialog.get_value("general", "use_invisible_shorcuts"))
   config.app["app-settings"]["voice_enabled"] = self.dialog.get_value("general", "disable_sapi5")
   config.app["app-settings"]["hide_gui"] = self.dialog.get_value("general", "hide_gui")
+  config.app["app-settings"]["ask_at_exit"] = self.dialog.get_value("general", "ask_at_exit")
   config.app.write()
 
 class accountSettingsController(globalSettingsController):
