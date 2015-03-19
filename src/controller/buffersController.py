@@ -249,7 +249,7 @@ class baseBufferController(bufferController):
   output.speak(_(u"%s items retrieved") % (str(elements)))
 
  def remove_buffer(self):
-  if "timeline" in self.name:
+  if "-timeline" in self.name:
    dlg = commonMessageDialogs.remove_buffer()
    if dlg == widgetUtils.YES:
     if self.name[:-9] in self.session.settings["other_buffers"]["timelines"]:
