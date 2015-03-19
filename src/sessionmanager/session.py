@@ -127,6 +127,7 @@ class Session(object):
    self.twitter.login(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], verify_credentials)
    self.logged = True
    log.debug("Logged.")
+   self.counter = 0
   else:
    self.logged = False
    raise Exceptions.RequireCredentialsSessionError
