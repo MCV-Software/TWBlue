@@ -318,7 +318,7 @@ class Controller(object):
   self.buffers.append(searches)
   self.view.insert_buffer(searches.buffer , name=_(u"Searches"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["tweet_searches"]:
-   tl = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (i,), session, session.db["user_name"], bufferType="searchPanel", q=i)
+   tl = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (i,), session, session.db["user_name"], bufferType="searchPanel", q=i, count=session.settings["general"]["max_tweets_per_call"])
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Search for {}".format(i)), pos=self.view.search("searches", session.db["user_name"]))
    tl.timer = RepeatingTimer(180, tl.start_stream)
@@ -375,12 +375,12 @@ class Controller(object):
    if dlg.get("tweets") == True:
     if term not in buffer.session.settings["other_buffers"]["tweet_searches"]:
      buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
-     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term)
+     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, count=buffer.settings["general"]["max_tweets_per_call"])
     else:
      log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
      return
    elif dlg.get("users") == True:
-    search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term)
+    search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term, count=buffer.settings["general"]["max_tweets_per_call"])
    self.buffers.append(search)
    search.start_stream()
    self.view.insert_buffer(search.buffer, name=_(u"Search for {}".format(term)), pos=self.view.search("searches", buffer.session.db["user_name"]))
