@@ -1012,15 +1012,16 @@ class Controller(object):
   if "followers" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
-  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_friend(self, data, user):
   buffer = self.search_buffer("friends", user)
   buffer.add_new_item(data)
+  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_unfollowing(self, item, user):
   buffer = self.search_buffer("friends", user)
   buffer.remove_item(item)
+  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_favourite(self, data, user):
   buffer = self.search_buffer("favourites", user)
@@ -1036,10 +1037,12 @@ class Controller(object):
  def manage_blocked_user(self, data, user):
   buffer = self.search_buffer("blocked", user)
   buffer.add_new_item(data)
+  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_unblocked_user(self, item, user):
   buffer = self.search_buffer("blocked", user)
   buffer.remove_item(item)
+  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_item_in_timeline(self, data, user, who):
   buffer = self.search_buffer("%s-timeline" % (who,), user)
