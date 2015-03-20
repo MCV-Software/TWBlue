@@ -7,6 +7,7 @@ import output
 import languageHandler
 import arrow
 import logging
+from long_tweets import twishort
 log = logging.getLogger("compose")
 
 def StripChars(s):
@@ -26,6 +27,9 @@ chars = "abcdefghijklmnopqrstuvwxyz"
 
 def compose_tweet(tweet, db, relative_times):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
+ long = twishort.is_long(tweet)
+ if long != False:
+  tweet["long_uri"] = long
  original_date = arrow.get(tweet["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
  if relative_times == True:
   ts = original_date.humanize(locale=languageHandler.getLanguage())

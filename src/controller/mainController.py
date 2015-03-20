@@ -30,6 +30,7 @@ import userActionsController
 import trendingTopics
 import user
 import webbrowser
+from long_tweets import twishort
 
 log = logging.getLogger("mainController")
 
@@ -375,12 +376,12 @@ class Controller(object):
    if dlg.get("tweets") == True:
     if term not in buffer.session.settings["other_buffers"]["tweet_searches"]:
      buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
-     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, count=buffer.settings["general"]["max_tweets_per_call"])
+     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, count=buffer.session.settings["general"]["max_tweets_per_call"])
     else:
      log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
      return
    elif dlg.get("users") == True:
-    search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term, count=buffer.settings["general"]["max_tweets_per_call"])
+    search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term, count=buffer.session.settings["general"]["max_tweets_per_call"])
    self.buffers.append(search)
    search.start_stream()
    self.view.insert_buffer(search.buffer, name=_(u"Search for {}".format(term)), pos=self.view.search("searches", buffer.session.db["user_name"]))
@@ -597,8 +598,14 @@ class Controller(object):
   buffer = self.get_current_buffer()
   if buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
    try:
-    tweet_id = buffer.get_right_tweet()["id"]
+    tweet = buffer.get_right_tweet()
+    tweet_id = tweet["id"]
+    uri = None
+    if tweet.has_key("long_uri"):
+     uri = tweet["long_uri"]
     tweet = buffer.session.twitter.twitter.show_status(id=tweet_id)
+    if uri != None:
+     tweet["text"] = twishort.get_full_text(uri)
     msg = messages.viewTweet(tweet, )
    except TwythonError:
     non_tweet = buffer.get_formatted_message()

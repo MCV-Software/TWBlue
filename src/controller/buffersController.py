@@ -231,7 +231,7 @@ class baseBufferController(bufferController):
   if self.session.settings["general"]["reverse_timelines"] == False:
    last_id = self.session.db[self.name][0]["id"]
   else:
-   last_id = self.session.db[self.name_buffer][-1]["id"]
+   last_id = self.session.db[self.name][-1]["id"]
   try:
    items = self.session.get_more_items(self.function, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
   except TwythonError as e:

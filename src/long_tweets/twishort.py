@@ -17,4 +17,22 @@
 #
 ############################################################
 import requests
+import keys
+from twitter import utils
 
+def get_twishort_uri(url):
+ return url.split("twishort.com/")[1]
+
+def is_long(tweet):
+ long = False
+ for url in range(0, len(tweet["entities"]["urls"])):
+  if "twishort.com" in tweet["entities"]["urls"][url]["expanded_url"]:
+   long = get_twishort_uri(tweet["entities"]["urls"][url]["expanded_url"])
+ return long
+
+def get_full_text(uri):
+# try:
+ r = requests.get("http://api.twishort.com/1.1/get.json", params={"uri": uri, "api_key": keys.keyring.get("twishort_api_key")})
+ return r.json()["text"]
+# except:
+#  return False

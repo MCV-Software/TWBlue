@@ -14,16 +14,15 @@ class list(object):
 #  self.set_size()
 
  def set_windows_size(self, column, characters_max):
-  it = wx.ListItem()
-  dc = wx.WindowDC(self.list)
-  dc.SetFont(it.GetFont())
-  (x, y) = dc.GetTextExtent("r"*characters_max)
-  self.list.SetColumnWidth(column, x)
+#  it = wx.ListItem()
+#  dc = wx.WindowDC(self.list)
+#  dc.SetFont(it.GetFont())
+#  (x, y) = dc.GetTextExtent("r"*characters_max)
+  self.list.SetColumnWidth(column, characters_max*2)
 
  def set_size(self):
-#  self.list.SetSize(self.list.GetBestSize())
-#  print self.list.GetBestSize()
-  self.list.SetSize((1439, 1000))
+  self.list.SetSize((self.list.GetBestSize()[0], 728))
+#  self.list.SetSize((1439, 1000))
 
  def create_list(self, parent):
   if self.system == "Windows":

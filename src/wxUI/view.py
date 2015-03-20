@@ -136,6 +136,8 @@ class mainFrame(wx.Frame):
 #  self.Maximize()
   self.sizer.Layout()
   self.SetClientSize(self.sizer.CalcMin())
+#  print self.GetSize()
+
 
  def search(self, name_, account):
   for i in range(0, self.nb.GetPageCount()):

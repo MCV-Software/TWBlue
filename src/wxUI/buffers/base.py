@@ -6,10 +6,10 @@ class basePanel(wx.Panel):
  
  def create_list(self):
   self.list = widgets.list(self, _(u"User"), _(u"Text"), _(u"Date"), _(u"Client"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
-  self.list.set_windows_size(0, 30)
-  self.list.set_windows_size(1, 160)
-  self.list.set_windows_size(2, 55)
-  self.list.set_windows_size(3, 42)
+  self.list.set_windows_size(0, 60)
+  self.list.set_windows_size(1, 320)
+  self.list.set_windows_size(2, 110)
+  self.list.set_windows_size(3, 84)
   self.list.set_size()
 
  def __init__(self, parent, name):

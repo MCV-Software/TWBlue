@@ -95,7 +95,7 @@ class audioUploader(object):
   self.file = tempfile.mktemp(suffix='.wav')
   self.recording = sound.recording(self.file)
   self.recording.play()
-  self.dialog.set("record", _(u"Stop recording"))
+  self.dialog.set("record", _(u"Stop"))
   output.speak(_(u"Recording"))
 
  def stop_recording(self):
