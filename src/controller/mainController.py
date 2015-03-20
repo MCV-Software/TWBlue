@@ -477,10 +477,10 @@ class Controller(object):
    log.debug("Saving config for %s session" % (session_.sessions[item].session_id,))
    session_.sessions[item].settings.write()
    log.debug("Disconnecting streams for %s session" % (session_.sessions[item].session_id,))
-   session_.sessions[item].main_stream.disconnect()
-   session_.sessions[item].timelinesStream.disconnect()
+   if hasattr(session_.sessions[item], "main_stream"): session_.sessions[item].main_stream.disconnect()
+   if hasattr(session_.sessions[item], "timelinesStream"): session_.sessions[item].timelinesStream.disconnect()
    session_.sessions[item].sound.cleaner.cancel()
-  self.systrayIcon.Destroy()
+   self.systrayIcon.RemoveIcon()
   widgetUtils.exit_application()
 
  def follow(self, *args, **kwargs):
