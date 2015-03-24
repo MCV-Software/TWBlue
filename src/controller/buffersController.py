@@ -245,7 +245,10 @@ class baseBufferController(bufferController):
      self.session.db[self.name].append(i)
   selection = self.buffer.list.get_selected()
   self.put_items_on_list(elements)
-  self.buffer.list.select_item(selection+elements)
+  if self.session.settings["general"]["reverse_timelines"] == True:
+#   self.buffer.list.select_item(selection+elements)
+#  else:
+   self.buffer.list.select_item(selection)
   output.speak(_(u"%s items retrieved") % (str(elements)))
 
  def remove_buffer(self):
@@ -522,7 +525,10 @@ class peopleBufferController(baseBufferController):
     self.session.db[self.name]["items"].append(i)
   selected = self.buffer.list.get_selected()
   self.put_items_on_list(len(items))
-  self.buffer.list.select_item(selected+len(items))
+  if self.session.settings["general"]["reverse_timelines"] == True:
+   self.buffer.list.select_item(selection)
+#  else:
+#   self.buffer.list.select_item(selection-elements)
   output.speak(_(u"%s items retrieved") % (len(items)))
 
  def put_items_on_list(self, number_of_items):

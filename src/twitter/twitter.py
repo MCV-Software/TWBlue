@@ -21,7 +21,6 @@ class twitter(object):
   twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), auth_endpoint='authorize')
   auth = twitter.get_authentication_tokens("http://127.0.0.1:{0}".format(port,))
   webbrowser.open_new_tab(auth['auth_url'])
-#  global logged, verifier
   while authorisationHandler.logged == False:
    httpd.handle_request()
   self.twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), auth['oauth_token'], auth['oauth_token_secret'])

@@ -351,6 +351,7 @@ class Controller(object):
   self.destroy_buffer("timelines", user)
   for i in session.settings["other_buffers"]["timelines"]:
    self.destroy_buffer("%s-timeline" % (i,), user)
+  self.destroy_buffer("favs_timelines", user)
   self.destroy_buffer("searches", user)
   for i in session.settings["other_buffers"]["tweet_searches"]:
    self.destroy_buffer("%s-searchterm" % (i,), user)
