@@ -631,7 +631,14 @@ class Controller(object):
   dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
   if dlg.get_response() == widgetUtils.OK:
    buffer = self.get_best_buffer()
-   if utils.if_user_exists(buffer.session.twitter.twitter, dlg.get_user()) != None:
+   usr = utils.if_user_exists(buffer.session.twitter.twitter, dlg.get_user())
+   if usr != None:
+    if usr["protected"] == True:
+     if usr["following"] == False:
+      commonMessageDialogs.no_following()
+      return
+     answer = commonMessageDialogs.protected_user()
+     if answer == widgetUtils.NO: return
     if dlg.get_action() == "tweets":
      if dlg.get_user() in buffer.session.settings["other_buffers"]["timelines"]:
       commonMessageDialogs.timeline_exist()

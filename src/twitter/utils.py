@@ -82,7 +82,7 @@ def get_all_users(tweet, conf):
 def if_user_exists(twitter, user):
  try:
   data = twitter.show_user(screen_name=user)
-  return data["screen_name"]
+  return data
  except TwythonError as err:
   if err.error_code == 404:
    return None

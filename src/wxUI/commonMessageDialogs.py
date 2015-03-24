@@ -38,3 +38,9 @@ def timeline_exist():
 
 def no_tweets():
  return wx.MessageDialog(None, _(u"This user has no tweets. You can't open a timeline for this user"), _(u"Error!"), wx.ICON_ERROR).ShowModal()
+
+def protected_user():
+ return wx.MessageDialog(None, _(u"This is a protected Twitter user. It means you can not open a timeline using the Streaming API. The user's tweets will not update due to a twitter policy. Do you want to continue?"), _(u"Warning"), wx.ICON_WARNING|wx.YES_NO).ShowModal()
+
+def no_following():
+ return wx.MessageDialog(None, _(u"This is a protected user account, you need follow to this user for viewing your tweets or favourites."), _(u"Error"), wx.ICON_ERROR).ShowModal()
