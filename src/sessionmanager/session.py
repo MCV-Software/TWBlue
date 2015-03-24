@@ -186,6 +186,11 @@ class Session(object):
    output.speak(_("%s succeeded.") % action)
   if _sound != None: self.sound.play(_sound)
 
+ def search(self, name, *args, **kwargs):
+  tl = self.twitter.twitter.search(*args, **kwargs)
+  tl["statuses"].reverse()
+  return tl["statuses"]
+
  @_require_login
  def get_favourites_timeline(self, name, *args, **kwargs):
 

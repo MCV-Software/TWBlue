@@ -662,7 +662,7 @@ class Controller(object):
   buffer = self.get_current_buffer()
   id = buffer.get_right_tweet()["id_str"]
   user = buffer.get_right_tweet()["user"]["screen_name"]
-  search = buffersController.conversationBufferController(self.view.nb, "search", "%s-searchterm" % (id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", since_id=id, q="@{0}".format(user,), count=100)
+  search = buffersController.conversationBufferController(self.view.nb, "search", "%s-searchterm" % (id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", since_id=id, q="@{0}".format(user,))
   search.tweet = buffer.get_right_tweet()
   search.start_stream(start=True)
   self.buffers.append(search)

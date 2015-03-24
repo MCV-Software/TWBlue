@@ -580,14 +580,13 @@ class searchBufferController(baseBufferController):
   log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
   log.debug("Function: %s" % (self.function,))
-  try:
-   val = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
-  except:
-   return None
-  number_of_items = self.session.order_buffer(self.name, val["statuses"])
-  log.debug("Number of items retrieved: %d" % (number_of_items,))
-  self.put_items_on_list(number_of_items)
-  if number_of_items > 0:
+#  try:
+  val = self.session.search(self.name, *self.args, **self.kwargs)
+#  except:
+#   return None
+  num = self.session.order_buffer(self.name, val)
+  self.put_items_on_list(num)
+  if num > 0:
    self.session.sound.play("search_updated.ogg")
 
  def remove_buffer(self):
@@ -616,7 +615,7 @@ class searchPeopleBufferController(peopleBufferController):
   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
   log.debug("Function: %s" % (self.function,))
   try:
-   val = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
+   val = self.session.call_paged(self.function, *self.args, **self.kwargs)
   except:
    return
   number_of_items = self.session.order_cursored_buffer(self.name, val)
@@ -655,7 +654,7 @@ class trendsBufferController(bufferController):
 
  def start_stream(self):
   try:
-   data = self.session.twitter.twitter.get_place_trends(id=self.trendsFor)
+   data = self.session.call_paged("get_place_trends", id=self.trendsFor)
   except:
    return
   if not hasattr(self, "name_"):
@@ -715,7 +714,7 @@ class conversationBufferController(searchBufferController):
    if tweet["in_reply_to_status_id"] == None:
     self.kwargs["since_id"] = tweet["id"]
     self.ids.append(tweet["id"])
-  val2 = getattr(self.session.twitter.twitter, self.function)(*self.args, **self.kwargs)
+  val2 = self.session.call_paged(self.function, *self.args, **self.kwargs)
   for i in val2["statuses"]:
    if i["in_reply_to_status_id"] in self.ids:
     self.statuses.append(i)

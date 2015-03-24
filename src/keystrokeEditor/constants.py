@@ -7,8 +7,6 @@ actions = {
 "right": _(u"Go to the next tab"),
 "next_account": _(u"Changes to the next account"),
 "previous_account": _(u"Changes to the previous account"),
-"conversation_up": _(u"Move up one tweet in the conversation"),
-"conversation_down": _(u"Move down one tweet in the conversation"),
 "show_hide": _(u"Show the graphical interface"),
 "post_tweet": _(u"New tweet"),
 "post_reply": _(u"Reply to a tweet"),
