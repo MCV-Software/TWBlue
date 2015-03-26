@@ -36,8 +36,8 @@ class spellChecker(object):
    widgetUtils.connect_event(self.dialog.replace, widgetUtils.BUTTON_PRESSED, self.replace)
    widgetUtils.connect_event(self.dialog.replaceAll, widgetUtils.BUTTON_PRESSED, self.replaceAll)
    self.check()
-   if self.dialog.get_response() == widgetUtils.OK:
-    self.fixed_text = self.checker.get_text()
+   self.dialog.get_response()
+   self.fixed_text = self.checker.get_text()
 
  def check(self):
   try:
