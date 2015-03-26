@@ -47,7 +47,7 @@ class dropboxLogin(object):
 
  def get_url(self):
   log.debug("Getting autorisation URL...")
-  self.flow = dropbox.client.DropboxOAuth2FlowNoRedirect(keyring.get("dropbox_app_key"), keyring.get("dropbox_app_secret"))
+  self.flow = dropbox.client.DropboxOAuth2FlowNoRedirect(keyring.get("dropbox_api_key"), keyring.get("dropbox_api_secret"))
   return self.flow.start()
 
  def authorise(self, code):
