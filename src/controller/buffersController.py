@@ -417,7 +417,7 @@ class baseBufferController(bufferController):
   answer = commonMessageDialogs.delete_tweet_dialog(None)
   if answer == widgetUtils.YES:
    try:
-    if self.name == "direct_messages":
+    if self.name == "direct_messages" or self.name == "sent_direct_messages":
      self.session.twitter.twitter.destroy_direct_message(id=self.get_right_tweet()["id"])
     else:
      self.session.twitter.twitter.destroy_status(id=self.get_right_tweet()["id"])
