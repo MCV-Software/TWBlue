@@ -91,6 +91,9 @@ class profileController(object):
   else: protected = _(u"No")
   string = string+ _(u"Protected: %s\n") % (protected)
   string = string+_(u"Followers: %s\n Friends: %s\n") % (self.data["followers_count"], self.data["friends_count"])
+  if self.data["verified"] == True: verified = _(u"Yes")
+  else: verified = _(u"No")
+  string = string+ _(u"Verified: %s\n") % (verified)
   string = string+ _(u"Tweets: %s\n") % (self.data["statuses_count"])
   string = string+ _(u"Favourites: %s") % (self.data["favourites_count"])
   return string
