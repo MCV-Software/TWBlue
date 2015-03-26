@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """ The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
-import gc
 import urllib2
 import twitter
 from keys import keyring
