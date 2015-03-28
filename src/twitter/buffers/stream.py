@@ -68,10 +68,16 @@ class streamer(TwythonStreamer):
    
  def check_follower(self, data):
   if data["target"]["screen_name"] == self.session.db["user_name"]:
-   self.session.db["followers"]["items"].append(data["source"])
+   if self.session.settings["general"]["reverse_timelines"] == False:
+    self.session.db["followers"]["items"].append(data["source"])
+   else:
+    self.session.db["followers"]["items"].insert(0, data["source"])
    pub.sendMessage("follower", data=data["source"], user = self.get_user())
   else:
-   self.session.db["friends"]["items"].append(data["target"])
+   if self.session.settings["general"]["reverse_timelines"] == False:
+    self.session.db["friends"]["items"].append(data["target"])
+   else:
+    self.session.db["friends"]["items"].insert(0, data["target"])
    pub.sendMessage("friend", data=data["target"], user=self.get_user())
 
 ###

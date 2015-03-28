@@ -278,7 +278,7 @@ class baseBufferController(bufferController):
   if self.buffer.list.get_count() == 0:
    for i in self.session.db[self.name]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
-    self.buffer.list.insert_item(self.session.settings["general"]["reverse_timelines"], *tweet)
+    self.buffer.list.insert_item(False, *tweet)
    self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
   elif self.buffer.list.get_count() > 0:
    if self.session.settings["general"]["reverse_timelines"] == False:
@@ -556,7 +556,6 @@ class peopleBufferController(baseBufferController):
   return tweet
 
  def add_new_item(self, item):
-  self.session.db[self.name]["items"].append(item)
   tweet = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"])
   if self.session.settings["general"]["reverse_timelines"] == False:
    self.buffer.list.insert_item(False, *tweet)

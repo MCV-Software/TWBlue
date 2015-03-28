@@ -371,7 +371,7 @@ class Controller(object):
   """ Searches words or users in twitter. This creates a new buffer containing the search results."""
   log.debug("Creating a new search...")
   dlg = dialogs.search.searchDialog(value)
-  if dlg.get_response() == widgetUtils.OK and dlg.get_text() != "":
+  if dlg.get_response() == widgetUtils.OK and dlg.get("term") != "":
    term = dlg.get("term")
    buffer = self.get_best_buffer()
    if dlg.get("tweets") == True:
