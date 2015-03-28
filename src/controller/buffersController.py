@@ -613,10 +613,10 @@ class searchPeopleBufferController(peopleBufferController):
   log.debug("starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
   log.debug("Function: %s" % (self.function,))
-  try:
-   val = self.session.call_paged(self.function, *self.args, **self.kwargs)
-  except:
-   return
+#  try:
+  val = self.session.call_paged(self.function, *self.args, **self.kwargs)
+#  except:
+#   return
   number_of_items = self.session.order_cursored_buffer(self.name, val)
   log.debug("Number of items retrieved: %d" % (number_of_items,))
   self.put_items_on_list(number_of_items)
@@ -713,8 +713,8 @@ class conversationBufferController(searchBufferController):
    if tweet["in_reply_to_status_id"] == None:
     self.kwargs["since_id"] = tweet["id"]
     self.ids.append(tweet["id"])
-  val2 = self.session.call_paged(self.function, *self.args, **self.kwargs)
-  for i in val2["statuses"]:
+  val2 = self.session.search(self.name, *self.args, **self.kwargs)
+  for i in val2:
    if i["in_reply_to_status_id"] in self.ids:
     self.statuses.append(i)
     self.ids.append(i["id"])

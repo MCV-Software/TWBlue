@@ -382,7 +382,7 @@ class Controller(object):
      log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
      return
    elif dlg.get("users") == True:
-    search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term, count=buffer.session.settings["general"]["max_tweets_per_call"])
+    search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term)
    self.buffers.append(search)
    search.start_stream()
    self.view.insert_buffer(search.buffer, name=_(u"Search for {}".format(term)), pos=self.view.search("searches", buffer.session.db["user_name"]))
