@@ -8,7 +8,7 @@ import os
 import logging
 import session
 import manager
-from config_utils import Configuration
+import config_utils
 import config
 
 log = logging.getLogger("sessionmanager.sessionManager")
@@ -32,7 +32,7 @@ class sessionManagerController(object):
    if os.path.isdir(paths.config_path(i)):
     log.debug("Adding session %s" % (i,))
     strconfig = "%s/session.conf" % (paths.config_path(i))
-    config_test = Configuration(strconfig)
+    config_test = config_utils.load_config(strconfig)
     name = config_test["twitter"]["user_name"]
     if config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
      sessionsList.append(name)

@@ -1,5 +1,5 @@
 # -*- coding: cp1252 -*-
-from config_utils import Configuration, ConfigurationResetException
+import config_utils
 import paths
 import logging
 
@@ -13,7 +13,4 @@ app = None
 def setup ():
  global app
  log.debug("Loading global app settings...")
- try:
-  app = Configuration(paths.config_path(MAINFILE), paths.app_path(MAINSPEC))
- except ConfigurationResetException:
-  pass
+ app = config_utils.load_config(paths.config_path(MAINFILE), paths.app_path(MAINSPEC))

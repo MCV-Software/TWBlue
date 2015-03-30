@@ -69,7 +69,7 @@ class Controller(object):
    buffer = self.search_buffer("home_timeline", view_buffer.account)
   else:
    buffer = self.search_buffer(view_buffer.name, view_buffer.account)
-  return buffer
+  if buffer != None: return buffer
 
  def get_first_buffer(self, account):
   """ Gets the first valid buffer for an account.
@@ -785,9 +785,13 @@ class Controller(object):
   self.view.check_menuitem("autoread", autoread)
 
  def fix_wrong_buffer(self):
-  for i in self.accounts:
-   buffer = self.view.search("home_timeline", i)
-   if buffer != None: break
+  buf = self.get_best_buffer()
+  if buf == None:
+   for i in self.accounts:
+    buffer = self.view.search("home_timeline", i)
+    if buffer != None: break
+  else:
+   buffer = self.view.search("home_timeline", buf.session.db["user_name"])
   self.view.change_buffer(buffer)
 
  def up(self, *args, **kwargs):

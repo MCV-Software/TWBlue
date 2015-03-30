@@ -11,7 +11,7 @@ import sound
 import logging
 from twitter import utils
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
-from config_utils import Configuration, ConfigurationResetException
+import config_utils
 from mysc.thread_utils import stream_threaded
 from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
@@ -106,7 +106,7 @@ class Session(object):
    file_ = "%s/session.conf" % (self.session_id,)
 #  try:
    log.debug("Creating config file %s" % (file_,))
-   self.settings = Configuration(paths.config_path(file_), paths.app_path("Conf.defaults"))
+   self.settings = config_utils.load_config(paths.config_path(file_), paths.app_path("Conf.defaults"))
    self.init_sound()
 #  except:
 #   log.exception("The session configuration has failed.")
