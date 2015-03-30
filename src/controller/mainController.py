@@ -31,6 +31,7 @@ import trendingTopics
 import user
 import webbrowser
 from long_tweets import twishort
+from issueReporter import issueReporter
 
 log = logging.getLogger("mainController")
 
@@ -159,6 +160,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_favs_timeline, self.view.favs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_conversation, menuitem=self.view.view_conversation)
   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
 
  def set_systray_icon(self):
   self.systrayIcon = sysTrayIcon.SysTrayIcon()
@@ -445,8 +447,9 @@ class Controller(object):
     buff.session.settings.write()
     restart.restart_program()
 
- def report_error(self):
-  pass
+ def report_error(self, *args, **kwargs):
+  r = issueReporter.reportBug(self.get_best_buffer().session.db["user_name"])
+
 
  def check_for_updates(self, *args, **kwargs):
   update = updater.do_update()

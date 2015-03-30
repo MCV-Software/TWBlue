@@ -74,7 +74,6 @@ class mainFrame(wx.Frame):
   self.changelog.Enable(False)
   self.check_for_updates = help.Append(wx.NewId(), _(u"&Check for updates"))
   self.reportError = help.Append(wx.NewId(), _(u"&Report an error"))
-  self.reportError.Enable(False)
   self.visit_website = help.Append(-1, _(u"TW Blue &website"))
   self.about = help.Append(-1, _(u"About &TW Blue"))
 
