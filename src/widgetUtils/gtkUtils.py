@@ -37,3 +37,35 @@ def connect_event(parent, event, func, menuitem=None, *args, **kwargs):
   return getattr(parent, "connect")(event, func, *args, **kwargs)
  else:
   return getattr(menuitem, "connect")(event, func, *args, **kwargs)
+
+class list(object):
+ def __init__(self, *columns, **listArguments):
+  self.columns = columns
+  self.list_arguments = listArguments
+  self.create_list()
+
+ def create_list(self):
+  columns = []
+  [columns.append(str) for i in self.columns]
+  self.store = Gtk.ListStore(*columns)
+  self.list = Gtk.TreeView(model=self.store)
+  renderer = Gtk.CellRendererText()
+  for i in range(0, len(self.columns)):
+   column = Gtk.TreeViewColumn(self.columns[i], renderer, text=0)
+   column.set_sort_column_id(i)        
+   self.list.append_column(column)
+
+ def insert_item(self, *item):
+  self.store.append(item)
+
+ def get_selected(self):
+  tree_selection = self.list.get_selection()
+  (model, pathlist) = tree_selection.get_selected_rows()
+  return pathlist[0]
+
+ def select_item(self, item):
+  tree_selection = self.list.get_selection()
+  tree_selection.select_path(item)
+
+ def get_count(self):
+  return len(self.store)

@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 import shutil
 import widgetUtils
-import wxUI as view
+import platform
+if platform.system() == "Windows":
+ import wxUI as view
+elif platform.system() == "Linux":
+ import gtkUI as view
 import paths
 import time
 import os
