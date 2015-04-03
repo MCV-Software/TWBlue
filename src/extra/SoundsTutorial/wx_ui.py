@@ -24,3 +24,6 @@ class soundsTutorialDialog(widgetUtils.BaseDialog):
   sizer.Add(btnBox)
   panel.SetSizer(sizer)
   self.SetClientSize(sizer.CalcMin())
+
+ def get_selection(self):
+  return self.items.GetSelection()

@@ -128,7 +128,7 @@ class mainFrame(wx.Frame):
  def insert_buffer(self, buffer, name, pos):
   self.nb.InsertSubPage(pos, buffer, name)
   self.buffers[name] = buffer.GetId()
-  
+
  def prepare(self):
   self.sizer.Add(self.nb, 0, wx.ALL, 5)
   self.panel.SetSizer(self.sizer)

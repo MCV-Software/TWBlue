@@ -130,10 +130,10 @@ def setLanguage(lang):
 			elif system == "Darwin":
 				import Foundation
 				localeName = Foundation.NSLocale.currentLocale().identifier()
+			else:
+				localeName=locale.getdefaultlocale()[0]
 			trans=gettext.translation('twblue', localedir=paths.locale_path(), languages=[localeName])
 			curLang=localeName
-#			else:
-#				localeName=locale.getdefaultlocale()[0]
 #			trans=gettext.translation('twblue', localedir=paths.locale_path(), languages=[localeName])
 #			curLang=localeName
 

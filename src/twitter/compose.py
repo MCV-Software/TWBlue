@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import platform
+system = platform.system()
 import utils
 import re
 import htmlentitydefs
@@ -30,11 +32,14 @@ def compose_tweet(tweet, db, relative_times):
  long = twishort.is_long(tweet)
  if long != False:
   tweet["long_uri"] = long
- original_date = arrow.get(tweet["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
- if relative_times == True:
-  ts = original_date.humanize(locale=languageHandler.getLanguage())
+ if system == "Windows":
+  original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
+  if relative_times == True:
+   ts = original_date.humanize(locale=languageHandler.getLanguage())
+  else:
+   ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
-  ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
+  ts = tweet["created_at"]
  text = StripChars(tweet["text"])
  if tweet.has_key("sender"):
   source = "DM"
@@ -54,18 +59,23 @@ def compose_tweet(tweet, db, relative_times):
  return [user+", ", tweet["text"], ts+", ", source]
 
 def compose_followers_list(tweet, db, relative_times=True):
- original_date = arrow.get(tweet["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
- if relative_times == True:
-  ts = original_date.humanize(locale=languageHandler.getLanguage())
+ if system == "Windows":
+  original_date = arrow.get(tweet["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
+  if relative_times == True:
+   ts = original_date.humanize(locale=languageHandler.getLanguage())
+  else:
+   ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
-  ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
+  ts = tweet["created_at"]
  if tweet.has_key("status"):
-  if len(tweet["status"]) > 4:
+  if len(tweet["status"]) > 4 and system == "Windows":
    original_date2 = arrow.get(tweet["status"]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
    if relative_times:
     ts2 = original_date2.humanize(locale=languageHandler.getLanguage())
    else:
     ts2 = original_date2.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
+  else:
+   ts2 = _("Unavailable")
  else:
   ts2 = _("Unavailable")
  return [_(u"%s (@%s). %s followers, %s friends, %s tweets. Last tweet on %s. Joined Twitter on %s") % (tweet["name"], tweet["screen_name"], tweet["followers_count"], tweet["friends_count"],  tweet["statuses_count"], ts2, ts)]

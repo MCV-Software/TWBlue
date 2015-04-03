@@ -1,1 +1,1 @@
-from soundsTutorial import *
+from soundsTutorial import soundsTutorial

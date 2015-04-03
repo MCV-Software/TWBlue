@@ -7,7 +7,9 @@ import paths
 if platform.architecture()[0][:2] == "32":
 	lib = load_library("api_keys32", x86_path=paths.app_path("keys/lib"))
 else:
-	lib = load_library("api_keys64", x64_path=paths.app_path("keys/lib"))
+#	lib = load_library("api_keys64", x64_path=paths.app_path("keys/lib"))
+	import linuxKeys
+	lib = linuxKeys
 
 keyring = None
 

@@ -48,6 +48,8 @@ class sessionManagerController(object):
  def show(self):
   if self.view.get_response() == widgetUtils.OK:
    self.do_ok()
+#  else:
+  self.view.destroy()
 
  def do_ok(self):
   log.debug("Starting sessions...")
@@ -59,6 +61,7 @@ class sessionManagerController(object):
     s.login()
    session.sessions[i] = s
    self.new_sessions[i] = s
+#  self.view.destroy()
 
  def manage_new_account(self, *args, **kwargs):
   if self.view.new_account_dialog() == widgetUtils.YES:
@@ -67,14 +70,14 @@ class sessionManagerController(object):
    s = session.Session(location)
    manager.manager.add_session(location)
    s.get_configuration()
-   try:
-    s.authorise()
-    self.sessions.append(location)
-    self.view.add_new_session_to_list()
-   except:
-    log.exception("Error authorising the session")
-    self.view.show_unauthorised_error()
-    return
+#   try:
+   s.authorise()
+   self.sessions.append(location)
+   self.view.add_new_session_to_list()
+#   except:
+#    log.exception("Error authorising the session")
+#    self.view.show_unauthorised_error()
+#    return
 
  def remove(self, *args, **kwargs):
   if self.view.remove_account_dialog() == widgetUtils.YES:
@@ -83,3 +86,4 @@ class sessionManagerController(object):
    self.removed_sessions.append(selected_account)
    self.sessions.remove(selected_account)
    shutil.rmtree(path=paths.config_path(selected_account), ignore_errors=True)
+

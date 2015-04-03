@@ -1,13 +1,25 @@
 # -*- coding: utf-8 -*-
+import platform
+system = platform.system()
 import application
-from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
+if system == "Windows":
+ from update import updater
+ from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
+ import settings
+ from extra import SoundsTutorial
+ import keystrokeEditor
+ from keyboard_handler.wx_handler import WXKeyboardHandler
+ import userActionsController
+ import trendingTopics
+ import user
+ from issueReporter import issueReporter
+elif system == "Linux":
+ from gtkUI import (view,)
 from twitter import utils
 from sessionmanager import manager, sessionManager
 
-from update import updater
 import buffersController
 import messages
-import settings
 from sessionmanager import session as session_
 from pubsub import pub
 import sound
@@ -20,18 +32,9 @@ import config
 import widgetUtils
 import pygeocoder
 from pygeolib import GeocoderError
-import platform
-from extra import SoundsTutorial
 import logging
-if platform.system() == "Windows":
- import keystrokeEditor
- from keyboard_handler.wx_handler import WXKeyboardHandler
-import userActionsController
-import trendingTopics
-import user
 import webbrowser
 from long_tweets import twishort
-from issueReporter import issueReporter
 
 log = logging.getLogger("mainController")
 
@@ -199,11 +202,13 @@ class Controller(object):
   self.current_account = ""
   self.view.prepare()
   self.bind_stream_events()
-  self.bind_other_events()
-  self.set_systray_icon()
+  if system == "Windows":
+   self.bind_other_events()
+   self.set_systray_icon()
 
  def check_invisible_at_startup(self):
-  # Visibility check
+  # Visibility check. It does only work for windows.
+  if system != "Windows": return
   if config.app["app-settings"]["hide_gui"] == True:
    self.show_hide()
    self.view.Show()
@@ -484,6 +489,7 @@ class Controller(object):
    if hasattr(session_.sessions[item], "main_stream"): session_.sessions[item].main_stream.disconnect()
    if hasattr(session_.sessions[item], "timelinesStream"): session_.sessions[item].timelinesStream.disconnect()
    session_.sessions[item].sound.cleaner.cancel()
+  if system == "Windows":
    self.systrayIcon.RemoveIcon()
   widgetUtils.exit_application()
 

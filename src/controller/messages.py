@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
+import platform
+system = platform.system()
 import widgetUtils
 import output
 import url_shortener
 import sound
 from pubsub import pub
-from wxUI.dialogs import message, urlList
-from extra import translator, SpellChecker, autocompletionUsers
-from extra.AudioUploader import audioUploader
+if system == "Windows":
+ from wxUI.dialogs import message, urlList
+ from extra import translator, SpellChecker, autocompletionUsers
+ from extra.AudioUploader import audioUploader
+elif system == "Linux":
+ from gtkUI.dialogs import message
 from twitter import utils
 
 class basicTweet(object):
@@ -18,11 +23,12 @@ class basicTweet(object):
   self.message = getattr(message, messageType)(title, caption, text)
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
   widgetUtils.connect_event(self.message.attach, widgetUtils.BUTTON_PRESSED, self.attach)
+#  if system == "Windows":
   widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
+  self.text_processor()
   widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
   widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
   widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
-  self.text_processor()
 
  def translate(self, event=None):
   dlg = translator.gui.translateDialog()

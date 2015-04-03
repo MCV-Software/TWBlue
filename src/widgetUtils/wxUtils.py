@@ -104,11 +104,11 @@ class BaseDialog(wx.Dialog):
 	def get_title(self):
 		return self.GetTitle()
 
-class mainloopObject(wx.App):
+class mainLoopObject(wx.App):
 
 	def __init__(self):
 		self.app = wx.App()
 
-	def run_mainloop(self):
+	def run(self):
 		self.app.MainLoop()
 

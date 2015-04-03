@@ -1,17 +1,22 @@
 # -*- coding: utf-8 -*-
-import wx
+import platform
+if platform.system() == "Windows":
+ import wx
+ from wxUI import buffers, dialogs, commonMessageDialogs
+ import user
+elif platform.system() == "Linux":
+ from gi.repository import Gtk
+ from gtkUI import buffers, dialogs, commonMessageDialogs
+import messages
 import widgetUtils
 import arrow
 import webbrowser
 import output
 import config
 import sound
-import messages
-import user
 import languageHandler
 import logging
 from twitter import compose, utils
-from wxUI import buffers, dialogs, commonMessageDialogs
 from mysc.thread_utils import call_threaded
 from twython import TwythonError
 from pubsub import pub
@@ -127,6 +132,7 @@ class bufferController(object):
     call_threaded(self.session.api_call, call_name="update_status", status=text)
    else:
     call_threaded(self.session.api_call, call_name="update_status_with_media", status=text, media=tweet.image)
+  if hasattr(tweet.message, "destroy"): tweet.message.destroy()
 
 class accountPanel(bufferController):
  def __init__(self, parent, name, account, account_id):
@@ -137,7 +143,6 @@ class accountPanel(bufferController):
   self.compose_function = None
   self.session = None
   self.needs_init = False
-  self.id = self.buffer.GetId()
   self.account = account
   self.buffer.account = account
   self.name = name
@@ -155,7 +160,7 @@ class accountPanel(bufferController):
   else:
    self.buffer.change_login(login=True)
    widgetUtils.connect_event(self.buffer.login, widgetUtils.BUTTON_PRESSED, self.login)
- 
+
  def login(self, *args, **kwargs):
   del self.logged
   self.setup_account()
@@ -181,7 +186,6 @@ class emptyPanel(bufferController):
   self.buffer = buffers.emptyPanel(parent, name)
   self.type = self.buffer.type
   self.compose_function = None
-  self.id = self.buffer.GetId()
   self.account = account
   self.buffer.account = account
   self.name = name
@@ -199,7 +203,6 @@ class baseBufferController(bufferController):
   self.invisible = True
   self.name = name
   self.type = self.buffer.type
-  self.id = self.buffer.GetId()
   self.session = sessionObject
   self.compose_function = compose.compose_tweet
   log.debug("Compose_function: %s" % (self.compose_function,))
@@ -302,8 +305,9 @@ class baseBufferController(bufferController):
 
  def bind_events(self):
   log.debug("Binding events...")
-  self.buffer.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, self.onFocus)
-  self.buffer.list.list.Bind(wx.EVT_CHAR_HOOK, self.get_event)
+ ### disconnect this for wx
+#  self.buffer.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, self.onFocus)
+#  self.buffer.list.list.Bind(wx.EVT_CHAR_HOOK, self.get_event)
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
 #  if self.type == "baseBuffer":
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.retweet, self.buffer.retweet)
@@ -333,6 +337,7 @@ class baseBufferController(bufferController):
     call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text())
    else:
     call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text(), media=message.file)
+  if hasattr(message.message, "destroy"): message.message.destroy()
 
  @_tweets_exist
  def direct_message(self, *args, **kwargs):
@@ -349,6 +354,7 @@ class baseBufferController(bufferController):
   dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
   if dm.message.get_response() == widgetUtils.OK:
    call_threaded(self.session.api_call, call_name="send_direct_message", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
+  if hasattr(dm.message, "destroy"): dm.message.destroy()
 
  @_tweets_exist
  def retweet(self, *args, **kwargs):
@@ -362,6 +368,7 @@ class baseBufferController(bufferController):
      call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=retweet.message.get_text(), in_reply_to_status_id=id)
     else:
      call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=retweet.message.get_text(), in_reply_to_status_id=id, media=retweet.image)
+   if hasattr(retweet.message, "destroy"): retweet.message.destroy()
   elif answer == widgetUtils.NO:
    call_threaded(self.session.api_call, call_name="retweet", _sound="retweet_send.ogg", id=id)
 
@@ -389,6 +396,7 @@ class baseBufferController(bufferController):
    urls_list.populate_list(urls)
    if urls_list.get_response() == widgetUtils.OK:
     sound.URLPlayer.play(urls_list.get_string(), self.session.settings["sound"]["volume"])
+   if hasattr(urls_list, "destroy"): urls_list.destroy()
 
  @_tweets_exist
  def url(self):
@@ -403,6 +411,7 @@ class baseBufferController(bufferController):
    if urls_list.get_response() == widgetUtils.OK:
     output.speak(_(u"Opening URL..."))
     webbrowser.open_new_tab(urls_list.get_string())
+   if hasattr(urls_list, "destroy"): urls_list.destroy()
 
  def clear_list(self):
   dlg = commonMessageDialogs.clear_list()
@@ -439,6 +448,7 @@ class baseBufferController(bufferController):
   dlg = dialogs.utils.selectUserDialog(title=_(u"User details"), users=users)
   if dlg.get_response() == widgetUtils.OK:
    user.profileController(session=self.session, user=dlg.get_user())
+  if hasattr(dlg, "destroy"): dlg.destroy()
 
 class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):
@@ -448,7 +458,6 @@ class eventsBufferController(bufferController):
   self.buffer = buffers.eventsPanel(parent, name)
   self.name = name
   self.account = account
-  self.id = self.buffer.GetId()
   self.buffer.account = self.account
   self.compose_function = compose.compose_event
   self.session = session
@@ -503,6 +512,7 @@ class peopleBufferController(baseBufferController):
     call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
    else:
     call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
+  if hasattr(message.message, "destroy"): message.message.destroy()
 
  def start_stream(self):
   log.debug("Starting stream for %s buffer, %s account" % (self.name, self.account,))

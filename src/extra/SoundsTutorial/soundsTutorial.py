@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
+import platform
 import widgetUtils
 import os
 import paths
 import logging
 log = logging.getLogger("extra.SoundsTutorial.soundsTutorial")
-import wx_ui
 import soundsTutorial_constants
+if platform.system() == "Windows":
+ import wx_ui as UI
+elif platform.system() == "Linux":
+ import gtk_ui as UI
 
 class soundsTutorial(object):
  def __init__(self, sessionObject):
@@ -19,12 +23,12 @@ class soundsTutorial(object):
   log.debug("Searching sound files...")
   [self.files.append(i[0]) for i in soundsTutorial_constants.actions]
   log.debug("Creating dialog...")
-  self.dialog = wx_ui.soundsTutorialDialog(self.actions)
+  self.dialog = UI.soundsTutorialDialog(self.actions)
   widgetUtils.connect_event(self.dialog.play, widgetUtils.BUTTON_PRESSED, self.on_play)
   self.dialog.get_response()
 
  def on_play(self, *args, **kwargs):
   try:
-   self.session.sound.play(self.files[self.dialog.items.GetSelection()]+".ogg")
+   self.session.sound.play(self.files[self.dialog.get_selection()]+".ogg")
   except:
    log.exception("Error playing the %s sound" % (self.files[self.dialog.items.GetSelection()],))
