@@ -13,7 +13,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""## Warning!"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""You're reading documentation produced for a program still in development. The object of this manual is explaining some details of the operation of the program. Bear in mind that as the software is in the process of active development, parts of this document may change in the near future, so it is advisable to keep an eye on it from time to time to avoid missing too much out."""))
+documentation.append(_(u"""You're reading documentation produced for a program still in development. The object of this manual is to explain some details of the operation of the program. Bear in mind that as the software is in the process of active development, parts of this document may change in the near future, so it is advisable to keep an eye on it from time to time to avoid missing too much out."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""If you want to see what has changed from the previous version, [read the list of updates here.](changes.html)"""))
@@ -63,7 +63,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""If all went well, the application will start playing sounds, indicating your data are being updated."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""When the process is finished,the program will play another sound, and the screen reader will say "ready"."""))
+documentation.append(_(u"""When the process is finished, the program will play another sound, and the screen reader will say "ready"."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""## The program's interface"""))
@@ -72,7 +72,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""The easiest way to describe the graphical user interface of TWBlue is saying that the application has a window which contains a menu bar with five menus (application, tweet, user, buffer and help); one tree view, one list of items and, mostly in every case, three buttons: Tweet, retweet and reply. The actions that are available for every item will be described later."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""In the tree view are inserted buffers which are lists to manage the processed data. When you configure a new session on TWBlue and start it, your account is the root of the tree view. Inside of it are created many buffers. Every one of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you were, you will be able to make different actions with these items."""))
+documentation.append(_(u"""In the tree view are inserted buffers which are lists to manage the processed data. When you configure a new session on TWBlue and start it, your account is the root of the tree view. Inside of it  many buffers are created.  Each one of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you were, you will be able to make different actions with these items."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""The following is a description for every kind of TWBlue's buffer and the kind of items they work with."""))
@@ -93,13 +93,13 @@ documentation.append(_(u"""* User favorites: You can have TW Blue create a buffe
 documentation.append(_(u"""* Trending Topics: a trend buffer shows the top ten most used terms in a geographical region. This region may be a country or a city. Trends are updated every five minutes."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""If there's a URL on a tweet TW Blue will try to open it when you press enter on it. If there are several, it will show you a list with all of them so you choose the one you want. If you're on the followers or friends buffer, the enter key will show you additional information on them."""))
+documentation.append(_(u"""If there's a URL on a tweet, TW Blue will try to open it when you press enter on it. If there are several, it will show you a list with all of them so you choose the one you want. If you're on the followers or friends buffer, the enter key will show you additional information about them."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""If you press control-enter, TW Blue will try to play the audio from the focused tweet, as long as it has a URL. If it has the #audio hashtag, you will hear a sound when it is selected, letting you know you can try to play it. However, a tweet can be missing the hashtag and TW Blue will still be able to play it so long as it contains a URL with audio."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Also, you will hear a sound when you see any tweet containing geographical information. You can see someone's location by selecting the option "view address" from the tweet menu on the menu bar."""))
+documentation.append(_(u"""You will also hear a sound when you see any tweet containing geographical information. You can see someone's location by selecting the option "view address" from the tweet menu on the menu bar."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""## Controls"""))
@@ -135,7 +135,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""##### Application menu"""))
 documentation.append(_(u"""
 """))
-### Add description for session manager here.
+documentation.append(_(u"""* Session manager: Opens a window with all the sessions configured in TWBlue, where you can add new sessions or delete the ones you've already created."""))
 documentation.append(_(u"""* Update profile: opens a dialogue box where you can update your information on Twitter: name, location, URL and bio. If you have already set this up the fields will be prefilled with the existing information. Also, you can upload a photo to your profile."""))
 documentation.append(_(u"""* Hide window: turns off the Graphical User Interface. Read the section on the invisible interface for further details."""))
 documentation.append(_(u"""* Search: shows a dialog where you can search for tweets or users on Twitter."""))
@@ -144,7 +144,7 @@ documentation.append(_(u"""* Lists Manager: This dialog allows you to manage you
 documentation.append(_(u"""* Sounds tutorial: Opens a dialog where you can familiarize yourself with the different sounds of the program."""))
 documentation.append(_(u"""* Edit keystrokes: It opens a dialog where you can see and re edit the invisible interface shortcuts."""))
 ### Add description for the global settings and accounts settings options.
-documentation.append(_(u"""* Quit: asks whether you want to exit the program. If the answer is yes, it shuts the application down. Unless you wish TWBlue asks you for confirmation before exiting, uncheck the checkbox from the preferences dialogue."""))
+documentation.append(_(u"""* Quit: asks whether you want to exit the program. If the answer is yes, it shuts the application down.  If you wish TWBlue not to ask you for confirmation before exiting, uncheck the checkbox from the preferences dialogue."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""##### Tweet menu"""))
@@ -153,7 +153,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""* You will first find the items to tweet, reply and retweet, which are equivalent to the buttons with the same name."""))
 documentation.append(_(u"""* Mark as favourite: marks the tweet you're viewing as a favourite."""))
 documentation.append(_(u"""* Remove tweet from favourites: removes the tweet from your favourites, but not from Twitter."""))
-documentation.append(_(u"""* Show tweet: opens up a dialogue box where you can read the tweet, direct message, friend or follower under focus. You can read the text with the cursors. It's the same dialogue box used to write tweets on."""))
+documentation.append(_(u"""* Show tweet: opens up a dialogue box where you can read the tweet, direct message, friend or follower under focus. You can read the text with the arrow keys. It's the same dialogue box used to write tweets on."""))
 documentation.append(_(u"""* View address: If the selected tweet has geographical information, TWBlue may display a dialog where you can read the tweet address. This address is got by sending the geographical coordinates of the tweet to Google maps."""))
 ### Add description for view conversation feature
 documentation.append(_(u"""* Delete: permanently removes the tweet or direct message you're on from Twitter and from your lists. Bear in mind that Twitter only allows you to delete tweets you have posted yourself."""))
@@ -166,16 +166,17 @@ documentation.append(_(u"""The available actions you can choose are described be
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""* Follow: Follows a user. This means you'll see his/her tweets on your main timeline, and if he/she also follows you, you'll be able to interchange direct messages."""))
-documentation.append(_(u"""* Unfollow: it does not stop following a user, which causes you nor being able to see his/her tweets on your main timeline neither interchanging direct messages."""))
+documentation.append(_(u"""* Unfollow: Stops following a user, which causes you not being able to see his/her tweets on your main timeline neither interchanging direct messages."""))
 documentation.append(_(u"""* Mute: While muting someone, TWBlue won't show you nor his/her tweets on your main timeline; neither you'll see that person's mentions. But you both will be able to interchange direct messages. The muted user is not informed of this action."""))
 documentation.append(_(u"""* Unmute: It turns the way TWBlue treats this user to its normal way. You will see his/her tweets and mentions again."""))
 documentation.append(_(u"""* Report as spam: It suggests twitter this user is performing prohibited practices on the social network."""))
-### add block/unblock information here
+documentation.append(_(u"""* Block: Blocks a user. This forces the user to unfollow you ."""))
+documentation.append(_(u"""* Unblock: Stops blocking a user.""")
 documentation.append(_(u"""* Direct message: same action as the button."""))
 documentation.append(_(u"""* Add to List: In order to see someone's tweets in one or more of your lists, you must add them first.  This option will open a dialog where you can select the user you wish to add.  Next, you will be asked to select the list you wish to add them to.  Afterwards, the list will contain a new member and their tweets will show up there."""))
 ### add description for remove from list and view lists.
 documentation.append(_(u"""* View user profile: opens up a dialogue box to choose the user whose profile you want to browse."""))
-documentation.append(_(u"""* Timeline: opens up a dialogue box to choose whose user you want a timeline for. Create it by pressing enter. If you try it with a user that has no tweets, the program will fail. If you try creating an already existing timeline the program will warn you and will not create it again."""))
+documentation.append(_(u"""* Timeline: Lets you open a user's timeline by choosing the user in a dialog box. It is created when you press enter. If you try it with a user that has no tweets, the program will fail. If you try creating an already existing timeline the program will warn you and will not create it again."""))
 documentation.append(_(u"""* View favourites: Opens a buffer where you can see what tweets have been favorited by a particular user."""))
 documentation.append(_(u"""
 """))
@@ -194,7 +195,7 @@ documentation.append(_(u"""
 """))
 documentation.append(_(u"""* Documentation: opens up this file, where you can read some useful program concepts."""))
 documentation.append(_(u"""* What's new in this version?: opens up a document with the list of changes from the current version down to the first."""))
-documentation.append(_(u"""* Check for updates: every time you open the program it automatically checks for new versions. If there are, it will ask you if you want to download it. If you accept, it will do so, after which it will install it and ask you to let it restart itself, which it does automatically. This item checks for new updates without having to restart the application."""))
+documentation.append(_(u"""* Check for updates: every time you open the program it automatically checks for new versions. If there is any, it will ask you if you want to download it. If you accept, it will do so, after which it will install it and ask you to let it restart itself, which it does automatically. This item checks for new updates without having to restart the application."""))
 documentation.append(_(u"""* Report a bug: opens up a dialogue box to report a bug by filling a couple of fields. Pressing enter will send the report. If the operation doesn't succeed the program will show a warning."""))
 documentation.append(_(u"""* TW Blue's website: visit our [home page](http://twblue.es) where you can find all relevant information and downloads for TW Blue and become a part of the community."""))
 documentation.append(_(u"""* About TW Blue: shows the credits of the program."""))
