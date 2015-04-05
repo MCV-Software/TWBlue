@@ -14,7 +14,7 @@ if system == "Windows":
  import user
  from issueReporter import issueReporter
 elif system == "Linux":
- from gtkUI import (view,)
+ from gtkUI import (view, commonMessageDialogs)
 from twitter import utils
 from sessionmanager import manager, sessionManager
 
@@ -116,21 +116,25 @@ class Controller(object):
   log.debug("Binding other application events...")
   pub.subscribe(self.logout_account, "logout")
   pub.subscribe(self.login_account, "login")
-  pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
   pub.subscribe(self.manage_stream_errors, "stream-error")
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
   pub.subscribe(self.restart_streams, "restart-streams")
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
+
+  if system == "Windows":
+   pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
+
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit)
   if widgetUtils.toolkit == "wx":
    log.debug("Binding the exit function...")
    widgetUtils.connectExitFunction(self.exit_)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.edit_keystrokes, menuitem=self.view.keystroke_editor)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_tweet, self.view.compose)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_retweet, self.view.retweet)
@@ -153,7 +157,6 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.check_for_updates, self.view.check_for_updates)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.about, menuitem=self.view.about)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.visit_website, menuitem=self.view.visit_website)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.edit_keystrokes, menuitem=self.view.keystroke_editor)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_accounts, self.view.manage_accounts)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_profile, menuitem=self.view.updateProfile)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.user_details, menuitem=self.view.details)
@@ -162,7 +165,8 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_timeline, self.view.timeline)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_favs_timeline, self.view.favs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_conversation, menuitem=self.view.view_conversation)
-  widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
+  if widgetUtils.toolkit == "wx":
+   widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
 
  def set_systray_icon(self):
@@ -202,8 +206,8 @@ class Controller(object):
   self.current_account = ""
   self.view.prepare()
   self.bind_stream_events()
+  self.bind_other_events()
   if system == "Windows":
-   self.bind_other_events()
    self.set_systray_icon()
 
  def check_invisible_at_startup(self):
@@ -471,7 +475,7 @@ class Controller(object):
 
  def exit(self, *args, **kwargs):
   if config.app["app-settings"]["ask_at_exit"] == True:
-   answer = commonMessageDialogs.exit_dialog()
+   answer = commonMessageDialogs.exit_dialog(self.view)
    if answer == widgetUtils.YES:
     self.exit_()
   else:

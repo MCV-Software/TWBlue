@@ -108,6 +108,12 @@ class notebook(object):
   column.set_cell_data_func(cell, self.get_buffer)
   self.view.append_column(column)
 
+ def get_current_page(self):
+  tree_selection = self.view.get_selection()
+  (model, pathlist) = tree_selection.get_selected_rows()
+  iter = pathlist[0]
+  return self.store[iter][0].buffer
+
  def get_buffer(self, column, cell, model, iter, data):
   cell.set_property('text', self.store.get_value(iter, 0).name)
 

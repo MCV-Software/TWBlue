@@ -305,9 +305,7 @@ class baseBufferController(bufferController):
 
  def bind_events(self):
   log.debug("Binding events...")
- ### disconnect this for wx
-#  self.buffer.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, self.onFocus)
-#  self.buffer.list.list.Bind(wx.EVT_CHAR_HOOK, self.get_event)
+  self.buffer.set_focus_function(self.onFocus)
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
 #  if self.type == "baseBuffer":
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.retweet, self.buffer.retweet)
@@ -372,9 +370,9 @@ class baseBufferController(bufferController):
   elif answer == widgetUtils.NO:
    call_threaded(self.session.api_call, call_name="retweet", _sound="retweet_send.ogg", id=id)
 
- def onFocus(self, ev):
+ def onFocus(self, *args, **kwargs):
   tweet = self.get_tweet()
-  if self.session.settings["general"]["relative_times"] == True:
+  if platform.system() == "Windows" and self.session.settings["general"]["relative_times"] == True:
    # fix this:
    original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
    ts = original_date.humanize(locale=languageHandler.getLanguage())

@@ -124,7 +124,8 @@ class tweet(basicTweet):
    self.message.set("upload_image", _(u"Upload a picture"))
   else:
    self.image = self.message.get_image()
-   self.message.set("upload_image", _(u"Discard image"))
+   if self.image != None:
+    self.message.set("upload_image", _(u"Discard image"))
 
  def autocomplete_users(self, *args, **kwargs):
   c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)

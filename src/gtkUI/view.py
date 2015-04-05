@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import application
 import widgetUtils
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 class mainFrame(Gtk.Window):
  """ Main class of the Frame. This is the Main Window."""
@@ -18,30 +18,38 @@ class mainFrame(Gtk.Window):
   # Application menu
   app = Gtk.Menu()
 
-  self.manage_accounts = Gtk.MenuItem(label="Manage accounts")
+  self.manage_accounts = Gtk.MenuItem(label=_(u"Manage accounts"))
   self.updateProfile = Gtk.MenuItem(label="Update profile")
+  self.updateProfile.add_accelerator("activate", self.accel_group, ord("U"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   # As in Gtk is not possible to bind keyboard  shorcuts to the system, we don't have support for an invisible interface.
   self.show_hide = None
   self.menuitem_search = Gtk.MenuItem(label="Search")
   self.trends = Gtk.MenuItem(label="View trending topics")
+  self.trends.add_accelerator("activate", self.accel_group, ord("T"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   self.lists = Gtk.MenuItem(label="Lists manager")
   self.sounds_tutorial = Gtk.MenuItem(label="Sounds tutorial")
   self.keystrokes_editor = None
   self.account_settings = Gtk.MenuItem(label="Account settings")
   self.prefs = Gtk.MenuItem(label="Global settings")
   self.close = Gtk.MenuItem(label="Close")
+  self.close.add_accelerator("activate", self.accel_group, ord("Q"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   self.append_to_menu(app, self.manage_accounts, self.updateProfile, self.menuitem_search, self.trends, self.lists, self.sounds_tutorial, self.account_settings, self.prefs, self.close)
 
   app_menu = Gtk.MenuItem(label="Application")
+  app_menu.add_accelerator("activate", self.accel_group, ord("a"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   app_menu.set_submenu(app)
   menuBar.append(app_menu)
 
   # Tweet menu
   tweet = Gtk.Menu()
   self.compose = Gtk.MenuItem(label="Tweet")
+  self.compose.add_accelerator("activate", self.accel_group, ord("N"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   self.reply = Gtk.MenuItem(label="Reply")
+  self.reply.add_accelerator("activate", self.accel_group, ord("R"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   self.retweet = Gtk.MenuItem(label="Retweet")
+  self.retweet.add_accelerator("activate", self.accel_group, ord("T"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   self.fav = Gtk.MenuItem(label="Add to favourites")
+  self.fav.add_accelerator("activate", self.accel_group, ord("F"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   self.unfav = Gtk.MenuItem(label="Remove from favourites")
   self.view = Gtk.MenuItem(label="Show tweet")
   self.view_coordinates = Gtk.MenuItem(label="View address")
@@ -103,6 +111,8 @@ class mainFrame(Gtk.Window):
  def __init__(self):
   """ Main function of this class."""
   super(mainFrame, self).__init__(title="TW Blue")
+  self.accel_group = Gtk.AccelGroup()
+  self.add_accel_group(self.accel_group)
   self.box =  Gtk.VBox()
   self.makeMenus()
   self.nb = widgetUtils.notebook()

@@ -16,7 +16,7 @@ def delete_tweet_dialog(parent):
  return answer
 
 def exit_dialog(parent):
- dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, _(u"Exit"))
+ dialog = Gtk.MessageDialog(parent, 0, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, _(u"Exit"))
  dialog.format_secondary_text(_(u"Do you really want to close TW Blue?"))
  answer = dialog.run()
  dialog.destroy()

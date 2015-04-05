@@ -4,6 +4,9 @@ from multiplatform_widgets import widgets
 
 class basePanel(wx.Panel):
  
+ def set_focus_function(self, f):
+  self.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, f)
+
  def create_list(self):
   self.list = widgets.list(self, _(u"User"), _(u"Text"), _(u"Date"), _(u"Client"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
   self.list.set_windows_size(0, 60)

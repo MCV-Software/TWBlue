@@ -29,3 +29,7 @@ class basePanel(Gtk.VBox):
    self.list.select_item(self.list.get_count()-1)
   else:
    self.list.select_item(0)
+
+ def set_focus_function(self, f):
+  tree_selection = self.list.list.get_selection()
+  tree_selection.connect("changed", f)

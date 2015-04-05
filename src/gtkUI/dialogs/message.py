@@ -8,6 +8,7 @@ class textLimited(widgetUtils.baseDialog):
 
  def createTextArea(self, message="", text=""):
   self.label = Gtk.Label(message)
+  self.set_title(message, titleWindow=True)
   self.text = Gtk.Entry()
   self.text.set_text(text)
   self.text.set_placeholder_text(message)
@@ -15,6 +16,18 @@ class textLimited(widgetUtils.baseDialog):
   self.textBox = Gtk.Box(spacing=10)
   self.textBox.add(self.label)
   self.textBox.add(self.text)
+
+ def get(self, control):
+  if control == "upload_image":
+   return self.upload_image.get_label()
+  elif control == "cb":
+   return self.cb.get_active_text()
+
+ def set(self, control, val):
+  if control == "upload_image":
+   self.upload_image.set_label(val)
+  elif control == "cb":
+   self.cb.set_active_text(val)
 
  def text_focus(self):
   self.text.grab_focus()
@@ -25,8 +38,11 @@ class textLimited(widgetUtils.baseDialog):
  def set_text(self, text):
   self.text.set_text(text)
 
- def set_title(self, new_title):
-  self.text.set_placeholder_text(new_title)
+ def set_title(self, new_title, titleWindow=False):
+  if titleWindow == False:
+   self.text.set_placeholder_text(new_title)
+  else:
+   super(textLimited, self).set_title(new_title)
 #  self.set_title(new_title)
 
  def enable_button(self, buttonName):
@@ -78,10 +94,27 @@ class tweet(textLimited):
   self.show_all()
 
  def get_image(self):
-  openFileDialog = wx.FileDialog(self, _(u"Select the picture to be uploaded"), "", "", _("Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
-  if openFileDialog.ShowModal() == wx.ID_CANCEL:
+  dialog = Gtk.FileChooserDialog(_(u"Select the picture to be uploaded"), self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+  filter_jpg = Gtk.FileFilter()
+  filter_jpg.set_name(_(u"JPG images"))
+  filter_jpg.add_mime_type("image/jpeg")
+  dialog.add_filter(filter_jpg)
+  filter_gif = Gtk.FileFilter()
+  filter_gif.set_name(_(u"GIF images"))
+  filter_gif.add_mime_type("image/gif")
+  dialog.add_filter(filter_gif)
+  filter_png = Gtk.FileFilter()
+  filter_png.set_name(_(u"PNG Images"))
+  filter_png.add_mime_type("image/png")
+  dialog.add_filter(filter_png)
+  answer = dialog.run()
+  if answer == widgetUtils.OK:
+   image = dialog.get_filename()
+   dialog.destroy()
+   return open(image, "rb")
+  else:
+   dialog.destroy()
    return None
-  return open(openFileDialog.GetPath(), "rb")
 
 class dm(textLimited):
  def createControls(self, title, message,  users):
@@ -121,11 +154,6 @@ class dm(textLimited):
   self.box.add(self.buttonsBox1)
   self.text.grab_focus()
 
-
- def get(self, control):
-  if control == "cb":
-   return self.cb.get_active_text()
-
  def __init__(self, title, message,  users):
   super(dm, self).__init__()
   self.createControls(message, title, users)
@@ -150,7 +178,7 @@ class reply(tweet):
 class viewTweet(widgetUtils.baseDialog):
  def set_title(self, lenght):
   pass
-#  self.set_title(_(u"Tweet - %i characters ") % (lenght,))
+  self.set_title(_(u"Tweet - %i characters ") % (lenght,))
 
  def __init__(self, text, rt_count, favs_count):
   super(viewTweet, self).__init__(buttons=(Gtk.STOCK_OK, widgetUtils.OK, Gtk.STOCK_CANCEL, widgetUtils.CANCEL))
@@ -158,8 +186,8 @@ class viewTweet(widgetUtils.baseDialog):
   self.text = Gtk.TextView()
   self.textBuffer = self.text.get_buffer()
   self.textBuffer.set_text(text)
-  self.textBuffer.set_editable(False)
-  self.text.set_placeholder_text(message)
+  self.text.set_editable(False)
+#  self.textBuffer.set_placeholder_text(message)
   textBox = Gtk.Box(spacing=6)
   textBox.add(label)
   textBox.add(self.text)
@@ -191,7 +219,7 @@ class viewTweet(widgetUtils.baseDialog):
   buttonsBox.add(self.spellcheck)
   buttonsBox.add(self.unshortenButton)
   buttonsBox.add(self.translateButton)
-  self.box.Add(buttonsBox)
+  self.box.add(buttonsBox)
   self.show_all()
 
  def set_text(self, text):
