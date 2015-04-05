@@ -83,7 +83,7 @@ class reportBugDialog(widgetUtils.BaseDialog):
   wx.MessageDialog(self, _(u"You must fill out both fields"), _(u"Error"), wx.OK|wx.ICON_ERROR).ShowModal()
 
  def no_checkbox(self):
-  wx.MessageDialog(self, _(u"You need to mark the checkbox to provide us your twitter username to contact to you if is necessary."), _(u"Error"), wx.ICON_ERROR).ShowModal()
+  wx.MessageDialog(self, _(u"You need to mark the checkbox to provide us your twitter username to contact you if it is necessary."), _(u"Error"), wx.ICON_ERROR).ShowModal()
 
  def success(self, id):
   wx.MessageDialog(self, _(u"Thanks for reporting this bug! In future versions, you may be able to find it in the changes list. You've reported the bug number %i") % (id), _(u"reported"), wx.OK).ShowModal()

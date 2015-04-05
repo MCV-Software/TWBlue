@@ -74,7 +74,7 @@ class mainFrame(wx.Frame):
   self.changelog.Enable(False)
   self.check_for_updates = help.Append(wx.NewId(), _(u"&Check for updates"))
   self.reportError = help.Append(wx.NewId(), _(u"&Report an error"))
-  self.visit_website = help.Append(-1, _(u"TW Blue &website"))
+  self.visit_website = help.Append(-1, _(u"TW Blue's &website"))
   self.about = help.Append(-1, _(u"About &TW Blue"))
 
   # Add all to the menu Bar

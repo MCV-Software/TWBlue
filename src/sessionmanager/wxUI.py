@@ -42,7 +42,7 @@ class sessionManagerWindow(wx.Dialog):
   self.EndModal(wx.ID_OK)
 
  def new_account_dialog(self):
-  return wx.MessageDialog(self, _(u"The request for the required Twitter authorization to continue will be opened on your browser. You only need to do it once. Would you like to autorhise a new account now?"), _(u"Authorisation"), wx.YES_NO).ShowModal()
+  return wx.MessageDialog(self, _(u"The request for the required Twitter authorisation to continue will be opened on your browser. You only need to do it once. Would you like to autorhise a new account now?"), _(u"Authorisation"), wx.YES_NO).ShowModal()
 
  def add_new_session_to_list(self):
   total = self.list.get_count()
@@ -58,7 +58,7 @@ class sessionManagerWindow(wx.Dialog):
   return self.ShowModal()
 
  def remove_account_dialog(self):
-  return wx.MessageDialog(self, _(u"Do you really want delete this account?"), _(u"Remove account"), wx.YES_NO).ShowModal()
+  return wx.MessageDialog(self, _(u"Do you really want to delete this account?"), _(u"Remove account"), wx.YES_NO).ShowModal()
 
  def get_selected(self):
   return self.list.get_selected()
