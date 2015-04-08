@@ -362,13 +362,13 @@ class baseBufferController(bufferController):
   id = tweet["id"]
   answer = commonMessageDialogs.retweet_question(self.buffer)
   if answer == widgetUtils.YES:
-   retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]), max=116, messageType="retweet")
+   retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]), max=116-len("@%s " % (tweet["user"]["screen_name"],)), messageType="retweet")
    if retweet.message.get_response() == widgetUtils.OK:
     text = retweet.message.get_text()
     if len(text+ u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])) < 140:
      text = text+u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])
     else:
-     text = text+" https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id)
+     text = text+" @{2} https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id, tweet["user"]["screen_name"])
     if retweet.image == None:
      call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id)
     else:
