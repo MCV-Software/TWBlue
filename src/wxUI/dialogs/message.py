@@ -107,7 +107,65 @@ class tweet(textLimited):
   if openFileDialog.ShowModal() == wx.ID_CANCEL:
    return None
   return open(openFileDialog.GetPath(), "rb")
-   
+ 
+class retweet(tweet):
+ def createControls(self, title, message,  text):
+  self.mainBox = wx.BoxSizer(wx.VERTICAL)
+  self.createTextArea(message, "")
+  label = wx.StaticText(self.panel, -1, _(u"Retweet"))
+  self.text2 = wx.TextCtrl(self.panel, -1, text, size=(439, -1), style=wx.TE_MULTILINE|wx.TE_READONLY)
+  self.retweetBox = wx.BoxSizer(wx.HORIZONTAL)
+  self.retweetBox.Add(label, 0, wx.ALL, 5)
+  self.retweetBox.Add(self.text2, 0, wx.ALL, 5)
+  self.mainBox.Add(self.textBox, 0, wx.ALL, 5)
+  self.mainBox.Add(self.retweetBox, 0, wx.ALL, 5)
+  self.upload_image = wx.Button(self.panel, -1, _(u"Upload a picture"), size=wx.DefaultSize)
+  self.spellcheck = wx.Button(self.panel, -1, _("Spelling correction"), size=wx.DefaultSize)
+  self.attach = wx.Button(self.panel, -1, _(u"Attach audio"), size=wx.DefaultSize)
+  self.shortenButton = wx.Button(self.panel, -1, _(u"Shorten URL"), size=wx.DefaultSize)
+  self.unshortenButton = wx.Button(self.panel, -1, _(u"Expand URL"), size=wx.DefaultSize)
+  self.shortenButton.Disable()
+  self.unshortenButton.Disable()
+  self.translateButton = wx.Button(self.panel, -1, _(u"Translate message"), size=wx.DefaultSize)
+  self.autocompletionButton = wx.Button(self.panel, -1, _(u"&Autocomplete users"))
+  self.okButton = wx.Button(self.panel, wx.ID_OK, _(u"Send"), size=wx.DefaultSize)
+  self.okButton.SetDefault()
+  cancelButton = wx.Button(self.panel, wx.ID_CANCEL, _(u"Close"), size=wx.DefaultSize)
+  self.buttonsBox1 = wx.BoxSizer(wx.HORIZONTAL)
+  self.buttonsBox1.Add(self.upload_image, 0, wx.ALL, 10)
+  self.buttonsBox1.Add(self.spellcheck, 0, wx.ALL, 10)
+  self.buttonsBox1.Add(self.attach, 0, wx.ALL, 10)
+  self.mainBox.Add(self.buttonsBox1, 0, wx.ALL, 10)
+  self.buttonsBox2 = wx.BoxSizer(wx.HORIZONTAL)
+  self.buttonsBox2.Add(self.shortenButton, 0, wx.ALL, 10)
+  self.buttonsBox2.Add(self.unshortenButton, 0, wx.ALL, 10)
+  self.buttonsBox2.Add(self.translateButton, 0, wx.ALL, 10)
+  self.mainBox.Add(self.buttonsBox2, 0, wx.ALL, 10)
+  self.ok_cancelSizer = wx.BoxSizer(wx.HORIZONTAL)
+  self.ok_cancelSizer.Add(self.autocompletionButton, 0, wx.ALL, 10)
+  self.ok_cancelSizer.Add(self.okButton, 0, wx.ALL, 10)
+  self.ok_cancelSizer.Add(cancelButton, 0, wx.ALL, 10)
+  self.mainBox.Add(self.ok_cancelSizer)
+  selectId = wx.NewId()
+  self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
+  self.accel_tbl = wx.AcceleratorTable([
+(wx.ACCEL_CTRL, ord('A'), selectId),
+])
+  self.SetAcceleratorTable(self.accel_tbl)
+  self.panel.SetSizer(self.mainBox)
+
+ def __init__(self, title, message, text):
+  super(tweet, self).__init__()
+  self.createControls(message, title, text)
+#  self.onTimer(wx.EVT_CHAR_HOOK)
+  self.SetClientSize(self.mainBox.CalcMin())
+
+ def get_image(self):
+  openFileDialog = wx.FileDialog(self, _(u"Select the picture to be uploaded"), "", "", _("Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+  if openFileDialog.ShowModal() == wx.ID_CANCEL:
+   return None
+  return open(openFileDialog.GetPath(), "rb")
+
 class dm(textLimited):
  def createControls(self, title, message,  users):
   self.panel = wx.Panel(self)

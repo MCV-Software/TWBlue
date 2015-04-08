@@ -10,6 +10,7 @@ class textLimited(widgetUtils.baseDialog):
   self.label = Gtk.Label(message)
   self.set_title(message, titleWindow=True)
   self.text = Gtk.Entry()
+  self.text.set_max_length(140)
   self.text.set_text(text)
   self.text.set_placeholder_text(message)
   self.set_title(str(len(text)))

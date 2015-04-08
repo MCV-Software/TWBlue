@@ -16,8 +16,9 @@ from twitter import utils
 
 class basicTweet(object):
  """ This class handles the tweet main features. Other classes should derive from this class."""
- def __init__(self, session, title, caption, text, messageType="tweet"):
+ def __init__(self, session, title, caption, text, messageType="tweet", max=140):
   super(basicTweet, self).__init__()
+  self.max = max
   self.title = title
   self.session = session
   self.message = getattr(message, messageType)(title, caption, text)
@@ -81,14 +82,14 @@ class basicTweet(object):
     self.message.text_focus()
 
  def text_processor(self, *args, **kwargs):
-  self.message.set_title(_(u"%s - %s of 140 characters") % (self.title, len(self.message.get_text())))
+  self.message.set_title(_(u"%s - %s of %d characters") % (self.title, len(self.message.get_text()), self.max))
   if len(self.message.get_text()) > 1:
    self.message.enable_button("shortenButton")
    self.message.enable_button("unshortenButton")
   else:
    self.message.disable_button("shortenButton")
    self.message.disable_button("unshortenButton")
-  if len(self.message.get_text()) > 140:
+  if len(self.message.get_text()) > self.max:
    self.session.sound.play("max_length.ogg")
 
  def spellcheck(self, event=None):
@@ -110,8 +111,8 @@ class basicTweet(object):
   dlg = audioUploader.audioUploader(self.session.settings, completed_callback)
 
 class tweet(basicTweet):
- def __init__(self, session, title, caption, text, messageType="tweet"):
-  super(tweet, self).__init__(session, title, caption, text, messageType)
+ def __init__(self, session, title, caption, text, messageType="tweet", max=140):
+  super(tweet, self).__init__(session, title, caption, text, messageType, max)
   self.image = None
   widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
   widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
@@ -155,14 +156,21 @@ class dm(basicTweet):
   c.show_menu("dm")
 
 class viewTweet(basicTweet):
- def __init__(self, tweet, is_tweet=True):
+ def __init__(self, tweet, tweetList, is_tweet=True):
   if is_tweet == True:
-   if tweet.has_key("retweeted_status"):
-    text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
-   else:
-    text = tweet["text"]
+   text = ""
+   for i in xrange(0, len(tweetList)):
+    if tweetList[i].has_key("retweeted_status"):
+     text = text + "rt @%s: %s\n\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["text"])
+    else:
+     text = text + "@%s: %s\n\n" % (tweetList[i]["user"]["screen_name"], tweetList[i]["text"])
    rt_count = str(tweet["retweet_count"])
    favs_count = str(tweet["favorite_count"])
+   if text == "":
+    if tweet.has_key("retweeted_status"):
+     text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
+    else:
+     text = tweet["text"]
    self.message = message.viewTweet(text, rt_count, favs_count)
    self.message.set_title(len(text))
   else:

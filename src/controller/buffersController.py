@@ -150,10 +150,12 @@ class accountPanel(bufferController):
 
  def setup_account(self):
   widgetUtils.connect_event(self.buffer, widgetUtils.CHECKBOX, self.autostart, menuitem=self.buffer.autostart_account)
-  if self.account_id not in config.app["sessions"]["ignored_sessions"]:
-   self.buffer.change_autostart(True)
-  elif self.account_id in config.app["sessions"]["ignored_sessions"]:
+  if self.account_id in config.app["sessions"]["ignored_sessions"]:
+   print "true"
    self.buffer.change_autostart(False)
+  else:
+   self.buffer.change_autostart(True)
+   print "false"
   if not hasattr(self, "logged"):
    self.buffer.change_login(login=False)
    widgetUtils.connect_event(self.buffer.login, widgetUtils.BUTTON_PRESSED, self.logout)
@@ -360,12 +362,17 @@ class baseBufferController(bufferController):
   id = tweet["id"]
   answer = commonMessageDialogs.retweet_question(self.buffer)
   if answer == widgetUtils.YES:
-   retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]))
+   retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]), max=116, messageType="retweet")
    if retweet.message.get_response() == widgetUtils.OK:
-    if retweet.image == None:
-     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=retweet.message.get_text(), in_reply_to_status_id=id)
+    text = retweet.message.get_text()
+    if len(text+ u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])) < 140:
+     text = text+u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])
     else:
-     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=retweet.message.get_text(), in_reply_to_status_id=id, media=retweet.image)
+     text = text+" https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id)
+    if retweet.image == None:
+     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id)
+    else:
+     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, media=retweet.image)
    if hasattr(retweet.message, "destroy"): retweet.message.destroy()
   elif answer == widgetUtils.NO:
    call_threaded(self.session.api_call, call_name="retweet", _sound="retweet_send.ogg", id=id)

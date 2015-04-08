@@ -34,7 +34,7 @@ import pygeocoder
 from pygeolib import GeocoderError
 import logging
 import webbrowser
-from long_tweets import twishort
+from long_tweets import twishort, tweets
 
 log = logging.getLogger("mainController")
 
@@ -613,6 +613,7 @@ class Controller(object):
   if buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
    try:
     tweet = buffer.get_right_tweet()
+    tweetsList = []
     tweet_id = tweet["id"]
     uri = None
     if tweet.has_key("long_uri"):
@@ -620,15 +621,23 @@ class Controller(object):
     tweet = buffer.session.twitter.twitter.show_status(id=tweet_id)
     if uri != None:
      tweet["text"] = twishort.get_full_text(uri)
-    msg = messages.viewTweet(tweet, )
+    l = tweets.is_long(tweet)
+    while l != False:
+     tweetsList.append(tweet)
+     id = tweets.get_id(l)
+     tweet = buffer.session.twitter.twitter.show_status(id=id)
+     l = tweets.is_long(tweet)
+     if l == False:
+      tweetsList.append(tweet)
+    msg = messages.viewTweet(tweet, tweetsList)
    except TwythonError:
     non_tweet = buffer.get_formatted_message()
-    msg = messages.viewTweet(non_tweet, False)
+    msg = messages.viewTweet(non_tweet, [], False)
   elif buffer.type == "account" or buffer.type == "empty":
    return
   else:
    non_tweet = buffer.get_formatted_message()
-   msg = messages.viewTweet(non_tweet, False)
+   msg = messages.viewTweet(non_tweet, [], False)
 
  def open_favs_timeline(self, *args, **kwargs):
   self.open_timeline(default="favourites")

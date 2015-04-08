@@ -22,6 +22,8 @@ class accountPanel(Gtk.VBox):
   self.autostart_account.set_active(autostart)
 
  def get_autostart(self):
+  print "actived"
+  print self.autostart_account.get_active()
   return self.autostart_account.get_active()
 
 class emptyPanel(Gtk.VBox):
