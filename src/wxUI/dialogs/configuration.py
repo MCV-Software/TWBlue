@@ -187,7 +187,7 @@ class configurationDialog(baseDialog.BaseWXDialog):
  def __init__(self):
   super(configurationDialog, self).__init__(None, -1)
   self.panel = wx.Panel(self)
-  self.SetTitle(_(u"TW Blue preferences"))
+  self.SetTitle(_(u"TW Blue's preferences"))
   self.sizer = wx.BoxSizer(wx.VERTICAL)
   self.notebook = wx.Notebook(self.panel)
 
