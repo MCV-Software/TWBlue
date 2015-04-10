@@ -79,7 +79,7 @@ class BasqueLocale(Locale):
 		'day': 'egun bat',
 		'days': '{0} egun',
 		'month': 'hilabete bat',
-		'months': '{0} hilabet',
+		'months': '{0} hilabete',
 		'year': 'urte bat',
 		'years': '{0} urte',
 	}
