@@ -84,7 +84,7 @@ class bufferController(object):
   pass
 
  def get_more_items(self):
-  output.speak(_(u"This action is not supported for this buffer"))
+  output.speak(_(u"This action is not supported for this buffer"), True)
 
  def put_items_on_list(self, items):
   pass
@@ -151,11 +151,9 @@ class accountPanel(bufferController):
  def setup_account(self):
   widgetUtils.connect_event(self.buffer, widgetUtils.CHECKBOX, self.autostart, menuitem=self.buffer.autostart_account)
   if self.account_id in config.app["sessions"]["ignored_sessions"]:
-   print "true"
    self.buffer.change_autostart(False)
   else:
    self.buffer.change_autostart(True)
-   print "false"
   if not hasattr(self, "logged"):
    self.buffer.change_login(login=False)
    widgetUtils.connect_event(self.buffer.login, widgetUtils.BUTTON_PRESSED, self.logout)
@@ -232,7 +230,7 @@ class baseBufferController(bufferController):
    self.session.sound.play(self.sound)
 
  def get_more_items(self):
-  elements = 0
+  elements = []
   if self.session.settings["general"]["reverse_timelines"] == False:
    last_id = self.session.db[self.name][0]["id"]
   else:
@@ -240,21 +238,27 @@ class baseBufferController(bufferController):
   try:
    items = self.session.get_more_items(self.function, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
   except TwythonError as e:
-   output.speak(e.message)
+   output.speak(e.message, True)
   for i in items:
    if utils.is_allowed(i, self.session.settings["twitter"]["ignored_clients"]) == True:
-    elements +=1
+    elements.append(i)
     if self.session.settings["general"]["reverse_timelines"] == False:
      self.session.db[self.name].insert(0, i)
     else:
      self.session.db[self.name].append(i)
   selection = self.buffer.list.get_selected()
-  self.put_items_on_list(elements)
-  if self.session.settings["general"]["reverse_timelines"] == True:
+  if self.session.settings["general"]["reverse_timelines"] == False:
+   for i in elements:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    self.buffer.list.insert_item(True, *tweet)
+  else:
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    self.buffer.list.insert_item(False, *tweet)
 #   self.buffer.list.select_item(selection+elements)
 #  else:
    self.buffer.list.select_item(selection)
-  output.speak(_(u"%s items retrieved") % (str(elements)))
+  output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
 
  def remove_buffer(self):
   if "-timeline" in self.name:
@@ -274,7 +278,7 @@ class baseBufferController(bufferController):
    elif dlg == widgetUtils.NO:
     return False
   else:
-   output.speak(_(u"This buffer is not a timeline; it can't be deleted."))
+   output.speak(_(u"This buffer is not a timeline; it can't be deleted."), True)
    return False
 
  def put_items_on_list(self, number_of_items):
@@ -308,6 +312,7 @@ class baseBufferController(bufferController):
  def bind_events(self):
   log.debug("Binding events...")
   self.buffer.set_focus_function(self.onFocus)
+  widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
 #  if self.type == "baseBuffer":
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.retweet, self.buffer.retweet)
@@ -408,13 +413,13 @@ class baseBufferController(bufferController):
   tweet = self.get_tweet()
   urls = utils.find_urls(tweet)
   if len(urls) == 1:
-   output.speak(_(u"Opening URL..."))
+   output.speak(_(u"Opening URL..."), True)
    webbrowser.open_new_tab(urls[0])
   elif len(urls) > 1:
    urls_list = dialogs.urlList.urlList()
    urls_list.populate_list(urls)
    if urls_list.get_response() == widgetUtils.OK:
-    output.speak(_(u"Opening URL..."))
+    output.speak(_(u"Opening URL..."), True)
     webbrowser.open_new_tab(urls_list.get_string())
    if hasattr(urls_list, "destroy"): urls_list.destroy()
 
@@ -531,7 +536,7 @@ class peopleBufferController(baseBufferController):
   try:
    items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"])
   except TwythonError as e:
-   output.speak(e.message)
+   output.speak(e.message, True)
    return
   for i in items:
    if self.session.settings["general"]["reverse_timelines"] == False:
@@ -539,12 +544,20 @@ class peopleBufferController(baseBufferController):
    else:
     self.session.db[self.name]["items"].append(i)
   selected = self.buffer.list.get_selected()
-  self.put_items_on_list(len(items))
+#  self.put_items_on_list(len(items))
   if self.session.settings["general"]["reverse_timelines"] == True:
-   self.buffer.list.select_item(selection)
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    self.buffer.list.insert_item(True, *tweet)
+   self.buffer.list.select_item(selected)
+  else:
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    self.buffer.list.insert_item(True, *tweet)
+#   self.buffer.list.select_item(selection)
 #  else:
 #   self.buffer.list.select_item(selection-elements)
-  output.speak(_(u"%s items retrieved") % (len(items)))
+  output.speak(_(u"%s items retrieved") % (len(items)), True)
 
  def put_items_on_list(self, number_of_items):
   log.debug("The list contains %d items" % (self.buffer.list.get_count(),))
