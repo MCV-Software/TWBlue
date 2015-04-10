@@ -37,10 +37,7 @@ class basicTweet(object):
    text_to_translate = self.message.get_text().encode("utf-8")
    source = [x[0] for x in translator.translator.available_languages()][dlg.get("source_lang")]
    dest = [x[0] for x in translator.translator.available_languages()][dlg.get("dest_lang")]
-   t = translator.translator.Translator()
-   t.from_lang = source
-   t.to_lang = dest
-   msg = t.translate(text_to_translate)
+   msg = translator.translator.translate(text_to_translate, source, dest)
    self.message.set_text(msg)
    self.message.text_focus()
    output.speak(_(u"Translated"))

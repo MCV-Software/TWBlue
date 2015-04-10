@@ -72,6 +72,7 @@ setuptools install a script, called easy_install. You can find it in the python 
 * pygeocoder
 * suds
 * arrow
+* goslate
 * markdown
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
