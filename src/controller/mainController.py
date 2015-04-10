@@ -816,7 +816,7 @@ class Controller(object):
  def up(self, *args, **kwargs):
   page = self.get_current_buffer()
   if not hasattr(page.buffer, "list"):
-   output.speak(_(u"This account is not logged in twitter."))
+   output.speak(_(u"This account is not logged in twitter."), True)
    return
   position = page.buffer.list.get_selected()
   index = position-1
@@ -827,14 +827,14 @@ class Controller(object):
   if position == page.buffer.list.get_selected():
    page.session.sound.play("limit.ogg")
   try:
-   output.speak(page.get_message())
+   output.speak(page.get_message(), True)
   except:
    pass
 
  def down(self, *args, **kwargs):
   page = self.get_current_buffer()
   if not hasattr(page.buffer, "list"):
-   output.speak(_(u"This account is not logged in twitter."))
+   output.speak(_(u"This account is not logged in twitter."), True)
    return
   position = page.buffer.list.get_selected()
   index = position+1
@@ -845,7 +845,7 @@ class Controller(object):
   if position == page.buffer.list.get_selected():
    page.session.sound.play("limit.ogg")
   try:
-   output.speak(page.get_message())
+   output.speak(page.get_message(), True)
   except:
    pass
 
@@ -853,7 +853,7 @@ class Controller(object):
   buff = self.view.get_current_buffer_pos()
   buffer = self.get_current_buffer()
   if not hasattr(buffer.buffer, "list"):
-   output.speak(_(u"This account is not logged in twitter."))
+   output.speak(_(u"This account is not logged in twitter."), True)
    return
   if buff == self.get_first_buffer(buffer.account) or buff == 0:
    self.view.change_buffer(self.get_last_buffer(buffer.account))
@@ -865,13 +865,13 @@ class Controller(object):
    msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
    msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
-  output.speak(msg)
+  output.speak(msg, True)
 
  def right(self, *args, **kwargs):
   buff = self.view.get_current_buffer_pos()
   buffer = self.get_current_buffer()
   if not hasattr(buffer.buffer, "list"):
-   output.speak(_(u"This account is not logged in twitter."))
+   output.speak(_(u"This account is not logged in twitter."), True)
    return
   if buff == self.get_last_buffer(buffer.account) or buff+1 == self.view.get_buffer_count():
    self.view.change_buffer(self.get_first_buffer(buffer.account))
@@ -883,7 +883,7 @@ class Controller(object):
    msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
    msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
-  output.speak(msg)
+  output.speak(msg, True)
 
  def next_account(self, *args, **kwargs):
   index = self.accounts.index(self.current_account)
@@ -895,7 +895,7 @@ class Controller(object):
   self.current_account = account
   buff = self.view.search("home_timeline", account)
   if buff == None:
-   output.speak(_(u"{0}: This account is not logged in twitter.").format(account))
+   output.speak(_(u"{0}: This account is not logged in twitter.").format(account), True)
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
@@ -903,7 +903,7 @@ class Controller(object):
    msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
    msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
-  output.speak(msg)
+  output.speak(msg, True)
 
  def previous_account(self, *args, **kwargs):
   index = self.accounts.index(self.current_account)
@@ -915,7 +915,7 @@ class Controller(object):
   self.current_account = account
   buff = self.view.search("home_timeline", account)
   if buff == None:
-   output.speak(_(u"{0}: This account is not logged in twitter.").format(account))
+   output.speak(_(u"{0}: This account is not logged in twitter.").format(account), True)
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
@@ -923,13 +923,13 @@ class Controller(object):
    msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
    msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
-  output.speak(msg)
+  output.speak(msg, True)
 
  def go_home(self):
   buffer = self.get_current_buffer()
   buffer.buffer.list.select_item(0)
   try:
-   output.speak(buffer.get_message())
+   output.speak(buffer.get_message(), True)
   except:
    pass
 
@@ -937,7 +937,7 @@ class Controller(object):
   buffer = self.get_current_buffer()
   buffer.buffer.list.select_item(buffer.buffer.list.get_count()-1)
   try:
-   output.speak(buffer.get_message())
+   output.speak(buffer.get_message(), True)
   except:
    pass
 
@@ -949,7 +949,7 @@ class Controller(object):
    index = buffer.buffer.list.get_selected() - 20
   buffer.buffer.list.select_item(index)
   try:
-   output.speak(buffer.get_message())
+   output.speak(buffer.get_message(), True)
   except:
    pass
 
@@ -961,7 +961,7 @@ class Controller(object):
    index = buffer.buffer.list.get_selected() + 20
   buffer.buffer.list.select_item(index)
   try:
-   output.speak(buffer.get_message())
+   output.speak(buffer.get_message(), True)
   except:
    pass
 
@@ -1194,29 +1194,29 @@ class Controller(object):
   if hasattr(buffer, "session") and buffer.session == None: return
   if buffer.name not in buffer.session.settings["other_buffers"]["autoread_buffers"]:
    buffer.session.settings["other_buffers"]["autoread_buffers"].append(buffer.name)
-   output.speak(_(u"The auto-reading of new tweets is enabled for this buffer"))
+   output.speak(_(u"The auto-reading of new tweets is enabled for this buffer"), True)
   elif buffer.name in buffer.session.settings["other_buffers"]["autoread_buffers"]:
    buffer.session.settings["other_buffers"]["autoread_buffers"].remove(buffer.name)
-   output.speak(_(u"The auto-reading of new tweets is disabled for this buffer"))
+   output.speak(_(u"The auto-reading of new tweets is disabled for this buffer"), True)
 
  def toggle_session_mute(self, *args, **kwargs):
   buffer = self.get_best_buffer()
   if buffer.session.settings["sound"]["session_mute"] == False:
    buffer.session.settings["sound"]["session_mute"] = True
-   output.speak(_(u"Session mute on"))
+   output.speak(_(u"Session mute on"), True)
   elif buffer.session.settings["sound"]["session_mute"] == True:
    buffer.session.settings["sound"]["session_mute"] = False
-   output.speak(_(u"Global mute off"))
+   output.speak(_(u"Global mute off"), True)
 
  def toggle_buffer_mute(self, *args, **kwargs):
   buffer = self.get_current_buffer()
   if hasattr(buffer, "session") and buffer.session == None: return
   if buffer.name not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    buffer.session.settings["other_buffers"]["muted_buffers"].append(buffer.name)
-   output.speak(_(u"Buffer mute on"))
+   output.speak(_(u"Buffer mute on"), True)
   elif buffer.name in buffer.session.settings["other_buffers"]["muted_buffers"]:
    buffer.session.settings["other_buffers"]["muted_buffers"].remove(buffer.name)
-   output.speak(_(u"Buffer mute off"))
+   output.speak(_(u"Buffer mute off"), True)
 
  def __del__(self):
   config.app.write()
