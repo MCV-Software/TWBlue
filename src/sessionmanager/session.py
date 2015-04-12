@@ -25,14 +25,14 @@ class Session(object):
 
  def _require_login(fn):
 
-  """ Decorator for checking if the user is logged (a twitter object has credentials) on twitter.
-  Some functions may need this to avoid make unneeded twitter API calls."""
+  """ Decorator for checking if the user is logged in(a twitter object has credentials) on twitter.
+  Some functions may need this to avoid making unneeded twitter API calls."""
 
   def f(self, *args, **kwargs):
    if self.logged == True:
     fn(self, *args, **kwargs)
    else:
-    raise Exceptions.NotLoggedSessionError("You are not logged yet.")
+    raise Exceptions.NotLoggedSessionError("You are not logged in yet.")
   return f
 
  def _require_configuration(fn):
@@ -48,10 +48,10 @@ class Session(object):
 
  def order_buffer(self, name, data):
 
-  """ Put the new items on the local database.
+  """ Put the new items in the local database.
   name str: The name for the buffer stored in the dictionary.
   data list: A list with tweets.
-  returns the number of items that has been added in this execution"""
+  returns the number of items that have been added in this execution"""
 
   num = 0
   if self.db.has_key(name) == False:
@@ -68,7 +68,7 @@ class Session(object):
   """ Put the new items on the local database. Useful for cursored buffers (followers, friends, users of a list and searches)
   name str: The name for the buffer stored in the dictionary.
   data list: A list with items and some information about cursors.
-  returns the number of items that has been added in this execution"""
+  returns the number of items that have been added in this execution"""
 
   num = 0
   if self.db.has_key(name) == False:
@@ -118,7 +118,7 @@ class Session(object):
  @_require_configuration
  def login(self, verify_credentials=True):
 
-  """ Login in to twitter using  credentials from settings.
+  """ Log into twitter using  credentials from settings.
   if the user account isn't authorised, it needs to call self.authorise() before login."""
 
   if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
@@ -134,7 +134,7 @@ class Session(object):
  @_require_configuration
  def authorise(self):
 
-  """ Authorises a Twitter account. This function needs to be called for each new session, after of self.get_configuration() and before of self.login()"""
+  """ Authorises a Twitter account. This function needs to be called for each new session, after self.get_configuration() and before self.login()"""
 
   if self.logged == True:
    raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
@@ -153,14 +153,14 @@ class Session(object):
 
  def api_call(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
 
-  """ Make a call to the Twitter API. If there is a connectionError or another exception not related to Twitter, It will call to the method  at least 25 times, waiting a while between calls. Useful for  post methods.
-  If twitter returns an error, it will not call anymore the method.
+  """ Make a call to the Twitter API. If there is a connectionError or another exception not related to Twitter, It will call the method again at least 25 times, waiting a while between calls. Useful for  post methods.
+  If twitter returns an error, it will not call the method anymore.
   call_name str: The method to call
-  action str: The thing what you are doing on twitter, it will be reported to the user if report_success is set to  True.
+  action str: What you are doing on twitter, it will be reported to the user if report_success is set to  True.
     for example "following @tw_blue2" will be reported as "following @tw_blue2 succeeded".
   _sound str: a sound to play if the call is executed properly.
-  report_success and report_failure bool: These are self explanatory. True or false. It's all.
-  preexec_message str: A message to speak to the user while the call is doing the work, example: "try to follow to x user"."""
+  report_success and report_failure bool: These are self explanatory. True or False.
+  preexec_message str: A message to speak to the user while the method is running, example: "trying to follow x user"."""
 
   finished = False
   tries = 0
@@ -193,8 +193,8 @@ class Session(object):
  @_require_login
  def get_favourites_timeline(self, name, *args, **kwargs):
 
-  """ Gets favourites for the authenticated user or a friend or follower or somewhat.
-  name str: Name for store all in the database."""
+  """ Gets favourites for the authenticated user or a friend or follower.
+  name str: Name for storage in the database."""
 
   tl = self.call_paged(self.twitter.twitter.get_favorites, *args, **kwargs)
   return self.order_buffer(name, tl)
@@ -204,7 +204,7 @@ class Session(object):
   """ Makes a call to the Twitter API methods several times. Useful for get methods.
   this function is needed for retrieving more than 200 items.
   update_function str: The function to call. This function must be child of self.twitter.twitter
-  return a list with all items retrieved."""
+  returns a list with all items retrieved."""
 
   max = int(self.settings["general"]["max_api_calls"])-1
   results = []
@@ -222,7 +222,6 @@ class Session(object):
  def get_user_info(self):
 
   """ Retrieves some information required by TWBlue for setup."""
-
   f = self.twitter.twitter.get_account_settings()
   sn = f["screen_name"]
   self.settings["twitter"]["user_name"] = sn
@@ -239,7 +238,7 @@ class Session(object):
  @_require_login
  def get_lists(self):
 
-  """ Gets the lists that the user is suscribed."""
+  """ Gets the lists that the user is subscribed to and stores them in the database. Returns None."""
   
   self.db["lists"] = self.twitter.twitter.show_lists(reverse=True)
 
@@ -254,7 +253,7 @@ class Session(object):
  def get_stream(self, name, function, *args, **kwargs):
 
   """ Retrieves the items for a regular stream.
-  name str: Name to save items on the database.
+  name str: Name to save items to the database.
   function str: A function to get the items."""
 
   last_id = -1
@@ -272,11 +271,11 @@ class Session(object):
  @_require_login
  def get_cursored_stream(self, name, function, items="users", *args, **kwargs):
 
-  """ Gets items for API calls that requires using cursors to paginate the results.
+  """ Gets items for API calls that require using cursors to paginate the results.
   name str: Name to save it in the database.
   function str: Function that provides the items.
   items: When the function returns the list with results, items will tell how the order function should be look.
-    for example get_followers_list returns a list and users are under list["users"], here the items should be point to "users"."""
+    for example get_followers_list returns a list and users are under list["users"], here the items should point to "users"."""
 
   items_ = []
   try:
