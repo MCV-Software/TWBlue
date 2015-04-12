@@ -4,11 +4,11 @@ TWBlue - Next generation
 Note
 ======
 
-Please note that this  branch is a new generation of TWBlue, so the code is been written using the MVC design pattern and it is very unstable. This code does not works properly and it is not recommended its use, only you use this code for testing purposes. You may find some huge bugs, because we're written most of the source code from scratch.
+Please note that this  branch is a new generation of TWBlue. The code has been rewritten using the MVC design pattern. It is very unstable. This code may not work properly and it's use is not recommended. Only use for testing purposes.
 
 TWBlue, an accessible, open source and multiplatform twitter application. 
-
-TW Blue is an app designed to use Twitter in a simple and fast way and avoiding, as far as possible, the consumtion of excessive resources of the machine where it’s running. With this app you’ll have access to twitter features such as:
+TW Blue is an app designed to use Twitter simply and efficiently while using minimal system resources.
+With this app you’ll have access to twitter features such as:
 
 * Create, reply to, retweet and delete tweets,
 * Add and remove tweets from favourites,
@@ -16,11 +16,11 @@ TW Blue is an app designed to use Twitter in a simple and fast way and avoiding,
 * See your friends and followers,
 * Follow, unfollow, block and report users as spam,
 * Open a user’s timeline, which will allow you to get that user’s tweets separately,
-* Open URL addresses when attached to a tweet or direct message,
-* Play various file and URL types which contain audio
+* Open URLs when attached to a tweet or direct message,
+* Play audio tweets
 * and more!
 
-See the [TWBlue's webpage](http://twblue.es) for more details.
+See [TWBlue's webpage](http://twblue.es) for more details.
 
 ## Using TWBlue from sources
 
@@ -92,15 +92,15 @@ This dependency has been built using pure basic 4.61. Its source can be found at
 
 ### Running TW Blue from source
 
-Now that you have installed all these packages, you can run TW Blue from source using a command prompt. Navigate to the src directory into the repo, and type the following command:
+Now that you have installed all these packages, you can run TW Blue from source using a command prompt. Navigate to the repo's src directory, and type the following command:
 
     python main.py
 
-	If necesary, change the first part of the command to reflect where is your python executable. You can run TW Blue using python x86 and x64
+	If necessary, change the first part of the command to reflect the location of your python executable. You can run TW Blue using python x86 and x64
 
 ### Building a binary version
 
-A binary version doesn't need python and the other dependencies to run, it's the same version that you will find in TW Blue website if you download the zip files.
+A binary version doesn't need python and the other dependencies to run, it's the same version that you will find on the TW Blue website if you download the zip files.
 
 To build it, run the following command from the src folder:
 
@@ -110,4 +110,4 @@ To build it, run the following command from the src folder:
 
 ### How to generate a translation template
 
-You must run the gen_pot.bat file, located in the tools directory. Your python installation should be in your path environment variable. The pot file will appear in the tools directory too.
+Run the gen_pot.bat file, located in the tools directory. Your python installation must be in your path environment variable. The pot file will appear in the tools directory.
