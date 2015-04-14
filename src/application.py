@@ -5,8 +5,8 @@ if snapshot == False:
  version = "0.80"
  update_url = 'http://twblue.es/updates/twblue_ngen.json'
 else:
- version = "7"
- update_url = 'http://twblue.es/updates/snapshots_ngen.json'
+ version = "8"
+ update_url = 'http://twblue.es/updates/snap.json'
 author = u"Manuel Cortéz"
 authorEmail = "manuel@manuelcortez.net"
 copyright = u"copyright (C) 2013-2015, Manuel cortéz"
