@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-actions = [  ("audio", _(u"Audio tweet.")),
+import reverse_sort
+actions = reverse_sort.reverse_sort([  ("audio", _(u"Audio tweet.")),
   ("create_timeline", _(u"User-defined buffer created.")),
     ("delete_timeline", _(u"User-defined buffer destroied.")),
     ("dm_received", _(u"Direct message received.")),
@@ -22,4 +23,4 @@ actions = [  ("audio", _(u"Audio tweet.")),
     ("trends_updated", _(u"A trending topic buffer has been updated.")),
     ("tweet_timeline", _(u"New tweet in user-defined buffer.")),
     ("update_followers", _(u"New follower.")),
-    ("volume_changed", _(u"Volume changed."))]
+    ("volume_changed", _(u"Volume changed."))])
