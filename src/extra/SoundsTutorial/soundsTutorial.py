@@ -4,6 +4,7 @@ import widgetUtils
 import os
 import paths
 import logging
+import reverse_sort
 log = logging.getLogger("extra.SoundsTutorial.soundsTutorial")
 import soundsTutorial_constants
 if platform.system() == "Windows":
@@ -22,6 +23,8 @@ class soundsTutorial(object):
   self.files = []
   log.debug("Searching sound files...")
   [self.files.append(i[0]) for i in soundsTutorial_constants.actions]
+  log.debug("Alphabetizing actions...")
+  actions=reverse_sort.reverse_sort(actions)
   log.debug("Creating dialog...")
   self.dialog = UI.soundsTutorialDialog(self.actions)
   widgetUtils.connect_event(self.dialog.play, widgetUtils.BUTTON_PRESSED, self.on_play)
