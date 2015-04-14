@@ -64,7 +64,7 @@ setuptools install a script, called easy_install. You can find it in the python 
 
 	The -z switch unzips the package, instead of installing it compressed. If you add the --upgrade switch, you can upgrade a package to its latest version. The following packages need to be installed:
 
-* pubsub
+* pypubsub
 * dropbox
 * configobj
 * requests-oauthlib
