@@ -28,6 +28,8 @@ class keystrokeEditorDialog(baseDialog.BaseWXDialog):
 
  def put_keystrokes(self, actions, keystrokes):
   for i in keystrokes:
+   if actions.has_key(i) == False:
+    continue
    action = actions[i]
    self.actions.append(i)
    keystroke = keystrokes[i]

@@ -130,6 +130,10 @@ class URLStream(object):
     self.stream.play()
     log.debug("played")
 
+ def stop_audio(self):
+  if hasattr(self, "stream") and self.stream.is_playing == True:
+   self.stream.stop()
+
  @staticmethod
  def delete_old_tempfiles():
   for f in glob(os.path.join(tempfile.gettempdir(), 'tmp*.wav')):
