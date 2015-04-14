@@ -24,7 +24,7 @@ class soundsTutorial(object):
   log.debug("Searching sound files...")
   [self.files.append(i[0]) for i in soundsTutorial_constants.actions]
   log.debug("Alphabetizing actions...")
-  actions=reverse_sort.reverse_sort(actions)
+  actions=reverse_sort.reverse_sort(self.actions)
   log.debug("Creating dialog...")
   self.dialog = UI.soundsTutorialDialog(self.actions)
   widgetUtils.connect_event(self.dialog.play, widgetUtils.BUTTON_PRESSED, self.on_play)
