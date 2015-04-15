@@ -48,6 +48,12 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(tweetsPerCallBox, 0, wx.ALL, 5)
   self.reverse_timelines = wx.CheckBox(self, wx.NewId(), _(u"Inverted buffers: The newest tweets will be shown at the beginning of the lists while the oldest at the end"))
   sizer.Add(self.reverse_timelines, 0, wx.ALL, 5)
+  lbl = wx.StaticText(self, wx.NewId(), _(u"Retweets mode"))
+  self.retweet_mode = wx.ComboBox(self, wx.NewId(), choices=[_(u"Ask"), _(u"Retweet without comments"), _(u"Retweet with comments")], style=wx.CB_READONLY)
+  rMode = wx.BoxSizer(wx.HORIZONTAL)
+  rMode.Add(lbl, 0, wx.ALL, 5)
+  rMode.Add(self.retweet_mode, 0, wx.ALL, 5)
+  sizer.Add(rMode, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
 class other_buffers(wx.Panel):

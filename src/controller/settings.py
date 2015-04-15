@@ -65,6 +65,13 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("general", "apiCalls", self.config["general"]["max_api_calls"])
   self.dialog.set_value("general", "itemsPerApiCall", self.config["general"]["max_tweets_per_call"])
   self.dialog.set_value("general", "reverse_timelines", self.config["general"]["reverse_timelines"])
+  rt = self.config["general"]["retweet_mode"]
+  if rt == "ask":
+   self.dialog.set_value("general", "retweet_mode", _(u"Ask"))
+  elif rt == "direct":
+   self.dialog.set_value("general", "retweet_mode", _(u"Retweet without comments"))
+  else:
+   self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
   self.dialog.create_other_buffers()
   self.dialog.set_value("buffers", "followers", self.config["other_buffers"]["show_followers"])
   self.dialog.set_value("buffers", "friends", self.config["other_buffers"]["show_friends"])
@@ -105,6 +112,13 @@ class accountSettingsController(globalSettingsController):
   if self.config["general"]["reverse_timelines"] != self.dialog.get_value("general", "reverse_timelines"):
    self.needs_restart = True
    self.config["general"]["reverse_timelines"] = self.dialog.get_value("general", "reverse_timelines")
+  rt = self.dialog.get_value("general", "retweet_mode")
+  if rt == _(u"Ask"):
+   self.config["general"]["retweet_mode"] = "ask"
+  elif rt == _(u"Retweet without comments"):
+   self.config["general"]["retweet_mode"] = "direct"
+  else:
+   self.config["general"]["retweet_mode"] = "comment"
   if self.config["other_buffers"]["show_followers"] != self.dialog.get_value("buffers", "followers"):
    self.config["other_buffers"]["show_followers"] = self.dialog.get_value("buffers", "followers")
    pub.sendMessage("create-new-buffer", buffer="followers", account=self.user, create=self.config["other_buffers"]["show_followers"])

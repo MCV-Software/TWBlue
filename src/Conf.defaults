@@ -11,6 +11,7 @@ max_tweets_per_call = integer(default=100)
 reverse_timelines = boolean(default=False)
 time_to_check_streams = integer(default=30)
 announce_stream_status = boolean(default=True)
+retweet_mode = string(default="ask")
 
 [sound]
 volume = float(default=1.0)

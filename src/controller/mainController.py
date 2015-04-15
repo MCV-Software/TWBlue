@@ -12,6 +12,7 @@ if system == "Windows":
  import userActionsController
  import trendingTopics
  import user
+ import listsController
  from issueReporter import issueReporter
 elif system == "Linux":
  from gtkUI import (view, commonMessageDialogs)
@@ -124,6 +125,7 @@ class Controller(object):
    pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
+#   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
@@ -432,8 +434,10 @@ class Controller(object):
  def remove_from_list(self, user):
   pass
 
- def lists_manager(self):
-  pass
+ def list_manager(self, *args, **kwargs):
+  s = self.get_best_buffer().session
+  l = listsController.listsController(s)
+
 
  def configuration(self, *args, **kwargs):
   """ Opens the global settings dialogue."""

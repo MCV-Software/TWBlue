@@ -365,22 +365,33 @@ class baseBufferController(bufferController):
  def retweet(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   id = tweet["id"]
-  answer = commonMessageDialogs.retweet_question(self.buffer)
-  if answer == widgetUtils.YES:
-   retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]), max=116-len("@%s " % (tweet["user"]["screen_name"],)), messageType="retweet")
-   if retweet.message.get_response() == widgetUtils.OK:
-    text = retweet.message.get_text()
-    if len(text+ u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])) < 140:
-     text = text+u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])
-    else:
-     text = text+" @{2} https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id, tweet["user"]["screen_name"])
-    if retweet.image == None:
-     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id)
-    else:
-     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, media=retweet.image)
-   if hasattr(retweet.message, "destroy"): retweet.message.destroy()
-  elif answer == widgetUtils.NO:
-   call_threaded(self.session.api_call, call_name="retweet", _sound="retweet_send.ogg", id=id)
+  if self.session.settings["general"]["retweet_mode"] == "ask":
+   answer = commonMessageDialogs.retweet_question(self.buffer)
+   if answer == widgetUtils.YES:
+    self._retweet_with_comment(tweet, id)
+   else:
+    self._direct_retweet(id)
+  elif self.session.settings["general"]["retweet_mode"] == "direct":
+   self._direct_retweet(id)
+  else:
+   self._retweet_with_comment(tweet, id)
+
+ def _retweet_with_comment(self, tweet, id):
+  retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]), max=116-len("@%s " % (tweet["user"]["screen_name"],)), messageType="retweet")
+  if retweet.message.get_response() == widgetUtils.OK:
+   text = retweet.message.get_text()
+   if len(text+ u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])) < 140:
+    text = text+u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])
+   else:
+    text = text+" @{2} https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id, tweet["user"]["screen_name"])
+   if retweet.image == None:
+    call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id)
+   else:
+    call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, media=retweet.image)
+  if hasattr(retweet.message, "destroy"): retweet.message.destroy()
+
+ def _direct_retweet(self, id):
+  call_threaded(self.session.api_call, call_name="retweet", _sound="retweet_send.ogg", id=id)
 
  def onFocus(self, *args, **kwargs):
   tweet = self.get_tweet()
@@ -487,6 +498,8 @@ class eventsBufferController(bufferController):
    self.buffer.list.insert_item(True, *tweet)
   if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(" ".join(tweet))
+  if self.buffer.list.get_count() == 1:
+   self.buffer.list.select_item(0)
 
  def clear_list(self):
   dlg = commonMessageDialogs.clear_list()

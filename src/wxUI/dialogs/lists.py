@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import wx
+import widgetUtils
 from multiplatform_widgets import widgets
 
-class listViewer(wx.Dialog):
+class listViewer(widgetUtils.BaseDialog):
 
  def __init__(self, *args, **kwargs):
   super(listViewer, self).__init__(parent=None, *args, **kwargs)
@@ -48,10 +49,10 @@ class userListViewer(listViewer):
   self.editBtn.Disable()
   self.view.Disable()
 
-class createListDialog(wx.Dialog):
+class createListDialog(widgetUtils.BaseDialog):
 
  def __init__(self, *args, **kwargs):
-  super(createListDialog, self).__init__(*args, **kwargs)
+  super(createListDialog, self).__init__(parent=None, *args, **kwargs)
   self.SetTitle(_(u"Create a new list"))
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
@@ -82,9 +83,6 @@ class createListDialog(wx.Dialog):
   sizer.Add(descriptionSizer)
   sizer.Add(modeBox)
   sizer.Add(btnBox)
-
- def get(self, field):
-  return getattr(self, field).GetValue()
 
 class editListDialog(createListDialog):
 
@@ -121,3 +119,7 @@ class removeUserListDialog(listViewer):
 #  self.subscriptors.Disable()
 #  self.members.Disable()
   self.deleteBtn.Disable()
+
+def remove_list():
+ return wx.MessageDialog(None, _("Do you really want to delete this list?"), _("Delete"), wx.YES_NO).ShowModal()
+
