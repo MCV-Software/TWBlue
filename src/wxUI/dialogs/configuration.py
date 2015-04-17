@@ -2,7 +2,7 @@
 import baseDialog
 import wx
 import logging as original_logger
-
+import application
 class general(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent, languages):
   super(general, self).__init__(parent)
@@ -16,6 +16,10 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(langBox, 0, wx.ALL, 5)
   self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting TwBlue?"))
   sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
+  self.play_ready_sound = wx.CheckBox(self, -1, _(U"Play a sound when "+application.name+" launches"))
+  sizer.Add(self.play_ready_sound, 0, wx.ALL, 5)
+  self.speak_ready_msg = wx.CheckBox(self, -1, _(U"Speak a message when "+application.name+" launches"))
+  sizer.Add(self.speak_ready_msg, 0, wx.ALL, 5)
   self.use_invisible_shorcuts = wx.CheckBox(self, -1, _(u"Use invisible interface's keyboard shorcuts on the GUI"))
   sizer.Add(self.use_invisible_shorcuts, 0, wx.ALL, 5)
   self.disable_sapi5 = wx.CheckBox(self, -1, _(u"Activate Sapi5 when any other screen reader is not being run"))
@@ -171,7 +175,7 @@ class audioServicesPanel(wx.Panel):
    self.dropbox.SetLabel(_(u"Link your Dropbox account"))
    
  def show_dialog(self):
-  wx.MessageDialog(self, _(u"The authorisation request will be shown on your browser. Copy the code tat Dropbox will provide and, in the text box that will appear on TW Blue, paste it. This code is necessary to continue. You only need to do it once."), _(u"Authorisation"), wx.OK).ShowModal()
+  wx.MessageDialog(self, _(u"Dropbox will open in your browser. After you log into Dropbox, an authorization code will be generated. Please paste it into the field which will appear. You only need to do this once."), _(u"Authorization"), wx.OK).ShowModal()
 
  def get_response(self):
   dlg = wx.TextEntryDialog(self, _(u"Enter the code here."), _(u"Verification code"))
@@ -180,7 +184,7 @@ class audioServicesPanel(wx.Panel):
   return dlg.GetValue()
 
  def show_error(self):
-  wx.MessageDialog(self, _(u"Error during authorisation. Try again later."), _(u"Error!"), wx.ICON_ERROR).ShowModal()
+  wx.MessageDialog(self, _(u"Error during authorization. Try again later."), _(u"Error!"), wx.ICON_ERROR).ShowModal()
 
  def get_dropbox(self):
   return self.dropbox.GetLabel()
@@ -193,7 +197,7 @@ class configurationDialog(baseDialog.BaseWXDialog):
  def __init__(self):
   super(configurationDialog, self).__init__(None, -1)
   self.panel = wx.Panel(self)
-  self.SetTitle(_(u"TW Blue's preferences"))
+  self.SetTitle(_(unicode(application.name + " preferences")))
   self.sizer = wx.BoxSizer(wx.VERTICAL)
   self.notebook = wx.Notebook(self.panel)
 
