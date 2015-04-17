@@ -34,7 +34,7 @@ lists = list(default=list())
 favourites_timelines = list(default=list())
 trending_topic_buffers = list(default=list())
 muted_buffers = list(default=list())
-autoread_buffers = list(default=list())
+autoread_buffers = list(default=list(mentions, direct_messages, events))
 
 [mysc]
 spelling_language = string(default="")
