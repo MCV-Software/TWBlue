@@ -242,8 +242,10 @@ class Controller(object):
   for i in session_.sessions:
    if session_.sessions[i].is_logged == False: continue
    self.start_buffers(session_.sessions[i])
-  session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
-  output.speak(_(u"Ready"))
+  if config.app["app-settings"]["play_ready_sound"] == True:
+   session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
+  if config.app["app-settings"]["speak_ready_msg"] == True:
+   output.speak(_(u"Ready"))
 
  def create_ignored_session_buffer(self, session):
   self.accounts.append(session.settings["twitter"]["user_name"])
