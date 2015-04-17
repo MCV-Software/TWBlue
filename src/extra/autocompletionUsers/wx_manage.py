@@ -2,13 +2,13 @@
 import wx
 import widgetUtils
 from multiplatform_widgets import widgets
-
+import application
 class autocompletionManageDialog(widgetUtils.BaseDialog):
  def __init__(self):
-  super(autocompletionManageDialog, self).__init__(parent=None, id=-1, title=_(u"Manage Autocomplete users’ database"))
+  super(autocompletionManageDialog, self).__init__(parent=None, id=-1, title=_(u"Manage Autocompletion database"))
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  label = wx.StaticText(panel, -1, _(u"Editing TWBlue users database"))
+  label = wx.StaticText(panel, -1, _(u"Editing " + application.name + " users database"))
   self.users = widgets.list(panel, _(u"Username"), _(u"Name"), style=wx.LC_REPORT)
   sizer.Add(label, 0, wx.ALL, 5)
   sizer.Add(self.users.list, 0, wx.ALL, 5)
