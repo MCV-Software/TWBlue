@@ -32,11 +32,12 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent):
   super(generalAccount, self).__init__(parent)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  self.au = wx.Button(self, wx.NewId(), _(u"Set the autocomplete function"))
+  self.au = wx.Button(self, wx.NewId(), _(u"Autocompletion settings..."))
   sizer.Add(self.au, 0, wx.ALL, 5)
   self.relative_time = wx.CheckBox(self, wx.NewId(), _(U"Relative timestamps"))
   sizer.Add(self.relative_time, 0, wx.ALL, 5)
   apiCallsBox = wx.BoxSizer(wx.HORIZONTAL)
+  apiCallsBox.Add(wx.StaticText(self, -1, _(u"API calls (One API call = 200 tweets, two API calls = 400 tweets, etc):")), 0, wx.ALL, 5)
   self.apiCalls = wx.SpinCtrl(self, wx.NewId())
   self.apiCalls.SetRange(1, 10)
   self.apiCalls.SetSize(self.apiCalls.GetBestSize())
@@ -212,7 +213,7 @@ class configurationDialog(baseDialog.BaseWXDialog):
 
  def create_other_buffers(self):
   self.buffers = other_buffers(self.notebook)
-  self.notebook.AddPage(self.buffers, _(u"Show other buffers"))
+  self.notebook.AddPage(self.buffers, _(u"Buffers"))
 
  def create_ignored_clients(self, ignored_clients_list):
   self.ignored_clients = ignoredClients(self.notebook, ignored_clients_list)
