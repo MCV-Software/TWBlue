@@ -19,7 +19,6 @@ class mainFrame(wx.Frame):
   self.trends = app.Append(wx.NewId(), _(u"View &trending topics"))
   self.lists = app.Append(wx.NewId(), _(u"&Lists manager"))
   self.lists.Enable(False)
-  self.sounds_tutorial = app.Append(wx.NewId(), _(u"Sounds &tutorial"))
   self.keystroke_editor = app.Append(wx.NewId(), _(u"&Edit keystrokes"))
   self.account_settings = app.Append(wx.NewId(), _(u"Account se&ttings"))
   self.prefs = app.Append(wx.ID_PREFERENCES, _(u"&Global settings"))
@@ -70,12 +69,13 @@ class mainFrame(wx.Frame):
   help = wx.Menu()
   self.doc = help.Append(-1, _(u"&Documentation"))
   self.doc.Enable(False)
+  self.sounds_tutorial = help.Append(wx.NewId(), _(u"Sounds &tutorial"))
   self.changelog = help.Append(wx.NewId(), _(u"&What's new in this version?"))
   self.changelog.Enable(False)
   self.check_for_updates = help.Append(wx.NewId(), _(u"&Check for updates"))
   self.reportError = help.Append(wx.NewId(), _(u"&Report an error"))
-  self.visit_website = help.Append(-1, _(u"TW Blue's &website"))
-  self.about = help.Append(-1, _(u"About &TW Blue"))
+  self.visit_website = help.Append(-1, _(unicode(application.name+"'s &website")))
+  self.about = help.Append(-1, _(u"About &"+application.name))
 
   # Add all to the menu Bar
   menuBar.Append(app, _(u"&Application"))
@@ -110,10 +110,10 @@ class mainFrame(wx.Frame):
  ### MAIN
  def __init__(self):
   """ Main function of this class."""
-  super(mainFrame, self).__init__(None, -1, "TW Blue", size=(1600, 1600))
+  super(mainFrame, self).__init__(None, -1, application.name, size=(1600, 1600))
   self.panel = wx.Panel(self)
   self.sizer = wx.BoxSizer(wx.VERTICAL)
-  self.SetTitle("TW Blue")
+  self.SetTitle(application.name)
   self.SetMenuBar(self.makeMenus())
   self.nb = wx.Treebook(self.panel, wx.NewId())
   self.buffers = {}
@@ -189,4 +189,4 @@ class mainFrame(wx.Frame):
    getattr(self, menuitem).Check(check)
 
 def no_update_available():
- wx.MessageDialog(None, _(u"Your TW Blue version is up to date"), _(u"Update"), style=wx.OK).ShowModal()
+ wx.MessageDialog(None, _(u"Your "+application.name+" version is up to date"), _(u"Update"), style=wx.OK).ShowModal()

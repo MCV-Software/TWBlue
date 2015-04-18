@@ -2,7 +2,7 @@
 import baseDialog
 import wx
 import logging as original_logger
-
+import application
 class general(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent, languages):
   super(general, self).__init__(parent)
@@ -14,13 +14,17 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   langBox.Add(language, 0, wx.ALL, 5)
   langBox.Add(self.language, 0, wx.ALL, 5)
   sizer.Add(langBox, 0, wx.ALL, 5)
-  self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting TwBlue?"))
+  self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting "+application.name))
   sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
-  self.use_invisible_shorcuts = wx.CheckBox(self, -1, _(u"Use invisible interface's keyboard shorcuts on the GUI"))
+  self.play_ready_sound = wx.CheckBox(self, -1, _(U"Play a sound when "+application.name+" launches"))
+  sizer.Add(self.play_ready_sound, 0, wx.ALL, 5)
+  self.speak_ready_msg = wx.CheckBox(self, -1, _(U"Speak a message when "+application.name+" launches"))
+  sizer.Add(self.speak_ready_msg, 0, wx.ALL, 5)
+  self.use_invisible_shorcuts = wx.CheckBox(self, -1, _(u"Use invisible interface's keyboard shortcuts while GUI is visible"))
   sizer.Add(self.use_invisible_shorcuts, 0, wx.ALL, 5)
   self.disable_sapi5 = wx.CheckBox(self, -1, _(u"Activate Sapi5 when any other screen reader is not being run"))
   sizer.Add(self.disable_sapi5, 0, wx.ALL, 5)
-  self.hide_gui = wx.CheckBox(self, -1, _(u"Activate the auto-start of the invisible interface"))
+  self.hide_gui = wx.CheckBox(self, -1, _(u"Hide GUI on launch"))
   sizer.Add(self.hide_gui, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
@@ -28,12 +32,12 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent):
   super(generalAccount, self).__init__(parent)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  self.au = wx.Button(self, wx.NewId(), _(u"Set the autocomplete function"))
+  self.au = wx.Button(self, wx.NewId(), _(u"Autocompletion settings..."))
   sizer.Add(self.au, 0, wx.ALL, 5)
-  self.relative_time = wx.CheckBox(self, wx.NewId(), _(U"Relative times"))
+  self.relative_time = wx.CheckBox(self, wx.NewId(), _(U"Relative timestamps"))
   sizer.Add(self.relative_time, 0, wx.ALL, 5)
   apiCallsBox = wx.BoxSizer(wx.HORIZONTAL)
-  apiCallsBox.Add(wx.StaticText(self, -1, _(u"API calls when the stream is started (One API call equals to 200 tweetts, two API calls equals 400 tweets, etc):")), 0, wx.ALL, 5)
+  apiCallsBox.Add(wx.StaticText(self, -1, _(u"API calls (One API call = 200 tweets, two API calls = 400 tweets, etc):")), 0, wx.ALL, 5)
   self.apiCalls = wx.SpinCtrl(self, wx.NewId())
   self.apiCalls.SetRange(1, 10)
   self.apiCalls.SetSize(self.apiCalls.GetBestSize())
@@ -46,9 +50,9 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
   self.itemsPerApiCall.SetSize(self.itemsPerApiCall.GetBestSize())
   tweetsPerCallBox.Add(self.itemsPerApiCall, 0, wx.ALL, 5)
   sizer.Add(tweetsPerCallBox, 0, wx.ALL, 5)
-  self.reverse_timelines = wx.CheckBox(self, wx.NewId(), _(u"Inverted buffers: The newest tweets will be shown at the beginning of the lists while the oldest at the end"))
+  self.reverse_timelines = wx.CheckBox(self, wx.NewId(), _(u"Inverted buffers: The newest tweets will be shown at the beginning while the oldest at the end"))
   sizer.Add(self.reverse_timelines, 0, wx.ALL, 5)
-  lbl = wx.StaticText(self, wx.NewId(), _(u"Retweets mode"))
+  lbl = wx.StaticText(self, wx.NewId(), _(u"Retweet mode"))
   self.retweet_mode = wx.ComboBox(self, wx.NewId(), choices=[_(u"Ask"), _(u"Retweet without comments"), _(u"Retweet with comments")], style=wx.CB_READONLY)
   rMode = wx.BoxSizer(wx.HORIZONTAL)
   rMode.Add(lbl, 0, wx.ALL, 5)
@@ -149,7 +153,7 @@ class audioServicesPanel(wx.Panel):
  def __init__(self, parent):
   super(audioServicesPanel, self).__init__(parent)
   mainSizer = wx.BoxSizer(wx.VERTICAL)
-  apiKeyLabel = wx.StaticText(self, -1, _(u"If you've got a SndUp account, enter your API Key here. Whether the API Key is wrong, the App will fail to upload anything to the server. Whether there's no API Key here, then the audio files will be uploaded anonimously"))
+  apiKeyLabel = wx.StaticText(self, -1, _(u"If you have a SndUp account, enter your API Key here. If your API Key is invalid, " + application.name + " will fail to upload. If there is no API Key here, " + application.name + " will upload annonymously."))
   self.apiKey = wx.TextCtrl(self, -1)
   dc = wx.WindowDC(self.apiKey)
   dc.SetFont(self.apiKey.GetFont())
@@ -171,7 +175,7 @@ class audioServicesPanel(wx.Panel):
    self.dropbox.SetLabel(_(u"Link your Dropbox account"))
    
  def show_dialog(self):
-  wx.MessageDialog(self, _(u"The authorisation request will be shown on your browser. Copy the code tat Dropbox will provide and, in the text box that will appear on TW Blue, paste it. This code is necessary to continue. You only need to do it once."), _(u"Authorisation"), wx.OK).ShowModal()
+  wx.MessageDialog(self, _(u"Dropbox will open in your browser. After you log into Dropbox, an authorization code will be generated. Please paste it into the field which will appear. You only need to do this once."), _(u"Authorization"), wx.OK).ShowModal()
 
  def get_response(self):
   dlg = wx.TextEntryDialog(self, _(u"Enter the code here."), _(u"Verification code"))
@@ -180,7 +184,7 @@ class audioServicesPanel(wx.Panel):
   return dlg.GetValue()
 
  def show_error(self):
-  wx.MessageDialog(self, _(u"Error during authorisation. Try again later."), _(u"Error!"), wx.ICON_ERROR).ShowModal()
+  wx.MessageDialog(self, _(u"Error during authorization. Try again later."), _(u"Error!"), wx.ICON_ERROR).ShowModal()
 
  def get_dropbox(self):
   return self.dropbox.GetLabel()
@@ -193,7 +197,7 @@ class configurationDialog(baseDialog.BaseWXDialog):
  def __init__(self):
   super(configurationDialog, self).__init__(None, -1)
   self.panel = wx.Panel(self)
-  self.SetTitle(_(u"TW Blue's preferences"))
+  self.SetTitle(_(unicode(application.name + " preferences")))
   self.sizer = wx.BoxSizer(wx.VERTICAL)
   self.notebook = wx.Notebook(self.panel)
 
@@ -209,7 +213,7 @@ class configurationDialog(baseDialog.BaseWXDialog):
 
  def create_other_buffers(self):
   self.buffers = other_buffers(self.notebook)
-  self.notebook.AddPage(self.buffers, _(u"Show other buffers"))
+  self.notebook.AddPage(self.buffers, _(u"Buffers"))
 
  def create_ignored_clients(self, ignored_clients_list):
   self.ignored_clients = ignoredClients(self.notebook, ignored_clients_list)
