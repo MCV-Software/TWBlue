@@ -5,6 +5,7 @@ import os
 import exceptions
 import dropbox
 import logging
+import application
 from keys import keyring
 from utils import *
 from dropbox.rest import ErrorResponse
@@ -51,7 +52,7 @@ class dropboxLogin(object):
   return self.flow.start()
 
  def authorise(self, code):
-  log.debug("Authorising TWBlue in Dropbox...")
+  log.debug("Authorising " + application.name + " to Dropbox...")
   access_token, user_id = self.flow.finish(code)
   log.debug("Saving tokens...")
   self.config["services"]["dropbox_token"] = access_token
@@ -64,7 +65,7 @@ class dropboxUploader(object):
    self.client = dropbox.client.DropboxClient(config["services"]["dropbox_token"])
   else:
    log.error("Dropbox is not authorised for this session.")
-   raise UnauthorisedError("You need authorise TWBlue")
+   raise UnauthorisedError("You need to authorise " + application.name)
   self.filename = filename
   self.short_url = short_url
   self.file = open(self.filename, "rb")

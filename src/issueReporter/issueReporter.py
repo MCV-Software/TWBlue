@@ -44,7 +44,7 @@ class reportBug(object):
   try:
    client = Client(application.report_bugs_url)
    issue = client.factory.create('IssueData')
-   issue.project.name = "TWBlue"
+   issue.project.name = application.name
    issue.project.id = 0
    issue.summary = self.dialog.get("summary"),
    issue.description = "Reported by @%s\n\n" % (self.user_name) + self.dialog.get("description")

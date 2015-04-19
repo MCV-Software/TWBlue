@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import wx
 import widgetUtils
-
+import application
 class autocompletionSettingsDialog(widgetUtils.BaseDialog):
  def __init__(self):
   super(autocompletionSettingsDialog, self).__init__(parent=None, id=-1, title=_(u"Autocomplete users’ settings"))
@@ -23,4 +23,4 @@ class autocompletionSettingsDialog(widgetUtils.BaseDialog):
   self.SetClientSize(sizer.CalcMin())
 
 def show_success_dialog():
- wx.MessageDialog(None, _(u"TWBlue's database of users has been updated."), _(u"Done"), wx.OK).ShowModal()
+ wx.MessageDialog(None, _(uapplication.name+"'s database of users has been updated."), _(u"Done"), wx.OK).ShowModal()
