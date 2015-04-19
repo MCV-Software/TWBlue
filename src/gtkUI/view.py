@@ -110,7 +110,7 @@ class mainFrame(Gtk.Window):
  ### MAIN
  def __init__(self):
   """ Main function of this class."""
-  super(mainFrame, self).__init__(title="TW Blue")
+  super(mainFrame, self).__init__(title=application.name)
   self.accel_group = Gtk.AccelGroup()
   self.add_accel_group(self.accel_group)
   self.box =  Gtk.VBox()
@@ -203,4 +203,4 @@ class mainFrame(Gtk.Window):
    getattr(self, menuitem).Check(check)
 
 def no_update_available():
- wx.MessageDialog(None, _(u"Your TW Blue version is up to date"), _(u"Update"), style=wx.OK).ShowModal()
+ wx.MessageDialog(None, _(u"Your " + application.name + " version is up to date"), _(u"Update"), style=wx.OK).ShowModal()
