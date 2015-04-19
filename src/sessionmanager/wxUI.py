@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import wx
 from multiplatform_widgets import widgets
-
+import application
 class sessionManagerWindow(wx.Dialog):
  def __init__(self):
   super(sessionManagerWindow, self).__init__(parent=None, title="Session manager", size=wx.DefaultSize)

@@ -18,7 +18,7 @@
 ############################################################
 import wx
 import widgetUtils
-
+import application
 class reportBugDialog(widgetUtils.BaseDialog):
  def __init__(self, categories, reproducibilities, severities):
   super(reportBugDialog, self).__init__(parent=None, id=wx.NewId())

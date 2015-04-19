@@ -2,7 +2,7 @@
 import baseDialog
 import wx
 import logging as original_logger
-
+import application
 class general(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent, languages):
   super(general, self).__init__(parent)
