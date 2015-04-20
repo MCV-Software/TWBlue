@@ -20,6 +20,7 @@ class globalSettingsController(object):
   self.dialog = configuration.configurationDialog()
   self.create_config()
   self.needs_restart = False
+  self.is_started = True
 
  def create_config(self):
   self.langs = languageHandler.getAvailableLanguages()
@@ -36,6 +37,11 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "use_invisible_shorcuts", config.app["app-settings"]["use_invisible_keyboard_shorcuts"])
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
+  self.dialog.create_proxy()
+  self.dialog.set_value("proxy", "server", config.app["proxy"]["server"])
+  self.dialog.set_value("proxy", "port", config.app["proxy"]["port"])
+  self.dialog.set_value("proxy", "user", config.app["proxy"]["user"])
+  self.dialog.set_value("proxy", "password", config.app["proxy"]["password"])
   self.dialog.realize()
   self.response = self.dialog.get_response()
 
@@ -52,6 +58,13 @@ class globalSettingsController(object):
   config.app["app-settings"]["ask_at_exit"] = self.dialog.get_value("general", "ask_at_exit")
   config.app["app-settings"]["play_ready_sound"] = self.dialog.get_value("general", "play_ready_sound")
   config.app["app-settings"]["speak_ready_msg"] = self.dialog.get_value("general", "speak_ready_msg")
+  if config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
+   if self.is_started == True:
+    self.needs_restart = True
+   config.app["proxy"]["server"] = self.dialog.get_value("proxy", "server")
+   config.app["proxy"]["port"] = self.dialog.get_value("proxy", "port")
+   config.app["proxy"]["user"] = self.dialog.get_value("proxy", "user")
+   config.app["proxy"]["password"] = self.dialog.get_value("proxy", "password")
   config.app.write()
 
 class accountSettingsController(globalSettingsController):

@@ -3,6 +3,7 @@ import baseDialog
 import wx
 import logging as original_logger
 import application
+
 class general(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent, languages):
   super(general, self).__init__(parent)
@@ -26,6 +27,37 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(self.disable_sapi5, 0, wx.ALL, 5)
   self.hide_gui = wx.CheckBox(self, -1, _(u"Hide GUI on launch"))
   sizer.Add(self.hide_gui, 0, wx.ALL, 5)
+  self.SetSizer(sizer)
+
+class proxy(wx.Panel, baseDialog.BaseWXDialog):
+
+ def __init__(self, parent):
+  super(proxy, self).__init__(parent)
+  sizer = wx.BoxSizer(wx.VERTICAL)
+  lbl = wx.StaticText(self, wx.NewId(), _(u"Proxy server: "))
+  self.server = wx.TextCtrl(self, -1)
+  serverBox = wx.BoxSizer(wx.HORIZONTAL)
+  serverBox.Add(lbl, 0, wx.ALL, 5)
+  serverBox.Add(self.server, 0, wx.ALL, 5)
+  sizer.Add(serverBox, 0, wx.ALL, 5)
+  lbl = wx.StaticText(self, wx.NewId(), _(u"Port: "))
+  self.port = wx.TextCtrl(self, wx.NewId())
+  portBox = wx.BoxSizer(wx.HORIZONTAL)
+  portBox.Add(lbl, 0, wx.ALL, 5)
+  portBox.Add(self.port, 0, wx.ALL, 5)
+  sizer.Add(portBox, 0, wx.ALL, 5)
+  lbl = wx.StaticText(self, wx.NewId(), _(u"User: "))
+  self.user = wx.TextCtrl(self, wx.NewId())
+  userBox = wx.BoxSizer(wx.HORIZONTAL)
+  userBox.Add(lbl, 0, wx.ALL, 5)
+  userBox.Add(self.user, 0, wx.ALL, 5)
+  sizer.Add(userBox, 0, wx.ALL, 5)
+  lbl = wx.StaticText(self, wx.NewId(), _(u"Password: "))
+  self.password = wx.TextCtrl(self, wx.NewId(), style=wx.TE_PASSWORD)
+  passwordBox = wx.BoxSizer(wx.HORIZONTAL)
+  passwordBox.Add(lbl, 0, wx.ALL, 5)
+  passwordBox.Add(self.password, 0, wx.ALL, 5)
+  sizer.Add(serverBox, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
 class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
@@ -205,6 +237,10 @@ class configurationDialog(baseDialog.BaseWXDialog):
   self.general = general(self.notebook, languageList)
   self.notebook.AddPage(self.general, _(u"General"))
   self.general.SetFocus()
+
+ def create_proxy(self):
+  self.proxy = proxy(self.notebook)
+  self.notebook.AddPage(self.proxy, _(u"Proxy"))
 
  def create_general_account(self):
   self.general = generalAccount(self.notebook)

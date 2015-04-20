@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.50\n"
 "POT-Creation-Date: 2014-12-10 23:20+Hora estándar central (México)\n"
-"PO-Revision-Date: 2014-12-11 15:57+0100\n"
+"PO-Revision-Date: 2015-01-03 20:32+0300\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Mohammed Al Shara <mohammed@atexplorer.com>\n"
 "Language: ar\n"
@@ -187,7 +187,7 @@ msgstr "تم تحديث مفضلات شخص ما"
 
 #: ../src\extra\SoundsTutorial\gui.py:19
 msgid "The tweet has coordinates to determine its location"
-msgstr ""
+msgstr "يوجد في هذه  التغريدة معلومات لتحديد الموقع"
 
 #: ../src\extra\SoundsTutorial\gui.py:20
 msgid "There are no more tweets to read"
@@ -332,10 +332,12 @@ msgid ""
 "Are you sure you want to delete this user from the database? This user will "
 "not appear on the autocomplete results anymore."
 msgstr ""
+"هل أنت متأكد من رغبتك في حذف هذا المستخدم من قاعدة البيانات؟ لن يظهر "
+"المستخدم في قائمة التعبءة التلقائية بعد هذا."
 
 #: ../src\extra\autocompletionUsers\manage.py:38
 msgid "Confirm"
-msgstr ""
+msgstr "تأكيد"
 
 #: ../src\extra\autocompletionUsers\settings.py:24
 msgid ""
@@ -347,35 +349,35 @@ msgstr ""
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:7
 msgid "Manage Autocomplete users’ database"
-msgstr ""
+msgstr "إدارة قاعدة بيانات التعبئة التلقائية"
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:10
 msgid "Editing TWBlue users database"
-msgstr ""
+msgstr "يتم تحرير قاعدة بيانات المستخديم للبرنامج"
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:11
 msgid "Name"
-msgstr ""
+msgstr "الإسم"
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:11
 msgid "Username"
-msgstr ""
+msgstr "إسم المستخدم"
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:14
 msgid "Add user"
-msgstr ""
+msgstr "إضف مستخدم"
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:15
 msgid "Remove user"
-msgstr ""
+msgstr "إحذف مستخدم"
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:36
 msgid "Add user to database"
-msgstr ""
+msgstr "إضف المستخدم إلى قاعدة البيانات"
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:36
 msgid "Twitter username"
-msgstr ""
+msgstr "إسم مستخدم تويتر"
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:42
 #: ../src\gui\dialogs\configuration.py:248 ../src\gui\main.py:234
@@ -402,7 +404,7 @@ msgstr "إضف مستخدمون من صفحة الأصدقاء"
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:13
 msgid "See the users list"
-msgstr ""
+msgstr "إعرض قائمة المستخدمين"
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:25
 msgid "Done"
@@ -1013,11 +1015,11 @@ msgstr "&إظهر المستخدمين"
 
 #: ../src\gui\buffers\menus.py:126
 msgid "&Tweet about this trend"
-msgstr ""
+msgstr "&التغريد حول هذا الموضوع"
 
 #: ../src\gui\buffers\menus.py:129
 msgid "&Show item"
-msgstr ""
+msgstr "&إعرض العنصر"
 
 #: ../src\gui\buffers\panels.py:28
 msgid "Announce"
@@ -1070,6 +1072,7 @@ msgstr "إسأل قبل الخروج من البرنامج؟"
 #: ../src\gui\dialogs\configuration.py:58
 msgid "Use invisible interface's keyboard shorcuts on the GUI"
 msgstr ""
+"إستخدم مفاتيح الإختصار الخاصة بالواجهة المخفية في واجهة التطبيق الظاهرة؟"
 
 #: ../src\gui\dialogs\configuration.py:61
 msgid "Relative times"
@@ -1323,7 +1326,7 @@ msgstr "إبلاغ برسائل غير مرغوب بها"
 
 #: ../src\gui\dialogs\follow.py:52
 msgid "Ignore tweets from this client"
-msgstr ""
+msgstr "تجاهل التغريدات من هذا التطبيق"
 
 #: ../src\gui\dialogs\follow.py:64 ../src\gui\dialogs\search.py:40
 #: ../src\gui\dialogs\trending.py:50 ../src\gui\dialogs\utils.py:39
@@ -1341,7 +1344,7 @@ msgstr "لقد قمت بإلغاء كتم %s"
 
 #: ../src\gui\dialogs\follow.py:142
 msgid "You can't ignore direct messages"
-msgstr ""
+msgstr "لا يمكن تجاهل الرسائل الخاصة"
 
 #: ../src\gui\dialogs\lists.py:36
 msgid "Lists manager"
@@ -1530,7 +1533,7 @@ msgstr "المرسل إليه"
 
 #: ../src\gui\dialogs\message.py:318
 msgid "Men&tion all"
-msgstr ""
+msgstr "ذكر الجميع"
 
 #: ../src\gui\dialogs\message.py:345
 msgid "Tweet - %i characters "
@@ -1694,7 +1697,7 @@ msgstr "البحث"
 
 #: ../src\gui\main.py:74
 msgid "View &trending topics"
-msgstr ""
+msgstr "إعرض المواضيع المتداولة"
 
 #: ../src\gui\main.py:76
 msgid "&Lists manager"
@@ -2052,7 +2055,7 @@ msgstr "فحص التحديثات الجديدة"
 
 #: ../src\issueReporter\gui.py:30
 msgid "Translation"
-msgstr ""
+msgstr "الترجمة"
 
 #: ../src\issueReporter\gui.py:31
 msgid "always"
@@ -2060,7 +2063,7 @@ msgstr "دائما"
 
 #: ../src\issueReporter\gui.py:31
 msgid "have not tried"
-msgstr ""
+msgstr "لم تحاول"
 
 #: ../src\issueReporter\gui.py:31
 msgid "random"
@@ -2331,15 +2334,15 @@ msgstr "يحمل العناصر السابقة في أي صفحة"
 
 #: ../src\keystrokeEditor\constants.py:45
 msgid "Get location of any tweet"
-msgstr ""
+msgstr "إحصل على موقع أي تغريدة"
 
 #: ../src\keystrokeEditor\constants.py:46
 msgid "Displays the tweet's location in a dialog"
-msgstr ""
+msgstr "يعرض موقع التغريدة في صندوق حوار"
 
 #: ../src\keystrokeEditor\constants.py:47
 msgid "Creates a buffer for displaying trends for a desired place"
-msgstr ""
+msgstr "ينشء صفحة لعرض التغريدات المتداولة حول المكان المرغوب به"
 
 #: ../src\keystrokeEditor\gui.py:10
 msgid "Keystroke editor"

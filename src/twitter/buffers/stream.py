@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import config
+from requests.auth import HTTPProxyAuth
 from twitter import utils
 from twython import TwythonStreamer
 from pubsub import pub
@@ -6,8 +8,15 @@ import logging as original_logger
 log = original_logger.getLogger("MainStream")
 
 class streamer(TwythonStreamer):
- def __init__(self, app_key, app_secret, oauth_token, oauth_token_secret, sessionObject, *args, **kwargs):
-  super(streamer, self).__init__(app_key, app_secret, oauth_token, oauth_token_secret, *args, **kwargs)
+ def __init__(self, app_key, app_secret, oauth_token, oauth_token_secret, sessionObject, *a, **kw):
+  args = None
+  if config.app["proxy"]["server"] != "" and config.app["proxy"]["port"] != "":
+   args = {"proxies": {"http": "http://{0}:{1}".format(config.app["proxy"]["server"], config.app["proxy"]["port"]),
+  "https": "https://{0}:{1}".format(config.app["proxy"]["server"], config.app["proxy"]["port"])}}
+   if config.app["proxy"]["user"] != "" and config.app["proxy"]["password"] != "":
+    auth = HTTPProxyAuth(config.app["proxy"]["user"], config.app["proxy"]["password"])
+    args["auth"] = auth
+  super(streamer, self).__init__(app_key, app_secret, oauth_token, oauth_token_secret, client_args=args, *a, **kw)
   self.session = sessionObject
   self.muted_users = self.session.db["muted_users"]
 #  self.blocked_users = []

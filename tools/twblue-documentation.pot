@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-03-25 04:43+Hora estándar central (México)\n"
+"POT-Creation-Date: 2015-04-15 20:24+Hora de verano central (México)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,9 +36,9 @@ msgstr ""
 #: ../doc\strings.py:118 ../doc\strings.py:124 ../doc\strings.py:127
 #: ../doc\strings.py:130 ../doc\strings.py:133 ../doc\strings.py:136
 #: ../doc\strings.py:148 ../doc\strings.py:151 ../doc\strings.py:160
-#: ../doc\strings.py:163 ../doc\strings.py:166 ../doc\strings.py:180
-#: ../doc\strings.py:183 ../doc\strings.py:190 ../doc\strings.py:193
-#: ../doc\strings.py:204 ../doc\strings.py:207
+#: ../doc\strings.py:163 ../doc\strings.py:166 ../doc\strings.py:181
+#: ../doc\strings.py:184 ../doc\strings.py:191 ../doc\strings.py:194
+#: ../doc\strings.py:205 ../doc\strings.py:208
 msgid ""
 "\n"
 msgstr ""
@@ -52,7 +52,7 @@ msgid "## Warning!"
 msgstr ""
 
 #: ../doc\strings.py:16
-msgid "You're reading documentation produced for a program still in development. The object of this manual is explaining some details of the operation of the program. Bear in mind that as the software is in the process of active development, parts of this document may change in the near future, so it is advisable to keep an eye on it from time to time to avoid missing too much out."
+msgid "You're reading documentation produced for a program still in development. The object of this manual is to explain some details of the operation of the program. Bear in mind that as the software is in the process of active development, parts of this document may change in the near future, so it is advisable to keep an eye on it from time to time to avoid missing too much out."
 msgstr ""
 
 #: ../doc\strings.py:19
@@ -140,7 +140,7 @@ msgid "If all went well, the application will start playing sounds, indicating y
 msgstr ""
 
 #: ../doc\strings.py:66
-msgid "When the process is finished,the program will play another sound, and the screen reader will say \"ready\"."
+msgid "When the process is finished, the program will play another sound, and the screen reader will say \"ready\"."
 msgstr ""
 
 #: ../doc\strings.py:69
@@ -152,7 +152,7 @@ msgid "The easiest way to describe the graphical user interface of TWBlue is say
 msgstr ""
 
 #: ../doc\strings.py:75
-msgid "In the tree view are inserted buffers which are lists to manage the processed data. When you configure a new session on TWBlue and start it, your account is the root of the tree view. Inside of it are created many buffers. Every one of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you were, you will be able to make different actions with these items."
+msgid "In the tree view are inserted buffers which are lists to manage the processed data. When you configure a new session on TWBlue and start it, your account is the root of the tree view. Inside of it  many buffers are created.  Each one of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you were, you will be able to make different actions with these items."
 msgstr ""
 
 #: ../doc\strings.py:78
@@ -212,7 +212,7 @@ msgid "* Trending Topics: a trend buffer shows the top ten most used terms in a 
 msgstr ""
 
 #: ../doc\strings.py:96
-msgid "If there's a URL on a tweet TW Blue will try to open it when you press enter on it. If there are several, it will show you a list with all of them so you choose the one you want. If you're on the followers or friends buffer, the enter key will show you additional information on them."
+msgid "If there's a URL on a tweet, TW Blue will try to open it when you press enter on it. If there are several, it will show you a list with all of them so you choose the one you want. If you're on the followers or friends buffer, the enter key will show you additional information about them."
 msgstr ""
 
 #: ../doc\strings.py:99
@@ -220,7 +220,7 @@ msgid "If you press control-enter, TW Blue will try to play the audio from the f
 msgstr ""
 
 #: ../doc\strings.py:102
-msgid "Also, you will hear a sound when you see any tweet containing geographical information. You can see someone's location by selecting the option \"view address\" from the tweet menu on the menu bar."
+msgid "You will also hear a sound when you see any tweet containing geographical information. You can see someone's location by selecting the option \"view address\" from the tweet menu on the menu bar."
 msgstr ""
 
 #: ../doc\strings.py:105
@@ -275,6 +275,10 @@ msgstr ""
 msgid "##### Application menu"
 msgstr ""
 
+#: ../doc\strings.py:138
+msgid "* Session manager: Opens a window with all the sessions configured in TWBlue, where you can add new sessions or delete the ones you've already created."
+msgstr ""
+
 #: ../doc\strings.py:139
 msgid "* Update profile: opens a dialogue box where you can update your information on Twitter: name, location, URL and bio. If you have already set this up the fields will be prefilled with the existing information. Also, you can upload a photo to your profile."
 msgstr ""
@@ -304,7 +308,7 @@ msgid "* Edit keystrokes: It opens a dialog where you can see and re edit the in
 msgstr ""
 
 #: ../doc\strings.py:147
-msgid "* Quit: asks whether you want to exit the program. If the answer is yes, it shuts the application down. Unless you wish TWBlue asks you for confirmation before exiting, uncheck the checkbox from the preferences dialogue."
+msgid "* Quit: asks whether you want to exit the program. If the answer is yes, it shuts the application down.  If you wish TWBlue not to ask you for confirmation before exiting, uncheck the checkbox from the preferences dialogue."
 msgstr ""
 
 #: ../doc\strings.py:150
@@ -324,7 +328,7 @@ msgid "* Remove tweet from favourites: removes the tweet from your favourites, b
 msgstr ""
 
 #: ../doc\strings.py:156
-msgid "* Show tweet: opens up a dialogue box where you can read the tweet, direct message, friend or follower under focus. You can read the text with the cursors. It's the same dialogue box used to write tweets on."
+msgid "* Show tweet: opens up a dialogue box where you can read the tweet, direct message, friend or follower under focus. You can read the text with the arrow keys. It's the same dialogue box used to write tweets on."
 msgstr ""
 
 #: ../doc\strings.py:157
@@ -348,7 +352,7 @@ msgid "* Follow: Follows a user. This means you'll see his/her tweets on your ma
 msgstr ""
 
 #: ../doc\strings.py:169
-msgid "* Unfollow: it does not stop following a user, which causes you nor being able to see his/her tweets on your main timeline neither interchanging direct messages."
+msgid "* Unfollow: Stops following a user, which causes you not being able to see his/her tweets on your main timeline neither interchanging direct messages."
 msgstr ""
 
 #: ../doc\strings.py:170
@@ -363,92 +367,100 @@ msgstr ""
 msgid "* Report as spam: It suggests twitter this user is performing prohibited practices on the social network."
 msgstr ""
 
+#: ../doc\strings.py:173
+msgid "* Block: Blocks a user. This forces the user to unfollow you ."
+msgstr ""
+
 #: ../doc\strings.py:174
-msgid "* Direct message: same action as the button."
+msgid "* Unblock: Stops blocking a user."
 msgstr ""
 
 #: ../doc\strings.py:175
+msgid "* Direct message: same action as the button."
+msgstr ""
+
+#: ../doc\strings.py:176
 msgid "* Add to List: In order to see someone's tweets in one or more of your lists, you must add them first.  This option will open a dialog where you can select the user you wish to add.  Next, you will be asked to select the list you wish to add them to.  Afterwards, the list will contain a new member and their tweets will show up there."
 msgstr ""
 
-#: ../doc\strings.py:177
+#: ../doc\strings.py:178
 msgid "* View user profile: opens up a dialogue box to choose the user whose profile you want to browse."
 msgstr ""
 
-#: ../doc\strings.py:178
-msgid "* Timeline: opens up a dialogue box to choose whose user you want a timeline for. Create it by pressing enter. If you try it with a user that has no tweets, the program will fail. If you try creating an already existing timeline the program will warn you and will not create it again."
+#: ../doc\strings.py:179
+msgid "* Timeline: Lets you open a user's timeline by choosing the user in a dialog box. It is created when you press enter. If you try it with a user that has no tweets, the program will fail. If you try creating an already existing timeline the program will warn you and will not create it again."
 msgstr ""
 
-#: ../doc\strings.py:179
+#: ../doc\strings.py:180
 msgid "* View favourites: Opens a buffer where you can see what tweets have been favorited by a particular user."
 msgstr ""
 
-#: ../doc\strings.py:182
+#: ../doc\strings.py:183
 msgid "##### Buffer menu"
 msgstr ""
 
-#: ../doc\strings.py:186
+#: ../doc\strings.py:187
 msgid "* Mute buffer: Mutes notifications of a particular buffer so you will not hear when new tweets arrive."
 msgstr ""
 
-#: ../doc\strings.py:187
+#: ../doc\strings.py:188
 msgid "* autoread tweets for this buffer: When enabled, the screen reader or SAPI 5 (if enabled) will read the text of incoming tweets.  Please note that this could get rather chatty if there are a lot of incoming tweets."
 msgstr ""
 
-#: ../doc\strings.py:188
+#: ../doc\strings.py:189
 msgid "* Clear buffer: Deletes all items from the buffer."
 msgstr ""
 
-#: ../doc\strings.py:189
+#: ../doc\strings.py:190
 msgid "* Remove buffer: dismiss the list you're on."
 msgstr ""
 
-#: ../doc\strings.py:192
+#: ../doc\strings.py:193
 msgid "##### Help menu"
 msgstr ""
 
-#: ../doc\strings.py:195
+#: ../doc\strings.py:196
 msgid "* Documentation: opens up this file, where you can read some useful program concepts."
 msgstr ""
 
-#: ../doc\strings.py:196
+#: ../doc\strings.py:197
 msgid "* What's new in this version?: opens up a document with the list of changes from the current version down to the first."
 msgstr ""
 
-#: ../doc\strings.py:197
-msgid "* Check for updates: every time you open the program it automatically checks for new versions. If there are, it will ask you if you want to download it. If you accept, it will do so, after which it will install it and ask you to let it restart itself, which it does automatically. This item checks for new updates without having to restart the application."
-msgstr ""
-
 #: ../doc\strings.py:198
-msgid "* Report a bug: opens up a dialogue box to report a bug by filling a couple of fields. Pressing enter will send the report. If the operation doesn't succeed the program will show a warning."
+msgid "* Check for updates: every time you open the program it automatically checks for new versions. If there is any, it will ask you if you want to download it. If you accept, it will do so, after which it will install it and ask you to let it restart itself, which it does automatically. This item checks for new updates without having to restart the application."
 msgstr ""
 
 #: ../doc\strings.py:199
-msgid "* TW Blue's website: visit our [home page](http://twblue.es) where you can find all relevant information and downloads for TW Blue and become a part of the community."
+msgid "* Report a bug: opens up a dialogue box to report a bug by filling a couple of fields. Pressing enter will send the report. If the operation doesn't succeed the program will show a warning."
 msgstr ""
 
 #: ../doc\strings.py:200
-msgid "* About TW Blue: shows the credits of the program."
+msgid "* TW Blue's website: visit our [home page](http://twblue.es) where you can find all relevant information and downloads for TW Blue and become a part of the community."
 msgstr ""
 
 #: ../doc\strings.py:201
+msgid "* About TW Blue: shows the credits of the program."
+msgstr ""
+
+#: ../doc\strings.py:202
 msgid ""
 "...\n"
 msgstr ""
 
-#: ../doc\strings.py:203
+#: ../doc\strings.py:204
 msgid "## Contact"
 msgstr ""
 
-#: ../doc\strings.py:206
+#: ../doc\strings.py:207
 msgid "If what's explained in this document is not enough, if you want to collaborate in some other way, or if you simply want to get in touch with the application developer, follow the Twitter account [@tw_blue2](https://twitter.com/tw_blue2)  or [@manuelcortez00.](https://twitter.com/manuelcortez00) You can also visit [our website](http://twblue.com.mx)"
 msgstr ""
 
-#: ../doc\strings.py:209
+#: ../doc\strings.py:210
 msgid "---"
 msgstr ""
 
-#: ../doc\strings.py:210
+#: ../doc\strings.py:211
 msgid "Copyright \302\251 2013-2015. Manuel Cort\303\251z"
 msgstr ""
 
