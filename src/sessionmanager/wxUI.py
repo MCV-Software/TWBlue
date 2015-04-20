@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import wx
 from multiplatform_widgets import widgets
-
+import application
 class sessionManagerWindow(wx.Dialog):
  def __init__(self):
   super(sessionManagerWindow, self).__init__(parent=None, title="Session manager", size=wx.DefaultSize)
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  label = wx.StaticText(panel, -1, u"Select a twitter account to start TW Blue", size=wx.DefaultSize)
+  label = wx.StaticText(panel, -1, u"Select a twitter account to start " + application.name, size=wx.DefaultSize)
   listSizer = wx.BoxSizer(wx.HORIZONTAL)
   self.list = widgets.list(panel, u"Account", style=wx.LC_SINGLE_SEL|wx.LC_REPORT)
   listSizer.Add(label, 0, wx.ALL, 5)

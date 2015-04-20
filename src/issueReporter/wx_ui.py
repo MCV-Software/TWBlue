@@ -18,7 +18,7 @@
 ############################################################
 import wx
 import widgetUtils
-
+import application
 class reportBugDialog(widgetUtils.BaseDialog):
  def __init__(self, categories, reproducibilities, severities):
   super(reportBugDialog, self).__init__(parent=None, id=wx.NewId())
@@ -66,7 +66,7 @@ class reportBugDialog(widgetUtils.BaseDialog):
   severityB.Add(severityLabel, 0, wx.ALL, 5)
   severityB.Add(self.severity, 0, wx.ALL, 5)
   sizer.Add(severityB, 0, wx.ALL, 5)
-  self.agree = wx.CheckBox(panel, -1, _(u"I know that the TW Blue bug system will get my Twitter username to contact me and fix the bug quickly"))
+  self.agree = wx.CheckBox(panel, -1, _(u"I know that the " + application.name + " bug system will get my Twitter username to contact me and fix the bug quickly"))
   self.agree.SetValue(False)
   sizer.Add(self.agree, 0, wx.ALL, 5)
   self.ok = wx.Button(panel, wx.ID_OK, _(u"Send report"))

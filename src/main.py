@@ -49,7 +49,7 @@ if system == "Linux":
 log = logging.getLogger("main")
 
 def setup():
- log.debug("Starting TWBlue %s" % (application.version,))
+ log.debug("Starting " + application.name + " %s" % (application.version,))
  config.setup()
  log.debug("Using %s %s" % (platform.system(), platform.architecture()[0]))
  log.debug("Application path is %s" % (paths.app_path(),))

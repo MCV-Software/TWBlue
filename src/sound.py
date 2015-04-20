@@ -12,7 +12,7 @@ import platform
 import output
 system = platform.system()
 from mysc.repeating_timer import RepeatingTimer
-
+import application
 URLPlayer = None
 
 def setup():
@@ -46,7 +46,7 @@ class soundSystem(object):
    self.path = paths.sound_path("default")
    self.soundpack_OK = True
   else:
-   log.error("Path for the current soundpack does not exist and the default soundpack is deleted, TWBlue will not play sounds.")
+   log.error("The current soundpack could not be found and the default soundpack has been deleted, " + application.name + " will not play sounds.")
    self.soundpack_OK = False
 
  def __init__(self, soundConfig):

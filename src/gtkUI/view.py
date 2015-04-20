@@ -99,8 +99,8 @@ class mainFrame(Gtk.Window):
   self.changelog = Gtk.MenuItem(label="What's new in this version?")
   self.check_for_updates = Gtk.MenuItem(label="Check for updates")
   self.reportError = Gtk.MenuItem(label="Report an error")
-  self.visit_website = Gtk.MenuItem(label="TWBlue's website")
-  self.about = Gtk.MenuItem(label="ABout TWBlue")
+  self.visit_website = Gtk.MenuItem(label=application.name+"'s website")
+  self.about = Gtk.MenuItem(label="ABout "+application.name)
   self.append_to_menu(help, self.doc, self.sounds_tutorial, self.changelog, self.check_for_updates, self.reportError, self.visit_website, self.about)
   help_menu = Gtk.MenuItem(label="Help")
   help_menu.set_submenu(help)
@@ -110,7 +110,7 @@ class mainFrame(Gtk.Window):
  ### MAIN
  def __init__(self):
   """ Main function of this class."""
-  super(mainFrame, self).__init__(title="TW Blue")
+  super(mainFrame, self).__init__(title=application.name)
   self.accel_group = Gtk.AccelGroup()
   self.add_accel_group(self.accel_group)
   self.box =  Gtk.VBox()
@@ -203,4 +203,4 @@ class mainFrame(Gtk.Window):
    getattr(self, menuitem).Check(check)
 
 def no_update_available():
- wx.MessageDialog(None, _(u"Your TW Blue version is up to date"), _(u"Update"), style=wx.OK).ShowModal()
+ wx.MessageDialog(None, _(u"Your " + application.name + " version is up to date"), _(u"Update"), style=wx.OK).ShowModal()

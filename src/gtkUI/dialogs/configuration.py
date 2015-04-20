@@ -2,7 +2,7 @@
 import baseDialog
 import wx
 import logging as original_logger
-
+import application
 class general(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent, languages):
   super(general, self).__init__(parent)
@@ -14,13 +14,13 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   langBox.Add(language, 0, wx.ALL, 5)
   langBox.Add(self.language, 0, wx.ALL, 5)
   sizer.Add(langBox, 0, wx.ALL, 5)
-  self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting TwBlue?"))
+  self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting " + application.name))
   sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
-  self.use_invisible_shorcuts = wx.CheckBox(self, -1, _(u"Use invisible interface's keyboard shorcuts on the GUI"))
+  self.use_invisible_shorcuts = wx.CheckBox(self, -1, _(u"Use invisible interface's keyboard shortcuts while GUI is visible"))
   sizer.Add(self.use_invisible_shorcuts, 0, wx.ALL, 5)
   self.disable_sapi5 = wx.CheckBox(self, -1, _(u"Activate Sapi5 when any other screen reader is not being run"))
   sizer.Add(self.disable_sapi5, 0, wx.ALL, 5)
-  self.hide_gui = wx.CheckBox(self, -1, _(u"Activate the auto-start of the invisible interface"))
+  self.hide_gui = wx.CheckBox(self, -1, _(u"Hide GUI on launch"))
   sizer.Add(self.hide_gui, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 

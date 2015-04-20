@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from gi.repository import Gtk
-
+import application
 def retweet_question(parent):
  dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, _(u"Retweet"))
  dialog.format_secondary_text(_(u"Would you like to add a comment to this tweet?"))
@@ -17,13 +17,13 @@ def delete_tweet_dialog(parent):
 
 def exit_dialog(parent):
  dialog = Gtk.MessageDialog(parent, 0, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, _(u"Exit"))
- dialog.format_secondary_text(_(u"Do you really want to close TW Blue?"))
+ dialog.format_secondary_text(_(u"Do you really want to close " + application.name + "?"))
  answer = dialog.run()
  dialog.destroy()
  return answer
 
 def needs_restart():
- wx.MessageDialog(None, _(u"The application requires to be restarted to save these changes. Press OK to do it now."), _("Restart TW Blue"), wx.OK).ShowModal()
+ wx.MessageDialog(None, _(unicode(application.name+" must be restarted to save these changes. Press OK to restart now.")), _("Restart " + application.name), wx.OK).ShowModal()
 
 def delete_user_from_db():
  return wx.MessageDialog(None, _(u"Are you sure you want to delete this user from the database? This user will not appear on the autocomplete results anymore."), _(u"Confirm"), wx.YES_NO|wx.ICON_QUESTION).ShowModal()
