@@ -4,6 +4,7 @@ import widgetUtils
 import platform
 if platform.system() == "Windows":
  import wxUI as view
+ from controller import settings
 elif platform.system() == "Linux":
  import gtkUI as view
 import paths
@@ -18,13 +19,18 @@ import config
 log = logging.getLogger("sessionmanager.sessionManager")
 
 class sessionManagerController(object):
- def __init__(self):
+ def __init__(self, started=False):
   super(sessionManagerController, self).__init__()
   log.debug("Setting up the session manager.")
+  self.started = started
   manager.setup()
   self.view = view.sessionManagerWindow()
   widgetUtils.connect_event(self.view.new, widgetUtils.BUTTON_PRESSED, self.manage_new_account)
   widgetUtils.connect_event(self.view.remove, widgetUtils.BUTTON_PRESSED, self.remove)
+  if self.started == False:
+   widgetUtils.connect_event(self.view.configuration, widgetUtils.BUTTON_PRESSED, self.configuration)
+  else:
+   self.view.hide_configuration()
   self.new_sessions = {}
   self.removed_sessions = []
 
@@ -87,3 +93,9 @@ class sessionManagerController(object):
    self.sessions.remove(selected_account)
    shutil.rmtree(path=paths.config_path(selected_account), ignore_errors=True)
 
+
+ def configuration(self, *args, **kwargs):
+  """ Opens the global settings dialogue."""
+  d = settings.globalSettingsController()
+  if d.response == widgetUtils.OK:
+   d.save_configuration()

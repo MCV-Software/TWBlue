@@ -9,8 +9,10 @@ class sessionManagerWindow(widgetUtils.baseDialog):
   btnBox = Gtk.Box(spacing=6)
   self.new = Gtk.Button("New account")
   self.remove = Gtk.Button("Remove account")
+  self.configuration = Gtk.Button("Configuration")
   btnBox.add(self.new)
   btnBox.add(self.remove)
+  btnBox.add(self.configuration)
   self.box.add(btnBox)
   self.show_all()
 

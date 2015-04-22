@@ -1173,7 +1173,7 @@ class Controller(object):
   webbrowser.open(application.url)
 
  def manage_accounts(self, *args, **kwargs):
-  sm = sessionManager.sessionManagerController()
+  sm = sessionManager.sessionManagerController(started=True)
   sm.fill_list()
   sm.show()
   for i in sm.new_sessions:

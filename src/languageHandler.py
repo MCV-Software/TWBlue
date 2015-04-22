@@ -6,9 +6,6 @@ import locale
 import gettext
 import paths
 import platform
-import logging
-
-log = logging.getLogger("languageHandler")
 
 # A fix for the mac locales
 #if platform.system() == 'Darwin':
@@ -119,7 +116,6 @@ def makePgettext(translations):
 	return pgettext
 
 def setLanguage(lang):
-	log.debug("Setting language for: %s" % (lang,))
 	system = platform.system()
 	global curLang
 	try:
@@ -130,10 +126,12 @@ def setLanguage(lang):
 			elif system == "Darwin":
 				import Foundation
 				localeName = Foundation.NSLocale.currentLocale().identifier()
-			else:
-				localeName=locale.getdefaultlocale()[0]
+			elif system == "Linux":
+				localeName = locale.getdefaultlocale()[0]
 			trans=gettext.translation('twblue', localedir=paths.locale_path(), languages=[localeName])
 			curLang=localeName
+#			else:
+#				localeName=locale.getdefaultlocale()[0]
 #			trans=gettext.translation('twblue', localedir=paths.locale_path(), languages=[localeName])
 #			curLang=localeName
 
@@ -165,7 +163,6 @@ def setLanguage(lang):
 		trans=gettext.translation("twblue",fallback=True)
 		curLang="en"
 	trans.install(unicode=True)
-#	log.debug(u"Current language: %s" % (curLang,))
 	# Install our pgettext function.
 #	__builtin__.__dict__["pgettext"] = makePgettext(trans)
 
@@ -191,13 +188,12 @@ def langToWindowsLocale(lang):
 	languages = {"en": "eng",
 	"ar": "ara",
 	"ca": "cat",
-	"de": "deu",
+"de": "deu",
 	"es": "esp",
 	"fi": "fin",
 	"fr": "fre_FRA",
 	"gl": "glc",
 	"eu": "euq",
-	"hr": "hrv",
 	"hu": "hun",
 	"it": "ita",
 	"pl": "plk",

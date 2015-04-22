@@ -15,11 +15,13 @@ class sessionManagerWindow(wx.Dialog):
   sizer.Add(listSizer, 0, wx.ALL, 5)
   self.new = wx.Button(panel, -1, u"New account", size=wx.DefaultSize)
   self.remove = wx.Button(panel, -1, _(u"Remove account"))
+  self.configuration = wx.Button(panel, -1, _(u"Global Settings"))
   ok = wx.Button(panel, wx.ID_OK, size=wx.DefaultSize)
   ok.SetDefault()
   cancel = wx.Button(panel, wx.ID_CANCEL, size=wx.DefaultSize)
   buttons = wx.BoxSizer(wx.HORIZONTAL)
   buttons.Add(self.new, 0, wx.ALL, 5)
+  buttons.Add(self.configuration, 0, wx.ALL, 5)
   buttons.Add(ok, 0, wx.ALL, 5)
   buttons.Add(cancel, 0, wx.ALL, 5)
   sizer.Add(buttons, 0, wx.ALL, 5)
@@ -66,3 +68,6 @@ class sessionManagerWindow(wx.Dialog):
  def remove_session(self, sessionID):
   self.list.remove_item(sessionID)
 
+
+ def hide_configuration(self):
+  self.configuration.Hide()
