@@ -32,12 +32,17 @@ class listViewer(widgetUtils.BaseDialog):
   btnSizer.Add(self.cancelBtn)
   panel.SetSizer(sizer)
 
- def populate_list(self, lists):
+ def populate_list(self, lists, clear=False):
+  if clear == True:
+   self.clear()
   for item in lists:
    self.lista.insert_item(False, *item)
 
  def get_item(self):
   return self.lista.get_selected()
+
+ def clear(self):
+  self.lista.clear()
 
 class userListViewer(listViewer):
  def __init__(self, username, *args, **kwargs):
@@ -102,11 +107,15 @@ class addUserListDialog(listViewer):
   self.SetTitle(_(u"Select a list to add the user"))
   self.createBtn.SetLabel(_(u"Add"))
   self.createBtn.SetDefault()
+  self.createBtn.Bind(wx.EVT_BUTTON, self.ok)
   self.editBtn.Disable()
   self.view.Disable()
 #  self.subscriptors.Disable()
 #  self.members.Disable()
   self.deleteBtn.Disable()
+
+ def ok(self, *args, **kwargs):
+  self.EndModal(wx.ID_OK)
 
 class removeUserListDialog(listViewer):
  def __init__(self, *args, **kwargs):

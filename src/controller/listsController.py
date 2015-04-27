@@ -51,6 +51,8 @@ class listsController(object):
     mode = "private"
    try:
     self.session.twitter.twitter.update_list(list_id=list["id"], name=name, description=description, mode=mode)
+    self.session.get_lists()
+    self.dialog.populate_list(self.get_all_lists(), True)
    except TwythonError as e:
     output.speak("error %s: %s" % (e.error_code, e.msg))
   dialog.destroy()

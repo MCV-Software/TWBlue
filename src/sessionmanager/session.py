@@ -94,6 +94,8 @@ class Session(object):
   self.db = {}
   self.reconnection_function_active = False
   self.counter = 0
+  self.lists = []
+  pub.subscribe(self.add_friends, "friends-receibed")
 
  @property
  def is_logged(self):
@@ -308,9 +310,14 @@ class Session(object):
   ids = ""
   for i in self.settings["other_buffers"]["timelines"]:
    ids = ids + "%s, " % (self.db[i+"-timeline"][0]["user"]["id_str"])
-  #   if ids != "":
+  for i in self.lists:
+   for z in i.users:
+    ids += str(z) + ", "
   if ids != "":
    stream_threaded(self.timelinesStream.statuses.filter, self.session_id, follow=ids)
+
+ def add_friends(self):
+  self.timelinesStream.set_friends(self.main_stream.friends)
 
  def listen_stream_error(self):
   if hasattr(self, "main_stream"):

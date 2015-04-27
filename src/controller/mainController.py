@@ -16,7 +16,7 @@ if system == "Windows":
  from issueReporter import issueReporter
 elif system == "Linux":
  from gtkUI import (view, commonMessageDialogs)
-from twitter import utils
+from twitter import utils, compose
 from sessionmanager import manager, sessionManager
 
 import buffersController
@@ -110,6 +110,7 @@ class Controller(object):
   pub.subscribe(self.manage_blocked_user, "blocked-user")
   pub.subscribe(self.manage_unblocked_user, "unblocked-user")
   pub.subscribe(self.manage_item_in_timeline, "item-in-timeline")
+  pub.subscribe(self.manage_item_in_list, "item-in-list")
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
 
  def bind_other_events(self):
@@ -125,7 +126,7 @@ class Controller(object):
    pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
-#   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
@@ -330,6 +331,14 @@ class Controller(object):
    self.view.insert_buffer(tl.buffer, name=_(u"Favourites timeline for {}".format(i)), pos=self.view.search("favs_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
    tl.timer.start()
+  lists = buffersController.emptyPanel(self.view.nb, "lists", session.db["user_name"])
+  self.buffers.append(lists)
+  self.view.insert_buffer(lists.buffer , name=_(u"Lists"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  for i in session.settings["other_buffers"]["lists"]:
+   tl = buffersController.listBufferController(self.view.nb, "get_list_statuses", "%s-list" % (i,), session, session.db["user_name"], bufferType=None, list_id=utils.find_list(i, session.db["lists"]))
+   session.lists.append(tl)
+   self.buffers.append(tl)
+   self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(i), pos=self.view.search("timelines", session.db["user_name"]))
   searches = buffersController.emptyPanel(self.view.nb, "searches", session.db["user_name"])
   self.buffers.append(searches)
   self.view.insert_buffer(searches.buffer , name=_(u"Searches"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
@@ -430,8 +439,29 @@ class Controller(object):
  def view_user_lists(self, users):
   pass
 
- def add_to_list(self, user):
-  pass
+ def add_to_list(self, *args, **kwargs):
+  buff = self.get_best_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
+  if dlg.get_response() == widgetUtils.OK:
+   user = dlg.get_user()
+  else:
+   return
+  dlg = dialogs.lists.addUserListDialog()
+  dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
+  if dlg.get_response() == widgetUtils.OK:
+   try:
+    list = buff.session.twitter.twitter.add_list_member(list_id=buff.session.db["lists"][dlg.get_item()]["id"], screen_name=user)
+    older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()]["id"], buff.session.db["lists"])
+    buff.session.db["lists"].pop(older_list)
+    buff.session.db["lists"].append(list)
+   except TwythonError as e:
+    output.speak("error %s: %s" % (e.error_code, e.msg))
 
  def remove_from_list(self, user):
   pass
@@ -1095,6 +1125,14 @@ class Controller(object):
   buffer = self.search_buffer("%s-timeline" % (who,), user)
   play_sound = "tweet_timeline.ogg"
   if "%s-timeline" % (who,) not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+   self.notify(buffer.session, play_sound=play_sound)
+   output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
+  buffer.add_new_item(data)
+
+ def manage_item_in_list(self, data, user, where):
+  buffer = self.search_buffer("%s" % (where,), user)
+  play_sound = "tweet_timeline.ogg"
+  if "%s" % (where,) not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
    output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
   buffer.add_new_item(data)

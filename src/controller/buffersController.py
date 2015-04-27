@@ -369,7 +369,7 @@ class baseBufferController(bufferController):
    answer = commonMessageDialogs.retweet_question(self.buffer)
    if answer == widgetUtils.YES:
     self._retweet_with_comment(tweet, id)
-   else:
+   elif answer == widgetUtils.NO:
     self._direct_retweet(id)
   elif self.session.settings["general"]["retweet_mode"] == "direct":
    self._direct_retweet(id)
@@ -470,6 +470,26 @@ class baseBufferController(bufferController):
   if dlg.get_response() == widgetUtils.OK:
    user.profileController(session=self.session, user=dlg.get_user())
   if hasattr(dlg, "destroy"): dlg.destroy()
+
+class listBufferController(baseBufferController):
+ def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, list_id=None, *args, **kwargs):
+  super(listBufferController, self).__init__(parent, function, name, sessionObject, account, sound=None, bufferType=None, *args, **kwargs)
+  self.users = []
+  self.list_id = list_id
+  self.kwargs["list_id"] = list_id
+
+ def start_stream(self):
+  self.get_user_ids()
+  super(listBufferController, self).start_stream()
+
+ def get_user_ids(self):
+  self.users = []
+  next_cursor = -1
+  while(next_cursor):
+   users = self.session.twitter.twitter.get_list_members(list_id=self.list_id, cursor=next_cursor, include_entities=False, skip_status=True)
+   for i in users['users']:
+    self.users.append(i["id"])
+    next_cursor = users["next_cursor"]
 
 class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):
@@ -765,3 +785,4 @@ class conversationBufferController(searchBufferController):
   self.put_items_on_list(number_of_items)
   if number_of_items > 0:
    self.session.sound.play("search_updated.ogg")
+

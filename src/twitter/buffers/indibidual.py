@@ -18,6 +18,7 @@ class timelinesStreamer(TwythonStreamer):
     auth = HTTPProxyAuth(config.app["proxy"]["user"], config.app["proxy"]["password"])
     args["auth"] = auth
   super(timelinesStreamer, self).__init__(app_key, app_secret, oauth_token, oauth_token_secret, timeout=60, retry_count=None, retry_in=180, client_args=args, handlers=None, chunk_size=1)
+  self.lists = self.session.lists
 
  def on_error(self, status_code, data):
   log.debug("%s: %s" % (status_code, data))
@@ -32,19 +33,27 @@ class timelinesStreamer(TwythonStreamer):
     if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s-timeline" % (i,)].append(data)
     else: self.session.db["%s-timeline" % (i,)].insert(0, data)
     pub.sendMessage("item-in-timeline", data= data, user= self.session.db["user_name"], who= i)
+  for i in self.session.lists:
+   try:
+    i.users.index(data["user"]["id"])
+    usr = data["in_reply_to_user_id"]
+    if (usr != None and usr in self.friends) or data.has_key("retweeted_status"):
+     if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s" % (i.name,)].append(data)
+     else: self.session.db["%s" % (i,)].insert(0, data)
+     pub.sendMessage("item-in-list", data= data, user= self.session.db["user_name"], where= i.name)
+    elif usr == None:
+     if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s" % (i.name,)].append(data)
+     else: self.session.db["%s" % (i,)].insert(0, data)
+     pub.sendMessage("item-in-list", data= data, user= self.session.db["user_name"], where= i.name)
+   except ValueError:
+    pass
 
- def on_success(self, data):
-#  try:
-  if "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
-   self.check_tls(data)
-#  except:
-#   pass
- 
-class listsStreamer(timelinesStreamer):
+ def set_friends(self, friends):
+  self.friends = friends
 
  def on_success(self, data):
   try:
-   if "text" in data:
-    pub.sendMessage("item-in-list", **{"data": data, "user": self.session.db["user_name"]})
+   if "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
+    self.check_tls(data)
   except:
    pass

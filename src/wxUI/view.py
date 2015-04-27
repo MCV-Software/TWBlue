@@ -18,7 +18,6 @@ class mainFrame(wx.Frame):
   self.menuitem_search = app.Append(wx.NewId(), _(u"&Search"))
   self.trends = app.Append(wx.NewId(), _(u"View &trending topics"))
   self.lists = app.Append(wx.NewId(), _(u"&Lists manager"))
-  self.lists.Enable(False)
   self.keystroke_editor = app.Append(wx.NewId(), _(u"&Edit keystrokes"))
   self.account_settings = app.Append(wx.NewId(), _(u"Account se&ttings"))
   self.prefs = app.Append(wx.ID_PREFERENCES, _(u"&Global settings"))

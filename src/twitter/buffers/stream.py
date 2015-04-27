@@ -109,6 +109,7 @@ class streamer(TwythonStreamer):
     self.process_dm(data)
    elif "friends" in data:
     self.friends = data["friends"]
+    pub.sendMessage("friends-receibed")
    elif "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
     if data["user"]["id"] in self.muted_users: return
     self.check_mentions(data)
