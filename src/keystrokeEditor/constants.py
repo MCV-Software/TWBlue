@@ -35,7 +35,7 @@ actions = {
 "add_to_list": _(u"Add to list"),
 "remove_from_list": _(u"Remove from list"),
 "toggle_buffer_mute": _(u"Mute/unmute the active buffer"),
-"toggle_session_mute": _(u"Globally mute/unmute the current session"),
+"toggle_session_mute": _(u"Mute/unmute the current session"),
 "toggle_autoread": _(u"toggle the automatic reading of incoming tweets in the active buffer"),
 "search": _(u"Search on twitter"),
 "edit_keystrokes": _(u"Show the keystroke editor"),
