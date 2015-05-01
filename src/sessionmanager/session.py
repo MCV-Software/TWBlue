@@ -374,4 +374,3 @@ class Session(object):
   for key,value in shelf.items():
    self.db[key]=value
   shelf.close()
-
