@@ -529,6 +529,9 @@ class Controller(object):
    if hasattr(session_.sessions[item], "main_stream"): session_.sessions[item].main_stream.disconnect()
    if hasattr(session_.sessions[item], "timelinesStream"): session_.sessions[item].timelinesStream.disconnect()
    session_.sessions[item].sound.cleaner.cancel()
+   log.debug("Shelving database for " +    session_.sessions[item].session_id)
+   session_.sessions[item].shelve()
+
   if system == "Windows":
    self.systrayIcon.RemoveIcon()
   widgetUtils.exit_application()
