@@ -855,7 +855,7 @@ class Controller(object):
  def up(self, *args, **kwargs):
   page = self.get_current_buffer()
   if not hasattr(page.buffer, "list"):
-   output.speak(_(u"This account is not logged in twitter."), True)
+   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   position = page.buffer.list.get_selected()
   index = position-1
@@ -873,7 +873,7 @@ class Controller(object):
  def down(self, *args, **kwargs):
   page = self.get_current_buffer()
   if not hasattr(page.buffer, "list"):
-   output.speak(_(u"This account is not logged in twitter."), True)
+   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   position = page.buffer.list.get_selected()
   index = position+1
@@ -892,7 +892,7 @@ class Controller(object):
   buff = self.view.get_current_buffer_pos()
   buffer = self.get_current_buffer()
   if not hasattr(buffer.buffer, "list"):
-   output.speak(_(u"This account is not logged in twitter."), True)
+   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   if buff == self.get_first_buffer(buffer.account) or buff == 0:
    self.view.change_buffer(self.get_last_buffer(buffer.account))
@@ -910,7 +910,7 @@ class Controller(object):
   buff = self.view.get_current_buffer_pos()
   buffer = self.get_current_buffer()
   if not hasattr(buffer.buffer, "list"):
-   output.speak(_(u"This account is not logged in twitter."), True)
+   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   if buff == self.get_last_buffer(buffer.account) or buff+1 == self.view.get_buffer_count():
    self.view.change_buffer(self.get_first_buffer(buffer.account))
@@ -934,7 +934,7 @@ class Controller(object):
   self.current_account = account
   buff = self.view.search("home_timeline", account)
   if buff == None:
-   output.speak(_(u"{0}: This account is not logged in twitter.").format(account), True)
+   output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
@@ -954,7 +954,7 @@ class Controller(object):
   self.current_account = account
   buff = self.view.search("home_timeline", account)
   if buff == None:
-   output.speak(_(u"{0}: This account is not logged in twitter.").format(account), True)
+   output.speak(_(u"{0}: This account is not logged into twitter.").format(account), True)
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
