@@ -12,6 +12,7 @@ import logging
 from twitter import utils
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
 import config_utils
+import shelve
 from mysc.thread_utils import stream_threaded
 from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
@@ -91,7 +92,8 @@ class Session(object):
   self.logged = False
   self.settings = None
   self.twitter = twitter.twitter.twitter()
-  self.db = {}
+  self.db={}
+  self.deshelve()
   self.reconnection_function_active = False
   self.counter = 0
   self.lists = []
@@ -356,3 +358,20 @@ class Session(object):
   else:
    self.main_stream.disconnect()
    del self.main_stream
+
+ def shelve(self):
+  "Shelve the database to allow for persistance."
+  shelfname=paths.config_path(str(self.session_id)+".db")
+  shelf=shelve.open(paths.config_path(shelfname),'c')
+  for key,value in self.db.items():
+   shelf[key]=value
+  shelf.close()
+
+ def deshelve(self):
+  "Import a shelved database."
+  shelfname=paths.config_path(str(self.session_id)+".db")
+  shelf=shelve.open(paths.config_path(shelfname),'c')
+  for key,value in shelf.items():
+   self.db[key]=value
+  shelf.close()
+
