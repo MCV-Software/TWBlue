@@ -10,7 +10,7 @@ def retweet_question(parent):
 
 def delete_tweet_dialog(parent):
  dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, _(u"Delete"))
- dialog.format_secondary_text(_(u"Do you really want to delete this message? It will be eliminated from Twitter as well."))
+ dialog.format_secondary_text(_(u"Do you really want to delete this message? It will be deleted from Twitter as well."))
  answer = dialog.run()
  dialog.destroy()
  return answer

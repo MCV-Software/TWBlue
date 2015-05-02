@@ -5,14 +5,14 @@ def retweet_question(parent):
  return wx.MessageDialog(parent, _(u"Would you like to add a comment to this tweet?"), _("Retweet"), wx.YES_NO|wx.CANCEL|wx.ICON_QUESTION).ShowModal()
 
 def delete_tweet_dialog(parent):
- return wx.MessageDialog(parent, _(u"Do you really want to delete this message? It will be eliminated from Twitter as well."), _(u"Delete"), wx.ICON_QUESTION|wx.YES_NO).ShowModal()
+ return wx.MessageDialog(parent, _(u"Do you really want to delete this message? It will be deleted from Twitter as well."), _(u"Delete"), wx.ICON_QUESTION|wx.YES_NO).ShowModal()
 
 def exit_dialog(parent):
  dlg = wx.MessageDialog(parent, _(u"Do you really want to close {0}?").format(application.name,), _(u"Exit"), wx.YES_NO|wx.ICON_QUESTION)
  return dlg.ShowModal()
 
 def needs_restart():
- wx.MessageDialog(None, _(u"The application requires to be restarted to save these changes. Press OK to do it now."), _("Restart TW Blue"), wx.OK).ShowModal()
+ wx.MessageDialog(None, _(unicode(application.name) + u" must be restarted for these changes to take effect."), _("Restart " + application.name), wx.OK).ShowModal()
 
 def delete_user_from_db():
  return wx.MessageDialog(None, _(u"Are you sure you want to delete this user from the database? This user will not appear on the autocomplete results anymore."), _(u"Confirm"), wx.YES_NO|wx.ICON_QUESTION).ShowModal()
