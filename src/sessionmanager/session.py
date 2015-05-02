@@ -365,7 +365,7 @@ class Session(object):
   "Shelve the database to allow for persistance."
   shelfname=paths.config_path(str(self.session_id)+".db")
   try:
-   if not os.exists(shelfname):
+   if not os.path.exists(shelfname):
     output.speak("Generating database, this might take a while.",True)
    shelf=shelve.open(paths.config_path(shelfname),'c')
    for key,value in self.db.items():
