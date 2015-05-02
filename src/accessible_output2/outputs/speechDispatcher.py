@@ -1,9 +1,9 @@
 from base import Output, OutputError
 import atexit
-
+import application
 class SpeechDispatcher(Output):
  """Supports speech dispatcher on Linux.
- Note that it will take the configuration from the speech dispatcher, the user will need configure voice, language, punctuation and rate before use this module.
+ Note that this module will use the configuration of speech dispatcher, the user will need to configure the voice, language, punctuation and rate before using this module.
  """
  name = 'SpeechDispatcher'
 
@@ -11,7 +11,7 @@ class SpeechDispatcher(Output):
   super(SpeechDispatcher, self).__init__(*args, **kwargs)
   try:
    import speechd
-   self.spd = speechd.SSIPClient("TWBlue")
+   self.spd = speechd.SSIPClient(application.name)
   except ImportError:
    raise OutputError
   atexit.register(self.on_exit_event)

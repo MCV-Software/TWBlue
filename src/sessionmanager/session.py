@@ -12,6 +12,9 @@ import logging
 from twitter import utils
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
 import config_utils
+import shelve
+import application
+import os
 from mysc.thread_utils import stream_threaded
 from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
@@ -91,7 +94,8 @@ class Session(object):
   self.logged = False
   self.settings = None
   self.twitter = twitter.twitter.twitter()
-  self.db = {}
+  self.db={}
+  self.deshelve()
   self.reconnection_function_active = False
   self.counter = 0
   self.lists = []
@@ -362,3 +366,34 @@ class Session(object):
   else:
    self.main_stream.disconnect()
    del self.main_stream
+
+ def shelve(self):
+  "Shelve the database to allow for persistance."
+  shelfname=paths.config_path(str(self.session_id)+".db")
+  try:
+   if not os.path.exists(shelfname):
+    output.speak("Generating database, this might take a while.",True)
+   shelf=shelve.open(paths.config_path(shelfname),'c')
+   for key,value in self.db.items():
+    if type(key) != str and type(key) != unicode:
+        output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
+        log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
+    shelf[str(key)]=value
+   shelf.close()
+  except:
+   output.speak("An exception occurred while shelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
+   log.exception("Exception while shelving" + shelfname)
+   os.remove(shelfname)
+
+ def deshelve(self):
+  "Import a shelved database."
+  shelfname=paths.config_path(str(self.session_id)+".db")
+  try:
+   shelf=shelve.open(paths.config_path(shelfname),'c')
+   for key,value in shelf.items():
+    self.db[unicode(key)]=value
+   shelf.close()
+  except:
+   output.speak("An exception occurred while deshelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
+   log.exception("Exception while deshelving" + shelfname)
+   os.remove(shelfname)
