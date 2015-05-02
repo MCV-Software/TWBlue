@@ -12,7 +12,7 @@ def exit_dialog(parent):
  return dlg.ShowModal()
 
 def needs_restart():
- wx.MessageDialog(None, _(u"The application requires to be restarted to save these changes. Press OK to do it now."), _("Restart TW Blue"), wx.OK).ShowModal()
+ wx.MessageDialog(None, _(unicode(application.name) + u" must be restarted for these changes to take effect."), _("Restart " + application.name), wx.OK).ShowModal()
 
 def delete_user_from_db():
  return wx.MessageDialog(None, _(u"Are you sure you want to delete this user from the database? This user will not appear on the autocomplete results anymore."), _(u"Confirm"), wx.YES_NO|wx.ICON_QUESTION).ShowModal()
