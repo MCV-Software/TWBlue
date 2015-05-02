@@ -17,13 +17,13 @@
 #
 ############################################################
 import wx
-
+import application
 class spellCheckerDialog(wx.Dialog):
  def __init__(self):
   super(spellCheckerDialog, self).__init__(None, 1)
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  word = wx.StaticText(panel, -1, _(u"Mis-spelled word"))
+  word = wx.StaticText(panel, -1, _(u"Misspelled word"))
   self.word = wx.TextCtrl(panel, -1)
   wordBox = wx.BoxSizer(wx.HORIZONTAL)
   wordBox.Add(word, 0, wx.ALL, 5)
@@ -73,7 +73,7 @@ class spellCheckerDialog(wx.Dialog):
   return self.suggestions.GetStringSelection()
 
 def dict_not_found_error():
- wx.MessageDialog(None, _(u"A bug has happened. There are no dictionaries available for the selected language in TW Blue"), _(u"Error"), wx.ICON_ERROR).ShowModal()
+ wx.MessageDialog(None, _(u"An error has occurred. There are no dictionaries available for the selected language in " + application.name), _(u"Error"), wx.ICON_ERROR).ShowModal()
 
 def finished():
- wx.MessageDialog(None, _(u"The spelling review has finished."), _("Finished"), style=wx.OK).ShowModal()
+ wx.MessageDialog(None, _(u"Spell check complete."), _(application.name), style=wx.OK).ShowModal()

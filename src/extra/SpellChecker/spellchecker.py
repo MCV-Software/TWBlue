@@ -42,7 +42,7 @@ class spellChecker(object):
  def check(self):
   try:
    self.checker.next()
-   textToSay = _(u"Mis-spelled word: %s") % (self.checker.word,)
+   textToSay = _(u"Misspelled word: %s") % (self.checker.word,)
    context = u"... %s %s %s" % (self.checker.leading_context(10), self.checker.word, self.checker.trailing_context(10))
    self.dialog.set_title(textToSay)
    output.speak(textToSay)
