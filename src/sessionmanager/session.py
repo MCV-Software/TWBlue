@@ -365,10 +365,12 @@ class Session(object):
   "Shelve the database to allow for persistance."
   shelfname=paths.config_path(str(self.session_id)+".db")
   try:
+   if not os.exists(shelfname):
+    output.speak("Generating database, this might take a while.",True)
    shelf=shelve.open(paths.config_path(shelfname),'c')
    for key,value in self.db.items():
     if type(key) != str and type(key) != unicode:
-        output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.")
+        output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
         log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
     shelf[str(key)]=value
    shelf.close()
