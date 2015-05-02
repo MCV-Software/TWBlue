@@ -56,7 +56,7 @@ class mainFrame(wx.Frame):
 
   # buffer menu
   buffer = wx.Menu()
-  self.timeline = buffer.Append(wx.NewId(), _(u"&New buffer..."))
+  self.newbuffer = buffer.Append(wx.NewId(), _(u"&New buffer..."))
   self.load_previous_items = buffer.Append(wx.NewId(), _(u"&Load previous items"))
   buffer.AppendSeparator()
   self.mute_buffer = buffer.AppendCheckItem(wx.NewId(), _(u"&Mute"))
@@ -97,7 +97,7 @@ class mainFrame(wx.Frame):
 (wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('S'), self.unfollow.GetId()),
 (wx.ACCEL_CTRL, ord('K'), self.block.GetId()),
 (wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('K'), self.report.GetId()),
-(wx.ACCEL_CTRL, ord('I'), self.timeline.GetId()),
+(wx.ACCEL_CTRL, ord('I'), self.newbuffer.GetId()),
 (wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('I'), self.deleteTl.GetId()),
 (wx.ACCEL_CTRL, ord('M'), self.show_hide.GetId()),
 (wx.ACCEL_CTRL, ord('P'), self.updateProfile.GetId()),
