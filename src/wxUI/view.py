@@ -37,13 +37,7 @@ class mainFrame(wx.Frame):
 
   # User menu
   user = wx.Menu()
-  self.follow = user.Append(wx.NewId(), _(u"&Follow"))
-  self.unfollow = user.Append(wx.NewId(), _(u"&Unfollow"))
-  self.mute = user.Append(wx.NewId(), _(u"&Mute"))
-  self.unmute = user.Append(wx.NewId(), _(u"U&nmute"))
-  self.report = user.Append(wx.NewId(), _(u"&Report as spam"))
-  self.block = user.Append(wx.NewId(), _(u"&Block"))
-  self.unblock = user.Append(wx.NewId(), _(u"Unb&lock"))
+  self.follow = user.Append(wx.NewId(), _(u"&Actions..."))
   self.dm = user.Append(wx.NewId(), _(u"Direct me&ssage"))
   self.addToList = user.Append(wx.NewId(), _(u"&Add to list"))
   self.addToList.Enable(False)
@@ -94,9 +88,6 @@ class mainFrame(wx.Frame):
 
 (wx.ACCEL_CTRL, ord('Q'), self.close.GetId()),
 (wx.ACCEL_CTRL, ord('S'), self.follow.GetId()),
-(wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('S'), self.unfollow.GetId()),
-(wx.ACCEL_CTRL, ord('K'), self.block.GetId()),
-(wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('K'), self.report.GetId()),
 (wx.ACCEL_CTRL, ord('I'), self.newbuffer.GetId()),
 (wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('I'), self.deleteTl.GetId()),
 (wx.ACCEL_CTRL, ord('M'), self.show_hide.GetId()),
