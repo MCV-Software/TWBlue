@@ -367,9 +367,9 @@ class Session(object):
   try:
    shelf=shelve.open(paths.config_path(shelfname),'c')
    for key,value in self.db.items():
-    if type(key) != str or type(key) != unicode:
-        output.speak("Uh oh, while shelving the database, a key of type " + type(key) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.")
-        log.error("Uh oh, " + str(key) + " is of type " + type(key) + "!")
+    if type(key) != str and type(key) != unicode:
+        output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.")
+        log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
     shelf[str(key)]=value
    shelf.close()
   except:
