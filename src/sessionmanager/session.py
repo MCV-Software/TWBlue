@@ -13,6 +13,8 @@ from twitter import utils
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
 import config_utils
 import shelve
+import application
+import os
 from mysc.thread_utils import stream_threaded
 from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
@@ -362,15 +364,26 @@ class Session(object):
  def shelve(self):
   "Shelve the database to allow for persistance."
   shelfname=paths.config_path(str(self.session_id)+".db")
-  shelf=shelve.open(paths.config_path(shelfname),'c')
-  for key,value in self.db.items():
-   shelf[key]=value
-  shelf.close()
+  try:
+   shelf=shelve.open(paths.config_path(shelfname),'c')
+   for key,value in self.db.items():
+    print(key)
+    shelf[key]=value
+   shelf.close()
+  except:
+   output.speak("An exception occurred while shelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
+   log.exception("Exception while shelving" + shelfname)
+   os.remove(shelfname)
 
  def deshelve(self):
   "Import a shelved database."
   shelfname=paths.config_path(str(self.session_id)+".db")
-  shelf=shelve.open(paths.config_path(shelfname),'c')
-  for key,value in shelf.items():
-   self.db[key]=value
-  shelf.close()
+  try:
+   shelf=shelve.open(paths.config_path(shelfname),'c')
+   for key,value in shelf.items():
+    self.db[key]=value
+   shelf.close()
+  except:
+   output.speak("An exception occurred while deshelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
+   log.exception("Exception while deshelving" + shelfname)
+   os.remove(shelfname)
