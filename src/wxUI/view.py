@@ -52,17 +52,17 @@ class mainFrame(wx.Frame):
   self.viewLists = user.Append(wx.NewId(), _(u"&View lists"))
   self.viewLists.Enable(False)
   self.details = user.Append(wx.NewId(), _(u"Show user &profile"))
-  self.timeline = user.Append(wx.NewId(), _(u"&Timeline"))
   self.favs = user.Append(wx.NewId(), _(u"V&iew favourites"))
 
   # buffer menu
   buffer = wx.Menu()
+  self.timeline = buffer.Append(wx.NewId(), _(u"&New buffer..."))
   self.load_previous_items = buffer.Append(wx.NewId(), _(u"&Load previous items"))
   buffer.AppendSeparator()
   self.mute_buffer = buffer.AppendCheckItem(wx.NewId(), _(u"&Mute"))
-  self.autoread = buffer.AppendCheckItem(wx.NewId(), _(u"&Autoread tweets for this buffer"))
+  self.autoread = buffer.AppendCheckItem(wx.NewId(), _(u"&Autoread"))
   self.clear = buffer.Append(wx.NewId(), _(u"&Clear buffer"))
-  self.deleteTl = buffer.Append(wx.NewId(), _(u"&Remove buffer"))
+  self.deleteTl = buffer.Append(wx.NewId(), _(u"&Destroy"))
 
  # Help Menu
   help = wx.Menu()
