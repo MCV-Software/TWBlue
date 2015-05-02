@@ -368,7 +368,10 @@ class Session(object):
    shelf=shelve.open(paths.config_path(shelfname),'c')
    for key,value in self.db.items():
     print(key)
-    shelf[key]=value
+    if type(key) != str or type(key) != unicode:
+        output.speak("Uh oh, while shelving the database, a key of type " + type(key) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.")
+        log.error("Uh oh, " + str(key) + " is of type " + type(key) + "!")
+    shelf[str(key)]=value
    shelf.close()
   except:
    output.speak("An exception occurred while shelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
@@ -381,7 +384,7 @@ class Session(object):
   try:
    shelf=shelve.open(paths.config_path(shelfname),'c')
    for key,value in shelf.items():
-    self.db[key]=value
+    self.db[unicode(key)]=value
    shelf.close()
   except:
    output.speak("An exception occurred while deshelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
