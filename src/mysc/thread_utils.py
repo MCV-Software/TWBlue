@@ -24,10 +24,10 @@ def call_threaded(func, *args, **kwargs):
 
 def stream_threaded(func, *args, **kwargs):
  def new_func(*a, **k):
-  try:
-   func(**k)
-  except:
-   pub.sendMessage("streamError", session=a[0])
+#  try:
+  func(**k)
+#  except:
+#   pub.sendMessage("streamError", session=a[0])
  thread = threading.Thread(target=new_func, args=args, kwargs=kwargs)
  thread.daemon = True
  thread.start()

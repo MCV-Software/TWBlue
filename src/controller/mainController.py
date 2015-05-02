@@ -460,6 +460,9 @@ class Controller(object):
     older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()]["id"], buff.session.db["lists"])
     buff.session.db["lists"].pop(older_list)
     buff.session.db["lists"].append(list)
+    listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()]["name"]), buff.session.db["user_name"])
+    listBuffer.get_user_ids()
+    pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
    except TwythonError as e:
     output.speak("error %s: %s" % (e.error_code, e.msg))
 
@@ -469,7 +472,6 @@ class Controller(object):
  def list_manager(self, *args, **kwargs):
   s = self.get_best_buffer().session
   l = listsController.listsController(s)
-
 
  def configuration(self, *args, **kwargs):
   """ Opens the global settings dialogue."""
@@ -494,7 +496,6 @@ class Controller(object):
 
  def report_error(self, *args, **kwargs):
   r = issueReporter.reportBug(self.get_best_buffer().session.db["user_name"])
-
 
  def check_for_updates(self, *args, **kwargs):
   update = updater.do_update()

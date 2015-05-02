@@ -296,8 +296,8 @@ class Session(object):
  def start_streaming(self):
 
   """ Start the streaming for sending tweets in realtime."""
-  self.get_main_stream()
   self.get_timelines()
+  self.get_main_stream()
 
  def get_main_stream(self):
   log.debug("Starting the main stream...")
@@ -317,7 +317,11 @@ class Session(object):
    stream_threaded(self.timelinesStream.statuses.filter, self.session_id, follow=ids)
 
  def add_friends(self):
-  self.timelinesStream.set_friends(self.main_stream.friends)
+  try:
+   self.timelinesStream.set_friends(self.main_stream.friends)
+   print "done"
+  except AttributeError:
+   pass
 
  def listen_stream_error(self):
   if hasattr(self, "main_stream"):
@@ -344,6 +348,8 @@ class Session(object):
   if not hasattr(self, "timelinesStream"):
    self.get_timelines()
   self.reconnection_function_active = False
+  if hasattr(self, "timelinesStream") and not hasattr(self.timelinesStream, "friends"):
+   self.add_friends()
   try:
    urllib2.urlopen("http://74.125.228.231", timeout=5)
   except urllib2.URLError:

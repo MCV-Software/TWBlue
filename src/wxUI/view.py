@@ -188,4 +188,4 @@ class mainFrame(wx.Frame):
    getattr(self, menuitem).Check(check)
 
 def no_update_available():
- wx.MessageDialog(None, _(u"Your "+application.name+" version is up to date"), _(u"Update"), style=wx.OK).ShowModal()
+ wx.MessageDialog(None, _(u"Your {0} version is up to date").format(application.name,), _(u"Update"), style=wx.OK).ShowModal()
