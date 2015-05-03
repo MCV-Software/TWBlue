@@ -12,6 +12,7 @@ reverse_timelines = boolean(default=False)
 time_to_check_streams = integer(default=30)
 announce_stream_status = boolean(default=True)
 retweet_mode = string(default="ask")
+persistant_session = boolean(default=False)
 
 [sound]
 volume = float(default=1.0)

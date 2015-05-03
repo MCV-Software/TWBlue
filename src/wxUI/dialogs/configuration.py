@@ -90,6 +90,7 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
   rMode.Add(lbl, 0, wx.ALL, 5)
   rMode.Add(self.retweet_mode, 0, wx.ALL, 5)
   sizer.Add(rMode, 0, wx.ALL, 5)
+  self.persistant_session = wx.CheckBox(self, -1, _(u"Save session in database (experimental)"))
   self.SetSizer(sizer)
 
 class other_buffers(wx.Panel):

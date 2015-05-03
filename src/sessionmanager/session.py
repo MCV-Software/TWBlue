@@ -95,7 +95,6 @@ class Session(object):
   self.settings = None
   self.twitter = twitter.twitter.twitter()
   self.db={}
-  self.deshelve()
   self.reconnection_function_active = False
   self.counter = 0
   self.lists = []
@@ -114,6 +113,8 @@ class Session(object):
    log.debug("Creating config file %s" % (file_,))
    self.settings = config_utils.load_config(paths.config_path(file_), paths.app_path("Conf.defaults"))
    self.init_sound()
+   if self.settings["general"]["persistant_session"] == True:
+    self.deshelve()
 #  except:
 #   log.exception("The session configuration has failed.")
 #   self.settings = None
