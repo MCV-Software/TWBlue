@@ -81,13 +81,13 @@ class mainFrame(Gtk.Window):
 
   # buffer menu
   buffer = Gtk.Menu()
-  self.timeline = Gtk.MenuItem(label="New buffer...")
+  self.newbuffer = Gtk.MenuItem(label="New buffer...")
   self.load_previous_items = Gtk.MenuItem(label="Load previous items")
   self.mute_buffer = Gtk.MenuItem(label="Mute")
   self.autoread = Gtk.MenuItem(label="Autoread")
   self.clear = Gtk.MenuItem(label="Clear buffer")
   self.deleteTl = Gtk.MenuItem(label="Destroy")
-  self.append_to_menu(buffer, self.timeline, self.load_previous_items, self.mute_buffer, self.autoread, self.clear, self.deleteTl)
+  self.append_to_menu(buffer, self.newbuffer, self.load_previous_items, self.mute_buffer, self.autoread, self.clear, self.deleteTl)
   buffer_menu = Gtk.MenuItem(label="Buffer")
   buffer_menu.set_submenu(buffer)
   menuBar.append(buffer_menu)

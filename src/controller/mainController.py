@@ -148,12 +148,6 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.follow, menuitem=self.view.follow)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.unfollow, menuitem=self.view.unfollow)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.mute, menuitem=self.view.mute)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.unmute, menuitem=self.view.unmute)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report, menuitem=self.view.report)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.block, menuitem=self.view.block)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.unblock, menuitem=self.view.unblock)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_more_items, menuitem=self.view.load_previous_items)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.clear_buffer, menuitem=self.view.clear)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_buffer, self.view.deleteTl)
@@ -165,7 +159,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.user_details, menuitem=self.view.details)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_autoread, menuitem=self.view.autoread)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_buffer_mute, self.view.mute_buffer)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_timeline, self.view.timeline)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.new_buffer, self.view.newbuffer)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_favs_timeline, self.view.favs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_conversation, menuitem=self.view.view_conversation)
   if widgetUtils.toolkit == "wx":
@@ -1269,3 +1263,7 @@ class Controller(object):
 
  def __del__(self):
   config.app.write()
+
+ def new_buffer(self,*args,**kwargs):
+  #This is a placeholder for the unified new buffer dialog, for now just call self.open_timeline.
+  return self.open_timeline(*args,**kwargs)
