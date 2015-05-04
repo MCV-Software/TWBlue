@@ -376,14 +376,21 @@ class baseBufferController(bufferController):
   else:
    self._retweet_with_comment(tweet, id)
 
- def _retweet_with_comment(self, tweet, id):
+ def _retweet_with_comment(self, tweet, id, comment=''):
   retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]), max=116-len("@%s " % (tweet["user"]["screen_name"],)), messageType="retweet")
+  if comment != '':
+   retweet.message.set_text(comment)
   if retweet.message.get_response() == widgetUtils.OK:
    text = retweet.message.get_text()
+   comments=text
    if len(text+ u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])) < 140:
     text = text+u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])
    else:
-    text = text+" @{2} https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id, tweet["user"]["screen_name"])
+    answer = commonMessageDialogs.retweet_as_link(self.buffer)
+    if answer == widgetUtils.YES:
+     text = text+" @{2} https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id, tweet["user"]["screen_name"])
+    else:
+     return self._retweet_with_comment(tweet, id, comment=comments)
    if retweet.image == None:
     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id)
    else:
