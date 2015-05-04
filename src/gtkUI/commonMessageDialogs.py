@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 from gi.repository import Gtk
 import application
+def retweet_as_link(parent):
+ dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, _(unicode(application.name))
+ dialog.format_secondary_text(_(u"This retweet is over 140 characters. Would you like to post it as a mention to the poster with your comments and a link to the original tweet?"))
+ answer = dialog.run()
+ dialog.destroy()
+ return answer
+
 def retweet_question(parent):
  dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, _(u"Retweet"))
  dialog.format_secondary_text(_(u"Would you like to add a comment to this tweet?"))

@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import wx
 import application
+def retweet_as_link(parent):
+ return wx.MessageDialog(parent, _(u"This retweet is over 140 characters. Would you like to post it as a mention to the poster with your comments and a link to the original tweet?"), _(application.name), wx.YES_NO|wx.ICON_QUESTION).ShowModal()
+
 def retweet_question(parent):
  return wx.MessageDialog(parent, _(u"Would you like to add a comment to this tweet?"), _("Retweet"), wx.YES_NO|wx.CANCEL|wx.ICON_QUESTION).ShowModal()
 
