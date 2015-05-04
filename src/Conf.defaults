@@ -13,6 +13,7 @@ time_to_check_streams = integer(default=30)
 announce_stream_status = boolean(default=True)
 retweet_mode = string(default="ask")
 persistant_session = boolean(default=False)
+buffer_order = list(default=list('home','mentions','dm','sent_dm','sent_tweets','favorites','followers','friends','blocks','muted','events'))
 
 [sound]
 volume = float(default=1.0)

@@ -269,46 +269,52 @@ class Controller(object):
    account.setup_account()
    self.buffers.append(account)
    self.view.add_buffer(account.buffer , name=session.db["user_name"])
-  home = buffersController.baseBufferController(self.view.nb, "get_home_timeline", "home_timeline", session, session.db["user_name"])
-  self.buffers.append(home)
-  self.view.insert_buffer(home.buffer, name=_(u"Home"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  mentions = buffersController.baseBufferController(self.view.nb, "get_mentions_timeline", "mentions", session, session.db["user_name"], sound="mention_received.ogg")
-  self.buffers.append(mentions)
-  self.view.insert_buffer(mentions.buffer, name=_(u"Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  dm = buffersController.baseBufferController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", sound="dm_received.ogg")
-  self.buffers.append(dm)
-  self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  sent_dm = buffersController.baseBufferController(self.view.nb, "get_sent_messages", "sent_direct_messages", session, session.db["user_name"], bufferType="dmPanel")
-  self.buffers.append(sent_dm)
-  self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  sent_tweets = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "sent_tweets", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"])
-  self.buffers.append(sent_tweets)
-  self.view.insert_buffer(sent_tweets.buffer, name=_(u"Sent tweets"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  if session.settings["other_buffers"]["show_favourites"] == True:
-   favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", session, session.db["user_name"])
-   self.buffers.append(favourites)
+  for i in session.settings['general']['buffer_order']:
+   if i == 'home':
+    home = buffersController.baseBufferController(self.view.nb, "get_home_timeline", "home_timeline", session, session.db["user_name"])
+    self.buffers.append(home)
+    self.view.insert_buffer(home.buffer, name=_(u"Home"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'mentions':
+    mentions = buffersController.baseBufferController(self.view.nb, "get_mentions_timeline", "mentions", session, session.db["user_name"], sound="mention_received.ogg")
+    self.buffers.append(mentions)
+    self.view.insert_buffer(mentions.buffer, name=_(u"Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'dm':
+    dm = buffersController.baseBufferController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", sound="dm_received.ogg")
+    self.buffers.append(dm)
+    self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'sent_dm':
+    sent_dm = buffersController.baseBufferController(self.view.nb, "get_sent_messages", "sent_direct_messages", session, session.db["user_name"], bufferType="dmPanel")
+    self.buffers.append(sent_dm)
+    self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'sent_tweets':
+    sent_tweets = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "sent_tweets", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"])
+    self.buffers.append(sent_tweets)
+    self.view.insert_buffer(sent_tweets.buffer, name=_(u"Sent tweets"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'favorites':
+    favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", session, session.db["user_name"])
+    self.buffers.append(favourites)
 
-   self.view.insert_buffer(favourites.buffer, name=_(u"Favourites"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  if session.settings["other_buffers"]["show_followers"] == True:
-   followers = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "followers", session, session.db["user_name"], screen_name=session.db["user_name"])
-   self.buffers.append(followers)
-   self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  if session.settings["other_buffers"]["show_friends"] == True:
-   friends = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "friends", session, session.db["user_name"], screen_name=session.db["user_name"])
-   self.buffers.append(friends)
-   self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  if session.settings["other_buffers"]["show_blocks"] == True:
-   blocks = buffersController.peopleBufferController(self.view.nb, "list_blocks", "blocked", session, session.db["user_name"])
-   self.buffers.append(blocks)
-   self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  if session.settings["other_buffers"]["show_muted_users"] == True:
-   muted = buffersController.peopleBufferController(self.view.nb, "get_muted_users_list", "muted", session, session.db["user_name"])
-   self.buffers.append(muted)
-   self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-  if session.settings["other_buffers"]["show_events"] == True:
-   events = buffersController.eventsBufferController(self.view.nb, "events", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"])
-   self.buffers.append(events)
-   self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(favourites.buffer, name=_(u"Favourites"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'followers':
+    followers = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "followers", session, session.db["user_name"], screen_name=session.db["user_name"])
+    self.buffers.append(followers)
+    self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'friends':
+    friends = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "friends", session, session.db["user_name"], screen_name=session.db["user_name"])
+    self.buffers.append(friends)
+    self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'blocks':
+    blocks = buffersController.peopleBufferController(self.view.nb, "list_blocks", "blocked", session, session.db["user_name"])
+    self.buffers.append(blocks)
+    self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'muted':
+    muted = buffersController.peopleBufferController(self.view.nb, "get_muted_users_list", "muted", session, session.db["user_name"])
+    self.buffers.append(muted)
+    self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   if i == 'events':
+    events = buffersController.eventsBufferController(self.view.nb, "events", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"])
+    self.buffers.append(events)
+    self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   timelines = buffersController.emptyPanel(self.view.nb, "timelines", session.db["user_name"])
   self.buffers.append(timelines)
   self.view.insert_buffer(timelines.buffer , name=_(u"Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
