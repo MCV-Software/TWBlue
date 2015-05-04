@@ -54,18 +54,6 @@ class other_buffers(wx.Panel):
  def __init__(self, parent):
   super(other_buffers, self).__init__(parent)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  self.followers = wx.CheckBox(self, -1, _(u"Show followers"))
-  sizer.Add(self.followers, 0, wx.ALL, 5)
-  self.friends = wx.CheckBox(self, -1, _(u"Show friends"))
-  sizer.Add(self.friends, 0, wx.ALL, 5)
-  self.favs = wx.CheckBox(self, -1, _(u"Show favourites"))
-  sizer.Add(self.favs, 0, wx.ALL, 5)
-  self.blocks = wx.CheckBox(self, -1, _(u"Show blocked users"))
-  sizer.Add(self.blocks, 0, wx.ALL, 5)
-  self.mutes = wx.CheckBox(self, -1, _(u"Show muted users"))
-  sizer.Add(self.mutes, 0, wx.ALL, 5)
-  self.events = wx.CheckBox(self, -1, _(u"Show events"))
-  sizer.Add(self.events, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
 class ignoredClients(wx.Panel):
