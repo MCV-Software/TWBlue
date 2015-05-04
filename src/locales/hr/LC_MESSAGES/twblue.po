@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TWBlue 0.52\n"
-"POT-Creation-Date: 2015-04-15 20:24+Hora de verano central (México)\n"
-"PO-Revision-Date: 2015-04-16 13:32+0100\n"
-"Last-Translator: zvonimir stanecic <zvonimirek222@yandex.com>\n"
+"POT-Creation-Date: 2015-04-29 08:17+Hora de verano central (México)\n"
+"PO-Revision-Date: 2015-04-29 16:18+0100\n"
+"Last-Translator: Manuel Cortéz <manuel@manuelcortez.net>\n"
 "Language-Team: hr\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgid "Write the tweet here"
 msgstr "ovdje upišite tweet"
 
 #: ../src\controller\buffersController.py:261
-#: ../src\controller\buffersController.py:573
+#: ../src\controller\buffersController.py:594
 msgid "%s items retrieved"
 msgstr "preuzeto stavaka %s"
 
@@ -50,7 +50,7 @@ msgid "Reply to %s"
 msgstr "odgovori %s"
 
 #: ../src\controller\buffersController.py:339 ../src\gtkUI\buffers\base.py:17
-#: ../src\wxUI\buffers\base.py:26
+#: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
 msgid "Reply"
 msgstr "odgovoir"
 
@@ -59,7 +59,7 @@ msgid "Direct message to %s"
 msgstr "izravna poruka za %s"
 
 #: ../src\controller\buffersController.py:359
-#: ../src\controller\mainController.py:1028
+#: ../src\controller\mainController.py:1061
 msgid "New direct message"
 msgstr "Nova izravna poruka"
 
@@ -69,7 +69,7 @@ msgstr "Dodajte vaš komentar tweetu"
 
 #: ../src\controller\buffersController.py:380 ../src\gtkUI\buffers\base.py:16
 #: ../src\gtkUI\commonMessageDialogs.py:5
-#: ../src\keystrokeEditor\constants.py:13 ../src\wxUI\buffers\base.py:25
+#: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\commonMessageDialogs.py:5 ../src\wxUI\dialogs\message.py:115
 msgid "Retweet"
 msgstr "pošalji dalje!"
@@ -83,170 +83,179 @@ msgstr "Otvaram URL..."
 msgid "User details"
 msgstr "Pojedinosti korisnika"
 
-#: ../src\controller\buffersController.py:489
+#: ../src\controller\buffersController.py:510
 msgid "Empty"
 msgstr "prazno"
 
-#: ../src\controller\buffersController.py:532
+#: ../src\controller\buffersController.py:553
 msgid "Mention to %s"
 msgstr "odgovor za %s"
 
-#: ../src\controller\buffersController.py:532
+#: ../src\controller\buffersController.py:553
 #: ../src\gtkUI\buffers\people.py:15 ../src\wxUI\buffers\people.py:15
 msgid "Mention"
 msgstr "Odgovor"
 
-#: ../src\controller\mainController.py:246
+#: ../src\controller\mainController.py:249
 msgid "Ready"
 msgstr "spreman"
 
-#: ../src\controller\mainController.py:277
+#: ../src\controller\mainController.py:280
 msgid "Home"
 msgstr "Glavni"
 
-#: ../src\controller\mainController.py:280
+#: ../src\controller\mainController.py:283
 msgid "Mentions"
 msgstr "javni odgovori"
 
-#: ../src\controller\mainController.py:283
+#: ../src\controller\mainController.py:286
 msgid "Direct messages"
 msgstr "Izravne poruke"
 
-#: ../src\controller\mainController.py:286
-#, fuzzy
+#: ../src\controller\mainController.py:289
 msgid "Sent direct messages"
 msgstr "Pošalji izravnu poruku"
 
-#: ../src\controller\mainController.py:289
-#, fuzzy
+#: ../src\controller\mainController.py:292
 msgid "Sent tweets"
-msgstr "Novi tweet"
+msgstr "pošalji tweetove"
 
-#: ../src\controller\mainController.py:294
-#: ../src\controller\mainController.py:1124
+#: ../src\controller\mainController.py:297
+#: ../src\controller\mainController.py:1165
 #: ../src\gtkUI\dialogs\userSelection.py:18
 #: ../src\wxUI\dialogs\userSelection.py:18
 msgid "Favourites"
 msgstr "Omiljene"
 
-#: ../src\controller\mainController.py:298
-#: ../src\controller\mainController.py:1129
+#: ../src\controller\mainController.py:301
+#: ../src\controller\mainController.py:1170
 msgid "Followers"
 msgstr "Pratitelji"
 
-#: ../src\controller\mainController.py:302
-#: ../src\controller\mainController.py:1134
+#: ../src\controller\mainController.py:305
+#: ../src\controller\mainController.py:1175
 msgid "Friends"
 msgstr "Prijatelji"
 
-#: ../src\controller\mainController.py:306
-#: ../src\controller\mainController.py:1139
+#: ../src\controller\mainController.py:309
+#: ../src\controller\mainController.py:1180
 msgid "Blocked users"
 msgstr "Blokirani korisnici"
 
-#: ../src\controller\mainController.py:310
-#: ../src\controller\mainController.py:1144
+#: ../src\controller\mainController.py:313
+#: ../src\controller\mainController.py:1185
 msgid "Muted users"
 msgstr "Utišani korisnici"
 
-#: ../src\controller\mainController.py:314
-#: ../src\controller\mainController.py:1149
+#: ../src\controller\mainController.py:317
+#: ../src\controller\mainController.py:1190
 msgid "Events"
 msgstr "Događaji"
 
-#: ../src\controller\mainController.py:317
+#: ../src\controller\mainController.py:320
 msgid "Timelines"
 msgstr "Vremenske osi"
 
-#: ../src\controller\mainController.py:324
+#: ../src\controller\mainController.py:327
 msgid "Favourites timelines"
 msgstr "Omiljene vremenske osi"
 
-#: ../src\controller\mainController.py:333
+#: ../src\controller\mainController.py:336 ../src\gtkUI\dialogs\lists.py:11
+#: ../src\wxUI\dialogs\lists.py:12
+msgid "Lists"
+msgstr "Liste"
+
+#: ../src\controller\mainController.py:341
+msgid "List for {}"
+msgstr "Popis za %s"
+
+#: ../src\controller\mainController.py:344
 msgid "Searches"
 msgstr "Pretrage"
 
-#: ../src\controller\mainController.py:345
-#: ../src\controller\mainController.py:729
+#: ../src\controller\mainController.py:356
+#: ../src\controller\mainController.py:762
 msgid "Trending topics for %s"
 msgstr "Trending rubrike za %s"
 
-#: ../src\controller\mainController.py:745
-#: ../src\controller\mainController.py:764
+#: ../src\controller\mainController.py:450
+msgid "Select the user"
+msgstr "Označi korisnika"
+
+#: ../src\controller\mainController.py:778
+#: ../src\controller\mainController.py:797
 msgid "There are no coordinates in this tweet"
 msgstr "Ne postoje koordinate u ovom tweetu"
 
-#: ../src\controller\mainController.py:747
-#: ../src\controller\mainController.py:766
+#: ../src\controller\mainController.py:780
+#: ../src\controller\mainController.py:799
 msgid "There are no results for the coordinates in this tweet"
 msgstr "nema rezultata koordinata za ovaj tweet"
 
-#: ../src\controller\mainController.py:749
-#: ../src\controller\mainController.py:768
+#: ../src\controller\mainController.py:782
+#: ../src\controller\mainController.py:801
 msgid "Error decoding coordinates. Try again later."
 msgstr "Greška pri dekodiranju koordinata. pokušajte ponovo kasnije."
 
-#: ../src\controller\mainController.py:823
-#: ../src\controller\mainController.py:841
-#: ../src\controller\mainController.py:860
-#: ../src\controller\mainController.py:878
-#, fuzzy
+#: ../src\controller\mainController.py:856
+#: ../src\controller\mainController.py:874
+#: ../src\controller\mainController.py:893
+#: ../src\controller\mainController.py:911
 msgid "This account is not logged in twitter."
-msgstr "Ova akcija nije podržana za ovaj spremnik"
+msgstr "ovaj nalog nije prijavljen na twitteru"
 
-#: ../src\controller\mainController.py:869
-#: ../src\controller\mainController.py:887
+#: ../src\controller\mainController.py:902
+#: ../src\controller\mainController.py:920
 msgid "%s, %s of %s"
 msgstr "%s, %s za %s"
 
-#: ../src\controller\mainController.py:871
-#: ../src\controller\mainController.py:889
-#: ../src\controller\mainController.py:909
-#: ../src\controller\mainController.py:929
+#: ../src\controller\mainController.py:904
+#: ../src\controller\mainController.py:922
+#: ../src\controller\mainController.py:942
+#: ../src\controller\mainController.py:962
 msgid "%s. Empty"
 msgstr "%s. Prazno"
 
-#: ../src\controller\mainController.py:902
-#: ../src\controller\mainController.py:922
+#: ../src\controller\mainController.py:935
+#: ../src\controller\mainController.py:955
 msgid "{0}: This account is not logged in twitter."
-msgstr ""
+msgstr "{0}: Ovaj nalog nije prijavljen na twitteru."
 
-#: ../src\controller\mainController.py:907
-#: ../src\controller\mainController.py:927
-#, fuzzy
+#: ../src\controller\mainController.py:940
+#: ../src\controller\mainController.py:960
 msgid "%s. %s, %s of %s"
 msgstr "%s, %s za %s"
 
-#: ../src\controller\mainController.py:1020
+#: ../src\controller\mainController.py:1053
 msgid "One mention from %s "
 msgstr "Jedan odgovor od %s "
 
-#: ../src\controller\mainController.py:1097
+#: ../src\controller\mainController.py:1130
+#: ../src\controller\mainController.py:1138
 msgid "One tweet from %s"
 msgstr "Jedan tweet od %s"
 
-#: ../src\controller\mainController.py:1201
+#: ../src\controller\mainController.py:1242
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "Automatsko čitanje novih tweetova je uključeno za ovaj spremnik"
 
-#: ../src\controller\mainController.py:1204
+#: ../src\controller\mainController.py:1245
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "Automatsko čitanje za ovaj spremnik je isključeno"
 
-#: ../src\controller\mainController.py:1210
-#, fuzzy
+#: ../src\controller\mainController.py:1251
 msgid "Session mute on"
-msgstr "Upravitelj sesijama"
+msgstr "utišavanje sesije uključeno"
 
-#: ../src\controller\mainController.py:1213
+#: ../src\controller\mainController.py:1254
 msgid "Global mute off"
 msgstr "Globalno utišavanje isključeno"
 
-#: ../src\controller\mainController.py:1220
+#: ../src\controller\mainController.py:1261
 msgid "Buffer mute on"
 msgstr "Utišavanje spremnika uključeno"
 
-#: ../src\controller\mainController.py:1223
+#: ../src\controller\mainController.py:1264
 msgid "Buffer mute off"
 msgstr "Utišavanje spremnika isključeno"
 
@@ -271,9 +280,8 @@ msgid "URL expanded"
 msgstr "URL produžen"
 
 #: ../src\controller\messages.py:82
-#, fuzzy
 msgid "%s - %s of %d characters"
-msgstr "%s - %s Od 140 znakova"
+msgstr "%s - %s od %d znakova"
 
 #: ../src\controller\messages.py:106
 msgid "Unable to upload the audio"
@@ -298,27 +306,26 @@ msgstr "Uništeno"
 msgid "Upload a picture"
 msgstr "Otpremi sliku"
 
-#: ../src\controller\settings.py:70 ../src\controller\settings.py:116
-#: ../src\wxUI\dialogs\configuration.py:52
+#: ../src\controller\settings.py:87 ../src\controller\settings.py:133
+#: ../src\wxUI\dialogs\configuration.py:88
 msgid "Ask"
-msgstr ""
+msgstr "pitaj"
 
-#: ../src\controller\settings.py:72 ../src\controller\settings.py:118
-#: ../src\wxUI\dialogs\configuration.py:52
+#: ../src\controller\settings.py:89 ../src\controller\settings.py:135
+#: ../src\wxUI\dialogs\configuration.py:88
 msgid "Retweet without comments"
-msgstr ""
+msgstr "Šalji dalje bez komentara"
 
-#: ../src\controller\settings.py:74 ../src\wxUI\dialogs\configuration.py:52
+#: ../src\controller\settings.py:91 ../src\wxUI\dialogs\configuration.py:88
 msgid "Retweet with comments"
-msgstr ""
+msgstr "Pošalji s komentarima"
 
-#: ../src\controller\settings.py:103
-#, fuzzy
+#: ../src\controller\settings.py:120
 msgid "Account settings for %s"
-msgstr "Omiljene stavke za %s"
+msgstr "postavke naloga za %s"
 
-#: ../src\controller\settings.py:177 ../src\gtkUI\dialogs\configuration.py:165
-#: ../src\wxUI\dialogs\configuration.py:171
+#: ../src\controller\settings.py:194 ../src\gtkUI\dialogs\configuration.py:165
+#: ../src\wxUI\dialogs\configuration.py:207
 msgid "Link your Dropbox account"
 msgstr "Spojite vaš DROPBOX nalog"
 
@@ -368,7 +375,7 @@ msgstr ""
 
 #: ../src\controller\user.py:96
 msgid "Verified: %s\n"
-msgstr ""
+msgstr "Provjereno: %s\n"
 
 #: ../src\controller\user.py:97
 msgid "Tweets: %s\n"
@@ -517,121 +524,97 @@ msgstr "Zvučne datoteke (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 msgid "Select the audio file to be uploaded"
 msgstr "Označite zvučnu datoteku koja treba biti otpremljena"
 
-#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:3
-#, fuzzy
-msgid "Audio tweet."
-msgstr "Zvuk je zaustavljen."
-
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:4
-msgid "User-defined buffer created."
-msgstr ""
+msgid "Audio tweet."
+msgstr "Zvučni tweet"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:5
-msgid "User-defined buffer destroied."
-msgstr ""
+msgid "User-defined buffer created."
+msgstr "Korisnički definirani spremnik je napravljen"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:6
-#, fuzzy
-msgid "Direct message received."
-msgstr "Izravna poruka"
+msgid "User-defined buffer destroied."
+msgstr "Korisnički definirani spremnik je izbrisan"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:7
-#, fuzzy
-msgid "Direct message sent."
-msgstr "Izravne poruke"
+msgid "Direct message received."
+msgstr "Izravna poruka je primljena"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:8
-#, fuzzy
+msgid "Direct message sent."
+msgstr "Izravna poruka poslana"
+
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:9
 msgid "Error."
 msgstr "Greška"
 
-#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:9
-#, fuzzy
-msgid "You favorited a tweet."
-msgstr "Poslali ste tweet"
-
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
-#, fuzzy
+msgid "Tweet favorited."
+msgstr "tweet je dodan u omiljene"
+
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "Someone's favourites have been updated."
 msgstr "Nečije su se omiljene stavke osvježile"
 
-#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
-#, fuzzy
-msgid "Geotweet."
-msgstr "pošalji dalje!"
-
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
-msgid "Boundary reached."
-msgstr ""
+msgid "Geotweet."
+msgstr "zemljopisni tweet"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:13
-#, fuzzy
-msgid "List updated."
-msgstr "Popis je otvorenList opened"
+msgid "Boundary reached."
+msgstr "Granica je prekoračena"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:14
-#, fuzzy
-msgid "Too many characters."
-msgstr "Tweet - %i znakova "
+msgid "List updated."
+msgstr "Popis osvježen"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:15
-#, fuzzy
-msgid "You've been mentioned."
-msgstr "Netko je na vas obratio pozornost "
+msgid "Too many characters."
+msgstr "previše znakova"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:16
-#, fuzzy
-msgid "New event."
-msgstr "Novi tweet"
+msgid "Mention received."
+msgstr "odgovor primljen"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:17
-#, fuzzy
-msgid "Application is ready."
-msgstr "&Aplikacija"
-
-#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:18
-#, fuzzy
-msgid "You've replied publicly."
-msgstr "Odgovorili ste"
+msgid "New event."
+msgstr "Novi događaj"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:19
-#, fuzzy
-msgid "You've retweeted."
-msgstr "Proslijedili ste dalje"
+msgid "Mention sent."
+msgstr "Odgovor poslan"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:20
-#, fuzzy
+msgid "Tweet retweeted."
+msgstr "Proslijedili ste dalje"
+
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:21
 msgid "A search buffer has been updated."
 msgstr "Pretraga je osvježena"
 
-#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:21
-#, fuzzy
-msgid "New tweet in home buffer."
-msgstr "Postoji novi tweet u glavnom spremniku"
-
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:22
-#, fuzzy
-msgid "You've sent a tweet."
-msgstr "Poslali ste tweet"
+msgid "Tweet received."
+msgstr "tweet je primljen"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:23
-#, fuzzy
-msgid "A trending topic buffer has been updated."
-msgstr "Pretraga je osvježena"
+msgid "Tweet sent."
+msgstr "tweet je poslan"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:24
-#, fuzzy
-msgid "New tweet in user-defined buffer."
-msgstr "Postoji novi tweet u glavnom spremniku"
+msgid "A trending topic buffer has been updated."
+msgstr "trend rubrika spremnik je osvježen"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:25
-#, fuzzy
-msgid "New follower."
-msgstr "Prikaži pratitelje"
+msgid "New tweet in user-defined buffer."
+msgstr "Novi tweet u korisnički definiranom spremniku"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:26
+msgid "New follower."
+msgstr "novi pratitelj"
+
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:27
 msgid "Volume changed."
-msgstr ""
+msgstr "Glasnoća je promjenjena"
 
 #: ../src\extra\SoundsTutorial\wx_ui.py:8
 msgid "Sounds tutorial"
@@ -703,7 +686,6 @@ msgstr "Trebate početi pisati"
 
 #: ../src\extra\autocompletionUsers\completion.py:30
 #: ../src\extra\autocompletionUsers\completion.py:47
-#, fuzzy
 msgid "There are no results in your users database"
 msgstr "Ne postoje rezultati u korisničkoj bazi podataka"
 
@@ -720,12 +702,8 @@ msgstr ""
 "obavješteni porukom kada se proces završi."
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:8
-msgid "Manage Autocomplete users’ database"
+msgid "Manage Autocompletion database"
 msgstr "upravljaj bazom podataka korisnika koji se samodovršavaju"
-
-#: ../src\extra\autocompletionUsers\wx_manage.py:11
-msgid "Editing TWBlue users database"
-msgstr "uređivanje TWBlue baze podataka korisnika"
 
 #: ../src\extra\autocompletionUsers\wx_manage.py:12
 msgid "Name"
@@ -761,7 +739,7 @@ msgstr "Korisnik ne postoji"
 #: ../src\gtkUI\commonMessageDialogs.py:51
 #: ../src\gtkUI\dialogs\configuration.py:177
 #: ../src\wxUI\commonMessageDialogs.py:40
-#: ../src\wxUI\dialogs\configuration.py:183
+#: ../src\wxUI\dialogs\configuration.py:219
 msgid "Error!"
 msgstr "Greška!"
 
@@ -778,16 +756,12 @@ msgid "Add users from friends buffer"
 msgstr "Dodaj korisnika iz spremnika prijatelja"
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:14
-msgid "See the users list"
-msgstr "Vidi spisak korisnika"
+msgid "Manage database..."
+msgstr "upravljaj bazom podataka..."
 
 #: ../src\extra\autocompletionUsers\wx_settings.py:26
 msgid "Done"
 msgstr "Gotovo"
-
-#: ../src\extra\autocompletionUsers\wx_settings.py:26
-msgid "TWBlue's database of users has been updated."
-msgstr "TWBlue baza podataka korisnika je ažurirana."
 
 #: ../src\extra\translator\translator.py:9
 msgid "Afrikaans"
@@ -1212,15 +1186,15 @@ msgstr "Izbriši događaj"
 #: ../src\gtkUI\buffers\panels.py:10 ../src\gtkUI\buffers\panels.py:17
 #: ../src\wxUI\buffers\panels.py:11 ../src\wxUI\buffers\panels.py:19
 msgid "Login"
-msgstr ""
+msgstr "Prijava"
 
 #: ../src\gtkUI\buffers\panels.py:12 ../src\wxUI\buffers\panels.py:13
 msgid "Start account automatically"
-msgstr ""
+msgstr "Pokreni nalog automatski"
 
 #: ../src\gtkUI\buffers\panels.py:19 ../src\wxUI\buffers\panels.py:21
 msgid "Logout"
-msgstr ""
+msgstr "Odjava"
 
 #: ../src\gtkUI\buffers\trends.py:8 ../src\wxUI\buffers\trends.py:8
 msgid "Trending topic"
@@ -1236,7 +1210,7 @@ msgid "Would you like to add a comment to this tweet?"
 msgstr "Želite li dodati komentar ovom tweetu?"
 
 #: ../src\gtkUI\commonMessageDialogs.py:12
-#: ../src\wxUI\commonMessageDialogs.py:8 ../src\wxUI\dialogs\lists.py:124
+#: ../src\wxUI\commonMessageDialogs.py:8 ../src\wxUI\dialogs\lists.py:133
 msgid "Delete"
 msgstr "Izbriši"
 
@@ -1252,25 +1226,6 @@ msgstr ""
 #: ../src\wxUI\commonMessageDialogs.py:11
 msgid "Exit"
 msgstr "Zatvori"
-
-#: ../src\gtkUI\commonMessageDialogs.py:20
-#: ../src\wxUI\commonMessageDialogs.py:11
-msgid "Do you really want to close TW Blue?"
-msgstr "Želite li doista zatvoriti TW Blue?"
-
-#: ../src\gtkUI\commonMessageDialogs.py:26
-#: ../src\wxUI\commonMessageDialogs.py:15
-msgid "Restart TW Blue"
-msgstr "Ponovno pokreni TW BLUE"
-
-#: ../src\gtkUI\commonMessageDialogs.py:26
-#: ../src\wxUI\commonMessageDialogs.py:15
-msgid ""
-"The application requires to be restarted to save these changes. Press OK to "
-"do it now."
-msgstr ""
-"Zahtjeva se ponovno pokretanje promjena kako bi se promjene spremile. "
-"Pritisnite U redu kako biste to sada učinili."
 
 #: ../src\gtkUI\commonMessageDialogs.py:29
 #: ../src\wxUI\commonMessageDialogs.py:18
@@ -1298,13 +1253,12 @@ msgstr "Upišite ime klijenta ovdje"
 
 #: ../src\gtkUI\commonMessageDialogs.py:38
 #: ../src\wxUI\commonMessageDialogs.py:27
-#, fuzzy
 msgid ""
 "Do you really want to empty this buffer? It's  items will be removed from "
 "the list but not from Twitter"
 msgstr ""
-"Želite li doista isprazniti ovaj spremnik? Tweetovi iz tog popisa bit će "
-"izbrisani ali ne i sa twittera"
+"Želite li isprazniti ovaj spremnik? njegova lista će se isprazniti ali ne i "
+"twitter?"
 
 #: ../src\gtkUI\commonMessageDialogs.py:38
 #: ../src\wxUI\commonMessageDialogs.py:27
@@ -1344,11 +1298,14 @@ msgid ""
 "the Streaming API. The user's tweets will not update due to a twitter "
 "policy. Do you want to continue?"
 msgstr ""
+"Ovo je zaštićeni korisnik twittera. To znači da ne možete otvoriti vremensku "
+"os koristeći streaming api. Korisnikovi tweetovi se neće osvježavati zbog "
+"twitterovih pravila. Želite li nastaviti?"
 
 #: ../src\gtkUI\commonMessageDialogs.py:54
 #: ../src\wxUI\commonMessageDialogs.py:43
 msgid "Warning"
-msgstr ""
+msgstr "Upozorenje"
 
 #: ../src\gtkUI\commonMessageDialogs.py:57
 #: ../src\wxUI\commonMessageDialogs.py:46
@@ -1356,44 +1313,38 @@ msgid ""
 "This is a protected user account, you need follow to this user for viewing "
 "your tweets or favourites."
 msgstr ""
+"Ovo je zaštićeni korisnički račun, trebate pratiti ovog korisnika kako bi "
+"ste vidjeli njegove favorite i tweetove."
 
 #: ../src\gtkUI\dialogs\configuration.py:10
-#: ../src\wxUI\dialogs\configuration.py:10
+#: ../src\wxUI\dialogs\configuration.py:11
 msgid "Language"
 msgstr "Jezik"
 
-#: ../src\gtkUI\dialogs\configuration.py:17
-#: ../src\wxUI\dialogs\configuration.py:17
-msgid "ask before exiting TwBlue?"
-msgstr "Pitaj prije izlaska iz TW BLUE?"
-
 #: ../src\gtkUI\dialogs\configuration.py:19
-#: ../src\wxUI\dialogs\configuration.py:19
-msgid "Use invisible interface's keyboard shorcuts on the GUI"
+#: ../src\wxUI\dialogs\configuration.py:24
+msgid "Use invisible interface's keyboard shortcuts while GUI is visible"
 msgstr "Koristi nevidljivo sučelje tipkovnički prečaci na prozoru"
 
 #: ../src\gtkUI\dialogs\configuration.py:21
-#: ../src\wxUI\dialogs\configuration.py:21
+#: ../src\wxUI\dialogs\configuration.py:26
 msgid "Activate Sapi5 when any other screen reader is not being run"
 msgstr "aktiviraj sapi5 kada drugi čitač ekrana nije pokrenut"
 
 #: ../src\gtkUI\dialogs\configuration.py:23
-#: ../src\wxUI\dialogs\configuration.py:23
-msgid "Activate the auto-start of the invisible interface"
-msgstr "aktiviraj automatsko pokretanje nevidljivog sučelja"
+#: ../src\wxUI\dialogs\configuration.py:28
+msgid "Hide GUI on launch"
+msgstr "Sakrij prozor pri pokretanju"
 
 #: ../src\gtkUI\dialogs\configuration.py:31
-#: ../src\wxUI\dialogs\configuration.py:31
 msgid "Set the autocomplete function"
 msgstr "postavi funkciju samodovršetka"
 
 #: ../src\gtkUI\dialogs\configuration.py:33
-#: ../src\wxUI\dialogs\configuration.py:33
 msgid "Relative times"
 msgstr "relativna vremena"
 
 #: ../src\gtkUI\dialogs\configuration.py:36
-#: ../src\wxUI\dialogs\configuration.py:36
 msgid ""
 "API calls when the stream is started (One API call equals to 200 tweetts, "
 "two API calls equals 400 tweets, etc):"
@@ -1402,12 +1353,11 @@ msgstr ""
 "dva API poziva jednak 400 tweetova, itd):"
 
 #: ../src\gtkUI\dialogs\configuration.py:43
-#: ../src\wxUI\dialogs\configuration.py:43
+#: ../src\wxUI\dialogs\configuration.py:79
 msgid "Items on each API call"
 msgstr "Stavaka na jednom api pozivu"
 
 #: ../src\gtkUI\dialogs\configuration.py:49
-#: ../src\wxUI\dialogs\configuration.py:49
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning of the "
 "lists while the oldest at the end"
@@ -1416,80 +1366,78 @@ msgstr ""
 "dok će se stariji prikazivati na kraju"
 
 #: ../src\gtkUI\dialogs\configuration.py:57
-#: ../src\wxUI\dialogs\configuration.py:63
+#: ../src\wxUI\dialogs\configuration.py:99
 msgid "Show followers"
 msgstr "Prikaži pratitelje"
 
 #: ../src\gtkUI\dialogs\configuration.py:59
-#: ../src\wxUI\dialogs\configuration.py:65
+#: ../src\wxUI\dialogs\configuration.py:101
 msgid "Show friends"
 msgstr "prikaži prijatelje"
 
 #: ../src\gtkUI\dialogs\configuration.py:61
-#: ../src\wxUI\dialogs\configuration.py:67
+#: ../src\wxUI\dialogs\configuration.py:103
 msgid "Show favourites"
 msgstr "prikaži omiljene"
 
 #: ../src\gtkUI\dialogs\configuration.py:63
-#: ../src\wxUI\dialogs\configuration.py:69
+#: ../src\wxUI\dialogs\configuration.py:105
 msgid "Show blocked users"
 msgstr "prikaži blokirane korisnike"
 
 #: ../src\gtkUI\dialogs\configuration.py:65
-#: ../src\wxUI\dialogs\configuration.py:71
+#: ../src\wxUI\dialogs\configuration.py:107
 msgid "Show muted users"
 msgstr "prikaži utišane korisnike"
 
 #: ../src\gtkUI\dialogs\configuration.py:67
-#: ../src\wxUI\dialogs\configuration.py:73
+#: ../src\wxUI\dialogs\configuration.py:109
 msgid "Show events"
 msgstr "prikaži događaje"
 
 #: ../src\gtkUI\dialogs\configuration.py:75
 #: ../src\gtkUI\dialogs\configuration.py:210
-#: ../src\wxUI\dialogs\configuration.py:81
-#: ../src\wxUI\dialogs\configuration.py:216
+#: ../src\wxUI\dialogs\configuration.py:117
+#: ../src\wxUI\dialogs\configuration.py:256
 msgid "Ignored clients"
 msgstr "Zanemareni klijenti"
 
 #: ../src\gtkUI\dialogs\configuration.py:81
-#: ../src\wxUI\dialogs\configuration.py:87
+#: ../src\wxUI\dialogs\configuration.py:123
 msgid "Add client"
 msgstr "dodaj klijent"
 
 #: ../src\gtkUI\dialogs\configuration.py:82
-#: ../src\wxUI\dialogs\configuration.py:88
+#: ../src\wxUI\dialogs\configuration.py:124
 msgid "Remove client"
 msgstr "Ukloni klijent"
 
 #: ../src\gtkUI\dialogs\configuration.py:106
-#: ../src\wxUI\dialogs\configuration.py:112
+#: ../src\wxUI\dialogs\configuration.py:148
 msgid "Volume"
 msgstr "Glasnoča"
 
 #: ../src\gtkUI\dialogs\configuration.py:114
-#: ../src\wxUI\dialogs\configuration.py:120
-#, fuzzy
+#: ../src\wxUI\dialogs\configuration.py:156
 msgid "Session mute"
-msgstr "Upravitelj sesijama"
+msgstr "Utišavanje sesije"
 
 #: ../src\gtkUI\dialogs\configuration.py:116
-#: ../src\wxUI\dialogs\configuration.py:122
+#: ../src\wxUI\dialogs\configuration.py:158
 msgid "Output device"
 msgstr "Izlazni uređaj"
 
 #: ../src\gtkUI\dialogs\configuration.py:123
-#: ../src\wxUI\dialogs\configuration.py:129
+#: ../src\wxUI\dialogs\configuration.py:165
 msgid "Input device"
 msgstr "Ulazni uređaj"
 
 #: ../src\gtkUI\dialogs\configuration.py:131
-#: ../src\wxUI\dialogs\configuration.py:137
+#: ../src\wxUI\dialogs\configuration.py:173
 msgid "Sound pack"
 msgstr "Paket zvukova"
 
 #: ../src\gtkUI\dialogs\configuration.py:146
-#: ../src\wxUI\dialogs\configuration.py:152
 msgid ""
 "If you've got a SndUp account, enter your API Key here. Whether the API Key "
 "is wrong, the App will fail to upload anything to the server. Whether "
@@ -1501,17 +1449,11 @@ msgstr ""
 "otpremana kao od anonimnog korisnika"
 
 #: ../src\gtkUI\dialogs\configuration.py:163
-#: ../src\wxUI\dialogs\configuration.py:169
+#: ../src\wxUI\dialogs\configuration.py:205
 msgid "Unlink your Dropbox account"
 msgstr "Otspojite vaš DROPBOX nalog"
 
-#: ../src\gtkUI\dialogs\configuration.py:168 ../src\sessionmanager\wxUI.py:45
-#: ../src\wxUI\dialogs\configuration.py:174
-msgid "Authorisation"
-msgstr "autorizacija"
-
 #: ../src\gtkUI\dialogs\configuration.py:168
-#: ../src\wxUI\dialogs\configuration.py:174
 msgid ""
 "The authorisation request will be shown on your browser. Copy the code tat "
 "Dropbox will provide and, in the text box that will appear on TW Blue, paste "
@@ -1522,18 +1464,21 @@ msgstr ""
 "polju za uređivanje koje će se prikazati u TW BLUE, zalijepite ga. Ovaj je "
 "kod potreban kako biste nastavili. Trebate to učiniti jednom."
 
+#: ../src\gtkUI\dialogs\configuration.py:168 ../src\sessionmanager\wxUI.py:47
+msgid "Authorisation"
+msgstr "autorizacija"
+
 #: ../src\gtkUI\dialogs\configuration.py:171
-#: ../src\wxUI\dialogs\configuration.py:177
+#: ../src\wxUI\dialogs\configuration.py:213
 msgid "Enter the code here."
 msgstr "Ovdje upišite kód."
 
 #: ../src\gtkUI\dialogs\configuration.py:171
-#: ../src\wxUI\dialogs\configuration.py:177
+#: ../src\wxUI\dialogs\configuration.py:213
 msgid "Verification code"
 msgstr "Kod potvrde"
 
 #: ../src\gtkUI\dialogs\configuration.py:177
-#: ../src\wxUI\dialogs\configuration.py:183
 msgid "Error during authorisation. Try again later."
 msgstr "Greška pri autorizaciji. Pokušajte ponovo kasnije"
 
@@ -1544,28 +1489,27 @@ msgstr "TW BLUE postavke"
 #: ../src\gtkUI\dialogs\configuration.py:196
 #: ../src\gtkUI\dialogs\configuration.py:201
 #: ../src\issueReporter\issueReporter.py:30
-#: ../src\wxUI\dialogs\configuration.py:202
-#: ../src\wxUI\dialogs\configuration.py:207
+#: ../src\wxUI\dialogs\configuration.py:238
+#: ../src\wxUI\dialogs\configuration.py:247
 msgid "General"
 msgstr "Općenito"
 
 #: ../src\gtkUI\dialogs\configuration.py:206
-#: ../src\wxUI\dialogs\configuration.py:212
 msgid "Show other buffers"
 msgstr "Prikaži druge spremnike"
 
 #: ../src\gtkUI\dialogs\configuration.py:214
-#: ../src\wxUI\dialogs\configuration.py:220
+#: ../src\wxUI\dialogs\configuration.py:260
 msgid "Sound"
 msgstr "Zvuk"
 
 #: ../src\gtkUI\dialogs\configuration.py:217
-#: ../src\wxUI\dialogs\configuration.py:223
+#: ../src\wxUI\dialogs\configuration.py:263
 msgid "Audio Services"
 msgstr "Zvučne usluge"
 
 #: ../src\gtkUI\dialogs\configuration.py:222
-#: ../src\wxUI\dialogs\configuration.py:228
+#: ../src\wxUI\dialogs\configuration.py:268
 msgid "Save"
 msgstr "Spremi"
 
@@ -1574,7 +1518,7 @@ msgstr "Spremi"
 #: ../src\gtkUI\dialogs\update_profile.py:35
 #: ../src\gtkUI\dialogs\userActions.py:40
 #: ../src\gtkUI\dialogs\userSelection.py:28 ../src\gtkUI\dialogs\utils.py:35
-#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:230
+#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:270
 #: ../src\wxUI\dialogs\message.py:75 ../src\wxUI\dialogs\message.py:133
 #: ../src\wxUI\dialogs\message.py:193 ../src\wxUI\dialogs\message.py:269
 #: ../src\wxUI\dialogs\message.py:324 ../src\wxUI\dialogs\search.py:26
@@ -1589,12 +1533,8 @@ msgstr "Zatvori"
 msgid "Lists manager"
 msgstr "Upravljač listama"
 
-#: ../src\gtkUI\dialogs\lists.py:11 ../src\wxUI\dialogs\lists.py:12
-msgid "Lists"
-msgstr "Liste"
-
 #: ../src\gtkUI\dialogs\lists.py:12 ../src\gtkUI\dialogs\lists.py:63
-#: ../src\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:64
+#: ../src\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:69
 msgid "Description"
 msgstr "Opis"
 
@@ -1615,7 +1555,7 @@ msgid "mode"
 msgstr "Način"
 
 #: ../src\gtkUI\dialogs\lists.py:17 ../src\gtkUI\dialogs\lists.py:55
-#: ../src\wxUI\dialogs\lists.py:18 ../src\wxUI\dialogs\lists.py:56
+#: ../src\wxUI\dialogs\lists.py:18 ../src\wxUI\dialogs\lists.py:61
 msgid "Create a new list"
 msgstr "Napravi novu listu"
 
@@ -1625,7 +1565,7 @@ msgid "Edit"
 msgstr "Uredi"
 
 #: ../src\gtkUI\dialogs\lists.py:19 ../src\gtkUI\dialogs\lists.py:117
-#: ../src\wxUI\dialogs\lists.py:20 ../src\wxUI\dialogs\lists.py:115
+#: ../src\wxUI\dialogs\lists.py:20 ../src\wxUI\dialogs\lists.py:124
 msgid "Remove"
 msgstr "Ukloni"
 
@@ -1633,47 +1573,47 @@ msgstr "Ukloni"
 msgid "Open in buffer"
 msgstr "Otvori u spremniku"
 
-#: ../src\gtkUI\dialogs\lists.py:45 ../src\wxUI\dialogs\lists.py:46
+#: ../src\gtkUI\dialogs\lists.py:45 ../src\wxUI\dialogs\lists.py:51
 msgid "Viewing lists for %s"
 msgstr "Prikazivanje popisa za %s"
 
-#: ../src\gtkUI\dialogs\lists.py:46 ../src\wxUI\dialogs\lists.py:47
+#: ../src\gtkUI\dialogs\lists.py:46 ../src\wxUI\dialogs\lists.py:52
 msgid "Subscribe"
 msgstr "Prijavi"
 
-#: ../src\gtkUI\dialogs\lists.py:47 ../src\wxUI\dialogs\lists.py:48
+#: ../src\gtkUI\dialogs\lists.py:47 ../src\wxUI\dialogs\lists.py:53
 msgid "Unsubscribe"
 msgstr "Odjavi"
 
-#: ../src\gtkUI\dialogs\lists.py:58 ../src\wxUI\dialogs\lists.py:59
+#: ../src\gtkUI\dialogs\lists.py:58 ../src\wxUI\dialogs\lists.py:64
 msgid "Name (20 characters maximun)"
 msgstr "Ime maksimalno 20 znakova"
 
-#: ../src\gtkUI\dialogs\lists.py:68 ../src\wxUI\dialogs\lists.py:69
+#: ../src\gtkUI\dialogs\lists.py:68 ../src\wxUI\dialogs\lists.py:74
 msgid "Mode"
 msgstr "Način"
 
-#: ../src\gtkUI\dialogs\lists.py:69 ../src\wxUI\dialogs\lists.py:70
+#: ../src\gtkUI\dialogs\lists.py:69 ../src\wxUI\dialogs\lists.py:75
 msgid "Public"
 msgstr "Javno"
 
-#: ../src\gtkUI\dialogs\lists.py:70 ../src\wxUI\dialogs\lists.py:71
+#: ../src\gtkUI\dialogs\lists.py:70 ../src\wxUI\dialogs\lists.py:76
 msgid "Private"
 msgstr "Privatno"
 
-#: ../src\gtkUI\dialogs\lists.py:93 ../src\wxUI\dialogs\lists.py:91
+#: ../src\gtkUI\dialogs\lists.py:93 ../src\wxUI\dialogs\lists.py:96
 msgid "Editing the list %s"
 msgstr "Uređujem listu %s"
 
-#: ../src\gtkUI\dialogs\lists.py:104 ../src\wxUI\dialogs\lists.py:102
+#: ../src\gtkUI\dialogs\lists.py:104 ../src\wxUI\dialogs\lists.py:107
 msgid "Select a list to add the user"
 msgstr "Označite popis Kako biste dodali korisnika"
 
-#: ../src\gtkUI\dialogs\lists.py:105 ../src\wxUI\dialogs\lists.py:103
+#: ../src\gtkUI\dialogs\lists.py:105 ../src\wxUI\dialogs\lists.py:108
 msgid "Add"
 msgstr "dodaj"
 
-#: ../src\gtkUI\dialogs\lists.py:116 ../src\wxUI\dialogs\lists.py:114
+#: ../src\gtkUI\dialogs\lists.py:116 ../src\wxUI\dialogs\lists.py:123
 msgid "Select a list to remove the user"
 msgstr "Označite listu kako biste dodali korisnika"
 
@@ -1714,15 +1654,15 @@ msgstr "Označite sliku koja treba biti otpremljena"
 
 #: ../src\gtkUI\dialogs\message.py:100
 msgid "JPG images"
-msgstr ""
+msgstr "JPG slike"
 
 #: ../src\gtkUI\dialogs\message.py:104
 msgid "GIF images"
-msgstr ""
+msgstr "GIF slike"
 
 #: ../src\gtkUI\dialogs\message.py:108
 msgid "PNG Images"
-msgstr ""
+msgstr "PNG Slike"
 
 #: ../src\gtkUI\dialogs\message.py:122 ../src\gtkUI\dialogs\message.py:127
 #: ../src\wxUI\dialogs\message.py:173
@@ -1730,7 +1670,6 @@ msgid "Recipient"
 msgstr "Primatelj"
 
 #: ../src\gtkUI\dialogs\message.py:174 ../src\wxUI\dialogs\message.py:225
-#, fuzzy
 msgid "Men&tion to all"
 msgstr "za&pazi sve"
 
@@ -1897,20 +1836,19 @@ msgstr "Vremenska os osobe %s"
 
 #: ../src\gtkUI\dialogs\userSelection.py:16
 #: ../src\wxUI\dialogs\userSelection.py:16
-#, fuzzy
 msgid "Buffer type"
-msgstr "Utišavanje spremnika uključeno"
+msgstr "vrsta spremnika"
 
 #: ../src\gtkUI\sysTrayIcon.py:34 ../src\wxUI\sysTrayIcon.py:34
-#: ../src\wxUI\view.py:25
+#: ../src\wxUI\view.py:23
 #, fuzzy
 msgid "&Global settings"
 msgstr "Globalno utišavanje uključeno"
 
 #: ../src\gtkUI\sysTrayIcon.py:35 ../src\wxUI\sysTrayIcon.py:35
-#: ../src\wxUI\view.py:24
+#: ../src\wxUI\view.py:22
 msgid "Account se&ttings"
-msgstr ""
+msgstr "&Postavke računa"
 
 #: ../src\gtkUI\sysTrayIcon.py:36 ../src\wxUI\sysTrayIcon.py:36
 #, fuzzy
@@ -1923,7 +1861,7 @@ msgid "&Show / hide"
 msgstr "Prikaži / sakrij"
 
 #: ../src\gtkUI\sysTrayIcon.py:38 ../src\wxUI\sysTrayIcon.py:38
-#: ../src\wxUI\view.py:71
+#: ../src\wxUI\view.py:69
 msgid "&Documentation"
 msgstr "&Dokumentacija"
 
@@ -1942,17 +1880,13 @@ msgstr "Zatvori"
 msgid "Manage accounts"
 msgstr "Novi račun"
 
-#: ../src\gtkUI\view.py:183 ../src\wxUI\view.py:169
+#: ../src\gtkUI\view.py:183 ../src\wxUI\view.py:168
 msgid "Address"
 msgstr "Adresa"
 
-#: ../src\gtkUI\view.py:206 ../src\wxUI\view.py:192
+#: ../src\gtkUI\view.py:206 ../src\wxUI\view.py:191
 msgid "Update"
 msgstr "Nadogradnja"
-
-#: ../src\gtkUI\view.py:206 ../src\wxUI\view.py:192
-msgid "Your TW Blue version is up to date"
-msgstr "Imate trenutnu inačicu TW blue"
 
 #: ../src\issueReporter\issueReporter.py:31
 msgid "always"
@@ -2034,15 +1968,6 @@ msgstr "Koliko se često ova greška događa?"
 msgid "Select the importance that you think this bug has"
 msgstr "označite važnost koju ova greška po vama treba imati"
 
-#: ../src\issueReporter\wx_ui.py:69
-msgid ""
-"I know that the TW Blue bug system will get my Twitter username to contact "
-"me and fix the bug quickly"
-msgstr ""
-"Znam da će TW Blue sustav za prijavu  grešaka koristiti moje twitter "
-"korisničko ime kako bi me kontaktirao i kako bi greška bila uspješno "
-"ispravljena"
-
 #: ../src\issueReporter\wx_ui.py:72
 msgid "Send report"
 msgstr "pošalji izvještaj"
@@ -2082,82 +2007,86 @@ msgid ""
 "Something unexpected occurred while trying to report the bug. Please, try "
 "again later"
 msgstr ""
+"Nešto se neočekivano dogodilo prilikom prijave greške. Molimo, pokušajte "
+"ponovno kasnije"
 
-#: ../src\keystrokeEditor\constants.py:4
-msgid "Go up up on the current list"
+#: ../src\keystrokeEditor\constants.py:3
+#, fuzzy
+msgid "Go up in the current buffer"
 msgstr "Idite gore na ovoj listi"
 
-#: ../src\keystrokeEditor\constants.py:5
-msgid "Go down up on the current list"
+#: ../src\keystrokeEditor\constants.py:4
+#, fuzzy
+msgid "Go down in the current buffer"
 msgstr "Idite dolje gore na ovoj listi"
 
-#: ../src\keystrokeEditor\constants.py:6
-msgid "Go to the previous tab"
+#: ../src\keystrokeEditor\constants.py:5
+#, fuzzy
+msgid "Go to the previous buffer"
 msgstr "idite na prijašnji tab"
 
-#: ../src\keystrokeEditor\constants.py:7
-msgid "Go to the next tab"
+#: ../src\keystrokeEditor\constants.py:6
+#, fuzzy
+msgid "Go to the next buffer"
 msgstr "Idite na slijedeći tab"
 
-#: ../src\keystrokeEditor\constants.py:8
+#: ../src\keystrokeEditor\constants.py:7
 #, fuzzy
 msgid "Change to the next account"
 msgstr "Idite na slijedeći tab"
 
-#: ../src\keystrokeEditor\constants.py:9
+#: ../src\keystrokeEditor\constants.py:8
 #, fuzzy
 msgid "Change to the previous account"
 msgstr "idite na prijašnji tab"
 
-#: ../src\keystrokeEditor\constants.py:10
-msgid "Show the graphical interface"
-msgstr "Prikaži grafično sučelje"
+#: ../src\keystrokeEditor\constants.py:9
+#, fuzzy
+msgid "Show or hide the GUI"
+msgstr "Prikaži / sakrij"
 
-#: ../src\keystrokeEditor\constants.py:11
+#: ../src\keystrokeEditor\constants.py:10
 msgid "New tweet"
 msgstr "Novi tweet"
 
-#: ../src\keystrokeEditor\constants.py:12
-msgid "Reply to a tweet"
-msgstr "odgovori na tweet"
-
-#: ../src\keystrokeEditor\constants.py:14
+#: ../src\keystrokeEditor\constants.py:13
 msgid "Send direct message"
 msgstr "Pošalji izravnu poruku"
 
-#: ../src\keystrokeEditor\constants.py:15
+#: ../src\keystrokeEditor\constants.py:14
 msgid "Mark as favourite"
 msgstr "Označi kao omiljeno"
 
-#: ../src\keystrokeEditor\constants.py:16
+#: ../src\keystrokeEditor\constants.py:15
 msgid "Remove from favourites"
 msgstr "Ukloni iz omiljenih stavki"
 
-#: ../src\keystrokeEditor\constants.py:17
-msgid "Open the actions dialogue"
+#: ../src\keystrokeEditor\constants.py:16
+#, fuzzy
+msgid "Open the user actions dialogue"
 msgstr "Otvori dijaloški okvir akcija"
 
-#: ../src\keystrokeEditor\constants.py:18
+#: ../src\keystrokeEditor\constants.py:17
 msgid "See user details"
 msgstr "Pogledaj pojedinosti o korisniku"
 
-#: ../src\keystrokeEditor\constants.py:19
+#: ../src\keystrokeEditor\constants.py:18
 msgid "Show tweet"
 msgstr "Prikaži tweet"
 
-#: ../src\keystrokeEditor\constants.py:20
+#: ../src\keystrokeEditor\constants.py:19
 msgid "Quit"
 msgstr "Zatvori"
 
-#: ../src\keystrokeEditor\constants.py:21
+#: ../src\keystrokeEditor\constants.py:20
 msgid "Open user timeline"
 msgstr "Otvori vremensku os korisnika"
 
-#: ../src\keystrokeEditor\constants.py:22
+#: ../src\keystrokeEditor\constants.py:21
 msgid "Remove buffer"
 msgstr "Ukloni spremnik"
 
-#: ../src\keystrokeEditor\constants.py:23
+#: ../src\keystrokeEditor\constants.py:22
 msgid ""
 "Open URL on the current tweet, or further information for a friend or "
 "follower"
@@ -2165,116 +2094,116 @@ msgstr ""
 "Otvori URL trenutnog tweeta, ili za više informacija o prijatelju ili "
 "pratitelju"
 
-#: ../src\keystrokeEditor\constants.py:24
+#: ../src\keystrokeEditor\constants.py:23
 msgid "Attempt to play audio"
 msgstr "Pokušavam reproducirati zvuk"
 
-#: ../src\keystrokeEditor\constants.py:25
+#: ../src\keystrokeEditor\constants.py:24
 msgid "Increase volume by 5%"
 msgstr "povečaj glasnoću za 5%"
 
-#: ../src\keystrokeEditor\constants.py:26
+#: ../src\keystrokeEditor\constants.py:25
 msgid "Decrease volume by 5%"
 msgstr "smanji glasnoću za 5%"
 
-#: ../src\keystrokeEditor\constants.py:27
+#: ../src\keystrokeEditor\constants.py:26
 msgid "Go to the first element on the list"
 msgstr "Idi na prvu stavku popisa"
 
-#: ../src\keystrokeEditor\constants.py:28
+#: ../src\keystrokeEditor\constants.py:27
 msgid "Go to the last element on the list"
 msgstr "Idi na zadnju stavku popisa"
 
-#: ../src\keystrokeEditor\constants.py:29
+#: ../src\keystrokeEditor\constants.py:28
 msgid "Move 20 elements up on the current list"
 msgstr "premjesti se za 20 stavki gore na listi"
 
-#: ../src\keystrokeEditor\constants.py:30
+#: ../src\keystrokeEditor\constants.py:29
 msgid "Move 20 elements down on the current list"
 msgstr "Premjesti se za 20 elemenata prema dlje na trenutnom popisuo"
 
-#: ../src\keystrokeEditor\constants.py:31
+#: ../src\keystrokeEditor\constants.py:30
 msgid "Edit profile"
 msgstr "Uredi profil"
 
-#: ../src\keystrokeEditor\constants.py:32
+#: ../src\keystrokeEditor\constants.py:31
 msgid "Remove a tweet or direct message"
 msgstr "Ukloni tweet ili izravnu poruku"
 
+#: ../src\keystrokeEditor\constants.py:32
+#, fuzzy
+msgid "Empty the current buffer"
+msgstr "Isprazni spremnik"
+
 #: ../src\keystrokeEditor\constants.py:33
-msgid "Empty the buffer removing all the elements"
-msgstr "Ukloni spremnik brisajući sve elemente popisa"
+msgid "Repeat last item"
+msgstr "Ponovi prethodnu stavku"
 
 #: ../src\keystrokeEditor\constants.py:34
-#, fuzzy
-msgid "Listen to the current message"
-msgstr "slušaj trenutnu poruku"
-
-#: ../src\keystrokeEditor\constants.py:35
 msgid "Copy to clipboard"
 msgstr "Kopiraj u međuspremnik"
 
-#: ../src\keystrokeEditor\constants.py:36
+#: ../src\keystrokeEditor\constants.py:35
 msgid "Add to list"
 msgstr "Dodaj u popis"
 
-#: ../src\keystrokeEditor\constants.py:37
+#: ../src\keystrokeEditor\constants.py:36
 msgid "Remove from list"
 msgstr "Ukloni s popisa"
 
-#: ../src\keystrokeEditor\constants.py:38
+#: ../src\keystrokeEditor\constants.py:37
 #, fuzzy
 msgid "Mute/unmute the active buffer"
 msgstr "utišaj/odtišaj aktivni spremnik"
 
-#: ../src\keystrokeEditor\constants.py:39
+#: ../src\keystrokeEditor\constants.py:38
 #, fuzzy
-msgid "Globally mute/unmute the current account in TWBlue"
+msgid "Globally mute/unmute the current account"
 msgstr "globalno Utišaj/Odtišaj TW Blue"
 
-#: ../src\keystrokeEditor\constants.py:40
+#: ../src\keystrokeEditor\constants.py:39
 #, fuzzy
 msgid "toggle the automatic reading of incoming tweets in the active buffer"
 msgstr ""
 "Uključuje/Isključuje automatsko čitanje dolazećih tweetova u aktivnom "
 "spremniku"
 
-#: ../src\keystrokeEditor\constants.py:41
+#: ../src\keystrokeEditor\constants.py:40
 msgid "Search on twitter"
 msgstr "Traži na twitteru"
 
-#: ../src\keystrokeEditor\constants.py:42
+#: ../src\keystrokeEditor\constants.py:41
 #, fuzzy
 msgid "Show the keystroke editor"
 msgstr "Prikazuje uređivač tipkovničkih kratica"
 
-#: ../src\keystrokeEditor\constants.py:43
+#: ../src\keystrokeEditor\constants.py:42
 msgid "Show lists for a specified user"
 msgstr "Prikazuje popise određenog korisnika"
 
-#: ../src\keystrokeEditor\constants.py:44
+#: ../src\keystrokeEditor\constants.py:43
 #, fuzzy
 msgid "load previous items to any buffer"
 msgstr "Učitava prethodne stavke u bilo koji spremnik"
 
+#: ../src\keystrokeEditor\constants.py:44
+#, fuzzy
+msgid "Get geolocation"
+msgstr "lokacija"
+
 #: ../src\keystrokeEditor\constants.py:45
-msgid "Get location of any tweet"
-msgstr "Doznaj lokaciju bilo kojeg tweeta"
+#, fuzzy
+msgid "Display the tweet's geolocation in a dialog"
+msgstr "Prikazuje lokaciju tweeta u dijaloškom okviru"
 
 #: ../src\keystrokeEditor\constants.py:46
 #, fuzzy
-msgid "Display the tweet's location in a dialog"
-msgstr "Prikazuje lokaciju tweeta u dijaloškom okviru"
+msgid "Create a trending topics buffer"
+msgstr "Pogledaj trending rubrike"
 
 #: ../src\keystrokeEditor\constants.py:47
-#, fuzzy
-msgid "Create a buffer for displaying trends for a desired place"
-msgstr "Prikazuje spremnik za prikazivanje trendova na određenim mjestima"
-
-#: ../src\keystrokeEditor\constants.py:48
-#, fuzzy
-msgid "Opens up a conversation buffer"
-msgstr "Otvori u spremniku"
+msgid "View conversation"
+msgstr "Prikaži konverzaciju"
 
 #: ../src\keystrokeEditor\wx_ui.py:8
 msgid "Keystroke editor"
@@ -2324,31 +2253,36 @@ msgstr "Neispravan prečac"
 msgid "You must provide a character for the keystroke"
 msgstr "Morate upisati znak za prećac"
 
-#: ../src\languageHandler.py:98
+#: ../src\languageHandler.py:95
 msgid "User default"
 msgstr "Korisnički zadano"
 
-#: ../src\sessionmanager\session.py:179
+#: ../src\sessionmanager\session.py:181
 msgid "%s failed.  Reason: %s"
 msgstr "%s neuspjelo.  Razlog: %s"
 
-#: ../src\sessionmanager\session.py:185
+#: ../src\sessionmanager\session.py:187
 msgid "%s succeeded."
 msgstr "%s uspjelo."
 
-#: ../src\sessionmanager\wxUI.py:17 ../src\sessionmanager\wxUI.py:61
+#: ../src\sessionmanager\wxUI.py:17 ../src\sessionmanager\wxUI.py:63
 msgid "Remove account"
 msgstr "Ukloni račun"
 
-#: ../src\sessionmanager\wxUI.py:39
+#: ../src\sessionmanager\wxUI.py:18
+#, fuzzy
+msgid "Global Settings"
+msgstr "Globalno utišavanje uključeno"
+
+#: ../src\sessionmanager\wxUI.py:41
 msgid "Account Error"
 msgstr "Greška računa"
 
-#: ../src\sessionmanager\wxUI.py:39
+#: ../src\sessionmanager\wxUI.py:41
 msgid "You need to configure an account."
 msgstr "Trebate podesiti račun."
 
-#: ../src\sessionmanager\wxUI.py:45
+#: ../src\sessionmanager\wxUI.py:47
 #, fuzzy
 msgid ""
 "The request for the required Twitter authorisation to continue will be "
@@ -2359,15 +2293,15 @@ msgstr ""
 "vašem pregledniku. Trebate to učiniti samo jednom. Želite li sada "
 "autorizirati novi nalog?"
 
-#: ../src\sessionmanager\wxUI.py:49
+#: ../src\sessionmanager\wxUI.py:51
 msgid "Authorised account %d"
 msgstr "Autorizirani račun %d"
 
-#: ../src\sessionmanager\wxUI.py:55
+#: ../src\sessionmanager\wxUI.py:57
 msgid "Invalid user token"
 msgstr "Neispravan korisnički token"
 
-#: ../src\sessionmanager\wxUI.py:55
+#: ../src\sessionmanager\wxUI.py:57
 msgid ""
 "Your access token is invalid or the authorisation has failed. Please try "
 "again."
@@ -2375,7 +2309,7 @@ msgstr ""
 "Vaš autorizacijski token je neispravan ili ili je autorizacija neuspjela. "
 "Please try again."
 
-#: ../src\sessionmanager\wxUI.py:61
+#: ../src\sessionmanager\wxUI.py:63
 #, fuzzy
 msgid "Do you really want to delete this account?"
 msgstr "Želite li doista izbrisati ovaj račun?"
@@ -2383,7 +2317,7 @@ msgstr "Želite li doista izbrisati ovaj račun?"
 #: ../src\twitter\compose.py:40 ../src\twitter\compose.py:67
 #: ../src\twitter\compose.py:76
 msgid "dddd, MMMM D, YYYY H:m:s"
-msgstr ""
+msgstr "dddd, MMMM D, YYYY H:m:s"
 
 #: ../src\twitter\compose.py:46
 msgid "Dm to %s "
@@ -2522,7 +2456,7 @@ msgstr "Preuzimam najnoviju inačicu..."
 
 #: ../src\update\wxUpdater.py:27
 msgid "Updating... %s of %s"
-msgstr ""
+msgstr "Osvježavam... %s od %s"
 
 #: ../src\update\wxUpdater.py:30
 msgid "Done!"
@@ -2531,23 +2465,107 @@ msgstr "Gotovo!"
 #: ../src\update\wxUpdater.py:30
 #, fuzzy
 msgid ""
-"The new TWBlue version has been downloaded and installed. Press OK to start "
-"the application."
+"The update has been downloaded and installed successfully. Press OK to "
+"continue."
 msgstr ""
 "Nova inačica TW blue klijenta je preuzeta i instalirana. Pritisnite U redu "
 "Da biste pokrenuli program."
 
-#: ../src\wxUI\dialogs\configuration.py:51
+#: ../src\wxUI\commonMessageDialogs.py:11
 #, fuzzy
-msgid "Retweets mode"
+msgid "Do you really want to close {0}?"
+msgstr "Želite li doista zatvoriti TW Blue?"
+
+#: ../src\wxUI\commonMessageDialogs.py:15
+msgid "Restart TW Blue"
+msgstr "Ponovno pokreni TW BLUE"
+
+#: ../src\wxUI\commonMessageDialogs.py:15
+msgid ""
+"The application requires to be restarted to save these changes. Press OK to "
+"do it now."
+msgstr ""
+"Zahtjeva se ponovno pokretanje promjena kako bi se promjene spremile. "
+"Pritisnite U redu kako biste to sada učinili."
+
+#: ../src\wxUI\dialogs\configuration.py:37
+msgid "Proxy server: "
+msgstr "Posrednički poslužitelj"
+
+#: ../src\wxUI\dialogs\configuration.py:43
+msgid "Port: "
+msgstr "Port: "
+
+#: ../src\wxUI\dialogs\configuration.py:49
+#, fuzzy
+msgid "User: "
+msgstr "Korisnik"
+
+#: ../src\wxUI\dialogs\configuration.py:55
+msgid "Password: "
+msgstr "Lozinka"
+
+#: ../src\wxUI\dialogs\configuration.py:67
+#, fuzzy
+msgid "Autocompletion settings..."
+msgstr "Postavke korisnika koji se samodovršuju"
+
+#: ../src\wxUI\dialogs\configuration.py:69
+#, fuzzy
+msgid "Relative timestamps"
+msgstr "relativna vremena"
+
+#: ../src\wxUI\dialogs\configuration.py:72
+#, fuzzy
+msgid "API calls (One API call = 200 tweets, two API calls = 400 tweets, etc):"
+msgstr ""
+"Pozivi API kada je izvor pokrenut (Jedan API poziv jednak je 200 tweettova, "
+"dva API poziva jednak 400 tweetova, itd):"
+
+#: ../src\wxUI\dialogs\configuration.py:85
+#, fuzzy
+msgid ""
+"Inverted buffers: The newest tweets will be shown at the beginning while the "
+"oldest at the end"
+msgstr ""
+"Izvrnuti spremnici: najnoviji tweetovi pojavljivat će se na početku popisa "
+"dok će se stariji prikazivati na kraju"
+
+#: ../src\wxUI\dialogs\configuration.py:87
+#, fuzzy
+msgid "Retweet mode"
 msgstr "Retweetuje: "
 
-#: ../src\wxUI\dialogs\configuration.py:196
+#: ../src\wxUI\dialogs\configuration.py:210
 #, fuzzy
-msgid "TW Blue's preferences"
-msgstr "TW BLUE postavke"
+msgid "Authorization"
+msgstr "autorizacija"
 
-#: ../src\wxUI\dialogs\lists.py:124
+#: ../src\wxUI\dialogs\configuration.py:210
+msgid ""
+"Dropbox will open in your browser. After you log into Dropbox, an "
+"authorization code will be generated. Please paste it into the field which "
+"will appear. You only need to do this once."
+msgstr ""
+"Dropbox će se otvoriti u vašem internet pregledniku. Kada se prijavite, "
+"generirat će se autorizacijski kod. Molim zalijepite ga u polje koje će se "
+"prikazati. Ovo trebate učiniti samo jednom."
+
+#: ../src\wxUI\dialogs\configuration.py:219
+#, fuzzy
+msgid "Error during authorization. Try again later."
+msgstr "Greška pri autorizaciji. Pokušajte ponovo kasnije"
+
+#: ../src\wxUI\dialogs\configuration.py:243
+msgid "Proxy"
+msgstr "posrednik"
+
+#: ../src\wxUI\dialogs\configuration.py:252
+#, fuzzy
+msgid "Buffers"
+msgstr "&Spremnik"
+
+#: ../src\wxUI\dialogs\lists.py:133
 msgid "Do you really want to delete this list?"
 msgstr "Želite li doista obrisati ovaj popis?"
 
@@ -2581,162 +2599,240 @@ msgstr "Prikaži &trending rubrike"
 msgid "&Lists manager"
 msgstr "&Upravitelj listi"
 
-#: ../src\wxUI\view.py:22
-msgid "Sounds &tutorial"
-msgstr "t&utorial zvukova"
-
-#: ../src\wxUI\view.py:23
+#: ../src\wxUI\view.py:21
 msgid "&Edit keystrokes"
 msgstr "&Uredi tipkovničke prečace"
 
-#: ../src\wxUI\view.py:26
+#: ../src\wxUI\view.py:24
 msgid "E&xit"
 msgstr "i&zlaz"
 
-#: ../src\wxUI\view.py:30 ../src\wxUI\view.py:82
+#: ../src\wxUI\view.py:28 ../src\wxUI\view.py:81
 msgid "&Tweet"
 msgstr "&Tweet"
 
-#: ../src\wxUI\view.py:31
+#: ../src\wxUI\view.py:29
 msgid "Re&ply"
 msgstr "od&govor"
 
-#: ../src\wxUI\view.py:32
+#: ../src\wxUI\view.py:30
 msgid "&Retweet"
 msgstr "&Proslijedi dalje"
 
-#: ../src\wxUI\view.py:33
+#: ../src\wxUI\view.py:31
 msgid "Add to &favourites"
 msgstr "Dodaj u &favorite"
 
-#: ../src\wxUI\view.py:34
+#: ../src\wxUI\view.py:32
 msgid "Remove from favo&urites"
 msgstr "ukloni iz favo&rita"
 
-#: ../src\wxUI\view.py:35
+#: ../src\wxUI\view.py:33
 msgid "&Show tweet"
 msgstr "&Prikaži tweet"
 
-#: ../src\wxUI\view.py:36
+#: ../src\wxUI\view.py:34
 msgid "View &address"
 msgstr "pogledaj &adresu"
 
-#: ../src\wxUI\view.py:37
+#: ../src\wxUI\view.py:35
 msgid "View conversa&tion"
-msgstr ""
+msgstr "Pogledaj raz&govor"
 
-#: ../src\wxUI\view.py:38
+#: ../src\wxUI\view.py:36
 msgid "&Delete"
 msgstr "&Izbriši"
 
-#: ../src\wxUI\view.py:42
+#: ../src\wxUI\view.py:40
 msgid "&Follow"
 msgstr "&prati"
 
-#: ../src\wxUI\view.py:43
+#: ../src\wxUI\view.py:41
 msgid "&Unfollow"
 msgstr "&ne prati"
 
-#: ../src\wxUI\view.py:44 ../src\wxUI\view.py:64
+#: ../src\wxUI\view.py:42 ../src\wxUI\view.py:62
 msgid "&Mute"
 msgstr "&Utišaj"
 
-#: ../src\wxUI\view.py:45
+#: ../src\wxUI\view.py:43
 msgid "U&nmute"
 msgstr "od&tišaj"
 
-#: ../src\wxUI\view.py:46
+#: ../src\wxUI\view.py:44
 msgid "&Report as spam"
 msgstr "&Izvijesti kao spam"
 
-#: ../src\wxUI\view.py:47
+#: ../src\wxUI\view.py:45
 msgid "&Block"
 msgstr "&Blokiraj"
 
-#: ../src\wxUI\view.py:48
+#: ../src\wxUI\view.py:46
 msgid "Unb&lock"
 msgstr "De&blokiraj"
 
-#: ../src\wxUI\view.py:49
+#: ../src\wxUI\view.py:47
 msgid "Direct me&ssage"
 msgstr "Izravna po&ruka"
 
-#: ../src\wxUI\view.py:50
+#: ../src\wxUI\view.py:48
 msgid "&Add to list"
 msgstr "&Dodaj u listu"
 
-#: ../src\wxUI\view.py:52
+#: ../src\wxUI\view.py:50
 msgid "R&emove from list"
 msgstr "U&kloni iz popisa"
 
-#: ../src\wxUI\view.py:54
+#: ../src\wxUI\view.py:52
 msgid "&View lists"
 msgstr "&Pogledaj popise"
 
-#: ../src\wxUI\view.py:56
+#: ../src\wxUI\view.py:54
 msgid "Show user &profile"
 msgstr "Prikaži korisnički &profil"
 
-#: ../src\wxUI\view.py:57
+#: ../src\wxUI\view.py:55
 msgid "&Timeline"
 msgstr "&Vremenska os"
 
-#: ../src\wxUI\view.py:58
+#: ../src\wxUI\view.py:56
 msgid "V&iew favourites"
 msgstr "Po&gledaj favorite"
 
-#: ../src\wxUI\view.py:62
+#: ../src\wxUI\view.py:60
 msgid "&Load previous items"
 msgstr "&Učitaj prijašnje stavke"
 
-#: ../src\wxUI\view.py:65
+#: ../src\wxUI\view.py:63
 msgid "&Autoread tweets for this buffer"
 msgstr "&Automatski pročitaj tweetove za ovaj spremnik"
 
-#: ../src\wxUI\view.py:66
+#: ../src\wxUI\view.py:64
 msgid "&Clear buffer"
 msgstr "&Očisti spremnik"
 
-#: ../src\wxUI\view.py:67
+#: ../src\wxUI\view.py:65
 msgid "&Remove buffer"
 msgstr "&Ukloni spremnik"
 
-#: ../src\wxUI\view.py:73
+#: ../src\wxUI\view.py:71
+msgid "Sounds &tutorial"
+msgstr "t&utorial zvukova"
+
+#: ../src\wxUI\view.py:72
 msgid "&What's new in this version?"
 msgstr "&Što je novo u ovoj inačici?"
 
-#: ../src\wxUI\view.py:75
+#: ../src\wxUI\view.py:74
 msgid "&Check for updates"
 msgstr "&Provjeri ima li nadogradnja"
 
-#: ../src\wxUI\view.py:76
+#: ../src\wxUI\view.py:75
 msgid "&Report an error"
 msgstr "&Prijavi grešku"
 
-#: ../src\wxUI\view.py:77
-#, fuzzy
-msgid "TW Blue's &website"
-msgstr "TW Blue &web stranica"
-
-#: ../src\wxUI\view.py:78
-msgid "About &TW Blue"
-msgstr "O &TW Blue"
-
-#: ../src\wxUI\view.py:81
+#: ../src\wxUI\view.py:80
 msgid "&Application"
 msgstr "&Aplikacija"
 
-#: ../src\wxUI\view.py:83
+#: ../src\wxUI\view.py:82
 msgid "&User"
 msgstr "&Korisnik"
 
-#: ../src\wxUI\view.py:84
+#: ../src\wxUI\view.py:83
 msgid "&Buffer"
 msgstr "&Spremnik"
 
-#: ../src\wxUI\view.py:85
+#: ../src\wxUI\view.py:84
 msgid "&Help"
 msgstr "&Pomoć"
+
+#: ../src\wxUI\view.py:191
+#, fuzzy
+msgid "Your {0} version is up to date"
+msgstr "Imate trenutnu inačicu TW blue"
+
+#, fuzzy
+#~ msgid "You favorited a tweet."
+#~ msgstr "Poslali ste tweet"
+
+#, fuzzy
+#~ msgid "You've been mentioned."
+#~ msgstr "Netko je na vas obratio pozornost "
+
+#, fuzzy
+#~ msgid "Application is ready."
+#~ msgstr "&Aplikacija"
+
+#, fuzzy
+#~ msgid "You've replied publicly."
+#~ msgstr "Odgovorili ste"
+
+#, fuzzy
+#~ msgid "New tweet in home buffer."
+#~ msgstr "Postoji novi tweet u glavnom spremniku"
+
+#, fuzzy
+#~ msgid "You've sent a tweet."
+#~ msgstr "Poslali ste tweet"
+
+#~ msgid "Editing TWBlue users database"
+#~ msgstr "uređivanje TWBlue baze podataka korisnika"
+
+#~ msgid "See the users list"
+#~ msgstr "Vidi spisak korisnika"
+
+#~ msgid "TWBlue's database of users has been updated."
+#~ msgstr "TWBlue baza podataka korisnika je ažurirana."
+
+#~ msgid "ask before exiting TwBlue?"
+#~ msgstr "Pitaj prije izlaska iz TW BLUE?"
+
+#~ msgid "Activate the auto-start of the invisible interface"
+#~ msgstr "aktiviraj automatsko pokretanje nevidljivog sučelja"
+
+#~ msgid ""
+#~ "I know that the TW Blue bug system will get my Twitter username to "
+#~ "contact me and fix the bug quickly"
+#~ msgstr ""
+#~ "Znam da će TW Blue sustav za prijavu  grešaka koristiti moje twitter "
+#~ "korisničko ime kako bi me kontaktirao i kako bi greška bila uspješno "
+#~ "ispravljena"
+
+#~ msgid "Show the graphical interface"
+#~ msgstr "Prikaži grafično sučelje"
+
+#~ msgid "Reply to a tweet"
+#~ msgstr "odgovori na tweet"
+
+#~ msgid "Empty the buffer removing all the elements"
+#~ msgstr "Ukloni spremnik brisajući sve elemente popisa"
+
+#, fuzzy
+#~ msgid "Listen to the current message"
+#~ msgstr "slušaj trenutnu poruku"
+
+#~ msgid "Get location of any tweet"
+#~ msgstr "Doznaj lokaciju bilo kojeg tweeta"
+
+#, fuzzy
+#~ msgid "Create a buffer for displaying trends for a desired place"
+#~ msgstr "Prikazuje spremnik za prikazivanje trendova na određenim mjestima"
+
+#, fuzzy
+#~ msgid "Opens up a conversation buffer"
+#~ msgstr "Otvori u spremniku"
+
+#, fuzzy
+#~ msgid "TW Blue's preferences"
+#~ msgstr "TW BLUE postavke"
+
+#, fuzzy
+#~ msgid "TW Blue's &website"
+#~ msgstr "TW Blue &web stranica"
+
+#~ msgid "About &TW Blue"
+#~ msgstr "O &TW Blue"
 
 #~ msgid "Stop recording"
 #~ msgstr "Zaustavi snimanje"
@@ -2871,9 +2967,6 @@ msgstr "&Pomoć"
 #~ msgid "This list is arready opened."
 #~ msgstr "Ovaj je popis već otvoren."
 
-#~ msgid "List for %s"
-#~ msgstr "Popis za %s"
-
 #~ msgid "Uploading..."
 #~ msgstr "Otpremam"
 
@@ -2912,9 +3005,6 @@ msgstr "&Pomoć"
 
 #~ msgid "search users for %s"
 #~ msgstr "potraži korisnike za %s"
-
-#~ msgid "Select the user"
-#~ msgstr "Označi korisnika"
 
 #~ msgid "Exiting..."
 #~ msgstr "Zatvaram..."

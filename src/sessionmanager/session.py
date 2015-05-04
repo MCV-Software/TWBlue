@@ -324,7 +324,6 @@ class Session(object):
  def add_friends(self):
   try:
    self.timelinesStream.set_friends(self.main_stream.friends)
-   print "done"
   except AttributeError:
    pass
 

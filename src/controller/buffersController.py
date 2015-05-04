@@ -483,7 +483,6 @@ class listBufferController(baseBufferController):
   super(listBufferController, self).start_stream()
 
  def get_user_ids(self):
-  print "getting user id's"
   self.users = []
   next_cursor = -1
   while(next_cursor):
