@@ -3,6 +3,7 @@ import baseDialog
 import wx
 import logging as original_logger
 import application
+from multiplatform_widgets import widgets
 
 class general(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent, languages):
@@ -97,8 +98,50 @@ class other_buffers(wx.Panel):
  def __init__(self, parent):
   super(other_buffers, self).__init__(parent)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  #Todo: rewrite UI.
+  self.buffers = widgets.list(self, _(u"Buffer"), _(u"Status"), style=wx.LC_SINGLE_SEL|wx.LC_REPORT)
+  sizer.Add(self.buffers.list, 0, wx.ALL, 5)
+  btnSizer = wx.BoxSizer(wx.HORIZONTAL)
+  self.up = wx.Button(self, -1, _(u"Move up"))
+  self.down = wx.Button(self, -1, _(u"Move down"))
+  btnSizer.Add(self.up, 0, wx.ALL, 5)
+  btnSizer.Add(self.down, 0, wx.ALL, 5)
+  sizer.Add(btnSizer, 0, wx.ALL, 5)
   self.SetSizer(sizer)
+
+ def insert_buffers(self, buffers):
+  for i in buffers:
+   if i[1] == True:
+    self.buffers.insert_item(False, *[i[0], _(u"Show")])
+   else:
+    self.buffer.insert_item(False, *[i[0], _(u"Hide")])
+
+ def connect_hook_func(self, func):
+  self.buffers.list.Bind(wx.EVT_CHAR_HOOK, func)
+
+ def move_up(self, *args, **kwargs): pass
+ def move_down(self, *args, **kwargs): pass
+
+ def get_event(self, ev):
+  if ev.GetKeyCode() == wx.WXK_RETURN or ev.GetKeyCode() == wx.WXK_SPACE:
+   return True
+  else:
+   ev.Skip()
+   return False
+
+ def change_selected_item(self):
+  current = self.buffers.get_selected()
+  text = self.buffers.get_text_column(current, 1)
+  if text == _(u"Show"):
+   self.buffers.set_text_column(current, 1, _(u"Hide"))
+  else:
+   self.buffers.set_text_column(current, 1, _(u"Show"))
+
+ def get_list(self):
+  buffers_list = []
+  for i in xrange(0, self.buffers.get_count()):
+   if self.buffers.get_text_column(i, 1) == _(u"Show"):
+    buffers_list.append(self.buffers.get_text_column(i, 0))
+  return buffers_list
 
 class ignoredClients(wx.Panel):
  def __init__(self, parent, choices):

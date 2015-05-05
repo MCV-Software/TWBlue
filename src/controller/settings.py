@@ -91,6 +91,13 @@ class accountSettingsController(globalSettingsController):
    self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
   self.dialog.set_value("general", "persistant_session", self.config["general"]["persistant_session"])
   self.dialog.create_other_buffers()
+  buffer_values = self.get_buffers_list()
+  self.dialog.buffers.insert_buffers(buffer_values)
+  self.dialog.buffers.connect_hook_func(self.toggle_buffer_active)
+#  widgetUtils.connect_event(self.dialog.buffers.up, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.move_up)
+#  widgetUtils.connect_event(self.dialog.buffers.down, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.down)
+
+
   self.dialog.create_ignored_clients(self.config["twitter"]["ignored_clients"])
   widgetUtils.connect_event(self.dialog.ignored_clients.add, widgetUtils.BUTTON_PRESSED, self.add_ignored_client)
   widgetUtils.connect_event(self.dialog.ignored_clients.remove, widgetUtils.BUTTON_PRESSED, self.remove_ignored_client)
@@ -132,24 +139,28 @@ class accountSettingsController(globalSettingsController):
    self.config["general"]["retweet_mode"] = "direct"
   else:
    self.config["general"]["retweet_mode"] = "comment"
-  if self.config["other_buffers"]["show_followers"] != self.dialog.get_value("buffers", "followers"):
-   self.config["other_buffers"]["show_followers"] = self.dialog.get_value("buffers", "followers")
-   pub.sendMessage("create-new-buffer", buffer="followers", account=self.user, create=self.config["other_buffers"]["show_followers"])
-  if self.config["other_buffers"]["show_friends"] != self.dialog.get_value("buffers", "friends"):
-   self.config["other_buffers"]["show_friends"] = self.dialog.get_value("buffers", "friends")
-   pub.sendMessage("create-new-buffer", buffer="friends", account=self.user, create=self.config["other_buffers"]["show_friends"])
-  if self.config["other_buffers"]["show_favourites"] != self.dialog.get_value("buffers", "favs"):
-   self.config["other_buffers"]["show_favourites"] = self.dialog.get_value("buffers", "favs")
-   pub.sendMessage("create-new-buffer", buffer="favourites", account=self.user, create=self.config["other_buffers"]["show_favourites"])
-  if self.config["other_buffers"]["show_blocks"] != self.dialog.get_value("buffers", "blocks"):
-   self.config["other_buffers"]["show_blocks"] = self.dialog.get_value("buffers", "blocks")
-   pub.sendMessage("create-new-buffer", buffer="blocked", account=self.user, create=self.config["other_buffers"]["show_blocks"])
-  if self.config["other_buffers"]["show_muted_users"] != self.dialog.get_value("buffers", "mutes"):
-   self.config["other_buffers"]["show_muted_users"] = self.dialog.get_value("buffers", "mutes")
-   pub.sendMessage("create-new-buffer", buffer="muted", account=self.user, create=self.config["other_buffers"]["show_muted_users"])
-  if self.config["other_buffers"]["show_events"] != self.dialog.get_value("buffers", "events"):
-   self.config["other_buffers"]["show_events"] = self.dialog.get_value("buffers", "events")
-   pub.sendMessage("create-new-buffer", buffer="events", account=self.user, create=self.config["other_buffers"]["show_events"])
+  buffers_list = self.dialog.buffers.get_list()
+  # ToDo: Start the new added buffers.
+  self.config["general"]["buffer_order"] = buffers_list
+
+#  if self.config["other_buffers"]["show_followers"] != self.dialog.get_value("buffers", "followers"):
+#   self.config["other_buffers"]["show_followers"] = self.dialog.get_value("buffers", "followers")
+#   pub.sendMessage("create-new-buffer", buffer="followers", account=self.user, create=self.config["other_buffers"]["show_followers"])
+#  if self.config["other_buffers"]["show_friends"] != self.dialog.get_value("buffers", "friends"):
+#   self.config["other_buffers"]["show_friends"] = self.dialog.get_value("buffers", "friends")
+#   pub.sendMessage("create-new-buffer", buffer="friends", account=self.user, create=self.config["other_buffers"]["show_friends"])
+#  if self.config["other_buffers"]["show_favourites"] != self.dialog.get_value("buffers", "favs"):
+#   self.config["other_buffers"]["show_favourites"] = self.dialog.get_value("buffers", "favs")
+#   pub.sendMessage("create-new-buffer", buffer="favourites", account=self.user, create=self.config["other_buffers"]["show_favourites"])
+#  if self.config["other_buffers"]["show_blocks"] != self.dialog.get_value("buffers", "blocks"):
+#   self.config["other_buffers"]["show_blocks"] = self.dialog.get_value("buffers", "blocks")
+#   pub.sendMessage("create-new-buffer", buffer="blocked", account=self.user, create=self.config["other_buffers"]["show_blocks"])
+#  if self.config["other_buffers"]["show_muted_users"] != self.dialog.get_value("buffers", "mutes"):
+#   self.config["other_buffers"]["show_muted_users"] = self.dialog.get_value("buffers", "mutes")
+#   pub.sendMessage("create-new-buffer", buffer="muted", account=self.user, create=self.config["other_buffers"]["show_muted_users"])
+#  if self.config["other_buffers"]["show_events"] != self.dialog.get_value("buffers", "events"):
+#   self.config["other_buffers"]["show_events"] = self.dialog.get_value("buffers", "events")
+#   pub.sendMessage("create-new-buffer", buffer="events", account=self.user, create=self.config["other_buffers"]["show_events"])
   if self.config["sound"]["input_device"] != self.dialog.sound.get("input"):
    self.config["sound"]["input_device"] = self.dialog.sound.get("input")
    try:
@@ -211,3 +222,18 @@ class accountSettingsController(globalSettingsController):
  def disconnect_dropbox(self):
   self.config["services"]["dropbox_token"] = ""
   self.dialog.services.set_dropbox(False)
+
+ def get_buffers_list(self):
+  all_buffers = ['home','mentions','dm','sent_dm','sent_tweets','favorites','followers','friends','blocks','muted','events']
+  list_buffers = []
+  for i in all_buffers:
+   if i in self.config["general"]["buffer_order"]:
+    list_buffers.append((i, True))
+   else:
+    list_buffers.append((i, False))
+  return list_buffers
+
+ def toggle_buffer_active(self, ev):
+  change = self.dialog.buffers.get_event(ev)
+  if change == True:
+   self.dialog.buffers.change_selected_item()

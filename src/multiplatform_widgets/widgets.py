@@ -79,3 +79,11 @@ class list(object):
    return 0
   else:
    return selected
+
+ def get_text_column(self, indexId, column):
+  item = self.list.GetItem(indexId, column)
+  return item.GetText()
+
+ def set_text_column(self, indexId, column, text):
+  item = self.list.SetStringItem(indexId, column, text)
+  return item
