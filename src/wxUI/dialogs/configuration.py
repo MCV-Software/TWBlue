@@ -124,13 +124,13 @@ class other_buffers(wx.Panel):
  def move_up(self, *args, **kwargs):
   current = self.buffers.get_selected()
   if current == -1:
-   output.speak("Select a buffer first.",True)
+   output.speak(_(u"Select a buffer first."), True)
    return False
-  if self.buffers.get_text_column(current, 1) == 'Hide':
-   output.speak("The buffer is hidden, show it first.",True)
+  if self.buffers.get_text_column(current, 1) == _(u"Hide"):
+   output.speak(_(u"The buffer is hidden, show it first."), True)
    return False
   if current <= 0:
-   output.speak("The buffer is already at the top of the list.",True)
+   output.speak(_(u"The buffer is already at the top of the list."), True)
    return false
   current_text = self.buffers.get_text_column(self.buffers.get_selected(), 0)
   current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 1)
@@ -144,13 +144,13 @@ class other_buffers(wx.Panel):
  def move_down(self, *args, **kwargs):
   current = self.buffers.get_selected()
   if current == -1:
-   output.speak("Select a buffer first.",True)
+   output.speak(_(u"Select a buffer first."), True)
    return False
-  if self.buffers.get_text_column(current, 1) == 'Hide':
-   output.speak("The buffer is hidden, show it first.",True)
+  if self.buffers.get_text_column(current, 1) == _(u"Hide"):
+   output.speak(_(u"The buffer is hidden, show it first."), True)
    return False
   if current >= self.buffers.get_count():
-   output.speak("The buffer is already at the bottom of the list.",True)
+   output.speak(_(u"The buffer is already at the bottom of the list."), True)
    return false
   current_text = self.buffers.get_text_column(self.buffers.get_selected(), 0)
   current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 1)
