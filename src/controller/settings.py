@@ -232,11 +232,13 @@ class accountSettingsController(globalSettingsController):
  def get_buffers_list(self):
   all_buffers = ['home','mentions','dm','sent_dm','sent_tweets','favorites','followers','friends','blocks','muted','events']
   list_buffers = []
+  hidden_buffers=[]
   for i in all_buffers:
    if i in self.config["general"]["buffer_order"]:
     list_buffers.append((i, True))
    else:
-    list_buffers.append((i, False))
+    hidden_buffers.append((i, False))
+  list_buffers.extend(hidden_buffers)
   return list_buffers
 
  def toggle_buffer_active(self, ev):
