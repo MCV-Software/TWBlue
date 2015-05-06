@@ -4,6 +4,7 @@ import wx
 import logging as original_logger
 import application
 from multiplatform_widgets import widgets
+import output
 
 class general(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent, languages):
@@ -137,7 +138,7 @@ class other_buffers(wx.Panel):
    self.buffers.set_text_column(current, 1, _(u"Hide"))
   else:
    self.buffers.set_text_column(current, 1, _(u"Show"))
-
+  output.speak(self.buffers.get_text_column(current, 1),True)
  def get_list(self):
   buffers_list = []
   for i in xrange(0, self.buffers.get_count()):
