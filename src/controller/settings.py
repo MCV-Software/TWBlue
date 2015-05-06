@@ -129,7 +129,10 @@ class accountSettingsController(globalSettingsController):
    self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
   self.config["general"]["max_api_calls"] = self.dialog.get_value("general", "apiCalls")
   self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
-  self.config["general"]["persistant_session"] = self.dialog.get_value("general", "persistant_session")
+  if self.config["general"]["persistant_session"] != self.dialog.get_value("general", "persistant_session"):
+   self.needs_restart = True
+   self.config["general"]["persistant_session"] = self.dialog.get_value("general", "persistant_session")
+
   if self.config["general"]["reverse_timelines"] != self.dialog.get_value("general", "reverse_timelines"):
    self.needs_restart = True
    self.config["general"]["reverse_timelines"] = self.dialog.get_value("general", "reverse_timelines")
