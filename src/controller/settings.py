@@ -95,8 +95,8 @@ class accountSettingsController(globalSettingsController):
   self.dialog.buffers.insert_buffers(buffer_values)
   self.dialog.buffers.connect_hook_func(self.toggle_buffer_active)
   widgetUtils.connect_event(self.dialog.buffers.toggle_state, widgetUtils.BUTTON_PRESSED, self.toggle_state)
-  widgetUtils.connect_event(self.dialog.buffers.up, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.move_up)
-  widgetUtils.connect_event(self.dialog.buffers.down, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.down)
+#  widgetUtils.connect_event(self.dialog.buffers.up, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.move_up)
+#  widgetUtils.connect_event(self.dialog.buffers.down, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.down)
 
 
   self.dialog.create_ignored_clients(self.config["twitter"]["ignored_clients"])
