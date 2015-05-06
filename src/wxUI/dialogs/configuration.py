@@ -131,7 +131,7 @@ class other_buffers(wx.Panel):
    return False
   if current <= 0:
    output.speak("The buffer is already at the top of the list.",True)
-   return false
+   return False
   #not implemented
  def move_down(self, *args, **kwargs):
   current = self.buffers.get_selected()
@@ -143,7 +143,7 @@ class other_buffers(wx.Panel):
    return False
   if current >= self.buffers.get_count():
    output.speak("The buffer is already at the bottom of the list.",True)
-   return false
+   return False
   #not implemented
 
  def get_event(self, ev):
