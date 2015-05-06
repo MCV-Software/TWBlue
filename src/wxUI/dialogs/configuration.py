@@ -126,7 +126,7 @@ class other_buffers(wx.Panel):
   if current == -1:
    output.speak("Select a buffer first.",True)
    return False
-  if self.buffers.get_text_column(current, 1) == 'hide':
+  if self.buffers.get_text_column(current, 1) == 'Hide':
    output.speak("The buffer is hidden, show it first.",True)
    return False
   if current <= 0:
@@ -138,7 +138,7 @@ class other_buffers(wx.Panel):
   if current == -1:
    output.speak("Select a buffer first.",True)
    return False
-  if self.buffers.get_text_column(current, 1) == 'hide':
+  if self.buffers.get_text_column(current, 1) == 'Hide':
    output.speak("The buffer is hidden, show it first.",True)
    return False
   if current >= self.buffers.get_count():
