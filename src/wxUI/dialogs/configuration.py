@@ -129,7 +129,15 @@ class other_buffers(wx.Panel):
   if current == 0:
    output.speak("The buffer is already at the top of the list.",True)
    return false
-  #not implemented
+  current_text = self.buffers.get_text_column(self.buffers.get_selected(), 0)
+  current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 1)
+  text_above = self.buffers.get_text_column(self.buffers.get_selected()-1, 0)
+  text_above_state = self.buffers.get_text_column(self.buffers.get_selected()-1, 1)
+  self.buffers.set_text_column(self.buffers.get_selected()-1, 0, current_text)
+  self.buffers.set_text_column(self.buffers.get_selected()-1, 1, current_text_state)
+  self.buffers.set_text_column(self.buffers.get_selected(), 0, text_above)
+  self.buffers.set_text_column(self.buffers.get_selected(), 1, text_above_state)
+
  def move_down(self, *args, **kwargs):
   current = self.buffers.get_selected()
   if self.buffers.get_text_column(current, 1) == 'hide':
@@ -138,7 +146,14 @@ class other_buffers(wx.Panel):
   if current == self.buffers.get_count():
    output.speak("The buffer is already at the bottom of the list.",True)
    return false
-  #not implemented
+  current_text = self.buffers.get_text_column(self.buffers.get_selected(), 0)
+  current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 1)
+  text_below = self.buffers.get_text_column(self.buffers.get_selected()+1, 0)
+  text_below_state = self.buffers.get_text_column(self.buffers.get_selected()+1, 1)
+  self.buffers.set_text_column(self.buffers.get_selected()+1, 0, current_text)
+  self.buffers.set_text_column(self.buffers.get_selected()+1, 1, current_text_state)
+  self.buffers.set_text_column(self.buffers.get_selected(), 0, text_below)
+  self.buffers.set_text_column(self.buffers.get_selected(), 1, text_below_state)
 
  def get_event(self, ev):
   if ev.GetKeyCode() == wx.WXK_SPACE:
