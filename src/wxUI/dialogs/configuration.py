@@ -131,7 +131,7 @@ class other_buffers(wx.Panel):
    return False
   if current <= 0:
    output.speak(_(u"The buffer is already at the top of the list."), True)
-   return false
+   return False
   current_text = self.buffers.get_text_column(self.buffers.get_selected(), 0)
   current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 1)
   text_above = self.buffers.get_text_column(self.buffers.get_selected()-1, 0)
@@ -149,9 +149,9 @@ class other_buffers(wx.Panel):
   if self.buffers.get_text_column(current, 1) == _(u"Hide"):
    output.speak(_(u"The buffer is hidden, show it first."), True)
    return False
-  if current >= self.buffers.get_count():
+  if current+1 >= self.buffers.get_count():
    output.speak(_(u"The buffer is already at the bottom of the list."), True)
-   return false
+   return False
   current_text = self.buffers.get_text_column(self.buffers.get_selected(), 0)
   current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 1)
   text_below = self.buffers.get_text_column(self.buffers.get_selected()+1, 0)
