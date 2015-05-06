@@ -101,8 +101,10 @@ class other_buffers(wx.Panel):
   self.buffers = widgets.list(self, _(u"Buffer"), _(u"Status"), style=wx.LC_SINGLE_SEL|wx.LC_REPORT)
   sizer.Add(self.buffers.list, 0, wx.ALL, 5)
   btnSizer = wx.BoxSizer(wx.HORIZONTAL)
+  self.toggle_state = wx.Button(self, -1, _(u"Show/hide"))
   self.up = wx.Button(self, -1, _(u"Move up"))
   self.down = wx.Button(self, -1, _(u"Move down"))
+  btnSizer.Add(self.toggle_state, 0, wx.ALL, 5)
   btnSizer.Add(self.up, 0, wx.ALL, 5)
   btnSizer.Add(self.down, 0, wx.ALL, 5)
   sizer.Add(btnSizer, 0, wx.ALL, 5)
@@ -113,7 +115,7 @@ class other_buffers(wx.Panel):
    if i[1] == True:
     self.buffers.insert_item(False, *[i[0], _(u"Show")])
    else:
-    self.buffer.insert_item(False, *[i[0], _(u"Hide")])
+    self.buffers.insert_item(False, *[i[0], _(u"Hide")])
 
  def connect_hook_func(self, func):
   self.buffers.list.Bind(wx.EVT_CHAR_HOOK, func)
