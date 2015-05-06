@@ -123,19 +123,25 @@ class other_buffers(wx.Panel):
 
  def move_up(self, *args, **kwargs):
   current = self.buffers.get_selected()
+  if current == -1:
+   output.speak("Select a buffer first.",True)
+   return False
   if self.buffers.get_text_column(current, 1) == 'hide':
    output.speak("The buffer is hidden, show it first.",True)
    return False
-  if current == 0:
+  if current <= 0:
    output.speak("The buffer is already at the top of the list.",True)
    return false
   #not implemented
  def move_down(self, *args, **kwargs):
   current = self.buffers.get_selected()
+  if current == -1:
+   output.speak("Select a buffer first.",True)
+   return False
   if self.buffers.get_text_column(current, 1) == 'hide':
    output.speak("The buffer is hidden, show it first.",True)
    return False
-  if current == self.buffers.get_count():
+  if current >= self.buffers.get_count():
    output.speak("The buffer is already at the bottom of the list.",True)
    return false
   #not implemented
