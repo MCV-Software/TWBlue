@@ -121,8 +121,24 @@ class other_buffers(wx.Panel):
  def connect_hook_func(self, func):
   self.buffers.list.Bind(wx.EVT_CHAR_HOOK, func)
 
- def move_up(self, *args, **kwargs): pass
- def move_down(self, *args, **kwargs): pass
+ def move_up(self, *args, **kwargs):
+  current = self.buffers.get_selected()
+  if self.buffers.get_text_column(current, 1) == 'hide':
+   output.speak("The buffer is hidden, show it first.",True)
+   return False
+  if current == 0:
+   output.speak("The buffer is already at the top of the list.",True)
+   return false
+  #not implemented
+ def move_down(self, *args, **kwargs):
+  current = self.buffers.get_selected()
+  if self.buffers.get_text_column(current, 1) == 'hide':
+   output.speak("The buffer is hidden, show it first.",True)
+   return False
+  if current == self.buffers.get_count():
+   output.speak("The buffer is already at the bottom of the list.",True)
+   return false
+  #not implemented
 
  def get_event(self, ev):
   if ev.GetKeyCode() == wx.WXK_SPACE:
