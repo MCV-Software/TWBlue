@@ -124,7 +124,7 @@ class other_buffers(wx.Panel):
  def move_down(self, *args, **kwargs): pass
 
  def get_event(self, ev):
-  if ev.GetKeyCode() == wx.WXK_RETURN or ev.GetKeyCode() == wx.WXK_SPACE:
+  if ev.GetKeyCode() == wx.WXK_SPACE:
    return True
   else:
    ev.Skip()
