@@ -12,6 +12,7 @@ def speak(text, interrupt=0):
  if not speaker:
   setup()
  speaker.speak(text, interrupt)
+ speaker.braille(text)
 
 def setup ():
  global speaker
