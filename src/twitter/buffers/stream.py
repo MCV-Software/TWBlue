@@ -42,12 +42,12 @@ class streamer(TwythonStreamer):
   id = data["target"]["id"]
   if id in self.friends:
    self.friends.remove(id)
-  if self.session.settings["other_buffers"]["show_blocks"] == True:
+  if "blocks" in self.session.settings["general"]["buffer_order"]:
    self.session.db["blocked"]["items"].append(data["target"])
    pub.sendMessage("blocked-user", data=data["target"], user=self.get_user())
 
  def unblock(self, data):
-  if self.session.settings["other_buffers"]["show_blocks"] == True:
+  if "blocks" in self.session.settings["general"]["buffer_order"] == True:
    item = utils.find_item(data["target"]["id"], self.session.db["blocked"]["items"])
    self.session.db["blocked"]["items"].pop(item)
    pub.sendMessage("unblocked-user", item=item, user=self.get_user())
@@ -97,7 +97,7 @@ class streamer(TwythonStreamer):
    pub.sendMessage("unfavourite", item=item, user=self.get_user())
 
  def remove_friend(self, data):
-  if self.session.settings["other_buffers"]["show_friends"] == True:
+  if "friends" in self.session.settings["general"]["buffer_order"]:
    item = utils.find_item(data["target"]["id"], self.session.db["friends"]["items"])
    if item > 0:
     self.friends["items"].pop(item)
@@ -118,13 +118,13 @@ class streamer(TwythonStreamer):
      self.put_data("home_timeline", data)
      pub.sendMessage("item-in-home", data=data, user=self.get_user())
    elif data.has_key("event"):
-    if "favorite" == data["event"] and self.session.settings["other_buffers"]["show_favourites"] == True:
+    if "favorite" == data["event"] and "favorites" in self.session.settings["general"]["buffer_order"]:
      self.check_favs(data)
-    elif "unfavorite" == data["event"] and self.session.settings["other_buffers"]["show_favourites"] == True:
+    elif "unfavorite" == data["event"] and "favorites" in self.session.settings["general"]["buffer_order"]:
      self.remove_fav(data)
-    elif "follow" == data["event"] and self.session.settings["other_buffers"]["show_followers"] == True:
+    elif "follow" == data["event"] and "followers" in self.session.settings["general"]["buffer_order"]:
      self.check_follower(data)
-    elif "unfollow" == data["event"] and self.session.settings["other_buffers"]["show_followers"] == True:
+    elif "unfollow" == data["event"] and "friends" in self.session.settings["general"]["buffer_order"]:
      self.remove_friend(data)
     elif "block" == data["event"]:
      self.block_user(data)
@@ -148,7 +148,7 @@ class streamer(TwythonStreamer):
      list = utils.find_item(id, self.session.db["lists"])
      if list != None: self.session.db["lists"].pop(list)
      pub.sendMessage("list-deleted", **{"item":list, "user":self.get_user()})
-    if self.session.settings["other_buffers"]["show_events"] == True:
+    if "events" in self.session.settings["general"]["buffer_order"]:
      pub.sendMessage("event", data= data, user= self.get_user())
 #     self.sound.play("new_event.ogg")
   except KeyboardInterrupt:
