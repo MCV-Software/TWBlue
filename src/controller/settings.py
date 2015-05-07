@@ -144,7 +144,7 @@ class accountSettingsController(globalSettingsController):
   else:
    self.config["general"]["retweet_mode"] = "comment"
   buffers_list = self.dialog.buffers.get_list()
-  if self.config["general"]["buffer_order"] != buffers_list:
+  if set(self.config["general"]["buffer_order"]) != set(buffers_list):
    self.needs_restart = True
    self.config["general"]["buffer_order"] = buffers_list
 
