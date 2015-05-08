@@ -1,12 +1,8 @@
-TWBlue - Next generation
+TWBlue -
 ======
 
-Note
-======
+Copyright (C) 2015. [Technow S.L.](https://www.technow.es)
 
-Please note that this  branch is a new generation of TWBlue. The code has been rewritten using the MVC design pattern. It is very unstable. This code may not work properly and it's use is not recommended. Only use for testing purposes.
-
-TWBlue, an accessible, open source and multiplatform twitter application. 
 TW Blue is an app designed to use Twitter simply and efficiently while using minimal system resources.
 With this app you’ll have access to twitter features such as:
 
