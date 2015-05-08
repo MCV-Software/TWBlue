@@ -159,7 +159,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.user_details, menuitem=self.view.details)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_autoread, menuitem=self.view.autoread)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_buffer_mute, self.view.mute_buffer)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.new_buffer, self.view.newbuffer)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_timeline, self.view.timeline)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_favs_timeline, self.view.favs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_conversation, menuitem=self.view.view_conversation)
   if widgetUtils.toolkit == "wx":
@@ -1270,6 +1270,3 @@ class Controller(object):
  def __del__(self):
   config.app.write()
 
- def new_buffer(self,*args,**kwargs):
-  #This is a placeholder for the unified new buffer dialog, for now just call self.open_timeline.
-  return self.open_timeline(*args,**kwargs)
