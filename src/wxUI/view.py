@@ -16,7 +16,6 @@ class mainFrame(wx.Frame):
   self.updateProfile = app.Append(wx.NewId(), _(u"&Update profile"))
   self.show_hide = app.Append(wx.NewId(), _(u"&Hide window"))
   self.menuitem_search = app.Append(wx.NewId(), _(u"&Search"))
-  self.trends = app.Append(wx.NewId(), _(u"View &trending topics"))
   self.lists = app.Append(wx.NewId(), _(u"&Lists manager"))
   self.keystroke_editor = app.Append(wx.NewId(), _(u"&Edit keystrokes"))
   self.account_settings = app.Append(wx.NewId(), _(u"Account se&ttings"))
@@ -51,6 +50,7 @@ class mainFrame(wx.Frame):
 
   # buffer menu
   buffer = wx.Menu()
+  self.trends = buffer.Append(wx.NewId(), _(u"New &trending topics buffer..."))
   self.load_previous_items = buffer.Append(wx.NewId(), _(u"&Load previous items"))
   buffer.AppendSeparator()
   self.mute_buffer = buffer.AppendCheckItem(wx.NewId(), _(u"&Mute"))

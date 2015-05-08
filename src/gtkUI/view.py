@@ -24,15 +24,13 @@ class mainFrame(Gtk.Window):
   # As in Gtk is not possible to bind keyboard  shorcuts to the system, we don't have support for an invisible interface.
   self.show_hide = None
   self.menuitem_search = Gtk.MenuItem(label="Search")
-  self.trends = Gtk.MenuItem(label="View trending topics")
-  self.trends.add_accelerator("activate", self.accel_group, ord("T"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   self.lists = Gtk.MenuItem(label="Lists manager")
   self.keystrokes_editor = None
   self.account_settings = Gtk.MenuItem(label="Account settings")
   self.prefs = Gtk.MenuItem(label="Global settings")
   self.close = Gtk.MenuItem(label="Close")
   self.close.add_accelerator("activate", self.accel_group, ord("Q"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
-  self.append_to_menu(app, self.manage_accounts, self.updateProfile, self.menuitem_search, self.trends, self.lists, self.account_settings, self.prefs, self.close)
+  self.append_to_menu(app, self.manage_accounts, self.updateProfile, self.menuitem_search, self.lists, self.account_settings, self.prefs, self.close)
 
   app_menu = Gtk.MenuItem(label="Application")
   app_menu.add_accelerator("activate", self.accel_group, ord("a"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
@@ -82,12 +80,14 @@ class mainFrame(Gtk.Window):
 
   # buffer menu
   buffer = Gtk.Menu()
+  self.trends = Gtk.MenuItem(label="New trending topics buffer...")
+  self.trends.add_accelerator("activate", self.accel_group, ord("T"), Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE)
   self.load_previous_items = Gtk.MenuItem(label="Load previous items")
   self.mute_buffer = Gtk.MenuItem(label="Mute")
   self.autoread = Gtk.MenuItem(label="Autoread")
   self.clear = Gtk.MenuItem(label="Clear buffer")
   self.deleteTl = Gtk.MenuItem(label="Destroy")
-  self.append_to_menu(buffer, self.load_previous_items, self.mute_buffer, self.autoread, self.clear, self.deleteTl)
+  self.append_to_menu(buffer, self.trends, self.load_previous_items, self.mute_buffer, self.autoread, self.clear, self.deleteTl)
   buffer_menu = Gtk.MenuItem(label="Buffer")
   buffer_menu.set_submenu(buffer)
   menuBar.append(buffer_menu)
