@@ -2,13 +2,13 @@
 import reverse_sort
 import application
 actions = reverse_sort.reverse_sort([  ("audio", _(u"Audio tweet.")),
-  ("create_timeline", _(u"User-defined buffer created.")),
+  ("create_timeline", _(u"User timeline buffer created.")),
     ("delete_timeline", _(u"User-defined buffer destroied.")),
     ("dm_received", _(u"Direct message received.")),
     ("dm_sent", _(u"Direct message sent.")),
     ("error", _(u"Error.")),
   ("favourite", _(u"Tweet favorited.")),
-  ("favourites_timeline_updated", _(u"Someone's favourites have been updated.")),
+  ("favourites_timeline_updated", _(u"Favourites buffer updated.")),
   ("geo",   _(u"Geotweet.")),
 ("limit", _(u"Boundary reached.")),
     ("list_tweet", _(u"List updated.")),
@@ -22,6 +22,6 @@ actions = reverse_sort.reverse_sort([  ("audio", _(u"Audio tweet.")),
     ("tweet_received", _(u"Tweet received.")),
     ("tweet_send", _(u"Tweet sent.")),
     ("trends_updated", _(u"A trending topic buffer has been updated.")),
-    ("tweet_timeline", _(u"New tweet in user-defined buffer.")),
+    ("tweet_timeline", _(u"New tweet in user timeline buffer.")),
     ("update_followers", _(u"New follower.")),
     ("volume_changed", _(u"Volume changed."))])
