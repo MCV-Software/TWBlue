@@ -395,7 +395,7 @@ class Session(object):
   "Import a shelved database."
   shelfname=paths.config_path(str(self.session_id)+".db")
   if self.settings["general"]["persist_size"] == 0:
-   if os.path.exists(shelfname)
+   if os.path.exists(shelfname):
     os.remove(shelfname)
    return
   try:
