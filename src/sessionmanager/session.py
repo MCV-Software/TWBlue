@@ -370,7 +370,7 @@ class Session(object):
   "Shelve the database to allow for persistance."
   shelfname=paths.config_path(str(self.session_id)+".db")
   if self.settings["general"]["persist_size"] == 0:
-   if os.path.exists(shelfname)
+   if os.path.exists(shelfname):
     os.remove(shelfname)
    return
   try:
