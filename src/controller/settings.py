@@ -6,6 +6,7 @@ import paths
 import widgetUtils
 import config
 import languageHandler
+import output
 from wxUI.dialogs import configuration
 from wxUI import commonMessageDialogs
 from extra.autocompletionUsers import settings
@@ -89,7 +90,7 @@ class accountSettingsController(globalSettingsController):
    self.dialog.set_value("general", "retweet_mode", _(u"Retweet without comments"))
   else:
    self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
-  self.dialog.set_value("general", "persistant_session", self.config["general"]["persistant_session"])
+  self.dialog.set_value("general", "persist_size", str(self.config["general"]["persist_size"]))
   self.dialog.create_other_buffers()
   buffer_values = self.get_buffers_list()
   self.dialog.buffers.insert_buffers(buffer_values)
@@ -129,9 +130,15 @@ class accountSettingsController(globalSettingsController):
    self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
   self.config["general"]["max_api_calls"] = self.dialog.get_value("general", "apiCalls")
   self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
-  if self.config["general"]["persistant_session"] != self.dialog.get_value("general", "persistant_session"):
-   self.needs_restart = True
-   self.config["general"]["persistant_session"] = self.dialog.get_value("general", "persistant_session")
+  if self.config["general"]["persist_size"] != self.dialog.get_value("general", "persist_size"):
+   if self.dialog.get_value("general", "persist_size") == '':
+    self.config["general"]["persist_size"] =-1
+   else:
+    try:
+     self.config["general"]["persist_size"] = int(self.dialog.get_value("general", "persist_size"))
+    except ValueError:
+     output.speak("Invalid cache size, setting to default.",True)
+     self.config["general"]["persist_size"] =1764
 
   if self.config["general"]["reverse_timelines"] != self.dialog.get_value("general", "reverse_timelines"):
    self.needs_restart = True
