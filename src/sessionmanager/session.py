@@ -254,7 +254,8 @@ class Session(object):
   """ Gets muted users (oh really?)."""
 
 #  self.db["muted_users"] = self.twitter.twitter.get_muted_users_ids()["ids"]
-  pass
+  #This really needs to be fixed (#30). Return an empty list as a hacky workaround, remove this comment and the line below when fixed.
+  self.db["muted_users"] = []
  @_require_login
  def get_stream(self, name, function, *args, **kwargs):
 
