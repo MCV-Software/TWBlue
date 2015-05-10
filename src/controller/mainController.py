@@ -531,8 +531,7 @@ class Controller(object):
    if hasattr(session_.sessions[item], "timelinesStream"): session_.sessions[item].timelinesStream.disconnect()
    session_.sessions[item].sound.cleaner.cancel()
    log.debug("Shelving database for " +    session_.sessions[item].session_id)
-   if session_.sessions[item].settings["general"]["persistant_session"] == True:
-    session_.sessions[item].shelve()
+   session_.sessions[item].shelve()
 
   if system == "Windows":
    self.systrayIcon.RemoveIcon()

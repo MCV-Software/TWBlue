@@ -113,8 +113,7 @@ class Session(object):
    log.debug("Creating config file %s" % (file_,))
    self.settings = config_utils.load_config(paths.config_path(file_), paths.app_path("Conf.defaults"))
    self.init_sound()
-   if self.settings["general"]["persist_size"] != 0:
-    self.deshelve()
+   self.deshelve()
 #  except:
 #   log.exception("The session configuration has failed.")
 #   self.settings = None
@@ -370,6 +369,10 @@ class Session(object):
  def shelve(self):
   "Shelve the database to allow for persistance."
   shelfname=paths.config_path(str(self.session_id)+".db")
+  if self.settings["general"]["persist_size"] == 0:
+   if os.path.exists(shelfname)
+    os.remove(shelfname)
+   return
   try:
    if not os.path.exists(shelfname):
     output.speak("Generating database, this might take a while.",True)
@@ -391,6 +394,10 @@ class Session(object):
  def deshelve(self):
   "Import a shelved database."
   shelfname=paths.config_path(str(self.session_id)+".db")
+  if self.settings["general"]["persist_size"] == 0:
+   if os.path.exists(shelfname)
+    os.remove(shelfname)
+   return
   try:
    shelf=shelve.open(paths.config_path(shelfname),'c')
    for key,value in shelf.items():
