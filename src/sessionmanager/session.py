@@ -381,7 +381,7 @@ class Session(object):
     if type(key) != str and type(key) != unicode:
         output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
         log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
-    if type(value) == List and self.settings["general"]["persist_size"] != -1 and len(type) > self.settings["general"]["persist_size"]:
+    if type(value) == list and self.settings["general"]["persist_size"] != -1 and len(type) > self.settings["general"]["persist_size"]:
         shelf[str(key)]=value[self.settings["general"]["persist_size"]:]
     else:
         shelf[str(key)]=value
