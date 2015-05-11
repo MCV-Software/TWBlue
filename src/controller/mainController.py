@@ -226,6 +226,7 @@ class Controller(object):
     self.create_ignored_session_buffer(session_.sessions[i])
     continue
    self.create_buffers(session_.sessions[i])
+
   # Connection checker executed each minute.
   self.checker_function = RepeatingTimer(60, self.check_connection)
   self.checker_function.start()
@@ -235,6 +236,7 @@ class Controller(object):
   for i in session_.sessions:
    if session_.sessions[i].is_logged == False: continue
    self.start_buffers(session_.sessions[i])
+   self.set_buffer_positions(session_.sessions[i])
   if config.app["app-settings"]["play_ready_sound"] == True:
    session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
   if config.app["app-settings"]["speak_ready_msg"] == True:
@@ -352,6 +354,12 @@ class Controller(object):
    self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    buffer.timer = RepeatingTimer(300, buffer.start_stream)
    buffer.timer.start()
+
+ def set_buffer_positions(self,session):
+  "Sets positions for buffers if values exist in the database."
+  for i in self.buffers:
+   if str(i.name+"_pos") in session.db and hasattr(i.buffer,'list'):
+    i.buffer.list.select_item(session.db[str(i.name+"_pos")])
 
  def logout_account(self, session_id):
   for i in session_.sessions:
