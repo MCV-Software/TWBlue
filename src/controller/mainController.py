@@ -197,8 +197,6 @@ class Controller(object):
   self.buffers = []
   # accounts list.
   self.accounts = []
-  # a dict for saving the current buffer position for each account (future)
-  self.buffer_positions = {}
   # This saves the current account (important in invisible mode)
   self.current_account = ""
   self.view.prepare()
@@ -249,7 +247,6 @@ class Controller(object):
   account.setup_account()
   self.buffers.append(account)
   self.view.add_buffer(account.buffer , name=session.settings["twitter"]["user_name"])
-  self.buffer_positions[session.settings["twitter"]["user_name"]] = 1
 
  def login_account(self, session_id):
   for i in session_.sessions:
@@ -264,7 +261,6 @@ class Controller(object):
   session.get_user_info()
   if createAccounts == True:
    self.accounts.append(session.db["user_name"])
-   self.buffer_positions[session.db["user_name"]] = 1
    account = buffersController.accountPanel(self.view.nb, session.db["user_name"], session.db["user_name"], session.session_id)
    account.setup_account()
    self.buffers.append(account)
