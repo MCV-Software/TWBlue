@@ -870,6 +870,8 @@ class Controller(object):
    pass
   if position == page.buffer.list.get_selected():
    page.session.sound.play("limit.ogg")
+  else:
+   page.session.db[page.name+"_pos"]=index
   try:
    output.speak(page.get_message(), True)
   except:
@@ -888,6 +890,8 @@ class Controller(object):
    pass
   if position == page.buffer.list.get_selected():
    page.session.sound.play("limit.ogg")
+  else:
+   page.session.db[page.name+"_pos"]=index
   try:
    output.speak(page.get_message(), True)
   except:
