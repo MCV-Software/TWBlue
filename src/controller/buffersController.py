@@ -413,19 +413,20 @@ class baseBufferController(bufferController):
    self.session.sound.play("geo.ogg")
   self.session.db[str(self.name+"_pos")]=self.buffer.list.get_selected()
  @_tweets_exist
- def audio(self):
+ def audio(self,url=''):
   tweet = self.get_tweet()
   if tweet == None: return
   urls = utils.find_urls(tweet)
   if len(urls) == 1:
-   sound.URLPlayer.play(urls[0], self.session.settings["sound"]["volume"])
+   url=urls[0]
   elif len(urls) > 1:
    urls_list = dialogs.urlList.urlList()
    urls_list.populate_list(urls)
    if urls_list.get_response() == widgetUtils.OK:
-    sound.URLPlayer.play(urls_list.get_string(), self.session.settings["sound"]["volume"])
+    url=urls_list.get_string()
    if hasattr(urls_list, "destroy"): urls_list.destroy()
-
+  if url != '':
+   sound.URLPlayer.play(url, self.session.settings["sound"]["volume"])
  @_tweets_exist
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
