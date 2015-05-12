@@ -437,9 +437,11 @@ class baseBufferController(bufferController):
   print "Interact method invoked"
   tweet = self.get_tweet()
   urls = utils.find_urls(tweet)
-  #handle audio-only (no weblinks) tweets.
-  if len(urls) == 1 and utils.is_audio(tweet):
+  #handle audio tweets.
+  if utils.is_audio(tweet):
    return self.audio()
+  elif utils.is_geocoded(tweet):
+   output.speak("Not implemented",True)
   else:
    return self.url()
 
