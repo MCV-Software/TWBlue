@@ -65,7 +65,7 @@ class globalSettingsController(object):
   if config.app["app-settings"]["use_modern_audio_algo"] != self.dialog.get_value("general", "use_modern_audio_algo"):
    config.app["app-settings"]["use_modern_audio_algo"] = self.dialog.get_value("general", "use_modern_audio_algo")
    #Todo: clean memmos.
-   if config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
+  if config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
    if self.is_started == True:
     self.needs_restart = True
    config.app["proxy"]["server"] = self.dialog.get_value("proxy", "server")
