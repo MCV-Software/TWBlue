@@ -34,11 +34,13 @@ class globalSettingsController(object):
   self.dialog.create_general(langs)
   self.dialog.general.language.SetSelection(id)
   self.dialog.set_value("general", "ask_at_exit", config.app["app-settings"]["ask_at_exit"])
+  
   self.dialog.set_value("general", "play_ready_sound", config.app["app-settings"]["play_ready_sound"])
   self.dialog.set_value("general", "speak_ready_msg", config.app["app-settings"]["speak_ready_msg"])
   self.dialog.set_value("general", "use_invisible_shorcuts", config.app["app-settings"]["use_invisible_keyboard_shorcuts"])
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
+  self.dialog.set_value("general", "use_modern_audio_algo", config.app["app-settings"]["use_modern_audio_algo"])
   self.dialog.create_proxy()
   self.dialog.set_value("proxy", "server", config.app["proxy"]["server"])
   self.dialog.set_value("proxy", "port", config.app["proxy"]["port"])
@@ -60,7 +62,10 @@ class globalSettingsController(object):
   config.app["app-settings"]["ask_at_exit"] = self.dialog.get_value("general", "ask_at_exit")
   config.app["app-settings"]["play_ready_sound"] = self.dialog.get_value("general", "play_ready_sound")
   config.app["app-settings"]["speak_ready_msg"] = self.dialog.get_value("general", "speak_ready_msg")
-  if config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
+  if config.app["app-settings"]["use_modern_audio_algo"] != self.dialog.get_value("general", "use_modern_audio_algo"):
+   config.app["app-settings"]["use_modern_audio_algo"] = self.dialog.get_value("general", "use_modern_audio_algo")
+   #Todo: clean memmos.
+   if config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
    if self.is_started == True:
     self.needs_restart = True
    config.app["proxy"]["server"] = self.dialog.get_value("proxy", "server")
@@ -92,7 +97,6 @@ class accountSettingsController(globalSettingsController):
   else:
    self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
   self.dialog.set_value("general", "persist_size", str(self.config["general"]["persist_size"]))
-  self.dialog.set_value("general", "use_modern_audio_algo", self.config["general"]["use_modern_audio_algo"])
   self.dialog.create_other_buffers()
   buffer_values = self.get_buffers_list()
   self.dialog.buffers.insert_buffers(buffer_values)
@@ -152,9 +156,6 @@ class accountSettingsController(globalSettingsController):
    self.config["general"]["retweet_mode"] = "direct"
   else:
    self.config["general"]["retweet_mode"] = "comment"
-  if self.config["general"]["use_modern_audio_algo"] != self.dialog.get_value("general", "use_modern_audio_algo"):
-   self.config["general"]["use_modern_audio_algo"] = self.dialog.get_value("general", "use_modern_audio_algo")
-   self.buffer.session.clean_is_audio_memmos()
   buffers_list = self.dialog.buffers.get_list()
   if set(self.config["general"]["buffer_order"]) != set(buffers_list):
    self.needs_restart = True

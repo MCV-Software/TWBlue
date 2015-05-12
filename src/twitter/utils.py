@@ -50,11 +50,11 @@ def is_audio(tweet,force=False):
    if i["text"] == "audio":
     tweet['is_audio']=True
     return True
- #implement conditional.
- for u in find_urls(tweet):
-  if url_is_audio(u):
-   tweet['is_audio']=True
-   return True
+ if config.app['app-settings']['use_modern_audio_algo']:
+  for u in find_urls(tweet):
+   if url_is_audio(u):
+    tweet['is_audio']=True
+    return True
  tweet['is_audio']=False
  return False
 

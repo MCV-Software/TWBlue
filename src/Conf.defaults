@@ -14,7 +14,6 @@ announce_stream_status = boolean(default=True)
 retweet_mode = string(default="ask")
 persist_size = integer(default=1764)
 buffer_order = list(default=list('home','mentions','dm','sent_dm','sent_tweets','favorites','followers','friends','blocks','muted','events'))
-use_modern_audio_algo = boolean(default=True)
 
 [sound]
 volume = float(default=1.0)
