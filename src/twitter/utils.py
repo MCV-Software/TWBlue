@@ -4,6 +4,7 @@ import output
 from twython import TwythonError
 import config
 import logging
+import requests
 log = logging.getLogger("twitter.utils")
 """ Some utilities for the twitter interface."""
 
@@ -46,6 +47,10 @@ def is_audio(tweet):
   for i in tweet["entities"]["hashtags"]:
    if i["text"] == "audio":
     return True
+ for u in find_urls(tweet):
+  response = requests.head(u) 
+  if 'audio' in str(response.headers['content-type']).lower():
+   return True
  return False
 
 def is_geocoded(tweet):
