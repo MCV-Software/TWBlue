@@ -416,3 +416,11 @@ class Session(object):
    if type(value) == list:
     for t in value:
      utils.is_audio(t,force=force)
+
+ def clean_is_audio_memmos(self):
+  "Clean out memmos for is_audio"
+  for key,value in self.db.items():
+   if type(value) == list:
+    for i in value:
+     if 'is_audio' in i:
+      del i['is_audio']

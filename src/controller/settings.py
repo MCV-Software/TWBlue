@@ -7,6 +7,7 @@ import widgetUtils
 import config
 import languageHandler
 import output
+import application
 from wxUI.dialogs import configuration
 from wxUI import commonMessageDialogs
 from extra.autocompletionUsers import settings
@@ -153,6 +154,7 @@ class accountSettingsController(globalSettingsController):
    self.config["general"]["retweet_mode"] = "comment"
   if self.config["general"]["use_modern_audio_algo"] != self.dialog.get_value("general", "use_modern_audio_algo"):
    self.config["general"]["use_modern_audio_algo"] = self.dialog.get_value("general", "use_modern_audio_algo")
+   self.buffer.session.clean_is_audio_memmos()
   buffers_list = self.dialog.buffers.get_list()
   if set(self.config["general"]["buffer_order"]) != set(buffers_list):
    self.needs_restart = True
