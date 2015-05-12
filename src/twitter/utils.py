@@ -51,13 +51,9 @@ def is_audio(tweet):
     tweet['is_audio']=True
     return True
  for u in find_urls(tweet):
-  try:
-   response = requests.head(u,allow_redirects=True) 
-   if 'audio' in str(response.headers['content-type']).lower():
-    tweet['is_audio']=True
-    return True
-  except:
-   log.exception("Exception while determining audio by HTTP headers")
+  if url_is_audio(u):
+   tweet['is_audio']=True
+   return True
  tweet['is_audio']=False
  return False
 
@@ -124,3 +120,12 @@ def is_allowed(tweet, clients):
    allowed = False
    log.exception("Tuit not allowed: %s" % (tweet["text"],))
  return allowed
+def url_is_audio(u):
+ try:
+  response = requests.head(u,allow_redirects=True) 
+  if 'audio' in str(response.headers['content-type']).lower():
+   return True
+  else:
+   return False
+ except:
+  log.exception("Exception while determining audio by HTTP headers")
