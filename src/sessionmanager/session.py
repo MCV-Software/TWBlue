@@ -114,7 +114,6 @@ class Session(object):
    self.settings = config_utils.load_config(paths.config_path(file_), paths.app_path("Conf.defaults"))
    self.init_sound()
    self.deshelve()
-   self.tag_audio_tweets()
 #  except:
 #   log.exception("The session configuration has failed.")
 #   self.settings = None
@@ -409,18 +408,3 @@ class Session(object):
    output.speak("An exception occurred while deshelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
    log.exception("Exception while deshelving" + shelfname)
    os.remove(shelfname)
-
- def tag_audio_tweets(self):
-  "Checks for missing audio tags and repairs them to improve performance."
-  missings=[]
-  for key,value in self.db.items():
-   if type(value) == list:
-    for t in value:
-     if 'is_audio' not in t:
-      missings.append(t)
-  if len(missings) > 0:
-   output.speak(str(len(missings))+" tweets have missing audio tags. "+ application.name + " Will now repair all tags before starting. This may take a while.",True)
-   count=0
-   for m in missings:
-    utils.is_audio(m)
-    output.speak("Tagged " + str(count) + " of " + str(len(missings)))
