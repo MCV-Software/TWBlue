@@ -94,10 +94,10 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(rMode, 0, wx.ALL, 5)
   PersistSizeLabel = wx.StaticText(self, -1, _(u"Number of items per buffer to cache in database (0 to disable caching, blank for unlimited)"))
   self.persist_size = wx.TextCtrl(self, -1)
-  self.autohandle_audio= wx.CheckBox(self, -1, _(U"Automatically handle audio on "+config.app["keymap"]["url"]))
+  self.use_modern_audio_algo= wx.CheckBox(self, -1, _(U"Use audio tweet detection algorithm by Codeofdusk"))
   sizer.Add(PersistSizeLabel, 0, wx.ALL, 5)
   sizer.Add(self.persist_size, 0, wx.ALL, 5)
-  sizer.Add(self.autohandle_audio, 0, wx.ALL, 5)
+  sizer.Add(self.use_modern_audio_algo, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
 class other_buffers(wx.Panel):

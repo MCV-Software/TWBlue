@@ -50,6 +50,7 @@ def is_audio(tweet):
    if i["text"] == "audio":
     tweet['is_audio']=True
     return True
+ #implement conditional.
  for u in find_urls(tweet):
   if url_is_audio(u):
    tweet['is_audio']=True
