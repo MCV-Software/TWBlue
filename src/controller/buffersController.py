@@ -426,7 +426,10 @@ class baseBufferController(bufferController):
     url=urls_list.get_string()
    if hasattr(urls_list, "destroy"): urls_list.destroy()
   if url != '':
-   sound.URLPlayer.play(url, self.session.settings["sound"]["volume"])
+   try:
+    sound.URLPlayer.play(url, self.session.settings["sound"]["volume"])
+   except:
+    self.url(url=url)
  @_tweets_exist
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
