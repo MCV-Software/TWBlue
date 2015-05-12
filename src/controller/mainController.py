@@ -226,6 +226,7 @@ class Controller(object):
     self.create_ignored_session_buffer(session_.sessions[i])
     continue
    self.create_buffers(session_.sessions[i])
+   self.set_buffer_positions(session_.sessions[i])
 
   # Connection checker executed each minute.
   self.checker_function = RepeatingTimer(60, self.check_connection)
@@ -236,7 +237,6 @@ class Controller(object):
   for i in session_.sessions:
    if session_.sessions[i].is_logged == False: continue
    self.start_buffers(session_.sessions[i])
-   self.set_buffer_positions(session_.sessions[i])
   if config.app["app-settings"]["play_ready_sound"] == True:
    session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
   if config.app["app-settings"]["speak_ready_msg"] == True:
@@ -870,8 +870,7 @@ class Controller(object):
    pass
   if position == page.buffer.list.get_selected():
    page.session.sound.play("limit.ogg")
-  else:
-   page.session.db[page.name+"_pos"]=index
+
   try:
    output.speak(page.get_message(), True)
   except:
@@ -890,8 +889,6 @@ class Controller(object):
    pass
   if position == page.buffer.list.get_selected():
    page.session.sound.play("limit.ogg")
-  else:
-   page.session.db[page.name+"_pos"]=index
   try:
    output.speak(page.get_message(), True)
   except:
