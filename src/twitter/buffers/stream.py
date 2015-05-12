@@ -37,7 +37,7 @@ class streamer(TwythonStreamer):
     self.session.db[place].append(data)
    else:
     self.session.db[place].insert(0, data)
-
+  utils.is_audio(data)
  def block_user(self, data):
   id = data["target"]["id"]
   if id in self.friends:

@@ -42,8 +42,8 @@ def find_next_reply(id, listItem):
   if listItem[i]["in_reply_to_status_id_str"] == str(id): return i
  return None
 
-def is_audio(tweet):
- if 'is_audio' in tweet:
+def is_audio(tweet,force=False):
+ if force == False and 'is_audio' in tweet:
   return tweet['is_audio']
  if len(tweet["entities"]["hashtags"]) > 0:
   for i in tweet["entities"]["hashtags"]:
