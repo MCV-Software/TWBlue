@@ -428,6 +428,16 @@ class baseBufferController(bufferController):
 
  @_tweets_exist
  def url(self):
+  "Select the best action for a URL."
+  tweet = self.get_tweet()
+  urls = utils.find_urls(tweet)
+  #handle audio-only (no weblinks) tweets.
+  if len(urls) == 1 and utils.is_audio(tweet) and self.session.settings["general"]["autohandle_audio"]:
+   return self.audio()
+  else:
+   return self.url_browser()
+
+ def url_browser(self):
   tweet = self.get_tweet()
   urls = utils.find_urls(tweet)
   if len(urls) == 1:

@@ -91,6 +91,7 @@ class accountSettingsController(globalSettingsController):
   else:
    self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
   self.dialog.set_value("general", "persist_size", str(self.config["general"]["persist_size"]))
+  self.dialog.set_value("general", "autohandle_audio", self.config["general"]["autohandle_audio"])
   self.dialog.create_other_buffers()
   buffer_values = self.get_buffers_list()
   self.dialog.buffers.insert_buffers(buffer_values)
@@ -150,6 +151,8 @@ class accountSettingsController(globalSettingsController):
    self.config["general"]["retweet_mode"] = "direct"
   else:
    self.config["general"]["retweet_mode"] = "comment"
+  if self.config["general"]["autohandle_audio"] != self.dialog.get_value("general", "autohandle_audio"):
+   self.config["general"]["autohandle_audio"] = self.dialog.get_value("general", "autohandle_audio")
   buffers_list = self.dialog.buffers.get_list()
   if set(self.config["general"]["buffer_order"]) != set(buffers_list):
    self.needs_restart = True
