@@ -19,7 +19,7 @@ actions = {
 "exit": _(u"Quit"),
 "open_timeline": _(u"Open user timeline"),
 "remove_buffer": _(u"Destroy buffer"),
-"url": _(u"Open URL on the current tweet, or further information for a friend or follower"),
+"interact": _(u"Interact with the currently focused tweet."),
 "audio": _(u"Attempt to play audio"),
 "volume_up": _(u"Increase volume by 5%"),
 "volume_down": _(u"Decrease volume by 5%"),
