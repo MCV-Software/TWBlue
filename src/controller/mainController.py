@@ -1010,6 +1010,10 @@ class Controller(object):
   except:
    pass
 
+ def interact(self, *args, **kwargs):
+  buffer = self.get_current_buffer()
+  return buffer.interact()
+
  def url(self, *args, **kwargs):
   buffer = self.get_current_buffer()
   buffer.url()

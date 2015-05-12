@@ -46,7 +46,7 @@ class bufferController(object):
 
  def get_event(self, ev):
   if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
-  elif ev.GetKeyCode() == wx.WXK_RETURN: event = "url"
+  elif ev.GetKeyCode() == wx.WXK_RETURN: event = "interact"
   elif ev.GetKeyCode() == wx.WXK_F5: event = "volume_down"
   elif ev.GetKeyCode() == wx.WXK_F6: event = "volume_up"
   elif ev.GetKeyCode() == wx.WXK_DELETE and ev.ShiftDown(): event = "clear_list"
@@ -430,7 +430,7 @@ class baseBufferController(bufferController):
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
   #debugging (remove when issue is closed).
-  output.speak("Interact method invoked",True)
+  print "Interact method invoked"
   tweet = self.get_tweet()
   urls = utils.find_urls(tweet)
   #handle audio-only (no weblinks) tweets.
@@ -651,7 +651,7 @@ class peopleBufferController(baseBufferController):
    self.session.db[self.name]["cursor"] = -1
    self.buffer.list.clear()
 
- def url(self):
+ def interact(self):
   user.profileController(self.session, user=self.get_right_tweet()["screen_name"])
 
 class searchBufferController(baseBufferController):
@@ -774,7 +774,7 @@ class trendsBufferController(bufferController):
   elif dlg == widgetUtils.NO:
    return False
 
- def url(self, *args, **kwargs):
+ def interact(self, *args, **kwargs):
   self.searchfunction(value=self.get_message())
 
 class conversationBufferController(searchBufferController):
