@@ -434,24 +434,26 @@ class baseBufferController(bufferController):
   tweet = self.get_tweet()
   urls = utils.find_urls(tweet)
   #handle audio-only (no weblinks) tweets.
-  if len(urls) == 1 and utils.is_audio(tweet) and self.session.settings["general"]["autohandle_audio"]:
+  if len(urls) == 1 and utils.is_audio(tweet):
    return self.audio()
   else:
    return self.url()
 
- def url(self):
-  tweet = self.get_tweet()
-  urls = utils.find_urls(tweet)
-  if len(urls) == 1:
-   output.speak(_(u"Opening URL..."), True)
-   webbrowser.open_new_tab(urls[0])
-  elif len(urls) > 1:
-   urls_list = dialogs.urlList.urlList()
-   urls_list.populate_list(urls)
-   if urls_list.get_response() == widgetUtils.OK:
+ def url(self,url=''):
+  if url == '':
+   tweet = self.get_tweet()
+   urls = utils.find_urls(tweet)
+   if len(urls) == 1:
+    url=urls[0]
+   elif len(urls) > 1:
+    urls_list = dialogs.urlList.urlList()
+    urls_list.populate_list(urls)
+    if urls_list.get_response() == widgetUtils.OK:
+     url=urls_list.get_string()
+    if hasattr(urls_list, "destroy"): urls_list.destroy()
+   if url != '':
     output.speak(_(u"Opening URL..."), True)
-    webbrowser.open_new_tab(urls_list.get_string())
-   if hasattr(urls_list, "destroy"): urls_list.destroy()
+    webbrowser.open_new_tab(url)
 
  def clear_list(self):
   dlg = commonMessageDialogs.clear_list()
