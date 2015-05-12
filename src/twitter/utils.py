@@ -43,14 +43,22 @@ def find_next_reply(id, listItem):
  return None
 
 def is_audio(tweet):
+ if 'is_audio' in tweet:
+  return tweet['is_audio']
  if len(tweet["entities"]["hashtags"]) > 0:
   for i in tweet["entities"]["hashtags"]:
    if i["text"] == "audio":
+    tweet['is_audio']=True
     return True
  for u in find_urls(tweet):
-  response = requests.head(u) 
-  if 'audio' in str(response.headers['content-type']).lower():
-   return True
+  try:
+   response = requests.head(u,allow_redirects=True) 
+   if 'audio' in str(response.headers['content-type']).lower():
+    tweet['is_audio']=True
+    return True
+  except:
+   log.exception("Exception while determining audio by HTTP headers")
+ tweet['is_audio']=False
  return False
 
 def is_geocoded(tweet):
