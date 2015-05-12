@@ -427,16 +427,6 @@ class baseBufferController(bufferController):
    if hasattr(urls_list, "destroy"): urls_list.destroy()
 
  @_tweets_exist
- def url(self):
-  "Select the best action for a URL."
-  tweet = self.get_tweet()
-  urls = utils.find_urls(tweet)
-  #handle audio-only (no weblinks) tweets.
-  if len(urls) == 1 and utils.is_audio(tweet) and self.session.settings["general"]["autohandle_audio"]:
-   return self.audio()
-  else:
-   return self.url_browser()
-
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
   #debugging (remove when issue is closed).
@@ -449,7 +439,7 @@ class baseBufferController(bufferController):
   else:
    return self.url()
 
- def url_browser(self):
+ def url(self):
   tweet = self.get_tweet()
   urls = utils.find_urls(tweet)
   if len(urls) == 1:
