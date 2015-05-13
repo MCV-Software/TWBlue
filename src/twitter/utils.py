@@ -45,7 +45,6 @@ def find_next_reply(id, listItem):
  return None
 
 def is_audio(tweet,force=False):
- start=time.time()
  if force == False and 'is_audio' in tweet:
   return tweet['is_audio']
  try:
@@ -64,14 +63,10 @@ def is_audio(tweet,force=False):
   if config.app["app-settings"]["use_modern_audio_algo"]:
    for u in find_urls(tweet):
     if url_is_audio(u):
-     end=time.time()
-     print "Codeofdusk algo took",end-start,"seconds."
      tweet['is_audio']=True
      return True
  except:
   log.exception("Exception while executing is_audio Codeofdusk algorithm.")
- end=time.time()
- print "Codeofdusk algo took",end-start,"seconds."
  tweet['is_audio']=False
  if len(tweet["entities"]["hashtags"]) > 0:
   for i in tweet["entities"]["hashtags"]:

@@ -13,7 +13,6 @@ import output
 system = platform.system()
 from mysc.repeating_timer import RepeatingTimer
 import application
-import time
 URLPlayer = None
 
 def setup():
@@ -136,22 +135,16 @@ class URLStream(object):
     log.debug("played")
 
  def is_playable(self, url,play=False,volume=1.0):
-  print "Playability test invoked."
-  start=time.time()
   try:
    log.debug("Checking URL playability...")
    self.prepare(url)
    if self.prepared == True:
     stream=sound_lib.stream.URLStream(url=self.url)
-    end=time.time()
-    print "is_playable algo took",end-start,"seconds."
     if play:
      return self.play(stream=stream,volume=volume)
     return True
   except:
    log.exception("Exception.")
-   end=time.time()
-   print "is_playable algo took",end-start,"seconds."
    return False
  def stop_audio(self):
   if hasattr(self, "stream") and self.stream.is_playing == True:
