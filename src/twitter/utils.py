@@ -139,7 +139,7 @@ def is_allowed(tweet, clients):
  return allowed
 
 def url_is_audio(u):
- sound.URLPlayer.is_playable(u)
+ return sound.URLPlayer.is_playable(u)
 
 def old_url_is_audio(u):
  try:
