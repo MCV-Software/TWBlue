@@ -448,7 +448,7 @@ class baseBufferController(bufferController):
     url=urls_list.get_string()
    if hasattr(urls_list, "destroy"): urls_list.destroy()
   if url != None:
-   if hasattr(self.URLPlayer,'stream'):
+   if hasattr(sound.URLPlayer,'stream'):
     return sound.URLPlayer.stop_audio()
    output.speak("Opening media...",True)
    if sound.URLPlayer.is_playable(url=url,play=True) == False:
