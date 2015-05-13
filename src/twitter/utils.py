@@ -46,6 +46,10 @@ def is_audio(tweet,force=False):
  if force == False and 'is_audio' in tweet:
   return tweet['is_audio']
  try:
+  if len(find_urls(tweet)) < 1:
+   tweet['is_audio']=False
+   return False
+
   if len(tweet["entities"]["hashtags"]) > 0:
    for i in tweet["entities"]["hashtags"]:
     if i["text"] == "audio":
