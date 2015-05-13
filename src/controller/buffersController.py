@@ -288,7 +288,6 @@ class baseBufferController(bufferController):
    for i in self.session.db[self.name]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
     self.buffer.list.insert_item(False, *tweet)
-#    call_threaded(utils.is_audio,tweet)
    self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
   elif self.buffer.list.get_count() > 0:
    if self.session.settings["general"]["reverse_timelines"] == False:
