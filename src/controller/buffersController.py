@@ -456,7 +456,7 @@ class baseBufferController(bufferController):
   else:
    output.speak("Not actionable.",True)
 
- def url(self,url=''):
+ def url(self,url='',announce=True):
   if url == '':
    tweet = self.get_tweet()
    urls = utils.find_urls(tweet)
@@ -469,7 +469,8 @@ class baseBufferController(bufferController):
      url=urls_list.get_string()
     if hasattr(urls_list, "destroy"): urls_list.destroy()
    if url != '':
-    output.speak(_(u"Opening URL..."), True)
+    if announce:
+     output.speak(_(u"Opening URL..."), True)
     webbrowser.open_new_tab(url)
 
  def clear_list(self):

@@ -140,13 +140,3 @@ def is_allowed(tweet, clients):
 
 def url_is_audio(u):
  return sound.URLPlayer.is_playable(u)
-
-def old_url_is_audio(u):
- try:
-  response = requests.head(u,allow_redirects=True) 
-  if 'audio' in str(response.headers['content-type']).lower():
-   return True
-  else:
-   return False
- except:
-  log.exception("Exception while determining audio by HTTP headers")

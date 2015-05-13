@@ -114,14 +114,15 @@ class URLStream(object):
    log.debug("Transformed URL: %s. Prepared" % (self.url,))
    self.prepared = True
 
- def play(self, url=None, volume=1.0, stream=None):
+ def play(self, url=None, volume=1.0, stream=None,announce=True):
   if hasattr(self, "stream") and self.stream.is_playing:
    output.speak(_(u"Stopped"))
    self.stream.stop()
    del self.stream
    log.debug("Stream stopped")
   else:
-   output.speak(_(u"Playing..."))
+   if announce:
+    output.speak(_(u"Playing..."))
    log.debug("Attempting to play an URL...")
    if url != None:
     self.prepare(url)
@@ -141,7 +142,7 @@ class URLStream(object):
    if self.prepared == True:
     stream=sound_lib.stream.URLStream(url=self.url)
     if play:
-     return self.play(stream=stream,volume=volume)
+     return self.play(stream=stream,volume=volume,announce=False)
     return True
   except:
    log.exception("Exception.")
