@@ -43,29 +43,10 @@ def find_next_reply(id, listItem):
  return None
 
 def is_audio(tweet,force=False):
- if force == False and 'is_audio' in tweet:
-  return tweet['is_audio']
- try:
-  if len(find_urls(tweet)) < 1:
-   tweet['is_audio']=False
-   return False
-
-  if len(tweet["entities"]["hashtags"]) > 0:
-   for i in tweet["entities"]["hashtags"]:
-    if i["text"] == "audio":
-     tweet['is_audio']=True
-     return True
- except:
-  log.exception("Exception while executing is_audio hashtag algorithm")
- try:
-  if config.app["app-settings"]["use_modern_audio_algo"]:
-   for u in find_urls(tweet):
-    if url_is_audio(u):
-     tweet['is_audio']=True
-     return True
- except:
-  log.exception("Exception while executing is_audio Codeofdusk algorithm.")
- tweet['is_audio']=False
+ if len(tweet["entities"]["hashtags"]) > 0:
+  for i in tweet["entities"]["hashtags"]:
+   if i["text"] == "audio":
+    return True
  return False
 
 def is_geocoded(tweet):
@@ -131,12 +112,3 @@ def is_allowed(tweet, clients):
    allowed = False
    log.exception("Tuit not allowed: %s" % (tweet["text"],))
  return allowed
-def url_is_audio(u):
- try:
-  response = requests.head(u,allow_redirects=True) 
-  if 'audio' in str(response.headers['content-type']).lower():
-   return True
-  else:
-   return False
- except:
-  log.exception("Exception while determining audio by HTTP headers")
