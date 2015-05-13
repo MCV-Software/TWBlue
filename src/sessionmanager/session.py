@@ -114,7 +114,6 @@ class Session(object):
    self.settings = config_utils.load_config(paths.config_path(file_), paths.app_path("Conf.defaults"))
    self.init_sound()
    self.deshelve()
-   self.fix_audio_tags()
 #  except:
 #   log.exception("The session configuration has failed.")
 #   self.settings = None
@@ -410,17 +409,3 @@ class Session(object):
    log.exception("Exception while deshelving" + shelfname)
    os.remove(shelfname)
 
- def fix_audio_tags(self,force=False):
-  "Repair audio tags."
-  for key,value in self.db.items():
-   if type(value) == list:
-    for t in value:
-     utils.is_audio(t,force=force)
-
- def clean_is_audio_memmos(self):
-  "Clean out memmos for is_audio"
-  for key,value in self.db.items():
-   if type(value) == list:
-    for i in value:
-     if 'is_audio' in i:
-      del i['is_audio']

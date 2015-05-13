@@ -45,6 +45,7 @@ def find_next_reply(id, listItem):
  return None
 
 def is_audio(tweet,force=False):
+<<<<<<< HEAD
  start=time.time()
  if force == False and 'is_audio' in tweet:
   return tweet['is_audio']
@@ -73,6 +74,10 @@ def is_audio(tweet,force=False):
  end=time.time()
  print "Codeofdusk algo took",end-start,"seconds."
  tweet['is_audio']=False
+ if len(tweet["entities"]["hashtags"]) > 0:
+  for i in tweet["entities"]["hashtags"]:
+   if i["text"] == "audio":
+    return True
  return False
 
 def is_geocoded(tweet):
@@ -138,6 +143,7 @@ def is_allowed(tweet, clients):
    allowed = False
    log.exception("Tuit not allowed: %s" % (tweet["text"],))
  return allowed
+<<<<<<< HEAD
 
 def url_is_audio(u):
  sound.URLPlayer.is_playable(u)
