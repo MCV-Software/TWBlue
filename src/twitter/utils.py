@@ -5,6 +5,8 @@ from twython import TwythonError
 import config
 import logging
 import requests
+import time
+import sound
 log = logging.getLogger("twitter.utils")
 """ Some utilities for the twitter interface."""
 
@@ -43,6 +45,7 @@ def find_next_reply(id, listItem):
  return None
 
 def is_audio(tweet,force=False):
+ start=time.time()
  if force == False and 'is_audio' in tweet:
   return tweet['is_audio']
  try:
@@ -61,10 +64,14 @@ def is_audio(tweet,force=False):
   if config.app["app-settings"]["use_modern_audio_algo"]:
    for u in find_urls(tweet):
     if url_is_audio(u):
+     end=time.time()
+     print "Codeofdusk algo took",end-start,"seconds."
      tweet['is_audio']=True
      return True
  except:
   log.exception("Exception while executing is_audio Codeofdusk algorithm.")
+ end=time.time()
+ print "Codeofdusk algo took",end-start,"seconds."
  tweet['is_audio']=False
  return False
 
@@ -131,7 +138,11 @@ def is_allowed(tweet, clients):
    allowed = False
    log.exception("Tuit not allowed: %s" % (tweet["text"],))
  return allowed
+
 def url_is_audio(u):
+ sound.URLPlayer.is_playable(u)
+
+def old_url_is_audio(u):
  try:
   response = requests.head(u,allow_redirects=True) 
   if 'audio' in str(response.headers['content-type']).lower():

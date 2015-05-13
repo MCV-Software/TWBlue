@@ -437,14 +437,23 @@ class baseBufferController(bufferController):
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
   tweet = self.get_tweet()
+  url=None
   urls = utils.find_urls(tweet)
-  #handle audio tweets.
-  if utils.is_audio(tweet):
-   return self.audio()
+  if len(urls) == 1:
+   url=urls[0]
+  elif len(urls) > 1:
+   urls_list = dialogs.urlList.urlList()
+   urls_list.populate_list(urls)
+   if urls_list.get_response() == widgetUtils.OK:
+    url=urls_list.get_string()
+   if hasattr(urls_list, "destroy"): urls_list.destroy()
+  if url != None:
+   if sound.URLPlayer.is_playable(url=url,play=True) == False:
+    return self.url(url)
   elif utils.is_geocoded(tweet):
-   output.speak("Not implemented",True)
+   return output.speak("Not implemented",True)
   else:
-   return self.url()
+   output.speak("Not actionable.",True)
 
  def url(self,url=''):
   if url == '':
