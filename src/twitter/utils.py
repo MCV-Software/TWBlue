@@ -45,16 +45,22 @@ def find_next_reply(id, listItem):
 def is_audio(tweet,force=False):
  if force == False and 'is_audio' in tweet:
   return tweet['is_audio']
- if len(tweet["entities"]["hashtags"]) > 0:
-  for i in tweet["entities"]["hashtags"]:
-   if i["text"] == "audio":
-    tweet['is_audio']=True
-    return True
- if config.app['app-settings']['use_modern_audio_algo']:
-  for u in find_urls(tweet):
-   if url_is_audio(u):
-    tweet['is_audio']=True
-    return True
+ try:
+  if len(tweet["entities"]["hashtags"]) > 0:
+   for i in tweet["entities"]["hashtags"]:
+    if i["text"] == "audio":
+     tweet['is_audio']=True
+     return True
+ except:
+  log.exception("Exception while executing is_audio hashtag algorithm")
+ try:
+  if config.app['app-settings']['use_modern_audio_algo']:
+   for u in find_urls(tweet):
+    if url_is_audio(u):
+     tweet['is_audio']=True
+     return True
+ except:
+  log.exception("Exception while executing is_audio Codeofdusk algorithm.")
  tweet['is_audio']=False
  return False
 
