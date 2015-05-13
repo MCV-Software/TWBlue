@@ -94,8 +94,8 @@ class soundSystem(object):
   sound_object.play()
 
 class URLStream(object):
- def __init__(self):
-  self.url = None
+ def __init__(self,url=None):
+  self.url = url
   self.prepared = False
   log.debug("URL Player initialized")
 
@@ -130,6 +130,15 @@ class URLStream(object):
     self.stream.play()
     log.debug("played")
 
+ def is_playable(self, url):
+  try:
+   log.debug("Checking URL playability...")
+   self.prepare(url)
+   if self.prepared == True:
+    self.stream = sound_lib.stream.URLStream(url=self.url)
+    return True
+  except:
+   return False
  def stop_audio(self):
   if hasattr(self, "stream") and self.stream.is_playing == True:
    self.stream.stop()
