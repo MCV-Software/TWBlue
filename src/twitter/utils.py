@@ -45,7 +45,6 @@ def find_next_reply(id, listItem):
  return None
 
 def is_audio(tweet,force=False):
-<<<<<<< HEAD
  start=time.time()
  if force == False and 'is_audio' in tweet:
   return tweet['is_audio']
@@ -143,7 +142,6 @@ def is_allowed(tweet, clients):
    allowed = False
    log.exception("Tuit not allowed: %s" % (tweet["text"],))
  return allowed
-<<<<<<< HEAD
 
 def url_is_audio(u):
  sound.URLPlayer.is_playable(u)

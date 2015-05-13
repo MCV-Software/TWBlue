@@ -155,6 +155,7 @@ class URLStream(object):
    return False
  def stop_audio(self):
   if hasattr(self, "stream") and self.stream.is_playing == True:
+   output.speak("Stopped.",True)
    self.stream.stop()
 
  @staticmethod

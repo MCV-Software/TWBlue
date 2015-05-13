@@ -448,6 +448,7 @@ class baseBufferController(bufferController):
     url=urls_list.get_string()
    if hasattr(urls_list, "destroy"): urls_list.destroy()
   if url != None:
+   sound.URLPlayer.stop_audio()
    if sound.URLPlayer.is_playable(url=url,play=True) == False:
     return self.url(url)
   elif utils.is_geocoded(tweet):
