@@ -20,7 +20,7 @@ actions = {
 "open_timeline": _(u"Open user timeline"),
 "remove_buffer": _(u"Destroy buffer"),
 "interact": _(u"Interact with the currently focused tweet."),
-"audio": _(u"Attempt to play audio"),
+"url": _(u"Open a URL in the currently focused tweet in your web browser"),
 "volume_up": _(u"Increase volume by 5%"),
 "volume_down": _(u"Decrease volume by 5%"),
 "go_home": _(u"Jump to the first element of a buffer"),

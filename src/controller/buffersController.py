@@ -437,8 +437,6 @@ class baseBufferController(bufferController):
  @_tweets_exist
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
-  #debugging (remove when issue is closed).
-  print "Interact method invoked"
   tweet = self.get_tweet()
   urls = utils.find_urls(tweet)
   #handle audio tweets.
