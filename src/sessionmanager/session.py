@@ -369,7 +369,7 @@ class Session(object):
 
  def shelve(self):
   "Shelve the database to allow for persistance."
-  shelfname=paths.config_path(str(self.session_id)+".db")
+  shelfname=paths.config_path(str(self.session_id)+"/cache.db")
   if self.settings["general"]["persist_size"] == 0:
    if os.path.exists(shelfname):
     os.remove(shelfname)
@@ -394,7 +394,7 @@ class Session(object):
 
  def deshelve(self):
   "Import a shelved database."
-  shelfname=paths.config_path(str(self.session_id)+".db")
+  shelfname=paths.config_path(str(self.session_id)+"/cache.db")
   if self.settings["general"]["persist_size"] == 0:
    if os.path.exists(shelfname):
     os.remove(shelfname)
