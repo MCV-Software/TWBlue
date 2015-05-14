@@ -68,10 +68,6 @@ def is_audio(tweet,force=False):
  except:
   log.exception("Exception while executing is_audio Codeofdusk algorithm.")
  tweet['is_audio']=False
- if len(tweet["entities"]["hashtags"]) > 0:
-  for i in tweet["entities"]["hashtags"]:
-   if i["text"] == "audio":
-    return True
  return False
 
 def is_geocoded(tweet):

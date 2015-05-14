@@ -30,7 +30,7 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   self.hide_gui = wx.CheckBox(self, -1, _(u"Hide GUI on launch"))
   sizer.Add(self.hide_gui, 0, wx.ALL, 5)
   self.SetSizer(sizer)
-  self.use_slow_audio_algo= wx.CheckBox(self, -1, _(U"Use slow audio tweet detection algorithm (improves audio tweet detection accuracy at the cost of performance))"))
+  self.use_slow_audio_algo= wx.CheckBox(self, -1, _(U"Use slow audio tweet detection algorithm (improves audio tweet detection accuracy at the cost of performance)"))
   sizer.Add(self.use_slow_audio_algo, 0, wx.ALL, 5)
 
 class proxy(wx.Panel, baseDialog.BaseWXDialog):
