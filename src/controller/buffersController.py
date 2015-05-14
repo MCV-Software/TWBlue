@@ -437,6 +437,8 @@ class baseBufferController(bufferController):
  @_tweets_exist
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
+  if hasattr(sound.URLPlayer,'stream'):
+   return sound.URLPlayer.stop_audio(delete=True)
   tweet = self.get_tweet()
   url=None
   urls = utils.find_urls(tweet)
@@ -449,8 +451,6 @@ class baseBufferController(bufferController):
     url=urls_list.get_string()
    if hasattr(urls_list, "destroy"): urls_list.destroy()
   if url != None:
-   if hasattr(sound.URLPlayer,'stream'):
-    return sound.URLPlayer.stop_audio(delete=True)
    output.speak("Opening media...",True)
    if sound.URLPlayer.is_playable(url=url,play=True,volume=self.session.settings["sound"]["volume"]) == False:
     return webbrowser.open_new_tab(url)

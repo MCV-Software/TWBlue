@@ -12,6 +12,7 @@ import platform
 import output
 system = platform.system()
 from mysc.repeating_timer import RepeatingTimer
+from mysc.thread_utils import call_threaded
 import application
 URLPlayer = None
 
@@ -131,7 +132,7 @@ class URLStream(object):
     self.stream.volume = float(volume)
     self.stream.play()
     log.debug("played")
-    del self.stream
+    call_threaded(self.delete_when_done)
  def is_playable(self, url,play=False,volume=1.0):
   try:
    log.debug("Checking URL playability...")
@@ -143,11 +144,19 @@ class URLStream(object):
     return True
   except:
    return False
+ def delete_when_done(self):
+  while hasattr(self,'stream') and self.stream.is_playing:
+   pass
+  del self.stream
+
  def stop_audio(self,delete=False):
-  if hasattr(self, "stream") and self.stream.is_playing:
+  if hasattr(self, "stream"):
    output.speak("Stopped.",True)
-   self.stream.stop()
-   log.debug("Stopped audio stream.")
+   try:
+    self.stream.stop()
+    log.debug("Stopped audio stream.")
+   except:
+    log.exception("Exception while stopping stream.")
    if delete:
     del self.stream
     log.debug("Deleted audio stream.")
