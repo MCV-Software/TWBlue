@@ -44,6 +44,7 @@ class bufferController(object):
 
  def clear_list(self): pass
 
+
  def get_event(self, ev):
   if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
   elif ev.GetKeyCode() == wx.WXK_RETURN: event = "interact"
@@ -432,7 +433,7 @@ class baseBufferController(bufferController):
    try:
     sound.URLPlayer.play(url, self.session.settings["sound"]["volume"])
    except:
-    self.url(url=url)
+    log("Exception while executing audio method.")
  @_tweets_exist
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
@@ -451,7 +452,7 @@ class baseBufferController(bufferController):
    if hasattr(sound.URLPlayer,'stream'):
     return sound.URLPlayer.stop_audio(delete=True)
    output.speak("Opening media...",True)
-   if sound.URLPlayer.is_playable(url=url,play=True) == False:
+   if sound.URLPlayer.is_playable(url=url,play=True,volume=self.session.settings["sound"]["volume"]) == False:
     print "Opening",url,"in browser..."
     return self.url(url,announce=False)
   elif utils.is_geocoded(tweet):
