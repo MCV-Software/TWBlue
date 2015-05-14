@@ -12,6 +12,7 @@ use_invisible_keyboard_shorcuts = boolean(default=True)
 play_ready_sound = boolean(default=True)
 speak_ready_msg = boolean(default=True)
 log_level = string(default="error")
+use_slow_audio_algo = boolean(default=False)
 
 [keymap]
 up = string(default="control+win+up")

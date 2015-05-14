@@ -452,6 +452,7 @@ class baseBufferController(bufferController):
     return sound.URLPlayer.stop_audio()
    output.speak("Opening media...",True)
    if sound.URLPlayer.is_playable(url=url,play=True) == False:
+    print "Opening",url,"in browser..."
     return self.url(url,announce=False)
   elif utils.is_geocoded(tweet):
    return output.speak("Not implemented",True)

@@ -60,7 +60,7 @@ def is_audio(tweet,force=False):
  except:
   log.exception("Exception while executing is_audio hashtag algorithm")
  try:
-  if config.app["app-settings"]["use_modern_audio_algo"]:
+  if config.app["app-settings"]["use_slow_audio_algo"]:
    for u in find_urls(tweet):
     if url_is_audio(u):
      tweet['is_audio']=True
