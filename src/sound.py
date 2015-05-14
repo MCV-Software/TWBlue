@@ -115,11 +115,8 @@ class URLStream(object):
    self.prepared = True
 
  def play(self, url=None, volume=1.0, stream=None,announce=True):
-  if hasattr(self, "stream") and self.stream.is_playing:
-   output.speak(_(u"Stopped"))
-   self.stream.stop()
-   del self.stream
-   log.debug("Stream stopped")
+  if self.stop_audio(delete=True):
+   return
   else:
    if announce:
     output.speak(_(u"Playing..."))
@@ -147,11 +144,17 @@ class URLStream(object):
   except:
    print "Exception."
    return False
- def stop_audio(self):
-  if hasattr(self, "stream") and self.stream.is_playing == True:
+ def stop_audio(self,delete=False):
+  if hasattr(self, "stream") and self.stream.is_playing:
    output.speak("Stopped.",True)
    self.stream.stop()
-
+   log.debug("Stopped audio stream.")
+   if delete:
+    del self.stream
+    log.debug("Deleted audio stream.")
+   return True
+  else:
+   return False
  @staticmethod
  def delete_old_tempfiles():
   for f in glob(os.path.join(tempfile.gettempdir(), 'tmp*.wav')):
