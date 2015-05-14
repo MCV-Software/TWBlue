@@ -47,8 +47,13 @@ class sessionManagerController(object):
     if config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
      sessionsList.append(name)
      self.sessions.append(i)
-#   else:
-#    log.debug("Ignoring session %s" % (i,))
+    else:
+     try:
+      log.debug("Deleting session %s" % (i,))
+      shutil.rmtree(paths.config_path(i))
+     except:
+      output.speak("An exception was raised while attempting to clean malformed session data. See the error log for details. If this message persists, contact the developers.",True)
+      os.exception("Exception thrown while removing malformed session")
   self.view.fill_list(sessionsList)
 
  def show(self):
