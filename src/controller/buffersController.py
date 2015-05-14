@@ -458,6 +458,7 @@ class baseBufferController(bufferController):
    return output.speak("Not implemented",True)
   else:
    output.speak("Not actionable.",True)
+   self.session.sound.play("error.ogg")
 
  def url(self,url='',announce=True):
   if url == '':
@@ -497,7 +498,7 @@ class baseBufferController(bufferController):
     self.buffer.list.remove_item(index)
 #    if index > 0:
    except TwythonError:
-    self.session.sound.play("error.ogg")
+    self.session.sound.play("error")
 
  @_tweets_exist
  def user_details(self):

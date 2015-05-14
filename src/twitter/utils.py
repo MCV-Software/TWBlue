@@ -120,7 +120,7 @@ def api_call(parent=None, call_name=None, preexec_message="", success="", succes
   parent.parent.sound.play(success_snd)
  except TwythonError as e:
   output.speak("Error %s: %s" % (e.error_code, e.msg), True)
-  parent.parent.sound.play("error")
+  parent.parent.sound.play("error.ogg")
  return val
 
 def is_allowed(tweet, clients):
