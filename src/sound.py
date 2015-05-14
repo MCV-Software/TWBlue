@@ -131,7 +131,7 @@ class URLStream(object):
     self.stream.volume = float(volume)
     self.stream.play()
     log.debug("played")
-
+    del self.stream
  def is_playable(self, url,play=False,volume=1.0):
   try:
    log.debug("Checking URL playability...")
