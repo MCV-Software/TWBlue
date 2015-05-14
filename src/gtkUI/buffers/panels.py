@@ -9,7 +9,7 @@ class accountPanel(Gtk.VBox):
   self.type = "account"
   self.login = Gtk.Button(_(u"Login"))
   self.add(self.login)
-  self.autostart_account = Gtk.ToggleButton(_(u"Start account automatically"))
+  self.autostart_account = Gtk.ToggleButton(_(u"Log in automatically"))
   self.add(self.autostart_account)
 
  def change_login(self, login=True):

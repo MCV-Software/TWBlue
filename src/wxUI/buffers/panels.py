@@ -10,7 +10,7 @@ class accountPanel(wx.Panel):
   sizer = wx.BoxSizer(wx.VERTICAL)
   self.login = wx.Button(self, -1, _(u"Login"))
   sizer.Add(self.login, 0, wx.ALL, 5)
-  self.autostart_account = wx.CheckBox(self, -1, _(u"Start account automatically"))
+  self.autostart_account = wx.CheckBox(self, -1, _(u"Log in automatically"))
   sizer.Add(self.autostart_account, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
