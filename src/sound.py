@@ -142,7 +142,6 @@ class URLStream(object):
      return self.play(stream=stream,volume=volume,announce=False)
     return True
   except:
-   print "Exception."
    return False
  def stop_audio(self,delete=False):
   if hasattr(self, "stream") and self.stream.is_playing:

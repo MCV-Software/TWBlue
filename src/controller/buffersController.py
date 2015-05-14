@@ -453,8 +453,7 @@ class baseBufferController(bufferController):
     return sound.URLPlayer.stop_audio(delete=True)
    output.speak("Opening media...",True)
    if sound.URLPlayer.is_playable(url=url,play=True,volume=self.session.settings["sound"]["volume"]) == False:
-    print "Opening",url,"in browser..."
-    return self.url(url,announce=False)
+    return webbrowser.open_new_tab(url)
   elif utils.is_geocoded(tweet):
    return output.speak("Not implemented",True)
   else:
