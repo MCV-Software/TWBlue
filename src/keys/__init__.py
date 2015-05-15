@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import application
 import platform
 import exceptions
 from ctypes import c_char_p
@@ -28,4 +29,6 @@ class Keyring(object):
 		return result.value
 
 	def get(self, func):
+		if hasattr(application,func+"_override"):
+			return getattr(application,func+'_override')
 		return getattr(self, "_call_method")("get_"+func)
