@@ -7,7 +7,7 @@ from multiplatform_widgets import widgets
 import output
 import config
 class general(wx.Panel, baseDialog.BaseWXDialog):
- def __init__(self, parent, languages):
+ def __init__(self, parent, languages,keymaps):
   super(general, self).__init__(parent)
   sizer = wx.BoxSizer(wx.VERTICAL)
   language = wx.StaticText(self, -1, _(u"Language"))
@@ -29,9 +29,16 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(self.disable_sapi5, 0, wx.ALL, 5)
   self.hide_gui = wx.CheckBox(self, -1, _(u"Hide GUI on launch"))
   sizer.Add(self.hide_gui, 0, wx.ALL, 5)
-  self.SetSizer(sizer)
+  kmbox =  wx.BoxSizer(wx.VERTICAL)
+  km_label = wx.StaticText(self, -1, _(u"Keymap"))
+  self.km = wx.ComboBox(self, -1, choices=keymaps, style=wx.CB_READONLY)
+  self.km.SetSize(self.km.GetBestSize())
+  kmbox.Add(km_label, 0, wx.ALL, 5)
+  kmbox.Add(self.km, 0, wx.ALL, 5)
+  sizer.Add(kmbox, 0, wx.ALL, 5)
   self.use_slow_audio_algo= wx.CheckBox(self, -1, _(U"Use slow audio tweet detection algorithm (improves audio tweet detection accuracy at the cost of performance)"))
   sizer.Add(self.use_slow_audio_algo, 0, wx.ALL, 5)
+  self.SetSizer(sizer)
 
 class proxy(wx.Panel, baseDialog.BaseWXDialog):
 
@@ -311,8 +318,8 @@ class configurationDialog(baseDialog.BaseWXDialog):
   self.sizer = wx.BoxSizer(wx.VERTICAL)
   self.notebook = wx.Notebook(self.panel)
 
- def create_general(self, languageList):
-  self.general = general(self.notebook, languageList)
+ def create_general(self, languageList,keymaps):
+  self.general = general(self.notebook, languageList,keymaps)
   self.notebook.AddPage(self.general, _(u"General"))
   self.general.SetFocus()
 

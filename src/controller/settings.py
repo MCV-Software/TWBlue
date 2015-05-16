@@ -14,6 +14,7 @@ from extra.autocompletionUsers import settings
 from extra.AudioUploader import dropbox_transfer
 from pubsub import pub
 import logging
+import config_utils
 log = logging.getLogger("Settings")
 
 class globalSettingsController(object):
@@ -24,15 +25,34 @@ class globalSettingsController(object):
   self.needs_restart = False
   self.is_started = True
 
+ def make_kmmap(self):
+  res={}
+  for i in os.listdir(paths.app_path('keymaps')):
+   if ".keymap" not in i:
+    continue
+   print paths.app_path('keymaps/'+i)
+   try:
+    res[config_utils.load_config(paths.app_path('keymaps/'+i))['info']['name']]=i
+   except:
+    log.exception("Exception while loading keymap " + i)
+  return res
  def create_config(self):
+  self.kmmap=self.make_kmmap()
   self.langs = languageHandler.getAvailableLanguages()
   langs = []
   [langs.append(i[1]) for i in self.langs]
   self.codes = []
   [self.codes.append(i[0]) for i in self.langs]
   id = self.codes.index(config.app["app-settings"]["language"])
-  self.dialog.create_general(langs)
+  self.kmfriendlies=[]
+  self.kmnames=[]
+  for k,v in self.kmmap.items():
+   self.kmfriendlies.append(k)
+   self.kmnames.append(v)
+  self.kmid=self.kmnames.index(config.app['app-settings']['load_keymap'])
+  self.dialog.create_general(langs,self.kmfriendlies)
   self.dialog.general.language.SetSelection(id)
+  self.dialog.general.km.SetSelection(self.kmid)
   self.dialog.set_value("general", "ask_at_exit", config.app["app-settings"]["ask_at_exit"])
   
   self.dialog.set_value("general", "play_ready_sound", config.app["app-settings"]["play_ready_sound"])
@@ -54,6 +74,10 @@ class globalSettingsController(object):
    config.app["app-settings"]["language"] = self.codes[self.dialog.general.language.GetSelection()]
    languageHandler.setLanguage(config.app["app-settings"]["language"])
    self.needs_restart = True
+  if self.kmnames[self.dialog.general.km.GetSelection()] != config.app["app-settings"]["load_keymap"]:
+   config.app["app-settings"]["load_keymap"] =self.kmnames[self.dialog.general.km.GetSelection()]
+   self.needs_restart = True
+
   if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] != self.dialog.get_value("general", "use_invisible_shorcuts"):
    config.app["app-settings"]["use_invisible_keyboard_shorcuts"] = self.dialog.get_value("general", "use_invisible_shorcuts")
    pub.sendMessage("invisible-shorcuts-changed", registered=self.dialog.get_value("general", "use_invisible_shorcuts"))
