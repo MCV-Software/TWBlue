@@ -9,7 +9,7 @@ class KeystrokeEditor(object):
   super(KeystrokeEditor, self).__init__()
   self.changed = False # Change it if the keyboard shorcuts are reassigned.
   self.dialog = wx_ui.keystrokeEditorDialog()
-  self.map = config.app["keymap"]
+  self.map = config.keymap["keymap"]
   # we need to  copy the keymap before modify it, for unregistering the old keystrokes if is needed.
   self.hold_map = self.map.copy()
   self.dialog.put_keystrokes(constants.actions, self.map)

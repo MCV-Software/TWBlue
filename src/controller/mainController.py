@@ -1029,9 +1029,9 @@ class Controller(object):
 
  def create_invisible_keyboard_shorcuts(self):
   keymap = {}
-  for i in config.app["keymap"]:
+  for i in config.keymap["keymap"]:
    if hasattr(self, i):
-    keymap[config.app["keymap"][i]] = getattr(self, i)
+    keymap[config.keymap["keymap"][i]] = getattr(self, i)
   return keymap
 
  def register_invisible_keyboard_shorcuts(self, keymap):
