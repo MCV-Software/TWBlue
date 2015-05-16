@@ -1263,7 +1263,7 @@ class Controller(object):
    output.speak(_(u"Session mute on"), True)
   elif buffer.session.settings["sound"]["session_mute"] == True:
    buffer.session.settings["sound"]["session_mute"] = False
-   output.speak(_(u"Global mute off"), True)
+   output.speak(_(u"Session mute off"), True)
 
  def toggle_buffer_mute(self, *args, **kwargs):
   buffer = self.get_current_buffer()
