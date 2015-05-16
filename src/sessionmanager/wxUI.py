@@ -44,17 +44,17 @@ class sessionManagerWindow(wx.Dialog):
   self.EndModal(wx.ID_OK)
 
  def new_account_dialog(self):
-  return wx.MessageDialog(self, _(u"The request for the required Twitter authorisation to continue will be opened on your browser. You only need to do it once. Would you like to autorhise a new account now?"), _(u"Authorisation"), wx.YES_NO).ShowModal()
+  return wx.MessageDialog(self, _(u"The request to authorize your Twitter account will be opened in your browser. You only need to do this once. Would you like to continue?"), _(u"Authorization"), wx.YES_NO).ShowModal()
 
  def add_new_session_to_list(self):
   total = self.list.get_count()
-  name = _(u"Authorised account %d") % (total+1)
+  name = _(u"Authorized account %d") % (total+1)
   self.list.insert_item(False, name)
   if self.list.get_count() == 1:
    self.list.select_item(0)
 
  def show_unauthorised_error(self):
-  wx.MessageDialog(None, _(u"Your access token is invalid or the authorisation has failed. Please try again."), _(u"Invalid user token"), wx.ICON_ERROR).ShowModal()
+  wx.MessageDialog(None, _(u"Your access token is invalid or the authorization has failed. Please try again."), _(u"Invalid user token"), wx.ICON_ERROR).ShowModal()
 
  def get_response(self):
   return self.ShowModal()
