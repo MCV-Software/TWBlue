@@ -153,7 +153,7 @@ class audioServicesPanel(wx.Panel):
    self.dropbox.SetLabel(_(u"Link your Dropbox account"))
    
  def show_dialog(self):
-  wx.MessageDialog(self, _(u"The authorisation request will be shown on your browser. Copy the code tat Dropbox will provide and, in the text box that will appear on TW Blue, paste it. This code is necessary to continue. You only need to do it once."), _(u"Authorisation"), wx.OK).ShowModal()
+  wx.MessageDialog(self, _(u"The authorization request will be opened in your browser. Copy the code from Dropbox and paste it into the text box which will appear. You only need to do this once."), _(u"Authorization"), wx.OK).ShowModal()
 
  def get_response(self):
   dlg = wx.TextEntryDialog(self, _(u"Enter the code here."), _(u"Verification code"))
