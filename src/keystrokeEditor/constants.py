@@ -20,7 +20,7 @@ actions = {
 "open_timeline": _(u"Open user timeline"),
 "remove_buffer": _(u"Destroy buffer"),
 "interact": _(u"Interact with the currently focused tweet."),
-"url": _(u"Open a URL in the currently focused tweet in your web browser"),
+"secondary_interact": _(u"Perform secondary interact action (open URL in browser if Codeofdusk's intelegent audio tweet handlers enabled, play audio if disabled."),
 "volume_up": _(u"Increase volume by 5%"),
 "volume_down": _(u"Decrease volume by 5%"),
 "go_home": _(u"Jump to the first element of a buffer"),
