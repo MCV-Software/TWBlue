@@ -10,7 +10,7 @@ class textLimited(widgetUtils.BaseDialog):
   self.panel = wx.Panel(self)
   self.label = wx.StaticText(self.panel, -1, message)
   self.SetTitle(str(len(text)))
-  self.text = wx.TextCtrl(self.panel, -1, text, size=(439, -1))
+  self.text = wx.TextCtrl(self.panel, -1, text, size=(439, -1),style=wx.TE_MULTILINE|wx.TE_PROCESS_ENTER)
 #  font = self.text.GetFont()
 #  dc = wx.WindowDC(self.text)
 #  dc.SetFont(font)
@@ -90,6 +90,7 @@ class tweet(textLimited):
   self.mainBox.Add(self.ok_cancelSizer)
   selectId = wx.NewId()
   self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
+  self.Bind(wx.EVT_TEXT_ENTER, self.on_enter)
   self.accel_tbl = wx.AcceleratorTable([
 (wx.ACCEL_CTRL, ord('A'), selectId),
 ])
@@ -107,6 +108,8 @@ class tweet(textLimited):
   if openFileDialog.ShowModal() == wx.ID_CANCEL:
    return None
   return open(openFileDialog.GetPath(), "rb")
+ def on_enter(self,event):
+  return wx.PostEvent(self.okButton.GetEventHandler(),wx.PyCommandEvent(wx.EVT_BUTTON.typeId,wx.ID_OK))
  
 class retweet(tweet):
  def createControls(self, title, message,  text):
