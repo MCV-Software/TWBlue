@@ -38,6 +38,8 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(kmbox, 0, wx.ALL, 5)
   self.use_slow_audio_algo= wx.CheckBox(self, -1, _(U"Use slow audio tweet detection algorithm (improves audio tweet detection accuracy at the cost of performance)"))
   sizer.Add(self.use_slow_audio_algo, 0, wx.ALL, 5)
+  self.use_Codeofdusk_audio_handlers= wx.CheckBox(self, -1, _(U"Use Codeofdusk's tweet interaction handlers (intelegently handle audio tweets, may impact client performance on very slow connections)"))
+  sizer.Add(self.use_Codeofdusk_audio_handlers, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
 class proxy(wx.Panel, baseDialog.BaseWXDialog):

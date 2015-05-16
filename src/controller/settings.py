@@ -61,6 +61,7 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
   self.dialog.set_value("general", "use_slow_audio_algo", config.app["app-settings"]["use_slow_audio_algo"])
+  self.dialog.set_value("general", "use_Codeofdusk_audio_handlers", config.app["app-settings"]["use_Codeofdusk_audio_handlers"])
   self.dialog.create_proxy()
   self.dialog.set_value("proxy", "server", config.app["proxy"]["server"])
   self.dialog.set_value("proxy", "port", config.app["proxy"]["port"])
@@ -89,6 +90,8 @@ class globalSettingsController(object):
   if config.app["app-settings"]["use_slow_audio_algo"] != self.dialog.get_value("general", "use_slow_audio_algo"):
    config.app["app-settings"]["use_slow_audio_algo"] = self.dialog.get_value("general", "use_slow_audio_algo")
    #Todo: clean memmos.
+  if config.app["app-settings"]["use_Codeofdusk_audio_handlers"] != self.dialog.get_value("general", "use_Codeofdusk_audio_handlers"):
+   config.app["app-settings"]["use_Codeofdusk_audio_handlers"] = self.dialog.get_value("general", "use_Codeofdusk_audio_handlers")
   if config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
    if self.is_started == True:
     self.needs_restart = True
