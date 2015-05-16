@@ -1018,6 +1018,10 @@ class Controller(object):
   buffer = self.get_current_buffer()
   buffer.url()
 
+ def secondary_interact(self, *args, **kwargs):
+  buffer = self.get_current_buffer()
+  buffer.secondary_interact()
+
  def audio(self, *args, **kwargs):
   self.get_current_buffer().audio()
 

@@ -418,6 +418,8 @@ class baseBufferController(bufferController):
   self.session.db[str(self.name+"_pos")]=self.buffer.list.get_selected()
  @_tweets_exist
  def audio(self,url=''):
+  if hasattr(sound.URLPlayer,'stream'):
+   return sound.URLPlayer.stop_audio(delete=True)
   tweet = self.get_tweet()
   if tweet == None: return
   urls = utils.find_urls(tweet)
@@ -437,11 +439,13 @@ class baseBufferController(bufferController):
  @_tweets_exist
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
-  if hasattr(sound.URLPlayer,'stream'):
+  if hasattr(sound.URLPlayer,'stream') and config.app['app-settings']['use_Codeofdusk_audio_handlers']:
    return sound.URLPlayer.stop_audio(delete=True)
   tweet = self.get_tweet()
   url=None
   urls = utils.find_urls(tweet)
+  if len(urls) > 0 and config.app['app-settings']['use_Codeofdusk_audio_handlers']==False:
+   return self.url()
   if len(urls) == 1:
    url=urls[0]
   elif len(urls) > 1:
@@ -460,6 +464,11 @@ class baseBufferController(bufferController):
    output.speak("Not actionable.",True)
    self.session.sound.play("error.ogg")
 
+ def secondary_interact(self):
+  if config.app['app-settings']['use_Codeofdusk_audio_handlers']:
+   return self.url()
+  else:
+   return self.audio()
  def url(self,url='',announce=True):
   if url == '':
    tweet = self.get_tweet()
