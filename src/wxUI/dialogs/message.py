@@ -91,6 +91,7 @@ class tweet(textLimited):
   selectId = wx.NewId()
   self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
   self.Bind(wx.EVT_TEXT_ENTER, self.on_enter)
+  self.Bind(wx.EVT_CHAR_HOOK, self.handle_keys)
   self.accel_tbl = wx.AcceleratorTable([
 (wx.ACCEL_CTRL, ord('A'), selectId),
 ])
@@ -99,6 +100,7 @@ class tweet(textLimited):
 
  def __init__(self, title, message, text):
   super(tweet, self).__init__()
+  self.shift=False
   self.createControls(message, title, text)
 #  self.onTimer(wx.EVT_CHAR_HOOK)
   self.SetClientSize(self.mainBox.CalcMin())
@@ -108,8 +110,15 @@ class tweet(textLimited):
   if openFileDialog.ShowModal() == wx.ID_CANCEL:
    return None
   return open(openFileDialog.GetPath(), "rb")
+ def handle_keys(self,event):
+  self.shift=event.ShiftDown()
+  event.Skip()
  def on_enter(self,event):
-  return wx.PostEvent(self.okButton.GetEventHandler(),wx.PyCommandEvent(wx.EVT_BUTTON.typeId,wx.ID_OK))
+  if self.shift==False:
+   return wx.PostEvent(self.okButton.GetEventHandler(),wx.PyCommandEvent(wx.EVT_BUTTON.typeId,wx.ID_OK))
+  else:
+   return text.WriteText('\n')
+
  
 class retweet(tweet):
  def createControls(self, title, message,  text):
