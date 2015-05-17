@@ -437,38 +437,6 @@ class baseBufferController(bufferController):
    except:
     log("Exception while executing audio method.")
  @_tweets_exist
- def interact(self):
-  "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
-  if hasattr(sound.URLPlayer,'stream') and config.app['app-settings']['use_Codeofdusk_audio_handlers']:
-   return sound.URLPlayer.stop_audio(delete=True)
-  tweet = self.get_tweet()
-  url=None
-  urls = utils.find_urls(tweet)
-  if len(urls) > 0 and config.app['app-settings']['use_Codeofdusk_audio_handlers']==False:
-   return self.url()
-  if len(urls) == 1:
-   url=urls[0]
-  elif len(urls) > 1:
-   urls_list = dialogs.urlList.urlList()
-   urls_list.populate_list(urls)
-   if urls_list.get_response() == widgetUtils.OK:
-    url=urls_list.get_string()
-   if hasattr(urls_list, "destroy"): urls_list.destroy()
-  if url != None:
-   output.speak("Opening media...",True)
-   if sound.URLPlayer.is_playable(url=url,play=True,volume=self.session.settings["sound"]["volume"]) == False:
-    return webbrowser.open_new_tab(url)
-  elif utils.is_geocoded(tweet):
-   return output.speak("Not implemented",True)
-  else:
-   output.speak("Not actionable.",True)
-   self.session.sound.play("error.ogg")
-
- def secondary_interact(self):
-  if config.app['app-settings']['use_Codeofdusk_audio_handlers']:
-   return self.url()
-  else:
-   return self.audio()
  def url(self,url='',announce=True):
   if url == '':
    tweet = self.get_tweet()
