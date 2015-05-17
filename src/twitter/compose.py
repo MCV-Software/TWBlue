@@ -78,7 +78,7 @@ def compose_followers_list(tweet, db, relative_times=True):
    ts2 = _("Unavailable")
  else:
   ts2 = _("Unavailable")
- return [_(u"%s (@%s). %s followers, %s friends, %s tweets. Last tweet on %s. Joined Twitter on %s") % (tweet["name"], tweet["screen_name"], tweet["followers_count"], tweet["friends_count"],  tweet["statuses_count"], ts2, ts)]
+ return [_(u"%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined Twitter %s") % (tweet["name"], tweet["screen_name"], tweet["followers_count"], tweet["friends_count"],  tweet["statuses_count"], ts2, ts)]
 
 def compose_event(data, username):
  if data["event"] == "block":
