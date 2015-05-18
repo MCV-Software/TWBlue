@@ -1013,13 +1013,11 @@ class Controller(object):
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
   buffer = self.get_current_buffer()
-  if hasattr(sound.URLPlayer,'stream') and config.app['app-settings']['use_Codeofdusk_audio_handlers']:
+  if hasattr(sound.URLPlayer,'stream'):
    return sound.URLPlayer.stop_audio(delete=True)
   tweet = buffer.get_tweet()
   url=None
   urls = utils.find_urls(tweet)
-  if len(urls) > 0 and config.app['app-settings']['use_Codeofdusk_audio_handlers']==False:
-   return buffer.url()
   if len(urls) == 1:
    url=urls[0]
   elif len(urls) > 1:
@@ -1294,7 +1292,7 @@ class Controller(object):
    output.speak(_(u"Session mute on"), True)
   elif buffer.session.settings["sound"]["session_mute"] == True:
    buffer.session.settings["sound"]["session_mute"] = False
-   output.speak(_(u"Global mute off"), True)
+   output.speak(_(u"Session mute off"), True)
 
  def toggle_buffer_mute(self, *args, **kwargs):
   buffer = self.get_current_buffer()
