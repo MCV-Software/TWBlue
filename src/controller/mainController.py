@@ -1042,6 +1042,7 @@ class Controller(object):
 
  def secondary_interact(self):
   buffer = self.get_current_buffer()
+  tweet=buffer.get_tweet()
   if utils.is_geocoded(tweet) and config.app['app-settings']['use_Codeofdusk_audio_handlers']:
    return self.view_reverse_geocode()
   elif config.app['app-settings']['use_Codeofdusk_audio_handlers']:
