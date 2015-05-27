@@ -1031,9 +1031,9 @@ class Controller(object):
    if sound.URLPlayer.is_playable(url=url,play=True,volume=buffer.session.settings["sound"]["volume"]) == False:
     return webbrowser.open_new_tab(url)
   elif utils.is_geocoded(tweet):
-   return output.speak("Not implemented",True)
+   return self.reverse_geocode()
   else:
-   output.speak("Not actionable.",True)
+   output.speak(u_"Not actionable.",True)
    buffer.session.sound.play("error.ogg")
 
  def url(self, *args, **kwargs):
@@ -1042,7 +1042,9 @@ class Controller(object):
 
  def secondary_interact(self):
   buffer = self.get_current_buffer()
-  if config.app['app-settings']['use_Codeofdusk_audio_handlers']:
+  if utils.is_geocoded(tweet) and config.app['app-settings']['use_Codeofdusk_audio_handlers']:
+   return self.view_reverse_geocode()
+  elif config.app['app-settings']['use_Codeofdusk_audio_handlers']:
    return buffer.url()
   else:
    return buffer.audio()
