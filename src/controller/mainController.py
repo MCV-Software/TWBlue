@@ -1033,7 +1033,7 @@ class Controller(object):
   elif utils.is_geocoded(tweet):
    return self.reverse_geocode()
   else:
-   output.speak(u_"Not actionable.",True)
+   output.speak(_(u"Not actionable."), True)
    buffer.session.sound.play("error.ogg")
 
  def url(self, *args, **kwargs):
