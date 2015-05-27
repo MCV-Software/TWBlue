@@ -252,7 +252,6 @@ class Session(object):
  def get_muted_users(self):
 
   """ Gets muted users (oh really?)."""
-
   self.db["muted_users"] = self.twitter.twitter.list_mute_ids()["ids"]
 
  @_require_login
