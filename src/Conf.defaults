@@ -12,7 +12,7 @@ reverse_timelines = boolean(default=False)
 time_to_check_streams = integer(default=30)
 announce_stream_status = boolean(default=True)
 retweet_mode = string(default="ask")
-persist_size = integer(default=0)
+persist_size = integer(default=1764)
 buffer_order = list(default=list('home','mentions','dm','sent_dm','sent_tweets','favorites','followers','friends','blocks','muted','events'))
 
 [sound]
