@@ -435,7 +435,8 @@ class baseBufferController(bufferController):
    try:
     sound.URLPlayer.play(url, self.session.settings["sound"]["volume"])
    except:
-    log("Exception while executing audio method.")
+    log.error("Exception while executing audio method.")
+
  @_tweets_exist
  def url(self,url='',announce=True):
   if url == '':
