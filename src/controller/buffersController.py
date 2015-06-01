@@ -81,6 +81,30 @@ class bufferController(object):
    sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
   self.session.sound.play("volume_changed.ogg")
 
+ def interact(self):
+  if hasattr(sound.URLPlayer,'stream'):
+   return sound.URLPlayer.stop_audio(delete=True)
+  tweet = self.get_tweet()
+  url=None
+  urls = utils.find_urls(tweet)
+  if len(urls) == 1:
+   url=urls[0]
+  elif len(urls) > 1:
+   urls_list = dialogs.urlList.urlList()
+   urls_list.populate_list(urls)
+   if urls_list.get_response() == widgetUtils.OK:
+    url=urls_list.get_string()
+   if hasattr(urls_list, "destroy"): urls_list.destroy()
+  if url != None:
+   output.speak(_(u"Opening media..."), True)
+   if sound.URLPlayer.is_playable(url=url, play=True, volume=self.session.settings["sound"]["volume"]) == False:
+    return webbrowser.open_new_tab(url)
+  elif utils.is_geocoded(tweet):
+   return output.speak("Not implemented",True)
+  else:
+   output.speak(_(u"Not actionable."), True)
+   self.session.sound.play("error.ogg")
+
  def start_stream(self):
   pass
 
@@ -416,6 +440,7 @@ class baseBufferController(bufferController):
   if utils.is_geocoded(tweet):
    self.session.sound.play("geo.ogg")
   self.session.db[str(self.name+"_pos")]=self.buffer.list.get_selected()
+
  @_tweets_exist
  def audio(self,url=''):
   if hasattr(sound.URLPlayer,'stream'):
@@ -554,6 +579,7 @@ class peopleBufferController(baseBufferController):
   self.compose_function = compose.compose_followers_list
   log.debug("Compose_function: %s" % (self.compose_function,))
   self.get_tweet = self.get_right_tweet
+  self.url = self.interact
 
  def remove_buffer(self):
   return False

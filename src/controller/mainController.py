@@ -1013,28 +1013,7 @@ class Controller(object):
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
   buffer = self.get_current_buffer()
-  if hasattr(sound.URLPlayer,'stream'):
-   return sound.URLPlayer.stop_audio(delete=True)
-  tweet = buffer.get_tweet()
-  url=None
-  urls = utils.find_urls(tweet)
-  if len(urls) == 1:
-   url=urls[0]
-  elif len(urls) > 1:
-   urls_list = dialogs.urlList.urlList()
-   urls_list.populate_list(urls)
-   if urls_list.get_response() == widgetUtils.OK:
-    url=urls_list.get_string()
-   if hasattr(urls_list, "destroy"): urls_list.destroy()
-  if url != None:
-   output.speak(_(u"Opening media..."), True)
-   if sound.URLPlayer.is_playable(url=url,play=True,volume=buffer.session.settings["sound"]["volume"]) == False:
-    return webbrowser.open_new_tab(url)
-  elif utils.is_geocoded(tweet):
-   return output.speak("Not implemented",True)
-  else:
-   output.speak(_(u"Not actionable."), True)
-   buffer.session.sound.play("error.ogg")
+  buffer.interact()
 
  def url(self, *args, **kwargs):
   buffer = self.get_current_buffer()

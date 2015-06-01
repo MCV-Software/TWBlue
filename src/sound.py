@@ -151,7 +151,7 @@ class URLStream(object):
 
  def stop_audio(self,delete=False):
   if hasattr(self, "stream"):
-   output.speak("Stopped.",True)
+   output.speak(_(u"Stopped."), True)
    try:
     self.stream.stop()
     log.debug("Stopped audio stream.")
