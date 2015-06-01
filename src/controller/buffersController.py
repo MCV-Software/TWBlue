@@ -20,6 +20,7 @@ from twitter import compose, utils
 from mysc.thread_utils import call_threaded
 from twython import TwythonError
 from pubsub import pub
+from long_tweets import twishort, tweets
 
 log = logging.getLogger("controller.buffers")
 
@@ -97,10 +98,8 @@ class bufferController(object):
    if hasattr(urls_list, "destroy"): urls_list.destroy()
   if url != None:
    output.speak(_(u"Opening media..."), True)
-   if sound.URLPlayer.is_playable(url=url, play=True, volume=self.session.settings["sound"]["volume"]) == False:
+  if sound.URLPlayer.is_playable(url=url, play=True, volume=self.session.settings["sound"]["volume"]) == False:
     return webbrowser.open_new_tab(url)
-  elif utils.is_geocoded(tweet):
-   return output.speak("Not implemented",True)
   else:
    output.speak(_(u"Not actionable."), True)
    self.session.sound.play("error.ogg")
@@ -242,6 +241,26 @@ class baseBufferController(bufferController):
 
  def get_message(self):
   return " ".join(self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"]))
+
+ def get_full_tweet(self):
+  tweet = self.get_right_tweet()
+  tweetsList = []
+  tweet_id = tweet["id"]
+  uri = None
+  if tweet.has_key("long_uri"):
+   uri = tweet["long_uri"]
+  tweet = self.session.twitter.twitter.show_status(id=tweet_id)
+  if uri != None:
+   tweet["text"] = twishort.get_full_text(uri)
+  l = tweets.is_long(tweet)
+  while l != False:
+   tweetsList.append(tweet)
+   id = tweets.get_id(l)
+   tweet = self.session.twitter.twitter.show_status(id=id)
+   l = tweets.is_long(tweet)
+   if l == False:
+    tweetsList.append(tweet)
+  return (tweet, tweetsList)
 
  def start_stream(self):
   log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))

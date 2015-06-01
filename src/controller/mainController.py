@@ -35,7 +35,6 @@ import pygeocoder
 from pygeolib import GeocoderError
 import logging
 import webbrowser
-from long_tweets import twishort, tweets
 
 log = logging.getLogger("mainController")
 
@@ -655,28 +654,8 @@ class Controller(object):
  def view_item(self, *args, **kwargs):
   buffer = self.get_current_buffer()
   if buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
-   try:
-    tweet = buffer.get_right_tweet()
-    tweetsList = []
-    tweet_id = tweet["id"]
-    uri = None
-    if tweet.has_key("long_uri"):
-     uri = tweet["long_uri"]
-    tweet = buffer.session.twitter.twitter.show_status(id=tweet_id)
-    if uri != None:
-     tweet["text"] = twishort.get_full_text(uri)
-    l = tweets.is_long(tweet)
-    while l != False:
-     tweetsList.append(tweet)
-     id = tweets.get_id(l)
-     tweet = buffer.session.twitter.twitter.show_status(id=id)
-     l = tweets.is_long(tweet)
-     if l == False:
-      tweetsList.append(tweet)
-    msg = messages.viewTweet(tweet, tweetsList)
-   except TwythonError:
-    non_tweet = buffer.get_formatted_message()
-    msg = messages.viewTweet(non_tweet, [], False)
+   tweet, tweetsList = buffer.get_full_tweet()
+   msg = messages.viewTweet(tweet, tweetsList)
   elif buffer.type == "account" or buffer.type == "empty":
    return
   else:
