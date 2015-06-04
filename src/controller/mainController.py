@@ -1034,6 +1034,7 @@ class Controller(object):
 
  def manage_home_timelines(self, data, user):
   buffer = self.search_buffer("home_timeline", user)
+  if buffer == None: return
   play_sound = "tweet_received.ogg"
   if "home_timeline" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
@@ -1041,6 +1042,7 @@ class Controller(object):
 
  def manage_mentions(self, data, user):
   buffer = self.search_buffer("mentions", user)
+  if buffer == None: return
   play_sound = "mention_received.ogg"
   message = _(u"One mention from %s ") % (data["user"]["name"])
   if "mentions"  not in buffer.session.settings["other_buffers"]["muted_buffers"]:
@@ -1049,6 +1051,7 @@ class Controller(object):
 
  def manage_direct_messages(self, data, user):
   buffer = self.search_buffer("direct_messages", user)
+  if buffer == None: return
   play_sound = "dm_received.ogg"
   message = _(u"New direct message")
   if "direct_messages"  not in buffer.session.settings["other_buffers"]["muted_buffers"]:
@@ -1057,6 +1060,7 @@ class Controller(object):
 
  def manage_sent_dm(self, data, user):
   buffer = self.search_buffer("sent_direct_messages", user)
+  if buffer == None: return
   play_sound = "dm_sent.ogg"
   if "sent_direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
@@ -1064,6 +1068,7 @@ class Controller(object):
 
  def manage_sent_tweets(self, data, user):
   buffer = self.search_buffer("sent_tweets", user)
+  if buffer == None: return
   play_sound = "tweet_send.ogg"
   if "sent_tweets" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
@@ -1071,6 +1076,7 @@ class Controller(object):
 
  def manage_events(self, data, user):
   buffer = self.search_buffer("events", user)
+  if buffer == None: return
   play_sound = "new_event.ogg"
   if "events" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
@@ -1078,6 +1084,7 @@ class Controller(object):
 
  def manage_followers(self, data, user):
   buffer = self.search_buffer("followers", user)
+  if buffer == None: return
   play_sound = "update_followers.ogg"
   if "followers" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
@@ -1085,16 +1092,19 @@ class Controller(object):
 
  def manage_friend(self, data, user):
   buffer = self.search_buffer("friends", user)
+  if buffer == None: return
   buffer.add_new_item(data)
   pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_unfollowing(self, item, user):
   buffer = self.search_buffer("friends", user)
+  if buffer == None: return
   buffer.remove_item(item)
   pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_favourite(self, data, user):
   buffer = self.search_buffer("favourites", user)
+  if buffer == None: return
   play_sound = "favourite.ogg"
   if "favourites" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
@@ -1102,20 +1112,24 @@ class Controller(object):
 
  def manage_unfavourite(self, item, user):
   buffer = self.search_buffer("favourites", user)
+  if buffer == None: return
   buffer.remove_item(item)
 
  def manage_blocked_user(self, data, user):
   buffer = self.search_buffer("blocked", user)
+  if buffer == None: return
   buffer.add_new_item(data)
   pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_unblocked_user(self, item, user):
   buffer = self.search_buffer("blocked", user)
+  if buffer == None: return
   buffer.remove_item(item)
   pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_item_in_timeline(self, data, user, who):
   buffer = self.search_buffer("%s-timeline" % (who,), user)
+  if buffer == None: return
   play_sound = "tweet_timeline.ogg"
   if "%s-timeline" % (who,) not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
@@ -1124,6 +1138,7 @@ class Controller(object):
 
  def manage_item_in_list(self, data, user, where):
   buffer = self.search_buffer("%s" % (where,), user)
+  if buffer == None: return
   play_sound = "tweet_timeline.ogg"
   if "%s" % (where,) not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
