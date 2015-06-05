@@ -1197,6 +1197,17 @@ class Controller(object):
     self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
   elif create == False:
    self.destroy_buffer(buffer, buff.session.db["user_name"])
+  elif buffer == "list":
+   if create in buff.session.settings["other_buffers"]["lists"]:
+    output.speak(_(u"This list is already opened"), True)
+    return
+   tl = buffersController.listBufferController(self.view.nb, "get_list_statuses", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]))
+   buff.session.lists.append(tl)
+   self.buffers.append(tl)
+   self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(create), pos=self.view.search("lists", buff.session.db["user_name"]))
+   tl.start_stream()
+   buff.session.settings["other_buffers"]["lists"].append(create)
+   pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
 
  def restart_streams(self, streams=[], session=None):
   for i in streams:

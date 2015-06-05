@@ -4,6 +4,7 @@ import output
 from wxUI.dialogs import lists
 from twython import TwythonError
 from twitter import compose, utils
+from pubsub import pub
 
 class listsController(object):
  def __init__(self, session, user=None):
@@ -14,6 +15,7 @@ class listsController(object):
    self.dialog.populate_list(self.get_all_lists())
    widgetUtils.connect_event(self.dialog.createBtn, widgetUtils.BUTTON_PRESSED, self.create_list)
    widgetUtils.connect_event(self.dialog.editBtn, widgetUtils.BUTTON_PRESSED, self.edit_list)
+   widgetUtils.connect_event(self.dialog.view, widgetUtils.BUTTON_PRESSED, self.open_list_as_buffer)
   self.dialog.get_response()
 
  def get_all_lists(self):
@@ -67,3 +69,8 @@ class listsController(object):
     self.dialog.lista.remove_item(self.dialog.get_item())
    except TwythonError as e:
     output.speak("error %s: %s" % (e.error_code, e.msg))
+
+ def open_list_as_buffer(self, *args, **kwargs):
+  if self.dialog.lista.get_count() == 0: return
+  list = self.session.db["lists"][self.dialog.get_item()]
+  pub.sendMessage("create-new-buffer", buffer="list", account=self.session.db["user_name"], create=list["slug"])
