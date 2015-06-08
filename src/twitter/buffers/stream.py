@@ -100,7 +100,7 @@ class streamer(TwythonStreamer):
   if "friends" in self.session.settings["general"]["buffer_order"]:
    item = utils.find_item(data["target"]["id"], self.session.db["friends"]["items"])
    if item > 0:
-    self.friends["items"].pop(item)
+    self.friends.pop(item)
     pub.sendMessage("unfollowing", item=item, user=self.get_user())
 
  def on_success(self, data):
