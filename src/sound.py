@@ -133,6 +133,7 @@ class URLStream(object):
     self.stream.play()
     log.debug("played")
     call_threaded(self.delete_when_done)
+
  def is_playable(self, url,play=False,volume=1.0):
   try:
    log.debug("Checking URL playability...")
@@ -144,6 +145,7 @@ class URLStream(object):
     return True
   except:
    return False
+
  def delete_when_done(self):
   while hasattr(self,'stream') and self.stream.is_playing:
    pass
