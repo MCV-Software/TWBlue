@@ -61,7 +61,7 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
   self.dialog.set_value("general", "use_slow_audio_algo", config.app["app-settings"]["use_slow_audio_algo"])  
-  self.dialog.set_value("general", "use_codeofdusk_audio_handlers", config.app["app-settings"]["use_codeofdusk_audio_handlers"])  
+  self.dialog.set_value("general", "use_Codeofdusk_audio_handlers", config.app["app-settings"]["use_Codeofdusk_audio_handlers"])  
   self.dialog.set_value("general", "prefer_geocodes", config.app["app-settings"]["prefer_geocodes"])  
   self.dialog.create_proxy()
   self.dialog.set_value("proxy", "server", config.app["proxy"]["server"])
@@ -87,7 +87,7 @@ class globalSettingsController(object):
   config.app["app-settings"]["hide_gui"] = self.dialog.get_value("general", "hide_gui")
   config.app["app-settings"]["ask_at_exit"] = self.dialog.get_value("general", "ask_at_exit")
   config.app["app-settings"]["play_ready_sound"] = self.dialog.get_value("general", "play_ready_sound")
-  config.app["app-settings"]["use_codeofdusk_audio_handlers"] = self.dialog.get_value("general", "use_codeofdusk_audio_handlers")
+  config.app["app-settings"]["use_Codeofdusk_audio_handlers"] = self.dialog.get_value("general", "use_Codeofdusk_audio_handlers")
   config.app["app-settings"]["prefer_geocodes"] = self.dialog.get_value("general", "prefer_geocodes")
   config.app["app-settings"]["speak_ready_msg"] = self.dialog.get_value("general", "speak_ready_msg")
   if config.app["app-settings"]["use_slow_audio_algo"] != self.dialog.get_value("general", "use_invisible_shorcuts"):
