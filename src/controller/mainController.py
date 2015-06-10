@@ -992,11 +992,43 @@ class Controller(object):
  def interact(self):
   "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
   buffer = self.get_current_buffer()
-  buffer.interact()
+  if hasattr(sound.URLPlayer,'stream') and config.app['app-settings']['use_Codeofdusk_audio_handlers']:
+   return sound.URLPlayer.stop_audio(delete=True)
+  tweet = buffer.get_tweet()
+  if utils.is_geocoded(tweet) and config.app['app-settings']['use_Codeofdusk_audio_handlers'] and config.app['app-settings']['prefer_geocodes']:
+   return self.reverse_geocode()
+  url=None
+  urls = utils.find_urls(tweet)
+  if len(urls) == 1:
+   url=urls[0]
+  elif len(urls) > 1:
+   urls_list = dialogs.urlList.urlList()
+   urls_list.populate_list(urls)
+   if urls_list.get_response() == widgetUtils.OK:
+    url=urls_list.get_string()
+   if hasattr(urls_list, "destroy"): urls_list.destroy()
+  if url != None:
+   output.speak("Opening media...",True)
+   if config.app['app-settings']['use_Codeofdusk_audio_handlers']:
+    if sound.URLPlayer.is_playable(url=url,play=True,volume=buffer.session.settings["sound"]["volume"]) == False:
+     return webbrowser.open_new_tab(url)
+  else:
+   output.speak(_(u"Not actionable."), True)
+   buffer.session.sound.play("error.ogg")
+
+ def secondary_interact(self):
+  buffer = self.get_current_buffer()
+  tweet=buffer.get_tweet()
+  if utils.is_geocoded(tweet) and config.app['app-settings']['use_Codeofdusk_audio_handlers'] and config.app['app-settings']['prefer_geocodes']:
+   return self.view_reverse_geocode()
+  elif config.app['app-settings']['use_Codeofdusk_audio_handlers']:
+   return buffer.url()
+  else:
+   return buffer.audio()
 
  def url(self, *args, **kwargs):
   buffer = self.get_current_buffer()
-  buffer.url()
+  return buffer.url()
 
  def audio(self, *args, **kwargs):
   self.get_current_buffer().audio()
