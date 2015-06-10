@@ -32,11 +32,12 @@ Although most dependencies can be found in the windows-dependencies directory, w
 
 #### Dependencies packaged in windows installers
 
-* [Python,](http://python.org) version 2.7.9  
+* [Python,](http://python.org) version 2.7.10  
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
-* [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2
+* [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2.0
 * [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 219
-* [Pycurl](http://pycurl.sourceforge.net) 7.19.5 for Python 2.7: [32-bit downloads,](https://pypi.python.org/pypi/pycurl/7.19.3.1) [64-bit downloads](http://www.lfd.uci.edu/~gohlke/pythonlibs/)
+* [Pycurl](http://pycurl.sourceforge.net) 7.19.5.1 for Python 2.7: [32-bit downloads,](https://pypi.python.org/pypi/pycurl/7.19.5.1) [64-bit downloads](http://www.lfd.uci.edu/~gohlke/pythonlibs/)
+Note: the x64 version is in wheel format instead of executable installer, so you have to install it using pip. For example: C:\python27x64\scripts\pip install pycurl-7.19.5.1-cp27-none-win_amd64.whl
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
 x64 version has been built by TW Blue developers, so you only will find it in windows-dependencies folder
 
@@ -53,6 +54,7 @@ setuptools install a script, called easy_install. You can find it in the python 
     cd C:\python27x64\scripts
 
 	You can also add the scripts folder to your path environment variable.
+	Note: pip and setuptools are included in the Python installer since version 2.7.9.
 
 	After that, run the following command to install a package, replacing packagename with the names listed below:
 
