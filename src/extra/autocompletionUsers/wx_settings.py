@@ -2,6 +2,7 @@
 import wx
 import widgetUtils
 import application
+
 class autocompletionSettingsDialog(widgetUtils.BaseDialog):
  def __init__(self):
   super(autocompletionSettingsDialog, self).__init__(parent=None, id=-1, title=_(u"Autocomplete users’ settings"))

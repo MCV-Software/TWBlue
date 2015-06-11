@@ -100,9 +100,9 @@ class bufferController(object):
    output.speak(_(u"Opening media..."), True)
   if sound.URLPlayer.is_playable(url=url, play=True, volume=self.session.settings["sound"]["volume"]) == False:
     return webbrowser.open_new_tab(url)
-  else:
-   output.speak(_(u"Not actionable."), True)
-   self.session.sound.play("error.ogg")
+#  else:
+#   output.speak(_(u"Not actionable."), True)
+#   self.session.sound.play("error.ogg")
 
  def start_stream(self):
   pass
@@ -555,6 +555,15 @@ class listBufferController(baseBufferController):
    for i in users['users']:
     self.users.append(i["id"])
     next_cursor = users["next_cursor"]
+
+ def remove_buffer(self):
+  dlg = commonMessageDialogs.remove_buffer()
+  if dlg == widgetUtils.YES:
+   if self.name[:-5] in self.session.settings["other_buffers"]["lists"]:
+    self.session.settings["other_buffers"]["lists"].remove(self.name[:-5])
+    return True
+  elif dlg == widgetUtils.NO:
+   return False
 
 class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):
