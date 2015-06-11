@@ -406,5 +406,7 @@ class Session(object):
   except:
    output.speak("An exception occurred while deshelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
    log.exception("Exception while deshelving" + shelfname)
-   os.remove(shelfname)
-
+   try: 
+    os.remove(shelfname)
+   except:
+    pass
