@@ -51,6 +51,7 @@ log = logging.getLogger("main")
 def setup():
  log.debug("Starting " + application.name + " %s" % (application.version,))
  config.setup()
+ fixes.setup()
  log.debug("Using %s %s" % (platform.system(), platform.architecture()[0]))
  log.debug("Application path is %s" % (paths.app_path(),))
  log.debug("config path  is %s" % (paths.config_path(),))
@@ -71,7 +72,6 @@ def setup():
  if hasattr(sm.view, "destroy"):
   sm.view.destroy()
  del sm
- fixes.setup()
  r = mainController.Controller()
  r.view.show()
  r.do_work()

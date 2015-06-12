@@ -47,8 +47,8 @@ class bufferController(object):
 
 
  def get_event(self, ev):
-  if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "url"
-  elif ev.GetKeyCode() == wx.WXK_RETURN: event = "interact"
+  if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "interact"
+  elif ev.GetKeyCode() == wx.WXK_RETURN: event = "url"
   elif ev.GetKeyCode() == wx.WXK_F5: event = "volume_down"
   elif ev.GetKeyCode() == wx.WXK_F6: event = "volume_up"
   elif ev.GetKeyCode() == wx.WXK_DELETE and ev.ShiftDown(): event = "clear_list"
