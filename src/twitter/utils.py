@@ -118,3 +118,10 @@ def is_allowed(tweet, clients):
    allowed = False
    log.exception("Tuit not allowed: %s" % (tweet["text"],))
  return allowed
+
+def twitter_error(error):
+ if error.error_code == 403:
+  msg = _(u"Sorry, you are not authorised to see this status.")
+ elif error.error_code == 404:
+  msg = _(u"No status found with that ID")
+ output.speak(msg)
