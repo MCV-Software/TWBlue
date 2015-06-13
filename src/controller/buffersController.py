@@ -47,8 +47,8 @@ class bufferController(object):
 
 
  def get_event(self, ev):
-  if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "url"
-  elif ev.GetKeyCode() == wx.WXK_RETURN: event = "interact"
+  if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "interact"
+  elif ev.GetKeyCode() == wx.WXK_RETURN: event = "url"
   elif ev.GetKeyCode() == wx.WXK_F5: event = "volume_down"
   elif ev.GetKeyCode() == wx.WXK_F6: event = "volume_up"
   elif ev.GetKeyCode() == wx.WXK_DELETE and ev.ShiftDown(): event = "clear_list"
@@ -81,7 +81,6 @@ class bufferController(object):
   if hasattr(sound.URLPlayer, "stream"):
    sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
   self.session.sound.play("volume_changed.ogg")
-
  def start_stream(self):
   pass
 
@@ -533,6 +532,15 @@ class listBufferController(baseBufferController):
    for i in users['users']:
     self.users.append(i["id"])
     next_cursor = users["next_cursor"]
+
+ def remove_buffer(self):
+  dlg = commonMessageDialogs.remove_buffer()
+  if dlg == widgetUtils.YES:
+   if self.name[:-5] in self.session.settings["other_buffers"]["lists"]:
+    self.session.settings["other_buffers"]["lists"].remove(self.name[:-5])
+    return True
+  elif dlg == widgetUtils.NO:
+   return False
 
 class eventsBufferController(bufferController):
  def __init__(self, parent, name, session, account, *args, **kwargs):

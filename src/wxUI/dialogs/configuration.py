@@ -6,6 +6,7 @@ import application
 from multiplatform_widgets import widgets
 import output
 import config
+
 class general(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent, languages,keymaps):
   super(general, self).__init__(parent)
