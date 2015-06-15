@@ -83,8 +83,6 @@ class bufferController(object):
   self.session.sound.play("volume_changed.ogg")
 
  def interact(self):
-  if hasattr(sound.URLPlayer,'stream'):
-   return sound.URLPlayer.stop_audio(delete=True)
   tweet = self.get_tweet()
   url=None
   urls = utils.find_urls(tweet)
@@ -264,7 +262,7 @@ class baseBufferController(bufferController):
     tweet = self.session.twitter.twitter.show_status(id=id)
    except TwythonError as e:
     utils.twitter_error(e)
-    continue
+    return
    l = tweets.is_long(tweet)
    if l == False:
     tweetsList.append(tweet)
