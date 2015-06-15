@@ -45,10 +45,10 @@ documentation.append(_(u"""
 documentation.append(_(u"""### Authorising the application"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""First off, it's necessary to authorise the program so it can access your Twitter account and act on your behalf. The authorisation process is quite simple, and the program never gets data such as your username and password. In order to authorise the application, you just need to run the main executable file, called TWBlue.exe (on some computers it may appear simply as TWBlue)."""))
+documentation.append(_(u"""First off, it's necessary to authorise the program so it can access your Twitter account and act on your behalf. The authorisation process is quite simple, and the program never gets data such as your  password. In order to authorise the application, you just need to run the main executable file, called TWBlue.exe (on some computers it may appear simply as TWBlue)."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Whether this is the first time you open TWBlue or you don't have any session, you will see the session manager. This dialog allows you to authorise as many accounts as you wish. If you press the "new account" button a dialog will tell you that your default browser will be opened in order to authorise the application. Press "yes" so the process may start."""))
+documentation.append(_(u"""If this is the first time you open TWBlue, or if you don't have any session, you will see the session manager. This dialog allows you to authorise as many accounts as you wish. If you press the "new account" button a dialog will tell you that your default browser will be opened in order to authorise the application. Press "yes" so the process may start."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""Your default browser will open on the Twitter page to request authorisation. Enter your user name and password if you're not already logged in, look for the authorise button, and press it."""))
@@ -57,13 +57,13 @@ documentation.append(_(u"""
 documentation.append(_(u"""Once you've authorised your twitter account, Twitter will redirect you to a web page which will notify you that TWBlue has been authorised successfully. Now you are able to close that window and come back to the session manager. You will see on the session list a new item temporally called "Authorised account x" -where x is a number. The session name will change once you open that session."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""To start running TWBlue, press the Ok button in the session manager dialog. By default, TWBlue starts all the configured sessions, however, you can change this behavior."""))
+documentation.append(_(u"""To start running TWBlue, press the Ok button in the session manager dialog. By default, TWBlue starts all the configured sessions automatically, however, you can change this behavior."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""If all went well, the application will start playing sounds, indicating your data are being updated."""))
+documentation.append(_(u"""If all went well, the application will start playing sounds, indicating your data is being updated."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""When the process is finished, the program will play another sound, and the screen reader will say "ready"."""))
+documentation.append(_(u"""When the process is finished, by default the program will play another sound, and the screen reader will say "ready" (this behaviour  can be configured)."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""## The program's interface"""))
@@ -72,22 +72,23 @@ documentation.append(_(u"""
 documentation.append(_(u"""The easiest way to describe the graphical user interface of TWBlue is saying that the application has a window which contains a menu bar with five menus (application, tweet, user, buffer and help); one tree view, one list of items and, mostly in every case, three buttons: Tweet, retweet and reply. The actions that are available for every item will be described later."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""In the tree view are inserted buffers which are lists to manage the processed data. When you configure a new session on TWBlue and start it, your account is the root of the tree view. Inside of it  many buffers are created.  Each one of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you were, you will be able to make different actions with these items."""))
+documentation.append(_(u"""The items of the tree view are called buffers. A buffer is a list to manage the data processed by the application. When you configure a new session on TWBlue and start it, your account is the root of the tree view. Inside it , many buffers are created.  Each  of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you are focusing, you will be able to do different actions with these items."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""The following is a description for every kind of TWBlue's buffer and the kind of items they work with."""))
+documentation.append(_(u"""The following is a description for every kind of TWBlue's buffers and the kind of items they work with."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""* Home: it shows all the tweets on the main timeline. These are the tweets by users you follow."""))
 documentation.append(_(u"""* Mentions: if a user, whether you follow them or not, mentions you on Twitter, you will find it on this list."""))
-documentation.append(_(u"""* Direct messages: here go the private direct messages you exchange with users you follow and who follow you back. This list only shows received messages."""))
-documentation.append(_(u"""* Sent: it shows all the tweets and direct messages sent from your account."""))
-documentation.append(_(u"""* Favourites: here you will see all tweets you have favourited."""))
+documentation.append(_(u"""* Direct messages: here go the private direct messages you exchange with users  who follow you back, or with any user, if they allow direct messages from everyone. This list only shows received messages."""))
+documentation.append(_(u"""* Sent direct messages: it shows all the direct messages sent from your account."""))
+documentation.append(_(u"""* Sent tweets: it shows all the tweets  sent from your account."""))
+documentation.append(_(u"""* Favourites: here you will see all the tweets you have favourited."""))
 documentation.append(_(u"""* Followers: when users follow you, you'll be able to see them on this list, with some of their account information."""))
 documentation.append(_(u"""* Friends: the same as the previous list, but these are the users you follow."""))
-documentation.append(_(u"""* User timelines: these are lists you may create. They contain only the tweets by a specific user. They're used so you can see the tweets by a single person and you don't want to look all over your timeline. You may create as many as you like."""))
+documentation.append(_(u"""* User timelines: these are  buffers you may create. They contain only the tweets by a specific user. They're used so you can see the tweets by a single person and you don't want to look all over your timeline. You may create as many as you like."""))
 documentation.append(_(u"""* Events: An event is anything that happens on Twitter, such as when someone follows you, when someone adds or removes one of your tweets from their favorites list, or when you subscribe to a list.  There are many more but TW Blue shows the most common ones in the events buffer so that you can easily keep track of what is happening on your account."""))
-documentation.append(_(u"""* Lists: A list is similar to a temporary timeline, except that you can configure it to contain tweets from multiple users."""))
+documentation.append(_(u"""* Lists: A list is similar to a  user timeline, except that you can configure it to contain tweets from multiple users."""))
 documentation.append(_(u"""* Search: A search buffer contains the results of a search operation."""))
 documentation.append(_(u"""* User favorites: You can have TW Blue create a buffer containing tweets favorited by a particular user."""))
 documentation.append(_(u"""* Trending Topics: a trend buffer shows the top ten most used terms in a geographical region. This region may be a country or a city. Trends are updated every five minutes."""))
