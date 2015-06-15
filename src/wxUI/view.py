@@ -40,7 +40,6 @@ class mainFrame(wx.Frame):
   self.timeline = user.Append(wx.NewId(), _(u"&View timeline..."))
   self.dm = user.Append(wx.NewId(), _(u"Direct me&ssage"))
   self.addToList = user.Append(wx.NewId(), _(u"&Add to list"))
-  self.addToList.Enable(False)
   self.removeFromList = user.Append(wx.NewId(), _(u"R&emove from list"))
   self.removeFromList.Enable(False)
   self.viewLists = user.Append(wx.NewId(), _(u"&View lists"))
