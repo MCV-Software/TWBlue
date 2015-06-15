@@ -461,11 +461,11 @@ class Controller(object):
    try:
     list = buff.session.twitter.twitter.add_list_member(list_id=buff.session.db["lists"][dlg.get_item()]["id"], screen_name=user)
     older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()]["id"], buff.session.db["lists"])
+    listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()]["name"].lower()), buff.session.db["user_name"])
+    if listBuffer != None: listBuffer.get_user_ids()
     buff.session.db["lists"].pop(older_list)
     buff.session.db["lists"].append(list)
-    listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()]["name"]), buff.session.db["user_name"])
-    listBuffer.get_user_ids()
-    pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
+    if listBuffer != None: pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
    except TwythonError as e:
     output.speak("error %s: %s" % (e.error_code, e.msg))
 
