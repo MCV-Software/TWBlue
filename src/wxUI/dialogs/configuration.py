@@ -278,32 +278,7 @@ class audioServicesPanel(wx.Panel):
   apiKeyBox.Add(apiKeyLabel, 0, wx.ALL, 5)
   apiKeyBox.Add(self.apiKey, 0, wx.ALL, 5)
   mainSizer.Add(apiKeyBox, 0, wx.ALL, 5)
-  first_sizer = wx.BoxSizer(wx.HORIZONTAL)
-  self.dropbox = wx.Button(self, -1)
-  first_sizer.Add(self.dropbox, 0, wx.ALL, 5)
-  mainSizer.Add(first_sizer, 0, wx.ALL, 5)
   self.SetSizer(mainSizer)
-
- def set_dropbox(self, active=True):
-  if active == True:
-   self.dropbox.SetLabel(_(u"Unlink your Dropbox account"))
-  else:
-   self.dropbox.SetLabel(_(u"Link your Dropbox account"))
-   
- def show_dialog(self):
-  wx.MessageDialog(self, _(u"The authorization request will be opened in your browser. Copy the code from Dropbox and paste it into the text box which will appear. You only need to do this once."), _(u"Authorization"), wx.OK).ShowModal()
-
- def get_response(self):
-  dlg = wx.TextEntryDialog(self, _(u"Enter the code here."), _(u"Verification code"))
-  if dlg.ShowModal() == wx.ID_CANCEL:
-   return False
-  return dlg.GetValue()
-
- def show_error(self):
-  wx.MessageDialog(self, _(u"Error during authorization. Try again later."), _(u"Error!"), wx.ICON_ERROR).ShowModal()
-
- def get_dropbox(self):
-  return self.dropbox.GetLabel()
 
 class configurationDialog(baseDialog.BaseWXDialog):
 

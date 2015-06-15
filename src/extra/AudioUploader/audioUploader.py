@@ -19,7 +19,7 @@
 import widgetUtils
 import wx_ui
 import wx_transfer_dialogs
-import dropbox_transfer, transfer
+import transfer
 import output
 import tempfile
 import sound
@@ -31,6 +31,7 @@ import sound_lib
 import logging
 
 log = logging.getLogger("extra.AudioUploader.audioUploader")
+
 class audioUploader(object):
  def __init__(self, configFile, completed_callback):
   self.config = configFile
@@ -50,9 +51,7 @@ class audioUploader(object):
    log.debug("Uploading file %s to %s..." % (self.file, self.dialog.get("services")))
    self.uploaderDialog = wx_transfer_dialogs.UploadDialog(self.file)
    output.speak(_(u"Attaching..."))
-   if self.dialog.get("services") == "Dropbox":
-    self.uploaderFunction = dropbox_transfer.dropboxUploader(filename=self.file, completed_callback=completed_callback, config=self.config)
-   elif self.dialog.get("services") == "SNDUp":
+   if self.dialog.get("services") == "SNDUp":
     base_url = "http://sndup.net/post.php"
     if len(self.config["sound"]["sndup_api_key"]) > 0:
      url = base_url + '?apikey=' + self.config['sound']['sndup_api_key']
@@ -69,8 +68,6 @@ class audioUploader(object):
  def get_available_services(self):
   services = []
   services.append("TwUp")
-  if self.config["services"]["dropbox_token"] != "":
-   services.append("Dropbox")
   services.append("SNDUp")
   return services
 

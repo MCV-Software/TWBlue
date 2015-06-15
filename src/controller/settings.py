@@ -11,7 +11,6 @@ import application
 from wxUI.dialogs import configuration
 from wxUI import commonMessageDialogs
 from extra.autocompletionUsers import settings
-from extra.AudioUploader import dropbox_transfer
 from pubsub import pub
 import logging
 import config_utils
@@ -140,11 +139,6 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("sound", "session_mute", self.config["sound"]["session_mute"])
   self.dialog.set_value("sound", "soundpack", self.config["sound"]["current_soundpack"])
   self.dialog.create_audio_services()
-  if self.config["services"]["dropbox_token"] == "":
-   self.dialog.services.set_dropbox(False)
-  else:
-   self.dialog.services.set_dropbox(True)
-  widgetUtils.connect_event(self.dialog.services.dropbox, widgetUtils.BUTTON_PRESSED, self.manage_dropbox)
   self.dialog.set_value("services", "apiKey", self.config["sound"]["sndup_api_key"])
   self.dialog.realize()
   self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
@@ -236,32 +230,6 @@ class accountSettingsController(globalSettingsController):
   id = self.dialog.ignored_clients.get_client_id()
   self.config["twitter"]["ignored_clients"].pop(id)
   self.dialog.ignored_clients.remove_(id)
-
- def manage_dropbox(self, *args, **kwargs):
-  if self.dialog.services.get_dropbox() == _(u"Link your Dropbox account"):
-   self.connect_dropbox()
-  else:
-   self.disconnect_dropbox()
-
- def connect_dropbox(self):
-  auth = dropbox_transfer.dropboxLogin(self.config)
-  url = auth.get_url()
-  self.dialog.services.show_dialog()
-  webbrowser.open(url)
-  resp = self.dialog.services.get_response()
-  if resp == "":
-   self.dialog.services.set_dropbox(False)
-  else:
-   try:
-    auth.authorise(resp)
-    self.dialog.services.set_dropbox()
-   except:
-    self.dialog.services.show_error()
-    self.dialog.services.set_dropbox(False)
-
- def disconnect_dropbox(self):
-  self.config["services"]["dropbox_token"] = ""
-  self.dialog.services.set_dropbox(False)
 
  def get_buffers_list(self):
   all_buffers = ['home','mentions','dm','sent_dm','sent_tweets','favorites','followers','friends','blocks','muted','events']
