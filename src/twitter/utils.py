@@ -124,4 +124,6 @@ def twitter_error(error):
   msg = _(u"Sorry, you are not authorised to see this status.")
  elif error.error_code == 404:
   msg = _(u"No status found with that ID")
+ else:
+  msg = _(u"Error code {0}").format(error.error_code,)
  output.speak(msg)
