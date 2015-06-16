@@ -96,7 +96,7 @@ def compose_event(data, username):
   if data["source"]["screen_name"] == username:
    event = _(u"You've added to favourites: %s, %s") % (data["target"]["name"], data["target_object"]["text"])
   else:
-   event = _(u"%s(@%s) has marked as favorite: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
+   event = _(u"%s(@%s) has marked as favourite: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
  elif data["event"] == "unfavorite":
   if data["source"]["screen_name"] == username: event = _(u"You've removed from favourites: %s, %s") % (data["target"]["name"], data["target_object"]["text"])
   else: event = _(u"%s(@%s) has removed from favourites: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
