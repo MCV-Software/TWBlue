@@ -54,7 +54,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""Your default browser will open on the Twitter page to request authorisation. Enter your user name and password if you're not already logged in, look for the authorise button, and press it."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Once you've authorised your twitter account, Twitter will redirect you to a web page which will notify you that TWBlue has been authorised successfully. Now you are able to close that window and come back to the session manager. You will see on the session list a new item temporally called "Authorised account x" -where x is a number. The session name will change once you open that session."""))
+documentation.append(_(u"""Once you've authorised your twitter account, Twitter will redirect you to a web page which will notify you that TWBlue has been authorised successfully. Now you are able to close that window and  go back to the session manager. On the session list, you will see  a new item temporarily called "Authorised account x" -where x is a number. The session name will change once you open that session."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""To start running TWBlue, press the Ok button in the session manager dialog. By default, TWBlue starts all the configured sessions automatically, however, you can change this behavior."""))
@@ -66,13 +66,16 @@ documentation.append(_(u"""
 documentation.append(_(u"""When the process is finished, by default the program will play another sound, and the screen reader will say "ready" (this behaviour  can be configured)."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""## The program's interface"""))
+documentation.append(_(u"""## General concepts"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""The easiest way to describe the graphical user interface of TWBlue is saying that the application has a window which contains a menu bar with five menus (application, tweet, user, buffer and help); one tree view, one list of items and, mostly in every case, three buttons: Tweet, retweet and reply. The actions that are available for every item will be described later."""))
+documentation.append(_(u"""Before starting to describe TW Blue's usage, we'll explain some concepts that will be used extensively throughout this manual."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""The items of the tree view are called buffers. A buffer is a list to manage the data processed by the application. When you configure a new session on TWBlue and start it, your account is the root of the tree view. Inside it , many buffers are created.  Each  of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you are focusing, you will be able to do different actions with these items."""))
+documentation.append(_(u"""### Buffer"""))
+documentation.append(_(u"""
+"""))
+documentation.append(_(u"""A buffer is a list of items to manage the data which arrives from Twitter, after being processed by the application. When you configure a new session on TWBlue and start it, many buffers are created.  Each  of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you are focusing, you will be able to do different actions with these items."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""The following is a description for every kind of TWBlue's buffers and the kind of items they work with."""))
@@ -92,24 +95,23 @@ documentation.append(_(u"""* Lists: A list is similar to a  user timeline, excep
 documentation.append(_(u"""* Search: A search buffer contains the results of a search operation."""))
 documentation.append(_(u"""* User favourites: You can have TW Blue create a buffer containing tweets favourited by a particular user."""))
 documentation.append(_(u"""* Trending Topics: a trend buffer shows the top ten most used terms in a geographical region. This region may be a country or a city. Trends are updated every five minutes."""))
-documentation.append(_(u"""
-"""))
-documentation.append(_(u"""If there's a URL on a tweet, TW Blue will try to open it when you press enter on it. If there are several, it will show you a list with all of them so you choose the one you want. If you're on the followers or friends buffer, the enter key will show you additional information about them."""))
-documentation.append(_(u"""
-"""))
 documentation.append(_(u"""If you press control-enter, TW Blue will try to play the audio from the focused tweet, as long as it has a URL. If it has the #audio hashtag, you will hear a sound when it is selected, letting you know you can try to play it. However, a tweet can be missing the hashtag and TW Blue will still be able to play it so long as it contains a URL with audio."""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""You will also hear a sound when you see any tweet containing geographical information. You can see someone's location by selecting the option "view address" from the tweet menu on the menu bar."""))
+documentation.append(_(u"""### Username fields"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""## Controls"""))
+documentation.append(_(u"""These fields accept a Twitter username (without the at sign) as the input. They are present in the send direct message, user actions and add to / remove from list dialogs. Those dialogs will be discussed later. The initial value of these fields depends on where they were opened from. They are prepopulated with the username of the  sender of the focused tweet (if they were  opened from  the home and sent timelines, from users'' timelines or from lists), the sender of the focused direct message (if from the received and sent direct message buffers) or in the focused user (if from the followers and friends buffer). If  one of those dialogs is opened from a tweet, and if there are more users mentioned in it, you can use the arrow keys to  switch between them. In any case, you can also type a username."""))
+documentation.append(_(u"""## Tw Blue's interfaces'"""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""Beginning with the 0.36 version, there's support for an interface which does not require a visible window. It can be activated by pressing control-m, or choosing hide window from the application menu. This interface is entirely driven through shortcut keys. These shortcuts are different from those used to drive the graphical interface.  By default, you can't use the invisible interface shortcuts on the GUI. It has been made this way to keep  compatibility with applications like TheQube and Chicken nugget which may use the same shortcuts. If you wish to have available the invisible interface shortcuts even if you are using the GUI, activate this option on the General tab of the preferences dialogue. This section describes both the graphical and the invisible interface."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""### The graphical user interface (GUI)"""))
+documentation.append(_(u"""
+"""))
+documentation.append(_(u"""The easiest way to describe the graphical user interface of TWBlue is saying that the application has a window which contains a menu bar with five menus (application, tweet, user, buffer and help); one tree view, one list of items and, mostly in every case, three buttons: Tweet, retweet and reply. The actions that are available for every item will be described later."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""Here you have a list divided into two parts. On the one hand, the buttons you will find while tabbing around on the program's interface, and on the other, the different elements present on the menu bar."""))
@@ -166,13 +168,13 @@ documentation.append(_(u"""
 documentation.append(_(u"""The available  menu items  are described below:""")) # May be redundant
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Actions: Opens a dialogue box where you can do certain things with a user. This dialogue will be populated with the user who sent the tweet or direct message  in focus or the user in focus in the friends or followers buffer. You can edit it or leave it as is and choose one of the following actions:"""))
+documentation.append(_(u"""* Actions: Opens a dialogue box where you can do certain things with a user. This dialogue will be populated with the user who sent the tweet or direct message  in focus or the user in focus in the friends or followers buffer. You can edit it or leave it as is and choose one of the following actions:"""))
 documentation.append(_(u"""    * Follow: Follows a user. This means you'll see his/her tweets on your main timeline, and if he/she also follows you, you'll be able to interchange direct messages."""))
 documentation.append(_(u"""    * Unfollow: Stops following a user, which causes you not being able to see his/her tweets on your main timeline neither interchanging direct messages."""))
 documentation.append(_(u"""    * Mute: While muting someone, TWBlue won't show you nor his/her tweets on your main timeline; neither you'll see that person's mentions. But you both will be able to interchange direct messages. The muted user is not informed of this action."""))
 documentation.append(_(u"""    * Unmute: It turns the way TWBlue treats this user to its normal way. You will see his/her tweets and mentions again."""))
 documentation.append(_(u"""    * Block: Blocks a user. This forces the user to unfollow you ."""))
-documentation.append(_(u"""    * Unblock: Stops blocking a user.""")
+documentation.append(_(u"""    * Unblock: Stops blocking a user."""))
 documentation.append(_(u"""    * Report as spam: It suggests twitter this user is performing prohibited practices on the social network."""))
 documentation.append(_(u"""    * Ignore tweets from this client: Adds the client from which the focused tweet was sent to the ignored clients list."""))
 documentation.append(_(u"""* View timeline: Lets you open a user's timeline by choosing the user in a dialog box. It is created when you press enter. If you try it with a user that has no tweets, the program will fail. If you try creating an already existing timeline the program will warn you and will not create it again."""))
