@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import webbrowser
+import pocket
 import sound_lib
 import paths
 import widgetUtils
@@ -14,7 +15,10 @@ from extra.autocompletionUsers import settings
 from pubsub import pub
 import logging
 import config_utils
+from pocket_utils import authorisationHandler
+import BaseHTTPServer
 log = logging.getLogger("Settings")
+import keys
 
 class globalSettingsController(object):
  def __init__(self):
@@ -138,7 +142,12 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("sound", "output", self.config["sound"]["output_device"])
   self.dialog.set_value("sound", "session_mute", self.config["sound"]["session_mute"])
   self.dialog.set_value("sound", "soundpack", self.config["sound"]["current_soundpack"])
-  self.dialog.create_audio_services()
+  self.dialog.create_services()
+  if self.config["services"]["pocket_access_token"] == "":
+   self.dialog.services.set_pocket(False)
+  else:
+   self.dialog.services.set_pocket(True)
+  widgetUtils.connect_event(self.dialog.services.pocketBtn, widgetUtils.BUTTON_PRESSED, self.manage_pocket)
   self.dialog.set_value("services", "apiKey", self.config["sound"]["sndup_api_key"])
   self.dialog.realize()
   self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
@@ -247,3 +256,26 @@ class accountSettingsController(globalSettingsController):
   change = self.dialog.buffers.get_event(ev)
   if change == True:
    self.dialog.buffers.change_selected_item()
+
+ def manage_pocket(self, *args, **kwargs):
+  if self.dialog.services.get_pocket_status() == _(u"Connect your Pocket account"):
+   self.connect_pocket()
+  else:
+   self.disconnect_pocket()
+
+ def connect_pocket(self):
+  dlg = self.dialog.services.show_pocket_dialog()
+  if dlg == widgetUtils.YES:
+   request_token = pocket.Pocket.get_request_token(consumer_key=keys.keyring.get("pocket_consumer_key"), redirect_uri="http://127.0.0.1:8080")
+   auth_url = pocket.Pocket.get_auth_url(code=request_token, redirect_uri="http://127.0.0.1:8080")
+   webbrowser.open_new_tab(auth_url)
+   httpd = BaseHTTPServer.HTTPServer(('127.0.0.1', 8080), authorisationHandler.handler)
+   while authorisationHandler.logged == False:
+    httpd.handle_request()
+   user_credentials = pocket.Pocket.get_credentials(consumer_key=keys.keyring.get("pocket_consumer_key"), code=request_token)
+   self.dialog.services.set_pocket(True)
+   self.config["services"]["pocket_access_token"] = user_credentials["access_token"]
+
+ def disconnect_dropbox(self):
+  self.config["services"]["pocket_access_token"] = ""
+  self.dialog.services.set_pocket(False)

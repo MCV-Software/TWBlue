@@ -867,3 +867,11 @@ class conversationBufferController(searchBufferController):
   if number_of_items > 0:
    self.session.sound.play("search_updated.ogg")
 
+class pocketBufferController(baseBufferController):
+ def __init__(self, parent, name, sessionObject, account, sound=None, function=None, bufferType=None, *args, **kwargs):
+  super(pocketBufferController, self).__init__(parent, name, sessionObject, account, sound, function, bufferType, *args, **kwargs)
+  self.type = "pocket"
+
+ def start_stream(self):
+  log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
+  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))

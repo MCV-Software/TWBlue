@@ -265,9 +265,9 @@ class sound(wx.Panel):
  def get(self, control):
   return getattr(self, control).GetStringSelection()
 
-class audioServicesPanel(wx.Panel):
+class servicesPanel(wx.Panel):
  def __init__(self, parent):
-  super(audioServicesPanel, self).__init__(parent)
+  super(servicesPanel, self).__init__(parent)
   mainSizer = wx.BoxSizer(wx.VERTICAL)
   apiKeyLabel = wx.StaticText(self, -1, _(u"If you have a SndUp account, enter your API Key here. If your API Key is invalid, " + application.name + " will fail to upload. If there is no API Key here, " + application.name + " will upload annonymously."))
   self.apiKey = wx.TextCtrl(self, -1)
@@ -278,7 +278,24 @@ class audioServicesPanel(wx.Panel):
   apiKeyBox.Add(apiKeyLabel, 0, wx.ALL, 5)
   apiKeyBox.Add(self.apiKey, 0, wx.ALL, 5)
   mainSizer.Add(apiKeyBox, 0, wx.ALL, 5)
+  self.pocketBtn = wx.Button(self, -1)
+  mainSizer.Add(self.pocketBtn, 0, wx.ALL, 5)
   self.SetSizer(mainSizer)
+
+ def set_pocket(self, active=True):
+  if active == True:
+   self.pocketBtn.SetLabel(_(u"Disconnect your Pocket account"))
+  else:
+   self.pocketBtn.SetLabel(_(u"Connect your Pocket account"))
+
+ def show_pocket_dialog(self):
+  return wx.MessageDialog(self, _(u"The authorization request will be opened in your browser. You only need to do this once. Do you want to continue?"), _(u"Pocket Authorization"), wx.YES_NO).ShowModal()
+
+ def show_pocket_authorization_error(self):
+  wx.MessageDialog(self, _(u"Error during authorization. Try again later."), _(u"Error!"), wx.ICON_ERROR).ShowModal()
+
+ def get_pocket_status(self):
+  return self.pocketBtn.GetLabel()
 
 class configurationDialog(baseDialog.BaseWXDialog):
 
@@ -317,9 +334,10 @@ class configurationDialog(baseDialog.BaseWXDialog):
  def create_sound(self, output_devices, input_devices, soundpacks):
   self.sound = sound(self.notebook, output_devices, input_devices, soundpacks)
   self.notebook.AddPage(self.sound, _(u"Sound"))
- def create_audio_services(self):
-  self.services = audioServicesPanel(self.notebook)
-  self.notebook.AddPage(self.services, _(u"Audio Services"))
+
+ def create_services(self):
+  self.services = servicesPanel(self.notebook)
+  self.notebook.AddPage(self.services, _(u"Services"))
 
  def realize(self):
   self.sizer.Add(self.notebook, 0, wx.ALL, 5)
