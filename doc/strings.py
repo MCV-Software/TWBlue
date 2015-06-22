@@ -364,7 +364,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""## License, source code and donations"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""Tw Blue is under the GNU GPL icense, version 2. You can view the license in the file named license.txt, or online at <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>."""))
+documentation.append(_(u"""Tw Blue is under the GNU GPL license, version 2. You can view the license in the file named license.txt, or online at <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""The source code of the program is available on GitHub at <https://www.github.com/manuelcortez/twblue>."""))
