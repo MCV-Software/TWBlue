@@ -417,6 +417,22 @@ class Controller(object):
    search.timer.start()
   dlg.Destroy()
 
+ def find(self, string=None):
+  page = self.get_current_buffer()
+  if not hasattr(page.buffer, "list"):
+   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
+   return
+  count = page.buffer.list.get_count()
+  if count < 1:
+   output.speak(_(u"Empty buffer."), True)
+   return
+  start = page.buffer.list.get_selected()
+  for i in xrange(start,count):
+   page.buffer.list.select_item(i)
+   if string.lower() in page.get_message().lower():
+    return output.speak(page.get_message(), True)
+  output.speak(unicode(string)+unicode(" ")+_(u"not found."), True)
+  page.buffer.list.select_item(start)
  def edit_keystrokes(self, *args, **kwargs):
   editor = keystrokeEditor.KeystrokeEditor()
   if editor.changed == True:
