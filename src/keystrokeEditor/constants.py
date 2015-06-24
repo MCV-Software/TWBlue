@@ -38,6 +38,7 @@ actions = {
 "toggle_session_mute": _(u"Mute/unmute the current session"),
 "toggle_autoread": _(u"toggle the automatic reading of incoming tweets in the active buffer"),
 "search": _(u"Search on twitter"),
+"find": _(u"Find a string in the currently focused buffer"),
 "edit_keystrokes": _(u"Show the keystroke editor"),
 "view_user_lists": _(u"Show lists for a specified user"),
 "get_more_items": _(u"load previous items"),
