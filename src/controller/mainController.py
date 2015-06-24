@@ -417,7 +417,14 @@ class Controller(object):
    search.timer.start()
   dlg.Destroy()
 
- def find(self, string=None):
+ def find(self, string=''):
+  dlg = dialogs.find.findDialog(string)
+  if dlg.get_response() == widgetUtils.OK and dlg.get("string") != "":
+   string = dlg.get("string")
+  #If we still have an empty string for some reason (I.E. user clicked cancel, etc), return here.
+  if string == '':
+   log.debug("Find canceled.")
+   return
   page = self.get_current_buffer()
   if not hasattr(page.buffer, "list"):
    output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
