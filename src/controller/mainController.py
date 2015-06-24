@@ -127,6 +127,7 @@ class Controller(object):
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.find, menuitem=self.view.find)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
 
@@ -417,7 +418,11 @@ class Controller(object):
    search.timer.start()
   dlg.Destroy()
 
- def find(self, string=''):
+ def find(self, *args, **kwargs):
+  if 'string' in kwargs:
+   string=kwargs['string']
+  else:
+   string=''
   dlg = dialogs.find.findDialog(string)
   if dlg.get_response() == widgetUtils.OK and dlg.get("string") != "":
    string = dlg.get("string")
