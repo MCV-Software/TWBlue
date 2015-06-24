@@ -127,6 +127,7 @@ class Controller(object):
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.find, menuitem=self.view.find)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
 
@@ -417,6 +418,33 @@ class Controller(object):
    search.timer.start()
   dlg.Destroy()
 
+ def find(self, *args, **kwargs):
+  if 'string' in kwargs:
+   string=kwargs['string']
+  else:
+   string=''
+  dlg = dialogs.find.findDialog(string)
+  if dlg.get_response() == widgetUtils.OK and dlg.get("string") != "":
+   string = dlg.get("string")
+  #If we still have an empty string for some reason (I.E. user clicked cancel, etc), return here.
+  if string == '':
+   log.debug("Find canceled.")
+   return
+  page = self.get_current_buffer()
+  if not hasattr(page.buffer, "list"):
+   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
+   return
+  count = page.buffer.list.get_count()
+  if count < 1:
+   output.speak(_(u"Empty buffer."), True)
+   return
+  start = page.buffer.list.get_selected()
+  for i in xrange(start,count):
+   page.buffer.list.select_item(i)
+   if string.lower() in page.get_message().lower():
+    return output.speak(page.get_message(), True)
+  output.speak(unicode(string)+unicode(" ")+_(u"not found."), True)
+  page.buffer.list.select_item(start)
  def edit_keystrokes(self, *args, **kwargs):
   editor = keystrokeEditor.KeystrokeEditor()
   if editor.changed == True:
