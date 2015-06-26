@@ -71,3 +71,6 @@ class sessionManagerWindow(wx.Dialog):
 
  def hide_configuration(self):
   self.configuration.Hide()
+
+ def destroy(self):
+  self.Destroy()
