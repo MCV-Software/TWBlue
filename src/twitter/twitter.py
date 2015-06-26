@@ -7,6 +7,9 @@ import webbrowser
 from twython import Twython, TwythonError
 from keys import keyring
 import authorisationHandler
+from requests import certs
+import logging
+log = logging.getLogger("sessionTwitter")
 
 class twitter(object):
 
@@ -49,3 +52,6 @@ class twitter(object):
   settings["twitter"]["user_key"] = user_key
   settings["twitter"]["user_secret"] = user_secret
   settings.write()
+
+ def __init__(self):
+  log.error(certs.where())
