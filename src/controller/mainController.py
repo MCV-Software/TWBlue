@@ -319,14 +319,14 @@ class Controller(object):
   for i in session.settings["other_buffers"]["timelines"]:
    tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (i,), session, session.db["user_name"], bufferType=None, screen_name=i)
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}".format(i)), pos=self.view.search("timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(i,), pos=self.view.search("timelines", session.db["user_name"]))
   favs_timelines = buffersController.emptyPanel(self.view.nb, "favs_timelines", session.db["user_name"])
   self.buffers.append(favs_timelines)
   self.view.insert_buffer(favs_timelines.buffer , name=_(u"Favourites timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["favourites_timelines"]:
    tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (i,), session, session.db["user_name"], bufferType=None, screen_name=i)
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Favourites timeline for {}".format(i)), pos=self.view.search("favs_timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_(u"Favourites timeline for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
    tl.timer.start()
   lists = buffersController.emptyPanel(self.view.nb, "lists", session.db["user_name"])
@@ -343,7 +343,7 @@ class Controller(object):
   for i in session.settings["other_buffers"]["tweet_searches"]:
    tl = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (i,), session, session.db["user_name"], bufferType="searchPanel", q=i, count=session.settings["general"]["max_tweets_per_call"])
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Search for {}".format(i)), pos=self.view.search("searches", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_(u"Search for {}").format(i), pos=self.view.search("searches", session.db["user_name"]))
    tl.timer = RepeatingTimer(180, tl.start_stream)
    tl.timer.start()
   for i in session.settings["other_buffers"]["trending_topic_buffers"]:
@@ -413,7 +413,7 @@ class Controller(object):
     search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term)
    self.buffers.append(search)
    search.start_stream()
-   self.view.insert_buffer(search.buffer, name=_(u"Search for {}".format(term)), pos=self.view.search("searches", buffer.session.db["user_name"]))
+   self.view.insert_buffer(search.buffer, name=_(u"Search for {}").format(term), pos=self.view.search("searches", buffer.session.db["user_name"]))
    search.timer = RepeatingTimer(180, search.start_stream)
    search.timer.start()
   dlg.Destroy()
@@ -443,7 +443,7 @@ class Controller(object):
    page.buffer.list.select_item(i)
    if string.lower() in page.get_message().lower():
     return output.speak(page.get_message(), True)
-  output.speak(unicode(string)+unicode(" ")+_(u"not found."), True)
+  output.speak(_(u"{0} not found.").format(string,), True)
   page.buffer.list.select_item(start)
  def edit_keystrokes(self, *args, **kwargs):
   editor = keystrokeEditor.KeystrokeEditor()
@@ -719,7 +719,7 @@ class Controller(object):
      tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
      tl.start_stream()
      self.buffers.append(tl)
-     self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}".format(dlg.get_user())), pos=self.view.search("timelines", buffer.session.db["user_name"]))
+     self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=self.view.search("timelines", buffer.session.db["user_name"]))
      buffer.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
      pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buffer.session)
      buffer.session.sound.play("create_timeline.ogg")
@@ -729,7 +729,7 @@ class Controller(object):
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
      self.buffers.append(tl)
-     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Favourites timeline for {}".format(dlg.get_user())), pos=self.view.search("favs_timelines", buffer.session.db["user_name"]))
+     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Favourites timeline for {}").format(dlg.get_user()), pos=self.view.search("favs_timelines", buffer.session.db["user_name"]))
      tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
@@ -746,7 +746,7 @@ class Controller(object):
   search.tweet = buffer.get_right_tweet()
   search.start_stream(start=True)
   self.buffers.append(search)
-  self.view.insert_buffer(search.buffer, name=_(u"Conversation with {0}".format(user)), pos=self.view.search("searches", buffer.session.db["user_name"]))
+  self.view.insert_buffer(search.buffer, name=_(u"Conversation with {0}").format(user), pos=self.view.search("searches", buffer.session.db["user_name"]))
   search.timer = RepeatingTimer(300, search.start_stream)
   search.timer.start()
 

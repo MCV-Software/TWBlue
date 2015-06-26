@@ -2,7 +2,7 @@
 import wx
 import application
 def retweet_as_link(parent):
- return wx.MessageDialog(parent, _(u"This retweet is over 140 characters. Would you like to post it as a mention to the poster with your comments and a link to the original tweet?"), _(application.name), wx.YES_NO|wx.ICON_QUESTION).ShowModal()
+ return wx.MessageDialog(parent, _(u"This retweet is over 140 characters. Would you like to post it as a mention to the poster with your comments and a link to the original tweet?"), application.name, wx.YES_NO|wx.ICON_QUESTION).ShowModal()
 
 def retweet_question(parent):
  return wx.MessageDialog(parent, _(u"Would you like to add a comment to this tweet?"), _("Retweet"), wx.YES_NO|wx.CANCEL|wx.ICON_QUESTION).ShowModal()
@@ -15,7 +15,7 @@ def exit_dialog(parent):
  return dlg.ShowModal()
 
 def needs_restart():
- wx.MessageDialog(None, _(unicode(application.name) + u" must be restarted for these changes to take effect."), _("Restart " + application.name), wx.OK).ShowModal()
+ wx.MessageDialog(None, _(u" {0} must be restarted for these changes to take effect.").format(application.name,), _("Restart {0} ").format(application.name,), wx.OK).ShowModal()
 
 def delete_user_from_db():
  return wx.MessageDialog(None, _(u"Are you sure you want to delete this user from the database? This user will not appear on the autocomplete results anymore."), _(u"Confirm"), wx.YES_NO|wx.ICON_QUESTION).ShowModal()

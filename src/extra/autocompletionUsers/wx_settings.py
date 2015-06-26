@@ -24,4 +24,4 @@ class autocompletionSettingsDialog(widgetUtils.BaseDialog):
   self.SetClientSize(sizer.CalcMin())
 
 def show_success_dialog():
- wx.MessageDialog(None, _(uapplication.name+"'s database of users has been updated."), _(u"Done"), wx.OK).ShowModal()
+ wx.MessageDialog(None, _(u"{0}'s database of users has been updated.").format(application.name,), _(u"Done"), wx.OK).ShowModal()

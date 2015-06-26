@@ -73,7 +73,7 @@ class spellCheckerDialog(wx.Dialog):
   return self.suggestions.GetStringSelection()
 
 def dict_not_found_error():
- wx.MessageDialog(None, _(u"An error has occurred. There are no dictionaries available for the selected language in " + application.name), _(u"Error"), wx.ICON_ERROR).ShowModal()
+ wx.MessageDialog(None, _(u"An error has occurred. There are no dictionaries available for the selected language in {0}").format(application.name,), _(u"Error"), wx.ICON_ERROR).ShowModal()
 
 def finished():
- wx.MessageDialog(None, _(u"Spell check complete."), _(application.name), style=wx.OK).ShowModal()
+ wx.MessageDialog(None, _(u"Spell check complete."), application.name, style=wx.OK).ShowModal()
