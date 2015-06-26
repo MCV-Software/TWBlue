@@ -397,7 +397,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""## Credits"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""TWBlue is developed and mantained by [Manuel Cortez](https://twitter.com/manuelcortez00), [Jose Manuel Delicado](https://twitter.com/jmdaweb), and [Bill Dengler](https://www..twitter.com/codeofdusk)."""))
+documentation.append(_(u"""TWBlue is developed and mantained by [Manuel Cortéz](https://twitter.com/manuelcortez00), [José Manuel Delicado](https://twitter.com/jmdaweb), and [Bill Dengler](https://twitter.com/codeofdusk). It's suppported and sponsored by [Technow S. L.](https://twitter.com/technow)"""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""We would also like to thank the translators of TWBlue, who have allowed the spreading of the application."""))
@@ -406,16 +406,16 @@ documentation.append(_(u"""
 documentation.append(_(u"""* English: [Bryner Villalobos](https://twitter.com/Bry_StarkCR) and [Bill Dengler](https://twitter.com/codeofdusk)."""))
 documentation.append(_(u"""* Arabic: Mohammed Al Shara."""))
 documentation.append(_(u"""* Catalan: [Joan Rabat](https://twitter.com/joanrabat) and Juan Carlos Rivilla."""))
-documentation.append(_(u"""* Spanish: [Manuel Cortez](https://twitter.com/manuelcortez00)."""))
+documentation.append(_(u"""* Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00)."""))
 documentation.append(_(u"""* Basque: [Sukil Etxenike](https://twitter.com/sukil2011)."""))
 documentation.append(_(u"""* Finnish: Jani Kinnunen."""))
-documentation.append(_(u"""* French: Remi Ruiz."""))
+documentation.append(_(u"""* French: Rémi Ruiz."""))
 documentation.append(_(u"""* Galician: [Alba Kinteiro](https://twitter.com/albasmileforeve)."""))
 documentation.append(_(u"""* German: Steffen Schultz."""))
 documentation.append(_(u"""* Hungarian: Robert Osztolykan."""))
 documentation.append(_(u"""* Polish: Pawel Masarczyk."""))
 documentation.append(_(u"""* Portuguese: Odenilton Júnior Santos."""))
-documentation.append(_(u"""* Russian: Alexander aszyn."""))
+documentation.append(_(u"""* Russian: Alexander Jaszyn."""))
 documentation.append(_(u"""* Turkish: Burak."""))
 documentation.append(_(u"""
 """))
