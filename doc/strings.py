@@ -306,6 +306,7 @@ documentation.append(_(u"""* Windows + Alt + PageUp: Load previous items for the
 documentation.append(_(u"""* Control + Windows + G: Get geolocation."""))
 documentation.append(_(u"""* Control + Windows + Shift + G: Display the tweet's geolocation in a dialogue."""))
 documentation.append(_(u"""* Control + Windows + T: Create a trending topics' buffer."""))
+documentation.append(_(u"""* Control + Windows + {: Find a string in the current buffer."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""## Configuring TWBlue"""))
