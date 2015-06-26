@@ -112,8 +112,8 @@ documentation.append(_(u"""
 documentation.append(_(u"""### Username fields"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""These fields accept a Twitter username (without the at sign) as the input. They are present in the send direct message and the user actions   dialogue boxes. Those dialogues will be discussed later. The initial value of these fields depends on where they were opened from. They are prepopulated with the username of the  sender of the focused tweet (if they were  opened from  the home and sent timelines, from users'' timelines or from lists), the sender of the focused direct message (if from the received or sent direct message buffers) or in the focused user (if from the followers' or friends' buffer). If  one of those dialogue boxes is opened from a tweet, and if there are more users mentioned in it, you can use the arrow keys to  switch between them. Alternatively, you can also type a username."""))
-documentation.append(_(u"""## TWBlue's interfaces'"""))
+documentation.append(_(u"""These fields accept a Twitter username (without the at sign) as the input. They are present in the send direct message and the user actions   dialogue boxes. Those dialogues will be discussed later. The initial value of these fields depends on where they were opened from. They are prepopulated with the username of the  sender of the focused tweet (if they were  opened from  the home and sent timelines, from users' timelines or from lists), the sender of the focused direct message (if from the received or sent direct message buffers) or in the focused user (if from the followers' or friends' buffer). If  one of those dialogue boxes is opened from a tweet, and if there are more users mentioned in it, you can use the arrow keys to  switch between them. Alternatively, you can also type a username."""))
+documentation.append(_(u"""## TWBlue's interfaces"""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""### The graphical user interface (GUI)"""))
@@ -125,7 +125,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""* a menu bar accomodating five menus (application, tweet, user, buffer and help);"""))
 documentation.append(_(u"""* One tree view,"""))
 documentation.append(_(u"""* One list of items"""))
-documentation.append(_(u"""* Three buttons in most dialogs: Tweet, retweet and reply."""))
+documentation.append(_(u"""* Four buttons in most dialogs: Tweet, retweet , reply and direct message."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""The actions that are available for every item will be described later."""))
@@ -306,6 +306,7 @@ documentation.append(_(u"""* Windows + Alt + PageUp: Load previous items for the
 documentation.append(_(u"""* Control + Windows + G: Get geolocation."""))
 documentation.append(_(u"""* Control + Windows + Shift + G: Display the tweet's geolocation in a dialogue."""))
 documentation.append(_(u"""* Control + Windows + T: Create a trending topics' buffer."""))
+documentation.append(_(u"""* Control + Windows + {: Find a string in the current buffer."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""## Configuring TWBlue"""))
@@ -330,7 +331,7 @@ documentation.append(_(u"""
 documentation.append(_(u"""#### buffers tab"""))
 documentation.append(_(u"""
 """))
-documentation.append(_(u"""This tab displays a list for each buffer you have available in TWBlue, except for searches, timelines, favourites'' timelines and lists. You can show, hide and move them."""))
+documentation.append(_(u"""This tab displays a list for each buffer you have available in TWBlue, except for searches, timelines, favourites' timelines and lists. You can show, hide and move them."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""#### The ignored clients tab"""))
@@ -364,7 +365,7 @@ documentation.append(_(u"""* Language: This allows you to change the language of
 documentation.append(_(u"""* Ask before exiting TWBlue: This checkbox allows you to control whether TWBlue will ask for confirmation before exiting."""))
 documentation.append(_(u"""* Play a sound when TWBlue launches: This checkbox allows you to configure whether TWBlue will play a sound when it has finished loading the buffers."""))
 documentation.append(_(u"""* Speak a message when TWBlue launches: This is the same as the previous option, but this checkbox configures whether the screen reader will say \"ready\"."""))
-documentation.append(_(u"""* Use the invisible interface's shortcuts in the GUI: As the invisible interface and the Graphical User Interface have  their own shortcuts, you may want to use the invisible interface's keystrokes all the time. If this option is checked, the invisible interface's shortcuts ''will be usable in the GUI."""))
+documentation.append(_(u"""* Use the invisible interface's shortcuts in the GUI: As the invisible interface and the Graphical User Interface have  their own shortcuts, you may want to use the invisible interface's keystrokes all the time. If this option is checked, the invisible interface's shortcuts will be usable in the GUI."""))
 documentation.append(_(u"""* Activate SAPI5 when any other screen reader is not being run: This checkbox allows to activate SAPI 5 TTS when no other screen reader is being run."""))
 documentation.append(_(u"""* Hide GUI on launch: This allows you to configure whether TWBlue will start with the GUI or the invisible interface."""))
 documentation.append(_(u"""* Keymap: This option allows you to change the keymap used by TWBlue in the invisible interface. The shipped keymaps are Default, Qwitter, TheQube and Chicken Nugget. The keymaps are in the \"keymaps\" folder, and you can create new ones. Just create a new \".keymap\" file and change the keystrokes associated with the actions, as it is done in the shipped keymaps."""))
@@ -392,6 +393,34 @@ documentation.append(_(u"""## Contact"""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""If you still have questions after reading this document, if you wish to collaborate to the project in some other way, or if you simply want to get in touch with the application developer, follow the Twitter account [@tw_blue2](https://twitter.com/tw_blue2)  or [@manuelcortez00.](https://twitter.com/manuelcortez00) You can also visit [our website](http://twblue.es)"""))
+documentation.append(_(u"""
+"""))
+documentation.append(_(u"""## Credits"""))
+documentation.append(_(u"""
+"""))
+documentation.append(_(u"""TWBlue is developed and mantained by [Manuel Cortéz](https://twitter.com/manuelcortez00), [José Manuel Delicado](https://twitter.com/jmdaweb), and [Bill Dengler](https://twitter.com/codeofdusk). It's suppported and sponsored by [Technow S. L.](https://twitter.com/technow)"""))
+documentation.append(_(u"""
+"""))
+documentation.append(_(u"""We would also like to thank the translators of TWBlue, who have allowed the spreading of the application."""))
+documentation.append(_(u"""
+"""))
+documentation.append(_(u"""* English: [Bryner Villalobos](https://twitter.com/Bry_StarkCR) and [Bill Dengler](https://twitter.com/codeofdusk)."""))
+documentation.append(_(u"""* Arabic: Mohammed Al Shara."""))
+documentation.append(_(u"""* Catalan: [Joan Rabat](https://twitter.com/joanrabat) and Juan Carlos Rivilla."""))
+documentation.append(_(u"""* Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00)."""))
+documentation.append(_(u"""* Basque: [Sukil Etxenike](https://twitter.com/sukil2011)."""))
+documentation.append(_(u"""* Finnish: Jani Kinnunen."""))
+documentation.append(_(u"""* French: Rémi Ruiz."""))
+documentation.append(_(u"""* Galician: [Alba Kinteiro](https://twitter.com/albasmileforeve)."""))
+documentation.append(_(u"""* German: Steffen Schultz."""))
+documentation.append(_(u"""* Hungarian: Robert Osztolykan."""))
+documentation.append(_(u"""* Polish: Pawel Masarczyk."""))
+documentation.append(_(u"""* Portuguese: Odenilton Júnior Santos."""))
+documentation.append(_(u"""* Russian: Alexander Jaszyn."""))
+documentation.append(_(u"""* Turkish: Burak."""))
+documentation.append(_(u"""
+"""))
+documentation.append(_(u"""Many thanks also to the people who worked on the documentation. Initially, [Manuel Cortez](https://twitter.com/manuelcortez00) did the documentation in Spanish, and translated to English by [Bryner Villalobos](https://twitter.com/Bry_StarkCR), [Robert Spangler](https://twitter.com/glasscity1837), [Sussan Rey](https://twitter.com/sussanrey17), [Anibal Hernandez](https://twitter.com/anibalmetal), and [Holly Scott-Gardner](https://twitter.com/holly1994). It was updated by [Sukil Etxenike](https://twitter.com/sukil2011), with some valuable corrections by [Brian Hartgen](https://twitter.com/brianhartgen)."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""---"""))
