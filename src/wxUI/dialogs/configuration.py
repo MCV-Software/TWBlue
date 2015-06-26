@@ -269,7 +269,7 @@ class servicesPanel(wx.Panel):
  def __init__(self, parent):
   super(servicesPanel, self).__init__(parent)
   mainSizer = wx.BoxSizer(wx.VERTICAL)
-  apiKeyLabel = wx.StaticText(self, -1, _(u"If you have a SndUp account, enter your API Key here. If your API Key is invalid, " + application.name + " will fail to upload. If there is no API Key here, " + application.name + " will upload annonymously."))
+  apiKeyLabel = wx.StaticText(self, -1, _(u"If you have a SndUp account, enter your API Key here. If your API Key is invalid, {0} will fail to upload. If there is no API Key here, {0} will upload annonymously.").format(application.name,))
   self.apiKey = wx.TextCtrl(self, -1)
   dc = wx.WindowDC(self.apiKey)
   dc.SetFont(self.apiKey.GetFont())
@@ -305,7 +305,7 @@ class configurationDialog(baseDialog.BaseWXDialog):
  def __init__(self):
   super(configurationDialog, self).__init__(None, -1)
   self.panel = wx.Panel(self)
-  self.SetTitle(_(unicode(application.name + " preferences")))
+  self.SetTitle(_(u"{0} preferences").format(application.name,))
   self.sizer = wx.BoxSizer(wx.VERTICAL)
   self.notebook = wx.Notebook(self.panel)
 

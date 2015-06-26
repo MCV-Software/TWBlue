@@ -119,8 +119,8 @@ def compose_event(data, username):
   if data["source"]["screen_name"] == username: event = _(u"You've unsubscribed from the list %s, which is owned by %s(@%s)") % (data["target_object"]["name"], data["target"]["name"], data["target"]["screen_name"])
   else: event = _("You've been unsubscribed from the list %s, which is owned by %s(@%s)") % (data["target_object"]["name"], data["source"]["name"], data["source"]["screen_name"])
  elif data["event"] == "retweeted_retweet":
-  if data["source"]["screen_name"] == username: event = _(u"You have retweeted a retweet from %s(@%s): %s" % (data["target"]["name"], data["target"]["screen_name"], data["target_object"]["text"]))
-  else: event = _(u"%s(@%s) has retweeted your retweet: %s" % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"]))
+  if data["source"]["screen_name"] == username: event = _(u"You have retweeted a retweet from %s(@%s): %s") % (data["target"]["name"], data["target"]["screen_name"], data["target_object"]["text"])
+  else: event = _(u"%s(@%s) has retweeted your retweet: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
  else:
   event = _("Unknown")
   log.error("event: %s\n target: %s\n source: %s\n target_object: %s" % (data["event"], data["target"], data["source"], data["target_object"]))

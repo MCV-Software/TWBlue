@@ -23,10 +23,8 @@ class KeystrokeEditor(object):
   answer = edit_dialog.get_response()
   if answer == widgetUtils.OK:
    new_keystroke = self.get_edited_keystroke(edit_dialog)
-   print new_keystroke
    if new_keystroke != self.map[action]:
     self.changed = True
-    print "changed"
     self.map[action] = new_keystroke
 
  def set_keystroke(self, keystroke, dialog):

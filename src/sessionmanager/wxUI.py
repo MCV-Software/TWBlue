@@ -7,13 +7,13 @@ class sessionManagerWindow(wx.Dialog):
   super(sessionManagerWindow, self).__init__(parent=None, title="Session manager", size=wx.DefaultSize)
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  label = wx.StaticText(panel, -1, u"Select a twitter account to start " + application.name, size=wx.DefaultSize)
+  label = wx.StaticText(panel, -1, _(u"Accounts list"), size=wx.DefaultSize)
   listSizer = wx.BoxSizer(wx.HORIZONTAL)
-  self.list = widgets.list(panel, u"Account", style=wx.LC_SINGLE_SEL|wx.LC_REPORT)
+  self.list = widgets.list(panel, _(u"Account"), style=wx.LC_SINGLE_SEL|wx.LC_REPORT)
   listSizer.Add(label, 0, wx.ALL, 5)
   listSizer.Add(self.list.list, 0, wx.ALL, 5)
   sizer.Add(listSizer, 0, wx.ALL, 5)
-  self.new = wx.Button(panel, -1, u"New account", size=wx.DefaultSize)
+  self.new = wx.Button(panel, -1, _(u"New account"), size=wx.DefaultSize)
   self.remove = wx.Button(panel, -1, _(u"Remove account"))
   self.configuration = wx.Button(panel, -1, _(u"Global Settings"))
   ok = wx.Button(panel, wx.ID_OK, size=wx.DefaultSize)
@@ -71,3 +71,6 @@ class sessionManagerWindow(wx.Dialog):
 
  def hide_configuration(self):
   self.configuration.Hide()
+
+ def destroy(self):
+  self.Destroy()
