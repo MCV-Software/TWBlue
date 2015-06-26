@@ -445,6 +445,7 @@ class Controller(object):
     return output.speak(page.get_message(), True)
   output.speak(_(u"{0} not found.").format(string,), True)
   page.buffer.list.select_item(start)
+
  def edit_keystrokes(self, *args, **kwargs):
   editor = keystrokeEditor.KeystrokeEditor()
   if editor.changed == True:
@@ -553,6 +554,7 @@ class Controller(object):
   log.debug("Exiting...")
   log.debug("Saving global configuration...")
   config.app.write()
+  config.keymap.write()
   for item in session_.sessions:
    if session_.sessions[item].logged == False: continue
    log.debug("Saving config for %s session" % (session_.sessions[item].session_id,))
