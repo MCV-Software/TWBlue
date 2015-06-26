@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-06-12 17:49+Hora de verano central (México)\n"
+"POT-Creation-Date: 2015-06-25 15:28+Hora de verano central (México)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgid "User default"
 msgstr ""
 
 #: ../doc\strings.py:4
-msgid "Documentation for {0} - {1}"
+msgid "Documentation for TWBlue - {0}"
 msgstr ""
 
 #: ../doc\strings.py:6 ../doc\strings.py:11 ../doc\strings.py:14
@@ -30,15 +30,27 @@ msgstr ""
 #: ../doc\strings.py:52 ../doc\strings.py:55 ../doc\strings.py:58
 #: ../doc\strings.py:61 ../doc\strings.py:64 ../doc\strings.py:67
 #: ../doc\strings.py:70 ../doc\strings.py:73 ../doc\strings.py:76
-#: ../doc\strings.py:79 ../doc\strings.py:94 ../doc\strings.py:97
-#: ../doc\strings.py:100 ../doc\strings.py:103 ../doc\strings.py:106
-#: ../doc\strings.py:109 ../doc\strings.py:112 ../doc\strings.py:115
-#: ../doc\strings.py:118 ../doc\strings.py:124 ../doc\strings.py:127
-#: ../doc\strings.py:130 ../doc\strings.py:133 ../doc\strings.py:136
-#: ../doc\strings.py:148 ../doc\strings.py:151 ../doc\strings.py:160
-#: ../doc\strings.py:163 ../doc\strings.py:166 ../doc\strings.py:181
-#: ../doc\strings.py:184 ../doc\strings.py:191 ../doc\strings.py:194
-#: ../doc\strings.py:205 ../doc\strings.py:208
+#: ../doc\strings.py:79 ../doc\strings.py:82 ../doc\strings.py:85
+#: ../doc\strings.py:88 ../doc\strings.py:91 ../doc\strings.py:107
+#: ../doc\strings.py:110 ../doc\strings.py:113 ../doc\strings.py:117
+#: ../doc\strings.py:120 ../doc\strings.py:123 ../doc\strings.py:129
+#: ../doc\strings.py:132 ../doc\strings.py:135 ../doc\strings.py:138
+#: ../doc\strings.py:144 ../doc\strings.py:147 ../doc\strings.py:150
+#: ../doc\strings.py:153 ../doc\strings.py:156 ../doc\strings.py:167
+#: ../doc\strings.py:170 ../doc\strings.py:179 ../doc\strings.py:182
+#: ../doc\strings.py:200 ../doc\strings.py:203 ../doc\strings.py:211
+#: ../doc\strings.py:214 ../doc\strings.py:223 ../doc\strings.py:226
+#: ../doc\strings.py:229 ../doc\strings.py:232 ../doc\strings.py:235
+#: ../doc\strings.py:238 ../doc\strings.py:259 ../doc\strings.py:262
+#: ../doc\strings.py:309 ../doc\strings.py:313 ../doc\strings.py:316
+#: ../doc\strings.py:319 ../doc\strings.py:328 ../doc\strings.py:331
+#: ../doc\strings.py:334 ../doc\strings.py:337 ../doc\strings.py:340
+#: ../doc\strings.py:343 ../doc\strings.py:346 ../doc\strings.py:349
+#: ../doc\strings.py:352 ../doc\strings.py:355 ../doc\strings.py:358
+#: ../doc\strings.py:361 ../doc\strings.py:371 ../doc\strings.py:374
+#: ../doc\strings.py:377 ../doc\strings.py:380 ../doc\strings.py:383
+#: ../doc\strings.py:386 ../doc\strings.py:389 ../doc\strings.py:392
+#: ../doc\strings.py:395
 msgid ""
 "\n"
 msgstr ""
@@ -52,7 +64,7 @@ msgid "## Warning!"
 msgstr ""
 
 #: ../doc\strings.py:16
-msgid "You're reading documentation produced for a program still in development. The object of this manual is to explain some details of the operation of the program. Bear in mind that as the software is in the process of active development, parts of this document may change in the near future, so it is advisable to keep an eye on it from time to time to avoid missing too much out."
+msgid "You are reading documentation produced for a program still in development. The object of this manual is to explain some details of the operation of the program. Bear in mind that as the software is in the process of active development, parts of this user guide may change in the near future, so it is advisable to keep checking from time to time to avoid missing important information."
 msgstr ""
 
 #: ../doc\strings.py:19
@@ -64,11 +76,11 @@ msgid "## Introduction"
 msgstr ""
 
 #: ../doc\strings.py:25
-msgid "TW Blue is an application to make Twitter simple and fast, while using as few resources as possible. With it, you can do things like the following:"
+msgid "TWBlue is an application to make Twitter simple and fast, while using as few resources as possible. With TWBlue, you can do things like the following:"
 msgstr ""
 
 #: ../doc\strings.py:28
-msgid "* Tweet, reply, retweet and delete tweets,"
+msgid "* Tweet, reply to, retweet and delete tweets,"
 msgstr ""
 
 #: ../doc\strings.py:29
@@ -108,359 +120,842 @@ msgid "## Usage"
 msgstr ""
 
 #: ../doc\strings.py:42
-msgid "In order to use an application like TW Blue which allows you to manage your Twitter account, you must first be registered on it. It's beyond the scope of this document to explain how to do so. We'll start from the premise that you have an account with its corresponding user name and password."
+msgid "Twitter is a social networking or micro-blogging tool which allows you to compose short status updates of your activities in 140 characters or less. Twitter is a way for friends, family and co-workers to communicate and stay connected through the exchange of quick, frequent messages. You can restrict delivery of updates to those in your circle of friends or, by default, allow anyone to access them."
 msgstr ""
 
 #: ../doc\strings.py:45
-msgid "### Authorising the application"
+msgid "You can monitor the status of updates from your friends, family or co-workers (known as following), and they in turn can read any updates you create, (known as followers). The updates are referred to as Tweets. The Tweets are posted to your Twitter profile or Blog and are searchable using Twitter Search."
 msgstr ""
 
 #: ../doc\strings.py:48
-msgid "First off, it's necessary to authorise the program so it can access your Twitter account and act on your behalf. The authorisation process is quite simple, and the program never gets data such as your username and password. In order to authorise the application, you just need to run the main executable file, called TWBlue.exe (on some computers it may appear simply as TWBlue)."
+msgid "In order to use TWBlue, you must first have created an account on the Twitter website. The process for signing up for a Twitter account is very accessible. During the account registration, you will need to choose a Twitter username. This serves two purposes. This is the method through which people will comunicate with you, but most importantly, your username and password will be required to connect TWBlue to your Twitter account. We suggest you choose a username which is memorable both to you and the people you hope will follow you."
 msgstr ""
 
 #: ../doc\strings.py:51
-msgid "Whether this is the first time you open TWBlue or you don't have any session, you will see the session manager. This dialog allows you to authorise as many accounts as you wish. If you press the \"new account\" button a dialog will tell you that your default browser will be opened in order to authorise the application. Press \"yes\" so the process may start."
+msgid "We'll start from the premise that you have a Twitter account with its corresponding username and password."
 msgstr ""
 
 #: ../doc\strings.py:54
-msgid "Your default browser will open on the Twitter page to request authorisation. Enter your user name and password if you're not already logged in, look for the authorise button, and press it."
+msgid "### Authorising the application"
 msgstr ""
 
 #: ../doc\strings.py:57
-msgid "Once you've authorised your twitter account, Twitter will redirect you to a web page which will notify you that TWBlue has been authorised successfully. Now you are able to close that window and come back to the session manager. You will see on the session list a new item temporally called \"Authorised account x\" -where x is a number. The session name will change once you open that session."
+msgid "First of all, it's necessary to authorise the program so it can access your Twitter account and act on your behalf. The authorisation process is quite simple, and the program never retains data such as your password. In order to authorise the application, you just need to run the main executable file, called TWBlue.exe (on some computers it may appear simply as TWBlue if Windows Explorer is not set to display file extensions). We suggest you may like to place a Windows shortcut on your Desktop pointing to this executable file for quick and easy location."
 msgstr ""
 
 #: ../doc\strings.py:60
-msgid "To start running TWBlue, press the Ok button in the session manager dialog. By default, TWBlue starts all the configured sessions, however, you can change this behavior."
+msgid "TWBlue allows you to monitor several Twitter accounts simultaneously. The program refers to each Twitter account you have configured as a \"Session\". If this is the first time you have launched TWBlue, and if no Twitter session exists, you will see the Session Manager. This dialogue box allows you to authorise as many accounts as you wish. If you press the Tab key to reach the \"new account\" button and activate it by pressing the Space Bar, a dialogue box will advise you that your default internet browser will be opened in order to authorise the application and you will be asked if you would like to continue. Activate the \"yes\" Button by pressing the letter \"Y\" so the process may start."
 msgstr ""
 
 #: ../doc\strings.py:63
-msgid "If all went well, the application will start playing sounds, indicating your data are being updated."
+msgid "Your default browser will open on the Twitter page to request authorisation. Enter your username and password into the appropriate edit fields if you're not already logged in, select the authorise button, and press it."
 msgstr ""
 
 #: ../doc\strings.py:66
-msgid "When the process is finished, the program will play another sound, and the screen reader will say \"ready\"."
+msgid "Once you've authorised your twitter account, the website will redirect you to a page which will notify you that TWBlue has been authorised successfully. Now you are able to close the page by pressing ALT+F4 which will return you to the Session Manager. On the session list, you will see a new item temporarily called \"Authorised account x\" -where x is a number. The session name will change once you open that session."
 msgstr ""
 
 #: ../doc\strings.py:69
-msgid "## The program's interface"
+msgid "To start running TWBlue, press the Ok button in the Session Manager dialogue. By default, TWBlue starts all the configured sessions automatically, however, you can change this behavior."
 msgstr ""
 
 #: ../doc\strings.py:72
-msgid "The easiest way to describe the graphical user interface of TWBlue is saying that the application has a window which contains a menu bar with five menus (application, tweet, user, buffer and help); one tree view, one list of items and, mostly in every case, three buttons: Tweet, retweet and reply. The actions that are available for every item will be described later."
+msgid "If all went well, the application will start playing sounds, indicating your data is being updated."
 msgstr ""
 
 #: ../doc\strings.py:75
-msgid "In the tree view are inserted buffers which are lists to manage the processed data. When you configure a new session on TWBlue and start it, your account is the root of the tree view. Inside of it  many buffers are created.  Each one of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you were, you will be able to make different actions with these items."
+msgid "When the process is finished, by default the program will play another sound, and the screen reader will say \"ready\" (this behaviour  can be configured)."
 msgstr ""
 
 #: ../doc\strings.py:78
-msgid "The following is a description for every kind of TWBlue's buffer and the kind of items they work with."
+msgid "## General concepts"
 msgstr ""
 
 #: ../doc\strings.py:81
-msgid "* Home: it shows all the tweets on the main timeline. These are the tweets by users you follow."
-msgstr ""
-
-#: ../doc\strings.py:82
-msgid "* Mentions: if a user, whether you follow them or not, mentions you on Twitter, you will find it on this list."
-msgstr ""
-
-#: ../doc\strings.py:83
-msgid "* Direct messages: here go the private direct messages you exchange with users you follow and who follow you back. This list only shows received messages."
+msgid "Before starting to describe TWBlue's usage, we'll explain some concepts that will be used extensively throughout this manual."
 msgstr ""
 
 #: ../doc\strings.py:84
-msgid "* Sent: it shows all the tweets and direct messages sent from your account."
-msgstr ""
-
-#: ../doc\strings.py:85
-msgid "* Favourites: here you will see all tweets you have favourited."
-msgstr ""
-
-#: ../doc\strings.py:86
-msgid "* Followers: when users follow you, you'll be able to see them on this list, with some of their account information."
+msgid "### Buffer"
 msgstr ""
 
 #: ../doc\strings.py:87
-msgid "* Friends: the same as the previous list, but these are the users you follow."
-msgstr ""
-
-#: ../doc\strings.py:88
-msgid "* User timelines: these are lists you may create. They contain only the tweets by a specific user. They're used so you can see the tweets by a single person and you don't want to look all over your timeline. You may create as many as you like."
-msgstr ""
-
-#: ../doc\strings.py:89
-msgid "* Events: An event is anything that happens on Twitter, such as when someone follows you, when someone adds or removes one of your tweets from their favorites list, or when you subscribe to a list.  There are many more but TW Blue shows the most common ones in the events buffer so that you can easily keep track of what is happening on your account."
+msgid "A buffer is a list of items to manage the data which arrives from Twitter, after being processed by the application. When you configure a new session on TWBlue and start it, many buffers are created.  Each  of them may contain some of the items which TWBlue works with: Tweets, direct messages, users, trends or events. According to the buffer you are focusing, you will be able to do different actions with these items."
 msgstr ""
 
 #: ../doc\strings.py:90
-msgid "* Lists: A list is similar to a temporary timeline, except that you can configure it to contain tweets from multiple users."
-msgstr ""
-
-#: ../doc\strings.py:91
-msgid "* Search: A search buffer contains the results of a search operation."
-msgstr ""
-
-#: ../doc\strings.py:92
-msgid "* User favorites: You can have TW Blue create a buffer containing tweets favorited by a particular user."
+msgid "The following is a description for every one  of TWBlue's buffers and the kind of items they work with."
 msgstr ""
 
 #: ../doc\strings.py:93
-msgid "* Trending Topics: a trend buffer shows the top ten most used terms in a geographical region. This region may be a country or a city. Trends are updated every five minutes."
+msgid "* Home: this shows all the tweets on the main timeline. These are the tweets by users you follow."
+msgstr ""
+
+#: ../doc\strings.py:94
+msgid "* Mentions: if a user, whether you follow them or not, mentions you on Twitter, you will find it in this list."
+msgstr ""
+
+#: ../doc\strings.py:95
+msgid "* Direct messages: here you will find the private direct messages you exchange with users who follow you , or with any user, if you allow direct messages from everyone (this setting is configurable from Twitter). This list only shows received messages."
 msgstr ""
 
 #: ../doc\strings.py:96
-msgid "If there's a URL on a tweet, TW Blue will try to open it when you press enter on it. If there are several, it will show you a list with all of them so you choose the one you want. If you're on the followers or friends buffer, the enter key will show you additional information about them."
+msgid "* Sent direct messages: this buffer shows all the direct messages sent from your account."
+msgstr ""
+
+#: ../doc\strings.py:97
+msgid "* Sent tweets: this shows all the tweets  sent from your account."
+msgstr ""
+
+#: ../doc\strings.py:98
+msgid "* Favourites: here you will see all the tweets you have favourited."
 msgstr ""
 
 #: ../doc\strings.py:99
-msgid "If you press control-enter, TW Blue will try to play the audio from the focused tweet, as long as it has a URL. If it has the #audio hashtag, you will hear a sound when it is selected, letting you know you can try to play it. However, a tweet can be missing the hashtag and TW Blue will still be able to play it so long as it contains a URL with audio."
+msgid "* Followers: when users follow you, you'll be able to see them on this list, with some of their account details."
+msgstr ""
+
+#: ../doc\strings.py:100
+msgid "* Friends: the same as the previous list, but these are the users you follow."
+msgstr ""
+
+#: ../doc\strings.py:101
+msgid "* User timelines: these are  buffers you may create. They contain only the tweets by a specific user. They're used so you can see the tweets by a single person and you don't want to look all over your timeline. You may create as many as you like."
 msgstr ""
 
 #: ../doc\strings.py:102
-msgid "You will also hear a sound when you see any tweet containing geographical information. You can see someone's location by selecting the option \"view address\" from the tweet menu on the menu bar."
+msgid "* Events: An event is anything that happens on Twitter, such as when someone follows you, when someone adds or removes one of your tweets from their favourites list, or when you subscribe to a list.  There are many more, but TWBlue shows the most common ones in the events buffer so that you can easily keep track of what is happening on your account."
+msgstr ""
+
+#: ../doc\strings.py:103
+msgid "* Lists: A list is similar to a  user timeline, except that you can configure it to contain tweets from multiple users."
+msgstr ""
+
+#: ../doc\strings.py:104
+msgid "* Search: A search buffer contains the results of a search operation."
 msgstr ""
 
 #: ../doc\strings.py:105
-msgid "## Controls"
+msgid "* User favourites: You can have TWBlue create a buffer containing tweets favourited by a particular user."
 msgstr ""
 
-#: ../doc\strings.py:108
-msgid "Beginning with the 0.36 version, there's support for an interface which does not require a visible window. It can be activated by pressing control-m, or choosing hide window from the application menu. This interface is entirely driven through shortcut keys. These shortcuts are different from those used to drive the graphical interface.  By default, you can't use the invisible interface shortcuts on the GUI. It has been made this way to keep  compatibility with applications like TheQube and Chicken nugget which may use the same shortcuts. If you wish to have available the invisible interface shortcuts even if you are using the GUI, activate this option on the General tab of the preferences dialogue. This section describes both the graphical and the invisible interface."
+#: ../doc\strings.py:106
+msgid "* Trending Topics: a trend buffer shows the top ten most used terms in a geographical region. This region may be a country or a city. Trends are updated every five minutes."
 msgstr ""
 
-#: ../doc\strings.py:111
+#: ../doc\strings.py:109
+msgid "If a tweet contains a URL, you can press enter in the GUI or Control + Windows + Enter in the invisible interface to open it. If it contains audio, you can press Control + Enter or Control + Windows + Alt + Enter to play it, respectively. TWBlue will play a sound if the tweet contains the #audio hashtag, but there may be tweets which contain audio without this. Finally, if a tweet contains geographical information, you can press   Control + Windows + G in the invisible interface to retrieve it."
+msgstr ""
+
+#: ../doc\strings.py:112
+msgid "### Username fields"
+msgstr ""
+
+#: ../doc\strings.py:115
+msgid "These fields accept a Twitter username (without the at sign) as the input. They are present in the send direct message and the user actions   dialogue boxes. Those dialogues will be discussed later. The initial value of these fields depends on where they were opened from. They are prepopulated with the username of the  sender of the focused tweet (if they were  opened from  the home and sent timelines, from users'' timelines or from lists), the sender of the focused direct message (if from the received or sent direct message buffers) or in the focused user (if from the followers' or friends' buffer). If  one of those dialogue boxes is opened from a tweet, and if there are more users mentioned in it, you can use the arrow keys to  switch between them. Alternatively, you can also type a username."
+msgstr ""
+
+#: ../doc\strings.py:116
+msgid "## TWBlue's interfaces'"
+msgstr ""
+
+#: ../doc\strings.py:119
 msgid "### The graphical user interface (GUI)"
 msgstr ""
 
-#: ../doc\strings.py:114
-msgid "Here you have a list divided into two parts. On the one hand, the buttons you will find while tabbing around on the program's interface, and on the other, the different elements present on the menu bar."
-msgstr ""
-
-#: ../doc\strings.py:117
-msgid "#### Buttons on the application"
-msgstr ""
-
-#: ../doc\strings.py:120
-msgid "* Tweet: this button opens up a dialogue box to write your tweet. The message must not exceed 140 characters. If you write past this limit, a sound will play to warn you. You may use the shorten and expand URL buttons to comply with the character limit. You can translate your message, upload a picture, check spelling or attach audio by selecting one of the available buttons in the dialogue. Press enter to send the tweet. If all goes well, you'll hear a sound confirming it. Otherwise, the screen reader will say an error message in English describing the problem."
-msgstr ""
-
-#: ../doc\strings.py:121
-msgid "* Retweet: this button retweets the message you're reading. After you press it, you'll be asked if you want to add a comment or simply send it as written."
-msgstr ""
-
 #: ../doc\strings.py:122
-msgid "* Reply: when you're viewing a tweet, you can reply to the user who sent it by pressing this button. A dialogue will open up like the one for tweeting, but with the name of the user already filled in (for example @user) so you only need to write your message. If there are more users mentioned on the tweet, you can press shift-tab and press the mention all users button. When you're on the friends or followers lists, the button will be called mention instead."
+msgid "The graphical user interface of TWBlue consists of a window containing:"
 msgstr ""
 
-#: ../doc\strings.py:123
-msgid "* Direct message: exactly like sending a tweet, but it's a private message which can only be read by the user you send it to. Press shift-tab to see the recipient. If there were other users mentioned on the tweet you were reading, you can arrow up or down to choose which one to send it to, or write the username yourself without the at sign."
+#: ../doc\strings.py:125
+msgid "* a menu bar accomodating five menus (application, tweet, user, buffer and help);"
 msgstr ""
 
 #: ../doc\strings.py:126
-msgid "Bear in mind that buttons will appear according to which actions are possible on the list you are browsing. For example, on the home timeline, mentions, sent, favourites and user timelines you will see the four buttons, while on the direct messages list you'll only get the direct message and tweet buttons, and on friends and followers lists you will get the direct message, tweet, and mention buttons."
+msgid "* One tree view,"
 msgstr ""
 
-#: ../doc\strings.py:129
-msgid "#### Menus"
+#: ../doc\strings.py:127
+msgid "* One list of items"
 msgstr ""
 
-#: ../doc\strings.py:132
-msgid "On top of the program window there's a menu bar which has the same functions, and some more. To access the menu bar, press alt. You will find five: application, tweet, user, buffer and help. This section describes the items on each one of them."
+#: ../doc\strings.py:128
+msgid "* Three buttons in most dialogs: Tweet, retweet and reply."
 msgstr ""
 
-#: ../doc\strings.py:135
-msgid "##### Application menu"
+#: ../doc\strings.py:131
+msgid "The actions that are available for every item will be described later."
 msgstr ""
 
-#: ../doc\strings.py:138
-msgid "* Session manager: Opens a window with all the sessions configured in TWBlue, where you can add new sessions or delete the ones you've already created."
+#: ../doc\strings.py:134
+msgid "In summary, the GUI contains two core components. These are the controls you will find while pressing the Tab key within the program's interface, and the different elements present on the menu bar."
 msgstr ""
 
-#: ../doc\strings.py:139
-msgid "* Update profile: opens a dialogue box where you can update your information on Twitter: name, location, URL and bio. If you have already set this up the fields will be prefilled with the existing information. Also, you can upload a photo to your profile."
+#: ../doc\strings.py:137
+msgid "#### Buttons in the application"
 msgstr ""
 
 #: ../doc\strings.py:140
-msgid "* Hide window: turns off the Graphical User Interface. Read the section on the invisible interface for further details."
+msgid "* Tweet: this button opens up a dialogue box to write your tweet. The message must not exceed 140 characters.  If you write past this limit, a sound will play to warn you. Note that the character count is displayed in the title bar. You may use the shorten and expand URL buttons to comply with the character limit. You can  upload a picture, check spelling, attach audio or translate your message by selecting one of the available buttons in the dialogue box. In addition, you can autocomplete the entering of users by pressing Alt + A or the button for that purpose if you have the database of users configured. Press enter to send the tweet. If all goes well, you'll hear a sound confirming it. Otherwise, the screen reader will speak an error message in English describing the problem."
 msgstr ""
 
 #: ../doc\strings.py:141
-msgid "* Search: shows a dialog where you can search for tweets or users on Twitter."
+msgid "* Retweet: this button retweets the message you're reading. After you press it, if you haven't configured the application not to do so, you'll be asked if you want to add a comment or simply send it as written. If you choose to add a comment, and if the original tweet plus the comment exceeds 140 characters, you will be asked if you want to post it as a comment   with a mention to the original user and a link to the originating tweet."
 msgstr ""
 
 #: ../doc\strings.py:142
-msgid "* View trending topics: It opens a buffer to get the trending topics of a country or a city.  You'll be able to select from a dialog if you wish to get countries' trends or cities' trends and choose one from the selected list. The trending topics buffer will be created once pressing \"ok\" on this dialog. Remember this kind of buffer will be updated every five minutes."
+msgid "* Reply: when you're viewing a tweet, you can reply to the user who sent it by pressing this button. A dialogue will open up similar to the one for tweeting, but with the name of the user already filled in (for example @user) so you only need to write your message. If there are more users referred to in the tweet, you can press shift-tab and activate the mention all users button. When you're on the friends or followers lists, the button will be called mention instead."
 msgstr ""
 
 #: ../doc\strings.py:143
-msgid "* Lists Manager: This dialog allows you to manage your Twitter lists.  In order to use them, you must first create them.  Here, you can view, edit, create, delete or, optionally, open them in buffers similar to temporary timelines."
+msgid "* Direct message: exactly like sending a tweet, but it's a private message which can only be read by the user you send it to. Press shift-tab to see the recipient. If there were other users mentioned in the tweet you were reading, you can arrow up or down to choose which one to send it to, or write the username yourself without the at sign."
 msgstr ""
 
-#: ../doc\strings.py:144
-msgid "* Sounds tutorial: Opens a dialog where you can familiarize yourself with the different sounds of the program."
+#: ../doc\strings.py:146
+msgid "Bear in mind that buttons will appear according to which actions are possible on the list you are browsing. For example, on the home timeline, mentions, sent, favourites and user timelines you will see the four buttons, while on the direct messages list you'll only get the direct message and tweet buttons, and on friends and followers lists the direct message, tweet, and mention buttons will be available."
 msgstr ""
 
-#: ../doc\strings.py:145
-msgid "* Edit keystrokes: It opens a dialog where you can see and re edit the invisible interface shortcuts."
+#: ../doc\strings.py:149
+msgid "#### Menus"
 msgstr ""
 
-#: ../doc\strings.py:147
-msgid "* Quit: asks whether you want to exit the program. If the answer is yes, it shuts the application down.  If you wish TWBlue not to ask you for confirmation before exiting, uncheck the checkbox from the preferences dialogue."
-msgstr ""
-
-#: ../doc\strings.py:150
-msgid "##### Tweet menu"
-msgstr ""
-
-#: ../doc\strings.py:153
-msgid "* You will first find the items to tweet, reply and retweet, which are equivalent to the buttons with the same name."
-msgstr ""
-
-#: ../doc\strings.py:154
-msgid "* Mark as favourite: marks the tweet you're viewing as a favourite."
+#: ../doc\strings.py:152
+msgid "Visually, Towards the top of the main application window, can be found a menu bar which contains many of the same functions as listed in the previous section, together with some additional items. To access the menu bar, press the alt key. You will find five menus listed: application, tweet, user, buffer and help. This section describes the items on each one of them."
 msgstr ""
 
 #: ../doc\strings.py:155
-msgid "* Remove tweet from favourites: removes the tweet from your favourites, but not from Twitter."
+msgid "##### Application menu"
 msgstr ""
 
-#: ../doc\strings.py:156
-msgid "* Show tweet: opens up a dialogue box where you can read the tweet, direct message, friend or follower under focus. You can read the text with the arrow keys. It's the same dialogue box used to write tweets on."
-msgstr ""
-
-#: ../doc\strings.py:157
-msgid "* View address: If the selected tweet has geographical information, TWBlue may display a dialog where you can read the tweet address. This address is got by sending the geographical coordinates of the tweet to Google maps."
+#: ../doc\strings.py:158
+msgid "* Manage accounts: Opens a window with all the sessions configured in TWBlue, where you can add new sessions or delete the ones you've already created."
 msgstr ""
 
 #: ../doc\strings.py:159
-msgid "* Delete: permanently removes the tweet or direct message you're on from Twitter and from your lists. Bear in mind that Twitter only allows you to delete tweets you have posted yourself."
+msgid "* Update profile: opens a dialogue  where you can update your information on Twitter: name, location, website and bio. If you have already set this up the fields will be prefilled with the existing information. Also, you can upload a photo to your profile."
+msgstr ""
+
+#: ../doc\strings.py:160
+msgid "* Hide window: turns off the Graphical User Interface. Read the section on the invisible interface for further details."
+msgstr ""
+
+#: ../doc\strings.py:161
+msgid "* Search: shows a dialogue box where you can search for tweets or users on Twitter."
 msgstr ""
 
 #: ../doc\strings.py:162
-msgid "##### User menu"
+msgid "* Lists Manager: This dialogue box allows you to manage your Twitter lists.  In order to use them, you must first create them.  Here, you can view, edit, create, delete or, optionally, open them in buffers similar to  user timelines."
+msgstr ""
+
+#: ../doc\strings.py:163
+msgid "* Edit keystrokes: this opens a dialogue where you can see and edit the shortcuts relative to the invisible interface."
+msgstr ""
+
+#: ../doc\strings.py:164
+msgid "* Account settings: Opens a dialogue box which lets you customize settings for the current account."
 msgstr ""
 
 #: ../doc\strings.py:165
-msgid "The available actions you can choose are described below:"
+msgid "* Global settings: Opens a dialogue which lets you configure settings for the entire application."
 msgstr ""
 
-#: ../doc\strings.py:168
-msgid "* Follow: Follows a user. This means you'll see his/her tweets on your main timeline, and if he/she also follows you, you'll be able to interchange direct messages."
+#: ../doc\strings.py:166
+msgid "* Quit: asks whether you want to exit the program. If the answer is yes, it closes the application. If you wish TWBlue not to ask you for confirmation before exiting, uncheck the checkbox from the global settings dialogue box."
 msgstr ""
 
 #: ../doc\strings.py:169
-msgid "* Unfollow: Stops following a user, which causes you not being able to see his/her tweets on your main timeline neither interchanging direct messages."
-msgstr ""
-
-#: ../doc\strings.py:170
-msgid "* Mute: While muting someone, TWBlue won't show you nor his/her tweets on your main timeline; neither you'll see that person's mentions. But you both will be able to interchange direct messages. The muted user is not informed of this action."
-msgstr ""
-
-#: ../doc\strings.py:171
-msgid "* Unmute: It turns the way TWBlue treats this user to its normal way. You will see his/her tweets and mentions again."
+msgid "##### Tweet menu"
 msgstr ""
 
 #: ../doc\strings.py:172
-msgid "* Report as spam: It suggests twitter this user is performing prohibited practices on the social network."
+msgid "* You will first find the items to tweet, reply and retweet, which are equivalent to the buttons with the same name."
 msgstr ""
 
 #: ../doc\strings.py:173
-msgid "* Block: Blocks a user. This forces the user to unfollow you ."
+msgid "* Add to favourites: marks the tweet you're viewing as a favourite."
 msgstr ""
 
 #: ../doc\strings.py:174
-msgid "* Unblock: Stops blocking a user."
+msgid "* Remove  from favourites: removes the tweet from your favourites, but not from Twitter."
 msgstr ""
 
 #: ../doc\strings.py:175
-msgid "* Direct message: same action as the button."
+msgid "* Show tweet: opens up a dialogue box where you can read the tweet, direct message, friend or follower which has focus. You can read the text with the arrow keys. It's a similar dialog box as used for composing tweets, without the ability to send the tweet, file attachment and autocompleting capabilities. It does however include a retweets and favourites count. If you are in the followers or the friends list, it will only contain a read-only edit box with the information in the focused item and a close button."
 msgstr ""
 
 #: ../doc\strings.py:176
-msgid "* Add to List: In order to see someone's tweets in one or more of your lists, you must add them first.  This option will open a dialog where you can select the user you wish to add.  Next, you will be asked to select the list you wish to add them to.  Afterwards, the list will contain a new member and their tweets will show up there."
+msgid "* View address: If the selected tweet has geographical information, TWBlue may display a dialogue box where you can read the tweet address. This address is  retrieved by sending the geographical coordinates of the tweet to Google maps."
+msgstr ""
+
+#: ../doc\strings.py:177
+msgid "* View conversation: If you are focusing a tweet with a mention, it opens a buffer where you can view the whole conversation."
 msgstr ""
 
 #: ../doc\strings.py:178
-msgid "* View user profile: opens up a dialogue box to choose the user whose profile you want to browse."
+msgid "* Delete: permanently removes the tweet or direct message which has focus from Twitter and from your lists. Bear in mind that Twitter only allows you to delete tweets you have posted yourself."
 msgstr ""
 
-#: ../doc\strings.py:179
-msgid "* Timeline: Lets you open a user's timeline by choosing the user in a dialog box. It is created when you press enter. If you try it with a user that has no tweets, the program will fail. If you try creating an already existing timeline the program will warn you and will not create it again."
+#: ../doc\strings.py:181
+msgid "##### User menu"
 msgstr ""
 
-#: ../doc\strings.py:180
-msgid "* View favourites: Opens a buffer where you can see what tweets have been favorited by a particular user."
+#: ../doc\strings.py:184
+msgid "* Actions: Opens a dialogue where you can interact with a user. This dialogue box will be populated with the user who sent the tweet or direct message in focus or the selected user in the friends or followers buffer. You can edit it or leave it as is and choose one of the following actions:"
 msgstr ""
 
-#: ../doc\strings.py:183
-msgid "##### Buffer menu"
+#: ../doc\strings.py:185
+msgid "    * Follow: Follows a user. This means you'll see his/her tweets on your  home timeline, and if he/she also follows you, you'll be able to exchange direct messages. You may also send / receive direct messages from each other if you have configured the option to allow direct messages from anyone."
+msgstr ""
+
+#: ../doc\strings.py:186
+msgid "    * Unfollow: Stops following a user, which causes you not being able to see his/her tweets on your main timeline neither exchanging direct messages,  unless they have enabled receiving direct messages from anyone."
 msgstr ""
 
 #: ../doc\strings.py:187
-msgid "* Mute buffer: Mutes notifications of a particular buffer so you will not hear when new tweets arrive."
+msgid "    * Mute: While muting someone, TWBlue won't show you nor his/her tweets on your main timeline; neither will you see that person's mentions. But you both will be able to exchange direct messages. The muted user is not informed of this action."
 msgstr ""
 
 #: ../doc\strings.py:188
-msgid "* autoread tweets for this buffer: When enabled, the screen reader or SAPI 5 (if enabled) will read the text of incoming tweets.  Please note that this could get rather chatty if there are a lot of incoming tweets."
+msgid "    * Unmute: this option allows TWBlue to display the user's tweets and mentions again."
 msgstr ""
 
 #: ../doc\strings.py:189
-msgid "* Clear buffer: Deletes all items from the buffer."
+msgid "    * Block: Blocks a user. This forces the user to unfollow you ."
 msgstr ""
 
 #: ../doc\strings.py:190
-msgid "* Remove buffer: dismiss the list you're on."
+msgid "    * Unblock: Stops blocking a user."
+msgstr ""
+
+#: ../doc\strings.py:191
+msgid "    * Report as spam: this option sends a message to Twitter suggesting the user is performing prohibited practices on the social network."
+msgstr ""
+
+#: ../doc\strings.py:192
+msgid "    * Ignore tweets from this client: Adds the client from which the focused tweet was sent to the ignored clients list."
 msgstr ""
 
 #: ../doc\strings.py:193
-msgid "##### Help menu"
+msgid "* View timeline: Lets you open a user's timeline by choosing the user in a dialog box. It is created when you press enter. If you invoke this option relative to a user that has no tweets, the program will fail. If you try creating an existing timeline the program will warn you and will not create it again."
+msgstr ""
+
+#: ../doc\strings.py:194
+msgid "* Direct message: same action as the button."
+msgstr ""
+
+#: ../doc\strings.py:195
+msgid "* Add to List: In order to see someone's tweets in one or more of your lists, you must add them first. In the dialogue box that opens after selecting the user, you will be asked to select the list you wish to add the user to. Thereafter, the list will contain a new member and their tweets will be displayed there."
 msgstr ""
 
 #: ../doc\strings.py:196
-msgid "* Documentation: opens up this file, where you can read some useful program concepts."
+msgid "* Remove from list: lets you remove a user from a list."
 msgstr ""
 
 #: ../doc\strings.py:197
-msgid "* What's new in this version?: opens up a document with the list of changes from the current version down to the first."
+msgid "* View lists: Shows the lists created by a specified user."
 msgstr ""
 
 #: ../doc\strings.py:198
-msgid "* Check for updates: every time you open the program it automatically checks for new versions. If there is any, it will ask you if you want to download it. If you accept, it will do so, after which it will install it and ask you to let it restart itself, which it does automatically. This item checks for new updates without having to restart the application."
+msgid "* Show user profile: opens a dialogue  with the profile of the specified user."
 msgstr ""
 
 #: ../doc\strings.py:199
-msgid "* Report a bug: opens up a dialogue box to report a bug by filling a couple of fields. Pressing enter will send the report. If the operation doesn't succeed the program will show a warning."
-msgstr ""
-
-#: ../doc\strings.py:200
-msgid "* TW Blue's website: visit our [home page](http://twblue.es) where you can find all relevant information and downloads for TW Blue and become a part of the community."
-msgstr ""
-
-#: ../doc\strings.py:201
-msgid "* About TW Blue: shows the credits of the program."
+msgid "* View favourites: Opens a buffer where you can see the tweets which have been favourited by a particular user."
 msgstr ""
 
 #: ../doc\strings.py:202
-msgid ""
-"...\n"
+msgid "##### Buffer menu"
 msgstr ""
 
-#: ../doc\strings.py:204
-msgid "## Contact"
+#: ../doc\strings.py:205
+msgid "* New trending topics buffer: This opens a buffer to get the worlwide trending topics or those of a country or a city.  You'll be able to select from a dialogue box if you wish to retrieve countries' trends, cities' trends or worldwide trends (this options is in the cities' list) and choose one from the selected list. The trending topics buffer will be created once the \"OK\" button has been activated within the dialogue box. Remember this kind of buffer will be updated every five minutes."
+msgstr ""
+
+#: ../doc\strings.py:206
+msgid "* Load previous items: This allows more items to be loaded for the specified buffer."
 msgstr ""
 
 #: ../doc\strings.py:207
-msgid "If what's explained in this document is not enough, if you want to collaborate in some other way, or if you simply want to get in touch with the application developer, follow the Twitter account [@tw_blue2](https://twitter.com/tw_blue2)  or [@manuelcortez00.](https://twitter.com/manuelcortez00) You can also visit [our website](http://twblue.com.mx)"
+msgid "* Mute: Mutes notifications of a particular buffer so you will not hear when new tweets arrive."
+msgstr ""
+
+#: ../doc\strings.py:208
+msgid "* autoread: When enabled, the screen reader or SAPI 5 Text to Speech voice (if enabled) will read the text of incoming tweets. Please note that this could get rather chatty if there are a lot of incoming tweets."
+msgstr ""
+
+#: ../doc\strings.py:209
+msgid "* Clear buffer: Deletes all items from the buffer."
 msgstr ""
 
 #: ../doc\strings.py:210
+msgid "* Destroy: dismisses the list you're on."
+msgstr ""
+
+#: ../doc\strings.py:213
+msgid "##### Help menu"
+msgstr ""
+
+#: ../doc\strings.py:216
+msgid "* Documentation: opens up this file, where you can read some useful program concepts."
+msgstr ""
+
+#: ../doc\strings.py:217
+msgid "* Sounds tutorial: Opens a dialog box where you can familiarize yourself with the different sounds of the program."
+msgstr ""
+
+#: ../doc\strings.py:218
+msgid "* What's new in this version?: opens up a document with the list of changes from the current version to the earliest."
+msgstr ""
+
+#: ../doc\strings.py:219
+msgid "* Check for updates: every time you open the program it automatically checks for new versions. If an update is available, it will ask you if you want to download the update. If you accept, the updating process will commence. When complete, TWBlue will be restarted. This item checks for new updates without having to restart the application."
+msgstr ""
+
+#: ../doc\strings.py:220
+msgid "* Report an error: opens up a dialogue box to report a bug by completing a small number of fields. Pressing enter will send the report. If the operation doesn't succeed the program will display a warning."
+msgstr ""
+
+#: ../doc\strings.py:221
+msgid "* TWBlue's website: visit our [home page](http://twblue.es) where you can find all relevant information and downloads for TWBlue and become a part of the community."
+msgstr ""
+
+#: ../doc\strings.py:222
+msgid "* About TWBlue: shows the credits of the program."
+msgstr ""
+
+#: ../doc\strings.py:225
+msgid "### The invisible user interface"
+msgstr ""
+
+#: ../doc\strings.py:228
+msgid "The invisible interface, as its name suggests, has no graphical window and works directly with screen readers such as JAWS for Windows, NVDA and System Access. This interface is disabled by default, but you can enable it by pressing Control + M. It works similarly to TheQube and Chicken Nugget. Its shortcuts are similar to those found in these two clients. In addition, TWBlue has builtin support for the keymaps for these applications, configurable through the global settings dialogue. By default, you cannot use this interface's shortcuts in the GUI, but you can configure this in the global settings dialogue."
+msgstr ""
+
+#: ../doc\strings.py:231
+msgid "The next section contains a list of keyboard shortcuts for both interfaces. Bear in mind that we will only describe the default keymap."
+msgstr ""
+
+#: ../doc\strings.py:234
+msgid "## Keyboard shortcuts"
+msgstr ""
+
+#: ../doc\strings.py:237
+msgid "### Shortcuts of the graphical user interface (GUI)"
+msgstr ""
+
+#: ../doc\strings.py:240
+msgid "* Enter: Open URL."
+msgstr ""
+
+#: ../doc\strings.py:241
+msgid "* Control + Enter: Play audio."
+msgstr ""
+
+#: ../doc\strings.py:242
+msgid "* Control + M: Hide the GUI."
+msgstr ""
+
+#: ../doc\strings.py:243
+msgid "* Control + N: Compose a new tweet."
+msgstr ""
+
+#: ../doc\strings.py:244
+msgid "* Control + R: Reply / mention."
+msgstr ""
+
+#: ../doc\strings.py:245
+msgid "* Control + Shift + R: Retweet."
+msgstr ""
+
+#: ../doc\strings.py:246
+msgid "* Control + D: Send a direct message."
+msgstr ""
+
+#: ../doc\strings.py:247
+msgid "* control + F: Add tweet to favourites."
+msgstr ""
+
+#: ../doc\strings.py:248
+msgid "* Control + Shift + F: Remove a tweet from favourites."
+msgstr ""
+
+#: ../doc\strings.py:249
+msgid "* Control + S: Open the user actions dialogue."
+msgstr ""
+
+#: ../doc\strings.py:250
+msgid "* Control + Shift + V: Show tweet."
+msgstr ""
+
+#: ../doc\strings.py:251
+msgid "* Control + Q: Quit TWBlue."
+msgstr ""
+
+#: ../doc\strings.py:252
+msgid "* Control + I: Open user timeline."
+msgstr ""
+
+#: ../doc\strings.py:253
+msgid "* Control + Shift + i: Destroy buffer."
+msgstr ""
+
+#: ../doc\strings.py:254
+msgid "* F5: Increase volume by 5%."
+msgstr ""
+
+#: ../doc\strings.py:255
+msgid "* F6: Decrease volume by 5%."
+msgstr ""
+
+#: ../doc\strings.py:256
+msgid "* Control + P: Edit your profile."
+msgstr ""
+
+#: ../doc\strings.py:257
+msgid "* Control + Delete: Delete a tweet or direct message."
+msgstr ""
+
+#: ../doc\strings.py:258
+msgid "* Control + Shift + Delete: Empty the current buffer."
+msgstr ""
+
+#: ../doc\strings.py:261
+msgid "### Shortcuts of the invisible interface (default keymap)"
+msgstr ""
+
+#: ../doc\strings.py:264
+msgid "* Control + Windows + Up Arrow: moves to the previous item in the buffer."
+msgstr ""
+
+#: ../doc\strings.py:265
+msgid "* Control + Windows + Down Arrow: moves to the next item in the buffer."
+msgstr ""
+
+#: ../doc\strings.py:266
+msgid "* Control + Windows + Left Arrow: Move to the previous buffer."
+msgstr ""
+
+#: ../doc\strings.py:267
+msgid "* Control + Windows + Right Arrow: Move to the next buffer."
+msgstr ""
+
+#: ../doc\strings.py:268
+msgid "* Control + Windows + Shift + Left: Focus the previous session."
+msgstr ""
+
+#: ../doc\strings.py:269
+msgid "* Control + Windows + Shift + Right: Focus the next session."
+msgstr ""
+
+#: ../doc\strings.py:270
+msgid "* Control + Windows + C: View conversation."
+msgstr ""
+
+#: ../doc\strings.py:271
+msgid "* Control + Enter: Open URL."
+msgstr ""
+
+#: ../doc\strings.py:272
+msgid "* Control + Windows + Enter: Play audio."
+msgstr ""
+
+#: ../doc\strings.py:273
+msgid "* Control + Windows + M: Show or hide the GUI."
+msgstr ""
+
+#: ../doc\strings.py:274
+msgid "* Control + Windows + N: New tweet."
+msgstr ""
+
+#: ../doc\strings.py:275
+msgid "* Control + Windows + R: Reply / Mention."
+msgstr ""
+
+#: ../doc\strings.py:276
+msgid "* Control + Windows + Shift + R: Retweet."
+msgstr ""
+
+#: ../doc\strings.py:277
+msgid "* Control + Windows + D: Send direct message."
+msgstr ""
+
+#: ../doc\strings.py:278
+msgid "* Windows+ Alt + F: Mark as favourite."
+msgstr ""
+
+#: ../doc\strings.py:279
+msgid "* Alt + Windows + Shift + F: Remove from favourites."
+msgstr ""
+
+#: ../doc\strings.py:280
+msgid "* Control + Windows + S: Open the user actions dialogue."
+msgstr ""
+
+#: ../doc\strings.py:281
+msgid "* Control + Windows + Alt + N: See user details."
+msgstr ""
+
+#: ../doc\strings.py:282
+msgid "* Control + Windows + V: Show tweet."
+msgstr ""
+
+#: ../doc\strings.py:283
+msgid "* Control + Windows + F4: Quit TWBlue."
+msgstr ""
+
+#: ../doc\strings.py:284
+msgid "* Control + Windows + I: Open user timeline."
+msgstr ""
+
+#: ../doc\strings.py:285
+msgid "* Control + Windows + Shift + I: Destroy buffer."
+msgstr ""
+
+#: ../doc\strings.py:286
+msgid "* Control + Windows + Alt + Up: Increase volume by 5%."
+msgstr ""
+
+#: ../doc\strings.py:287
+msgid "* Control + Windows + Alt + Down: Decrease volume by 5%."
+msgstr ""
+
+#: ../doc\strings.py:288
+msgid "* Control + Windows + Home: Jump to the first element of the current buffer."
+msgstr ""
+
+#: ../doc\strings.py:289
+msgid "* Control + Windows + End: Jump to the last element of the current buffer."
+msgstr ""
+
+#: ../doc\strings.py:290
+msgid "* Control + Windows + PageUp: Jump 20 elements up in the current buffer."
+msgstr ""
+
+#: ../doc\strings.py:291
+msgid "* Control + Windows + PageDown: Jump 20 elements down in the current buffer."
+msgstr ""
+
+#: ../doc\strings.py:292
+msgid "* Windows + Alt + P: Edit profile."
+msgstr ""
+
+#: ../doc\strings.py:293
+msgid "* Control + Windows + Delete: Delete a tweet or direct message."
+msgstr ""
+
+#: ../doc\strings.py:294
+msgid "* Control + Windows + Shift + Delete: Empty the current buffer."
+msgstr ""
+
+#: ../doc\strings.py:295
+msgid "* Control + Windows + Space: Repeat last item."
+msgstr ""
+
+#: ../doc\strings.py:296
+msgid "* Control + Windows + Shift + C: Copy to clipboard."
+msgstr ""
+
+#: ../doc\strings.py:297
+msgid "* Control + Windows+ A: Add user to list."
+msgstr ""
+
+#: ../doc\strings.py:298
+msgid "* Control + Windows + Shift + A: Remove user from list."
+msgstr ""
+
+#: ../doc\strings.py:299
+msgid "* Control + Windows + M: Mute / unmute the current buffer."
+msgstr ""
+
+#: ../doc\strings.py:300
+msgid "* Windows + Alt + M: Mute / unmute the current session."
+msgstr ""
+
+#: ../doc\strings.py:301
+msgid "* Control + Windows + E: Toggle the automatic reading of incoming tweets in the current buffer."
+msgstr ""
+
+#: ../doc\strings.py:302
+msgid "* Control + Windows + -: Search on Twitter."
+msgstr ""
+
+#: ../doc\strings.py:303
+msgid "* Control + Windows + K: Show the keystroke editor."
+msgstr ""
+
+#: ../doc\strings.py:304
+msgid "* Control + Windows + L: Show lists for a specified user."
+msgstr ""
+
+#: ../doc\strings.py:305
+msgid "* Windows + Alt + PageUp: Load previous items for the current buffer."
+msgstr ""
+
+#: ../doc\strings.py:306
+msgid "* Control + Windows + G: Get geolocation."
+msgstr ""
+
+#: ../doc\strings.py:307
+msgid "* Control + Windows + Shift + G: Display the tweet's geolocation in a dialogue."
+msgstr ""
+
+#: ../doc\strings.py:308
+msgid "* Control + Windows + T: Create a trending topics' buffer."
+msgstr ""
+
+#: ../doc\strings.py:311
+msgid "## Configuring TWBlue"
+msgstr ""
+
+#: ../doc\strings.py:312
+msgid "As described above, TWBlue has two configuration dialogues, the global settings dialogue and the account settings dialogue."
+msgstr ""
+
+#: ../doc\strings.py:315
+msgid "### The account settings dialogue"
+msgstr ""
+
+#: ../doc\strings.py:318 ../doc\strings.py:360
+msgid "#### General tab"
+msgstr ""
+
+#: ../doc\strings.py:321
+msgid "* Autocompletion settings: Allows you to configure the autocompletion database. You can add users manually or let TWBlue add your followers, friends or both."
+msgstr ""
+
+#: ../doc\strings.py:322
+msgid "* Relative timestamps: Allows you to configure whether TWBlue will calculate the time the tweet or direct message was sent or received based on the current time, or simply say the time it was received or sent."
+msgstr ""
+
+#: ../doc\strings.py:323
+msgid "* API calls: Allows you to adjust the number of API calls to send to Twitter by TWBlue."
+msgstr ""
+
+#: ../doc\strings.py:324
+msgid "* Items on each API calls: Allows you to specify how many items should be retrieved from Twitter for each API call (default and maximum is 200)."
+msgstr ""
+
+#: ../doc\strings.py:325
+msgid "* Inverted buffers: Allows you to specify whether the buffers should be inverted, which means that the oldest items will show at the end of them and the newest at the beginning."
+msgstr ""
+
+#: ../doc\strings.py:326
+msgid "* Retweet mode: Allows you to specify  the behaviour when posting a retweet: you can choose  between retweeting with a comment, retweeting without comment or being asked."
+msgstr ""
+
+#: ../doc\strings.py:327
+msgid "* Number of items per buffer to cache in database: This allows you to specify how many items  TWBlue should cache in a database. You can type any number, 0 to cache all items, or leave blank to disable caching entirely."
+msgstr ""
+
+#: ../doc\strings.py:330
+msgid "#### buffers tab"
+msgstr ""
+
+#: ../doc\strings.py:333
+msgid "This tab displays a list for each buffer you have available in TWBlue, except for searches, timelines, favourites'' timelines and lists. You can show, hide and move them."
+msgstr ""
+
+#: ../doc\strings.py:336
+msgid "#### The ignored clients tab"
+msgstr ""
+
+#: ../doc\strings.py:339
+msgid "In this tab, you can add and remove clients to be ignored by TWBlue."
+msgstr ""
+
+#: ../doc\strings.py:342
+msgid "#### Sound tab"
+msgstr ""
+
+#: ../doc\strings.py:345
+msgid "In this tab, you can adjust the sound volume, select the input and output device and set the soundpack used by TWBlue."
+msgstr ""
+
+#: ../doc\strings.py:348
+msgid "#### Audio service tab"
+msgstr ""
+
+#: ../doc\strings.py:351
+msgid "In this tab, you can enter your SndUp API key (if you have one) to upload audio to SndUp with your account. Note that if account credentials are not specified you will upload announimously."
+msgstr ""
+
+#: ../doc\strings.py:354
+msgid "### Global settings"
+msgstr ""
+
+#: ../doc\strings.py:357
+msgid "This dialogue allows you to configure some settings which will affect the entire application."
+msgstr ""
+
+#: ../doc\strings.py:363
+msgid "* Language: This allows you to change the language of TWBlue. Currently supported languages are arabic, Catalan, German, English, Spanish, Basque, Finnish, French, Galician, Croatian, Hungarian, Italian, Polish, Portuguese, Russian and Turkish."
+msgstr ""
+
+#: ../doc\strings.py:364
+msgid "* Ask before exiting TWBlue: This checkbox allows you to control whether TWBlue will ask for confirmation before exiting."
+msgstr ""
+
+#: ../doc\strings.py:365
+msgid "* Play a sound when TWBlue launches: This checkbox allows you to configure whether TWBlue will play a sound when it has finished loading the buffers."
+msgstr ""
+
+#: ../doc\strings.py:366
+msgid "* Speak a message when TWBlue launches: This is the same as the previous option, but this checkbox configures whether the screen reader will say \"ready\"."
+msgstr ""
+
+#: ../doc\strings.py:367
+msgid "* Use the invisible interface's shortcuts in the GUI: As the invisible interface and the Graphical User Interface have  their own shortcuts, you may want to use the invisible interface's keystrokes all the time. If this option is checked, the invisible interface's shortcuts ''will be usable in the GUI."
+msgstr ""
+
+#: ../doc\strings.py:368
+msgid "* Activate SAPI5 when any other screen reader is not being run: This checkbox allows to activate SAPI 5 TTS when no other screen reader is being run."
+msgstr ""
+
+#: ../doc\strings.py:369
+msgid "* Hide GUI on launch: This allows you to configure whether TWBlue will start with the GUI or the invisible interface."
+msgstr ""
+
+#: ../doc\strings.py:370
+msgid "* Keymap: This option allows you to change the keymap used by TWBlue in the invisible interface. The shipped keymaps are Default, Qwitter, TheQube and Chicken Nugget. The keymaps are in the \"keymaps\" folder, and you can create new ones. Just create a new \".keymap\" file and change the keystrokes associated with the actions, as it is done in the shipped keymaps."
+msgstr ""
+
+#: ../doc\strings.py:373
+msgid "#### Proxi tab"
+msgstr ""
+
+#: ../doc\strings.py:376
+msgid "In this tab you can configure TWBlue to use a Proxy server by completing the fields displayed (server, port, user and password)."
+msgstr ""
+
+#: ../doc\strings.py:379
+msgid "## License, source code and donations"
+msgstr ""
+
+#: ../doc\strings.py:382
+msgid "Tw Blue is under the GNU GPL license, version 2. You can view the license in the file named license.txt, or online at <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>."
+msgstr ""
+
+#: ../doc\strings.py:385
+msgid "The source code of the program is available on GitHub at <https://www.github.com/manuelcortez/twblue>."
+msgstr ""
+
+#: ../doc\strings.py:388
+msgid "If you want to donate to the project, you can do so at <http://twblue.es/?q=node/3&language=en>. Thank you for your support!"
+msgstr ""
+
+#: ../doc\strings.py:391
+msgid "## Contact"
+msgstr ""
+
+#: ../doc\strings.py:394
+msgid "If you still have questions after reading this document, if you wish to collaborate to the project in some other way, or if you simply want to get in touch with the application developer, follow the Twitter account [@tw_blue2](https://twitter.com/tw_blue2)  or [@manuelcortez00.](https://twitter.com/manuelcortez00) You can also visit [our website](http://twblue.es)"
+msgstr ""
+
+#: ../doc\strings.py:397
 msgid "---"
 msgstr ""
 
-#: ../doc\strings.py:211
+#: ../doc\strings.py:398
 msgid "Copyright \302\251 2013-2015. Manuel Cort\303\251z"
 msgstr ""
 
