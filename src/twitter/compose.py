@@ -9,6 +9,7 @@ import output
 import languageHandler
 import arrow
 import logging
+import config
 from long_tweets import twishort
 log = logging.getLogger("compose")
 
@@ -55,6 +56,12 @@ def compose_tweet(tweet, db, relative_times):
  for url in range(0, len(urls)):
   try:  text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
   except IndexError: pass
+  if config.app['app-settings']['handle_longtweets'] and 'long_uri' in tweet:
+   try:
+    oldtext=text
+    text=twishort.get_full_text(tweet['long_uri'])
+   except:
+    text=oldtext
  tweet["text"] = text
  return [user+", ", tweet["text"], ts+", ", source]
 
