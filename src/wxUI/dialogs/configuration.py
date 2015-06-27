@@ -104,6 +104,8 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
   self.persist_size = wx.TextCtrl(self, -1)
   sizer.Add(PersistSizeLabel, 0, wx.ALL, 5)
   sizer.Add(self.persist_size, 0, wx.ALL, 5)
+  self.handle_longtweets = wx.CheckBox(self, wx.NewId(), _(u"Use Codeofdusk's longtweet handlers (may decrease client performance)"))
+  sizer.Add(self.handle_longtweets, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
 class other_buffers(wx.Panel):

@@ -120,6 +120,7 @@ class accountSettingsController(globalSettingsController):
   else:
    self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
   self.dialog.set_value("general", "persist_size", str(self.config["general"]["persist_size"]))
+  self.dialog.set_value("general", "handle_longtweets", self.config["general"]["handle_longtweets"])
   self.dialog.create_other_buffers()
   buffer_values = self.get_buffers_list()
   self.dialog.buffers.insert_buffers(buffer_values)
@@ -159,6 +160,7 @@ class accountSettingsController(globalSettingsController):
    self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
   self.config["general"]["max_api_calls"] = self.dialog.get_value("general", "apiCalls")
   self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
+  self.config["general"]["handle_longtweets"] = self.dialog.get_value("general", "relative_time")
   if self.config["general"]["persist_size"] != self.dialog.get_value("general", "persist_size"):
    if self.dialog.get_value("general", "persist_size") == '':
     self.config["general"]["persist_size"] =-1
