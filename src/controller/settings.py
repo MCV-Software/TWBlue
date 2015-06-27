@@ -60,6 +60,7 @@ class globalSettingsController(object):
   
   self.dialog.set_value("general", "play_ready_sound", config.app["app-settings"]["play_ready_sound"])
   self.dialog.set_value("general", "speak_ready_msg", config.app["app-settings"]["speak_ready_msg"])
+  self.dialog.set_value("general", "handle_longtweets", config.app["app-settings"]["handle_longtweets"])
   self.dialog.set_value("general", "use_invisible_shorcuts", config.app["app-settings"]["use_invisible_keyboard_shorcuts"])
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
@@ -86,6 +87,7 @@ class globalSettingsController(object):
   config.app["app-settings"]["voice_enabled"] = self.dialog.get_value("general", "disable_sapi5")
   config.app["app-settings"]["hide_gui"] = self.dialog.get_value("general", "hide_gui")
   config.app["app-settings"]["ask_at_exit"] = self.dialog.get_value("general", "ask_at_exit")
+  config.app["app-settings"]["handle_longtweets"] = self.dialog.get_value("general", "handle_longtweets")
   config.app["app-settings"]["play_ready_sound"] = self.dialog.get_value("general", "play_ready_sound")
   config.app["app-settings"]["speak_ready_msg"] = self.dialog.get_value("general", "speak_ready_msg")
   if config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
@@ -120,7 +122,6 @@ class accountSettingsController(globalSettingsController):
   else:
    self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
   self.dialog.set_value("general", "persist_size", str(self.config["general"]["persist_size"]))
-  self.dialog.set_value("general", "handle_longtweets", self.config["general"]["handle_longtweets"])
   self.dialog.create_other_buffers()
   buffer_values = self.get_buffers_list()
   self.dialog.buffers.insert_buffers(buffer_values)
@@ -160,7 +161,6 @@ class accountSettingsController(globalSettingsController):
    self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
   self.config["general"]["max_api_calls"] = self.dialog.get_value("general", "apiCalls")
   self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
-  self.config["general"]["handle_longtweets"] = self.dialog.get_value("general", "relative_time")
   if self.config["general"]["persist_size"] != self.dialog.get_value("general", "persist_size"):
    if self.dialog.get_value("general", "persist_size") == '':
     self.config["general"]["persist_size"] =-1

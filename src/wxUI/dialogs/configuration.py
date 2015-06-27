@@ -30,6 +30,8 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(self.disable_sapi5, 0, wx.ALL, 5)
   self.hide_gui = wx.CheckBox(self, -1, _(u"Hide GUI on launch"))
   sizer.Add(self.hide_gui, 0, wx.ALL, 5)
+  self.handle_longtweets = wx.CheckBox(self, wx.NewId(), _(u"Use Codeofdusk's longtweet handlers (may decrease client performance)"))
+  sizer.Add(self.handle_longtweets, 0, wx.ALL, 5)
   kmbox =  wx.BoxSizer(wx.VERTICAL)
   km_label = wx.StaticText(self, -1, _(u"Keymap"))
   self.km = wx.ComboBox(self, -1, choices=keymaps, style=wx.CB_READONLY)
@@ -104,8 +106,6 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
   self.persist_size = wx.TextCtrl(self, -1)
   sizer.Add(PersistSizeLabel, 0, wx.ALL, 5)
   sizer.Add(self.persist_size, 0, wx.ALL, 5)
-  self.handle_longtweets = wx.CheckBox(self, wx.NewId(), _(u"Use Codeofdusk's longtweet handlers (may decrease client performance)"))
-  sizer.Add(self.handle_longtweets, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
 class other_buffers(wx.Panel):
