@@ -40,3 +40,6 @@ class basePanel(wx.Panel):
    self.list.select_item(self.list.get_count()-1)
   else:
    self.list.select_item(0)
+
+ def set_focus_in_list(self):
+  self.list.list.SetFocus()

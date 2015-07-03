@@ -915,6 +915,7 @@ class Controller(object):
    self.view.change_buffer(buff-1)
   while self.get_current_buffer().invisible == False: self.skip_buffer(False)
   buffer = self.get_current_buffer()
+  if self.showing == True: buffer.buffer.set_focus_in_list()
   try:
    msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
@@ -933,6 +934,7 @@ class Controller(object):
    self.view.change_buffer(buff+1)
   while self.get_current_buffer().invisible == False: self.skip_buffer(True)
   buffer = self.get_current_buffer()
+  if self.showing == True: buffer.buffer.set_focus_in_list()
   try:
    msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
@@ -953,6 +955,7 @@ class Controller(object):
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
+  if self.showing == True: buffer.buffer.set_focus_in_list()
   try:
    msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
@@ -973,6 +976,7 @@ class Controller(object):
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
+  if self.showing == True: buffer.buffer.set_focus_in_list()
   try:
    msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
