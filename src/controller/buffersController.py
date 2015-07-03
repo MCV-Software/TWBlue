@@ -47,7 +47,7 @@ class bufferController(object):
 
 
  def get_event(self, ev):
-  if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "interact"
+  if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
   elif ev.GetKeyCode() == wx.WXK_RETURN: event = "url"
   elif ev.GetKeyCode() == wx.WXK_F5: event = "volume_down"
   elif ev.GetKeyCode() == wx.WXK_F6: event = "volume_up"
@@ -81,26 +81,6 @@ class bufferController(object):
   if hasattr(sound.URLPlayer, "stream"):
    sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
   self.session.sound.play("volume_changed.ogg")
-
- def interact(self):
-  tweet = self.get_tweet()
-  url=None
-  urls = utils.find_urls(tweet)
-  if len(urls) == 1:
-   url=urls[0]
-  elif len(urls) > 1:
-   urls_list = dialogs.urlList.urlList()
-   urls_list.populate_list(urls)
-   if urls_list.get_response() == widgetUtils.OK:
-    url=urls_list.get_string()
-   if hasattr(urls_list, "destroy"): urls_list.destroy()
-  if url != None:
-   output.speak(_(u"Opening media..."), True)
-  if sound.URLPlayer.is_playable(url=url, play=True, volume=self.session.settings["sound"]["volume"]) == False:
-    return webbrowser.open_new_tab(url)
-#  else:
-#   output.speak(_(u"Not actionable."), True)
-#   self.session.sound.play("error.ogg")
 
  def start_stream(self):
   pass

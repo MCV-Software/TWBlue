@@ -116,23 +116,20 @@ class URLStream(object):
    self.prepared = True
 
  def play(self, url=None, volume=1.0, stream=None,announce=True):
-  if self.stop_audio(delete=True):
-   return
-  else:
-   if announce:
-    output.speak(_(u"Playing..."))
-   log.debug("Attempting to play an URL...")
-   if url != None:
-    self.prepare(url)
-   elif stream != None:
-    self.stream=stream
-   if self.prepared == True:
-    self.stream = sound_lib.stream.URLStream(url=self.url)
-   if hasattr(self,'stream'):
-    self.stream.volume = float(volume)
-    self.stream.play()
-    log.debug("played")
-    call_threaded(self.delete_when_done)
+  if announce:
+   output.speak(_(u"Playing..."))
+  log.debug("Attempting to play an URL...")
+  if url != None:
+   self.prepare(url)
+  elif stream != None:
+   self.stream=stream
+  if self.prepared == True:
+   self.stream = sound_lib.stream.URLStream(url=self.url)
+  if hasattr(self,'stream'):
+   self.stream.volume = float(volume)
+   self.stream.play()
+   log.debug("played")
+   call_threaded(self.delete_when_done)
 
  def is_playable(self, url,play=False,volume=1.0):
   try:
@@ -159,12 +156,13 @@ class URLStream(object):
     log.debug("Stopped audio stream.")
    except:
     log.exception("Exception while stopping stream.")
-   if delete:
-    del self.stream
+#   if delete:
+#    del self.stream
     log.debug("Deleted audio stream.")
    return True
   else:
    return False
+
  @staticmethod
  def delete_old_tempfiles():
   for f in glob(os.path.join(tempfile.gettempdir(), 'tmp*.wav')):

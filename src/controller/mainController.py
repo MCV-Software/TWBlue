@@ -1023,11 +1023,6 @@ class Controller(object):
   except:
    pass
 
- def interact(self):
-  "Select the best action for the currently focused tweet (audio, geocode, URL, etc)."
-  buffer = self.get_current_buffer()
-  buffer.interact()
-
  def url(self, *args, **kwargs):
   buffer = self.get_current_buffer()
   buffer.url()
