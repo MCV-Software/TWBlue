@@ -61,7 +61,6 @@ class mainFrame(wx.Frame):
  # Help Menu
   help = wx.Menu()
   self.doc = help.Append(-1, _(u"&Documentation"))
-  self.doc.Enable(False)
   self.sounds_tutorial = help.Append(wx.NewId(), _(u"Sounds &tutorial"))
   self.changelog = help.Append(wx.NewId(), _(u"&What's new in this version?"))
   self.changelog.Enable(False)

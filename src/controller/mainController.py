@@ -35,6 +35,8 @@ import pygeocoder
 from pygeolib import GeocoderError
 import logging
 import webbrowser
+from mysc import localization
+import os
 
 log = logging.getLogger("mainController")
 
@@ -165,6 +167,7 @@ class Controller(object):
   if widgetUtils.toolkit == "wx":
    widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_documentation, self.view.doc)
 
  def set_systray_icon(self):
   self.systrayIcon = sysTrayIcon.SysTrayIcon()
@@ -1314,6 +1317,12 @@ class Controller(object):
   elif buffer.name in buffer.session.settings["other_buffers"]["muted_buffers"]:
    buffer.session.settings["other_buffers"]["muted_buffers"].remove(buffer.name)
    output.speak(_(u"Buffer mute off"), True)
+
+ def view_documentation(self, *args, **kwargs):
+  lang = localization.get("documentation")
+  os.chdir("documentation/%s" % (lang,))
+  webbrowser.open("manual.html")
+  os.chdir("../../")
 
  def __del__(self):
   config.app.write()
