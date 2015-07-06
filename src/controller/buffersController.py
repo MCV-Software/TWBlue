@@ -421,7 +421,7 @@ class baseBufferController(bufferController):
    else:
     answer = commonMessageDialogs.retweet_as_link(self.buffer)
     if answer == widgetUtils.YES:
-     text = text+" @{2} https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id, tweet["user"]["screen_name"])
+     text = text+" https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id)
     else:
      return self._retweet_with_comment(tweet, id, comment=comments)
    if retweet.image == None:
