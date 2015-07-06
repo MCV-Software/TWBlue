@@ -411,9 +411,10 @@ class Controller(object):
      return
    elif dlg.get("users") == True:
     search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term)
-   self.buffers.append(search)
    search.start_stream()
-   self.view.insert_buffer(search.buffer, name=_(u"Search for {}").format(term), pos=self.view.search("searches", buffer.session.db["user_name"]))
+   pos=self.view.search("searches", buffer.session.db["user_name"])
+   self.buffers.append(search)
+   self.view.insert_buffer(search.buffer, name=_(u"Search for {}").format(term), pos=pos)
    search.timer = RepeatingTimer(180, search.start_stream)
    search.timer.start()
   dlg.Destroy()
@@ -720,8 +721,9 @@ class Controller(object):
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
      tl.start_stream()
-     self.buffers.append(tl)
-     self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=self.view.search("timelines", buffer.session.db["user_name"]))
+     pos=self.view.search("timelines", buffer.session.db["user_name"])
+     self.buffers.insert(pos+1, tl)
+     self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
      buffer.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
      pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buffer.session)
      buffer.session.sound.play("create_timeline.ogg")
@@ -730,8 +732,9 @@ class Controller(object):
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
-     self.buffers.append(tl)
-     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Favourites timeline for {}").format(dlg.get_user()), pos=self.view.search("favs_timelines", buffer.session.db["user_name"]))
+     pos=self.view.search("favs_timelines", buffer.session.db["user_name"])
+     self.buffers.insert(pos+1, tl)
+     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Favourites timeline for {}").format(dlg.get_user()), pos=pos)
      tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
@@ -747,8 +750,9 @@ class Controller(object):
   search = buffersController.conversationBufferController(self.view.nb, "search", "%s-searchterm" % (id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", since_id=id, q="@{0}".format(user,))
   search.tweet = buffer.get_right_tweet()
   search.start_stream(start=True)
+  pos=self.view.search("searches", buffer.session.db["user_name"])
   self.buffers.append(search)
-  self.view.insert_buffer(search.buffer, name=_(u"Conversation with {0}").format(user), pos=self.view.search("searches", buffer.session.db["user_name"]))
+  self.view.insert_buffer(search.buffer, name=_(u"Conversation with {0}").format(user), pos=pos)
   search.timer = RepeatingTimer(300, search.start_stream)
   search.timer.start()
 
@@ -774,8 +778,9 @@ class Controller(object):
    if woeid in buff.session.settings["other_buffers"]["trending_topic_buffers"]: return
    buffer = buffersController.trendsBufferController(self.view.nb, "%s_tt" % (woeid,), buff.session, buff.account, woeid)
    buffer.searchfunction = self.search
+   pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"])
+   self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (trends.get_string()), pos=pos)
    self.buffers.append(buffer)
-   self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (trends.get_string()), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
    buffer.start_stream()
    timer = RepeatingTimer(300, buffer.start_stream)
    timer.start()
@@ -1312,4 +1317,3 @@ class Controller(object):
 
  def __del__(self):
   config.app.write()
-
