@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.50\n"
-"POT-Creation-Date: 2015-06-08 05:49+Hora de verano central (México)\n"
-"PO-Revision-Date: 2015-06-09 08:11+0200\n"
+"POT-Creation-Date: 2015-06-28 13:59+Hora de verano central (México)\n"
+"PO-Revision-Date: 2015-06-30 16:12+0200\n"
 "Last-Translator: Jani Kinnunen <jani.kinnunen@wippies.fi>\n"
 "Language-Team: Jani Kinnunen <jani.kinnunen@wippies.fi>\n"
 "Language: fi\n"
@@ -16,196 +16,252 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: d:\\twblue\\src\n"
 
-#: ../src\controller\buffersController.py:100
+#: ../src\build\lib\controller\buffersController.py:98
+#: ../src\controller\buffersController.py:98
 msgid "Opening media..."
 msgstr "Avataan mediaa..."
 
-#: ../src\controller\buffersController.py:104
-msgid "Not actionable."
-msgstr "Ei toimintoa suoritettavissa."
-
-#: ../src\controller\buffersController.py:111
+#: ../src\build\lib\controller\buffersController.py:109
+#: ../src\controller\buffersController.py:109
 msgid "This action is not supported for this buffer"
 msgstr "Toimintoa ei tueta tässä puskurissa"
 
-#: ../src\controller\buffersController.py:150 ../src\gtkUI\buffers\base.py:15
-#: ../src\gtkUI\buffers\events.py:14 ../src\gtkUI\buffers\trends.py:14
-#: ../src\gtkUI\dialogs\message.py:186 ../src\gtkUI\sysTrayIcon.py:33
-#: ../src\wxUI\buffers\base.py:24 ../src\wxUI\buffers\events.py:14
-#: ../src\wxUI\buffers\trends.py:17 ../src\wxUI\dialogs\message.py:253
-#: ../src\wxUI\sysTrayIcon.py:33
+#: ../src\build\lib\controller\buffersController.py:148
+#: ../src\build\lib\wxUI\buffers\base.py:24
+#: ../src\build\lib\wxUI\buffers\events.py:14
+#: ../src\build\lib\wxUI\buffers\trends.py:17
+#: ../src\build\lib\wxUI\dialogs\message.py:253
+#: ../src\build\lib\wxUI\sysTrayIcon.py:33
+#: ../src\controller\buffersController.py:148 ../src\wxUI\buffers\base.py:24
+#: ../src\wxUI\buffers\events.py:14 ../src\wxUI\buffers\trends.py:17
+#: ../src\wxUI\dialogs\message.py:253 ../src\wxUI\sysTrayIcon.py:33
 msgid "Tweet"
 msgstr "Twiittaa"
 
-#: ../src\controller\buffersController.py:151
+#: ../src\build\lib\controller\buffersController.py:149
+#: ../src\controller\buffersController.py:149
 msgid "Write the tweet here"
 msgstr "Kirjoita twiitti tähän"
 
-#: ../src\controller\buffersController.py:305
-#: ../src\controller\buffersController.py:659
+#: ../src\build\lib\controller\buffersController.py:311
+#: ../src\build\lib\controller\buffersController.py:674
+#: ../src\controller\buffersController.py:311
+#: ../src\controller\buffersController.py:674
 msgid "%s items retrieved"
 msgstr "%s kohdetta haettu"
 
-#: ../src\controller\buffersController.py:325
+#: ../src\build\lib\controller\buffersController.py:331
+#: ../src\controller\buffersController.py:331
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Tämä puskuri ei ole aikajana. Sitä ei voi poistaa."
 
-#: ../src\controller\buffersController.py:386
-msgid "Reply to %s"
-msgstr "Vastaa käyttäjälle %s"
-
-#: ../src\controller\buffersController.py:386 ../src\gtkUI\buffers\base.py:17
+#: ../src\build\lib\controller\buffersController.py:392
+#: ../src\build\lib\keystrokeEditor\constants.py:11
+#: ../src\build\lib\wxUI\buffers\base.py:26
+#: ../src\controller\buffersController.py:392
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
 msgid "Reply"
 msgstr "Vastaa"
 
-#: ../src\controller\buffersController.py:406
-msgid "Direct message to %s"
-msgstr "Yksityisviesti käyttäjälle %s"
+#: ../src\build\lib\controller\buffersController.py:392
+#: ../src\controller\buffersController.py:392
+msgid "Reply to %s"
+msgstr "Vastaa käyttäjälle %s"
 
-#: ../src\controller\buffersController.py:406
-#: ../src\controller\mainController.py:1056
+#: ../src\build\lib\controller\buffersController.py:412
+#: ../src\build\lib\controller\mainController.py:1086
+#: ../src\controller\buffersController.py:412
+#: ../src\controller\mainController.py:1086
 msgid "New direct message"
 msgstr "Uusi yksityisviesti"
 
-#: ../src\controller\buffersController.py:427
-msgid "Add your comment to the tweet"
-msgstr "Lisää kommenttisi twiittiin"
+#: ../src\build\lib\controller\buffersController.py:412
+#: ../src\controller\buffersController.py:412
+msgid "Direct message to %s"
+msgstr "Yksityisviesti käyttäjälle %s"
 
-#: ../src\controller\buffersController.py:427 ../src\gtkUI\buffers\base.py:16
-#: ../src\gtkUI\commonMessageDialogs.py:12
+#: ../src\build\lib\controller\buffersController.py:433
+#: ../src\build\lib\keystrokeEditor\constants.py:12
+#: ../src\build\lib\wxUI\buffers\base.py:25
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:8
+#: ../src\build\lib\wxUI\dialogs\message.py:129
+#: ../src\controller\buffersController.py:433
 #: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\commonMessageDialogs.py:8 ../src\wxUI\dialogs\message.py:129
 msgid "Retweet"
 msgstr "Uudelleentwiittaa"
 
-#: ../src\controller\buffersController.py:499
+#: ../src\build\lib\controller\buffersController.py:433
+#: ../src\controller\buffersController.py:433
+msgid "Add your comment to the tweet"
+msgstr "Lisää kommenttisi twiittiin"
+
+#: ../src\build\lib\controller\buffersController.py:505
+#: ../src\controller\buffersController.py:505
 msgid "Opening URL..."
 msgstr "Avataan URL..."
 
-#: ../src\controller\buffersController.py:534
+#: ../src\build\lib\controller\buffersController.py:540
+#: ../src\controller\buffersController.py:540
 msgid "User details"
 msgstr "Käyttäjän tiedot"
 
-#: ../src\controller\buffersController.py:574
+#: ../src\build\lib\controller\buffersController.py:589
+#: ../src\controller\buffersController.py:589
 msgid "Empty"
 msgstr "Tyhjä"
 
-#: ../src\controller\buffersController.py:618
-msgid "Mention to %s"
-msgstr "Maininta käyttäjälle %s"
-
-#: ../src\controller\buffersController.py:618
-#: ../src\gtkUI\buffers\people.py:15 ../src\wxUI\buffers\people.py:15
+#: ../src\build\lib\controller\buffersController.py:633
+#: ../src\build\lib\wxUI\buffers\people.py:15
+#: ../src\controller\buffersController.py:633 ../src\wxUI\buffers\people.py:15
 msgid "Mention"
 msgstr "Mainitse"
 
-#: ../src\controller\mainController.py:242
+#: ../src\build\lib\controller\buffersController.py:633
+#: ../src\controller\buffersController.py:633
+msgid "Mention to %s"
+msgstr "Maininta käyttäjälle %s"
+
+#: ../src\build\lib\controller\mainController.py:243
+#: ../src\controller\mainController.py:243
 msgid "Ready"
 msgstr "Valmis"
 
-#: ../src\controller\mainController.py:273
+#: ../src\build\lib\controller\mainController.py:274
+#: ../src\controller\mainController.py:274
 msgid "Home"
 msgstr "Koti"
 
-#: ../src\controller\mainController.py:277
+#: ../src\build\lib\controller\mainController.py:278
+#: ../src\controller\mainController.py:278
 msgid "Mentions"
 msgstr "Maininnat"
 
-#: ../src\controller\mainController.py:281
+#: ../src\build\lib\controller\mainController.py:282
+#: ../src\controller\mainController.py:282
 msgid "Direct messages"
 msgstr "Yksityisviestit"
 
-#: ../src\controller\mainController.py:285
+#: ../src\build\lib\controller\mainController.py:286
+#: ../src\controller\mainController.py:286
 msgid "Sent direct messages"
 msgstr "Lähetä yksityisviestejä"
 
-#: ../src\controller\mainController.py:289
+#: ../src\build\lib\controller\mainController.py:290
+#: ../src\controller\mainController.py:290
 msgid "Sent tweets"
 msgstr "Lähetetyt twiitit"
 
-#: ../src\controller\mainController.py:294
-#: ../src\controller\mainController.py:1172
-#: ../src\gtkUI\dialogs\userSelection.py:18
+#: ../src\build\lib\controller\mainController.py:295
+#: ../src\build\lib\controller\mainController.py:1202
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:18
+#: ../src\controller\mainController.py:295
+#: ../src\controller\mainController.py:1202
 #: ../src\wxUI\dialogs\userSelection.py:18
 msgid "Favourites"
 msgstr "Suosikit"
 
-#: ../src\controller\mainController.py:298
-#: ../src\controller\mainController.py:1177
+#: ../src\build\lib\controller\mainController.py:299
+#: ../src\build\lib\controller\mainController.py:1207
+#: ../src\controller\mainController.py:299
+#: ../src\controller\mainController.py:1207
 msgid "Followers"
 msgstr "Seuraajat"
 
-#: ../src\controller\mainController.py:302
-#: ../src\controller\mainController.py:1182
+#: ../src\build\lib\controller\mainController.py:303
+#: ../src\build\lib\controller\mainController.py:1212
+#: ../src\controller\mainController.py:303
+#: ../src\controller\mainController.py:1212
 msgid "Friends"
 msgstr "Kaverit"
 
-#: ../src\controller\mainController.py:306
-#: ../src\controller\mainController.py:1187
+#: ../src\build\lib\controller\mainController.py:307
+#: ../src\build\lib\controller\mainController.py:1217
+#: ../src\controller\mainController.py:307
+#: ../src\controller\mainController.py:1217
 msgid "Blocked users"
 msgstr "Estetyt käyttäjät"
 
-#: ../src\controller\mainController.py:310
-#: ../src\controller\mainController.py:1192
+#: ../src\build\lib\controller\mainController.py:311
+#: ../src\build\lib\controller\mainController.py:1222
+#: ../src\controller\mainController.py:311
+#: ../src\controller\mainController.py:1222
 msgid "Muted users"
 msgstr "Hiljennetyt käyttäjät"
 
-#: ../src\controller\mainController.py:314
-#: ../src\controller\mainController.py:1197
+#: ../src\build\lib\controller\mainController.py:315
+#: ../src\build\lib\controller\mainController.py:1227
+#: ../src\controller\mainController.py:315
+#: ../src\controller\mainController.py:1227
 msgid "Events"
 msgstr "Tapahtumat"
 
-#: ../src\controller\mainController.py:317
+#: ../src\build\lib\controller\mainController.py:318
+#: ../src\controller\mainController.py:318
 msgid "Timelines"
 msgstr "Aikajanat"
 
-#: ../src\controller\mainController.py:324
+#: ../src\build\lib\controller\mainController.py:322
+#: ../src\build\lib\controller\mainController.py:724
+#: ../src\controller\mainController.py:322
+#: ../src\controller\mainController.py:724
+msgid "Timeline for {}"
+msgstr "Käyttäjän {} aikajana"
+
+#: ../src\build\lib\controller\mainController.py:325
+#: ../src\controller\mainController.py:325
 msgid "Favourites timelines"
 msgstr "Suosikkiaikajanat"
 
-#: ../src\controller\mainController.py:333 ../src\gtkUI\dialogs\lists.py:11
-#: ../src\wxUI\dialogs\lists.py:12
+#: ../src\build\lib\controller\mainController.py:329
+#: ../src\build\lib\controller\mainController.py:734
+#: ../src\controller\mainController.py:329
+#: ../src\controller\mainController.py:734
+msgid "Favourites timeline for {}"
+msgstr "Käyttäjän {} suosikkiaikajana"
+
+#: ../src\build\lib\controller\mainController.py:334
+#: ../src\build\lib\wxUI\dialogs\lists.py:12
+#: ../src\controller\mainController.py:334 ../src\wxUI\dialogs\lists.py:12
 msgid "Lists"
 msgstr "Listat"
 
-#: ../src\controller\mainController.py:338
-#: ../src\controller\mainController.py:1207
+#: ../src\build\lib\controller\mainController.py:339
+#: ../src\build\lib\controller\mainController.py:1237
+#: ../src\controller\mainController.py:339
+#: ../src\controller\mainController.py:1237
 msgid "List for {}"
 msgstr "Käyttäjän {} lista"
 
-#: ../src\controller\mainController.py:341
+#: ../src\build\lib\controller\mainController.py:342
+#: ../src\controller\mainController.py:342
 msgid "Searches"
 msgstr "Haut"
 
-#: ../src\controller\mainController.py:353
-#: ../src\controller\mainController.py:748
+#: ../src\build\lib\controller\mainController.py:346
+#: ../src\build\lib\controller\mainController.py:416
+#: ../src\controller\mainController.py:346
+#: ../src\controller\mainController.py:416
+msgid "Search for {}"
+msgstr "Hae {}"
+
+#: ../src\build\lib\controller\mainController.py:354
+#: ../src\build\lib\controller\mainController.py:778
+#: ../src\controller\mainController.py:354
+#: ../src\controller\mainController.py:778
 msgid "Trending topics for %s"
 msgstr "Suositut puheenaiheet käyttäjältä %s"
 
-#: ../src\controller\mainController.py:453
-msgid "Select the user"
-msgstr "Valitse käyttäjä"
-
-#: ../src\controller\mainController.py:764
-#: ../src\controller\mainController.py:783
-msgid "There are no coordinates in this tweet"
-msgstr "Tässä twiitissä ei ole koordinaatteja"
-
-#: ../src\controller\mainController.py:766
-#: ../src\controller\mainController.py:785
-msgid "There are no results for the coordinates in this tweet"
-msgstr "Ei tuloksia tämän twiitin koordinaateille"
-
-#: ../src\controller\mainController.py:768
-#: ../src\controller\mainController.py:787
-msgid "Error decoding coordinates. Try again later."
-msgstr "Virhe tulkittaessa koordinaatteja. Yritä myöhemmin uudelleen."
-
-#: ../src\controller\mainController.py:842
-#: ../src\controller\mainController.py:861
-#: ../src\controller\mainController.py:880
-#: ../src\controller\mainController.py:898
+#: ../src\build\lib\controller\mainController.py:435
+#: ../src\build\lib\controller\mainController.py:872
+#: ../src\build\lib\controller\mainController.py:891
+#: ../src\build\lib\controller\mainController.py:910
+#: ../src\build\lib\controller\mainController.py:928
+#: ../src\controller\mainController.py:435
+#: ../src\controller\mainController.py:872
+#: ../src\controller\mainController.py:891
+#: ../src\controller\mainController.py:910
+#: ../src\controller\mainController.py:928
 msgid ""
 "No session is currently in focus. Focus a session with the next or previous "
 "session shortcut."
@@ -213,175 +269,263 @@ msgstr ""
 "Aktiivista istuntoa ei tällä hetkellä ole. Aktivoi istunto Siirry seuraavaan "
 "istuntoon- tai Siirry edelliseen istuntoon -painikkeella."
 
-#: ../src\controller\mainController.py:889
-#: ../src\controller\mainController.py:907
+#: ../src\build\lib\controller\mainController.py:439
+#: ../src\controller\mainController.py:439
+msgid "Empty buffer."
+msgstr "Tyhjennä puskuri."
+
+#: ../src\build\lib\controller\mainController.py:446
+#: ../src\controller\mainController.py:446
+msgid "{0} not found."
+msgstr "Käyttäjää {0} ei löydy."
+
+#: ../src\build\lib\controller\mainController.py:482
+#: ../src\controller\mainController.py:482
+msgid "Select the user"
+msgstr "Valitse käyttäjä"
+
+#: ../src\build\lib\controller\mainController.py:751
+#: ../src\controller\mainController.py:751
+msgid "Conversation with {0}"
+msgstr "Keskustelu käyttäjän {0} kanssa"
+
+#: ../src\build\lib\controller\mainController.py:794
+#: ../src\build\lib\controller\mainController.py:813
+#: ../src\controller\mainController.py:794
+#: ../src\controller\mainController.py:813
+msgid "There are no coordinates in this tweet"
+msgstr "Tässä twiitissä ei ole koordinaatteja"
+
+#: ../src\build\lib\controller\mainController.py:796
+#: ../src\build\lib\controller\mainController.py:815
+#: ../src\controller\mainController.py:796
+#: ../src\controller\mainController.py:815
+msgid "There are no results for the coordinates in this tweet"
+msgstr "Ei tuloksia tämän twiitin koordinaateille"
+
+#: ../src\build\lib\controller\mainController.py:798
+#: ../src\build\lib\controller\mainController.py:817
+#: ../src\controller\mainController.py:798
+#: ../src\controller\mainController.py:817
+msgid "Error decoding coordinates. Try again later."
+msgstr "Virhe tulkittaessa koordinaatteja. Yritä myöhemmin uudelleen."
+
+#: ../src\build\lib\controller\mainController.py:919
+#: ../src\build\lib\controller\mainController.py:937
+#: ../src\controller\mainController.py:919
+#: ../src\controller\mainController.py:937
 msgid "%s, %s of %s"
 msgstr "%s, %s / %s"
 
-#: ../src\controller\mainController.py:891
-#: ../src\controller\mainController.py:909
-#: ../src\controller\mainController.py:929
-#: ../src\controller\mainController.py:949
+#: ../src\build\lib\controller\mainController.py:921
+#: ../src\build\lib\controller\mainController.py:939
+#: ../src\build\lib\controller\mainController.py:959
+#: ../src\build\lib\controller\mainController.py:979
+#: ../src\controller\mainController.py:921
+#: ../src\controller\mainController.py:939
+#: ../src\controller\mainController.py:959
+#: ../src\controller\mainController.py:979
 msgid "%s. Empty"
 msgstr "%s. Tyhjä"
 
-#: ../src\controller\mainController.py:922
+#: ../src\build\lib\controller\mainController.py:952
+#: ../src\controller\mainController.py:952
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: Tämä tili ei ole kirjautuneena Twitteriin."
 
-#: ../src\controller\mainController.py:927
-#: ../src\controller\mainController.py:947
+#: ../src\build\lib\controller\mainController.py:957
+#: ../src\build\lib\controller\mainController.py:977
+#: ../src\controller\mainController.py:957
+#: ../src\controller\mainController.py:977
 msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s / %s"
 
-#: ../src\controller\mainController.py:942
+#: ../src\build\lib\controller\mainController.py:972
+#: ../src\controller\mainController.py:972
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: Tämä tili ei ole kirjautuneena Twitteriin."
 
-#: ../src\controller\mainController.py:1047
+#: ../src\build\lib\controller\mainController.py:1077
+#: ../src\controller\mainController.py:1077
 msgid "One mention from %s "
 msgstr "Maininta käyttäjältä %s "
 
-#: ../src\controller\mainController.py:1136
-#: ../src\controller\mainController.py:1145
+#: ../src\build\lib\controller\mainController.py:1166
+#: ../src\build\lib\controller\mainController.py:1175
+#: ../src\controller\mainController.py:1166
+#: ../src\controller\mainController.py:1175
 msgid "One tweet from %s"
 msgstr "Twiitti käyttäjältä %s"
 
-#: ../src\controller\mainController.py:1202
+#: ../src\build\lib\controller\mainController.py:1232
+#: ../src\controller\mainController.py:1232
 msgid "This list is already opened"
 msgstr "Tämä lista on jo avattu"
 
-#: ../src\controller\mainController.py:1260
+#: ../src\build\lib\controller\mainController.py:1290
+#: ../src\controller\mainController.py:1290
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "Tämän puskurin uusien twiittien automaattinen lukeminen on käytössä"
 
-#: ../src\controller\mainController.py:1263
+#: ../src\build\lib\controller\mainController.py:1293
+#: ../src\controller\mainController.py:1293
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr ""
 "Tämän puskurin uusien twiittien automaattinen lukeminen ei ole käytössä"
 
-#: ../src\controller\mainController.py:1269
+#: ../src\build\lib\controller\mainController.py:1299
+#: ../src\controller\mainController.py:1299
 msgid "Session mute on"
 msgstr "Istunnon hiljennys päällä"
 
-#: ../src\controller\mainController.py:1272
+#: ../src\build\lib\controller\mainController.py:1302
+#: ../src\controller\mainController.py:1302
 msgid "Session mute off"
 msgstr "Istunnon hiljennys pois"
 
-#: ../src\controller\mainController.py:1279
+#: ../src\build\lib\controller\mainController.py:1309
+#: ../src\controller\mainController.py:1309
 msgid "Buffer mute on"
 msgstr "Puskurin hiljennys päällä"
 
-#: ../src\controller\mainController.py:1282
+#: ../src\build\lib\controller\mainController.py:1312
+#: ../src\controller\mainController.py:1312
 msgid "Buffer mute off"
 msgstr "Puskurin hiljennys pois päältä"
 
-#: ../src\controller\messages.py:43
+#: ../src\build\lib\controller\messages.py:43 ../src\controller\messages.py:43
 msgid "Translated"
 msgstr "Käännetty"
 
-#: ../src\controller\messages.py:50
+#: ../src\build\lib\controller\messages.py:50 ../src\controller\messages.py:50
 msgid "There's no URL to be shortened"
 msgstr "Lyhennettävää URL-osoitetta ei ole"
 
-#: ../src\controller\messages.py:54 ../src\controller\messages.py:61
+#: ../src\build\lib\controller\messages.py:54
+#: ../src\build\lib\controller\messages.py:61 ../src\controller\messages.py:54
+#: ../src\controller\messages.py:61
 msgid "URL shortened"
 msgstr "URL-osoite lyhennetty"
 
-#: ../src\controller\messages.py:67
+#: ../src\build\lib\controller\messages.py:67 ../src\controller\messages.py:67
 msgid "There's no URL to be expanded"
 msgstr "Laajennettavaa URL-osoitetta ei ole"
 
-#: ../src\controller\messages.py:71 ../src\controller\messages.py:78
+#: ../src\build\lib\controller\messages.py:71
+#: ../src\build\lib\controller\messages.py:78 ../src\controller\messages.py:71
+#: ../src\controller\messages.py:78
 msgid "URL expanded"
 msgstr "URL-osoite laajennettu"
 
-#: ../src\controller\messages.py:82
+#: ../src\build\lib\controller\messages.py:82 ../src\controller\messages.py:82
 msgid "%s - %s of %d characters"
 msgstr "%s - %s / %d merkkiä"
 
+#: ../src\build\lib\controller\messages.py:106
 #: ../src\controller\messages.py:106
 msgid "Unable to upload the audio"
 msgstr "Äänitiedostoa ei voi lähettää"
 
+#: ../src\build\lib\controller\messages.py:118
+#: ../src\build\lib\controller\messages.py:126
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:77
 #: ../src\controller\messages.py:118 ../src\controller\messages.py:126
-#: ../src\gtkUI\dialogs\update_profile.py:77
 #: ../src\wxUI\dialogs\update_profile.py:77
 msgid "Discard image"
 msgstr "Hylkää kuva"
 
+#: ../src\build\lib\controller\messages.py:121
+#: ../src\build\lib\controller\user.py:53
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:127
 #: ../src\controller\messages.py:121 ../src\controller\user.py:53
-#: ../src\extra\AudioUploader\audioUploader.py:130
+#: ../src\extra\AudioUploader\audioUploader.py:127
 msgid "Discarded"
 msgstr "Hylätty"
 
-#: ../src\controller\messages.py:122 ../src\gtkUI\dialogs\update_profile.py:32
-#: ../src\gtkUI\dialogs\update_profile.py:75
-#: ../src\wxUI\dialogs\message.py:136 ../src\wxUI\dialogs\update_profile.py:32
+#: ../src\build\lib\controller\messages.py:122
+#: ../src\build\lib\wxUI\dialogs\message.py:136
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:32
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:75
+#: ../src\controller\messages.py:122 ../src\wxUI\dialogs\message.py:136
+#: ../src\wxUI\dialogs\update_profile.py:32
 #: ../src\wxUI\dialogs\update_profile.py:75
 msgid "Upload a picture"
 msgstr "Lähetä kuva"
 
-#: ../src\controller\settings.py:114 ../src\controller\settings.py:173
-#: ../src\wxUI\dialogs\configuration.py:97
+#: ../src\build\lib\controller\settings.py:117
+#: ../src\build\lib\controller\settings.py:176
+#: ../src\build\lib\wxUI\dialogs\configuration.py:98
+#: ../src\controller\settings.py:119 ../src\controller\settings.py:178
+#: ../src\wxUI\dialogs\configuration.py:100
 msgid "Ask"
 msgstr "Kysy"
 
-#: ../src\controller\settings.py:116 ../src\controller\settings.py:175
-#: ../src\wxUI\dialogs\configuration.py:97
+#: ../src\build\lib\controller\settings.py:119
+#: ../src\build\lib\controller\settings.py:178
+#: ../src\build\lib\wxUI\dialogs\configuration.py:98
+#: ../src\controller\settings.py:121 ../src\controller\settings.py:180
+#: ../src\wxUI\dialogs\configuration.py:100
 msgid "Retweet without comments"
 msgstr "Uudelleentwiittaa ilman kommentteja"
 
-#: ../src\controller\settings.py:118 ../src\wxUI\dialogs\configuration.py:97
+#: ../src\build\lib\controller\settings.py:121
+#: ../src\build\lib\wxUI\dialogs\configuration.py:98
+#: ../src\controller\settings.py:123 ../src\wxUI\dialogs\configuration.py:100
 msgid "Retweet with comments"
 msgstr "Uudelleentwiittaa kommenteilla"
 
-#: ../src\controller\settings.py:150
+#: ../src\build\lib\controller\settings.py:153
+#: ../src\controller\settings.py:155
 msgid "Account settings for %s"
 msgstr "Tilin %s asetukset"
 
-#: ../src\controller\settings.py:241 ../src\gtkUI\dialogs\configuration.py:153
-#: ../src\wxUI\dialogs\configuration.py:290
-msgid "Link your Dropbox account"
-msgstr "Liitä Dropbox-tili"
+#: ../src\build\lib\controller\settings.py:261
+#: ../src\build\lib\wxUI\dialogs\configuration.py:289
+#: ../src\controller\settings.py:263 ../src\wxUI\dialogs\configuration.py:291
+msgid "Connect your Pocket account"
+msgstr "Yhdistä Pocket-tili"
 
-#: ../src\controller\user.py:25
+#: ../src\build\lib\controller\user.py:25 ../src\controller\user.py:25
 msgid "Information for %s"
 msgstr "Käyttäjän %s tiedot"
 
-#: ../src\controller\user.py:82
+#: ../src\build\lib\controller\user.py:82 ../src\controller\user.py:82
 msgid "Username: @%s\n"
 msgstr "Käyttäjänimi: @%s\n"
 
-#: ../src\controller\user.py:83
+#: ../src\build\lib\controller\user.py:83 ../src\controller\user.py:83
 msgid "Name: %s\n"
 msgstr "Nimi: %s\n"
 
-#: ../src\controller\user.py:85
+#: ../src\build\lib\controller\user.py:85 ../src\controller\user.py:85
 msgid "Location: %s\n"
 msgstr "Sijainti: %s\n"
 
-#: ../src\controller\user.py:87
+#: ../src\build\lib\controller\user.py:87 ../src\controller\user.py:87
 msgid "URL: %s\n"
 msgstr "URL: %s\n"
 
-#: ../src\controller\user.py:89
+#: ../src\build\lib\controller\user.py:89 ../src\controller\user.py:89
 msgid "Bio: %s\n"
 msgstr "Kuvaus: %s\n"
 
-#: ../src\controller\user.py:90 ../src\controller\user.py:94
+#: ../src\build\lib\controller\user.py:90
+#: ../src\build\lib\controller\user.py:94 ../src\controller\user.py:90
+#: ../src\controller\user.py:94
 msgid "Yes"
 msgstr "Kyllä"
 
-#: ../src\controller\user.py:91 ../src\controller\user.py:95
+#: ../src\build\lib\controller\user.py:91
+#: ../src\build\lib\controller\user.py:95 ../src\controller\user.py:91
+#: ../src\controller\user.py:95
 msgid "No"
 msgstr "Ei"
 
-#: ../src\controller\user.py:92
+#: ../src\build\lib\controller\user.py:92 ../src\controller\user.py:92
 msgid "Protected: %s\n"
 msgstr "Suojattu: %s\n"
 
-#: ../src\controller\user.py:93
+#: ../src\build\lib\controller\user.py:93 ../src\controller\user.py:93
 msgid ""
 "Followers: %s\n"
 " Friends: %s\n"
@@ -389,314 +533,423 @@ msgstr ""
 "Seuraajia: %s\n"
 " Friends: %s\n"
 
-#: ../src\controller\user.py:96
+#: ../src\build\lib\controller\user.py:96 ../src\controller\user.py:96
 msgid "Verified: %s\n"
 msgstr "Vahvistettu: %s\n"
 
-#: ../src\controller\user.py:97
+#: ../src\build\lib\controller\user.py:97 ../src\controller\user.py:97
 msgid "Tweets: %s\n"
 msgstr "Twiittejä: %s\n"
 
-#: ../src\controller\user.py:98
+#: ../src\build\lib\controller\user.py:98 ../src\controller\user.py:98
 msgid "Favourites: %s"
 msgstr "Suosikkeja: %s"
 
+#: ../src\build\lib\controller\userActionsController.py:69
 #: ../src\controller\userActionsController.py:69
 msgid "You can't ignore direct messages"
 msgstr "Et voi jättää huomiotta yksityisviestejä"
 
-#: ../src\extra\AudioUploader\audioUploader.py:52
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:53
+#: ../src\extra\AudioUploader\audioUploader.py:53
 msgid "Attaching..."
 msgstr "Lisätään liitettä..."
 
-#: ../src\extra\AudioUploader\audioUploader.py:78
-#: ../src\extra\AudioUploader\audioUploader.py:83
-#: ../src\extra\AudioUploader\audioUploader.py:110
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:75
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:80
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:107
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:36
+#: ../src\extra\AudioUploader\audioUploader.py:75
+#: ../src\extra\AudioUploader\audioUploader.py:80
+#: ../src\extra\AudioUploader\audioUploader.py:107
 #: ../src\extra\AudioUploader\wx_ui.py:36
 msgid "Pause"
 msgstr "Keskeytä"
 
-#: ../src\extra\AudioUploader\audioUploader.py:80
-#: ../src\extra\AudioUploader\audioUploader.py:81
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:77
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:78
+#: ../src\extra\AudioUploader\audioUploader.py:77
+#: ../src\extra\AudioUploader\audioUploader.py:78
 msgid "Resume"
 msgstr "Jatka"
 
-#: ../src\extra\AudioUploader\audioUploader.py:98
-#: ../src\extra\AudioUploader\audioUploader.py:143
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:95
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:140
+#: ../src\extra\AudioUploader\audioUploader.py:95
+#: ../src\extra\AudioUploader\audioUploader.py:140
 msgid "Stop"
 msgstr "Keskeytä"
 
-#: ../src\extra\AudioUploader\audioUploader.py:99
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:96
+#: ../src\extra\AudioUploader\audioUploader.py:96
 msgid "Recording"
 msgstr "Nauhoitetaan"
 
-#: ../src\extra\AudioUploader\audioUploader.py:104
-#: ../src\extra\AudioUploader\audioUploader.py:154
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:101
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:151
+#: ../src\extra\AudioUploader\audioUploader.py:101
+#: ../src\extra\AudioUploader\audioUploader.py:151
 msgid "Stopped"
 msgstr "Keskeytetty"
 
-#: ../src\extra\AudioUploader\audioUploader.py:106
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:103
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:38
+#: ../src\extra\AudioUploader\audioUploader.py:103
 #: ../src\extra\AudioUploader\wx_ui.py:38
 msgid "Record"
 msgstr "Nauhoita"
 
-#: ../src\extra\AudioUploader\audioUploader.py:139 ../src\sound.py:123
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:136
+#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:123
 msgid "Playing..."
 msgstr "Toistetaan..."
 
-#: ../src\extra\AudioUploader\audioUploader.py:147
-#: ../src\extra\AudioUploader\audioUploader.py:157
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:144
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:154
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:34
+#: ../src\extra\AudioUploader\audioUploader.py:144
+#: ../src\extra\AudioUploader\audioUploader.py:154
 #: ../src\extra\AudioUploader\wx_ui.py:34
 msgid "Play"
 msgstr "Toista"
 
-#: ../src\extra\AudioUploader\audioUploader.py:162
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:159
+#: ../src\extra\AudioUploader\audioUploader.py:159
 msgid "Recoding audio..."
 msgstr "Uudelleenkoodataan ääntä..."
 
-#: ../src\extra\AudioUploader\utils.py:27 ../src\update\utils.py:27
+#: ../src\build\lib\extra\AudioUploader\utils.py:27
+#: ../src\build\lib\update\utils.py:27 ../src\extra\AudioUploader\utils.py:27
+#: ../src\update\utils.py:27
 msgid "%d day, "
 msgstr "%d päivä, "
 
-#: ../src\extra\AudioUploader\utils.py:29 ../src\update\utils.py:29
+#: ../src\build\lib\extra\AudioUploader\utils.py:29
+#: ../src\build\lib\update\utils.py:29 ../src\extra\AudioUploader\utils.py:29
+#: ../src\update\utils.py:29
 msgid "%d days, "
 msgstr "%d päivää, "
 
-#: ../src\extra\AudioUploader\utils.py:31 ../src\update\utils.py:31
+#: ../src\build\lib\extra\AudioUploader\utils.py:31
+#: ../src\build\lib\update\utils.py:31 ../src\extra\AudioUploader\utils.py:31
+#: ../src\update\utils.py:31
 msgid "%d hour, "
 msgstr "%d tunti, "
 
-#: ../src\extra\AudioUploader\utils.py:33 ../src\update\utils.py:33
+#: ../src\build\lib\extra\AudioUploader\utils.py:33
+#: ../src\build\lib\update\utils.py:33 ../src\extra\AudioUploader\utils.py:33
+#: ../src\update\utils.py:33
 msgid "%d hours, "
 msgstr "%d tuntia, "
 
-#: ../src\extra\AudioUploader\utils.py:35 ../src\update\utils.py:35
+#: ../src\build\lib\extra\AudioUploader\utils.py:35
+#: ../src\build\lib\update\utils.py:35 ../src\extra\AudioUploader\utils.py:35
+#: ../src\update\utils.py:35
 msgid "%d minute, "
 msgstr "%d minuutti, "
 
-#: ../src\extra\AudioUploader\utils.py:37 ../src\update\utils.py:37
+#: ../src\build\lib\extra\AudioUploader\utils.py:37
+#: ../src\build\lib\update\utils.py:37 ../src\extra\AudioUploader\utils.py:37
+#: ../src\update\utils.py:37
 msgid "%d minutes, "
 msgstr "%d minuuttia, "
 
-#: ../src\extra\AudioUploader\utils.py:39 ../src\update\utils.py:39
+#: ../src\build\lib\extra\AudioUploader\utils.py:39
+#: ../src\build\lib\update\utils.py:39 ../src\extra\AudioUploader\utils.py:39
+#: ../src\update\utils.py:39
 msgid "%s second"
 msgstr "%s sekunti"
 
-#: ../src\extra\AudioUploader\utils.py:41 ../src\update\utils.py:41
+#: ../src\build\lib\extra\AudioUploader\utils.py:41
+#: ../src\build\lib\update\utils.py:41 ../src\extra\AudioUploader\utils.py:41
+#: ../src\update\utils.py:41
 msgid "%s seconds"
 msgstr "%s sekuntia"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:13
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:13
 msgid "File"
 msgstr "Tiedosto"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:19
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:19
 msgid "Transferred"
 msgstr "Siirretty"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:24
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:24
 msgid "Total file size"
 msgstr "Tiedoston koko yhteensä"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:29
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:29
 msgid "Transfer rate"
 msgstr "Siirtonopeus"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:34
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:34
 msgid "Time left"
 msgstr "Aikaa jäljellä"
 
-#: ../src\extra\AudioUploader\wx_ui.py:28 ../src\gtkUI\dialogs\message.py:139
-#: ../src\wxUI\dialogs\message.py:138 ../src\wxUI\dialogs\message.py:199
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:28
+#: ../src\build\lib\wxUI\dialogs\message.py:138
+#: ../src\build\lib\wxUI\dialogs\message.py:199
+#: ../src\extra\AudioUploader\wx_ui.py:28 ../src\wxUI\dialogs\message.py:138
+#: ../src\wxUI\dialogs\message.py:199
 msgid "Attach audio"
 msgstr "Lisää liitteeksi äänitiedosto"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:40
 #: ../src\extra\AudioUploader\wx_ui.py:40
 msgid "Add an existing file"
 msgstr "Lisää olemassa oleva tiedosto"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:41
 #: ../src\extra\AudioUploader\wx_ui.py:41
 msgid "Discard"
 msgstr "Hylkää"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:43
 #: ../src\extra\AudioUploader\wx_ui.py:43
 msgid "Upload to"
 msgstr "Lähetä palveluun"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:48
 #: ../src\extra\AudioUploader\wx_ui.py:48
 msgid "Attach"
 msgstr "Lisää liite"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:50
+#: ../src\build\lib\issueReporter\wx_ui.py:74
+#: ../src\build\lib\wxUI\dialogs\find.py:20
 #: ../src\extra\AudioUploader\wx_ui.py:50 ../src\issueReporter\wx_ui.py:74
+#: ../src\wxUI\dialogs\find.py:20
 msgid "Cancel"
 msgstr "Peruuta"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:75
 #: ../src\extra\AudioUploader\wx_ui.py:75
 msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 msgstr "Äänitiedostot (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:75
 #: ../src\extra\AudioUploader\wx_ui.py:75
 msgid "Select the audio file to be uploaded"
 msgstr "Valitse lähetettävä äänitiedosto"
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:4
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:4
 msgid "Audio tweet."
 msgstr "Äänitwiitti."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:5
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:5
 msgid "User timeline buffer created."
 msgstr "Käyttäjän aikajanapuskuri luotu."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:6
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:6
 msgid "Buffer destroied."
 msgstr "Puskuri poistettu."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:7
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:7
 msgid "Direct message received."
 msgstr "Yksityisviesti vastaanotettu."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:8
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:8
 msgid "Direct message sent."
 msgstr "Yksityisviesti lähetetty."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:9
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:9
 msgid "Error."
 msgstr "Virhe."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:10
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
-msgid "Tweet favorited."
+msgid "Tweet favourited."
 msgstr "Twiitti lisätty suosikiksi."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:11
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "Favourites buffer updated."
 msgstr "Suosikkien puskuri päivitetty."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:12
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
 msgid "Geotweet."
 msgstr "Geotwiitti."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:13
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:13
 msgid "Boundary reached."
 msgstr "Raja saavutettu."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:14
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:14
 msgid "List updated."
 msgstr "Lista päivitetty."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:15
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:15
 msgid "Too many characters."
 msgstr "Liikaa merkkejä."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:16
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:16
 msgid "Mention received."
 msgstr "Maininta vastaanotettu."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:17
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:17
 msgid "New event."
 msgstr "Uusi tapahtuma."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:18
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:18
+msgid "{0} is ready."
+msgstr "{0} on valmis."
+
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:19
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:19
 msgid "Mention sent."
 msgstr "Maininta lähetetty."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:20
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:20
 msgid "Tweet retweeted."
 msgstr "Twiitti uudelleentwiitattu."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:21
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:21
 msgid "Search buffer updated."
 msgstr "Hakupuskuri päivitetty."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:22
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:22
 msgid "Tweet received."
 msgstr "Twiitti vastaanotettu."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:23
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:23
 msgid "Tweet sent."
 msgstr "Twiitti lähetetty."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:24
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:24
 msgid "Trending topics buffer updated."
 msgstr "Suosittujen puheenaiheiden puskuri päivitetty."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:25
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:25
 msgid "New tweet in user timeline buffer."
 msgstr "Uusi twiitti käyttäjän aikajanapuskurissa."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:26
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:26
 msgid "New follower."
 msgstr "Uusi seuraaja."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:27
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:27
 msgid "Volume changed."
 msgstr "Äänenvoimakkuutta muutettu."
 
+#: ../src\build\lib\extra\SoundsTutorial\wx_ui.py:8
 #: ../src\extra\SoundsTutorial\wx_ui.py:8
 msgid "Sounds tutorial"
 msgstr "Tutustu ääniin"
 
+#: ../src\build\lib\extra\SoundsTutorial\wx_ui.py:11
 #: ../src\extra\SoundsTutorial\wx_ui.py:11
 msgid "Press enter to listen to the sound for the selected event"
 msgstr "Paina Enteriä kuunnellaksesi valitun tapahtuman äänen"
 
+#: ../src\build\lib\extra\SpellChecker\spellchecker.py:45
 #: ../src\extra\SpellChecker\spellchecker.py:45
 msgid "Misspelled word: %s"
 msgstr "Väärin kirjoitettu sana: %s"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:26
 #: ../src\extra\SpellChecker\wx_ui.py:26
 msgid "Misspelled word"
 msgstr "Väärin kirjoitettu sana"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:31
 #: ../src\extra\SpellChecker\wx_ui.py:31
 msgid "Context"
 msgstr "Asiayhteys"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:36
 #: ../src\extra\SpellChecker\wx_ui.py:36
 msgid "Suggestions"
 msgstr "Ehdotukset"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:41
 #: ../src\extra\SpellChecker\wx_ui.py:41
 msgid "Ignore"
 msgstr "Ohita"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:42
 #: ../src\extra\SpellChecker\wx_ui.py:42
 msgid "Ignore all"
 msgstr "Ohita kaikki"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:43
 #: ../src\extra\SpellChecker\wx_ui.py:43
 msgid "Replace"
 msgstr "Korvaa"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:44
 #: ../src\extra\SpellChecker\wx_ui.py:44
 msgid "Replace all"
 msgstr "Korvaa kaikki"
 
-#: ../src\extra\SpellChecker\wx_ui.py:76
-#: ../src\gtkUI\commonMessageDialogs.py:52
-#: ../src\gtkUI\commonMessageDialogs.py:64 ../src\issueReporter\wx_ui.py:83
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:76
+#: ../src\build\lib\issueReporter\wx_ui.py:83
+#: ../src\build\lib\issueReporter\wx_ui.py:86
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:37
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:49
+#: ../src\extra\SpellChecker\wx_ui.py:76 ../src\issueReporter\wx_ui.py:83
 #: ../src\issueReporter\wx_ui.py:86 ../src\wxUI\commonMessageDialogs.py:37
 #: ../src\wxUI\commonMessageDialogs.py:49
 msgid "Error"
 msgstr "Virhe"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:76
+#: ../src\extra\SpellChecker\wx_ui.py:76
+msgid ""
+"An error has occurred. There are no dictionaries available for the selected "
+"language in {0}"
+msgstr "Tapahtui virhe. {0}ssa ei ole sanastoja valitulle kielelle."
+
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:79
 #: ../src\extra\SpellChecker\wx_ui.py:79
 msgid "Spell check complete."
 msgstr "Oikeinkirjoituksen tarkistus suoritettu."
 
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:20
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:38
 #: ../src\extra\autocompletionUsers\completion.py:20
 #: ../src\extra\autocompletionUsers\completion.py:38
 msgid "You have to start writing"
 msgstr "Sinun on kirjoitettava jotain"
 
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:30
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:47
 #: ../src\extra\autocompletionUsers\completion.py:30
 #: ../src\extra\autocompletionUsers\completion.py:47
 msgid "There are no results in your users database"
 msgstr "Käyttäjätietokannasta ei löydy tuloksia"
 
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:32
 #: ../src\extra\autocompletionUsers\completion.py:32
 msgid "Autocompletion only works for users."
 msgstr "Automaattinen täydennys toimii vain käyttäjille."
 
+#: ../src\build\lib\extra\autocompletionUsers\settings.py:25
 #: ../src\extra\autocompletionUsers\settings.py:25
 msgid ""
 "Updating database... You can close this window now. A message will tell you "
@@ -705,803 +958,991 @@ msgstr ""
 "Päivitetään tietokantaa... Voit nyt sulkea tämän ikkunan. TWBlue ilmoittaa, "
 "kun päivitys on suoritettu."
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:8
 #: ../src\extra\autocompletionUsers\wx_manage.py:8
 msgid "Manage Autocompletion database"
 msgstr "Hallinnoi automaattisen täydennyksen tietokantaa"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:11
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+msgid "Editing {0} users database"
+msgstr "Muokataan {0}n käyttäjätietokantaa"
+
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:12
 #: ../src\extra\autocompletionUsers\wx_manage.py:12
 msgid "Name"
 msgstr "Nimi"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:12
 #: ../src\extra\autocompletionUsers\wx_manage.py:12
 msgid "Username"
 msgstr "Käyttäjänimi"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:15
 #: ../src\extra\autocompletionUsers\wx_manage.py:15
 msgid "Add user"
 msgstr "Lisää käyttäjä"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:16
 #: ../src\extra\autocompletionUsers\wx_manage.py:16
 msgid "Remove user"
 msgstr "Poista käyttäjä"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:37
 #: ../src\extra\autocompletionUsers\wx_manage.py:37
 msgid "Add user to database"
 msgstr "Lisää käyttäjä tietokantaan"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:37
 #: ../src\extra\autocompletionUsers\wx_manage.py:37
 msgid "Twitter username"
 msgstr "Twitter-käyttäjänimi"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:43
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:37
 #: ../src\extra\autocompletionUsers\wx_manage.py:43
-#: ../src\gtkUI\commonMessageDialogs.py:52
 #: ../src\wxUI\commonMessageDialogs.py:37
 msgid "The user does not exist"
 msgstr "Käyttäjää ei ole"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:43
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:43
+#: ../src\build\lib\wxUI\dialogs\configuration.py:295
 #: ../src\extra\autocompletionUsers\wx_manage.py:43
-#: ../src\gtkUI\commonMessageDialogs.py:58
-#: ../src\gtkUI\dialogs\configuration.py:165
 #: ../src\wxUI\commonMessageDialogs.py:43
-#: ../src\wxUI\dialogs\configuration.py:302
+#: ../src\wxUI\dialogs\configuration.py:297
 msgid "Error!"
 msgstr "Virhe!"
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:7
-msgid "Autocomplete users’ settings"
-msgstr "Automaattisen täydennyksen asetukset"
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:8
+#: ../src\extra\autocompletionUsers\wx_settings.py:8
+msgid "Autocomplete users' settings"
+msgstr "Käyttäjien automaattisen täydennyksen asetukset"
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:10
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:11
+#: ../src\extra\autocompletionUsers\wx_settings.py:11
 msgid "Add users from followers buffer"
 msgstr "Lisää käyttäjiä Seuraajat-puskurista"
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:11
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:12
+#: ../src\extra\autocompletionUsers\wx_settings.py:12
 msgid "Add users from friends buffer"
 msgstr "Lisää käyttäjiä Kaverit-puskurista"
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:14
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:15
+#: ../src\extra\autocompletionUsers\wx_settings.py:15
 msgid "Manage database..."
 msgstr "Hallinnoi tietokantaa..."
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:26
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:27
+#: ../src\extra\autocompletionUsers\wx_settings.py:27
 msgid "Done"
 msgstr "Valmis"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:27
+#: ../src\extra\autocompletionUsers\wx_settings.py:27
+msgid "{0}'s database of users has been updated."
+msgstr "{0}n käyttäjätietokanta on päivitetty."
+
+#: ../src\build\lib\extra\translator\translator.py:9
 #: ../src\extra\translator\translator.py:9
 msgid "Afrikaans"
 msgstr "afrikaans"
 
+#: ../src\build\lib\extra\translator\translator.py:10
 #: ../src\extra\translator\translator.py:10
 msgid "Albanian"
 msgstr "albania"
 
+#: ../src\build\lib\extra\translator\translator.py:11
 #: ../src\extra\translator\translator.py:11
 msgid "Amharic"
 msgstr "amhara"
 
+#: ../src\build\lib\extra\translator\translator.py:12
 #: ../src\extra\translator\translator.py:12
 msgid "Arabic"
 msgstr "arabia"
 
+#: ../src\build\lib\extra\translator\translator.py:13
 #: ../src\extra\translator\translator.py:13
 msgid "Armenian"
 msgstr "armenia"
 
+#: ../src\build\lib\extra\translator\translator.py:14
 #: ../src\extra\translator\translator.py:14
 msgid "Azerbaijani"
 msgstr "azeri"
 
+#: ../src\build\lib\extra\translator\translator.py:15
 #: ../src\extra\translator\translator.py:15
 msgid "Basque"
 msgstr "baski"
 
+#: ../src\build\lib\extra\translator\translator.py:16
 #: ../src\extra\translator\translator.py:16
 msgid "Belarusian"
 msgstr "valkovenäjä"
 
+#: ../src\build\lib\extra\translator\translator.py:17
 #: ../src\extra\translator\translator.py:17
 msgid "Bengali"
 msgstr "bengali"
 
+#: ../src\build\lib\extra\translator\translator.py:18
 #: ../src\extra\translator\translator.py:18
 msgid "Bihari"
 msgstr "bihar"
 
+#: ../src\build\lib\extra\translator\translator.py:19
 #: ../src\extra\translator\translator.py:19
 msgid "Bulgarian"
 msgstr "bulgaria"
 
+#: ../src\build\lib\extra\translator\translator.py:20
 #: ../src\extra\translator\translator.py:20
 msgid "Burmese"
 msgstr "burma"
 
+#: ../src\build\lib\extra\translator\translator.py:21
 #: ../src\extra\translator\translator.py:21
 msgid "Catalan"
 msgstr "katalaani"
 
+#: ../src\build\lib\extra\translator\translator.py:22
 #: ../src\extra\translator\translator.py:22
 msgid "Cherokee"
 msgstr "cherokee"
 
+#: ../src\build\lib\extra\translator\translator.py:23
 #: ../src\extra\translator\translator.py:23
 msgid "Chinese"
 msgstr "kiina"
 
+#: ../src\build\lib\extra\translator\translator.py:24
 #: ../src\extra\translator\translator.py:24
 msgid "Chinese_simplified"
 msgstr "kiina (yksinkertaistettu)"
 
+#: ../src\build\lib\extra\translator\translator.py:25
 #: ../src\extra\translator\translator.py:25
 msgid "Chinese_traditional"
 msgstr "kiina (perinteinen)"
 
+#: ../src\build\lib\extra\translator\translator.py:26
 #: ../src\extra\translator\translator.py:26
 msgid "Croatian"
 msgstr "kroatia"
 
+#: ../src\build\lib\extra\translator\translator.py:27
 #: ../src\extra\translator\translator.py:27
 msgid "Czech"
 msgstr "tshekki"
 
+#: ../src\build\lib\extra\translator\translator.py:28
 #: ../src\extra\translator\translator.py:28
 msgid "Danish"
 msgstr "tanska"
 
+#: ../src\build\lib\extra\translator\translator.py:29
 #: ../src\extra\translator\translator.py:29
 msgid "Dhivehi"
 msgstr "divehi"
 
+#: ../src\build\lib\extra\translator\translator.py:30
 #: ../src\extra\translator\translator.py:30
 msgid "Dutch"
 msgstr "hollanti"
 
+#: ../src\build\lib\extra\translator\translator.py:31
 #: ../src\extra\translator\translator.py:31
 msgid "English"
 msgstr "englanti"
 
+#: ../src\build\lib\extra\translator\translator.py:32
 #: ../src\extra\translator\translator.py:32
 msgid "Esperanto"
 msgstr "esperanto"
 
+#: ../src\build\lib\extra\translator\translator.py:33
 #: ../src\extra\translator\translator.py:33
 msgid "Estonian"
 msgstr "viro"
 
+#: ../src\build\lib\extra\translator\translator.py:34
 #: ../src\extra\translator\translator.py:34
 msgid "Filipino"
 msgstr "filipino"
 
+#: ../src\build\lib\extra\translator\translator.py:35
 #: ../src\extra\translator\translator.py:35
 msgid "Finnish"
 msgstr "suomi"
 
+#: ../src\build\lib\extra\translator\translator.py:36
 #: ../src\extra\translator\translator.py:36
 msgid "French"
 msgstr "ranska"
 
+#: ../src\build\lib\extra\translator\translator.py:37
 #: ../src\extra\translator\translator.py:37
 msgid "Galician"
 msgstr "galicia"
 
+#: ../src\build\lib\extra\translator\translator.py:38
 #: ../src\extra\translator\translator.py:38
 msgid "Georgian"
 msgstr "georgia"
 
+#: ../src\build\lib\extra\translator\translator.py:39
 #: ../src\extra\translator\translator.py:39
 msgid "German"
 msgstr "saksa"
 
+#: ../src\build\lib\extra\translator\translator.py:40
 #: ../src\extra\translator\translator.py:40
 msgid "Greek"
 msgstr "kreikka"
 
+#: ../src\build\lib\extra\translator\translator.py:41
 #: ../src\extra\translator\translator.py:41
 msgid "Guarani"
 msgstr "guarani"
 
+#: ../src\build\lib\extra\translator\translator.py:42
 #: ../src\extra\translator\translator.py:42
 msgid "Gujarati"
 msgstr "gujarati"
 
+#: ../src\build\lib\extra\translator\translator.py:43
 #: ../src\extra\translator\translator.py:43
 msgid "Hebrew"
 msgstr "heprea"
 
+#: ../src\build\lib\extra\translator\translator.py:44
 #: ../src\extra\translator\translator.py:44
 msgid "Hindi"
 msgstr "hindi"
 
+#: ../src\build\lib\extra\translator\translator.py:45
 #: ../src\extra\translator\translator.py:45
 msgid "Hungarian"
 msgstr "unkari"
 
+#: ../src\build\lib\extra\translator\translator.py:46
 #: ../src\extra\translator\translator.py:46
 msgid "Icelandic"
 msgstr "islanti"
 
+#: ../src\build\lib\extra\translator\translator.py:47
 #: ../src\extra\translator\translator.py:47
 msgid "Indonesian"
 msgstr "indonesia"
 
+#: ../src\build\lib\extra\translator\translator.py:48
 #: ../src\extra\translator\translator.py:48
 msgid "Inuktitut"
 msgstr "inuktitut"
 
+#: ../src\build\lib\extra\translator\translator.py:49
 #: ../src\extra\translator\translator.py:49
 msgid "Irish"
 msgstr "iiri"
 
+#: ../src\build\lib\extra\translator\translator.py:50
 #: ../src\extra\translator\translator.py:50
 msgid "Italian"
 msgstr "italia"
 
+#: ../src\build\lib\extra\translator\translator.py:51
 #: ../src\extra\translator\translator.py:51
 msgid "Japanese"
 msgstr "japani"
 
+#: ../src\build\lib\extra\translator\translator.py:52
 #: ../src\extra\translator\translator.py:52
 msgid "Kannada"
 msgstr "kannada"
 
+#: ../src\build\lib\extra\translator\translator.py:53
 #: ../src\extra\translator\translator.py:53
 msgid "Kazakh"
 msgstr "kazakki"
 
+#: ../src\build\lib\extra\translator\translator.py:54
 #: ../src\extra\translator\translator.py:54
 msgid "Khmer"
 msgstr "khmer"
 
+#: ../src\build\lib\extra\translator\translator.py:55
 #: ../src\extra\translator\translator.py:55
 msgid "Korean"
 msgstr "korea"
 
+#: ../src\build\lib\extra\translator\translator.py:56
 #: ../src\extra\translator\translator.py:56
 msgid "Kurdish"
 msgstr "kurdi"
 
+#: ../src\build\lib\extra\translator\translator.py:57
 #: ../src\extra\translator\translator.py:57
 msgid "Kyrgyz"
 msgstr "kirgiisi"
 
+#: ../src\build\lib\extra\translator\translator.py:58
 #: ../src\extra\translator\translator.py:58
 msgid "Laothian"
 msgstr "lao"
 
+#: ../src\build\lib\extra\translator\translator.py:59
 #: ../src\extra\translator\translator.py:59
 msgid "Latvian"
 msgstr "latvia"
 
+#: ../src\build\lib\extra\translator\translator.py:60
 #: ../src\extra\translator\translator.py:60
 msgid "Lithuanian"
 msgstr "liettua"
 
+#: ../src\build\lib\extra\translator\translator.py:61
 #: ../src\extra\translator\translator.py:61
 msgid "Macedonian"
 msgstr "makedonia"
 
+#: ../src\build\lib\extra\translator\translator.py:62
 #: ../src\extra\translator\translator.py:62
 msgid "Malay"
 msgstr "malaiji"
 
+#: ../src\build\lib\extra\translator\translator.py:63
 #: ../src\extra\translator\translator.py:63
 msgid "Malayalam"
 msgstr "malajalam"
 
+#: ../src\build\lib\extra\translator\translator.py:64
 #: ../src\extra\translator\translator.py:64
 msgid "Maltese"
 msgstr "malta"
 
+#: ../src\build\lib\extra\translator\translator.py:65
 #: ../src\extra\translator\translator.py:65
 msgid "Marathi"
 msgstr "Marathi"
 
+#: ../src\build\lib\extra\translator\translator.py:66
 #: ../src\extra\translator\translator.py:66
 msgid "Mongolian"
 msgstr "mongoli"
 
+#: ../src\build\lib\extra\translator\translator.py:67
 #: ../src\extra\translator\translator.py:67
 msgid "Nepali"
 msgstr "nepali"
 
+#: ../src\build\lib\extra\translator\translator.py:68
 #: ../src\extra\translator\translator.py:68
 msgid "Norwegian"
 msgstr "norja"
 
+#: ../src\build\lib\extra\translator\translator.py:69
 #: ../src\extra\translator\translator.py:69
 msgid "Oriya"
 msgstr "orija"
 
+#: ../src\build\lib\extra\translator\translator.py:70
 #: ../src\extra\translator\translator.py:70
 msgid "Pashto"
 msgstr "pashtu"
 
+#: ../src\build\lib\extra\translator\translator.py:71
 #: ../src\extra\translator\translator.py:71
 msgid "Persian"
 msgstr "persia"
 
+#: ../src\build\lib\extra\translator\translator.py:72
 #: ../src\extra\translator\translator.py:72
 msgid "Polish"
 msgstr "puola"
 
+#: ../src\build\lib\extra\translator\translator.py:73
 #: ../src\extra\translator\translator.py:73
 msgid "Portuguese"
 msgstr "portugali"
 
+#: ../src\build\lib\extra\translator\translator.py:74
 #: ../src\extra\translator\translator.py:74
 msgid "Punjabi"
 msgstr "pandzhabi"
 
+#: ../src\build\lib\extra\translator\translator.py:75
 #: ../src\extra\translator\translator.py:75
 msgid "Romanian"
 msgstr "romania"
 
+#: ../src\build\lib\extra\translator\translator.py:76
 #: ../src\extra\translator\translator.py:76
 msgid "Russian"
 msgstr "venäjä"
 
+#: ../src\build\lib\extra\translator\translator.py:77
 #: ../src\extra\translator\translator.py:77
 msgid "Sanskrit"
 msgstr "sanskrit"
 
+#: ../src\build\lib\extra\translator\translator.py:78
 #: ../src\extra\translator\translator.py:78
 msgid "Serbian"
 msgstr "serbia"
 
+#: ../src\build\lib\extra\translator\translator.py:79
 #: ../src\extra\translator\translator.py:79
 msgid "Sindhi"
 msgstr "sindhi"
 
+#: ../src\build\lib\extra\translator\translator.py:80
 #: ../src\extra\translator\translator.py:80
 msgid "Sinhalese"
 msgstr "sinhali"
 
+#: ../src\build\lib\extra\translator\translator.py:81
 #: ../src\extra\translator\translator.py:81
 msgid "Slovak"
 msgstr "slovakki"
 
+#: ../src\build\lib\extra\translator\translator.py:82
 #: ../src\extra\translator\translator.py:82
 msgid "Slovenian"
 msgstr "slovenia"
 
+#: ../src\build\lib\extra\translator\translator.py:83
 #: ../src\extra\translator\translator.py:83
 msgid "Spanish"
 msgstr "espanja"
 
+#: ../src\build\lib\extra\translator\translator.py:84
 #: ../src\extra\translator\translator.py:84
 msgid "Swahili"
 msgstr "swahili"
 
+#: ../src\build\lib\extra\translator\translator.py:85
 #: ../src\extra\translator\translator.py:85
 msgid "Swedish"
 msgstr "ruotsi"
 
+#: ../src\build\lib\extra\translator\translator.py:86
 #: ../src\extra\translator\translator.py:86
 msgid "Tajik"
 msgstr "tadzhikki"
 
+#: ../src\build\lib\extra\translator\translator.py:87
 #: ../src\extra\translator\translator.py:87
 msgid "Tamil"
 msgstr "tamili"
 
+#: ../src\build\lib\extra\translator\translator.py:88
 #: ../src\extra\translator\translator.py:88
 msgid "Tagalog"
 msgstr "tagalog"
 
+#: ../src\build\lib\extra\translator\translator.py:89
 #: ../src\extra\translator\translator.py:89
 msgid "Telugu"
 msgstr "telugu"
 
+#: ../src\build\lib\extra\translator\translator.py:90
 #: ../src\extra\translator\translator.py:90
 msgid "Thai"
 msgstr "thai"
 
+#: ../src\build\lib\extra\translator\translator.py:91
 #: ../src\extra\translator\translator.py:91
 msgid "Tibetan"
 msgstr "tiibet"
 
+#: ../src\build\lib\extra\translator\translator.py:92
 #: ../src\extra\translator\translator.py:92
 msgid "Turkish"
 msgstr "turkki"
 
+#: ../src\build\lib\extra\translator\translator.py:93
 #: ../src\extra\translator\translator.py:93
 msgid "Ukrainian"
 msgstr "ukraina"
 
+#: ../src\build\lib\extra\translator\translator.py:94
 #: ../src\extra\translator\translator.py:94
 msgid "Urdu"
 msgstr "urdu"
 
+#: ../src\build\lib\extra\translator\translator.py:95
 #: ../src\extra\translator\translator.py:95
 msgid "Uzbek"
 msgstr "Uzbek"
 
+#: ../src\build\lib\extra\translator\translator.py:96
 #: ../src\extra\translator\translator.py:96
 msgid "Uighur"
 msgstr "uiguuri"
 
+#: ../src\build\lib\extra\translator\translator.py:97
 #: ../src\extra\translator\translator.py:97
 msgid "Vietnamese"
 msgstr "vietnam"
 
+#: ../src\build\lib\extra\translator\translator.py:98
 #: ../src\extra\translator\translator.py:98
 msgid "Welsh"
 msgstr "wales"
 
+#: ../src\build\lib\extra\translator\translator.py:99
 #: ../src\extra\translator\translator.py:99
 msgid "Yiddish"
 msgstr "jiddish"
 
+#: ../src\build\lib\extra\translator\translator.py:106
 #: ../src\extra\translator\translator.py:106
 msgid "autodetect"
 msgstr "tunnista automaattisesti"
 
-#: ../src\extra\translator\wx_ui.py:25 ../src\gtkUI\dialogs\message.py:146
-#: ../src\gtkUI\dialogs\message.py:218 ../src\gtkUI\dialogs\message.py:256
-#: ../src\wxUI\dialogs\message.py:143 ../src\wxUI\dialogs\message.py:204
-#: ../src\wxUI\dialogs\message.py:282 ../src\wxUI\dialogs\message.py:337
+#: ../src\build\lib\extra\translator\wx_ui.py:25
+#: ../src\build\lib\wxUI\dialogs\message.py:143
+#: ../src\build\lib\wxUI\dialogs\message.py:204
+#: ../src\build\lib\wxUI\dialogs\message.py:282
+#: ../src\build\lib\wxUI\dialogs\message.py:337
+#: ../src\extra\translator\wx_ui.py:25 ../src\wxUI\dialogs\message.py:143
+#: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:282
+#: ../src\wxUI\dialogs\message.py:337
 msgid "Translate message"
 msgstr "Käännä viesti"
 
+#: ../src\build\lib\extra\translator\wx_ui.py:28
 #: ../src\extra\translator\wx_ui.py:28
 msgid "Source language"
 msgstr "Lähdekieli"
 
+#: ../src\build\lib\extra\translator\wx_ui.py:31
 #: ../src\extra\translator\wx_ui.py:31
 msgid "Target language"
 msgstr "Kohdekieli"
 
-#: ../src\gtkUI\buffers\base.py:8 ../src\gtkUI\buffers\events.py:12
-#: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\events.py:13
-msgid "Date"
-msgstr "Päiväys"
-
-#: ../src\gtkUI\buffers\base.py:8 ../src\gtkUI\buffers\people.py:10
-#: ../src\gtkUI\buffers\user_searches.py:9
-#: ../src\gtkUI\dialogs\userActions.py:10
-#: ../src\gtkUI\dialogs\userSelection.py:10 ../src\gtkUI\dialogs\utils.py:29
-#: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\people.py:10
-#: ../src\wxUI\buffers\user_searches.py:9
-#: ../src\wxUI\dialogs\userActions.py:10
-#: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:29
-msgid "User"
-msgstr "Käyttäjä"
-
-#: ../src\gtkUI\buffers\base.py:8 ../src\wxUI\buffers\base.py:11
-msgid "Client"
-msgstr "Asiakasohjelma"
-
-#: ../src\gtkUI\buffers\base.py:8 ../src\wxUI\buffers\base.py:11
-msgid "Text"
-msgstr "Teksti"
-
-#: ../src\gtkUI\buffers\base.py:18 ../src\wxUI\buffers\base.py:27
-msgid "Direct message"
-msgstr "Yksityisviesti"
-
-#: ../src\gtkUI\buffers\events.py:12 ../src\wxUI\buffers\events.py:13
-msgid "Event"
-msgstr "Tapahtuma"
-
-#: ../src\gtkUI\buffers\events.py:15 ../src\wxUI\buffers\events.py:15
-msgid "Remove event"
-msgstr "Poista tapahtuma"
-
-#: ../src\gtkUI\buffers\panels.py:10 ../src\gtkUI\buffers\panels.py:17
-#: ../src\wxUI\buffers\panels.py:11 ../src\wxUI\buffers\panels.py:19
-msgid "Login"
-msgstr "Kirjaudu sisään"
-
-#: ../src\gtkUI\buffers\panels.py:12 ../src\wxUI\buffers\panels.py:13
-msgid "Log in automatically"
-msgstr "Kirjaudu sisään automaattisesti"
-
-#: ../src\gtkUI\buffers\panels.py:19 ../src\wxUI\buffers\panels.py:21
-msgid "Logout"
-msgstr "Kirjaudu ulos"
-
-#: ../src\gtkUI\buffers\trends.py:8 ../src\wxUI\buffers\trends.py:8
-msgid "Trending topic"
-msgstr "Suosittu puheenaihe"
-
-#: ../src\gtkUI\buffers\trends.py:15 ../src\wxUI\buffers\trends.py:18
-msgid "Tweet about this trend"
-msgstr "Twiittaa tästä trendistä"
-
-#: ../src\gtkUI\commonMessageDialogs.py:6
-#: ../src\wxUI\commonMessageDialogs.py:5
-msgid ""
-"This retweet is over 140 characters. Would you like to post it as a mention "
-"to the poster with your comments and a link to the original tweet?"
-msgstr ""
-"Tämä uudelleentwiittaus on yli 140 merkkiä. Haluatko lähettää sen "
-"lähettäjälle mainintana ja sisällyttää siihen kommenttisi sekä linkin "
-"alkuperäiseen twiittiin?"
-
-#: ../src\gtkUI\commonMessageDialogs.py:13
-#: ../src\wxUI\commonMessageDialogs.py:8
-msgid "Would you like to add a comment to this tweet?"
-msgstr "Haluatko lisätä kommentin tähän twiittiin?"
-
-#: ../src\gtkUI\commonMessageDialogs.py:19
-#: ../src\wxUI\commonMessageDialogs.py:11 ../src\wxUI\dialogs\lists.py:133
-msgid "Delete"
-msgstr "Poista"
-
-#: ../src\gtkUI\commonMessageDialogs.py:20
-#: ../src\wxUI\commonMessageDialogs.py:11
-msgid ""
-"Do you really want to delete this message? It will be deleted from Twitter "
-"as well."
-msgstr ""
-"Haluatko varmasti poistaa tämän viestin? Se poistetaan myös Twitteristä."
-
-#: ../src\gtkUI\commonMessageDialogs.py:26
-#: ../src\wxUI\commonMessageDialogs.py:14
-msgid "Exit"
-msgstr "Sulje"
-
-#: ../src\gtkUI\commonMessageDialogs.py:36
-#: ../src\wxUI\commonMessageDialogs.py:21
-msgid ""
-"Are you sure you want to delete this user from the database? This user will "
-"not appear on the autocomplete results anymore."
-msgstr ""
-"Haluatko varmasti poistaa tämän käyttäjän tietokannasta? Käyttäjää ei näy "
-"poiston jälkeen enää automaattisen täydennyksen tuloksissa."
-
-#: ../src\gtkUI\commonMessageDialogs.py:36
-#: ../src\wxUI\commonMessageDialogs.py:21
-msgid "Confirm"
-msgstr "Vahvista"
-
-#: ../src\gtkUI\commonMessageDialogs.py:39
-#: ../src\wxUI\commonMessageDialogs.py:24
-msgid "Add a new ignored client"
-msgstr "Lisää uusi ohitettava asiakasohjelma"
-
-#: ../src\gtkUI\commonMessageDialogs.py:39
-#: ../src\wxUI\commonMessageDialogs.py:24
-msgid "Enter the name of the client here"
-msgstr "Syötä asiakasohjelman nimi tähän"
-
-#: ../src\gtkUI\commonMessageDialogs.py:45
-#: ../src\wxUI\commonMessageDialogs.py:30
-msgid ""
-"Do you really want to empty this buffer? It's  items will be removed from "
-"the list but not from Twitter"
-msgstr ""
-"Haluatko varmasti tyhjentää tämän puskurin? Sen twiitit poistetaan listalta, "
-"mutta ei Twitteristä."
-
-#: ../src\gtkUI\commonMessageDialogs.py:45
-#: ../src\wxUI\commonMessageDialogs.py:30
-msgid "Empty buffer"
-msgstr "Tyhjennä puskuri"
-
-#: ../src\gtkUI\commonMessageDialogs.py:49
-#: ../src\wxUI\commonMessageDialogs.py:34
-msgid "Attention"
-msgstr "Huomio"
-
-#: ../src\gtkUI\commonMessageDialogs.py:49
-#: ../src\wxUI\commonMessageDialogs.py:34
-msgid "Do you really want to delete this timeline?"
-msgstr "Haluatko varmasti poistaa tämän aikajanan?"
-
-#: ../src\gtkUI\commonMessageDialogs.py:55
-#: ../src\wxUI\commonMessageDialogs.py:40
-msgid "Existing timeline"
-msgstr "Nykyinen aikajana"
-
-#: ../src\gtkUI\commonMessageDialogs.py:55
-#: ../src\wxUI\commonMessageDialogs.py:40
-msgid ""
-"There's currently a timeline for this user. You are not able to open another"
-msgstr "Tälle käyttäjälle on jo aikajana. Et voi avata toista."
-
-#: ../src\gtkUI\commonMessageDialogs.py:58
-#: ../src\wxUI\commonMessageDialogs.py:43
-msgid "This user has no tweets. You can't open a timeline for this user"
-msgstr "Tällä käyttäjällä ei ole twiittejä. Aikajanaa ei voi avata."
-
-#: ../src\gtkUI\commonMessageDialogs.py:61
-#: ../src\wxUI\commonMessageDialogs.py:46
-msgid ""
-"This is a protected Twitter user. It means you can not open a timeline using "
-"the Streaming API. The user's tweets will not update due to a twitter "
-"policy. Do you want to continue?"
-msgstr ""
-"Tämä on suojattu Twitter-käyttäjä. Tämä tarkoittaa, ettet voi avata "
-"aikajanaa virtautusrajapinnan kautta. Käyttäjän twiitit eivät päivity "
-"Twitterin toimintaperiaatteen vuoksi. Haluatko jatkaa?"
-
-#: ../src\gtkUI\commonMessageDialogs.py:61
-#: ../src\wxUI\commonMessageDialogs.py:46
-msgid "Warning"
-msgstr "Varoitus"
-
-#: ../src\gtkUI\commonMessageDialogs.py:64
-#: ../src\wxUI\commonMessageDialogs.py:49
-msgid ""
-"This is a protected user account, you need follow to this user for viewing "
-"your tweets or favourites."
-msgstr ""
-"Tämä on suojattu käyttäjätili. Sinun on seurattava sitä nähdäksesi kyseisen "
-"käyttäjän twiitit ja suosikit."
-
-#: ../src\gtkUI\dialogs\configuration.py:10
-#: ../src\wxUI\dialogs\configuration.py:13
-msgid "Language"
-msgstr "Kieli"
-
-#: ../src\gtkUI\dialogs\configuration.py:19
-#: ../src\wxUI\dialogs\configuration.py:26
-msgid "Use invisible interface's keyboard shortcuts while GUI is visible"
-msgstr ""
-"Käytä näkymättömän käyttöliittymän pikanäppäimiä graafisen käyttöliittymän "
-"ollessa näkyvissä"
-
-#: ../src\gtkUI\dialogs\configuration.py:21
-#: ../src\wxUI\dialogs\configuration.py:28
-msgid "Activate Sapi5 when any other screen reader is not being run"
-msgstr "Käytä SAPI5:tä, kun ruudunlukuohjelma ei ole käytössä"
-
-#: ../src\gtkUI\dialogs\configuration.py:23
-#: ../src\wxUI\dialogs\configuration.py:30
-msgid "Hide GUI on launch"
-msgstr "Piilota graafinen käyttöliittymä käynnistettäessä"
-
-#: ../src\gtkUI\dialogs\configuration.py:31
-msgid "Set the autocomplete function"
-msgstr "Määritä automaattinen täydennys"
-
-#: ../src\gtkUI\dialogs\configuration.py:33
-msgid "Relative times"
-msgstr "Suhteelliset ajat"
-
-#: ../src\gtkUI\dialogs\configuration.py:36
-msgid ""
-"API calls when the stream is started (One API call equals to 200 tweetts, "
-"two API calls equals 400 tweets, etc):"
-msgstr ""
-"API-kutsuja virran käynnistyttyä (1 = 200 twiittiä, 2 = 400 twiittiä jne.):"
-
-#: ../src\gtkUI\dialogs\configuration.py:43
-#: ../src\wxUI\dialogs\configuration.py:88
-msgid "Items on each API call"
-msgstr "Kohteita kussakin API-kutsussa"
-
-#: ../src\gtkUI\dialogs\configuration.py:49
-msgid ""
-"Inverted buffers: The newest tweets will be shown at the beginning of the "
-"lists while the oldest at the end"
-msgstr ""
-"Käänteiset puskurit: Uusimmat twiitit näytetään listojen alussa ja vanhat "
-"lopussa"
-
-#: ../src\gtkUI\dialogs\configuration.py:63
-#: ../src\gtkUI\dialogs\configuration.py:198
-#: ../src\wxUI\dialogs\configuration.py:200
-#: ../src\wxUI\dialogs\configuration.py:339
-msgid "Ignored clients"
-msgstr "Ohitettavat asiakasohjelmat"
-
-#: ../src\gtkUI\dialogs\configuration.py:69
-#: ../src\wxUI\dialogs\configuration.py:206
-msgid "Add client"
-msgstr "Lisää"
-
-#: ../src\gtkUI\dialogs\configuration.py:70
-#: ../src\wxUI\dialogs\configuration.py:207
-msgid "Remove client"
-msgstr "Poista"
-
-#: ../src\gtkUI\dialogs\configuration.py:94
-#: ../src\wxUI\dialogs\configuration.py:231
-msgid "Volume"
-msgstr "Äänenvoimakkuus"
-
-#: ../src\gtkUI\dialogs\configuration.py:102
-#: ../src\wxUI\dialogs\configuration.py:239
-msgid "Session mute"
-msgstr "Istunnon hiljennys"
-
-#: ../src\gtkUI\dialogs\configuration.py:104
-#: ../src\wxUI\dialogs\configuration.py:241
-msgid "Output device"
-msgstr "Ulostulolaite"
-
-#: ../src\gtkUI\dialogs\configuration.py:111
-#: ../src\wxUI\dialogs\configuration.py:248
-msgid "Input device"
-msgstr "Sisääntulolaite"
-
-#: ../src\gtkUI\dialogs\configuration.py:119
-#: ../src\wxUI\dialogs\configuration.py:256
-msgid "Sound pack"
-msgstr "Äänipaketti"
-
-#: ../src\gtkUI\dialogs\configuration.py:134
-msgid ""
-"If you've got a SndUp account, enter your API Key here. Whether the API Key "
-"is wrong, the App will fail to upload anything to the server. Whether "
-"there's no API Key here, then the audio files will be uploaded anonimously"
-msgstr ""
-"Mikäli sinulla on SndUp-tili, kirjoita API-avaimesi tähän. Jos API-avain on "
-"väärin, sovellus ei voi lähettää palvelimelle mitään. Ellei API-avainta "
-"anneta, äänitiedostot lähetetään nimettömänä."
-
-#: ../src\gtkUI\dialogs\configuration.py:151
-#: ../src\wxUI\dialogs\configuration.py:288
-msgid "Unlink your Dropbox account"
-msgstr "Poista Dropbox-tilin liitos"
-
-#: ../src\gtkUI\dialogs\configuration.py:156 ../src\sessionmanager\wxUI.py:47
-#: ../src\wxUI\dialogs\configuration.py:293
-msgid "Authorization"
-msgstr "Valtuutus"
-
-#: ../src\gtkUI\dialogs\configuration.py:156
-#: ../src\wxUI\dialogs\configuration.py:293
-msgid ""
-"The authorization request will be opened in your browser. Copy the code from "
-"Dropbox and paste it into the text box which will appear. You only need to "
-"do this once."
-msgstr ""
-"Valtuutuspyyntö avataan selaimessa. Kopioi Dropboxin antama koodi  ja liitä "
-"se näkyviin tulevaan tekstikenttään. Sinun tarvitsee tehdä tämä vain kerran."
-
-#: ../src\gtkUI\dialogs\configuration.py:159
-#: ../src\wxUI\dialogs\configuration.py:296
-msgid "Enter the code here."
-msgstr "Syötä koodi tähän."
-
-#: ../src\gtkUI\dialogs\configuration.py:159
-#: ../src\wxUI\dialogs\configuration.py:296
-msgid "Verification code"
-msgstr "Vahvistuskoodi"
-
-#: ../src\gtkUI\dialogs\configuration.py:165
-msgid "Error during authorisation. Try again later."
-msgstr "Valtuutuksessa tapahtui virhe. Yritä myöhemmin uudelleen."
-
-#: ../src\gtkUI\dialogs\configuration.py:178
-msgid "TW Blue preferences"
-msgstr "TWBluen asetukset"
-
-#: ../src\gtkUI\dialogs\configuration.py:184
-#: ../src\gtkUI\dialogs\configuration.py:189
+#: ../src\build\lib\issueReporter\issueReporter.py:30
+#: ../src\build\lib\wxUI\dialogs\configuration.py:314
+#: ../src\build\lib\wxUI\dialogs\configuration.py:323
 #: ../src\issueReporter\issueReporter.py:30
-#: ../src\wxUI\dialogs\configuration.py:321
-#: ../src\wxUI\dialogs\configuration.py:330
+#: ../src\wxUI\dialogs\configuration.py:316
+#: ../src\wxUI\dialogs\configuration.py:325
 msgid "General"
 msgstr "Yleiset"
 
-#: ../src\gtkUI\dialogs\configuration.py:194
-msgid "Show other buffers"
-msgstr "Näytä muut puskurit"
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "always"
+msgstr "aina"
 
-#: ../src\gtkUI\dialogs\configuration.py:202
-#: ../src\wxUI\dialogs\configuration.py:343
-msgid "Sound"
-msgstr "Ääni"
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "have not tried"
+msgstr "en ole kokeillut"
 
-#: ../src\gtkUI\dialogs\configuration.py:205
-#: ../src\wxUI\dialogs\configuration.py:346
-msgid "Audio Services"
-msgstr "Äänipalvelut"
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "random"
+msgstr "satunnaisesti"
 
-#: ../src\gtkUI\dialogs\configuration.py:210
-#: ../src\wxUI\dialogs\configuration.py:351
-msgid "Save"
-msgstr "Tallenna"
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "sometimes"
+msgstr "joskus"
 
-#: ../src\gtkUI\dialogs\configuration.py:212 ../src\gtkUI\dialogs\search.py:26
-#: ../src\gtkUI\dialogs\show_user.py:17 ../src\gtkUI\dialogs\trends.py:28
-#: ../src\gtkUI\dialogs\update_profile.py:35
-#: ../src\gtkUI\dialogs\userActions.py:40
-#: ../src\gtkUI\dialogs\userSelection.py:28 ../src\gtkUI\dialogs\utils.py:35
-#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:353
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "unable to duplicate"
+msgstr "ei voi toistaa"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "block"
+msgstr "Estää käytön"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "crash"
+msgstr "kaataa ohjelman"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "feature"
+msgstr "ominaisuus"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "major"
+msgstr "suuri"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "minor"
+msgstr "pieni"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "text"
+msgstr "tekstivirhe"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "trivial"
+msgstr "vähäpätöinen"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "tweak"
+msgstr "hienosäätö"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:25 ../src\issueReporter\wx_ui.py:25
+msgid "Report an error"
+msgstr "Ilmoita virheestä"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:28 ../src\issueReporter\wx_ui.py:28
+msgid "Select a category"
+msgstr "Valitse kategoria"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:36 ../src\issueReporter\wx_ui.py:36
+msgid ""
+"Briefly describe what happened. You will be able to thoroughly explain it "
+"later"
+msgstr ""
+"Kerro lyhyesti, mitä tapahtui. Voit kuvailla virhettä perusteellisesti "
+"myöhemmin."
+
+#: ../src\build\lib\issueReporter\wx_ui.py:45 ../src\issueReporter\wx_ui.py:45
+msgid "Here, you can describe the bug in detail"
+msgstr "Tässä voit kuvailla virhettä yksityiskohtaisesti"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:55 ../src\issueReporter\wx_ui.py:55
+msgid "how often does this bug happen?"
+msgstr "Kuinka usein tämä virhe esiintyy?"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:62 ../src\issueReporter\wx_ui.py:62
+msgid "Select the importance that you think this bug has"
+msgstr "Valitse tärkeysaste, joka on mielestäsi sopiva tälle virheelle"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:69 ../src\issueReporter\wx_ui.py:69
+msgid ""
+"I know that the {0} bug system will get my Twitter username to contact me "
+"and fix the bug quickly"
+msgstr ""
+"Tiedän, että {0}n virheidenraportointijärjestelmä pääsee käsiksi Twitter-"
+"käyttäjänimeeni, jotta minuun voidaan ottaa yhteyttä virheen nopeaa "
+"korjaamista varten"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:72 ../src\issueReporter\wx_ui.py:72
+msgid "Send report"
+msgstr "Lähetä raportti"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:83 ../src\issueReporter\wx_ui.py:83
+msgid "You must fill out both fields"
+msgstr "Sinun on täytettävä molemmat kentät"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:86 ../src\issueReporter\wx_ui.py:86
+msgid ""
+"You need to mark the checkbox to provide us your twitter username to contact "
+"you if it is necessary."
+msgstr ""
+"Sinun on valittava Twitter-käyttäjänimesi lähettämisen salliva valintaruutu, "
+"jotta voimme ottaa tarvittaessa yhteyttä."
+
+#: ../src\build\lib\issueReporter\wx_ui.py:89 ../src\issueReporter\wx_ui.py:89
+msgid ""
+"Thanks for reporting this bug! In future versions, you may be able to find "
+"it in the changes list. You've reported the bug number %i"
+msgstr ""
+"Kiitos, että ilmoitit tästä virheestä! Saatat ehkä nähdä sen korjattuna "
+"tulevien versioiden muutoslokeissa. Ilmoittamasi virheen numero on %i."
+
+#: ../src\build\lib\issueReporter\wx_ui.py:89 ../src\issueReporter\wx_ui.py:89
+msgid "reported"
+msgstr "ilmoitettu"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:93 ../src\issueReporter\wx_ui.py:93
+msgid "Error while reporting"
+msgstr "Virhe ilmoitettaessa virheestä"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:93 ../src\issueReporter\wx_ui.py:93
+msgid ""
+"Something unexpected occurred while trying to report the bug. Please, try "
+"again later"
+msgstr ""
+"Jotain odottamatonta tapahtui yritettäessä ilmoittaa virheestä. Yritä "
+"myöhemmin uudelleen."
+
+#: ../src\build\lib\keystrokeEditor\constants.py:3
+#: ../src\keystrokeEditor\constants.py:3
+msgid "Go up in the current buffer"
+msgstr "Siirry ylöspäin nykyisessä puskurissa"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:4
+#: ../src\keystrokeEditor\constants.py:4
+msgid "Go down in the current buffer"
+msgstr "Siirry alaspäin nykyisessä puskurissa"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:5
+#: ../src\keystrokeEditor\constants.py:5
+msgid "Go to the previous buffer"
+msgstr "Siirry edelliseen puskuriin"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:6
+#: ../src\keystrokeEditor\constants.py:6
+msgid "Go to the next buffer"
+msgstr "Siirry seuraavaan puskuriin"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:7
+#: ../src\keystrokeEditor\constants.py:7
+msgid "Focus the next session"
+msgstr "Siirry seuraavaan istuntoon"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:8
+#: ../src\keystrokeEditor\constants.py:8
+msgid "Focus the previous session"
+msgstr "Siirry edelliseen istuntoon"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:9
+#: ../src\keystrokeEditor\constants.py:9
+msgid "Show or hide the GUI"
+msgstr "Näytä tai piilota graafinen käyttöliittymä"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:10
+#: ../src\keystrokeEditor\constants.py:10
+msgid "New tweet"
+msgstr "Uusi twiitti"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:13
+#: ../src\keystrokeEditor\constants.py:13
+msgid "Send direct message"
+msgstr "Lähetä yksityisviesti"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:14
+#: ../src\keystrokeEditor\constants.py:14
+msgid "Mark as favourite"
+msgstr "Merkitse suosikiksi"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:15
+#: ../src\keystrokeEditor\constants.py:15
+msgid "Remove from favourites"
+msgstr "Poista suosikeista"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:16
+#: ../src\keystrokeEditor\constants.py:16
+msgid "Open the user actions dialogue"
+msgstr "Avaa käyttäjätoimintojen valintaikkuna"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:17
+#: ../src\keystrokeEditor\constants.py:17
+msgid "See user details"
+msgstr "Näytä käyttäjän tiedot"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:18
+#: ../src\keystrokeEditor\constants.py:18
+msgid "Show tweet"
+msgstr "Näytä twiitti"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:19
+#: ../src\keystrokeEditor\constants.py:19
+msgid "Quit"
+msgstr "Lopeta"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:20
+#: ../src\keystrokeEditor\constants.py:20
+msgid "Open user timeline"
+msgstr "Avaa käyttäjän aikajana"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:21
+#: ../src\keystrokeEditor\constants.py:21
+msgid "Destroy buffer"
+msgstr "Poista puskuri"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:22
+#: ../src\keystrokeEditor\constants.py:22
+msgid "Interact with the currently focused tweet."
+msgstr ""
+"Ole vuorovaikutuksessa tällä hetkellä aktiivisena olevan twiitin kanssa."
+
+#: ../src\build\lib\keystrokeEditor\constants.py:23
+#: ../src\keystrokeEditor\constants.py:23
+msgid "Open URL"
+msgstr "Avaa URL"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:24
+#: ../src\keystrokeEditor\constants.py:24
+msgid "Increase volume by 5%"
+msgstr "Lisää äänenvoimakkuutta 5%"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:25
+#: ../src\keystrokeEditor\constants.py:25
+msgid "Decrease volume by 5%"
+msgstr "Vähennä äänenvoimakkuutta 5%"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:26
+#: ../src\keystrokeEditor\constants.py:26
+msgid "Jump to the first element of a buffer"
+msgstr "Siirry puskurin ensimmäiseen kohteeseen"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:27
+#: ../src\keystrokeEditor\constants.py:27
+msgid "Jump to the last element of the current buffer"
+msgstr "Siirry puskurin viimeiseen kohteeseen"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:28
+#: ../src\keystrokeEditor\constants.py:28
+msgid "Jump 20 elements up in the current buffer"
+msgstr "Siirry 20 kohdetta ylöspäin nykyisessä puskurissa"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:29
+#: ../src\keystrokeEditor\constants.py:29
+msgid "Jump 20 elements down in the current buffer"
+msgstr "Siirry 20 kohdetta alaspäin nykyisessä puskurissa"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:30
+#: ../src\keystrokeEditor\constants.py:30
+msgid "Edit profile"
+msgstr "Muokkaa profiilia"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:31
+#: ../src\keystrokeEditor\constants.py:31
+msgid "Delete a tweet or direct message"
+msgstr "Poista twiitti tai yksityisviesti"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:32
+#: ../src\keystrokeEditor\constants.py:32
+msgid "Empty the current buffer"
+msgstr "Tyhjennä nykyinen puskuri"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:33
+#: ../src\keystrokeEditor\constants.py:33
+msgid "Repeat last item"
+msgstr "Toista viimeisin kohde"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:34
+#: ../src\keystrokeEditor\constants.py:34
+msgid "Copy to clipboard"
+msgstr "Kopioi leikepöydälle"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:35
+#: ../src\keystrokeEditor\constants.py:35
+msgid "Add to list"
+msgstr "Lisää listalle"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:36
+#: ../src\keystrokeEditor\constants.py:36
+msgid "Remove from list"
+msgstr "Poista listalta"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:37
+#: ../src\keystrokeEditor\constants.py:37
+msgid "Mute/unmute the active buffer"
+msgstr "Ota käyttöön aktiivisen puskurin hiljennys tai poista se käytöstä"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:38
+#: ../src\keystrokeEditor\constants.py:38
+msgid "Mute/unmute the current session"
+msgstr "Ota käyttöön nykyisen istunnon yleishiljennys tai poista se käytöstä"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:39
+#: ../src\keystrokeEditor\constants.py:39
+msgid "toggle the automatic reading of incoming tweets in the active buffer"
+msgstr ""
+"Ota käyttöön aktiivisen puskurin saapuvien twiittien automaattinen lukeminen "
+"tai poista se käytöstä"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:40
+#: ../src\keystrokeEditor\constants.py:40
+msgid "Search on twitter"
+msgstr "Hae Twitteristä"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:41
+#: ../src\keystrokeEditor\constants.py:41
+msgid "Find a string in the currently focused buffer"
+msgstr "Etsi merkkijonoa tällä hetkellä aktiivisena olevasta puskurista"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:42
+#: ../src\keystrokeEditor\constants.py:42
+msgid "Show the keystroke editor"
+msgstr "Näytä näppäinkomentojen muokkain"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:43
+#: ../src\keystrokeEditor\constants.py:43
+msgid "Show lists for a specified user"
+msgstr "Näytä valitun käyttäjän listat"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:44
+#: ../src\keystrokeEditor\constants.py:44
+msgid "load previous items"
+msgstr "Lataa edelliset kohteet"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:45
+#: ../src\keystrokeEditor\constants.py:45
+msgid "Get geolocation"
+msgstr "Selvitä geosijainti"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:46
+#: ../src\keystrokeEditor\constants.py:46
+msgid "Display the tweet's geolocation in a dialog"
+msgstr "Näytä twiitin geosijainti valintaikkunassa"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:47
+#: ../src\keystrokeEditor\constants.py:47
+msgid "Create a trending topics buffer"
+msgstr "Luo suosittujen puheenaiheiden puskuri"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:48
+#: ../src\keystrokeEditor\constants.py:48
+msgid "View conversation"
+msgstr "Näytä keskustelu"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:8
+#: ../src\keystrokeEditor\wx_ui.py:8
+msgid "Keystroke editor"
+msgstr "Näppäinkomentojen muokkain"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:12
+#: ../src\keystrokeEditor\wx_ui.py:12
+msgid "Select a keystroke to edit"
+msgstr "Valitse muokattava näppäinkomento"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:13
+#: ../src\build\lib\wxUI\dialogs\userActions.py:9
+#: ../src\build\lib\wxUI\dialogs\userActions.py:16
+#: ../src\keystrokeEditor\wx_ui.py:13 ../src\wxUI\dialogs\userActions.py:9
+#: ../src\wxUI\dialogs\userActions.py:16
+msgid "Action"
+msgstr "Toiminto"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:13
+#: ../src\keystrokeEditor\wx_ui.py:13
+msgid "Keystroke"
+msgstr "Näppäinkomento"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:18
+#: ../src\build\lib\wxUI\dialogs\lists.py:19
+#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\lists.py:19
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:21
+#: ../src\build\lib\wxUI\dialogs\configuration.py:347
+#: ../src\build\lib\wxUI\dialogs\message.py:87
+#: ../src\build\lib\wxUI\dialogs\message.py:147
+#: ../src\build\lib\wxUI\dialogs\message.py:207
+#: ../src\build\lib\wxUI\dialogs\message.py:283
+#: ../src\build\lib\wxUI\dialogs\message.py:338
+#: ../src\build\lib\wxUI\dialogs\search.py:26
+#: ../src\build\lib\wxUI\dialogs\show_user.py:17
+#: ../src\build\lib\wxUI\dialogs\trends.py:28
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:35
+#: ../src\build\lib\wxUI\dialogs\userActions.py:40
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:28
+#: ../src\build\lib\wxUI\dialogs\utils.py:35
+#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:349
 #: ../src\wxUI\dialogs\message.py:87 ../src\wxUI\dialogs\message.py:147
 #: ../src\wxUI\dialogs\message.py:207 ../src\wxUI\dialogs\message.py:283
 #: ../src\wxUI\dialogs\message.py:338 ../src\wxUI\dialogs\search.py:26
@@ -1512,751 +1953,111 @@ msgstr "Tallenna"
 msgid "Close"
 msgstr "Sulje"
 
-#: ../src\gtkUI\dialogs\lists.py:9 ../src\wxUI\dialogs\lists.py:10
-msgid "Lists manager"
-msgstr "Listojen hallinta"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\gtkUI\dialogs\lists.py:63
-#: ../src\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:69
-msgid "Description"
-msgstr "Kuvaus"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\wxUI\dialogs\lists.py:13
-msgid "List"
-msgstr "Lista"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\wxUI\dialogs\lists.py:13
-msgid "Members"
-msgstr "Jäsenet"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\wxUI\dialogs\lists.py:13
-msgid "Owner"
-msgstr "Omistaja"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\wxUI\dialogs\lists.py:13
-msgid "mode"
-msgstr "tila"
-
-#: ../src\gtkUI\dialogs\lists.py:17 ../src\gtkUI\dialogs\lists.py:55
-#: ../src\wxUI\dialogs\lists.py:18 ../src\wxUI\dialogs\lists.py:61
-msgid "Create a new list"
-msgstr "Luo uusi"
-
-#: ../src\gtkUI\dialogs\lists.py:18 ../src\keystrokeEditor\wx_ui.py:18
-#: ../src\wxUI\dialogs\lists.py:19
-msgid "Edit"
-msgstr "Muokkaa"
-
-#: ../src\gtkUI\dialogs\lists.py:19 ../src\gtkUI\dialogs\lists.py:117
-#: ../src\wxUI\dialogs\lists.py:20 ../src\wxUI\dialogs\lists.py:124
-msgid "Remove"
-msgstr "Poista"
-
-#: ../src\gtkUI\dialogs\lists.py:20 ../src\wxUI\dialogs\lists.py:21
-msgid "Open in buffer"
-msgstr "Avaa puskurissa"
-
-#: ../src\gtkUI\dialogs\lists.py:45 ../src\wxUI\dialogs\lists.py:51
-msgid "Viewing lists for %s"
-msgstr "Näytetään käyttäjän %s listat"
-
-#: ../src\gtkUI\dialogs\lists.py:46 ../src\wxUI\dialogs\lists.py:52
-msgid "Subscribe"
-msgstr "Tilaa"
-
-#: ../src\gtkUI\dialogs\lists.py:47 ../src\wxUI\dialogs\lists.py:53
-msgid "Unsubscribe"
-msgstr "Peruuta tilaus"
-
-#: ../src\gtkUI\dialogs\lists.py:58 ../src\wxUI\dialogs\lists.py:64
-msgid "Name (20 characters maximun)"
-msgstr "Nimi (enintään 20 merkkiä)"
-
-#: ../src\gtkUI\dialogs\lists.py:68 ../src\wxUI\dialogs\lists.py:74
-msgid "Mode"
-msgstr "Tila"
-
-#: ../src\gtkUI\dialogs\lists.py:69 ../src\wxUI\dialogs\lists.py:75
-msgid "Public"
-msgstr "Julkinen"
-
-#: ../src\gtkUI\dialogs\lists.py:70 ../src\wxUI\dialogs\lists.py:76
-msgid "Private"
-msgstr "Yksityinen"
-
-#: ../src\gtkUI\dialogs\lists.py:93 ../src\wxUI\dialogs\lists.py:96
-msgid "Editing the list %s"
-msgstr "Muokataan listaa %s"
-
-#: ../src\gtkUI\dialogs\lists.py:104 ../src\wxUI\dialogs\lists.py:107
-msgid "Select a list to add the user"
-msgstr "Valitse lista, johon käyttäjä lisätään"
-
-#: ../src\gtkUI\dialogs\lists.py:105 ../src\wxUI\dialogs\lists.py:108
-msgid "Add"
-msgstr "Lisää"
-
-#: ../src\gtkUI\dialogs\lists.py:116 ../src\wxUI\dialogs\lists.py:123
-msgid "Select a list to remove the user"
-msgstr "Valitse lista, jolta käyttäjä poistetaan"
-
-#: ../src\gtkUI\dialogs\message.py:70 ../src\wxUI\dialogs\message.py:76
-msgid "Upload image..."
-msgstr "Lähetä kuva..."
-
-#: ../src\gtkUI\dialogs\message.py:71 ../src\wxUI\dialogs\message.py:77
-msgid "Check spelling..."
-msgstr "Oikeinkirjoituksen tarkistus..."
-
-#: ../src\gtkUI\dialogs\message.py:72 ../src\wxUI\dialogs\message.py:78
-msgid "Attach audio..."
-msgstr "Lisää liitteeksi äänitiedosto..."
-
-#: ../src\gtkUI\dialogs\message.py:73 ../src\gtkUI\dialogs\message.py:140
-#: ../src\wxUI\dialogs\message.py:79 ../src\wxUI\dialogs\message.py:139
-#: ../src\wxUI\dialogs\message.py:200
-msgid "Shorten URL"
-msgstr "Lyhennä URL"
-
-#: ../src\gtkUI\dialogs\message.py:74 ../src\gtkUI\dialogs\message.py:141
-#: ../src\gtkUI\dialogs\message.py:215 ../src\gtkUI\dialogs\message.py:253
-#: ../src\wxUI\dialogs\message.py:80 ../src\wxUI\dialogs\message.py:140
-#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:280
-#: ../src\wxUI\dialogs\message.py:335
-msgid "Expand URL"
-msgstr "Laajenna URL"
-
-#: ../src\gtkUI\dialogs\message.py:79 ../src\wxUI\dialogs\message.py:83
-msgid "Translate..."
-msgstr "Käännä..."
-
-#: ../src\gtkUI\dialogs\message.py:80 ../src\gtkUI\dialogs\message.py:129
-#: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\message.py:144
-#: ../src\wxUI\dialogs\message.py:189
-msgid "&Autocomplete users"
-msgstr "Täydennä käyttäjät &automaattisesti"
-
-#: ../src\gtkUI\dialogs\message.py:98
-#: ../src\gtkUI\dialogs\update_profile.py:80
-#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
-#: ../src\wxUI\dialogs\update_profile.py:80
-msgid "Select the picture to be uploaded"
-msgstr "Valitse lähetettävä kuva"
-
-#: ../src\gtkUI\dialogs\message.py:100
-msgid "JPG images"
-msgstr "JPG-kuvat"
-
-#: ../src\gtkUI\dialogs\message.py:104
-msgid "GIF images"
-msgstr "GIF-kuvat"
-
-#: ../src\gtkUI\dialogs\message.py:108
-msgid "PNG Images"
-msgstr "PNG-kuvat"
-
-#: ../src\gtkUI\dialogs\message.py:122 ../src\gtkUI\dialogs\message.py:127
-#: ../src\wxUI\dialogs\message.py:187
-msgid "Recipient"
-msgstr "Vastaanottaja"
-
-#: ../src\gtkUI\dialogs\message.py:138 ../src\gtkUI\dialogs\message.py:214
-#: ../src\gtkUI\dialogs\message.py:252 ../src\wxUI\dialogs\message.py:137
-#: ../src\wxUI\dialogs\message.py:198 ../src\wxUI\dialogs\message.py:279
-#: ../src\wxUI\dialogs\message.py:334
-msgid "Spelling correction"
-msgstr "Oikeinkirjoituksen tarkistus"
-
-#: ../src\gtkUI\dialogs\message.py:174 ../src\wxUI\dialogs\message.py:239
-msgid "Men&tion to all"
-msgstr "Mainitse ka&ikille"
-
-#: ../src\gtkUI\dialogs\message.py:182 ../src\wxUI\dialogs\message.py:248
-msgid "Tweet - %i characters "
-msgstr "Twiitti - %i merkkiä "
-
-#: ../src\gtkUI\dialogs\message.py:196 ../src\wxUI\dialogs\message.py:265
-msgid "Retweets: "
-msgstr "Uudelleentwiittauksia: "
-
-#: ../src\gtkUI\dialogs\message.py:203 ../src\wxUI\dialogs\message.py:270
-msgid "Favourites: "
-msgstr "Suosikkeja: "
-
-#: ../src\gtkUI\dialogs\message.py:243 ../src\wxUI\dialogs\message.py:320
-msgid "View"
-msgstr "Näytä"
-
-#: ../src\gtkUI\dialogs\message.py:244 ../src\wxUI\dialogs\message.py:322
-msgid "Item"
-msgstr "Kohde"
-
-#: ../src\gtkUI\dialogs\search.py:10 ../src\wxUI\dialogs\search.py:10
-msgid "Search on Twitter"
-msgstr "Hae Twitteristä"
-
-#: ../src\gtkUI\dialogs\search.py:11 ../src\wxUI\dialogs\search.py:11
-msgid "Search"
-msgstr "Hae"
-
-#: ../src\gtkUI\dialogs\search.py:18 ../src\gtkUI\dialogs\userSelection.py:17
-#: ../src\wxUI\dialogs\search.py:18 ../src\wxUI\dialogs\userSelection.py:17
-msgid "Tweets"
-msgstr "Twiittejä"
-
-#: ../src\gtkUI\dialogs\search.py:19 ../src\wxUI\dialogs\search.py:19
-msgid "Users"
-msgstr "Käyttäjiä"
-
-#: ../src\gtkUI\dialogs\search.py:24 ../src\gtkUI\dialogs\trends.py:26
-#: ../src\gtkUI\dialogs\userActions.py:38
-#: ../src\gtkUI\dialogs\userSelection.py:26 ../src\gtkUI\dialogs\utils.py:32
-#: ../src\keystrokeEditor\wx_ui.py:60 ../src\wxUI\dialogs\search.py:24
-#: ../src\wxUI\dialogs\trends.py:26 ../src\wxUI\dialogs\userActions.py:38
-#: ../src\wxUI\dialogs\userSelection.py:26 ../src\wxUI\dialogs\utils.py:32
-msgid "OK"
-msgstr "OK"
-
-#: ../src\gtkUI\dialogs\show_user.py:10 ../src\wxUI\dialogs\show_user.py:10
-msgid "Details"
-msgstr "Tiedot"
-
-#: ../src\gtkUI\dialogs\show_user.py:15 ../src\wxUI\dialogs\show_user.py:15
-msgid "Go to URL"
-msgstr "Siirry URL-osoitteeseen"
-
-#: ../src\gtkUI\dialogs\trends.py:10 ../src\wxUI\dialogs\trends.py:10
-msgid "View trending topics"
-msgstr "Näytä suositut puheenaiheet"
-
-#: ../src\gtkUI\dialogs\trends.py:11 ../src\wxUI\dialogs\trends.py:11
-msgid "Trending topics by"
-msgstr "Suositut puheenaiheet käyttäjältä"
-
-#: ../src\gtkUI\dialogs\trends.py:13 ../src\wxUI\dialogs\trends.py:13
-msgid "Country"
-msgstr "Maa"
-
-#: ../src\gtkUI\dialogs\trends.py:14 ../src\wxUI\dialogs\trends.py:14
-msgid "City"
-msgstr "Kaupunki"
-
-#: ../src\gtkUI\dialogs\trends.py:20 ../src\gtkUI\dialogs\update_profile.py:16
-#: ../src\wxUI\dialogs\trends.py:20 ../src\wxUI\dialogs\update_profile.py:16
-msgid "Location"
-msgstr "Sijainti"
-
-#: ../src\gtkUI\dialogs\update_profile.py:8
-#: ../src\wxUI\dialogs\update_profile.py:8
-msgid "Update your profile"
-msgstr "Päivitä profiilisi"
-
-#: ../src\gtkUI\dialogs\update_profile.py:10
-#: ../src\wxUI\dialogs\update_profile.py:10
-msgid "Name (20 characters maximum)"
-msgstr "Nimi (enintään 20 merkkiä)"
-
-#: ../src\gtkUI\dialogs\update_profile.py:21
-#: ../src\wxUI\dialogs\update_profile.py:21
-msgid "Website"
-msgstr "Verkkosivu"
-
-#: ../src\gtkUI\dialogs\update_profile.py:26
-#: ../src\wxUI\dialogs\update_profile.py:26
-msgid "Bio (160 characters maximum)"
-msgstr "Kuvaus (enintään 160 merkkiä)"
-
-#: ../src\gtkUI\dialogs\update_profile.py:33
-#: ../src\wxUI\dialogs\update_profile.py:33
-msgid "Update profile"
-msgstr "Päivitä profiili"
-
-#: ../src\gtkUI\dialogs\update_profile.py:80
-#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
-#: ../src\wxUI\dialogs\update_profile.py:80
-msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
-msgstr "Kuvatiedostot (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
-
-#: ../src\gtkUI\dialogs\urlList.py:6
-msgid "Select an URL"
-msgstr "Valitse URL"
-
-#: ../src\gtkUI\dialogs\userActions.py:9
-#: ../src\gtkUI\dialogs\userActions.py:16 ../src\keystrokeEditor\wx_ui.py:13
-#: ../src\wxUI\dialogs\userActions.py:9 ../src\wxUI\dialogs\userActions.py:16
-msgid "Action"
-msgstr "Toiminto"
-
-#: ../src\gtkUI\dialogs\userActions.py:17
-#: ../src\wxUI\dialogs\userActions.py:17
-msgid "Follow"
-msgstr "Seuraa"
-
-#: ../src\gtkUI\dialogs\userActions.py:18
-#: ../src\wxUI\dialogs\userActions.py:18
-msgid "Unfollow"
-msgstr "Lopeta seuraaminen"
-
-#: ../src\gtkUI\dialogs\userActions.py:19
-#: ../src\wxUI\dialogs\userActions.py:19
-msgid "Mute"
-msgstr "Hiljennä"
-
-#: ../src\gtkUI\dialogs\userActions.py:20
-#: ../src\wxUI\dialogs\userActions.py:20
-msgid "Unmute"
-msgstr "Poista hiljennys"
-
-#: ../src\gtkUI\dialogs\userActions.py:21
-#: ../src\wxUI\dialogs\userActions.py:21
-msgid "Block"
-msgstr "Estä"
-
-#: ../src\gtkUI\dialogs\userActions.py:22
-#: ../src\wxUI\dialogs\userActions.py:22
-msgid "Unblock"
-msgstr "Poista esto"
-
-#: ../src\gtkUI\dialogs\userActions.py:23
-#: ../src\wxUI\dialogs\userActions.py:23
-msgid "Report as spam"
-msgstr "Ilmoita roskatwiittaajaksi"
-
-#: ../src\gtkUI\dialogs\userActions.py:24
-#: ../src\wxUI\dialogs\userActions.py:24
-msgid "Ignore tweets from this client"
-msgstr "Twiittejä ei huomioida tästä asiakasohjelmasta"
-
-#: ../src\gtkUI\dialogs\userSelection.py:9
-#: ../src\wxUI\dialogs\userSelection.py:9
-msgid "Timeline for %s"
-msgstr "Käyttäjän %s aikajana"
-
-#: ../src\gtkUI\dialogs\userSelection.py:16
-#: ../src\wxUI\dialogs\userSelection.py:16
-msgid "Buffer type"
-msgstr "Puskurin tyyppi"
-
-#: ../src\gtkUI\sysTrayIcon.py:34 ../src\wxUI\sysTrayIcon.py:34
-#: ../src\wxUI\view.py:22
-msgid "&Global settings"
-msgstr "&Yleisasetukset"
-
-#: ../src\gtkUI\sysTrayIcon.py:35 ../src\wxUI\sysTrayIcon.py:35
-#: ../src\wxUI\view.py:21
-msgid "Account se&ttings"
-msgstr "Tilin &asetukset"
-
-#: ../src\gtkUI\sysTrayIcon.py:36 ../src\wxUI\sysTrayIcon.py:36
-msgid "Update &profile"
-msgstr "Päivitä &profiili"
-
-#: ../src\gtkUI\sysTrayIcon.py:37 ../src\wxUI\sysTrayIcon.py:37
-msgid "&Show / hide"
-msgstr "&Näytä / piilota"
-
-#: ../src\gtkUI\sysTrayIcon.py:38 ../src\wxUI\sysTrayIcon.py:38
-#: ../src\wxUI\view.py:63
-msgid "&Documentation"
-msgstr "&Ohje"
-
-#: ../src\gtkUI\sysTrayIcon.py:40 ../src\wxUI\sysTrayIcon.py:40
-msgid "Check for &updates"
-msgstr "Tark&ista päivitykset"
-
-#: ../src\gtkUI\sysTrayIcon.py:41 ../src\wxUI\sysTrayIcon.py:41
-msgid "&Exit"
-msgstr "&Lopeta"
-
-#: ../src\gtkUI\view.py:21
-msgid "Manage accounts"
-msgstr "Tilien hallinta"
-
-#: ../src\gtkUI\view.py:183 ../src\wxUI\view.py:159
-msgid "Address"
-msgstr "Osoite"
-
-#: ../src\gtkUI\view.py:206 ../src\wxUI\view.py:182
-msgid "Update"
-msgstr "Päivitä"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "always"
-msgstr "aina"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "have not tried"
-msgstr "en ole kokeillut"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "random"
-msgstr "satunnaisesti"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "sometimes"
-msgstr "joskus"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "unable to duplicate"
-msgstr "ei voi toistaa"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "block"
-msgstr "Estää käytön"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "crash"
-msgstr "kaataa ohjelman"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "feature"
-msgstr "ominaisuus"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "major"
-msgstr "suuri"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "minor"
-msgstr "pieni"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "text"
-msgstr "tekstivirhe"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "trivial"
-msgstr "vähäpätöinen"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "tweak"
-msgstr "hienosäätö"
-
-#: ../src\issueReporter\wx_ui.py:25
-msgid "Report an error"
-msgstr "Ilmoita virheestä"
-
-#: ../src\issueReporter\wx_ui.py:28
-msgid "Select a category"
-msgstr "Valitse kategoria"
-
-#: ../src\issueReporter\wx_ui.py:36
-msgid ""
-"Briefly describe what happened. You will be able to thoroughly explain it "
-"later"
-msgstr ""
-"Kerro lyhyesti, mitä tapahtui. Voit kuvailla virhettä perusteellisesti "
-"myöhemmin."
-
-#: ../src\issueReporter\wx_ui.py:45
-msgid "Here, you can describe the bug in detail"
-msgstr "Tässä voit kuvailla virhettä yksityiskohtaisesti"
-
-#: ../src\issueReporter\wx_ui.py:55
-msgid "how often does this bug happen?"
-msgstr "Kuinka usein tämä virhe esiintyy?"
-
-#: ../src\issueReporter\wx_ui.py:62
-msgid "Select the importance that you think this bug has"
-msgstr "Valitse tärkeysaste, joka on mielestäsi sopiva tälle virheelle"
-
-#: ../src\issueReporter\wx_ui.py:72
-msgid "Send report"
-msgstr "Lähetä raportti"
-
-#: ../src\issueReporter\wx_ui.py:83
-msgid "You must fill out both fields"
-msgstr "Sinun on täytettävä molemmat kentät"
-
-#: ../src\issueReporter\wx_ui.py:86
-msgid ""
-"You need to mark the checkbox to provide us your twitter username to contact "
-"you if it is necessary."
-msgstr ""
-"Sinun on valittava Twitter-käyttäjänimesi lähettämisen salliva valintaruutu, "
-"jotta voimme ottaa tarvittaessa yhteyttä."
-
-#: ../src\issueReporter\wx_ui.py:89
-msgid ""
-"Thanks for reporting this bug! In future versions, you may be able to find "
-"it in the changes list. You've reported the bug number %i"
-msgstr ""
-"Kiitos, että ilmoitit tästä virheestä! Saatat ehkä nähdä sen korjattuna "
-"tulevien versioiden muutoslokeissa. Ilmoittamasi virheen numero on %i."
-
-#: ../src\issueReporter\wx_ui.py:89
-msgid "reported"
-msgstr "ilmoitettu"
-
-#: ../src\issueReporter\wx_ui.py:93
-msgid "Error while reporting"
-msgstr "Virhe ilmoitettaessa virheestä"
-
-#: ../src\issueReporter\wx_ui.py:93
-msgid ""
-"Something unexpected occurred while trying to report the bug. Please, try "
-"again later"
-msgstr ""
-"Jotain odottamatonta tapahtui yritettäessä ilmoittaa virheestä. Yritä "
-"myöhemmin uudelleen."
-
-#: ../src\keystrokeEditor\constants.py:3
-msgid "Go up in the current buffer"
-msgstr "Siirry ylöspäin nykyisessä puskurissa"
-
-#: ../src\keystrokeEditor\constants.py:4
-msgid "Go down in the current buffer"
-msgstr "Siirry alaspäin nykyisessä puskurissa"
-
-#: ../src\keystrokeEditor\constants.py:5
-msgid "Go to the previous buffer"
-msgstr "Siirry edelliseen puskuriin"
-
-#: ../src\keystrokeEditor\constants.py:6
-msgid "Go to the next buffer"
-msgstr "Siirry seuraavaan puskuriin"
-
-#: ../src\keystrokeEditor\constants.py:7
-msgid "Focus the next session"
-msgstr "Siirry seuraavaan istuntoon"
-
-#: ../src\keystrokeEditor\constants.py:8
-msgid "Focus the previous session"
-msgstr "Siirry edelliseen istuntoon"
-
-#: ../src\keystrokeEditor\constants.py:9
-msgid "Show or hide the GUI"
-msgstr "Näytä tai piilota graafinen käyttöliittymä"
-
-#: ../src\keystrokeEditor\constants.py:10
-msgid "New tweet"
-msgstr "Uusi twiitti"
-
-#: ../src\keystrokeEditor\constants.py:13
-msgid "Send direct message"
-msgstr "Lähetä yksityisviesti"
-
-#: ../src\keystrokeEditor\constants.py:14
-msgid "Mark as favourite"
-msgstr "Merkitse suosikiksi"
-
-#: ../src\keystrokeEditor\constants.py:15
-msgid "Remove from favourites"
-msgstr "Poista suosikeista"
-
-#: ../src\keystrokeEditor\constants.py:16
-msgid "Open the user actions dialogue"
-msgstr "Avaa käyttäjätoimintojen valintaikkuna"
-
-#: ../src\keystrokeEditor\constants.py:17
-msgid "See user details"
-msgstr "Näytä käyttäjän tiedot"
-
-#: ../src\keystrokeEditor\constants.py:18
-msgid "Show tweet"
-msgstr "Näytä twiitti"
-
-#: ../src\keystrokeEditor\constants.py:19
-msgid "Quit"
-msgstr "Lopeta"
-
-#: ../src\keystrokeEditor\constants.py:20
-msgid "Open user timeline"
-msgstr "Avaa käyttäjän aikajana"
-
-#: ../src\keystrokeEditor\constants.py:21
-msgid "Destroy buffer"
-msgstr "Poista puskuri"
-
-#: ../src\keystrokeEditor\constants.py:22
-msgid "Interact with the currently focused tweet."
-msgstr ""
-"Ole vuorovaikutuksessa tällä hetkellä aktiivisena olevan twiitin kanssa."
-
-#: ../src\keystrokeEditor\constants.py:23
-msgid ""
-"Perform secondary interact action (open URL in browser if Codeofdusk's "
-"intelegent audio tweet handlers enabled, play audio if disabled."
-msgstr ""
-"Suorita toissijainen vuorovaikutustoiminto (avaa URL:n selaimessa, mikäli "
-"Codeofduskin älykkäät audiotwiitin käsittelijät ovat käytössä tai toistaa "
-"audion, mikäli käsittelijät eivät ole käytössä)."
-
-#: ../src\keystrokeEditor\constants.py:24
-msgid "Increase volume by 5%"
-msgstr "Lisää äänenvoimakkuutta 5%"
-
-#: ../src\keystrokeEditor\constants.py:25
-msgid "Decrease volume by 5%"
-msgstr "Vähennä äänenvoimakkuutta 5%"
-
-#: ../src\keystrokeEditor\constants.py:26
-msgid "Jump to the first element of a buffer"
-msgstr "Siirry puskurin ensimmäiseen kohteeseen"
-
-#: ../src\keystrokeEditor\constants.py:27
-msgid "Jump to the last element of the current buffer"
-msgstr "Siirry puskurin viimeiseen kohteeseen"
-
-#: ../src\keystrokeEditor\constants.py:28
-msgid "Jump 20 elements up in the current buffer"
-msgstr "Siirry 20 kohdetta ylöspäin nykyisessä puskurissa"
-
-#: ../src\keystrokeEditor\constants.py:29
-msgid "Jump 20 elements down in the current buffer"
-msgstr "Siirry 20 kohdetta alaspäin nykyisessä puskurissa"
-
-#: ../src\keystrokeEditor\constants.py:30
-msgid "Edit profile"
-msgstr "Muokkaa profiilia"
-
-#: ../src\keystrokeEditor\constants.py:31
-msgid "Delete a tweet or direct message"
-msgstr "Poista twiitti tai yksityisviesti"
-
-#: ../src\keystrokeEditor\constants.py:32
-msgid "Empty the current buffer"
-msgstr "Tyhjennä nykyinen puskuri"
-
-#: ../src\keystrokeEditor\constants.py:33
-msgid "Repeat last item"
-msgstr "Toista viimeisin kohde"
-
-#: ../src\keystrokeEditor\constants.py:34
-msgid "Copy to clipboard"
-msgstr "Kopioi leikepöydälle"
-
-#: ../src\keystrokeEditor\constants.py:35
-msgid "Add to list"
-msgstr "Lisää listalle"
-
-#: ../src\keystrokeEditor\constants.py:36
-msgid "Remove from list"
-msgstr "Poista listalta"
-
-#: ../src\keystrokeEditor\constants.py:37
-msgid "Mute/unmute the active buffer"
-msgstr "Ota käyttöön aktiivisen puskurin hiljennys tai poista se käytöstä"
-
-#: ../src\keystrokeEditor\constants.py:38
-msgid "Mute/unmute the current session"
-msgstr "Ota käyttöön nykyisen istunnon yleishiljennys tai poista se käytöstä"
-
-#: ../src\keystrokeEditor\constants.py:39
-msgid "toggle the automatic reading of incoming tweets in the active buffer"
-msgstr ""
-"Ota käyttöön aktiivisen puskurin saapuvien twiittien automaattinen lukeminen "
-"tai poista se käytöstä"
-
-#: ../src\keystrokeEditor\constants.py:40
-msgid "Search on twitter"
-msgstr "Hae Twitteristä"
-
-#: ../src\keystrokeEditor\constants.py:41
-msgid "Show the keystroke editor"
-msgstr "Näytä näppäinkomentojen muokkain"
-
-#: ../src\keystrokeEditor\constants.py:42
-msgid "Show lists for a specified user"
-msgstr "Näytä valitun käyttäjän listat"
-
-#: ../src\keystrokeEditor\constants.py:43
-msgid "load previous items"
-msgstr "Lataa edelliset kohteet"
-
-#: ../src\keystrokeEditor\constants.py:44
-msgid "Get geolocation"
-msgstr "Selvitä geosijainti"
-
-#: ../src\keystrokeEditor\constants.py:45
-msgid "Display the tweet's geolocation in a dialog"
-msgstr "Näytä twiitin geosijainti valintaikkunassa"
-
-#: ../src\keystrokeEditor\constants.py:46
-msgid "Create a trending topics buffer"
-msgstr "Luo suosittujen puheenaiheiden puskuri"
-
-#: ../src\keystrokeEditor\constants.py:47
-msgid "View conversation"
-msgstr "Näytä keskustelu"
-
-#: ../src\keystrokeEditor\wx_ui.py:8
-msgid "Keystroke editor"
-msgstr "Näppäinkomentojen muokkain"
-
-#: ../src\keystrokeEditor\wx_ui.py:12
-msgid "Select a keystroke to edit"
-msgstr "Valitse muokattava näppäinkomento"
-
-#: ../src\keystrokeEditor\wx_ui.py:13
-msgid "Keystroke"
-msgstr "Näppäinkomento"
-
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:43
 #: ../src\keystrokeEditor\wx_ui.py:43
 msgid "Editing keystroke"
 msgstr "Muokataan näppäinkomentoa"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:46
 #: ../src\keystrokeEditor\wx_ui.py:46
 msgid "Control"
 msgstr "Control"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:47
 #: ../src\keystrokeEditor\wx_ui.py:47
 msgid "Alt"
 msgstr "Alt"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:48
 #: ../src\keystrokeEditor\wx_ui.py:48
 msgid "Shift"
 msgstr "Shift"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:49
 #: ../src\keystrokeEditor\wx_ui.py:49
 msgid "Windows"
 msgstr "Windows"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:55
 #: ../src\keystrokeEditor\wx_ui.py:55
 msgid "Key"
 msgstr "Näppäin"
 
-#: ../src\keystrokeEditor\wx_ui.py:73
-msgid "You need to use the Windows key"
-msgstr "Sinun on käytettävä Windows-näppäintä"
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:60
+#: ../src\build\lib\wxUI\dialogs\find.py:18
+#: ../src\build\lib\wxUI\dialogs\search.py:24
+#: ../src\build\lib\wxUI\dialogs\trends.py:26
+#: ../src\build\lib\wxUI\dialogs\userActions.py:38
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:26
+#: ../src\build\lib\wxUI\dialogs\utils.py:32
+#: ../src\keystrokeEditor\wx_ui.py:60 ../src\wxUI\dialogs\find.py:18
+#: ../src\wxUI\dialogs\search.py:24 ../src\wxUI\dialogs\trends.py:26
+#: ../src\wxUI\dialogs\userActions.py:38
+#: ../src\wxUI\dialogs\userSelection.py:26 ../src\wxUI\dialogs\utils.py:32
+msgid "OK"
+msgstr "OK"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:73
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:76
 #: ../src\keystrokeEditor\wx_ui.py:73 ../src\keystrokeEditor\wx_ui.py:76
 msgid "Invalid keystroke"
 msgstr "Virheellinen näppäinkomento"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:73
+#: ../src\keystrokeEditor\wx_ui.py:73
+msgid "You need to use the Windows key"
+msgstr "Sinun on käytettävä Windows-näppäintä"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:76
 #: ../src\keystrokeEditor\wx_ui.py:76
 msgid "You must provide a character for the keystroke"
 msgstr "Sinun on annettava jokin merkki näppäinkomennolle"
 
-#: ../src\languageHandler.py:95
-msgid "User default"
-msgstr "Käyttäjän oletus"
-
+#: ../src\build\lib\sessionmanager\session.py:185
 #: ../src\sessionmanager\session.py:185
 msgid "%s failed.  Reason: %s"
 msgstr "%s epäonnistui.  Syy: %s"
 
+#: ../src\build\lib\sessionmanager\session.py:191
 #: ../src\sessionmanager\session.py:191
 msgid "%s succeeded."
 msgstr "%s onnistui."
 
-#: ../src\sessionmanager\wxUI.py:17 ../src\sessionmanager\wxUI.py:63
+#: ../src\build\lib\sessionmanager\wxUI.py:10 ../src\sessionmanager\wxUI.py:10
+msgid "Accounts list"
+msgstr "Tilit"
+
+#: ../src\build\lib\sessionmanager\wxUI.py:12 ../src\sessionmanager\wxUI.py:12
+msgid "Account"
+msgstr "Tili"
+
+#: ../src\build\lib\sessionmanager\wxUI.py:16 ../src\sessionmanager\wxUI.py:16
+msgid "New account"
+msgstr "Uusi tili"
+
+#: ../src\build\lib\sessionmanager\wxUI.py:17
+#: ../src\build\lib\sessionmanager\wxUI.py:63 ../src\sessionmanager\wxUI.py:17
+#: ../src\sessionmanager\wxUI.py:63
 msgid "Remove account"
 msgstr "Poista tili"
 
-#: ../src\sessionmanager\wxUI.py:18
+#: ../src\build\lib\sessionmanager\wxUI.py:18 ../src\sessionmanager\wxUI.py:18
 msgid "Global Settings"
 msgstr "Yleisasetukset"
 
-#: ../src\sessionmanager\wxUI.py:41
+#: ../src\build\lib\sessionmanager\wxUI.py:41 ../src\sessionmanager\wxUI.py:41
 msgid "Account Error"
 msgstr "Tilivirhe"
 
-#: ../src\sessionmanager\wxUI.py:41
+#: ../src\build\lib\sessionmanager\wxUI.py:41 ../src\sessionmanager\wxUI.py:41
 msgid "You need to configure an account."
 msgstr "Sinun on määritettävä tili."
 
-#: ../src\sessionmanager\wxUI.py:47
+#: ../src\build\lib\sessionmanager\wxUI.py:47 ../src\sessionmanager\wxUI.py:47
+msgid "Authorization"
+msgstr "Valtuutus"
+
+#: ../src\build\lib\sessionmanager\wxUI.py:47 ../src\sessionmanager\wxUI.py:47
 msgid ""
 "The request to authorize your Twitter account will be opened in your "
 "browser. You only need to do this once. Would you like to continue?"
@@ -2264,43 +2065,43 @@ msgstr ""
 "Twitter-tilisi valtuutuspyyntö avataan selaimessa. Sinun tarvitsee hyväksyä "
 "se vain kerran. Haluatko jatkaa?"
 
-#: ../src\sessionmanager\wxUI.py:51
+#: ../src\build\lib\sessionmanager\wxUI.py:51 ../src\sessionmanager\wxUI.py:51
 msgid "Authorized account %d"
 msgstr "Valtuutettu tili %d"
 
-#: ../src\sessionmanager\wxUI.py:57
+#: ../src\build\lib\sessionmanager\wxUI.py:57 ../src\sessionmanager\wxUI.py:57
 msgid "Invalid user token"
 msgstr "Virheellinen käyttäjätunniste"
 
-#: ../src\sessionmanager\wxUI.py:57
+#: ../src\build\lib\sessionmanager\wxUI.py:57 ../src\sessionmanager\wxUI.py:57
 msgid ""
 "Your access token is invalid or the authorization has failed. Please try "
 "again."
 msgstr ""
 "Pääsytunnisteesi on virheellinen tai valtuutus epäonnistui. Yritä uudelleen."
 
-#: ../src\sessionmanager\wxUI.py:63
+#: ../src\build\lib\sessionmanager\wxUI.py:63 ../src\sessionmanager\wxUI.py:63
 msgid "Do you really want to delete this account?"
 msgstr "Haluatko varmasti poistaa tämän tilin?"
 
-#: ../src\sound.py:156
-msgid "Stopped."
-msgstr "Keskeytetty."
-
-#: ../src\twitter\compose.py:40 ../src\twitter\compose.py:67
-#: ../src\twitter\compose.py:76
+#: ../src\build\lib\twitter\compose.py:40
+#: ../src\build\lib\twitter\compose.py:67
+#: ../src\build\lib\twitter\compose.py:76 ../src\twitter\compose.py:41
+#: ../src\twitter\compose.py:74 ../src\twitter\compose.py:83
 msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "dddd, D. MMMMta YYYY HH:mm:ss"
 
-#: ../src\twitter\compose.py:46
+#: ../src\build\lib\twitter\compose.py:46 ../src\twitter\compose.py:47
 msgid "Dm to %s "
 msgstr "Yksityisviesti käyttäjälle %s "
 
-#: ../src\twitter\compose.py:78 ../src\twitter\compose.py:80
+#: ../src\build\lib\twitter\compose.py:78
+#: ../src\build\lib\twitter\compose.py:80 ../src\twitter\compose.py:85
+#: ../src\twitter\compose.py:87
 msgid "Unavailable"
 msgstr "Ei saatavilla"
 
-#: ../src\twitter\compose.py:81
+#: ../src\build\lib\twitter\compose.py:81 ../src\twitter\compose.py:88
 msgid ""
 "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
 "Twitter %s"
@@ -2308,107 +2109,127 @@ msgstr ""
 "%s (@%s). %s seuraajaa, %s kaveria, %s twiittiä. Twiitannut viimeksi %s. "
 "Liittynyt Twitteriin %s."
 
-#: ../src\twitter\compose.py:85
+#: ../src\build\lib\twitter\compose.py:85 ../src\twitter\compose.py:92
 msgid "You've blocked %s"
 msgstr "Estit käyttäjän %s"
 
-#: ../src\twitter\compose.py:87
+#: ../src\build\lib\twitter\compose.py:87 ../src\twitter\compose.py:94
 msgid "You've unblocked %s"
 msgstr "Lopetit käyttäjän %s estämisen"
 
-#: ../src\twitter\compose.py:90
+#: ../src\build\lib\twitter\compose.py:90 ../src\twitter\compose.py:97
 msgid "%s(@%s) has followed you"
 msgstr "%s (@%s) seuraa sinua"
 
-#: ../src\twitter\compose.py:92
+#: ../src\build\lib\twitter\compose.py:92 ../src\twitter\compose.py:99
 msgid "You've followed %s(@%s)"
 msgstr "Aloit seuraamaan käyttäjää %s (@%s)"
 
-#: ../src\twitter\compose.py:94
+#: ../src\build\lib\twitter\compose.py:94 ../src\twitter\compose.py:101
 msgid "You've unfollowed %s (@%s)"
 msgstr "Lopetit käyttäjän %s (@%s) seuraamisen"
 
-#: ../src\twitter\compose.py:97
+#: ../src\build\lib\twitter\compose.py:97 ../src\twitter\compose.py:104
 msgid "You've added to favourites: %s, %s"
 msgstr "Lisäsit suosikiksi twiitin %s, %s"
 
-#: ../src\twitter\compose.py:99
-msgid "%s(@%s) has marked as favorite: %s"
-msgstr "%s (@%s) merkitsi suosikiksi twiitin %s"
+#: ../src\build\lib\twitter\compose.py:99 ../src\twitter\compose.py:106
+msgid "%s(@%s) has marked as favourite: %s"
+msgstr "%s (@%s) merkitsi suosikiksi twiitin: %s"
 
-#: ../src\twitter\compose.py:101
+#: ../src\build\lib\twitter\compose.py:101 ../src\twitter\compose.py:108
 msgid "You've removed from favourites: %s, %s"
 msgstr "Poistit suosikeista twiitin %s, %s"
 
-#: ../src\twitter\compose.py:102
+#: ../src\build\lib\twitter\compose.py:102 ../src\twitter\compose.py:109
 msgid "%s(@%s) has removed from favourites: %s"
 msgstr "%s (@%s) poisti suosikeista twiitin %s"
 
-#: ../src\twitter\compose.py:104
+#: ../src\build\lib\twitter\compose.py:104 ../src\twitter\compose.py:111
 msgid "You've created the list %s"
 msgstr "Loit listan %s"
 
-#: ../src\twitter\compose.py:106
+#: ../src\build\lib\twitter\compose.py:106 ../src\twitter\compose.py:113
 msgid "You've deleted the list %s"
 msgstr "Poistit listan %s"
 
-#: ../src\twitter\compose.py:108
+#: ../src\build\lib\twitter\compose.py:108 ../src\twitter\compose.py:115
 msgid "You've updated the list %s"
 msgstr "Päivitit listan %s"
 
-#: ../src\twitter\compose.py:110
+#: ../src\build\lib\twitter\compose.py:110 ../src\twitter\compose.py:117
 msgid "You've added %s(@%s) to the list %s"
 msgstr "Lisäsit käyttäjän %s (@%s) listalle %s"
 
-#: ../src\twitter\compose.py:111
+#: ../src\build\lib\twitter\compose.py:111 ../src\twitter\compose.py:118
 msgid "%s(@%s) has added you to the list %s"
 msgstr "%s (@%s) lisäsi sinut listalle %s"
 
-#: ../src\twitter\compose.py:113
+#: ../src\build\lib\twitter\compose.py:113 ../src\twitter\compose.py:120
 msgid "You'be removed %s(@%s) from the list %s"
 msgstr "Poistit käyttäjän %s (@%s) listalta %s"
 
-#: ../src\twitter\compose.py:114
+#: ../src\build\lib\twitter\compose.py:114 ../src\twitter\compose.py:121
 msgid "%s(@%s) has removed you from the list %s"
 msgstr "%s (@%s) poisti sinut listalta %s"
 
-#: ../src\twitter\compose.py:116
+#: ../src\build\lib\twitter\compose.py:116 ../src\twitter\compose.py:123
 msgid "You've subscribed to the list %s, which is owned by %s(@%s)"
 msgstr "Olet nyt tilaaja listalla %s, jonka omistaa %s (@%s)"
 
-#: ../src\twitter\compose.py:117
+#: ../src\build\lib\twitter\compose.py:117 ../src\twitter\compose.py:124
 msgid "%s(@%s) has suscribed you to the list %s"
 msgstr "%s (@%s) lisäsi sinut listan %s tilaajaksi"
 
-#: ../src\twitter\compose.py:119
+#: ../src\build\lib\twitter\compose.py:119 ../src\twitter\compose.py:126
 msgid "You've unsubscribed from the list %s, which is owned by %s(@%s)"
 msgstr "Peruit tilauksesi listalta %s, jonka omistaa %s (@%s)"
 
-#: ../src\twitter\compose.py:120
+#: ../src\build\lib\twitter\compose.py:120 ../src\twitter\compose.py:127
 msgid "You've been unsubscribed from the list %s, which is owned by %s(@%s)"
 msgstr "Tilauksesi on peruttu listalta %s, jonka omistaa %s (@%s)"
 
-#: ../src\twitter\compose.py:125
+#: ../src\build\lib\twitter\compose.py:122 ../src\twitter\compose.py:129
+msgid "You have retweeted a retweet from %s(@%s): %s"
+msgstr "Uudelleentwiittasit uudelleentwiittauksen käyttäjältä %s (@%s): %s"
+
+#: ../src\build\lib\twitter\compose.py:123 ../src\twitter\compose.py:130
+msgid "%s(@%s) has retweeted your retweet: %s"
+msgstr "%s (@%s) uudelleentwiittasi uudelleentwiittauksesi: %s"
+
+#: ../src\build\lib\twitter\compose.py:125 ../src\twitter\compose.py:132
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: ../src\twitter\compose.py:131
+#: ../src\build\lib\twitter\compose.py:131 ../src\twitter\compose.py:138
 msgid "No description available"
 msgstr "Kuvausta ei saatavilla"
 
-#: ../src\twitter\compose.py:135
+#: ../src\build\lib\twitter\compose.py:135 ../src\twitter\compose.py:142
 msgid "private"
 msgstr "yksityinen"
 
-#: ../src\twitter\compose.py:136
+#: ../src\build\lib\twitter\compose.py:136 ../src\twitter\compose.py:143
 msgid "public"
 msgstr "julkinen"
 
-#: ../src\update\wxUpdater.py:9
+#: ../src\build\lib\twitter\utils.py:124 ../src\twitter\utils.py:124
+msgid "Sorry, you are not authorised to see this status."
+msgstr "Valitettavasti sinulla ei ole valtuuksia tämän tilan katsomiseen."
+
+#: ../src\build\lib\twitter\utils.py:126 ../src\twitter\utils.py:126
+msgid "No status found with that ID"
+msgstr "Antamallasi tunnuksella ei löydy tilaa"
+
+#: ../src\build\lib\twitter\utils.py:128 ../src\twitter\utils.py:128
+msgid "Error code {0}"
+msgstr "Virhekoodi {0}"
+
+#: ../src\build\lib\update\wxUpdater.py:9 ../src\update\wxUpdater.py:9
 msgid "New version for %s"
 msgstr "Uusi versio sovelluksesta %s"
 
-#: ../src\update\wxUpdater.py:9
+#: ../src\build\lib\update\wxUpdater.py:9 ../src\update\wxUpdater.py:9
 msgid ""
 "There's a new %s version available. Would you like to download it now?\n"
 "\n"
@@ -2424,65 +2245,310 @@ msgstr ""
 "Muutokset:\n"
 "%s"
 
-#: ../src\update\wxUpdater.py:17
+#: ../src\build\lib\update\wxUpdater.py:17 ../src\update\wxUpdater.py:17
 msgid "Download in Progress"
 msgstr "Lataus käynnissä"
 
-#: ../src\update\wxUpdater.py:17
+#: ../src\build\lib\update\wxUpdater.py:17 ../src\update\wxUpdater.py:17
 msgid "Downloading the new version..."
 msgstr "Ladataan uutta versiota..."
 
-#: ../src\update\wxUpdater.py:27
+#: ../src\build\lib\update\wxUpdater.py:27 ../src\update\wxUpdater.py:27
 msgid "Updating... %s of %s"
 msgstr "Päivitetään... %s / %s"
 
-#: ../src\update\wxUpdater.py:30
+#: ../src\build\lib\update\wxUpdater.py:30 ../src\update\wxUpdater.py:30
 msgid "Done!"
 msgstr "Valmis!"
 
-#: ../src\update\wxUpdater.py:30
+#: ../src\build\lib\update\wxUpdater.py:30 ../src\update\wxUpdater.py:30
 msgid ""
 "The update has been downloaded and installed successfully. Press OK to "
 "continue."
 msgstr "Päivitys on ladattu ja asennettu onnistuneesti. Paina OK jatkaaksesi."
 
+#: ../src\build\lib\wxUI\buffers\base.py:11
+#: ../src\build\lib\wxUI\buffers\events.py:13 ../src\wxUI\buffers\base.py:11
+#: ../src\wxUI\buffers\events.py:13
+msgid "Date"
+msgstr "Päiväys"
+
+#: ../src\build\lib\wxUI\buffers\base.py:11
+#: ../src\build\lib\wxUI\buffers\people.py:10
+#: ../src\build\lib\wxUI\buffers\user_searches.py:9
+#: ../src\build\lib\wxUI\dialogs\userActions.py:10
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:10
+#: ../src\build\lib\wxUI\dialogs\utils.py:29 ../src\wxUI\buffers\base.py:11
+#: ../src\wxUI\buffers\people.py:10 ../src\wxUI\buffers\user_searches.py:9
+#: ../src\wxUI\dialogs\userActions.py:10
+#: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:29
+msgid "User"
+msgstr "Käyttäjä"
+
+#: ../src\build\lib\wxUI\buffers\base.py:11 ../src\wxUI\buffers\base.py:11
+msgid "Client"
+msgstr "Asiakasohjelma"
+
+#: ../src\build\lib\wxUI\buffers\base.py:11 ../src\wxUI\buffers\base.py:11
+msgid "Text"
+msgstr "Teksti"
+
+#: ../src\build\lib\wxUI\buffers\base.py:27 ../src\wxUI\buffers\base.py:27
+msgid "Direct message"
+msgstr "Yksityisviesti"
+
+#: ../src\build\lib\wxUI\buffers\events.py:13 ../src\wxUI\buffers\events.py:13
+msgid "Event"
+msgstr "Tapahtuma"
+
+#: ../src\build\lib\wxUI\buffers\events.py:15 ../src\wxUI\buffers\events.py:15
+msgid "Remove event"
+msgstr "Poista tapahtuma"
+
+#: ../src\build\lib\wxUI\buffers\panels.py:11
+#: ../src\build\lib\wxUI\buffers\panels.py:19 ../src\wxUI\buffers\panels.py:11
+#: ../src\wxUI\buffers\panels.py:19
+msgid "Login"
+msgstr "Kirjaudu sisään"
+
+#: ../src\build\lib\wxUI\buffers\panels.py:13 ../src\wxUI\buffers\panels.py:13
+msgid "Log in automatically"
+msgstr "Kirjaudu sisään automaattisesti"
+
+#: ../src\build\lib\wxUI\buffers\panels.py:21 ../src\wxUI\buffers\panels.py:21
+msgid "Logout"
+msgstr "Kirjaudu ulos"
+
+#: ../src\build\lib\wxUI\buffers\trends.py:8 ../src\wxUI\buffers\trends.py:8
+msgid "Trending topic"
+msgstr "Suosittu puheenaihe"
+
+#: ../src\build\lib\wxUI\buffers\trends.py:18 ../src\wxUI\buffers\trends.py:18
+msgid "Tweet about this trend"
+msgstr "Twiittaa tästä trendistä"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:5
+#: ../src\wxUI\commonMessageDialogs.py:5
+msgid ""
+"This retweet is over 140 characters. Would you like to post it as a mention "
+"to the poster with your comments and a link to the original tweet?"
+msgstr ""
+"Tämä uudelleentwiittaus on yli 140 merkkiä. Haluatko lähettää sen "
+"lähettäjälle mainintana ja sisällyttää siihen kommenttisi sekä linkin "
+"alkuperäiseen twiittiin?"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:8
+#: ../src\wxUI\commonMessageDialogs.py:8
+msgid "Would you like to add a comment to this tweet?"
+msgstr "Haluatko lisätä kommentin tähän twiittiin?"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:11
+#: ../src\build\lib\wxUI\dialogs\lists.py:133
+#: ../src\wxUI\commonMessageDialogs.py:11 ../src\wxUI\dialogs\lists.py:133
+msgid "Delete"
+msgstr "Poista"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:11
+#: ../src\wxUI\commonMessageDialogs.py:11
+msgid ""
+"Do you really want to delete this message? It will be deleted from Twitter "
+"as well."
+msgstr ""
+"Haluatko varmasti poistaa tämän viestin? Se poistetaan myös Twitteristä."
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:14
 #: ../src\wxUI\commonMessageDialogs.py:14
 msgid "Do you really want to close {0}?"
 msgstr "Haluatko varmasti sulkea ohjelman {0}?"
 
-#: ../src\wxUI\dialogs\configuration.py:33
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:14
+#: ../src\wxUI\commonMessageDialogs.py:14
+msgid "Exit"
+msgstr "Sulje"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:18
+#: ../src\wxUI\commonMessageDialogs.py:18
+msgid " {0} must be restarted for these changes to take effect."
+msgstr "{0} on käynnistettävä uudelleen, jotta muutokset tulevat voimaan."
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:18
+#: ../src\wxUI\commonMessageDialogs.py:18
+msgid "Restart {0} "
+msgstr "Käynnistä {0} uudelleen"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:21
+#: ../src\wxUI\commonMessageDialogs.py:21
+msgid ""
+"Are you sure you want to delete this user from the database? This user will "
+"not appear on the autocomplete results anymore."
+msgstr ""
+"Haluatko varmasti poistaa tämän käyttäjän tietokannasta? Käyttäjää ei näy "
+"poiston jälkeen enää automaattisen täydennyksen tuloksissa."
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:21
+#: ../src\wxUI\commonMessageDialogs.py:21
+msgid "Confirm"
+msgstr "Vahvista"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:24
+#: ../src\wxUI\commonMessageDialogs.py:24
+msgid "Add a new ignored client"
+msgstr "Lisää uusi ohitettava asiakasohjelma"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:24
+#: ../src\wxUI\commonMessageDialogs.py:24
+msgid "Enter the name of the client here"
+msgstr "Syötä asiakasohjelman nimi tähän"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:30
+#: ../src\wxUI\commonMessageDialogs.py:30
+msgid ""
+"Do you really want to empty this buffer? It's  items will be removed from "
+"the list but not from Twitter"
+msgstr ""
+"Haluatko varmasti tyhjentää tämän puskurin? Sen twiitit poistetaan listalta, "
+"mutta ei Twitteristä."
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:30
+#: ../src\wxUI\commonMessageDialogs.py:30
+msgid "Empty buffer"
+msgstr "Tyhjennä puskuri"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:34
+#: ../src\wxUI\commonMessageDialogs.py:34
+msgid "Attention"
+msgstr "Huomio"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:34
+#: ../src\wxUI\commonMessageDialogs.py:34
+msgid "Do you really want to delete this timeline?"
+msgstr "Haluatko varmasti poistaa tämän aikajanan?"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:40
+#: ../src\wxUI\commonMessageDialogs.py:40
+msgid "Existing timeline"
+msgstr "Nykyinen aikajana"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:40
+#: ../src\wxUI\commonMessageDialogs.py:40
+msgid ""
+"There's currently a timeline for this user. You are not able to open another"
+msgstr "Tälle käyttäjälle on jo aikajana. Et voi avata toista."
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:43
+#: ../src\wxUI\commonMessageDialogs.py:43
+msgid "This user has no tweets. You can't open a timeline for this user"
+msgstr "Tällä käyttäjällä ei ole twiittejä. Aikajanaa ei voi avata."
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:46
+#: ../src\wxUI\commonMessageDialogs.py:46
+msgid ""
+"This is a protected Twitter user. It means you can not open a timeline using "
+"the Streaming API. The user's tweets will not update due to a twitter "
+"policy. Do you want to continue?"
+msgstr ""
+"Tämä on suojattu Twitter-käyttäjä. Tämä tarkoittaa, ettet voi avata "
+"aikajanaa virtautusrajapinnan kautta. Käyttäjän twiitit eivät päivity "
+"Twitterin toimintaperiaatteen vuoksi. Haluatko jatkaa?"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:46
+#: ../src\wxUI\commonMessageDialogs.py:46
+msgid "Warning"
+msgstr "Varoitus"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:49
+#: ../src\wxUI\commonMessageDialogs.py:49
+msgid ""
+"This is a protected user account, you need follow to this user for viewing "
+"your tweets or favourites."
+msgstr ""
+"Tämä on suojattu käyttäjätili. Sinun on seurattava sitä nähdäksesi kyseisen "
+"käyttäjän twiitit ja suosikit."
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:14
+#: ../src\wxUI\dialogs\configuration.py:14
+msgid "Language"
+msgstr "Kieli"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:21
+#: ../src\wxUI\dialogs\configuration.py:21
+msgid "ask before exiting {0}"
+msgstr "Kysy vahvistus ennen sovelluksen {0} lopettamista"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:23
+#: ../src\wxUI\dialogs\configuration.py:23
+msgid "Play a sound when {0} launches"
+msgstr "Toista ääni, kun {0} käynnistyy"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:25
+#: ../src\wxUI\dialogs\configuration.py:25
+msgid "Speak a message when {0} launches"
+msgstr "Ilmoita puheella, kun {0} käynnistyy"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:27
+#: ../src\wxUI\dialogs\configuration.py:27
+msgid "Use invisible interface's keyboard shortcuts while GUI is visible"
+msgstr ""
+"Käytä näkymättömän käyttöliittymän pikanäppäimiä graafisen käyttöliittymän "
+"ollessa näkyvissä"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:29
+#: ../src\wxUI\dialogs\configuration.py:29
+msgid "Activate Sapi5 when any other screen reader is not being run"
+msgstr "Käytä SAPI5:tä, kun ruudunlukuohjelma ei ole käytössä"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:31
+#: ../src\wxUI\dialogs\configuration.py:31
+msgid "Hide GUI on launch"
+msgstr "Piilota graafinen käyttöliittymä käynnistettäessä"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:34
+#: ../src\wxUI\dialogs\configuration.py:36
 msgid "Keymap"
 msgstr "Näppäinkartta"
 
-#: ../src\wxUI\dialogs\configuration.py:46
+#: ../src\build\lib\wxUI\dialogs\configuration.py:47
+#: ../src\wxUI\dialogs\configuration.py:49
 msgid "Proxy server: "
 msgstr "Välityspalvelin: "
 
-#: ../src\wxUI\dialogs\configuration.py:52
+#: ../src\build\lib\wxUI\dialogs\configuration.py:53
+#: ../src\wxUI\dialogs\configuration.py:55
 msgid "Port: "
 msgstr "Portti: "
 
-#: ../src\wxUI\dialogs\configuration.py:58
+#: ../src\build\lib\wxUI\dialogs\configuration.py:59
+#: ../src\wxUI\dialogs\configuration.py:61
 msgid "User: "
 msgstr "Käyttäjä: "
 
-#: ../src\wxUI\dialogs\configuration.py:64
+#: ../src\build\lib\wxUI\dialogs\configuration.py:65
+#: ../src\wxUI\dialogs\configuration.py:67
 msgid "Password: "
 msgstr "Salasana: "
 
-#: ../src\wxUI\dialogs\configuration.py:76
+#: ../src\build\lib\wxUI\dialogs\configuration.py:77
+#: ../src\wxUI\dialogs\configuration.py:79
 msgid "Autocompletion settings..."
 msgstr "Automaattisen täydennyksen asetukset..."
 
-#: ../src\wxUI\dialogs\configuration.py:78
+#: ../src\build\lib\wxUI\dialogs\configuration.py:79
+#: ../src\wxUI\dialogs\configuration.py:81
 msgid "Relative timestamps"
 msgstr "Suhteelliset aikaleimat"
 
-#: ../src\wxUI\dialogs\configuration.py:81
+#: ../src\build\lib\wxUI\dialogs\configuration.py:82
+#: ../src\wxUI\dialogs\configuration.py:84
 msgid "API calls (One API call = 200 tweets, two API calls = 400 tweets, etc):"
 msgstr "Sovellusrajapinnan kutsuja (1 = 200 twiittiä, 2 = 400 twiittiä jne):"
 
-#: ../src\wxUI\dialogs\configuration.py:94
+#: ../src\build\lib\wxUI\dialogs\configuration.py:89
+#: ../src\wxUI\dialogs\configuration.py:91
+msgid "Items on each API call"
+msgstr "Kohteita kussakin API-kutsussa"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:95
+#: ../src\wxUI\dialogs\configuration.py:97
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning while the "
 "oldest at the end"
@@ -2490,11 +2556,13 @@ msgstr ""
 "Käänteiset puskurit: Uusimmat twiitit näytetään listojen alussa ja vanhat "
 "lopussa"
 
-#: ../src\wxUI\dialogs\configuration.py:96
+#: ../src\build\lib\wxUI\dialogs\configuration.py:97
+#: ../src\wxUI\dialogs\configuration.py:99
 msgid "Retweet mode"
 msgstr "Uudelleentwiittauksen tila"
 
-#: ../src\wxUI\dialogs\configuration.py:102
+#: ../src\build\lib\wxUI\dialogs\configuration.py:103
+#: ../src\wxUI\dialogs\configuration.py:105
 msgid ""
 "Number of items per buffer to cache in database (0 to disable caching, blank "
 "for unlimited)"
@@ -2502,238 +2570,820 @@ msgstr ""
 "Tietokantaan tallennettavien kohteiden määrä puskuria kohti (0 poistaa "
 "tallennuksen käytöstä, tyhjä = rajaton)"
 
-#: ../src\wxUI\dialogs\configuration.py:112
+#: ../src\build\lib\wxUI\dialogs\configuration.py:113
+#: ../src\wxUI\dialogs\configuration.py:115
 msgid "Buffer"
 msgstr "Puskuri"
 
-#: ../src\wxUI\dialogs\configuration.py:112
+#: ../src\build\lib\wxUI\dialogs\configuration.py:113
+#: ../src\wxUI\dialogs\configuration.py:115
 msgid "Status"
 msgstr "Tila"
 
-#: ../src\wxUI\dialogs\configuration.py:115
+#: ../src\build\lib\wxUI\dialogs\configuration.py:116
+#: ../src\wxUI\dialogs\configuration.py:118
 msgid "Show/hide"
 msgstr "Näytä/piilota"
 
-#: ../src\wxUI\dialogs\configuration.py:116
+#: ../src\build\lib\wxUI\dialogs\configuration.py:117
+#: ../src\wxUI\dialogs\configuration.py:119
 msgid "Move up"
 msgstr "Siirrä ylös"
 
-#: ../src\wxUI\dialogs\configuration.py:117
+#: ../src\build\lib\wxUI\dialogs\configuration.py:118
+#: ../src\wxUI\dialogs\configuration.py:120
 msgid "Move down"
 msgstr "Siirrä alas"
 
-#: ../src\wxUI\dialogs\configuration.py:127
-#: ../src\wxUI\dialogs\configuration.py:184
+#: ../src\build\lib\wxUI\dialogs\configuration.py:128
+#: ../src\build\lib\wxUI\dialogs\configuration.py:185
+#: ../src\build\lib\wxUI\dialogs\configuration.py:188
+#: ../src\build\lib\wxUI\dialogs\configuration.py:193
+#: ../src\wxUI\dialogs\configuration.py:130
 #: ../src\wxUI\dialogs\configuration.py:187
-#: ../src\wxUI\dialogs\configuration.py:192
+#: ../src\wxUI\dialogs\configuration.py:190
+#: ../src\wxUI\dialogs\configuration.py:195
 msgid "Show"
 msgstr "Näytä"
 
-#: ../src\wxUI\dialogs\configuration.py:129
-#: ../src\wxUI\dialogs\configuration.py:139
-#: ../src\wxUI\dialogs\configuration.py:159
-#: ../src\wxUI\dialogs\configuration.py:185
+#: ../src\build\lib\wxUI\dialogs\configuration.py:130
+#: ../src\build\lib\wxUI\dialogs\configuration.py:140
+#: ../src\build\lib\wxUI\dialogs\configuration.py:160
+#: ../src\build\lib\wxUI\dialogs\configuration.py:186
+#: ../src\wxUI\dialogs\configuration.py:132
+#: ../src\wxUI\dialogs\configuration.py:142
+#: ../src\wxUI\dialogs\configuration.py:162
+#: ../src\wxUI\dialogs\configuration.py:188
 msgid "Hide"
 msgstr "Piilota"
 
-#: ../src\wxUI\dialogs\configuration.py:137
-#: ../src\wxUI\dialogs\configuration.py:157
+#: ../src\build\lib\wxUI\dialogs\configuration.py:138
+#: ../src\build\lib\wxUI\dialogs\configuration.py:158
+#: ../src\wxUI\dialogs\configuration.py:140
+#: ../src\wxUI\dialogs\configuration.py:160
 msgid "Select a buffer first."
 msgstr "Valitse ensin puskuri."
 
-#: ../src\wxUI\dialogs\configuration.py:140
-#: ../src\wxUI\dialogs\configuration.py:160
+#: ../src\build\lib\wxUI\dialogs\configuration.py:141
+#: ../src\build\lib\wxUI\dialogs\configuration.py:161
+#: ../src\wxUI\dialogs\configuration.py:143
+#: ../src\wxUI\dialogs\configuration.py:163
 msgid "The buffer is hidden, show it first."
 msgstr "Puskuri on piilotettu. Tuo se ensin näkyviin."
 
-#: ../src\wxUI\dialogs\configuration.py:143
+#: ../src\build\lib\wxUI\dialogs\configuration.py:144
+#: ../src\wxUI\dialogs\configuration.py:146
 msgid "The buffer is already at the top of the list."
 msgstr "Puskuri on jo listan ylimmäisenä."
 
-#: ../src\wxUI\dialogs\configuration.py:163
+#: ../src\build\lib\wxUI\dialogs\configuration.py:164
+#: ../src\wxUI\dialogs\configuration.py:166
 msgid "The buffer is already at the bottom of the list."
 msgstr "Puskuri on jo listan alimmaisena."
 
-#: ../src\wxUI\dialogs\configuration.py:302
+#: ../src\build\lib\wxUI\dialogs\configuration.py:201
+#: ../src\build\lib\wxUI\dialogs\configuration.py:332
+#: ../src\wxUI\dialogs\configuration.py:203
+#: ../src\wxUI\dialogs\configuration.py:334
+msgid "Ignored clients"
+msgstr "Ohitettavat asiakasohjelmat"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:207
+#: ../src\wxUI\dialogs\configuration.py:209
+msgid "Add client"
+msgstr "Lisää"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:208
+#: ../src\wxUI\dialogs\configuration.py:210
+msgid "Remove client"
+msgstr "Poista"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:232
+#: ../src\wxUI\dialogs\configuration.py:234
+msgid "Volume"
+msgstr "Äänenvoimakkuus"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:240
+#: ../src\wxUI\dialogs\configuration.py:242
+msgid "Session mute"
+msgstr "Istunnon hiljennys"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:242
+#: ../src\wxUI\dialogs\configuration.py:244
+msgid "Output device"
+msgstr "Ulostulolaite"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:249
+#: ../src\wxUI\dialogs\configuration.py:251
+msgid "Input device"
+msgstr "Sisääntulolaite"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:257
+#: ../src\wxUI\dialogs\configuration.py:259
+msgid "Sound pack"
+msgstr "Äänipaketti"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:272
+#: ../src\wxUI\dialogs\configuration.py:274
+msgid ""
+"If you have a SndUp account, enter your API Key here. If your API Key is "
+"invalid, {0} will fail to upload. If there is no API Key here, {0} will "
+"upload annonymously."
+msgstr ""
+"Mikäli sinulla on SndUp-tili, kirjoita API-avaimesi tähän. Jos API-avain on "
+"väärin, {0} ei voi lähettää palvelimelle mitään. Ellei API-avainta anneta, "
+"{0} lähettää äänitiedostot nimettömänä."
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:287
+#: ../src\wxUI\dialogs\configuration.py:289
+msgid "Disconnect your Pocket account"
+msgstr "Poista Pocket-tilin liitos"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:292
+#: ../src\wxUI\dialogs\configuration.py:294
+msgid "Pocket Authorization"
+msgstr "Pocket-valtuutus"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:292
+#: ../src\wxUI\dialogs\configuration.py:294
+msgid ""
+"The authorization request will be opened in your browser. You only need to "
+"do this once. Do you want to continue?"
+msgstr ""
+"Valtuutuspyyntö avataan selaimessa. Sinun tarvitsee hyväksyä se vain kerran. "
+"Haluatko jatkaa?"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:295
+#: ../src\wxUI\dialogs\configuration.py:297
 msgid "Error during authorization. Try again later."
 msgstr "Valtuutuksessa tapahtui virhe. Yritä myöhemmin uudelleen."
 
-#: ../src\wxUI\dialogs\configuration.py:326
+#: ../src\build\lib\wxUI\dialogs\configuration.py:308
+#: ../src\wxUI\dialogs\configuration.py:310
+msgid "{0} preferences"
+msgstr "{0}n asetukset"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:319
+#: ../src\wxUI\dialogs\configuration.py:321
 msgid "Proxy"
 msgstr "Välityspalvelin"
 
-#: ../src\wxUI\dialogs\configuration.py:335
+#: ../src\build\lib\wxUI\dialogs\configuration.py:328
+#: ../src\wxUI\dialogs\configuration.py:330
 msgid "Buffers"
 msgstr "Puskurit"
 
-#: ../src\wxUI\dialogs\lists.py:133
+#: ../src\build\lib\wxUI\dialogs\configuration.py:336
+#: ../src\wxUI\dialogs\configuration.py:338
+msgid "Sound"
+msgstr "Ääni"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:340
+#: ../src\wxUI\dialogs\configuration.py:342
+msgid "Services"
+msgstr "Palvelut"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:345
+#: ../src\wxUI\dialogs\configuration.py:347
+msgid "Save"
+msgstr "Tallenna"
+
+#: ../src\build\lib\wxUI\dialogs\find.py:10 ../src\wxUI\dialogs\find.py:10
+msgid "Find in current buffer"
+msgstr "Etsi nykyisestä puskurista"
+
+#: ../src\build\lib\wxUI\dialogs\find.py:11 ../src\wxUI\dialogs\find.py:11
+msgid "String"
+msgstr "Merkkijono"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:10 ../src\wxUI\dialogs\lists.py:10
+msgid "Lists manager"
+msgstr "Listojen hallinta"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13
+#: ../src\build\lib\wxUI\dialogs\lists.py:69 ../src\wxUI\dialogs\lists.py:13
+#: ../src\wxUI\dialogs\lists.py:69
+msgid "Description"
+msgstr "Kuvaus"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+msgid "List"
+msgstr "Lista"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+msgid "Members"
+msgstr "Jäsenet"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+msgid "Owner"
+msgstr "Omistaja"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+msgid "mode"
+msgstr "tila"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:18
+#: ../src\build\lib\wxUI\dialogs\lists.py:61 ../src\wxUI\dialogs\lists.py:18
+#: ../src\wxUI\dialogs\lists.py:61
+msgid "Create a new list"
+msgstr "Luo uusi"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:20
+#: ../src\build\lib\wxUI\dialogs\lists.py:124 ../src\wxUI\dialogs\lists.py:20
+#: ../src\wxUI\dialogs\lists.py:124
+msgid "Remove"
+msgstr "Poista"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:21 ../src\wxUI\dialogs\lists.py:21
+msgid "Open in buffer"
+msgstr "Avaa puskurissa"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:51 ../src\wxUI\dialogs\lists.py:51
+msgid "Viewing lists for %s"
+msgstr "Näytetään käyttäjän %s listat"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:52 ../src\wxUI\dialogs\lists.py:52
+msgid "Subscribe"
+msgstr "Tilaa"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:53 ../src\wxUI\dialogs\lists.py:53
+msgid "Unsubscribe"
+msgstr "Peruuta tilaus"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:64 ../src\wxUI\dialogs\lists.py:64
+msgid "Name (20 characters maximun)"
+msgstr "Nimi (enintään 20 merkkiä)"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:74 ../src\wxUI\dialogs\lists.py:74
+msgid "Mode"
+msgstr "Tila"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:75 ../src\wxUI\dialogs\lists.py:75
+msgid "Public"
+msgstr "Julkinen"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:76 ../src\wxUI\dialogs\lists.py:76
+msgid "Private"
+msgstr "Yksityinen"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:96 ../src\wxUI\dialogs\lists.py:96
+msgid "Editing the list %s"
+msgstr "Muokataan listaa %s"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:107 ../src\wxUI\dialogs\lists.py:107
+msgid "Select a list to add the user"
+msgstr "Valitse lista, johon käyttäjä lisätään"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:108 ../src\wxUI\dialogs\lists.py:108
+msgid "Add"
+msgstr "Lisää"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:123 ../src\wxUI\dialogs\lists.py:123
+msgid "Select a list to remove the user"
+msgstr "Valitse lista, jolta käyttäjä poistetaan"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:133 ../src\wxUI\dialogs\lists.py:133
 msgid "Do you really want to delete this list?"
 msgstr "Haluatko varmasti poistaa tämän listan?"
 
+#: ../src\build\lib\wxUI\dialogs\message.py:76
+#: ../src\wxUI\dialogs\message.py:76
+msgid "Upload image..."
+msgstr "Lähetä kuva..."
+
+#: ../src\build\lib\wxUI\dialogs\message.py:77
+#: ../src\wxUI\dialogs\message.py:77
+msgid "Check spelling..."
+msgstr "Oikeinkirjoituksen tarkistus..."
+
+#: ../src\build\lib\wxUI\dialogs\message.py:78
+#: ../src\wxUI\dialogs\message.py:78
+msgid "Attach audio..."
+msgstr "Lisää liitteeksi äänitiedosto..."
+
+#: ../src\build\lib\wxUI\dialogs\message.py:79
+#: ../src\build\lib\wxUI\dialogs\message.py:139
+#: ../src\build\lib\wxUI\dialogs\message.py:200
+#: ../src\wxUI\dialogs\message.py:79 ../src\wxUI\dialogs\message.py:139
+#: ../src\wxUI\dialogs\message.py:200
+msgid "Shorten URL"
+msgstr "Lyhennä URL"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:80
+#: ../src\build\lib\wxUI\dialogs\message.py:140
+#: ../src\build\lib\wxUI\dialogs\message.py:201
+#: ../src\build\lib\wxUI\dialogs\message.py:280
+#: ../src\build\lib\wxUI\dialogs\message.py:335
+#: ../src\wxUI\dialogs\message.py:80 ../src\wxUI\dialogs\message.py:140
+#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:280
+#: ../src\wxUI\dialogs\message.py:335
+msgid "Expand URL"
+msgstr "Laajenna URL"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:83
+#: ../src\wxUI\dialogs\message.py:83
+msgid "Translate..."
+msgstr "Käännä..."
+
+#: ../src\build\lib\wxUI\dialogs\message.py:84
+#: ../src\build\lib\wxUI\dialogs\message.py:144
+#: ../src\build\lib\wxUI\dialogs\message.py:189
+#: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\message.py:144
+#: ../src\wxUI\dialogs\message.py:189
+msgid "&Autocomplete users"
+msgstr "Täydennä käyttäjät &automaattisesti"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:85
+#: ../src\build\lib\wxUI\dialogs\message.py:145
+#: ../src\build\lib\wxUI\dialogs\message.py:205
 #: ../src\wxUI\dialogs\message.py:85 ../src\wxUI\dialogs\message.py:145
 #: ../src\wxUI\dialogs\message.py:205
 msgid "Send"
 msgstr "Lähetä"
 
-#: ../src\wxUI\dialogs\urlList.py:6
+#: ../src\build\lib\wxUI\dialogs\message.py:119
+#: ../src\build\lib\wxUI\dialogs\message.py:178
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:80
+#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
+#: ../src\wxUI\dialogs\update_profile.py:80
+msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+msgstr "Kuvatiedostot (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:119
+#: ../src\build\lib\wxUI\dialogs\message.py:178
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:80
+#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
+#: ../src\wxUI\dialogs\update_profile.py:80
+msgid "Select the picture to be uploaded"
+msgstr "Valitse lähetettävä kuva"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:137
+#: ../src\build\lib\wxUI\dialogs\message.py:198
+#: ../src\build\lib\wxUI\dialogs\message.py:279
+#: ../src\build\lib\wxUI\dialogs\message.py:334
+#: ../src\wxUI\dialogs\message.py:137 ../src\wxUI\dialogs\message.py:198
+#: ../src\wxUI\dialogs\message.py:279 ../src\wxUI\dialogs\message.py:334
+msgid "Spelling correction"
+msgstr "Oikeinkirjoituksen tarkistus"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:187
+#: ../src\wxUI\dialogs\message.py:187
+msgid "Recipient"
+msgstr "Vastaanottaja"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:239
+#: ../src\wxUI\dialogs\message.py:239
+msgid "Men&tion to all"
+msgstr "Mainitse ka&ikille"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:248
+#: ../src\wxUI\dialogs\message.py:248
+msgid "Tweet - %i characters "
+msgstr "Twiitti - %i merkkiä "
+
+#: ../src\build\lib\wxUI\dialogs\message.py:265
+#: ../src\wxUI\dialogs\message.py:265
+msgid "Retweets: "
+msgstr "Uudelleentwiittauksia: "
+
+#: ../src\build\lib\wxUI\dialogs\message.py:270
+#: ../src\wxUI\dialogs\message.py:270
+msgid "Favourites: "
+msgstr "Suosikkeja: "
+
+#: ../src\build\lib\wxUI\dialogs\message.py:320
+#: ../src\wxUI\dialogs\message.py:320
+msgid "View"
+msgstr "Näytä"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:322
+#: ../src\wxUI\dialogs\message.py:322
+msgid "Item"
+msgstr "Kohde"
+
+#: ../src\build\lib\wxUI\dialogs\search.py:10 ../src\wxUI\dialogs\search.py:10
+msgid "Search on Twitter"
+msgstr "Hae Twitteristä"
+
+#: ../src\build\lib\wxUI\dialogs\search.py:11 ../src\wxUI\dialogs\search.py:11
+msgid "Search"
+msgstr "Hae"
+
+#: ../src\build\lib\wxUI\dialogs\search.py:18
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:17
+#: ../src\wxUI\dialogs\search.py:18 ../src\wxUI\dialogs\userSelection.py:17
+msgid "Tweets"
+msgstr "Twiittejä"
+
+#: ../src\build\lib\wxUI\dialogs\search.py:19 ../src\wxUI\dialogs\search.py:19
+msgid "Users"
+msgstr "Käyttäjiä"
+
+#: ../src\build\lib\wxUI\dialogs\show_user.py:10
+#: ../src\wxUI\dialogs\show_user.py:10
+msgid "Details"
+msgstr "Tiedot"
+
+#: ../src\build\lib\wxUI\dialogs\show_user.py:15
+#: ../src\wxUI\dialogs\show_user.py:15
+msgid "Go to URL"
+msgstr "Siirry URL-osoitteeseen"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:10 ../src\wxUI\dialogs\trends.py:10
+msgid "View trending topics"
+msgstr "Näytä suositut puheenaiheet"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:11 ../src\wxUI\dialogs\trends.py:11
+msgid "Trending topics by"
+msgstr "Suositut puheenaiheet käyttäjältä"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:13 ../src\wxUI\dialogs\trends.py:13
+msgid "Country"
+msgstr "Maa"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:14 ../src\wxUI\dialogs\trends.py:14
+msgid "City"
+msgstr "Kaupunki"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:20
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:16
+#: ../src\wxUI\dialogs\trends.py:20 ../src\wxUI\dialogs\update_profile.py:16
+msgid "Location"
+msgstr "Sijainti"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:8
+#: ../src\wxUI\dialogs\update_profile.py:8
+msgid "Update your profile"
+msgstr "Päivitä profiilisi"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:10
+#: ../src\wxUI\dialogs\update_profile.py:10
+msgid "Name (20 characters maximum)"
+msgstr "Nimi (enintään 20 merkkiä)"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:21
+#: ../src\wxUI\dialogs\update_profile.py:21
+msgid "Website"
+msgstr "Verkkosivu"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:26
+#: ../src\wxUI\dialogs\update_profile.py:26
+msgid "Bio (160 characters maximum)"
+msgstr "Kuvaus (enintään 160 merkkiä)"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:33
+#: ../src\wxUI\dialogs\update_profile.py:33
+msgid "Update profile"
+msgstr "Päivitä profiili"
+
+#: ../src\build\lib\wxUI\dialogs\urlList.py:6 ../src\wxUI\dialogs\urlList.py:6
 msgid "Select URL"
 msgstr "Valitse URL"
 
-#: ../src\wxUI\view.py:15
+#: ../src\build\lib\wxUI\dialogs\userActions.py:17
+#: ../src\wxUI\dialogs\userActions.py:17
+msgid "Follow"
+msgstr "Seuraa"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:18
+#: ../src\wxUI\dialogs\userActions.py:18
+msgid "Unfollow"
+msgstr "Lopeta seuraaminen"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:19
+#: ../src\wxUI\dialogs\userActions.py:19
+msgid "Mute"
+msgstr "Hiljennä"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:20
+#: ../src\wxUI\dialogs\userActions.py:20
+msgid "Unmute"
+msgstr "Poista hiljennys"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:21
+#: ../src\wxUI\dialogs\userActions.py:21
+msgid "Block"
+msgstr "Estä"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:22
+#: ../src\wxUI\dialogs\userActions.py:22
+msgid "Unblock"
+msgstr "Poista esto"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:23
+#: ../src\wxUI\dialogs\userActions.py:23
+msgid "Report as spam"
+msgstr "Ilmoita roskatwiittaajaksi"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:24
+#: ../src\wxUI\dialogs\userActions.py:24
+msgid "Ignore tweets from this client"
+msgstr "Twiittejä ei huomioida tästä asiakasohjelmasta"
+
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:9
+#: ../src\wxUI\dialogs\userSelection.py:9
+msgid "Timeline for %s"
+msgstr "Käyttäjän %s aikajana"
+
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:16
+#: ../src\wxUI\dialogs\userSelection.py:16
+msgid "Buffer type"
+msgstr "Puskurin tyyppi"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:34 ../src\build\lib\wxUI\view.py:22
+#: ../src\wxUI\sysTrayIcon.py:34 ../src\wxUI\view.py:22
+msgid "&Global settings"
+msgstr "&Yleisasetukset"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:35 ../src\build\lib\wxUI\view.py:21
+#: ../src\wxUI\sysTrayIcon.py:35 ../src\wxUI\view.py:21
+msgid "Account se&ttings"
+msgstr "Tilin &asetukset"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:36 ../src\wxUI\sysTrayIcon.py:36
+msgid "Update &profile"
+msgstr "Päivitä &profiili"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:37 ../src\wxUI\sysTrayIcon.py:37
+msgid "&Show / hide"
+msgstr "&Näytä / piilota"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:38 ../src\build\lib\wxUI\view.py:63
+#: ../src\wxUI\sysTrayIcon.py:38 ../src\wxUI\view.py:63
+msgid "&Documentation"
+msgstr "&Ohje"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:40 ../src\wxUI\sysTrayIcon.py:40
+msgid "Check for &updates"
+msgstr "Tark&ista päivitykset"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:41 ../src\wxUI\sysTrayIcon.py:41
+msgid "&Exit"
+msgstr "&Lopeta"
+
+#: ../src\build\lib\wxUI\view.py:15 ../src\wxUI\view.py:15
 msgid "&Manage accounts"
 msgstr "Tilien &hallinta"
 
-#: ../src\wxUI\view.py:16
+#: ../src\build\lib\wxUI\view.py:16 ../src\wxUI\view.py:16
 msgid "&Update profile"
 msgstr "&Päivitä profiili"
 
-#: ../src\wxUI\view.py:17
+#: ../src\build\lib\wxUI\view.py:17 ../src\wxUI\view.py:17
 msgid "&Hide window"
 msgstr "&Piilota ikkuna"
 
-#: ../src\wxUI\view.py:18
+#: ../src\build\lib\wxUI\view.py:18 ../src\wxUI\view.py:18
 msgid "&Search"
 msgstr "&Haku"
 
-#: ../src\wxUI\view.py:19
+#: ../src\build\lib\wxUI\view.py:19 ../src\wxUI\view.py:19
 msgid "&Lists manager"
 msgstr "&Listojen hallinta"
 
-#: ../src\wxUI\view.py:20
+#: ../src\build\lib\wxUI\view.py:20 ../src\wxUI\view.py:20
 msgid "&Edit keystrokes"
 msgstr "&Muokkaa näppäinkomentoja"
 
-#: ../src\wxUI\view.py:23
+#: ../src\build\lib\wxUI\view.py:23 ../src\wxUI\view.py:23
 msgid "E&xit"
 msgstr "&Lopeta"
 
+#: ../src\build\lib\wxUI\view.py:27 ../src\build\lib\wxUI\view.py:75
 #: ../src\wxUI\view.py:27 ../src\wxUI\view.py:75
 msgid "&Tweet"
 msgstr "&Twiittaa"
 
-#: ../src\wxUI\view.py:28
+#: ../src\build\lib\wxUI\view.py:28 ../src\wxUI\view.py:28
 msgid "Re&ply"
 msgstr "V&astaa"
 
-#: ../src\wxUI\view.py:29
+#: ../src\build\lib\wxUI\view.py:29 ../src\wxUI\view.py:29
 msgid "&Retweet"
 msgstr "&Uudelleentwiittaa"
 
-#: ../src\wxUI\view.py:30
+#: ../src\build\lib\wxUI\view.py:30 ../src\wxUI\view.py:30
 msgid "Add to &favourites"
 msgstr "Lisää &suosikkeihin"
 
-#: ../src\wxUI\view.py:31
+#: ../src\build\lib\wxUI\view.py:31 ../src\wxUI\view.py:31
 msgid "Remove from favo&urites"
 msgstr "Poista suos&ikeista"
 
-#: ../src\wxUI\view.py:32
+#: ../src\build\lib\wxUI\view.py:32 ../src\wxUI\view.py:32
 msgid "&Show tweet"
 msgstr "&Näytä twiitti"
 
-#: ../src\wxUI\view.py:33
+#: ../src\build\lib\wxUI\view.py:33 ../src\wxUI\view.py:33
 msgid "View &address"
 msgstr "Näytä &osoite"
 
-#: ../src\wxUI\view.py:34
+#: ../src\build\lib\wxUI\view.py:34 ../src\wxUI\view.py:34
 msgid "View conversa&tion"
 msgstr "Näytä &keskustelu"
 
-#: ../src\wxUI\view.py:35
+#: ../src\build\lib\wxUI\view.py:35 ../src\wxUI\view.py:35
 msgid "&Delete"
 msgstr "&Poista"
 
-#: ../src\wxUI\view.py:39
+#: ../src\build\lib\wxUI\view.py:39 ../src\wxUI\view.py:39
 msgid "&Actions..."
 msgstr "To&iminnot..."
 
-#: ../src\wxUI\view.py:40
+#: ../src\build\lib\wxUI\view.py:40 ../src\wxUI\view.py:40
 msgid "&View timeline..."
 msgstr "&Näytä aikajana..."
 
-#: ../src\wxUI\view.py:41
+#: ../src\build\lib\wxUI\view.py:41 ../src\wxUI\view.py:41
 msgid "Direct me&ssage"
 msgstr "Y&ksityisviesti"
 
-#: ../src\wxUI\view.py:42
+#: ../src\build\lib\wxUI\view.py:42 ../src\wxUI\view.py:42
 msgid "&Add to list"
 msgstr "&Lisää listalle"
 
-#: ../src\wxUI\view.py:44
+#: ../src\build\lib\wxUI\view.py:43 ../src\wxUI\view.py:43
 msgid "R&emove from list"
 msgstr "&Poista listalta"
 
-#: ../src\wxUI\view.py:46
+#: ../src\build\lib\wxUI\view.py:45 ../src\wxUI\view.py:45
 msgid "&View lists"
 msgstr "&Näytä listat"
 
-#: ../src\wxUI\view.py:48
+#: ../src\build\lib\wxUI\view.py:47 ../src\wxUI\view.py:47
 msgid "Show user &profile"
 msgstr "Näytä käyttäjän p&rofiili"
 
-#: ../src\wxUI\view.py:49
+#: ../src\build\lib\wxUI\view.py:48 ../src\wxUI\view.py:48
 msgid "V&iew favourites"
 msgstr "&Näytä suosikit"
 
-#: ../src\wxUI\view.py:53
+#: ../src\build\lib\wxUI\view.py:52 ../src\wxUI\view.py:52
 msgid "New &trending topics buffer..."
 msgstr "Uusi &suosittujen puheenaiheiden puskuri..."
 
-#: ../src\wxUI\view.py:54
+#: ../src\build\lib\wxUI\view.py:53 ../src\wxUI\view.py:53
+msgid "Find a string in the currently focused buffer..."
+msgstr "Etsi merkkijonoa tällä hetkellä aktiivisena olevasta puskurista."
+
+#: ../src\build\lib\wxUI\view.py:54 ../src\wxUI\view.py:54
 msgid "&Load previous items"
 msgstr "&Lataa edelliset kohteet"
 
-#: ../src\wxUI\view.py:56
+#: ../src\build\lib\wxUI\view.py:56 ../src\wxUI\view.py:56
 msgid "&Mute"
 msgstr "&Hiljennä"
 
-#: ../src\wxUI\view.py:57
+#: ../src\build\lib\wxUI\view.py:57 ../src\wxUI\view.py:57
 msgid "&Autoread"
 msgstr "&Lue automaattisesti"
 
-#: ../src\wxUI\view.py:58
+#: ../src\build\lib\wxUI\view.py:58 ../src\wxUI\view.py:58
 msgid "&Clear buffer"
 msgstr "&Tyhjennä puskuri"
 
-#: ../src\wxUI\view.py:59
+#: ../src\build\lib\wxUI\view.py:59 ../src\wxUI\view.py:59
 msgid "&Destroy"
 msgstr "&Poista"
 
-#: ../src\wxUI\view.py:65
+#: ../src\build\lib\wxUI\view.py:65 ../src\wxUI\view.py:65
 msgid "Sounds &tutorial"
 msgstr "Tutustu &ääniin"
 
-#: ../src\wxUI\view.py:66
+#: ../src\build\lib\wxUI\view.py:66 ../src\wxUI\view.py:66
 msgid "&What's new in this version?"
 msgstr "&Mitä uutta tässä versiossa?"
 
-#: ../src\wxUI\view.py:68
+#: ../src\build\lib\wxUI\view.py:68 ../src\wxUI\view.py:68
 msgid "&Check for updates"
 msgstr "&Tarkista päivitykset"
 
-#: ../src\wxUI\view.py:69
+#: ../src\build\lib\wxUI\view.py:69 ../src\wxUI\view.py:69
 msgid "&Report an error"
 msgstr "&Ilmoita virheestä"
 
-#: ../src\wxUI\view.py:74
+#: ../src\build\lib\wxUI\view.py:70 ../src\wxUI\view.py:70
+msgid "{0}'s &website"
+msgstr "{0}n ve&rkkosivu"
+
+#: ../src\build\lib\wxUI\view.py:71 ../src\wxUI\view.py:71
+msgid "About &{0}"
+msgstr "&Tietoja {0}sta"
+
+#: ../src\build\lib\wxUI\view.py:74 ../src\wxUI\view.py:74
 msgid "&Application"
 msgstr "&Sovellus"
 
-#: ../src\wxUI\view.py:76
+#: ../src\build\lib\wxUI\view.py:76 ../src\wxUI\view.py:76
 msgid "&User"
 msgstr "&Käyttäjä"
 
-#: ../src\wxUI\view.py:77
+#: ../src\build\lib\wxUI\view.py:77 ../src\wxUI\view.py:77
 msgid "&Buffer"
 msgstr "&Puskuri"
 
-#: ../src\wxUI\view.py:78
+#: ../src\build\lib\wxUI\view.py:78 ../src\wxUI\view.py:78
 msgid "&Help"
 msgstr "&Ohje"
 
-#: ../src\wxUI\view.py:182
+#: ../src\build\lib\wxUI\view.py:159 ../src\wxUI\view.py:159
+msgid "Address"
+msgstr "Osoite"
+
+#: ../src\build\lib\wxUI\view.py:182 ../src\wxUI\view.py:182
+msgid "Update"
+msgstr "Päivitä"
+
+#: ../src\build\lib\wxUI\view.py:182 ../src\wxUI\view.py:182
 msgid "Your {0} version is up to date"
 msgstr "Käyttämäsi {0}-versio on ajan tasalla."
+
+#: ../src\languageHandler.py:95
+msgid "User default"
+msgstr "Käyttäjän oletus"
+
+#: ../src\sound.py:156
+msgid "Stopped."
+msgstr "Keskeytetty."
+
+#: ../src\wxUI\dialogs\configuration.py:33
+msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
+msgstr ""
+"Käytä Codeofdusk:n pitkien twiittien käsittelijöitä (saattaa heikentää "
+"asiakasohjelman suorituskykyä)"
+
+#~ msgid "JPG images"
+#~ msgstr "JPG-kuvat"
+
+#~ msgid "GIF images"
+#~ msgstr "GIF-kuvat"
+
+#~ msgid "PNG Images"
+#~ msgstr "PNG-kuvat"
+
+#~ msgid "Select an URL"
+#~ msgstr "Valitse URL"
+
+#~ msgid "Manage accounts"
+#~ msgstr "Tilien hallinta"
+
+#~ msgid "Autocomplete users\\342\\200\\231 settings"
+#~ msgstr "Käyttäjien automaattisen täydennyksen\\342\\200\\231 asetukset"
+
+#~ msgid "Set the autocomplete function"
+#~ msgstr "Määritä automaattinen täydennys"
+
+#~ msgid "Relative times"
+#~ msgstr "Suhteelliset ajat"
+
+#~ msgid ""
+#~ "API calls when the stream is started (One API call equals to 200 tweetts, "
+#~ "two API calls equals 400 tweets, etc):"
+#~ msgstr ""
+#~ "API-kutsuja virran käynnistyttyä (1 = 200 twiittiä, 2 = 400 twiittiä "
+#~ "jne.):"
+
+#~ msgid ""
+#~ "Inverted buffers: The newest tweets will be shown at the beginning of the "
+#~ "lists while the oldest at the end"
+#~ msgstr ""
+#~ "Käänteiset puskurit: Uusimmat twiitit näytetään listojen alussa ja vanhat "
+#~ "lopussa"
+
+#~ msgid ""
+#~ "The authorization request will be opened in your browser. Copy the code "
+#~ "from Dropbox and paste it into the text box which will appear. You only "
+#~ "need to do this once."
+#~ msgstr ""
+#~ "Valtuutuspyyntö avataan selaimessa. Kopioi Dropboxin antama koodi  ja "
+#~ "liitä se näkyviin tulevaan tekstikenttään. Sinun tarvitsee tehdä tämä "
+#~ "vain kerran."
+
+#~ msgid "Enter the code here."
+#~ msgstr "Syötä koodi tähän."
+
+#~ msgid "Verification code"
+#~ msgstr "Vahvistuskoodi"
+
+#~ msgid "Error during authorisation. Try again later."
+#~ msgstr "Valtuutuksessa tapahtui virhe. Yritä myöhemmin uudelleen."
+
+#~ msgid "TW Blue preferences"
+#~ msgstr "TWBluen asetukset"
+
+#~ msgid "Show other buffers"
+#~ msgstr "Näytä muut puskurit"
+
+#~ msgid "Not actionable."
+#~ msgstr "Ei toimintoa suoritettavissa."
+
+#~ msgid ""
+#~ "Perform secondary interact action (open URL in browser if Codeofdusk's "
+#~ "intelegent audio tweet handlers enabled, play audio if disabled."
+#~ msgstr ""
+#~ "Suorita toissijainen vuorovaikutustoiminto (avaa URL:n selaimessa, mikäli "
+#~ "Codeofduskin älykkäät audiotwiitin käsittelijät ovat käytössä tai toistaa "
+#~ "audion, mikäli käsittelijät eivät ole käytössä)."
 
 #~ msgid "Global mute off"
 #~ msgstr "Yleishiljennys pois päältä"
@@ -2790,11 +3440,6 @@ msgstr "Käyttämäsi {0}-versio on ajan tasalla."
 #~ msgid "This account is not logged in twitter."
 #~ msgstr "Tämä tili ei ole kirjautunut Twitteriin."
 
-#~ msgid ""
-#~ "A bug has happened. There are no dictionaries available for the selected "
-#~ "language in TW Blue"
-#~ msgstr "Tapahtui virhe. TWBluessa ei ole sanastoja valitulle kielelle."
-
 #~ msgid "Finished"
 #~ msgstr "Valmis"
 
@@ -2812,9 +3457,6 @@ msgstr "Käyttämäsi {0}-versio on ajan tasalla."
 
 #~ msgid "load previous items to any buffer"
 #~ msgstr "Lataa minkä tahansa puskurin aiemmat kohteet"
-
-#~ msgid "Restart TW Blue"
-#~ msgstr "Käynnistä TWBlue uudelleen"
 
 #~ msgid ""
 #~ "The application requires to be restarted to save these changes. Press OK "
@@ -2865,28 +3507,14 @@ msgstr "Käyttämäsi {0}-versio on ajan tasalla."
 #~ msgid "You've sent a tweet."
 #~ msgstr "Lähetit twiitin."
 
-#~ msgid "Editing TWBlue users database"
-#~ msgstr "Muokataan TWBluen käyttäjätietokantaa"
-
 #~ msgid "See the users list"
 #~ msgstr "Näytä käyttäjälista"
-
-#~ msgid "TWBlue's database of users has been updated."
-#~ msgstr "TWBluen käyttäjätietokanta on päivitetty."
 
 #~ msgid "ask before exiting TwBlue?"
 #~ msgstr "Kysy vahvistus ennen sulkemista"
 
 #~ msgid "Activate the auto-start of the invisible interface"
 #~ msgstr "Ota käyttöön näkymättömän käyttöliittymän automaattinen käynnistys"
-
-#~ msgid ""
-#~ "I know that the TW Blue bug system will get my Twitter username to "
-#~ "contact me and fix the bug quickly"
-#~ msgstr ""
-#~ "Tiedän, että TWBluen virheidenraportointijärjestelmä pääsee käsiksi "
-#~ "Twitter-käyttäjänimeeni, jotta minuun voidaan ottaa yhteyttä virheen "
-#~ "nopeaa korjaamista varten"
 
 #~ msgid "Show the graphical interface"
 #~ msgstr "Näytä graafinen käyttöliittymä"
@@ -2911,9 +3539,6 @@ msgstr "Käyttämäsi {0}-versio on ajan tasalla."
 
 #~ msgid "TW Blue's preferences"
 #~ msgstr "TWBluen asetukset"
-
-#~ msgid "TW Blue's &website"
-#~ msgstr "TWBluen ve&rkkosivu"
 
 #~ msgid "About &TW Blue"
 #~ msgstr "Tietoja &TWBluesta"
@@ -2956,9 +3581,6 @@ msgstr "Käyttämäsi {0}-versio on ajan tasalla."
 
 #~ msgid "A new event has happened"
 #~ msgstr "Uusi tapahtuma"
-
-#~ msgid "TW Blue is ready "
-#~ msgstr "TWBlue on valmis"
 
 #~ msgid "There's a new tweet in a timeline"
 #~ msgstr "Aikajanalla on uusi twiitti"
@@ -3086,9 +3708,6 @@ msgstr "Käyttämäsi {0}-versio on ajan tasalla."
 #~ msgid "Reconnecting streams..."
 #~ msgstr "Yhdistetään virrat uudelleen..."
 
-#~ msgid "search for %s"
-#~ msgstr "Hae termiä %s"
-
 #~ msgid "search users for %s"
 #~ msgstr "Hae käyttäjää %s"
 
@@ -3126,9 +3745,6 @@ msgstr "Käyttämäsi {0}-versio on ajan tasalla."
 #~ msgid "%s"
 #~ msgstr "%s"
 
-#~ msgid "Preferences"
-#~ msgstr "Asetukset"
-
 #~ msgid "Documentation"
 #~ msgstr "ohje"
 
@@ -3137,9 +3753,6 @@ msgstr "Käyttämäsi {0}-versio on ajan tasalla."
 
 #~ msgid "Select a twitter account to start TW Blue"
 #~ msgstr "Valitse TWBluessa käytettävä Twitter-tili"
-
-#~ msgid "Account"
-#~ msgstr "Tili"
 
 #~ msgid "Remove session"
 #~ msgstr "Poista istunto"

@@ -5,383 +5,532 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.50\n"
-"POT-Creation-Date: 2015-06-09 10:13+0100\n"
-"PO-Revision-Date: 2015-06-09 10:13+0100\n"
-"Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
+"POT-Creation-Date: 2015-06-28 13:59+Hora de verano central (México)\n"
+"PO-Revision-Date: 2015-06-28 14:16-0600\n"
+"Last-Translator: Manuel Cortéz <manuel@manuelcortez.net>\n"
 "Language-Team: Robert Osztolykan <robjoy88@gmail.com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.6.7\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../src\controller\buffersController.py:100
+#: ../src\build\lib\controller\buffersController.py:98
+#: ../src\controller\buffersController.py:98
 msgid "Opening media..."
 msgstr ""
 
-#: ../src\controller\buffersController.py:104
-msgid "Not actionable."
-msgstr ""
-
-#: ../src\controller\buffersController.py:111
+#: ../src\build\lib\controller\buffersController.py:109
+#: ../src\controller\buffersController.py:109
 msgid "This action is not supported for this buffer"
 msgstr "Ez a művelet nem támogatott ebben a bufferben"
 
-#: ../src\controller\buffersController.py:150 ../src\gtkUI\buffers\base.py:15
-#: ../src\gtkUI\buffers\events.py:14 ../src\gtkUI\buffers\trends.py:14
-#: ../src\gtkUI\dialogs\message.py:186 ../src\gtkUI\sysTrayIcon.py:33
-#: ../src\wxUI\buffers\base.py:24 ../src\wxUI\buffers\events.py:14
-#: ../src\wxUI\buffers\trends.py:17 ../src\wxUI\dialogs\message.py:253
-#: ../src\wxUI\sysTrayIcon.py:33
+#: ../src\build\lib\controller\buffersController.py:148
+#: ../src\build\lib\wxUI\buffers\base.py:24
+#: ../src\build\lib\wxUI\buffers\events.py:14
+#: ../src\build\lib\wxUI\buffers\trends.py:17
+#: ../src\build\lib\wxUI\dialogs\message.py:253
+#: ../src\build\lib\wxUI\sysTrayIcon.py:33
+#: ../src\controller\buffersController.py:148 ../src\wxUI\buffers\base.py:24
+#: ../src\wxUI\buffers\events.py:14 ../src\wxUI\buffers\trends.py:17
+#: ../src\wxUI\dialogs\message.py:253 ../src\wxUI\sysTrayIcon.py:33
 msgid "Tweet"
 msgstr "Tweet"
 
-#: ../src\controller\buffersController.py:151
+#: ../src\build\lib\controller\buffersController.py:149
+#: ../src\controller\buffersController.py:149
 msgid "Write the tweet here"
 msgstr "Írja ide a tweetet"
 
-#: ../src\controller\buffersController.py:305
-#: ../src\controller\buffersController.py:659
+#: ../src\build\lib\controller\buffersController.py:311
+#: ../src\build\lib\controller\buffersController.py:674
+#: ../src\controller\buffersController.py:311
+#: ../src\controller\buffersController.py:674
 msgid "%s items retrieved"
 msgstr "%s elem betöltve"
 
-#: ../src\controller\buffersController.py:325
+#: ../src\build\lib\controller\buffersController.py:331
+#: ../src\controller\buffersController.py:331
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Ez a buffer nem egy idővonal, ezért nem törölhető."
 
-#: ../src\controller\buffersController.py:386
-msgid "Reply to %s"
-msgstr "Válasz %s felhasználónak"
-
-#: ../src\controller\buffersController.py:386 ../src\gtkUI\buffers\base.py:17
+#: ../src\build\lib\controller\buffersController.py:392
+#: ../src\build\lib\keystrokeEditor\constants.py:11
+#: ../src\build\lib\wxUI\buffers\base.py:26
+#: ../src\controller\buffersController.py:392
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
 msgid "Reply"
 msgstr "Válasz"
 
-#: ../src\controller\buffersController.py:406
-msgid "Direct message to %s"
-msgstr "Közvetlen üzenet %s felhasználónak"
+#: ../src\build\lib\controller\buffersController.py:392
+#: ../src\controller\buffersController.py:392
+msgid "Reply to %s"
+msgstr "Válasz %s felhasználónak"
 
-#: ../src\controller\buffersController.py:406
-#: ../src\controller\mainController.py:1056
+#: ../src\build\lib\controller\buffersController.py:412
+#: ../src\build\lib\controller\mainController.py:1086
+#: ../src\controller\buffersController.py:412
+#: ../src\controller\mainController.py:1086
 msgid "New direct message"
 msgstr "Új közvetlen üzenet"
 
-#: ../src\controller\buffersController.py:427
-msgid "Add your comment to the tweet"
-msgstr "Adja hozzá megjegyzését a tweethez"
+#: ../src\build\lib\controller\buffersController.py:412
+#: ../src\controller\buffersController.py:412
+msgid "Direct message to %s"
+msgstr "Közvetlen üzenet %s felhasználónak"
 
-#: ../src\controller\buffersController.py:427 ../src\gtkUI\buffers\base.py:16
-#: ../src\gtkUI\commonMessageDialogs.py:12
+#: ../src\build\lib\controller\buffersController.py:433
+#: ../src\build\lib\keystrokeEditor\constants.py:12
+#: ../src\build\lib\wxUI\buffers\base.py:25
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:8
+#: ../src\build\lib\wxUI\dialogs\message.py:129
+#: ../src\controller\buffersController.py:433
 #: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\commonMessageDialogs.py:8 ../src\wxUI\dialogs\message.py:129
 msgid "Retweet"
 msgstr "Retweet"
 
-#: ../src\controller\buffersController.py:499
+#: ../src\build\lib\controller\buffersController.py:433
+#: ../src\controller\buffersController.py:433
+msgid "Add your comment to the tweet"
+msgstr "Adja hozzá megjegyzését a tweethez"
+
+#: ../src\build\lib\controller\buffersController.py:505
+#: ../src\controller\buffersController.py:505
 msgid "Opening URL..."
 msgstr "URL megnyitása..."
 
-#: ../src\controller\buffersController.py:534
+#: ../src\build\lib\controller\buffersController.py:540
+#: ../src\controller\buffersController.py:540
 msgid "User details"
 msgstr "Felhasználó információi"
 
-#: ../src\controller\buffersController.py:574
+#: ../src\build\lib\controller\buffersController.py:589
+#: ../src\controller\buffersController.py:589
 msgid "Empty"
 msgstr "Üres"
 
-#: ../src\controller\buffersController.py:618
-msgid "Mention to %s"
-msgstr "%s megemlítése"
-
-#: ../src\controller\buffersController.py:618
-#: ../src\gtkUI\buffers\people.py:15 ../src\wxUI\buffers\people.py:15
+#: ../src\build\lib\controller\buffersController.py:633
+#: ../src\build\lib\wxUI\buffers\people.py:15
+#: ../src\controller\buffersController.py:633 ../src\wxUI\buffers\people.py:15
 msgid "Mention"
 msgstr "Említés"
 
-#: ../src\controller\mainController.py:242
+#: ../src\build\lib\controller\buffersController.py:633
+#: ../src\controller\buffersController.py:633
+msgid "Mention to %s"
+msgstr "%s megemlítése"
+
+#: ../src\build\lib\controller\mainController.py:243
+#: ../src\controller\mainController.py:243
 msgid "Ready"
 msgstr "Üzemkész"
 
-#: ../src\controller\mainController.py:273
+#: ../src\build\lib\controller\mainController.py:274
+#: ../src\controller\mainController.py:274
 msgid "Home"
 msgstr "Főbuffer"
 
-#: ../src\controller\mainController.py:277
+#: ../src\build\lib\controller\mainController.py:278
+#: ../src\controller\mainController.py:278
 msgid "Mentions"
 msgstr "Említések"
 
-#: ../src\controller\mainController.py:281
+#: ../src\build\lib\controller\mainController.py:282
+#: ../src\controller\mainController.py:282
 msgid "Direct messages"
 msgstr "Közvetlen üzenetek"
 
-#: ../src\controller\mainController.py:285
+#: ../src\build\lib\controller\mainController.py:286
+#: ../src\controller\mainController.py:286
 msgid "Sent direct messages"
 msgstr "Elküldött közvetlen üzenetek"
 
-#: ../src\controller\mainController.py:289
+#: ../src\build\lib\controller\mainController.py:290
+#: ../src\controller\mainController.py:290
 msgid "Sent tweets"
 msgstr "Elküldött tweetek"
 
-#: ../src\controller\mainController.py:294
-#: ../src\controller\mainController.py:1172
-#: ../src\gtkUI\dialogs\userSelection.py:18
+#: ../src\build\lib\controller\mainController.py:295
+#: ../src\build\lib\controller\mainController.py:1202
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:18
+#: ../src\controller\mainController.py:295
+#: ../src\controller\mainController.py:1202
 #: ../src\wxUI\dialogs\userSelection.py:18
 msgid "Favourites"
 msgstr "Kedvencek"
 
-#: ../src\controller\mainController.py:298
-#: ../src\controller\mainController.py:1177
+#: ../src\build\lib\controller\mainController.py:299
+#: ../src\build\lib\controller\mainController.py:1207
+#: ../src\controller\mainController.py:299
+#: ../src\controller\mainController.py:1207
 msgid "Followers"
 msgstr "Követők"
 
-#: ../src\controller\mainController.py:302
-#: ../src\controller\mainController.py:1182
+#: ../src\build\lib\controller\mainController.py:303
+#: ../src\build\lib\controller\mainController.py:1212
+#: ../src\controller\mainController.py:303
+#: ../src\controller\mainController.py:1212
 msgid "Friends"
 msgstr "Barátok"
 
-#: ../src\controller\mainController.py:306
-#: ../src\controller\mainController.py:1187
+#: ../src\build\lib\controller\mainController.py:307
+#: ../src\build\lib\controller\mainController.py:1217
+#: ../src\controller\mainController.py:307
+#: ../src\controller\mainController.py:1217
 msgid "Blocked users"
 msgstr "Letiltott felhasználók"
 
-#: ../src\controller\mainController.py:310
-#: ../src\controller\mainController.py:1192
+#: ../src\build\lib\controller\mainController.py:311
+#: ../src\build\lib\controller\mainController.py:1222
+#: ../src\controller\mainController.py:311
+#: ../src\controller\mainController.py:1222
 msgid "Muted users"
 msgstr "Elnémított felhasználók"
 
-#: ../src\controller\mainController.py:314
-#: ../src\controller\mainController.py:1197
+#: ../src\build\lib\controller\mainController.py:315
+#: ../src\build\lib\controller\mainController.py:1227
+#: ../src\controller\mainController.py:315
+#: ../src\controller\mainController.py:1227
 msgid "Events"
 msgstr "Események"
 
-#: ../src\controller\mainController.py:317
+#: ../src\build\lib\controller\mainController.py:318
+#: ../src\controller\mainController.py:318
 msgid "Timelines"
 msgstr "Idővonalak"
 
-#: ../src\controller\mainController.py:324
+#: ../src\build\lib\controller\mainController.py:322
+#: ../src\build\lib\controller\mainController.py:724
+#: ../src\controller\mainController.py:322
+#: ../src\controller\mainController.py:724
+#, fuzzy
+msgid "Timeline for {}"
+msgstr "%s idővonala"
+
+#: ../src\build\lib\controller\mainController.py:325
+#: ../src\controller\mainController.py:325
 msgid "Favourites timelines"
 msgstr "Kedvencek Idővonalai"
 
-#: ../src\controller\mainController.py:333 ../src\gtkUI\dialogs\lists.py:11
-#: ../src\wxUI\dialogs\lists.py:12
+#: ../src\build\lib\controller\mainController.py:329
+#: ../src\build\lib\controller\mainController.py:734
+#: ../src\controller\mainController.py:329
+#: ../src\controller\mainController.py:734
+#, fuzzy
+msgid "Favourites timeline for {}"
+msgstr "Kedvencek Idővonalai"
+
+#: ../src\build\lib\controller\mainController.py:334
+#: ../src\build\lib\wxUI\dialogs\lists.py:12
+#: ../src\controller\mainController.py:334 ../src\wxUI\dialogs\lists.py:12
 msgid "Lists"
 msgstr "Listák"
 
-#: ../src\controller\mainController.py:338
-#: ../src\controller\mainController.py:1207
+#: ../src\build\lib\controller\mainController.py:339
+#: ../src\build\lib\controller\mainController.py:1237
+#: ../src\controller\mainController.py:339
+#: ../src\controller\mainController.py:1237
 msgid "List for {}"
 msgstr ""
 
-#: ../src\controller\mainController.py:341
+#: ../src\build\lib\controller\mainController.py:342
+#: ../src\controller\mainController.py:342
 msgid "Searches"
 msgstr "Keresések"
 
-#: ../src\controller\mainController.py:353
-#: ../src\controller\mainController.py:748
+#: ../src\build\lib\controller\mainController.py:346
+#: ../src\build\lib\controller\mainController.py:416
+#: ../src\controller\mainController.py:346
+#: ../src\controller\mainController.py:416
+#, fuzzy
+msgid "Search for {}"
+msgstr "%s keresése"
+
+#: ../src\build\lib\controller\mainController.py:354
+#: ../src\build\lib\controller\mainController.py:778
+#: ../src\controller\mainController.py:354
+#: ../src\controller\mainController.py:778
 msgid "Trending topics for %s"
 msgstr "%s trendelő témái"
 
-#: ../src\controller\mainController.py:453
-msgid "Select the user"
-msgstr "Válasszon felhasználót"
-
-#: ../src\controller\mainController.py:764
-#: ../src\controller\mainController.py:783
-msgid "There are no coordinates in this tweet"
-msgstr "Nincsenek koordináták ebben a tweetben"
-
-#: ../src\controller\mainController.py:766
-#: ../src\controller\mainController.py:785
-msgid "There are no results for the coordinates in this tweet"
-msgstr "Nincs találat a tweethez tartozó koordinátákhoz"
-
-#: ../src\controller\mainController.py:768
-#: ../src\controller\mainController.py:787
-msgid "Error decoding coordinates. Try again later."
-msgstr "Hiba a koordináták dekódolásakor. Próbálja meg újra később."
-
-#: ../src\controller\mainController.py:842
-#: ../src\controller\mainController.py:861
-#: ../src\controller\mainController.py:880
-#: ../src\controller\mainController.py:898
+#: ../src\build\lib\controller\mainController.py:435
+#: ../src\build\lib\controller\mainController.py:872
+#: ../src\build\lib\controller\mainController.py:891
+#: ../src\build\lib\controller\mainController.py:910
+#: ../src\build\lib\controller\mainController.py:928
+#: ../src\controller\mainController.py:435
+#: ../src\controller\mainController.py:872
+#: ../src\controller\mainController.py:891
+#: ../src\controller\mainController.py:910
+#: ../src\controller\mainController.py:928
 msgid ""
 "No session is currently in focus. Focus a session with the next or previous "
 "session shortcut."
 msgstr ""
 
-#: ../src\controller\mainController.py:889
-#: ../src\controller\mainController.py:907
+#: ../src\build\lib\controller\mainController.py:439
+#: ../src\controller\mainController.py:439
+#, fuzzy
+msgid "Empty buffer."
+msgstr "Buffer kiürítése"
+
+#: ../src\build\lib\controller\mainController.py:446
+#: ../src\controller\mainController.py:446
+msgid "{0} not found."
+msgstr ""
+
+#: ../src\build\lib\controller\mainController.py:482
+#: ../src\controller\mainController.py:482
+msgid "Select the user"
+msgstr "Válasszon felhasználót"
+
+#: ../src\build\lib\controller\mainController.py:751
+#: ../src\controller\mainController.py:751
+msgid "Conversation with {0}"
+msgstr ""
+
+#: ../src\build\lib\controller\mainController.py:794
+#: ../src\build\lib\controller\mainController.py:813
+#: ../src\controller\mainController.py:794
+#: ../src\controller\mainController.py:813
+msgid "There are no coordinates in this tweet"
+msgstr "Nincsenek koordináták ebben a tweetben"
+
+#: ../src\build\lib\controller\mainController.py:796
+#: ../src\build\lib\controller\mainController.py:815
+#: ../src\controller\mainController.py:796
+#: ../src\controller\mainController.py:815
+msgid "There are no results for the coordinates in this tweet"
+msgstr "Nincs találat a tweethez tartozó koordinátákhoz"
+
+#: ../src\build\lib\controller\mainController.py:798
+#: ../src\build\lib\controller\mainController.py:817
+#: ../src\controller\mainController.py:798
+#: ../src\controller\mainController.py:817
+msgid "Error decoding coordinates. Try again later."
+msgstr "Hiba a koordináták dekódolásakor. Próbálja meg újra később."
+
+#: ../src\build\lib\controller\mainController.py:919
+#: ../src\build\lib\controller\mainController.py:937
+#: ../src\controller\mainController.py:919
+#: ../src\controller\mainController.py:937
 msgid "%s, %s of %s"
 msgstr "%s, %s per %s"
 
-#: ../src\controller\mainController.py:891
-#: ../src\controller\mainController.py:909
-#: ../src\controller\mainController.py:929
-#: ../src\controller\mainController.py:949
+#: ../src\build\lib\controller\mainController.py:921
+#: ../src\build\lib\controller\mainController.py:939
+#: ../src\build\lib\controller\mainController.py:959
+#: ../src\build\lib\controller\mainController.py:979
+#: ../src\controller\mainController.py:921
+#: ../src\controller\mainController.py:939
+#: ../src\controller\mainController.py:959
+#: ../src\controller\mainController.py:979
 msgid "%s. Empty"
 msgstr "%s. Üres"
 
-#: ../src\controller\mainController.py:922
+#: ../src\build\lib\controller\mainController.py:952
+#: ../src\controller\mainController.py:952
 msgid "{0}: This account is not logged into Twitter."
 msgstr ""
 
-#: ../src\controller\mainController.py:927
-#: ../src\controller\mainController.py:947
+#: ../src\build\lib\controller\mainController.py:957
+#: ../src\build\lib\controller\mainController.py:977
+#: ../src\controller\mainController.py:957
+#: ../src\controller\mainController.py:977
 msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s per %s"
 
-#: ../src\controller\mainController.py:942
+#: ../src\build\lib\controller\mainController.py:972
+#: ../src\controller\mainController.py:972
 msgid "{0}: This account is not logged into twitter."
 msgstr ""
 
-#: ../src\controller\mainController.py:1047
+#: ../src\build\lib\controller\mainController.py:1077
+#: ../src\controller\mainController.py:1077
 msgid "One mention from %s "
 msgstr "Egy említés %s felhasználótól"
 
-#: ../src\controller\mainController.py:1136
-#: ../src\controller\mainController.py:1145
+#: ../src\build\lib\controller\mainController.py:1166
+#: ../src\build\lib\controller\mainController.py:1175
+#: ../src\controller\mainController.py:1166
+#: ../src\controller\mainController.py:1175
 msgid "One tweet from %s"
 msgstr "Egy tweet %s felhasználótól"
 
-#: ../src\controller\mainController.py:1202
+#: ../src\build\lib\controller\mainController.py:1232
+#: ../src\controller\mainController.py:1232
 msgid "This list is already opened"
 msgstr ""
 
-#: ../src\controller\mainController.py:1260
+#: ../src\build\lib\controller\mainController.py:1290
+#: ../src\controller\mainController.py:1290
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr ""
 "Az új tweetek automatikus felolvasása engedélyezve van ehhez a bufferhez"
 
-#: ../src\controller\mainController.py:1263
+#: ../src\build\lib\controller\mainController.py:1293
+#: ../src\controller\mainController.py:1293
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "Az új tweetek automatikus felolvasása le van tiltva ehhez a bufferhez"
 
-#: ../src\controller\mainController.py:1269
+#: ../src\build\lib\controller\mainController.py:1299
+#: ../src\controller\mainController.py:1299
 msgid "Session mute on"
 msgstr "Munkamenet némítás bekapcsolva"
 
-#: ../src\controller\mainController.py:1272
+#: ../src\build\lib\controller\mainController.py:1302
+#: ../src\controller\mainController.py:1302
 msgid "Session mute off"
 msgstr ""
 
-#: ../src\controller\mainController.py:1279
+#: ../src\build\lib\controller\mainController.py:1309
+#: ../src\controller\mainController.py:1309
 msgid "Buffer mute on"
 msgstr "Buffer némítás bekapcsolva"
 
-#: ../src\controller\mainController.py:1282
+#: ../src\build\lib\controller\mainController.py:1312
+#: ../src\controller\mainController.py:1312
 msgid "Buffer mute off"
 msgstr "Buffer némítás kikapcsolva"
 
-#: ../src\controller\messages.py:43
+#: ../src\build\lib\controller\messages.py:43 ../src\controller\messages.py:43
 msgid "Translated"
 msgstr "Lefordítva"
 
-#: ../src\controller\messages.py:50
+#: ../src\build\lib\controller\messages.py:50 ../src\controller\messages.py:50
 msgid "There's no URL to be shortened"
 msgstr "Nincs rövidítendő URL"
 
-#: ../src\controller\messages.py:54 ../src\controller\messages.py:61
+#: ../src\build\lib\controller\messages.py:54
+#: ../src\build\lib\controller\messages.py:61 ../src\controller\messages.py:54
+#: ../src\controller\messages.py:61
 msgid "URL shortened"
 msgstr "URL rövidítve"
 
-#: ../src\controller\messages.py:67
+#: ../src\build\lib\controller\messages.py:67 ../src\controller\messages.py:67
 msgid "There's no URL to be expanded"
 msgstr "Nincs hosszabbítandó URL"
 
-#: ../src\controller\messages.py:71 ../src\controller\messages.py:78
+#: ../src\build\lib\controller\messages.py:71
+#: ../src\build\lib\controller\messages.py:78 ../src\controller\messages.py:71
+#: ../src\controller\messages.py:78
 msgid "URL expanded"
 msgstr "URL meghosszabbítva"
 
-#: ../src\controller\messages.py:82
+#: ../src\build\lib\controller\messages.py:82 ../src\controller\messages.py:82
 msgid "%s - %s of %d characters"
 msgstr "%s - %s a %d karakterből"
 
+#: ../src\build\lib\controller\messages.py:106
 #: ../src\controller\messages.py:106
 msgid "Unable to upload the audio"
 msgstr "Nem lehet a hangfájlt feltölteni"
 
+#: ../src\build\lib\controller\messages.py:118
+#: ../src\build\lib\controller\messages.py:126
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:77
 #: ../src\controller\messages.py:118 ../src\controller\messages.py:126
-#: ../src\gtkUI\dialogs\update_profile.py:77
 #: ../src\wxUI\dialogs\update_profile.py:77
 msgid "Discard image"
 msgstr "Kép törlése"
 
+#: ../src\build\lib\controller\messages.py:121
+#: ../src\build\lib\controller\user.py:53
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:127
 #: ../src\controller\messages.py:121 ../src\controller\user.py:53
-#: ../src\extra\AudioUploader\audioUploader.py:130
+#: ../src\extra\AudioUploader\audioUploader.py:127
 msgid "Discarded"
 msgstr "Törölve"
 
-#: ../src\controller\messages.py:122 ../src\gtkUI\dialogs\update_profile.py:32
-#: ../src\gtkUI\dialogs\update_profile.py:75
-#: ../src\wxUI\dialogs\message.py:136 ../src\wxUI\dialogs\update_profile.py:32
+#: ../src\build\lib\controller\messages.py:122
+#: ../src\build\lib\wxUI\dialogs\message.py:136
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:32
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:75
+#: ../src\controller\messages.py:122 ../src\wxUI\dialogs\message.py:136
+#: ../src\wxUI\dialogs\update_profile.py:32
 #: ../src\wxUI\dialogs\update_profile.py:75
 msgid "Upload a picture"
 msgstr "Kép feltöltése"
 
-#: ../src\controller\settings.py:114 ../src\controller\settings.py:173
-#: ../src\wxUI\dialogs\configuration.py:97
+#: ../src\build\lib\controller\settings.py:117
+#: ../src\build\lib\controller\settings.py:176
+#: ../src\build\lib\wxUI\dialogs\configuration.py:98
+#: ../src\controller\settings.py:119 ../src\controller\settings.py:178
+#: ../src\wxUI\dialogs\configuration.py:100
 msgid "Ask"
 msgstr "Kérdez"
 
-#: ../src\controller\settings.py:116 ../src\controller\settings.py:175
-#: ../src\wxUI\dialogs\configuration.py:97
+#: ../src\build\lib\controller\settings.py:119
+#: ../src\build\lib\controller\settings.py:178
+#: ../src\build\lib\wxUI\dialogs\configuration.py:98
+#: ../src\controller\settings.py:121 ../src\controller\settings.py:180
+#: ../src\wxUI\dialogs\configuration.py:100
 msgid "Retweet without comments"
 msgstr "Retweet szöveg hozzáadása nélkül"
 
-#: ../src\controller\settings.py:118 ../src\wxUI\dialogs\configuration.py:97
+#: ../src\build\lib\controller\settings.py:121
+#: ../src\build\lib\wxUI\dialogs\configuration.py:98
+#: ../src\controller\settings.py:123 ../src\wxUI\dialogs\configuration.py:100
 msgid "Retweet with comments"
 msgstr "Retweet szöveg hozzáadásával"
 
-#: ../src\controller\settings.py:150
+#: ../src\build\lib\controller\settings.py:153
+#: ../src\controller\settings.py:155
 msgid "Account settings for %s"
 msgstr "%s fiókbeállításai"
 
-#: ../src\controller\settings.py:241 ../src\gtkUI\dialogs\configuration.py:153
-#: ../src\wxUI\dialogs\configuration.py:290
-msgid "Link your Dropbox account"
-msgstr "Dropbox fiók hozzáadása"
+#: ../src\build\lib\controller\settings.py:261
+#: ../src\build\lib\wxUI\dialogs\configuration.py:289
+#: ../src\controller\settings.py:263 ../src\wxUI\dialogs\configuration.py:291
+#, fuzzy
+msgid "Connect your Pocket account"
+msgstr "Dropbox fiók eltávolítása"
 
-#: ../src\controller\user.py:25
+#: ../src\build\lib\controller\user.py:25 ../src\controller\user.py:25
 msgid "Information for %s"
 msgstr "%s adatai"
 
-#: ../src\controller\user.py:82
+#: ../src\build\lib\controller\user.py:82 ../src\controller\user.py:82
 msgid "Username: @%s\n"
 msgstr "Felhasználó: @%s\n"
 
-#: ../src\controller\user.py:83
+#: ../src\build\lib\controller\user.py:83 ../src\controller\user.py:83
 msgid "Name: %s\n"
 msgstr "Név: %s\n"
 
-#: ../src\controller\user.py:85
+#: ../src\build\lib\controller\user.py:85 ../src\controller\user.py:85
 msgid "Location: %s\n"
 msgstr "Tartózkodási hely: %s\n"
 
-#: ../src\controller\user.py:87
+#: ../src\build\lib\controller\user.py:87 ../src\controller\user.py:87
 msgid "URL: %s\n"
 msgstr "URL: %s\n"
 
-#: ../src\controller\user.py:89
+#: ../src\build\lib\controller\user.py:89 ../src\controller\user.py:89
 msgid "Bio: %s\n"
 msgstr "Bio: %s\n"
 
-#: ../src\controller\user.py:90 ../src\controller\user.py:94
+#: ../src\build\lib\controller\user.py:90
+#: ../src\build\lib\controller\user.py:94 ../src\controller\user.py:90
+#: ../src\controller\user.py:94
 msgid "Yes"
 msgstr "Igen"
 
-#: ../src\controller\user.py:91 ../src\controller\user.py:95
+#: ../src\build\lib\controller\user.py:91
+#: ../src\build\lib\controller\user.py:95 ../src\controller\user.py:91
+#: ../src\controller\user.py:95
 msgid "No"
 msgstr "Nem"
 
-#: ../src\controller\user.py:92
+#: ../src\build\lib\controller\user.py:92 ../src\controller\user.py:92
 msgid "Protected: %s\n"
 msgstr "Levédve: %s\n"
 
-#: ../src\controller\user.py:93
+#: ../src\build\lib\controller\user.py:93 ../src\controller\user.py:93
 msgid ""
 "Followers: %s\n"
 " Friends: %s\n"
@@ -389,315 +538,429 @@ msgstr ""
 "Követők: %s\n"
 "Barátok: %s\n"
 
-#: ../src\controller\user.py:96
+#: ../src\build\lib\controller\user.py:96 ../src\controller\user.py:96
 msgid "Verified: %s\n"
 msgstr "Ellenőrzött: %s\n"
 
-#: ../src\controller\user.py:97
+#: ../src\build\lib\controller\user.py:97 ../src\controller\user.py:97
 msgid "Tweets: %s\n"
 msgstr "Tweetek: %s\n"
 
-#: ../src\controller\user.py:98
+#: ../src\build\lib\controller\user.py:98 ../src\controller\user.py:98
 msgid "Favourites: %s"
 msgstr "Kedvencek: %s"
 
+#: ../src\build\lib\controller\userActionsController.py:69
 #: ../src\controller\userActionsController.py:69
 msgid "You can't ignore direct messages"
 msgstr "Nem tud közvetlen üzeneteket figyelmen kívül hagyni"
 
-#: ../src\extra\AudioUploader\audioUploader.py:52
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:53
+#: ../src\extra\AudioUploader\audioUploader.py:53
 msgid "Attaching..."
 msgstr "Csatolás..."
 
-#: ../src\extra\AudioUploader\audioUploader.py:78
-#: ../src\extra\AudioUploader\audioUploader.py:83
-#: ../src\extra\AudioUploader\audioUploader.py:110
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:75
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:80
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:107
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:36
+#: ../src\extra\AudioUploader\audioUploader.py:75
+#: ../src\extra\AudioUploader\audioUploader.py:80
+#: ../src\extra\AudioUploader\audioUploader.py:107
 #: ../src\extra\AudioUploader\wx_ui.py:36
 msgid "Pause"
 msgstr "Szünet"
 
-#: ../src\extra\AudioUploader\audioUploader.py:80
-#: ../src\extra\AudioUploader\audioUploader.py:81
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:77
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:78
+#: ../src\extra\AudioUploader\audioUploader.py:77
+#: ../src\extra\AudioUploader\audioUploader.py:78
 msgid "Resume"
 msgstr "Folytatás"
 
-#: ../src\extra\AudioUploader\audioUploader.py:98
-#: ../src\extra\AudioUploader\audioUploader.py:143
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:95
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:140
+#: ../src\extra\AudioUploader\audioUploader.py:95
+#: ../src\extra\AudioUploader\audioUploader.py:140
 msgid "Stop"
 msgstr "Leállítás"
 
-#: ../src\extra\AudioUploader\audioUploader.py:99
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:96
+#: ../src\extra\AudioUploader\audioUploader.py:96
 msgid "Recording"
 msgstr "Felvétel folyamatban"
 
-#: ../src\extra\AudioUploader\audioUploader.py:104
-#: ../src\extra\AudioUploader\audioUploader.py:154
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:101
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:151
+#: ../src\extra\AudioUploader\audioUploader.py:101
+#: ../src\extra\AudioUploader\audioUploader.py:151
 msgid "Stopped"
 msgstr "Leállítva"
 
-#: ../src\extra\AudioUploader\audioUploader.py:106
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:103
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:38
+#: ../src\extra\AudioUploader\audioUploader.py:103
 #: ../src\extra\AudioUploader\wx_ui.py:38
 msgid "Record"
 msgstr "Felvétel"
 
-#: ../src\extra\AudioUploader\audioUploader.py:139 ../src\sound.py:123
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:136
+#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:123
 msgid "Playing..."
 msgstr "Lejátszás..."
 
-#: ../src\extra\AudioUploader\audioUploader.py:147
-#: ../src\extra\AudioUploader\audioUploader.py:157
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:144
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:154
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:34
+#: ../src\extra\AudioUploader\audioUploader.py:144
+#: ../src\extra\AudioUploader\audioUploader.py:154
 #: ../src\extra\AudioUploader\wx_ui.py:34
 msgid "Play"
 msgstr "Lejátszás"
 
-#: ../src\extra\AudioUploader\audioUploader.py:162
+#: ../src\build\lib\extra\AudioUploader\audioUploader.py:159
+#: ../src\extra\AudioUploader\audioUploader.py:159
 msgid "Recoding audio..."
 msgstr "Audio újrakódolása..."
 
-#: ../src\extra\AudioUploader\utils.py:27 ../src\update\utils.py:27
+#: ../src\build\lib\extra\AudioUploader\utils.py:27
+#: ../src\build\lib\update\utils.py:27 ../src\extra\AudioUploader\utils.py:27
+#: ../src\update\utils.py:27
 msgid "%d day, "
 msgstr "%d nap, "
 
-#: ../src\extra\AudioUploader\utils.py:29 ../src\update\utils.py:29
+#: ../src\build\lib\extra\AudioUploader\utils.py:29
+#: ../src\build\lib\update\utils.py:29 ../src\extra\AudioUploader\utils.py:29
+#: ../src\update\utils.py:29
 msgid "%d days, "
 msgstr "%d nap, "
 
-#: ../src\extra\AudioUploader\utils.py:31 ../src\update\utils.py:31
+#: ../src\build\lib\extra\AudioUploader\utils.py:31
+#: ../src\build\lib\update\utils.py:31 ../src\extra\AudioUploader\utils.py:31
+#: ../src\update\utils.py:31
 msgid "%d hour, "
 msgstr "%d óra, "
 
-#: ../src\extra\AudioUploader\utils.py:33 ../src\update\utils.py:33
+#: ../src\build\lib\extra\AudioUploader\utils.py:33
+#: ../src\build\lib\update\utils.py:33 ../src\extra\AudioUploader\utils.py:33
+#: ../src\update\utils.py:33
 msgid "%d hours, "
 msgstr "%d óra, "
 
-#: ../src\extra\AudioUploader\utils.py:35 ../src\update\utils.py:35
+#: ../src\build\lib\extra\AudioUploader\utils.py:35
+#: ../src\build\lib\update\utils.py:35 ../src\extra\AudioUploader\utils.py:35
+#: ../src\update\utils.py:35
 msgid "%d minute, "
 msgstr "%d perc, "
 
-#: ../src\extra\AudioUploader\utils.py:37 ../src\update\utils.py:37
+#: ../src\build\lib\extra\AudioUploader\utils.py:37
+#: ../src\build\lib\update\utils.py:37 ../src\extra\AudioUploader\utils.py:37
+#: ../src\update\utils.py:37
 msgid "%d minutes, "
 msgstr "%d perc, "
 
-#: ../src\extra\AudioUploader\utils.py:39 ../src\update\utils.py:39
+#: ../src\build\lib\extra\AudioUploader\utils.py:39
+#: ../src\build\lib\update\utils.py:39 ../src\extra\AudioUploader\utils.py:39
+#: ../src\update\utils.py:39
 msgid "%s second"
 msgstr "%s másodperc"
 
-#: ../src\extra\AudioUploader\utils.py:41 ../src\update\utils.py:41
+#: ../src\build\lib\extra\AudioUploader\utils.py:41
+#: ../src\build\lib\update\utils.py:41 ../src\extra\AudioUploader\utils.py:41
+#: ../src\update\utils.py:41
 msgid "%s seconds"
 msgstr "%s másodperc"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:13
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:13
 msgid "File"
 msgstr "Fájl"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:19
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:19
 msgid "Transferred"
 msgstr "Továbbítva"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:24
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:24
 msgid "Total file size"
 msgstr "Teljes fájlméret"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:29
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:29
 msgid "Transfer rate"
 msgstr "Átviteli sebesség"
 
+#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:34
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:34
 msgid "Time left"
 msgstr "Hátralévő idő"
 
-#: ../src\extra\AudioUploader\wx_ui.py:28 ../src\gtkUI\dialogs\message.py:139
-#: ../src\wxUI\dialogs\message.py:138 ../src\wxUI\dialogs\message.py:199
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:28
+#: ../src\build\lib\wxUI\dialogs\message.py:138
+#: ../src\build\lib\wxUI\dialogs\message.py:199
+#: ../src\extra\AudioUploader\wx_ui.py:28 ../src\wxUI\dialogs\message.py:138
+#: ../src\wxUI\dialogs\message.py:199
 msgid "Attach audio"
 msgstr "Hangfájl Csatolása"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:40
 #: ../src\extra\AudioUploader\wx_ui.py:40
 msgid "Add an existing file"
 msgstr "Létező fájl hozzáadása"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:41
 #: ../src\extra\AudioUploader\wx_ui.py:41
 msgid "Discard"
 msgstr "Törlés"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:43
 #: ../src\extra\AudioUploader\wx_ui.py:43
 msgid "Upload to"
 msgstr "Feltöltés"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:48
 #: ../src\extra\AudioUploader\wx_ui.py:48
 msgid "Attach"
 msgstr "Csatolás"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:50
+#: ../src\build\lib\issueReporter\wx_ui.py:74
+#: ../src\build\lib\wxUI\dialogs\find.py:20
 #: ../src\extra\AudioUploader\wx_ui.py:50 ../src\issueReporter\wx_ui.py:74
+#: ../src\wxUI\dialogs\find.py:20
 msgid "Cancel"
 msgstr "Mégse"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:75
 #: ../src\extra\AudioUploader\wx_ui.py:75
 msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 msgstr "Hangfájlok (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 
+#: ../src\build\lib\extra\AudioUploader\wx_ui.py:75
 #: ../src\extra\AudioUploader\wx_ui.py:75
 msgid "Select the audio file to be uploaded"
 msgstr "Válassza ki a feltöltendő fájlt"
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:4
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:4
 msgid "Audio tweet."
 msgstr "Audio tweet."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:5
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:5
 msgid "User timeline buffer created."
 msgstr ""
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:6
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:6
 msgid "Buffer destroied."
 msgstr ""
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:7
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:7
 msgid "Direct message received."
 msgstr "Közvetlen üzenet érkezett."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:8
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:8
 msgid "Direct message sent."
 msgstr "Közvetlen üzenet elküldve."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:9
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:9
 msgid "Error."
 msgstr "Hiba."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:10
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
-msgid "Tweet favorited."
+#, fuzzy
+msgid "Tweet favourited."
 msgstr "Tweet kedvencként jelölve"
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:11
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "Favourites buffer updated."
 msgstr ""
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:12
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
 msgid "Geotweet."
 msgstr "Geotweet."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:13
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:13
 msgid "Boundary reached."
 msgstr "Határ."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:14
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:14
 msgid "List updated."
 msgstr "Lista frissítve"
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:15
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:15
 msgid "Too many characters."
 msgstr "Túl sok karakter."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:16
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:16
 msgid "Mention received."
 msgstr ""
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:17
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:17
 msgid "New event."
 msgstr "Új esemény."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:18
+#: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:18
+#, fuzzy
+msgid "{0} is ready."
+msgstr "A TW Blue üzemkész "
+
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:19
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:19
 msgid "Mention sent."
 msgstr "Említés elküldve."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:20
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:20
 msgid "Tweet retweeted."
 msgstr "Retweet elküldve."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:21
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:21
 msgid "Search buffer updated."
 msgstr ""
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:22
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:22
 msgid "Tweet received."
 msgstr "Tweet érkezett."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:23
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:23
 msgid "Tweet sent."
 msgstr "Tweet elküldve."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:24
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:24
 msgid "Trending topics buffer updated."
 msgstr ""
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:25
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:25
 msgid "New tweet in user timeline buffer."
 msgstr ""
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:26
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:26
 msgid "New follower."
 msgstr "Új követő."
 
+#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:27
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:27
 msgid "Volume changed."
 msgstr "Hangerő megváltozott."
 
+#: ../src\build\lib\extra\SoundsTutorial\wx_ui.py:8
 #: ../src\extra\SoundsTutorial\wx_ui.py:8
 msgid "Sounds tutorial"
 msgstr "Hangtanító"
 
+#: ../src\build\lib\extra\SoundsTutorial\wx_ui.py:11
 #: ../src\extra\SoundsTutorial\wx_ui.py:11
 msgid "Press enter to listen to the sound for the selected event"
 msgstr ""
 "Nyomja meg az enter billentyűt a kijelölt esemény hangjának meghallgatásához"
 
+#: ../src\build\lib\extra\SpellChecker\spellchecker.py:45
 #: ../src\extra\SpellChecker\spellchecker.py:45
 msgid "Misspelled word: %s"
 msgstr ""
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:26
 #: ../src\extra\SpellChecker\wx_ui.py:26
 msgid "Misspelled word"
 msgstr ""
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:31
 #: ../src\extra\SpellChecker\wx_ui.py:31
 msgid "Context"
 msgstr "Szövegkörnyezet"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:36
 #: ../src\extra\SpellChecker\wx_ui.py:36
 msgid "Suggestions"
 msgstr "Javaslatok"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:41
 #: ../src\extra\SpellChecker\wx_ui.py:41
 msgid "Ignore"
 msgstr "Mellőzés"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:42
 #: ../src\extra\SpellChecker\wx_ui.py:42
 msgid "Ignore all"
 msgstr "Mind mellőzése"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:43
 #: ../src\extra\SpellChecker\wx_ui.py:43
 msgid "Replace"
 msgstr "Csere"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:44
 #: ../src\extra\SpellChecker\wx_ui.py:44
 msgid "Replace all"
 msgstr "Mind cseréje"
 
-#: ../src\extra\SpellChecker\wx_ui.py:76
-#: ../src\gtkUI\commonMessageDialogs.py:52
-#: ../src\gtkUI\commonMessageDialogs.py:64 ../src\issueReporter\wx_ui.py:83
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:76
+#: ../src\build\lib\issueReporter\wx_ui.py:83
+#: ../src\build\lib\issueReporter\wx_ui.py:86
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:37
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:49
+#: ../src\extra\SpellChecker\wx_ui.py:76 ../src\issueReporter\wx_ui.py:83
 #: ../src\issueReporter\wx_ui.py:86 ../src\wxUI\commonMessageDialogs.py:37
 #: ../src\wxUI\commonMessageDialogs.py:49
 msgid "Error"
 msgstr "Hiba"
 
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:76
+#: ../src\extra\SpellChecker\wx_ui.py:76
+#, fuzzy
+msgid ""
+"An error has occurred. There are no dictionaries available for the selected "
+"language in {0}"
+msgstr ""
+"Hiba történt. Nincs elérhető szótár a kiválasztott nyelvhez a TW Blue "
+"programban"
+
+#: ../src\build\lib\extra\SpellChecker\wx_ui.py:79
 #: ../src\extra\SpellChecker\wx_ui.py:79
 msgid "Spell check complete."
 msgstr ""
 
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:20
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:38
 #: ../src\extra\autocompletionUsers\completion.py:20
 #: ../src\extra\autocompletionUsers\completion.py:38
 msgid "You have to start writing"
 msgstr "El kell kezdenie gépelni"
 
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:30
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:47
 #: ../src\extra\autocompletionUsers\completion.py:30
 #: ../src\extra\autocompletionUsers\completion.py:47
 msgid "There are no results in your users database"
 msgstr "Nincs találat a felhasználói adatbázisban"
 
+#: ../src\build\lib\extra\autocompletionUsers\completion.py:32
 #: ../src\extra\autocompletionUsers\completion.py:32
 msgid "Autocompletion only works for users."
 msgstr "Az automatikus kiegészítés csak felhasználók esetén működik."
 
+#: ../src\build\lib\extra\autocompletionUsers\settings.py:25
 #: ../src\extra\autocompletionUsers\settings.py:25
 msgid ""
 "Updating database... You can close this window now. A message will tell you "
@@ -706,797 +969,994 @@ msgstr ""
 "Adatbázis frissítése... Bezárhatja ezt az ablakot. Üzenetet fog kapni a "
 "művelet befejezésekor."
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:8
 #: ../src\extra\autocompletionUsers\wx_manage.py:8
 msgid "Manage Autocompletion database"
 msgstr "Felhasználók automatikus kiegészítés adatbázisának kezelése"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:11
+#: ../src\extra\autocompletionUsers\wx_manage.py:11
+#, fuzzy
+msgid "Editing {0} users database"
+msgstr "TWBlue felhasználói adatbázis szerkesztése"
+
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:12
 #: ../src\extra\autocompletionUsers\wx_manage.py:12
 msgid "Name"
 msgstr "Név"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:12
 #: ../src\extra\autocompletionUsers\wx_manage.py:12
 msgid "Username"
 msgstr "Felhasználónév"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:15
 #: ../src\extra\autocompletionUsers\wx_manage.py:15
 msgid "Add user"
 msgstr "Felhasználó Hozzáadás"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:16
 #: ../src\extra\autocompletionUsers\wx_manage.py:16
 msgid "Remove user"
 msgstr "Felhasználó Törlés"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:37
 #: ../src\extra\autocompletionUsers\wx_manage.py:37
 msgid "Add user to database"
 msgstr "Felhasználó hozzáadása az adatbázishoz"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:37
 #: ../src\extra\autocompletionUsers\wx_manage.py:37
 msgid "Twitter username"
 msgstr "Twitter Felhasználónév"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:43
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:37
 #: ../src\extra\autocompletionUsers\wx_manage.py:43
-#: ../src\gtkUI\commonMessageDialogs.py:52
 #: ../src\wxUI\commonMessageDialogs.py:37
 msgid "The user does not exist"
 msgstr "A felhasználó nem létezik"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:43
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:43
+#: ../src\build\lib\wxUI\dialogs\configuration.py:295
 #: ../src\extra\autocompletionUsers\wx_manage.py:43
-#: ../src\gtkUI\commonMessageDialogs.py:58
-#: ../src\gtkUI\dialogs\configuration.py:165
 #: ../src\wxUI\commonMessageDialogs.py:43
-#: ../src\wxUI\dialogs\configuration.py:302
+#: ../src\wxUI\dialogs\configuration.py:297
 msgid "Error!"
 msgstr "Hiba!"
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:7
-msgid "Autocomplete users\\342\\200\\231 settings"
-msgstr ""
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:8
+#: ../src\extra\autocompletionUsers\wx_settings.py:8
+#, fuzzy
+msgid "Autocomplete users' settings"
+msgstr "Felhasználók autokiegészítésének beállítása"
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:10
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:11
+#: ../src\extra\autocompletionUsers\wx_settings.py:11
 msgid "Add users from followers buffer"
 msgstr "Felhasználók hozzáadása a követők bufferből"
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:11
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:12
+#: ../src\extra\autocompletionUsers\wx_settings.py:12
 msgid "Add users from friends buffer"
 msgstr "Felhasználók hozzáadása a barátok bufferből"
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:14
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:15
+#: ../src\extra\autocompletionUsers\wx_settings.py:15
 msgid "Manage database..."
 msgstr "Adatbázis kezelése..."
 
-#: ../src\extra\autocompletionUsers\wx_settings.py:26
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:27
+#: ../src\extra\autocompletionUsers\wx_settings.py:27
 msgid "Done"
 msgstr "Kész"
 
+#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:27
+#: ../src\extra\autocompletionUsers\wx_settings.py:27
+#, fuzzy
+msgid "{0}'s database of users has been updated."
+msgstr "A TWBlue felhasználói adatbázisa frissült"
+
+#: ../src\build\lib\extra\translator\translator.py:9
 #: ../src\extra\translator\translator.py:9
 msgid "Afrikaans"
 msgstr "Afrikai"
 
+#: ../src\build\lib\extra\translator\translator.py:10
 #: ../src\extra\translator\translator.py:10
 msgid "Albanian"
 msgstr "Albán"
 
+#: ../src\build\lib\extra\translator\translator.py:11
 #: ../src\extra\translator\translator.py:11
 msgid "Amharic"
 msgstr "Amhara"
 
+#: ../src\build\lib\extra\translator\translator.py:12
 #: ../src\extra\translator\translator.py:12
 msgid "Arabic"
 msgstr "Arab"
 
+#: ../src\build\lib\extra\translator\translator.py:13
 #: ../src\extra\translator\translator.py:13
 msgid "Armenian"
 msgstr "Örmény"
 
+#: ../src\build\lib\extra\translator\translator.py:14
 #: ../src\extra\translator\translator.py:14
 msgid "Azerbaijani"
 msgstr "Azeri"
 
+#: ../src\build\lib\extra\translator\translator.py:15
 #: ../src\extra\translator\translator.py:15
 msgid "Basque"
 msgstr "Baszk"
 
+#: ../src\build\lib\extra\translator\translator.py:16
 #: ../src\extra\translator\translator.py:16
 msgid "Belarusian"
 msgstr "Belarusz"
 
+#: ../src\build\lib\extra\translator\translator.py:17
 #: ../src\extra\translator\translator.py:17
 msgid "Bengali"
 msgstr "Bengáli"
 
+#: ../src\build\lib\extra\translator\translator.py:18
 #: ../src\extra\translator\translator.py:18
 msgid "Bihari"
 msgstr "Bihári"
 
+#: ../src\build\lib\extra\translator\translator.py:19
 #: ../src\extra\translator\translator.py:19
 msgid "Bulgarian"
 msgstr "Bolgár"
 
+#: ../src\build\lib\extra\translator\translator.py:20
 #: ../src\extra\translator\translator.py:20
 msgid "Burmese"
 msgstr "Burmai"
 
+#: ../src\build\lib\extra\translator\translator.py:21
 #: ../src\extra\translator\translator.py:21
 msgid "Catalan"
 msgstr "Katalán"
 
+#: ../src\build\lib\extra\translator\translator.py:22
 #: ../src\extra\translator\translator.py:22
 msgid "Cherokee"
 msgstr "Csiroki"
 
+#: ../src\build\lib\extra\translator\translator.py:23
 #: ../src\extra\translator\translator.py:23
 msgid "Chinese"
 msgstr "Kínai"
 
+#: ../src\build\lib\extra\translator\translator.py:24
 #: ../src\extra\translator\translator.py:24
 msgid "Chinese_simplified"
 msgstr "Egyszerűsített_kínai"
 
+#: ../src\build\lib\extra\translator\translator.py:25
 #: ../src\extra\translator\translator.py:25
 msgid "Chinese_traditional"
 msgstr "Hagyományos_kínai"
 
+#: ../src\build\lib\extra\translator\translator.py:26
 #: ../src\extra\translator\translator.py:26
 msgid "Croatian"
 msgstr "Horvát"
 
+#: ../src\build\lib\extra\translator\translator.py:27
 #: ../src\extra\translator\translator.py:27
 msgid "Czech"
 msgstr "Cseh"
 
+#: ../src\build\lib\extra\translator\translator.py:28
 #: ../src\extra\translator\translator.py:28
 msgid "Danish"
 msgstr "DÁn"
 
+#: ../src\build\lib\extra\translator\translator.py:29
 #: ../src\extra\translator\translator.py:29
 msgid "Dhivehi"
 msgstr "Dhivehi"
 
+#: ../src\build\lib\extra\translator\translator.py:30
 #: ../src\extra\translator\translator.py:30
 msgid "Dutch"
 msgstr "Holland"
 
+#: ../src\build\lib\extra\translator\translator.py:31
 #: ../src\extra\translator\translator.py:31
 msgid "English"
 msgstr "Angol"
 
+#: ../src\build\lib\extra\translator\translator.py:32
 #: ../src\extra\translator\translator.py:32
 msgid "Esperanto"
 msgstr "Eszperantó"
 
+#: ../src\build\lib\extra\translator\translator.py:33
 #: ../src\extra\translator\translator.py:33
 msgid "Estonian"
 msgstr "Észt"
 
+#: ../src\build\lib\extra\translator\translator.py:34
 #: ../src\extra\translator\translator.py:34
 msgid "Filipino"
 msgstr "filippínó"
 
+#: ../src\build\lib\extra\translator\translator.py:35
 #: ../src\extra\translator\translator.py:35
 msgid "Finnish"
 msgstr "Finn"
 
+#: ../src\build\lib\extra\translator\translator.py:36
 #: ../src\extra\translator\translator.py:36
 msgid "French"
 msgstr "Francia"
 
+#: ../src\build\lib\extra\translator\translator.py:37
 #: ../src\extra\translator\translator.py:37
 msgid "Galician"
 msgstr "Galíciai"
 
+#: ../src\build\lib\extra\translator\translator.py:38
 #: ../src\extra\translator\translator.py:38
 msgid "Georgian"
 msgstr "Grúz"
 
+#: ../src\build\lib\extra\translator\translator.py:39
 #: ../src\extra\translator\translator.py:39
 msgid "German"
 msgstr "Német"
 
+#: ../src\build\lib\extra\translator\translator.py:40
 #: ../src\extra\translator\translator.py:40
 msgid "Greek"
 msgstr "Görög"
 
+#: ../src\build\lib\extra\translator\translator.py:41
 #: ../src\extra\translator\translator.py:41
 msgid "Guarani"
 msgstr "Guarán"
 
+#: ../src\build\lib\extra\translator\translator.py:42
 #: ../src\extra\translator\translator.py:42
 msgid "Gujarati"
 msgstr "gudzsaráti"
 
+#: ../src\build\lib\extra\translator\translator.py:43
 #: ../src\extra\translator\translator.py:43
 msgid "Hebrew"
 msgstr "Héber"
 
+#: ../src\build\lib\extra\translator\translator.py:44
 #: ../src\extra\translator\translator.py:44
 msgid "Hindi"
 msgstr "Hindi"
 
+#: ../src\build\lib\extra\translator\translator.py:45
 #: ../src\extra\translator\translator.py:45
 msgid "Hungarian"
 msgstr "Magyar"
 
+#: ../src\build\lib\extra\translator\translator.py:46
 #: ../src\extra\translator\translator.py:46
 msgid "Icelandic"
 msgstr "Izlandi"
 
+#: ../src\build\lib\extra\translator\translator.py:47
 #: ../src\extra\translator\translator.py:47
 msgid "Indonesian"
 msgstr "Indonéz"
 
+#: ../src\build\lib\extra\translator\translator.py:48
 #: ../src\extra\translator\translator.py:48
 msgid "Inuktitut"
 msgstr "Inuktitut"
 
+#: ../src\build\lib\extra\translator\translator.py:49
 #: ../src\extra\translator\translator.py:49
 msgid "Irish"
 msgstr "Ír"
 
+#: ../src\build\lib\extra\translator\translator.py:50
 #: ../src\extra\translator\translator.py:50
 msgid "Italian"
 msgstr "Olasz"
 
+#: ../src\build\lib\extra\translator\translator.py:51
 #: ../src\extra\translator\translator.py:51
 msgid "Japanese"
 msgstr "Japán"
 
+#: ../src\build\lib\extra\translator\translator.py:52
 #: ../src\extra\translator\translator.py:52
 msgid "Kannada"
 msgstr "Kannadai"
 
+#: ../src\build\lib\extra\translator\translator.py:53
 #: ../src\extra\translator\translator.py:53
 msgid "Kazakh"
 msgstr "Kazakh"
 
+#: ../src\build\lib\extra\translator\translator.py:54
 #: ../src\extra\translator\translator.py:54
 msgid "Khmer"
 msgstr "Khmer"
 
+#: ../src\build\lib\extra\translator\translator.py:55
 #: ../src\extra\translator\translator.py:55
 msgid "Korean"
 msgstr "Kóreai"
 
+#: ../src\build\lib\extra\translator\translator.py:56
 #: ../src\extra\translator\translator.py:56
 msgid "Kurdish"
 msgstr "Kurd"
 
+#: ../src\build\lib\extra\translator\translator.py:57
 #: ../src\extra\translator\translator.py:57
 msgid "Kyrgyz"
 msgstr "Kyrgyz"
 
+#: ../src\build\lib\extra\translator\translator.py:58
 #: ../src\extra\translator\translator.py:58
 msgid "Laothian"
 msgstr "Laoszi"
 
+#: ../src\build\lib\extra\translator\translator.py:59
 #: ../src\extra\translator\translator.py:59
 msgid "Latvian"
 msgstr "Lett"
 
+#: ../src\build\lib\extra\translator\translator.py:60
 #: ../src\extra\translator\translator.py:60
 msgid "Lithuanian"
 msgstr "Litván"
 
+#: ../src\build\lib\extra\translator\translator.py:61
 #: ../src\extra\translator\translator.py:61
 msgid "Macedonian"
 msgstr "Makedóniai"
 
+#: ../src\build\lib\extra\translator\translator.py:62
 #: ../src\extra\translator\translator.py:62
 msgid "Malay"
 msgstr "Maláj"
 
+#: ../src\build\lib\extra\translator\translator.py:63
 #: ../src\extra\translator\translator.py:63
 msgid "Malayalam"
 msgstr "Malayalam"
 
+#: ../src\build\lib\extra\translator\translator.py:64
 #: ../src\extra\translator\translator.py:64
 msgid "Maltese"
 msgstr "Máltai"
 
+#: ../src\build\lib\extra\translator\translator.py:65
 #: ../src\extra\translator\translator.py:65
 msgid "Marathi"
 msgstr "Marathi"
 
+#: ../src\build\lib\extra\translator\translator.py:66
 #: ../src\extra\translator\translator.py:66
 msgid "Mongolian"
 msgstr "Mongol"
 
+#: ../src\build\lib\extra\translator\translator.py:67
 #: ../src\extra\translator\translator.py:67
 msgid "Nepali"
 msgstr "Nepali"
 
+#: ../src\build\lib\extra\translator\translator.py:68
 #: ../src\extra\translator\translator.py:68
 msgid "Norwegian"
 msgstr "Norvég"
 
+#: ../src\build\lib\extra\translator\translator.py:69
 #: ../src\extra\translator\translator.py:69
 msgid "Oriya"
 msgstr "Oriya"
 
+#: ../src\build\lib\extra\translator\translator.py:70
 #: ../src\extra\translator\translator.py:70
 msgid "Pashto"
 msgstr "Pashto"
 
+#: ../src\build\lib\extra\translator\translator.py:71
 #: ../src\extra\translator\translator.py:71
 msgid "Persian"
 msgstr "Perzsa"
 
+#: ../src\build\lib\extra\translator\translator.py:72
 #: ../src\extra\translator\translator.py:72
 msgid "Polish"
 msgstr "Lengyel"
 
+#: ../src\build\lib\extra\translator\translator.py:73
 #: ../src\extra\translator\translator.py:73
 msgid "Portuguese"
 msgstr "Portugál"
 
+#: ../src\build\lib\extra\translator\translator.py:74
 #: ../src\extra\translator\translator.py:74
 msgid "Punjabi"
 msgstr "Punjabi"
 
+#: ../src\build\lib\extra\translator\translator.py:75
 #: ../src\extra\translator\translator.py:75
 msgid "Romanian"
 msgstr "Román"
 
+#: ../src\build\lib\extra\translator\translator.py:76
 #: ../src\extra\translator\translator.py:76
 msgid "Russian"
 msgstr "Orosz"
 
+#: ../src\build\lib\extra\translator\translator.py:77
 #: ../src\extra\translator\translator.py:77
 msgid "Sanskrit"
 msgstr "Szanszkrit"
 
+#: ../src\build\lib\extra\translator\translator.py:78
 #: ../src\extra\translator\translator.py:78
 msgid "Serbian"
 msgstr "Szerb"
 
+#: ../src\build\lib\extra\translator\translator.py:79
 #: ../src\extra\translator\translator.py:79
 msgid "Sindhi"
 msgstr "Sindhi"
 
+#: ../src\build\lib\extra\translator\translator.py:80
 #: ../src\extra\translator\translator.py:80
 msgid "Sinhalese"
 msgstr "Szinhaléz"
 
+#: ../src\build\lib\extra\translator\translator.py:81
 #: ../src\extra\translator\translator.py:81
 msgid "Slovak"
 msgstr "Szlovák"
 
+#: ../src\build\lib\extra\translator\translator.py:82
 #: ../src\extra\translator\translator.py:82
 msgid "Slovenian"
 msgstr "Szlovén"
 
+#: ../src\build\lib\extra\translator\translator.py:83
 #: ../src\extra\translator\translator.py:83
 msgid "Spanish"
 msgstr "Spanyol"
 
+#: ../src\build\lib\extra\translator\translator.py:84
 #: ../src\extra\translator\translator.py:84
 msgid "Swahili"
 msgstr "Swahili"
 
+#: ../src\build\lib\extra\translator\translator.py:85
 #: ../src\extra\translator\translator.py:85
 msgid "Swedish"
 msgstr "Svéd"
 
+#: ../src\build\lib\extra\translator\translator.py:86
 #: ../src\extra\translator\translator.py:86
 msgid "Tajik"
 msgstr "Tajik"
 
+#: ../src\build\lib\extra\translator\translator.py:87
 #: ../src\extra\translator\translator.py:87
 msgid "Tamil"
 msgstr "Tamil"
 
+#: ../src\build\lib\extra\translator\translator.py:88
 #: ../src\extra\translator\translator.py:88
 msgid "Tagalog"
 msgstr "Tagalog"
 
+#: ../src\build\lib\extra\translator\translator.py:89
 #: ../src\extra\translator\translator.py:89
 msgid "Telugu"
 msgstr "Telugu"
 
+#: ../src\build\lib\extra\translator\translator.py:90
 #: ../src\extra\translator\translator.py:90
 msgid "Thai"
 msgstr "Táj"
 
+#: ../src\build\lib\extra\translator\translator.py:91
 #: ../src\extra\translator\translator.py:91
 msgid "Tibetan"
 msgstr "Tibeti"
 
+#: ../src\build\lib\extra\translator\translator.py:92
 #: ../src\extra\translator\translator.py:92
 msgid "Turkish"
 msgstr "Török"
 
+#: ../src\build\lib\extra\translator\translator.py:93
 #: ../src\extra\translator\translator.py:93
 msgid "Ukrainian"
 msgstr "Ukrán"
 
+#: ../src\build\lib\extra\translator\translator.py:94
 #: ../src\extra\translator\translator.py:94
 msgid "Urdu"
 msgstr "Urdu"
 
+#: ../src\build\lib\extra\translator\translator.py:95
 #: ../src\extra\translator\translator.py:95
 msgid "Uzbek"
 msgstr "Üzbég"
 
+#: ../src\build\lib\extra\translator\translator.py:96
 #: ../src\extra\translator\translator.py:96
 msgid "Uighur"
 msgstr "Uighur"
 
+#: ../src\build\lib\extra\translator\translator.py:97
 #: ../src\extra\translator\translator.py:97
 msgid "Vietnamese"
 msgstr "Vietnám"
 
+#: ../src\build\lib\extra\translator\translator.py:98
 #: ../src\extra\translator\translator.py:98
 msgid "Welsh"
 msgstr "Welszi"
 
+#: ../src\build\lib\extra\translator\translator.py:99
 #: ../src\extra\translator\translator.py:99
 msgid "Yiddish"
 msgstr "Yiddi"
 
+#: ../src\build\lib\extra\translator\translator.py:106
 #: ../src\extra\translator\translator.py:106
 msgid "autodetect"
 msgstr "automatikus"
 
-#: ../src\extra\translator\wx_ui.py:25 ../src\gtkUI\dialogs\message.py:146
-#: ../src\gtkUI\dialogs\message.py:218 ../src\gtkUI\dialogs\message.py:256
-#: ../src\wxUI\dialogs\message.py:143 ../src\wxUI\dialogs\message.py:204
-#: ../src\wxUI\dialogs\message.py:282 ../src\wxUI\dialogs\message.py:337
+#: ../src\build\lib\extra\translator\wx_ui.py:25
+#: ../src\build\lib\wxUI\dialogs\message.py:143
+#: ../src\build\lib\wxUI\dialogs\message.py:204
+#: ../src\build\lib\wxUI\dialogs\message.py:282
+#: ../src\build\lib\wxUI\dialogs\message.py:337
+#: ../src\extra\translator\wx_ui.py:25 ../src\wxUI\dialogs\message.py:143
+#: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:282
+#: ../src\wxUI\dialogs\message.py:337
 msgid "Translate message"
 msgstr "Üzenet fordítása"
 
+#: ../src\build\lib\extra\translator\wx_ui.py:28
 #: ../src\extra\translator\wx_ui.py:28
 msgid "Source language"
 msgstr "Forrásnyelv"
 
+#: ../src\build\lib\extra\translator\wx_ui.py:31
 #: ../src\extra\translator\wx_ui.py:31
 msgid "Target language"
 msgstr "Célnyelv"
 
-#: ../src\gtkUI\buffers\base.py:8 ../src\gtkUI\buffers\events.py:12
-#: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\events.py:13
-msgid "Date"
-msgstr "Dátum"
-
-#: ../src\gtkUI\buffers\base.py:8 ../src\gtkUI\buffers\people.py:10
-#: ../src\gtkUI\buffers\user_searches.py:9
-#: ../src\gtkUI\dialogs\userActions.py:10
-#: ../src\gtkUI\dialogs\userSelection.py:10 ../src\gtkUI\dialogs\utils.py:29
-#: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\people.py:10
-#: ../src\wxUI\buffers\user_searches.py:9
-#: ../src\wxUI\dialogs\userActions.py:10
-#: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:29
-msgid "User"
-msgstr "Felhasználó"
-
-#: ../src\gtkUI\buffers\base.py:8 ../src\wxUI\buffers\base.py:11
-msgid "Client"
-msgstr "Kliens"
-
-#: ../src\gtkUI\buffers\base.py:8 ../src\wxUI\buffers\base.py:11
-msgid "Text"
-msgstr "Szöveg"
-
-#: ../src\gtkUI\buffers\base.py:18 ../src\wxUI\buffers\base.py:27
-msgid "Direct message"
-msgstr "Közvetlen üzenet"
-
-#: ../src\gtkUI\buffers\events.py:12 ../src\wxUI\buffers\events.py:13
-msgid "Event"
-msgstr "Esemény"
-
-#: ../src\gtkUI\buffers\events.py:15 ../src\wxUI\buffers\events.py:15
-msgid "Remove event"
-msgstr "Esemény törlése"
-
-#: ../src\gtkUI\buffers\panels.py:10 ../src\gtkUI\buffers\panels.py:17
-#: ../src\wxUI\buffers\panels.py:11 ../src\wxUI\buffers\panels.py:19
-msgid "Login"
-msgstr "Bejelentkezés"
-
-#: ../src\gtkUI\buffers\panels.py:12 ../src\wxUI\buffers\panels.py:13
-msgid "Log in automatically"
-msgstr ""
-
-#: ../src\gtkUI\buffers\panels.py:19 ../src\wxUI\buffers\panels.py:21
-msgid "Logout"
-msgstr "Kijelentkezés"
-
-#: ../src\gtkUI\buffers\trends.py:8 ../src\wxUI\buffers\trends.py:8
-msgid "Trending topic"
-msgstr "Trendelő témák"
-
-#: ../src\gtkUI\buffers\trends.py:15 ../src\wxUI\buffers\trends.py:18
-msgid "Tweet about this trend"
-msgstr "Tweetelés a trendről"
-
-#: ../src\gtkUI\commonMessageDialogs.py:6
-#: ../src\wxUI\commonMessageDialogs.py:5
-msgid ""
-"This retweet is over 140 characters. Would you like to post it as a mention "
-"to the poster with your comments and a link to the original tweet?"
-msgstr ""
-
-#: ../src\gtkUI\commonMessageDialogs.py:13
-#: ../src\wxUI\commonMessageDialogs.py:8
-msgid "Would you like to add a comment to this tweet?"
-msgstr "Szeretne megjegyzést fűzni a tweethez?"
-
-#: ../src\gtkUI\commonMessageDialogs.py:19
-#: ../src\wxUI\commonMessageDialogs.py:11 ../src\wxUI\dialogs\lists.py:133
-msgid "Delete"
-msgstr "Törlés"
-
-#: ../src\gtkUI\commonMessageDialogs.py:20
-#: ../src\wxUI\commonMessageDialogs.py:11
-msgid ""
-"Do you really want to delete this message? It will be deleted from Twitter "
-"as well."
-msgstr ""
-
-#: ../src\gtkUI\commonMessageDialogs.py:26
-#: ../src\wxUI\commonMessageDialogs.py:14
-msgid "Exit"
-msgstr "Kilépés"
-
-#: ../src\gtkUI\commonMessageDialogs.py:36
-#: ../src\wxUI\commonMessageDialogs.py:21
-msgid ""
-"Are you sure you want to delete this user from the database? This user will "
-"not appear on the autocomplete results anymore."
-msgstr ""
-"Biztosan szeretné törölni a felhasználót az adatbázisból? A felhasználó "
-"többé nem fog szerepelni az automatikuskiegészítésekben."
-
-#: ../src\gtkUI\commonMessageDialogs.py:36
-#: ../src\wxUI\commonMessageDialogs.py:21
-msgid "Confirm"
-msgstr "Megerősítés"
-
-#: ../src\gtkUI\commonMessageDialogs.py:39
-#: ../src\wxUI\commonMessageDialogs.py:24
-msgid "Add a new ignored client"
-msgstr "Új mellőzött kliens hozzáadása"
-
-#: ../src\gtkUI\commonMessageDialogs.py:39
-#: ../src\wxUI\commonMessageDialogs.py:24
-msgid "Enter the name of the client here"
-msgstr "Írja be a mellőzött kliens nevét"
-
-#: ../src\gtkUI\commonMessageDialogs.py:45
-#: ../src\wxUI\commonMessageDialogs.py:30
-msgid ""
-"Do you really want to empty this buffer? It's  items will be removed from "
-"the list but not from Twitter"
-msgstr ""
-"Bisztosan szeretné kiüríteni a buffert? A tweetek törlődnek a bufferből, de "
-"a Twitteren továbbra is megmaradnak"
-
-#: ../src\gtkUI\commonMessageDialogs.py:45
-#: ../src\wxUI\commonMessageDialogs.py:30
-msgid "Empty buffer"
-msgstr "Buffer kiürítése"
-
-#: ../src\gtkUI\commonMessageDialogs.py:49
-#: ../src\wxUI\commonMessageDialogs.py:34
-msgid "Attention"
-msgstr "Figyelem"
-
-#: ../src\gtkUI\commonMessageDialogs.py:49
-#: ../src\wxUI\commonMessageDialogs.py:34
-msgid "Do you really want to delete this timeline?"
-msgstr "Bisztosan szeretné törölni ezt az idővonalat?"
-
-#: ../src\gtkUI\commonMessageDialogs.py:55
-#: ../src\wxUI\commonMessageDialogs.py:40
-msgid "Existing timeline"
-msgstr "Létező idővonal"
-
-#: ../src\gtkUI\commonMessageDialogs.py:55
-#: ../src\wxUI\commonMessageDialogs.py:40
-msgid ""
-"There's currently a timeline for this user. You are not able to open another"
-msgstr "Már létezik idővonal ezzel a felhasználóval. Nem nyithat meg újabbat"
-
-#: ../src\gtkUI\commonMessageDialogs.py:58
-#: ../src\wxUI\commonMessageDialogs.py:43
-msgid "This user has no tweets. You can't open a timeline for this user"
-msgstr "A felhasználó nem rendelkezik tweettel. Nem lehet idővonalat megnyitni"
-
-#: ../src\gtkUI\commonMessageDialogs.py:61
-#: ../src\wxUI\commonMessageDialogs.py:46
-msgid ""
-"This is a protected Twitter user. It means you can not open a timeline using "
-"the Streaming API. The user's tweets will not update due to a twitter "
-"policy. Do you want to continue?"
-msgstr ""
-"Ez egy védett Twitter felhasználó. Ez azt jelenti, hogy nem tud idővonalat "
-"megnyitni a Streaming API használatával. A felhasználói tweetek nem "
-"frissülnek a twitter szabályzata miatt. Szeretné folytatni?"
-
-#: ../src\gtkUI\commonMessageDialogs.py:61
-#: ../src\wxUI\commonMessageDialogs.py:46
-msgid "Warning"
-msgstr "Figyelem"
-
-#: ../src\gtkUI\commonMessageDialogs.py:64
-#: ../src\wxUI\commonMessageDialogs.py:49
-msgid ""
-"This is a protected user account, you need follow to this user for viewing "
-"your tweets or favourites."
-msgstr ""
-"Ez egy védett felhasználói fiók, a kedvencek vagy a tweetek megtekintéséhez "
-"követnie kell."
-
-#: ../src\gtkUI\dialogs\configuration.py:10
-#: ../src\wxUI\dialogs\configuration.py:13
-msgid "Language"
-msgstr "Nyelv"
-
-#: ../src\gtkUI\dialogs\configuration.py:19
-#: ../src\wxUI\dialogs\configuration.py:26
-msgid "Use invisible interface's keyboard shortcuts while GUI is visible"
-msgstr ""
-"A láthatatlan felület billentyűparancsainak használata a grafikus felületen"
-
-#: ../src\gtkUI\dialogs\configuration.py:21
-#: ../src\wxUI\dialogs\configuration.py:28
-msgid "Activate Sapi5 when any other screen reader is not being run"
-msgstr "Aktiválja a Sapi5-öt ha nem fut más képernyőolvasó"
-
-#: ../src\gtkUI\dialogs\configuration.py:23
-#: ../src\wxUI\dialogs\configuration.py:30
-msgid "Hide GUI on launch"
-msgstr "Főablak elrejtése indításkor"
-
-#: ../src\gtkUI\dialogs\configuration.py:31
-msgid "Set the autocomplete function"
-msgstr "Az automatikus kiegészítés beállítása"
-
-#: ../src\gtkUI\dialogs\configuration.py:33
-msgid "Relative times"
-msgstr "Relatív idő"
-
-#: ../src\gtkUI\dialogs\configuration.py:36
-msgid ""
-"API calls when the stream is started (One API call equals to 200 tweetts, "
-"two API calls equals 400 tweets, etc):"
-msgstr ""
-"API hívások száma ha a stream kapcsolódik (Egy API hívás 200, kettő API "
-"hívás 400, stb. tweettel egyenlő):"
-
-#: ../src\gtkUI\dialogs\configuration.py:43
-#: ../src\wxUI\dialogs\configuration.py:88
-msgid "Items on each API call"
-msgstr "Elemek száma API hívásonként"
-
-#: ../src\gtkUI\dialogs\configuration.py:49
-msgid ""
-"Inverted buffers: The newest tweets will be shown at the beginning of the "
-"lists while the oldest at the end"
-msgstr ""
-"Fordított bufferek: a legutolsó tweet a lista tetején lesz, míg a legrégebbi "
-"a lista allján"
-
-#: ../src\gtkUI\dialogs\configuration.py:63
-#: ../src\gtkUI\dialogs\configuration.py:198
-#: ../src\wxUI\dialogs\configuration.py:200
-#: ../src\wxUI\dialogs\configuration.py:339
-msgid "Ignored clients"
-msgstr "Mellőzött kliensek"
-
-#: ../src\gtkUI\dialogs\configuration.py:69
-#: ../src\wxUI\dialogs\configuration.py:206
-msgid "Add client"
-msgstr "Kliens hozzáadása"
-
-#: ../src\gtkUI\dialogs\configuration.py:70
-#: ../src\wxUI\dialogs\configuration.py:207
-msgid "Remove client"
-msgstr "Kliens eltávolítása"
-
-#: ../src\gtkUI\dialogs\configuration.py:94
-#: ../src\wxUI\dialogs\configuration.py:231
-msgid "Volume"
-msgstr "Hangerő"
-
-#: ../src\gtkUI\dialogs\configuration.py:102
-#: ../src\wxUI\dialogs\configuration.py:239
-msgid "Session mute"
-msgstr "Munkamenet némítás"
-
-#: ../src\gtkUI\dialogs\configuration.py:104
-#: ../src\wxUI\dialogs\configuration.py:241
-msgid "Output device"
-msgstr "Kimeneti hangeszköz"
-
-#: ../src\gtkUI\dialogs\configuration.py:111
-#: ../src\wxUI\dialogs\configuration.py:248
-msgid "Input device"
-msgstr "Bemeneti hangeszköz"
-
-#: ../src\gtkUI\dialogs\configuration.py:119
-#: ../src\wxUI\dialogs\configuration.py:256
-msgid "Sound pack"
-msgstr "Hangcsomag"
-
-#: ../src\gtkUI\dialogs\configuration.py:134
-msgid ""
-"If you've got a SndUp account, enter your API Key here. Whether the API Key "
-"is wrong, the App will fail to upload anything to the server. Whether "
-"there's no API Key here, then the audio files will be uploaded anonimously"
-msgstr ""
-"Ha rendelkezik SndUp fiókkal, írja be API kulcsát. Ha az API kulcs "
-"helytelen, a program nem fog tudni feltölteni. Ha nem ad meg API kulcsot, a "
-"hangfájlok névtelenül lesznek feltöltve"
-
-#: ../src\gtkUI\dialogs\configuration.py:151
-#: ../src\wxUI\dialogs\configuration.py:288
-msgid "Unlink your Dropbox account"
-msgstr "Dropbox fiók eltávolítása"
-
-#: ../src\gtkUI\dialogs\configuration.py:156 ../src\sessionmanager\wxUI.py:47
-#: ../src\wxUI\dialogs\configuration.py:293
-msgid "Authorization"
-msgstr "Hitelesítés"
-
-#: ../src\gtkUI\dialogs\configuration.py:156
-#: ../src\wxUI\dialogs\configuration.py:293
-msgid ""
-"The authorization request will be opened in your browser. Copy the code from "
-"Dropbox and paste it into the text box which will appear. You only need to "
-"do this once."
-msgstr ""
-
-#: ../src\gtkUI\dialogs\configuration.py:159
-#: ../src\wxUI\dialogs\configuration.py:296
-msgid "Enter the code here."
-msgstr "Írja be a kódot."
-
-#: ../src\gtkUI\dialogs\configuration.py:159
-#: ../src\wxUI\dialogs\configuration.py:296
-msgid "Verification code"
-msgstr "Ellenőrző kód"
-
-#: ../src\gtkUI\dialogs\configuration.py:165
-msgid "Error during authorisation. Try again later."
-msgstr "Hiba a hitelesítés közben. . Próbálja újra később."
-
-#: ../src\gtkUI\dialogs\configuration.py:178
-msgid "TW Blue preferences"
-msgstr "TW Blue beállítások"
-
-#: ../src\gtkUI\dialogs\configuration.py:184
-#: ../src\gtkUI\dialogs\configuration.py:189
+#: ../src\build\lib\issueReporter\issueReporter.py:30
+#: ../src\build\lib\wxUI\dialogs\configuration.py:314
+#: ../src\build\lib\wxUI\dialogs\configuration.py:323
 #: ../src\issueReporter\issueReporter.py:30
-#: ../src\wxUI\dialogs\configuration.py:321
-#: ../src\wxUI\dialogs\configuration.py:330
+#: ../src\wxUI\dialogs\configuration.py:316
+#: ../src\wxUI\dialogs\configuration.py:325
 msgid "General"
 msgstr "Általános"
 
-#: ../src\gtkUI\dialogs\configuration.py:194
-msgid "Show other buffers"
-msgstr "Egyéb bufferek megjelenítése"
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "always"
+msgstr "mindig"
 
-#: ../src\gtkUI\dialogs\configuration.py:202
-#: ../src\wxUI\dialogs\configuration.py:343
-msgid "Sound"
-msgstr "Hang"
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "have not tried"
+msgstr "nem próbálta"
 
-#: ../src\gtkUI\dialogs\configuration.py:205
-#: ../src\wxUI\dialogs\configuration.py:346
-msgid "Audio Services"
-msgstr "Audio Szolgáltatások"
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "random"
+msgstr "véletlenszerű"
 
-#: ../src\gtkUI\dialogs\configuration.py:210
-#: ../src\wxUI\dialogs\configuration.py:351
-msgid "Save"
-msgstr "Mentés"
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "sometimes"
+msgstr "néha"
 
-#: ../src\gtkUI\dialogs\configuration.py:212 ../src\gtkUI\dialogs\search.py:26
-#: ../src\gtkUI\dialogs\show_user.py:17 ../src\gtkUI\dialogs\trends.py:28
-#: ../src\gtkUI\dialogs\update_profile.py:35
-#: ../src\gtkUI\dialogs\userActions.py:40
-#: ../src\gtkUI\dialogs\userSelection.py:28 ../src\gtkUI\dialogs\utils.py:35
-#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:353
+#: ../src\build\lib\issueReporter\issueReporter.py:31
+#: ../src\issueReporter\issueReporter.py:31
+msgid "unable to duplicate"
+msgstr "Nem lehet megkettőzni"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "block"
+msgstr "Letiltás"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "crash"
+msgstr "összeomlás"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "feature"
+msgstr "funkció"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "major"
+msgstr "fő"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "minor"
+msgstr "mellékes"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "text"
+msgstr "Szöveg"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "trivial"
+msgstr "jelentéktelen"
+
+#: ../src\build\lib\issueReporter\issueReporter.py:32
+#: ../src\issueReporter\issueReporter.py:32
+msgid "tweak"
+msgstr "testreszab"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:25 ../src\issueReporter\wx_ui.py:25
+msgid "Report an error"
+msgstr "Hibajelentés"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:28 ../src\issueReporter\wx_ui.py:28
+msgid "Select a category"
+msgstr "Válasszon Kategóriát"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:36 ../src\issueReporter\wx_ui.py:36
+msgid ""
+"Briefly describe what happened. You will be able to thoroughly explain it "
+"later"
+msgstr ""
+"Írja le röviden, mi történt. A későbbiekben van lehetősége bővebben is "
+"leírni."
+
+#: ../src\build\lib\issueReporter\wx_ui.py:45 ../src\issueReporter\wx_ui.py:45
+msgid "Here, you can describe the bug in detail"
+msgstr "Itt bővebben kifejtheti a hibát"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:55 ../src\issueReporter\wx_ui.py:55
+msgid "how often does this bug happen?"
+msgstr "Milyen gyakran történik ez a  hiba?"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:62 ../src\issueReporter\wx_ui.py:62
+msgid "Select the importance that you think this bug has"
+msgstr "Válassza ki a hiba ön szerinti fontosságát"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:69 ../src\issueReporter\wx_ui.py:69
+#, fuzzy
+msgid ""
+"I know that the {0} bug system will get my Twitter username to contact me "
+"and fix the bug quickly"
+msgstr ""
+"Tisztában vagyok vele, hogy a TW Blue hibarendszer megkapja a Twitter "
+"felhasználói nevemet a kapcsolattartás és a hiba gyors kijavítása érdekében"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:72 ../src\issueReporter\wx_ui.py:72
+msgid "Send report"
+msgstr "Jelentés elküldése"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:83 ../src\issueReporter\wx_ui.py:83
+msgid "You must fill out both fields"
+msgstr "Mindkét mező kitöltése kötelező"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:86 ../src\issueReporter\wx_ui.py:86
+msgid ""
+"You need to mark the checkbox to provide us your twitter username to contact "
+"you if it is necessary."
+msgstr ""
+"Be kell jelölnie a jelölőnégyzetet a Twitter felhasználói nevének "
+"elküldéséhez, ha kapcsolatfelvétel szükséges."
+
+#: ../src\build\lib\issueReporter\wx_ui.py:89 ../src\issueReporter\wx_ui.py:89
+msgid ""
+"Thanks for reporting this bug! In future versions, you may be able to find "
+"it in the changes list. You've reported the bug number %i"
+msgstr ""
+"Köszönjük a hibajelentést! A jövőben előfordulhat, hogy a változások "
+"listájában megtalálja. JElentett hibák száma: %i"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:89 ../src\issueReporter\wx_ui.py:89
+msgid "reported"
+msgstr "jelentve"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:93 ../src\issueReporter\wx_ui.py:93
+msgid "Error while reporting"
+msgstr "Hiba a jelentés közben"
+
+#: ../src\build\lib\issueReporter\wx_ui.py:93 ../src\issueReporter\wx_ui.py:93
+msgid ""
+"Something unexpected occurred while trying to report the bug. Please, try "
+"again later"
+msgstr ""
+"Valamilyen nem várt hiba történt a jelentés közben. Kérjük próbálja meg "
+"később."
+
+#: ../src\build\lib\keystrokeEditor\constants.py:3
+#: ../src\keystrokeEditor\constants.py:3
+msgid "Go up in the current buffer"
+msgstr "Felfelé mozgás a jelenlegi bufferben"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:4
+#: ../src\keystrokeEditor\constants.py:4
+msgid "Go down in the current buffer"
+msgstr "Lefelé mozgás a jelenlegi bufferben"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:5
+#: ../src\keystrokeEditor\constants.py:5
+msgid "Go to the previous buffer"
+msgstr "Váltás az előző bufferre"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:6
+#: ../src\keystrokeEditor\constants.py:6
+msgid "Go to the next buffer"
+msgstr "Váltás a következő buffer"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:7
+#: ../src\keystrokeEditor\constants.py:7
+msgid "Focus the next session"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:8
+#: ../src\keystrokeEditor\constants.py:8
+msgid "Focus the previous session"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:9
+#: ../src\keystrokeEditor\constants.py:9
+msgid "Show or hide the GUI"
+msgstr "Megjelenítés / elrejtés"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:10
+#: ../src\keystrokeEditor\constants.py:10
+msgid "New tweet"
+msgstr "Új tweet"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:13
+#: ../src\keystrokeEditor\constants.py:13
+msgid "Send direct message"
+msgstr "Közvetlen üzenet küldése"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:14
+#: ../src\keystrokeEditor\constants.py:14
+msgid "Mark as favourite"
+msgstr "Jelölés kedvencként"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:15
+#: ../src\keystrokeEditor\constants.py:15
+msgid "Remove from favourites"
+msgstr "Törlés a kedvencek listájáról"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:16
+#: ../src\keystrokeEditor\constants.py:16
+msgid "Open the user actions dialogue"
+msgstr "A műveletek párbeszédpanel megnyitása"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:17
+#: ../src\keystrokeEditor\constants.py:17
+msgid "See user details"
+msgstr "Felhasználó információi"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:18
+#: ../src\keystrokeEditor\constants.py:18
+msgid "Show tweet"
+msgstr "Tweet megjelenítése"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:19
+#: ../src\keystrokeEditor\constants.py:19
+msgid "Quit"
+msgstr "Kilépés"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:20
+#: ../src\keystrokeEditor\constants.py:20
+msgid "Open user timeline"
+msgstr "Felhasználó idővonalának megnyitása"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:21
+#: ../src\keystrokeEditor\constants.py:21
+msgid "Destroy buffer"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:22
+#: ../src\keystrokeEditor\constants.py:22
+msgid "Interact with the currently focused tweet."
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:23
+#: ../src\keystrokeEditor\constants.py:23
+msgid "Open URL"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:24
+#: ../src\keystrokeEditor\constants.py:24
+msgid "Increase volume by 5%"
+msgstr "Hangerő növelése 5 százalékkal"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:25
+#: ../src\keystrokeEditor\constants.py:25
+msgid "Decrease volume by 5%"
+msgstr "Hangerő csökkentése 5 százalékkal"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:26
+#: ../src\keystrokeEditor\constants.py:26
+msgid "Jump to the first element of a buffer"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:27
+#: ../src\keystrokeEditor\constants.py:27
+msgid "Jump to the last element of the current buffer"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:28
+#: ../src\keystrokeEditor\constants.py:28
+msgid "Jump 20 elements up in the current buffer"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:29
+#: ../src\keystrokeEditor\constants.py:29
+msgid "Jump 20 elements down in the current buffer"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:30
+#: ../src\keystrokeEditor\constants.py:30
+msgid "Edit profile"
+msgstr "Profil szerkesztése"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:31
+#: ../src\keystrokeEditor\constants.py:31
+msgid "Delete a tweet or direct message"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:32
+#: ../src\keystrokeEditor\constants.py:32
+msgid "Empty the current buffer"
+msgstr "Buffer kiürítése"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:33
+#: ../src\keystrokeEditor\constants.py:33
+msgid "Repeat last item"
+msgstr "Utolsó elem megismétlése"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:34
+#: ../src\keystrokeEditor\constants.py:34
+msgid "Copy to clipboard"
+msgstr "Másolás vágólapra"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:35
+#: ../src\keystrokeEditor\constants.py:35
+msgid "Add to list"
+msgstr "Hozzáadás listához"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:36
+#: ../src\keystrokeEditor\constants.py:36
+msgid "Remove from list"
+msgstr "Törlés listáról"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:37
+#: ../src\keystrokeEditor\constants.py:37
+msgid "Mute/unmute the active buffer"
+msgstr "Elnémítja és visszavonja a némítást a jelenlegi bufferen"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:38
+#: ../src\keystrokeEditor\constants.py:38
+msgid "Mute/unmute the current session"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:39
+#: ../src\keystrokeEditor\constants.py:39
+msgid "toggle the automatic reading of incoming tweets in the active buffer"
+msgstr ""
+"A bejövő tweetek automatikus olvasásának be- és kikapcsolása a jelenlegi "
+"bufferben"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:40
+#: ../src\keystrokeEditor\constants.py:40
+msgid "Search on twitter"
+msgstr "Keresés a Twitteren"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:41
+#: ../src\keystrokeEditor\constants.py:41
+#, fuzzy
+msgid "Find a string in the currently focused buffer"
+msgstr "Lefelé mozgás a jelenlegi bufferben"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:42
+#: ../src\keystrokeEditor\constants.py:42
+msgid "Show the keystroke editor"
+msgstr "Megjeleníti a billentyűparancs szerkesztőt"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:43
+#: ../src\keystrokeEditor\constants.py:43
+msgid "Show lists for a specified user"
+msgstr "A megadott felhasználó listáinak megjelenítése"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:44
+#: ../src\keystrokeEditor\constants.py:44
+msgid "load previous items"
+msgstr ""
+
+#: ../src\build\lib\keystrokeEditor\constants.py:45
+#: ../src\keystrokeEditor\constants.py:45
+msgid "Get geolocation"
+msgstr "Tartózkodási hely"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:46
+#: ../src\keystrokeEditor\constants.py:46
+msgid "Display the tweet's geolocation in a dialog"
+msgstr "Megjeleníti a tweet helyét egy párbeszédablakban"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:47
+#: ../src\keystrokeEditor\constants.py:47
+msgid "Create a trending topics buffer"
+msgstr "Népszerű témák megtekintése"
+
+#: ../src\build\lib\keystrokeEditor\constants.py:48
+#: ../src\keystrokeEditor\constants.py:48
+msgid "View conversation"
+msgstr "Beszélgetés megtekintése"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:8
+#: ../src\keystrokeEditor\wx_ui.py:8
+msgid "Keystroke editor"
+msgstr "Billentyűparancs szerkesztő"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:12
+#: ../src\keystrokeEditor\wx_ui.py:12
+msgid "Select a keystroke to edit"
+msgstr "Válasszon ki egy szerkesztendő billentyűparancsot"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:13
+#: ../src\build\lib\wxUI\dialogs\userActions.py:9
+#: ../src\build\lib\wxUI\dialogs\userActions.py:16
+#: ../src\keystrokeEditor\wx_ui.py:13 ../src\wxUI\dialogs\userActions.py:9
+#: ../src\wxUI\dialogs\userActions.py:16
+msgid "Action"
+msgstr "Művelet"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:13
+#: ../src\keystrokeEditor\wx_ui.py:13
+msgid "Keystroke"
+msgstr "Billentyűparancs"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:18
+#: ../src\build\lib\wxUI\dialogs\lists.py:19
+#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\lists.py:19
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:21
+#: ../src\build\lib\wxUI\dialogs\configuration.py:347
+#: ../src\build\lib\wxUI\dialogs\message.py:87
+#: ../src\build\lib\wxUI\dialogs\message.py:147
+#: ../src\build\lib\wxUI\dialogs\message.py:207
+#: ../src\build\lib\wxUI\dialogs\message.py:283
+#: ../src\build\lib\wxUI\dialogs\message.py:338
+#: ../src\build\lib\wxUI\dialogs\search.py:26
+#: ../src\build\lib\wxUI\dialogs\show_user.py:17
+#: ../src\build\lib\wxUI\dialogs\trends.py:28
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:35
+#: ../src\build\lib\wxUI\dialogs\userActions.py:40
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:28
+#: ../src\build\lib\wxUI\dialogs\utils.py:35
+#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:349
 #: ../src\wxUI\dialogs\message.py:87 ../src\wxUI\dialogs\message.py:147
 #: ../src\wxUI\dialogs\message.py:207 ../src\wxUI\dialogs\message.py:283
 #: ../src\wxUI\dialogs\message.py:338 ../src\wxUI\dialogs\search.py:26
@@ -1507,894 +1967,282 @@ msgstr "Mentés"
 msgid "Close"
 msgstr "Bezárás"
 
-#: ../src\gtkUI\dialogs\lists.py:9 ../src\wxUI\dialogs\lists.py:10
-msgid "Lists manager"
-msgstr "Listakezelő"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\gtkUI\dialogs\lists.py:63
-#: ../src\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:69
-msgid "Description"
-msgstr "Leírás"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\wxUI\dialogs\lists.py:13
-msgid "List"
-msgstr "Lista"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\wxUI\dialogs\lists.py:13
-msgid "Members"
-msgstr "Elemek"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\wxUI\dialogs\lists.py:13
-msgid "Owner"
-msgstr "Tulajdonos"
-
-#: ../src\gtkUI\dialogs\lists.py:12 ../src\wxUI\dialogs\lists.py:13
-msgid "mode"
-msgstr "mód"
-
-#: ../src\gtkUI\dialogs\lists.py:17 ../src\gtkUI\dialogs\lists.py:55
-#: ../src\wxUI\dialogs\lists.py:18 ../src\wxUI\dialogs\lists.py:61
-msgid "Create a new list"
-msgstr "Új lista létrehozása"
-
-#: ../src\gtkUI\dialogs\lists.py:18 ../src\keystrokeEditor\wx_ui.py:18
-#: ../src\wxUI\dialogs\lists.py:19
-msgid "Edit"
-msgstr "Szerkesztés"
-
-#: ../src\gtkUI\dialogs\lists.py:19 ../src\gtkUI\dialogs\lists.py:117
-#: ../src\wxUI\dialogs\lists.py:20 ../src\wxUI\dialogs\lists.py:124
-msgid "Remove"
-msgstr "Törlés"
-
-#: ../src\gtkUI\dialogs\lists.py:20 ../src\wxUI\dialogs\lists.py:21
-msgid "Open in buffer"
-msgstr "Megnyitás bufferben"
-
-#: ../src\gtkUI\dialogs\lists.py:45 ../src\wxUI\dialogs\lists.py:51
-msgid "Viewing lists for %s"
-msgstr "%s listái"
-
-#: ../src\gtkUI\dialogs\lists.py:46 ../src\wxUI\dialogs\lists.py:52
-msgid "Subscribe"
-msgstr "Feliratkozás"
-
-#: ../src\gtkUI\dialogs\lists.py:47 ../src\wxUI\dialogs\lists.py:53
-msgid "Unsubscribe"
-msgstr "Leiratkozás"
-
-#: ../src\gtkUI\dialogs\lists.py:58 ../src\wxUI\dialogs\lists.py:64
-msgid "Name (20 characters maximun)"
-msgstr "Név (maximum 20 betű)"
-
-#: ../src\gtkUI\dialogs\lists.py:68 ../src\wxUI\dialogs\lists.py:74
-msgid "Mode"
-msgstr "Mód"
-
-#: ../src\gtkUI\dialogs\lists.py:69 ../src\wxUI\dialogs\lists.py:75
-msgid "Public"
-msgstr "Nyilvános"
-
-#: ../src\gtkUI\dialogs\lists.py:70 ../src\wxUI\dialogs\lists.py:76
-msgid "Private"
-msgstr "Magán"
-
-#: ../src\gtkUI\dialogs\lists.py:93 ../src\wxUI\dialogs\lists.py:96
-msgid "Editing the list %s"
-msgstr "%s lista szerkesztése"
-
-#: ../src\gtkUI\dialogs\lists.py:104 ../src\wxUI\dialogs\lists.py:107
-msgid "Select a list to add the user"
-msgstr "Válasszon egy listát, melyhez hozzá szeretné adni a felhasználót"
-
-#: ../src\gtkUI\dialogs\lists.py:105 ../src\wxUI\dialogs\lists.py:108
-msgid "Add"
-msgstr "Hozzáadás"
-
-#: ../src\gtkUI\dialogs\lists.py:116 ../src\wxUI\dialogs\lists.py:123
-msgid "Select a list to remove the user"
-msgstr "Válassza ki a listát, melyről felhasználót szeretne törölni"
-
-#: ../src\gtkUI\dialogs\message.py:70 ../src\wxUI\dialogs\message.py:76
-msgid "Upload image..."
-msgstr ""
-
-#: ../src\gtkUI\dialogs\message.py:71 ../src\wxUI\dialogs\message.py:77
-msgid "Check spelling..."
-msgstr ""
-
-#: ../src\gtkUI\dialogs\message.py:72 ../src\wxUI\dialogs\message.py:78
-msgid "Attach audio..."
-msgstr ""
-
-#: ../src\gtkUI\dialogs\message.py:73 ../src\gtkUI\dialogs\message.py:140
-#: ../src\wxUI\dialogs\message.py:79 ../src\wxUI\dialogs\message.py:139
-#: ../src\wxUI\dialogs\message.py:200
-msgid "Shorten URL"
-msgstr "URL rövidítés"
-
-#: ../src\gtkUI\dialogs\message.py:74 ../src\gtkUI\dialogs\message.py:141
-#: ../src\gtkUI\dialogs\message.py:215 ../src\gtkUI\dialogs\message.py:253
-#: ../src\wxUI\dialogs\message.py:80 ../src\wxUI\dialogs\message.py:140
-#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:280
-#: ../src\wxUI\dialogs\message.py:335
-msgid "Expand URL"
-msgstr "URL hosszabbítás"
-
-#: ../src\gtkUI\dialogs\message.py:79 ../src\wxUI\dialogs\message.py:83
-msgid "Translate..."
-msgstr ""
-
-#: ../src\gtkUI\dialogs\message.py:80 ../src\gtkUI\dialogs\message.py:129
-#: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\message.py:144
-#: ../src\wxUI\dialogs\message.py:189
-msgid "&Autocomplete users"
-msgstr "Felhasználók &autokiegészítése"
-
-#: ../src\gtkUI\dialogs\message.py:98
-#: ../src\gtkUI\dialogs\update_profile.py:80
-#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
-#: ../src\wxUI\dialogs\update_profile.py:80
-msgid "Select the picture to be uploaded"
-msgstr "Válassza ki a feltöltendő képet"
-
-#: ../src\gtkUI\dialogs\message.py:100
-msgid "JPG images"
-msgstr "JPG képek"
-
-#: ../src\gtkUI\dialogs\message.py:104
-msgid "GIF images"
-msgstr "GIF képek"
-
-#: ../src\gtkUI\dialogs\message.py:108
-msgid "PNG Images"
-msgstr "PNG képek"
-
-#: ../src\gtkUI\dialogs\message.py:122 ../src\gtkUI\dialogs\message.py:127
-#: ../src\wxUI\dialogs\message.py:187
-msgid "Recipient"
-msgstr "Címzett"
-
-#: ../src\gtkUI\dialogs\message.py:138 ../src\gtkUI\dialogs\message.py:214
-#: ../src\gtkUI\dialogs\message.py:252 ../src\wxUI\dialogs\message.py:137
-#: ../src\wxUI\dialogs\message.py:198 ../src\wxUI\dialogs\message.py:279
-#: ../src\wxUI\dialogs\message.py:334
-msgid "Spelling correction"
-msgstr "Helyesírás ellenőrzés"
-
-#: ../src\gtkUI\dialogs\message.py:174 ../src\wxUI\dialogs\message.py:239
-msgid "Men&tion to all"
-msgstr "Mind &megemlítése"
-
-#: ../src\gtkUI\dialogs\message.py:182 ../src\wxUI\dialogs\message.py:248
-msgid "Tweet - %i characters "
-msgstr "Tweet - %i betű "
-
-#: ../src\gtkUI\dialogs\message.py:196 ../src\wxUI\dialogs\message.py:265
-msgid "Retweets: "
-msgstr "Retweetek"
-
-#: ../src\gtkUI\dialogs\message.py:203 ../src\wxUI\dialogs\message.py:270
-msgid "Favourites: "
-msgstr "Kedvencek: "
-
-#: ../src\gtkUI\dialogs\message.py:243 ../src\wxUI\dialogs\message.py:320
-msgid "View"
-msgstr "Nézet"
-
-#: ../src\gtkUI\dialogs\message.py:244 ../src\wxUI\dialogs\message.py:322
-msgid "Item"
-msgstr "Elem"
-
-#: ../src\gtkUI\dialogs\search.py:10 ../src\wxUI\dialogs\search.py:10
-msgid "Search on Twitter"
-msgstr "Keresés a Twitteren"
-
-#: ../src\gtkUI\dialogs\search.py:11 ../src\wxUI\dialogs\search.py:11
-msgid "Search"
-msgstr "Keresés"
-
-#: ../src\gtkUI\dialogs\search.py:18 ../src\gtkUI\dialogs\userSelection.py:17
-#: ../src\wxUI\dialogs\search.py:18 ../src\wxUI\dialogs\userSelection.py:17
-msgid "Tweets"
-msgstr "Tweetek"
-
-#: ../src\gtkUI\dialogs\search.py:19 ../src\wxUI\dialogs\search.py:19
-msgid "Users"
-msgstr "Felhasználók"
-
-#: ../src\gtkUI\dialogs\search.py:24 ../src\gtkUI\dialogs\trends.py:26
-#: ../src\gtkUI\dialogs\userActions.py:38
-#: ../src\gtkUI\dialogs\userSelection.py:26 ../src\gtkUI\dialogs\utils.py:32
-#: ../src\keystrokeEditor\wx_ui.py:60 ../src\wxUI\dialogs\search.py:24
-#: ../src\wxUI\dialogs\trends.py:26 ../src\wxUI\dialogs\userActions.py:38
-#: ../src\wxUI\dialogs\userSelection.py:26 ../src\wxUI\dialogs\utils.py:32
-msgid "OK"
-msgstr "OK"
-
-#: ../src\gtkUI\dialogs\show_user.py:10 ../src\wxUI\dialogs\show_user.py:10
-msgid "Details"
-msgstr "Részletek"
-
-#: ../src\gtkUI\dialogs\show_user.py:15 ../src\wxUI\dialogs\show_user.py:15
-msgid "Go to URL"
-msgstr "URL megnyitása"
-
-#: ../src\gtkUI\dialogs\trends.py:10 ../src\wxUI\dialogs\trends.py:10
-msgid "View trending topics"
-msgstr "Trendelő témák megtekintése"
-
-#: ../src\gtkUI\dialogs\trends.py:11 ../src\wxUI\dialogs\trends.py:11
-msgid "Trending topics by"
-msgstr "Trendelő témák"
-
-#: ../src\gtkUI\dialogs\trends.py:13 ../src\wxUI\dialogs\trends.py:13
-msgid "Country"
-msgstr "Ország szerint"
-
-#: ../src\gtkUI\dialogs\trends.py:14 ../src\wxUI\dialogs\trends.py:14
-msgid "City"
-msgstr "Város szerint"
-
-#: ../src\gtkUI\dialogs\trends.py:20 ../src\gtkUI\dialogs\update_profile.py:16
-#: ../src\wxUI\dialogs\trends.py:20 ../src\wxUI\dialogs\update_profile.py:16
-msgid "Location"
-msgstr "Tartózkodási hely"
-
-#: ../src\gtkUI\dialogs\update_profile.py:8
-#: ../src\wxUI\dialogs\update_profile.py:8
-msgid "Update your profile"
-msgstr "Profil frissítése"
-
-#: ../src\gtkUI\dialogs\update_profile.py:10
-#: ../src\wxUI\dialogs\update_profile.py:10
-msgid "Name (20 characters maximum)"
-msgstr "Név (maximum 20 betű)"
-
-#: ../src\gtkUI\dialogs\update_profile.py:21
-#: ../src\wxUI\dialogs\update_profile.py:21
-msgid "Website"
-msgstr "Weboldal"
-
-#: ../src\gtkUI\dialogs\update_profile.py:26
-#: ../src\wxUI\dialogs\update_profile.py:26
-msgid "Bio (160 characters maximum)"
-msgstr "Bio (maximum 160 betű)"
-
-#: ../src\gtkUI\dialogs\update_profile.py:33
-#: ../src\wxUI\dialogs\update_profile.py:33
-msgid "Update profile"
-msgstr "Profil frissítése"
-
-#: ../src\gtkUI\dialogs\update_profile.py:80
-#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
-#: ../src\wxUI\dialogs\update_profile.py:80
-msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
-msgstr "Képfájlok (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
-
-#: ../src\gtkUI\dialogs\urlList.py:6
-msgid "Select an URL"
-msgstr "URL kiválasztása"
-
-#: ../src\gtkUI\dialogs\userActions.py:9
-#: ../src\gtkUI\dialogs\userActions.py:16 ../src\keystrokeEditor\wx_ui.py:13
-#: ../src\wxUI\dialogs\userActions.py:9 ../src\wxUI\dialogs\userActions.py:16
-msgid "Action"
-msgstr "Művelet"
-
-#: ../src\gtkUI\dialogs\userActions.py:17
-#: ../src\wxUI\dialogs\userActions.py:17
-msgid "Follow"
-msgstr "Követés"
-
-#: ../src\gtkUI\dialogs\userActions.py:18
-#: ../src\wxUI\dialogs\userActions.py:18
-msgid "Unfollow"
-msgstr "Elhagyás"
-
-#: ../src\gtkUI\dialogs\userActions.py:19
-#: ../src\wxUI\dialogs\userActions.py:19
-msgid "Mute"
-msgstr "Némítás"
-
-#: ../src\gtkUI\dialogs\userActions.py:20
-#: ../src\wxUI\dialogs\userActions.py:20
-msgid "Unmute"
-msgstr "Némítás visszavonása"
-
-#: ../src\gtkUI\dialogs\userActions.py:21
-#: ../src\wxUI\dialogs\userActions.py:21
-msgid "Block"
-msgstr "Letiltás"
-
-#: ../src\gtkUI\dialogs\userActions.py:22
-#: ../src\wxUI\dialogs\userActions.py:22
-msgid "Unblock"
-msgstr "Engedélyezés"
-
-#: ../src\gtkUI\dialogs\userActions.py:23
-#: ../src\wxUI\dialogs\userActions.py:23
-msgid "Report as spam"
-msgstr "Spamként jelentés"
-
-#: ../src\gtkUI\dialogs\userActions.py:24
-#: ../src\wxUI\dialogs\userActions.py:24
-msgid "Ignore tweets from this client"
-msgstr "Tweetek figyelmen kívül hagyása ettől a klienstől"
-
-#: ../src\gtkUI\dialogs\userSelection.py:9
-#: ../src\wxUI\dialogs\userSelection.py:9
-msgid "Timeline for %s"
-msgstr "%s idővonala"
-
-#: ../src\gtkUI\dialogs\userSelection.py:16
-#: ../src\wxUI\dialogs\userSelection.py:16
-msgid "Buffer type"
-msgstr "Buffertípus"
-
-#: ../src\gtkUI\sysTrayIcon.py:34 ../src\wxUI\sysTrayIcon.py:34
-#: ../src\wxUI\view.py:22
-msgid "&Global settings"
-msgstr "&Általános beállítások"
-
-#: ../src\gtkUI\sysTrayIcon.py:35 ../src\wxUI\sysTrayIcon.py:35
-#: ../src\wxUI\view.py:21
-msgid "Account se&ttings"
-msgstr "Fiók beállítások"
-
-#: ../src\gtkUI\sysTrayIcon.py:36 ../src\wxUI\sysTrayIcon.py:36
-msgid "Update &profile"
-msgstr "Profil &frissítése"
-
-#: ../src\gtkUI\sysTrayIcon.py:37 ../src\wxUI\sysTrayIcon.py:37
-msgid "&Show / hide"
-msgstr "Megjelenítés / &elrejtés"
-
-#: ../src\gtkUI\sysTrayIcon.py:38 ../src\wxUI\sysTrayIcon.py:38
-#: ../src\wxUI\view.py:63
-msgid "&Documentation"
-msgstr "&Dokumentáció"
-
-#: ../src\gtkUI\sysTrayIcon.py:40 ../src\wxUI\sysTrayIcon.py:40
-msgid "Check for &updates"
-msgstr "Frissítések &keresése"
-
-#: ../src\gtkUI\sysTrayIcon.py:41 ../src\wxUI\sysTrayIcon.py:41
-msgid "&Exit"
-msgstr "K&ilépés"
-
-#: ../src\gtkUI\view.py:21
-msgid "Manage accounts"
-msgstr "Fiókok Ke&zelése"
-
-#: ../src\gtkUI\view.py:183 ../src\wxUI\view.py:159
-msgid "Address"
-msgstr "Cím"
-
-#: ../src\gtkUI\view.py:206 ../src\wxUI\view.py:182
-msgid "Update"
-msgstr "Frissítés"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "always"
-msgstr "mindig"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "have not tried"
-msgstr "nem próbálta"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "random"
-msgstr "véletlenszerű"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "sometimes"
-msgstr "néha"
-
-#: ../src\issueReporter\issueReporter.py:31
-msgid "unable to duplicate"
-msgstr "Nem lehet megkettőzni"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "block"
-msgstr "Letiltás"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "crash"
-msgstr "összeomlás"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "feature"
-msgstr "funkció"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "major"
-msgstr "fő"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "minor"
-msgstr "mellékes"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "text"
-msgstr "Szöveg"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "trivial"
-msgstr "jelentéktelen"
-
-#: ../src\issueReporter\issueReporter.py:32
-msgid "tweak"
-msgstr "testreszab"
-
-#: ../src\issueReporter\wx_ui.py:25
-msgid "Report an error"
-msgstr "Hibajelentés"
-
-#: ../src\issueReporter\wx_ui.py:28
-msgid "Select a category"
-msgstr "Válasszon Kategóriát"
-
-#: ../src\issueReporter\wx_ui.py:36
-msgid ""
-"Briefly describe what happened. You will be able to thoroughly explain it "
-"later"
-msgstr ""
-"Írja le röviden, mi történt. A későbbiekben van lehetősége bővebben is "
-"leírni."
-
-#: ../src\issueReporter\wx_ui.py:45
-msgid "Here, you can describe the bug in detail"
-msgstr "Itt bővebben kifejtheti a hibát"
-
-#: ../src\issueReporter\wx_ui.py:55
-msgid "how often does this bug happen?"
-msgstr "Milyen gyakran történik ez a  hiba?"
-
-#: ../src\issueReporter\wx_ui.py:62
-msgid "Select the importance that you think this bug has"
-msgstr "Válassza ki a hiba ön szerinti fontosságát"
-
-#: ../src\issueReporter\wx_ui.py:72
-msgid "Send report"
-msgstr "Jelentés elküldése"
-
-#: ../src\issueReporter\wx_ui.py:83
-msgid "You must fill out both fields"
-msgstr "Mindkét mező kitöltése kötelező"
-
-#: ../src\issueReporter\wx_ui.py:86
-msgid ""
-"You need to mark the checkbox to provide us your twitter username to contact "
-"you if it is necessary."
-msgstr ""
-"Be kell jelölnie a jelölőnégyzetet a Twitter felhasználói nevének "
-"elküldéséhez, ha kapcsolatfelvétel szükséges."
-
-#: ../src\issueReporter\wx_ui.py:89
-msgid ""
-"Thanks for reporting this bug! In future versions, you may be able to find "
-"it in the changes list. You've reported the bug number %i"
-msgstr ""
-"Köszönjük a hibajelentést! A jövőben előfordulhat, hogy a változások "
-"listájában megtalálja. JElentett hibák száma: %i"
-
-#: ../src\issueReporter\wx_ui.py:89
-msgid "reported"
-msgstr "jelentve"
-
-#: ../src\issueReporter\wx_ui.py:93
-msgid "Error while reporting"
-msgstr "Hiba a jelentés közben"
-
-#: ../src\issueReporter\wx_ui.py:93
-msgid ""
-"Something unexpected occurred while trying to report the bug. Please, try "
-"again later"
-msgstr ""
-"Valamilyen nem várt hiba történt a jelentés közben. Kérjük próbálja meg "
-"később."
-
-#: ../src\keystrokeEditor\constants.py:3
-msgid "Go up in the current buffer"
-msgstr "Felfelé mozgás a jelenlegi bufferben"
-
-#: ../src\keystrokeEditor\constants.py:4
-msgid "Go down in the current buffer"
-msgstr "Lefelé mozgás a jelenlegi bufferben"
-
-#: ../src\keystrokeEditor\constants.py:5
-msgid "Go to the previous buffer"
-msgstr "Váltás az előző bufferre"
-
-#: ../src\keystrokeEditor\constants.py:6
-msgid "Go to the next buffer"
-msgstr "Váltás a következő buffer"
-
-#: ../src\keystrokeEditor\constants.py:7
-msgid "Focus the next session"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:8
-msgid "Focus the previous session"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:9
-msgid "Show or hide the GUI"
-msgstr "Megjelenítés / elrejtés"
-
-#: ../src\keystrokeEditor\constants.py:10
-msgid "New tweet"
-msgstr "Új tweet"
-
-#: ../src\keystrokeEditor\constants.py:13
-msgid "Send direct message"
-msgstr "Közvetlen üzenet küldése"
-
-#: ../src\keystrokeEditor\constants.py:14
-msgid "Mark as favourite"
-msgstr "Jelölés kedvencként"
-
-#: ../src\keystrokeEditor\constants.py:15
-msgid "Remove from favourites"
-msgstr "Törlés a kedvencek listájáról"
-
-#: ../src\keystrokeEditor\constants.py:16
-msgid "Open the user actions dialogue"
-msgstr "A műveletek párbeszédpanel megnyitása"
-
-#: ../src\keystrokeEditor\constants.py:17
-msgid "See user details"
-msgstr "Felhasználó információi"
-
-#: ../src\keystrokeEditor\constants.py:18
-msgid "Show tweet"
-msgstr "Tweet megjelenítése"
-
-#: ../src\keystrokeEditor\constants.py:19
-msgid "Quit"
-msgstr "Kilépés"
-
-#: ../src\keystrokeEditor\constants.py:20
-msgid "Open user timeline"
-msgstr "Felhasználó idővonalának megnyitása"
-
-#: ../src\keystrokeEditor\constants.py:21
-msgid "Destroy buffer"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:22
-msgid "Interact with the currently focused tweet."
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:23
-msgid ""
-"Perform secondary interact action (open URL in browser if Codeofdusk's "
-"intelegent audio tweet handlers enabled, play audio if disabled."
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:24
-msgid "Increase volume by 5%"
-msgstr "Hangerő növelése 5 százalékkal"
-
-#: ../src\keystrokeEditor\constants.py:25
-msgid "Decrease volume by 5%"
-msgstr "Hangerő csökkentése 5 százalékkal"
-
-#: ../src\keystrokeEditor\constants.py:26
-msgid "Jump to the first element of a buffer"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:27
-msgid "Jump to the last element of the current buffer"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:28
-msgid "Jump 20 elements up in the current buffer"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:29
-msgid "Jump 20 elements down in the current buffer"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:30
-msgid "Edit profile"
-msgstr "Profil szerkesztése"
-
-#: ../src\keystrokeEditor\constants.py:31
-msgid "Delete a tweet or direct message"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:32
-msgid "Empty the current buffer"
-msgstr "Buffer kiürítése"
-
-#: ../src\keystrokeEditor\constants.py:33
-msgid "Repeat last item"
-msgstr "Utolsó elem megismétlése"
-
-#: ../src\keystrokeEditor\constants.py:34
-msgid "Copy to clipboard"
-msgstr "Másolás vágólapra"
-
-#: ../src\keystrokeEditor\constants.py:35
-msgid "Add to list"
-msgstr "Hozzáadás listához"
-
-#: ../src\keystrokeEditor\constants.py:36
-msgid "Remove from list"
-msgstr "Törlés listáról"
-
-#: ../src\keystrokeEditor\constants.py:37
-msgid "Mute/unmute the active buffer"
-msgstr "Elnémítja és visszavonja a némítást a jelenlegi bufferen"
-
-#: ../src\keystrokeEditor\constants.py:38
-msgid "Mute/unmute the current session"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:39
-msgid "toggle the automatic reading of incoming tweets in the active buffer"
-msgstr ""
-"A bejövő tweetek automatikus olvasásának be- és kikapcsolása a jelenlegi "
-"bufferben"
-
-#: ../src\keystrokeEditor\constants.py:40
-msgid "Search on twitter"
-msgstr "Keresés a Twitteren"
-
-#: ../src\keystrokeEditor\constants.py:41
-msgid "Show the keystroke editor"
-msgstr "Megjeleníti a billentyűparancs szerkesztőt"
-
-#: ../src\keystrokeEditor\constants.py:42
-msgid "Show lists for a specified user"
-msgstr "A megadott felhasználó listáinak megjelenítése"
-
-#: ../src\keystrokeEditor\constants.py:43
-msgid "load previous items"
-msgstr ""
-
-#: ../src\keystrokeEditor\constants.py:44
-msgid "Get geolocation"
-msgstr "Tartózkodási hely"
-
-#: ../src\keystrokeEditor\constants.py:45
-msgid "Display the tweet's geolocation in a dialog"
-msgstr "Megjeleníti a tweet helyét egy párbeszédablakban"
-
-#: ../src\keystrokeEditor\constants.py:46
-msgid "Create a trending topics buffer"
-msgstr "Népszerű témák megtekintése"
-
-#: ../src\keystrokeEditor\constants.py:47
-msgid "View conversation"
-msgstr "Beszélgetés megtekintése"
-
-#: ../src\keystrokeEditor\wx_ui.py:8
-msgid "Keystroke editor"
-msgstr "Billentyűparancs szerkesztő"
-
-#: ../src\keystrokeEditor\wx_ui.py:12
-msgid "Select a keystroke to edit"
-msgstr "Válasszon ki egy szerkesztendő billentyűparancsot"
-
-#: ../src\keystrokeEditor\wx_ui.py:13
-msgid "Keystroke"
-msgstr "Billentyűparancs"
-
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:43
 #: ../src\keystrokeEditor\wx_ui.py:43
 msgid "Editing keystroke"
 msgstr "Billentyűparancs szerkesztése"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:46
 #: ../src\keystrokeEditor\wx_ui.py:46
 msgid "Control"
 msgstr "Control"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:47
 #: ../src\keystrokeEditor\wx_ui.py:47
 msgid "Alt"
 msgstr "Alt"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:48
 #: ../src\keystrokeEditor\wx_ui.py:48
 msgid "Shift"
 msgstr "Shift"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:49
 #: ../src\keystrokeEditor\wx_ui.py:49
 msgid "Windows"
 msgstr "Windows"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:55
 #: ../src\keystrokeEditor\wx_ui.py:55
 msgid "Key"
 msgstr "Billentyű"
 
-#: ../src\keystrokeEditor\wx_ui.py:73
-msgid "You need to use the Windows key"
-msgstr "Használnia kell a Windows billentyűt"
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:60
+#: ../src\build\lib\wxUI\dialogs\find.py:18
+#: ../src\build\lib\wxUI\dialogs\search.py:24
+#: ../src\build\lib\wxUI\dialogs\trends.py:26
+#: ../src\build\lib\wxUI\dialogs\userActions.py:38
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:26
+#: ../src\build\lib\wxUI\dialogs\utils.py:32
+#: ../src\keystrokeEditor\wx_ui.py:60 ../src\wxUI\dialogs\find.py:18
+#: ../src\wxUI\dialogs\search.py:24 ../src\wxUI\dialogs\trends.py:26
+#: ../src\wxUI\dialogs\userActions.py:38
+#: ../src\wxUI\dialogs\userSelection.py:26 ../src\wxUI\dialogs\utils.py:32
+msgid "OK"
+msgstr "OK"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:73
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:76
 #: ../src\keystrokeEditor\wx_ui.py:73 ../src\keystrokeEditor\wx_ui.py:76
 msgid "Invalid keystroke"
 msgstr "Érvénytelen billentyűparancs"
 
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:73
+#: ../src\keystrokeEditor\wx_ui.py:73
+msgid "You need to use the Windows key"
+msgstr "Használnia kell a Windows billentyűt"
+
+#: ../src\build\lib\keystrokeEditor\wx_ui.py:76
 #: ../src\keystrokeEditor\wx_ui.py:76
 msgid "You must provide a character for the keystroke"
 msgstr "Meg kell adnia egy betűt a billentyűparancshoz"
 
-#: ../src\languageHandler.py:95
-msgid "User default"
-msgstr "Alapértelmezett"
-
+#: ../src\build\lib\sessionmanager\session.py:185
 #: ../src\sessionmanager\session.py:185
 msgid "%s failed.  Reason: %s"
 msgstr "%s sikertelen.  Ok: %s"
 
+#: ../src\build\lib\sessionmanager\session.py:191
 #: ../src\sessionmanager\session.py:191
 msgid "%s succeeded."
 msgstr "%s sikeres."
 
-#: ../src\sessionmanager\wxUI.py:17 ../src\sessionmanager\wxUI.py:63
+#: ../src\build\lib\sessionmanager\wxUI.py:10 ../src\sessionmanager\wxUI.py:10
+#, fuzzy
+msgid "Accounts list"
+msgstr "Fiók"
+
+#: ../src\build\lib\sessionmanager\wxUI.py:12 ../src\sessionmanager\wxUI.py:12
+msgid "Account"
+msgstr "Fiók"
+
+#: ../src\build\lib\sessionmanager\wxUI.py:16 ../src\sessionmanager\wxUI.py:16
+#, fuzzy
+msgid "New account"
+msgstr "Fiók eltávolítása"
+
+#: ../src\build\lib\sessionmanager\wxUI.py:17
+#: ../src\build\lib\sessionmanager\wxUI.py:63 ../src\sessionmanager\wxUI.py:17
+#: ../src\sessionmanager\wxUI.py:63
 msgid "Remove account"
 msgstr "Fiók eltávolítása"
 
-#: ../src\sessionmanager\wxUI.py:18
+#: ../src\build\lib\sessionmanager\wxUI.py:18 ../src\sessionmanager\wxUI.py:18
 msgid "Global Settings"
 msgstr "Általános beállítások"
 
-#: ../src\sessionmanager\wxUI.py:41
+#: ../src\build\lib\sessionmanager\wxUI.py:41 ../src\sessionmanager\wxUI.py:41
 msgid "Account Error"
 msgstr "Fiók hiba"
 
-#: ../src\sessionmanager\wxUI.py:41
+#: ../src\build\lib\sessionmanager\wxUI.py:41 ../src\sessionmanager\wxUI.py:41
 msgid "You need to configure an account."
 msgstr "Be kell állítania egy fiókot."
 
-#: ../src\sessionmanager\wxUI.py:47
+#: ../src\build\lib\sessionmanager\wxUI.py:47 ../src\sessionmanager\wxUI.py:47
+msgid "Authorization"
+msgstr "Hitelesítés"
+
+#: ../src\build\lib\sessionmanager\wxUI.py:47 ../src\sessionmanager\wxUI.py:47
 msgid ""
 "The request to authorize your Twitter account will be opened in your "
 "browser. You only need to do this once. Would you like to continue?"
 msgstr ""
 
-#: ../src\sessionmanager\wxUI.py:51
+#: ../src\build\lib\sessionmanager\wxUI.py:51 ../src\sessionmanager\wxUI.py:51
 msgid "Authorized account %d"
 msgstr ""
 
-#: ../src\sessionmanager\wxUI.py:57
+#: ../src\build\lib\sessionmanager\wxUI.py:57 ../src\sessionmanager\wxUI.py:57
 msgid "Invalid user token"
 msgstr "Érvénytelen felhasználói token"
 
-#: ../src\sessionmanager\wxUI.py:57
+#: ../src\build\lib\sessionmanager\wxUI.py:57 ../src\sessionmanager\wxUI.py:57
 msgid ""
 "Your access token is invalid or the authorization has failed. Please try "
 "again."
 msgstr ""
 
-#: ../src\sessionmanager\wxUI.py:63
+#: ../src\build\lib\sessionmanager\wxUI.py:63 ../src\sessionmanager\wxUI.py:63
 msgid "Do you really want to delete this account?"
 msgstr "Bisztosan szeretné törölni ezt a fiókot?"
 
-#: ../src\sound.py:156
-msgid "Stopped."
-msgstr ""
-
-#: ../src\twitter\compose.py:40 ../src\twitter\compose.py:67
-#: ../src\twitter\compose.py:76
+#: ../src\build\lib\twitter\compose.py:40
+#: ../src\build\lib\twitter\compose.py:67
+#: ../src\build\lib\twitter\compose.py:76 ../src\twitter\compose.py:41
+#: ../src\twitter\compose.py:74 ../src\twitter\compose.py:83
 msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "dddd, MMMM D, YYYY H:m:s"
 
-#: ../src\twitter\compose.py:46
+#: ../src\build\lib\twitter\compose.py:46 ../src\twitter\compose.py:47
 msgid "Dm to %s "
 msgstr "Dm %s felhasználónak"
 
-#: ../src\twitter\compose.py:78 ../src\twitter\compose.py:80
+#: ../src\build\lib\twitter\compose.py:78
+#: ../src\build\lib\twitter\compose.py:80 ../src\twitter\compose.py:85
+#: ../src\twitter\compose.py:87
 msgid "Unavailable"
 msgstr "Nem érhető el"
 
-#: ../src\twitter\compose.py:81
+#: ../src\build\lib\twitter\compose.py:81 ../src\twitter\compose.py:88
 msgid ""
 "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
 "Twitter %s"
 msgstr ""
 
-#: ../src\twitter\compose.py:85
+#: ../src\build\lib\twitter\compose.py:85 ../src\twitter\compose.py:92
 msgid "You've blocked %s"
 msgstr "%s letiltva"
 
-#: ../src\twitter\compose.py:87
+#: ../src\build\lib\twitter\compose.py:87 ../src\twitter\compose.py:94
 msgid "You've unblocked %s"
 msgstr "%s engedélyezve"
 
-#: ../src\twitter\compose.py:90
+#: ../src\build\lib\twitter\compose.py:90 ../src\twitter\compose.py:97
 msgid "%s(@%s) has followed you"
 msgstr "%s(@%s) mostantól követi önt"
 
-#: ../src\twitter\compose.py:92
+#: ../src\build\lib\twitter\compose.py:92 ../src\twitter\compose.py:99
 msgid "You've followed %s(@%s)"
 msgstr "Mostantól követi %s(@%s) felhasználót"
 
-#: ../src\twitter\compose.py:94
+#: ../src\build\lib\twitter\compose.py:94 ../src\twitter\compose.py:101
 msgid "You've unfollowed %s (@%s)"
 msgstr "Elhagyta %s (@%s) felhasználót"
 
-#: ../src\twitter\compose.py:97
+#: ../src\build\lib\twitter\compose.py:97 ../src\twitter\compose.py:104
 msgid "You've added to favourites: %s, %s"
 msgstr "Hozzáadva a kedvencekhez: %s, %s"
 
-#: ../src\twitter\compose.py:99
-msgid "%s(@%s) has marked as favorite: %s"
+#: ../src\build\lib\twitter\compose.py:99 ../src\twitter\compose.py:106
+#, fuzzy
+msgid "%s(@%s) has marked as favourite: %s"
 msgstr "%s(@%s) megjelölte kedvencként: %s"
 
-#: ../src\twitter\compose.py:101
+#: ../src\build\lib\twitter\compose.py:101 ../src\twitter\compose.py:108
 msgid "You've removed from favourites: %s, %s"
 msgstr "Eltávolította a kedvencet: %s, %s"
 
-#: ../src\twitter\compose.py:102
+#: ../src\build\lib\twitter\compose.py:102 ../src\twitter\compose.py:109
 msgid "%s(@%s) has removed from favourites: %s"
 msgstr "%s(@%s) eltávolította a kedvencet: %s"
 
-#: ../src\twitter\compose.py:104
+#: ../src\build\lib\twitter\compose.py:104 ../src\twitter\compose.py:111
 msgid "You've created the list %s"
 msgstr "%s lista elkészült"
 
-#: ../src\twitter\compose.py:106
+#: ../src\build\lib\twitter\compose.py:106 ../src\twitter\compose.py:113
 msgid "You've deleted the list %s"
 msgstr "%s lista törölve"
 
-#: ../src\twitter\compose.py:108
+#: ../src\build\lib\twitter\compose.py:108 ../src\twitter\compose.py:115
 msgid "You've updated the list %s"
 msgstr "%s lista frissítve"
 
-#: ../src\twitter\compose.py:110
+#: ../src\build\lib\twitter\compose.py:110 ../src\twitter\compose.py:117
 msgid "You've added %s(@%s) to the list %s"
 msgstr "%s(@%s) hozzáadva a(z) %s listához"
 
-#: ../src\twitter\compose.py:111
+#: ../src\build\lib\twitter\compose.py:111 ../src\twitter\compose.py:118
 msgid "%s(@%s) has added you to the list %s"
 msgstr "%s(@%s) hozzáadta önt a(z) %s listához"
 
-#: ../src\twitter\compose.py:113
+#: ../src\build\lib\twitter\compose.py:113 ../src\twitter\compose.py:120
 msgid "You'be removed %s(@%s) from the list %s"
 msgstr "%s(@%s) eltávolítva a(z) %s listáról"
 
-#: ../src\twitter\compose.py:114
+#: ../src\build\lib\twitter\compose.py:114 ../src\twitter\compose.py:121
 msgid "%s(@%s) has removed you from the list %s"
 msgstr "%s(@%s) eltávolította önt a(z) %s listáról"
 
-#: ../src\twitter\compose.py:116
+#: ../src\build\lib\twitter\compose.py:116 ../src\twitter\compose.py:123
 msgid "You've subscribed to the list %s, which is owned by %s(@%s)"
 msgstr "Feliratkozott a(z) %s listára, mely %s(@%s) tulajdona"
 
-#: ../src\twitter\compose.py:117
+#: ../src\build\lib\twitter\compose.py:117 ../src\twitter\compose.py:124
 msgid "%s(@%s) has suscribed you to the list %s"
 msgstr "%s(@%s) felírta önt a(z) %s listára"
 
-#: ../src\twitter\compose.py:119
+#: ../src\build\lib\twitter\compose.py:119 ../src\twitter\compose.py:126
 msgid "You've unsubscribed from the list %s, which is owned by %s(@%s)"
 msgstr "Leiratkozott a(z) %s listáról, mely %s(@%s) tulajdona"
 
-#: ../src\twitter\compose.py:120
+#: ../src\build\lib\twitter\compose.py:120 ../src\twitter\compose.py:127
 msgid "You've been unsubscribed from the list %s, which is owned by %s(@%s)"
 msgstr "Leiratkozott a(z) %s listáról, mely %s(@%s) tulajdona"
 
-#: ../src\twitter\compose.py:125
+#: ../src\build\lib\twitter\compose.py:122 ../src\twitter\compose.py:129
+msgid "You have retweeted a retweet from %s(@%s): %s"
+msgstr ""
+
+#: ../src\build\lib\twitter\compose.py:123 ../src\twitter\compose.py:130
+#, fuzzy
+msgid "%s(@%s) has retweeted your retweet: %s"
+msgstr "%s(@%s) eltávolította önt a(z) %s listáról"
+
+#: ../src\build\lib\twitter\compose.py:125 ../src\twitter\compose.py:132
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: ../src\twitter\compose.py:131
+#: ../src\build\lib\twitter\compose.py:131 ../src\twitter\compose.py:138
 msgid "No description available"
 msgstr "Nem érhető el leírás"
 
-#: ../src\twitter\compose.py:135
+#: ../src\build\lib\twitter\compose.py:135 ../src\twitter\compose.py:142
 msgid "private"
 msgstr "magán"
 
-#: ../src\twitter\compose.py:136
+#: ../src\build\lib\twitter\compose.py:136 ../src\twitter\compose.py:143
 msgid "public"
 msgstr "nyilvános"
 
-#: ../src\update\wxUpdater.py:9
+#: ../src\build\lib\twitter\utils.py:124 ../src\twitter\utils.py:124
+msgid "Sorry, you are not authorised to see this status."
+msgstr ""
+
+#: ../src\build\lib\twitter\utils.py:126 ../src\twitter\utils.py:126
+msgid "No status found with that ID"
+msgstr ""
+
+#: ../src\build\lib\twitter\utils.py:128 ../src\twitter\utils.py:128
+msgid "Error code {0}"
+msgstr ""
+
+#: ../src\build\lib\update\wxUpdater.py:9 ../src\update\wxUpdater.py:9
 msgid "New version for %s"
 msgstr "%s új verzió"
 
-#: ../src\update\wxUpdater.py:9
+#: ../src\build\lib\update\wxUpdater.py:9 ../src\update\wxUpdater.py:9
 msgid ""
 "There's a new %s version available. Would you like to download it now?\n"
 "\n"
@@ -2410,23 +2258,23 @@ msgstr ""
 "Változások:\n"
 "%s"
 
-#: ../src\update\wxUpdater.py:17
+#: ../src\build\lib\update\wxUpdater.py:17 ../src\update\wxUpdater.py:17
 msgid "Download in Progress"
 msgstr "A letöltés folyamatban"
 
-#: ../src\update\wxUpdater.py:17
+#: ../src\build\lib\update\wxUpdater.py:17 ../src\update\wxUpdater.py:17
 msgid "Downloading the new version..."
 msgstr "Az új verzió letöltése..."
 
-#: ../src\update\wxUpdater.py:27
+#: ../src\build\lib\update\wxUpdater.py:27 ../src\update\wxUpdater.py:27
 msgid "Updating... %s of %s"
 msgstr "Frissítés... %s per %s"
 
-#: ../src\update\wxUpdater.py:30
+#: ../src\build\lib\update\wxUpdater.py:30 ../src\update\wxUpdater.py:30
 msgid "Done!"
 msgstr "Befejeződött!"
 
-#: ../src\update\wxUpdater.py:30
+#: ../src\build\lib\update\wxUpdater.py:30 ../src\update\wxUpdater.py:30
 msgid ""
 "The update has been downloaded and installed successfully. Press OK to "
 "continue."
@@ -2434,45 +2282,286 @@ msgstr ""
 "Az új TW Blue verzió letöltése és telepítése befejeződött. Nyomja meg az OK "
 "gombot az alkalmazás elindításához."
 
+#: ../src\build\lib\wxUI\buffers\base.py:11
+#: ../src\build\lib\wxUI\buffers\events.py:13 ../src\wxUI\buffers\base.py:11
+#: ../src\wxUI\buffers\events.py:13
+msgid "Date"
+msgstr "Dátum"
+
+#: ../src\build\lib\wxUI\buffers\base.py:11
+#: ../src\build\lib\wxUI\buffers\people.py:10
+#: ../src\build\lib\wxUI\buffers\user_searches.py:9
+#: ../src\build\lib\wxUI\dialogs\userActions.py:10
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:10
+#: ../src\build\lib\wxUI\dialogs\utils.py:29 ../src\wxUI\buffers\base.py:11
+#: ../src\wxUI\buffers\people.py:10 ../src\wxUI\buffers\user_searches.py:9
+#: ../src\wxUI\dialogs\userActions.py:10
+#: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:29
+msgid "User"
+msgstr "Felhasználó"
+
+#: ../src\build\lib\wxUI\buffers\base.py:11 ../src\wxUI\buffers\base.py:11
+msgid "Client"
+msgstr "Kliens"
+
+#: ../src\build\lib\wxUI\buffers\base.py:11 ../src\wxUI\buffers\base.py:11
+msgid "Text"
+msgstr "Szöveg"
+
+#: ../src\build\lib\wxUI\buffers\base.py:27 ../src\wxUI\buffers\base.py:27
+msgid "Direct message"
+msgstr "Közvetlen üzenet"
+
+#: ../src\build\lib\wxUI\buffers\events.py:13 ../src\wxUI\buffers\events.py:13
+msgid "Event"
+msgstr "Esemény"
+
+#: ../src\build\lib\wxUI\buffers\events.py:15 ../src\wxUI\buffers\events.py:15
+msgid "Remove event"
+msgstr "Esemény törlése"
+
+#: ../src\build\lib\wxUI\buffers\panels.py:11
+#: ../src\build\lib\wxUI\buffers\panels.py:19 ../src\wxUI\buffers\panels.py:11
+#: ../src\wxUI\buffers\panels.py:19
+msgid "Login"
+msgstr "Bejelentkezés"
+
+#: ../src\build\lib\wxUI\buffers\panels.py:13 ../src\wxUI\buffers\panels.py:13
+msgid "Log in automatically"
+msgstr ""
+
+#: ../src\build\lib\wxUI\buffers\panels.py:21 ../src\wxUI\buffers\panels.py:21
+msgid "Logout"
+msgstr "Kijelentkezés"
+
+#: ../src\build\lib\wxUI\buffers\trends.py:8 ../src\wxUI\buffers\trends.py:8
+msgid "Trending topic"
+msgstr "Trendelő témák"
+
+#: ../src\build\lib\wxUI\buffers\trends.py:18 ../src\wxUI\buffers\trends.py:18
+msgid "Tweet about this trend"
+msgstr "Tweetelés a trendről"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:5
+#: ../src\wxUI\commonMessageDialogs.py:5
+msgid ""
+"This retweet is over 140 characters. Would you like to post it as a mention "
+"to the poster with your comments and a link to the original tweet?"
+msgstr ""
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:8
+#: ../src\wxUI\commonMessageDialogs.py:8
+msgid "Would you like to add a comment to this tweet?"
+msgstr "Szeretne megjegyzést fűzni a tweethez?"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:11
+#: ../src\build\lib\wxUI\dialogs\lists.py:133
+#: ../src\wxUI\commonMessageDialogs.py:11 ../src\wxUI\dialogs\lists.py:133
+msgid "Delete"
+msgstr "Törlés"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:11
+#: ../src\wxUI\commonMessageDialogs.py:11
+msgid ""
+"Do you really want to delete this message? It will be deleted from Twitter "
+"as well."
+msgstr ""
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:14
 #: ../src\wxUI\commonMessageDialogs.py:14
 msgid "Do you really want to close {0}?"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:33
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:14
+#: ../src\wxUI\commonMessageDialogs.py:14
+msgid "Exit"
+msgstr "Kilépés"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:18
+#: ../src\wxUI\commonMessageDialogs.py:18
+msgid " {0} must be restarted for these changes to take effect."
+msgstr ""
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:18
+#: ../src\wxUI\commonMessageDialogs.py:18
+#, fuzzy
+msgid "Restart {0} "
+msgstr "A TW Blue Újraindítása"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:21
+#: ../src\wxUI\commonMessageDialogs.py:21
+msgid ""
+"Are you sure you want to delete this user from the database? This user will "
+"not appear on the autocomplete results anymore."
+msgstr ""
+"Biztosan szeretné törölni a felhasználót az adatbázisból? A felhasználó "
+"többé nem fog szerepelni az automatikuskiegészítésekben."
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:21
+#: ../src\wxUI\commonMessageDialogs.py:21
+msgid "Confirm"
+msgstr "Megerősítés"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:24
+#: ../src\wxUI\commonMessageDialogs.py:24
+msgid "Add a new ignored client"
+msgstr "Új mellőzött kliens hozzáadása"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:24
+#: ../src\wxUI\commonMessageDialogs.py:24
+msgid "Enter the name of the client here"
+msgstr "Írja be a mellőzött kliens nevét"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:30
+#: ../src\wxUI\commonMessageDialogs.py:30
+msgid ""
+"Do you really want to empty this buffer? It's  items will be removed from "
+"the list but not from Twitter"
+msgstr ""
+"Bisztosan szeretné kiüríteni a buffert? A tweetek törlődnek a bufferből, de "
+"a Twitteren továbbra is megmaradnak"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:30
+#: ../src\wxUI\commonMessageDialogs.py:30
+msgid "Empty buffer"
+msgstr "Buffer kiürítése"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:34
+#: ../src\wxUI\commonMessageDialogs.py:34
+msgid "Attention"
+msgstr "Figyelem"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:34
+#: ../src\wxUI\commonMessageDialogs.py:34
+msgid "Do you really want to delete this timeline?"
+msgstr "Bisztosan szeretné törölni ezt az idővonalat?"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:40
+#: ../src\wxUI\commonMessageDialogs.py:40
+msgid "Existing timeline"
+msgstr "Létező idővonal"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:40
+#: ../src\wxUI\commonMessageDialogs.py:40
+msgid ""
+"There's currently a timeline for this user. You are not able to open another"
+msgstr "Már létezik idővonal ezzel a felhasználóval. Nem nyithat meg újabbat"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:43
+#: ../src\wxUI\commonMessageDialogs.py:43
+msgid "This user has no tweets. You can't open a timeline for this user"
+msgstr "A felhasználó nem rendelkezik tweettel. Nem lehet idővonalat megnyitni"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:46
+#: ../src\wxUI\commonMessageDialogs.py:46
+msgid ""
+"This is a protected Twitter user. It means you can not open a timeline using "
+"the Streaming API. The user's tweets will not update due to a twitter "
+"policy. Do you want to continue?"
+msgstr ""
+"Ez egy védett Twitter felhasználó. Ez azt jelenti, hogy nem tud idővonalat "
+"megnyitni a Streaming API használatával. A felhasználói tweetek nem "
+"frissülnek a twitter szabályzata miatt. Szeretné folytatni?"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:46
+#: ../src\wxUI\commonMessageDialogs.py:46
+msgid "Warning"
+msgstr "Figyelem"
+
+#: ../src\build\lib\wxUI\commonMessageDialogs.py:49
+#: ../src\wxUI\commonMessageDialogs.py:49
+msgid ""
+"This is a protected user account, you need follow to this user for viewing "
+"your tweets or favourites."
+msgstr ""
+"Ez egy védett felhasználói fiók, a kedvencek vagy a tweetek megtekintéséhez "
+"követnie kell."
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:14
+#: ../src\wxUI\dialogs\configuration.py:14
+msgid "Language"
+msgstr "Nyelv"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:21
+#: ../src\wxUI\dialogs\configuration.py:21
+msgid "ask before exiting {0}"
+msgstr ""
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:23
+#: ../src\wxUI\dialogs\configuration.py:23
+msgid "Play a sound when {0} launches"
+msgstr ""
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:25
+#: ../src\wxUI\dialogs\configuration.py:25
+msgid "Speak a message when {0} launches"
+msgstr ""
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:27
+#: ../src\wxUI\dialogs\configuration.py:27
+msgid "Use invisible interface's keyboard shortcuts while GUI is visible"
+msgstr ""
+"A láthatatlan felület billentyűparancsainak használata a grafikus felületen"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:29
+#: ../src\wxUI\dialogs\configuration.py:29
+msgid "Activate Sapi5 when any other screen reader is not being run"
+msgstr "Aktiválja a Sapi5-öt ha nem fut más képernyőolvasó"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:31
+#: ../src\wxUI\dialogs\configuration.py:31
+msgid "Hide GUI on launch"
+msgstr "Főablak elrejtése indításkor"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:34
+#: ../src\wxUI\dialogs\configuration.py:36
 msgid "Keymap"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:46
+#: ../src\build\lib\wxUI\dialogs\configuration.py:47
+#: ../src\wxUI\dialogs\configuration.py:49
 msgid "Proxy server: "
 msgstr "Proxy kiszolgáló: "
 
-#: ../src\wxUI\dialogs\configuration.py:52
+#: ../src\build\lib\wxUI\dialogs\configuration.py:53
+#: ../src\wxUI\dialogs\configuration.py:55
 msgid "Port: "
 msgstr "Port: "
 
-#: ../src\wxUI\dialogs\configuration.py:58
+#: ../src\build\lib\wxUI\dialogs\configuration.py:59
+#: ../src\wxUI\dialogs\configuration.py:61
 msgid "User: "
 msgstr "Felhasználó"
 
-#: ../src\wxUI\dialogs\configuration.py:64
+#: ../src\build\lib\wxUI\dialogs\configuration.py:65
+#: ../src\wxUI\dialogs\configuration.py:67
 msgid "Password: "
 msgstr "Jelszó: "
 
-#: ../src\wxUI\dialogs\configuration.py:76
+#: ../src\build\lib\wxUI\dialogs\configuration.py:77
+#: ../src\wxUI\dialogs\configuration.py:79
 msgid "Autocompletion settings..."
 msgstr "Felhasználók autokiegészítésének beállítása..."
 
-#: ../src\wxUI\dialogs\configuration.py:78
+#: ../src\build\lib\wxUI\dialogs\configuration.py:79
+#: ../src\wxUI\dialogs\configuration.py:81
 msgid "Relative timestamps"
 msgstr "Relatív idő"
 
-#: ../src\wxUI\dialogs\configuration.py:81
+#: ../src\build\lib\wxUI\dialogs\configuration.py:82
+#: ../src\wxUI\dialogs\configuration.py:84
 msgid "API calls (One API call = 200 tweets, two API calls = 400 tweets, etc):"
 msgstr ""
 "API hívások száma ha a stream kapcsolódik (Egy API hívás 200, kettő API "
 "hívás 400, stb. tweettel egyenlő):"
 
-#: ../src\wxUI\dialogs\configuration.py:94
+#: ../src\build\lib\wxUI\dialogs\configuration.py:89
+#: ../src\wxUI\dialogs\configuration.py:91
+msgid "Items on each API call"
+msgstr "Elemek száma API hívásonként"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:95
+#: ../src\wxUI\dialogs\configuration.py:97
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning while the "
 "oldest at the end"
@@ -2480,248 +2569,816 @@ msgstr ""
 "Fordított bufferek: a legutolsó tweet a lista tetején lesz, míg a legrégebbi "
 "a lista allján"
 
-#: ../src\wxUI\dialogs\configuration.py:96
+#: ../src\build\lib\wxUI\dialogs\configuration.py:97
+#: ../src\wxUI\dialogs\configuration.py:99
 msgid "Retweet mode"
 msgstr "Retweet mód"
 
-#: ../src\wxUI\dialogs\configuration.py:102
+#: ../src\build\lib\wxUI\dialogs\configuration.py:103
+#: ../src\wxUI\dialogs\configuration.py:105
 msgid ""
 "Number of items per buffer to cache in database (0 to disable caching, blank "
 "for unlimited)"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:112
+#: ../src\build\lib\wxUI\dialogs\configuration.py:113
+#: ../src\wxUI\dialogs\configuration.py:115
 msgid "Buffer"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:112
+#: ../src\build\lib\wxUI\dialogs\configuration.py:113
+#: ../src\wxUI\dialogs\configuration.py:115
 msgid "Status"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:115
+#: ../src\build\lib\wxUI\dialogs\configuration.py:116
+#: ../src\wxUI\dialogs\configuration.py:118
 msgid "Show/hide"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:116
+#: ../src\build\lib\wxUI\dialogs\configuration.py:117
+#: ../src\wxUI\dialogs\configuration.py:119
 msgid "Move up"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:117
+#: ../src\build\lib\wxUI\dialogs\configuration.py:118
+#: ../src\wxUI\dialogs\configuration.py:120
 msgid "Move down"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:127
-#: ../src\wxUI\dialogs\configuration.py:184
+#: ../src\build\lib\wxUI\dialogs\configuration.py:128
+#: ../src\build\lib\wxUI\dialogs\configuration.py:185
+#: ../src\build\lib\wxUI\dialogs\configuration.py:188
+#: ../src\build\lib\wxUI\dialogs\configuration.py:193
+#: ../src\wxUI\dialogs\configuration.py:130
 #: ../src\wxUI\dialogs\configuration.py:187
-#: ../src\wxUI\dialogs\configuration.py:192
+#: ../src\wxUI\dialogs\configuration.py:190
+#: ../src\wxUI\dialogs\configuration.py:195
 msgid "Show"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:129
-#: ../src\wxUI\dialogs\configuration.py:139
-#: ../src\wxUI\dialogs\configuration.py:159
-#: ../src\wxUI\dialogs\configuration.py:185
+#: ../src\build\lib\wxUI\dialogs\configuration.py:130
+#: ../src\build\lib\wxUI\dialogs\configuration.py:140
+#: ../src\build\lib\wxUI\dialogs\configuration.py:160
+#: ../src\build\lib\wxUI\dialogs\configuration.py:186
+#: ../src\wxUI\dialogs\configuration.py:132
+#: ../src\wxUI\dialogs\configuration.py:142
+#: ../src\wxUI\dialogs\configuration.py:162
+#: ../src\wxUI\dialogs\configuration.py:188
 msgid "Hide"
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:137
-#: ../src\wxUI\dialogs\configuration.py:157
+#: ../src\build\lib\wxUI\dialogs\configuration.py:138
+#: ../src\build\lib\wxUI\dialogs\configuration.py:158
+#: ../src\wxUI\dialogs\configuration.py:140
+#: ../src\wxUI\dialogs\configuration.py:160
 msgid "Select a buffer first."
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:140
-#: ../src\wxUI\dialogs\configuration.py:160
+#: ../src\build\lib\wxUI\dialogs\configuration.py:141
+#: ../src\build\lib\wxUI\dialogs\configuration.py:161
+#: ../src\wxUI\dialogs\configuration.py:143
+#: ../src\wxUI\dialogs\configuration.py:163
 msgid "The buffer is hidden, show it first."
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:143
+#: ../src\build\lib\wxUI\dialogs\configuration.py:144
+#: ../src\wxUI\dialogs\configuration.py:146
 msgid "The buffer is already at the top of the list."
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:163
+#: ../src\build\lib\wxUI\dialogs\configuration.py:164
+#: ../src\wxUI\dialogs\configuration.py:166
 msgid "The buffer is already at the bottom of the list."
 msgstr ""
 
-#: ../src\wxUI\dialogs\configuration.py:302
+#: ../src\build\lib\wxUI\dialogs\configuration.py:201
+#: ../src\build\lib\wxUI\dialogs\configuration.py:332
+#: ../src\wxUI\dialogs\configuration.py:203
+#: ../src\wxUI\dialogs\configuration.py:334
+msgid "Ignored clients"
+msgstr "Mellőzött kliensek"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:207
+#: ../src\wxUI\dialogs\configuration.py:209
+msgid "Add client"
+msgstr "Kliens hozzáadása"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:208
+#: ../src\wxUI\dialogs\configuration.py:210
+msgid "Remove client"
+msgstr "Kliens eltávolítása"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:232
+#: ../src\wxUI\dialogs\configuration.py:234
+msgid "Volume"
+msgstr "Hangerő"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:240
+#: ../src\wxUI\dialogs\configuration.py:242
+msgid "Session mute"
+msgstr "Munkamenet némítás"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:242
+#: ../src\wxUI\dialogs\configuration.py:244
+msgid "Output device"
+msgstr "Kimeneti hangeszköz"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:249
+#: ../src\wxUI\dialogs\configuration.py:251
+msgid "Input device"
+msgstr "Bemeneti hangeszköz"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:257
+#: ../src\wxUI\dialogs\configuration.py:259
+msgid "Sound pack"
+msgstr "Hangcsomag"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:272
+#: ../src\wxUI\dialogs\configuration.py:274
+#, fuzzy
+msgid ""
+"If you have a SndUp account, enter your API Key here. If your API Key is "
+"invalid, {0} will fail to upload. If there is no API Key here, {0} will "
+"upload annonymously."
+msgstr ""
+"Ha rendelkezik SndUp fiókkal, írja be API kulcsát. Ha az API kulcs "
+"helytelen, a program nem fog tudni feltölteni. Ha nem ad meg API kulcsot, a "
+"hangfájlok névtelenül lesznek feltöltve"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:287
+#: ../src\wxUI\dialogs\configuration.py:289
+#, fuzzy
+msgid "Disconnect your Pocket account"
+msgstr "Dropbox fiók hozzáadása"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:292
+#: ../src\wxUI\dialogs\configuration.py:294
+#, fuzzy
+msgid "Pocket Authorization"
+msgstr "Hitelesítés"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:292
+#: ../src\wxUI\dialogs\configuration.py:294
+#, fuzzy
+msgid ""
+"The authorization request will be opened in your browser. You only need to "
+"do this once. Do you want to continue?"
+msgstr ""
+"A Twitter hitelesítési kérelme most megnyílik a böngészőjében. A művelet "
+"elvégzése csak egyszer szükséges. Szeretne egy új fiókot most hitelesíteni?"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:295
+#: ../src\wxUI\dialogs\configuration.py:297
 msgid "Error during authorization. Try again later."
 msgstr "Hiba a hitelesítés közben. Próbálja újra később."
 
-#: ../src\wxUI\dialogs\configuration.py:326
+#: ../src\build\lib\wxUI\dialogs\configuration.py:308
+#: ../src\wxUI\dialogs\configuration.py:310
+#, fuzzy
+msgid "{0} preferences"
+msgstr "Beállítások"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:319
+#: ../src\wxUI\dialogs\configuration.py:321
 msgid "Proxy"
 msgstr "Proxy"
 
-#: ../src\wxUI\dialogs\configuration.py:335
+#: ../src\build\lib\wxUI\dialogs\configuration.py:328
+#: ../src\wxUI\dialogs\configuration.py:330
 msgid "Buffers"
 msgstr "Buffer"
 
-#: ../src\wxUI\dialogs\lists.py:133
+#: ../src\build\lib\wxUI\dialogs\configuration.py:336
+#: ../src\wxUI\dialogs\configuration.py:338
+msgid "Sound"
+msgstr "Hang"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:340
+#: ../src\wxUI\dialogs\configuration.py:342
+#, fuzzy
+msgid "Services"
+msgstr "Audio Szolgáltatások"
+
+#: ../src\build\lib\wxUI\dialogs\configuration.py:345
+#: ../src\wxUI\dialogs\configuration.py:347
+msgid "Save"
+msgstr "Mentés"
+
+#: ../src\build\lib\wxUI\dialogs\find.py:10 ../src\wxUI\dialogs\find.py:10
+#, fuzzy
+msgid "Find in current buffer"
+msgstr "Lefelé mozgás a jelenlegi bufferben"
+
+#: ../src\build\lib\wxUI\dialogs\find.py:11 ../src\wxUI\dialogs\find.py:11
+msgid "String"
+msgstr ""
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:10 ../src\wxUI\dialogs\lists.py:10
+msgid "Lists manager"
+msgstr "Listakezelő"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13
+#: ../src\build\lib\wxUI\dialogs\lists.py:69 ../src\wxUI\dialogs\lists.py:13
+#: ../src\wxUI\dialogs\lists.py:69
+msgid "Description"
+msgstr "Leírás"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+msgid "List"
+msgstr "Lista"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+msgid "Members"
+msgstr "Elemek"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+msgid "Owner"
+msgstr "Tulajdonos"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+msgid "mode"
+msgstr "mód"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:18
+#: ../src\build\lib\wxUI\dialogs\lists.py:61 ../src\wxUI\dialogs\lists.py:18
+#: ../src\wxUI\dialogs\lists.py:61
+msgid "Create a new list"
+msgstr "Új lista létrehozása"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:20
+#: ../src\build\lib\wxUI\dialogs\lists.py:124 ../src\wxUI\dialogs\lists.py:20
+#: ../src\wxUI\dialogs\lists.py:124
+msgid "Remove"
+msgstr "Törlés"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:21 ../src\wxUI\dialogs\lists.py:21
+msgid "Open in buffer"
+msgstr "Megnyitás bufferben"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:51 ../src\wxUI\dialogs\lists.py:51
+msgid "Viewing lists for %s"
+msgstr "%s listái"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:52 ../src\wxUI\dialogs\lists.py:52
+msgid "Subscribe"
+msgstr "Feliratkozás"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:53 ../src\wxUI\dialogs\lists.py:53
+msgid "Unsubscribe"
+msgstr "Leiratkozás"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:64 ../src\wxUI\dialogs\lists.py:64
+msgid "Name (20 characters maximun)"
+msgstr "Név (maximum 20 betű)"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:74 ../src\wxUI\dialogs\lists.py:74
+msgid "Mode"
+msgstr "Mód"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:75 ../src\wxUI\dialogs\lists.py:75
+msgid "Public"
+msgstr "Nyilvános"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:76 ../src\wxUI\dialogs\lists.py:76
+msgid "Private"
+msgstr "Magán"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:96 ../src\wxUI\dialogs\lists.py:96
+msgid "Editing the list %s"
+msgstr "%s lista szerkesztése"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:107 ../src\wxUI\dialogs\lists.py:107
+msgid "Select a list to add the user"
+msgstr "Válasszon egy listát, melyhez hozzá szeretné adni a felhasználót"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:108 ../src\wxUI\dialogs\lists.py:108
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:123 ../src\wxUI\dialogs\lists.py:123
+msgid "Select a list to remove the user"
+msgstr "Válassza ki a listát, melyről felhasználót szeretne törölni"
+
+#: ../src\build\lib\wxUI\dialogs\lists.py:133 ../src\wxUI\dialogs\lists.py:133
 msgid "Do you really want to delete this list?"
 msgstr "Bisztosan szeretné törölni ezt a listát?"
 
+#: ../src\build\lib\wxUI\dialogs\message.py:76
+#: ../src\wxUI\dialogs\message.py:76
+msgid "Upload image..."
+msgstr ""
+
+#: ../src\build\lib\wxUI\dialogs\message.py:77
+#: ../src\wxUI\dialogs\message.py:77
+msgid "Check spelling..."
+msgstr ""
+
+#: ../src\build\lib\wxUI\dialogs\message.py:78
+#: ../src\wxUI\dialogs\message.py:78
+msgid "Attach audio..."
+msgstr ""
+
+#: ../src\build\lib\wxUI\dialogs\message.py:79
+#: ../src\build\lib\wxUI\dialogs\message.py:139
+#: ../src\build\lib\wxUI\dialogs\message.py:200
+#: ../src\wxUI\dialogs\message.py:79 ../src\wxUI\dialogs\message.py:139
+#: ../src\wxUI\dialogs\message.py:200
+msgid "Shorten URL"
+msgstr "URL rövidítés"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:80
+#: ../src\build\lib\wxUI\dialogs\message.py:140
+#: ../src\build\lib\wxUI\dialogs\message.py:201
+#: ../src\build\lib\wxUI\dialogs\message.py:280
+#: ../src\build\lib\wxUI\dialogs\message.py:335
+#: ../src\wxUI\dialogs\message.py:80 ../src\wxUI\dialogs\message.py:140
+#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:280
+#: ../src\wxUI\dialogs\message.py:335
+msgid "Expand URL"
+msgstr "URL hosszabbítás"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:83
+#: ../src\wxUI\dialogs\message.py:83
+msgid "Translate..."
+msgstr ""
+
+#: ../src\build\lib\wxUI\dialogs\message.py:84
+#: ../src\build\lib\wxUI\dialogs\message.py:144
+#: ../src\build\lib\wxUI\dialogs\message.py:189
+#: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\message.py:144
+#: ../src\wxUI\dialogs\message.py:189
+msgid "&Autocomplete users"
+msgstr "Felhasználók &autokiegészítése"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:85
+#: ../src\build\lib\wxUI\dialogs\message.py:145
+#: ../src\build\lib\wxUI\dialogs\message.py:205
 #: ../src\wxUI\dialogs\message.py:85 ../src\wxUI\dialogs\message.py:145
 #: ../src\wxUI\dialogs\message.py:205
 msgid "Send"
 msgstr "Küldés"
 
-#: ../src\wxUI\dialogs\urlList.py:6
+#: ../src\build\lib\wxUI\dialogs\message.py:119
+#: ../src\build\lib\wxUI\dialogs\message.py:178
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:80
+#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
+#: ../src\wxUI\dialogs\update_profile.py:80
+msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+msgstr "Képfájlok (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:119
+#: ../src\build\lib\wxUI\dialogs\message.py:178
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:80
+#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
+#: ../src\wxUI\dialogs\update_profile.py:80
+msgid "Select the picture to be uploaded"
+msgstr "Válassza ki a feltöltendő képet"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:137
+#: ../src\build\lib\wxUI\dialogs\message.py:198
+#: ../src\build\lib\wxUI\dialogs\message.py:279
+#: ../src\build\lib\wxUI\dialogs\message.py:334
+#: ../src\wxUI\dialogs\message.py:137 ../src\wxUI\dialogs\message.py:198
+#: ../src\wxUI\dialogs\message.py:279 ../src\wxUI\dialogs\message.py:334
+msgid "Spelling correction"
+msgstr "Helyesírás ellenőrzés"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:187
+#: ../src\wxUI\dialogs\message.py:187
+msgid "Recipient"
+msgstr "Címzett"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:239
+#: ../src\wxUI\dialogs\message.py:239
+msgid "Men&tion to all"
+msgstr "Mind &megemlítése"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:248
+#: ../src\wxUI\dialogs\message.py:248
+msgid "Tweet - %i characters "
+msgstr "Tweet - %i betű "
+
+#: ../src\build\lib\wxUI\dialogs\message.py:265
+#: ../src\wxUI\dialogs\message.py:265
+msgid "Retweets: "
+msgstr "Retweetek"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:270
+#: ../src\wxUI\dialogs\message.py:270
+msgid "Favourites: "
+msgstr "Kedvencek: "
+
+#: ../src\build\lib\wxUI\dialogs\message.py:320
+#: ../src\wxUI\dialogs\message.py:320
+msgid "View"
+msgstr "Nézet"
+
+#: ../src\build\lib\wxUI\dialogs\message.py:322
+#: ../src\wxUI\dialogs\message.py:322
+msgid "Item"
+msgstr "Elem"
+
+#: ../src\build\lib\wxUI\dialogs\search.py:10 ../src\wxUI\dialogs\search.py:10
+msgid "Search on Twitter"
+msgstr "Keresés a Twitteren"
+
+#: ../src\build\lib\wxUI\dialogs\search.py:11 ../src\wxUI\dialogs\search.py:11
+msgid "Search"
+msgstr "Keresés"
+
+#: ../src\build\lib\wxUI\dialogs\search.py:18
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:17
+#: ../src\wxUI\dialogs\search.py:18 ../src\wxUI\dialogs\userSelection.py:17
+msgid "Tweets"
+msgstr "Tweetek"
+
+#: ../src\build\lib\wxUI\dialogs\search.py:19 ../src\wxUI\dialogs\search.py:19
+msgid "Users"
+msgstr "Felhasználók"
+
+#: ../src\build\lib\wxUI\dialogs\show_user.py:10
+#: ../src\wxUI\dialogs\show_user.py:10
+msgid "Details"
+msgstr "Részletek"
+
+#: ../src\build\lib\wxUI\dialogs\show_user.py:15
+#: ../src\wxUI\dialogs\show_user.py:15
+msgid "Go to URL"
+msgstr "URL megnyitása"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:10 ../src\wxUI\dialogs\trends.py:10
+msgid "View trending topics"
+msgstr "Trendelő témák megtekintése"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:11 ../src\wxUI\dialogs\trends.py:11
+msgid "Trending topics by"
+msgstr "Trendelő témák"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:13 ../src\wxUI\dialogs\trends.py:13
+msgid "Country"
+msgstr "Ország szerint"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:14 ../src\wxUI\dialogs\trends.py:14
+msgid "City"
+msgstr "Város szerint"
+
+#: ../src\build\lib\wxUI\dialogs\trends.py:20
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:16
+#: ../src\wxUI\dialogs\trends.py:20 ../src\wxUI\dialogs\update_profile.py:16
+msgid "Location"
+msgstr "Tartózkodási hely"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:8
+#: ../src\wxUI\dialogs\update_profile.py:8
+msgid "Update your profile"
+msgstr "Profil frissítése"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:10
+#: ../src\wxUI\dialogs\update_profile.py:10
+msgid "Name (20 characters maximum)"
+msgstr "Név (maximum 20 betű)"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:21
+#: ../src\wxUI\dialogs\update_profile.py:21
+msgid "Website"
+msgstr "Weboldal"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:26
+#: ../src\wxUI\dialogs\update_profile.py:26
+msgid "Bio (160 characters maximum)"
+msgstr "Bio (maximum 160 betű)"
+
+#: ../src\build\lib\wxUI\dialogs\update_profile.py:33
+#: ../src\wxUI\dialogs\update_profile.py:33
+msgid "Update profile"
+msgstr "Profil frissítése"
+
+#: ../src\build\lib\wxUI\dialogs\urlList.py:6 ../src\wxUI\dialogs\urlList.py:6
 msgid "Select URL"
 msgstr ""
 
-#: ../src\wxUI\view.py:15
+#: ../src\build\lib\wxUI\dialogs\userActions.py:17
+#: ../src\wxUI\dialogs\userActions.py:17
+msgid "Follow"
+msgstr "Követés"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:18
+#: ../src\wxUI\dialogs\userActions.py:18
+msgid "Unfollow"
+msgstr "Elhagyás"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:19
+#: ../src\wxUI\dialogs\userActions.py:19
+msgid "Mute"
+msgstr "Némítás"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:20
+#: ../src\wxUI\dialogs\userActions.py:20
+msgid "Unmute"
+msgstr "Némítás visszavonása"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:21
+#: ../src\wxUI\dialogs\userActions.py:21
+msgid "Block"
+msgstr "Letiltás"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:22
+#: ../src\wxUI\dialogs\userActions.py:22
+msgid "Unblock"
+msgstr "Engedélyezés"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:23
+#: ../src\wxUI\dialogs\userActions.py:23
+msgid "Report as spam"
+msgstr "Spamként jelentés"
+
+#: ../src\build\lib\wxUI\dialogs\userActions.py:24
+#: ../src\wxUI\dialogs\userActions.py:24
+msgid "Ignore tweets from this client"
+msgstr "Tweetek figyelmen kívül hagyása ettől a klienstől"
+
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:9
+#: ../src\wxUI\dialogs\userSelection.py:9
+msgid "Timeline for %s"
+msgstr "%s idővonala"
+
+#: ../src\build\lib\wxUI\dialogs\userSelection.py:16
+#: ../src\wxUI\dialogs\userSelection.py:16
+msgid "Buffer type"
+msgstr "Buffertípus"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:34 ../src\build\lib\wxUI\view.py:22
+#: ../src\wxUI\sysTrayIcon.py:34 ../src\wxUI\view.py:22
+msgid "&Global settings"
+msgstr "&Általános beállítások"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:35 ../src\build\lib\wxUI\view.py:21
+#: ../src\wxUI\sysTrayIcon.py:35 ../src\wxUI\view.py:21
+msgid "Account se&ttings"
+msgstr "Fiók beállítások"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:36 ../src\wxUI\sysTrayIcon.py:36
+msgid "Update &profile"
+msgstr "Profil &frissítése"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:37 ../src\wxUI\sysTrayIcon.py:37
+msgid "&Show / hide"
+msgstr "Megjelenítés / &elrejtés"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:38 ../src\build\lib\wxUI\view.py:63
+#: ../src\wxUI\sysTrayIcon.py:38 ../src\wxUI\view.py:63
+msgid "&Documentation"
+msgstr "&Dokumentáció"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:40 ../src\wxUI\sysTrayIcon.py:40
+msgid "Check for &updates"
+msgstr "Frissítések &keresése"
+
+#: ../src\build\lib\wxUI\sysTrayIcon.py:41 ../src\wxUI\sysTrayIcon.py:41
+msgid "&Exit"
+msgstr "K&ilépés"
+
+#: ../src\build\lib\wxUI\view.py:15 ../src\wxUI\view.py:15
 msgid "&Manage accounts"
 msgstr "Fiókok ke&zelése"
 
-#: ../src\wxUI\view.py:16
+#: ../src\build\lib\wxUI\view.py:16 ../src\wxUI\view.py:16
 msgid "&Update profile"
 msgstr "&Profil Frissítése"
 
-#: ../src\wxUI\view.py:17
+#: ../src\build\lib\wxUI\view.py:17 ../src\wxUI\view.py:17
 msgid "&Hide window"
 msgstr "Ablak &elrejtése"
 
-#: ../src\wxUI\view.py:18
+#: ../src\build\lib\wxUI\view.py:18 ../src\wxUI\view.py:18
 msgid "&Search"
 msgstr "&Keresés"
 
-#: ../src\wxUI\view.py:19
+#: ../src\build\lib\wxUI\view.py:19 ../src\wxUI\view.py:19
 msgid "&Lists manager"
 msgstr "&Listakezelő"
 
-#: ../src\wxUI\view.py:20
+#: ../src\build\lib\wxUI\view.py:20 ../src\wxUI\view.py:20
 msgid "&Edit keystrokes"
 msgstr "Billentyűparancsok &szerkesztése"
 
-#: ../src\wxUI\view.py:23
+#: ../src\build\lib\wxUI\view.py:23 ../src\wxUI\view.py:23
 msgid "E&xit"
 msgstr "&Kilépés"
 
+#: ../src\build\lib\wxUI\view.py:27 ../src\build\lib\wxUI\view.py:75
 #: ../src\wxUI\view.py:27 ../src\wxUI\view.py:75
 msgid "&Tweet"
 msgstr "&Tweet"
 
-#: ../src\wxUI\view.py:28
+#: ../src\build\lib\wxUI\view.py:28 ../src\wxUI\view.py:28
 msgid "Re&ply"
 msgstr "&Válasz"
 
-#: ../src\wxUI\view.py:29
+#: ../src\build\lib\wxUI\view.py:29 ../src\wxUI\view.py:29
 msgid "&Retweet"
 msgstr "&Retweet"
 
-#: ../src\wxUI\view.py:30
+#: ../src\build\lib\wxUI\view.py:30 ../src\wxUI\view.py:30
 msgid "Add to &favourites"
 msgstr "&Hozzáadás a kedvencekhez"
 
-#: ../src\wxUI\view.py:31
+#: ../src\build\lib\wxUI\view.py:31 ../src\wxUI\view.py:31
 msgid "Remove from favo&urites"
 msgstr "&Törlés a kedvencek listájáról"
 
-#: ../src\wxUI\view.py:32
+#: ../src\build\lib\wxUI\view.py:32 ../src\wxUI\view.py:32
 msgid "&Show tweet"
 msgstr "Tweet &megjelenítése"
 
-#: ../src\wxUI\view.py:33
+#: ../src\build\lib\wxUI\view.py:33 ../src\wxUI\view.py:33
 msgid "View &address"
 msgstr "&Cím megjelenítése"
 
-#: ../src\wxUI\view.py:34
+#: ../src\build\lib\wxUI\view.py:34 ../src\wxUI\view.py:34
 msgid "View conversa&tion"
 msgstr "&Beszélgetés megtekintése"
 
-#: ../src\wxUI\view.py:35
+#: ../src\build\lib\wxUI\view.py:35 ../src\wxUI\view.py:35
 msgid "&Delete"
 msgstr "&Törlés"
 
-#: ../src\wxUI\view.py:39
+#: ../src\build\lib\wxUI\view.py:39 ../src\wxUI\view.py:39
 msgid "&Actions..."
 msgstr ""
 
-#: ../src\wxUI\view.py:40
+#: ../src\build\lib\wxUI\view.py:40 ../src\wxUI\view.py:40
 msgid "&View timeline..."
 msgstr ""
 
-#: ../src\wxUI\view.py:41
+#: ../src\build\lib\wxUI\view.py:41 ../src\wxUI\view.py:41
 msgid "Direct me&ssage"
 msgstr "&Közvetlen üzenet"
 
-#: ../src\wxUI\view.py:42
+#: ../src\build\lib\wxUI\view.py:42 ../src\wxUI\view.py:42
 msgid "&Add to list"
 msgstr "Hozzáadás &listához"
 
-#: ../src\wxUI\view.py:44
+#: ../src\build\lib\wxUI\view.py:43 ../src\wxUI\view.py:43
 msgid "R&emove from list"
 msgstr "&Törlés listáról"
 
-#: ../src\wxUI\view.py:46
+#: ../src\build\lib\wxUI\view.py:45 ../src\wxUI\view.py:45
 msgid "&View lists"
 msgstr "&Listák megtekintése"
 
-#: ../src\wxUI\view.py:48
+#: ../src\build\lib\wxUI\view.py:47 ../src\wxUI\view.py:47
 msgid "Show user &profile"
 msgstr "&Felhasználó profiljának megjelenítése"
 
-#: ../src\wxUI\view.py:49
+#: ../src\build\lib\wxUI\view.py:48 ../src\wxUI\view.py:48
 msgid "V&iew favourites"
 msgstr "Kedvencek &megjelenítése"
 
-#: ../src\wxUI\view.py:53
+#: ../src\build\lib\wxUI\view.py:52 ../src\wxUI\view.py:52
 msgid "New &trending topics buffer..."
 msgstr ""
 
-#: ../src\wxUI\view.py:54
+#: ../src\build\lib\wxUI\view.py:53 ../src\wxUI\view.py:53
+#, fuzzy
+msgid "Find a string in the currently focused buffer..."
+msgstr "Lefelé mozgás a jelenlegi bufferben"
+
+#: ../src\build\lib\wxUI\view.py:54 ../src\wxUI\view.py:54
 msgid "&Load previous items"
 msgstr "&Továbbiak betöltése"
 
-#: ../src\wxUI\view.py:56
+#: ../src\build\lib\wxUI\view.py:56 ../src\wxUI\view.py:56
 msgid "&Mute"
 msgstr "&Némítás"
 
-#: ../src\wxUI\view.py:57
+#: ../src\build\lib\wxUI\view.py:57 ../src\wxUI\view.py:57
 msgid "&Autoread"
 msgstr ""
 
-#: ../src\wxUI\view.py:58
+#: ../src\build\lib\wxUI\view.py:58 ../src\wxUI\view.py:58
 msgid "&Clear buffer"
 msgstr "Buffer törlése"
 
-#: ../src\wxUI\view.py:59
+#: ../src\build\lib\wxUI\view.py:59 ../src\wxUI\view.py:59
 msgid "&Destroy"
 msgstr ""
 
-#: ../src\wxUI\view.py:65
+#: ../src\build\lib\wxUI\view.py:65 ../src\wxUI\view.py:65
 msgid "Sounds &tutorial"
 msgstr "&Hangtanító"
 
-#: ../src\wxUI\view.py:66
+#: ../src\build\lib\wxUI\view.py:66 ../src\wxUI\view.py:66
 msgid "&What's new in this version?"
 msgstr "&Mi az új ebben a verzióban?"
 
-#: ../src\wxUI\view.py:68
+#: ../src\build\lib\wxUI\view.py:68 ../src\wxUI\view.py:68
 msgid "&Check for updates"
 msgstr "&Frissítések keresése"
 
-#: ../src\wxUI\view.py:69
+#: ../src\build\lib\wxUI\view.py:69 ../src\wxUI\view.py:69
 msgid "&Report an error"
 msgstr "&Hibajelentés"
 
-#: ../src\wxUI\view.py:74
+#: ../src\build\lib\wxUI\view.py:70 ../src\wxUI\view.py:70
+#, fuzzy
+msgid "{0}'s &website"
+msgstr "a TW Blue &weboldala"
+
+#: ../src\build\lib\wxUI\view.py:71 ../src\wxUI\view.py:71
+msgid "About &{0}"
+msgstr ""
+
+#: ../src\build\lib\wxUI\view.py:74 ../src\wxUI\view.py:74
 msgid "&Application"
 msgstr "&Alkalmazás"
 
-#: ../src\wxUI\view.py:76
+#: ../src\build\lib\wxUI\view.py:76 ../src\wxUI\view.py:76
 msgid "&User"
 msgstr "&Felhasználó"
 
-#: ../src\wxUI\view.py:77
+#: ../src\build\lib\wxUI\view.py:77 ../src\wxUI\view.py:77
 msgid "&Buffer"
 msgstr "&Buffer"
 
-#: ../src\wxUI\view.py:78
+#: ../src\build\lib\wxUI\view.py:78 ../src\wxUI\view.py:78
 msgid "&Help"
 msgstr "&Súgó"
 
-#: ../src\wxUI\view.py:182
+#: ../src\build\lib\wxUI\view.py:159 ../src\wxUI\view.py:159
+msgid "Address"
+msgstr "Cím"
+
+#: ../src\build\lib\wxUI\view.py:182 ../src\wxUI\view.py:182
+msgid "Update"
+msgstr "Frissítés"
+
+#: ../src\build\lib\wxUI\view.py:182 ../src\wxUI\view.py:182
 msgid "Your {0} version is up to date"
 msgstr ""
+
+#: ../src\languageHandler.py:95
+msgid "User default"
+msgstr "Alapértelmezett"
+
+#: ../src\sound.py:156
+msgid "Stopped."
+msgstr ""
+
+#: ../src\wxUI\dialogs\configuration.py:33
+msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
+msgstr ""
+
+#~ msgid "Set the autocomplete function"
+#~ msgstr "Az automatikus kiegészítés beállítása"
+
+#~ msgid "Relative times"
+#~ msgstr "Relatív idő"
+
+#~ msgid ""
+#~ "API calls when the stream is started (One API call equals to 200 tweetts, "
+#~ "two API calls equals 400 tweets, etc):"
+#~ msgstr ""
+#~ "API hívások száma ha a stream kapcsolódik (Egy API hívás 200, kettő API "
+#~ "hívás 400, stb. tweettel egyenlő):"
+
+#~ msgid ""
+#~ "Inverted buffers: The newest tweets will be shown at the beginning of the "
+#~ "lists while the oldest at the end"
+#~ msgstr ""
+#~ "Fordított bufferek: a legutolsó tweet a lista tetején lesz, míg a "
+#~ "legrégebbi a lista allján"
+
+#~ msgid "Enter the code here."
+#~ msgstr "Írja be a kódot."
+
+#~ msgid "Verification code"
+#~ msgstr "Ellenőrző kód"
+
+#~ msgid "Error during authorisation. Try again later."
+#~ msgstr "Hiba a hitelesítés közben. . Próbálja újra később."
+
+#~ msgid "TW Blue preferences"
+#~ msgstr "TW Blue beállítások"
+
+#~ msgid "Show other buffers"
+#~ msgstr "Egyéb bufferek megjelenítése"
+
+#~ msgid "JPG images"
+#~ msgstr "JPG képek"
+
+#~ msgid "GIF images"
+#~ msgstr "GIF képek"
+
+#~ msgid "PNG Images"
+#~ msgstr "PNG képek"
+
+#~ msgid "Select an URL"
+#~ msgstr "URL kiválasztása"
+
+#~ msgid "Manage accounts"
+#~ msgstr "Fiókok Ke&zelése"
 
 #~ msgid "This account is not logged in twitter."
 #~ msgstr "Ez a fiók nincs bejelentkezve a Twitteren."
@@ -2759,21 +3416,11 @@ msgstr ""
 #~ msgid "Mis-spelled word"
 #~ msgstr "Elírt szó"
 
-#~ msgid ""
-#~ "A bug has happened. There are no dictionaries available for the selected "
-#~ "language in TW Blue"
-#~ msgstr ""
-#~ "Hiba történt. Nincs elérhető szótár a kiválasztott nyelvhez a TW Blue "
-#~ "programban"
-
 #~ msgid "Finished"
 #~ msgstr "Befejeződött"
 
 #~ msgid "The spelling review has finished."
 #~ msgstr "A helyesírásellenőrzés befejeződött."
-
-#~ msgid "Autocomplete users’ settings"
-#~ msgstr "Felhasználók autokiegészítésének beállítása"
 
 #~ msgid "Start account automatically"
 #~ msgstr "Fiók automatikus elindítása"
@@ -2856,15 +3503,6 @@ msgstr ""
 #~ msgid "load previous items to any buffer"
 #~ msgstr "betölti a régebbi elemeket bármely bufferbe"
 
-#~ msgid ""
-#~ "The request for the required Twitter authorisation to continue will be "
-#~ "opened on your browser. You only need to do it once. Would you like to "
-#~ "autorhise a new account now?"
-#~ msgstr ""
-#~ "A Twitter hitelesítési kérelme most megnyílik a böngészőjében. A művelet "
-#~ "elvégzése csak egyszer szükséges. Szeretne egy új fiókot most "
-#~ "hitelesíteni?"
-
 #~ msgid "Authorised account %d"
 #~ msgstr "Hitelesített fiók %d"
 
@@ -2881,9 +3519,6 @@ msgstr ""
 #~ msgstr ""
 #~ "%s (@%s). %s követő, %s barát, %s tweet. Utoljára tweetelt %s. Twitterhez "
 #~ "csatlakozott %s"
-
-#~ msgid "Restart TW Blue"
-#~ msgstr "A TW Blue Újraindítása"
 
 #~ msgid ""
 #~ "The application requires to be restarted to save these changes. Press OK "
@@ -2973,9 +3608,6 @@ msgstr ""
 #~ msgid "A new event has happened"
 #~ msgstr "Új esemény történt"
 
-#~ msgid "TW Blue is ready "
-#~ msgstr "A TW Blue üzemkész "
-
 #~ msgid "You've replied"
 #~ msgstr "Válaszolt"
 
@@ -3000,14 +3632,8 @@ msgstr ""
 #~ "funkció használatához. Győződjön meg arról, hogy minden hanggal "
 #~ "rendelkezik, vagy lépjen kapcsolatba a hangcsomag készítőjével."
 
-#~ msgid "Editing TWBlue users database"
-#~ msgstr "TWBlue felhasználói adatbázis szerkesztése"
-
 #~ msgid "See the users list"
 #~ msgstr "A felhasználók listájának megtekintése"
-
-#~ msgid "TWBlue's database of users has been updated."
-#~ msgstr "A TWBlue felhasználói adatbázisa frissült"
 
 #~ msgid "Do you really want to delete this message?"
 #~ msgstr "Bisztosan szeretné törölni ezt az üzenetet?"
@@ -3105,9 +3731,6 @@ msgstr ""
 #~ msgid "&Preferences"
 #~ msgstr "&Beállítások"
 
-#~ msgid "TW Blue &website"
-#~ msgstr "a TW Blue &weboldala"
-
 #~ msgid "About &TW Blue"
 #~ msgstr "A TW Blue &névjegye"
 
@@ -3132,9 +3755,6 @@ msgstr ""
 
 #~ msgid "Reconnecting streams..."
 #~ msgstr "Kapcsolódás a streamekhez..."
-
-#~ msgid "search for %s"
-#~ msgstr "%s keresése"
 
 #~ msgid "search users for %s"
 #~ msgstr "%s keresése a felhasználók között"
@@ -3180,22 +3800,11 @@ msgstr ""
 #~ msgid "%s"
 #~ msgstr "%s"
 
-#~ msgid "Preferences"
-#~ msgstr "Beállítások"
-
 #~ msgid "Documentation"
 #~ msgstr "Dokumentáció"
 
 #~ msgid "Translation"
 #~ msgstr "Fordítás"
-
-#~ msgid ""
-#~ "I know that the TW Blue bug system will get my Twitter username to "
-#~ "contact me and fix the bug quickly"
-#~ msgstr ""
-#~ "Tisztában vagyok vele, hogy a TW Blue hibarendszer megkapja a Twitter "
-#~ "felhasználói nevemet a kapcsolattartás és a hiba gyors kijavítása "
-#~ "érdekében"
 
 #~ msgid "Move up one tweet in the conversation"
 #~ msgstr "Lépés a beszélgetés előző tweetjére"
@@ -3223,9 +3832,6 @@ msgstr ""
 
 #~ msgid "Select a twitter account to start TW Blue"
 #~ msgstr "Válasszon ki egy fiókot a TW Blue elindításához"
-
-#~ msgid "Account"
-#~ msgstr "Fiók"
 
 #~ msgid "Remove session"
 #~ msgstr "Munkamenet törlése"
