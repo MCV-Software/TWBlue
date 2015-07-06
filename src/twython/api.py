@@ -86,8 +86,6 @@ class Twython(EndpointsMixin, object):
             self.request_token_url = self.api_url % 'oauth2/token'
 
         self.client_args = client_args or {}
-        # Disables the SSL verification for Twython calls.
-        self.client_args["verify"] = False
         default_headers = {'User-Agent': 'Twython v' + __version__}
         if 'headers' not in self.client_args:
             # If they didn't set any headers, set our defaults for them
@@ -127,7 +125,7 @@ class Twython(EndpointsMixin, object):
         # Never be used again.
         client_args_copy = self.client_args.copy()
         for k, v in client_args_copy.items():
-            if k in ('verify', 'cert', 'hooks', 'max_redirects', 'proxies'):
+            if k in ('cert', 'hooks', 'max_redirects', 'proxies'):
                 setattr(self.client, k, v)
                 self.client_args.pop(k)  # Pop, pop!
 
