@@ -128,6 +128,8 @@ def compose_event(data, username):
  elif data["event"] == "retweeted_retweet":
   if data["source"]["screen_name"] == username: event = _(u"You have retweeted a retweet from %s(@%s): %s") % (data["target"]["name"], data["target"]["screen_name"], data["target_object"]["retweeted_status"]["text"])
   else: event = _(u"%s(@%s) has retweeted your retweet: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["retweeted_status"]["text"])
+ elif data["event"] == "quoted_tweet":
+   event = _(u"@{0} quoted your tweet: {1}").format(data["source"]["screen_name"], data["target_object"]["text"])
  else:
   event = _("Unknown")
   log.error("event: %s\n target: %s\n source: %s\n target_object: %s" % (data["event"], data["target"], data["source"], data["target_object"]))

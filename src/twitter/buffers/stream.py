@@ -66,7 +66,11 @@ class streamer(TwythonStreamer):
   if "@%s" % (self.session.db["user_name"]) in data["text"]:
    self.put_data("mentions", data)   
    pub.sendMessage("mention", data=data, user=self.get_user())
- 
+
+ def set_quoted_tweet(self, data):
+  self.put_data("mentions", data)   
+  pub.sendMessage("mention", data=data, user=self.get_user())
+
  def process_dm(self, data):
   if self.session.db["user_name"] == data["direct_message"]["sender"]["screen_name"]:
    self.put_data("sent_direct_messages", data["direct_message"])
@@ -148,6 +152,9 @@ class streamer(TwythonStreamer):
      list = utils.find_item(id, self.session.db["lists"])
      if list != None: self.session.db["lists"].pop(list)
      pub.sendMessage("list-deleted", **{"item":list, "user":self.get_user()})
+    elif "quoted_tweet" == data["event"]:
+     self.set_quoted_tweet(data["target_object"])
+
     if "events" in self.session.settings["general"]["buffer_order"]:
      pub.sendMessage("event", data= data, user= self.get_user())
 #     self.sound.play("new_event.ogg")
