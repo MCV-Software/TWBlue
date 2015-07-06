@@ -127,7 +127,7 @@ class Twython(EndpointsMixin, object):
         # Never be used again.
         client_args_copy = self.client_args.copy()
         for k, v in client_args_copy.items():
-            if k in ('cert', 'hooks', 'max_redirects', 'proxies'):
+            if k in ('verify', 'cert', 'hooks', 'max_redirects', 'proxies'):
                 setattr(self.client, k, v)
                 self.client_args.pop(k)  # Pop, pop!
 
