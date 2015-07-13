@@ -7,7 +7,7 @@ languageHandler.setLanguage("en")
 import strings
 
 # the list of supported language codes of TW Blue
-languages = ["en", "es", "fr"]
+languages = ["en", "es", "fr", "de", "it"]
 #"eu", "ar", "ca", "es", "fi", "fr", "gl", "hu", "it", "pl", "pt", "ru", "tr"]
 
 def generate_document(language):
