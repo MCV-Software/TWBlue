@@ -5,7 +5,6 @@ import widgetUtils
 class textLimited(widgetUtils.BaseDialog):
  def __init__(self, *args, **kwargs):
   super(textLimited, self).__init__(parent=None, *args, **kwargs)
-  self.shift=False
  def createTextArea(self, message="", text=""):
   self.panel = wx.Panel(self)
   self.label = wx.StaticText(self.panel, -1, message)
@@ -16,8 +15,7 @@ class textLimited(widgetUtils.BaseDialog):
 #  dc.SetFont(font)
 #  x, y = dc.GetTextExtent("00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")
 #  self.text.SetSize((x, y))
-  self.Bind(wx.EVT_TEXT_ENTER, self.on_enter)
-  self.Bind(wx.EVT_CHAR_HOOK, self.handle_keys)
+  self.Bind(wx.EVT_CHAR_HOOK, self.handle_keys, self.text)
   self.text.SetFocus()
   self.textBox = wx.BoxSizer(wx.HORIZONTAL)
   self.textBox.Add(self.label, 0, wx.ALL, 5)
@@ -46,15 +44,12 @@ class textLimited(widgetUtils.BaseDialog):
  def onSelect(self, ev):
   self.text.SelectAll()
 
- def on_enter(self,event):
-  if self.shift==False and hasattr(self,'okButton'):
-   return wx.PostEvent(self.okButton.GetEventHandler(),wx.PyCommandEvent(wx.EVT_BUTTON.typeId,wx.ID_OK))
+ def handle_keys(self, event):
+  shift=event.ShiftDown()
+  if event.GetKeyCode() == wx.WXK_RETURN and shift==False and hasattr(self,'okButton'):
+   wx.PostEvent(self.okButton.GetEventHandler(), wx.PyCommandEvent(wx.EVT_BUTTON.typeId,wx.ID_OK))
   else:
-   return self.text.WriteText('\n')
-
- def handle_keys(self,event):
-  self.shift=event.ShiftDown()
-  event.Skip()
+   event.Skip()
 
  def set_cursor_at_end(self):
   self.text.SetInsertionPoint(len(self.text.GetValue()))
