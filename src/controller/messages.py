@@ -79,15 +79,18 @@ class basicTweet(object):
     self.message.text_focus()
 
  def text_processor(self, *args, **kwargs):
-  self.message.set_title(_(u"%s - %s of %d characters") % (self.title, len(self.message.get_text()), self.max))
   if len(self.message.get_text()) > 1:
    self.message.enable_button("shortenButton")
    self.message.enable_button("unshortenButton")
   else:
    self.message.disable_button("shortenButton")
    self.message.disable_button("unshortenButton")
-  if len(self.message.get_text()) > self.max:
-   self.session.sound.play("max_length.ogg")
+  if self.message.get("long_tweet") == False:
+   self.message.set_title(_(u"%s - %s of %d characters") % (self.title, len(self.message.get_text()), self.max))
+   if len(self.message.get_text()) > self.max:
+    self.session.sound.play("max_length.ogg")
+  else:
+   self.message.set_title(_(u"%s - %s characters") % (self.title, len(self.message.get_text())))
 
  def spellcheck(self, event=None):
   text = self.message.get_text()
