@@ -90,9 +90,13 @@ class Controller(object):
   """ Gets the last valid buffer for an account.
   account str: A twitter username.
   The last valid buffer is the last buffer that contains a session object assigned."""
+  results = self.get_buffers_for_account(account)
+  return self.view.search(results[-1].name, results[-1].account)
+
+ def get_buffers_for_account(self, account):
   results = []
   [results.append(i) for i in self.buffers if i.account == account and i.invisible == True]
-  return self.view.search(results[-1].name, results[-1].account)
+  return results
 
  def bind_stream_events(self):
   """ Binds all the streaming events with their functions."""
@@ -416,7 +420,7 @@ class Controller(object):
     search = buffersController.searchPeopleBufferController(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, q=term)
    search.start_stream()
    pos=self.view.search("searches", buffer.session.db["user_name"])
-   self.buffers.append(search)
+   self.insert_buffer(search, pos)
    self.view.insert_buffer(search.buffer, name=_(u"Search for {}").format(term), pos=pos)
    search.timer = RepeatingTimer(180, search.start_stream)
    search.timer.start()
@@ -725,7 +729,8 @@ class Controller(object):
      tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
      tl.start_stream()
      pos=self.view.search("timelines", buffer.session.db["user_name"])
-     self.buffers.insert(pos+1, tl)
+     self.insert_buffer(tl, pos)
+#     self.buffers.insert(pos+1, tl)
      self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
      buffer.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
      pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buffer.session)
@@ -736,7 +741,8 @@ class Controller(object):
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
      pos=self.view.search("favs_timelines", buffer.session.db["user_name"])
-     self.buffers.insert(pos+1, tl)
+     self.insert_buffer(tl, pos)
+#     self.buffers.insert(pos+1, tl)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Favourites timeline for {}").format(dlg.get_user()), pos=pos)
      tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
@@ -754,7 +760,8 @@ class Controller(object):
   search.tweet = buffer.get_right_tweet()
   search.start_stream(start=True)
   pos=self.view.search("searches", buffer.session.db["user_name"])
-  self.buffers.append(search)
+#  self.buffers.append(search)
+  self.insert_buffer(search, pos)
   self.view.insert_buffer(search.buffer, name=_(u"Conversation with {0}").format(user), pos=pos)
   search.timer = RepeatingTimer(300, search.start_stream)
   search.timer.start()
@@ -913,11 +920,13 @@ class Controller(object):
 
  def left(self, *args, **kwargs):
   buff = self.view.get_current_buffer_pos()
+  print buff
   buffer = self.get_current_buffer()
   if not hasattr(buffer.buffer, "list"):
    output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   if buff == self.get_first_buffer(buffer.account) or buff == 0:
+   print "This is the last buffer"
    self.view.change_buffer(self.get_last_buffer(buffer.account))
   else:
    self.view.change_buffer(buff-1)
@@ -1324,5 +1333,29 @@ class Controller(object):
   webbrowser.open("manual.html")
   os.chdir("../../")
 
+ def insert_buffer(self, buffer, position):
+#  print ref_buf.name, ref_buf.account
+#  if ref_buf.account != buffer.account or ref_buf.type == "account" or type(ref_buf) == buffers.emptyPanel:
+  buffers = self.get_buffers_for_account(buffer.account)
+#  ref_buf = self.buffers[position+1]
+  empty = True
+  for i in buffers[position+1:]:
+   if i.type == "account" or i.invisible == False:
+    empty = True
+   else:
+    empty = False
+  if empty == True:
+   self.buffers.append(buffer)
+   print "account"
+  else:
+   self.buffers.insert(position+1, buffer)
+  for i in self.buffers:
+   print i.name, i.account
+
  def __del__(self):
   config.app.write()
+
+ def change_buffer(self, bufferPosition):
+  buff = self.buffers[bufferPosition]
+  newPos = self.view.search(buff.name, buff.account)
+  self.view.change_buffer(newPos)
