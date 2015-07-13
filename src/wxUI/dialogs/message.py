@@ -73,6 +73,8 @@ class tweet(textLimited):
   self.mainBox = wx.BoxSizer(wx.VERTICAL)
   self.createTextArea(message, text)
   self.mainBox.Add(self.textBox, 0, wx.ALL, 5)
+  self.long_tweet = wx.CheckBox(self.panel, -1, _(u"Long tweet"))
+  self.long_tweet.SetValue(True)
   self.upload_image = wx.Button(self.panel, -1, _(u"Upload image..."), size=wx.DefaultSize)
   self.spellcheck = wx.Button(self.panel, -1, _("Check spelling..."), size=wx.DefaultSize)
   self.attach = wx.Button(self.panel, -1, _(u"Attach audio..."), size=wx.DefaultSize)

@@ -36,3 +36,11 @@ def get_full_text(uri):
  return r.json()["text"]
 # except:
 #  return False
+
+def create_tweet(user_token, user_secret, text, media=0):
+ data = {"user_token": user_token,
+ "user_secret": user_secret,
+ "text": text.encode("utf-8"),
+ "media": media}
+ response = requests.post("http://twblue.es/twishort.php", data=data)
+ return response.json()["text_to_tweet"]

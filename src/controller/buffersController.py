@@ -130,6 +130,11 @@ class bufferController(object):
   tweet = messages.tweet(self.session, title, caption, "")
   if tweet.message.get_response() == widgetUtils.OK:
    text = tweet.message.get_text()
+   if len(text) > 140 and tweet.message.get("long_tweet") == True:
+    if tweet.image == None:
+     text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
+    else:
+     text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
    if tweet.image == None:
     call_threaded(self.session.api_call, call_name="update_status", status=text)
    else:
@@ -371,10 +376,16 @@ class baseBufferController(bufferController):
   users =  utils.get_all_mentioned(tweet, self.session.db)
   message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "@%s " % (screen_name,), users)
   if message.message.get_response() == widgetUtils.OK:
+   text = message.message.get_text()
+   if len(text) > 140 and message.message.get("long_tweet") == True:
+    if message.image == None:
+     text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
+    else:
+     text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
    if message.image == None:
-    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text())
+    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text)
    else:
-    call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=message.message.get_text(), media=message.file)
+    call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text, media=message.file)
   if hasattr(message.message, "destroy"): message.message.destroy()
 
  @_tweets_exist
