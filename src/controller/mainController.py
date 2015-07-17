@@ -1336,8 +1336,8 @@ class Controller(object):
  def insert_buffer(self, buffer, position):
 #  print ref_buf.name, ref_buf.account
 #  if ref_buf.account != buffer.account or ref_buf.type == "account" or type(ref_buf) == buffers.emptyPanel:
-  buffers = self.get_buffers_for_account(buffer.account)
-#  ref_buf = self.buffers[position+1]
+#  buffers = self.get_buffers_for_account(buffer.account)
+  ref_buf = self.buffers[position+1]
   empty = True
   for i in buffers[position+1:]:
    if i.type == "account" or i.invisible == False:
@@ -1346,11 +1346,11 @@ class Controller(object):
     empty = False
   if empty == True:
    self.buffers.append(buffer)
-   print "account"
+#   print "account"
   else:
    self.buffers.insert(position+1, buffer)
-  for i in self.buffers:
-   print i.name, i.account
+#  for i in self.buffers:
+#   print i.name, i.account
 
  def __del__(self):
   config.app.write()

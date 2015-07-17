@@ -455,7 +455,7 @@ class baseBufferController(bufferController):
    self.session.sound.play("audio.ogg")
   if utils.is_geocoded(tweet):
    self.session.sound.play("geo.ogg")
-  self.session.db[str(self.name+"_pos")]=self.buffer.list.get_selected()
+#  self.session.db[str(self.name+"_pos")]=self.buffer.list.get_selected()
 
  @_tweets_exist
  def audio(self,url=''):
