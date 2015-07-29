@@ -696,6 +696,9 @@ class Controller(object):
    msg = messages.viewTweet(tweet, tweetsList)
   elif buffer.type == "account" or buffer.type == "empty":
    return
+  elif buffer.name == "sent_tweets":
+   tweet, tweetsList = buffer.get_full_tweet()
+   msg = messages.viewTweet(tweet, tweetsList)
   else:
    non_tweet = buffer.get_formatted_message()
    msg = messages.viewTweet(non_tweet, [], False)
@@ -920,7 +923,7 @@ class Controller(object):
 
  def left(self, *args, **kwargs):
   buff = self.view.get_current_buffer_pos()
-  print buff
+#  print buff
   buffer = self.get_current_buffer()
   if not hasattr(buffer.buffer, "list"):
    output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
@@ -1336,7 +1339,7 @@ class Controller(object):
  def insert_buffer(self, buffer, position):
 #  print ref_buf.name, ref_buf.account
 #  if ref_buf.account != buffer.account or ref_buf.type == "account" or type(ref_buf) == buffers.emptyPanel:
-#  buffers = self.get_buffers_for_account(buffer.account)
+  buffers = self.get_buffers_for_account(buffer.account)
   ref_buf = self.buffers[position+1]
   empty = True
   for i in buffers[position+1:]:
@@ -1359,3 +1362,7 @@ class Controller(object):
   buff = self.buffers[bufferPosition]
   newPos = self.view.search(buff.name, buff.account)
   self.view.change_buffer(newPos)
+
+ def copy_to_clipboard(self, *args, **kwargs):
+  output.copy(self.get_current_buffer().get_message())
+  output.speak(_(u"Copied"))

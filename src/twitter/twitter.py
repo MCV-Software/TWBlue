@@ -28,7 +28,7 @@ class twitter(object):
 
  def authorise(self, settings):
   authorisationHandler.logged = False
-  port = random.randint(30000, 66000)
+  port = random.randint(30000, 65535)
   httpd = BaseHTTPServer.HTTPServer(('127.0.0.1', port), authorisationHandler.handler)
   if config.app["proxy"]["server"] != "" and config.app["proxy"]["port"] != "":
    args = {"proxies": {"http": "http://{0}:{1}".format(config.app["proxy"]["server"], config.app["proxy"]["port"]),

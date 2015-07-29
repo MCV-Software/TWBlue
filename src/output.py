@@ -24,7 +24,7 @@ def setup ():
  except:
   return logging.exception("Output: Error during initialization.")
 
-def Copy(text):
+def copy(text):
  import win32clipboard
  #Copies text to the clipboard.
  win32clipboard.OpenClipboard()
