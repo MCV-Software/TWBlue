@@ -111,11 +111,13 @@ class basicTweet(object):
   dlg = audioUploader.audioUploader(self.session.settings, completed_callback)
 
 class tweet(basicTweet):
- def __init__(self, session, title, caption, text, messageType="tweet", max=140):
+ def __init__(self, session, title, caption, text, twishort_enabled, messageType="tweet", max=140):
   super(tweet, self).__init__(session, title, caption, text, messageType, max)
   self.image = None
   widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
   widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
+  if twishort_enabled == False:
+   self.message.long_tweet.SetValue(False)
 
  def upload_image(self, *args, **kwargs):
   if self.message.get("upload_image") == _(u"Discard image"):
