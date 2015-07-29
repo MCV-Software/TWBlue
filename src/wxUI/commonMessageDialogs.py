@@ -47,3 +47,7 @@ def protected_user():
 
 def no_following():
  return wx.MessageDialog(None, _(u"This is a protected user account, you need follow to this user for viewing your tweets or favourites."), _(u"Error"), wx.ICON_ERROR).ShowModal()
+
+def donation():
+ dlg = wx.MessageDialog(None, _(u"If you like this application, we need your help to keep it operational. Help us donating to the project. This will let us pay the server, the domain on the Internet and some other things to ensure that TWBlue will keep developing. Your donation will let us continue writing features for TWBlue, and these features to be free. Would you like to donate now?"), _(u"We need your help"), wx.ICON_QUESTION|wx.YES_NO)
+ return dlg.ShowModal()

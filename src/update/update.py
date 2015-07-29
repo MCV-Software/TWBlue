@@ -7,6 +7,9 @@ import os
 import platform
 import requests
 import tempfile
+from wxUI import commonMessageDialogs
+import widgetUtils
+import webbrowser
 try:
  import czipfile as zipfile
 except ImportError:
@@ -27,6 +30,7 @@ def perform_update(endpoint, current_version, app_name='', password=None, update
  available_description = available_update.get('description', None)
  update_url = available_update ['downloads'][platform.system()+platform.architecture()[0][:2]]
  logger.info("A new update is available. Version %s" % available_version)
+ donation()
  if callable(update_available_callback) and not update_available_callback(version=available_version, description=available_description): #update_available_callback should return a falsy value to stop the process
   logger.info("User canceled update.")
   return
@@ -114,3 +118,8 @@ def call_callback(callback, *args, **kwargs):
  callback(*args, **kwargs)
 # except:
 #  logger.exception("Failed calling callback %r with args %r and kwargs %r" % (callback, args, kwargs))
+
+def donation():
+ dlg = commonMessageDialogs.donation()
+ if dlg == widgetUtils.YES:
+  webbrowser.open_new_tab("http://twblue.es/donate")

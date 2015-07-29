@@ -25,6 +25,8 @@ from mysc.thread_utils import call_threaded
 import fixes
 #extra variables to control the temporal stdout and stderr, while the final files are opened. We understand that some errors could happen while all outputs are closed, so let's try to avoid it.
 import widgetUtils
+import webbrowser
+from wxUI import commonMessageDialogs
 if system == "Windows":
  from logger import logger
  from update import updater
@@ -63,6 +65,8 @@ def setup():
  from sessionmanager import sessionManager
  app = widgetUtils.mainLoopObject()
  if system == "Windows":
+  if config.app["app-settings"]["donation_dialog_displayed"] == False:
+   donation()
   updater.do_update()
  sm = sessionManager.sessionManagerController()
  sm.fill_list()
@@ -81,5 +85,11 @@ def setup():
  elif system == "Linux":
   GLib.idle_add(r.start)
  app.run()
+
+def donation():
+ dlg = commonMessageDialogs.donation()
+ if dlg == widgetUtils.YES:
+  webbrowser.open_new_tab("http://twblue.es/donate")
+ config.app["app-settings"]["donation_dialog_displayed"] = True
 
 setup()
