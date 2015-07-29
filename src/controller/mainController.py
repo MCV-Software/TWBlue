@@ -1366,3 +1366,6 @@ class Controller(object):
  def copy_to_clipboard(self, *args, **kwargs):
   output.copy(self.get_current_buffer().get_message())
   output.speak(_(u"Copied"))
+
+ def repeat_item(self, *args, **kwargs):
+  output.speak(self.get_current_buffer().get_message())
