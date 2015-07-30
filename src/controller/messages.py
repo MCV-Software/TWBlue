@@ -117,7 +117,8 @@ class tweet(basicTweet):
   widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
   widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
   if twishort_enabled == False:
-   self.message.long_tweet.SetValue(False)
+   try: self.message.long_tweet.SetValue(False)
+   except AttributeError: pass
 
  def upload_image(self, *args, **kwargs):
   if self.message.get("upload_image") == _(u"Discard image"):

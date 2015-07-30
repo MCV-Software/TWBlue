@@ -427,7 +427,6 @@ class baseBufferController(bufferController):
   if comment != '':
    retweet.message.set_text(comment)
   if retweet.message.get_response() == widgetUtils.OK:
-   self.session.settings["mysc"]["twishort_enabled"] = retweet.message.long_tweet.GetValue()
    text = retweet.message.get_text()
    comments=text
    if len(text+ u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])) < 140:
