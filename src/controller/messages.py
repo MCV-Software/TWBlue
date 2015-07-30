@@ -135,8 +135,8 @@ class tweet(basicTweet):
   c.show_menu()
 
 class reply(tweet):
- def __init__(self, session, title, caption, text, users=None):
-  super(reply, self).__init__(session, title, caption, text, messageType="reply")
+ def __init__(self, session, title, caption, text, twishort_enabled, users=None):
+  super(reply, self).__init__(session, title, caption, text, twishort_enabled, messageType="reply")
   self.users = users
   if self.users != None and len(self.users) > 1:
    widgetUtils.connect_event(self.message.mentionAll, widgetUtils.BUTTON_PRESSED, self.mention_all)

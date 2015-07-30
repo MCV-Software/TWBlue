@@ -929,7 +929,7 @@ class Controller(object):
    output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   if buff == self.get_first_buffer(buffer.account) or buff == 0:
-   print "This is the last buffer"
+#   print "This is the last buffer"
    self.view.change_buffer(self.get_last_buffer(buffer.account))
   else:
    self.view.change_buffer(buff-1)
@@ -1340,7 +1340,11 @@ class Controller(object):
 #  print ref_buf.name, ref_buf.account
 #  if ref_buf.account != buffer.account or ref_buf.type == "account" or type(ref_buf) == buffers.emptyPanel:
   buffers = self.get_buffers_for_account(buffer.account)
-  ref_buf = self.buffers[position+1]
+  try:
+   ref_buf = self.buffers[position+1]
+  except IndexError:
+   self.buffers.append(buffer)
+   return
   empty = True
   for i in buffers[position+1:]:
    if i.type == "account" or i.invisible == False:

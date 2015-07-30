@@ -60,7 +60,7 @@ class Session(object):
   if self.db.has_key(name) == False:
    self.db[name] = []
   for i in data:
-   if utils.find_item(i["id"], self.db[name]) == None:
+   if utils.find_item(i["id"], self.db[name]) == None and     utils.is_allowed(i, self.settings["twitter"]["ignored_clients"]) == True:
     if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
     else: self.db[name].insert(0, i)
     num = num+1

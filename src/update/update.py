@@ -23,8 +23,8 @@ def perform_update(endpoint, current_version, app_name='', password=None, update
  if not available_update:
   logger.debug("No update available")
   return False
- available_version = available_update['current_version']
- if not str(available_version) > str(current_version) or platform.system()+platform.architecture()[0][:2] not in available_update['downloads']:
+ available_version = float(available_update['current_version'])
+ if not float(available_version) > float(current_version) or platform.system()+platform.architecture()[0][:2] not in available_update['downloads']:
   logger.debug("No update for this architecture")
   return False
  available_description = available_update.get('description', None)

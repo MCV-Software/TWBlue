@@ -375,7 +375,7 @@ class baseBufferController(bufferController):
   screen_name = tweet["user"]["screen_name"]
   id = tweet["id"]
   users =  utils.get_all_mentioned(tweet, self.session.db)
-  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "@%s " % (screen_name,), users, twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
+  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "@%s " % (screen_name,), twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users)
   if message.message.get_response() == widgetUtils.OK:
    self.session.settings["mysc"]["twishort_enabled"] = message.message.long_tweet.GetValue()
    text = message.message.get_text()
