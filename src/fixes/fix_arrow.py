@@ -67,11 +67,13 @@ class GalicianLocale(Locale):
 class BasqueLocale(Locale):
 	names = ['eu', 'eu_eu']
 	past = 'duela {0}'
-	future = '{0}' # I don't know what's the right phrase in Basque for the future.
+	future = '{0} igarota'
 
 	timeframes = {
 		'now': 'Orain',
-		'seconds': 'segundu',
+		# 'second': 'segundu bat',
+		'seconds': 'segundu batzuk', # without specifying a number.
+		#'seconds':  '{0} segundu', # specifying a number
 		'minute': 'minutu bat',
 		'minutes': '{0} minutu',
 		'hour': 'ordu bat',
