@@ -8,7 +8,7 @@ def retweet_question(parent):
  return wx.MessageDialog(parent, _(u"Would you like to add a comment to this tweet?"), _("Retweet"), wx.YES_NO|wx.CANCEL|wx.ICON_QUESTION).ShowModal()
 
 def delete_tweet_dialog(parent):
- return wx.MessageDialog(parent, _(u"Do you really want to delete this message? It will be deleted from Twitter as well."), _(u"Delete"), wx.ICON_QUESTION|wx.YES_NO).ShowModal()
+ return wx.MessageDialog(parent, _(u"Do you really want to delete this tweet? It will be deleted from Twitter as well."), _(u"Delete"), wx.ICON_QUESTION|wx.YES_NO).ShowModal()
 
 def exit_dialog(parent):
  dlg = wx.MessageDialog(parent, _(u"Do you really want to close {0}?").format(application.name,), _(u"Exit"), wx.YES_NO|wx.ICON_QUESTION)
@@ -18,10 +18,10 @@ def needs_restart():
  wx.MessageDialog(None, _(u" {0} must be restarted for these changes to take effect.").format(application.name,), _("Restart {0} ").format(application.name,), wx.OK).ShowModal()
 
 def delete_user_from_db():
- return wx.MessageDialog(None, _(u"Are you sure you want to delete this user from the database? This user will not appear on the autocomplete results anymore."), _(u"Confirm"), wx.YES_NO|wx.ICON_QUESTION).ShowModal()
+ return wx.MessageDialog(None, _(u"Are you sure you want to delete this user from the database? This user will not appear in autocomplete results anymore."), _(u"Confirm"), wx.YES_NO|wx.ICON_QUESTION).ShowModal()
 
 def get_ignored_client():
- entry = wx.TextEntryDialog(None, _(u"Enter the name of the client here"), _(u"Add a new ignored client"))
+ entry = wx.TextEntryDialog(None, _(u"Enter the name of the client : "), _(u"Add client"))
  if entry.ShowModal() == wx.ID_OK:
   return entry.GetValue()
  return None
@@ -31,23 +31,23 @@ def clear_list():
  return dlg.ShowModal()
 
 def remove_buffer():
- return wx.MessageDialog(None, _(u"Do you really want to delete this timeline?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO).ShowModal()
+ return wx.MessageDialog(None, _(u"Do you really want to destroy this buffer?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO).ShowModal()
 
 def user_not_exist():
- return wx.MessageDialog(None, _(u"The user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
+ return wx.MessageDialog(None, _(u"That user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
 
 def timeline_exist():
- return wx.MessageDialog(None, _(u"There's currently a timeline for this user. You are not able to open another"), _(u"Existing timeline"), wx.ICON_ERROR).ShowModal()
+ return wx.MessageDialog(None, _(u"A timeline for this user already exists. You can't open another"), _(u"Existing timeline"), wx.ICON_ERROR).ShowModal()
 
 def no_tweets():
- return wx.MessageDialog(None, _(u"This user has no tweets. You can't open a timeline for this user"), _(u"Error!"), wx.ICON_ERROR).ShowModal()
+ return wx.MessageDialog(None, _(u"This user has no tweets, so you can't open a timeline for them."), _(u"Error!"), wx.ICON_ERROR).ShowModal()
 
 def protected_user():
- return wx.MessageDialog(None, _(u"This is a protected Twitter user. It means you can not open a timeline using the Streaming API. The user's tweets will not update due to a twitter policy. Do you want to continue?"), _(u"Warning"), wx.ICON_WARNING|wx.YES_NO).ShowModal()
+ return wx.MessageDialog(None, _(u"This is a protected Twitter user, which means you can't open a timeline using the Streaming API. The user's tweets will not update due to a twitter policy. Do you want to continue?"), _(u"Warning"), wx.ICON_WARNING|wx.YES_NO).ShowModal()
 
 def no_following():
- return wx.MessageDialog(None, _(u"This is a protected user account, you need follow to this user for viewing your tweets or favourites."), _(u"Error"), wx.ICON_ERROR).ShowModal()
+ return wx.MessageDialog(None, _(u"This is a protected user account, you need to follow this user to view their tweets or favorites."), _(u"Error"), wx.ICON_ERROR).ShowModal()
 
 def donation():
- dlg = wx.MessageDialog(None, _(u"If you like this application, we need your help to keep it operational. Help us donating to the project. This will let us pay the server, the domain on the Internet and some other things to ensure that TWBlue will keep developing. Your donation will let us continue writing features for TWBlue, and these features to be free. Would you like to donate now?"), _(u"We need your help"), wx.ICON_QUESTION|wx.YES_NO)
+ dlg = wx.MessageDialog(None, _(u"If you like " + application.name + ", we need your help to keep it going. Help us by donating to the project. This will help us pay for the server, the domain and some other things to ensure that " + application.name + " will be actively maintained. Your donation will give us the means to continue the development of " + application.name + ", and to keep " + application.name + " free. Would you like to donate now?"), _(u"We need your help"), wx.ICON_QUESTION|wx.YES_NO)
  return dlg.ShowModal()
