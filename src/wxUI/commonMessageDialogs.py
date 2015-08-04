@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import wx
 import application
+
 def retweet_as_link(parent):
  return wx.MessageDialog(parent, _(u"This retweet is over 140 characters. Would you like to post it as a mention to the poster with your comments and a link to the original tweet?"), application.name, wx.YES_NO|wx.ICON_QUESTION).ShowModal()
 
@@ -49,5 +50,5 @@ def no_following():
  return wx.MessageDialog(None, _(u"This is a protected user account, you need to follow this user to view their tweets or favorites."), _(u"Error"), wx.ICON_ERROR).ShowModal()
 
 def donation():
- dlg = wx.MessageDialog(None, _(u"If you like " + application.name + ", we need your help to keep it going. Help us by donating to the project. This will help us pay for the server, the domain and some other things to ensure that " + application.name + " will be actively maintained. Your donation will give us the means to continue the development of " + application.name + ", and to keep " + application.name + " free. Would you like to donate now?"), _(u"We need your help"), wx.ICON_QUESTION|wx.YES_NO)
+ dlg = wx.MessageDialog(None, _(u"If you like {0} we need your help to keep it going. Help us by donating to the project. This will help us pay for the server, the domain and some other things to ensure that {0} will be actively maintained. Your donation will give us the means to continue the development of {0}, and to keep {0} free. Would you like to donate now?").format(application.name), _(u"We need your help"), wx.ICON_QUESTION|wx.YES_NO)
  return dlg.ShowModal()
