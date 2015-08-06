@@ -91,6 +91,7 @@ class Controller(object):
   account str: A twitter username.
   The last valid buffer is the last buffer that contains a session object assigned."""
   results = self.get_buffers_for_account(account)
+  results = self.get_buffers_for_account(account)
   return self.view.search(results[-1].name, results[-1].account)
 
  def get_buffers_for_account(self, account):
@@ -923,13 +924,11 @@ class Controller(object):
 
  def left(self, *args, **kwargs):
   buff = self.view.get_current_buffer_pos()
-#  print buff
   buffer = self.get_current_buffer()
   if not hasattr(buffer.buffer, "list"):
    output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   if buff == self.get_first_buffer(buffer.account) or buff == 0:
-#   print "This is the last buffer"
    self.view.change_buffer(self.get_last_buffer(buffer.account))
   else:
    self.view.change_buffer(buff-1)
@@ -1337,27 +1336,22 @@ class Controller(object):
   os.chdir("../../")
 
  def insert_buffer(self, buffer, position):
-#  print ref_buf.name, ref_buf.account
-#  if ref_buf.account != buffer.account or ref_buf.type == "account" or type(ref_buf) == buffers.emptyPanel:
   buffers = self.get_buffers_for_account(buffer.account)
   try:
-   ref_buf = self.buffers[position+1]
+   ref_buf = self.buffers[position]
   except IndexError:
    self.buffers.append(buffer)
    return
   empty = True
-  for i in buffers[position+1:]:
+  for i in buffers[position:]:
    if i.type == "account" or i.invisible == False:
     empty = True
    else:
     empty = False
   if empty == True:
    self.buffers.append(buffer)
-#   print "account"
   else:
-   self.buffers.insert(position+1, buffer)
-#  for i in self.buffers:
-#   print i.name, i.account
+   self.buffers.insert(position, buffer)
 
  def __del__(self):
   config.app.write()
