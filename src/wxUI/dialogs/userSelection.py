@@ -10,8 +10,10 @@ class selectUserDialog(wx.Dialog):
   userLabel = wx.StaticText(panel, -1, _(u"User"))
   self.cb = wx.ComboBox(panel, -1, choices=users, value=users[0])
   self.cb.SetFocus()
+  self.autocompletion = wx.Button(panel, -1, _(u"&Autocomplete users"))
   userSizer.Add(userLabel, 0, wx.ALL, 5)
   userSizer.Add(self.cb, 0, wx.ALL, 5)
+  userSizer.Add(self.autocompletion, 0, wx.ALL, 5)
   actionSizer = wx.BoxSizer(wx.VERTICAL)
   label2 = wx.StaticText(panel, -1, _(u"Buffer type"))
   self.tweets = wx.RadioButton(panel, -1, _(u"Tweets"), style=wx.RB_GROUP)
@@ -49,3 +51,9 @@ class selectUserDialog(wx.Dialog):
 
  def get_user(self):
   return self.cb.GetValue()
+
+ def get_position(self):
+  return self.cb.GetPosition()
+
+ def popup_menu(self, menu):
+  self.PopupMenu(menu, self.cb.GetPosition())

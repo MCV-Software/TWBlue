@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from wxUI.dialogs import userActions
-from pubsub import pub
 import re
 import widgetUtils
 import output
+from wxUI.dialogs import userActions
+from pubsub import pub
 from twython import TwythonError
+from extra import autocompletionUsers
 
 class userActionsController(object):
  def __init__(self, buffer, users=[], default="follow"):
@@ -12,8 +13,13 @@ class userActionsController(object):
   self.buffer = buffer
   self.session = buffer.session
   self.dialog = userActions.UserActionsDialog(users, default)
+  widgetUtils.connect_event(self.dialog.autocompletion, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
   if self.dialog.get_response() == widgetUtils.OK:
    self.process_action()
+
+ def autocomplete_users(self, *args, **kwargs):
+  c = autocompletionUsers.completion.autocompletionUsers(self.dialog, self.session.session_id)
+  c.show_menu("dm")
 
  def process_action(self):
   action = self.dialog.get_action()
