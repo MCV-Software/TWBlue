@@ -1204,6 +1204,9 @@ class Controller(object):
  def manage_stream_errors(self, session):
   log.error("An error ocurred with the stream for the %s session. It will be destroyed" % (session,))
   s = session_.sessions[session]
+  for i in self.buffers:
+   if i.invisible == True and i.session.session_id == s.session_id:
+    i.start_stream()
   s.listen_stream_error()
 
  def check_connection(self):
@@ -1353,17 +1356,12 @@ class Controller(object):
   else:
    self.buffers.insert(position, buffer)
 
- def __del__(self):
-  config.app.write()
-
- def change_buffer(self, bufferPosition):
-  buff = self.buffers[bufferPosition]
-  newPos = self.view.search(buff.name, buff.account)
-  self.view.change_buffer(newPos)
-
  def copy_to_clipboard(self, *args, **kwargs):
   output.copy(self.get_current_buffer().get_message())
   output.speak(_(u"Copied"))
 
  def repeat_item(self, *args, **kwargs):
   output.speak(self.get_current_buffer().get_message())
+
+ def __del__(self):
+  config.app.write()
