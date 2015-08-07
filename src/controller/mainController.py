@@ -733,7 +733,7 @@ class Controller(object):
      tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
      tl.start_stream()
      pos=self.view.search("timelines", buffer.session.db["user_name"])
-     self.insert_buffer(tl, pos)
+     self.insert_buffer(tl, pos+1)
 #     self.buffers.insert(pos+1, tl)
      self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
      buffer.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
@@ -745,7 +745,7 @@ class Controller(object):
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
      pos=self.view.search("favs_timelines", buffer.session.db["user_name"])
-     self.insert_buffer(tl, pos)
+     self.insert_buffer(tl, pos+1)
 #     self.buffers.insert(pos+1, tl)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Favourites timeline for {}").format(dlg.get_user()), pos=pos)
      tl.start_stream()
