@@ -163,7 +163,7 @@ documentation.append(_(u"""* Lists Manager: This dialogue box allows you to mana
 documentation.append(_(u"""* Edit keystrokes: this opens a dialogue where you can see and edit the shortcuts used in the invisible interface."""))
 documentation.append(_(u"""* Account settings: Opens a dialogue box which lets you customize settings for the current account."""))
 documentation.append(_(u"""* Global settings: Opens a dialogue which lets you configure settings for the entire application."""))
-documentation.append(_(u"""* Quit: asks whether you want to exit the program. If the answer is yes, it closes the application. If you do not want to be asked for confirmation before exiting, uncheck the checkbox from the global settings dialogue box."""))
+documentation.append(_(u"""* Exit: asks whether you want to exit the program. If the answer is yes, it closes the application. If you do not want to be asked for confirmation before exiting, uncheck the checkbox from the global settings dialogue box."""))
 documentation.append(_(u"""
 """))
 documentation.append(_(u"""##### Tweet menu"""))

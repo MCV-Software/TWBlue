@@ -89,7 +89,7 @@ def setup():
 def donation():
  dlg = commonMessageDialogs.donation()
  if dlg == widgetUtils.YES:
-  webbrowser.open_new_tab("http://twblue.es/donate")
+  webbrowser.open_new_tab("http://twblue.es/?q=donate")
  config.app["app-settings"]["donation_dialog_displayed"] = True
 
 setup()

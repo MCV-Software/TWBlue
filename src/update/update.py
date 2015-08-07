@@ -122,4 +122,4 @@ def call_callback(callback, *args, **kwargs):
 def donation():
  dlg = commonMessageDialogs.donation()
  if dlg == widgetUtils.YES:
-  webbrowser.open_new_tab("http://twblue.es/donate")
+  webbrowser.open_new_tab("http://twblue.es/?q=donate")
