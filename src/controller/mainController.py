@@ -90,13 +90,14 @@ class Controller(object):
   """ Gets the last valid buffer for an account.
   account str: A twitter username.
   The last valid buffer is the last buffer that contains a session object assigned."""
-  results = self.get_buffers_for_account(account)
+#  results = self.get_buffers_for_account(account)
   results = self.get_buffers_for_account(account)
   return self.view.search(results[-1].name, results[-1].account)
 
  def get_buffers_for_account(self, account):
   results = []
-  [results.append(i) for i in self.buffers if i.account == account and i.invisible == True]
+  buffers = self.view.get_buffers()
+  [results.append(self.search_buffer(i.name, i.account)) for i in buffers if i.account == account]
   return results
 
  def bind_stream_events(self):
@@ -1254,7 +1255,8 @@ class Controller(object):
     return
    tl = buffersController.listBufferController(self.view.nb, "get_list_statuses", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]))
    buff.session.lists.append(tl)
-   self.buffers.append(tl)
+   pos=self.view.search("lists", buff.session.db["user_name"])
+   self.insert_buffer(tl, pos)
    self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(create), pos=self.view.search("lists", buff.session.db["user_name"]))
    tl.start_stream()
    buff.session.settings["other_buffers"]["lists"].append(create)
@@ -1339,22 +1341,7 @@ class Controller(object):
   os.chdir("../../")
 
  def insert_buffer(self, buffer, position):
-  buffers = self.get_buffers_for_account(buffer.account)
-  try:
-   ref_buf = self.buffers[position]
-  except IndexError:
-   self.buffers.append(buffer)
-   return
-  empty = True
-  for i in buffers[position:]:
-   if i.type == "account" or i.invisible == False:
-    empty = True
-   else:
-    empty = False
-  if empty == True:
-   self.buffers.append(buffer)
-  else:
-   self.buffers.insert(position, buffer)
+  self.buffers.insert(position, buffer)
 
  def copy_to_clipboard(self, *args, **kwargs):
   output.copy(self.get_current_buffer().get_message())
