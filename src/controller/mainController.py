@@ -367,7 +367,7 @@ class Controller(object):
  def set_buffer_positions(self,session):
   "Sets positions for buffers if values exist in the database."
   for i in self.buffers:
-   if str(i.name+"_pos") in session.db and hasattr(i.buffer,'list'):
+   if i.name+"_pos" in session.db and hasattr(i.buffer,'list'):
     i.buffer.list.select_item(session.db[str(i.name+"_pos")])
 
  def logout_account(self, session_id):

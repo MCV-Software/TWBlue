@@ -32,7 +32,7 @@ def find_item(id, listItem):
 
 def find_list(name, lists):
  for i in range(0, len(lists)):
-  if lists[i]["slug"] == name:  return lists[i]["id"]
+  if lists[i]["name"] == name:  return lists[i]["id"]
 
 def find_previous_reply(id, listItem):
  for i in range(0, len(listItem)):

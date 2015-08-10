@@ -27,7 +27,7 @@ class listsController(object):
    name = dialog.get("name")
    description = dialog.get("description")
    p = dialog.get("public")
-   if public == True:
+   if p == True:
     mode = "public"
    else:
     mode = "private"
@@ -73,4 +73,4 @@ class listsController(object):
  def open_list_as_buffer(self, *args, **kwargs):
   if self.dialog.lista.get_count() == 0: return
   list = self.session.db["lists"][self.dialog.get_item()]
-  pub.sendMessage("create-new-buffer", buffer="list", account=self.session.db["user_name"], create=list["slug"])
+  pub.sendMessage("create-new-buffer", buffer="list", account=self.session.db["user_name"], create=list["name"])
