@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
-"POT-Creation-Date: 2015-06-28 13:59+Hora de verano central (México)\n"
-"PO-Revision-Date: 2015-07-01 23:07+0100\n"
+"POT-Creation-Date: 2015-08-04 13:37+Hora de verano central (México)\n"
+"PO-Revision-Date: 2015-08-05 14:33+0100\n"
 "Last-Translator: Rémy Ruiz <remyruiz@gmail.com>\n"
 "Language-Team: Rémy Ruiz <remyruiz@gmail.com>\n"
 "Language: fr\n"
@@ -15,252 +15,178 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../src\build\lib\controller\buffersController.py:98
-#: ../src\controller\buffersController.py:98
-msgid "Opening media..."
-msgstr "Ouverture en cours du média..."
-
-#: ../src\build\lib\controller\buffersController.py:109
-#: ../src\controller\buffersController.py:109
+#: ../src\controller\buffersController.py:89
 msgid "This action is not supported for this buffer"
 msgstr "Cette action n'est pas supportée pour ce tampon"
 
-#: ../src\build\lib\controller\buffersController.py:148
-#: ../src\build\lib\wxUI\buffers\base.py:24
-#: ../src\build\lib\wxUI\buffers\events.py:14
-#: ../src\build\lib\wxUI\buffers\trends.py:17
-#: ../src\build\lib\wxUI\dialogs\message.py:253
-#: ../src\build\lib\wxUI\sysTrayIcon.py:33
-#: ../src\controller\buffersController.py:148 ../src\wxUI\buffers\base.py:24
+#: ../src\controller\buffersController.py:128 ../src\wxUI\buffers\base.py:24
 #: ../src\wxUI\buffers\events.py:14 ../src\wxUI\buffers\trends.py:17
-#: ../src\wxUI\dialogs\message.py:253 ../src\wxUI\sysTrayIcon.py:33
+#: ../src\wxUI\dialogs\message.py:250 ../src\wxUI\sysTrayIcon.py:33
 msgid "Tweet"
 msgstr "Tweet"
 
-#: ../src\build\lib\controller\buffersController.py:149
-#: ../src\controller\buffersController.py:149
+#: ../src\controller\buffersController.py:129
 msgid "Write the tweet here"
 msgstr "Écrivez le tweet ici"
 
-#: ../src\build\lib\controller\buffersController.py:311
-#: ../src\build\lib\controller\buffersController.py:674
-#: ../src\controller\buffersController.py:311
-#: ../src\controller\buffersController.py:674
+#: ../src\controller\buffersController.py:297
+#: ../src\controller\buffersController.py:667
 msgid "%s items retrieved"
 msgstr "%s éléments récupérée"
 
-#: ../src\build\lib\controller\buffersController.py:331
-#: ../src\controller\buffersController.py:331
+#: ../src\controller\buffersController.py:317
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Ce tampon n'est pas une chronologie ; Impossible de le supprimé."
 
-#: ../src\build\lib\controller\buffersController.py:392
-#: ../src\build\lib\keystrokeEditor\constants.py:11
-#: ../src\build\lib\wxUI\buffers\base.py:26
-#: ../src\controller\buffersController.py:392
+#: ../src\controller\buffersController.py:378
+msgid "Reply to %s"
+msgstr "Répondre à %s"
+
+#: ../src\controller\buffersController.py:378
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
 msgid "Reply"
 msgstr "Répondre"
 
-#: ../src\build\lib\controller\buffersController.py:392
-#: ../src\controller\buffersController.py:392
-msgid "Reply to %s"
-msgstr "Répondre à %s"
-
-#: ../src\build\lib\controller\buffersController.py:412
-#: ../src\build\lib\controller\mainController.py:1086
-#: ../src\controller\buffersController.py:412
-#: ../src\controller\mainController.py:1086
-msgid "New direct message"
-msgstr "Nouveau message direct"
-
-#: ../src\build\lib\controller\buffersController.py:412
-#: ../src\controller\buffersController.py:412
+#: ../src\controller\buffersController.py:405
 msgid "Direct message to %s"
 msgstr "Message direct à %s"
 
-#: ../src\build\lib\controller\buffersController.py:433
-#: ../src\build\lib\keystrokeEditor\constants.py:12
-#: ../src\build\lib\wxUI\buffers\base.py:25
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:8
-#: ../src\build\lib\wxUI\dialogs\message.py:129
-#: ../src\controller\buffersController.py:433
-#: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:25
-#: ../src\wxUI\commonMessageDialogs.py:8 ../src\wxUI\dialogs\message.py:129
-msgid "Retweet"
-msgstr "Retweet"
+#: ../src\controller\buffersController.py:405
+#: ../src\controller\mainController.py:1105
+msgid "New direct message"
+msgstr "Nouveau message direct"
 
-#: ../src\build\lib\controller\buffersController.py:433
-#: ../src\controller\buffersController.py:433
+#: ../src\controller\buffersController.py:426
 msgid "Add your comment to the tweet"
 msgstr "Ajoutez votre commentaire au tweet"
 
-#: ../src\build\lib\controller\buffersController.py:505
-#: ../src\controller\buffersController.py:505
+#: ../src\controller\buffersController.py:426
+#: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:25
+#: ../src\wxUI\commonMessageDialogs.py:9 ../src\wxUI\dialogs\message.py:126
+msgid "Retweet"
+msgstr "Retweet"
+
+#: ../src\controller\buffersController.py:498
 msgid "Opening URL..."
 msgstr "Ouverture en cours de l'URL..."
 
-#: ../src\build\lib\controller\buffersController.py:540
-#: ../src\controller\buffersController.py:540
+#: ../src\controller\buffersController.py:533
 msgid "User details"
 msgstr "Détails de l'utilisateur"
 
-#: ../src\build\lib\controller\buffersController.py:589
-#: ../src\controller\buffersController.py:589
+#: ../src\controller\buffersController.py:582
 msgid "Empty"
 msgstr "Vide"
 
-#: ../src\build\lib\controller\buffersController.py:633
-#: ../src\build\lib\wxUI\buffers\people.py:15
-#: ../src\controller\buffersController.py:633 ../src\wxUI\buffers\people.py:15
-msgid "Mention"
-msgstr "Mention"
-
-#: ../src\build\lib\controller\buffersController.py:633
-#: ../src\controller\buffersController.py:633
+#: ../src\controller\buffersController.py:626
 msgid "Mention to %s"
 msgstr "Mentionner à %s"
 
-#: ../src\build\lib\controller\mainController.py:243
-#: ../src\controller\mainController.py:243
+#: ../src\controller\buffersController.py:626 ../src\wxUI\buffers\people.py:15
+msgid "Mention"
+msgstr "Mention"
+
+#: ../src\controller\mainController.py:250
 msgid "Ready"
 msgstr "Prêt"
 
-#: ../src\build\lib\controller\mainController.py:274
-#: ../src\controller\mainController.py:274
+#: ../src\controller\mainController.py:281
 msgid "Home"
 msgstr "Principal"
 
-#: ../src\build\lib\controller\mainController.py:278
-#: ../src\controller\mainController.py:278
+#: ../src\controller\mainController.py:285
 msgid "Mentions"
 msgstr "Mentions"
 
-#: ../src\build\lib\controller\mainController.py:282
-#: ../src\controller\mainController.py:282
+#: ../src\controller\mainController.py:289
 msgid "Direct messages"
 msgstr "Messages directs"
 
-#: ../src\build\lib\controller\mainController.py:286
-#: ../src\controller\mainController.py:286
+#: ../src\controller\mainController.py:293
 msgid "Sent direct messages"
 msgstr "Messages Directs envoyés"
 
-#: ../src\build\lib\controller\mainController.py:290
-#: ../src\controller\mainController.py:290
+#: ../src\controller\mainController.py:297
 msgid "Sent tweets"
 msgstr "Tweets envoyés"
 
-#: ../src\build\lib\controller\mainController.py:295
-#: ../src\build\lib\controller\mainController.py:1202
-#: ../src\build\lib\wxUI\dialogs\userSelection.py:18
-#: ../src\controller\mainController.py:295
-#: ../src\controller\mainController.py:1202
+#: ../src\controller\mainController.py:302
+#: ../src\controller\mainController.py:1221
 #: ../src\wxUI\dialogs\userSelection.py:18
 msgid "Favourites"
 msgstr "Favoris"
 
-#: ../src\build\lib\controller\mainController.py:299
-#: ../src\build\lib\controller\mainController.py:1207
-#: ../src\controller\mainController.py:299
-#: ../src\controller\mainController.py:1207
+#: ../src\controller\mainController.py:306
+#: ../src\controller\mainController.py:1226
 msgid "Followers"
 msgstr "Followers"
 
-#: ../src\build\lib\controller\mainController.py:303
-#: ../src\build\lib\controller\mainController.py:1212
-#: ../src\controller\mainController.py:303
-#: ../src\controller\mainController.py:1212
+#: ../src\controller\mainController.py:310
+#: ../src\controller\mainController.py:1231
 msgid "Friends"
 msgstr "Following"
 
-#: ../src\build\lib\controller\mainController.py:307
-#: ../src\build\lib\controller\mainController.py:1217
-#: ../src\controller\mainController.py:307
-#: ../src\controller\mainController.py:1217
+#: ../src\controller\mainController.py:314
+#: ../src\controller\mainController.py:1236
 msgid "Blocked users"
 msgstr "Utilisateurs bloqués"
 
-#: ../src\build\lib\controller\mainController.py:311
-#: ../src\build\lib\controller\mainController.py:1222
-#: ../src\controller\mainController.py:311
-#: ../src\controller\mainController.py:1222
+#: ../src\controller\mainController.py:318
+#: ../src\controller\mainController.py:1241
 msgid "Muted users"
 msgstr "Utilisateurs muet"
 
-#: ../src\build\lib\controller\mainController.py:315
-#: ../src\build\lib\controller\mainController.py:1227
-#: ../src\controller\mainController.py:315
-#: ../src\controller\mainController.py:1227
+#: ../src\controller\mainController.py:322
+#: ../src\controller\mainController.py:1246
 msgid "Events"
 msgstr "Événements"
 
-#: ../src\build\lib\controller\mainController.py:318
-#: ../src\controller\mainController.py:318
+#: ../src\controller\mainController.py:325
 msgid "Timelines"
 msgstr "Chronologies"
 
-#: ../src\build\lib\controller\mainController.py:322
-#: ../src\build\lib\controller\mainController.py:724
-#: ../src\controller\mainController.py:322
-#: ../src\controller\mainController.py:724
+#: ../src\controller\mainController.py:329
+#: ../src\controller\mainController.py:737
 msgid "Timeline for {}"
 msgstr "Chronologie de {}"
 
-#: ../src\build\lib\controller\mainController.py:325
-#: ../src\controller\mainController.py:325
+#: ../src\controller\mainController.py:332
 msgid "Favourites timelines"
 msgstr "Chronologies des favoris"
 
-#: ../src\build\lib\controller\mainController.py:329
-#: ../src\build\lib\controller\mainController.py:734
-#: ../src\controller\mainController.py:329
-#: ../src\controller\mainController.py:734
+#: ../src\controller\mainController.py:336
+#: ../src\controller\mainController.py:749
 msgid "Favourites timeline for {}"
 msgstr "Chronologie favoris pour {}"
 
-#: ../src\build\lib\controller\mainController.py:334
-#: ../src\build\lib\wxUI\dialogs\lists.py:12
-#: ../src\controller\mainController.py:334 ../src\wxUI\dialogs\lists.py:12
+#: ../src\controller\mainController.py:341 ../src\wxUI\dialogs\lists.py:12
 msgid "Lists"
 msgstr "Listes"
 
-#: ../src\build\lib\controller\mainController.py:339
-#: ../src\build\lib\controller\mainController.py:1237
-#: ../src\controller\mainController.py:339
-#: ../src\controller\mainController.py:1237
+#: ../src\controller\mainController.py:346
+#: ../src\controller\mainController.py:1256
 msgid "List for {}"
 msgstr "Liste pour {}"
 
-#: ../src\build\lib\controller\mainController.py:342
-#: ../src\controller\mainController.py:342
+#: ../src\controller\mainController.py:349
 msgid "Searches"
 msgstr "Recherches"
 
-#: ../src\build\lib\controller\mainController.py:346
-#: ../src\build\lib\controller\mainController.py:416
-#: ../src\controller\mainController.py:346
-#: ../src\controller\mainController.py:416
+#: ../src\controller\mainController.py:353
+#: ../src\controller\mainController.py:424
 msgid "Search for {}"
 msgstr "Recherche pour {}"
 
-#: ../src\build\lib\controller\mainController.py:354
-#: ../src\build\lib\controller\mainController.py:778
-#: ../src\controller\mainController.py:354
-#: ../src\controller\mainController.py:778
+#: ../src\controller\mainController.py:361
+#: ../src\controller\mainController.py:795
 msgid "Trending topics for %s"
 msgstr "Tendances pour %s"
 
-#: ../src\build\lib\controller\mainController.py:435
-#: ../src\build\lib\controller\mainController.py:872
-#: ../src\build\lib\controller\mainController.py:891
-#: ../src\build\lib\controller\mainController.py:910
-#: ../src\build\lib\controller\mainController.py:928
-#: ../src\controller\mainController.py:435
-#: ../src\controller\mainController.py:872
-#: ../src\controller\mainController.py:891
-#: ../src\controller\mainController.py:910
-#: ../src\controller\mainController.py:928
+#: ../src\controller\mainController.py:443
+#: ../src\controller\mainController.py:890
+#: ../src\controller\mainController.py:909
+#: ../src\controller\mainController.py:929
+#: ../src\controller\mainController.py:949
 msgid ""
 "No session is currently in focus. Focus a session with the next or previous "
 "session shortcut."
@@ -268,263 +194,211 @@ msgstr ""
 "Aucune session n'est actuellement en focus. Mettez le focus dans une session "
 "avec le raccourci pour la session suivante ou précédente."
 
-#: ../src\build\lib\controller\mainController.py:439
-#: ../src\controller\mainController.py:439
+#: ../src\controller\mainController.py:447
 msgid "Empty buffer."
 msgstr "Tampon vide."
 
-#: ../src\build\lib\controller\mainController.py:446
-#: ../src\controller\mainController.py:446
+#: ../src\controller\mainController.py:454
 msgid "{0} not found."
 msgstr "{0} introuvable."
 
-#: ../src\build\lib\controller\mainController.py:482
-#: ../src\controller\mainController.py:482
+#: ../src\controller\mainController.py:490
 msgid "Select the user"
 msgstr "Sélectionnez un utilisateur"
 
-#: ../src\build\lib\controller\mainController.py:751
-#: ../src\controller\mainController.py:751
+#: ../src\controller\mainController.py:768
 msgid "Conversation with {0}"
 msgstr "Conversation avec {0}"
 
-#: ../src\build\lib\controller\mainController.py:794
-#: ../src\build\lib\controller\mainController.py:813
-#: ../src\controller\mainController.py:794
-#: ../src\controller\mainController.py:813
+#: ../src\controller\mainController.py:812
+#: ../src\controller\mainController.py:831
 msgid "There are no coordinates in this tweet"
 msgstr "Il n'y a aucune coordonnée dans ce tweet"
 
-#: ../src\build\lib\controller\mainController.py:796
-#: ../src\build\lib\controller\mainController.py:815
-#: ../src\controller\mainController.py:796
-#: ../src\controller\mainController.py:815
+#: ../src\controller\mainController.py:814
+#: ../src\controller\mainController.py:833
 msgid "There are no results for the coordinates in this tweet"
 msgstr "Il n'y a aucun résultat pour les coordonnées dans ce tweet"
 
-#: ../src\build\lib\controller\mainController.py:798
-#: ../src\build\lib\controller\mainController.py:817
-#: ../src\controller\mainController.py:798
-#: ../src\controller\mainController.py:817
+#: ../src\controller\mainController.py:816
+#: ../src\controller\mainController.py:835
 msgid "Error decoding coordinates. Try again later."
 msgstr "Erreur pendant le décodage des coordonnées. Réessayez plus tard."
 
-#: ../src\build\lib\controller\mainController.py:919
-#: ../src\build\lib\controller\mainController.py:937
-#: ../src\controller\mainController.py:919
-#: ../src\controller\mainController.py:937
+#: ../src\controller\mainController.py:940
+#: ../src\controller\mainController.py:959
 msgid "%s, %s of %s"
 msgstr "%s, %s de %s"
 
-#: ../src\build\lib\controller\mainController.py:921
-#: ../src\build\lib\controller\mainController.py:939
-#: ../src\build\lib\controller\mainController.py:959
-#: ../src\build\lib\controller\mainController.py:979
-#: ../src\controller\mainController.py:921
-#: ../src\controller\mainController.py:939
-#: ../src\controller\mainController.py:959
-#: ../src\controller\mainController.py:979
+#: ../src\controller\mainController.py:942
+#: ../src\controller\mainController.py:961
+#: ../src\controller\mainController.py:982
+#: ../src\controller\mainController.py:1003
 msgid "%s. Empty"
 msgstr "%s. Vide"
 
-#: ../src\build\lib\controller\mainController.py:952
-#: ../src\controller\mainController.py:952
+#: ../src\controller\mainController.py:974
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: Ce compte n'est pas connecté à twitter."
 
-#: ../src\build\lib\controller\mainController.py:957
-#: ../src\build\lib\controller\mainController.py:977
-#: ../src\controller\mainController.py:957
-#: ../src\controller\mainController.py:977
+#: ../src\controller\mainController.py:980
+#: ../src\controller\mainController.py:1001
 msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s de %s"
 
-#: ../src\build\lib\controller\mainController.py:972
-#: ../src\controller\mainController.py:972
+#: ../src\controller\mainController.py:995
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}:  Ce compte n'est pas connecté à twitter."
 
-#: ../src\build\lib\controller\mainController.py:1077
-#: ../src\controller\mainController.py:1077
+#: ../src\controller\mainController.py:1096
 msgid "One mention from %s "
 msgstr "Une mention de %s"
 
-#: ../src\build\lib\controller\mainController.py:1166
-#: ../src\build\lib\controller\mainController.py:1175
-#: ../src\controller\mainController.py:1166
-#: ../src\controller\mainController.py:1175
+#: ../src\controller\mainController.py:1185
+#: ../src\controller\mainController.py:1194
 msgid "One tweet from %s"
 msgstr "Un tweet de %s"
 
-#: ../src\build\lib\controller\mainController.py:1232
-#: ../src\controller\mainController.py:1232
+#: ../src\controller\mainController.py:1251
 msgid "This list is already opened"
 msgstr "Cette liste est déjà ouverte"
 
-#: ../src\build\lib\controller\mainController.py:1290
-#: ../src\controller\mainController.py:1290
+#: ../src\controller\mainController.py:1309
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "La lecture automatique des nouveaux tweets pour ce tampon est activé"
 
-#: ../src\build\lib\controller\mainController.py:1293
-#: ../src\controller\mainController.py:1293
+#: ../src\controller\mainController.py:1312
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr ""
 "La lecture automatique des nouveaux tweets pour ce tampon est désactivé"
 
-#: ../src\build\lib\controller\mainController.py:1299
-#: ../src\controller\mainController.py:1299
+#: ../src\controller\mainController.py:1318
 msgid "Session mute on"
 msgstr "Session muet activé"
 
-#: ../src\build\lib\controller\mainController.py:1302
-#: ../src\controller\mainController.py:1302
+#: ../src\controller\mainController.py:1321
 msgid "Session mute off"
 msgstr "Session muet désactivé"
 
-#: ../src\build\lib\controller\mainController.py:1309
-#: ../src\controller\mainController.py:1309
+#: ../src\controller\mainController.py:1328
 msgid "Buffer mute on"
 msgstr "Tampon muet activé"
 
-#: ../src\build\lib\controller\mainController.py:1312
-#: ../src\controller\mainController.py:1312
+#: ../src\controller\mainController.py:1331
 msgid "Buffer mute off"
 msgstr "Tampon muet désactivé"
 
-#: ../src\build\lib\controller\messages.py:43 ../src\controller\messages.py:43
+#: ../src\controller\mainController.py:1372
+msgid "Copied"
+msgstr "Copié"
+
+#: ../src\controller\messages.py:43
 msgid "Translated"
 msgstr "Traduit"
 
-#: ../src\build\lib\controller\messages.py:50 ../src\controller\messages.py:50
+#: ../src\controller\messages.py:50
 msgid "There's no URL to be shortened"
 msgstr "Aucune URL à réduire"
 
-#: ../src\build\lib\controller\messages.py:54
-#: ../src\build\lib\controller\messages.py:61 ../src\controller\messages.py:54
-#: ../src\controller\messages.py:61
+#: ../src\controller\messages.py:54 ../src\controller\messages.py:61
 msgid "URL shortened"
 msgstr "URL réduite"
 
-#: ../src\build\lib\controller\messages.py:67 ../src\controller\messages.py:67
+#: ../src\controller\messages.py:67
 msgid "There's no URL to be expanded"
 msgstr "Aucune URL à élargir"
 
-#: ../src\build\lib\controller\messages.py:71
-#: ../src\build\lib\controller\messages.py:78 ../src\controller\messages.py:71
-#: ../src\controller\messages.py:78
+#: ../src\controller\messages.py:71 ../src\controller\messages.py:78
 msgid "URL expanded"
 msgstr "URL élargi"
 
-#: ../src\build\lib\controller\messages.py:82 ../src\controller\messages.py:82
+#: ../src\controller\messages.py:89
 msgid "%s - %s of %d characters"
 msgstr "%s - %s de %d caractères"
 
-#: ../src\build\lib\controller\messages.py:106
-#: ../src\controller\messages.py:106
+#: ../src\controller\messages.py:93
+msgid "%s - %s characters"
+msgstr "%s - %s caractères"
+
+#: ../src\controller\messages.py:109
 msgid "Unable to upload the audio"
 msgstr "Impossible de charger l'audio"
 
-#: ../src\build\lib\controller\messages.py:118
-#: ../src\build\lib\controller\messages.py:126
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:77
-#: ../src\controller\messages.py:118 ../src\controller\messages.py:126
+#: ../src\controller\messages.py:124 ../src\controller\messages.py:132
 #: ../src\wxUI\dialogs\update_profile.py:77
 msgid "Discard image"
 msgstr "Ignorer la photo"
 
-#: ../src\build\lib\controller\messages.py:121
-#: ../src\build\lib\controller\user.py:53
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:127
-#: ../src\controller\messages.py:121 ../src\controller\user.py:53
+#: ../src\controller\messages.py:127 ../src\controller\user.py:53
 #: ../src\extra\AudioUploader\audioUploader.py:127
 msgid "Discarded"
 msgstr "Ignoré"
 
-#: ../src\build\lib\controller\messages.py:122
-#: ../src\build\lib\wxUI\dialogs\message.py:136
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:32
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:75
-#: ../src\controller\messages.py:122 ../src\wxUI\dialogs\message.py:136
+#: ../src\controller\messages.py:128 ../src\wxUI\dialogs\message.py:133
 #: ../src\wxUI\dialogs\update_profile.py:32
 #: ../src\wxUI\dialogs\update_profile.py:75
 msgid "Upload a picture"
 msgstr "Charger une photo"
 
-#: ../src\build\lib\controller\settings.py:117
-#: ../src\build\lib\controller\settings.py:176
-#: ../src\build\lib\wxUI\dialogs\configuration.py:98
 #: ../src\controller\settings.py:119 ../src\controller\settings.py:178
 #: ../src\wxUI\dialogs\configuration.py:100
 msgid "Ask"
 msgstr "Demander"
 
-#: ../src\build\lib\controller\settings.py:119
-#: ../src\build\lib\controller\settings.py:178
-#: ../src\build\lib\wxUI\dialogs\configuration.py:98
 #: ../src\controller\settings.py:121 ../src\controller\settings.py:180
 #: ../src\wxUI\dialogs\configuration.py:100
 msgid "Retweet without comments"
 msgstr "Retweet sans commentaires"
 
-#: ../src\build\lib\controller\settings.py:121
-#: ../src\build\lib\wxUI\dialogs\configuration.py:98
 #: ../src\controller\settings.py:123 ../src\wxUI\dialogs\configuration.py:100
 msgid "Retweet with comments"
 msgstr "Retweet avec commentaires"
 
-#: ../src\build\lib\controller\settings.py:153
 #: ../src\controller\settings.py:155
 msgid "Account settings for %s"
 msgstr "Paramètres du compte pour %s"
 
-#: ../src\build\lib\controller\settings.py:261
-#: ../src\build\lib\wxUI\dialogs\configuration.py:289
 #: ../src\controller\settings.py:263 ../src\wxUI\dialogs\configuration.py:291
 msgid "Connect your Pocket account"
 msgstr "Connecter votre compte Pocket"
 
-#: ../src\build\lib\controller\user.py:25 ../src\controller\user.py:25
+#: ../src\controller\user.py:25
 msgid "Information for %s"
 msgstr "Détails pour %s"
 
-#: ../src\build\lib\controller\user.py:82 ../src\controller\user.py:82
+#: ../src\controller\user.py:82
 msgid "Username: @%s\n"
 msgstr "Nom d'utilisateur: @%s\n"
 
-#: ../src\build\lib\controller\user.py:83 ../src\controller\user.py:83
+#: ../src\controller\user.py:83
 msgid "Name: %s\n"
 msgstr "Nom: %s\n"
 
-#: ../src\build\lib\controller\user.py:85 ../src\controller\user.py:85
+#: ../src\controller\user.py:85
 msgid "Location: %s\n"
 msgstr "Localisation: %s\n"
 
-#: ../src\build\lib\controller\user.py:87 ../src\controller\user.py:87
+#: ../src\controller\user.py:87
 msgid "URL: %s\n"
 msgstr "URL: %s\n"
 
-#: ../src\build\lib\controller\user.py:89 ../src\controller\user.py:89
+#: ../src\controller\user.py:89
 msgid "Bio: %s\n"
 msgstr "Description: %s\n"
 
-#: ../src\build\lib\controller\user.py:90
-#: ../src\build\lib\controller\user.py:94 ../src\controller\user.py:90
-#: ../src\controller\user.py:94
+#: ../src\controller\user.py:90 ../src\controller\user.py:94
 msgid "Yes"
 msgstr "Oui"
 
-#: ../src\build\lib\controller\user.py:91
-#: ../src\build\lib\controller\user.py:95 ../src\controller\user.py:91
-#: ../src\controller\user.py:95
+#: ../src\controller\user.py:91 ../src\controller\user.py:95
 msgid "No"
 msgstr "Non"
 
-#: ../src\build\lib\controller\user.py:92 ../src\controller\user.py:92
+#: ../src\controller\user.py:92
 msgid "Protected: %s\n"
 msgstr "Protégé: %s\n"
 
-#: ../src\build\lib\controller\user.py:93 ../src\controller\user.py:93
+#: ../src\controller\user.py:93
 msgid ""
 "Followers: %s\n"
 " Friends: %s\n"
@@ -532,32 +406,26 @@ msgstr ""
 "Followers: %s\n"
 " Following: %s\n"
 
-#: ../src\build\lib\controller\user.py:96 ../src\controller\user.py:96
+#: ../src\controller\user.py:96
 msgid "Verified: %s\n"
 msgstr "Vérifié : %s\n"
 
-#: ../src\build\lib\controller\user.py:97 ../src\controller\user.py:97
+#: ../src\controller\user.py:97
 msgid "Tweets: %s\n"
 msgstr "Tweets: %s\n"
 
-#: ../src\build\lib\controller\user.py:98 ../src\controller\user.py:98
+#: ../src\controller\user.py:98
 msgid "Favourites: %s"
 msgstr "Favoris: %s"
 
-#: ../src\build\lib\controller\userActionsController.py:69
 #: ../src\controller\userActionsController.py:69
 msgid "You can't ignore direct messages"
 msgstr "Vous ne pouvez pas ignorer les messages directs"
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:53
 #: ../src\extra\AudioUploader\audioUploader.py:53
 msgid "Attaching..."
 msgstr "Ajout en cours..."
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:75
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:80
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:107
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:36
 #: ../src\extra\AudioUploader\audioUploader.py:75
 #: ../src\extra\AudioUploader\audioUploader.py:80
 #: ../src\extra\AudioUploader\audioUploader.py:107
@@ -565,359 +433,266 @@ msgstr "Ajout en cours..."
 msgid "Pause"
 msgstr "Pause"
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:77
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:78
 #: ../src\extra\AudioUploader\audioUploader.py:77
 #: ../src\extra\AudioUploader\audioUploader.py:78
 msgid "Resume"
 msgstr "Reprendre"
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:95
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:140
 #: ../src\extra\AudioUploader\audioUploader.py:95
 #: ../src\extra\AudioUploader\audioUploader.py:140
 msgid "Stop"
 msgstr "Arrêter"
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:96
 #: ../src\extra\AudioUploader\audioUploader.py:96
 msgid "Recording"
 msgstr "Enregistrement en cours"
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:101
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:151
 #: ../src\extra\AudioUploader\audioUploader.py:101
 #: ../src\extra\AudioUploader\audioUploader.py:151
 msgid "Stopped"
 msgstr "Arrêté"
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:103
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:38
 #: ../src\extra\AudioUploader\audioUploader.py:103
 #: ../src\extra\AudioUploader\wx_ui.py:38
 msgid "Record"
 msgstr "Enregistrer"
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:136
-#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:123
+#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:120
 msgid "Playing..."
 msgstr "Lecture en cours..."
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:144
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:154
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:34
 #: ../src\extra\AudioUploader\audioUploader.py:144
 #: ../src\extra\AudioUploader\audioUploader.py:154
 #: ../src\extra\AudioUploader\wx_ui.py:34
 msgid "Play"
 msgstr "Lire"
 
-#: ../src\build\lib\extra\AudioUploader\audioUploader.py:159
 #: ../src\extra\AudioUploader\audioUploader.py:159
 msgid "Recoding audio..."
 msgstr "Recodage audio..."
 
-#: ../src\build\lib\extra\AudioUploader\utils.py:27
-#: ../src\build\lib\update\utils.py:27 ../src\extra\AudioUploader\utils.py:27
-#: ../src\update\utils.py:27
+#: ../src\extra\AudioUploader\utils.py:27 ../src\update\utils.py:27
 msgid "%d day, "
 msgstr "%d jour, "
 
-#: ../src\build\lib\extra\AudioUploader\utils.py:29
-#: ../src\build\lib\update\utils.py:29 ../src\extra\AudioUploader\utils.py:29
-#: ../src\update\utils.py:29
+#: ../src\extra\AudioUploader\utils.py:29 ../src\update\utils.py:29
 msgid "%d days, "
 msgstr "%d jours, "
 
-#: ../src\build\lib\extra\AudioUploader\utils.py:31
-#: ../src\build\lib\update\utils.py:31 ../src\extra\AudioUploader\utils.py:31
-#: ../src\update\utils.py:31
+#: ../src\extra\AudioUploader\utils.py:31 ../src\update\utils.py:31
 msgid "%d hour, "
 msgstr "%d heure, "
 
-#: ../src\build\lib\extra\AudioUploader\utils.py:33
-#: ../src\build\lib\update\utils.py:33 ../src\extra\AudioUploader\utils.py:33
-#: ../src\update\utils.py:33
+#: ../src\extra\AudioUploader\utils.py:33 ../src\update\utils.py:33
 msgid "%d hours, "
 msgstr "%d heures, "
 
-#: ../src\build\lib\extra\AudioUploader\utils.py:35
-#: ../src\build\lib\update\utils.py:35 ../src\extra\AudioUploader\utils.py:35
-#: ../src\update\utils.py:35
+#: ../src\extra\AudioUploader\utils.py:35 ../src\update\utils.py:35
 msgid "%d minute, "
 msgstr "%d minute, "
 
-#: ../src\build\lib\extra\AudioUploader\utils.py:37
-#: ../src\build\lib\update\utils.py:37 ../src\extra\AudioUploader\utils.py:37
-#: ../src\update\utils.py:37
+#: ../src\extra\AudioUploader\utils.py:37 ../src\update\utils.py:37
 msgid "%d minutes, "
 msgstr "%d minutes, "
 
-#: ../src\build\lib\extra\AudioUploader\utils.py:39
-#: ../src\build\lib\update\utils.py:39 ../src\extra\AudioUploader\utils.py:39
-#: ../src\update\utils.py:39
+#: ../src\extra\AudioUploader\utils.py:39 ../src\update\utils.py:39
 msgid "%s second"
 msgstr "%s seconde"
 
-#: ../src\build\lib\extra\AudioUploader\utils.py:41
-#: ../src\build\lib\update\utils.py:41 ../src\extra\AudioUploader\utils.py:41
-#: ../src\update\utils.py:41
+#: ../src\extra\AudioUploader\utils.py:41 ../src\update\utils.py:41
 msgid "%s seconds"
 msgstr "%s secondes"
 
-#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:13
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:13
 msgid "File"
 msgstr "Fichier"
 
-#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:19
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:19
 msgid "Transferred"
 msgstr "Transféré"
 
-#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:24
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:24
 msgid "Total file size"
 msgstr "Taille totale du fichier"
 
-#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:29
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:29
 msgid "Transfer rate"
 msgstr "Vitesse du transfert"
 
-#: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:34
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:34
 msgid "Time left"
 msgstr "Temps restant"
 
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:28
-#: ../src\build\lib\wxUI\dialogs\message.py:138
-#: ../src\build\lib\wxUI\dialogs\message.py:199
-#: ../src\extra\AudioUploader\wx_ui.py:28 ../src\wxUI\dialogs\message.py:138
-#: ../src\wxUI\dialogs\message.py:199
+#: ../src\extra\AudioUploader\wx_ui.py:28 ../src\wxUI\dialogs\message.py:135
+#: ../src\wxUI\dialogs\message.py:196
 msgid "Attach audio"
 msgstr "Ajouter audio"
 
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:40
 #: ../src\extra\AudioUploader\wx_ui.py:40
 msgid "Add an existing file"
 msgstr "Ajouter un fichier existant"
 
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:41
 #: ../src\extra\AudioUploader\wx_ui.py:41
 msgid "Discard"
 msgstr "Ignorer"
 
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:43
 #: ../src\extra\AudioUploader\wx_ui.py:43
 msgid "Upload to"
 msgstr "Charger"
 
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:48
 #: ../src\extra\AudioUploader\wx_ui.py:48
 msgid "Attach"
 msgstr "Ajouter "
 
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:50
-#: ../src\build\lib\issueReporter\wx_ui.py:74
-#: ../src\build\lib\wxUI\dialogs\find.py:20
 #: ../src\extra\AudioUploader\wx_ui.py:50 ../src\issueReporter\wx_ui.py:74
 #: ../src\wxUI\dialogs\find.py:20
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:75
 #: ../src\extra\AudioUploader\wx_ui.py:75
 msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 msgstr "Fichiers audio (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 
-#: ../src\build\lib\extra\AudioUploader\wx_ui.py:75
 #: ../src\extra\AudioUploader\wx_ui.py:75
 msgid "Select the audio file to be uploaded"
 msgstr "Sélectionnez le fichier audio que vous souhaitez charger"
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:4
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:4
 msgid "Audio tweet."
 msgstr "Tweet audio."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:5
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:5
 msgid "User timeline buffer created."
 msgstr "Tampon de chronologie utilisateur créé."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:6
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:6
 msgid "Buffer destroied."
 msgstr "Tampon détruit."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:7
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:7
 msgid "Direct message received."
 msgstr "Message direct reçu."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:8
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:8
 msgid "Direct message sent."
 msgstr "Message direct envoyé."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:9
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:9
 msgid "Error."
 msgstr "Erreur."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:10
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
 msgid "Tweet favourited."
 msgstr "Tweet marqué comme favoris."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:11
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "Favourites buffer updated."
 msgstr "Tampon de favoris mis à jour."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:12
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
 msgid "Geotweet."
 msgstr "Geotweet."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:13
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:13
 msgid "Boundary reached."
 msgstr "Limite atteinte."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:14
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:14
 msgid "List updated."
 msgstr "Liste mise à jour."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:15
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:15
 msgid "Too many characters."
 msgstr "Trop de caractères."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:16
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:16
 msgid "Mention received."
 msgstr "Mention reçue."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:17
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:17
 msgid "New event."
 msgstr "Nouveau événement."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:18
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:18
 msgid "{0} is ready."
 msgstr "{0} est prêt."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:19
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:19
 msgid "Mention sent."
 msgstr "Mention envoyée."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:20
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:20
 msgid "Tweet retweeted."
 msgstr "Tweet retweeté."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:21
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:21
 msgid "Search buffer updated."
 msgstr "Tampon de recherche mis à jour."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:22
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:22
 msgid "Tweet received."
 msgstr "Tweet reçu."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:23
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:23
 msgid "Tweet sent."
 msgstr "Tweet envoyé."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:24
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:24
 msgid "Trending topics buffer updated."
 msgstr "Tampon de tendances mis à jour."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:25
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:25
 msgid "New tweet in user timeline buffer."
 msgstr "Nouveau tweet dans le tampon de chronologie utilisateur."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:26
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:26
 msgid "New follower."
 msgstr "Nouveau follower."
 
-#: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:27
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:27
 msgid "Volume changed."
 msgstr "Volume changé."
 
-#: ../src\build\lib\extra\SoundsTutorial\wx_ui.py:8
 #: ../src\extra\SoundsTutorial\wx_ui.py:8
 msgid "Sounds tutorial"
 msgstr "Tutoriel de sons"
 
-#: ../src\build\lib\extra\SoundsTutorial\wx_ui.py:11
 #: ../src\extra\SoundsTutorial\wx_ui.py:11
 msgid "Press enter to listen to the sound for the selected event"
 msgstr "Appuyez sur entrée pour entendre le son de l'événement sélectionné"
 
-#: ../src\build\lib\extra\SpellChecker\spellchecker.py:45
 #: ../src\extra\SpellChecker\spellchecker.py:45
 msgid "Misspelled word: %s"
 msgstr "Mot mal orthographié: %s"
 
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:26
 #: ../src\extra\SpellChecker\wx_ui.py:26
 msgid "Misspelled word"
 msgstr "Mot mal orthographié"
 
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:31
 #: ../src\extra\SpellChecker\wx_ui.py:31
 msgid "Context"
 msgstr "Contexte"
 
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:36
 #: ../src\extra\SpellChecker\wx_ui.py:36
 msgid "Suggestions"
 msgstr "Suggestions"
 
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:41
 #: ../src\extra\SpellChecker\wx_ui.py:41
 msgid "Ignore"
 msgstr "Ignorer"
 
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:42
 #: ../src\extra\SpellChecker\wx_ui.py:42
 msgid "Ignore all"
 msgstr "Ignorer tout"
 
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:43
 #: ../src\extra\SpellChecker\wx_ui.py:43
 msgid "Replace"
 msgstr "Remplacer"
 
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:44
 #: ../src\extra\SpellChecker\wx_ui.py:44
 msgid "Replace all"
 msgstr "Remplacer tout"
 
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:76
-#: ../src\build\lib\issueReporter\wx_ui.py:83
-#: ../src\build\lib\issueReporter\wx_ui.py:86
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:37
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:49
-#: ../src\extra\SpellChecker\wx_ui.py:76 ../src\issueReporter\wx_ui.py:83
-#: ../src\issueReporter\wx_ui.py:86 ../src\wxUI\commonMessageDialogs.py:37
-#: ../src\wxUI\commonMessageDialogs.py:49
-msgid "Error"
-msgstr "Erreur"
-
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:76
 #: ../src\extra\SpellChecker\wx_ui.py:76
 msgid ""
 "An error has occurred. There are no dictionaries available for the selected "
@@ -926,31 +701,30 @@ msgstr ""
 "Une erreur s'est produite. Il n'existe aucun dictionnaires disponibles pour "
 "la langue sélectionnée dans {0}"
 
-#: ../src\build\lib\extra\SpellChecker\wx_ui.py:79
+#: ../src\extra\SpellChecker\wx_ui.py:76 ../src\issueReporter\wx_ui.py:83
+#: ../src\issueReporter\wx_ui.py:86 ../src\wxUI\commonMessageDialogs.py:38
+#: ../src\wxUI\commonMessageDialogs.py:50
+msgid "Error"
+msgstr "Erreur"
+
 #: ../src\extra\SpellChecker\wx_ui.py:79
 msgid "Spell check complete."
 msgstr "Vérification  orthographique terminée."
 
-#: ../src\build\lib\extra\autocompletionUsers\completion.py:20
-#: ../src\build\lib\extra\autocompletionUsers\completion.py:38
 #: ../src\extra\autocompletionUsers\completion.py:20
 #: ../src\extra\autocompletionUsers\completion.py:38
 msgid "You have to start writing"
 msgstr "Vous devez commencer à écrire"
 
-#: ../src\build\lib\extra\autocompletionUsers\completion.py:30
-#: ../src\build\lib\extra\autocompletionUsers\completion.py:47
 #: ../src\extra\autocompletionUsers\completion.py:30
 #: ../src\extra\autocompletionUsers\completion.py:47
 msgid "There are no results in your users database"
 msgstr "Il n'y a aucun résultat dans votre base de données des utilisateurs"
 
-#: ../src\build\lib\extra\autocompletionUsers\completion.py:32
 #: ../src\extra\autocompletionUsers\completion.py:32
 msgid "Autocompletion only works for users."
 msgstr "La saisie automatique fonctionne uniquement pour les utilisateurs."
 
-#: ../src\build\lib\extra\autocompletionUsers\settings.py:25
 #: ../src\extra\autocompletionUsers\settings.py:25
 msgid ""
 "Updating database... You can close this window now. A message will tell you "
@@ -960,656 +734,521 @@ msgstr ""
 "fenêtre maintenant. Un message vous avertira lorsque le processus est "
 "terminé."
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:8
 #: ../src\extra\autocompletionUsers\wx_manage.py:8
 msgid "Manage Autocompletion database"
 msgstr "Gérer la base de données pour la saisie automatique"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:11
 #: ../src\extra\autocompletionUsers\wx_manage.py:11
 msgid "Editing {0} users database"
 msgstr "Modification de la base de données des utilisateurs de {0}"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:12
 #: ../src\extra\autocompletionUsers\wx_manage.py:12
 msgid "Name"
 msgstr "Nom"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:12
 #: ../src\extra\autocompletionUsers\wx_manage.py:12
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:15
 #: ../src\extra\autocompletionUsers\wx_manage.py:15
 msgid "Add user"
 msgstr "Ajouter l'utilisateur"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:16
 #: ../src\extra\autocompletionUsers\wx_manage.py:16
 msgid "Remove user"
 msgstr "Supprimer l'utilisateur"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:37
 #: ../src\extra\autocompletionUsers\wx_manage.py:37
 msgid "Add user to database"
 msgstr "Ajouter l'utilisateur à la base de données"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:37
 #: ../src\extra\autocompletionUsers\wx_manage.py:37
 msgid "Twitter username"
 msgstr "Nom d'utilisateur de Twitter"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:43
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:37
 #: ../src\extra\autocompletionUsers\wx_manage.py:43
-#: ../src\wxUI\commonMessageDialogs.py:37
 msgid "The user does not exist"
 msgstr "Cet utilisateur n'existe pas sur Twitter"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_manage.py:43
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:43
-#: ../src\build\lib\wxUI\dialogs\configuration.py:295
 #: ../src\extra\autocompletionUsers\wx_manage.py:43
-#: ../src\wxUI\commonMessageDialogs.py:43
+#: ../src\wxUI\commonMessageDialogs.py:44
 #: ../src\wxUI\dialogs\configuration.py:297
 msgid "Error!"
 msgstr "Erreur !"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:8
 #: ../src\extra\autocompletionUsers\wx_settings.py:8
 msgid "Autocomplete users' settings"
 msgstr "Paramètres pour la saisie automatique des utilisateurs"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:11
 #: ../src\extra\autocompletionUsers\wx_settings.py:11
 msgid "Add users from followers buffer"
 msgstr "Ajouter des utilisateurs depuis le tampon followers"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:12
 #: ../src\extra\autocompletionUsers\wx_settings.py:12
 msgid "Add users from friends buffer"
 msgstr "Ajouter des utilisateurs depuis le tampon following"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:15
 #: ../src\extra\autocompletionUsers\wx_settings.py:15
 msgid "Manage database..."
 msgstr "Gérer la base de données..."
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:27
 #: ../src\extra\autocompletionUsers\wx_settings.py:27
 msgid "Done"
 msgstr "Terminé"
 
-#: ../src\build\lib\extra\autocompletionUsers\wx_settings.py:27
 #: ../src\extra\autocompletionUsers\wx_settings.py:27
 msgid "{0}'s database of users has been updated."
 msgstr "La base de données des utilisateurs de {0} a été mis à jour."
 
-#: ../src\build\lib\extra\translator\translator.py:9
 #: ../src\extra\translator\translator.py:9
 msgid "Afrikaans"
 msgstr "Africain"
 
-#: ../src\build\lib\extra\translator\translator.py:10
 #: ../src\extra\translator\translator.py:10
 msgid "Albanian"
 msgstr "Albanais"
 
-#: ../src\build\lib\extra\translator\translator.py:11
 #: ../src\extra\translator\translator.py:11
 msgid "Amharic"
 msgstr "Amharique"
 
-#: ../src\build\lib\extra\translator\translator.py:12
 #: ../src\extra\translator\translator.py:12
 msgid "Arabic"
 msgstr "Arabe"
 
-#: ../src\build\lib\extra\translator\translator.py:13
 #: ../src\extra\translator\translator.py:13
 msgid "Armenian"
 msgstr "Arménien"
 
-#: ../src\build\lib\extra\translator\translator.py:14
 #: ../src\extra\translator\translator.py:14
 msgid "Azerbaijani"
 msgstr "Azerbaïdjanais"
 
-#: ../src\build\lib\extra\translator\translator.py:15
 #: ../src\extra\translator\translator.py:15
 msgid "Basque"
 msgstr "Basque"
 
-#: ../src\build\lib\extra\translator\translator.py:16
 #: ../src\extra\translator\translator.py:16
 msgid "Belarusian"
 msgstr "Biélorusse"
 
-#: ../src\build\lib\extra\translator\translator.py:17
 #: ../src\extra\translator\translator.py:17
 msgid "Bengali"
 msgstr "Bengali"
 
-#: ../src\build\lib\extra\translator\translator.py:18
 #: ../src\extra\translator\translator.py:18
 msgid "Bihari"
 msgstr "Bihari"
 
-#: ../src\build\lib\extra\translator\translator.py:19
 #: ../src\extra\translator\translator.py:19
 msgid "Bulgarian"
 msgstr "Bulgare"
 
-#: ../src\build\lib\extra\translator\translator.py:20
 #: ../src\extra\translator\translator.py:20
 msgid "Burmese"
 msgstr "Birman"
 
-#: ../src\build\lib\extra\translator\translator.py:21
 #: ../src\extra\translator\translator.py:21
 msgid "Catalan"
 msgstr "Catalan"
 
-#: ../src\build\lib\extra\translator\translator.py:22
 #: ../src\extra\translator\translator.py:22
 msgid "Cherokee"
 msgstr "Cherokee"
 
-#: ../src\build\lib\extra\translator\translator.py:23
 #: ../src\extra\translator\translator.py:23
 msgid "Chinese"
 msgstr "Chinois"
 
-#: ../src\build\lib\extra\translator\translator.py:24
 #: ../src\extra\translator\translator.py:24
 msgid "Chinese_simplified"
 msgstr "Chinois simplifié"
 
-#: ../src\build\lib\extra\translator\translator.py:25
 #: ../src\extra\translator\translator.py:25
 msgid "Chinese_traditional"
 msgstr "Chinois traditionnel"
 
-#: ../src\build\lib\extra\translator\translator.py:26
 #: ../src\extra\translator\translator.py:26
 msgid "Croatian"
 msgstr "Croate"
 
-#: ../src\build\lib\extra\translator\translator.py:27
 #: ../src\extra\translator\translator.py:27
 msgid "Czech"
 msgstr "Tchèque"
 
-#: ../src\build\lib\extra\translator\translator.py:28
 #: ../src\extra\translator\translator.py:28
 msgid "Danish"
 msgstr "Danois"
 
-#: ../src\build\lib\extra\translator\translator.py:29
 #: ../src\extra\translator\translator.py:29
 msgid "Dhivehi"
 msgstr "Dhivehi"
 
-#: ../src\build\lib\extra\translator\translator.py:30
 #: ../src\extra\translator\translator.py:30
 msgid "Dutch"
 msgstr "Néerlandais"
 
-#: ../src\build\lib\extra\translator\translator.py:31
 #: ../src\extra\translator\translator.py:31
 msgid "English"
 msgstr "Anglais"
 
-#: ../src\build\lib\extra\translator\translator.py:32
 #: ../src\extra\translator\translator.py:32
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#: ../src\build\lib\extra\translator\translator.py:33
 #: ../src\extra\translator\translator.py:33
 msgid "Estonian"
 msgstr "Estonien"
 
-#: ../src\build\lib\extra\translator\translator.py:34
 #: ../src\extra\translator\translator.py:34
 msgid "Filipino"
 msgstr "Filipino"
 
-#: ../src\build\lib\extra\translator\translator.py:35
 #: ../src\extra\translator\translator.py:35
 msgid "Finnish"
 msgstr "Finnois"
 
-#: ../src\build\lib\extra\translator\translator.py:36
 #: ../src\extra\translator\translator.py:36
 msgid "French"
 msgstr "Français"
 
-#: ../src\build\lib\extra\translator\translator.py:37
 #: ../src\extra\translator\translator.py:37
 msgid "Galician"
 msgstr "Galicien"
 
-#: ../src\build\lib\extra\translator\translator.py:38
 #: ../src\extra\translator\translator.py:38
 msgid "Georgian"
 msgstr "Géorgien"
 
-#: ../src\build\lib\extra\translator\translator.py:39
 #: ../src\extra\translator\translator.py:39
 msgid "German"
 msgstr "Allemand"
 
-#: ../src\build\lib\extra\translator\translator.py:40
 #: ../src\extra\translator\translator.py:40
 msgid "Greek"
 msgstr "Grec"
 
-#: ../src\build\lib\extra\translator\translator.py:41
 #: ../src\extra\translator\translator.py:41
 msgid "Guarani"
 msgstr "Guarani"
 
-#: ../src\build\lib\extra\translator\translator.py:42
 #: ../src\extra\translator\translator.py:42
 msgid "Gujarati"
 msgstr "Gujarâtî"
 
-#: ../src\build\lib\extra\translator\translator.py:43
 #: ../src\extra\translator\translator.py:43
 msgid "Hebrew"
 msgstr "Hébreu"
 
-#: ../src\build\lib\extra\translator\translator.py:44
 #: ../src\extra\translator\translator.py:44
 msgid "Hindi"
 msgstr "Hindi"
 
-#: ../src\build\lib\extra\translator\translator.py:45
 #: ../src\extra\translator\translator.py:45
 msgid "Hungarian"
 msgstr "Hongrois"
 
-#: ../src\build\lib\extra\translator\translator.py:46
 #: ../src\extra\translator\translator.py:46
 msgid "Icelandic"
 msgstr "Islandais"
 
-#: ../src\build\lib\extra\translator\translator.py:47
 #: ../src\extra\translator\translator.py:47
 msgid "Indonesian"
 msgstr "Indonésien"
 
-#: ../src\build\lib\extra\translator\translator.py:48
 #: ../src\extra\translator\translator.py:48
 msgid "Inuktitut"
 msgstr "Inuktitut"
 
-#: ../src\build\lib\extra\translator\translator.py:49
 #: ../src\extra\translator\translator.py:49
 msgid "Irish"
 msgstr "Irlandais"
 
-#: ../src\build\lib\extra\translator\translator.py:50
 #: ../src\extra\translator\translator.py:50
 msgid "Italian"
 msgstr "Italien"
 
-#: ../src\build\lib\extra\translator\translator.py:51
 #: ../src\extra\translator\translator.py:51
 msgid "Japanese"
 msgstr "Japonais"
 
-#: ../src\build\lib\extra\translator\translator.py:52
 #: ../src\extra\translator\translator.py:52
 msgid "Kannada"
 msgstr "Canara"
 
-#: ../src\build\lib\extra\translator\translator.py:53
 #: ../src\extra\translator\translator.py:53
 msgid "Kazakh"
 msgstr "Kazakh"
 
-#: ../src\build\lib\extra\translator\translator.py:54
 #: ../src\extra\translator\translator.py:54
 msgid "Khmer"
 msgstr "Cambodgien"
 
-#: ../src\build\lib\extra\translator\translator.py:55
 #: ../src\extra\translator\translator.py:55
 msgid "Korean"
 msgstr "Coréen"
 
-#: ../src\build\lib\extra\translator\translator.py:56
 #: ../src\extra\translator\translator.py:56
 msgid "Kurdish"
 msgstr "Kurde"
 
-#: ../src\build\lib\extra\translator\translator.py:57
 #: ../src\extra\translator\translator.py:57
 msgid "Kyrgyz"
 msgstr "Kirghiz"
 
-#: ../src\build\lib\extra\translator\translator.py:58
 #: ../src\extra\translator\translator.py:58
 msgid "Laothian"
 msgstr "Laotien"
 
-#: ../src\build\lib\extra\translator\translator.py:59
 #: ../src\extra\translator\translator.py:59
 msgid "Latvian"
 msgstr "Letton"
 
-#: ../src\build\lib\extra\translator\translator.py:60
 #: ../src\extra\translator\translator.py:60
 msgid "Lithuanian"
 msgstr "Lituanien"
 
-#: ../src\build\lib\extra\translator\translator.py:61
 #: ../src\extra\translator\translator.py:61
 msgid "Macedonian"
 msgstr "Macédonien"
 
-#: ../src\build\lib\extra\translator\translator.py:62
 #: ../src\extra\translator\translator.py:62
 msgid "Malay"
 msgstr "Malaisien"
 
-#: ../src\build\lib\extra\translator\translator.py:63
 #: ../src\extra\translator\translator.py:63
 msgid "Malayalam"
 msgstr "Malayalam"
 
-#: ../src\build\lib\extra\translator\translator.py:64
 #: ../src\extra\translator\translator.py:64
 msgid "Maltese"
 msgstr "Maltais"
 
-#: ../src\build\lib\extra\translator\translator.py:65
 #: ../src\extra\translator\translator.py:65
 msgid "Marathi"
 msgstr "Marathi"
 
-#: ../src\build\lib\extra\translator\translator.py:66
 #: ../src\extra\translator\translator.py:66
 msgid "Mongolian"
 msgstr "Mongol"
 
-#: ../src\build\lib\extra\translator\translator.py:67
 #: ../src\extra\translator\translator.py:67
 msgid "Nepali"
 msgstr "Népali"
 
-#: ../src\build\lib\extra\translator\translator.py:68
 #: ../src\extra\translator\translator.py:68
 msgid "Norwegian"
 msgstr "Norvégien"
 
-#: ../src\build\lib\extra\translator\translator.py:69
 #: ../src\extra\translator\translator.py:69
 msgid "Oriya"
 msgstr "Oriya"
 
-#: ../src\build\lib\extra\translator\translator.py:70
 #: ../src\extra\translator\translator.py:70
 msgid "Pashto"
 msgstr "Pashto"
 
-#: ../src\build\lib\extra\translator\translator.py:71
 #: ../src\extra\translator\translator.py:71
 msgid "Persian"
 msgstr "Perse"
 
-#: ../src\build\lib\extra\translator\translator.py:72
 #: ../src\extra\translator\translator.py:72
 msgid "Polish"
 msgstr "Polonais"
 
-#: ../src\build\lib\extra\translator\translator.py:73
 #: ../src\extra\translator\translator.py:73
 msgid "Portuguese"
 msgstr "Portugais"
 
-#: ../src\build\lib\extra\translator\translator.py:74
 #: ../src\extra\translator\translator.py:74
 msgid "Punjabi"
 msgstr "Punjabi"
 
-#: ../src\build\lib\extra\translator\translator.py:75
 #: ../src\extra\translator\translator.py:75
 msgid "Romanian"
 msgstr "Roumain"
 
-#: ../src\build\lib\extra\translator\translator.py:76
 #: ../src\extra\translator\translator.py:76
 msgid "Russian"
 msgstr "Russe"
 
-#: ../src\build\lib\extra\translator\translator.py:77
 #: ../src\extra\translator\translator.py:77
 msgid "Sanskrit"
 msgstr "Sanscrit"
 
-#: ../src\build\lib\extra\translator\translator.py:78
 #: ../src\extra\translator\translator.py:78
 msgid "Serbian"
 msgstr "Serbe"
 
-#: ../src\build\lib\extra\translator\translator.py:79
 #: ../src\extra\translator\translator.py:79
 msgid "Sindhi"
 msgstr "Sindhi"
 
-#: ../src\build\lib\extra\translator\translator.py:80
 #: ../src\extra\translator\translator.py:80
 msgid "Sinhalese"
 msgstr "Cinghalais"
 
-#: ../src\build\lib\extra\translator\translator.py:81
 #: ../src\extra\translator\translator.py:81
 msgid "Slovak"
 msgstr "Slovaque"
 
-#: ../src\build\lib\extra\translator\translator.py:82
 #: ../src\extra\translator\translator.py:82
 msgid "Slovenian"
 msgstr "Slovène"
 
-#: ../src\build\lib\extra\translator\translator.py:83
 #: ../src\extra\translator\translator.py:83
 msgid "Spanish"
 msgstr "Espagnol"
 
-#: ../src\build\lib\extra\translator\translator.py:84
 #: ../src\extra\translator\translator.py:84
 msgid "Swahili"
 msgstr "Swahili"
 
-#: ../src\build\lib\extra\translator\translator.py:85
 #: ../src\extra\translator\translator.py:85
 msgid "Swedish"
 msgstr "Suédois"
 
-#: ../src\build\lib\extra\translator\translator.py:86
 #: ../src\extra\translator\translator.py:86
 msgid "Tajik"
 msgstr "Tadjik"
 
-#: ../src\build\lib\extra\translator\translator.py:87
 #: ../src\extra\translator\translator.py:87
 msgid "Tamil"
 msgstr "Tamil"
 
-#: ../src\build\lib\extra\translator\translator.py:88
 #: ../src\extra\translator\translator.py:88
 msgid "Tagalog"
 msgstr "Tagalog"
 
-#: ../src\build\lib\extra\translator\translator.py:89
 #: ../src\extra\translator\translator.py:89
 msgid "Telugu"
 msgstr "Telugu"
 
-#: ../src\build\lib\extra\translator\translator.py:90
 #: ../src\extra\translator\translator.py:90
 msgid "Thai"
 msgstr "Thaï"
 
-#: ../src\build\lib\extra\translator\translator.py:91
 #: ../src\extra\translator\translator.py:91
 msgid "Tibetan"
 msgstr "Tibétain"
 
-#: ../src\build\lib\extra\translator\translator.py:92
 #: ../src\extra\translator\translator.py:92
 msgid "Turkish"
 msgstr "Turc"
 
-#: ../src\build\lib\extra\translator\translator.py:93
 #: ../src\extra\translator\translator.py:93
 msgid "Ukrainian"
 msgstr "Ukrainien"
 
-#: ../src\build\lib\extra\translator\translator.py:94
 #: ../src\extra\translator\translator.py:94
 msgid "Urdu"
 msgstr "Urdu"
 
-#: ../src\build\lib\extra\translator\translator.py:95
 #: ../src\extra\translator\translator.py:95
 msgid "Uzbek"
 msgstr "Ouzbek"
 
-#: ../src\build\lib\extra\translator\translator.py:96
 #: ../src\extra\translator\translator.py:96
 msgid "Uighur"
 msgstr "Uighur"
 
-#: ../src\build\lib\extra\translator\translator.py:97
 #: ../src\extra\translator\translator.py:97
 msgid "Vietnamese"
 msgstr "Vietnamien"
 
-#: ../src\build\lib\extra\translator\translator.py:98
 #: ../src\extra\translator\translator.py:98
 msgid "Welsh"
 msgstr "Gallois"
 
-#: ../src\build\lib\extra\translator\translator.py:99
 #: ../src\extra\translator\translator.py:99
 msgid "Yiddish"
 msgstr "Yiddish"
 
-#: ../src\build\lib\extra\translator\translator.py:106
 #: ../src\extra\translator\translator.py:106
 msgid "autodetect"
 msgstr "Détection automatique"
 
-#: ../src\build\lib\extra\translator\wx_ui.py:25
-#: ../src\build\lib\wxUI\dialogs\message.py:143
-#: ../src\build\lib\wxUI\dialogs\message.py:204
-#: ../src\build\lib\wxUI\dialogs\message.py:282
-#: ../src\build\lib\wxUI\dialogs\message.py:337
-#: ../src\extra\translator\wx_ui.py:25 ../src\wxUI\dialogs\message.py:143
-#: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:282
-#: ../src\wxUI\dialogs\message.py:337
+#: ../src\extra\translator\wx_ui.py:25 ../src\wxUI\dialogs\message.py:140
+#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:279
+#: ../src\wxUI\dialogs\message.py:334
 msgid "Translate message"
 msgstr "Traduire le message"
 
-#: ../src\build\lib\extra\translator\wx_ui.py:28
 #: ../src\extra\translator\wx_ui.py:28
 msgid "Source language"
 msgstr "Langue source"
 
-#: ../src\build\lib\extra\translator\wx_ui.py:31
 #: ../src\extra\translator\wx_ui.py:31
 msgid "Target language"
 msgstr "Langue destination"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:30
-#: ../src\build\lib\wxUI\dialogs\configuration.py:314
-#: ../src\build\lib\wxUI\dialogs\configuration.py:323
 #: ../src\issueReporter\issueReporter.py:30
 #: ../src\wxUI\dialogs\configuration.py:316
 #: ../src\wxUI\dialogs\configuration.py:325
 msgid "General"
 msgstr "Général"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:31
 #: ../src\issueReporter\issueReporter.py:31
 msgid "always"
 msgstr "Toujours"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:31
 #: ../src\issueReporter\issueReporter.py:31
 msgid "have not tried"
 msgstr "Vous n'avez pas essayé"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:31
 #: ../src\issueReporter\issueReporter.py:31
 msgid "random"
 msgstr "Aléatoire"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:31
 #: ../src\issueReporter\issueReporter.py:31
 msgid "sometimes"
 msgstr "Parfois"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:31
 #: ../src\issueReporter\issueReporter.py:31
 msgid "unable to duplicate"
 msgstr "Impossible de reproduire"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:32
 #: ../src\issueReporter\issueReporter.py:32
 msgid "block"
 msgstr "Blocage"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:32
 #: ../src\issueReporter\issueReporter.py:32
 msgid "crash"
 msgstr "Incident"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:32
 #: ../src\issueReporter\issueReporter.py:32
 msgid "feature"
 msgstr "Fonctionnalité"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:32
 #: ../src\issueReporter\issueReporter.py:32
 msgid "major"
 msgstr "Majeur"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:32
 #: ../src\issueReporter\issueReporter.py:32
 msgid "minor"
 msgstr "Mineur"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:32
 #: ../src\issueReporter\issueReporter.py:32
 msgid "text"
 msgstr "Texte"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:32
 #: ../src\issueReporter\issueReporter.py:32
 msgid "trivial"
 msgstr "Trivial"
 
-#: ../src\build\lib\issueReporter\issueReporter.py:32
 #: ../src\issueReporter\issueReporter.py:32
 msgid "tweak"
 msgstr "Réglage"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:25 ../src\issueReporter\wx_ui.py:25
+#: ../src\issueReporter\wx_ui.py:25
 msgid "Report an error"
 msgstr "Signaler une erreur"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:28 ../src\issueReporter\wx_ui.py:28
+#: ../src\issueReporter\wx_ui.py:28
 msgid "Select a category"
 msgstr "Sélectionnez une catégorie"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:36 ../src\issueReporter\wx_ui.py:36
+#: ../src\issueReporter\wx_ui.py:36
 msgid ""
 "Briefly describe what happened. You will be able to thoroughly explain it "
 "later"
@@ -1617,19 +1256,19 @@ msgstr ""
 "Décrivez brièvement ce qui s'est passé. Vous serez en mesure d'expliquer en "
 "profondeur par la suite."
 
-#: ../src\build\lib\issueReporter\wx_ui.py:45 ../src\issueReporter\wx_ui.py:45
+#: ../src\issueReporter\wx_ui.py:45
 msgid "Here, you can describe the bug in detail"
 msgstr "Ici vous pouvez décrire l'erreur en détail"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:55 ../src\issueReporter\wx_ui.py:55
+#: ../src\issueReporter\wx_ui.py:55
 msgid "how often does this bug happen?"
 msgstr "Combien de fois se produit cette erreur ?"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:62 ../src\issueReporter\wx_ui.py:62
+#: ../src\issueReporter\wx_ui.py:62
 msgid "Select the importance that you think this bug has"
 msgstr "Sélectionnez l'importance que vous pensez qu'elle a cette erreur"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:69 ../src\issueReporter\wx_ui.py:69
+#: ../src\issueReporter\wx_ui.py:69
 msgid ""
 "I know that the {0} bug system will get my Twitter username to contact me "
 "and fix the bug quickly"
@@ -1637,15 +1276,15 @@ msgstr ""
 "Je sais que le système d'erreurs de {0} obtiendra mon nom d'utilisateur de "
 "Twitter afin de me contacter et corriger l'erreur rapidement"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:72 ../src\issueReporter\wx_ui.py:72
+#: ../src\issueReporter\wx_ui.py:72
 msgid "Send report"
 msgstr "Envoyer le rapport"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:83 ../src\issueReporter\wx_ui.py:83
+#: ../src\issueReporter\wx_ui.py:83
 msgid "You must fill out both fields"
 msgstr "Vous devez remplir les deux champs"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:86 ../src\issueReporter\wx_ui.py:86
+#: ../src\issueReporter\wx_ui.py:86
 msgid ""
 "You need to mark the checkbox to provide us your twitter username to contact "
 "you if it is necessary."
@@ -1653,7 +1292,7 @@ msgstr ""
 "Vous devez cocher la case à cocher afin de nous fournir votre nom "
 "d'utilisateur de Twitter pour communiquer avec vous si c'est nécessaire."
 
-#: ../src\build\lib\issueReporter\wx_ui.py:89 ../src\issueReporter\wx_ui.py:89
+#: ../src\issueReporter\wx_ui.py:89
 msgid ""
 "Thanks for reporting this bug! In future versions, you may be able to find "
 "it in the changes list. You've reported the bug number %i"
@@ -1662,15 +1301,15 @@ msgstr ""
 "pourrez le trouver dans la liste des changements. Vous avez signalé le "
 "numéro d'erreur %i"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:89 ../src\issueReporter\wx_ui.py:89
+#: ../src\issueReporter\wx_ui.py:89
 msgid "reported"
 msgstr "signalé"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:93 ../src\issueReporter\wx_ui.py:93
+#: ../src\issueReporter\wx_ui.py:93
 msgid "Error while reporting"
 msgstr "Erreur lors du signalement du rapport"
 
-#: ../src\build\lib\issueReporter\wx_ui.py:93 ../src\issueReporter\wx_ui.py:93
+#: ../src\issueReporter\wx_ui.py:93
 msgid ""
 "Something unexpected occurred while trying to report the bug. Please, try "
 "again later"
@@ -1678,275 +1317,209 @@ msgstr ""
 "Quelque chose d'inattendu s'est produit tout en essayant de signaler votre "
 "erreur. S'il vous plaît, réessayez plus tard"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:3
 #: ../src\keystrokeEditor\constants.py:3
 msgid "Go up in the current buffer"
 msgstr "Parcourir le tampon actuel vers le haut"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:4
 #: ../src\keystrokeEditor\constants.py:4
 msgid "Go down in the current buffer"
 msgstr "Parcourir le tampon actuel vers le bas"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:5
 #: ../src\keystrokeEditor\constants.py:5
 msgid "Go to the previous buffer"
 msgstr "Aller au tampon précédent"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:6
 #: ../src\keystrokeEditor\constants.py:6
 msgid "Go to the next buffer"
 msgstr "Aller au tampon suivant"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:7
 #: ../src\keystrokeEditor\constants.py:7
 msgid "Focus the next session"
 msgstr "Focus dans la session suivante"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:8
 #: ../src\keystrokeEditor\constants.py:8
 msgid "Focus the previous session"
 msgstr "Focus dans la session précédente"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:9
 #: ../src\keystrokeEditor\constants.py:9
 msgid "Show or hide the GUI"
 msgstr "Afficher ou masquer l'interface graphique"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:10
 #: ../src\keystrokeEditor\constants.py:10
 msgid "New tweet"
 msgstr "Nouveau tweet"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:13
 #: ../src\keystrokeEditor\constants.py:13
 msgid "Send direct message"
 msgstr "Envoyer un message direct"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:14
 #: ../src\keystrokeEditor\constants.py:14
 msgid "Mark as favourite"
 msgstr "Marquer comme favori"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:15
 #: ../src\keystrokeEditor\constants.py:15
 msgid "Remove from favourites"
 msgstr "Supprimer des favoris"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:16
 #: ../src\keystrokeEditor\constants.py:16
 msgid "Open the user actions dialogue"
 msgstr "Ouvrez la boîte de dialogue des actions"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:17
 #: ../src\keystrokeEditor\constants.py:17
 msgid "See user details"
 msgstr "Voir les détails d'un utilisateur"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:18
 #: ../src\keystrokeEditor\constants.py:18
 msgid "Show tweet"
 msgstr "Voir tweet"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:19
 #: ../src\keystrokeEditor\constants.py:19
 msgid "Quit"
 msgstr "Sortir"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:20
 #: ../src\keystrokeEditor\constants.py:20
 msgid "Open user timeline"
 msgstr "Ouvrir une chronologie d'un utilisateur"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:21
 #: ../src\keystrokeEditor\constants.py:21
 msgid "Destroy buffer"
 msgstr "Détruire le tampon"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:22
 #: ../src\keystrokeEditor\constants.py:22
 msgid "Interact with the currently focused tweet."
 msgstr "Interagir avec le tweet ayant actuellement le focus."
 
-#: ../src\build\lib\keystrokeEditor\constants.py:23
 #: ../src\keystrokeEditor\constants.py:23
 msgid "Open URL"
 msgstr "Ouvrir l'URL"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:24
 #: ../src\keystrokeEditor\constants.py:24
 msgid "Increase volume by 5%"
 msgstr "Augmenter le volume de 5%"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:25
 #: ../src\keystrokeEditor\constants.py:25
 msgid "Decrease volume by 5%"
 msgstr "Diminuer le volume de 5%"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:26
 #: ../src\keystrokeEditor\constants.py:26
 msgid "Jump to the first element of a buffer"
 msgstr "Aller au premier élément du tampon actuel"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:27
 #: ../src\keystrokeEditor\constants.py:27
 msgid "Jump to the last element of the current buffer"
 msgstr "Aller au dernier élément du tampon actuel"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:28
 #: ../src\keystrokeEditor\constants.py:28
 msgid "Jump 20 elements up in the current buffer"
 msgstr "Sauter de 20 éléments vers le haut dans le tampon actuel"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:29
 #: ../src\keystrokeEditor\constants.py:29
 msgid "Jump 20 elements down in the current buffer"
 msgstr "Sauter de 20 éléments vers le bas dans le tampon actuel"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:30
 #: ../src\keystrokeEditor\constants.py:30
 msgid "Edit profile"
 msgstr "Modifier le profil"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:31
 #: ../src\keystrokeEditor\constants.py:31
 msgid "Delete a tweet or direct message"
 msgstr "Supprimer un tweet ou un message direct"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:32
 #: ../src\keystrokeEditor\constants.py:32
 msgid "Empty the current buffer"
 msgstr "Vider le tampon actuel"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:33
 #: ../src\keystrokeEditor\constants.py:33
 msgid "Repeat last item"
 msgstr "Répéter le dernier élément"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:34
 #: ../src\keystrokeEditor\constants.py:34
 msgid "Copy to clipboard"
 msgstr "Copier dans le Presse-papiers"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:35
 #: ../src\keystrokeEditor\constants.py:35
 msgid "Add to list"
 msgstr "Ajouter à la liste"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:36
 #: ../src\keystrokeEditor\constants.py:36
 msgid "Remove from list"
 msgstr "Supprimer de la liste"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:37
 #: ../src\keystrokeEditor\constants.py:37
 msgid "Mute/unmute the active buffer"
 msgstr "Activer muet /désactiver muet dans le tampon actuel"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:38
 #: ../src\keystrokeEditor\constants.py:38
 msgid "Mute/unmute the current session"
 msgstr "Activer muet /désactiver muet dans la session actuelle"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:39
 #: ../src\keystrokeEditor\constants.py:39
 msgid "toggle the automatic reading of incoming tweets in the active buffer"
 msgstr ""
 "Activer ou désactiver la lecture automatique des tweets entrants dans le "
 "tampon actuel"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:40
 #: ../src\keystrokeEditor\constants.py:40
 msgid "Search on twitter"
 msgstr "Rechercher sur twitter"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:41
 #: ../src\keystrokeEditor\constants.py:41
 msgid "Find a string in the currently focused buffer"
 msgstr "Trouver une chaîne dans le tampon ayant actuellement le focus"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:42
 #: ../src\keystrokeEditor\constants.py:42
 msgid "Show the keystroke editor"
 msgstr "Afficher le modificateur de raccourci"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:43
 #: ../src\keystrokeEditor\constants.py:43
 msgid "Show lists for a specified user"
 msgstr "Afficher les listes d'un utilisateur spécifié"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:44
 #: ../src\keystrokeEditor\constants.py:44
 msgid "load previous items"
 msgstr "charger des éléments plus anciens"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:45
 #: ../src\keystrokeEditor\constants.py:45
 msgid "Get geolocation"
 msgstr "Obtenir la géolocalisation"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:46
 #: ../src\keystrokeEditor\constants.py:46
 msgid "Display the tweet's geolocation in a dialog"
 msgstr "Afficher la géolocalisation du tweet dans une boîte de dialogue"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:47
 #: ../src\keystrokeEditor\constants.py:47
 msgid "Create a trending topics buffer"
 msgstr "Créer un tampon de tendances"
 
-#: ../src\build\lib\keystrokeEditor\constants.py:48
 #: ../src\keystrokeEditor\constants.py:48
 msgid "View conversation"
 msgstr "Voir conversation"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:8
 #: ../src\keystrokeEditor\wx_ui.py:8
 msgid "Keystroke editor"
 msgstr "Modificateur de raccourci"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:12
 #: ../src\keystrokeEditor\wx_ui.py:12
 msgid "Select a keystroke to edit"
 msgstr "Sélectionnez un raccourci à modifier"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:13
-#: ../src\build\lib\wxUI\dialogs\userActions.py:9
-#: ../src\build\lib\wxUI\dialogs\userActions.py:16
+#: ../src\keystrokeEditor\wx_ui.py:13
+msgid "Keystroke"
+msgstr "Raccourci"
+
 #: ../src\keystrokeEditor\wx_ui.py:13 ../src\wxUI\dialogs\userActions.py:9
 #: ../src\wxUI\dialogs\userActions.py:16
 msgid "Action"
 msgstr "Action"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:13
-#: ../src\keystrokeEditor\wx_ui.py:13
-msgid "Keystroke"
-msgstr "Raccourci"
-
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:18
-#: ../src\build\lib\wxUI\dialogs\lists.py:19
 #: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\lists.py:19
 msgid "Edit"
 msgstr "Modifier"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:21
-#: ../src\build\lib\wxUI\dialogs\configuration.py:347
-#: ../src\build\lib\wxUI\dialogs\message.py:87
-#: ../src\build\lib\wxUI\dialogs\message.py:147
-#: ../src\build\lib\wxUI\dialogs\message.py:207
-#: ../src\build\lib\wxUI\dialogs\message.py:283
-#: ../src\build\lib\wxUI\dialogs\message.py:338
-#: ../src\build\lib\wxUI\dialogs\search.py:26
-#: ../src\build\lib\wxUI\dialogs\show_user.py:17
-#: ../src\build\lib\wxUI\dialogs\trends.py:28
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:35
-#: ../src\build\lib\wxUI\dialogs\userActions.py:40
-#: ../src\build\lib\wxUI\dialogs\userSelection.py:28
-#: ../src\build\lib\wxUI\dialogs\utils.py:35
 #: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:349
-#: ../src\wxUI\dialogs\message.py:87 ../src\wxUI\dialogs\message.py:147
-#: ../src\wxUI\dialogs\message.py:207 ../src\wxUI\dialogs\message.py:283
-#: ../src\wxUI\dialogs\message.py:338 ../src\wxUI\dialogs\search.py:26
+#: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\message.py:144
+#: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:280
+#: ../src\wxUI\dialogs\message.py:335 ../src\wxUI\dialogs\search.py:26
 #: ../src\wxUI\dialogs\show_user.py:17 ../src\wxUI\dialogs\trends.py:28
 #: ../src\wxUI\dialogs\update_profile.py:35
 #: ../src\wxUI\dialogs\userActions.py:40
@@ -1954,43 +1527,30 @@ msgstr "Modifier"
 msgid "Close"
 msgstr "Fermer"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:43
 #: ../src\keystrokeEditor\wx_ui.py:43
 msgid "Editing keystroke"
 msgstr "Modification en cours d'un raccourci"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:46
 #: ../src\keystrokeEditor\wx_ui.py:46
 msgid "Control"
 msgstr "Contrôle"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:47
 #: ../src\keystrokeEditor\wx_ui.py:47
 msgid "Alt"
 msgstr "Alt"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:48
 #: ../src\keystrokeEditor\wx_ui.py:48
 msgid "Shift"
 msgstr "Maj"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:49
 #: ../src\keystrokeEditor\wx_ui.py:49
 msgid "Windows"
 msgstr "Windows"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:55
 #: ../src\keystrokeEditor\wx_ui.py:55
 msgid "Key"
 msgstr "Touche"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:60
-#: ../src\build\lib\wxUI\dialogs\find.py:18
-#: ../src\build\lib\wxUI\dialogs\search.py:24
-#: ../src\build\lib\wxUI\dialogs\trends.py:26
-#: ../src\build\lib\wxUI\dialogs\userActions.py:38
-#: ../src\build\lib\wxUI\dialogs\userSelection.py:26
-#: ../src\build\lib\wxUI\dialogs\utils.py:32
 #: ../src\keystrokeEditor\wx_ui.py:60 ../src\wxUI\dialogs\find.py:18
 #: ../src\wxUI\dialogs\search.py:24 ../src\wxUI\dialogs\trends.py:26
 #: ../src\wxUI\dialogs\userActions.py:38
@@ -1998,67 +1558,63 @@ msgstr "Touche"
 msgid "OK"
 msgstr "OK"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:73
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:76
-#: ../src\keystrokeEditor\wx_ui.py:73 ../src\keystrokeEditor\wx_ui.py:76
-msgid "Invalid keystroke"
-msgstr "Raccourci invalide"
-
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:73
 #: ../src\keystrokeEditor\wx_ui.py:73
 msgid "You need to use the Windows key"
 msgstr "Vous devez utiliser la touche Windows"
 
-#: ../src\build\lib\keystrokeEditor\wx_ui.py:76
+#: ../src\keystrokeEditor\wx_ui.py:73 ../src\keystrokeEditor\wx_ui.py:76
+msgid "Invalid keystroke"
+msgstr "Raccourci invalide"
+
 #: ../src\keystrokeEditor\wx_ui.py:76
 msgid "You must provide a character for the keystroke"
 msgstr "Vous devez fournir une lettre pour le raccourci"
 
-#: ../src\build\lib\sessionmanager\session.py:185
+#: ../src\languageHandler.py:95
+msgid "User default"
+msgstr "Utilisateur par défaut"
+
 #: ../src\sessionmanager\session.py:185
 msgid "%s failed.  Reason: %s"
 msgstr "%s erreur.  Raison: %s"
 
-#: ../src\build\lib\sessionmanager\session.py:191
 #: ../src\sessionmanager\session.py:191
 msgid "%s succeeded."
 msgstr "%s réussi."
 
-#: ../src\build\lib\sessionmanager\wxUI.py:10 ../src\sessionmanager\wxUI.py:10
+#: ../src\sessionmanager\wxUI.py:10
 msgid "Accounts list"
 msgstr "Liste des comptes"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:12 ../src\sessionmanager\wxUI.py:12
+#: ../src\sessionmanager\wxUI.py:12
 msgid "Account"
 msgstr "Compte"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:16 ../src\sessionmanager\wxUI.py:16
+#: ../src\sessionmanager\wxUI.py:16
 msgid "New account"
 msgstr "Nouveau compte"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:17
-#: ../src\build\lib\sessionmanager\wxUI.py:63 ../src\sessionmanager\wxUI.py:17
-#: ../src\sessionmanager\wxUI.py:63
+#: ../src\sessionmanager\wxUI.py:17 ../src\sessionmanager\wxUI.py:63
 msgid "Remove account"
 msgstr "Supprimer le compte"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:18 ../src\sessionmanager\wxUI.py:18
+#: ../src\sessionmanager\wxUI.py:18
 msgid "Global Settings"
 msgstr "Paramètres Globaux"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:41 ../src\sessionmanager\wxUI.py:41
+#: ../src\sessionmanager\wxUI.py:41
 msgid "Account Error"
 msgstr "Erreur dans le Compte"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:41 ../src\sessionmanager\wxUI.py:41
+#: ../src\sessionmanager\wxUI.py:41
 msgid "You need to configure an account."
 msgstr "Vous devez configurer un compte."
 
-#: ../src\build\lib\sessionmanager\wxUI.py:47 ../src\sessionmanager\wxUI.py:47
+#: ../src\sessionmanager\wxUI.py:47
 msgid "Authorization"
 msgstr "Autorisation"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:47 ../src\sessionmanager\wxUI.py:47
+#: ../src\sessionmanager\wxUI.py:47
 msgid ""
 "The request to authorize your Twitter account will be opened in your "
 "browser. You only need to do this once. Would you like to continue?"
@@ -2067,15 +1623,15 @@ msgstr ""
 "navigateur. Vous devez seulement le faire une fois. Souhaitez-vous "
 "continuer ?"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:51 ../src\sessionmanager\wxUI.py:51
+#: ../src\sessionmanager\wxUI.py:51
 msgid "Authorized account %d"
 msgstr "Compte autorisé %d"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:57 ../src\sessionmanager\wxUI.py:57
+#: ../src\sessionmanager\wxUI.py:57
 msgid "Invalid user token"
 msgstr "Code d'accès invalide"
 
-#: ../src\build\lib\sessionmanager\wxUI.py:57 ../src\sessionmanager\wxUI.py:57
+#: ../src\sessionmanager\wxUI.py:57
 msgid ""
 "Your access token is invalid or the authorization has failed. Please try "
 "again."
@@ -2083,28 +1639,28 @@ msgstr ""
 "Votre code d'accès est incorrect ou l'autorisation a échoué. S'il vous plaît "
 "essayer de nouveau."
 
-#: ../src\build\lib\sessionmanager\wxUI.py:63 ../src\sessionmanager\wxUI.py:63
+#: ../src\sessionmanager\wxUI.py:63
 msgid "Do you really want to delete this account?"
 msgstr "Voulez-vous vraiment supprimer ce compte ?"
 
-#: ../src\build\lib\twitter\compose.py:40
-#: ../src\build\lib\twitter\compose.py:67
-#: ../src\build\lib\twitter\compose.py:76 ../src\twitter\compose.py:41
-#: ../src\twitter\compose.py:74 ../src\twitter\compose.py:83
+#: ../src\sound.py:153
+msgid "Stopped."
+msgstr "Arrêté."
+
+#: ../src\twitter\compose.py:41 ../src\twitter\compose.py:74
+#: ../src\twitter\compose.py:83
 msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "dddd, MMMM D, YYYY H:m:s"
 
-#: ../src\build\lib\twitter\compose.py:46 ../src\twitter\compose.py:47
+#: ../src\twitter\compose.py:47
 msgid "Dm to %s "
 msgstr "Dm à %s"
 
-#: ../src\build\lib\twitter\compose.py:78
-#: ../src\build\lib\twitter\compose.py:80 ../src\twitter\compose.py:85
-#: ../src\twitter\compose.py:87
+#: ../src\twitter\compose.py:85 ../src\twitter\compose.py:87
 msgid "Unavailable"
 msgstr "Indisponible"
 
-#: ../src\build\lib\twitter\compose.py:81 ../src\twitter\compose.py:88
+#: ../src\twitter\compose.py:88
 msgid ""
 "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
 "Twitter %s"
@@ -2112,128 +1668,132 @@ msgstr ""
 "%s (@%s). %s followers, %s following, %s tweets. Dernier tweet envoyé %s. A "
 "rejoint Twitter %s"
 
-#: ../src\build\lib\twitter\compose.py:85 ../src\twitter\compose.py:92
+#: ../src\twitter\compose.py:92
 msgid "You've blocked %s"
 msgstr "Vous avez bloqué à %s"
 
-#: ../src\build\lib\twitter\compose.py:87 ../src\twitter\compose.py:94
+#: ../src\twitter\compose.py:94
 msgid "You've unblocked %s"
 msgstr "Vous avez débloqué à %s"
 
-#: ../src\build\lib\twitter\compose.py:90 ../src\twitter\compose.py:97
+#: ../src\twitter\compose.py:97
 msgid "%s(@%s) has followed you"
 msgstr "%s(@%s) vous suit"
 
-#: ../src\build\lib\twitter\compose.py:92 ../src\twitter\compose.py:99
+#: ../src\twitter\compose.py:99
 msgid "You've followed %s(@%s)"
 msgstr "Vous suivez %s(@%s)"
 
-#: ../src\build\lib\twitter\compose.py:94 ../src\twitter\compose.py:101
+#: ../src\twitter\compose.py:101
 msgid "You've unfollowed %s (@%s)"
 msgstr "Vous ne suivez plus %s(@%s)"
 
-#: ../src\build\lib\twitter\compose.py:97 ../src\twitter\compose.py:104
+#: ../src\twitter\compose.py:104
 msgid "You've added to favourites: %s, %s"
 msgstr "Vous avez ajouté aux favoris: %s, %s"
 
-#: ../src\build\lib\twitter\compose.py:99 ../src\twitter\compose.py:106
+#: ../src\twitter\compose.py:106
 msgid "%s(@%s) has marked as favourite: %s"
 msgstr "%s(@%s) a marqué comme favori: %s"
 
-#: ../src\build\lib\twitter\compose.py:101 ../src\twitter\compose.py:108
+#: ../src\twitter\compose.py:108
 msgid "You've removed from favourites: %s, %s"
 msgstr "Vous avez supprimé des favoris: %s, %s"
 
-#: ../src\build\lib\twitter\compose.py:102 ../src\twitter\compose.py:109
+#: ../src\twitter\compose.py:109
 msgid "%s(@%s) has removed from favourites: %s"
 msgstr "%s(@%s) a supprimé des favoris: %s"
 
-#: ../src\build\lib\twitter\compose.py:104 ../src\twitter\compose.py:111
+#: ../src\twitter\compose.py:111
 msgid "You've created the list %s"
 msgstr "Vous avez créé la liste %s"
 
-#: ../src\build\lib\twitter\compose.py:106 ../src\twitter\compose.py:113
+#: ../src\twitter\compose.py:113
 msgid "You've deleted the list %s"
 msgstr "Vous avez supprimé la liste %s"
 
-#: ../src\build\lib\twitter\compose.py:108 ../src\twitter\compose.py:115
+#: ../src\twitter\compose.py:115
 msgid "You've updated the list %s"
 msgstr "Vous avez mis à jour la liste %s"
 
-#: ../src\build\lib\twitter\compose.py:110 ../src\twitter\compose.py:117
+#: ../src\twitter\compose.py:117
 msgid "You've added %s(@%s) to the list %s"
 msgstr "Vous avez ajouté %s(@%s) à la liste %s"
 
-#: ../src\build\lib\twitter\compose.py:111 ../src\twitter\compose.py:118
+#: ../src\twitter\compose.py:118
 msgid "%s(@%s) has added you to the list %s"
 msgstr "%s(@%s) vous a ajouté à la liste %s"
 
-#: ../src\build\lib\twitter\compose.py:113 ../src\twitter\compose.py:120
+#: ../src\twitter\compose.py:120
 msgid "You'be removed %s(@%s) from the list %s"
 msgstr "Vous avez supprimé à %s(@%s) de la liste %s"
 
-#: ../src\build\lib\twitter\compose.py:114 ../src\twitter\compose.py:121
+#: ../src\twitter\compose.py:121
 msgid "%s(@%s) has removed you from the list %s"
 msgstr "%s(@%s) vous a supprimé de la liste %s"
 
-#: ../src\build\lib\twitter\compose.py:116 ../src\twitter\compose.py:123
+#: ../src\twitter\compose.py:123
 msgid "You've subscribed to the list %s, which is owned by %s(@%s)"
 msgstr "Vous êtes abonné à la liste %s, qui est la propriété de %s(@%s)"
 
-#: ../src\build\lib\twitter\compose.py:117 ../src\twitter\compose.py:124
+#: ../src\twitter\compose.py:124
 msgid "%s(@%s) has suscribed you to the list %s"
 msgstr "%s(@%s) vous a abonné à la liste %s"
 
-#: ../src\build\lib\twitter\compose.py:119 ../src\twitter\compose.py:126
+#: ../src\twitter\compose.py:126
 msgid "You've unsubscribed from the list %s, which is owned by %s(@%s)"
 msgstr "Vous êtes désabonné de la liste %s, qui est la propriété de %s(@%s)"
 
-#: ../src\build\lib\twitter\compose.py:120 ../src\twitter\compose.py:127
+#: ../src\twitter\compose.py:127
 msgid "You've been unsubscribed from the list %s, which is owned by %s(@%s)"
 msgstr ""
 "Vous avez été désabonné de la liste %s, qui est la propriété de %s(@%s)"
 
-#: ../src\build\lib\twitter\compose.py:122 ../src\twitter\compose.py:129
+#: ../src\twitter\compose.py:129
 msgid "You have retweeted a retweet from %s(@%s): %s"
 msgstr "Vous avez retweeté un retweet de %s(@%s): %s"
 
-#: ../src\build\lib\twitter\compose.py:123 ../src\twitter\compose.py:130
+#: ../src\twitter\compose.py:130
 msgid "%s(@%s) has retweeted your retweet: %s"
 msgstr "%s(@%s) a retweeté votre retweet: %s"
 
-#: ../src\build\lib\twitter\compose.py:125 ../src\twitter\compose.py:132
+#: ../src\twitter\compose.py:132
+msgid "@{0} quoted your tweet: {1}"
+msgstr "@{0} cité votre tweet : {1}"
+
+#: ../src\twitter\compose.py:134
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src\build\lib\twitter\compose.py:131 ../src\twitter\compose.py:138
+#: ../src\twitter\compose.py:140
 msgid "No description available"
 msgstr "Aucune description disponible"
 
-#: ../src\build\lib\twitter\compose.py:135 ../src\twitter\compose.py:142
+#: ../src\twitter\compose.py:144
 msgid "private"
 msgstr "privé"
 
-#: ../src\build\lib\twitter\compose.py:136 ../src\twitter\compose.py:143
+#: ../src\twitter\compose.py:145
 msgid "public"
 msgstr "public"
 
-#: ../src\build\lib\twitter\utils.py:124 ../src\twitter\utils.py:124
+#: ../src\twitter\utils.py:124
 msgid "Sorry, you are not authorised to see this status."
 msgstr "Désolé, vous n'êtes pas autorisé à voir ce Tweet."
 
-#: ../src\build\lib\twitter\utils.py:126 ../src\twitter\utils.py:126
+#: ../src\twitter\utils.py:126
 msgid "No status found with that ID"
 msgstr "Aucun Tweet trouvée avec cet ID"
 
-#: ../src\build\lib\twitter\utils.py:128 ../src\twitter\utils.py:128
+#: ../src\twitter\utils.py:128
 msgid "Error code {0}"
 msgstr "Code d'erreur {0}"
 
-#: ../src\build\lib\update\wxUpdater.py:9 ../src\update\wxUpdater.py:9
+#: ../src\update\wxUpdater.py:9
 msgid "New version for %s"
 msgstr "Nouvelle version de %s"
 
-#: ../src\build\lib\update\wxUpdater.py:9 ../src\update\wxUpdater.py:9
+#: ../src\update\wxUpdater.py:9
 msgid ""
 "There's a new %s version available. Would you like to download it now?\n"
 "\n"
@@ -2250,23 +1810,23 @@ msgstr ""
 "Modifications:\n"
 "%s"
 
-#: ../src\build\lib\update\wxUpdater.py:17 ../src\update\wxUpdater.py:17
+#: ../src\update\wxUpdater.py:17
 msgid "Download in Progress"
 msgstr "Téléchargement en cours"
 
-#: ../src\build\lib\update\wxUpdater.py:17 ../src\update\wxUpdater.py:17
+#: ../src\update\wxUpdater.py:17
 msgid "Downloading the new version..."
 msgstr "Téléchargement en cours de la nouvelle version..."
 
-#: ../src\build\lib\update\wxUpdater.py:27 ../src\update\wxUpdater.py:27
+#: ../src\update\wxUpdater.py:27
 msgid "Updating... %s of %s"
 msgstr "Mise à jour en cours... %s de %s"
 
-#: ../src\build\lib\update\wxUpdater.py:30 ../src\update\wxUpdater.py:30
+#: ../src\update\wxUpdater.py:30
 msgid "Done!"
 msgstr "Terminé !"
 
-#: ../src\build\lib\update\wxUpdater.py:30 ../src\update\wxUpdater.py:30
+#: ../src\update\wxUpdater.py:30
 msgid ""
 "The update has been downloaded and installed successfully. Press OK to "
 "continue."
@@ -2274,68 +1834,58 @@ msgstr ""
 "La mise à jour a été téléchargé et installé avec succès. Appuyez sur OK pour "
 "continuer."
 
-#: ../src\build\lib\wxUI\buffers\base.py:11
-#: ../src\build\lib\wxUI\buffers\events.py:13 ../src\wxUI\buffers\base.py:11
-#: ../src\wxUI\buffers\events.py:13
+#: ../src\wxUI\buffers\base.py:11
+msgid "Client"
+msgstr "Client"
+
+#: ../src\wxUI\buffers\base.py:11
+msgid "Text"
+msgstr "Texte"
+
+#: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\events.py:13
 msgid "Date"
 msgstr "Date"
 
-#: ../src\build\lib\wxUI\buffers\base.py:11
-#: ../src\build\lib\wxUI\buffers\people.py:10
-#: ../src\build\lib\wxUI\buffers\user_searches.py:9
-#: ../src\build\lib\wxUI\dialogs\userActions.py:10
-#: ../src\build\lib\wxUI\dialogs\userSelection.py:10
-#: ../src\build\lib\wxUI\dialogs\utils.py:29 ../src\wxUI\buffers\base.py:11
-#: ../src\wxUI\buffers\people.py:10 ../src\wxUI\buffers\user_searches.py:9
+#: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\people.py:10
+#: ../src\wxUI\buffers\user_searches.py:9
 #: ../src\wxUI\dialogs\userActions.py:10
 #: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:29
 msgid "User"
 msgstr "Utilisateur"
 
-#: ../src\build\lib\wxUI\buffers\base.py:11 ../src\wxUI\buffers\base.py:11
-msgid "Client"
-msgstr "Client"
-
-#: ../src\build\lib\wxUI\buffers\base.py:11 ../src\wxUI\buffers\base.py:11
-msgid "Text"
-msgstr "Texte"
-
-#: ../src\build\lib\wxUI\buffers\base.py:27 ../src\wxUI\buffers\base.py:27
+#: ../src\wxUI\buffers\base.py:27
 msgid "Direct message"
 msgstr "Message direct"
 
-#: ../src\build\lib\wxUI\buffers\events.py:13 ../src\wxUI\buffers\events.py:13
+#: ../src\wxUI\buffers\events.py:13
 msgid "Event"
 msgstr "Événement"
 
-#: ../src\build\lib\wxUI\buffers\events.py:15 ../src\wxUI\buffers\events.py:15
+#: ../src\wxUI\buffers\events.py:15
 msgid "Remove event"
 msgstr "Supprimer l'événement"
 
-#: ../src\build\lib\wxUI\buffers\panels.py:11
-#: ../src\build\lib\wxUI\buffers\panels.py:19 ../src\wxUI\buffers\panels.py:11
-#: ../src\wxUI\buffers\panels.py:19
+#: ../src\wxUI\buffers\panels.py:11 ../src\wxUI\buffers\panels.py:19
 msgid "Login"
 msgstr "Connexion"
 
-#: ../src\build\lib\wxUI\buffers\panels.py:13 ../src\wxUI\buffers\panels.py:13
+#: ../src\wxUI\buffers\panels.py:13
 msgid "Log in automatically"
 msgstr "S'authentifier automatiquement"
 
-#: ../src\build\lib\wxUI\buffers\panels.py:21 ../src\wxUI\buffers\panels.py:21
+#: ../src\wxUI\buffers\panels.py:21
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: ../src\build\lib\wxUI\buffers\trends.py:8 ../src\wxUI\buffers\trends.py:8
+#: ../src\wxUI\buffers\trends.py:8
 msgid "Trending topic"
 msgstr "Tendance"
 
-#: ../src\build\lib\wxUI\buffers\trends.py:18 ../src\wxUI\buffers\trends.py:18
+#: ../src\wxUI\buffers\trends.py:18
 msgid "Tweet about this trend"
 msgstr "Tweet sur cette tendance"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:5
-#: ../src\wxUI\commonMessageDialogs.py:5
+#: ../src\wxUI\commonMessageDialogs.py:6
 msgid ""
 "This retweet is over 140 characters. Would you like to post it as a mention "
 "to the poster with your comments and a link to the original tweet?"
@@ -2344,73 +1894,61 @@ msgstr ""
 "commentaires avec une mention de l'utilisateur qui a publié le tweet "
 "original et un lien vers celui-ci ?"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:8
-#: ../src\wxUI\commonMessageDialogs.py:8
+#: ../src\wxUI\commonMessageDialogs.py:9
 msgid "Would you like to add a comment to this tweet?"
 msgstr "Vous souhaitez ajouter un commentaire à ce tweet ?"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:11
-#: ../src\build\lib\wxUI\dialogs\lists.py:133
-#: ../src\wxUI\commonMessageDialogs.py:11 ../src\wxUI\dialogs\lists.py:133
+#: ../src\wxUI\commonMessageDialogs.py:12
+msgid ""
+"Do you really want to delete this tweet? It will be deleted from Twitter as "
+"well."
+msgstr ""
+"Voulez-vous vraiment supprimer ce tweet ? Il sera également supprimé de "
+"Twitter."
+
+#: ../src\wxUI\commonMessageDialogs.py:12 ../src\wxUI\dialogs\lists.py:133
 msgid "Delete"
 msgstr "Supprimer Tweet"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:11
-#: ../src\wxUI\commonMessageDialogs.py:11
-msgid ""
-"Do you really want to delete this message? It will be deleted from Twitter "
-"as well."
-msgstr ""
-"Voulez-vous vraiment supprimer ce message ? Il sera également supprimé de "
-"Twitter."
-
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:14
-#: ../src\wxUI\commonMessageDialogs.py:14
+#: ../src\wxUI\commonMessageDialogs.py:15
 msgid "Do you really want to close {0}?"
 msgstr "Voulez-vous vraiment fermer {0} ?"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:14
-#: ../src\wxUI\commonMessageDialogs.py:14
+#: ../src\wxUI\commonMessageDialogs.py:15
 msgid "Exit"
 msgstr "Sortir"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:18
-#: ../src\wxUI\commonMessageDialogs.py:18
+#: ../src\wxUI\commonMessageDialogs.py:19
 msgid " {0} must be restarted for these changes to take effect."
 msgstr " {0} doit être redémarré pour que ces modifications prennent effet."
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:18
-#: ../src\wxUI\commonMessageDialogs.py:18
+#: ../src\wxUI\commonMessageDialogs.py:19
 msgid "Restart {0} "
 msgstr "Redémarrez {0} "
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:21
-#: ../src\wxUI\commonMessageDialogs.py:21
+#: ../src\wxUI\commonMessageDialogs.py:22
 msgid ""
 "Are you sure you want to delete this user from the database? This user will "
-"not appear on the autocomplete results anymore."
+"not appear in autocomplete results anymore."
 msgstr ""
 "Êtes-vous sûr de vouloir supprimer cet utilisateur de la base de données ? "
-"Cet utilisateur n'apparaîtra plus sur les résultats lors de La saisie "
-"automatique ."
+"Cet utilisateur n'apparaîtra plus dans les résultats lors de La saisie "
+"automatique."
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:21
-#: ../src\wxUI\commonMessageDialogs.py:21
+#: ../src\wxUI\commonMessageDialogs.py:22
 msgid "Confirm"
 msgstr "Confirmer"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:24
-#: ../src\wxUI\commonMessageDialogs.py:24
-msgid "Add a new ignored client"
-msgstr "Ajouter un nouveau client ignoré"
+#: ../src\wxUI\commonMessageDialogs.py:25
+msgid "Enter the name of the client : "
+msgstr "Entrez le nom du client: "
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:24
-#: ../src\wxUI\commonMessageDialogs.py:24
-msgid "Enter the name of the client here"
-msgstr "Entrez le nom du client ici"
+#: ../src\wxUI\commonMessageDialogs.py:25
+#: ../src\wxUI\dialogs\configuration.py:209
+msgid "Add client"
+msgstr "Ajouter un client"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:30
-#: ../src\wxUI\commonMessageDialogs.py:30
+#: ../src\wxUI\commonMessageDialogs.py:31
 msgid ""
 "Do you really want to empty this buffer? It's  items will be removed from "
 "the list but not from Twitter"
@@ -2418,154 +1956,155 @@ msgstr ""
 "Voulez-vous vraiment vider ce tampon ? Ces éléments seront supprimés de la "
 "liste, mais pas de Twitter"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:30
-#: ../src\wxUI\commonMessageDialogs.py:30
+#: ../src\wxUI\commonMessageDialogs.py:31
 msgid "Empty buffer"
 msgstr "Tampon Vide"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:34
-#: ../src\wxUI\commonMessageDialogs.py:34
+#: ../src\wxUI\commonMessageDialogs.py:35
 msgid "Attention"
 msgstr "Attention"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:34
-#: ../src\wxUI\commonMessageDialogs.py:34
-msgid "Do you really want to delete this timeline?"
-msgstr "Voulez-vous vraiment supprimer cette chronologie ?"
+#: ../src\wxUI\commonMessageDialogs.py:35
+msgid "Do you really want to destroy this buffer?"
+msgstr "Voulez-vous vraiment détruire ce tampon ?"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:40
-#: ../src\wxUI\commonMessageDialogs.py:40
+#: ../src\wxUI\commonMessageDialogs.py:38
+msgid "That user does not exist"
+msgstr "Cet utilisateur n'existe pas"
+
+#: ../src\wxUI\commonMessageDialogs.py:41
+msgid "A timeline for this user already exists. You can't open another"
+msgstr ""
+"Une chronologie pour cet utilisateur existe déjà. Vous ne pouvez pas ouvrir "
+"une autre"
+
+#: ../src\wxUI\commonMessageDialogs.py:41
 msgid "Existing timeline"
 msgstr "Chronologie existante"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:40
-#: ../src\wxUI\commonMessageDialogs.py:40
-msgid ""
-"There's currently a timeline for this user. You are not able to open another"
+#: ../src\wxUI\commonMessageDialogs.py:44
+msgid "This user has no tweets, so you can't open a timeline for them."
 msgstr ""
-"Une chronologie pour cet utilisateur existe déjà. Impossible d'ouvrir une "
-"autre"
+"Cet utilisateur n'a aucun tweets, donc  vous ne pouvez pas ouvrir une "
+"chronologie pour lui."
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:43
-#: ../src\wxUI\commonMessageDialogs.py:43
-msgid "This user has no tweets. You can't open a timeline for this user"
-msgstr ""
-"Cet utilisateur n'a aucun tweets. Vous ne pouvez pas ouvrir une chronologie "
-"pour cet utilisateur."
-
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:46
-#: ../src\wxUI\commonMessageDialogs.py:46
+#: ../src\wxUI\commonMessageDialogs.py:47
 msgid ""
-"This is a protected Twitter user. It means you can not open a timeline using "
-"the Streaming API. The user's tweets will not update due to a twitter "
+"This is a protected Twitter user, which means you can't open a timeline "
+"using the Streaming API. The user's tweets will not update due to a twitter "
 "policy. Do you want to continue?"
 msgstr ""
-"C'est un utilisateur de Twitter protégé. Cela signifie que vous ne pouvez "
+"C'est un utilisateur de Twitter protégé, ce qui signifie que vous ne pouvez "
 "pas ouvrir une chronologie à l'aide de l'API en Streaming. l'utilisateur des "
 "tweets ne mettra pas à jour en raison d'une politique de twitter. Voulez-"
 "vous continuer ?"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:46
-#: ../src\wxUI\commonMessageDialogs.py:46
+#: ../src\wxUI\commonMessageDialogs.py:47
 msgid "Warning"
 msgstr "Attention"
 
-#: ../src\build\lib\wxUI\commonMessageDialogs.py:49
-#: ../src\wxUI\commonMessageDialogs.py:49
+#: ../src\wxUI\commonMessageDialogs.py:50
 msgid ""
-"This is a protected user account, you need follow to this user for viewing "
-"your tweets or favourites."
+"This is a protected user account, you need to follow this user to view their "
+"tweets or favorites."
 msgstr ""
-"Ce compte utilisateur est protégé, vous devez suivre à cet utilisateur pour "
-"visualiser ces tweets ou favoris."
+"Ce compte utilisateur est protégé, vous devez suivre cet utilisateur pour "
+"afficher ces tweets ou favoris."
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:14
+#: ../src\wxUI\commonMessageDialogs.py:53
+msgid ""
+"If you like {0} we need your help to keep it going. Help us by donating to "
+"the project. This will help us pay for the server, the domain and some other "
+"things to ensure that {0} will be actively maintained. Your donation will "
+"give us the means to continue the development of {0}, and to keep {0} free. "
+"Would you like to donate now?"
+msgstr ""
+"Si vous aimez {0} Nous avons besoin de votre aide pour maintenir le "
+"fonctionnement de celui-ci. Aidez-nous en faisant un don au projet. Cela "
+"nous aidera à payer le serveur, le domaine et autres choses pour assurer que "
+"{0} sera activement maintenue. Votre don nous donnera les moyens de "
+"poursuivre le développement de {0}, et de garder {0} gratuit. Vous souhaitez "
+"faire un don maintenant ?"
+
+#: ../src\wxUI\commonMessageDialogs.py:53
+msgid "We need your help"
+msgstr "Nous avons besoin de votre aide"
+
 #: ../src\wxUI\dialogs\configuration.py:14
 msgid "Language"
 msgstr "Langue"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:21
 #: ../src\wxUI\dialogs\configuration.py:21
 msgid "ask before exiting {0}"
 msgstr "Demander avant de sortir de {0}"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:23
 #: ../src\wxUI\dialogs\configuration.py:23
 msgid "Play a sound when {0} launches"
 msgstr "Lire un son lorsque {0} démarre"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:25
 #: ../src\wxUI\dialogs\configuration.py:25
 msgid "Speak a message when {0} launches"
 msgstr "Dire un message lorsque {0} démarre"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:27
 #: ../src\wxUI\dialogs\configuration.py:27
 msgid "Use invisible interface's keyboard shortcuts while GUI is visible"
 msgstr ""
 "Utilisez les raccourcis clavier de l'interface invisible alors que "
 "l'interface graphique est affichée"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:29
 #: ../src\wxUI\dialogs\configuration.py:29
 msgid "Activate Sapi5 when any other screen reader is not being run"
 msgstr ""
 "Activer Sapi5 lorsqu'il n'y a aucun autre lecteur d'écran en cours "
 "d'exécution"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:31
 #: ../src\wxUI\dialogs\configuration.py:31
 msgid "Hide GUI on launch"
 msgstr "Masquer l'interface graphique au démarrage"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:34
+#: ../src\wxUI\dialogs\configuration.py:33
+msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
+msgstr ""
+"Lecture complète de tweets longs (peut diminuer les performances du client)"
+
 #: ../src\wxUI\dialogs\configuration.py:36
 msgid "Keymap"
 msgstr "Configuration clavier"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:47
 #: ../src\wxUI\dialogs\configuration.py:49
 msgid "Proxy server: "
 msgstr "Serveur proxy: "
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:53
 #: ../src\wxUI\dialogs\configuration.py:55
 msgid "Port: "
 msgstr "Port: "
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:59
 #: ../src\wxUI\dialogs\configuration.py:61
 msgid "User: "
 msgstr "Utilisateur: "
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:65
 #: ../src\wxUI\dialogs\configuration.py:67
 msgid "Password: "
 msgstr "Mot de passe: "
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:77
 #: ../src\wxUI\dialogs\configuration.py:79
 msgid "Autocompletion settings..."
 msgstr "Paramètres pour la saisie automatique..."
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:79
 #: ../src\wxUI\dialogs\configuration.py:81
 msgid "Relative timestamps"
 msgstr "Temps relatifs"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:82
 #: ../src\wxUI\dialogs\configuration.py:84
 msgid "API calls (One API call = 200 tweets, two API calls = 400 tweets, etc):"
 msgstr ""
 "Appels à l'API (un appel à l'API équivaut à 200 tweets, 2 appels à l'API "
 "équivaut à 400 tweets, etc.):"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:89
 #: ../src\wxUI\dialogs\configuration.py:91
 msgid "Items on each API call"
 msgstr "Éléments pour chaque appel à l'API"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:95
 #: ../src\wxUI\dialogs\configuration.py:97
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning while the "
@@ -2574,12 +2113,10 @@ msgstr ""
 "Tampons inversés: les tweets plus récents seront affichées en haut alors que "
 "les plus ancien à la fin"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:97
 #: ../src\wxUI\dialogs\configuration.py:99
 msgid "Retweet mode"
 msgstr "Mode retweet"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:103
 #: ../src\wxUI\dialogs\configuration.py:105
 msgid ""
 "Number of items per buffer to cache in database (0 to disable caching, blank "
@@ -2588,35 +2125,26 @@ msgstr ""
 "Nombre d'éléments par tampon en cache dans la base de données (0 pour "
 "désactiver la mise en cache, laissez en blanc pour illimité)"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:113
 #: ../src\wxUI\dialogs\configuration.py:115
 msgid "Buffer"
 msgstr "Tampon"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:113
 #: ../src\wxUI\dialogs\configuration.py:115
 msgid "Status"
 msgstr "Statut"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:116
 #: ../src\wxUI\dialogs\configuration.py:118
 msgid "Show/hide"
 msgstr "Afficher/masquer"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:117
 #: ../src\wxUI\dialogs\configuration.py:119
 msgid "Move up"
 msgstr "Déplacer vers le haut"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:118
 #: ../src\wxUI\dialogs\configuration.py:120
 msgid "Move down"
 msgstr "Déplacer vers le bas"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:128
-#: ../src\build\lib\wxUI\dialogs\configuration.py:185
-#: ../src\build\lib\wxUI\dialogs\configuration.py:188
-#: ../src\build\lib\wxUI\dialogs\configuration.py:193
 #: ../src\wxUI\dialogs\configuration.py:130
 #: ../src\wxUI\dialogs\configuration.py:187
 #: ../src\wxUI\dialogs\configuration.py:190
@@ -2624,10 +2152,6 @@ msgstr "Déplacer vers le bas"
 msgid "Show"
 msgstr "Afficher"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:130
-#: ../src\build\lib\wxUI\dialogs\configuration.py:140
-#: ../src\build\lib\wxUI\dialogs\configuration.py:160
-#: ../src\build\lib\wxUI\dialogs\configuration.py:186
 #: ../src\wxUI\dialogs\configuration.py:132
 #: ../src\wxUI\dialogs\configuration.py:142
 #: ../src\wxUI\dialogs\configuration.py:162
@@ -2635,73 +2159,53 @@ msgstr "Afficher"
 msgid "Hide"
 msgstr "Masquer"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:138
-#: ../src\build\lib\wxUI\dialogs\configuration.py:158
 #: ../src\wxUI\dialogs\configuration.py:140
 #: ../src\wxUI\dialogs\configuration.py:160
 msgid "Select a buffer first."
 msgstr "Tout d'abord sélectionnez un tampon."
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:141
-#: ../src\build\lib\wxUI\dialogs\configuration.py:161
 #: ../src\wxUI\dialogs\configuration.py:143
 #: ../src\wxUI\dialogs\configuration.py:163
 msgid "The buffer is hidden, show it first."
 msgstr "Le tampon est masqué, Vous devez tout d'abord l'afficher."
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:144
 #: ../src\wxUI\dialogs\configuration.py:146
 msgid "The buffer is already at the top of the list."
 msgstr "Le tampon est déjà en haut de la liste."
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:164
 #: ../src\wxUI\dialogs\configuration.py:166
 msgid "The buffer is already at the bottom of the list."
 msgstr "Le tampon est déjà en bas de la liste."
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:201
-#: ../src\build\lib\wxUI\dialogs\configuration.py:332
 #: ../src\wxUI\dialogs\configuration.py:203
 #: ../src\wxUI\dialogs\configuration.py:334
 msgid "Ignored clients"
 msgstr "Clients ignorés"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:207
-#: ../src\wxUI\dialogs\configuration.py:209
-msgid "Add client"
-msgstr "Ajouter un client"
-
-#: ../src\build\lib\wxUI\dialogs\configuration.py:208
 #: ../src\wxUI\dialogs\configuration.py:210
 msgid "Remove client"
 msgstr "Supprimer le client"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:232
 #: ../src\wxUI\dialogs\configuration.py:234
 msgid "Volume"
 msgstr "Volume"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:240
 #: ../src\wxUI\dialogs\configuration.py:242
 msgid "Session mute"
 msgstr "Session muet"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:242
 #: ../src\wxUI\dialogs\configuration.py:244
 msgid "Output device"
 msgstr "Périphérique de sortie"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:249
 #: ../src\wxUI\dialogs\configuration.py:251
 msgid "Input device"
 msgstr "Périphérique d'entrée"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:257
 #: ../src\wxUI\dialogs\configuration.py:259
 msgid "Sound pack"
 msgstr "Paquet de sons"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:272
 #: ../src\wxUI\dialogs\configuration.py:274
 msgid ""
 "If you have a SndUp account, enter your API Key here. If your API Key is "
@@ -2712,17 +2216,14 @@ msgstr ""
 "Key est incorrecte, {0} échouera lors du chargement. Si il n'y a aucune API "
 "Key ici, {0} le chargera anonymement."
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:287
 #: ../src\wxUI\dialogs\configuration.py:289
 msgid "Disconnect your Pocket account"
 msgstr "Déconnecter votre compte Pocket"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:292
 #: ../src\wxUI\dialogs\configuration.py:294
 msgid "Pocket Authorization"
 msgstr "Autorisation Pocket"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:292
 #: ../src\wxUI\dialogs\configuration.py:294
 msgid ""
 "The authorization request will be opened in your browser. You only need to "
@@ -2731,603 +2232,530 @@ msgstr ""
 "Une demande d'autorisation s'ouvrira dans votre navigateur. Vous devez "
 "seulement le faire une fois. Souhaitez-vous continuer ?"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:295
 #: ../src\wxUI\dialogs\configuration.py:297
 msgid "Error during authorization. Try again later."
 msgstr "Erreur pendant l'autorisation. Réessayez plus tard."
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:308
 #: ../src\wxUI\dialogs\configuration.py:310
 msgid "{0} preferences"
 msgstr "Préférences {0}"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:319
 #: ../src\wxUI\dialogs\configuration.py:321
 msgid "Proxy"
 msgstr "Proxy"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:328
 #: ../src\wxUI\dialogs\configuration.py:330
 msgid "Buffers"
 msgstr "Tampons"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:336
 #: ../src\wxUI\dialogs\configuration.py:338
 msgid "Sound"
 msgstr "Audio"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:340
 #: ../src\wxUI\dialogs\configuration.py:342
 msgid "Services"
 msgstr "Services"
 
-#: ../src\build\lib\wxUI\dialogs\configuration.py:345
 #: ../src\wxUI\dialogs\configuration.py:347
 msgid "Save"
 msgstr "Enregistrer"
 
-#: ../src\build\lib\wxUI\dialogs\find.py:10 ../src\wxUI\dialogs\find.py:10
+#: ../src\wxUI\dialogs\find.py:10
 msgid "Find in current buffer"
 msgstr "Trouver dans le tampon actuel"
 
-#: ../src\build\lib\wxUI\dialogs\find.py:11 ../src\wxUI\dialogs\find.py:11
+#: ../src\wxUI\dialogs\find.py:11
 msgid "String"
 msgstr "Chaîne"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:10 ../src\wxUI\dialogs\lists.py:10
+#: ../src\wxUI\dialogs\lists.py:10
 msgid "Lists manager"
 msgstr "Gestionnaire de listes"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:13
-#: ../src\build\lib\wxUI\dialogs\lists.py:69 ../src\wxUI\dialogs\lists.py:13
-#: ../src\wxUI\dialogs\lists.py:69
-msgid "Description"
-msgstr "Description"
-
-#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+#: ../src\wxUI\dialogs\lists.py:13
 msgid "List"
 msgstr "Liste"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+#: ../src\wxUI\dialogs\lists.py:13
 msgid "Members"
 msgstr "Membres"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+#: ../src\wxUI\dialogs\lists.py:13
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:13
+#: ../src\wxUI\dialogs\lists.py:13
 msgid "mode"
 msgstr "mode"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:18
-#: ../src\build\lib\wxUI\dialogs\lists.py:61 ../src\wxUI\dialogs\lists.py:18
-#: ../src\wxUI\dialogs\lists.py:61
+#: ../src\wxUI\dialogs\lists.py:13 ../src\wxUI\dialogs\lists.py:69
+msgid "Description"
+msgstr "Description"
+
+#: ../src\wxUI\dialogs\lists.py:18 ../src\wxUI\dialogs\lists.py:61
 msgid "Create a new list"
 msgstr "Créer une nouvelle liste"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:20
-#: ../src\build\lib\wxUI\dialogs\lists.py:124 ../src\wxUI\dialogs\lists.py:20
-#: ../src\wxUI\dialogs\lists.py:124
+#: ../src\wxUI\dialogs\lists.py:20 ../src\wxUI\dialogs\lists.py:124
 msgid "Remove"
 msgstr "Effacer"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:21 ../src\wxUI\dialogs\lists.py:21
+#: ../src\wxUI\dialogs\lists.py:21
 msgid "Open in buffer"
 msgstr "Ouvrir dans un tampon"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:51 ../src\wxUI\dialogs\lists.py:51
+#: ../src\wxUI\dialogs\lists.py:51
 msgid "Viewing lists for %s"
 msgstr "Affichage des listes pour %s"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:52 ../src\wxUI\dialogs\lists.py:52
+#: ../src\wxUI\dialogs\lists.py:52
 msgid "Subscribe"
 msgstr "S'abonner"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:53 ../src\wxUI\dialogs\lists.py:53
+#: ../src\wxUI\dialogs\lists.py:53
 msgid "Unsubscribe"
 msgstr "Se désabonner"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:64 ../src\wxUI\dialogs\lists.py:64
+#: ../src\wxUI\dialogs\lists.py:64
 msgid "Name (20 characters maximun)"
 msgstr "Nom (maximum 20 caractères)"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:74 ../src\wxUI\dialogs\lists.py:74
+#: ../src\wxUI\dialogs\lists.py:74
 msgid "Mode"
 msgstr "Mode"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:75 ../src\wxUI\dialogs\lists.py:75
+#: ../src\wxUI\dialogs\lists.py:75
 msgid "Public"
 msgstr "Public"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:76 ../src\wxUI\dialogs\lists.py:76
+#: ../src\wxUI\dialogs\lists.py:76
 msgid "Private"
 msgstr "Privé"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:96 ../src\wxUI\dialogs\lists.py:96
+#: ../src\wxUI\dialogs\lists.py:96
 msgid "Editing the list %s"
 msgstr "Modification de la liste %s"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:107 ../src\wxUI\dialogs\lists.py:107
+#: ../src\wxUI\dialogs\lists.py:107
 msgid "Select a list to add the user"
 msgstr "Sélectionnez une liste pour ajouter l'utilisateur"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:108 ../src\wxUI\dialogs\lists.py:108
+#: ../src\wxUI\dialogs\lists.py:108
 msgid "Add"
 msgstr "Ajouter"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:123 ../src\wxUI\dialogs\lists.py:123
+#: ../src\wxUI\dialogs\lists.py:123
 msgid "Select a list to remove the user"
 msgstr "Sélectionnez une liste pour supprimer l'utilisateur"
 
-#: ../src\build\lib\wxUI\dialogs\lists.py:133 ../src\wxUI\dialogs\lists.py:133
+#: ../src\wxUI\dialogs\lists.py:133
 msgid "Do you really want to delete this list?"
 msgstr "Voulez-vous vraiment supprimer cette liste ?"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:76
-#: ../src\wxUI\dialogs\message.py:76
+#: ../src\wxUI\dialogs\message.py:71
+msgid "Long tweet"
+msgstr "Long tweet"
+
+#: ../src\wxUI\dialogs\message.py:73
 msgid "Upload image..."
 msgstr "Charger l'image..."
 
-#: ../src\build\lib\wxUI\dialogs\message.py:77
-#: ../src\wxUI\dialogs\message.py:77
+#: ../src\wxUI\dialogs\message.py:74
 msgid "Check spelling..."
 msgstr "Correction orthographique..."
 
-#: ../src\build\lib\wxUI\dialogs\message.py:78
-#: ../src\wxUI\dialogs\message.py:78
+#: ../src\wxUI\dialogs\message.py:75
 msgid "Attach audio..."
 msgstr "Ajouter audio..."
 
-#: ../src\build\lib\wxUI\dialogs\message.py:79
-#: ../src\build\lib\wxUI\dialogs\message.py:139
-#: ../src\build\lib\wxUI\dialogs\message.py:200
-#: ../src\wxUI\dialogs\message.py:79 ../src\wxUI\dialogs\message.py:139
-#: ../src\wxUI\dialogs\message.py:200
+#: ../src\wxUI\dialogs\message.py:76 ../src\wxUI\dialogs\message.py:136
+#: ../src\wxUI\dialogs\message.py:197
 msgid "Shorten URL"
 msgstr "Réduire URL"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:80
-#: ../src\build\lib\wxUI\dialogs\message.py:140
-#: ../src\build\lib\wxUI\dialogs\message.py:201
-#: ../src\build\lib\wxUI\dialogs\message.py:280
-#: ../src\build\lib\wxUI\dialogs\message.py:335
-#: ../src\wxUI\dialogs\message.py:80 ../src\wxUI\dialogs\message.py:140
-#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:280
-#: ../src\wxUI\dialogs\message.py:335
+#: ../src\wxUI\dialogs\message.py:77 ../src\wxUI\dialogs\message.py:137
+#: ../src\wxUI\dialogs\message.py:198 ../src\wxUI\dialogs\message.py:277
+#: ../src\wxUI\dialogs\message.py:332
 msgid "Expand URL"
 msgstr "Élargir URL"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:83
-#: ../src\wxUI\dialogs\message.py:83
+#: ../src\wxUI\dialogs\message.py:80
 msgid "Translate..."
 msgstr "Traduire..."
 
-#: ../src\build\lib\wxUI\dialogs\message.py:84
-#: ../src\build\lib\wxUI\dialogs\message.py:144
-#: ../src\build\lib\wxUI\dialogs\message.py:189
-#: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\message.py:144
-#: ../src\wxUI\dialogs\message.py:189
+#: ../src\wxUI\dialogs\message.py:81 ../src\wxUI\dialogs\message.py:141
+#: ../src\wxUI\dialogs\message.py:186
 msgid "&Autocomplete users"
 msgstr "&Saisie automatique utilisateurs"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:85
-#: ../src\build\lib\wxUI\dialogs\message.py:145
-#: ../src\build\lib\wxUI\dialogs\message.py:205
-#: ../src\wxUI\dialogs\message.py:85 ../src\wxUI\dialogs\message.py:145
-#: ../src\wxUI\dialogs\message.py:205
+#: ../src\wxUI\dialogs\message.py:82 ../src\wxUI\dialogs\message.py:142
+#: ../src\wxUI\dialogs\message.py:202
 msgid "Send"
 msgstr "Envoyer"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:119
-#: ../src\build\lib\wxUI\dialogs\message.py:178
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:80
-#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
+#: ../src\wxUI\dialogs\message.py:116 ../src\wxUI\dialogs\message.py:175
 #: ../src\wxUI\dialogs\update_profile.py:80
 msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 msgstr "Fichiers image (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:119
-#: ../src\build\lib\wxUI\dialogs\message.py:178
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:80
-#: ../src\wxUI\dialogs\message.py:119 ../src\wxUI\dialogs\message.py:178
+#: ../src\wxUI\dialogs\message.py:116 ../src\wxUI\dialogs\message.py:175
 #: ../src\wxUI\dialogs\update_profile.py:80
 msgid "Select the picture to be uploaded"
 msgstr "Sélectionnez la photo à charger"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:137
-#: ../src\build\lib\wxUI\dialogs\message.py:198
-#: ../src\build\lib\wxUI\dialogs\message.py:279
-#: ../src\build\lib\wxUI\dialogs\message.py:334
-#: ../src\wxUI\dialogs\message.py:137 ../src\wxUI\dialogs\message.py:198
-#: ../src\wxUI\dialogs\message.py:279 ../src\wxUI\dialogs\message.py:334
+#: ../src\wxUI\dialogs\message.py:134 ../src\wxUI\dialogs\message.py:195
+#: ../src\wxUI\dialogs\message.py:276 ../src\wxUI\dialogs\message.py:331
 msgid "Spelling correction"
 msgstr "Correction orthographique"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:187
-#: ../src\wxUI\dialogs\message.py:187
+#: ../src\wxUI\dialogs\message.py:184
 msgid "Recipient"
 msgstr "Destinataire"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:239
-#: ../src\wxUI\dialogs\message.py:239
+#: ../src\wxUI\dialogs\message.py:236
 msgid "Men&tion to all"
 msgstr "Men&tionner à tous"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:248
-#: ../src\wxUI\dialogs\message.py:248
+#: ../src\wxUI\dialogs\message.py:245
 msgid "Tweet - %i characters "
 msgstr "Tweet - %i caractères "
 
-#: ../src\build\lib\wxUI\dialogs\message.py:265
-#: ../src\wxUI\dialogs\message.py:265
+#: ../src\wxUI\dialogs\message.py:262
 msgid "Retweets: "
 msgstr "Retweets: "
 
-#: ../src\build\lib\wxUI\dialogs\message.py:270
-#: ../src\wxUI\dialogs\message.py:270
+#: ../src\wxUI\dialogs\message.py:267
 msgid "Favourites: "
 msgstr "Favoris: "
 
-#: ../src\build\lib\wxUI\dialogs\message.py:320
-#: ../src\wxUI\dialogs\message.py:320
+#: ../src\wxUI\dialogs\message.py:317
 msgid "View"
 msgstr "Voir"
 
-#: ../src\build\lib\wxUI\dialogs\message.py:322
-#: ../src\wxUI\dialogs\message.py:322
+#: ../src\wxUI\dialogs\message.py:319
 msgid "Item"
 msgstr "Élément"
 
-#: ../src\build\lib\wxUI\dialogs\search.py:10 ../src\wxUI\dialogs\search.py:10
+#: ../src\wxUI\dialogs\search.py:10
 msgid "Search on Twitter"
 msgstr "Rechercher sur Twitter"
 
-#: ../src\build\lib\wxUI\dialogs\search.py:11 ../src\wxUI\dialogs\search.py:11
+#: ../src\wxUI\dialogs\search.py:11
 msgid "Search"
 msgstr "Rechercher"
 
-#: ../src\build\lib\wxUI\dialogs\search.py:18
-#: ../src\build\lib\wxUI\dialogs\userSelection.py:17
 #: ../src\wxUI\dialogs\search.py:18 ../src\wxUI\dialogs\userSelection.py:17
 msgid "Tweets"
 msgstr "Tweets"
 
-#: ../src\build\lib\wxUI\dialogs\search.py:19 ../src\wxUI\dialogs\search.py:19
+#: ../src\wxUI\dialogs\search.py:19
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: ../src\build\lib\wxUI\dialogs\show_user.py:10
 #: ../src\wxUI\dialogs\show_user.py:10
 msgid "Details"
 msgstr "Détails"
 
-#: ../src\build\lib\wxUI\dialogs\show_user.py:15
 #: ../src\wxUI\dialogs\show_user.py:15
 msgid "Go to URL"
 msgstr "Aller à l'URL"
 
-#: ../src\build\lib\wxUI\dialogs\trends.py:10 ../src\wxUI\dialogs\trends.py:10
+#: ../src\wxUI\dialogs\trends.py:10
 msgid "View trending topics"
 msgstr "Afficher les tendances"
 
-#: ../src\build\lib\wxUI\dialogs\trends.py:11 ../src\wxUI\dialogs\trends.py:11
+#: ../src\wxUI\dialogs\trends.py:11
 msgid "Trending topics by"
 msgstr "Tendances par"
 
-#: ../src\build\lib\wxUI\dialogs\trends.py:13 ../src\wxUI\dialogs\trends.py:13
+#: ../src\wxUI\dialogs\trends.py:13
 msgid "Country"
 msgstr "Pays"
 
-#: ../src\build\lib\wxUI\dialogs\trends.py:14 ../src\wxUI\dialogs\trends.py:14
+#: ../src\wxUI\dialogs\trends.py:14
 msgid "City"
 msgstr "Ville"
 
-#: ../src\build\lib\wxUI\dialogs\trends.py:20
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:16
 #: ../src\wxUI\dialogs\trends.py:20 ../src\wxUI\dialogs\update_profile.py:16
 msgid "Location"
 msgstr "Localisation"
 
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:8
 #: ../src\wxUI\dialogs\update_profile.py:8
 msgid "Update your profile"
 msgstr "Mettre à jour votre profil"
 
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:10
 #: ../src\wxUI\dialogs\update_profile.py:10
 msgid "Name (20 characters maximum)"
 msgstr "Nom (maximum 20 caractères)"
 
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:21
 #: ../src\wxUI\dialogs\update_profile.py:21
 msgid "Website"
 msgstr "Site Web"
 
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:26
 #: ../src\wxUI\dialogs\update_profile.py:26
 msgid "Bio (160 characters maximum)"
 msgstr "Description (maximum 160 caractères)"
 
-#: ../src\build\lib\wxUI\dialogs\update_profile.py:33
 #: ../src\wxUI\dialogs\update_profile.py:33
 msgid "Update profile"
 msgstr "Mettre à jour le profil"
 
-#: ../src\build\lib\wxUI\dialogs\urlList.py:6 ../src\wxUI\dialogs\urlList.py:6
+#: ../src\wxUI\dialogs\urlList.py:6
 msgid "Select URL"
 msgstr "Sélectionnez l'URL"
 
-#: ../src\build\lib\wxUI\dialogs\userActions.py:17
 #: ../src\wxUI\dialogs\userActions.py:17
 msgid "Follow"
 msgstr "Suivre"
 
-#: ../src\build\lib\wxUI\dialogs\userActions.py:18
 #: ../src\wxUI\dialogs\userActions.py:18
 msgid "Unfollow"
 msgstr "Ne pas suivre"
 
-#: ../src\build\lib\wxUI\dialogs\userActions.py:19
 #: ../src\wxUI\dialogs\userActions.py:19
 msgid "Mute"
 msgstr "Muet"
 
-#: ../src\build\lib\wxUI\dialogs\userActions.py:20
 #: ../src\wxUI\dialogs\userActions.py:20
 msgid "Unmute"
 msgstr "Désactiver muet"
 
-#: ../src\build\lib\wxUI\dialogs\userActions.py:21
 #: ../src\wxUI\dialogs\userActions.py:21
 msgid "Block"
 msgstr "Bloquer"
 
-#: ../src\build\lib\wxUI\dialogs\userActions.py:22
 #: ../src\wxUI\dialogs\userActions.py:22
 msgid "Unblock"
 msgstr "Débloquer"
 
-#: ../src\build\lib\wxUI\dialogs\userActions.py:23
 #: ../src\wxUI\dialogs\userActions.py:23
 msgid "Report as spam"
 msgstr "Signaler comme spam"
 
-#: ../src\build\lib\wxUI\dialogs\userActions.py:24
 #: ../src\wxUI\dialogs\userActions.py:24
 msgid "Ignore tweets from this client"
 msgstr "Ignorer les tweets de ce client"
 
-#: ../src\build\lib\wxUI\dialogs\userSelection.py:9
 #: ../src\wxUI\dialogs\userSelection.py:9
 msgid "Timeline for %s"
 msgstr "Chronologie de %s"
 
-#: ../src\build\lib\wxUI\dialogs\userSelection.py:16
 #: ../src\wxUI\dialogs\userSelection.py:16
 msgid "Buffer type"
 msgstr "Type de tampon"
 
-#: ../src\build\lib\wxUI\sysTrayIcon.py:34 ../src\build\lib\wxUI\view.py:22
 #: ../src\wxUI\sysTrayIcon.py:34 ../src\wxUI\view.py:22
 msgid "&Global settings"
 msgstr "&Paramètres globaux"
 
-#: ../src\build\lib\wxUI\sysTrayIcon.py:35 ../src\build\lib\wxUI\view.py:21
 #: ../src\wxUI\sysTrayIcon.py:35 ../src\wxUI\view.py:21
 msgid "Account se&ttings"
 msgstr "Pa&ramètres du compte"
 
-#: ../src\build\lib\wxUI\sysTrayIcon.py:36 ../src\wxUI\sysTrayIcon.py:36
+#: ../src\wxUI\sysTrayIcon.py:36
 msgid "Update &profile"
 msgstr "&Mettre à jour le profil"
 
-#: ../src\build\lib\wxUI\sysTrayIcon.py:37 ../src\wxUI\sysTrayIcon.py:37
+#: ../src\wxUI\sysTrayIcon.py:37
 msgid "&Show / hide"
 msgstr "&Afficher / masquer"
 
-#: ../src\build\lib\wxUI\sysTrayIcon.py:38 ../src\build\lib\wxUI\view.py:63
 #: ../src\wxUI\sysTrayIcon.py:38 ../src\wxUI\view.py:63
 msgid "&Documentation"
 msgstr "&Documentation"
 
-#: ../src\build\lib\wxUI\sysTrayIcon.py:40 ../src\wxUI\sysTrayIcon.py:40
+#: ../src\wxUI\sysTrayIcon.py:40
 msgid "Check for &updates"
 msgstr "Vérifier les &mises à jour"
 
-#: ../src\build\lib\wxUI\sysTrayIcon.py:41 ../src\wxUI\sysTrayIcon.py:41
+#: ../src\wxUI\sysTrayIcon.py:41
 msgid "&Exit"
 msgstr "&Sortir"
 
-#: ../src\build\lib\wxUI\view.py:15 ../src\wxUI\view.py:15
+#: ../src\wxUI\view.py:15
 msgid "&Manage accounts"
 msgstr "&Gérer les comptes"
 
-#: ../src\build\lib\wxUI\view.py:16 ../src\wxUI\view.py:16
+#: ../src\wxUI\view.py:16
 msgid "&Update profile"
 msgstr "&Mettre à jour le profil"
 
-#: ../src\build\lib\wxUI\view.py:17 ../src\wxUI\view.py:17
+#: ../src\wxUI\view.py:17
 msgid "&Hide window"
 msgstr "&Masquer la fenêtre"
 
-#: ../src\build\lib\wxUI\view.py:18 ../src\wxUI\view.py:18
+#: ../src\wxUI\view.py:18
 msgid "&Search"
 msgstr "&Rechercher"
 
-#: ../src\build\lib\wxUI\view.py:19 ../src\wxUI\view.py:19
+#: ../src\wxUI\view.py:19
 msgid "&Lists manager"
 msgstr "&Gestionnaire de listes"
 
-#: ../src\build\lib\wxUI\view.py:20 ../src\wxUI\view.py:20
+#: ../src\wxUI\view.py:20
 msgid "&Edit keystrokes"
 msgstr "&Modifier les raccourcis clavier"
 
-#: ../src\build\lib\wxUI\view.py:23 ../src\wxUI\view.py:23
+#: ../src\wxUI\view.py:23
 msgid "E&xit"
 msgstr "S&ortir"
 
-#: ../src\build\lib\wxUI\view.py:27 ../src\build\lib\wxUI\view.py:75
-#: ../src\wxUI\view.py:27 ../src\wxUI\view.py:75
+#: ../src\wxUI\view.py:27 ../src\wxUI\view.py:74
 msgid "&Tweet"
 msgstr "&Tweet"
 
-#: ../src\build\lib\wxUI\view.py:28 ../src\wxUI\view.py:28
+#: ../src\wxUI\view.py:28
 msgid "Re&ply"
 msgstr "Ré&pondre"
 
-#: ../src\build\lib\wxUI\view.py:29 ../src\wxUI\view.py:29
+#: ../src\wxUI\view.py:29
 msgid "&Retweet"
 msgstr "&Retweet"
 
-#: ../src\build\lib\wxUI\view.py:30 ../src\wxUI\view.py:30
+#: ../src\wxUI\view.py:30
 msgid "Add to &favourites"
 msgstr "Ajouter aux &favoris"
 
-#: ../src\build\lib\wxUI\view.py:31 ../src\wxUI\view.py:31
+#: ../src\wxUI\view.py:31
 msgid "Remove from favo&urites"
 msgstr "Supprimer des favo&ris"
 
-#: ../src\build\lib\wxUI\view.py:32 ../src\wxUI\view.py:32
+#: ../src\wxUI\view.py:32
 msgid "&Show tweet"
 msgstr "&Voir tweet"
 
-#: ../src\build\lib\wxUI\view.py:33 ../src\wxUI\view.py:33
+#: ../src\wxUI\view.py:33
 msgid "View &address"
 msgstr "Voir &adresse"
 
-#: ../src\build\lib\wxUI\view.py:34 ../src\wxUI\view.py:34
+#: ../src\wxUI\view.py:34
 msgid "View conversa&tion"
 msgstr "Voir conversa&tion"
 
-#: ../src\build\lib\wxUI\view.py:35 ../src\wxUI\view.py:35
+#: ../src\wxUI\view.py:35
 msgid "&Delete"
 msgstr "&Supprimer Tweet"
 
-#: ../src\build\lib\wxUI\view.py:39 ../src\wxUI\view.py:39
+#: ../src\wxUI\view.py:39
 msgid "&Actions..."
 msgstr "&Actions..."
 
-#: ../src\build\lib\wxUI\view.py:40 ../src\wxUI\view.py:40
+#: ../src\wxUI\view.py:40
 msgid "&View timeline..."
 msgstr "&Voir chronologie..."
 
-#: ../src\build\lib\wxUI\view.py:41 ../src\wxUI\view.py:41
+#: ../src\wxUI\view.py:41
 msgid "Direct me&ssage"
 msgstr "Me&ssage direct"
 
-#: ../src\build\lib\wxUI\view.py:42 ../src\wxUI\view.py:42
+#: ../src\wxUI\view.py:42
 msgid "&Add to list"
 msgstr "&Ajouter à la liste"
 
-#: ../src\build\lib\wxUI\view.py:43 ../src\wxUI\view.py:43
+#: ../src\wxUI\view.py:43
 msgid "R&emove from list"
 msgstr "S&upprimer de la liste"
 
-#: ../src\build\lib\wxUI\view.py:45 ../src\wxUI\view.py:45
+#: ../src\wxUI\view.py:45
 msgid "&View lists"
 msgstr "&Voir listes"
 
-#: ../src\build\lib\wxUI\view.py:47 ../src\wxUI\view.py:47
+#: ../src\wxUI\view.py:47
 msgid "Show user &profile"
 msgstr "Voir le &profil de l'utilisateur"
 
-#: ../src\build\lib\wxUI\view.py:48 ../src\wxUI\view.py:48
+#: ../src\wxUI\view.py:48
 msgid "V&iew favourites"
 msgstr "V&oir favoris"
 
-#: ../src\build\lib\wxUI\view.py:52 ../src\wxUI\view.py:52
+#: ../src\wxUI\view.py:52
 msgid "New &trending topics buffer..."
 msgstr "Nouveau tampon de &tendances..."
 
-#: ../src\build\lib\wxUI\view.py:53 ../src\wxUI\view.py:53
+#: ../src\wxUI\view.py:53
 msgid "Find a string in the currently focused buffer..."
 msgstr "Trouver une chaîne dans le tampon ayant actuellement le focus..."
 
-#: ../src\build\lib\wxUI\view.py:54 ../src\wxUI\view.py:54
+#: ../src\wxUI\view.py:54
 msgid "&Load previous items"
 msgstr "&Charger des éléments plus anciens"
 
-#: ../src\build\lib\wxUI\view.py:56 ../src\wxUI\view.py:56
+#: ../src\wxUI\view.py:56
 msgid "&Mute"
 msgstr "&Muet"
 
-#: ../src\build\lib\wxUI\view.py:57 ../src\wxUI\view.py:57
+#: ../src\wxUI\view.py:57
 msgid "&Autoread"
 msgstr "&Lecture automatique"
 
-#: ../src\build\lib\wxUI\view.py:58 ../src\wxUI\view.py:58
+#: ../src\wxUI\view.py:58
 msgid "&Clear buffer"
 msgstr "&Effacer le tampon"
 
-#: ../src\build\lib\wxUI\view.py:59 ../src\wxUI\view.py:59
+#: ../src\wxUI\view.py:59
 msgid "&Destroy"
 msgstr "&Détruire"
 
-#: ../src\build\lib\wxUI\view.py:65 ../src\wxUI\view.py:65
+#: ../src\wxUI\view.py:64
 msgid "Sounds &tutorial"
 msgstr "&Tutoriel de sons"
 
-#: ../src\build\lib\wxUI\view.py:66 ../src\wxUI\view.py:66
+#: ../src\wxUI\view.py:65
 msgid "&What's new in this version?"
 msgstr "&Quoi de neuf dans cette version ?"
 
-#: ../src\build\lib\wxUI\view.py:68 ../src\wxUI\view.py:68
+#: ../src\wxUI\view.py:67
 msgid "&Check for updates"
 msgstr "&Vérifier les mises à jour"
 
-#: ../src\build\lib\wxUI\view.py:69 ../src\wxUI\view.py:69
+#: ../src\wxUI\view.py:68
 msgid "&Report an error"
 msgstr "&Signaler une erreur"
 
-#: ../src\build\lib\wxUI\view.py:70 ../src\wxUI\view.py:70
+#: ../src\wxUI\view.py:69
 msgid "{0}'s &website"
 msgstr "Site &Web de {0}"
 
-#: ../src\build\lib\wxUI\view.py:71 ../src\wxUI\view.py:71
+#: ../src\wxUI\view.py:70
 msgid "About &{0}"
 msgstr "À propos de &{0}"
 
-#: ../src\build\lib\wxUI\view.py:74 ../src\wxUI\view.py:74
+#: ../src\wxUI\view.py:73
 msgid "&Application"
 msgstr "&Application"
 
-#: ../src\build\lib\wxUI\view.py:76 ../src\wxUI\view.py:76
+#: ../src\wxUI\view.py:75
 msgid "&User"
 msgstr "&Utilisateur"
 
-#: ../src\build\lib\wxUI\view.py:77 ../src\wxUI\view.py:77
+#: ../src\wxUI\view.py:76
 msgid "&Buffer"
 msgstr "&Tampon"
 
-#: ../src\build\lib\wxUI\view.py:78 ../src\wxUI\view.py:78
+#: ../src\wxUI\view.py:77
 msgid "&Help"
 msgstr "&Aide"
 
-#: ../src\build\lib\wxUI\view.py:159 ../src\wxUI\view.py:159
+#: ../src\wxUI\view.py:158
 msgid "Address"
 msgstr "Adresse"
 
-#: ../src\build\lib\wxUI\view.py:182 ../src\wxUI\view.py:182
+#: ../src\wxUI\view.py:181
 msgid "Update"
 msgstr "Mise à jour"
 
-#: ../src\build\lib\wxUI\view.py:182 ../src\wxUI\view.py:182
+#: ../src\wxUI\view.py:181
 msgid "Your {0} version is up to date"
 msgstr "Votre version de {0} est à jour"
 
-#: ../src\languageHandler.py:95
-msgid "User default"
-msgstr "Utilisateur par défaut"
+#~ msgid "Opening media..."
+#~ msgstr "Ouverture en cours du média..."
 
-#: ../src\sound.py:156
-msgid "Stopped."
-msgstr "Arrêté."
+#~ msgid "Add a new ignored client"
+#~ msgstr "Ajouter un nouveau client ignoré"
 
-#: ../src\wxUI\dialogs\configuration.py:33
-msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
-msgstr ""
-"Lecture complète de tweets longs (peut diminuer les performances du client)"
+#~ msgid "Do you really want to delete this timeline?"
+#~ msgstr "Voulez-vous vraiment supprimer cette chronologie ?"
 
 #~ msgid "JPG images"
 #~ msgstr "Images JPG"
@@ -3710,9 +3138,6 @@ msgstr ""
 #~ msgid "Announce"
 #~ msgstr "Annonce"
 
-#~ msgid "Do you really want to delete this buffer?"
-#~ msgstr "Voulez-vous vraiment supprimer ce tampon ?"
-
 #~ msgid ""
 #~ "Do you really want to empty this buffer? It's items will be removed from "
 #~ "the list"
@@ -3805,9 +3230,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Cet utilisateur n'a aucun favori. Vous ne pouvez pas créer une liste de "
 #~ "favoris pour cet utilisateur."
-
-#~ msgid "Copied"
-#~ msgstr "Copié"
 
 #~ msgid "%s"
 #~ msgstr "%s"
