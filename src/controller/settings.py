@@ -34,7 +34,7 @@ class globalSettingsController(object):
    if ".keymap" not in i:
     continue
    try:
-    res[config_utils.load_config(paths.app_path('keymaps/'+i))['info']['name']]=i
+    res[i[:-7]] =i
    except:
     log.exception("Exception while loading keymap " + i)
   return res
@@ -79,6 +79,8 @@ class globalSettingsController(object):
    self.needs_restart = True
   if self.kmnames[self.dialog.general.km.GetSelection()] != config.app["app-settings"]["load_keymap"]:
    config.app["app-settings"]["load_keymap"] =self.kmnames[self.dialog.general.km.GetSelection()]
+   kmFile = open(paths.config_path("keymap.keymap"), "w")
+   kmFile.close()
    self.needs_restart = True
 
   if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] != self.dialog.get_value("general", "use_invisible_shorcuts"):
