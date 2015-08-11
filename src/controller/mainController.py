@@ -97,7 +97,7 @@ class Controller(object):
  def get_buffers_for_account(self, account):
   results = []
   buffers = self.view.get_buffers()
-  [results.append(self.search_buffer(i.name, i.account)) for i in buffers if i.account == account]
+  [results.append(self.search_buffer(i.name, i.account)) for i in buffers if i.account == account and (i.type != "account")]
   return results
 
  def bind_stream_events(self):
@@ -950,6 +950,7 @@ class Controller(object):
    return
   if buff == self.get_last_buffer(buffer.account) or buff+1 == self.view.get_buffer_count():
    self.view.change_buffer(self.get_first_buffer(buffer.account))
+   print "Regresando"
   else:
    self.view.change_buffer(buff+1)
   while self.get_current_buffer().invisible == False: self.skip_buffer(True)
