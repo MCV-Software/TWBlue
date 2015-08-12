@@ -344,6 +344,7 @@ class Session(object):
    self.logged = False
    self.twitter = twitter.twitter.twitter()
    self.login(False)
+   pub.sendMessage("streamError", session=self.session_id)
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
   if not hasattr(self, "main_stream"):

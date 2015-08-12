@@ -125,7 +125,7 @@ class Controller(object):
   log.debug("Binding other application events...")
   pub.subscribe(self.logout_account, "logout")
   pub.subscribe(self.login_account, "login")
-  pub.subscribe(self.manage_stream_errors, "stream-error")
+  pub.subscribe(self.manage_stream_errors, "streamError")
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
   pub.subscribe(self.restart_streams, "restart-streams")
 
@@ -1204,7 +1204,7 @@ class Controller(object):
   session.start_streaming()
 
  def manage_stream_errors(self, session):
-  log.error("An error ocurred with the stream for the %s session. It will be destroyed" % (session,))
+  log.debug(" Restarting %s session streams. It will be destroyed" % (session,))
   s = session_.sessions[session]
   for i in self.buffers:
    if i.invisible == True and i.session.session_id == s.session_id:
