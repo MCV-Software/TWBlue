@@ -25,6 +25,7 @@ class basicTweet(object):
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
   widgetUtils.connect_event(self.message.attach, widgetUtils.BUTTON_PRESSED, self.attach)
 #  if system == "Windows":
+#  if messageType != "dm":
   widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
   self.text_processor()
   widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
@@ -151,7 +152,7 @@ class reply(tweet):
 
 class dm(basicTweet):
  def __init__(self, session, title, caption, text):
-  super(dm, self).__init__(session, title, caption, text, messageType="dm")
+  super(dm, self).__init__(session, title, caption, text, messageType="dm", max=10000)
   widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
 
  def autocomplete_users(self, *args, **kwargs):
