@@ -1207,7 +1207,7 @@ class Controller(object):
   log.debug(" Restarting %s session streams. It will be destroyed" % (session,))
   s = session_.sessions[session]
   for i in self.buffers:
-   if i.invisible == True and i.session.session_id == s.session_id:
+   if i.invisible == True and i.session.session_id == s.session_id and i.type != "people":
     i.start_stream()
   s.listen_stream_error()
 
