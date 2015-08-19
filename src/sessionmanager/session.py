@@ -119,7 +119,8 @@ class Session(object):
 #   self.settings = None
 
  def init_sound(self):
-  self.sound = sound.soundSystem(self.settings["sound"])
+  try: self.sound = sound.soundSystem(self.settings["sound"])
+  except: pass
 
  @_require_configuration
  def login(self, verify_credentials=True):

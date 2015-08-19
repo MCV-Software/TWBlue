@@ -263,6 +263,7 @@ class Controller(object):
   for i in session_.sessions:
    if session_.sessions[i].session_id == session_id: session = session_.sessions[i]
   session.login()
+  session.db = dict()
   self.create_buffers(session, False)
   self.start_buffers(session)
 
@@ -394,7 +395,8 @@ class Controller(object):
    self.destroy_buffer("%s-searchterm" % (i,), user)
   for i in session.settings["other_buffers"]["trending_topic_buffers"]:
    self.destroy_buffer("%s_tt" % (i,), user)
-  
+  session.db = None
+
  def destroy_buffer(self, buffer_name, account):
   buffer = self.search_buffer(buffer_name, account)
   if buffer == None: return
