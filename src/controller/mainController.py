@@ -375,26 +375,12 @@ class Controller(object):
   for i in session_.sessions:
    if session_.sessions[i].session_id == session_id: session = session_.sessions[i]
   user = session.db["user_name"]
-  self.destroy_buffer("home_timeline", user)
-  self.destroy_buffer("mentions", user)
-  self.destroy_buffer("direct_messages", user)
-  self.destroy_buffer("sent_direct_messages", user)
-  self.destroy_buffer("sent_tweets", user)
-  self.destroy_buffer("favourites", user)
-  self.destroy_buffer("followers", user)
-  self.destroy_buffer("friends", user)
-  self.destroy_buffer("blocked", user)
-  self.destroy_buffer("muted", user)
-  self.destroy_buffer("events", user)
-  self.destroy_buffer("timelines", user)
-  for i in session.settings["other_buffers"]["timelines"]:
-   self.destroy_buffer("%s-timeline" % (i,), user)
-  self.destroy_buffer("favs_timelines", user)
-  self.destroy_buffer("searches", user)
-  for i in session.settings["other_buffers"]["tweet_searches"]:
-   self.destroy_buffer("%s-searchterm" % (i,), user)
-  for i in session.settings["other_buffers"]["trending_topic_buffers"]:
-   self.destroy_buffer("%s_tt" % (i,), user)
+  delete_buffers = []
+  for i in self.buffers:
+   if i.account == user and i.name != user:
+    delete_buffers.append(i.name)
+  for i in delete_buffers:
+   self.destroy_buffer(i, user)
   session.db = None
 
  def destroy_buffer(self, buffer_name, account):
