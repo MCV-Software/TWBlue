@@ -235,6 +235,10 @@ class baseBufferController(bufferController):
    uri = tweet["long_uri"]
   try:
    tweet = self.session.twitter.twitter.show_status(id=tweet_id)
+   urls = utils.find_urls_in_text(tweet["text"])
+   for url in range(0, len(urls)):
+    try:  tweet["text"] = tweet["text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
+    except IndexError: pass
   except TwythonError as e:
    utils.twitter_error(e)
    return
@@ -246,6 +250,10 @@ class baseBufferController(bufferController):
    id = tweets.get_id(l)
    try:
     tweet = self.session.twitter.twitter.show_status(id=id)
+    urls = utils.find_urls_in_text(tweet["text"])
+    for url in range(0, len(urls)):
+     try:  tweet["text"] = tweet["text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
+     except IndexError: pass
    except TwythonError as e:
     utils.twitter_error(e)
     return
