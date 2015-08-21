@@ -715,6 +715,9 @@ class Controller(object):
      answer = commonMessageDialogs.protected_user()
      if answer == widgetUtils.NO: return
     if dlg.get_action() == "tweets":
+     if usr["statuses_count"] == 0:
+      commonMessageDialogs.no_tweets()
+      return
      if dlg.get_user() in buff.session.settings["other_buffers"]["timelines"]:
       commonMessageDialogs.timeline_exist()
       return
@@ -728,6 +731,9 @@ class Controller(object):
      pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
      buffer.session.sound.play("create_timeline.ogg")
     else:
+     if usr["favourites_count"] == 0:
+      commonMessageDialogs.no_favs()
+      return
      if dlg.get_user() in buffer.session.settings["other_buffers"]["favourites_timelines"]:
       commonMessageDialogs.timeline_exist()
       return

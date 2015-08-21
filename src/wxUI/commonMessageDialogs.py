@@ -52,3 +52,9 @@ def no_following():
 def donation():
  dlg = wx.MessageDialog(None, _(u"If you like {0} we need your help to keep it going. Help us by donating to the project. This will help us pay for the server, the domain and some other things to ensure that {0} will be actively maintained. Your donation will give us the means to continue the development of {0}, and to keep {0} free. Would you like to donate now?").format(application.name), _(u"We need your help"), wx.ICON_QUESTION|wx.YES_NO)
  return dlg.ShowModal()
+
+def no_tweets():
+ return wx.MessageDialog(None, _(u"This user has no tweets. {0} can't create a timeline.").format(application.name), _(u"Error"), wx.ICON_ERROR).ShowModal()
+
+def no_favs():
+ return wx.MessageDialog(None, _(u"This user has no favorited tweets. {0} can't create a timeline.").format(application.name), _(u"Error"), wx.ICON_ERROR).ShowModal()
