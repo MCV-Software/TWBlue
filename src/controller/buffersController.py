@@ -431,7 +431,7 @@ class baseBufferController(bufferController):
    self._retweet_with_comment(tweet, id)
 
  def _retweet_with_comment(self, tweet, id, comment=''):
-  retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]), max=116-len("@%s " % (tweet["user"]["screen_name"],)), messageType="retweet", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
+  retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]), max=116, messageType="retweet", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
   if comment != '':
    retweet.message.set_text(comment)
   if retweet.message.get_response() == widgetUtils.OK:
