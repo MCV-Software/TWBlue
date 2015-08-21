@@ -128,7 +128,7 @@ class Controller(object):
   pub.subscribe(self.manage_stream_errors, "streamError")
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
   pub.subscribe(self.restart_streams, "restart-streams")
-
+  pub.subscribe(self.execute_action, "execute-action")
   if system == "Windows":
    pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -1343,6 +1343,10 @@ class Controller(object):
 
  def repeat_item(self, *args, **kwargs):
   output.speak(self.get_current_buffer().get_message())
+
+ def execute_action(self, action):
+  if hasattr(self, action):
+   getattr(self, action)()
 
  def __del__(self):
   config.app.write()

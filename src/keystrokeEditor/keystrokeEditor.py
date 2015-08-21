@@ -3,6 +3,7 @@ import widgetUtils
 import config
 import wx_ui
 import constants
+from pubsub import pub
 
 class KeystrokeEditor(object):
  def __init__(self):
@@ -14,6 +15,7 @@ class KeystrokeEditor(object):
   self.hold_map = self.map.copy()
   self.dialog.put_keystrokes(constants.actions, self.map)
   widgetUtils.connect_event(self.dialog.edit, widgetUtils.BUTTON_PRESSED, self.edit_keystroke)
+  widgetUtils.connect_event(self.dialog.execute, widgetUtils.BUTTON_PRESSED, self.execute_action)
   self.dialog.get_response()
 
  def edit_keystroke(self, *args, **kwargs):
@@ -52,3 +54,7 @@ class KeystrokeEditor(object):
    wx_ui.no_key()
    return
   return "+".join(keys)
+
+ def execute_action(self, *args, **kwargs):
+  action = self.dialog.actions[self.dialog.get_action()]
+  pub.sendMessage("execute-action", action=action)

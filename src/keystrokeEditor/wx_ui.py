@@ -13,18 +13,20 @@ class keystrokeEditorDialog(baseDialog.BaseWXDialog):
   self.keys = widgets.list(self, _(u"Action"), _(u"Keystroke"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL, size=(400, 450))
   self.keys.list.SetFocus()
   firstSizer = wx.BoxSizer(wx.HORIZONTAL)
-  firstSizer.Add(keysText)
-  firstSizer.Add(self.keys.list)
+  firstSizer.Add(keysText, 0, wx.ALL, 5)
+  firstSizer.Add(self.keys.list, 0, wx.ALL, 5)
   self.edit = wx.Button(panel, -1, _(u"Edit"))
   self.edit.SetDefault()
-
+  self.execute = wx.Button(panel, -1, _(u"Execute action"))
   close = wx.Button(panel, wx.ID_CANCEL, _(u"Close"))
   secondSizer = wx.BoxSizer(wx.HORIZONTAL)
-  secondSizer.Add(self.edit)
-  secondSizer.Add(close)
-  sizer.Add(firstSizer)
-  sizer.Add(secondSizer)
-  panel.SetSizerAndFit(sizer)
+  secondSizer.Add(self.edit, 0, wx.ALL, 5)
+  secondSizer.Add(self.execute, 0, wx.ALL, 5)
+  secondSizer.Add(close, 0, wx.ALL, 5)
+  sizer.Add(firstSizer, 0, wx.ALL, 5)
+  sizer.Add(secondSizer, 0, wx.ALL, 5)
+  panel.SetSizer(sizer)
+  self.SetClientSize(sizer.CalcMin())
 
  def put_keystrokes(self, actions, keystrokes):
   for i in keystrokes:
