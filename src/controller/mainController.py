@@ -706,8 +706,7 @@ class Controller(object):
    users = [tweet["screen_name"]]
   dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
   if dlg.get_response() == widgetUtils.OK:
-   buffer = self.get_best_buffer()
-   usr = utils.if_user_exists(buffer.session.twitter.twitter, dlg.get_user())
+   usr = utils.if_user_exists(buff.session.twitter.twitter, dlg.get_user())
    if usr != None:
     if usr["protected"] == True:
      if usr["following"] == False:
@@ -716,32 +715,32 @@ class Controller(object):
      answer = commonMessageDialogs.protected_user()
      if answer == widgetUtils.NO: return
     if dlg.get_action() == "tweets":
-     if dlg.get_user() in buffer.session.settings["other_buffers"]["timelines"]:
+     if dlg.get_user() in buff.session.settings["other_buffers"]["timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
+     tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (dlg.get_user(),), buff.session, buff.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
      tl.start_stream()
-     pos=self.view.search("timelines", buffer.session.db["user_name"])
+     pos=self.view.search("timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
 #     self.buffers.insert(pos+1, tl)
      self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
-     buffer.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
-     pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buffer.session)
+     buff.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
+     pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
      buffer.session.sound.play("create_timeline.ogg")
     else:
      if dlg.get_user() in buffer.session.settings["other_buffers"]["favourites_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (dlg.get_user(),), buffer.session, buffer.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
-     pos=self.view.search("favs_timelines", buffer.session.db["user_name"])
+     tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (dlg.get_user(),), buff.session, buff.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
+     pos=self.view.search("favs_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
 #     self.buffers.insert(pos+1, tl)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Favourites timeline for {}").format(dlg.get_user()), pos=pos)
      tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
-     buffer.session.settings["other_buffers"]["favourites_timelines"].append(dlg.get_user())
-     buffer.session.sound.play("create_timeline.ogg")
+     buff.session.settings["other_buffers"]["favourites_timelines"].append(dlg.get_user())
+     buff.session.sound.play("create_timeline.ogg")
    else:
     commonMessageDialogs.user_not_exist()
 
