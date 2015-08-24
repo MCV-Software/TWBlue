@@ -216,7 +216,8 @@ class dm(textLimited):
   self.buttonsBox3.Add(cancelButton, 0, wx.ALL, 5)
   self.mainBox.Add(self.buttonsBox3, 0, wx.ALL, 5)
   self.panel.SetSizer(self.mainBox)
-  
+#  self.SetClientSize(self.mainBox.CalcMin())
+
  def __init__(self, title, message,  users):
   super(dm, self).__init__()
   self.createControls(message, title, users)

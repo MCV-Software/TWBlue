@@ -2,7 +2,7 @@
 import platform
 if platform.system() == "Windows":
  import wx
- from wxUI import buffers, dialogs, commonMessageDialogs
+ from wxUI import buffers, dialogs, commonMessageDialogs, menus
  import user
 elif platform.system() == "Linux":
  from gi.repository import Gtk
@@ -365,6 +365,61 @@ class baseBufferController(bufferController):
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.retweet, self.buffer.retweet)
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.direct_message, self.buffer.dm)
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
+  # Replace for the correct way in other platforms.
+  widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
+  widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
+
+ def show_menu(self, ev, pos=0, *args, **kwargs):
+  if self.buffer.list.get_count() == 0: return
+  if self.name == "sent_tweets" or self.name == "sent_direct_messages":
+   menu = menus.sentPanelMenu()
+  elif self.name == "direct_messages":
+   menu = menus.dmPanelMenu()
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.direct_message, menuitem=menu.reply)
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
+  else:
+   menu = menus.basePanelMenu()
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.reply, menuitem=menu.reply)
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.retweet, menuitem=menu.retweet)
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.fav, menuitem=menu.fav)
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.unfav, menuitem=menu.unfav)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.url_, menuitem=menu.openUrl)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.audio, menuitem=menu.play)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.destroy_status, menuitem=menu.remove)
+  if pos != 0:
+   self.buffer.PopupMenu(menu, pos)
+  else:
+   self.buffer.PopupMenu(menu, ev.GetPosition())
+
+ def view(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="view_item")
+
+ def copy(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="copy_to_clipboard")
+
+ def user_actions(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="follow")
+
+ def fav(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="add_to_favourites")
+
+ def unfav(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="remove_from_favourites")
+
+ def delete_item_(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="delete_item")
+
+ def url_(self, *args, **kwargs):
+  self.url()
+
+ def show_menu_by_key(self, ev):
+  if self.buffer.list.get_count() == 0:
+   return
+  if ev.GetKeyCode() == wx.WXK_WINDOWS_MENU:
+   self.show_menu(widgetUtils.MENU, pos=self.buffer.list.list.GetPosition())
 
  def get_tweet(self):
   if self.session.db[self.name][self.buffer.list.get_selected()].has_key("retweeted_status"):
@@ -467,8 +522,8 @@ class baseBufferController(bufferController):
    self.session.sound.play("geo.ogg")
   self.session.db[self.name+"_pos"]=self.buffer.list.get_selected()
 
- @_tweets_exist
- def audio(self,url=''):
+# @_tweets_exist
+ def audio(self, url='', *args, **kwargs):
   if hasattr(sound.URLPlayer,'stream'):
    return sound.URLPlayer.stop_audio(delete=True)
   tweet = self.get_tweet()
@@ -488,8 +543,8 @@ class baseBufferController(bufferController):
    except:
     log.error("Exception while executing audio method.")
 
- @_tweets_exist
- def url(self,url='',announce=True):
+# @_tweets_exist
+ def url(self, url='', announce=True, *args, **kwargs):
   if url == '':
    tweet = self.get_tweet()
    urls = utils.find_urls(tweet)
@@ -607,6 +662,23 @@ class eventsBufferController(bufferController):
   if dlg == widgetUtils.YES:
    self.buffer.list.clear()
 
+ def show_menu(self, ev, pos=0, *args, **kwargs):
+  if self.buffer.list.get_count() == 0: return
+  menu = menus.eventsPanelMenu()
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.destroy_status, menuitem=menu.remove)
+  if pos != 0:
+   self.buffer.PopupMenu(menu, pos)
+  else:
+   self.buffer.PopupMenu(menu, ev.GetPosition())
+
+ def view(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="view_item")
+
+ def copy(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="copy_to_clipboard")
+
 class peopleBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
   super(peopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel")
@@ -717,6 +789,22 @@ class peopleBufferController(baseBufferController):
  def interact(self):
   user.profileController(self.session, user=self.get_right_tweet()["screen_name"])
 
+ def show_menu(self, ev, pos=0, *args, **kwargs):
+  menu = menus.peoplePanelMenu()
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.direct_message, menuitem=menu.reply)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.details, menuitem=menu.details)
+#  widgetUtils.connect_event(menu, widgetUtils.MENU, self.lists, menuitem=menu.lists)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
+  if pos != 0:
+   self.buffer.PopupMenu(menu, pos)
+  else:
+   self.buffer.PopupMenu(menu, ev.GetPosition())
+
+ def details(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="user_details")
+
 class searchBufferController(baseBufferController):
  def start_stream(self):
   log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
@@ -823,6 +911,8 @@ class trendsBufferController(bufferController):
 #  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.retweet, self.buffer.retweet)
 #  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.direct_message, self.buffer.dm)
 #  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
+  widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
+  widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
 
  def get_message(self):
   return self.compose_function(self.trends[self.buffer.list.get_selected()])[0]
@@ -839,6 +929,48 @@ class trendsBufferController(bufferController):
 
  def interact(self, *args, **kwargs):
   self.searchfunction(value=self.get_message())
+
+ def show_menu(self, ev, pos=0, *args, **kwargs):
+  menu = menus.trendsPanelMenu()
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.tweet_about_this_trend, menuitem=menu.tweetThisTrend)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
+  if pos != 0:
+   self.buffer.PopupMenu(menu, pos)
+  else:
+   self.buffer.PopupMenu(menu, ev.GetPosition())
+
+ def view(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="view_item")
+
+ def copy(self, *args, **kwargs):
+  pub.sendMessage("execute-action", action="copy_to_clipboard")
+
+ def tweet_about_this_trend(self, *args, **kwargs):
+  if self.buffer.list.get_count() == 0: return
+  title = _(u"Tweet")
+  caption = _(u"Write the tweet here")
+  tweet = messages.tweet(self.session, title, caption, self.get_message()+ " ", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
+  tweet.message.set_cursor_at_end()
+  if tweet.message.get_response() == widgetUtils.OK:
+   self.session.settings["mysc"]["twishort_enabled"] = tweet.message.long_tweet.GetValue()
+   text = tweet.message.get_text()
+   if len(text) > 140 and tweet.message.get("long_tweet") == True:
+    if tweet.image == None:
+     text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
+    else:
+     text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
+   if tweet.image == None:
+    call_threaded(self.session.api_call, call_name="update_status", status=text)
+   else:
+    call_threaded(self.session.api_call, call_name="update_status_with_media", status=text, media=tweet.image)
+  if hasattr(tweet.message, "destroy"): tweet.message.destroy()
+
+ def show_menu_by_key(self, ev):
+  if self.buffer.list.get_count() == 0:
+   return
+  if ev.GetKeyCode() == wx.WXK_WINDOWS_MENU:
+   self.show_menu(widgetUtils.MENU, pos=self.buffer.list.list.GetPosition())
 
 class conversationBufferController(searchBufferController):
 
