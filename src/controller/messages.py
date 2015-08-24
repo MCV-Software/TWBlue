@@ -98,6 +98,7 @@ class basicTweet(object):
   checker = SpellChecker.spellchecker.spellChecker(text, "")
   if hasattr(checker, "fixed_text"):
    self.message.set_text(checker.fixed_text)
+   self.message.text_focus()
 
  def attach(self, *args, **kwargs):
   def completed_callback():
@@ -110,6 +111,7 @@ class basicTweet(object):
     output.speak(_(u"Unable to upload the audio"))
    dlg.cleanup()
   dlg = audioUploader.audioUploader(self.session.settings, completed_callback)
+  self.message.text_focus()
 
 class tweet(basicTweet):
  def __init__(self, session, title, caption, text, twishort_enabled, messageType="tweet", max=140):
@@ -131,6 +133,7 @@ class tweet(basicTweet):
    self.image = self.message.get_image()
    if self.image != None:
     self.message.set("upload_image", _(u"Discard image"))
+  self.message.text_focus()
 
  def autocomplete_users(self, *args, **kwargs):
   c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
