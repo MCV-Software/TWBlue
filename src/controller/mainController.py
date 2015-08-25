@@ -235,7 +235,6 @@ class Controller(object):
     self.create_ignored_session_buffer(session_.sessions[i])
     continue
    self.create_buffers(session_.sessions[i])
-   self.set_buffer_positions(session_.sessions[i])
 
   # Connection checker executed each minute.
   self.checker_function = RepeatingTimer(60, self.check_connection)
@@ -246,6 +245,7 @@ class Controller(object):
   for i in session_.sessions:
    if session_.sessions[i].is_logged == False: continue
    self.start_buffers(session_.sessions[i])
+   self.set_buffer_positions(session_.sessions[i])
   if config.app["app-settings"]["play_ready_sound"] == True:
    session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
   if config.app["app-settings"]["speak_ready_msg"] == True:
@@ -368,7 +368,7 @@ class Controller(object):
  def set_buffer_positions(self,session):
   "Sets positions for buffers if values exist in the database."
   for i in self.buffers:
-   if i.name+"_pos" in session.db and hasattr(i.buffer,'list'):
+   if i.account == session.db["user_name"] and session.db.has_key(i.name+"_pos") and hasattr(i.buffer,'list'):
     i.buffer.list.select_item(session.db[str(i.name+"_pos")])
 
  def logout_account(self, session_id):
@@ -549,6 +549,7 @@ class Controller(object):
    self.exit_()
 
  def exit_(self, *args, **kwargs):
+  for i in self.buffers: i.save_positions()
   log.debug("Exiting...")
   log.debug("Saving global configuration...")
   config.app.write()
@@ -943,7 +944,6 @@ class Controller(object):
    return
   if buff == self.get_last_buffer(buffer.account) or buff+1 == self.view.get_buffer_count():
    self.view.change_buffer(self.get_first_buffer(buffer.account))
-   print "Regresando"
   else:
    self.view.change_buffer(buff+1)
   while self.get_current_buffer().invisible == False: self.skip_buffer(True)
@@ -1195,6 +1195,10 @@ class Controller(object):
     i.start_stream()
   log.debug("Starting the streaming endpoint")
   session.start_streaming()
+
+ def set_positions(self):
+  for i in session_.sessions:
+   self.set_buffer_positions(i)
 
  def manage_stream_errors(self, session):
   log.debug(" Restarting %s session streams. It will be destroyed" % (session,))

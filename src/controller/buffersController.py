@@ -142,6 +142,13 @@ class bufferController(object):
     call_threaded(self.session.api_call, call_name="update_status_with_media", status=text, media=tweet.image)
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
 
+ def save_positions(self):
+  try:
+   self.session.db[self.name+"_pos"]=self.buffer.list.get_selected()
+  except AttributeError:
+   pass
+
+
 class accountPanel(bufferController):
  def __init__(self, parent, name, account, account_id):
   super(accountPanel, self).__init__(parent, None, name)
@@ -520,7 +527,6 @@ class baseBufferController(bufferController):
    self.session.sound.play("audio.ogg")
   if utils.is_geocoded(tweet):
    self.session.sound.play("geo.ogg")
-  self.session.db[self.name+"_pos"]=self.buffer.list.get_selected()
 
 # @_tweets_exist
  def audio(self, url='', *args, **kwargs):
