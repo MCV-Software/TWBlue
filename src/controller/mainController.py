@@ -730,7 +730,7 @@ class Controller(object):
      self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
      buff.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
      pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
-     buffer.session.sound.play("create_timeline.ogg")
+     buff.session.sound.play("create_timeline.ogg")
     else:
      if usr["favourites_count"] == 0:
       commonMessageDialogs.no_favs()
