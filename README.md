@@ -39,7 +39,7 @@ If you want to build both x86 and x64 binaries, you can install python x86 to C:
 * [Pycurl](http://pycurl.sourceforge.net) 7.19.5.1 for Python 2.7: [32-bit downloads,](https://pypi.python.org/pypi/pycurl/7.19.5.1) [64-bit downloads](http://www.lfd.uci.edu/~gohlke/pythonlibs/)
 Note: the x64 version is in wheel format instead of executable installer, so you have to install it using pip. For example: C:\python27x64\scripts\pip install pycurl-7.19.5.1-cp27-none-win_amd64.whl
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
-x64 version has been built by TW Blue developers, so you only will find it in windows-dependencies folder
+x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
 
 The windows installers are available only in the windows-dependencies folder
 
@@ -71,8 +71,11 @@ setuptools install a script, called easy_install. You can find it in the python 
 * arrow
 * goslate
 * markdown
+* pocket
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
+Run the following command to quickly install and upgrade all packages and their dependencies:
+easy_install -Z --upgrade six configobj goslate markdown future pocket suds requests oauthlib requests-oauthlib pypubsub pygeocoder arrow
 
 #### Other dependencies
 
@@ -95,15 +98,33 @@ Now that you have installed all these packages, you can run TW Blue from source 
 
 	If necessary, change the first part of the command to reflect the location of your python executable. You can run TW Blue using python x86 and x64
 
+### Generating the documentation
+
+To generate the documentation in html format, navigate to the doc folder inside this repo. After that, run this command:
+python generator.py
+The documentation will be generated, placing each language in a separate folder in the doc directory. Move these folders (for example de, en, es, fr, it, ...) to src/documentation, creating the directory if necesary.
+Also, copy the license.txt located in the root of the repo to the documentation folder.
+
 ### Building a binary version
 
-A binary version doesn't need python and the other dependencies to run, it's the same version that you will find on the TW Blue website if you download the zip files.
+A binary version doesn't need python and the other dependencies to run, it's the same version that you will find on the TW Blue website if you download the zip files or the snapshot versions.
 
 To build it, run the following command from the src folder:
 
     python setup.py py2exe
 
 	You will find the binaries in the dist directory.
+
+### Building an installer
+
+If you want to install TWBlue in your computer, you must create the installer first. Follow these steps:
+
+* Navigate to the src directory, and create a binary version for x86: C:\python27\python setup.py py2exe
+* Move the dist directory to the scripts folder in this repo, and rename it to twblue
+* Repeat these steps with Python for x64: C:\python27x64\python setup.py py2exe
+* Move the new dist directory to the scripts folder, and rename it to twblue64
+* Go to the scripts folder, right click on the twblue.nsi file, and choose compyle unicode NSIS script
+* This may take a while. After the process, you will find the installer in the scripts folder
 
 ### How to generate a translation template
 
