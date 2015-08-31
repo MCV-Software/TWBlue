@@ -361,9 +361,9 @@ class Controller(object):
    buffer.start_stream()
    buffer.searchfunction = self.search
    self.buffers.append(buffer)
-   self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    buffer.timer = RepeatingTimer(300, buffer.start_stream)
    buffer.timer.start()
+   self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
 
  def set_buffer_positions(self,session):
   "Sets positions for buffers if values exist in the database."
