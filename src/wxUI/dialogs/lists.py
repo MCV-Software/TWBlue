@@ -123,6 +123,7 @@ class removeUserListDialog(listViewer):
   self.SetTitle(_(u"Select a list to remove the user"))
   self.createBtn.SetLabel(_(u"Remove"))
   self.createBtn.SetDefault()
+  self.createBtn.SetId(wx.ID_OK)
   self.editBtn.Disable()
   self.view.Disable()
 #  self.subscriptors.Disable()

@@ -174,6 +174,8 @@ class Controller(object):
    widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_documentation, self.view.doc)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_list, self.view.addToList)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_list, self.view.removeFromList)
 
  def set_systray_icon(self):
   self.systrayIcon = sysTrayIcon.SysTrayIcon()
@@ -496,8 +498,32 @@ class Controller(object):
    except TwythonError as e:
     output.speak("error %s: %s" % (e.error_code, e.msg))
 
- def remove_from_list(self, user):
-  pass
+ def remove_from_list(self, *args, **kwargs):
+  buff = self.get_best_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
+  if dlg.get_response() == widgetUtils.OK:
+   user = dlg.get_user()
+  else:
+   return
+  dlg = dialogs.lists.removeUserListDialog()
+  dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
+  if dlg.get_response() == widgetUtils.OK:
+   try:
+    list = buff.session.twitter.twitter.delete_list_member(list_id=buff.session.db["lists"][dlg.get_item()]["id"], screen_name=user)
+    older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()]["id"], buff.session.db["lists"])
+    listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()]["name"].lower()), buff.session.db["user_name"])
+    if listBuffer != None: listBuffer.get_user_ids()
+    buff.session.db["lists"].pop(older_list)
+    buff.session.db["lists"].append(list)
+    if listBuffer != None: pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
+   except TwythonError as e:
+    output.speak("error %s: %s" % (e.error_code, e.msg))
 
  def list_manager(self, *args, **kwargs):
   s = self.get_best_buffer().session
