@@ -74,10 +74,10 @@ class audioUploader(object):
  def on_pause(self, *args, **kwargs):
   if self.dialog.get("pause") == _(u"Pause"):
    self.recording.pause()
-   self.dialog.set("pause", _(u"Resume"))
+   self.dialog.set("pause", _(u"&Resume"))
   elif self.dialog.get("pause") == _(u"Resume"):
    self.recording.play()
-   self.dialog.set("pause", _(U"Pause"))
+   self.dialog.set("pause", _(U"&Pause"))
 
  def on_record(self, *args, **kwargs):
   if self.recording != None:
@@ -92,7 +92,7 @@ class audioUploader(object):
   self.file = tempfile.mktemp(suffix='.wav')
   self.recording = sound.recording(self.file)
   self.recording.play()
-  self.dialog.set("record", _(u"Stop"))
+  self.dialog.set("record", _(u"&Stop"))
   output.speak(_(u"Recording"))
 
  def stop_recording(self):
@@ -100,11 +100,11 @@ class audioUploader(object):
   self.recording.free()
   output.speak(_(u"Stopped"))
   self.recorded = True
-  self.dialog.set("record", _(u"Record"))
+  self.dialog.set("record", _(u"&Record"))
   self.file_attached()
 
  def file_attached(self):
-  self.dialog.set("pause", _(u"Pause"))
+  self.dialog.set("pause", _(u"&Pause"))
   self.dialog.disable_control("record")
   self.dialog.enable_control("play")
   self.dialog.enable_control("discard")
@@ -137,11 +137,11 @@ class audioUploader(object):
 #  try:
   self.playing = sound_lib.stream.FileStream(file=unicode(self.file), flags=sound_lib.stream.BASS_UNICODE)
   self.playing.play()
-  self.dialog.set("play", _(u"Stop"))
+  self.dialog.set("play", _(u"&Stop"))
   try:
    while self.playing.is_playing:
     pass
-   self.dialog.set("play", _(u"Play"))
+   self.dialog.set("play", _(u"&Play"))
    self.playing.free()
    self.playing = None
   except:
@@ -151,7 +151,7 @@ class audioUploader(object):
   output.speak(_(u"Stopped"))
   self.playing.stop()
   self.playing.free()
-  self.dialog.set("play", _(u"Play"))
+  self.dialog.set("play", _(u"&Play"))
   self.playing = None
 
  def postprocess(self):
