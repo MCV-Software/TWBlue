@@ -60,6 +60,8 @@ def compose_tweet(tweet, db, relative_times):
    try:
     oldtext=text
     text=twishort.get_full_text(tweet['long_uri'])
+    try: text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(text))
+    except KeyError: pass
    except:
     text=oldtext
  tweet["text"] = text
