@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.50\n"
-"POT-Creation-Date: 2015-08-04 13:37+Hora de verano central (Mxico)\n"
+"POT-Creation-Date: 2015-09-04 08:51+Hora de verano central (Mxico)\n"
 "PO-Revision-Date: 2015-06-28 14:11-0600\n"
 "Last-Translator: Manuel Cortéz <manuel@manuelcortez.net>\n"
 "Language-Team: Salva Doménech, Juan Carlos Rivilla, Ángel Heras Parilla "
@@ -20,177 +20,179 @@ msgstr ""
 msgid "This action is not supported for this buffer"
 msgstr "El buffer actual no suporta aquesta acció"
 
-#: ../src\controller\buffersController.py:128 ../src\wxUI\buffers\base.py:24
+#: ../src\controller\buffersController.py:128
+#: ../src\controller\buffersController.py:957 ../src\wxUI\buffers\base.py:24
 #: ../src\wxUI\buffers\events.py:14 ../src\wxUI\buffers\trends.py:17
-#: ../src\wxUI\dialogs\message.py:250 ../src\wxUI\sysTrayIcon.py:33
+#: ../src\wxUI\dialogs\message.py:251 ../src\wxUI\sysTrayIcon.py:33
 msgid "Tweet"
 msgstr "Tuit"
 
 #: ../src\controller\buffersController.py:129
+#: ../src\controller\buffersController.py:958
 msgid "Write the tweet here"
 msgstr "Escriu el tuit aquí"
 
-#: ../src\controller\buffersController.py:297
-#: ../src\controller\buffersController.py:667
+#: ../src\controller\buffersController.py:312
+#: ../src\controller\buffersController.py:753
 msgid "%s items retrieved"
 msgstr "%s elements descarregats"
 
-#: ../src\controller\buffersController.py:317
+#: ../src\controller\buffersController.py:332
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Aquest buffer no es una liniatemporal; no es pot eliminar."
 
-#: ../src\controller\buffersController.py:378
+#: ../src\controller\buffersController.py:448
 msgid "Reply to %s"
 msgstr "Respondre a %s"
 
-#: ../src\controller\buffersController.py:378
+#: ../src\controller\buffersController.py:448
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
 msgid "Reply"
 msgstr "Respondre"
 
-#: ../src\controller\buffersController.py:405
+#: ../src\controller\buffersController.py:475
 msgid "Direct message to %s"
 msgstr "Missatge directe a %s"
 
-#: ../src\controller\buffersController.py:405
-#: ../src\controller\mainController.py:1105
+#: ../src\controller\buffersController.py:475
+#: ../src\controller\mainController.py:1125
 msgid "New direct message"
 msgstr "Nou missatge directe"
 
-#: ../src\controller\buffersController.py:426
+#: ../src\controller\buffersController.py:496
 msgid "Add your comment to the tweet"
 msgstr "Afegeix el teu comentari al tuit"
 
-#: ../src\controller\buffersController.py:426
+#: ../src\controller\buffersController.py:496
 #: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\commonMessageDialogs.py:9 ../src\wxUI\dialogs\message.py:126
 msgid "Retweet"
 msgstr "Retuit"
 
-#: ../src\controller\buffersController.py:498
+#: ../src\controller\buffersController.py:567
 msgid "Opening URL..."
 msgstr "Obrint URL..."
 
-#: ../src\controller\buffersController.py:533
+#: ../src\controller\buffersController.py:602
 msgid "User details"
 msgstr "Detalls de l'usuari"
 
-#: ../src\controller\buffersController.py:582
+#: ../src\controller\buffersController.py:651
 msgid "Empty"
 msgstr "Buit"
 
-#: ../src\controller\buffersController.py:626
+#: ../src\controller\buffersController.py:712
 msgid "Mention to %s"
 msgstr "Mencionar a %s"
 
-#: ../src\controller\buffersController.py:626 ../src\wxUI\buffers\people.py:15
+#: ../src\controller\buffersController.py:712 ../src\wxUI\buffers\people.py:15
 msgid "Mention"
 msgstr "Menció"
 
-#: ../src\controller\mainController.py:250
+#: ../src\controller\mainController.py:254
 msgid "Ready"
 msgstr "Preparat"
 
-#: ../src\controller\mainController.py:281
+#: ../src\controller\mainController.py:286
 msgid "Home"
 msgstr "Principal"
 
-#: ../src\controller\mainController.py:285
+#: ../src\controller\mainController.py:290
 msgid "Mentions"
 msgstr "Mencions"
 
-#: ../src\controller\mainController.py:289
+#: ../src\controller\mainController.py:294
 msgid "Direct messages"
 msgstr "Missatges directes"
 
-#: ../src\controller\mainController.py:293
+#: ../src\controller\mainController.py:298
 msgid "Sent direct messages"
 msgstr "Missatges directes enviats"
 
-#: ../src\controller\mainController.py:297
+#: ../src\controller\mainController.py:302
 msgid "Sent tweets"
 msgstr "Tuits enviats"
 
-#: ../src\controller\mainController.py:302
-#: ../src\controller\mainController.py:1221
-#: ../src\wxUI\dialogs\userSelection.py:18
+#: ../src\controller\mainController.py:307
+#: ../src\controller\mainController.py:1248
+#: ../src\wxUI\dialogs\userSelection.py:20
 msgid "Favourites"
 msgstr "Favorits"
 
-#: ../src\controller\mainController.py:306
-#: ../src\controller\mainController.py:1226
+#: ../src\controller\mainController.py:311
+#: ../src\controller\mainController.py:1253
 msgid "Followers"
 msgstr "Seguidors"
 
-#: ../src\controller\mainController.py:310
-#: ../src\controller\mainController.py:1231
+#: ../src\controller\mainController.py:315
+#: ../src\controller\mainController.py:1258
 msgid "Friends"
 msgstr "Amics"
 
-#: ../src\controller\mainController.py:314
-#: ../src\controller\mainController.py:1236
+#: ../src\controller\mainController.py:319
+#: ../src\controller\mainController.py:1263
 msgid "Blocked users"
 msgstr "Usuaris bloquejats"
 
-#: ../src\controller\mainController.py:318
-#: ../src\controller\mainController.py:1241
+#: ../src\controller\mainController.py:323
+#: ../src\controller\mainController.py:1268
 msgid "Muted users"
 msgstr "Usuaris silenciats"
 
-#: ../src\controller\mainController.py:322
-#: ../src\controller\mainController.py:1246
+#: ../src\controller\mainController.py:327
+#: ../src\controller\mainController.py:1273
 msgid "Events"
 msgstr "Esdeveniments"
 
-#: ../src\controller\mainController.py:325
+#: ../src\controller\mainController.py:330
 msgid "Timelines"
 msgstr "Línies temporals"
 
-#: ../src\controller\mainController.py:329
-#: ../src\controller\mainController.py:737
+#: ../src\controller\mainController.py:334
+#: ../src\controller\mainController.py:756
 #, fuzzy
 msgid "Timeline for {}"
 msgstr "Línia temporal de %s"
 
-#: ../src\controller\mainController.py:332
+#: ../src\controller\mainController.py:337
 msgid "Favourites timelines"
 msgstr "Línies temporals favorites"
 
-#: ../src\controller\mainController.py:336
-#: ../src\controller\mainController.py:749
+#: ../src\controller\mainController.py:341
+#: ../src\controller\mainController.py:771
 #, fuzzy
 msgid "Favourites timeline for {}"
 msgstr "Línies temporals favorites"
 
-#: ../src\controller\mainController.py:341 ../src\wxUI\dialogs\lists.py:12
+#: ../src\controller\mainController.py:346 ../src\wxUI\dialogs\lists.py:12
 msgid "Lists"
 msgstr "Llistes"
 
-#: ../src\controller\mainController.py:346
-#: ../src\controller\mainController.py:1256
+#: ../src\controller\mainController.py:351
+#: ../src\controller\mainController.py:1284
 msgid "List for {}"
 msgstr "Llista per {}"
 
-#: ../src\controller\mainController.py:349
+#: ../src\controller\mainController.py:354
 msgid "Searches"
 msgstr "Recerques"
 
-#: ../src\controller\mainController.py:353
-#: ../src\controller\mainController.py:424
+#: ../src\controller\mainController.py:358
+#: ../src\controller\mainController.py:416
 #, fuzzy
 msgid "Search for {}"
 msgstr "Cercar per %s"
 
-#: ../src\controller\mainController.py:361
-#: ../src\controller\mainController.py:795
+#: ../src\controller\mainController.py:368
+#: ../src\controller\mainController.py:817
 msgid "Trending topics for %s"
 msgstr "Tendències de %s"
 
-#: ../src\controller\mainController.py:443
-#: ../src\controller\mainController.py:890
-#: ../src\controller\mainController.py:909
-#: ../src\controller\mainController.py:929
-#: ../src\controller\mainController.py:949
+#: ../src\controller\mainController.py:435
+#: ../src\controller\mainController.py:912
+#: ../src\controller\mainController.py:931
+#: ../src\controller\mainController.py:950
+#: ../src\controller\mainController.py:969
 msgid ""
 "No session is currently in focus. Focus a session with the next or previous "
 "session shortcut."
@@ -198,97 +200,98 @@ msgstr ""
 "No hi ha cap sessió en el focus. Focalitza una sessió amb les dreceres "
 "d'anterior o següent sessió."
 
-#: ../src\controller\mainController.py:447
+#: ../src\controller\mainController.py:439
 #, fuzzy
 msgid "Empty buffer."
 msgstr "Buidar buffer"
 
-#: ../src\controller\mainController.py:454
+#: ../src\controller\mainController.py:446
 msgid "{0} not found."
 msgstr ""
 
-#: ../src\controller\mainController.py:490
+#: ../src\controller\mainController.py:482
+#: ../src\controller\mainController.py:509
 msgid "Select the user"
 msgstr "Selecciona l'usuari"
 
-#: ../src\controller\mainController.py:768
+#: ../src\controller\mainController.py:790
 msgid "Conversation with {0}"
 msgstr ""
 
-#: ../src\controller\mainController.py:812
-#: ../src\controller\mainController.py:831
+#: ../src\controller\mainController.py:834
+#: ../src\controller\mainController.py:853
 msgid "There are no coordinates in this tweet"
 msgstr "En aquest tuit no hi ha coordenades."
 
-#: ../src\controller\mainController.py:814
-#: ../src\controller\mainController.py:833
+#: ../src\controller\mainController.py:836
+#: ../src\controller\mainController.py:855
 msgid "There are no results for the coordinates in this tweet"
 msgstr "No hi ha resultats per a les coordenades d'aquest tuit."
 
-#: ../src\controller\mainController.py:816
-#: ../src\controller\mainController.py:835
+#: ../src\controller\mainController.py:838
+#: ../src\controller\mainController.py:857
 msgid "Error decoding coordinates. Try again later."
 msgstr "Error codificant les coordenades. Si et plau, prova-ho més tard."
 
-#: ../src\controller\mainController.py:940
-#: ../src\controller\mainController.py:959
+#: ../src\controller\mainController.py:960
+#: ../src\controller\mainController.py:979
 msgid "%s, %s of %s"
 msgstr "%s, %s de %s"
 
-#: ../src\controller\mainController.py:942
-#: ../src\controller\mainController.py:961
-#: ../src\controller\mainController.py:982
-#: ../src\controller\mainController.py:1003
+#: ../src\controller\mainController.py:962
+#: ../src\controller\mainController.py:981
+#: ../src\controller\mainController.py:1002
+#: ../src\controller\mainController.py:1023
 msgid "%s. Empty"
 msgstr "%s. buit"
 
-#: ../src\controller\mainController.py:974
+#: ../src\controller\mainController.py:994
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: No s'ha iniciat sessió a Twitter amb aquest compte"
 
-#: ../src\controller\mainController.py:980
-#: ../src\controller\mainController.py:1001
+#: ../src\controller\mainController.py:1000
+#: ../src\controller\mainController.py:1021
 msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s de %s"
 
-#: ../src\controller\mainController.py:995
+#: ../src\controller\mainController.py:1015
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: No s'ha iniciat sessió a Twitter amb aquest compte"
 
-#: ../src\controller\mainController.py:1096
+#: ../src\controller\mainController.py:1116
 msgid "One mention from %s "
 msgstr "Una menció de %s"
 
-#: ../src\controller\mainController.py:1185
-#: ../src\controller\mainController.py:1194
+#: ../src\controller\mainController.py:1205
+#: ../src\controller\mainController.py:1214
 msgid "One tweet from %s"
 msgstr "Un tuit de %s"
 
-#: ../src\controller\mainController.py:1251
+#: ../src\controller\mainController.py:1278
 msgid "This list is already opened"
 msgstr "Aquesta llista ja està oberta."
 
-#: ../src\controller\mainController.py:1309
+#: ../src\controller\mainController.py:1337
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "La lectura automàtica de tuits per a aquest buffer està activada."
 
-#: ../src\controller\mainController.py:1312
+#: ../src\controller\mainController.py:1340
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "La lectura automàtica de tuits per a aquest buffer està desactivada."
 
-#: ../src\controller\mainController.py:1318
+#: ../src\controller\mainController.py:1346
 msgid "Session mute on"
 msgstr "Silenci de sessió activat"
 
-#: ../src\controller\mainController.py:1321
+#: ../src\controller\mainController.py:1349
 msgid "Session mute off"
 msgstr "Silenci de sessió desactivat."
 
-#: ../src\controller\mainController.py:1328
+#: ../src\controller\mainController.py:1356
 msgid "Buffer mute on"
 msgstr "Silenci de buffer activat"
 
-#: ../src\controller\mainController.py:1331
+#: ../src\controller\mainController.py:1359
 msgid "Buffer mute off"
 msgstr "Silenci de buffer desactivat"
 
@@ -296,74 +299,74 @@ msgstr "Silenci de buffer desactivat"
 msgid "Copied"
 msgstr "Copiat"
 
-#: ../src\controller\messages.py:43
+#: ../src\controller\messages.py:44
 msgid "Translated"
 msgstr "Traduït"
 
-#: ../src\controller\messages.py:50
+#: ../src\controller\messages.py:51
 msgid "There's no URL to be shortened"
 msgstr "No hi ha cap adreça per escurçar."
 
-#: ../src\controller\messages.py:54 ../src\controller\messages.py:61
+#: ../src\controller\messages.py:55 ../src\controller\messages.py:62
 msgid "URL shortened"
 msgstr "Adreça escurçada."
 
-#: ../src\controller\messages.py:67
+#: ../src\controller\messages.py:68
 msgid "There's no URL to be expanded"
 msgstr "No hi ha cap adreça per expandir."
 
-#: ../src\controller\messages.py:71 ../src\controller\messages.py:78
+#: ../src\controller\messages.py:72 ../src\controller\messages.py:79
 msgid "URL expanded"
 msgstr "Adreça expandida"
 
-#: ../src\controller\messages.py:89
+#: ../src\controller\messages.py:90
 msgid "%s - %s of %d characters"
 msgstr "%s - %s de %d caracters"
 
-#: ../src\controller\messages.py:93
+#: ../src\controller\messages.py:94
 #, fuzzy
 msgid "%s - %s characters"
 msgstr "%s - %s de %d caracters"
 
-#: ../src\controller\messages.py:109
+#: ../src\controller\messages.py:111
 msgid "Unable to upload the audio"
 msgstr "Impossible carregar l'audio"
 
-#: ../src\controller\messages.py:124 ../src\controller\messages.py:132
+#: ../src\controller\messages.py:127 ../src\controller\messages.py:135
 #: ../src\wxUI\dialogs\update_profile.py:77
 msgid "Discard image"
 msgstr "Descartar imatge"
 
-#: ../src\controller\messages.py:127 ../src\controller\user.py:53
+#: ../src\controller\messages.py:130 ../src\controller\user.py:53
 #: ../src\extra\AudioUploader\audioUploader.py:127
 msgid "Discarded"
 msgstr "Descartat"
 
-#: ../src\controller\messages.py:128 ../src\wxUI\dialogs\message.py:133
+#: ../src\controller\messages.py:131 ../src\wxUI\dialogs\message.py:133
 #: ../src\wxUI\dialogs\update_profile.py:32
 #: ../src\wxUI\dialogs\update_profile.py:75
 msgid "Upload a picture"
 msgstr "Carregar una fotografia"
 
-#: ../src\controller\settings.py:119 ../src\controller\settings.py:178
+#: ../src\controller\settings.py:121 ../src\controller\settings.py:180
 #: ../src\wxUI\dialogs\configuration.py:100
 msgid "Ask"
 msgstr "Pregunta"
 
-#: ../src\controller\settings.py:121 ../src\controller\settings.py:180
+#: ../src\controller\settings.py:123 ../src\controller\settings.py:182
 #: ../src\wxUI\dialogs\configuration.py:100
 msgid "Retweet without comments"
 msgstr "Retuiteja sense comentaris"
 
-#: ../src\controller\settings.py:123 ../src\wxUI\dialogs\configuration.py:100
+#: ../src\controller\settings.py:125 ../src\wxUI\dialogs\configuration.py:100
 msgid "Retweet with comments"
 msgstr "Retuiteja amb comentaris"
 
-#: ../src\controller\settings.py:155
+#: ../src\controller\settings.py:157
 msgid "Account settings for %s"
 msgstr "Configuració del compte per  a  %s"
 
-#: ../src\controller\settings.py:263 ../src\wxUI\dialogs\configuration.py:291
+#: ../src\controller\settings.py:265 ../src\wxUI\dialogs\configuration.py:291
 #, fuzzy
 msgid "Connect your Pocket account"
 msgstr "Desvincular compte de Dropbox"
@@ -424,7 +427,7 @@ msgstr "Tuits: %s\n"
 msgid "Favourites: %s"
 msgstr "Favorits: %s"
 
-#: ../src\controller\userActionsController.py:69
+#: ../src\controller\userActionsController.py:75
 msgid "You can't ignore direct messages"
 msgstr "No pots ignorar els missatges directes."
 
@@ -713,6 +716,8 @@ msgstr ""
 #: ../src\extra\SpellChecker\wx_ui.py:76 ../src\issueReporter\wx_ui.py:83
 #: ../src\issueReporter\wx_ui.py:86 ../src\wxUI\commonMessageDialogs.py:38
 #: ../src\wxUI\commonMessageDialogs.py:50
+#: ../src\wxUI\commonMessageDialogs.py:57
+#: ../src\wxUI\commonMessageDialogs.py:60
 msgid "Error"
 msgstr "Error"
 
@@ -1180,8 +1185,8 @@ msgid "autodetect"
 msgstr "Autodetectar"
 
 #: ../src\extra\translator\wx_ui.py:25 ../src\wxUI\dialogs\message.py:140
-#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:279
-#: ../src\wxUI\dialogs\message.py:334
+#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:280
+#: ../src\wxUI\dialogs\message.py:335
 msgid "Translate message"
 msgstr "Traduir missatge"
 
@@ -1518,7 +1523,7 @@ msgid "Keystroke"
 msgstr "Combinació de teclat"
 
 #: ../src\keystrokeEditor\wx_ui.py:13 ../src\wxUI\dialogs\userActions.py:9
-#: ../src\wxUI\dialogs\userActions.py:16
+#: ../src\wxUI\dialogs\userActions.py:18
 msgid "Action"
 msgstr "Acció"
 
@@ -1526,57 +1531,61 @@ msgstr "Acció"
 msgid "Edit"
 msgstr "Editar"
 
+#: ../src\keystrokeEditor\wx_ui.py:20
+msgid "Execute action"
+msgstr ""
+
 #: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:349
 #: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\message.py:144
-#: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:280
-#: ../src\wxUI\dialogs\message.py:335 ../src\wxUI\dialogs\search.py:26
+#: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:281
+#: ../src\wxUI\dialogs\message.py:336 ../src\wxUI\dialogs\search.py:26
 #: ../src\wxUI\dialogs\show_user.py:17 ../src\wxUI\dialogs\trends.py:28
 #: ../src\wxUI\dialogs\update_profile.py:35
-#: ../src\wxUI\dialogs\userActions.py:40
-#: ../src\wxUI\dialogs\userSelection.py:28 ../src\wxUI\dialogs\utils.py:35
+#: ../src\wxUI\dialogs\userActions.py:42
+#: ../src\wxUI\dialogs\userSelection.py:30 ../src\wxUI\dialogs\utils.py:37
 msgid "Close"
 msgstr "Tancar"
 
-#: ../src\keystrokeEditor\wx_ui.py:43
+#: ../src\keystrokeEditor\wx_ui.py:45
 msgid "Editing keystroke"
 msgstr "Editant combinació de tecles"
 
-#: ../src\keystrokeEditor\wx_ui.py:46
+#: ../src\keystrokeEditor\wx_ui.py:48
 msgid "Control"
 msgstr "Control"
 
-#: ../src\keystrokeEditor\wx_ui.py:47
+#: ../src\keystrokeEditor\wx_ui.py:49
 msgid "Alt"
 msgstr "Alt"
 
-#: ../src\keystrokeEditor\wx_ui.py:48
+#: ../src\keystrokeEditor\wx_ui.py:50
 msgid "Shift"
 msgstr "Shift"
 
-#: ../src\keystrokeEditor\wx_ui.py:49
+#: ../src\keystrokeEditor\wx_ui.py:51
 msgid "Windows"
 msgstr "Windows"
 
-#: ../src\keystrokeEditor\wx_ui.py:55
+#: ../src\keystrokeEditor\wx_ui.py:57
 msgid "Key"
 msgstr "Tecla"
 
-#: ../src\keystrokeEditor\wx_ui.py:60 ../src\wxUI\dialogs\find.py:18
+#: ../src\keystrokeEditor\wx_ui.py:62 ../src\wxUI\dialogs\find.py:18
 #: ../src\wxUI\dialogs\search.py:24 ../src\wxUI\dialogs\trends.py:26
-#: ../src\wxUI\dialogs\userActions.py:38
-#: ../src\wxUI\dialogs\userSelection.py:26 ../src\wxUI\dialogs\utils.py:32
+#: ../src\wxUI\dialogs\userActions.py:40
+#: ../src\wxUI\dialogs\userSelection.py:28 ../src\wxUI\dialogs\utils.py:34
 msgid "OK"
 msgstr "Acceptar"
 
-#: ../src\keystrokeEditor\wx_ui.py:73
+#: ../src\keystrokeEditor\wx_ui.py:75
 msgid "You need to use the Windows key"
 msgstr "Necessites utilitzar la tecla Windows"
 
-#: ../src\keystrokeEditor\wx_ui.py:73 ../src\keystrokeEditor\wx_ui.py:76
+#: ../src\keystrokeEditor\wx_ui.py:75 ../src\keystrokeEditor\wx_ui.py:78
 msgid "Invalid keystroke"
 msgstr "Combinació de teclat invàlida"
 
-#: ../src\keystrokeEditor\wx_ui.py:76
+#: ../src\keystrokeEditor\wx_ui.py:78
 msgid "You must provide a character for the keystroke"
 msgstr "Has de triar una lletra per a la cominació ràpida de teclat"
 
@@ -1584,11 +1593,11 @@ msgstr "Has de triar una lletra per a la cominació ràpida de teclat"
 msgid "User default"
 msgstr "Usuari per defecte"
 
-#: ../src\sessionmanager\session.py:185
+#: ../src\sessionmanager\session.py:186
 msgid "%s failed.  Reason: %s"
 msgstr "%s ha fallat. Raó: %s"
 
-#: ../src\sessionmanager\session.py:191
+#: ../src\sessionmanager\session.py:192
 msgid "%s succeeded."
 msgstr "%s amb èxit"
 
@@ -1860,7 +1869,7 @@ msgstr "data"
 #: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\people.py:10
 #: ../src\wxUI\buffers\user_searches.py:9
 #: ../src\wxUI\dialogs\userActions.py:10
-#: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:29
+#: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:30
 msgid "User"
 msgstr "Usuari"
 
@@ -1916,7 +1925,7 @@ msgid ""
 msgstr ""
 "Estàs segur que vols eliminar aquest missatge? també s'eliminarà de Twitter."
 
-#: ../src\wxUI\commonMessageDialogs.py:12 ../src\wxUI\dialogs\lists.py:133
+#: ../src\wxUI\commonMessageDialogs.py:12 ../src\wxUI\dialogs\lists.py:134
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -2037,6 +2046,16 @@ msgstr ""
 #: ../src\wxUI\commonMessageDialogs.py:53
 msgid "We need your help"
 msgstr ""
+
+#: ../src\wxUI\commonMessageDialogs.py:57
+#, fuzzy
+msgid "This user has no tweets. {0} can't create a timeline."
+msgstr "Aquest usuari no té tuits. No pots obrir la seva línia temporal."
+
+#: ../src\wxUI\commonMessageDialogs.py:60
+#, fuzzy
+msgid "This user has no favorited tweets. {0} can't create a timeline."
+msgstr "Aquest usuari no té tuits. No pots obrir la seva línia temporal."
 
 #: ../src\wxUI\dialogs\configuration.py:14
 msgid "Language"
@@ -2359,7 +2378,7 @@ msgstr "Afegir"
 msgid "Select a list to remove the user"
 msgstr "Selecciona una llista per esborrar a l'usuari"
 
-#: ../src\wxUI\dialogs\lists.py:133
+#: ../src\wxUI\dialogs\lists.py:134
 msgid "Do you really want to delete this list?"
 msgstr "Realment vols eliminar aquesta llista?"
 
@@ -2386,8 +2405,8 @@ msgid "Shorten URL"
 msgstr "Escurçar adreça"
 
 #: ../src\wxUI\dialogs\message.py:77 ../src\wxUI\dialogs\message.py:137
-#: ../src\wxUI\dialogs\message.py:198 ../src\wxUI\dialogs\message.py:277
-#: ../src\wxUI\dialogs\message.py:332
+#: ../src\wxUI\dialogs\message.py:198 ../src\wxUI\dialogs\message.py:278
+#: ../src\wxUI\dialogs\message.py:333
 msgid "Expand URL"
 msgstr "Expandir adreça"
 
@@ -2396,7 +2415,8 @@ msgid "Translate..."
 msgstr "Traduir..."
 
 #: ../src\wxUI\dialogs\message.py:81 ../src\wxUI\dialogs\message.py:141
-#: ../src\wxUI\dialogs\message.py:186
+#: ../src\wxUI\dialogs\message.py:186 ../src\wxUI\dialogs\userActions.py:13
+#: ../src\wxUI\dialogs\userSelection.py:13 ../src\wxUI\dialogs\utils.py:29
 msgid "&Autocomplete users"
 msgstr "&Autocompletar usuaris."
 
@@ -2416,7 +2436,7 @@ msgid "Select the picture to be uploaded"
 msgstr "Selecciona la fotografia per carregar."
 
 #: ../src\wxUI\dialogs\message.py:134 ../src\wxUI\dialogs\message.py:195
-#: ../src\wxUI\dialogs\message.py:276 ../src\wxUI\dialogs\message.py:331
+#: ../src\wxUI\dialogs\message.py:277 ../src\wxUI\dialogs\message.py:332
 msgid "Spelling correction"
 msgstr "Correcció d'escriptura."
 
@@ -2424,27 +2444,27 @@ msgstr "Correcció d'escriptura."
 msgid "Recipient"
 msgstr "Destinatari"
 
-#: ../src\wxUI\dialogs\message.py:236
+#: ../src\wxUI\dialogs\message.py:237
 msgid "Men&tion to all"
 msgstr "&Mencionar a tothom"
 
-#: ../src\wxUI\dialogs\message.py:245
+#: ../src\wxUI\dialogs\message.py:246
 msgid "Tweet - %i characters "
 msgstr "Tuit - %i caràcters"
 
-#: ../src\wxUI\dialogs\message.py:262
+#: ../src\wxUI\dialogs\message.py:263
 msgid "Retweets: "
 msgstr "Retuit."
 
-#: ../src\wxUI\dialogs\message.py:267
+#: ../src\wxUI\dialogs\message.py:268
 msgid "Favourites: "
 msgstr "Favorits: "
 
-#: ../src\wxUI\dialogs\message.py:317
+#: ../src\wxUI\dialogs\message.py:318
 msgid "View"
 msgstr "veure"
 
-#: ../src\wxUI\dialogs\message.py:319
+#: ../src\wxUI\dialogs\message.py:320
 msgid "Item"
 msgstr "Item"
 
@@ -2456,7 +2476,7 @@ msgstr "Cerca a Twitter"
 msgid "Search"
 msgstr "Cerca"
 
-#: ../src\wxUI\dialogs\search.py:18 ../src\wxUI\dialogs\userSelection.py:17
+#: ../src\wxUI\dialogs\search.py:18 ../src\wxUI\dialogs\userSelection.py:19
 msgid "Tweets"
 msgstr "Tuits"
 
@@ -2516,35 +2536,35 @@ msgstr "Actualitzar perfil"
 msgid "Select URL"
 msgstr "Selecciona adreça"
 
-#: ../src\wxUI\dialogs\userActions.py:17
+#: ../src\wxUI\dialogs\userActions.py:19
 msgid "Follow"
 msgstr "Seguir"
 
-#: ../src\wxUI\dialogs\userActions.py:18
+#: ../src\wxUI\dialogs\userActions.py:20
 msgid "Unfollow"
 msgstr "Deixar de seguir"
 
-#: ../src\wxUI\dialogs\userActions.py:19
+#: ../src\wxUI\dialogs\userActions.py:21
 msgid "Mute"
 msgstr "Silenciar"
 
-#: ../src\wxUI\dialogs\userActions.py:20
+#: ../src\wxUI\dialogs\userActions.py:22
 msgid "Unmute"
 msgstr "Dessilenciar"
 
-#: ../src\wxUI\dialogs\userActions.py:21
+#: ../src\wxUI\dialogs\userActions.py:23
 msgid "Block"
 msgstr "Bloquejar"
 
-#: ../src\wxUI\dialogs\userActions.py:22
+#: ../src\wxUI\dialogs\userActions.py:24
 msgid "Unblock"
 msgstr "Desbloquejar"
 
-#: ../src\wxUI\dialogs\userActions.py:23
+#: ../src\wxUI\dialogs\userActions.py:25
 msgid "Report as spam"
 msgstr "Reportar com a spam"
 
-#: ../src\wxUI\dialogs\userActions.py:24
+#: ../src\wxUI\dialogs\userActions.py:26
 msgid "Ignore tweets from this client"
 msgstr "Ignorar tuits d'aquest client"
 
@@ -2552,9 +2572,84 @@ msgstr "Ignorar tuits d'aquest client"
 msgid "Timeline for %s"
 msgstr "Línia temporal de %s"
 
-#: ../src\wxUI\dialogs\userSelection.py:16
+#: ../src\wxUI\dialogs\userSelection.py:18
 msgid "Buffer type"
 msgstr "Tipus de bufer."
+
+#: ../src\wxUI\menus.py:7 ../src\wxUI\view.py:29
+msgid "&Retweet"
+msgstr "&Retuit"
+
+#: ../src\wxUI\menus.py:9 ../src\wxUI\menus.py:31 ../src\wxUI\view.py:28
+msgid "Re&ply"
+msgstr "&Respondre"
+
+#: ../src\wxUI\menus.py:11 ../src\wxUI\view.py:30
+msgid "Add to &favourites"
+msgstr "&Afegir a favorit"
+
+#: ../src\wxUI\menus.py:13 ../src\wxUI\view.py:31
+msgid "Remove from favo&urites"
+msgstr "&Esborrar de favorits"
+
+#: ../src\wxUI\menus.py:15 ../src\wxUI\menus.py:33 ../src\wxUI\menus.py:49
+msgid "&Open URL"
+msgstr "&Obrir URL..."
+
+#: ../src\wxUI\menus.py:17 ../src\wxUI\menus.py:35 ../src\wxUI\menus.py:51
+msgid "&Play audio"
+msgstr "&Reproduir audio"
+
+#: ../src\wxUI\menus.py:19 ../src\wxUI\menus.py:53 ../src\wxUI\view.py:32
+msgid "&Show tweet"
+msgstr "&Veure tuit"
+
+#: ../src\wxUI\menus.py:21 ../src\wxUI\menus.py:39 ../src\wxUI\menus.py:55
+#: ../src\wxUI\menus.py:65 ../src\wxUI\menus.py:82 ../src\wxUI\menus.py:94
+msgid "&Copy to clipboard"
+msgstr "&Copiar al portapapers"
+
+#: ../src\wxUI\menus.py:23 ../src\wxUI\menus.py:41 ../src\wxUI\menus.py:57
+#: ../src\wxUI\menus.py:67 ../src\wxUI\view.py:35
+msgid "&Delete"
+msgstr "&Eliminar"
+
+#: ../src\wxUI\menus.py:25 ../src\wxUI\menus.py:43 ../src\wxUI\menus.py:84
+msgid "&User actions..."
+msgstr "&accions d'usuari..."
+
+#: ../src\wxUI\menus.py:37
+msgid "&Show direct message"
+msgstr "&Mostrar missatge directe"
+
+#: ../src\wxUI\menus.py:63
+msgid "&Show event"
+msgstr "&Veure esdeveniment."
+
+#: ../src\wxUI\menus.py:73
+#, fuzzy
+msgid "Direct &message"
+msgstr "Missatge directe"
+
+#: ../src\wxUI\menus.py:75 ../src\wxUI\view.py:44
+msgid "&View lists"
+msgstr "&Veure llistes"
+
+#: ../src\wxUI\menus.py:78 ../src\wxUI\view.py:46
+msgid "Show user &profile"
+msgstr "&Veure perfil de l'usuari"
+
+#: ../src\wxUI\menus.py:80
+msgid "&Show user"
+msgstr "&Veure usuari."
+
+#: ../src\wxUI\menus.py:90
+msgid "&Tweet about this trend"
+msgstr "Tuit sobre aquesta tendència."
+
+#: ../src\wxUI\menus.py:92
+msgid "&Show item"
+msgstr "Mostrar item."
 
 #: ../src\wxUI\sysTrayIcon.py:34 ../src\wxUI\view.py:22
 msgid "&Global settings"
@@ -2572,7 +2667,7 @@ msgstr "&Actualitzar perfil"
 msgid "&Show / hide"
 msgstr "&Veure/ amagar"
 
-#: ../src\wxUI\sysTrayIcon.py:38 ../src\wxUI\view.py:63
+#: ../src\wxUI\sysTrayIcon.py:38 ../src\wxUI\view.py:62
 msgid "&Documentation"
 msgstr "&Documentació"
 
@@ -2612,29 +2707,9 @@ msgstr "&Editar combinacions de tecles"
 msgid "E&xit"
 msgstr "&Sortir"
 
-#: ../src\wxUI\view.py:27 ../src\wxUI\view.py:74
+#: ../src\wxUI\view.py:27 ../src\wxUI\view.py:73
 msgid "&Tweet"
 msgstr "&Tuit"
-
-#: ../src\wxUI\view.py:28
-msgid "Re&ply"
-msgstr "&Respondre"
-
-#: ../src\wxUI\view.py:29
-msgid "&Retweet"
-msgstr "&Retuit"
-
-#: ../src\wxUI\view.py:30
-msgid "Add to &favourites"
-msgstr "&Afegir a favorit"
-
-#: ../src\wxUI\view.py:31
-msgid "Remove from favo&urites"
-msgstr "&Esborrar de favorits"
-
-#: ../src\wxUI\view.py:32
-msgid "&Show tweet"
-msgstr "&Veure tuit"
 
 #: ../src\wxUI\view.py:33
 msgid "View &address"
@@ -2643,10 +2718,6 @@ msgstr "Veure &Adreça"
 #: ../src\wxUI\view.py:34
 msgid "View conversa&tion"
 msgstr "Veure &conversa"
-
-#: ../src\wxUI\view.py:35
-msgid "&Delete"
-msgstr "&Eliminar"
 
 #: ../src\wxUI\view.py:39
 msgid "&Actions..."
@@ -2668,97 +2739,89 @@ msgstr "&Afegir a llista"
 msgid "R&emove from list"
 msgstr "&Eliminar de llista"
 
-#: ../src\wxUI\view.py:45
-msgid "&View lists"
-msgstr "&Veure llistes"
-
 #: ../src\wxUI\view.py:47
-msgid "Show user &profile"
-msgstr "&Veure perfil de l'usuari"
-
-#: ../src\wxUI\view.py:48
 msgid "V&iew favourites"
 msgstr "&Veure favorits"
 
-#: ../src\wxUI\view.py:52
+#: ../src\wxUI\view.py:51
 msgid "New &trending topics buffer..."
 msgstr "Nou &bufer de tendències"
 
-#: ../src\wxUI\view.py:53
+#: ../src\wxUI\view.py:52
 #, fuzzy
 msgid "Find a string in the currently focused buffer..."
 msgstr "Interactua amb el tuit seleccionat."
 
-#: ../src\wxUI\view.py:54
+#: ../src\wxUI\view.py:53
 msgid "&Load previous items"
 msgstr "&carregar twits més antics"
 
-#: ../src\wxUI\view.py:56
+#: ../src\wxUI\view.py:55
 msgid "&Mute"
 msgstr "&Silenciar"
 
-#: ../src\wxUI\view.py:57
+#: ../src\wxUI\view.py:56
 msgid "&Autoread"
 msgstr "&lectura automàtica"
 
-#: ../src\wxUI\view.py:58
+#: ../src\wxUI\view.py:57
 msgid "&Clear buffer"
 msgstr "&Netejar buffer"
 
-#: ../src\wxUI\view.py:59
+#: ../src\wxUI\view.py:58
 msgid "&Destroy"
 msgstr "&elimina"
 
-#: ../src\wxUI\view.py:64
+#: ../src\wxUI\view.py:63
 msgid "Sounds &tutorial"
 msgstr "&Tutorial de sons"
 
-#: ../src\wxUI\view.py:65
+#: ../src\wxUI\view.py:64
 msgid "&What's new in this version?"
 msgstr "&Què hi ha de nou en aquesta versió?"
 
-#: ../src\wxUI\view.py:67
+#: ../src\wxUI\view.py:66
 msgid "&Check for updates"
 msgstr "&Cercar actualitzacions"
 
-#: ../src\wxUI\view.py:68
+#: ../src\wxUI\view.py:67
 msgid "&Report an error"
 msgstr "&Reportar un problema"
 
-#: ../src\wxUI\view.py:69
+#: ../src\wxUI\view.py:68
 #, fuzzy
 msgid "{0}'s &website"
 msgstr "&Pàgina web de TWBlue"
 
-#: ../src\wxUI\view.py:70
+#: ../src\wxUI\view.py:69
 msgid "About &{0}"
 msgstr ""
 
-#: ../src\wxUI\view.py:73
+#: ../src\wxUI\view.py:72
 msgid "&Application"
 msgstr "&Aplicació"
 
-#: ../src\wxUI\view.py:75
+#: ../src\wxUI\view.py:74
 msgid "&User"
 msgstr "&Usuari"
 
-#: ../src\wxUI\view.py:76
+#: ../src\wxUI\view.py:75
 msgid "&Buffer"
 msgstr "&Buffer"
 
-#: ../src\wxUI\view.py:77
+#: ../src\wxUI\view.py:76
 msgid "&Help"
 msgstr "&Ajuda"
 
-#: ../src\wxUI\view.py:158
+#: ../src\wxUI\view.py:159
 msgid "Address"
 msgstr "Adreça"
 
-#: ../src\wxUI\view.py:181
+#: ../src\wxUI\view.py:182
 msgid "Update"
 msgstr "Actualitzat"
 
-#: ../src\wxUI\view.py:181
+#: ../src\wxUI\view.py:182
 msgid "Your {0} version is up to date"
 msgstr "La teva {0} versió ja està actualitzada."
 
@@ -3114,35 +3177,8 @@ msgstr "La teva {0} versió ja està actualitzada."
 #~ msgid "Do you really want to delete this favourites timeline?"
 #~ msgstr "Realment vols eliminar aquesta líniade favorits?"
 
-#~ msgid "&Open URL"
-#~ msgstr "&Obrir URL..."
-
-#~ msgid "&Play audio"
-#~ msgstr "&Reproduir audio"
-
-#~ msgid "&Copy to clipboard"
-#~ msgstr "&Copiar al portapapers"
-
-#~ msgid "&User actions..."
-#~ msgstr "&accions d'usuari..."
-
-#~ msgid "&Show direct message"
-#~ msgstr "&Mostrar missatge directe"
-
-#~ msgid "&Show event"
-#~ msgstr "&Veure esdeveniment."
-
 #~ msgid "&Mention"
 #~ msgstr "&Menció"
-
-#~ msgid "&Show user"
-#~ msgstr "&Veure usuari."
-
-#~ msgid "&Tweet about this trend"
-#~ msgstr "Tuit sobre aquesta tendència."
-
-#~ msgid "&Show item"
-#~ msgstr "Mostrar item."
 
 #~ msgid "Announce"
 #~ msgstr "Anuncia"
