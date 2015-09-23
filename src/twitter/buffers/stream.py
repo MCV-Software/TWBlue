@@ -33,6 +33,9 @@ class streamer(TwythonStreamer):
 
  def put_data(self, place, data):
   if self.session.db.has_key(place):
+   if utils.find_item(data["id"], self.session.db[place]) != None:
+    log.error("duplicated tweet. Ignoring it...")
+    return
    if self.session.settings["general"]["reverse_timelines"] == False:
     self.session.db[place].append(data)
    else:
