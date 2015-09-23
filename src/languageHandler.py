@@ -69,6 +69,7 @@ def getLanguageDescription(language):
 			"ar":pgettext("languageName","Arabic"),
 			"ne":pgettext("languageName","Nepali"),
 			"sr":pgettext("languageName","Serbian (Latin)"),
+			"ja":pgettext("languageName","Japanese"),
 		}.get(language,None)
 	return desc
 
@@ -195,10 +196,13 @@ def langToWindowsLocale(lang):
 	"gl": "glc",
 	"eu": "euq",
 	"hu": "hun",
+	"hr": "hrv",
 	"it": "ita",
+	"ja": "jpn",
 	"pl": "plk",
 	"pt": "ptb",
 	"ru": "rus",
-	"tr": "trk"
+	"tr": "trk",
+	"sr": "eng",
 	}
 	return languages[lang]
