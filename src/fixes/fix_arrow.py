@@ -11,8 +11,16 @@ def fix():
 	locales.BasqueLocale = BasqueLocale
 	locales.TurkishLocale.names[-1] = "tr_tr"
 	locales.ArabicLocale.names[-1] = "ar_eg"
+	# insert a modified function so if there is no language available in arrow, returns English locale.
+	locales.get_locale = get_locale
 	# We need to reassign the locales list for updating the list with our new contents.
 	locales._locales = locales._map_locales()
+
+def get_locale(name):
+	locale_cls = locales._locales.get(name.lower())
+	if locale_cls is None:
+		return locales.EnglishLocale()
+	return locale_cls()
 
 class CatalaLocale(Locale):
 	names = ['ca', 'ca_ca']
