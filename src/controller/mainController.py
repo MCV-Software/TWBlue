@@ -129,6 +129,7 @@ class Controller(object):
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
   pub.subscribe(self.restart_streams, "restart-streams")
   pub.subscribe(self.execute_action, "execute-action")
+  pub.subscribe(self.search_topic, "search")
   if system == "Windows":
    pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -394,6 +395,10 @@ class Controller(object):
   self.view.delete_buffer(buff)
   self.buffers.remove(buffer)
   del buffer
+
+ def search_topic(self, term):
+  self.search(value=term)
+
 
  def search(self, event=None, value="", *args, **kwargs):
   """ Searches words or users in twitter. This creates a new buffer containing the search results."""

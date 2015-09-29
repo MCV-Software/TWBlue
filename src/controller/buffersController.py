@@ -908,6 +908,7 @@ class trendsBufferController(bufferController):
   self.buffer.name = name
   self.compose_function = self.compose_function_
   self.get_formatted_message = self.get_message
+  self.reply = self.search_topic
 
  def start_stream(self):
   try:
@@ -934,10 +935,12 @@ class trendsBufferController(bufferController):
  def bind_events(self):
   log.debug("Binding events...")
   self.buffer.list.list.Bind(wx.EVT_CHAR_HOOK, self.get_event)
-#  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.tweet_about_this_trend, self.buffer.tweetTrendBtn)
+
 #  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.retweet, self.buffer.retweet)
 #  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.direct_message, self.buffer.dm)
-#  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.search_topic, self.buffer.search_topic)
   widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
   widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
 
@@ -954,11 +957,13 @@ class trendsBufferController(bufferController):
   elif dlg == widgetUtils.NO:
    return False
 
- def interact(self, *args, **kwargs):
-  self.searchfunction(value=self.get_message())
+ def search_topic(self, *args, **kwargs):
+  topic = self.trends[self.buffer.list.get_selected()]["name"]
+  pub.sendMessage("search", term=topic)
 
  def show_menu(self, ev, pos=0, *args, **kwargs):
   menu = menus.trendsPanelMenu()
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.search_topic, menuitem=menu.search_topic)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.tweet_about_this_trend, menuitem=menu.tweetThisTrend)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
