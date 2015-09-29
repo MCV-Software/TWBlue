@@ -83,7 +83,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet):
  original_text = StripChars(original_tweet["text"])
  try: original_text = "rt @%s: %s" % (original_tweet["retweeted_status"]["user"]["screen_name"], StripChars(original_tweet["retweeted_status"]["text"]))
  except KeyError: original_text = "%s" % (StripChars(original_tweet["text"]))
- quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}".format( quoted_tweet["text"], original_user, original_text))
+ quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}").format( quoted_tweet["text"], original_user, original_text)
  quoted_tweet = tweets.clear_url(quoted_tweet)
  return quoted_tweet
 
