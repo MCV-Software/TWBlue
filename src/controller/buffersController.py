@@ -231,7 +231,8 @@ class baseBufferController(bufferController):
   return self.get_message()
 
  def get_message(self):
-  return " ".join(self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"]))
+  tweet = self.get_right_tweet()
+  return " ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"]))
 
  def get_full_tweet(self):
   tweet = self.get_right_tweet()
@@ -603,6 +604,26 @@ class baseBufferController(bufferController):
   if dlg.get_response() == widgetUtils.OK:
    user.profileController(session=self.session, user=dlg.get_user())
   if hasattr(dlg, "destroy"): dlg.destroy()
+
+ def get_quoted_tweet(self, tweet):
+#  try:
+  quoted_tweet = self.session.twitter.twitter.show_status(id=tweet["id"])
+  urls = utils.find_urls_in_text(quoted_tweet["text"])
+  for url in range(0, len(urls)):
+   try:  quoted_tweet["text"] = quoted_tweet["text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
+   except IndexError: pass
+#  except TwythonError as e:
+#   utils.twitter_error(e)
+#   return
+  l = tweets.is_long(quoted_tweet)
+  id = tweets.get_id(l)
+#  try:
+  original_tweet = self.session.twitter.twitter.show_status(id=id)
+  urls = utils.find_urls_in_text(original_tweet["text"])
+  for url in range(0, len(urls)):
+   try:  original_tweet["text"] = original_tweet["text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
+   except IndexError: pass
+  return compose.compose_quoted_tweet(quoted_tweet, original_tweet, self.session.db, self.session.settings["general"]["relative_times"])
 
 class listBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, list_id=None, *args, **kwargs):

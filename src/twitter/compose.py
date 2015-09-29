@@ -10,7 +10,7 @@ import languageHandler
 import arrow
 import logging
 import config
-from long_tweets import twishort
+from long_tweets import twishort, tweets
 log = logging.getLogger("compose")
 
 def StripChars(s):
@@ -64,8 +64,28 @@ def compose_tweet(tweet, db, relative_times):
     except KeyError: pass
    except:
     text=oldtext
+ if tweet.has_key("message"):
+   text = tweet["message"]
+   return [user+", ", text, ts+", ", source]
+
  tweet["text"] = text
  return [user+", ", tweet["text"], ts+", ", source]
+
+def compose_quoted_tweet(quoted_tweet, original_tweet):
+ """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
+ text = StripChars(quoted_tweet["text"])
+ quoting_user = quoted_tweet["user"]["name"]
+ source = re.sub(r"(?s)<.*?>", "", quoted_tweet["source"])
+ try: text = "rt @%s: %s" % (quoted_tweet["retweeted_status"]["user"]["screen_name"], StripChars(quoted_tweet["retweeted_status"]["text"]))
+ except KeyError: text = "%s" % (StripChars(quoted_tweet["text"]))
+ if text[-1] in chars: text=text+"."
+ original_user = original_tweet["user"]["screen_name"]
+ original_text = StripChars(original_tweet["text"])
+ try: original_text = "rt @%s: %s" % (original_tweet["retweeted_status"]["user"]["screen_name"], StripChars(original_tweet["retweeted_status"]["text"]))
+ except KeyError: original_text = "%s" % (StripChars(original_tweet["text"]))
+ quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}".format( quoted_tweet["text"], original_user, original_text))
+ quoted_tweet = tweets.clear_url(quoted_tweet)
+ return quoted_tweet
 
 def compose_followers_list(tweet, db, relative_times=True):
  if system == "Windows":
