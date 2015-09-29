@@ -15,11 +15,21 @@ class listsController(object):
    self.dialog.populate_list(self.get_all_lists())
    widgetUtils.connect_event(self.dialog.createBtn, widgetUtils.BUTTON_PRESSED, self.create_list)
    widgetUtils.connect_event(self.dialog.editBtn, widgetUtils.BUTTON_PRESSED, self.edit_list)
+   widgetUtils.connect_event(self.dialog.deleteBtn, widgetUtils.BUTTON_PRESSED, self.remove_list)
    widgetUtils.connect_event(self.dialog.view, widgetUtils.BUTTON_PRESSED, self.open_list_as_buffer)
+  else:
+   self.dialog = lists.userListViewer(user)
+   self.dialog.populate_list(self.get_user_lists(user))
+   widgetUtils.connect_event(self.dialog.createBtn, widgetUtils.BUTTON_PRESSED, self.subscribe)
+   widgetUtils.connect_event(self.dialog.deleteBtn, widgetUtils.BUTTON_PRESSED, self.unsubscribe)
   self.dialog.get_response()
 
  def get_all_lists(self):
   return [compose.compose_list(item) for item in self.session.db["lists"]]
+
+ def get_user_lists(self, user):
+  self.lists = self.session.twitter.twitter.show_lists(reverse=True, screen_name=user)
+  return [compose.compose_list(item) for item in self.lists]
 
  def create_list(self, *args, **kwargs):
   dialog = lists.createListDialog()
@@ -74,3 +84,22 @@ class listsController(object):
   if self.dialog.lista.get_count() == 0: return
   list = self.session.db["lists"][self.dialog.get_item()]
   pub.sendMessage("create-new-buffer", buffer="list", account=self.session.db["user_name"], create=list["name"])
+
+ def subscribe(self, *args, **kwargs):
+  if self.dialog.lista.get_count() == 0: return
+  list_id = self.lists[self.dialog.get_item()]["id"]
+  try:
+   list = self.session.twitter.twitter.subscribe_to_list(list_id=list_id)
+   item = utils.find_item(list["id"], self.session.db["lists"])
+   self.session.db.settings["lists"].append(list)
+  except TwythonError as e:
+   output.speak("error %s: %s" % (e.status_code, e.msg))
+
+ def unsubscribe(self, *args, **kwargs):
+  if self.dialog.lista.get_count() == 0: return
+  list_id = self.lists[self.dialog.get_item()]["id"]
+  try:
+   list = self.session.twitter.twitter.unsubscribe_from_list(list_id=list_id)
+   self.session.db.settings["lists"].remove(list)
+  except TwythonError as e:
+   output.speak("error %s: %s" % (e.status_code, e.msg))

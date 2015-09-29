@@ -156,6 +156,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.follow, menuitem=self.view.follow)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_user_lists, menuitem=self.view.viewLists)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_more_items, menuitem=self.view.load_previous_items)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.clear_buffer, menuitem=self.view.clear)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_buffer, self.view.deleteTl)
@@ -468,8 +469,20 @@ class Controller(object):
   buffer = self.get_best_buffer()
   SoundsTutorial.soundsTutorial(buffer.session)
 
- def view_user_lists(self, users):
-  pass
+ def view_user_lists(self, *args, **kwargs):
+  buff = self.get_best_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
+  if dlg.get_response() == widgetUtils.OK:
+   user = dlg.get_user()
+  else:
+   return
+  l = listsController.listsController(buff.session, user=user)
 
  def add_to_list(self, *args, **kwargs):
   buff = self.get_best_buffer()
