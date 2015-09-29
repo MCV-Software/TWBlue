@@ -394,7 +394,7 @@ class Controller(object):
   self.buffers.remove(buffer)
   del buffer
 
- def search(self, value="", *args, **kwargs):
+ def search(self, event=None, value="", *args, **kwargs):
   """ Searches words or users in twitter. This creates a new buffer containing the search results."""
   log.debug("Creating a new search...")
   dlg = dialogs.search.searchDialog(value)
