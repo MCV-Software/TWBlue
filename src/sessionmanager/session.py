@@ -432,7 +432,8 @@ class Session(object):
    except IndexError: pass
   l = tweets.is_long(quoted_tweet)
   id = tweets.get_id(l)
-  original_tweet = self.twitter.twitter.show_status(id=id)
+  try: original_tweet = self.twitter.twitter.show_status(id=id)
+  except: return quoted_tweet
   urls = utils.find_urls_in_text(original_tweet["text"])
   for url in range(0, len(urls)):
    try:  original_tweet["text"] = original_tweet["text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
