@@ -16,6 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
+from twitter import utils
 
 def get_id(url):
  return url.split("/")[-1]
@@ -26,3 +27,9 @@ def is_long(tweet):
   if "twitter.com" in tweet["entities"]["urls"][url]["expanded_url"]:
    long = get_id(tweet["entities"]["urls"][url]["expanded_url"])
  return long
+
+def clear_url(tweet):
+ urls = utils.find_urls_in_text(tweet["text"])
+ try: tweet["message"] = tweet["message"].replace(urls[-1]+".", "")
+ except IndexError: pass
+ return tweet

@@ -15,6 +15,7 @@ class listsController(object):
    self.dialog.populate_list(self.get_all_lists())
    widgetUtils.connect_event(self.dialog.createBtn, widgetUtils.BUTTON_PRESSED, self.create_list)
    widgetUtils.connect_event(self.dialog.editBtn, widgetUtils.BUTTON_PRESSED, self.edit_list)
+   widgetUtils.connect_event(self.dialog.deleteBtn, widgetUtils.BUTTON_PRESSED, self.remove_list)
    widgetUtils.connect_event(self.dialog.view, widgetUtils.BUTTON_PRESSED, self.open_list_as_buffer)
    widgetUtils.connect_event(self.dialog.deleteBtn, widgetUtils.BUTTON_PRESSED, self.remove_list)
   else:
@@ -30,7 +31,7 @@ class listsController(object):
  def get_user_lists(self, user):
   self.lists = self.session.twitter.twitter.show_lists(reverse=True, screen_name=user)
   return [compose.compose_list(item) for item in self.lists]
- 
+
  def create_list(self, *args, **kwargs):
   dialog = lists.createListDialog()
   if dialog.get_response() == widgetUtils.OK:
@@ -94,7 +95,7 @@ class listsController(object):
    self.session.db["lists"].append(list)
   except TwythonError as e:
    output.speak("error %s: %s" % (e.status_code, e.msg))
- 
+
  def unsubscribe(self, *args, **kwargs):
   if self.dialog.lista.get_count() == 0: return
   list_id = self.lists[self.dialog.get_item()]["id"]

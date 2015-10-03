@@ -9,7 +9,7 @@ import output
 import time
 import sound
 import logging
-from twitter import utils
+from twitter import utils, compose
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
 import config_utils
 import shelve
@@ -18,6 +18,7 @@ import os
 from mysc.thread_utils import stream_threaded
 from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
+from long_tweets import tweets
 
 sessions = {}
 
@@ -61,6 +62,7 @@ class Session(object):
    self.db[name] = []
   for i in data:
    if utils.find_item(i["id"], self.db[name]) == None and     utils.is_allowed(i, self.settings["twitter"]["ignored_clients"]) == True:
+    i = self.check_quoted_status(i)
     if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
     else: self.db[name].insert(0, i)
     num = num+1
@@ -413,3 +415,28 @@ class Session(object):
     os.remove(shelfname)
    except:
     pass
+
+ def check_quoted_status(self, tweet):
+  status = tweets.is_long(tweet)
+  if status != False:
+   tweet["quoted"] = 1
+   tweet = self.get_quoted_tweet(tweet)
+  return tweet
+
+   
+ def get_quoted_tweet(self, tweet):
+  quoted_tweet = self.twitter.twitter.show_status(id=tweet["id"])
+  urls = utils.find_urls_in_text(quoted_tweet["text"])
+  for url in range(0, len(urls)):
+   try:  quoted_tweet["text"] = quoted_tweet["text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
+   except IndexError: pass
+  l = tweets.is_long(quoted_tweet)
+  id = tweets.get_id(l)
+  try: original_tweet = self.twitter.twitter.show_status(id=id)
+  except: return quoted_tweet
+  urls = utils.find_urls_in_text(original_tweet["text"])
+  for url in range(0, len(urls)):
+   try:  original_tweet["text"] = original_tweet["text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
+   except IndexError: pass
+  return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
+

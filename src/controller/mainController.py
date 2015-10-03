@@ -157,6 +157,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.follow, menuitem=self.view.follow)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_user_lists, menuitem=self.view.viewLists)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_more_items, menuitem=self.view.load_previous_items)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_user_lists, menuitem=self.view.viewLists)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.clear_buffer, menuitem=self.view.clear)
