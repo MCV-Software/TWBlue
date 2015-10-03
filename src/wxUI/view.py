@@ -42,7 +42,6 @@ class mainFrame(wx.Frame):
   self.addToList = user.Append(wx.NewId(), _(u"&Add to list"))
   self.removeFromList = user.Append(wx.NewId(), _(u"R&emove from list"))
   self.viewLists = user.Append(wx.NewId(), _(u"&View lists"))
-  self.viewLists.Enable(False)
   self.details = user.Append(wx.NewId(), _(u"Show user &profile"))
   self.favs = user.Append(wx.NewId(), _(u"V&iew favourites"))
 

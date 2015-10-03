@@ -87,6 +87,8 @@ class peoplePanelMenu(wx.Menu):
 class trendsPanelMenu(wx.Menu):
  def __init__(self):
   super(trendsPanelMenu, self).__init__()
+  self.search_topic = wx.MenuItem(self, wx.NewId(), _(u"Search topic"))
+  self.AppendItem(self.search_topic)
   self.tweetThisTrend = wx.MenuItem(self, wx.NewId(), _(u"&Tweet about this trend"))
   self.AppendItem(self.tweetThisTrend)
   self.view = wx.MenuItem(self, wx.NewId(), _(u"&Show item"))

@@ -129,6 +129,7 @@ class Controller(object):
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
   pub.subscribe(self.restart_streams, "restart-streams")
   pub.subscribe(self.execute_action, "execute-action")
+  pub.subscribe(self.search_topic, "search")
   if system == "Windows":
    pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -157,6 +158,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.follow, menuitem=self.view.follow)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_more_items, menuitem=self.view.load_previous_items)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_user_lists, menuitem=self.view.viewLists)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.clear_buffer, menuitem=self.view.clear)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_buffer, self.view.deleteTl)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.check_for_updates, self.view.check_for_updates)
@@ -394,7 +396,10 @@ class Controller(object):
   self.buffers.remove(buffer)
   del buffer
 
- def search(self, value="", *args, **kwargs):
+ def search_topic(self, term):
+  self.search(value=term)
+
+ def search(self, event=None, value="", *args, **kwargs):
   """ Searches words or users in twitter. This creates a new buffer containing the search results."""
   log.debug("Creating a new search...")
   dlg = dialogs.search.searchDialog(value)
@@ -468,8 +473,20 @@ class Controller(object):
   buffer = self.get_best_buffer()
   SoundsTutorial.soundsTutorial(buffer.session)
 
- def view_user_lists(self, users):
-  pass
+ def view_user_lists(self, *args, **kwargs):
+  buff = self.get_best_buffer()
+  if not hasattr(buff, "get_right_tweet"): return
+  tweet = buff.get_right_tweet()
+  if buff.type != "people":
+   users = utils.get_all_users(tweet, buff.session.db)
+  else:
+   users = [tweet["screen_name"]]
+  dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
+  if dlg.get_response() == widgetUtils.OK:
+   user = dlg.get_user()
+  else:
+   return
+  l = listsController.listsController(buff.session, user=user)
 
  def add_to_list(self, *args, **kwargs):
   buff = self.get_best_buffer()
