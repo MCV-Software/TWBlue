@@ -36,12 +36,13 @@ class streamer(TwythonStreamer):
    if utils.find_item(data["id"], self.session.db[place]) != None:
     log.error("duplicated tweet. Ignoring it...")
     return
-   data = self.session.check_quoted_status(data)
+#   data = self.session.check_quoted_status(data)
    if self.session.settings["general"]["reverse_timelines"] == False:
     self.session.db[place].append(data)
    else:
     self.session.db[place].insert(0, data)
   utils.is_audio(data)
+
  def block_user(self, data):
   id = data["target"]["id"]
   if id in self.friends:
