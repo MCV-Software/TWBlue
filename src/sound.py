@@ -129,24 +129,7 @@ class URLStream(object):
    self.stream.volume = float(volume)
    self.stream.play()
    log.debug("played")
-   call_threaded(self.delete_when_done)
-
- def is_playable(self, url,play=False,volume=1.0):
-  try:
-   log.debug("Checking URL playability...")
-   self.prepare(url)
-   if self.prepared == True:
-    stream=sound_lib.stream.URLStream(url=self.url)
-    if play:
-     return self.play(stream=stream,volume=volume,announce=False)
-    return True
-  except:
-   return False
-
- def delete_when_done(self):
-  while hasattr(self,'stream') and self.stream.is_playing:
-   pass
-  del self.stream
+#   call_threaded(self.delete_when_done)
 
  def stop_audio(self,delete=False):
   if hasattr(self, "stream"):
