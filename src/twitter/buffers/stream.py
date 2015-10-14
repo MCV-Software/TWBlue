@@ -27,6 +27,7 @@ class streamer(TwythonStreamer):
 
  def on_error(self, status_code, data):
   log.debug("Error %s: %s" % (status_code, data))
+  pub.sendMessage("stream-error")
 
  def get_user(self):
   return self.session.db["user_name"]
@@ -36,7 +37,11 @@ class streamer(TwythonStreamer):
    if utils.find_item(data["id"], self.session.db[place]) != None:
     log.error("duplicated tweet. Ignoring it...")
     return
-#   data = self.session.check_quoted_status(data)
+   try:
+    data_ = self.session.check_quoted_status(data)
+    data = data_
+   except:
+    pass
    if self.session.settings["general"]["reverse_timelines"] == False:
     self.session.db[place].append(data)
    else:

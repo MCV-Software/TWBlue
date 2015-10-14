@@ -30,6 +30,6 @@ def is_long(tweet):
 
 def clear_url(tweet):
  urls = utils.find_urls_in_text(tweet["text"])
- try: tweet["message"] = tweet["message"].replace(urls[-1]+".", "")
+ try: tweet["message"] = tweet["message"].replace(urls[-1], "")
  except IndexError: pass
  return tweet

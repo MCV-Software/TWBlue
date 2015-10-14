@@ -361,8 +361,8 @@ class baseBufferController(bufferController):
   if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(" ".join(tweet[:2]))
   #Improve performance on Windows
-  if platform.system() == "Windows":
-   call_threaded(utils.is_audio,item)
+#  if platform.system() == "Windows":
+#   call_threaded(utils.is_audio,item)
 
  def bind_events(self):
   log.debug("Binding events...")

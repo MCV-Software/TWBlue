@@ -22,6 +22,7 @@ class timelinesStreamer(TwythonStreamer):
 
  def on_error(self, status_code, data):
   log.debug("%s: %s" % (status_code, data))
+  pub.sendMessage("stream-error")
 
  def on_timeout(self, *args, **kwargs):
   log.debug("Twitter timeout Error")
@@ -33,7 +34,11 @@ class timelinesStreamer(TwythonStreamer):
     if utils.find_item(data["id"], self.session.db["%s-timeline" % (i,)]) != None:
      log.error("duplicated tweet. Ignoring it...")
      return
-    data = self.session.check_quoted_status(data)
+    try:
+     data_ = self.session.check_quoted_status(data)
+     data = data_
+    except:
+     pass
     if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s-timeline" % (i,)].append(data)
     else: self.session.db["%s-timeline" % (i,)].insert(0, data)
     pub.sendMessage("item-in-timeline", data= data, user= self.session.db["user_name"], who= i)
