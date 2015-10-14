@@ -53,5 +53,3 @@ class twitter(object):
   settings["twitter"]["user_secret"] = user_secret
   settings.write()
 
- def __init__(self):
-  log.error(certs.where())

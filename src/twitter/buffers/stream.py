@@ -22,12 +22,12 @@ class streamer(TwythonStreamer):
 #  self.blocked_users = []
 
  def on_timeout(self, *args, **kwargs):
-  log.debug("Twitter timeout Error")
-  pub.sendMessage("stream-error")
+  log.error("Twitter timeout Error")
+  pub.sendMessage("stream-error", session=self.session.session_id)
 
  def on_error(self, status_code, data):
-  log.debug("Error %s: %s" % (status_code, data))
-  pub.sendMessage("stream-error")
+  log.error("Error %s: %s" % (status_code, data))
+  pub.sendMessage("stream-error", session=self.session.session_id)
 
  def get_user(self):
   return self.session.db["user_name"]
