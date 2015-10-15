@@ -1247,10 +1247,13 @@ class Controller(object):
  def manage_stream_errors(self, session):
   log.error(" Restarting %s session streams. It will be destroyed" % (session,))
   s = session_.sessions[session]
-  del s.main_stream
-  del s.timelinesStream
-  s.counter = 0
-  s.reconnection_function_active = False
+  try:
+   if hasattr(s, "main_stream"): del s.main_stream
+   del s.timelinesStream
+   s.counter = 0
+   s.reconnection_function_active = False
+  except AttributeError:
+   log.error("Error deleting some thing")
   for i in self.buffers:
    if i.invisible == True and i.session.session_id == s.session_id and i.type != "people":
     i.start_stream()

@@ -23,11 +23,11 @@ class streamer(TwythonStreamer):
 
  def on_timeout(self, *args, **kwargs):
   log.error("Twitter timeout Error")
-  pub.sendMessage("stream-error", session=self.session.session_id)
+#  pub.sendMessage("stream-error", session=self.session.session_id)
 
  def on_error(self, status_code, data):
   log.error("Error %s: %s" % (status_code, data))
-  pub.sendMessage("stream-error", session=self.session.session_id)
+#  pub.sendMessage("stream-error", session=self.session.session_id)
 
  def get_user(self):
   return self.session.db["user_name"]

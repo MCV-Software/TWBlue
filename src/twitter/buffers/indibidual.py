@@ -21,12 +21,12 @@ class timelinesStreamer(TwythonStreamer):
   self.lists = self.session.lists
 
  def on_error(self, status_code, data):
-  log.error("%s: %s" % (status_code, data))
-  pub.sendMessage("stream-error", session=self.session.session_id)
+  log.error("error in stream: %s: %s" % (status_code, data))
+#  pub.sendMessage("stream-error", session=self.session.session_id)
 
  def on_timeout(self, *args, **kwargs):
   log.error("Twitter timeout Error")
-  pub.sendMessage("stream-error", session=self.session.session_id)
+#  pub.sendMessage("stream-error", session=self.session.session_id)
 
  def check_tls(self, data):
   for i in self.session.settings["other_buffers"]["timelines"]:
