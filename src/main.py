@@ -23,7 +23,7 @@ import application
 import keys
 from mysc.thread_utils import call_threaded
 import fixes
-#extra variables to control the temporal stdout and stderr, while the final files are opened. We understand that some errors could happen while all outputs are closed, so let's try to avoid it.
+#extra variables to control the temporary stdout and stderr, while the final files are opened. We understand that some errors could happen while all outputs are closed, so let's try to avoid it.
 import widgetUtils
 import webbrowser
 from wxUI import commonMessageDialogs
@@ -53,13 +53,13 @@ log = logging.getLogger("main")
 def setup():
  log.debug("Starting " + application.name + " %s" % (application.version,))
  config.setup()
- fixes.setup()
  log.debug("Using %s %s" % (platform.system(), platform.architecture()[0]))
  log.debug("Application path is %s" % (paths.app_path(),))
  log.debug("config path  is %s" % (paths.config_path(),))
  sound.setup()
  output.setup()
  languageHandler.setLanguage(config.app["app-settings"]["language"])
+ fixes.setup() 
  keys.setup()
  from controller import mainController
  from sessionmanager import sessionManager
