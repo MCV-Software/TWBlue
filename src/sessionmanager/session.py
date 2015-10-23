@@ -322,10 +322,12 @@ class Session(object):
    for z in i.users:
     ids += str(z) + ", "
   if ids != "":
+   print ids
    stream_threaded(self.timelinesStream.statuses.filter, self.session_id, follow=ids)
 
  def add_friends(self):
   try:
+   print "setting friends"
    self.timelinesStream.set_friends(self.main_stream.friends)
   except AttributeError:
    pass
@@ -348,7 +350,7 @@ class Session(object):
    self.logged = False
    self.twitter = twitter.twitter.twitter()
    self.login(False)
-   pub.sendMessage("streamError", session=self.session_id)
+#   pub.sendMessage("streamError", session=self.session_id)
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
   if not hasattr(self, "main_stream"):

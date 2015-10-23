@@ -36,7 +36,7 @@ class streamer(TwythonStreamer):
   if self.session.db.has_key(place):
    if utils.find_item(data["id"], self.session.db[place]) != None:
     log.error("duplicated tweet. Ignoring it...")
-    return
+    return False
    try:
     data_ = self.session.check_quoted_status(data)
     data = data_
@@ -47,6 +47,7 @@ class streamer(TwythonStreamer):
    else:
     self.session.db[place].insert(0, data)
   utils.is_audio(data)
+  return True
 
  def block_user(self, data):
   id = data["target"]["id"]
@@ -64,30 +65,36 @@ class streamer(TwythonStreamer):
 
  def check_send(self, data):
   if self.session.db["user_name"] == data["user"]["screen_name"]:
-   self.put_data("sent_tweets", data)
-   pub.sendMessage("sent-tweet", data=data, user=self.get_user())
+   d = self.put_data("sent_tweets", data)
+   if d != False:
+    pub.sendMessage("sent-tweet", data=data, user=self.get_user())
 
  def check_favs(self, data):
   if data["source"]["screen_name"] == self.session.db["user_name"]:
-   self.put_data("favourites", data["target_object"])
-   pub.sendMessage("favourite", data=data["target_object"], user=self.get_user())
+   d = self.put_data("favourites", data["target_object"])
+   if d != False:
+    pub.sendMessage("favourite", data=data["target_object"], user=self.get_user())
 
  def check_mentions(self, data):
   if "@%s" % (self.session.db["user_name"]) in data["text"]:
-   self.put_data("mentions", data)   
-   pub.sendMessage("mention", data=data, user=self.get_user())
+   d = self.put_data("mentions", data)
+   if d != False:
+    pub.sendMessage("mention", data=data, user=self.get_user())
 
  def set_quoted_tweet(self, data):
-  self.put_data("mentions", data)   
-  pub.sendMessage("mention", data=data, user=self.get_user())
+  d = self.put_data("mentions", data)   
+  if d != False:
+   pub.sendMessage("mention", data=data, user=self.get_user())
 
  def process_dm(self, data):
   if self.session.db["user_name"] == data["direct_message"]["sender"]["screen_name"]:
-   self.put_data("sent_direct_messages", data["direct_message"])
-   pub.sendMessage("sent-dm", data=data["direct_message"], user=self.get_user())
+   d = self.put_data("sent_direct_messages", data["direct_message"])
+   if d != False:
+    pub.sendMessage("sent-dm", data=data["direct_message"], user=self.get_user())
   else:
-   self.put_data("direct_messages", data["direct_message"])
-   pub.sendMessage("direct-message", data=data["direct_message"], user=self.get_user())
+   d = self.put_data("direct_messages", data["direct_message"])
+   if d != False:
+    pub.sendMessage("direct-message", data=data["direct_message"], user=self.get_user())
    
  def check_follower(self, data):
   if data["target"]["screen_name"] == self.session.db["user_name"]:
@@ -129,8 +136,9 @@ class streamer(TwythonStreamer):
     self.check_mentions(data)
     self.check_send(data)
     if data["user"]["id"] in self.friends or data["user"]["screen_name"] == self.session.db["user_name"]:
-     self.put_data("home_timeline", data)
-     pub.sendMessage("item-in-home", data=data, user=self.get_user())
+     d = self.put_data("home_timeline", data)
+     if d != False:
+      pub.sendMessage("item-in-home", data=data, user=self.get_user())
    elif data.has_key("event"):
     if "favorite" == data["event"] and "favorites" in self.session.settings["general"]["buffer_order"]:
      self.check_favs(data)
