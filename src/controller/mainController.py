@@ -779,7 +779,7 @@ class Controller(object):
      if usr["favourites_count"] == 0:
       commonMessageDialogs.no_favs()
       return
-     if dlg.get_user() in buffer.session.settings["other_buffers"]["favourites_timelines"]:
+     if dlg.get_user() in buff.session.settings["other_buffers"]["favourites_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (dlg.get_user(),), buff.session, buff.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())

@@ -322,12 +322,12 @@ class Session(object):
    for z in i.users:
     ids += str(z) + ", "
   if ids != "":
-   print ids
+#   print ids
    stream_threaded(self.timelinesStream.statuses.filter, self.session_id, follow=ids)
 
  def add_friends(self):
   try:
-   print "setting friends"
+#   print "setting friends"
    self.timelinesStream.set_friends(self.main_stream.friends)
   except AttributeError:
    pass
