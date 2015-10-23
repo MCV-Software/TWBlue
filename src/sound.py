@@ -139,8 +139,8 @@ class URLStream(object):
     log.debug("Stopped audio stream.")
    except:
     log.exception("Exception while stopping stream.")
-#   if delete:
-#    del self.stream
+   if delete:
+    del self.stream
     log.debug("Deleted audio stream.")
    return True
   else:

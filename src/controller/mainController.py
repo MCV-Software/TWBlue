@@ -1224,6 +1224,7 @@ class Controller(object):
   buffer.add_new_item(data)
 
  def manage_item_in_list(self, data, user, where):
+  print "I'm activated!"
   buffer = self.search_buffer("%s" % (where,), user)
   if buffer == None: return
   play_sound = "tweet_timeline.ogg"
