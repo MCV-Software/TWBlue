@@ -45,6 +45,9 @@ var StartMenuFolder
 !insertmacro MUI_LANGUAGE "Galician"
 !insertmacro MUI_LANGUAGE "Catalan"
 !insertmacro MUI_LANGUAGE "Basque"
+!insertmacro MUI_LANGUAGE "Croatian"
+!insertmacro MUI_LANGUAGE "Japanese"
+!insertmacro MUI_LANGUAGE "SerbianLatin"
 !insertmacro MUI_RESERVEFILE_LANGDLL
 Section
 SetShellVarContext All
