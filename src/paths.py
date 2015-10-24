@@ -29,7 +29,7 @@ def config_path():
   if directory != None: path = os.path.join(directory, "config")
   elif directory == None: path = app_path(u"config")
  elif mode == "installed":
-  path = data_path("config")
+  path = data_path(u"config")
  if not os.path.exists(path):
   log.debug("%s path does not exist, creating..." % (path,))
   os.mkdir(path)
@@ -42,7 +42,7 @@ def logs_path():
   if directory != None: path = os.path.join(directory, "logs")
   elif directory == None: path = app_path(u"logs")
  elif mode == "installed":
-  path = data_path("logs")
+  path = data_path(u"logs")
  if not os.path.exists(path):
   log.debug("%s path does not exist, creating..." % (path,))
   os.mkdir(path)

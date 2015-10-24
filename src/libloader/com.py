@@ -1,7 +1,7 @@
 from pywintypes import com_error
 import win32com
 import paths
-win32com.__gen_path__=paths.data_path("com_cache")
+win32com.__gen_path__=paths.config_path(u"com_cache")
 import sys
 import os
 sys.path.append(os.path.join(win32com.__gen_path__, "."))
