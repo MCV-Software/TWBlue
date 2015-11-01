@@ -531,7 +531,7 @@ class baseBufferController(bufferController):
 
 # @_tweets_exist
  def audio(self, url='', *args, **kwargs):
-  if hasattr(sound.URLPlayer,'stream'):
+  if hasattr(sound.URLPlayer,'stream') and sound.URLPlayer.stream.is_playing == True:
    return sound.URLPlayer.stop_audio(delete=True)
   tweet = self.get_tweet()
   if tweet == None: return

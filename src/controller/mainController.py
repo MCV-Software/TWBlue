@@ -1249,7 +1249,11 @@ class Controller(object):
   log.error(" Restarting %s session streams. It will be destroyed" % (session,))
   s = session_.sessions[session]
   try:
-   if hasattr(s, "main_stream"): del s.main_stream
+   if hasattr(s, "main_stream"):
+    self.main_stream.disconnect()
+    log.error("main stream disconnected")
+    del s.main_stream
+   self.timelinesStream.disconnect()
    del s.timelinesStream
    s.counter = 0
    s.reconnection_function_active = False
