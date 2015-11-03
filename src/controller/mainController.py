@@ -1224,10 +1224,9 @@ class Controller(object):
   buffer.add_new_item(data)
 
  def manage_item_in_list(self, data, user, where):
-  print "I'm activated!"
   buffer = self.search_buffer("%s" % (where,), user)
   if buffer == None: return
-  play_sound = "tweet_timeline.ogg"
+  play_sound = "list_tweet.ogg"
   if "%s" % (where,) not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
    output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
