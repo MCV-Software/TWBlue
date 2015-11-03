@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 import platform
 if platform.system() == "Windows":
  import wx
@@ -42,6 +43,7 @@ class bufferController(object):
   self.account = ""
   self.needs_init = True
   self.invisible = False # False if the buffer will be ignored on the invisible interface.
+  self.execution_time = 0
 
  def clear_list(self): pass
 
@@ -271,15 +273,19 @@ class baseBufferController(bufferController):
   return (tweet, tweetsList)
 
  def start_stream(self):
-  log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
-  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-  val = self.session.call_paged(self.function, *self.args, **self.kwargs)
-  number_of_items = self.session.order_buffer(self.name, val)
-  log.debug("Number of items retrieved: %d" % (number_of_items,))
-  self.put_items_on_list(number_of_items)
-  if self.sound == None: return
-  if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages":
-   self.session.sound.play(self.sound)
+  # starts stream every 3 minutes.
+  current_time = time.time()
+  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+   self.execution_time = current_time
+   log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
+   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
+   val = self.session.call_paged(self.function, *self.args, **self.kwargs)
+   number_of_items = self.session.order_buffer(self.name, val)
+   log.debug("Number of items retrieved: %d" % (number_of_items,))
+   self.put_items_on_list(number_of_items)
+   if self.sound == None: return
+   if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages":
+    self.session.sound.play(self.sound)
 
  def get_more_items(self):
   elements = []
@@ -739,12 +745,14 @@ class peopleBufferController(baseBufferController):
   if hasattr(message.message, "destroy"): message.message.destroy()
 
  def start_stream(self):
-  log.debug("Starting stream for %s buffer, %s account" % (self.name, self.account,))
-  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-  val = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
-#  self.session.order_cursored_buffer(self.name, self.session.db[self.name])
-#  log.debug("Number of items retrieved:  %d" % (val,))
-  self.put_items_on_list(val)
+  # starts stream every 3 minutes.
+  current_time = time.time()
+  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+   self.execution_time = current_time
+   log.debug("Starting stream for %s buffer, %s account" % (self.name, self.account,))
+   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
+   val = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
+   self.put_items_on_list(val)
 
  def get_more_items(self):
   try:
@@ -834,17 +842,21 @@ class peopleBufferController(baseBufferController):
 
 class searchBufferController(baseBufferController):
  def start_stream(self):
-  log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
-  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-  log.debug("Function: %s" % (self.function,))
+  # starts stream every 3 minutes.
+  current_time = time.time()
+  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+   self.execution_time = current_time
+   log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
+   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
+   log.debug("Function: %s" % (self.function,))
 #  try:
-  val = self.session.search(self.name, *self.args, **self.kwargs)
+   val = self.session.search(self.name, *self.args, **self.kwargs)
 #  except:
 #   return None
-  num = self.session.order_buffer(self.name, val)
-  self.put_items_on_list(num)
-  if num > 0:
-   self.session.sound.play("search_updated.ogg")
+   num = self.session.order_buffer(self.name, val)
+   self.put_items_on_list(num)
+   if num > 0:
+    self.session.sound.play("search_updated.ogg")
 
  def remove_buffer(self):
   dlg = commonMessageDialogs.remove_buffer()
@@ -868,18 +880,22 @@ class searchPeopleBufferController(peopleBufferController):
   self.function = function
 
  def start_stream(self):
-  log.debug("starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
-  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-  log.debug("Function: %s" % (self.function,))
+  # starts stream every 3 minutes.
+  current_time = time.time()
+  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+   self.execution_time = current_time
+   log.debug("starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
+   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
+   log.debug("Function: %s" % (self.function,))
 #  try:
-  val = self.session.call_paged(self.function, *self.args, **self.kwargs)
+   val = self.session.call_paged(self.function, *self.args, **self.kwargs)
 #  except:
 #   return
-  number_of_items = self.session.order_cursored_buffer(self.name, val)
-  log.debug("Number of items retrieved: %d" % (number_of_items,))
-  self.put_items_on_list(number_of_items)
-  if number_of_items > 0:
-   self.session.sound.play("search_updated.ogg")
+   number_of_items = self.session.order_cursored_buffer(self.name, val)
+   log.debug("Number of items retrieved: %d" % (number_of_items,))
+   self.put_items_on_list(number_of_items)
+   if number_of_items > 0:
+    self.session.sound.play("search_updated.ogg")
 
  def remove_buffer(self):
   dlg = commonMessageDialogs.remove_buffer()
@@ -911,15 +927,19 @@ class trendsBufferController(bufferController):
   self.reply = self.search_topic
 
  def start_stream(self):
-  try:
-   data = self.session.call_paged("get_place_trends", id=self.trendsFor)
-  except:
-   return
-  if not hasattr(self, "name_"):
-   self.name_ = data[0]["locations"][0]["name"]
-  self.trends = data[0]["trends"]
-  self.put_items_on_the_list()
-  self.session.sound.play(self.sound)
+  # starts stream every 3 minutes.
+  current_time = time.time()
+  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+   self.execution_time = current_time
+   try:
+    data = self.session.call_paged("get_place_trends", id=self.trendsFor)
+   except:
+    return
+   if not hasattr(self, "name_"):
+    self.name_ = data[0]["locations"][0]["name"]
+   self.trends = data[0]["trends"]
+   self.put_items_on_the_list()
+   self.session.sound.play(self.sound)
 
  def put_items_on_the_list(self):
   selected_item = self.buffer.list.get_selected()
@@ -1004,30 +1024,42 @@ class trendsBufferController(bufferController):
 class conversationBufferController(searchBufferController):
 
  def start_stream(self, start=False):
-  if start == True:
-   self.statuses = []
-   self.ids = []
-   self.statuses.append(self.tweet)
-   self.ids.append(self.tweet["id"])
-   tweet = self.tweet
-   while tweet["in_reply_to_status_id"] != None:
-    tweet = self.session.twitter.twitter.show_status(id=tweet["in_reply_to_status_id"])
-    self.statuses.insert(0, tweet)
-    self.ids.append(tweet["id"])
-   if tweet["in_reply_to_status_id"] == None:
-    self.kwargs["since_id"] = tweet["id"]
-    self.ids.append(tweet["id"])
-  val2 = self.session.search(self.name, *self.args, **self.kwargs)
-  for i in val2:
-   if i["in_reply_to_status_id"] in self.ids:
-    self.statuses.append(i)
-    self.ids.append(i["id"])
-    tweet = i
-  number_of_items = self.session.order_buffer(self.name, self.statuses)
-  log.debug("Number of items retrieved: %d" % (number_of_items,))
-  self.put_items_on_list(number_of_items)
-  if number_of_items > 0:
-   self.session.sound.play("search_updated.ogg")
+  # starts stream every 3 minutes.
+  current_time = time.time()
+  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+   self.execution_time = current_time
+   if start == True:
+    self.statuses = []
+    self.ids = []
+    self.statuses.append(self.tweet)
+    self.ids.append(self.tweet["id"])
+    tweet = self.tweet
+    while tweet["in_reply_to_status_id"] != None:
+     tweet = self.session.twitter.twitter.show_status(id=tweet["in_reply_to_status_id"])
+     self.statuses.insert(0, tweet)
+     self.ids.append(tweet["id"])
+    if tweet["in_reply_to_status_id"] == None:
+     self.kwargs["since_id"] = tweet["id"]
+     self.ids.append(tweet["id"])
+   val2 = self.session.search(self.name, *self.args, **self.kwargs)
+   for i in val2:
+    if i["in_reply_to_status_id"] in self.ids:
+     self.statuses.append(i)
+     self.ids.append(i["id"])
+     tweet = i
+   number_of_items = self.session.order_buffer(self.name, self.statuses)
+   log.debug("Number of items retrieved: %d" % (number_of_items,))
+   self.put_items_on_list(number_of_items)
+   if number_of_items > 0:
+    self.session.sound.play("search_updated.ogg")
+
+ def remove_buffer(self):
+  dlg = commonMessageDialogs.remove_buffer()
+  if dlg == widgetUtils.YES:
+   self.timer.cancel()
+   return True
+  elif dlg == WidgetUtils.NO:
+   return False
 
 class pocketBufferController(baseBufferController):
  def __init__(self, parent, name, sessionObject, account, sound=None, function=None, bufferType=None, *args, **kwargs):
