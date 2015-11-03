@@ -46,4 +46,5 @@ actions = {
 "view_reverse_geocode": _(u"Display the tweet's geolocation in a dialog"),
 "get_trending_topics": _(u"Create a trending topics buffer"),
 "open_conversation": _(u"View conversation"),
+"check_for_updates": _(u"Checks for new TWBlue versions"),
 }
