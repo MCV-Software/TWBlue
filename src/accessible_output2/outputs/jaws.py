@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import win32gui
 from libloader.com import load_com
 import pywintypes
 
-from base import Output, OutputError
+from .base import Output, OutputError
 
 class Jaws (Output):
  """Output supporting the Jaws for Windows screen reader."""

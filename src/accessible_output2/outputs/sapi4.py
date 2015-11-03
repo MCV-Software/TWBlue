@@ -1,5 +1,7 @@
+from __future__ import absolute_import
+from builtins import range
 from libloader.com import load_com
-from base import Output
+from .base import Output
 
 import logging
 log = logging.getLogger(__name__)

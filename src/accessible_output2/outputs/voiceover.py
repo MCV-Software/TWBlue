@@ -1,23 +1,1 @@
-from base import Output, OutputError
-
-class VoiceOver (Output):
- """Supports the VoiceOver screenreader on the Mac.
-
- Note that this will also output as a message to the braille display if VoiceOver is used with braille.
- Calling this module could cause VoiceOver to be started.
- """
- name = 'VoiceOver'
-
- def __init__(self, *args, **kwargs):
-  super(VoiceOver, self).__init__(*args, **kwargs)
-  try:
-   from appscript import app
-   self.app = app('VoiceOver')
-  except ImportError:
-   raise OutputError
-
- def speak(self, text, interupt=False):
-  self.app.output(text)
-
- def is_active(self):
-  return True
+from __future__ import absolute_importfrom builtins import strimport subprocess, osfrom .base import Outputclass VoiceOver(Output): """Speech output supporting the Apple VoiceOver screen reader.""" def runAppleScript(self, command, process = 'voiceover'):  return subprocess.Popen(['osascript', '-e', 'tell application "' + process + '"\n' + command + '\nend tell'], stdout = subprocess.PIPE).communicate()[0] name = 'VoiceOver' def speak(self, text, interrupt=0):  if interrupt:   self.silence()  os.system('osascript -e \"tell application \\\"voiceover\\\" to output \\\"%s\\\"\" &' % text) def silence (self):  self.runAppleScript('output ""') def is_active(self):  return self.runAppleScript('return (name of processes) contains "VoiceOver"', 'system events').startswith('true') and not self.runAppleScript('try\nreturn bounds of vo cursor\non error\nreturn false\nend try').startswith('false')output_class = VoiceOver

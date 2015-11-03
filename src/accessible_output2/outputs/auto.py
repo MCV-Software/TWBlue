@@ -1,24 +1,17 @@
-import platform
+from __future__ import absolute_import
 import accessible_output2
-from base import Output, OutputError
+from .base import Output, OutputError
 
 class Auto(Output):
 
  def __init__(self):
-  if platform.system() == "Darwin":
-   import voiceover
-   self.outputs = [voiceover.VoiceOver()]
-  elif platform.system() == "Linux":
-   import speechDispatcher
-   self.outputs = [speechDispatcher.SpeechDispatcher()]
-  elif platform.system() == "Windows":
-   output_classes = accessible_output2.get_output_classes()
-   self.outputs = []
-   for output in output_classes:
-    try:
-     self.outputs.append(output())
-    except OutputError:
-     pass
+  output_classes = accessible_output2.get_output_classes()
+  self.outputs = []
+  for output in output_classes:
+   try:
+    self.outputs.append(output())
+   except OutputError:
+    pass
 
  def get_first_available_output(self):
   for output in self.outputs:
@@ -40,3 +33,8 @@ class Auto(Output):
   output = self.get_first_available_output()
   if output:
    output.speak(*args, **kwargs)
+
+ def is_system_output(self):
+  output = self.get_first_available_output()
+  if output:
+   return output.is_system_output()

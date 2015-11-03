@@ -1,6 +1,7 @@
+from __future__ import absolute_import
 import win32gui
 from libloader.com import load_com
-from base import Output, OutputError
+from .base import Output, OutputError
 import pywintypes
 
 class WindowEyes (Output):

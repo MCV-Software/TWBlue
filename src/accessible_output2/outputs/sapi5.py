@@ -1,11 +1,18 @@
-# -*- coding: utf-8 -*-
-import config
+from __future__ import absolute_import
 from collections import OrderedDict
 from libloader.com import load_com
-from base import Output, OutputError
+from .base import Output, OutputError
 import pywintypes
 import logging
 log = logging.getLogger(__name__)
+
+SVSFDefault = 0
+SVSFlagsAsync = 1
+SVSFPurgeBeforeSpeak = 2
+SVSFIsFilename = 4
+SVSFIsXML = 8
+SVSFIsNotXML = 16
+SVSFPersistXML = 32
 
 class SAPI5(Output):
  has_volume = True
@@ -19,9 +26,9 @@ class SAPI5(Output):
  max_volume = 100
  name = "sapi5"
  priority = 101
+ system_output = True
 
  def __init__(self):
-  if config.app["app-settings"]["voice_enabled"] == False: raise OutputError
   try:
    self.object = load_com("SAPI.SPVoice")
    self._voices = self._available_voices()
@@ -36,14 +43,14 @@ class SAPI5(Output):
   return _voices
 
  def list_voices(self):
-  return self.available_voices.keys()
+  return list(self._voices.keys())
 
  def get_voice(self):
   return self.object.Voice.GetDescription()
 
  def set_voice(self, value):
   log.debug("Setting SAPI5 voice to \"%s\"" % value)
-  self.object.Voice = self.available_voices[value]
+  self.object.Voice = self._voices[value]
   # For some reason SAPI5 does not reset audio after changing the voice
   # By setting the audio device after changing voices seems to fix this
   # This was noted from information at:
@@ -75,10 +82,10 @@ class SAPI5(Output):
    self.silence()
   # We need to do the pitch in XML here
   textOutput = "<pitch absmiddle=\"%d\">%s</pitch>" % (round(self._pitch), text.replace("<", "&lt;"))
-  self.object.Speak(textOutput, 1|8)
+  self.object.Speak(textOutput, SVSFlagsAsync | SVSFIsXML)
  
  def silence(self):
-  self.object.Speak("", 3)
+  self.object.Speak("", SVSFlagsAsync | SVSFPurgeBeforeSpeak)
 
  def is_active(self):
   if self.object:
