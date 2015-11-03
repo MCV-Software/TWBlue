@@ -1259,10 +1259,10 @@ class Controller(object):
    s.reconnection_function_active = False
   except AttributeError:
    log.error("Error deleting some thing")
-  for i in self.buffers:
-   if i.invisible == True and i.session.session_id == s.session_id and i.type != "people":
-    i.start_stream()
-  s.listen_stream_error()
+#  for i in self.buffers:
+#   if i.invisible == True and i.session.session_id == s.session_id and i.type != "people":
+#    i.start_stream()
+#  s.listen_stream_error()
 
  def check_connection(self):
   for i in session_.sessions:
