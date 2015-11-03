@@ -95,7 +95,7 @@ class profileController(object):
   else: verified = _(u"No")
   string = string+ _(u"Verified: %s\n") % (verified)
   string = string+ _(u"Tweets: %s\n") % (self.data["statuses_count"])
-  string = string+ _(u"Favourites: %s") % (self.data["favourites_count"])
+  string = string+ _(u"Likes: %s") % (self.data["favourites_count"])
   return string
 
  def visit_url(self, *args, **kwargs):

@@ -17,7 +17,7 @@ class selectUserDialog(wx.Dialog):
   actionSizer = wx.BoxSizer(wx.VERTICAL)
   label2 = wx.StaticText(panel, -1, _(u"Buffer type"))
   self.tweets = wx.RadioButton(panel, -1, _(u"Tweets"), style=wx.RB_GROUP)
-  self.favourites = wx.RadioButton(panel, -1, _(u"Favourites"))
+  self.favourites = wx.RadioButton(panel, -1, _(u"Likes"))
   self.setup_default(default)
   hSizer = wx.BoxSizer(wx.HORIZONTAL)
   hSizer.Add(label2, 0, wx.ALL, 5)

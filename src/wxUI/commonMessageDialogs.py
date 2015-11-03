@@ -47,7 +47,7 @@ def protected_user():
  return wx.MessageDialog(None, _(u"This is a protected Twitter user, which means you can't open a timeline using the Streaming API. The user's tweets will not update due to a twitter policy. Do you want to continue?"), _(u"Warning"), wx.ICON_WARNING|wx.YES_NO).ShowModal()
 
 def no_following():
- return wx.MessageDialog(None, _(u"This is a protected user account, you need to follow this user to view their tweets or favorites."), _(u"Error"), wx.ICON_ERROR).ShowModal()
+ return wx.MessageDialog(None, _(u"This is a protected user account, you need to follow this user to view their tweets or likes."), _(u"Error"), wx.ICON_ERROR).ShowModal()
 
 def donation():
  dlg = wx.MessageDialog(None, _(u"If you like {0} we need your help to keep it going. Help us by donating to the project. This will help us pay for the server, the domain and some other things to ensure that {0} will be actively maintained. Your donation will give us the means to continue the development of {0}, and to keep {0} free. Would you like to donate now?").format(application.name), _(u"We need your help"), wx.ICON_QUESTION|wx.YES_NO)

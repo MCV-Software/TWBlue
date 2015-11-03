@@ -168,9 +168,9 @@ class viewTweet(basicTweet):
    text = ""
    for i in xrange(0, len(tweetList)):
     if tweetList[i].has_key("retweeted_status"):
-     text = text + "rt @%s: %s\n\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["text"])
+     text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["text"])
     else:
-     text = text + "@%s: %s\n\n" % (tweetList[i]["user"]["screen_name"], tweetList[i]["text"])
+     text = text + "@%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i]["text"])
    rt_count = str(tweet["retweet_count"])
    favs_count = str(tweet["favorite_count"])
    if text == "":
@@ -178,6 +178,7 @@ class viewTweet(basicTweet):
      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
     else:
      text = tweet["text"]
+   text = self.clear_text(text)
    self.message = message.viewTweet(text, rt_count, favs_count)
    self.message.set_title(len(text))
   else:
@@ -194,3 +195,10 @@ class viewTweet(basicTweet):
   if len(utils.find_urls_in_text(self.message.get_text())) > 0:
    return True
   return False
+
+ def clear_text(self, text):
+  urls = utils.find_urls_in_text(text)
+  for i in urls:
+   if "https://twitter.com/" in i:
+    text = text.replace(i, "")
+  return text

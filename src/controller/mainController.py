@@ -307,7 +307,7 @@ class Controller(object):
     favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", session, session.db["user_name"])
     self.buffers.append(favourites)
 
-    self.view.insert_buffer(favourites.buffer, name=_(u"Favourites"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'followers':
     followers = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "followers", session, session.db["user_name"], screen_name=session.db["user_name"])
     self.buffers.append(followers)
@@ -337,11 +337,11 @@ class Controller(object):
    self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(i,), pos=self.view.search("timelines", session.db["user_name"]))
   favs_timelines = buffersController.emptyPanel(self.view.nb, "favs_timelines", session.db["user_name"])
   self.buffers.append(favs_timelines)
-  self.view.insert_buffer(favs_timelines.buffer , name=_(u"Favourites timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  self.view.insert_buffer(favs_timelines.buffer , name=_(u"Likes timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["favourites_timelines"]:
    tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (i,), session, session.db["user_name"], bufferType=None, screen_name=i)
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Favourites timeline for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_(u"Likes for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
    tl.timer.start()
   lists = buffersController.emptyPanel(self.view.nb, "lists", session.db["user_name"])
@@ -786,7 +786,7 @@ class Controller(object):
      pos=self.view.search("favs_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
 #     self.buffers.insert(pos+1, tl)
-     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Favourites timeline for {}").format(dlg.get_user()), pos=pos)
+     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Likes for {}").format(dlg.get_user()), pos=pos)
      tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
@@ -1274,7 +1274,7 @@ class Controller(object):
    if buffer == "favourites":
     favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"])
     self.buffers.append(favourites)
-    self.view.insert_buffer(favourites.buffer, name=_(u"Favourites"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     favourites.start_stream()
    if buffer == "followers":
     followers = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "followers", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])

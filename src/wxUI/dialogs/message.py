@@ -265,7 +265,7 @@ class viewTweet(widgetUtils.BaseDialog):
   rtBox = wx.BoxSizer(wx.HORIZONTAL)
   rtBox.Add(rtCountLabel, 0, wx.ALL, 5)
   rtBox.Add(rtCount, 0, wx.ALL, 5)
-  favsCountLabel = wx.StaticText(panel, -1, _(u"Favourites: "))
+  favsCountLabel = wx.StaticText(panel, -1, _(u"Likes: "))
   favsCount = wx.TextCtrl(panel, -1, favs_count, size=wx.DefaultSize, style=wx.TE_READONLY|wx.TE_MULTILINE)
   favsBox = wx.BoxSizer(wx.HORIZONTAL)
   favsBox.Add(favsCountLabel, 0, wx.ALL, 5)

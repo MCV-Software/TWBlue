@@ -27,8 +27,8 @@ class mainFrame(wx.Frame):
   self.compose = tweet.Append(wx.NewId(), _(u"&Tweet"))
   self.reply = tweet.Append(wx.NewId(), _(u"Re&ply"))
   self.retweet = tweet.Append(wx.NewId(), _(u"&Retweet"))
-  self.fav = tweet.Append(wx.NewId(), _(u"Add to &favourites"))
-  self.unfav = tweet.Append(wx.NewId(), _(u"Remove from favo&urites"))
+  self.fav = tweet.Append(wx.NewId(), _(u"&Like"))
+  self.unfav = tweet.Append(wx.NewId(), _(u"&Unlike"))
   self.view = tweet.Append(wx.NewId(), _(u"&Show tweet"))
   self.view_coordinates = tweet.Append(wx.NewId(), _(u"View &address"))
   self.view_conversation = tweet.Append(wx.NewId(), _(u"View conversa&tion"))
@@ -43,7 +43,7 @@ class mainFrame(wx.Frame):
   self.removeFromList = user.Append(wx.NewId(), _(u"R&emove from list"))
   self.viewLists = user.Append(wx.NewId(), _(u"&View lists"))
   self.details = user.Append(wx.NewId(), _(u"Show user &profile"))
-  self.favs = user.Append(wx.NewId(), _(u"V&iew favourites"))
+  self.favs = user.Append(wx.NewId(), _(u"V&iew likes"))
 
   # buffer menu
   buffer = wx.Menu()
