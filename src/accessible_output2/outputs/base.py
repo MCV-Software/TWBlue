@@ -43,5 +43,5 @@ class Output(object):
  def speak(self, **optiont):
   return False
 
- def braille(self, **options):
+ def braille(self, *args, **options):
   return False
