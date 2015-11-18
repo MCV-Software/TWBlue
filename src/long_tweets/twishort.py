@@ -21,7 +21,10 @@ import keys
 from twitter import utils
 
 def get_twishort_uri(url):
- return url.split("twishort.com/")[1]
+ try:
+  return url.split("twishort.com/")[1]
+ except IndexError:
+  return False
 
 def is_long(tweet):
  long = False
