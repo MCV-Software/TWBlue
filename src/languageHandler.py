@@ -70,6 +70,7 @@ def getLanguageDescription(language):
 			"ne":pgettext("languageName","Nepali"),
 			"sr":pgettext("languageName","Serbian (Latin)"),
 			"ja":pgettext("languageName","Japanese"),
+			"ro":pgettext("languageName","Romanian"),
 		}.get(language,None)
 	return desc
 
@@ -201,6 +202,7 @@ def langToWindowsLocale(lang):
 	"ja": "jpn",
 	"pl": "plk",
 	"pt": "ptb",
+	"ro": "rom",
 	"ru": "rus",
 	"tr": "trk",
 	"sr": "eng",
