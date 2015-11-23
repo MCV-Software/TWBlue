@@ -304,8 +304,10 @@ class Session(object):
  def start_streaming(self):
 
   """ Start the streaming for sending tweets in realtime."""
-  self.get_timelines()
-  self.get_main_stream()
+  if not hasattr(self, "main_stream"):
+   self.get_timelines()
+  if not hasattr(self, "timelinesStream"):
+   self.get_main_stream()
 
  def get_main_stream(self):
   log.debug("Starting the main stream...")
@@ -360,10 +362,10 @@ class Session(object):
   self.reconnection_function_active = False
   if hasattr(self, "timelinesStream") and not hasattr(self.timelinesStream, "friends"):
    self.add_friends()
-  try:
-   urllib2.urlopen("http://74.125.228.231", timeout=5)
-  except urllib2.URLError:
-   pub.sendMessage("stream-error", session=self.session_id)
+#  try:
+#   urllib2.urlopen("http://74.125.228.231", timeout=5)
+#  except urllib2.URLError:
+#   pub.sendMessage("stream-error", session=self.session_id)
 
  def remove_stream(self, stream):
   if stream == "timelinesStream":
