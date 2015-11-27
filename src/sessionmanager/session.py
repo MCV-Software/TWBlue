@@ -369,8 +369,9 @@ class Session(object):
 
  def remove_stream(self, stream):
   if stream == "timelinesStream":
-   self.timelinesStream.disconnect()
-   del self.timelinesStream
+   if hasattr(self, "timelinesStream"):
+    self.timelinesStream.disconnect()
+    del self.timelinesStream
   else:
    self.main_stream.disconnect()
    del self.main_stream

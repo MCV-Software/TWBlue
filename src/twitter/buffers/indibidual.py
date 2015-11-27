@@ -46,7 +46,7 @@ class timelinesStreamer(TwythonStreamer):
    try:
     i.users.index(data["user"]["id"])
     usr = data["in_reply_to_user_id"]
-    if (usr != None or usr in self.friends) or data.has_key("retweeted_status"):
+    if (usr != None and usr in self.friends) or data.has_key("retweeted_status"):
      data = self.session.check_quoted_status(data)
      if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s" % (i.name,)].append(data)
      else: self.session.db["%s" % (i.name,)].insert(0, data)
