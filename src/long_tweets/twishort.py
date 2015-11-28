@@ -18,6 +18,7 @@
 ############################################################
 import requests
 import keys
+import application
 from twitter import utils
 
 def get_twishort_uri(url):
@@ -41,10 +42,14 @@ def get_full_text(uri):
 #  return False
 
 def create_tweet(user_token, user_secret, text, media=0):
+ if application.snapshot == True:
+  url = "http://twblue.es/snapshot_twishort.php"
+ else:
+  url = "http://twblue.es/stable_twishort.php"
  data = {"user_token": user_token,
  "user_secret": user_secret,
  "text": text.encode("utf-8"),
  "media": media}
- response = requests.post("http://twblue.es/twishort.php", data=data)
+ response = requests.post(url, data=data)
 # print response.json()
  return response.json()["text_to_tweet"]
