@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TwBlue 0.80\n"
-"POT-Creation-Date: 2015-09-29 09:37+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2015-10-03 13:13+0200\n"
+"POT-Creation-Date: 2015-11-06 08:10+Hora estndar central (Mxico)\n"
+"PO-Revision-Date: 2015-10-03 16:28+0300\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Aleksandar Đurić <agasoft@gmail.com>\n"
 "Language: sr_RS@latin\n"
@@ -14,175 +14,177 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-Bookmarks: -1,442,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../src\controller\buffersController.py:89
+#: ../src\controller\buffersController.py:91
 msgid "This action is not supported for this buffer"
 msgstr "Ova radnja nije podržana na ovom kanalu"
 
-#: ../src\controller\buffersController.py:128
-#: ../src\controller\buffersController.py:983 ../src\wxUI\buffers\base.py:24
+#: ../src\controller\buffersController.py:130
+#: ../src\controller\buffersController.py:1000 ../src\wxUI\buffers\base.py:24
 #: ../src\wxUI\buffers\events.py:14 ../src\wxUI\buffers\trends.py:17
 #: ../src\wxUI\dialogs\message.py:251 ../src\wxUI\sysTrayIcon.py:33
 msgid "Tweet"
 msgstr "Tvit"
 
-#: ../src\controller\buffersController.py:129
-#: ../src\controller\buffersController.py:984
+#: ../src\controller\buffersController.py:131
+#: ../src\controller\buffersController.py:1001
 msgid "Write the tweet here"
 msgstr "Otkucajte tvit ovde:"
 
-#: ../src\controller\buffersController.py:313
-#: ../src\controller\buffersController.py:774
+#: ../src\controller\buffersController.py:319
+#: ../src\controller\buffersController.py:782
 msgid "%s items retrieved"
 msgstr "%s primljenih stavki"
 
-#: ../src\controller\buffersController.py:333
+#: ../src\controller\buffersController.py:339
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Ovaj kanal nije vremenska linija i ne može biti izbrisan."
 
-#: ../src\controller\buffersController.py:449
+#: ../src\controller\buffersController.py:455
 msgid "Reply to %s"
 msgstr "Odgovori %s"
 
-#: ../src\controller\buffersController.py:449
+#: ../src\controller\buffersController.py:455
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
 msgid "Reply"
 msgstr "Odgovori"
 
-#: ../src\controller\buffersController.py:476
+#: ../src\controller\buffersController.py:482
 msgid "Direct message to %s"
 msgstr "Direktna poruka za %s"
 
-#: ../src\controller\buffersController.py:476
+#: ../src\controller\buffersController.py:482
 #: ../src\controller\mainController.py:1143
 msgid "New direct message"
 msgstr "Nova direktna poruka"
 
-#: ../src\controller\buffersController.py:497
+#: ../src\controller\buffersController.py:503
 msgid "Add your comment to the tweet"
 msgstr "Dodajte vaš komentar u tvit"
 
-#: ../src\controller\buffersController.py:497
+#: ../src\controller\buffersController.py:503
 #: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\commonMessageDialogs.py:9 ../src\wxUI\dialogs\message.py:126
 msgid "Retweet"
 msgstr "Retvituj"
 
-#: ../src\controller\buffersController.py:568
+#: ../src\controller\buffersController.py:574
 msgid "Opening URL..."
 msgstr "Otvaram vezu..."
 
-#: ../src\controller\buffersController.py:603
+#: ../src\controller\buffersController.py:609
 msgid "User details"
 msgstr "Podaci o korisniku"
 
-#: ../src\controller\buffersController.py:672
+#: ../src\controller\buffersController.py:678
 msgid "Empty"
 msgstr "Prazno"
 
-#: ../src\controller\buffersController.py:733
+#: ../src\controller\buffersController.py:739
 msgid "Mention to %s"
 msgstr "Spomeni %s"
 
-#: ../src\controller\buffersController.py:733 ../src\wxUI\buffers\people.py:15
+#: ../src\controller\buffersController.py:739 ../src\wxUI\buffers\people.py:15
 msgid "Mention"
 msgstr "Spomeni"
 
-#: ../src\controller\mainController.py:256
+#: ../src\controller\mainController.py:257
 msgid "Ready"
 msgstr "Spreman"
 
-#: ../src\controller\mainController.py:288
+#: ../src\controller\mainController.py:289
 msgid "Home"
 msgstr "Početak"
 
-#: ../src\controller\mainController.py:292
+#: ../src\controller\mainController.py:293
 msgid "Mentions"
 msgstr "Spominjanja"
 
-#: ../src\controller\mainController.py:296
+#: ../src\controller\mainController.py:297
 msgid "Direct messages"
 msgstr "Direktne poruke"
 
-#: ../src\controller\mainController.py:300
+#: ../src\controller\mainController.py:301
 msgid "Sent direct messages"
 msgstr "Poslate direktne poruke"
 
-#: ../src\controller\mainController.py:304
+#: ../src\controller\mainController.py:305
 msgid "Sent tweets"
 msgstr "Poslati tvitovi"
 
-#: ../src\controller\mainController.py:309
-#: ../src\controller\mainController.py:1266
+#: ../src\controller\mainController.py:310
+#: ../src\controller\mainController.py:1277
 #: ../src\wxUI\dialogs\userSelection.py:20
-msgid "Favourites"
-msgstr "Omiljeno"
+msgid "Likes"
+msgstr ""
 
-#: ../src\controller\mainController.py:313
-#: ../src\controller\mainController.py:1271
+#: ../src\controller\mainController.py:314
+#: ../src\controller\mainController.py:1282
 msgid "Followers"
 msgstr "Pratioci"
 
-#: ../src\controller\mainController.py:317
-#: ../src\controller\mainController.py:1276
+#: ../src\controller\mainController.py:318
+#: ../src\controller\mainController.py:1287
 msgid "Friends"
 msgstr "Prijatelji"
 
-#: ../src\controller\mainController.py:321
-#: ../src\controller\mainController.py:1281
+#: ../src\controller\mainController.py:322
+#: ../src\controller\mainController.py:1292
 msgid "Blocked users"
 msgstr "Blokirani korisnici"
 
-#: ../src\controller\mainController.py:325
-#: ../src\controller\mainController.py:1286
+#: ../src\controller\mainController.py:326
+#: ../src\controller\mainController.py:1297
 msgid "Muted users"
 msgstr "Ućutkani korisnici"
 
-#: ../src\controller\mainController.py:329
-#: ../src\controller\mainController.py:1291
+#: ../src\controller\mainController.py:330
+#: ../src\controller\mainController.py:1302
 msgid "Events"
 msgstr "Događaji"
 
-#: ../src\controller\mainController.py:332
+#: ../src\controller\mainController.py:333
 msgid "Timelines"
 msgstr "Vremenske linije"
 
-#: ../src\controller\mainController.py:336
+#: ../src\controller\mainController.py:337
 #: ../src\controller\mainController.py:774
 msgid "Timeline for {}"
 msgstr "Vremenska linija od"
 
-#: ../src\controller\mainController.py:339
-msgid "Favourites timelines"
+#: ../src\controller\mainController.py:340
+#, fuzzy
+msgid "Likes timelines"
 msgstr "Omiljene vremenske crte"
 
-#: ../src\controller\mainController.py:343
+#: ../src\controller\mainController.py:344
 #: ../src\controller\mainController.py:789
-msgid "Favourites timeline for {}"
-msgstr "Omiljena vremenska crta za"
+#, fuzzy
+msgid "Likes for {}"
+msgstr "Lista od"
 
-#: ../src\controller\mainController.py:348 ../src\wxUI\dialogs\lists.py:12
+#: ../src\controller\mainController.py:349 ../src\wxUI\dialogs\lists.py:12
 msgid "Lists"
 msgstr "Liste"
 
-#: ../src\controller\mainController.py:353
-#: ../src\controller\mainController.py:1302
+#: ../src\controller\mainController.py:354
+#: ../src\controller\mainController.py:1313
 msgid "List for {}"
 msgstr "Lista od"
 
-#: ../src\controller\mainController.py:356
+#: ../src\controller\mainController.py:357
 msgid "Searches"
 msgstr "Pretrage"
 
-#: ../src\controller\mainController.py:360
+#: ../src\controller\mainController.py:361
 #: ../src\controller\mainController.py:422
 msgid "Search for {}"
 msgstr "Pretraga za"
 
-#: ../src\controller\mainController.py:370
+#: ../src\controller\mainController.py:371
 #: ../src\controller\mainController.py:835
 msgid "Trending topics for %s"
 msgstr "Teme u trendu za %s"
@@ -266,35 +268,35 @@ msgstr "Jedno spominjanje od %s"
 msgid "One tweet from %s"
 msgstr "Jedan tvit od %s"
 
-#: ../src\controller\mainController.py:1296
+#: ../src\controller\mainController.py:1307
 msgid "This list is already opened"
 msgstr "Ova lista je već otvorena"
 
-#: ../src\controller\mainController.py:1355
+#: ../src\controller\mainController.py:1366
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "Automatsko čitanje novih tvitova je uključeno na ovom kanalu"
 
-#: ../src\controller\mainController.py:1358
+#: ../src\controller\mainController.py:1369
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "Automatsko čitanje tvitova je isključeno za tvitove na ovom kanalu"
 
-#: ../src\controller\mainController.py:1364
+#: ../src\controller\mainController.py:1375
 msgid "Session mute on"
 msgstr "Utišavanje sesije uključeno"
 
-#: ../src\controller\mainController.py:1367
+#: ../src\controller\mainController.py:1378
 msgid "Session mute off"
 msgstr "Utišavanje sesije isključeno"
 
-#: ../src\controller\mainController.py:1374
+#: ../src\controller\mainController.py:1385
 msgid "Buffer mute on"
 msgstr "Utišavanje kanala uključeno"
 
-#: ../src\controller\mainController.py:1377
+#: ../src\controller\mainController.py:1388
 msgid "Buffer mute off"
 msgstr "Utišavanje kanala isključeno"
 
-#: ../src\controller\mainController.py:1390
+#: ../src\controller\mainController.py:1401
 msgid "Copied"
 msgstr "Kopirano"
 
@@ -421,7 +423,8 @@ msgid "Tweets: %s\n"
 msgstr "Tvitovi: %s\n"
 
 #: ../src\controller\user.py:98
-msgid "Favourites: %s"
+#, fuzzy
+msgid "Likes: %s"
 msgstr "Omiljeno %s"
 
 #: ../src\controller\userActionsController.py:75
@@ -437,9 +440,8 @@ msgid "Pause"
 msgstr "Zastani"
 
 #: ../src\extra\AudioUploader\audioUploader.py:77
-#, fuzzy
 msgid "&Resume"
-msgstr "Nastavi"
+msgstr "&Nastavi"
 
 #: ../src\extra\AudioUploader\audioUploader.py:78
 msgid "Resume"
@@ -448,15 +450,13 @@ msgstr "Nastavi"
 #: ../src\extra\AudioUploader\audioUploader.py:80
 #: ../src\extra\AudioUploader\audioUploader.py:107
 #: ../src\extra\AudioUploader\wx_ui.py:36
-#, fuzzy
 msgid "&Pause"
-msgstr "Zastani"
+msgstr "&zastani"
 
 #: ../src\extra\AudioUploader\audioUploader.py:95
 #: ../src\extra\AudioUploader\audioUploader.py:140
-#, fuzzy
 msgid "&Stop"
-msgstr "Zaustavi"
+msgstr "&Zaustavi"
 
 #: ../src\extra\AudioUploader\audioUploader.py:96
 msgid "Recording"
@@ -469,9 +469,8 @@ msgstr "Zaustavljeno"
 
 #: ../src\extra\AudioUploader\audioUploader.py:103
 #: ../src\extra\AudioUploader\wx_ui.py:38
-#, fuzzy
 msgid "&Record"
-msgstr "Snimi"
+msgstr "&Snimi"
 
 #: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:120
 msgid "Playing..."
@@ -480,9 +479,8 @@ msgstr "Reprodukujem..."
 #: ../src\extra\AudioUploader\audioUploader.py:144
 #: ../src\extra\AudioUploader\audioUploader.py:154
 #: ../src\extra\AudioUploader\wx_ui.py:34
-#, fuzzy
 msgid "&Play"
-msgstr "Pusti"
+msgstr "&Pusti"
 
 #: ../src\extra\AudioUploader\audioUploader.py:159
 msgid "Recoding audio..."
@@ -546,14 +544,12 @@ msgid "Attach audio"
 msgstr "Priloži zvučni zapis"
 
 #: ../src\extra\AudioUploader\wx_ui.py:40
-#, fuzzy
 msgid "&Add an existing file"
-msgstr "Dodaj postojeću datoteku"
+msgstr "&Dodaj postojeću datoteku"
 
 #: ../src\extra\AudioUploader\wx_ui.py:41
-#, fuzzy
 msgid "&Discard"
-msgstr "Odbaci"
+msgstr "&Odbaci"
 
 #: ../src\extra\AudioUploader\wx_ui.py:43
 msgid "Upload to"
@@ -564,9 +560,8 @@ msgid "Attach"
 msgstr "Priloži"
 
 #: ../src\extra\AudioUploader\wx_ui.py:50
-#, fuzzy
 msgid "&Cancel"
-msgstr "Otkaži"
+msgstr "&Otkaži"
 
 #: ../src\extra\AudioUploader\wx_ui.py:75
 msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
@@ -601,11 +596,13 @@ msgid "Error."
 msgstr "Greška."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
-msgid "Tweet favourited."
-msgstr "Tvit označen kao omiljen."
+#, fuzzy
+msgid "Tweet liked."
+msgstr "Tvit je primljen."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
-msgid "Favourites buffer updated."
+#, fuzzy
+msgid "Likes buffer updated."
 msgstr "Kanal omiljeno je ažuriran."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
@@ -818,371 +815,376 @@ msgstr "Dovršeno"
 msgid "{0}'s database of users has been updated."
 msgstr "{0}'s korisničkih baza podataka je ažurirano."
 
-#: ../src\extra\translator\translator.py:9
+#: ../src\extra\translator\translator.py:124
+#, fuzzy
+msgid "unavailable"
+msgstr "Nedostupno"
+
+#: ../src\extra\translator\translator.py:153
 msgid "Afrikaans"
 msgstr "Afrički"
 
-#: ../src\extra\translator\translator.py:10
+#: ../src\extra\translator\translator.py:154
 msgid "Albanian"
 msgstr "Albanski"
 
-#: ../src\extra\translator\translator.py:11
+#: ../src\extra\translator\translator.py:155
 msgid "Amharic"
 msgstr "Amharic"
 
-#: ../src\extra\translator\translator.py:12
+#: ../src\extra\translator\translator.py:156
 msgid "Arabic"
 msgstr "arapski"
 
-#: ../src\extra\translator\translator.py:13
+#: ../src\extra\translator\translator.py:157
 msgid "Armenian"
 msgstr "jermenski"
 
-#: ../src\extra\translator\translator.py:14
+#: ../src\extra\translator\translator.py:158
 msgid "Azerbaijani"
 msgstr "azerbejdžanski"
 
-#: ../src\extra\translator\translator.py:15
+#: ../src\extra\translator\translator.py:159
 msgid "Basque"
 msgstr "Baskijski"
 
-#: ../src\extra\translator\translator.py:16
+#: ../src\extra\translator\translator.py:160
 msgid "Belarusian"
 msgstr "Beloruski"
 
-#: ../src\extra\translator\translator.py:17
+#: ../src\extra\translator\translator.py:161
 msgid "Bengali"
 msgstr "Bengalski"
 
-#: ../src\extra\translator\translator.py:18
+#: ../src\extra\translator\translator.py:162
 msgid "Bihari"
 msgstr "Bihari"
 
-#: ../src\extra\translator\translator.py:19
+#: ../src\extra\translator\translator.py:163
 msgid "Bulgarian"
 msgstr "Bugarski"
 
-#: ../src\extra\translator\translator.py:20
+#: ../src\extra\translator\translator.py:164
 msgid "Burmese"
 msgstr "Burmese"
 
-#: ../src\extra\translator\translator.py:21
+#: ../src\extra\translator\translator.py:165
 msgid "Catalan"
 msgstr "Katalonski"
 
-#: ../src\extra\translator\translator.py:22
+#: ../src\extra\translator\translator.py:166
 msgid "Cherokee"
 msgstr "Cherokee"
 
-#: ../src\extra\translator\translator.py:23
+#: ../src\extra\translator\translator.py:167
 msgid "Chinese"
 msgstr "Kineski"
 
-#: ../src\extra\translator\translator.py:24
+#: ../src\extra\translator\translator.py:168
 msgid "Chinese_simplified"
 msgstr "kineski pojednostavljeni"
 
-#: ../src\extra\translator\translator.py:25
+#: ../src\extra\translator\translator.py:169
 msgid "Chinese_traditional"
 msgstr "kineski tradicionalni"
 
-#: ../src\extra\translator\translator.py:26
+#: ../src\extra\translator\translator.py:170
 msgid "Croatian"
 msgstr "hrvatski"
 
-#: ../src\extra\translator\translator.py:27
+#: ../src\extra\translator\translator.py:171
 msgid "Czech"
 msgstr "češki"
 
-#: ../src\extra\translator\translator.py:28
+#: ../src\extra\translator\translator.py:172
 msgid "Danish"
 msgstr "danski"
 
-#: ../src\extra\translator\translator.py:29
+#: ../src\extra\translator\translator.py:173
 msgid "Dhivehi"
 msgstr "Dhivehi"
 
-#: ../src\extra\translator\translator.py:30
+#: ../src\extra\translator\translator.py:174
 msgid "Dutch"
 msgstr "Holandski"
 
-#: ../src\extra\translator\translator.py:31
+#: ../src\extra\translator\translator.py:175
 msgid "English"
 msgstr "engleski"
 
-#: ../src\extra\translator\translator.py:32
+#: ../src\extra\translator\translator.py:176
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#: ../src\extra\translator\translator.py:33
+#: ../src\extra\translator\translator.py:177
 msgid "Estonian"
 msgstr "estonski"
 
-#: ../src\extra\translator\translator.py:34
+#: ../src\extra\translator\translator.py:178
 msgid "Filipino"
 msgstr "filipinski"
 
-#: ../src\extra\translator\translator.py:35
+#: ../src\extra\translator\translator.py:179
 msgid "Finnish"
 msgstr "finski"
 
-#: ../src\extra\translator\translator.py:36
+#: ../src\extra\translator\translator.py:180
 msgid "French"
 msgstr "francuski"
 
-#: ../src\extra\translator\translator.py:37
+#: ../src\extra\translator\translator.py:181
 msgid "Galician"
 msgstr "galicijski"
 
-#: ../src\extra\translator\translator.py:38
+#: ../src\extra\translator\translator.py:182
 msgid "Georgian"
 msgstr "gruzijski"
 
-#: ../src\extra\translator\translator.py:39
+#: ../src\extra\translator\translator.py:183
 msgid "German"
 msgstr "nemački"
 
-#: ../src\extra\translator\translator.py:40
+#: ../src\extra\translator\translator.py:184
 msgid "Greek"
 msgstr "grčki"
 
-#: ../src\extra\translator\translator.py:41
+#: ../src\extra\translator\translator.py:185
 msgid "Guarani"
 msgstr "Guarani"
 
-#: ../src\extra\translator\translator.py:42
+#: ../src\extra\translator\translator.py:186
 msgid "Gujarati"
 msgstr "Gujarati"
 
-#: ../src\extra\translator\translator.py:43
+#: ../src\extra\translator\translator.py:187
 msgid "Hebrew"
 msgstr "jevrejski"
 
-#: ../src\extra\translator\translator.py:44
+#: ../src\extra\translator\translator.py:188
 msgid "Hindi"
 msgstr "indijski"
 
-#: ../src\extra\translator\translator.py:45
+#: ../src\extra\translator\translator.py:189
 msgid "Hungarian"
 msgstr "mađarski"
 
-#: ../src\extra\translator\translator.py:46
+#: ../src\extra\translator\translator.py:190
 msgid "Icelandic"
 msgstr "islandski"
 
-#: ../src\extra\translator\translator.py:47
+#: ../src\extra\translator\translator.py:191
 msgid "Indonesian"
 msgstr "indonežanski"
 
-#: ../src\extra\translator\translator.py:48
+#: ../src\extra\translator\translator.py:192
 msgid "Inuktitut"
 msgstr "Inuktitut"
 
-#: ../src\extra\translator\translator.py:49
+#: ../src\extra\translator\translator.py:193
 msgid "Irish"
 msgstr "irski"
 
-#: ../src\extra\translator\translator.py:50
+#: ../src\extra\translator\translator.py:194
 msgid "Italian"
 msgstr "italijanski"
 
-#: ../src\extra\translator\translator.py:51
+#: ../src\extra\translator\translator.py:195
 msgid "Japanese"
 msgstr "japanski"
 
-#: ../src\extra\translator\translator.py:52
+#: ../src\extra\translator\translator.py:196
 msgid "Kannada"
 msgstr "Kannada"
 
-#: ../src\extra\translator\translator.py:53
+#: ../src\extra\translator\translator.py:197
 msgid "Kazakh"
 msgstr "Kazakh"
 
-#: ../src\extra\translator\translator.py:54
+#: ../src\extra\translator\translator.py:198
 msgid "Khmer"
 msgstr "Khmer"
 
-#: ../src\extra\translator\translator.py:55
+#: ../src\extra\translator\translator.py:199
 msgid "Korean"
 msgstr "korejski"
 
-#: ../src\extra\translator\translator.py:56
+#: ../src\extra\translator\translator.py:200
 msgid "Kurdish"
 msgstr "kurdski"
 
-#: ../src\extra\translator\translator.py:57
+#: ../src\extra\translator\translator.py:201
 msgid "Kyrgyz"
 msgstr "kirgistanski"
 
-#: ../src\extra\translator\translator.py:58
+#: ../src\extra\translator\translator.py:202
 msgid "Laothian"
 msgstr "Laothian"
 
-#: ../src\extra\translator\translator.py:59
+#: ../src\extra\translator\translator.py:203
 msgid "Latvian"
 msgstr "letonski"
 
-#: ../src\extra\translator\translator.py:60
+#: ../src\extra\translator\translator.py:204
 msgid "Lithuanian"
 msgstr "litvanski"
 
-#: ../src\extra\translator\translator.py:61
+#: ../src\extra\translator\translator.py:205
 msgid "Macedonian"
 msgstr "makedonski"
 
-#: ../src\extra\translator\translator.py:62
+#: ../src\extra\translator\translator.py:206
 msgid "Malay"
 msgstr "Malay"
 
-#: ../src\extra\translator\translator.py:63
+#: ../src\extra\translator\translator.py:207
 msgid "Malayalam"
 msgstr "Malayalam"
 
-#: ../src\extra\translator\translator.py:64
+#: ../src\extra\translator\translator.py:208
 msgid "Maltese"
 msgstr "malteški"
 
-#: ../src\extra\translator\translator.py:65
+#: ../src\extra\translator\translator.py:209
 msgid "Marathi"
 msgstr "Marathi"
 
-#: ../src\extra\translator\translator.py:66
+#: ../src\extra\translator\translator.py:210
 msgid "Mongolian"
 msgstr "mongolski"
 
-#: ../src\extra\translator\translator.py:67
+#: ../src\extra\translator\translator.py:211
 msgid "Nepali"
 msgstr "nepalski"
 
-#: ../src\extra\translator\translator.py:68
+#: ../src\extra\translator\translator.py:212
 msgid "Norwegian"
 msgstr "norveški"
 
-#: ../src\extra\translator\translator.py:69
+#: ../src\extra\translator\translator.py:213
 msgid "Oriya"
 msgstr "Oriya"
 
-#: ../src\extra\translator\translator.py:70
+#: ../src\extra\translator\translator.py:214
 msgid "Pashto"
 msgstr "Pashto"
 
-#: ../src\extra\translator\translator.py:71
+#: ../src\extra\translator\translator.py:215
 msgid "Persian"
 msgstr "persijski"
 
-#: ../src\extra\translator\translator.py:72
+#: ../src\extra\translator\translator.py:216
 msgid "Polish"
 msgstr "poljski"
 
-#: ../src\extra\translator\translator.py:73
+#: ../src\extra\translator\translator.py:217
 msgid "Portuguese"
 msgstr "portugalski"
 
-#: ../src\extra\translator\translator.py:74
+#: ../src\extra\translator\translator.py:218
 msgid "Punjabi"
 msgstr "Punjabi"
 
-#: ../src\extra\translator\translator.py:75
+#: ../src\extra\translator\translator.py:219
 msgid "Romanian"
 msgstr "rumunski"
 
-#: ../src\extra\translator\translator.py:76
+#: ../src\extra\translator\translator.py:220
 msgid "Russian"
 msgstr "ruski"
 
-#: ../src\extra\translator\translator.py:77
+#: ../src\extra\translator\translator.py:221
 msgid "Sanskrit"
 msgstr "Sanskrit"
 
-#: ../src\extra\translator\translator.py:78
+#: ../src\extra\translator\translator.py:222
 msgid "Serbian"
 msgstr "srpski"
 
-#: ../src\extra\translator\translator.py:79
+#: ../src\extra\translator\translator.py:223
 msgid "Sindhi"
 msgstr "Sindhi"
 
-#: ../src\extra\translator\translator.py:80
+#: ../src\extra\translator\translator.py:224
 msgid "Sinhalese"
 msgstr "Sinhalese"
 
-#: ../src\extra\translator\translator.py:81
+#: ../src\extra\translator\translator.py:225
 msgid "Slovak"
 msgstr "slovački"
 
-#: ../src\extra\translator\translator.py:82
+#: ../src\extra\translator\translator.py:226
 msgid "Slovenian"
 msgstr "slovenački"
 
-#: ../src\extra\translator\translator.py:83
+#: ../src\extra\translator\translator.py:227
 msgid "Spanish"
 msgstr "španski"
 
-#: ../src\extra\translator\translator.py:84
+#: ../src\extra\translator\translator.py:228
 msgid "Swahili"
 msgstr "Swahili"
 
-#: ../src\extra\translator\translator.py:85
+#: ../src\extra\translator\translator.py:229
 msgid "Swedish"
 msgstr "švedski"
 
-#: ../src\extra\translator\translator.py:86
+#: ../src\extra\translator\translator.py:230
 msgid "Tajik"
 msgstr "Tajik"
 
-#: ../src\extra\translator\translator.py:87
+#: ../src\extra\translator\translator.py:231
 msgid "Tamil"
 msgstr "Tamil"
 
-#: ../src\extra\translator\translator.py:88
+#: ../src\extra\translator\translator.py:232
 msgid "Tagalog"
 msgstr "Tagalog"
 
-#: ../src\extra\translator\translator.py:89
+#: ../src\extra\translator\translator.py:233
 msgid "Telugu"
 msgstr "Telugu"
 
-#: ../src\extra\translator\translator.py:90
+#: ../src\extra\translator\translator.py:234
 msgid "Thai"
 msgstr "Thai"
 
-#: ../src\extra\translator\translator.py:91
+#: ../src\extra\translator\translator.py:235
 msgid "Tibetan"
 msgstr "tibetanski"
 
-#: ../src\extra\translator\translator.py:92
+#: ../src\extra\translator\translator.py:236
 msgid "Turkish"
 msgstr "turski"
 
-#: ../src\extra\translator\translator.py:93
+#: ../src\extra\translator\translator.py:237
 msgid "Ukrainian"
 msgstr "ukrajinski"
 
-#: ../src\extra\translator\translator.py:94
+#: ../src\extra\translator\translator.py:238
 msgid "Urdu"
 msgstr "Urdu"
 
-#: ../src\extra\translator\translator.py:95
+#: ../src\extra\translator\translator.py:239
 msgid "Uzbek"
 msgstr "uzbekitanski"
 
-#: ../src\extra\translator\translator.py:96
+#: ../src\extra\translator\translator.py:240
 msgid "Uighur"
 msgstr "Uighur"
 
-#: ../src\extra\translator\translator.py:97
+#: ../src\extra\translator\translator.py:241
 msgid "Vietnamese"
 msgstr "vijetnamski"
 
-#: ../src\extra\translator\translator.py:98
+#: ../src\extra\translator\translator.py:242
 msgid "Welsh"
 msgstr "velški"
 
-#: ../src\extra\translator\translator.py:99
+#: ../src\extra\translator\translator.py:243
 msgid "Yiddish"
 msgstr "Yiddish"
 
-#: ../src\extra\translator\translator.py:106
+#: ../src\extra\translator\translator.py:250
 msgid "autodetect"
 msgstr "Otkrij automatski"
 
@@ -1375,12 +1377,14 @@ msgid "Send direct message"
 msgstr "Pošalji direktnu poruku"
 
 #: ../src\keystrokeEditor\constants.py:14
-msgid "Mark as favourite"
-msgstr "Označi kao omiljeno"
+#, fuzzy
+msgid "Like a tweet"
+msgstr "Novi tvit"
 
 #: ../src\keystrokeEditor\constants.py:15
-msgid "Remove from favourites"
-msgstr "Ukloni iz omiljenih"
+#, fuzzy
+msgid "Unlike a tweet"
+msgstr "Novi tvit"
 
 #: ../src\keystrokeEditor\constants.py:16
 msgid "Open the user actions dialogue"
@@ -1514,6 +1518,27 @@ msgstr "Stvori kanal trenutnih tema u trendu"
 msgid "View conversation"
 msgstr "Vidi razgovor"
 
+#: ../src\keystrokeEditor\constants.py:49
+#, fuzzy
+msgid "Check and download updates"
+msgstr "Proveri da li postoje nadogradnje"
+
+#: ../src\keystrokeEditor\constants.py:50
+msgid ""
+"Opens the list manager, which allows you to create, edit, delete and open "
+"lists in buffers."
+msgstr ""
+
+#: ../src\keystrokeEditor\constants.py:51
+#, fuzzy
+msgid "Opens the global settings dialogue"
+msgstr "Otvori dialog korisničkih radnji"
+
+#: ../src\keystrokeEditor\constants.py:52
+#, fuzzy
+msgid "Opens the account settings dialogue"
+msgstr "Otvori dialog korisničkih radnji"
+
 #: ../src\keystrokeEditor\wx_ui.py:8
 msgid "Keystroke editor"
 msgstr "Uređivač prečica"
@@ -1597,11 +1622,11 @@ msgstr "Morate omogućiti znak u  prečici"
 msgid "User default"
 msgstr "Podrazumevano"
 
-#: ../src\sessionmanager\session.py:188
+#: ../src\sessionmanager\session.py:189
 msgid "%s failed.  Reason: %s"
 msgstr "%s nije uspelo.  Razlog: %s"
 
-#: ../src\sessionmanager\session.py:194
+#: ../src\sessionmanager\session.py:195
 msgid "%s succeeded."
 msgstr "%s uspelo."
 
@@ -1663,7 +1688,7 @@ msgstr "Vaš pristupni token je pogrešan ili autorizacija nije uspela."
 msgid "Do you really want to delete this account?"
 msgstr "Želite li zaista da izbrišete ovaj nalog?"
 
-#: ../src\sound.py:153
+#: ../src\sound.py:136
 msgid "Stopped."
 msgstr "Zaustavljeno"
 
@@ -1677,9 +1702,8 @@ msgid "Dm to %s "
 msgstr "Dm to %s "
 
 #: ../src\twitter\compose.py:86
-#, fuzzy
 msgid "{0}. Quoted  tweet from @{1}: {2}"
-msgstr "@{0} je naveo vaš tvit: {1}"
+msgstr "{0}. Citovani tvit od @{1}: {2}"
 
 #: ../src\twitter\compose.py:107 ../src\twitter\compose.py:109
 msgid "Unavailable"
@@ -1714,20 +1738,24 @@ msgid "You've unfollowed %s (@%s)"
 msgstr "Otpratili ste %s (@%s)"
 
 #: ../src\twitter\compose.py:126
-msgid "You've added to favourites: %s, %s"
-msgstr "Dodali ste u omiljeno: %s, %s"
+#, fuzzy
+msgid "You've liked: %s, %s"
+msgstr "Blokirali ste %s"
 
 #: ../src\twitter\compose.py:128
-msgid "%s(@%s) has marked as favourite: %s"
-msgstr "%s(@%s) je označio kao omiljeno: %s"
+#, fuzzy
+msgid "%s(@%s) has liked: %s"
+msgstr "%s(@%s) vas je zapratio"
 
 #: ../src\twitter\compose.py:130
-msgid "You've removed from favourites: %s, %s"
-msgstr "Uklonili ste iz omiljenih: %s, %s"
+#, fuzzy
+msgid "You've unliked: %s, %s"
+msgstr "Odblokirali ste %s"
 
 #: ../src\twitter\compose.py:131
-msgid "%s(@%s) has removed from favourites: %s"
-msgstr "%s(@%s) je uklonio iz omiljenih: %s"
+#, fuzzy
+msgid "%s(@%s) has unliked: %s"
+msgstr "%s(@%s) vas je zapratio"
 
 #: ../src\twitter\compose.py:133
 msgid "You've created the list %s"
@@ -1907,9 +1935,8 @@ msgid "Tweet about this trend"
 msgstr "Tvituj o ovom trendu"
 
 #: ../src\wxUI\buffers\trends.py:19 ../src\wxUI\menus.py:90
-#, fuzzy
 msgid "Search topic"
-msgstr "Pretraži"
+msgstr "tema Pretrage"
 
 #: ../src\wxUI\commonMessageDialogs.py:6
 msgid ""
@@ -2027,9 +2054,10 @@ msgid "Warning"
 msgstr "Upozorenje"
 
 #: ../src\wxUI\commonMessageDialogs.py:50
+#, fuzzy
 msgid ""
 "This is a protected user account, you need to follow this user to view their "
-"tweets or favorites."
+"tweets or likes."
 msgstr ""
 "Ovaj korisnik je zaštitio svoj nalog. Morate ga zapratiti kako bi videli "
 "njegove tvitove ili omiljene stvari."
@@ -2455,8 +2483,8 @@ msgid "Retweets: "
 msgstr "Retvitova"
 
 #: ../src\wxUI\dialogs\message.py:268
-msgid "Favourites: "
-msgstr "Broj ljudi kojima se tvit sviđa"
+msgid "Likes: "
+msgstr ""
 
 #: ../src\wxUI\dialogs\message.py:318
 msgid "View"
@@ -2583,12 +2611,12 @@ msgid "Re&ply"
 msgstr "Odgovori"
 
 #: ../src\wxUI\menus.py:11 ../src\wxUI\view.py:30
-msgid "Add to &favourites"
-msgstr "Dodaj u omiljeno"
+msgid "&Like"
+msgstr ""
 
 #: ../src\wxUI\menus.py:13 ../src\wxUI\view.py:31
-msgid "Remove from favo&urites"
-msgstr "Ukloni iz omiljenog"
+msgid "&Unlike"
+msgstr ""
 
 #: ../src\wxUI\menus.py:15 ../src\wxUI\menus.py:33 ../src\wxUI\menus.py:49
 msgid "&Open URL"
@@ -2737,8 +2765,9 @@ msgid "R&emove from list"
 msgstr "Ukloni sa liste"
 
 #: ../src\wxUI\view.py:46
-msgid "V&iew favourites"
-msgstr "Vidi omiljene"
+#, fuzzy
+msgid "V&iew likes"
+msgstr "Vidi liste"
 
 #: ../src\wxUI\view.py:50
 msgid "New &trending topics buffer..."
@@ -2819,3 +2848,42 @@ msgstr "Ažuriraj"
 #: ../src\wxUI\view.py:181
 msgid "Your {0} version is up to date"
 msgstr "Imate najnoviju verziju {0}."
+
+#~ msgid "Favourites"
+#~ msgstr "Omiljeno"
+
+#~ msgid "Favourites timeline for {}"
+#~ msgstr "Omiljena vremenska crta za"
+
+#~ msgid "Tweet favourited."
+#~ msgstr "Tvit označen kao omiljen."
+
+#~ msgid "Mark as favourite"
+#~ msgstr "Označi kao omiljeno"
+
+#~ msgid "Remove from favourites"
+#~ msgstr "Ukloni iz omiljenih"
+
+#~ msgid "You've added to favourites: %s, %s"
+#~ msgstr "Dodali ste u omiljeno: %s, %s"
+
+#~ msgid "%s(@%s) has marked as favourite: %s"
+#~ msgstr "%s(@%s) je označio kao omiljeno: %s"
+
+#~ msgid "You've removed from favourites: %s, %s"
+#~ msgstr "Uklonili ste iz omiljenih: %s, %s"
+
+#~ msgid "%s(@%s) has removed from favourites: %s"
+#~ msgstr "%s(@%s) je uklonio iz omiljenih: %s"
+
+#~ msgid "Favourites: "
+#~ msgstr "Broj ljudi kojima se tvit sviđa"
+
+#~ msgid "Add to &favourites"
+#~ msgstr "Dodaj u omiljeno"
+
+#~ msgid "Remove from favo&urites"
+#~ msgstr "Ukloni iz omiljenog"
+
+#~ msgid "V&iew favourites"
+#~ msgstr "Vidi omiljene"

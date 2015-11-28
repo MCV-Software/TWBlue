@@ -1,185 +1,185 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
-"POT-Creation-Date: 2015-09-29 09:37+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2015-10-03 13:09+0200\n"
-"Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
+"POT-Creation-Date: 2015-11-06 08:10+Hora estndar central (Mxico)\n"
+"PO-Revision-Date: 2015-09-15 12:05+0100\n"
+"Last-Translator: Joan Rabat <joanrabat@hotmail.com>\n"
 "Language-Team: Joan Rabat Fajardo <joan.rabat@gmail.com>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../src\controller\buffersController.py:89
+#: ../src\controller\buffersController.py:91
 msgid "This action is not supported for this buffer"
 msgstr "El buffer actual no suporta aquesta acció"
 
-#: ../src\controller\buffersController.py:128
-#: ../src\controller\buffersController.py:983 ../src\wxUI\buffers\base.py:24
+#: ../src\controller\buffersController.py:130
+#: ../src\controller\buffersController.py:1000 ../src\wxUI\buffers\base.py:24
 #: ../src\wxUI\buffers\events.py:14 ../src\wxUI\buffers\trends.py:17
 #: ../src\wxUI\dialogs\message.py:251 ../src\wxUI\sysTrayIcon.py:33
 msgid "Tweet"
 msgstr "Tuit"
 
-#: ../src\controller\buffersController.py:129
-#: ../src\controller\buffersController.py:984
+#: ../src\controller\buffersController.py:131
+#: ../src\controller\buffersController.py:1001
 msgid "Write the tweet here"
 msgstr "Escriu el tuit aquí"
 
-#: ../src\controller\buffersController.py:313
-#: ../src\controller\buffersController.py:774
+#: ../src\controller\buffersController.py:319
+#: ../src\controller\buffersController.py:782
 msgid "%s items retrieved"
 msgstr "%s elements descarregats"
 
-#: ../src\controller\buffersController.py:333
+#: ../src\controller\buffersController.py:339
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Aquest buffer no es una liniatemporal; no es pot eliminar."
 
-#: ../src\controller\buffersController.py:449
+#: ../src\controller\buffersController.py:455
 msgid "Reply to %s"
 msgstr "Respondre a %s"
 
-#: ../src\controller\buffersController.py:449
+#: ../src\controller\buffersController.py:455
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
 msgid "Reply"
 msgstr "Respondre"
 
-#: ../src\controller\buffersController.py:476
+#: ../src\controller\buffersController.py:482
 msgid "Direct message to %s"
 msgstr "Missatge directe a %s"
 
-#: ../src\controller\buffersController.py:476
+#: ../src\controller\buffersController.py:482
 #: ../src\controller\mainController.py:1143
 msgid "New direct message"
 msgstr "Nou missatge directe"
 
-#: ../src\controller\buffersController.py:497
+#: ../src\controller\buffersController.py:503
 msgid "Add your comment to the tweet"
 msgstr "Afegeix el teu comentari al tuit"
 
-#: ../src\controller\buffersController.py:497
+#: ../src\controller\buffersController.py:503
 #: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\commonMessageDialogs.py:9 ../src\wxUI\dialogs\message.py:126
 msgid "Retweet"
 msgstr "Retuit"
 
-#: ../src\controller\buffersController.py:568
+#: ../src\controller\buffersController.py:574
 msgid "Opening URL..."
 msgstr "Obrint URL..."
 
-#: ../src\controller\buffersController.py:603
+#: ../src\controller\buffersController.py:609
 msgid "User details"
 msgstr "Detalls de l'usuari"
 
-#: ../src\controller\buffersController.py:672
+#: ../src\controller\buffersController.py:678
 msgid "Empty"
 msgstr "Buit"
 
-#: ../src\controller\buffersController.py:733
+#: ../src\controller\buffersController.py:739
 msgid "Mention to %s"
 msgstr "Mencionar a %s"
 
-#: ../src\controller\buffersController.py:733 ../src\wxUI\buffers\people.py:15
+#: ../src\controller\buffersController.py:739 ../src\wxUI\buffers\people.py:15
 msgid "Mention"
 msgstr "Menció"
 
-#: ../src\controller\mainController.py:256
+#: ../src\controller\mainController.py:257
 msgid "Ready"
 msgstr "Preparat"
 
-#: ../src\controller\mainController.py:288
+#: ../src\controller\mainController.py:289
 msgid "Home"
 msgstr "Principal"
 
-#: ../src\controller\mainController.py:292
+#: ../src\controller\mainController.py:293
 msgid "Mentions"
 msgstr "Mencions"
 
-#: ../src\controller\mainController.py:296
+#: ../src\controller\mainController.py:297
 msgid "Direct messages"
 msgstr "Missatges directes"
 
-#: ../src\controller\mainController.py:300
+#: ../src\controller\mainController.py:301
 msgid "Sent direct messages"
 msgstr "Missatges directes enviats"
 
-#: ../src\controller\mainController.py:304
+#: ../src\controller\mainController.py:305
 msgid "Sent tweets"
 msgstr "Tuits enviats"
 
-#: ../src\controller\mainController.py:309
-#: ../src\controller\mainController.py:1266
+#: ../src\controller\mainController.py:310
+#: ../src\controller\mainController.py:1277
 #: ../src\wxUI\dialogs\userSelection.py:20
-msgid "Favourites"
-msgstr "Favorits"
+msgid "Likes"
+msgstr "Tuits que m'agraden."
 
-#: ../src\controller\mainController.py:313
-#: ../src\controller\mainController.py:1271
+#: ../src\controller\mainController.py:314
+#: ../src\controller\mainController.py:1282
 msgid "Followers"
 msgstr "Seguidors"
 
-#: ../src\controller\mainController.py:317
-#: ../src\controller\mainController.py:1276
+#: ../src\controller\mainController.py:318
+#: ../src\controller\mainController.py:1287
 msgid "Friends"
 msgstr "Amics"
 
-#: ../src\controller\mainController.py:321
-#: ../src\controller\mainController.py:1281
+#: ../src\controller\mainController.py:322
+#: ../src\controller\mainController.py:1292
 msgid "Blocked users"
 msgstr "Usuaris bloquejats"
 
-#: ../src\controller\mainController.py:325
-#: ../src\controller\mainController.py:1286
+#: ../src\controller\mainController.py:326
+#: ../src\controller\mainController.py:1297
 msgid "Muted users"
 msgstr "Usuaris silenciats"
 
-#: ../src\controller\mainController.py:329
-#: ../src\controller\mainController.py:1291
+#: ../src\controller\mainController.py:330
+#: ../src\controller\mainController.py:1302
 msgid "Events"
 msgstr "Esdeveniments"
 
-#: ../src\controller\mainController.py:332
+#: ../src\controller\mainController.py:333
 msgid "Timelines"
 msgstr "Línies temporals"
 
-#: ../src\controller\mainController.py:336
+#: ../src\controller\mainController.py:337
 #: ../src\controller\mainController.py:774
 msgid "Timeline for {}"
 msgstr "Línia temporal de  {}"
 
-#: ../src\controller\mainController.py:339
-msgid "Favourites timelines"
-msgstr "Línies temporals favorites"
+#: ../src\controller\mainController.py:340
+msgid "Likes timelines"
+msgstr "Línies temporals de tuits que m'agraden"
 
-#: ../src\controller\mainController.py:343
+#: ../src\controller\mainController.py:344
 #: ../src\controller\mainController.py:789
-msgid "Favourites timeline for {}"
-msgstr "Línies temporals dels favorits de "
+msgid "Likes for {}"
+msgstr "Tuits que agraden a  {}"
 
-#: ../src\controller\mainController.py:348 ../src\wxUI\dialogs\lists.py:12
+#: ../src\controller\mainController.py:349 ../src\wxUI\dialogs\lists.py:12
 msgid "Lists"
 msgstr "Llistes"
 
-#: ../src\controller\mainController.py:353
-#: ../src\controller\mainController.py:1302
+#: ../src\controller\mainController.py:354
+#: ../src\controller\mainController.py:1313
 msgid "List for {}"
 msgstr "Llista per {}"
 
-#: ../src\controller\mainController.py:356
+#: ../src\controller\mainController.py:357
 msgid "Searches"
 msgstr "Recerques"
 
-#: ../src\controller\mainController.py:360
+#: ../src\controller\mainController.py:361
 #: ../src\controller\mainController.py:422
 msgid "Search for {}"
 msgstr "Cercar per {}"
 
-#: ../src\controller\mainController.py:370
+#: ../src\controller\mainController.py:371
 #: ../src\controller\mainController.py:835
 msgid "Trending topics for %s"
 msgstr "Tendències de %s"
@@ -263,35 +263,35 @@ msgstr "Una menció de %s"
 msgid "One tweet from %s"
 msgstr "Un tuit de %s"
 
-#: ../src\controller\mainController.py:1296
+#: ../src\controller\mainController.py:1307
 msgid "This list is already opened"
 msgstr "Aquesta llista ja està oberta."
 
-#: ../src\controller\mainController.py:1355
+#: ../src\controller\mainController.py:1366
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "La lectura automàtica de tuits per a aquest buffer està activada."
 
-#: ../src\controller\mainController.py:1358
+#: ../src\controller\mainController.py:1369
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "La lectura automàtica de tuits per a aquest buffer està desactivada."
 
-#: ../src\controller\mainController.py:1364
+#: ../src\controller\mainController.py:1375
 msgid "Session mute on"
 msgstr "Silenci de sessió activat"
 
-#: ../src\controller\mainController.py:1367
+#: ../src\controller\mainController.py:1378
 msgid "Session mute off"
 msgstr "Silenci de sessió desactivat."
 
-#: ../src\controller\mainController.py:1374
+#: ../src\controller\mainController.py:1385
 msgid "Buffer mute on"
 msgstr "Silenci de buffer activat"
 
-#: ../src\controller\mainController.py:1377
+#: ../src\controller\mainController.py:1388
 msgid "Buffer mute off"
 msgstr "Silenci de buffer desactivat"
 
-#: ../src\controller\mainController.py:1390
+#: ../src\controller\mainController.py:1401
 msgid "Copied"
 msgstr "Copiat"
 
@@ -418,8 +418,8 @@ msgid "Tweets: %s\n"
 msgstr "Tuits: %s\n"
 
 #: ../src\controller\user.py:98
-msgid "Favourites: %s"
-msgstr "Favorits: %s"
+msgid "Likes: %s"
+msgstr "Tuits que m'agraden: %s"
 
 #: ../src\controller\userActionsController.py:75
 msgid "You can't ignore direct messages"
@@ -590,12 +590,12 @@ msgid "Error."
 msgstr "Error."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
-msgid "Tweet favourited."
-msgstr "Tuit marcat com a favorit."
+msgid "Tweet liked."
+msgstr "Tuit marcat com a m'agrada."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
-msgid "Favourites buffer updated."
-msgstr "Buffer de preferits actualitzat"
+msgid "Likes buffer updated."
+msgstr "Buffer de tuits que m'agraden actualitzat"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
 msgid "Geotweet."
@@ -809,371 +809,375 @@ msgstr "Fet"
 msgid "{0}'s database of users has been updated."
 msgstr "La base de dades d'usuaris de {0} s'ha actualitzat"
 
-#: ../src\extra\translator\translator.py:9
+#: ../src\extra\translator\translator.py:124
+msgid "unavailable"
+msgstr "No disponible."
+
+#: ../src\extra\translator\translator.py:153
 msgid "Afrikaans"
 msgstr "Africà"
 
-#: ../src\extra\translator\translator.py:10
+#: ../src\extra\translator\translator.py:154
 msgid "Albanian"
 msgstr "Albanès"
 
-#: ../src\extra\translator\translator.py:11
+#: ../src\extra\translator\translator.py:155
 msgid "Amharic"
 msgstr "Amharic"
 
-#: ../src\extra\translator\translator.py:12
+#: ../src\extra\translator\translator.py:156
 msgid "Arabic"
 msgstr "Àrab"
 
-#: ../src\extra\translator\translator.py:13
+#: ../src\extra\translator\translator.py:157
 msgid "Armenian"
 msgstr "Armenià"
 
-#: ../src\extra\translator\translator.py:14
+#: ../src\extra\translator\translator.py:158
 msgid "Azerbaijani"
 msgstr "Acerbajà"
 
-#: ../src\extra\translator\translator.py:15
+#: ../src\extra\translator\translator.py:159
 msgid "Basque"
 msgstr "Euskera"
 
-#: ../src\extra\translator\translator.py:16
+#: ../src\extra\translator\translator.py:160
 msgid "Belarusian"
 msgstr "Bielorús"
 
-#: ../src\extra\translator\translator.py:17
+#: ../src\extra\translator\translator.py:161
 msgid "Bengali"
 msgstr "Bengali"
 
-#: ../src\extra\translator\translator.py:18
+#: ../src\extra\translator\translator.py:162
 msgid "Bihari"
 msgstr "Bihari"
 
-#: ../src\extra\translator\translator.py:19
+#: ../src\extra\translator\translator.py:163
 msgid "Bulgarian"
 msgstr "Bùlgar"
 
-#: ../src\extra\translator\translator.py:20
+#: ../src\extra\translator\translator.py:164
 msgid "Burmese"
 msgstr "Birmà"
 
-#: ../src\extra\translator\translator.py:21
+#: ../src\extra\translator\translator.py:165
 msgid "Catalan"
 msgstr "Català"
 
-#: ../src\extra\translator\translator.py:22
+#: ../src\extra\translator\translator.py:166
 msgid "Cherokee"
 msgstr "Cheroqui"
 
-#: ../src\extra\translator\translator.py:23
+#: ../src\extra\translator\translator.py:167
 msgid "Chinese"
 msgstr "xinès"
 
-#: ../src\extra\translator\translator.py:24
+#: ../src\extra\translator\translator.py:168
 msgid "Chinese_simplified"
 msgstr "xinèss simplificat"
 
-#: ../src\extra\translator\translator.py:25
+#: ../src\extra\translator\translator.py:169
 msgid "Chinese_traditional"
 msgstr "xinés tradicional"
 
-#: ../src\extra\translator\translator.py:26
+#: ../src\extra\translator\translator.py:170
 msgid "Croatian"
 msgstr "Croat"
 
-#: ../src\extra\translator\translator.py:27
+#: ../src\extra\translator\translator.py:171
 msgid "Czech"
 msgstr "Txec"
 
-#: ../src\extra\translator\translator.py:28
+#: ../src\extra\translator\translator.py:172
 msgid "Danish"
 msgstr "Danès"
 
-#: ../src\extra\translator\translator.py:29
+#: ../src\extra\translator\translator.py:173
 msgid "Dhivehi"
 msgstr "Dhivehi"
 
-#: ../src\extra\translator\translator.py:30
+#: ../src\extra\translator\translator.py:174
 msgid "Dutch"
 msgstr "Holandès"
 
-#: ../src\extra\translator\translator.py:31
+#: ../src\extra\translator\translator.py:175
 msgid "English"
 msgstr "Anglès"
 
-#: ../src\extra\translator\translator.py:32
+#: ../src\extra\translator\translator.py:176
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#: ../src\extra\translator\translator.py:33
+#: ../src\extra\translator\translator.py:177
 msgid "Estonian"
 msgstr "Estonià"
 
-#: ../src\extra\translator\translator.py:34
+#: ../src\extra\translator\translator.py:178
 msgid "Filipino"
 msgstr "Filipí"
 
-#: ../src\extra\translator\translator.py:35
+#: ../src\extra\translator\translator.py:179
 msgid "Finnish"
 msgstr "Finès"
 
-#: ../src\extra\translator\translator.py:36
+#: ../src\extra\translator\translator.py:180
 msgid "French"
 msgstr "Francès"
 
-#: ../src\extra\translator\translator.py:37
+#: ../src\extra\translator\translator.py:181
 msgid "Galician"
 msgstr "Gallec"
 
-#: ../src\extra\translator\translator.py:38
+#: ../src\extra\translator\translator.py:182
 msgid "Georgian"
 msgstr "Georgià"
 
-#: ../src\extra\translator\translator.py:39
+#: ../src\extra\translator\translator.py:183
 msgid "German"
 msgstr "Alemany"
 
-#: ../src\extra\translator\translator.py:40
+#: ../src\extra\translator\translator.py:184
 msgid "Greek"
 msgstr "Grec"
 
-#: ../src\extra\translator\translator.py:41
+#: ../src\extra\translator\translator.py:185
 msgid "Guarani"
 msgstr "Guaraní"
 
-#: ../src\extra\translator\translator.py:42
+#: ../src\extra\translator\translator.py:186
 msgid "Gujarati"
 msgstr "Guiaratí"
 
-#: ../src\extra\translator\translator.py:43
+#: ../src\extra\translator\translator.py:187
 msgid "Hebrew"
 msgstr "Hebreu"
 
-#: ../src\extra\translator\translator.py:44
+#: ../src\extra\translator\translator.py:188
 msgid "Hindi"
 msgstr "Hindi"
 
-#: ../src\extra\translator\translator.py:45
+#: ../src\extra\translator\translator.py:189
 msgid "Hungarian"
 msgstr "Hongarès"
 
-#: ../src\extra\translator\translator.py:46
+#: ../src\extra\translator\translator.py:190
 msgid "Icelandic"
 msgstr "Islandès"
 
-#: ../src\extra\translator\translator.py:47
+#: ../src\extra\translator\translator.py:191
 msgid "Indonesian"
 msgstr "Indonesi"
 
-#: ../src\extra\translator\translator.py:48
+#: ../src\extra\translator\translator.py:192
 msgid "Inuktitut"
 msgstr "Inuktitut"
 
-#: ../src\extra\translator\translator.py:49
+#: ../src\extra\translator\translator.py:193
 msgid "Irish"
 msgstr "Irlandès"
 
-#: ../src\extra\translator\translator.py:50
+#: ../src\extra\translator\translator.py:194
 msgid "Italian"
 msgstr "Italià"
 
-#: ../src\extra\translator\translator.py:51
+#: ../src\extra\translator\translator.py:195
 msgid "Japanese"
 msgstr "Japonès"
 
-#: ../src\extra\translator\translator.py:52
+#: ../src\extra\translator\translator.py:196
 msgid "Kannada"
 msgstr "Canarès"
 
-#: ../src\extra\translator\translator.py:53
+#: ../src\extra\translator\translator.py:197
 msgid "Kazakh"
 msgstr "Kazakh"
 
-#: ../src\extra\translator\translator.py:54
+#: ../src\extra\translator\translator.py:198
 msgid "Khmer"
 msgstr "Camboià"
 
-#: ../src\extra\translator\translator.py:55
+#: ../src\extra\translator\translator.py:199
 msgid "Korean"
 msgstr "Coreà"
 
-#: ../src\extra\translator\translator.py:56
+#: ../src\extra\translator\translator.py:200
 msgid "Kurdish"
 msgstr "Kurd"
 
-#: ../src\extra\translator\translator.py:57
+#: ../src\extra\translator\translator.py:201
 msgid "Kyrgyz"
 msgstr "Kirguís"
 
-#: ../src\extra\translator\translator.py:58
+#: ../src\extra\translator\translator.py:202
 msgid "Laothian"
 msgstr "Lao"
 
-#: ../src\extra\translator\translator.py:59
+#: ../src\extra\translator\translator.py:203
 msgid "Latvian"
 msgstr "Letó"
 
-#: ../src\extra\translator\translator.py:60
+#: ../src\extra\translator\translator.py:204
 msgid "Lithuanian"
 msgstr "Lituà"
 
-#: ../src\extra\translator\translator.py:61
+#: ../src\extra\translator\translator.py:205
 msgid "Macedonian"
 msgstr "Macedoni"
 
-#: ../src\extra\translator\translator.py:62
+#: ../src\extra\translator\translator.py:206
 msgid "Malay"
 msgstr "Malai"
 
-#: ../src\extra\translator\translator.py:63
+#: ../src\extra\translator\translator.py:207
 msgid "Malayalam"
 msgstr "Malayalam"
 
-#: ../src\extra\translator\translator.py:64
+#: ../src\extra\translator\translator.py:208
 msgid "Maltese"
 msgstr "Maltès"
 
-#: ../src\extra\translator\translator.py:65
+#: ../src\extra\translator\translator.py:209
 msgid "Marathi"
 msgstr "Maratí"
 
-#: ../src\extra\translator\translator.py:66
+#: ../src\extra\translator\translator.py:210
 msgid "Mongolian"
 msgstr "Mongol"
 
-#: ../src\extra\translator\translator.py:67
+#: ../src\extra\translator\translator.py:211
 msgid "Nepali"
 msgstr "Nepalí"
 
-#: ../src\extra\translator\translator.py:68
+#: ../src\extra\translator\translator.py:212
 msgid "Norwegian"
 msgstr "Noruec"
 
-#: ../src\extra\translator\translator.py:69
+#: ../src\extra\translator\translator.py:213
 msgid "Oriya"
 msgstr "Oriia"
 
-#: ../src\extra\translator\translator.py:70
+#: ../src\extra\translator\translator.py:214
 msgid "Pashto"
 msgstr "Pastú"
 
-#: ../src\extra\translator\translator.py:71
+#: ../src\extra\translator\translator.py:215
 msgid "Persian"
 msgstr "Persa"
 
-#: ../src\extra\translator\translator.py:72
+#: ../src\extra\translator\translator.py:216
 msgid "Polish"
 msgstr "Polac"
 
-#: ../src\extra\translator\translator.py:73
+#: ../src\extra\translator\translator.py:217
 msgid "Portuguese"
 msgstr "Portuguès"
 
-#: ../src\extra\translator\translator.py:74
+#: ../src\extra\translator\translator.py:218
 msgid "Punjabi"
 msgstr "Paniabí"
 
-#: ../src\extra\translator\translator.py:75
+#: ../src\extra\translator\translator.py:219
 msgid "Romanian"
 msgstr "Romanè"
 
-#: ../src\extra\translator\translator.py:76
+#: ../src\extra\translator\translator.py:220
 msgid "Russian"
 msgstr "Rus"
 
-#: ../src\extra\translator\translator.py:77
+#: ../src\extra\translator\translator.py:221
 msgid "Sanskrit"
 msgstr "Sànstrit"
 
-#: ../src\extra\translator\translator.py:78
+#: ../src\extra\translator\translator.py:222
 msgid "Serbian"
 msgstr "Serbi"
 
-#: ../src\extra\translator\translator.py:79
+#: ../src\extra\translator\translator.py:223
 msgid "Sindhi"
 msgstr "Sindhi"
 
-#: ../src\extra\translator\translator.py:80
+#: ../src\extra\translator\translator.py:224
 msgid "Sinhalese"
 msgstr "Cingalès"
 
-#: ../src\extra\translator\translator.py:81
+#: ../src\extra\translator\translator.py:225
 msgid "Slovak"
 msgstr "Eslovac"
 
-#: ../src\extra\translator\translator.py:82
+#: ../src\extra\translator\translator.py:226
 msgid "Slovenian"
 msgstr "Esloveni"
 
-#: ../src\extra\translator\translator.py:83
+#: ../src\extra\translator\translator.py:227
 msgid "Spanish"
 msgstr "Espanyol"
 
-#: ../src\extra\translator\translator.py:84
+#: ../src\extra\translator\translator.py:228
 msgid "Swahili"
 msgstr "Suahili"
 
-#: ../src\extra\translator\translator.py:85
+#: ../src\extra\translator\translator.py:229
 msgid "Swedish"
 msgstr "Suec"
 
-#: ../src\extra\translator\translator.py:86
+#: ../src\extra\translator\translator.py:230
 msgid "Tajik"
 msgstr "Tajik"
 
-#: ../src\extra\translator\translator.py:87
+#: ../src\extra\translator\translator.py:231
 msgid "Tamil"
 msgstr "Tamil"
 
-#: ../src\extra\translator\translator.py:88
+#: ../src\extra\translator\translator.py:232
 msgid "Tagalog"
 msgstr "Tagal"
 
-#: ../src\extra\translator\translator.py:89
+#: ../src\extra\translator\translator.py:233
 msgid "Telugu"
 msgstr "Telugú"
 
-#: ../src\extra\translator\translator.py:90
+#: ../src\extra\translator\translator.py:234
 msgid "Thai"
 msgstr "Tailandès"
 
-#: ../src\extra\translator\translator.py:91
+#: ../src\extra\translator\translator.py:235
 msgid "Tibetan"
 msgstr "tibetà"
 
-#: ../src\extra\translator\translator.py:92
+#: ../src\extra\translator\translator.py:236
 msgid "Turkish"
 msgstr "Turc"
 
-#: ../src\extra\translator\translator.py:93
+#: ../src\extra\translator\translator.py:237
 msgid "Ukrainian"
 msgstr "Ucraïnès"
 
-#: ../src\extra\translator\translator.py:94
+#: ../src\extra\translator\translator.py:238
 msgid "Urdu"
 msgstr "Urdu"
 
-#: ../src\extra\translator\translator.py:95
+#: ../src\extra\translator\translator.py:239
 msgid "Uzbek"
 msgstr "Uzbec"
 
-#: ../src\extra\translator\translator.py:96
+#: ../src\extra\translator\translator.py:240
 msgid "Uighur"
 msgstr "Uigur"
 
-#: ../src\extra\translator\translator.py:97
+#: ../src\extra\translator\translator.py:241
 msgid "Vietnamese"
 msgstr "Vietnamita"
 
-#: ../src\extra\translator\translator.py:98
+#: ../src\extra\translator\translator.py:242
 msgid "Welsh"
 msgstr "Galès"
 
-#: ../src\extra\translator\translator.py:99
+#: ../src\extra\translator\translator.py:243
 msgid "Yiddish"
 msgstr "Yiddish"
 
-#: ../src\extra\translator\translator.py:106
+#: ../src\extra\translator\translator.py:250
 msgid "autodetect"
 msgstr "Autodetectar"
 
@@ -1366,12 +1370,12 @@ msgid "Send direct message"
 msgstr "Enviar Missatge Directe"
 
 #: ../src\keystrokeEditor\constants.py:14
-msgid "Mark as favourite"
-msgstr "Marcar com a favorit"
+msgid "Like a tweet"
+msgstr "t'agrada el tuit."
 
 #: ../src\keystrokeEditor\constants.py:15
-msgid "Remove from favourites"
-msgstr "Esborrar de favorits"
+msgid "Unlike a tweet"
+msgstr "Ja no t'agrada el tuit."
 
 #: ../src\keystrokeEditor\constants.py:16
 msgid "Open the user actions dialogue"
@@ -1505,6 +1509,26 @@ msgstr "Crear un buffer de tendències"
 msgid "View conversation"
 msgstr "Veure conversa."
 
+#: ../src\keystrokeEditor\constants.py:49
+msgid "Check and download updates"
+msgstr "Cerca i descarrega actualitzacions"
+
+#: ../src\keystrokeEditor\constants.py:50
+msgid ""
+"Opens the list manager, which allows you to create, edit, delete and open "
+"lists in buffers."
+msgstr ""
+"Obre el gestor de llistes, que et permetrà  crear, editar, eliminar i obrir "
+"llistes en buffers."
+
+#: ../src\keystrokeEditor\constants.py:51
+msgid "Opens the global settings dialogue"
+msgstr "Obre el diàleg de configuració global."
+
+#: ../src\keystrokeEditor\constants.py:52
+msgid "Opens the account settings dialogue"
+msgstr "Obre el diàleg de configuració del compte."
+
 #: ../src\keystrokeEditor\wx_ui.py:8
 msgid "Keystroke editor"
 msgstr "Editor de combinacions de teclat"
@@ -1588,11 +1612,11 @@ msgstr "Has de triar una lletra per a la cominació ràpida de teclat"
 msgid "User default"
 msgstr "Usuari per defecte"
 
-#: ../src\sessionmanager\session.py:188
+#: ../src\sessionmanager\session.py:189
 msgid "%s failed.  Reason: %s"
 msgstr "%s ha fallat. Raó: %s"
 
-#: ../src\sessionmanager\session.py:194
+#: ../src\sessionmanager\session.py:195
 msgid "%s succeeded."
 msgstr "%s amb èxit"
 
@@ -1656,7 +1680,7 @@ msgstr ""
 msgid "Do you really want to delete this account?"
 msgstr "Realment vols eliminar aquest compte?"
 
-#: ../src\sound.py:153
+#: ../src\sound.py:136
 msgid "Stopped."
 msgstr "Aturat."
 
@@ -1706,20 +1730,20 @@ msgid "You've unfollowed %s (@%s)"
 msgstr "Has deixat de seguir a %s(@%s)"
 
 #: ../src\twitter\compose.py:126
-msgid "You've added to favourites: %s, %s"
-msgstr "Has afegit a favorits: %s, %s"
+msgid "You've liked: %s, %s"
+msgstr "Has marcat que t'agrada: %s, %s"
 
 #: ../src\twitter\compose.py:128
-msgid "%s(@%s) has marked as favourite: %s"
-msgstr "%s(@%s) ha marcat com a favorit: %s"
+msgid "%s(@%s) has liked: %s"
+msgstr "%s(@%s) ha marcat que li agrada: %s"
 
 #: ../src\twitter\compose.py:130
-msgid "You've removed from favourites: %s, %s"
-msgstr "Has esborrat delsteus favorits: %s, %s"
+msgid "You've unliked: %s, %s"
+msgstr "Has marcat que ja no t'agrada: %s, %s"
 
 #: ../src\twitter\compose.py:131
-msgid "%s(@%s) has removed from favourites: %s"
-msgstr "%s(@%s) ha esborrat dels seus favorits: %s"
+msgid "%s(@%s) has unliked: %s"
+msgstr "%s(@%s) ha marcat que ja no li agrada: %s"
 
 #: ../src\twitter\compose.py:133
 msgid "You've created the list %s"
@@ -1862,7 +1886,8 @@ msgid "Date"
 msgstr "data"
 
 #: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\people.py:10
-#: ../src\wxUI\buffers\user_searches.py:9 ../src\wxUI\dialogs\userActions.py:10
+#: ../src\wxUI\buffers\user_searches.py:9
+#: ../src\wxUI\dialogs\userActions.py:10
 #: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:30
 msgid "User"
 msgstr "Usuari"
@@ -2018,10 +2043,10 @@ msgstr "Avís"
 #: ../src\wxUI\commonMessageDialogs.py:50
 msgid ""
 "This is a protected user account, you need to follow this user to view their "
-"tweets or favorites."
+"tweets or likes."
 msgstr ""
 "El compte d'aquest usuari està protegit, necessites seguir-lo per veure els "
-"seus tuits o favorits."
+"seus tuits o els tuits que li agraden."
 
 #: ../src\wxUI\commonMessageDialogs.py:53
 msgid ""
@@ -2445,8 +2470,8 @@ msgid "Retweets: "
 msgstr "Retuit."
 
 #: ../src\wxUI\dialogs\message.py:268
-msgid "Favourites: "
-msgstr "Favorits: "
+msgid "Likes: "
+msgstr "Tuits que m'agraden: "
 
 #: ../src\wxUI\dialogs\message.py:318
 msgid "View"
@@ -2573,12 +2598,12 @@ msgid "Re&ply"
 msgstr "&Respondre"
 
 #: ../src\wxUI\menus.py:11 ../src\wxUI\view.py:30
-msgid "Add to &favourites"
-msgstr "&Afegir a favorit"
+msgid "&Like"
+msgstr "&m'agrada"
 
 #: ../src\wxUI\menus.py:13 ../src\wxUI\view.py:31
-msgid "Remove from favo&urites"
-msgstr "&Esborrar de favorits"
+msgid "&Unlike"
+msgstr "&Ja no m'agrada"
 
 #: ../src\wxUI\menus.py:15 ../src\wxUI\menus.py:33 ../src\wxUI\menus.py:49
 msgid "&Open URL"
@@ -2727,8 +2752,8 @@ msgid "R&emove from list"
 msgstr "&Eliminar de llista"
 
 #: ../src\wxUI\view.py:46
-msgid "V&iew favourites"
-msgstr "&Veure favorits"
+msgid "V&iew likes"
+msgstr "&Veure tuits que agraden"
 
 #: ../src\wxUI\view.py:50
 msgid "New &trending topics buffer..."
@@ -2809,6 +2834,45 @@ msgstr "Actualitzat"
 #: ../src\wxUI\view.py:181
 msgid "Your {0} version is up to date"
 msgstr "La teva {0} versió ja està actualitzada."
+
+#~ msgid "Favourites"
+#~ msgstr "Favorits"
+
+#~ msgid "Favourites timeline for {}"
+#~ msgstr "Línies temporals dels favorits de "
+
+#~ msgid "Tweet favourited."
+#~ msgstr "Tuit marcat com a favorit."
+
+#~ msgid "Mark as favourite"
+#~ msgstr "Marcar com a favorit"
+
+#~ msgid "Remove from favourites"
+#~ msgstr "Esborrar de favorits"
+
+#~ msgid "You've added to favourites: %s, %s"
+#~ msgstr "Has afegit a favorits: %s, %s"
+
+#~ msgid "%s(@%s) has marked as favourite: %s"
+#~ msgstr "%s(@%s) ha marcat com a favorit: %s"
+
+#~ msgid "You've removed from favourites: %s, %s"
+#~ msgstr "Has esborrat delsteus favorits: %s, %s"
+
+#~ msgid "%s(@%s) has removed from favourites: %s"
+#~ msgstr "%s(@%s) ha esborrat dels seus favorits: %s"
+
+#~ msgid "Favourites: "
+#~ msgstr "Favorits: "
+
+#~ msgid "Add to &favourites"
+#~ msgstr "&Afegir a favorit"
+
+#~ msgid "Remove from favo&urites"
+#~ msgstr "&Esborrar de favorits"
+
+#~ msgid "V&iew favourites"
+#~ msgstr "&Veure favorits"
 
 #~ msgid "Opening media..."
 #~ msgstr "Obrint media..."
