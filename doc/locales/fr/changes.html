@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>Liste des Changements</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Liste des Changements</h1>
+</div>
+<h1 id="attention">Attention !</h1>
+<p>Avant de poursuivre l'essai du programme, il est considéré que c'est une version de développement. Plus précisément, la version 0.42. Cela signifie qu'il n'est pas seulement possible de trouver des erreurs, mais que vous les trouverez. L'idée est de signaler le plus d'erreurs possibles afin qu'ils puisse être résolus pour les prochaines alphas.</p>
+<p>Voici la liste des changements dans le programme. Si vous voulez lire comment l'utiliser, <a href="manual.html">voir ce document.</a> Si vous voyez un lien avec un signe dièse (#) et un code qui commence par plusieurs numéro, vous voyez une erreur qui a été signalé dans le Système de suivi d'incidences. N'hésitez pas à publier vos propres erreurs et demandes d'améliorations et nouvelles fonctionnalités à travers de cet outils, disponible dans le menu Aide de TW Blue.</p>
+<h2 id="changements-ajouter-dans-cette-nouvelle-version">Changements ajouter dans cette nouvelle version</h2>
+<ul>
+<li>Correction d'une erreur qu'elle ne permettait pas d'afficher les listes avec des accents ou des caractères spéciaux dans un tampon.</li>
+<li>Maintenant TW blue ne devrait pas actualiser les Tweets soudainement.</li>
+<li>Maintenant TW blue supporte l'option &quot;muet&quot; de Twitter. Lorsque cette option est activée pour un utilisateur, vous ne pouvez pas voir ces tweets ni ces mentions, mais vous le suivez toujours, et vous serez en mesure de être en contact avec lui à travers de message direct. Ceci est différent de la fonction Bloquer ou Ne pas suivre, avec cette option l'utilisateur sera pas au courant que vous avez activée l'option muet. sette option se trouvent dans la boîte de dialogue des actions utilisateur de l'interface invisible, ou dans le menu Utilisateur de l'interface graphique.</li>
+<li>Un onglet &quot;Audio&quot; a été ajoutée dans la boîte de dialogue de configuration qui vous permet de sélectionner les périphériques d'entrée et de sortie, régler le volume et activer/ désactiver tous les sons pour TW Blue. D'autres options ont été déplacées depuis l'onglet &quot;Général&quot; vers l'onglet &quot;Audio&quot;.</li>
+<li>Le fichier de configuration a été repensé. La plupart des options devront être reconfigurés à nouveau.</li>
+<li>Vous pouvez maintenant désactiver SAPI5 afin qu'il n'intervienne pas s'il n'y a aucun lecteur d'écran supporté en cours d'exécution.</li>
+<li>Dans l'onglet Général, Vous pouvez modifier manuellement la langue. Tw Blue reqiere redémarré.</li>
+<li>Maintenant il y a une nouvelle boîte de dialogue où vous pouvez apprendre les différents sons de TW Blue.</li>
+<li>Il est possible maintenant de désactiver le son et notification d'un tampon. Le reste du client fonctionnera correctement. Appuyez sur Contrôle+Windows+Maj+m (interface invisible) ou le sélectionnez depuis le menu &quot;Tampon&quot; (interface visible) pour basculer entre cette fonctionnalité.</li>
+<li>Vous pouvez maintenant rechercher par utilisateur et par tweets. Les recherches de tweets sont sauvegardées dans la configuration, tandis que ceux des utilisateurs seront supprimer lors de la fermeture. Appuyez sur Ctrl+Windows+- (tiret) (interface invisible) ou le sélectionnez depuis le menu &quot;Application&quot; (interface visible).</li>
+<li>Vous pouvez ouvrir le tampon pour voir les favoris d'un utilisateur dans le menu &quot;Utilisateur&quot;.</li>
+<li>Maintenant avec Contrôle+Windows+Maj+Flèche Haut / Bas (dans l'interface graphique) et Contrôle+Windows+Flèche Haut / Bas (dans l'interface invisible), vous pouvez aller au tweet précédent ou suivant dans la conversation. Pour que cela fonctionne les tweets de la conversation doivent être dans la chronologie principale.</li>
+<li>Au cours d'un enregistrement audio pour ajouter, maintenant vous pouvez mettre en pause ou reprendre l'enregistrement pour sauter des parties qui peuvent générer un audio très long.</li>
+<li>Il est maintenant possible de charger de l'audio vers Dropbox. Pour configurer le service aller dans l'onglet &quot;Services audio&quot; dans la boîte de dialogue de Configuration.</li>
+<li>Maintenant que vous pouvez charger de l'audio vers Dropbox, dans la boîte de dialogue pour ajouter un audio vous pouvez sélectionner le service auquelle vous souhaitez charger.</li>
+<li>Maintenant il comprend une boîte de dialogue pour la correction orthographique pour les tweets ou messages. Les langues actuellement disponibles sont: Espagnol, Anglais, Portugais, Russe et Polonais. La langue sera sélectionnée automatiquement selon la configuration de TW Blue.</li>
+<li>Ajouter la lecture automatique des Tweets pour un tampon. L'activation de cette fonctionnalité peut faire que TW Blue lit automatiquement les tweets lors de l'arrivée dans les tampons qui ont cette option activée. Appuyez sur Contrôle+Windows+e pour basculer entre cette fonction.</li>
+<li>Dans la boîte de dialogue de Configuration maintenant vous pouvez spécifiez si vous voulez que TW Blue démarre avec l'interface invisible.</li>
+<li>Les URLs s'affiche dans leur version originale. Uniquement les photos de Twitter ils apparaissent toujours comme réduites, et celles qui ont été réduites manuellement avant de les envoyer dans un tweet.</li>
+</ul>
+<h2 id="changements-ajouter-dans-la-version-0.40">Changements ajouter dans la version 0.40</h2>
+<ul>
+<li>Vous pouvez changer entre les différents paquets de sons utilisé par TW Blue et de créer vos propres sons. Chaque paquet doit être dans un répertoire par séparé dans le dossier sounds. Pour modifier le paquet de sons vous pouvez le sélectionner dans la boîte de dialogue de configuration.</li>
+<li>Les fichiers audio doivent être au format OGG.</li>
+<li>TW Blue doit être maintenant en mesure de fermer correctement.</li>
+<li>L'heure est écrit tenant en compte le format 12 heures (AM /P M).</li>
+<li>L'heure est écrit d'accord au fuseau horaire que vous avez défini dans votre compte Twitter.</li>
+<li>Ajout de nouvelles traductions en Portugais, Polonais et Russe. Merci les gars !</li>
+<li>TW Blue supprime de la configuration la chronologie de l'utilisateur qui ont changé leur noms ou supprimer leurs comptes Twitter.</li>
+<li>Maintenant est gérés la grande majorité des événements dans Twitter avec le tampon des événements.</li>
+<li>Il est maintenant possible de voir le texte des événements avec Contrôle+Maj+V (GUI) ou Contrôle+Windows+V (interface invisible).</li>
+<li>Gestionnaire de listes: Vous pouvez créer, modifier, supprimer, afficher une liste comme tampon dans TW Blue, ajouter et supprimer des membres d'une liste.</li>
+<li>Maintenant, si au démarrage de TW Blue il tente de charger une chronologie qui n'existe pas, automatiquement il la supprime de la configuration et il continue à charger normalement.</li>
+<li>Seuls seront chargées jusqu'à 400 following et followers pour éviter les problèmes avec l'API. Elle sera corrigée dans les versions futures.</li>
+<li>Pour le mode invisible, il inclus des raccourcis pour réentendre le tweet sur lequel vous êtes (Contrôle+Windows+espace) et pour copier le message dans le presse-papiers (Contrôle+Windows+c).</li>
+</ul>
+<h2 id="changements-ajouter-dans-la-version-0.38">Changements ajouter dans la version 0.38</h2>
+<ul>
+<li>Correction d'une erreur qui empêchait en donnant l'ordre de fermer.</li>
+<li>Maintenant les tweets ne finissent pas par un point obligatoirement. Si le programme détecte que le tweet se termine par une lettre ou un chiffre, il va placez un point automatiquement. Si ce n'est pas le cas, il va laisser le texte tel qu'il est.</li>
+<li>Il est maintenant possible de charger des images aux tweets et réponses. Veuillez noter que la taille des images est mis en place par twitter.</li>
+<li>Pour se déplacer vers la gauche ou vers la droite en utilisant le mode invisible, maintenant il s'annonce uniquement des informations de la position dans la liste d'éléments.</li>
+<li>TW Blue devrait maintenant fonctionner pour Windows XP au moment de la demande d'autorisation pour l'application.</li>
+<li>Ajouté une nouvelle option dans la boîte de dialogue de configuration qui vous permet de revenir à vos tampons. Cela signifie que vous pouvez choisir si vous voulez voir les tweets comme jusqu'à maintenant, ou que les plus nouveaux soit placés vers le haut et les anciens vers le bas.</li>
+<li>Maintenant les photos peuvent être chargées aux profil de Twitter, disponible à partir de la boîte de dialogue Mettre à jour votre profil.</li>
+<li>Ajouté un tampon d'événements, où ils sont stockés pour le moment quelques événements qui se déroulent dans Twitter, comme suivre ou faire que quelqu'un vous suivent, marquer un favori, que un de vos tweet soit marqué comme favoris, Etc. Vous pouvez activer et désactiver ce tampon de la boîte de dialogue de configuration.</li>
+<li>Maintenant, vous pouvez supprimer des chronologies déjà créé qui ne contiennent pas des tweets, et il ne sera pas permit de créer des chronologies pour les utilisateurs sans tweets.</li>
+<li>L'interface de l'application est traduisible. Maintenant, n'importe quel utilisateur peut faire leurs propres traductions en différentes langues.</li>
+</ul>
+<h2 id="changements-ajouter-dans-la-version-0.36">Changements ajouter dans la version 0.36</h2>
+<ul>
+<li>Les utilisateurs brésiliens pourront voir quelques messages en Portugais. (Usuários brasileiros poderão ver algumas mensagens em Português).</li>
+<li>Correction d'une erreur qui fait que quelques sons ils peuvent s'entendre et d'autres non. Maintenant, ils devraient s'entendre tous.</li>
+<li>La réconnexion aussi a reçu une correction, parce que parfois, il s'effectué de façon incorrecte et il devait s'ouvrir à nouveau l'application.</li>
+<li>Maintenant TW Blue permet de supprimer uniquement les chronologies avec la commande correspondante. Avant il s'affichées la boîte de dialogue peu importe dans quel tampon vous aviez été.</li>
+<li>Vous êtes en mesure à nouveau de voir les détails des utilisateurs avec la touche Entrée étant dans le tampon pour les following ou followers.</li>
+<li>À partir de cette version, il n'y a pas de support pour les bases de données.</li>
+<li>Vous entendrez une notification vocale lorsque quelqu'un marque comme favori un de vos tweets.</li>
+<li>Les following et followers sont déjà mis à jour.</li>
+<li>lorsque vous suivez quelqu'un, il ne se produit aucune erreur Si ne sont pas affichées les following. C'est la même chose avec les followers.</li>
+<li>Vous pouvez effacer un tampon en appuyant sur Maj+Supprimer dans la fenêtre visible, et Contrôle+Windows+Maj+Supprimer dans la fenêtre invisible. Ceci va vider tous les tweets dans le tampon courant.</li>
+</ul>
+<h2 id="changements-ajouter-dans-la-version-0.35">Changements ajouter dans la version 0.35</h2>
+<ul>
+<li>Il existe un site Web officiel pour le programme, aller sur <a href="http://twblue.com.mx">twblue.com.mx.</a> Dans cet espace, vous trouverez le système de suivi d'erreurs, le blog avec les dernières nouvelles, et la dernière version disponible.</li>
+<li>TW Blue il annonce lorsque vous êtes mentionné, et lorsque vous obtenez un message direct.</li>
+<li>Jaws il ne dit pas le raccourci clavier qui est appuyé dans le mode invisible. <a href="http://twblue.a12x.net/errores/view.php?id=11">#11</a></li>
+<li>Dans le mode invisible, les commandes Contrôle+Windows+Origine, Contrôle+Windows+Fin, Contrôle+Windows+Page Suivante et Contrôle+Windows+Page Précédente va aller vers le haut de la liste, vers la fin, 20 éléments vers le bas et 20 éléments vers le haut respectivement. <a href="http://twblue.a12x.net/errores/view.php?id=10">#10,</a> <a href="http://twblue.a12x.net/errores/view.php?id=21">#21,</a> <a href="http://twblue.a12x.net/errores/view.php?id=22">#22</a></li>
+<li>Maintenant vous pouvez lire l'audios d'Audiobook.</li>
+<li>Maintenant, le flux doit être connecté une fois que la machine revient d'une suspension.</li>
+<li>Il est possible d'enregistrer de l'audio ou charger fichiers sur SndUp.net. Si vous êtes inscrit dans cette page, vous pouvez mettre dans la configuration votre API Key pour que les fichiers se charge sur votre nom. Vous pouvez charger des fichiers Wav, OGG et MP3. Les fichiers wav ils seront récodifier en OGG.</li>
+<li>Si vous n'utilisez aucun lecteur d'écran, quelques actions de TW blue utilisent la synthèse vocale SAPI5.</li>
+<li>Il existe une version pour les architectures de 64 Bits. Merci à <span class="citation">[@jmdaweb]</span>(https://twitter.com/jmdaweb) pour prendre le travail de faire fonctionner l'application dans cette architecture et la préparez pour sa distribution.</li>
+<li>Changement dans les sons du client. Merci à <span class="citation">[@guilevi_es]</span>(https://twitter.com/guilevi_es) pour la collaboration avec le paquet de sons.</li>
+<li>Quelques messages du programme peuvent être traduits. Dans des futures versions la totalité de l'interface sera internationalisé.</li>
+<li>Et quelques correction d'erreur en plus (<a href="http://twblue.com.mx/errores/view.php?id=5">#5,</a> <a href="http://twblue.com.mx/errores/view.php?id=7">#7,</a> <a href="http://twblue.com.mx/errores/view.php?id=8">#8,</a> <a href="http://twblue.com.mx/errores/view.php?id=9">#9,</a> <a href="http://twblue.com.mx/errores/view.php?id=12">#12,</a>)</li>
+</ul>
+<h2 id="changements-ajouter-dans-la-version-0.3">Changements ajouter dans la version 0.3</h2>
+<ul>
+<li>Maintenant vous pouvez mettre à jour votre profil à partir de TW Blue. <a href="http://twblue.a12x.net/issues/view.php?id=19">#19</a></li>
+<li>Maintenant vous pouvez créer les chronologies à nouveau et ils ne donne pas de problèmes. <a href="http://twblue.a12x.net/issues/view.php?id=24">#24</a></li>
+<li>Maintenant les fichiers d'erreur sont enregistrés dans le répertoire &quot;logs&quot;.</li>
+<li>Lorsque vous créez une chronologie, il sera mis à jour en temps réel dès le début au lieu de le mettre à jour toutes les 2 minutes.</li>
+<li>Vous pouvez maintenant demander davantage d'appels à l'API qui fonctionnera pour obtenir 200 tweets chaqu'une. Un appel est équivalent à 200 éléments de la liste principal, mentions, messages directs, favoris et chronologies. Dans le fichier de configuration Vous pouvez modifier l'option dans [twitter]/max_api_calls. Il est recommandé de ne pas demander à Twitter plus de 2 appels à l'API, ou sinon vous arriverez bientôt à la limite des appels autorisés et l'application échouera.</li>
+<li>Lorsque vous répondez à un Tweet, c'est envoyé comme réponse au même et pas comme s'il s'agissait d'un nouveau tweet.</li>
+<li>L'ancien système de rapport d'erreurs il a dû être changée. À partir de cette version, vous pouvez signaler des erreurs, directement depuis l'application. L'option Signaler une erreur ouvrira une boîte de dialogue qui vous demande des détails sur votre erreur et il va envoyer le rapport automatiquement.</li>
+<li>Ils sont déjà supprimées les following lorsque ils ne suivent pas un utilisateur.</li>
+<li>Aussi les favoris, au moment de retirer un tweet comme favori, il exécutent le changement.</li>
+<li>Ajouté une boîte de dialogue de configuration qui permet de contrôler le nombre d'appels à l'API à exécuter, si oui ou non utiliser des bases de données, et masquer ou afficher les listes de following, followers et favoris.</li>
+<li>En mentionnant les tweets, les guillemets qui entourent le message maintenant sont séparés par un espace de la dernière lettre. Il en est ainsi parce qu'avant, lorsque il y avait une URL, il causé que les guillemets facent partie de l'URL en envoyant vers des sites inexistants.</li>
+<li>Améliorations avec quelques chronologies. Vous pouvez maintenant enregistrer une chronologie sans problèmes. Il ne devrait pas faire des erreurs.</li>
+<li>Maintenant, l'audio est joué seulement avec Contrôle+Entrée, tandis que l'URL s'ouvrira avec la touche Entrée.</li>
+<li>Le flux tentera de se reconnecter à l'échec de la connexion internet.</li>
+<li>Maintenant depuis les followers et following on peut mentionner un utilisateur.</li>
+<li>Maintenant il est fournit un mode &quot;invisible&quot;. Sous le menu &quot;Application&quot;, dans l'option &quot;Masquer la fenêtre&quot; ou en appuyant sur Contrôle+M. Pour afficher la fenêtre à nouveau appuyez sur Contrôle+Windows+M.</li>
+</ul>
+<h2 id="changements-ajouter-dans-la-version-0.025">Changements ajouter dans la version 0.025</h2>
+<p>Veuillez noter que lorsque un utilisateur vous ne sui pas ou vous ne suivez pas quelqu'un d'autre, la liste des following ou des followers il ne sera pas mis à jour pour le moment. Lorsque vous redémarrez le programme, si les informations son correctes ils seront afficher.</p>
+<ul>
+<li>Correction d'une erreur qui rendait impossible de fermer l'application jusqu'à ce que le programme a annoncé qu'elle était prête. <a href="http://twblue.a12x.net/issues/view.php?id=17">#17</a> y <a href="http://twblue.a12x.net/issues/view.php?id=18">#18</a></li>
+<li>Changé la façon d'organiser les chronologies dans la configuration. Il est nécessaire de les recréer.</li>
+<li>Maintenant, vous pouvez envoyer un message direct aux following et followers en utilisant le bouton. Cela ne fonctionnait pas dans la version 0.02 et 0.021.</li>
+<li>Vous pouvez augmenter et diminuer le volume depuis la liste des followers et following.</li>
+<li>Dans la boîte de dialogue pour écrire un tweet peut être maintenant traduit le message à l'aide de Google Traductor. Une boîte de dialogue s'affiche pour demander les langues source et destination.</li>
+<li>Le menu fichier contient l'option Sortir.</li>
+<li>À partir de cette version ils se jouera uniquement les fichiers de'audio en appuyant sur Entrée s'ils contienne le hashtag #audio.</li>
+<li>Vous pouvez essayer de jouer une URL quelconque sans qui comporte le hashtag #audio en appuyant sur Contrôle+Entrée. Cette commande va tenter de reproduire la première URL trouvée.</li>
+<li>A été amélioré le moteur de recherche d'URLS, en rendant plus rapide la fonction et maintenant, devrait être capable de détecter toutes les URLS. <a href="http://twblue.a12x.net/issues/view.php?id=21">#21</a></li>
+<li>Maintenant, la boîte de dialogue qui s'affiche pour sélectionner l'utilisateur que vous souhaitez afficher les détails permet en plus de le sélectionner dans une liste, écrire le nom de l'utilisateur que vous souhaitez.</li>
+</ul>
+<h2 id="changements-ajouter-dans-la-version-0.02-et-0.021">Changements ajouter dans la version 0.02 et 0.021</h2>
+<ul>
+<li>Le message qui se reproduicé lorsque vous suivez un utilisateur maintenant dit &quot;maintenant vous suivez à x utilisateur&quot; en lieu de &quot;maintenant vous ne suivez pas à x utilisateur&quot;. <a href="http://twblue.a12x.net/issues/view.php?id=5">#5</a></li>
+<li>Lorsque vous sorter une boîte de dialogue vous demandera si vous voulez le faire. Maintenant vous sorter d'une façon beaucoup plus proprement du programme, empêchant plusieurs erreurs pendant la fermeture.</li>
+<li>Changement des sons pour les dm entrant et sortant. Merci à <span class="citation">[@marcedsosa]</span>(https://twitter.com/marcedsosa) pour les nouveaux sons.</li>
+<li>Le Nom d'utilisateur de twitter il se lit dans le titre de la fenêtre.</li>
+<li>Les sons du programme aussi peuvent lire le volume depuis la configuration. Le module de sons devrait prendre moins de temps pour reproduire plusieurs des sons de l'application.</li>
+<li>Les actions d'augmenter et de diminuer le volume ils reproduisent un son indiquant que tant forts ça sonne.</li>
+<li>Il n'affichent plus les mentions de personnes qui ne vous suivent pas dans votre chronologie principal. <a href="http://twblue.a12x.net/issues/view.php?id=1">#1</a></li>
+<li>Vous pouvez maintenant supprimer les tweets et les messages directs. Vous ne pouvez supprimer que les tweets que vous avez écrit.</li>
+<li>Correction d'une erreur qui empêchait de charger correctement les différentes listes si dans quelques une d'elles ils n'y avait aucun tweet, utilisateur ou message direct. Ceci affectant surtout les comptes avec 0 favoris, 0 tweets, 0 envoyés ou 0 messages directes. <a href="http://twblue.a12x.net/issues/view.php?id=2">#2</a></li>
+<li>Maintenant à chaque fois qu'une nouvelle version est disponible, vous serez informé de cela. Si vous avez accès pour le télécharger, le programme va télécharger et copier tout ce dont vous avez besoin.</li>
+<li>Maintenant, vous pouvez obtenir la liste complète des following et followers.</li>
+<li>Ajouter la date du dernier tweet des followers et following.</li>
+<li>Les following et followers sont maintenant mis à jour en temps réel. (ToDo: Les following et followers ils ne montrent pas la date de ces dernier tweet lorsque une mise à jour est faite en temps réel. Ils le font lors du rechargement une fois redémarrée l'application).</li>
+<li>L'ordre des onglets il a changé. Maintenant ils sont classés en commençant par Principal, Mentions, Messages directs et Envoyés.</li>
+<li>Maintenant dans la liste de tweets envoyés les messages directs sont affichés lorsque le flux est chargé pour la première fois. Ceci ne était pas le cas et si l'utilisateur envoyés un DM à partir d'un autre client lorsque Tw Blue n'était pas ouvert, lors de l'ouverture de l'application il ne montré pas la dite DM. <a href="http://twblue.a12x.net/issues/view.php?id=8">#8</a></li>
+<li>Con Control+A, se puede seleccionar todo el texto de un mensaje. Funciona con Jaws y NVDA.</li>
+<li>Il y a des raccourcis clavier (détaillés dans la <a href="leeme.html">Documentation)</a> pour un grand nombre d'actions qui peut faire le programme.</li>
+<li>Maintenant TW Blue détecte plus d'audio dans les URLS qui vienne dans les retweets, et des audio partagé à partir de Dropbox. <a href="http://twblue.a12x.net/issues/view.php?id=3">#3</a></li>
+<li>Inclut la documentation pour l'application et les crédits.</li>
+<li>Si la connexion internet s'arrête de fonctionner, le flux va essayer de se reconnecter pendant 30 minutes.</li>
+<li>On a écrit un document qui détaille comment utiliser le programme.</li>
+<li>Il a été ouvert le <a href="http://twblue.a12x.net/issues/">Système de suivi d'incidents</a> où les utilisateurs peuvent signaler des erreurs et si vous le souhaitez, vous pouvez apporter de nouvelles idées pour le développement de l'application. Il existe un accès direct au formulaire réservée au rapport d'incidents dans le menu Aide.</li>
+<li>Il y a maintenant des crédits à partir de la version actuelle.</li>
+<li>Ajout d'une option dans menu Utilisateur pour afficher les détails. Cela fonctionne également si vous appuyez sur entrer sur un following ou follower.</li>
+</ul>
+<h2 id="changements-ajouter-dans-la-version-prealpha1">Changements ajouter dans la version Prealpha1</h2>
+<p>Veuillez noter que dans cette version les following et les followers ne sont pas mis à jour automatiquement. Cela s'ajoutera à une autre version. Vous ne pouvez pas également supprimer des tweet, ou DM. Tous les tweets, messages directs, mentions, favoris, followers et following lors de la mise à jour seront télécharger un maximum de 200. Bientôt ils s'ajouteront plus à la quantité lors des mises à jour. Ici les changements à partir de la première version.</p>
+<ul>
+<li>La date il s'affiche bien, selon le fuseau horaire de l'utilisateur.</li>
+<li>Maintenant, le curseur est placé au début lorsque vous allez à répondre ou faire un retweet.</li>
+<li>Si vous appuyez sur contrôle + E dans les zones d'édition, l'intégralité du message sera sélectionné.</li>
+<li>Quelques corrections pour la gestion des chronologies (j'ai besoin d'apporter des améliorations dans la façon de gérer cela).</li>
+<li>Les favoris sont mises à jour en temps réel.</li>
+<li>Vous entendrez un son lorsque vous passez par un tweet qui pourrait contenir un audio jouable.</li>
+<li>Supporte la lecture audio avec le hashtag #audio et une URL. Appuyez sur Entrée pour entendre la chanson. Appuyez sur F5 pour diminuer le volume de 5%, ou f6 pour augmenter d'un 5%. Si vous souhaitez arrêter la lecture, aller où il y a une audio, puis appuyez sur Entrée. Si le programme est incapable de reproduire quelque chose, il vous avertira. Le volume de la musique (pas pour les sons du programme pour l'instant) est enregistré dans la configuration, et le programme va le mémorisé pour la prochaine fois que vous jouez quelque chose.</li>
+<li>Vous pouvez voir les 200 premiers following et followers avec leurs noms d'utilisateur, nom réel et un peu d'informations utiles. Dans des futures versions vous pourrez tout voir si vous avez plus de 200. Veuillez noter que il y a des actions que vous ne pouvez pas faire avec ces utilisateurs dans la liste (par exemple, répondre ou retweet, parce qu'ils ne sont pas des tweets, sont utilisateurs), Mais oui, vous pouvez les suivre, ne pas les suivre, et faire presque tout (moins envoyer DM pour l'instant) ce que vous pourriez faire dans le menu Utilisateur.</li>
+</ul>
+<p>Maintenant, il faut l'utiliser et le tester et lorsque vous trouvez une erreur, s'il vous plaît veuillez regarder dans le dossier de l'application, puis il doit générer un fichier avec le nom du fichier exécutable, mais avec une extension .log à la fin. Eh bien, c'est vital pour moi de savoir où le programme a été cassé, et vous devriez être reconnaissant si vous me l'envoyer ainsi qu'une description de ce qui était plus ou moins ce qu'ils faisaient quand l'application fait ce qu'il avait à faire. Par exemple, « j'ai essayé de m'envoyer un DM, mais la boîte de dialogue de message direct jamais elle a été ouverte&quot;. Si vous pouvez le charger vers un serveur de stockage (comme Dropbox,](https://www.dropbox.com) par exemple), et me l'envoyer soit en mentionnant à <span class="citation">[@tw_blue2]</span>(https://twitter.com/tw_blue2) ou à <span class="citation">[@manuelcortez00,]</span>(https://twitter.com/manuelcortez00) ce serait formidable.</p>
+<p>Merci infiniment de l'essayer !</p>
+<h2 id="nouveautés-dans-la-version-prealpha-0">Nouveautés dans la version prealpha 0</h2>
+<ul>
+<li>Faire des tweets, répondre aux tweets des autres, mentionner tous les utilisateurs, lorsque il y a plus d'un dans le tweet, retweet ce qui vous plaît, ajouter ou non un commentaire au retweet et les supprimez.</li>
+<li>Ajouter ou supprimer des favoris un tweet.</li>
+<li>Réduire et élargir une URL lorsque vous écrivez un tweet ou dm (vous pouvez sélectionner quelle URL vous souhaitez réduire et élargir à partir d'une liste lorsque ils sont plus d'une).</li>
+<li>Ouvrir un navigateur Web avec l'URL venant dans le tweet, en appuyant sur Entrée. Lorsque il y a plusieurs URLs, vous verrez une liste où on vous demandera la quelles vous voulez.</li>
+<li>Utilisateurs: Vous pouvez Suivre, Ne pas suivre, Signaler comme spam, Bloquer et Envoyer un message direct aux utilisateurs.</li>
+<li>Vous pouvez ouvrir et supprimer des chronologies individuels pour chaque utilisateur.</li>
+<li>Vous pourrez aussi voir vos favoris.</li>
+<li>Et pour l'instant, à moins qu'il m'arrive d'oublier quelque chose, c'est tout.</li>
+</ul>
+<hr />
+<p>Copyright © 2013-2014, Manuel Cortéz</p>
+</body>
+</html>
