@@ -280,8 +280,8 @@ class servicesPanel(wx.Panel):
   apiKeyBox.Add(apiKeyLabel, 0, wx.ALL, 5)
   apiKeyBox.Add(self.apiKey, 0, wx.ALL, 5)
   mainSizer.Add(apiKeyBox, 0, wx.ALL, 5)
-  self.pocketBtn = wx.Button(self, -1)
-  mainSizer.Add(self.pocketBtn, 0, wx.ALL, 5)
+#  self.pocketBtn = wx.Button(self, -1)
+#  mainSizer.Add(self.pocketBtn, 0, wx.ALL, 5)
   self.SetSizer(mainSizer)
 
  def set_pocket(self, active=True):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import webbrowser
-import pocket
+#import pocket
 import sound_lib
 import paths
 import widgetUtils
@@ -15,7 +15,7 @@ from extra.autocompletionUsers import settings
 from pubsub import pub
 import logging
 import config_utils
-from pocket_utils import authorisationHandler
+#from pocket_utils import authorisationHandler
 import BaseHTTPServer
 log = logging.getLogger("Settings")
 import keys
@@ -147,11 +147,11 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("sound", "session_mute", self.config["sound"]["session_mute"])
   self.dialog.set_value("sound", "soundpack", self.config["sound"]["current_soundpack"])
   self.dialog.create_services()
-  if self.config["services"]["pocket_access_token"] == "":
-   self.dialog.services.set_pocket(False)
-  else:
-   self.dialog.services.set_pocket(True)
-  widgetUtils.connect_event(self.dialog.services.pocketBtn, widgetUtils.BUTTON_PRESSED, self.manage_pocket)
+#  if self.config["services"]["pocket_access_token"] == "":
+#   self.dialog.services.set_pocket(False)
+#  else:
+#   self.dialog.services.set_pocket(True)
+#  widgetUtils.connect_event(self.dialog.services.pocketBtn, widgetUtils.BUTTON_PRESSED, self.manage_pocket)
   self.dialog.set_value("services", "apiKey", self.config["sound"]["sndup_api_key"])
   self.dialog.realize()
   self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
