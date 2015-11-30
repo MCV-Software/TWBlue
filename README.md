@@ -36,8 +36,7 @@ Although most dependencies can be found in the windows-dependencies directory, w
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
 * [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2.0
 * [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 219
-* [Pycurl](http://pycurl.sourceforge.net) 7.19.5.1 for Python 2.7: [32-bit downloads,](https://pypi.python.org/pypi/pycurl/7.19.5.1) [64-bit downloads](http://www.lfd.uci.edu/~gohlke/pythonlibs/)
-Note: the x64 version is in wheel format instead of executable installer, so you have to install it using pip. For example: C:\python27x64\scripts\pip install pycurl-7.19.5.1-cp27-none-win_amd64.whl
+* [Pycurl](http://pycurl.sourceforge.net) 7.19.5.3 for Python 2.7: [downloads](https://pypi.python.org/pypi/pycurl/7.19.5.3)
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
 x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
 
