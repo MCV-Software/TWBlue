@@ -58,3 +58,9 @@ def no_tweets():
 
 def no_favs():
  return wx.MessageDialog(None, _(u"This user has no favorited tweets. {0} can't create a timeline.").format(application.name), _(u"Error"), wx.ICON_ERROR).ShowModal()
+
+def no_followers():
+ return wx.MessageDialog(None, _(u"This user has no followers. {0} can't create a timeline.").format(application.name), _(u"Error"), wx.ICON_ERROR).ShowModal()
+
+def no_friends():
+ return wx.MessageDialog(None, _(u"This user has no friends. {0} can't create a timeline.").format(application.name), _(u"Error"), wx.ICON_ERROR).ShowModal()

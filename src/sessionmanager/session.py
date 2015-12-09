@@ -278,7 +278,7 @@ class Session(object):
   tl = self.call_paged(function, sinze_id=last_id, *args, **kwargs)
   self.order_buffer(name, tl)
 
- @_require_login
+# @_require_login
  def get_cursored_stream(self, name, function, items="users", *args, **kwargs):
 
   """ Gets items for API calls that require using cursors to paginate the results.

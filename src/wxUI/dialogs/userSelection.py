@@ -18,11 +18,15 @@ class selectUserDialog(wx.Dialog):
   label2 = wx.StaticText(panel, -1, _(u"Buffer type"))
   self.tweets = wx.RadioButton(panel, -1, _(u"Tweets"), style=wx.RB_GROUP)
   self.favourites = wx.RadioButton(panel, -1, _(u"Likes"))
+  self.followers = wx.RadioButton(panel, -1, _(u"Followers"))
+  self.friends = wx.RadioButton(panel, -1, _(u"Friends"))
   self.setup_default(default)
   hSizer = wx.BoxSizer(wx.HORIZONTAL)
   hSizer.Add(label2, 0, wx.ALL, 5)
   actionSizer.Add(self.tweets, 0, wx.ALL, 5)
   actionSizer.Add(self.favourites, 0, wx.ALL, 5)
+  actionSizer.Add(self.followers, 0, wx.ALL, 5)
+  actionSizer.Add(self.friends, 0, wx.ALL, 5)
   hSizer.Add(actionSizer, 0, wx.ALL, 5)
   sizer = wx.BoxSizer(wx.VERTICAL)
   ok = wx.Button(panel, wx.ID_OK, _(u"OK"))
@@ -39,6 +43,8 @@ class selectUserDialog(wx.Dialog):
  def get_action(self):
   if self.tweets.GetValue() == True: return "tweets"
   elif self.favourites.GetValue() == True: return "favourites"
+  elif self.followers.GetValue() == True: return "followers"
+  elif self.friends.GetValue() == True: return "friends"
 
  def setup_default(self, default):
   if default == "tweets":

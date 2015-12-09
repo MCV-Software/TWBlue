@@ -714,7 +714,7 @@ class eventsBufferController(bufferController):
 
 class peopleBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
-  super(peopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel")
+  super(peopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs)
   log.debug("Initializing buffer %s, account %s" % (name, account,))
   self.compose_function = compose.compose_followers_list
   log.debug("Compose_function: %s" % (self.compose_function,))
@@ -722,7 +722,25 @@ class peopleBufferController(baseBufferController):
   self.url = self.interact
 
  def remove_buffer(self):
-  return False
+  if "-followers" in self.name:
+   dlg = commonMessageDialogs.remove_buffer()
+   if dlg == widgetUtils.YES:
+    if self.name[:-10] in self.session.settings["other_buffers"]["followers_timelines"]:
+     self.session.settings["other_buffers"]["followers_timelines"].remove(self.name[:-10])
+     return True
+   elif dlg == widgetUtils.NO:
+    return False
+  elif "-friends" in self.name:
+   dlg = commonMessageDialogs.remove_buffer()
+   if dlg == widgetUtils.YES:
+    if self.name[:-8] in self.session.settings["other_buffers"]["friends_timelines"]:
+     self.session.settings["other_buffers"]["friends_timelines"].remove(self.name[:-9])
+     return True
+   elif dlg == widgetUtils.NO:
+    return False
+  else:
+   output.speak(_(u"This buffer is not a timeline; it can't be deleted."), True)
+   return False
 
  def onFocus(self, ev):
   pass
