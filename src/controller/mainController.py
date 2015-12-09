@@ -428,7 +428,8 @@ class Controller(object):
    if dlg.get("tweets") == True:
     if term not in buffer.session.settings["other_buffers"]["tweet_searches"]:
      buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
-     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, count=buffer.session.settings["general"]["max_tweets_per_call"])
+     args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
+     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, count=buffer.session.settings["general"]["max_tweets_per_call"], **args)
     else:
      log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
      return
