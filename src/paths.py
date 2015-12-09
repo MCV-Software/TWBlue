@@ -55,7 +55,8 @@ def data_path(app_name='TW blue'):
 #  data_path = os.path.join(shlobj.SHGetFolderPath(0, shlobj.CSIDL_APPDATA), app_name)
 # else:
  if platform.system() == "Windows":
-  data_path = os.path.join(os.getenv("AppData"), app_name)
+  import winpaths
+  data_path = os.path.join(winpaths.get_appdata(), app_name)
  else:
   data_path = os.path.join(os.environ['HOME'], ".%s" % app_name)
  if not os.path.exists(data_path):
