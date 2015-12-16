@@ -32,7 +32,7 @@ Although most dependencies can be found in the windows-dependencies directory, w
 
 #### Dependencies packaged in windows installers
 
-* [Python,](http://python.org) version 2.7.10  
+* [Python,](http://python.org) version 2.7.11  
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
 * [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2.0
 * [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 219
@@ -67,13 +67,13 @@ setuptools install a script, called easy_install. You can find it in the python 
 * future
 * pygeocoder
 * suds
-* arrow
+* arrow==0.6
 * markdown
 * winpaths
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
 Run the following command to quickly install and upgrade all packages and their dependencies:
-easy_install -Z --upgrade six configobj goslate markdown future pocket suds requests oauthlib requests-oauthlib pypubsub pygeocoder arrow python-dateutil futures
+easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib pypubsub pygeocoder arrow python-dateutil futures
 
 #### Other dependencies
 
@@ -87,6 +87,11 @@ This dependency has been built using pure basic 4.61. Its source can be found at
 #### Dependencies required to build the installer
 
 * [NSIS unicode,](http://www.scratchpaper.com/) version 2.46.5
+
+#### Dependencies required to build the portableApps.com format archive
+
+* [PortableApps.com Launcher,](http://portableapps.com/apps/development/portableapps.com_launcher) version 2.2
+* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.0.20
 
 ### Running TW Blue from source
 
@@ -127,3 +132,15 @@ If you want to install TWBlue in your computer, you must create the installer fi
 ### How to generate a translation template
 
 Run the gen_pot.bat file, located in the tools directory. Your python installation must be in your path environment variable. The pot file will appear in the tools directory.
+
+### How to build the portableApps.com archive
+
+If you want to have TWBlue in your PortableApps.com platform, follow these steps:
+
+* Navigate to the src directory, and create a binary version for x86: C:\python27\python setup.py py2exe
+* Move the dist directory to the misc\pa.c format\app folder in this repo, and rename it to twblue
+* Repeat these steps with Python for x64: C:\python27x64\python setup.py py2exe
+* Move the new dist directory to the misc\pa.c format\app folder, and rename it to twblue64
+* Run the PortableApps.com Launcher Generator, and follow the wizard. Choose the pa.c format folder and continue to generate the launcher. If the wizard is completed, you will see a file named TWBlue portable.exe inside the pa.c format folder.
+* Run the PortableApps.com Installer, and follow the wizard. As in the above step, choose the pa.c format folder. When it completes, you will see a file named TWBluePortable_x.y.paf.exe inside the misc folder, where x.y is the version number.
+
