@@ -179,7 +179,6 @@ class Session(object):
   while finished==False and tries < 25:
    try:
     val = getattr(self.twitter.twitter, call_name)(*args, **kwargs)
-    print val
     finished = True
    except TwythonError as e:
     output.speak(e.message)

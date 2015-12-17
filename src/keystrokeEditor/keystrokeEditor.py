@@ -37,13 +37,10 @@ class KeystrokeEditor(object):
 
  def get_edited_keystroke(self, dialog):
   keys = []
-  if dialog.get("win") == False:
-   wx_ui.no_win_message()
-   return
   if dialog.get("control") == True:
    keys.append("control")
-#  if dialog.get("win") == True:
-  keys.append("win")
+  if dialog.get("win") == True:
+   keys.append("win")
   if dialog.get("alt") == True:
    keys.append("alt")
   if dialog.get("shift") == True:
