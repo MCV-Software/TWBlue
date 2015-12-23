@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-import keys
 from microsofttranslator import Translator
 
 def translate(text="", source="auto", target="en"):
 	t = Translator("twblue", "4KZA26GYIfmVAqQA/z16Hlucbg64hVSDTIpRjT2FqIU=")
-	return t.translate(text, target).encode("utf-8")
+	return t.translate(text, target)
 
 
 languages = {
