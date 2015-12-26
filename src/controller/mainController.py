@@ -118,6 +118,7 @@ class Controller(object):
   pub.subscribe(self.manage_unblocked_user, "unblocked-user")
   pub.subscribe(self.manage_item_in_timeline, "item-in-timeline")
   pub.subscribe(self.manage_item_in_list, "item-in-list")
+  pub.subscribe(self.restart_streams, "restart_streams")
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
 
  def bind_other_events(self):
@@ -1459,5 +1460,21 @@ class Controller(object):
   if hasattr(self, action):
    getattr(self, action)()
 
+ def restart_streams(self, session):
+  for i in self.buffers:
+   if i.session != None and i.session.session_id == session:
+    i.start_stream()
+
  def __del__(self):
   config.app.write()
+
+ def update_buffer(self, *args, **kwargs):
+  bf = self.get_current_buffer()
+  if not hasattr(bf, "start_stream"):
+   output.speak(_(u"Unable to update this buffer."))
+   return
+  else:
+   output.speak(_(u"Updating buffer..."))
+   n = bf.start_stream(mandatory=True)
+   if n != None:
+    output.speak(_(u"{0} items retrieved").format(n,))

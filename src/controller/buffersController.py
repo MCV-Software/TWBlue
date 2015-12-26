@@ -84,7 +84,9 @@ class bufferController(object):
    sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
   self.session.sound.play("volume_changed.ogg")
 
- def start_stream(self):
+ def start_stream(self, mandatory=False):
+  if mandatory == True:
+   output.speak(_(u"Unable to update this buffer."))
   pass
 
  def get_more_items(self):
@@ -272,10 +274,10 @@ class baseBufferController(bufferController):
     tweetsList.append(tweet)
   return (tweet, tweetsList)
 
- def start_stream(self):
+ def start_stream(self, mandatory=False):
   # starts stream every 3 minutes.
   current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
    self.execution_time = current_time
    log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
@@ -283,9 +285,9 @@ class baseBufferController(bufferController):
    number_of_items = self.session.order_buffer(self.name, val)
    log.debug("Number of items retrieved: %d" % (number_of_items,))
    self.put_items_on_list(number_of_items)
-   if self.sound == None: return
-   if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages":
+   if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages" and self.sound != None:
     self.session.sound.play(self.sound)
+   return number_of_items
 
  def get_more_items(self):
   elements = []
@@ -481,7 +483,13 @@ class baseBufferController(bufferController):
    users = utils.get_all_users(tweet, self.session.db)
   dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
   if dm.message.get_response() == widgetUtils.OK:
-   call_threaded(self.session.api_call, call_name="send_direct_message", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
+   val = self.session.api_call(call_name="send_direct_message", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
+   if val != None:
+    if self.session.settings["general"]["reverse_timelines"] == False:
+     self.session.db["sent_direct_messages"].append(val)
+    else:
+     self.session.db["sent_direct_messages"].insert(0, val)
+    pub.sendMessage("sent-dm", data=val, user=self.session.db["user_name"])
   if hasattr(dm.message, "destroy"): dm.message.destroy()
 
  @_tweets_exist
@@ -638,9 +646,9 @@ class listBufferController(baseBufferController):
   self.list_id = list_id
   self.kwargs["list_id"] = list_id
 
- def start_stream(self):
+ def start_stream(self, mandatory=False):
   self.get_user_ids()
-  super(listBufferController, self).start_stream()
+  super(listBufferController, self).start_stream(mandatory)
 
  def get_user_ids(self):
   self.users = []
@@ -762,15 +770,16 @@ class peopleBufferController(baseBufferController):
     call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
   if hasattr(message.message, "destroy"): message.message.destroy()
 
- def start_stream(self):
+ def start_stream(self, mandatory=False):
   # starts stream every 3 minutes.
   current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
    self.execution_time = current_time
    log.debug("Starting stream for %s buffer, %s account" % (self.name, self.account,))
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
    val = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
    self.put_items_on_list(val)
+   return val
 
  def get_more_items(self):
   try:
@@ -875,6 +884,7 @@ class searchBufferController(baseBufferController):
    self.put_items_on_list(num)
    if num > 0:
     self.session.sound.play("search_updated.ogg")
+   return num
 
  def remove_buffer(self):
   dlg = commonMessageDialogs.remove_buffer()
@@ -914,6 +924,7 @@ class searchPeopleBufferController(peopleBufferController):
    self.put_items_on_list(number_of_items)
    if number_of_items > 0:
     self.session.sound.play("search_updated.ogg")
+   return number_of_items
 
  def remove_buffer(self):
   dlg = commonMessageDialogs.remove_buffer()
@@ -1070,6 +1081,7 @@ class conversationBufferController(searchBufferController):
    self.put_items_on_list(number_of_items)
    if number_of_items > 0:
     self.session.sound.play("search_updated.ogg")
+   return number_of_items
 
  def remove_buffer(self):
   dlg = commonMessageDialogs.remove_buffer()

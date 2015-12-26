@@ -194,6 +194,7 @@ class Session(object):
   if report_success:
    output.speak(_("%s succeeded.") % action)
   if _sound != None: self.sound.play(_sound)
+  return val
 
  def search(self, name, *args, **kwargs):
   tl = self.twitter.twitter.search(*args, **kwargs)
@@ -352,7 +353,7 @@ class Session(object):
    self.logged = False
    self.twitter = twitter.twitter.twitter()
    self.login(False)
-#   pub.sendMessage("streamError", session=self.session_id)
+   pub.sendMessage("restart_streams", session=self.session_id)
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
   if not hasattr(self, "main_stream"):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 name = 'TWBlue'
-snapshot = False
+snapshot = True
 if snapshot == False:
  version = "0.80"
  update_url = 'http://twblue.es/updates/twblue_ngen.json'
