@@ -1,4 +1,4 @@
-TWBlue -
+﻿TWBlue -
 ======
 
 Copyright (C) 2015. [Technow S.L.](https://www.technow.es)
@@ -74,7 +74,7 @@ setuptools install a script, called easy_install. You can find it in the python 
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
 Run the following command to quickly install and upgrade all packages and their dependencies:
-easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib pypubsub pygeocoder arrow python-dateutil futures
+easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib pypubsub pygeocoder arrow python-dateutil futures markdown microsofttranslator
 
 #### Other dependencies
 
