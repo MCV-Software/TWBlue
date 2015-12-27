@@ -26,7 +26,10 @@ class searchDialog(baseDialog.BaseWXDialog):
   radioSizer.Add(self.users, 0, wx.ALL, 5)
   sizer.Add(radioSizer, 0, wx.ALL, 5)
   lang = wx.StaticText(panel, -1, _(u"Language for results: "))
-  self.lang = wx.ComboBox(panel, -1, choices=[x[1] for x in translator.translator.available_languages()], style = wx.CB_READONLY)
+  langs = [x[1] for x in translator.translator.available_languages()]
+  langs[:] = langs[1:]
+  langs.insert(0, _(u"any"))
+  self.lang = wx.ComboBox(panel, -1, choices=langs, value=langs[0], style = wx.CB_READONLY)
   langBox = wx.BoxSizer(wx.HORIZONTAL)
   langBox.Add(lang, 0, wx.ALL, 5)
   langBox.Add(self.lang, 0, wx.ALL, 5)
