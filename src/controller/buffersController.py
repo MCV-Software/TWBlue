@@ -868,10 +868,10 @@ class peopleBufferController(baseBufferController):
   pub.sendMessage("execute-action", action="user_details")
 
 class searchBufferController(baseBufferController):
- def start_stream(self):
+ def start_stream(self, mandatory=False):
   # starts stream every 3 minutes.
   current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
    self.execution_time = current_time
    log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
@@ -907,10 +907,10 @@ class searchPeopleBufferController(peopleBufferController):
   self.kwargs = kwargs
   self.function = function
 
- def start_stream(self):
+ def start_stream(self, mandatory=False):
   # starts stream every 3 minutes.
   current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
    self.execution_time = current_time
    log.debug("starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))

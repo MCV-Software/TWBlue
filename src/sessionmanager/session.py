@@ -279,8 +279,7 @@ class Session(object):
   tl = self.call_paged(function, sinze_id=last_id, *args, **kwargs)
   self.order_buffer(name, tl)
 
-# @_require_login
- def get_cursored_stream(self, name, function, items="users", *args, **kwargs):
+ def get_cursored_stream(self, name, function, items="users", get_previous=False, *args, **kwargs):
 
   """ Gets items for API calls that require using cursors to paginate the results.
   name str: Name to save it in the database.
@@ -290,7 +289,7 @@ class Session(object):
 
   items_ = []
   try:
-   if self.db[name].has_key("cursor"):
+   if self.db[name].has_key("cursor") and get_previous:
     cursor = self.db[name]["cursor"]
    else:
     cursor = -1
