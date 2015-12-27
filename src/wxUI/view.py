@@ -47,6 +47,7 @@ class mainFrame(wx.Frame):
 
   # buffer menu
   buffer = wx.Menu()
+  self.update_buffer = buffer.Append(wx.NewId(), _(u"&Update buffer"))
   self.trends = buffer.Append(wx.NewId(), _(u"New &trending topics buffer..."))
   self.find = buffer.Append(wx.NewId(), _(u"Find a string in the currently focused buffer..."))
   self.load_previous_items = buffer.Append(wx.NewId(), _(u"&Load previous items"))

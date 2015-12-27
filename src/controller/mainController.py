@@ -180,6 +180,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_documentation, self.view.doc)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_list, self.view.addToList)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_list, self.view.removeFromList)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_buffer, self.view.update_buffer)
 
  def set_systray_icon(self):
   self.systrayIcon = sysTrayIcon.SysTrayIcon()
