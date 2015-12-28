@@ -118,7 +118,7 @@ class Controller(object):
   pub.subscribe(self.manage_unblocked_user, "unblocked-user")
   pub.subscribe(self.manage_item_in_timeline, "item-in-timeline")
   pub.subscribe(self.manage_item_in_list, "item-in-list")
-  pub.subscribe(self.restart_streams, "restart_streams")
+  pub.subscribe(self.restart_streams_, "restart_streams")
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
 
  def bind_other_events(self):
@@ -1461,7 +1461,7 @@ class Controller(object):
   if hasattr(self, action):
    getattr(self, action)()
 
- def restart_streams(self, session):
+ def restart_streams_(self, session):
   for i in self.buffers:
    if i.session != None and i.session.session_id == session:
     i.start_stream()
