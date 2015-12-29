@@ -742,7 +742,7 @@ class peopleBufferController(baseBufferController):
    dlg = commonMessageDialogs.remove_buffer()
    if dlg == widgetUtils.YES:
     if self.name[:-8] in self.session.settings["other_buffers"]["friends_timelines"]:
-     self.session.settings["other_buffers"]["friends_timelines"].remove(self.name[:-9])
+     self.session.settings["other_buffers"]["friends_timelines"].remove(self.name[:-8])
      return True
    elif dlg == widgetUtils.NO:
     return False
@@ -783,7 +783,7 @@ class peopleBufferController(baseBufferController):
 
  def get_more_items(self):
   try:
-   items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"])
+   items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"], *self.args, **self.kwargs)
   except TwythonError as e:
    output.speak(e.message, True)
    return
