@@ -245,7 +245,7 @@ class viewTweet(widgetUtils.BaseDialog):
  def set_title(self, lenght):
   self.SetTitle(_(u"Tweet - %i characters ") % (lenght,))
 
- def __init__(self, text, rt_count, favs_count):
+ def __init__(self, text, rt_count, favs_count,source):
   super(viewTweet, self).__init__(None, size=(850,850))
   panel = wx.Panel(self)
   label = wx.StaticText(panel, -1, _(u"Tweet"))
@@ -270,9 +270,15 @@ class viewTweet(widgetUtils.BaseDialog):
   favsBox = wx.BoxSizer(wx.HORIZONTAL)
   favsBox.Add(favsCountLabel, 0, wx.ALL, 5)
   favsBox.Add(favsCount, 0, wx.ALL, 5)
+  sourceLabel = wx.StaticText(panel, -1, _(u"Source: "))
+  sourceTweet = wx.TextCtrl(panel, -1, source, size=wx.DefaultSize, style=wx.TE_READONLY|wx.TE_MULTILINE)
+  sourceBox = wx.BoxSizer(wx.HORIZONTAL)
+  sourceBox.Add(sourceLabel, 0, wx.ALL, 5)
+  sourceBox.Add(sourceTweet, 0, wx.ALL, 5)
   infoBox = wx.BoxSizer(wx.HORIZONTAL)
   infoBox.Add(rtBox, 0, wx.ALL, 5)
   infoBox.Add(favsBox, 0, wx.ALL, 5)
+  infoBox.Add(sourceBox, 0, wx.ALL, 5)
   mainBox.Add(infoBox, 0, wx.ALL, 5)
   self.spellcheck = wx.Button(panel, -1, _("Spelling correction"), size=wx.DefaultSize)
   self.unshortenButton = wx.Button(panel, -1, _(u"Expand URL"), size=wx.DefaultSize)
