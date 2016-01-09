@@ -357,7 +357,7 @@ class Controller(object):
    tl.timer.start()
   friends_timelines = buffersController.emptyPanel(self.view.nb, "friends_timelines", session.db["user_name"])
   self.buffers.append(friends_timelines)
-  self.view.insert_buffer(friends_timelines.buffer , name=_(u"Followers' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  self.view.insert_buffer(friends_timelines.buffer , name=_(u"Friends' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["friends_timelines"]:
    tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (i,), session, session.db["user_name"], screen_name=i)
    self.buffers.append(tl)
