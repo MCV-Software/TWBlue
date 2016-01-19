@@ -26,7 +26,6 @@ var StartMenuFolder
 !define MUI_FINISHPAGE_LINK "Visit TWBlue website"
 !define MUI_FINISHPAGE_LINK_LOCATION "http://twblue.es"
 !define MUI_FINISHPAGE_RUN "$INSTDIR\TWBlue.exe"
-!define MUI_FINISHPAGE_RUN_PARAMETERS "-i"
 !insertmacro MUI_PAGE_FINISH
 !insertmacro MUI_UNPAGE_CONFIRM
 !insertmacro MUI_UNPAGE_INSTFILES
@@ -58,10 +57,10 @@ File /r TWBlue64\*
 ${Else}
 File /r TWBlue\*
 ${EndIf}
-CreateShortCut "$DESKTOP\TWBlue.lnk" "$INSTDIR\TWBlue.exe" "-i"
+CreateShortCut "$DESKTOP\TWBlue.lnk" "$INSTDIR\TWBlue.exe"
 !insertmacro MUI_STARTMENU_WRITE_BEGIN startmenu
 CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
-CreateShortCut "$SMPROGRAMS\$StartMenuFolder\TWBlue.lnk" "$INSTDIR\TWBlue.exe" "-i"
+CreateShortCut "$SMPROGRAMS\$StartMenuFolder\TWBlue.lnk" "$INSTDIR\TWBlue.exe"
 CreateShortCut "$SMPROGRAMS\$StartMenuFolder\TWBlue on the web.lnk" "http://twblue.es"
 CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
 !insertmacro MUI_STARTMENU_WRITE_END

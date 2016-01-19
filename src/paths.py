@@ -7,7 +7,7 @@ from platform_utils import paths as paths_
 
 from functools import wraps
 
-mode = None
+mode = "portable"
 directory = None
 
 log = logging.getLogger("paths")
