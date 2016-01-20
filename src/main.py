@@ -14,6 +14,9 @@ if system == "Windows":
  sys.stderr = open(os.path.join(os.getenv("temp"), "stderr.log"), "w")
 import languageHandler
 import paths
+#check if TWBlue is installed (Windows only)
+if os.path.exists(paths.app_path(u"Uninstall.exe")):
+ paths.mode="installed"
 import commandline
 import config
 import sound
@@ -32,9 +35,6 @@ if system == "Windows":
  from update import updater
  stdout_temp=sys.stdout
  stderr_temp=sys.stderr
-#check if TWBlue is installed
- if os.path.exists(paths.app_path(u"Uninstall.exe")):
-  paths.mode="installed"
 #if it's a binary version
  if hasattr(sys, 'frozen'):
   sys.stderr = open(paths.logs_path("stderr.log"), 'w')
