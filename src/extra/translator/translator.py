@@ -101,8 +101,8 @@ languages = {
 }
 
 def available_languages():
-    l = languages.keys()
-    d = languages.values()
-    l.insert(0, '')
-    d.insert(0, _(u"autodetect"))
-    return sorted(zip(l, d))
+	l = languages.keys()
+	d = languages.values()
+	l.insert(0, '')
+	d.insert(0, _(u"autodetect"))
+	return sorted(zip(l, d))

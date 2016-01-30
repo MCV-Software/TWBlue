@@ -14,6 +14,8 @@ system = platform.system()
 from mysc.repeating_timer import RepeatingTimer
 from mysc.thread_utils import call_threaded
 import application
+import tempfile
+import glob
 URLPlayer = None
 
 def setup():
