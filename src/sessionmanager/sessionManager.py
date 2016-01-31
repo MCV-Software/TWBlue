@@ -2,6 +2,7 @@
 import shutil
 import widgetUtils
 import platform
+import output
 if platform.system() == "Windows":
  import wxUI as view
  from controller import settings

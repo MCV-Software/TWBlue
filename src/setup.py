@@ -28,22 +28,22 @@ from glob import glob
 import wx
 
 def get_architecture_files():
- if platform.architecture()[0][:2] == "32":
-  return [
+	if platform.architecture()[0][:2] == "32":
+		return [
   ("", ["../windows-dependencies/x86/oggenc2.exe", "../windows-dependencies/x86/bootstrap.exe"]),
   ("Microsoft.VC90.CRT", glob("../windows-dependencies/x86/Microsoft.VC90.CRT/*")),
   ("Microsoft.VC90.MFC", glob("../windows-dependencies/x86/Microsoft.VC90.MFC/*")),]
- elif platform.architecture()[0][:2] == "64":
-  return [
+	elif platform.architecture()[0][:2] == "64":
+		return [
   ("", ["../windows-dependencies/x64/oggenc2.exe", "../windows-dependencies/x86/bootstrap.exe"]),
   ("Microsoft.VC90.CRT", glob("../windows-dependencies/x64/Microsoft.VC90.CRT/*")),
   ("Microsoft.VC90.MFC", glob("../windows-dependencies/x64/Microsoft.VC90.MFC/*")),]
 
 def get_data():
- import accessible_output2
- import sound_lib
- import enchant
- return [
+	import accessible_output2
+	import sound_lib
+	import enchant
+	return [
   ("", ["conf.defaults", "app-configuration.defaults", "icon.ico"]),
     ("requests", ["cacert.pem"]),
   ("accessible_output2/lib", glob("accessible_output2/lib/*.dll")),
@@ -52,33 +52,33 @@ def get_data():
 ]+get_sounds()+get_locales()+get_documentation()+sound_lib.find_datafiles()+accessible_output2.find_datafiles()+enchant.utils.win32_data_files()+get_architecture_files()+wx_files()
 
 def get_documentation ():
- answer = []
- depth = 6
- for root, dirs, files in os.walk('documentation'):
-  if depth == 0:
-   break
-  new = (root, glob(os.path.join(root, "*.html")))
-  answer.append(new)
-  depth -= 1
- return answer
+	answer = []
+	depth = 6
+	for root, dirs, files in os.walk('documentation'):
+		if depth == 0:
+			break
+		new = (root, glob(os.path.join(root, "*.html")))
+		answer.append(new)
+		depth -= 1
+	return answer
 
 def get_sounds():
- answer = []
- depth = 6
- for root, dirs, files in os.walk('sounds'):
-  if depth == 0:
-   break
-  new = (root, glob(os.path.join(root, "*.ogg")))
-  answer.append(new)
-  depth -= 1
- return answer
+	answer = []
+	depth = 6
+	for root, dirs, files in os.walk('sounds'):
+		if depth == 0:
+			break
+		new = (root, glob(os.path.join(root, "*.ogg")))
+		answer.append(new)
+		depth -= 1
+	return answer
 
 def get_locales():
- answer = []
- for root, dirs, files in os.walk('locales'):
-  new = (root, glob(os.path.join(root, '*.mo')))
-  answer.append(new)
- return answer
+	answer = []
+	for root, dirs, files in os.walk('locales'):
+		new = (root, glob(os.path.join(root, '*.mo')))
+		answer.append(new)
+	return answer
 
 def wx_files():
 	wxDir=wx.__path__[0]
@@ -99,7 +99,7 @@ def wx_files():
 	return list(localeMoFiles)
 
 if __name__ == '__main__':
- setup(
+	setup(
   name = application.name,
   author = application.author,
   author_email = application.authorEmail,
