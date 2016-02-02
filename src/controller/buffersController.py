@@ -1088,7 +1088,7 @@ class conversationBufferController(searchBufferController):
   if dlg == widgetUtils.YES:
    self.timer.cancel()
    return True
-  elif dlg == WidgetUtils.NO:
+  elif dlg == widgetUtils.NO:
    return False
 
 class pocketBufferController(baseBufferController):

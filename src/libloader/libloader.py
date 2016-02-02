@@ -32,7 +32,7 @@ def load_library(library, x86_path='.', x64_path='.', *args, **kwargs):
  loaded = _do_load(lib, *args, **kwargs)
  if loaded is not None:
   return loaded
- raise LibraryLoadError('unable to load %r. Provided library path: %r' % (library, path))
+ raise LibraryLoadError('unable to load %r. Provided library path: %r' % (library, lib))
 
 def _do_load(file, *args, **kwargs):
  loader = TYPES[platform.system()]['loader'] 
