@@ -19,7 +19,7 @@ class spellChecker(object):
   try:
    if config.app["app-settings"]["language"] == "system":
     log.debug("Using the system language")
-    self.checker = SpellChecker(filters=[twitterFilter.TwitterFilter, tokenize.EmailFilter, tokenize.URLFilter])
+    self.checker = SpellChecker(languageHandler.curLang, filters=[twitterFilter.TwitterFilter, tokenize.EmailFilter, tokenize.URLFilter])
    else:
     log.debug("Using language: %s" % (languageHandler.getLanguage(),))
     self.checker = SpellChecker(languageHandler.getLanguage(), filters=[twitterFilter.TwitterFilter, tokenize.EmailFilter, tokenize.URLFilter])
