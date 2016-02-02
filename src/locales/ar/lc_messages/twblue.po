@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2015-11-06 08:10+Hora estndar central (Mxico)\n"
-"PO-Revision-Date: 2015-10-03 13:02+0200\n"
+"PO-Revision-Date: 2015-12-10 13:12+0300\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Mohammed Al Shara <mohammed@atexplorer.com>\n"
 "Language: ar\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.6.11\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,-1,409,-1,-1,-1\n"
@@ -123,7 +123,7 @@ msgstr "تغريدة جديدة"
 #: ../src\controller\mainController.py:1277
 #: ../src\wxUI\dialogs\userSelection.py:20
 msgid "Likes"
-msgstr ""
+msgstr "إعجابات"
 
 #: ../src\controller\mainController.py:314
 #: ../src\controller\mainController.py:1282
@@ -213,7 +213,7 @@ msgstr "إفراغ السياق الزمني"
 
 #: ../src\controller\mainController.py:452
 msgid "{0} not found."
-msgstr ""
+msgstr "{0} لم يتم العثور عليه"
 
 #: ../src\controller\mainController.py:485
 #: ../src\controller\mainController.py:500
@@ -223,7 +223,7 @@ msgstr "إختر المستخدم"
 
 #: ../src\controller\mainController.py:808
 msgid "Conversation with {0}"
-msgstr ""
+msgstr "محادثة مع {0}"
 
 #: ../src\controller\mainController.py:852
 #: ../src\controller\mainController.py:871
@@ -254,7 +254,7 @@ msgstr "%s فارغة"
 
 #: ../src\controller\mainController.py:1012
 msgid "{0}: This account is not logged into Twitter."
-msgstr ""
+msgstr "{0}: هذا الحساب لم يقم بتسجيل الدخول لتويتر."
 
 #: ../src\controller\mainController.py:1018
 #: ../src\controller\mainController.py:1039
@@ -264,7 +264,7 @@ msgstr "%s, %sالخاصة ب%s"
 
 #: ../src\controller\mainController.py:1033
 msgid "{0}: This account is not logged into twitter."
-msgstr ""
+msgstr "{0}: هذا الحساب لم يقم بتسجيل الدخول لتويتر."
 
 #: ../src\controller\mainController.py:1134
 msgid "One mention from %s "
@@ -277,7 +277,7 @@ msgstr "تغريدة واحدة من %s"
 
 #: ../src\controller\mainController.py:1307
 msgid "This list is already opened"
-msgstr ""
+msgstr "هذه القائمة تم فتحها من قبل"
 
 #: ../src\controller\mainController.py:1366
 msgid "The auto-reading of new tweets is enabled for this buffer"
@@ -294,7 +294,7 @@ msgstr "مدير الجلسة"
 
 #: ../src\controller\mainController.py:1378
 msgid "Session mute off"
-msgstr ""
+msgstr "تم إلغائ كتم الجلسة هذه"
 
 #: ../src\controller\mainController.py:1385
 msgid "Buffer mute on"
@@ -598,11 +598,11 @@ msgstr "تم إيقاف تشغيل المقطع الصوتي"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:5
 msgid "User timeline buffer created."
-msgstr ""
+msgstr "تم إنشاء صفحة بالسياق الزمني للمستخدم."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:6
 msgid "Buffer destroied."
-msgstr ""
+msgstr "تم حذف الصفحة."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:7
 #, fuzzy
@@ -675,7 +675,7 @@ msgstr "لقد قمت بإعادة التغريد"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:21
 msgid "Search buffer updated."
-msgstr ""
+msgstr "تم تحديث صفحة البحث."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:22
 msgid "Tweet received."
@@ -688,11 +688,11 @@ msgstr "التغريدات"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:24
 msgid "Trending topics buffer updated."
-msgstr ""
+msgstr "تم تحديث صفحة المواضيع المشهورة."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:25
 msgid "New tweet in user timeline buffer."
-msgstr ""
+msgstr "تغريدة جديدة في صفحة السياق الزمني للمستخدم."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:26
 #, fuzzy
@@ -713,11 +713,11 @@ msgstr "إضغط مفتاح الدخول لسماع الصوت"
 
 #: ../src\extra\SpellChecker\spellchecker.py:45
 msgid "Misspelled word: %s"
-msgstr ""
+msgstr "خطء إملائي في الكلمة: %s"
 
 #: ../src\extra\SpellChecker\wx_ui.py:26
 msgid "Misspelled word"
-msgstr ""
+msgstr "كلمة فيها خطء إملائي"
 
 #: ../src\extra\SpellChecker\wx_ui.py:31
 msgid "Context"
@@ -760,7 +760,7 @@ msgstr "خطء"
 
 #: ../src\extra\SpellChecker\wx_ui.py:79
 msgid "Spell check complete."
-msgstr ""
+msgstr "تم إنهاء التدقيق الإملائي."
 
 #: ../src\extra\autocompletionUsers\completion.py:20
 #: ../src\extra\autocompletionUsers\completion.py:38
@@ -1400,11 +1400,11 @@ msgstr "إذهب إلى التبويبة القادمة"
 
 #: ../src\keystrokeEditor\constants.py:7
 msgid "Focus the next session"
-msgstr ""
+msgstr "إنتقل للجلسة التالية."
 
 #: ../src\keystrokeEditor\constants.py:8
 msgid "Focus the previous session"
-msgstr ""
+msgstr "إنتقل للجلسة السابقة."
 
 #: ../src\keystrokeEditor\constants.py:9
 #, fuzzy
@@ -1452,15 +1452,15 @@ msgstr "إفتح سياق المستخدم"
 
 #: ../src\keystrokeEditor\constants.py:21
 msgid "Destroy buffer"
-msgstr ""
+msgstr "إحذف الصفحة"
 
 #: ../src\keystrokeEditor\constants.py:22
 msgid "Interact with the currently focused tweet."
-msgstr ""
+msgstr "التفاعل مع التغريدة المختارة حاليا"
 
 #: ../src\keystrokeEditor\constants.py:23
 msgid "Open URL"
-msgstr ""
+msgstr "إفتح الرابط"
 
 #: ../src\keystrokeEditor\constants.py:24
 msgid "Increase volume by 5%"
@@ -1472,19 +1472,19 @@ msgstr "إنقاص علو الصوت %5"
 
 #: ../src\keystrokeEditor\constants.py:26
 msgid "Jump to the first element of a buffer"
-msgstr ""
+msgstr "القفز إلى أول عنصر في الصفحة"
 
 #: ../src\keystrokeEditor\constants.py:27
 msgid "Jump to the last element of the current buffer"
-msgstr ""
+msgstr "القفز إلى آخر عنصر في الصفحة الحالية"
 
 #: ../src\keystrokeEditor\constants.py:28
 msgid "Jump 20 elements up in the current buffer"
-msgstr ""
+msgstr "القفز إلى 20 عنصر للأعلى في الصفحة الحالية"
 
 #: ../src\keystrokeEditor\constants.py:29
 msgid "Jump 20 elements down in the current buffer"
-msgstr ""
+msgstr "القفز إلى 20 عنصر أسفل في الصفحة الحالية"
 
 #: ../src\keystrokeEditor\constants.py:30
 msgid "Edit profile"
@@ -1492,7 +1492,7 @@ msgstr "حرر ملفك الشخصي"
 
 #: ../src\keystrokeEditor\constants.py:31
 msgid "Delete a tweet or direct message"
-msgstr ""
+msgstr "إحذف تغريدة أو رسالة مباشرة"
 
 #: ../src\keystrokeEditor\constants.py:32
 #, fuzzy
@@ -1501,7 +1501,7 @@ msgstr "إفراغ السياق الزمني"
 
 #: ../src\keystrokeEditor\constants.py:33
 msgid "Repeat last item"
-msgstr ""
+msgstr "إعد العنصر الأخير"
 
 #: ../src\keystrokeEditor\constants.py:34
 msgid "Copy to clipboard"
@@ -1522,7 +1522,7 @@ msgstr "كتم / إلغاء كتم الصفحة الفعالة"
 
 #: ../src\keystrokeEditor\constants.py:38
 msgid "Mute/unmute the current session"
-msgstr ""
+msgstr "كتم / إلغاء الكتم للجلسة الحالية"
 
 #: ../src\keystrokeEditor\constants.py:39
 #, fuzzy
@@ -1549,7 +1549,7 @@ msgstr "إظهار القوائم لمستخدم محدد"
 
 #: ../src\keystrokeEditor\constants.py:44
 msgid "load previous items"
-msgstr ""
+msgstr "حمل العناصر السابقة"
 
 #: ../src\keystrokeEditor\constants.py:45
 #, fuzzy
@@ -1568,7 +1568,7 @@ msgstr "إعرض المواضيع المتداولة"
 
 #: ../src\keystrokeEditor\constants.py:48
 msgid "View conversation"
-msgstr ""
+msgstr "إعرض المحادثة"
 
 #: ../src\keystrokeEditor\constants.py:49
 #, fuzzy
@@ -1580,6 +1580,7 @@ msgid ""
 "Opens the list manager, which allows you to create, edit, delete and open "
 "lists in buffers."
 msgstr ""
+"تفتح مدير القوائم والذي يمكنك من إنشاء وتحرير وحذف وفتح القوائم والصفحات."
 
 #: ../src\keystrokeEditor\constants.py:51
 #, fuzzy
@@ -1614,7 +1615,7 @@ msgstr "حرر"
 
 #: ../src\keystrokeEditor\wx_ui.py:20
 msgid "Execute action"
-msgstr ""
+msgstr "ينفذ المهمة"
 
 #: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:349
 #: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\message.py:144
@@ -1723,10 +1724,12 @@ msgid ""
 "The request to authorize your Twitter account will be opened in your "
 "browser. You only need to do this once. Would you like to continue?"
 msgstr ""
+"سوف يفتح متصفح للسماح للبرنامج بالدخول على حساب تويتر الخاص بك. أنت تحتاج أن "
+"تفعل هذا مرة واحدة. هل ترغب بالمتابعة؟"
 
 #: ../src\sessionmanager\wxUI.py:51
 msgid "Authorized account %d"
-msgstr ""
+msgstr "تم التصريح للحساب %d"
 
 #: ../src\sessionmanager\wxUI.py:57
 msgid "Invalid user token"
@@ -1736,7 +1739,7 @@ msgstr "مفتاح العبور ر غير صحيح"
 msgid ""
 "Your access token is invalid or the authorization has failed. Please try "
 "again."
-msgstr ""
+msgstr "هناك مشكلة في التصريح. يرجى المحاولة مرة أخرى."
 
 #: ../src\sessionmanager\wxUI.py:63
 #, fuzzy
@@ -1745,7 +1748,7 @@ msgstr "هل أنت متأكد من رغبتك بإزالة هذذ الحساب"
 
 #: ../src\sound.py:136
 msgid "Stopped."
-msgstr ""
+msgstr "تم الإيقاف."
 
 #: ../src\twitter\compose.py:41 ../src\twitter\compose.py:96
 #: ../src\twitter\compose.py:105
@@ -1948,7 +1951,8 @@ msgid "Date"
 msgstr "تاريخ"
 
 #: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\people.py:10
-#: ../src\wxUI\buffers\user_searches.py:9 ../src\wxUI\dialogs\userActions.py:10
+#: ../src\wxUI\buffers\user_searches.py:9
+#: ../src\wxUI\dialogs\userActions.py:10
 #: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:30
 msgid "User"
 msgstr "المستخدم"
@@ -2739,42 +2743,36 @@ msgid "&Show item"
 msgstr "&إعرض العنصر"
 
 #: ../src\wxUI\sysTrayIcon.py:34 ../src\wxUI\view.py:22
-#, fuzzy
 msgid "&Global settings"
-msgstr "تم تشغيل الكتم الكلي."
+msgstr "&الإعدادات العامة"
 
 #: ../src\wxUI\sysTrayIcon.py:35 ../src\wxUI\view.py:21
 msgid "Account se&ttings"
 msgstr ""
 
 #: ../src\wxUI\sysTrayIcon.py:36
-#, fuzzy
 msgid "Update &profile"
-msgstr "حدث ملفك الشخصي"
+msgstr "حدث &ملفك الشخصي"
 
 #: ../src\wxUI\sysTrayIcon.py:37
-#, fuzzy
 msgid "&Show / hide"
-msgstr "الإظهار او الإخفاء"
+msgstr "&الإظهار او الإخفاء"
 
 #: ../src\wxUI\sysTrayIcon.py:38 ../src\wxUI\view.py:61
 msgid "&Documentation"
 msgstr "دليل المستخدم"
 
 #: ../src\wxUI\sysTrayIcon.py:40
-#, fuzzy
 msgid "Check for &updates"
-msgstr "فحص التحديثات الجديدة"
+msgstr "فحص &التحديثات الجديدة"
 
 #: ../src\wxUI\sysTrayIcon.py:41
-#, fuzzy
 msgid "&Exit"
-msgstr "الخروج"
+msgstr "&الخروج"
 
 #: ../src\wxUI\view.py:15
-#, fuzzy
 msgid "&Manage accounts"
-msgstr "حساب جديد"
+msgstr "&إدر الحسابات"
 
 #: ../src\wxUI\view.py:16
 msgid "&Update profile"
@@ -2883,9 +2881,8 @@ msgid "&Report an error"
 msgstr "إبلغ عن عطل"
 
 #: ../src\wxUI\view.py:67
-#, fuzzy
 msgid "{0}'s &website"
-msgstr "موقع TW Blue الإلكتروني"
+msgstr "&website الخاص ب{0} "
 
 #: ../src\wxUI\view.py:68
 msgid "About &{0}"

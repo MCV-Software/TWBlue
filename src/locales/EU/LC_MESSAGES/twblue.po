@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
-"POT-Creation-Date: 2015-11-06 08:10+Hora estndar central (Mxico)\n"
-"PO-Revision-Date: 2015-10-03 13:03+0200\n"
-"Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
+"POT-Creation-Date: 2016-01-19 12:41+0100\n"
+"PO-Revision-Date: 2016-01-19 12:41+0100\n"
+"Last-Translator: Sukil Etxenike <sukiletxe@yahoo.es>\n"
 "Language-Team: Sukil Etxenike Arizaleta <sukiletxe@yahoo.es>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgstr "Bidalitako txioak"
 #: ../src\controller\mainController.py:1277
 #: ../src\wxUI\dialogs\userSelection.py:20
 msgid "Likes"
-msgstr ""
+msgstr "Gustukoak"
 
 #: ../src\controller\mainController.py:314
 #: ../src\controller\mainController.py:1282
@@ -153,15 +153,13 @@ msgid "Timeline for {}"
 msgstr "{}(r)en denbora lerroa"
 
 #: ../src\controller\mainController.py:340
-#, fuzzy
 msgid "Likes timelines"
-msgstr "Gogokoen denbora lerroa"
+msgstr "Gustukoen denbora lerroa"
 
 #: ../src\controller\mainController.py:344
 #: ../src\controller\mainController.py:789
-#, fuzzy
 msgid "Likes for {}"
-msgstr "{}(r)en zerrrenda"
+msgstr "{}(r)en gustukoak"
 
 #: ../src\controller\mainController.py:349 ../src\wxUI\dialogs\lists.py:12
 msgid "Lists"
@@ -421,9 +419,8 @@ msgid "Tweets: %s\n"
 msgstr "Txioak: %s\n"
 
 #: ../src\controller\user.py:98
-#, fuzzy
 msgid "Likes: %s"
-msgstr "Gogokoak: %s"
+msgstr "Gustukoak: %s"
 
 #: ../src\controller\userActionsController.py:75
 msgid "You can't ignore direct messages"
@@ -594,14 +591,12 @@ msgid "Error."
 msgstr "Errorea."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
-#, fuzzy
 msgid "Tweet liked."
-msgstr "Txio bat jaso da"
+msgstr "Txio bat gustukoetara gehitu da"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
-#, fuzzy
 msgid "Likes buffer updated."
-msgstr "Gogokoen bufferra eguneratu da."
+msgstr "Gustukoen bufferra eguneratu da."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
 msgid "Geotweet."
@@ -816,7 +811,6 @@ msgid "{0}'s database of users has been updated."
 msgstr "{0}-ren erabiltzaileen datu-basea eguneratua izan da."
 
 #: ../src\extra\translator\translator.py:124
-#, fuzzy
 msgid "unavailable"
 msgstr "Ez dago erabilgarri"
 
@@ -1378,14 +1372,12 @@ msgid "Send direct message"
 msgstr "Zuzeneko mezua bidali"
 
 #: ../src\keystrokeEditor\constants.py:14
-#, fuzzy
 msgid "Like a tweet"
-msgstr "Txio berri bat"
+msgstr "Txio bat gustukoetara gehitu"
 
 #: ../src\keystrokeEditor\constants.py:15
-#, fuzzy
 msgid "Unlike a tweet"
-msgstr "Txio berri bat"
+msgstr "Txio bat gustukoetatik kendu"
 
 #: ../src\keystrokeEditor\constants.py:16
 msgid "Open the user actions dialogue"
@@ -1520,25 +1512,24 @@ msgid "View conversation"
 msgstr "Elkarrizketa ikusi"
 
 #: ../src\keystrokeEditor\constants.py:49
-#, fuzzy
 msgid "Check and download updates"
-msgstr "E&guneratzeak bilatu"
+msgstr "Eguneratzeak bilatu eta jaitsi"
 
 #: ../src\keystrokeEditor\constants.py:50
 msgid ""
 "Opens the list manager, which allows you to create, edit, delete and open "
 "lists in buffers."
 msgstr ""
+"Zerrenden kudeatzailea irekitzen du. Kudeatzaileak zerrendak sortzea, "
+"editatzea, ezabatzea eta bufferretan irekitzea ahalbidetzen du"
 
 #: ../src\keystrokeEditor\constants.py:51
-#, fuzzy
 msgid "Opens the global settings dialogue"
-msgstr "Ekintzen dialogoa ireki"
+msgstr "Ezarpen globalen elkarrizketa-koadroa ireki"
 
 #: ../src\keystrokeEditor\constants.py:52
-#, fuzzy
 msgid "Opens the account settings dialogue"
-msgstr "Ekintzen dialogoa ireki"
+msgstr "Kontuaren ezarpenen elkarrizketa-koadroa ireki"
 
 #: ../src\keystrokeEditor\wx_ui.py:8
 msgid "Keystroke editor"
@@ -1741,24 +1732,20 @@ msgid "You've unfollowed %s (@%s)"
 msgstr "Orain ez duzu %s (@%s) jarraitzen"
 
 #: ../src\twitter\compose.py:126
-#, fuzzy
 msgid "You've liked: %s, %s"
-msgstr "%s blokeatu duzu."
+msgstr "Gustukoetara gehitu duzu: %s, %s"
 
 #: ../src\twitter\compose.py:128
-#, fuzzy
 msgid "%s(@%s) has liked: %s"
-msgstr "Orain %s(e)k (@%s) jarraitzen zaitu"
+msgstr "%s(e)k (@%s) gustukoetara gehitu du: %s"
 
 #: ../src\twitter\compose.py:130
-#, fuzzy
 msgid "You've unliked: %s, %s"
-msgstr "%s desblokeatu duzu"
+msgstr "Gustukoetatik kendu duzu: %s"
 
 #: ../src\twitter\compose.py:131
-#, fuzzy
 msgid "%s(@%s) has unliked: %s"
-msgstr "Orain %s(e)k (@%s) jarraitzen zaitu"
+msgstr "%s(e)k (@%s) gustukoetatik kendu du: %s"
 
 #: ../src\twitter\compose.py:133
 msgid "You've created the list %s"
@@ -2055,13 +2042,12 @@ msgid "Warning"
 msgstr "Abisua"
 
 #: ../src\wxUI\commonMessageDialogs.py:50
-#, fuzzy
 msgid ""
 "This is a protected user account, you need to follow this user to view their "
 "tweets or likes."
 msgstr ""
 "Kontu hau babestutako erabiltzaile batena da. Kontua jarraitu behar duzu "
-"bere txioak eta gogokoak ikusteko."
+"bere txioak eta gustukoak ikusteko."
 
 #: ../src\wxUI\commonMessageDialogs.py:53
 msgid ""
@@ -2484,7 +2470,7 @@ msgstr "Bertxioak:"
 
 #: ../src\wxUI\dialogs\message.py:268
 msgid "Likes: "
-msgstr ""
+msgstr "Gogokoak:"
 
 #: ../src\wxUI\dialogs\message.py:318
 msgid "View"
@@ -2612,11 +2598,11 @@ msgstr "E&rantzun"
 
 #: ../src\wxUI\menus.py:11 ../src\wxUI\view.py:30
 msgid "&Like"
-msgstr ""
+msgstr "Gustukoetara &gehitu"
 
 #: ../src\wxUI\menus.py:13 ../src\wxUI\view.py:31
 msgid "&Unlike"
-msgstr ""
+msgstr "Gustukoetatik &kendu"
 
 #: ../src\wxUI\menus.py:15 ../src\wxUI\menus.py:33 ../src\wxUI\menus.py:49
 msgid "&Open URL"
@@ -2765,9 +2751,8 @@ msgid "R&emove from list"
 msgstr "Zerrendatik &kendu"
 
 #: ../src\wxUI\view.py:46
-#, fuzzy
 msgid "V&iew likes"
-msgstr "&Zerrendak ikusi"
+msgstr "&Gustukoak ikusi"
 
 #: ../src\wxUI\view.py:50
 msgid "New &trending topics buffer..."
