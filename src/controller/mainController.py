@@ -178,6 +178,7 @@ class Controller(object):
    widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_documentation, self.view.doc)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_changelog, self.view.changelog)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_list, self.view.addToList)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_list, self.view.removeFromList)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_buffer, self.view.update_buffer)
@@ -1446,6 +1447,11 @@ class Controller(object):
   os.chdir("documentation/%s" % (lang,))
   webbrowser.open("manual.html")
   os.chdir("../../")
+
+ def view_changelog(self, *args, **kwargs):
+  os.chdir("documentation")
+  webbrowser.open("changelog.html")
+  os.chdir("../")
 
  def insert_buffer(self, buffer, position):
   self.buffers.insert(position, buffer)

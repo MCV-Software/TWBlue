@@ -62,7 +62,6 @@ class mainFrame(wx.Frame):
   self.doc = help.Append(-1, _(u"&Documentation"))
   self.sounds_tutorial = help.Append(wx.NewId(), _(u"Sounds &tutorial"))
   self.changelog = help.Append(wx.NewId(), _(u"&What's new in this version?"))
-  self.changelog.Enable(False)
   self.check_for_updates = help.Append(wx.NewId(), _(u"&Check for updates"))
   self.reportError = help.Append(wx.NewId(), _(u"&Report an error"))
   self.visit_website = help.Append(-1, _(u"{0}'s &website").format(application.name,))
