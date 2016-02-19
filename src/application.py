@@ -4,9 +4,11 @@ snapshot = True
 if snapshot == False:
  version = "0.80"
  update_url = 'http://twblue.es/updates/twblue_ngen.json'
+ mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/stable.json'
 else:
  version = "10.99"
  update_url = 'http://twblue.es/updates/snapshots_ngen.json'
+ mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/snapshots.json'
 author = u"Manuel Cortéz"
 authorEmail = "manuel@manuelcortez.net"
 copyright = u"Copyright (C) 2015, Technow S.L. \nCopyright (C) 2013-2015, Manuel cortéz."
