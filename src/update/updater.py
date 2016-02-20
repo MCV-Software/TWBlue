@@ -15,6 +15,6 @@ def do_update(endpoint=application.update_url):
   if endpoint == application.update_url:
    logger.error("Update failed! Using mirror URL...")
    return do_update(endpoint=application.mirror_update_url)
- else:
-  logger.exception("Update failed.")
-  output.speak("An exception occurred while attempting to update " + application.name + ". If this message persists, contact the " + application.name + " developers. More information about the exception has been written to the error log.",True)
+  else:
+   logger.exception("Update failed.")
+   output.speak("An exception occurred while attempting to update " + application.name + ". If this message persists, contact the " + application.name + " developers. More information about the exception has been written to the error log.",True)
