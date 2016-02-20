@@ -31,6 +31,8 @@ class profileController(object):
 
  def get_data(self, screen_name):
   self.data = self.session.twitter.twitter.show_user(screen_name=screen_name)
+  if screen_name != self.session.db["user_name"]:
+   self.friendship_status = self.session.twitter.twitter.show_friendship(source_screen_name=self.session.db["user_name"], target_screen_name=screen_name)
 
  def fill_profile_fields(self):
   self.dialog.set_name(self.data["name"])
@@ -90,6 +92,13 @@ class profileController(object):
   if self.data["protected"] == True: protected = _(u"Yes")
   else: protected = _(u"No")
   string = string+ _(u"Protected: %s\n") % (protected)
+  if hasattr(self, "friendship_status"):
+   friendship = "Relationship: "
+   if self.friendship_status["relationship"]["target"]["followed_by"]:
+    friendship += _(u"You follow {0}. ").format(self.data["name"],)
+   if self.friendship_status["relationship"]["target"]["following"]:
+    friendship += _(u"{0} is following you.").format(self.data["name"],)
+   string = string+friendship+"\n"
   string = string+_(u"Followers: %s\n Friends: %s\n") % (self.data["followers_count"], self.data["friends_count"])
   if self.data["verified"] == True: verified = _(u"Yes")
   else: verified = _(u"No")
