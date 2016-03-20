@@ -3,6 +3,9 @@ from configobj import ConfigObj, ParseError
 from validate import Validator, ValidateError
 import os
 import string
+from logging import getLogger
+log = getLogger("config_utils")
+
 class ConfigLoadError(Exception): pass
 
 def load_config(config_path, configspec_path=None, *args, **kwargs):
@@ -14,10 +17,12 @@ def load_config(config_path, configspec_path=None, *args, **kwargs):
  except ParseError:
   raise ConfigLoadError("Unable to load %r" % config_path)
  validator = Validator()
- validated = config.validate(validator, copy=True)
+ validated = config.validate(validator, preserve_errors=False, copy=True)
  if validated == True:
   config.write()
   return config
+ else:
+  log.exception("Error in config file: {0}".format(validated,))
 
 def is_blank(arg):
  "Check if a line is blank."
@@ -25,6 +30,7 @@ def is_blank(arg):
   if c not in string.whitespace:
    return False
  return True
+
 def get_keys(path):
  "Gets the keys of a configobj config file."
  res=[]
