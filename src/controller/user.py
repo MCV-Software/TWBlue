@@ -93,12 +93,16 @@ class profileController(object):
   else: protected = _(u"No")
   string = string+ _(u"Protected: %s\n") % (protected)
   if hasattr(self, "friendship_status"):
+   relation = False
    friendship = "Relationship: "
    if self.friendship_status["relationship"]["target"]["followed_by"]:
     friendship += _(u"You follow {0}. ").format(self.data["name"],)
+    relation = True
    if self.friendship_status["relationship"]["target"]["following"]:
     friendship += _(u"{0} is following you.").format(self.data["name"],)
-   string = string+friendship+"\n"
+    relation = True
+   if relation == True:
+    string = string+friendship+"\n"
   string = string+_(u"Followers: %s\n Friends: %s\n") % (self.data["followers_count"], self.data["friends_count"])
   if self.data["verified"] == True: verified = _(u"Yes")
   else: verified = _(u"No")
