@@ -64,3 +64,7 @@ def no_followers():
 
 def no_friends():
  return wx.MessageDialog(None, _(u"This user has no friends. {0} can't create a timeline.").format(application.name), _(u"Error"), wx.ICON_ERROR).ShowModal()
+
+def view_geodata(geotext):
+ """Specific message dialog to display geolocation data"""
+ return wx.MessageDialog(None, _(u"Geolocation data: {0}").format(geotext), _(u"Geo data for this tweet")).ShowModal()
