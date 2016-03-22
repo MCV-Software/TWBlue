@@ -234,7 +234,7 @@ class reply(tweet):
  def __init__(self, title, message,  text):
   super(reply, self).__init__(message, title, text)
   self.text.SetInsertionPoint(len(self.text.GetValue()))
-  self.mentionAll = wx.Button(self, -1, _(u"Men&tion to all"), size=wx.DefaultSize)
+  self.mentionAll = wx.Button(self, -1, _(u"&Mention to all"), size=wx.DefaultSize)
   self.mentionAll.Disable()
   self.buttonsBox1.Add(self.mentionAll, 0, wx.ALL, 5)
   self.buttonsBox1.Layout()
