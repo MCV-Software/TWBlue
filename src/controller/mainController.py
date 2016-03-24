@@ -923,7 +923,7 @@ class Controller(object):
     x = tweet["coordinates"]["coordinates"][0]
     y = tweet["coordinates"]["coordinates"][1]
     address = geocoder.reverse_geocode(y, x)
-    dlg = messages.viewTweet(address[0].__str__(), False)
+    dlg = commonMessageDialogs.view_geodata(address[0].__str__())
    else:
     output.speak(_(u"There are no coordinates in this tweet"))
   except GeocoderError:
