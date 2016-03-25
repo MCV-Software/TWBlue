@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-11-06 08:10+Hora estndar central (Mxico)\n"
-"PO-Revision-Date: 2015-12-05 20:49+0900\n"
+"POT-Creation-Date: 2016-03-24 01:11+Hora estándar central (México)\n"
+"PO-Revision-Date: 2016-03-24 01:22-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -17,180 +17,208 @@ msgstr ""
 "X-Generator: Poedit 1.6.11\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../src\controller\buffersController.py:91
+#: ../src\controller\buffersController.py:89
+#: ../src\controller\mainController.py:1481
+#, fuzzy
+msgid "Unable to update this buffer."
+msgstr "音声をアップロードできません"
+
+#: ../src\controller\buffersController.py:93
 msgid "This action is not supported for this buffer"
 msgstr "その動作は、現在のバッファでは利用できません。"
 
-#: ../src\controller\buffersController.py:130
-#: ../src\controller\buffersController.py:1000 ../src\wxUI\buffers\base.py:24
+#: ../src\controller\buffersController.py:132
+#: ../src\controller\buffersController.py:1029 ../src\wxUI\buffers\base.py:24
 #: ../src\wxUI\buffers\events.py:14 ../src\wxUI\buffers\trends.py:17
 #: ../src\wxUI\dialogs\message.py:251 ../src\wxUI\sysTrayIcon.py:33
 msgid "Tweet"
 msgstr "ツイート"
 
-#: ../src\controller\buffersController.py:131
-#: ../src\controller\buffersController.py:1001
+#: ../src\controller\buffersController.py:133
+#: ../src\controller\buffersController.py:1030
 msgid "Write the tweet here"
 msgstr "ツイート:"
 
-#: ../src\controller\buffersController.py:319
-#: ../src\controller\buffersController.py:782
+#: ../src\controller\buffersController.py:321
+#: ../src\controller\buffersController.py:809
 msgid "%s items retrieved"
 msgstr "%s個のアイテムを取得しました"
 
-#: ../src\controller\buffersController.py:339
+#: ../src\controller\buffersController.py:341
+#: ../src\controller\buffersController.py:750
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "このバッファは、タイムラインではないため、削除できません"
 
-#: ../src\controller\buffersController.py:455
+#: ../src\controller\buffersController.py:457
 msgid "Reply to %s"
 msgstr "「%s」への返信:"
 
-#: ../src\controller\buffersController.py:455
+#: ../src\controller\buffersController.py:457
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
 msgid "Reply"
 msgstr "返信"
 
-#: ../src\controller\buffersController.py:482
+#: ../src\controller\buffersController.py:484
 msgid "Direct message to %s"
 msgstr "「%s」へのダイレクトメッセージ"
 
-#: ../src\controller\buffersController.py:482
-#: ../src\controller\mainController.py:1143
+#: ../src\controller\buffersController.py:484
+#: ../src\controller\mainController.py:1200
 msgid "New direct message"
 msgstr "新しいダイレクトメッセージ "
 
-#: ../src\controller\buffersController.py:503
+#: ../src\controller\buffersController.py:511
 msgid "Add your comment to the tweet"
 msgstr "ツイートにコメントを追加"
 
-#: ../src\controller\buffersController.py:503
+#: ../src\controller\buffersController.py:511
 #: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\commonMessageDialogs.py:9 ../src\wxUI\dialogs\message.py:126
 msgid "Retweet"
 msgstr "リツイート"
 
-#: ../src\controller\buffersController.py:574
+#: ../src\controller\buffersController.py:582
 msgid "Opening URL..."
 msgstr "URLを開いています"
 
-#: ../src\controller\buffersController.py:609
+#: ../src\controller\buffersController.py:617
 msgid "User details"
 msgstr "ユーザーの詳細"
 
-#: ../src\controller\buffersController.py:678
+#: ../src\controller\buffersController.py:686
 msgid "Empty"
 msgstr "何もありません"
 
-#: ../src\controller\buffersController.py:739
+#: ../src\controller\buffersController.py:765
 msgid "Mention to %s"
 msgstr "%sへのメンション"
 
-#: ../src\controller\buffersController.py:739 ../src\wxUI\buffers\people.py:15
+#: ../src\controller\buffersController.py:765 ../src\wxUI\buffers\people.py:15
 msgid "Mention"
 msgstr "メンション"
 
-#: ../src\controller\mainController.py:257
+#: ../src\controller\mainController.py:260
 msgid "Ready"
 msgstr "準備完了"
 
-#: ../src\controller\mainController.py:289
+#: ../src\controller\mainController.py:292
 msgid "Home"
 msgstr "ホーム"
 
-#: ../src\controller\mainController.py:293
+#: ../src\controller\mainController.py:296
 msgid "Mentions"
 msgstr "メンション"
 
-#: ../src\controller\mainController.py:297
+#: ../src\controller\mainController.py:300
 msgid "Direct messages"
 msgstr "ダイレクトメッセージ"
 
-#: ../src\controller\mainController.py:301
+#: ../src\controller\mainController.py:304
 msgid "Sent direct messages"
 msgstr "送信済みのダイレクトメッセージ"
 
-#: ../src\controller\mainController.py:305
+#: ../src\controller\mainController.py:308
 msgid "Sent tweets"
 msgstr "送信済みのツイート"
 
-#: ../src\controller\mainController.py:310
-#: ../src\controller\mainController.py:1277
-#: ../src\wxUI\dialogs\userSelection.py:20
+#: ../src\controller\mainController.py:313
+#: ../src\controller\mainController.py:1332
 msgid "Likes"
 msgstr "いいね"
 
-#: ../src\controller\mainController.py:314
-#: ../src\controller\mainController.py:1282
+#: ../src\controller\mainController.py:317
+#: ../src\controller\mainController.py:1337
 msgid "Followers"
 msgstr "フォロワー"
 
-#: ../src\controller\mainController.py:318
-#: ../src\controller\mainController.py:1287
+#: ../src\controller\mainController.py:321
+#: ../src\controller\mainController.py:1342
 msgid "Friends"
 msgstr "フォロー"
 
-#: ../src\controller\mainController.py:322
-#: ../src\controller\mainController.py:1292
+#: ../src\controller\mainController.py:325
+#: ../src\controller\mainController.py:1347
 msgid "Blocked users"
 msgstr "ブロックしたユーザー"
 
-#: ../src\controller\mainController.py:326
-#: ../src\controller\mainController.py:1297
+#: ../src\controller\mainController.py:329
+#: ../src\controller\mainController.py:1352
 msgid "Muted users"
 msgstr "ミューとしたユーザー"
 
-#: ../src\controller\mainController.py:330
-#: ../src\controller\mainController.py:1302
+#: ../src\controller\mainController.py:333
+#: ../src\controller\mainController.py:1357
 msgid "Events"
 msgstr "イベント"
 
-#: ../src\controller\mainController.py:333
+#: ../src\controller\mainController.py:336
 msgid "Timelines"
 msgstr "タイムライン"
 
-#: ../src\controller\mainController.py:337
-#: ../src\controller\mainController.py:774
+#: ../src\controller\mainController.py:340
+#: ../src\controller\mainController.py:797
 msgid "Timeline for {}"
 msgstr "「{}」のタイムライン"
 
-#: ../src\controller\mainController.py:340
+#: ../src\controller\mainController.py:343
 msgid "Likes timelines"
 msgstr "ほかのユーザーの「いいね」の一覧"
 
-#: ../src\controller\mainController.py:344
-#: ../src\controller\mainController.py:789
+#: ../src\controller\mainController.py:347
+#: ../src\controller\mainController.py:812
 msgid "Likes for {}"
 msgstr "{}の「いいね」一覧"
 
-#: ../src\controller\mainController.py:349 ../src\wxUI\dialogs\lists.py:12
+#: ../src\controller\mainController.py:352
+#, fuzzy
+msgid "Followers' Timelines"
+msgstr "他のユーザーのお気に入り一覧"
+
+#: ../src\controller\mainController.py:356
+#: ../src\controller\mainController.py:829
+#, fuzzy
+msgid "Followers for {}"
+msgstr "フォロワー"
+
+#: ../src\controller\mainController.py:361
+#, fuzzy
+msgid "Friends' Timelines"
+msgstr "他のユーザーのお気に入り一覧"
+
+#: ../src\controller\mainController.py:365
+#: ../src\controller\mainController.py:846
+#, fuzzy
+msgid "Friends for {}"
+msgstr "{}の「いいね」一覧"
+
+#: ../src\controller\mainController.py:370 ../src\wxUI\dialogs\lists.py:12
 msgid "Lists"
 msgstr "リスト"
 
-#: ../src\controller\mainController.py:354
-#: ../src\controller\mainController.py:1313
+#: ../src\controller\mainController.py:375
+#: ../src\controller\mainController.py:1368
 msgid "List for {}"
 msgstr "{}のリスト"
 
-#: ../src\controller\mainController.py:357
+#: ../src\controller\mainController.py:378
 msgid "Searches"
 msgstr "検索"
 
-#: ../src\controller\mainController.py:361
-#: ../src\controller\mainController.py:422
+#: ../src\controller\mainController.py:382
+#: ../src\controller\mainController.py:444
 msgid "Search for {}"
 msgstr "「{}」の検索結果"
 
-#: ../src\controller\mainController.py:371
-#: ../src\controller\mainController.py:835
+#: ../src\controller\mainController.py:392
+#: ../src\controller\mainController.py:892
 msgid "Trending topics for %s"
 msgstr "{}の話題のトピック"
 
-#: ../src\controller\mainController.py:441
-#: ../src\controller\mainController.py:930
-#: ../src\controller\mainController.py:949
-#: ../src\controller\mainController.py:968
+#: ../src\controller\mainController.py:463
 #: ../src\controller\mainController.py:987
+#: ../src\controller\mainController.py:1006
+#: ../src\controller\mainController.py:1025
+#: ../src\controller\mainController.py:1044
 msgid ""
 "No session is currently in focus. Focus a session with the next or previous "
 "session shortcut."
@@ -198,149 +226,158 @@ msgstr ""
 "セッションが選択されていません。「次のセッション」または「前のセッション」の"
 "ショートカットを利用して、セッションを選択してください。"
 
-#: ../src\controller\mainController.py:445
+#: ../src\controller\mainController.py:467
 msgid "Empty buffer."
 msgstr "バッファをクリア"
 
-#: ../src\controller\mainController.py:452
+#: ../src\controller\mainController.py:474
 msgid "{0} not found."
 msgstr "{0}が見つかりませんでした。"
 
-#: ../src\controller\mainController.py:485
-#: ../src\controller\mainController.py:500
-#: ../src\controller\mainController.py:527
+#: ../src\controller\mainController.py:507
+#: ../src\controller\mainController.py:522
+#: ../src\controller\mainController.py:549
 msgid "Select the user"
 msgstr "ユーザーを選択"
 
-#: ../src\controller\mainController.py:808
+#: ../src\controller\mainController.py:865
 msgid "Conversation with {0}"
 msgstr "{0}との会話"
 
-#: ../src\controller\mainController.py:852
-#: ../src\controller\mainController.py:871
+#: ../src\controller\mainController.py:909
+#: ../src\controller\mainController.py:928
 msgid "There are no coordinates in this tweet"
 msgstr "このツイートには、ジェオタグは存在しません"
 
-#: ../src\controller\mainController.py:854
-#: ../src\controller\mainController.py:873
+#: ../src\controller\mainController.py:911
+#: ../src\controller\mainController.py:930
 msgid "There are no results for the coordinates in this tweet"
 msgstr "このツイートのジェオタグには、なにも含まれていません"
 
-#: ../src\controller\mainController.py:856
-#: ../src\controller\mainController.py:875
+#: ../src\controller\mainController.py:913
+#: ../src\controller\mainController.py:932
 msgid "Error decoding coordinates. Try again later."
 msgstr "ジェオタグの取得に失敗しました"
 
-#: ../src\controller\mainController.py:978
-#: ../src\controller\mainController.py:997
+#: ../src\controller\mainController.py:1035
+#: ../src\controller\mainController.py:1054
 msgid "%s, %s of %s"
 msgstr "%s %s/%s"
 
-#: ../src\controller\mainController.py:980
-#: ../src\controller\mainController.py:999
-#: ../src\controller\mainController.py:1020
-#: ../src\controller\mainController.py:1041
+#: ../src\controller\mainController.py:1037
+#: ../src\controller\mainController.py:1056
+#: ../src\controller\mainController.py:1077
+#: ../src\controller\mainController.py:1098
 msgid "%s. Empty"
 msgstr "%sは、からです。"
 
-#: ../src\controller\mainController.py:1012
+#: ../src\controller\mainController.py:1069
 msgid "{0}: This account is not logged into Twitter."
 msgstr "このアカウント{0}は、まだツイッターにログインしていません"
 
-#: ../src\controller\mainController.py:1018
-#: ../src\controller\mainController.py:1039
+#: ../src\controller\mainController.py:1075
+#: ../src\controller\mainController.py:1096
 msgid "%s. %s, %s of %s"
 msgstr "セッション:%s %s %s/%s/"
 
-#: ../src\controller\mainController.py:1033
+#: ../src\controller\mainController.py:1090
 msgid "{0}: This account is not logged into twitter."
 msgstr "このアカウント{0}は、まだツイッターにログインしていません"
 
-#: ../src\controller\mainController.py:1134
+#: ../src\controller\mainController.py:1191
 msgid "One mention from %s "
 msgstr "%sからの返信"
 
-#: ../src\controller\mainController.py:1223
-#: ../src\controller\mainController.py:1232
+#: ../src\controller\mainController.py:1280
+#: ../src\controller\mainController.py:1289
 msgid "One tweet from %s"
 msgstr "「%s」からのツイート"
 
-#: ../src\controller\mainController.py:1307
+#: ../src\controller\mainController.py:1362
 msgid "This list is already opened"
 msgstr "既に開かれています"
 
-#: ../src\controller\mainController.py:1366
+#: ../src\controller\mainController.py:1421
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "自動読み上げ 有効"
 
-#: ../src\controller\mainController.py:1369
+#: ../src\controller\mainController.py:1424
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "自動読み上げ 無効"
 
-#: ../src\controller\mainController.py:1375
+#: ../src\controller\mainController.py:1430
 msgid "Session mute on"
 msgstr "このセッションのミュートを設定"
 
-#: ../src\controller\mainController.py:1378
+#: ../src\controller\mainController.py:1433
 msgid "Session mute off"
 msgstr "このセッションのミュートを解除"
 
-#: ../src\controller\mainController.py:1385
+#: ../src\controller\mainController.py:1440
 msgid "Buffer mute on"
 msgstr "このバッファのミュートを設定"
 
-#: ../src\controller\mainController.py:1388
+#: ../src\controller\mainController.py:1443
 msgid "Buffer mute off"
 msgstr "このバッファのミュートを解除"
 
-#: ../src\controller\mainController.py:1401
+#: ../src\controller\mainController.py:1461
 msgid "Copied"
 msgstr "コピーしました"
 
-#: ../src\controller\messages.py:44
+#: ../src\controller\mainController.py:1484
+#, fuzzy
+msgid "Updating buffer..."
+msgstr "バッファをクリア"
+
+#: ../src\controller\mainController.py:1487
+#, fuzzy
+msgid "{0} items retrieved"
+msgstr "%s個のアイテムを取得しました"
+
+#: ../src\controller\messages.py:45
 msgid "Translated"
 msgstr "翻訳完了"
 
-#: ../src\controller\messages.py:51
+#: ../src\controller\messages.py:52
 msgid "There's no URL to be shortened"
 msgstr "短縮されたURLは、ありません"
 
-#: ../src\controller\messages.py:55 ../src\controller\messages.py:62
+#: ../src\controller\messages.py:56 ../src\controller\messages.py:63
 msgid "URL shortened"
 msgstr "URLを短縮しました"
 
-#: ../src\controller\messages.py:68
+#: ../src\controller\messages.py:69
 msgid "There's no URL to be expanded"
 msgstr "短縮を解除するURLはありません"
 
-#: ../src\controller\messages.py:72 ../src\controller\messages.py:79
+#: ../src\controller\messages.py:73 ../src\controller\messages.py:80
 msgid "URL expanded"
 msgstr "URLの短縮を解除しました"
 
-#: ../src\controller\messages.py:90
+#: ../src\controller\messages.py:91
 msgid "%s - %s of %d characters"
 msgstr "%s - %s/%d"
 
-#: ../src\controller\messages.py:94
+#: ../src\controller\messages.py:95
 msgid "%s - %s characters"
 msgstr "%s - %s文字"
 
-#: ../src\controller\messages.py:111
+#: ../src\controller\messages.py:112
 msgid "Unable to upload the audio"
 msgstr "音声をアップロードできません"
 
-#: ../src\controller\messages.py:127 ../src\controller\messages.py:135
+#: ../src\controller\messages.py:128 ../src\controller\messages.py:136
 #: ../src\wxUI\dialogs\update_profile.py:77
 msgid "Discard image"
 msgstr "画像をアップロードできません"
 
-#: ../src\controller\messages.py:130 ../src\controller\user.py:53
+#: ../src\controller\messages.py:131 ../src\controller\user.py:55
 #: ../src\extra\AudioUploader\audioUploader.py:127
 msgid "Discarded"
 msgstr "拒否されました"
 
-#: ../src\controller\messages.py:131 ../src\wxUI\dialogs\message.py:133
-#: ../src\wxUI\dialogs\update_profile.py:32
+#: ../src\controller\messages.py:132 ../src\wxUI\dialogs\message.py:133
 #: ../src\wxUI\dialogs\update_profile.py:75
 msgid "Upload a picture"
 msgstr "画像をアップロード"
@@ -363,47 +400,51 @@ msgstr "コメントをつけてリツイート（非公式RT）"
 msgid "Account settings for %s"
 msgstr "%sのアカウント設定"
 
-#: ../src\controller\settings.py:265 ../src\wxUI\dialogs\configuration.py:291
-msgid "Connect your Pocket account"
-msgstr "Pocketアカウントと連携"
-
 #: ../src\controller\user.py:25
 msgid "Information for %s"
 msgstr "%sの情報"
 
-#: ../src\controller\user.py:82
+#: ../src\controller\user.py:84
 msgid "Username: @%s\n"
 msgstr "ユーザー名: @%s\n"
 
-#: ../src\controller\user.py:83
+#: ../src\controller\user.py:85
 msgid "Name: %s\n"
 msgstr "名前: %s\n"
 
-#: ../src\controller\user.py:85
+#: ../src\controller\user.py:87
 msgid "Location: %s\n"
 msgstr "居住地: %s\n"
 
-#: ../src\controller\user.py:87
+#: ../src\controller\user.py:89
 msgid "URL: %s\n"
 msgstr "URL: %s\n"
 
-#: ../src\controller\user.py:89
+#: ../src\controller\user.py:91
 msgid "Bio: %s\n"
 msgstr "自己紹介: %s\n"
 
-#: ../src\controller\user.py:90 ../src\controller\user.py:94
+#: ../src\controller\user.py:92 ../src\controller\user.py:107
 msgid "Yes"
 msgstr "はい"
 
-#: ../src\controller\user.py:91 ../src\controller\user.py:95
+#: ../src\controller\user.py:93 ../src\controller\user.py:108
 msgid "No"
 msgstr "いいえ"
 
-#: ../src\controller\user.py:92
+#: ../src\controller\user.py:94
 msgid "Protected: %s\n"
 msgstr "保護設定: %s\n"
 
-#: ../src\controller\user.py:93
+#: ../src\controller\user.py:99
+msgid "You follow {0}. "
+msgstr ""
+
+#: ../src\controller\user.py:102
+msgid "{0} is following you."
+msgstr ""
+
+#: ../src\controller\user.py:106
 msgid ""
 "Followers: %s\n"
 " Friends: %s\n"
@@ -411,15 +452,15 @@ msgstr ""
 "フォロワー: %s\n"
 "フォロー: %s\n"
 
-#: ../src\controller\user.py:96
+#: ../src\controller\user.py:109
 msgid "Verified: %s\n"
 msgstr "認証済み: %s\n"
 
-#: ../src\controller\user.py:97
+#: ../src\controller\user.py:110
 msgid "Tweets: %s\n"
 msgstr "ツイート数: %s\n"
 
-#: ../src\controller\user.py:98
+#: ../src\controller\user.py:111
 msgid "Likes: %s"
 msgstr "「いいね」の数：%s"
 
@@ -468,7 +509,7 @@ msgstr "停止"
 msgid "&Record"
 msgstr "録音(&R)"
 
-#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:120
+#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:122
 msgid "Playing..."
 msgstr "再生中"
 
@@ -714,6 +755,8 @@ msgstr "エラーが発生しました。{0}で選択した言語用の辞書が
 #: ../src\wxUI\commonMessageDialogs.py:50
 #: ../src\wxUI\commonMessageDialogs.py:57
 #: ../src\wxUI\commonMessageDialogs.py:60
+#: ../src\wxUI\commonMessageDialogs.py:63
+#: ../src\wxUI\commonMessageDialogs.py:66
 msgid "Error"
 msgstr "エラー"
 
@@ -809,381 +852,377 @@ msgstr "完了"
 msgid "{0}'s database of users has been updated."
 msgstr "{0}のユーザーのデータベースが更新されました"
 
-#: ../src\extra\translator\translator.py:124
-msgid "unavailable"
-msgstr "無効"
-
-#: ../src\extra\translator\translator.py:153
+#: ../src\extra\translator\translator.py:10
 msgid "Afrikaans"
 msgstr "アフリカ語"
 
-#: ../src\extra\translator\translator.py:154
+#: ../src\extra\translator\translator.py:11
 msgid "Albanian"
 msgstr "アルバニア語"
 
-#: ../src\extra\translator\translator.py:155
+#: ../src\extra\translator\translator.py:12
 msgid "Amharic"
 msgstr "アムハラ語"
 
-#: ../src\extra\translator\translator.py:156
+#: ../src\extra\translator\translator.py:13
 msgid "Arabic"
 msgstr "アラビア語"
 
-#: ../src\extra\translator\translator.py:157
+#: ../src\extra\translator\translator.py:14
 msgid "Armenian"
 msgstr "アルメニア語"
 
-#: ../src\extra\translator\translator.py:158
+#: ../src\extra\translator\translator.py:15
 msgid "Azerbaijani"
 msgstr "アゼルバイジャン語"
 
-#: ../src\extra\translator\translator.py:159
+#: ../src\extra\translator\translator.py:16
 msgid "Basque"
 msgstr "バスク語"
 
-#: ../src\extra\translator\translator.py:160
+#: ../src\extra\translator\translator.py:17
 msgid "Belarusian"
 msgstr "ベラルーシ語"
 
-#: ../src\extra\translator\translator.py:161
+#: ../src\extra\translator\translator.py:18
 msgid "Bengali"
 msgstr "ベンガル語"
 
-#: ../src\extra\translator\translator.py:162
+#: ../src\extra\translator\translator.py:19
 msgid "Bihari"
 msgstr "ビハール語"
 
-#: ../src\extra\translator\translator.py:163
+#: ../src\extra\translator\translator.py:20
 msgid "Bulgarian"
 msgstr "ブルガリア語"
 
-#: ../src\extra\translator\translator.py:164
+#: ../src\extra\translator\translator.py:21
 msgid "Burmese"
 msgstr "ビルマ語"
 
-#: ../src\extra\translator\translator.py:165
+#: ../src\extra\translator\translator.py:22
 msgid "Catalan"
 msgstr "カタロニア語"
 
-#: ../src\extra\translator\translator.py:166
+#: ../src\extra\translator\translator.py:23
 msgid "Cherokee"
 msgstr "チェロキー語"
 
-#: ../src\extra\translator\translator.py:167
+#: ../src\extra\translator\translator.py:24
 msgid "Chinese"
 msgstr "中国語"
 
-#: ../src\extra\translator\translator.py:168
+#: ../src\extra\translator\translator.py:25
 msgid "Chinese_simplified"
 msgstr "簡体字中国語"
 
-#: ../src\extra\translator\translator.py:169
+#: ../src\extra\translator\translator.py:26
 msgid "Chinese_traditional"
 msgstr "繁体字中国語"
 
-#: ../src\extra\translator\translator.py:170
+#: ../src\extra\translator\translator.py:27
 msgid "Croatian"
 msgstr "クロアチア語"
 
-#: ../src\extra\translator\translator.py:171
+#: ../src\extra\translator\translator.py:28
 msgid "Czech"
 msgstr "チェコ語"
 
-#: ../src\extra\translator\translator.py:172
+#: ../src\extra\translator\translator.py:29
 msgid "Danish"
 msgstr "デンマーク語"
 
-#: ../src\extra\translator\translator.py:173
+#: ../src\extra\translator\translator.py:30
 msgid "Dhivehi"
 msgstr "ディベヒ語"
 
-#: ../src\extra\translator\translator.py:174
+#: ../src\extra\translator\translator.py:31
 msgid "Dutch"
 msgstr "オランダ語"
 
-#: ../src\extra\translator\translator.py:175
+#: ../src\extra\translator\translator.py:32
 msgid "English"
 msgstr "英語"
 
-#: ../src\extra\translator\translator.py:176
+#: ../src\extra\translator\translator.py:33
 msgid "Esperanto"
 msgstr "エスペラント語"
 
-#: ../src\extra\translator\translator.py:177
+#: ../src\extra\translator\translator.py:34
 msgid "Estonian"
 msgstr "エストニア語"
 
-#: ../src\extra\translator\translator.py:178
+#: ../src\extra\translator\translator.py:35
 msgid "Filipino"
 msgstr "フィリピン語"
 
-#: ../src\extra\translator\translator.py:179
+#: ../src\extra\translator\translator.py:36
 msgid "Finnish"
 msgstr "フィンランド語"
 
-#: ../src\extra\translator\translator.py:180
+#: ../src\extra\translator\translator.py:37
 msgid "French"
 msgstr "フランス語"
 
-#: ../src\extra\translator\translator.py:181
+#: ../src\extra\translator\translator.py:38
 msgid "Galician"
 msgstr "ガリシア語"
 
-#: ../src\extra\translator\translator.py:182
+#: ../src\extra\translator\translator.py:39
 msgid "Georgian"
 msgstr "ジョージア語"
 
-#: ../src\extra\translator\translator.py:183
+#: ../src\extra\translator\translator.py:40
 msgid "German"
 msgstr "ドイツ語"
 
-#: ../src\extra\translator\translator.py:184
+#: ../src\extra\translator\translator.py:41
 msgid "Greek"
 msgstr "ギリシャ語"
 
-#: ../src\extra\translator\translator.py:185
+#: ../src\extra\translator\translator.py:42
 msgid "Guarani"
 msgstr "グアラニ語"
 
-#: ../src\extra\translator\translator.py:186
+#: ../src\extra\translator\translator.py:43
 msgid "Gujarati"
 msgstr "グジャラート語"
 
-#: ../src\extra\translator\translator.py:187
+#: ../src\extra\translator\translator.py:44
 msgid "Hebrew"
 msgstr "ヘブライ語"
 
-#: ../src\extra\translator\translator.py:188
+#: ../src\extra\translator\translator.py:45
 msgid "Hindi"
 msgstr "ヒンディー語"
 
-#: ../src\extra\translator\translator.py:189
+#: ../src\extra\translator\translator.py:46
 msgid "Hungarian"
 msgstr "ハンガリー語"
 
-#: ../src\extra\translator\translator.py:190
+#: ../src\extra\translator\translator.py:47
 msgid "Icelandic"
 msgstr "アイスランド語"
 
-#: ../src\extra\translator\translator.py:191
+#: ../src\extra\translator\translator.py:48
 msgid "Indonesian"
 msgstr "インドネシア語"
 
-#: ../src\extra\translator\translator.py:192
+#: ../src\extra\translator\translator.py:49
 msgid "Inuktitut"
 msgstr "イヌクティトゥト語"
 
-#: ../src\extra\translator\translator.py:193
+#: ../src\extra\translator\translator.py:50
 msgid "Irish"
 msgstr "アイリス語"
 
-#: ../src\extra\translator\translator.py:194
+#: ../src\extra\translator\translator.py:51
 msgid "Italian"
 msgstr "イタリア語"
 
-#: ../src\extra\translator\translator.py:195
+#: ../src\extra\translator\translator.py:52
 msgid "Japanese"
 msgstr "日本語"
 
-#: ../src\extra\translator\translator.py:196
+#: ../src\extra\translator\translator.py:53
 msgid "Kannada"
 msgstr "カンナダ語"
 
-#: ../src\extra\translator\translator.py:197
+#: ../src\extra\translator\translator.py:54
 msgid "Kazakh"
 msgstr "カザフ語"
 
-#: ../src\extra\translator\translator.py:198
+#: ../src\extra\translator\translator.py:55
 msgid "Khmer"
 msgstr "クメール語"
 
-#: ../src\extra\translator\translator.py:199
+#: ../src\extra\translator\translator.py:56
 msgid "Korean"
 msgstr "韓国語"
 
-#: ../src\extra\translator\translator.py:200
+#: ../src\extra\translator\translator.py:57
 msgid "Kurdish"
 msgstr "クルド語"
 
-#: ../src\extra\translator\translator.py:201
+#: ../src\extra\translator\translator.py:58
 msgid "Kyrgyz"
 msgstr "キルギス語"
 
-#: ../src\extra\translator\translator.py:202
+#: ../src\extra\translator\translator.py:59
 msgid "Laothian"
 msgstr "ラオス語"
 
-#: ../src\extra\translator\translator.py:203
+#: ../src\extra\translator\translator.py:60
 msgid "Latvian"
 msgstr "ラトビア語"
 
-#: ../src\extra\translator\translator.py:204
+#: ../src\extra\translator\translator.py:61
 msgid "Lithuanian"
 msgstr "リトアニア語"
 
-#: ../src\extra\translator\translator.py:205
+#: ../src\extra\translator\translator.py:62
 msgid "Macedonian"
 msgstr "マケドニア語"
 
-#: ../src\extra\translator\translator.py:206
+#: ../src\extra\translator\translator.py:63
 msgid "Malay"
 msgstr "マレー語"
 
-#: ../src\extra\translator\translator.py:207
+#: ../src\extra\translator\translator.py:64
 msgid "Malayalam"
 msgstr "マラヤーラム語"
 
-#: ../src\extra\translator\translator.py:208
+#: ../src\extra\translator\translator.py:65
 msgid "Maltese"
 msgstr "マルタ語"
 
-#: ../src\extra\translator\translator.py:209
+#: ../src\extra\translator\translator.py:66
 msgid "Marathi"
 msgstr "マラーティー語"
 
-#: ../src\extra\translator\translator.py:210
+#: ../src\extra\translator\translator.py:67
 msgid "Mongolian"
 msgstr "モンゴル語"
 
-#: ../src\extra\translator\translator.py:211
+#: ../src\extra\translator\translator.py:68
 msgid "Nepali"
 msgstr "ネパール語"
 
-#: ../src\extra\translator\translator.py:212
+#: ../src\extra\translator\translator.py:69
 msgid "Norwegian"
 msgstr "ノルウェー語"
 
-#: ../src\extra\translator\translator.py:213
+#: ../src\extra\translator\translator.py:70
 msgid "Oriya"
 msgstr "オリヤー語"
 
-#: ../src\extra\translator\translator.py:214
+#: ../src\extra\translator\translator.py:71
 msgid "Pashto"
 msgstr "パシュトウ語"
 
-#: ../src\extra\translator\translator.py:215
+#: ../src\extra\translator\translator.py:72
 msgid "Persian"
 msgstr "ペルシア語"
 
-#: ../src\extra\translator\translator.py:216
+#: ../src\extra\translator\translator.py:73
 msgid "Polish"
 msgstr "ポーランド語"
 
-#: ../src\extra\translator\translator.py:217
+#: ../src\extra\translator\translator.py:74
 msgid "Portuguese"
 msgstr "ポルトガル語"
 
-#: ../src\extra\translator\translator.py:218
+#: ../src\extra\translator\translator.py:75
 msgid "Punjabi"
 msgstr "パンジャブ語"
 
-#: ../src\extra\translator\translator.py:219
+#: ../src\extra\translator\translator.py:76
 msgid "Romanian"
 msgstr "ルーマニア語"
 
-#: ../src\extra\translator\translator.py:220
+#: ../src\extra\translator\translator.py:77
 msgid "Russian"
 msgstr "ロシア語"
 
-#: ../src\extra\translator\translator.py:221
+#: ../src\extra\translator\translator.py:78
 msgid "Sanskrit"
 msgstr "サンスクリット語"
 
-#: ../src\extra\translator\translator.py:222
+#: ../src\extra\translator\translator.py:79
 msgid "Serbian"
 msgstr "セルビア語"
 
-#: ../src\extra\translator\translator.py:223
+#: ../src\extra\translator\translator.py:80
 msgid "Sindhi"
 msgstr "シンド語"
 
-#: ../src\extra\translator\translator.py:224
+#: ../src\extra\translator\translator.py:81
 msgid "Sinhalese"
 msgstr "シンハラ語"
 
-#: ../src\extra\translator\translator.py:225
+#: ../src\extra\translator\translator.py:82
 msgid "Slovak"
 msgstr "スロバキア語"
 
-#: ../src\extra\translator\translator.py:226
+#: ../src\extra\translator\translator.py:83
 msgid "Slovenian"
 msgstr "スロベニア語"
 
-#: ../src\extra\translator\translator.py:227
+#: ../src\extra\translator\translator.py:84
 msgid "Spanish"
 msgstr "スペイン語"
 
-#: ../src\extra\translator\translator.py:228
+#: ../src\extra\translator\translator.py:85
 msgid "Swahili"
 msgstr "スワヒリ語"
 
-#: ../src\extra\translator\translator.py:229
+#: ../src\extra\translator\translator.py:86
 msgid "Swedish"
 msgstr "スウェーデン語"
 
-#: ../src\extra\translator\translator.py:230
+#: ../src\extra\translator\translator.py:87
 msgid "Tajik"
 msgstr "タジク語"
 
-#: ../src\extra\translator\translator.py:231
+#: ../src\extra\translator\translator.py:88
 msgid "Tamil"
 msgstr "タミル語"
 
-#: ../src\extra\translator\translator.py:232
+#: ../src\extra\translator\translator.py:89
 msgid "Tagalog"
 msgstr "タガログ語"
 
-#: ../src\extra\translator\translator.py:233
+#: ../src\extra\translator\translator.py:90
 msgid "Telugu"
 msgstr "テルグ語"
 
-#: ../src\extra\translator\translator.py:234
+#: ../src\extra\translator\translator.py:91
 msgid "Thai"
 msgstr "タイ語"
 
-#: ../src\extra\translator\translator.py:235
+#: ../src\extra\translator\translator.py:92
 msgid "Tibetan"
 msgstr "チベット語"
 
-#: ../src\extra\translator\translator.py:236
+#: ../src\extra\translator\translator.py:93
 msgid "Turkish"
 msgstr "トルコ語"
 
-#: ../src\extra\translator\translator.py:237
+#: ../src\extra\translator\translator.py:94
 msgid "Ukrainian"
 msgstr "ウクライナ語"
 
-#: ../src\extra\translator\translator.py:238
+#: ../src\extra\translator\translator.py:95
 msgid "Urdu"
 msgstr "ウルドゥー語"
 
-#: ../src\extra\translator\translator.py:239
+#: ../src\extra\translator\translator.py:96
 msgid "Uzbek"
 msgstr "ウズベク語"
 
-#: ../src\extra\translator\translator.py:240
+#: ../src\extra\translator\translator.py:97
 msgid "Uighur"
 msgstr "ウイグル語"
 
-#: ../src\extra\translator\translator.py:241
+#: ../src\extra\translator\translator.py:98
 msgid "Vietnamese"
 msgstr "ベトナム語"
 
-#: ../src\extra\translator\translator.py:242
+#: ../src\extra\translator\translator.py:99
 msgid "Welsh"
 msgstr "ウェールズ語"
 
-#: ../src\extra\translator\translator.py:243
+#: ../src\extra\translator\translator.py:100
 msgid "Yiddish"
 msgstr "イディッシュ語"
 
-#: ../src\extra\translator\translator.py:250
+#: ../src\extra\translator\translator.py:107
 msgid "autodetect"
 msgstr "自動検出"
 
 #: ../src\extra\translator\wx_ui.py:25 ../src\wxUI\dialogs\message.py:140
-#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:280
-#: ../src\wxUI\dialogs\message.py:335
+#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:286
+#: ../src\wxUI\dialogs\message.py:341
 msgid "Translate message"
 msgstr "メッセージを翻訳"
 
@@ -1527,6 +1566,14 @@ msgstr "「全般設定」ダイアログを開く"
 msgid "Opens the account settings dialogue"
 msgstr "「アカウント設定」ダイアログを開く"
 
+#: ../src\keystrokeEditor\constants.py:53
+msgid "Try to play an audio file"
+msgstr ""
+
+#: ../src\keystrokeEditor\constants.py:54
+msgid "Updates the buffer and retrieves possible lost items there."
+msgstr ""
+
 #: ../src\keystrokeEditor\wx_ui.py:8
 msgid "Keystroke editor"
 msgstr "キーストロークエディタ"
@@ -1540,7 +1587,7 @@ msgid "Keystroke"
 msgstr "キーストローク"
 
 #: ../src\keystrokeEditor\wx_ui.py:13 ../src\wxUI\dialogs\userActions.py:9
-#: ../src\wxUI\dialogs\userActions.py:18
+#: ../src\wxUI\dialogs\userActions.py:18 ../src\wxUI\dialogs\userActions.py:19
 msgid "Action"
 msgstr "操作"
 
@@ -1553,13 +1600,9 @@ msgid "Execute action"
 msgstr "現在の動作を実行"
 
 #: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:349
-#: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\message.py:144
-#: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:281
-#: ../src\wxUI\dialogs\message.py:336 ../src\wxUI\dialogs\search.py:26
-#: ../src\wxUI\dialogs\show_user.py:17 ../src\wxUI\dialogs\trends.py:28
-#: ../src\wxUI\dialogs\update_profile.py:35
-#: ../src\wxUI\dialogs\userActions.py:42
-#: ../src\wxUI\dialogs\userSelection.py:30 ../src\wxUI\dialogs\utils.py:37
+#: ../src\wxUI\dialogs\message.py:144 ../src\wxUI\dialogs\message.py:204
+#: ../src\wxUI\dialogs\message.py:287 ../src\wxUI\dialogs\message.py:342
+#: ../src\wxUI\dialogs\utils.py:37
 msgid "Close"
 msgstr "閉じる"
 
@@ -1588,9 +1631,7 @@ msgid "Key"
 msgstr "キー名"
 
 #: ../src\keystrokeEditor\wx_ui.py:62 ../src\wxUI\dialogs\find.py:18
-#: ../src\wxUI\dialogs\search.py:24 ../src\wxUI\dialogs\trends.py:26
-#: ../src\wxUI\dialogs\userActions.py:40
-#: ../src\wxUI\dialogs\userSelection.py:28 ../src\wxUI\dialogs\utils.py:34
+#: ../src\wxUI\dialogs\utils.py:34
 msgid "OK"
 msgstr "OK"
 
@@ -1606,7 +1647,7 @@ msgstr "無効なキーストローク"
 msgid "You must provide a character for the keystroke"
 msgstr "キー名が入力されていません"
 
-#: ../src\languageHandler.py:96
+#: ../src\languageHandler.py:97
 msgid "User default"
 msgstr "ユーザーのデフォルト"
 
@@ -1617,6 +1658,11 @@ msgstr "%s"
 #: ../src\sessionmanager\session.py:195
 msgid "%s succeeded."
 msgstr "%sに成功しました。"
+
+#: ../src\sessionmanager\wxUI.py:7
+#, fuzzy
+msgid "Session manager"
+msgstr "セッションのミュート"
 
 #: ../src\sessionmanager\wxUI.py:10
 msgid "Accounts list"
@@ -1678,7 +1724,7 @@ msgstr ""
 msgid "Do you really want to delete this account?"
 msgstr "本当にこのアカウントを削除しますか？"
 
-#: ../src\sound.py:136
+#: ../src\sound.py:138
 msgid "Stopped."
 msgstr "停止"
 
@@ -1885,7 +1931,6 @@ msgstr "日時"
 
 #: ../src\wxUI\buffers\base.py:11 ../src\wxUI\buffers\people.py:10
 #: ../src\wxUI\buffers\user_searches.py:9
-#: ../src\wxUI\dialogs\userActions.py:10
 #: ../src\wxUI\dialogs\userSelection.py:10 ../src\wxUI\dialogs\utils.py:30
 msgid "User"
 msgstr "ユーザー"
@@ -2078,6 +2123,29 @@ msgstr ""
 "このユーザーには、お気に入り登録されたツイートがないため、{0}のタイムラインを"
 "作成することはできません。"
 
+#: ../src\wxUI\commonMessageDialogs.py:63
+#, fuzzy
+msgid "This user has no followers. {0} can't create a timeline."
+msgstr ""
+"このユーザーにはツイートがないため、{0}のタイムラインを作成することはできませ"
+"ん。"
+
+#: ../src\wxUI\commonMessageDialogs.py:66
+#, fuzzy
+msgid "This user has no friends. {0} can't create a timeline."
+msgstr ""
+"このユーザーにはツイートがないため、{0}のタイムラインを作成することはできませ"
+"ん。"
+
+#: ../src\wxUI\commonMessageDialogs.py:70
+msgid "Geo data for this tweet"
+msgstr ""
+
+#: ../src\wxUI\commonMessageDialogs.py:70
+#, fuzzy
+msgid "Geolocation data: {0}"
+msgstr "位置情報を取得"
+
 #: ../src\wxUI\dialogs\configuration.py:14
 msgid "Language"
 msgstr "言語"
@@ -2264,6 +2332,10 @@ msgstr ""
 msgid "Disconnect your Pocket account"
 msgstr "Poketとの連携を解除"
 
+#: ../src\wxUI\dialogs\configuration.py:291
+msgid "Connect your Pocket account"
+msgstr "Pocketアカウントと連携"
+
 #: ../src\wxUI\dialogs\configuration.py:294
 msgid "Pocket Authorization"
 msgstr "Pocketの認証"
@@ -2397,34 +2469,38 @@ msgid "Do you really want to delete this list?"
 msgstr "本当に、このリストを削除しますか？"
 
 #: ../src\wxUI\dialogs\message.py:71
-msgid "Long tweet"
+#, fuzzy
+msgid "&Long tweet"
 msgstr "ツイートを短縮して投稿"
 
 #: ../src\wxUI\dialogs\message.py:73
-msgid "Upload image..."
+#, fuzzy
+msgid "&Upload image..."
 msgstr "画像をアップロード"
 
 #: ../src\wxUI\dialogs\message.py:74
-msgid "Check spelling..."
+#, fuzzy
+msgid "Check &spelling..."
 msgstr "スペルチェック"
 
 #: ../src\wxUI\dialogs\message.py:75
-msgid "Attach audio..."
+#, fuzzy
+msgid "&Attach audio..."
 msgstr "音声を添付"
 
-#: ../src\wxUI\dialogs\message.py:76 ../src\wxUI\dialogs\message.py:136
-#: ../src\wxUI\dialogs\message.py:197
-msgid "Shorten URL"
+#: ../src\wxUI\dialogs\message.py:76
+#, fuzzy
+msgid "Sh&orten URL"
 msgstr "URLを短縮"
 
-#: ../src\wxUI\dialogs\message.py:77 ../src\wxUI\dialogs\message.py:137
-#: ../src\wxUI\dialogs\message.py:198 ../src\wxUI\dialogs\message.py:278
-#: ../src\wxUI\dialogs\message.py:333
-msgid "Expand URL"
+#: ../src\wxUI\dialogs\message.py:77
+#, fuzzy
+msgid "&Expand URL"
 msgstr "URLを元に戻す"
 
 #: ../src\wxUI\dialogs\message.py:80
-msgid "Translate..."
+#, fuzzy
+msgid "&Translate..."
 msgstr "翻訳"
 
 #: ../src\wxUI\dialogs\message.py:81 ../src\wxUI\dialogs\message.py:141
@@ -2433,10 +2509,19 @@ msgstr "翻訳"
 msgid "&Autocomplete users"
 msgstr "自動保管されたユーザー"
 
-#: ../src\wxUI\dialogs\message.py:82 ../src\wxUI\dialogs\message.py:142
-#: ../src\wxUI\dialogs\message.py:202
-msgid "Send"
+#: ../src\wxUI\dialogs\message.py:82
+#, fuzzy
+msgid "&Send"
 msgstr "送信"
+
+#: ../src\wxUI\dialogs\message.py:84 ../src\wxUI\dialogs\search.py:45
+#: ../src\wxUI\dialogs\show_user.py:17 ../src\wxUI\dialogs\trends.py:28
+#: ../src\wxUI\dialogs\update_profile.py:35
+#: ../src\wxUI\dialogs\userActions.py:42
+#: ../src\wxUI\dialogs\userSelection.py:34
+#, fuzzy
+msgid "&Close"
+msgstr "閉じる"
 
 #: ../src\wxUI\dialogs\message.py:116 ../src\wxUI\dialogs\message.py:175
 #: ../src\wxUI\dialogs\update_profile.py:80
@@ -2449,16 +2534,30 @@ msgid "Select the picture to be uploaded"
 msgstr "アップロードする画像を選択"
 
 #: ../src\wxUI\dialogs\message.py:134 ../src\wxUI\dialogs\message.py:195
-#: ../src\wxUI\dialogs\message.py:277 ../src\wxUI\dialogs\message.py:332
+#: ../src\wxUI\dialogs\message.py:283 ../src\wxUI\dialogs\message.py:338
 msgid "Spelling correction"
 msgstr "スペル訂正"
+
+#: ../src\wxUI\dialogs\message.py:136 ../src\wxUI\dialogs\message.py:197
+msgid "Shorten URL"
+msgstr "URLを短縮"
+
+#: ../src\wxUI\dialogs\message.py:137 ../src\wxUI\dialogs\message.py:198
+#: ../src\wxUI\dialogs\message.py:284 ../src\wxUI\dialogs\message.py:339
+msgid "Expand URL"
+msgstr "URLを元に戻す"
+
+#: ../src\wxUI\dialogs\message.py:142 ../src\wxUI\dialogs\message.py:202
+msgid "Send"
+msgstr "送信"
 
 #: ../src\wxUI\dialogs\message.py:184
 msgid "Recipient"
 msgstr "送信先"
 
 #: ../src\wxUI\dialogs\message.py:237
-msgid "Men&tion to all"
+#, fuzzy
+msgid "&Mention to all"
 msgstr "全員にリプライ(&T)"
 
 #: ../src\wxUI\dialogs\message.py:246
@@ -2473,36 +2572,73 @@ msgstr "リツイート:"
 msgid "Likes: "
 msgstr "いいね"
 
-#: ../src\wxUI\dialogs\message.py:318
+#: ../src\wxUI\dialogs\message.py:273
+#, fuzzy
+msgid "Source: "
+msgstr "翻訳元の言語"
+
+#: ../src\wxUI\dialogs\message.py:324
 msgid "View"
 msgstr "ツイート"
 
-#: ../src\wxUI\dialogs\message.py:320
+#: ../src\wxUI\dialogs\message.py:326
 msgid "Item"
 msgstr "アイテム"
 
-#: ../src\wxUI\dialogs\search.py:10
+#: ../src\wxUI\dialogs\search.py:12
 msgid "Search on Twitter"
 msgstr "ツイッターを検索"
 
-#: ../src\wxUI\dialogs\search.py:11
-msgid "Search"
-msgstr "検索"
+#: ../src\wxUI\dialogs\search.py:13 ../src\wxUI\view.py:18
+msgid "&Search"
+msgstr "検索(&S)"
 
-#: ../src\wxUI\dialogs\search.py:18 ../src\wxUI\dialogs\userSelection.py:19
+#: ../src\wxUI\dialogs\search.py:20
 msgid "Tweets"
 msgstr "ツイート"
 
-#: ../src\wxUI\dialogs\search.py:19
+#: ../src\wxUI\dialogs\search.py:21
 msgid "Users"
 msgstr "ユーザー"
+
+#: ../src\wxUI\dialogs\search.py:28
+msgid "&Language for results: "
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:31
+msgid "any"
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:37
+msgid "Results &type: "
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:38 ../src\wxUI\dialogs\search.py:58
+msgid "Mixed"
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:38 ../src\wxUI\dialogs\search.py:59
+msgid "Recent"
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:38 ../src\wxUI\dialogs\search.py:60
+msgid "Popular"
+msgstr ""
+
+#: ../src\wxUI\dialogs\search.py:43 ../src\wxUI\dialogs\trends.py:26
+#: ../src\wxUI\dialogs\userActions.py:40
+#: ../src\wxUI\dialogs\userSelection.py:32
+#, fuzzy
+msgid "&OK"
+msgstr "OK"
 
 #: ../src\wxUI\dialogs\show_user.py:10
 msgid "Details"
 msgstr "詳細"
 
 #: ../src\wxUI\dialogs\show_user.py:15
-msgid "Go to URL"
+#, fuzzy
+msgid "&Go to URL"
 msgstr "URLへ移動"
 
 #: ../src\wxUI\dialogs\trends.py:10
@@ -2522,7 +2658,8 @@ msgid "City"
 msgstr "都市"
 
 #: ../src\wxUI\dialogs\trends.py:20 ../src\wxUI\dialogs\update_profile.py:16
-msgid "Location"
+#, fuzzy
+msgid "&Location"
 msgstr "場所"
 
 #: ../src\wxUI\dialogs\update_profile.py:8
@@ -2530,55 +2667,74 @@ msgid "Update your profile"
 msgstr "プロフィールを更新"
 
 #: ../src\wxUI\dialogs\update_profile.py:10
-msgid "Name (20 characters maximum)"
+#, fuzzy
+msgid "&Name (20 characters maximum)"
 msgstr "名前（20文字以内）"
 
 #: ../src\wxUI\dialogs\update_profile.py:21
-msgid "Website"
+#, fuzzy
+msgid "&Website"
 msgstr "ウェブサイト"
 
 #: ../src\wxUI\dialogs\update_profile.py:26
-msgid "Bio (160 characters maximum)"
+#, fuzzy
+msgid "&Bio (160 characters maximum)"
 msgstr "自己紹介（160文字以内）"
 
-#: ../src\wxUI\dialogs\update_profile.py:33
-msgid "Update profile"
-msgstr "プロフィールを更新"
+#: ../src\wxUI\dialogs\update_profile.py:32
+#, fuzzy
+msgid "Upload a &picture"
+msgstr "画像をアップロード"
+
+#: ../src\wxUI\dialogs\update_profile.py:33 ../src\wxUI\view.py:16
+msgid "&Update profile"
+msgstr "プロフィールを更新(&U)"
 
 #: ../src\wxUI\dialogs\urlList.py:6
 msgid "Select URL"
 msgstr "URLを選択"
 
+#: ../src\wxUI\dialogs\userActions.py:10 ../src\wxUI\view.py:73
+msgid "&User"
+msgstr "ユーザー(&U)"
+
 #: ../src\wxUI\dialogs\userActions.py:19
-msgid "Follow"
+#, fuzzy
+msgid "&Follow"
 msgstr "フォロー"
 
 #: ../src\wxUI\dialogs\userActions.py:20
-msgid "Unfollow"
+#, fuzzy
+msgid "U&nfollow"
 msgstr "フォロー解除"
 
-#: ../src\wxUI\dialogs\userActions.py:21
-msgid "Mute"
-msgstr "ミュート"
+#: ../src\wxUI\dialogs\userActions.py:21 ../src\wxUI\view.py:55
+msgid "&Mute"
+msgstr "ミュート(&M)"
 
 #: ../src\wxUI\dialogs\userActions.py:22
-msgid "Unmute"
+#, fuzzy
+msgid "Unmu&te"
 msgstr "ミュート解除"
 
 #: ../src\wxUI\dialogs\userActions.py:23
-msgid "Block"
+#, fuzzy
+msgid "&Block"
 msgstr "ブロック"
 
 #: ../src\wxUI\dialogs\userActions.py:24
-msgid "Unblock"
+#, fuzzy
+msgid "Unbl&ock"
 msgstr "ブロック解除"
 
 #: ../src\wxUI\dialogs\userActions.py:25
-msgid "Report as spam"
+#, fuzzy
+msgid "&Report as spam"
 msgstr "スパムとして報告"
 
 #: ../src\wxUI\dialogs\userActions.py:26
-msgid "Ignore tweets from this client"
+#, fuzzy
+msgid "&Ignore tweets from this client"
 msgstr "このクライアントからのツイートを無視"
 
 #: ../src\wxUI\dialogs\userSelection.py:9
@@ -2588,6 +2744,26 @@ msgstr "「%s」のタイムライン"
 #: ../src\wxUI\dialogs\userSelection.py:18
 msgid "Buffer type"
 msgstr "バッファのタイプ"
+
+#: ../src\wxUI\dialogs\userSelection.py:19
+#, fuzzy
+msgid "&Tweets"
+msgstr "ツイート"
+
+#: ../src\wxUI\dialogs\userSelection.py:20
+#, fuzzy
+msgid "&Likes"
+msgstr "いいね"
+
+#: ../src\wxUI\dialogs\userSelection.py:21
+#, fuzzy
+msgid "&Followers"
+msgstr "フォロワー"
+
+#: ../src\wxUI\dialogs\userSelection.py:22
+#, fuzzy
+msgid "F&riends"
+msgstr "フォロー"
 
 #: ../src\wxUI\menus.py:7 ../src\wxUI\view.py:29
 msgid "&Retweet"
@@ -2679,7 +2855,7 @@ msgstr "プロフィールを更新(&P)"
 msgid "&Show / hide"
 msgstr "表示または非表示(&S)"
 
-#: ../src\wxUI\sysTrayIcon.py:38 ../src\wxUI\view.py:61
+#: ../src\wxUI\sysTrayIcon.py:38 ../src\wxUI\view.py:62
 msgid "&Documentation"
 msgstr "取扱説明書(&D)"
 
@@ -2695,17 +2871,9 @@ msgstr "終了(&E)"
 msgid "&Manage accounts"
 msgstr "アカウントの管理(&M)"
 
-#: ../src\wxUI\view.py:16
-msgid "&Update profile"
-msgstr "プロフィールを更新(&U)"
-
 #: ../src\wxUI\view.py:17
 msgid "&Hide window"
 msgstr "ウィンドウを隠す(&H)"
-
-#: ../src\wxUI\view.py:18
-msgid "&Search"
-msgstr "検索(&S)"
 
 #: ../src\wxUI\view.py:19
 msgid "&Lists manager"
@@ -2756,38 +2924,39 @@ msgid "V&iew likes"
 msgstr "「いいね」の一覧を見る(&I)"
 
 #: ../src\wxUI\view.py:50
+#, fuzzy
+msgid "&Update buffer"
+msgstr "バッファをクリア"
+
+#: ../src\wxUI\view.py:51
 msgid "New &trending topics buffer..."
 msgstr "新しいトレンドの話題のバッファ(&T)"
 
-#: ../src\wxUI\view.py:51
+#: ../src\wxUI\view.py:52
 msgid "Find a string in the currently focused buffer..."
 msgstr "現在フォーカス中のバッファ内の文字列を検索"
 
-#: ../src\wxUI\view.py:52
+#: ../src\wxUI\view.py:53
 msgid "&Load previous items"
 msgstr "以前のアイテムを取得(&L)"
 
-#: ../src\wxUI\view.py:54
-msgid "&Mute"
-msgstr "ミュート(&M)"
-
-#: ../src\wxUI\view.py:55
+#: ../src\wxUI\view.py:56
 msgid "&Autoread"
 msgstr "自動読み上げ(&A)"
 
-#: ../src\wxUI\view.py:56
+#: ../src\wxUI\view.py:57
 msgid "&Clear buffer"
 msgstr "バッファをクリア(&C)"
 
-#: ../src\wxUI\view.py:57
+#: ../src\wxUI\view.py:58
 msgid "&Destroy"
 msgstr "バッファを削除(&D)"
 
-#: ../src\wxUI\view.py:62
+#: ../src\wxUI\view.py:63
 msgid "Sounds &tutorial"
 msgstr "サウンドの確認(&T)"
 
-#: ../src\wxUI\view.py:63
+#: ../src\wxUI\view.py:64
 msgid "&What's new in this version?"
 msgstr "更新履歴(&W)"
 
@@ -2811,10 +2980,6 @@ msgstr "{0}について(&A)"
 msgid "&Application"
 msgstr "アプリケーション(&A)"
 
-#: ../src\wxUI\view.py:73
-msgid "&User"
-msgstr "ユーザー(&U)"
-
 #: ../src\wxUI\view.py:74
 msgid "&Buffer"
 msgstr "バッファ(&B)"
@@ -2835,11 +3000,20 @@ msgstr "アップデート"
 msgid "Your {0} version is up to date"
 msgstr "{0}のバージョンは最新です"
 
+#~ msgid "unavailable"
+#~ msgstr "無効"
+
+#~ msgid "Search"
+#~ msgstr "検索"
+
+#~ msgid "Update profile"
+#~ msgstr "プロフィールを更新"
+
+#~ msgid "Mute"
+#~ msgstr "ミュート"
+
 #~ msgid "Favourites"
 #~ msgstr "お気に入り"
-
-#~ msgid "Favourites timelines"
-#~ msgstr "他のユーザーのお気に入り一覧"
 
 #~ msgid "Favourites timeline for {}"
 #~ msgstr "{}のお気に入り一覧"
