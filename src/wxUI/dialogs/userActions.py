@@ -16,7 +16,7 @@ class UserActionsDialog(wx.Dialog):
   userSizer.Add(self.autocompletion, 0, wx.ALL, 5)
   actionSizer = wx.BoxSizer(wx.VERTICAL)
   label2 = wx.StaticText(panel, -1, _(u"Action"))
-  self.follow = wx.RadioButton(panel, -1, _(u"&Follow"), style=wx.RB_GROUP)
+  self.follow = wx.RadioButton(panel, -1, _(u"&Follow"), name=_(u"Action"), style=wx.RB_GROUP)
   self.unfollow = wx.RadioButton(panel, -1, _(u"U&nfollow"))
   self.mute = wx.RadioButton(panel, -1, _(u"&Mute"))
   self.unmute = wx.RadioButton(panel, -1, _(u"Unmu&te"))
