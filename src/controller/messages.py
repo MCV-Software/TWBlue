@@ -174,14 +174,14 @@ class viewTweet(basicTweet):
      text = text + "@%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i]["text"])
    rt_count = str(tweet["retweet_count"])
    favs_count = str(tweet["favorite_count"])
-   source = str(re.sub(r"(?s)<.*?>", "", tweet["source"]))
+   source = str(re.sub(r"(?s)<.*?>", "", tweet["source"].encode("utf-8")))
    if text == "":
     if tweet.has_key("retweeted_status"):
      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
     else:
      text = tweet["text"]
    text = self.clear_text(text)
-   self.message = message.viewTweet(text, rt_count, favs_count,source)
+   self.message = message.viewTweet(text, rt_count, favs_count, source.decode("utf-8"))
    self.message.set_title(len(text))
   else:
    text = tweet
