@@ -143,8 +143,15 @@ class bufferController(object):
    if tweet.image == None:
     call_threaded(self.session.api_call, call_name="update_status", status=text)
    else:
-    call_threaded(self.session.api_call, call_name="update_status_with_media", status=text, media=tweet.image)
+    call_threaded(self.post_with_media, text=text, image=tweet.image)
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
+
+ def post_with_media(self, text="", image=None, description=None):
+  if image != None:
+   img = self.session.twitter.twitter.upload_media(media=image)
+#   if description != None:
+#    self.session.twitter.twitter.set_description(media_id=img["media_id"], alt_text=description)
+   self.session.api_call(call_name="update_status", status=text, media_ids=img["media_id"])
 
  def save_positions(self):
   try:
