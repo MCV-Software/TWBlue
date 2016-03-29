@@ -246,7 +246,7 @@ class baseBufferController(bufferController):
   if tweet.has_key("long_uri"):
    uri = tweet["long_uri"]
   try:
-   tweet = self.session.twitter.twitter.show_status(id=tweet_id)
+   tweet = self.session.twitter.twitter.show_status(id=tweet_id, include_ext_alt_text=True)
    urls = utils.find_urls_in_text(tweet["text"])
    for url in range(0, len(urls)):
     try:  tweet["text"] = tweet["text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
@@ -261,7 +261,7 @@ class baseBufferController(bufferController):
    tweetsList.append(tweet)
    id = tweets.get_id(l)
    try:
-    tweet = self.session.twitter.twitter.show_status(id=id)
+    tweet = self.session.twitter.twitter.show_status(id=id, include_ext_alt_text=True)
     urls = utils.find_urls_in_text(tweet["text"])
     for url in range(0, len(urls)):
      try:  tweet["text"] = tweet["text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])

@@ -166,12 +166,17 @@ class dm(basicTweet):
 class viewTweet(basicTweet):
  def __init__(self, tweet, tweetList, is_tweet=True):
   if is_tweet == True:
+   image_description = []
    text = ""
    for i in xrange(0, len(tweetList)):
     if tweetList[i].has_key("retweeted_status"):
      text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["text"])
     else:
      text = text + "@%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i]["text"])
+    if tweetList[i].has_key("extended_entities") and tweetList[i]["extended_entities"].has_key("media"):
+     for z in tweetList[i]["extended_entities"]["media"]:
+      if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+       image_description.append(z["ext_alt_text"])
    rt_count = str(tweet["retweet_count"])
    favs_count = str(tweet["favorite_count"])
    source = str(re.sub(r"(?s)<.*?>", "", tweet["source"].encode("utf-8")))
@@ -181,8 +186,13 @@ class viewTweet(basicTweet):
     else:
      text = tweet["text"]
    text = self.clear_text(text)
+   if tweet.has_key("extended_entities") and tweet["extended_entities"].has_key("media"):
+    for z in tweet["extended_entities"]["media"]:
+     if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+      image_description.append(z["ext_alt_text"])
    self.message = message.viewTweet(text, rt_count, favs_count, source.decode("utf-8"))
    self.message.set_title(len(text))
+   [self.message.set_image_description(i) for i in image_description]
   else:
    text = tweet
    self.message = message.viewNonTweet(text)

@@ -260,6 +260,17 @@ class viewTweet(widgetUtils.BaseDialog):
   textBox.Add(self.text, 1, wx.EXPAND, 5)
   mainBox = wx.BoxSizer(wx.VERTICAL)
   mainBox.Add(textBox, 0, wx.ALL, 5)
+  label2 = wx.StaticText(panel, -1, _(u"Image description"))
+  self.image_description = wx.TextCtrl(panel, -1, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
+  dc = wx.WindowDC(self.image_description)
+  dc.SetFont(self.image_description.GetFont())
+  (x, y, z) = dc.GetMultiLineTextExtent("0"*450)
+  self.image_description.SetSize((x, y))
+  self.image_description.Enable(False)
+  iBox = wx.BoxSizer(wx.HORIZONTAL)
+  iBox.Add(label2, 0, wx.ALL, 5)
+  iBox.Add(self.image_description, 1, wx.EXPAND, 5)
+  mainBox.Add(iBox, 0, wx.ALL, 5)
   rtCountLabel = wx.StaticText(panel, -1, _(u"Retweets: "))
   rtCount = wx.TextCtrl(panel, -1, rt_count, size=wx.DefaultSize, style=wx.TE_READONLY|wx.TE_MULTILINE)
   rtBox = wx.BoxSizer(wx.HORIZONTAL)
@@ -306,6 +317,13 @@ class viewTweet(widgetUtils.BaseDialog):
 
  def get_text(self):
   return self.text.GetValue()
+
+ def set_image_description(self, desc):
+  self.image_description.Enable(True)
+  if len(self.image_description.GetValue()) == 0:
+   self.image_description.SetValue(desc)
+  else:
+   self.image_description.SetValue(self.image_description.GetValue()+"\n"+desc)
 
  def text_focus(self):
   self.text.SetFocus()
