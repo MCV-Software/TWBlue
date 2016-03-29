@@ -10,6 +10,7 @@ dealing with the Twitter API
 """
 
 import warnings
+import re
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -102,15 +103,10 @@ class Twython(EndpointsMixin, object):
         auth = None
         if oauth_version == 1:
             # User Authentication is through OAuth 1
-            if self.app_key is not None and self.app_secret is not None and \
-               self.oauth_token is None and self.oauth_token_secret is None:
-                auth = OAuth1(self.app_key, self.app_secret)
-
-            if self.app_key is not None and self.app_secret is not None and \
-               self.oauth_token is not None and self.oauth_token_secret is \
-               not None:
+            if self.app_key is not None and self.app_secret is not None:
                 auth = OAuth1(self.app_key, self.app_secret,
-                              self.oauth_token, self.oauth_token_secret)
+                                self.oauth_token, self.oauth_token_secret)
+
         elif oauth_version == 2 and self.access_token:
             # Application Authentication is through OAuth 2
             token = {'token_type': token_type,
@@ -198,7 +194,10 @@ class Twython(EndpointsMixin, object):
                 retry_after=response.headers.get('X-Rate-Limit-Reset'))
 
         try:
-            content = response.json()
+            if response.status_code == 204:
+                content = response.content
+            else:
+                content = response.json()
         except ValueError:
             raise TwythonError('Response was not valid JSON. \
                                Unable to decode.')
@@ -528,7 +527,7 @@ class Twython(EndpointsMixin, object):
         return str(text)
 
     @staticmethod
-    def html_for_tweet(tweet, use_display_url=True, use_expanded_url=False):
+    def html_for_tweet(tweet, use_display_url=True, use_expanded_url=False, expand_quoted_status=False):
         """Return HTML for a tweet (urls, mentions, hashtags replaced with links)
 
         :param tweet: Tweet object from received from Twitter API
@@ -550,19 +549,22 @@ class Twython(EndpointsMixin, object):
             entities = tweet['entities']
 
             # Mentions
-            for entity in entities['user_mentions']:
+            for entity in sorted(entities['user_mentions'],
+                                 key=lambda mention: len(mention['screen_name']), reverse=True):
                 start, end = entity['indices'][0], entity['indices'][1]
 
                 mention_html = '<a href="https://twitter.com/%(screen_name)s" class="twython-mention">@%(screen_name)s</a>'
-                text = text.replace(tweet['text'][start:end],
-                        mention_html % {'screen_name': entity['screen_name']})
+                text = re.sub(r'(?<!>)' + tweet['text'][start:end] + '(?!</a>)',
+                              mention_html % {'screen_name': entity['screen_name']}, text)
 
             # Hashtags
-            for entity in entities['hashtags']:
+            for entity in sorted(entities['hashtags'],
+                                 key=lambda hashtag: len(hashtag['text']), reverse=True):
                 start, end = entity['indices'][0], entity['indices'][1]
 
                 hashtag_html = '<a href="https://twitter.com/search?q=%%23%(hashtag)s" class="twython-hashtag">#%(hashtag)s</a>'
-                text = text.replace(tweet['text'][start:end], hashtag_html % {'hashtag': entity['text']})
+                text = re.sub(r'(?<!>)' + tweet['text'][start:end] + '(?!</a>)',
+                              hashtag_html % {'hashtag': entity['text']}, text)
 
             # Urls
             for entity in entities['urls']:
@@ -594,5 +596,17 @@ class Twython(EndpointsMixin, object):
                     url_html = '<a href="%s" class="twython-media">%s</a>'
                     text = text.replace(tweet['text'][start:end],
                                         url_html % (entity['url'], shown_url))
+
+        if expand_quoted_status and tweet.get('is_quote_status'):
+            quoted_status = tweet['quoted_status']
+            text += '<blockquote class="twython-quote">%(quote)s<cite><a href="%(quote_tweet_link)s">' \
+                    '<span class="twython-quote-user-name">%(quote_user_name)s</span>' \
+                    '<span class="twython-quote-user-screenname">@%(quote_user_screen_name)s</span></a>' \
+                    '</cite></blockquote>' % \
+                    {'quote': Twython.html_for_tweet(quoted_status, use_display_url, use_expanded_url, False),
+                     'quote_tweet_link': 'https://twitter.com/%s/status/%s' %
+                                         (quoted_status['user']['screen_name'], quoted_status['id_str']),
+                     'quote_user_name': quoted_status['user']['name'],
+                     'quote_user_screen_name': quoted_status['user']['screen_name']}
 
         return text
