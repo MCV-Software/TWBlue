@@ -1071,7 +1071,10 @@ class conversationBufferController(searchBufferController):
     self.ids.append(self.tweet["id"])
     tweet = self.tweet
     while tweet["in_reply_to_status_id"] != None:
-     tweet = self.session.twitter.twitter.show_status(id=tweet["in_reply_to_status_id"])
+     try:
+      tweet = self.session.twitter.twitter.show_status(id=tweet["in_reply_to_status_id"])
+     except TwythonError as err:
+      break
      self.statuses.insert(0, tweet)
      self.ids.append(tweet["id"])
     if tweet["in_reply_to_status_id"] == None:
