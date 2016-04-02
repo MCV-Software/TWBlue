@@ -10,7 +10,7 @@ def convert_audioboom(url):
  audio_id = url.split('.com/')[-1]
  return 'https://audioboom.com/%s.mp3' % audio_id
 
-@matches_url ('http://soundcloud.com/')
+@matches_url ('https://soundcloud.com/')
 def convert_soundcloud (url):
  client_id = "df8113ca95c157b6c9731f54b105b473"
  permalink = urllib.urlopen ('http://api.soundcloud.com/resolve.json?client_id=%s&url=%s' %(client_id, url))
