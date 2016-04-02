@@ -1275,7 +1275,7 @@ class Controller(object):
   buffer = self.search_buffer("%s-timeline" % (who,), user)
   if buffer == None: return
   play_sound = "tweet_timeline.ogg"
-  if "%s-timeline" % (who,) not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+  if "%s-timeline" % (who,) not in buffer.session.settings["other_buffers"]["muted_buffers"] and buffer.session.settings["sound"]["session_mute"] == False:
    self.notify(buffer.session, play_sound=play_sound)
    output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
   buffer.add_new_item(data)
@@ -1284,7 +1284,7 @@ class Controller(object):
   buffer = self.search_buffer("%s" % (where,), user)
   if buffer == None: return
   play_sound = "list_tweet.ogg"
-  if "%s" % (where,) not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+  if "%s" % (where,) not in buffer.session.settings["other_buffers"]["muted_buffers"] and buffer.session.settings["sound"]["session_mute"] == False:
    self.notify(buffer.session, play_sound=play_sound)
    output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
   buffer.add_new_item(data)
