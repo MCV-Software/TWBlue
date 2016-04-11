@@ -6,7 +6,8 @@ class textLimited(widgetUtils.BaseDialog):
  def __init__(self, *args, **kwargs):
   super(textLimited, self).__init__(parent=None, *args, **kwargs)
  def createTextArea(self, message="", text=""):
-  self.panel = wx.Panel(self)
+  if not hasattr(self, "panel"):
+   self.panel = wx.Panel(self)
   self.label = wx.StaticText(self.panel, -1, message)
   self.SetTitle(str(len(text)))
   self.text = wx.TextCtrl(self.panel, -1, text, size=(439, -1),style=wx.TE_MULTILINE|wx.TE_PROCESS_ENTER)
@@ -190,7 +191,6 @@ class dm(textLimited):
   userBox.Add(self.cb, 0, wx.ALL, 5)
   userBox.Add(self.autocompletionButton, 0, wx.ALL, 5)
   self.mainBox.Add(userBox, 0, wx.ALL, 5)
-#  self.mainBox.Add(self.cb, 0, wx.ALL, 5)
   self.mainBox.Add(self.textBox, 0, wx.ALL, 5)
   self.spellcheck = wx.Button(self.panel, -1, _("Spelling correction"), size=wx.DefaultSize)
   self.attach = wx.Button(self.panel, -1, _(u"Attach audio"), size=wx.DefaultSize)
@@ -216,13 +216,13 @@ class dm(textLimited):
   self.buttonsBox3.Add(cancelButton, 0, wx.ALL, 5)
   self.mainBox.Add(self.buttonsBox3, 0, wx.ALL, 5)
   self.panel.SetSizer(self.mainBox)
-#  self.SetClientSize(self.mainBox.CalcMin())
+  self.SetClientSize(self.mainBox.CalcMin())
 
  def __init__(self, title, message,  users):
   super(dm, self).__init__()
   self.createControls(message, title, users)
 #  self.onTimer(wx.EVT_CHAR_HOOK)
-  self.SetClientSize(self.mainBox.CalcMin())
+#  self.SetClientSize(self.mainBox.CalcMin())
 
  def get_user(self):
   return self.cb.GetValue()
