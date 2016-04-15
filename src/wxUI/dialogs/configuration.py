@@ -72,6 +72,13 @@ class proxy(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(serverBox, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
+class postabandonment(wx.Panel, baseDialog.BaseWXDialog):
+ def __init__(self, parent):
+  super(postabandonment, self).__init__(parent)
+  sizer = wx.BoxSizer(wx.VERTICAL)
+  self.check_for_updates = wx.CheckBox(self, -1, _(U"Check for updates when {0} launches").format(application.name,))
+  sizer.Add(self.check_for_updates, 0, wx.ALL, 5)
+
 class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent):
   super(generalAccount, self).__init__(parent)
@@ -300,7 +307,6 @@ class servicesPanel(wx.Panel):
   return self.pocketBtn.GetLabel()
 
 class configurationDialog(baseDialog.BaseWXDialog):
-
  def set_title(self, title):
   self.SetTitle(title)
 
@@ -319,6 +325,10 @@ class configurationDialog(baseDialog.BaseWXDialog):
  def create_proxy(self):
   self.proxy = proxy(self.notebook)
   self.notebook.AddPage(self.proxy, _(u"Proxy"))
+
+ def create_postabandonment(self):
+  self.postabandonment = postabandonment(self.notebook)
+  self.notebook.AddPage(self.postabandonment, _(u"Codeofdusk's post-abandonment fixes"))
 
  def create_general_account(self):
   self.general = generalAccount(self.notebook)
