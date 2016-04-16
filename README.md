@@ -1,13 +1,12 @@
 ﻿TWBlue -
 ======
 
-Copyright (C) 2015. [Technow S.L.](https://www.technow.es)
+Copyright (C) 2016. [Technow S.L.](https://www.technow.es)
 
 TW Blue is an app designed to use Twitter simply and efficiently while using minimal system resources.
 With this app you’ll have access to twitter features such as:
 
-* Create, reply to, retweet and delete tweets,
-* Add and remove tweets from favourites,
+* Create, reply to, like, retweet and delete tweets,
 * Send and delete direct messages,
 * See your friends and followers,
 * Follow, unfollow, block and report users as spam,
@@ -18,9 +17,9 @@ With this app you’ll have access to twitter features such as:
 
 See [TWBlue's webpage](http://twblue.es) for more details.
 
-## Using TWBlue from sources
+## Running TWBlue from source
 
-This document describes how to run tw blue from source, and, after that, how to build a binary version, which doesn't need Python and the other dependencies to run.
+This document describes how to run tw blue from source and how to build a binary version which doesn't need Python and the other dependencies to run.
 
 ### Required dependencies.
 
@@ -48,7 +47,7 @@ To build a binary version:
 
 #### Dependencies that must be installed using easy_install
 
-setuptools install a script, called easy_install. You can find it in the python scripts directory. To install packages using easy_install, you have to navigate to the scripts directory using a command prompt, for example:
+setuptools installs a script, called easy_install. You can find it in the python scripts directory. To install packages using easy_install, you have to navigate to the scripts directory using a command prompt, for example:
 
     cd C:\python27x64\scripts
 
@@ -121,7 +120,7 @@ To build it, run the following command from the src folder:
 
 ### Building an installer
 
-If you want to install TWBlue in your computer, you must create the installer first. Follow these steps:
+If you want to install TWBlue on your computer, you must create the installer first. Follow these steps:
 
 * Navigate to the src directory, and create a binary version for x86: C:\python27\python setup.py py2exe
 * Move the dist directory to the scripts folder in this repo, and rename it to twblue
@@ -136,7 +135,7 @@ Run the gen_pot.bat file, located in the tools directory. Your python installati
 
 ### How to build the portableApps.com archive
 
-If you want to have TWBlue in your PortableApps.com platform, follow these steps:
+If you want to have TWBlue on your PortableApps.com platform, follow these steps:
 
 * Navigate to the src directory, and create a binary version for x86: C:\python27\python setup.py py2exe
 * Move the dist directory to the misc\pa.c format\app folder in this repo, and rename it to twblue
