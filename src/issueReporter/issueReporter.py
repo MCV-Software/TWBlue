@@ -47,7 +47,7 @@ class reportBug(object):
    issue.project.name = application.name
    issue.project.id = 0
    issue.summary = self.dialog.get("summary"),
-   issue.description = "Reported by @%s\n\n" % (self.user_name) + self.dialog.get("description")
+   issue.description = "Reported by @%s on version %s (snapshot = %s)\n\n" % (self.user_name, application.version, application.snapshot) + self.dialog.get("description")
    # to do: Create getters for category, severity and reproducibility in wx_UI.
    issue.category = constants.categories[self.dialog.category.GetSelection()]
    issue.reproducibility.name = constants.reproducibilities[self.dialog.reproducibility.GetSelection()]
