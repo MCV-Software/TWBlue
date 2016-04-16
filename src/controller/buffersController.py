@@ -207,7 +207,7 @@ class accountPanel(bufferController):
 
 class emptyPanel(bufferController):
  def __init__(self, parent, name, account):
-  super(emptyPanel, self).__init__(parent, None, name)
+  super(emptyPanel, self).__init__(parent=parent)
   log.debug("Initializing buffer %s, account %s" % (name, account,))
   self.buffer = buffers.emptyPanel(parent, name)
   self.type = self.buffer.type
@@ -349,6 +349,13 @@ class baseBufferController(bufferController):
   else:
    output.speak(_(u"This buffer is not a timeline; it can't be deleted."), True)
    return False
+
+ def remove_tweet(self, id):
+  if type(self.session.db[self.name]) == dict: return
+  for i in xrange(0, len(self.session.db[self.name])):
+   if self.session.db[self.name][i]["id"] == id:
+    self.session.db[self.name].pop(i)
+    self.remove_item(i)
 
  def put_items_on_list(self, number_of_items):
   log.debug("The list contains %d items " % (self.buffer.list.get_count(),))

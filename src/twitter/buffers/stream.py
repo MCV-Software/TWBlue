@@ -126,6 +126,8 @@ class streamer(TwythonStreamer):
 
  def on_success(self, data):
   try:
+   if "delete" in data:
+    pub.sendMessage("tweet-deleted", data=data)
    if "direct_message" in data:
     self.process_dm(data)
    elif "friends" in data:

@@ -119,6 +119,7 @@ class Controller(object):
   pub.subscribe(self.manage_item_in_timeline, "item-in-timeline")
   pub.subscribe(self.manage_item_in_list, "item-in-list")
   pub.subscribe(self.restart_streams_, "restart_streams")
+  pub.subscribe(self.on_tweet_deleted, "tweet-deleted")
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
 
  def bind_other_events(self):
@@ -1485,3 +1486,9 @@ class Controller(object):
    n = bf.start_stream(mandatory=True)
    if n != None:
     output.speak(_(u"{0} items retrieved").format(n,))
+
+ def on_tweet_deleted(self, data):
+  id = data["delete"]["status"]["id"]
+  for i in self.buffers:
+   if hasattr(i, "remove_tweet") and hasattr(i, "name"):
+    i.remove_tweet(id)
