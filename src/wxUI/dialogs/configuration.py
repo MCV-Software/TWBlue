@@ -42,7 +42,6 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   self.SetSizer(sizer)
 
 class proxy(wx.Panel, baseDialog.BaseWXDialog):
-
  def __init__(self, parent):
   super(proxy, self).__init__(parent)
   sizer = wx.BoxSizer(wx.VERTICAL)
@@ -78,6 +77,18 @@ class postabandonment(wx.Panel, baseDialog.BaseWXDialog):
   sizer = wx.BoxSizer(wx.VERTICAL)
   self.check_for_updates = wx.CheckBox(self, -1, _(U"Check for updates when {0} launches").format(application.name,))
   sizer.Add(self.check_for_updates, 0, wx.ALL, 5)
+  lbl = wx.StaticText(self, wx.NewId(), _(u"custom Twitter API key: "))
+  self.api_key_override = wx.TextCtrl(self, -1)
+  APIKeyBox = wx.BoxSizer(wx.HORIZONTAL)
+  APIKeyBox.Add(lbl, 0, wx.ALL, 5)
+  APIKeyBox.Add(self.api_key_override, 0, wx.ALL, 5)
+  sizer.Add(APIKeyBox, 0, wx.ALL, 5)
+  lbl = wx.StaticText(self, wx.NewId(), _(u"custom Twitter API secret: "))
+  self.api_secret_override = wx.TextCtrl(self, -1)
+  APISecretBox = wx.BoxSizer(wx.HORIZONTAL)
+  APISecretBox.Add(lbl, 0, wx.ALL, 5)
+  APISecretBox.Add(self.api_secret_override, 0, wx.ALL, 5)
+  sizer.Add(APISecretBox, 0, wx.ALL, 5)
 
 class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent):
