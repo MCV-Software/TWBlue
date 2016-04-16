@@ -69,6 +69,8 @@ class globalSettingsController(object):
   self.dialog.set_value("proxy", "port", config.app["proxy"]["port"])
   self.dialog.set_value("proxy", "user", config.app["proxy"]["user"])
   self.dialog.set_value("proxy", "password", config.app["proxy"]["password"])
+  self.dialog.create_postabandonment()
+  self.dialog.set_value("postabandonment", "check_for_updates", config.app["app-settings"]["check_for_updates"])
   self.dialog.realize()
   self.response = self.dialog.get_response()
 
@@ -99,6 +101,7 @@ class globalSettingsController(object):
    config.app["proxy"]["port"] = self.dialog.get_value("proxy", "port")
    config.app["proxy"]["user"] = self.dialog.get_value("proxy", "user")
    config.app["proxy"]["password"] = self.dialog.get_value("proxy", "password")
+  config.app["app-settings"]["check_for_updates"] = self.dialog.get_value("postabandonment", "check_for_updates")
   config.app.write()
 
 class accountSettingsController(globalSettingsController):

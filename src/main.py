@@ -70,7 +70,8 @@ def setup():
  if system == "Windows":
   if config.app["app-settings"]["donation_dialog_displayed"] == False:
    donation()
-  updater.do_update()
+  if config.app['app-settings']['check_for_updates']:
+   updater.do_update()
  sm = sessionManager.sessionManagerController()
  sm.fill_list()
  if len(sm.sessions) == 0: sm.show()
