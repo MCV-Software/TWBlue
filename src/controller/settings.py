@@ -71,6 +71,8 @@ class globalSettingsController(object):
   self.dialog.set_value("proxy", "password", config.app["proxy"]["password"])
   self.dialog.create_postabandonment()
   self.dialog.set_value("postabandonment", "check_for_updates", config.app["app-settings"]["check_for_updates"])
+  self.dialog.set_value("postabandonment", "api_key_override", config.app["app-settings"]["api_key_override"])
+  self.dialog.set_value("postabandonment", "api_secret_override", config.app["app-settings"]["api_secret_override"])
   self.dialog.realize()
   self.response = self.dialog.get_response()
 
@@ -102,6 +104,13 @@ class globalSettingsController(object):
    config.app["proxy"]["user"] = self.dialog.get_value("proxy", "user")
    config.app["proxy"]["password"] = self.dialog.get_value("proxy", "password")
   config.app["app-settings"]["check_for_updates"] = self.dialog.get_value("postabandonment", "check_for_updates")
+  if config.app["app-settings"]["api_key_override"] != self.dialog.get_value("postabandonment", "api_key_override"):
+   config.app["app-settings"]["api_key_override"] = self.dialog.get_value("postabandonment", "api_key_override")
+   self.needs_restart=True
+  if config.app["app-settings"]["api_secret_override"] != self.dialog.get_value("postabandonment", "api_secret_override"):
+   config.app["app-settings"]["api_secret_override"] = self.dialog.get_value("postabandonment", "api_secret_override")
+   self.needs_restart=True
+  #Todo: delete sessions when API key/secrets are changed.
   config.app.write()
 
 class accountSettingsController(globalSettingsController):

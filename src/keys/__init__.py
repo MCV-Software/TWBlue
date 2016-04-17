@@ -5,6 +5,7 @@ import exceptions
 from ctypes import c_char_p
 from libloader import load_library
 import paths
+import config
 #if application.snapshot == True:
 #	if platform.architecture()[0][:2] == "32":
 #		lib = load_library("snapshot_api_keys32", x86_path=paths.app_path("keys/lib"))
@@ -38,4 +39,9 @@ class Keyring(object):
 	def get(self, func):
 		if hasattr(application,func+"_override"):
 			return getattr(application,func+'_override')
+		try:
+			if config.app != None and config.app['app-settings'][func+"_override"] != "":
+				return config.app['app-settings'][func+"_override"]
+		except KeyError:
+			pass
 		return getattr(self, "_call_method")("get_"+func)
