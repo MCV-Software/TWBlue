@@ -38,6 +38,8 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   self.km.SetSize(self.km.GetBestSize())
   kmbox.Add(km_label, 0, wx.ALL, 5)
   kmbox.Add(self.km, 0, wx.ALL, 5)
+  self.check_for_updates = wx.CheckBox(self, -1, _(U"Check for updates when {0} launches").format(application.name,))
+  sizer.Add(self.check_for_updates, 0, wx.ALL, 5)
   sizer.Add(kmbox, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
@@ -71,13 +73,6 @@ class proxy(wx.Panel, baseDialog.BaseWXDialog):
   passwordBox.Add(self.password, 0, wx.ALL, 5)
   sizer.Add(serverBox, 0, wx.ALL, 5)
   self.SetSizer(sizer)
-
-class postabandonment(wx.Panel, baseDialog.BaseWXDialog):
- def __init__(self, parent):
-  super(postabandonment, self).__init__(parent)
-  sizer = wx.BoxSizer(wx.VERTICAL)
-  self.check_for_updates = wx.CheckBox(self, -1, _(U"Check for updates when {0} launches").format(application.name,))
-  sizer.Add(self.check_for_updates, 0, wx.ALL, 5)
 
 class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent):
@@ -325,10 +320,6 @@ class configurationDialog(baseDialog.BaseWXDialog):
  def create_proxy(self):
   self.proxy = proxy(self.notebook)
   self.notebook.AddPage(self.proxy, _(u"Proxy"))
-
- def create_postabandonment(self):
-  self.postabandonment = postabandonment(self.notebook)
-  self.notebook.AddPage(self.postabandonment, _(u"Codeofdusk's post-abandonment fixes"))
 
  def create_general_account(self):
   self.general = generalAccount(self.notebook)
