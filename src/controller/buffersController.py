@@ -307,7 +307,9 @@ class baseBufferController(bufferController):
   except TwythonError as e:
    output.speak(e.message, True)
   for i in items:
-   if utils.is_allowed(i, self.session.settings["twitter"]["ignored_clients"]) == True:
+   if utils.is_allowed(i, self.session.settings["twitter"]["ignored_clients"]) == True and utils.find_item(i["id"], self.session.db[self.name]) == None:
+    i = self.session.check_quoted_status(i)
+    i = self.session.check_long_tweet(i)
     elements.append(i)
     if self.session.settings["general"]["reverse_timelines"] == False:
      self.session.db[self.name].insert(0, i)

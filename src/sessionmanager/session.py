@@ -18,7 +18,7 @@ import os
 from mysc.thread_utils import stream_threaded
 from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
-from long_tweets import tweets
+from long_tweets import tweets, twishort
 
 sessions = {}
 
@@ -64,6 +64,7 @@ class Session(object):
    if utils.find_item(i["id"], self.db[name]) == None and     utils.is_allowed(i, self.settings["twitter"]["ignored_clients"]) == True:
     try: i = self.check_quoted_status(i)
     except: pass
+    i = self.check_long_tweet(i)
     if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
     else: self.db[name].insert(0, i)
     num = num+1
@@ -429,9 +430,9 @@ class Session(object):
    tweet = self.get_quoted_tweet(tweet)
   return tweet
 
-   
+
  def get_quoted_tweet(self, tweet):
-  quoted_tweet = self.twitter.twitter.show_status(id=tweet["id"])
+  quoted_tweet = tweet
   urls = utils.find_urls_in_text(quoted_tweet["text"])
   for url in range(0, len(urls)):
    try:  quoted_tweet["text"] = quoted_tweet["text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
@@ -446,3 +447,8 @@ class Session(object):
    except IndexError: pass
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
 
+ def check_long_tweet(self, tweet):
+  long = twishort.is_long(tweet)
+  if long != False:
+   tweet["message"] = twishort.get_full_text(long)
+  return tweet

@@ -169,10 +169,14 @@ class viewTweet(basicTweet):
    image_description = []
    text = ""
    for i in xrange(0, len(tweetList)):
-    if tweetList[i].has_key("retweeted_status"):
-     text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["text"])
+    if tweetList[i].has_key("message"):
+     value = "message"
     else:
-     text = text + "@%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i]["text"])
+     value = "text"
+    if tweetList[i].has_key("retweeted_status"):
+     text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"][value])
+    else:
+     text = text + "@%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i][value])
     if tweetList[i].has_key("extended_entities") and tweetList[i]["extended_entities"].has_key("media"):
      for z in tweetList[i]["extended_entities"]["media"]:
       if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
@@ -181,10 +185,14 @@ class viewTweet(basicTweet):
    favs_count = str(tweet["favorite_count"])
    source = str(re.sub(r"(?s)<.*?>", "", tweet["source"].encode("utf-8")))
    if text == "":
+    if tweet.has_key("message"):
+     value = "message"
+    else:
+     value = "text"
     if tweet.has_key("retweeted_status"):
      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
     else:
-     text = tweet["text"]
+     text = tweet[value]
    text = self.clear_text(text)
    if tweet.has_key("extended_entities") and tweet["extended_entities"].has_key("media"):
     for z in tweet["extended_entities"]["media"]:

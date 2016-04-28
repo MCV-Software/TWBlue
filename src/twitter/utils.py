@@ -23,7 +23,11 @@ def find_urls_in_text(text):
 
 def find_urls (tweet):
  urls = []
- return [s[0] for s in url_re.findall(tweet["text"])]
+ if tweet.has_key("message"):
+  i = "message"
+ else:
+  i = "text"
+ return [s[0] for s in url_re.findall(tweet[i])]
 
 def find_item(id, listItem):
  for i in range(0, len(listItem)):

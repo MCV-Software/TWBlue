@@ -30,9 +30,6 @@ chars = "abcdefghijklmnopqrstuvwxyz"
 
 def compose_tweet(tweet, db, relative_times):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
- long = twishort.is_long(tweet)
- if long != False:
-  tweet["long_uri"] = long
  if system == "Windows":
   original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
   if relative_times == True:
@@ -41,7 +38,11 @@ def compose_tweet(tweet, db, relative_times):
    ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
   ts = tweet["created_at"]
- text = StripChars(tweet["text"])
+ if tweet.has_key("message"):
+  value = "message"
+ else:
+  value = "text"
+ text = StripChars(tweet[value])
  if tweet.has_key("sender"):
   source = "DM"
   if db["user_name"] == tweet["sender"]["screen_name"]: user = _(u"Dm to %s ") % (tweet["recipient"]["name"],)
@@ -50,26 +51,16 @@ def compose_tweet(tweet, db, relative_times):
   user = tweet["user"]["name"]
   source = re.sub(r"(?s)<.*?>", "", tweet["source"])
   try: text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet["retweeted_status"]["text"]))
-  except KeyError: text = "%s" % (StripChars(tweet["text"]))
+  except KeyError: pass
+#text = "%s" % (StripChars(tweet["text"]))
   if text[-1] in chars: text=text+"."
  urls = utils.find_urls_in_text(text)
  for url in range(0, len(urls)):
   try:  text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
   except IndexError: pass
-  if config.app['app-settings']['handle_longtweets'] and 'long_uri' in tweet:
-   try:
-    oldtext=text
-    text=twishort.get_full_text(tweet['long_uri'])
-    try: text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(text))
-    except KeyError: pass
-   except:
-    text=oldtext
- if tweet.has_key("message"):
-   text = tweet["message"]
-   return [user+", ", text, ts+", ", source]
-
- tweet["text"] = text
- return [user+", ", tweet["text"], ts+", ", source]
+  if config.app['app-settings']['handle_longtweets']: pass
+#   return [user+", ", text, ts+", ", source]
+ return [user+", ", text, ts+", ", source]
 
 def compose_quoted_tweet(quoted_tweet, original_tweet):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""

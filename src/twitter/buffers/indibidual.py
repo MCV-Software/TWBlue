@@ -36,6 +36,7 @@ class timelinesStreamer(TwythonStreamer):
      return
     try:
      data_ = self.session.check_quoted_status(data)
+     data_ = self.session.check_long_tweet(data_)
      data = data_
     except AttributeError:
      pass
