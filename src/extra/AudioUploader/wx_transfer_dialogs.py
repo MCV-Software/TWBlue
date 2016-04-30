@@ -56,8 +56,9 @@ class TransferDialog(widgetUtils.BaseDialog):
  def create_buttons(self):
   self.cancel_button = wx.Button(parent=self.pane, id=wx.ID_CANCEL)
 
- def get_response(self):
-  self.Show()
+ def get_response(self, fn):
+  wx.CallAfter(fn, 0.01)
+  self.ShowModal()
 
  def destroy(self):
   self.Destroy()

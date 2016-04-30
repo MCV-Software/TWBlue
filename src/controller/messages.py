@@ -102,7 +102,7 @@ class basicTweet(object):
    self.message.text_focus()
 
  def attach(self, *args, **kwargs):
-  def completed_callback():
+  def completed_callback(dlg):
    url = dlg.uploaderFunction.get_url()
    pub.unsubscribe(dlg.uploaderDialog.update, "uploading")
    dlg.uploaderDialog.destroy()

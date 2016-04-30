@@ -11,7 +11,7 @@ from pubsub import pub
 log = logging.getLogger("extra.AudioUploader.transfer")
 class Transfer(object):
 
- def __init__(self, url=None, filename=None, follow_location=True, completed_callback=None, verbose=False, *args, **kwargs):
+ def __init__(self, obj=None, url=None, filename=None, follow_location=True, completed_callback=None, verbose=False, *args, **kwargs):
   self.url = url
   self.filename = filename
   log.debug("Uploading audio to %s, filename %s" % (url, filename))
@@ -27,6 +27,7 @@ class Transfer(object):
   self.curl.setopt(self.curl.FOLLOWLOCATION, int(follow_location))
   self.curl.setopt(self.curl.VERBOSE, int(verbose))
   super(Transfer, self).__init__(*args, **kwargs)
+  self.obj = obj
 
  def elapsed_time(self):
   if not self.start_time:
@@ -61,7 +62,7 @@ class Transfer(object):
   log.debug("Upload finished.")
   self.complete_transfer()
 
- def perform_threaded(self):
+ def perform_threaded(self, *args, **kwargs):
   self.background_thread = threading.Thread(target=self.perform_transfer)
   self.background_thread.daemon = True
   self.background_thread.start()
@@ -69,7 +70,7 @@ class Transfer(object):
  def complete_transfer(self):
   if callable(self.completed_callback):
    self.curl.close()
-   self.completed_callback()
+   self.completed_callback(self.obj)
 
 class Upload(Transfer):
 
