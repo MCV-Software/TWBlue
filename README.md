@@ -35,7 +35,7 @@ Although most dependencies can be found in the windows-dependencies directory, w
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
 * [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2.0
 * [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 220
-* [Pycurl](http://pycurl.sourceforge.net) 7.21.5 for Python 2.7: [downloads](https://pypi.python.org/pypi/pycurl/7.21.5)
+* [Pycurl](http://pycurl.sourceforge.net) 7.43.0 for Python 2.7: [downloads](https://pypi.python.org/pypi/pycurl/7.43.0)
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
 x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
 
@@ -91,7 +91,7 @@ This dependency has been built using pure basic 4.61. Its source can be found at
 #### Dependencies required to build the portableApps.com format archive
 
 * [PortableApps.com Launcher,](http://portableapps.com/apps/development/portableapps.com_launcher) version 2.2
-* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.0.20
+* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.1.3
 
 ### Running TW Blue from source
 
