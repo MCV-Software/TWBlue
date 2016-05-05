@@ -67,8 +67,8 @@ class audioUploader(object):
 
  def get_available_services(self):
   services = []
-  services.append("TwUp")
   services.append("SNDUp")
+  services.append("TwUp")
   return services
 
  def on_pause(self, *args, **kwargs):
