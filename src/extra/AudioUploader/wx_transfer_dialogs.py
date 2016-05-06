@@ -6,7 +6,7 @@ import widgetUtils
 class UploadDialog(widgetUtils.BaseDialog):
 
  def __init__(self, filename, *args, **kwargs):
-  super(TransferDialog, self).__init__(parent=None, id=wx.NewId(), *args, **kwargs)
+  super(UploadDialog, self).__init__(parent=None, id=wx.NewId(), *args, **kwargs)
   self.pane = wx.Panel(self)
   self.progress_bar = wx.Gauge(parent=self.pane)
   fileBox = wx.BoxSizer(wx.HORIZONTAL)
