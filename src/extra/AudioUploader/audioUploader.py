@@ -57,13 +57,11 @@ class audioUploader(object):
      url = base_url + '?apikey=' + self.config['sound']['sndup_api_key']
     else:
      url = base_url
-    self.uploaderFunction = transfer.Upload(obj=self, field='file', url=url, filename=self.file, completed_callback=completed_callback)
    elif self.dialog.get("services") == "TwUp":
     url = "http://api.twup.me/post.json"
-    self.uploaderFunction = transfer.Upload(obj=self, field='file', url=url, filename=self.file, completed_callback=completed_callback)
+   self.uploaderFunction = transfer.Upload(obj=self, field='file', url=url, filename=self.file, completed_callback=completed_callback)
    pub.subscribe(self.uploaderDialog.update, "uploading")
    self.uploaderDialog.get_response(self.uploaderFunction.perform_threaded)
-#   self.uploaderFunction.perform_threaded()
 
  def get_available_services(self):
   services = []
@@ -116,8 +114,9 @@ class audioUploader(object):
   if self.playing:
    self._stop()
   if self.recording != None:
-   self.dialog.disable_control("attach")
-   self.dialog.disable_control("play")
+   self.cleanup()
+  self.dialog.disable_control("attach")
+  self.dialog.disable_control("play")
   self.file = None
   self.dialog.enable_control("record")
   self.dialog.enable_control("attach_exists")
@@ -174,10 +173,6 @@ class audioUploader(object):
    os.remove(self.file)
    if hasattr(self, 'wav_file'):
     os.remove(self.wav_file)
-    del(self.wav_file)
-  if hasattr(self, 'wav_file') and os.path.exists(self.file):
-   os.remove(self.file)
-
 
  def on_attach_exists(self, *args, **kwargs):
   self.file = self.dialog.get_file()

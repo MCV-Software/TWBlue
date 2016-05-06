@@ -38,9 +38,6 @@ class Transfer(object):
   progress = {}
   progress["total"] = up_total
   progress["current"] = up_current
-#  else:
-#   print "Killed function"
-#   return
   if progress["current"] == 0:
    progress["percent"] = 0
    self.transfer_rate = 0
@@ -94,14 +91,3 @@ class Upload(Transfer):
 
  def get_url(self):
   return json.loads(self.response['body'])['url']
-
-class Download(Transfer):
-
- def __init__(self, follow_location=True, *args, **kwargs):
-  super(Download, self).__init__(*args, **kwargs)
-  self.download_file = open(self.filename, 'wb')
-  self.curl.setopt(self.curl.WRITEFUNCTION, self.download_file.write)
-
- def complete_transfer(self):
-  self.download_file.close()
-  super(DownloadDialog, self).complete_transfer()

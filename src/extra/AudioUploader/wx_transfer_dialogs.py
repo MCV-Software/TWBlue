@@ -3,7 +3,7 @@ import wx
 from utils import *
 import widgetUtils
 
-class TransferDialog(widgetUtils.BaseDialog):
+class UploadDialog(widgetUtils.BaseDialog):
 
  def __init__(self, filename, *args, **kwargs):
   super(TransferDialog, self).__init__(parent=None, id=wx.NewId(), *args, **kwargs)
@@ -59,16 +59,3 @@ class TransferDialog(widgetUtils.BaseDialog):
  def get_response(self, fn):
   wx.CallAfter(fn, 0.01)
   self.ShowModal()
-
- def destroy(self):
-  self.Destroy()
-
-class UploadDialog(TransferDialog):
-
- def __init__(self, filename=None, *args, **kwargs):
-  super(UploadDialog, self).__init__(filename=filename, *args, **kwargs)
-
-class DownloadDialog(TransferDialog):
-
- def __init__(self, *args, **kwargs):
-  super(Download, self).__init__(*args, **kwargs)
