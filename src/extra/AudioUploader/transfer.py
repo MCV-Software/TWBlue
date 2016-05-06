@@ -5,7 +5,7 @@ import threading
 import time
 import json
 import logging
-from utils import *
+from utils import convert_bytes
 from pubsub import pub
 
 log = logging.getLogger("extra.AudioUploader.transfer")
@@ -20,7 +20,7 @@ class Transfer(object):
   self.completed_callback = completed_callback
   self.background_thread = None
   self.transfer_rate = 0
-  self.curl.setopt(self.curl.PROGRESSFUNCTION, self.progress_callback)
+  self.curl.setopt(self.curl.XFERINFOFUNCTION, self.progress_callback)
   self.curl.setopt(self.curl.URL, url)
   self.curl.setopt(self.curl.NOPROGRESS, 0)
   self.curl.setopt(self.curl.HTTP_VERSION, self.curl.CURL_HTTP_VERSION_1_0)
