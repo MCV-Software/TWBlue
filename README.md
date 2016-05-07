@@ -35,7 +35,6 @@ Although most dependencies can be found in the windows-dependencies directory, w
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
 * [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2.0
 * [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 220
-* [Pycurl](http://pycurl.sourceforge.net) 7.43.0 for Python 2.7: [downloads](https://pypi.python.org/pypi/pycurl/7.43.0)
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
 x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
 
@@ -63,6 +62,7 @@ setuptools installs a script, called easy_install. You can find it in the python
 * pypubsub
 * configobj
 * requests-oauthlib
+* requests-toolbelt
 * future
 * pygeocoder
 * suds
@@ -73,7 +73,7 @@ setuptools installs a script, called easy_install. You can find it in the python
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
 Run the following command to quickly install and upgrade all packages and their dependencies:
-easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib pypubsub pygeocoder arrow python-dateutil futures markdown microsofttranslator
+easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib requests-toolbelt pypubsub pygeocoder arrow==0.6 python-dateutil futures markdown microsofttranslator
 
 #### Other dependencies
 

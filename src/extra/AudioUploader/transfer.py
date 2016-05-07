@@ -1,43 +1,40 @@
 # -*- coding: utf-8 -*-
-import pycurl
 import sys
 import threading
 import time
-import json
 import logging
 from utils import convert_bytes
 from pubsub import pub
-
 log = logging.getLogger("extra.AudioUploader.transfer")
-class Transfer(object):
-
- def __init__(self, obj=None, url=None, filename=None, follow_location=True, completed_callback=None, verbose=False, *args, **kwargs):
-  self.url = url
-  self.filename = filename
+from requests_toolbelt.multipart.encoder import MultipartEncoder, MultipartEncoderMonitor
+import requests
+import os
+class Upload(object):
+ def __init__(self, field=None, obj=None, url=None, filename=None, follow_location=True, completed_callback=None, verbose=False, *args, **kwargs):
+  super(Upload, self).__init__(*args, **kwargs)
+  self.url=url
+  self.filename=filename
   log.debug("Uploading audio to %s, filename %s" % (url, filename))
-  self.curl = pycurl.Curl()
   self.start_time = None
   self.completed_callback = completed_callback
   self.background_thread = None
   self.transfer_rate = 0
-  self.curl.setopt(self.curl.XFERINFOFUNCTION, self.progress_callback)
-  self.curl.setopt(self.curl.URL, url)
-  self.curl.setopt(self.curl.NOPROGRESS, 0)
-  self.curl.setopt(self.curl.HTTP_VERSION, self.curl.CURL_HTTP_VERSION_1_0)
-  self.curl.setopt(self.curl.FOLLOWLOCATION, int(follow_location))
-  self.curl.setopt(self.curl.VERBOSE, int(verbose))
-  super(Transfer, self).__init__(*args, **kwargs)
-  self.obj = obj
+  self.m = MultipartEncoder(fields={field:(os.path.basename(self.filename), open(self.filename, 'rb'), "application/octet-stream")})
+  self.monitor = MultipartEncoderMonitor(self.m, self.progress_callback)
+  self.response=None
+  self.obj=obj
+  self.follow_location=follow_location
+  #the verbose parameter is deprecated and will be removed soon
 
  def elapsed_time(self):
   if not self.start_time:
    return 0
   return time.time() - self.start_time
 
- def progress_callback(self, down_total, down_current, up_total, up_current):
+ def progress_callback(self, monitor):
   progress = {}
-  progress["total"] = up_total
-  progress["current"] = up_current
+  progress["total"] = monitor.len
+  progress["current"] = monitor.bytes_read
   if progress["current"] == 0:
    progress["percent"] = 0
    self.transfer_rate = 0
@@ -54,8 +51,7 @@ class Transfer(object):
  def perform_transfer(self):
   log.debug("starting upload...")
   self.start_time = time.time()
-  self.curl.perform()
-  self.curl.close()
+  self.response=requests.post(url=self.url, data=self.monitor, headers={"Content-Type":self.m.content_type}, allow_redirects=self.follow_location, stream=True)
   log.debug("Upload finished.")
   self.complete_transfer()
 
@@ -66,28 +62,7 @@ class Transfer(object):
 
  def complete_transfer(self):
   if callable(self.completed_callback):
-   self.curl.close()
    self.completed_callback(self.obj)
 
-class Upload(Transfer):
-
- def __init__(self, field=None, filename=None, *args, **kwargs):
-  super(Upload, self).__init__(filename=filename, *args, **kwargs)
-  self.response = dict()
-  self.curl.setopt(self.curl.POST, 1)
-  if isinstance(filename, unicode):
-   local_filename = filename.encode(sys.getfilesystemencoding())
-  else:
-   local_filename = filename
-  self.curl.setopt(self.curl.HTTPPOST, [(field, (self.curl.FORM_FILE, local_filename, self.curl.FORM_FILENAME, filename.encode("utf-8")))])
-  self.curl.setopt(self.curl.HEADERFUNCTION, self.header_callback)
-  self.curl.setopt(self.curl.WRITEFUNCTION, self.body_callback)
-
- def header_callback(self, content):
-  self.response['header'] = content
-
- def body_callback(self, content):
-  self.response['body'] = content
-
  def get_url(self):
-  return json.loads(self.response['body'])['url']
+  return self.response.json()['url']
