@@ -70,3 +70,16 @@ def locale_path():
 @merge_paths
 def sound_path():
  return app_path(u"sounds")
+
+@merge_paths
+def com_path():
+ global mode, directory
+ if mode == "portable":
+  if directory != None: path = os.path.join(directory, "com_cache")
+  elif directory == None: path = app_path(u"com_cache")
+ elif mode == "installed":
+  path = data_path(u"com_cache")
+ if not os.path.exists(path):
+  log.debug("%s path does not exist, creating..." % (path,))
+  os.mkdir(path)
+ return path
