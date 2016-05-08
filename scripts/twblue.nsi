@@ -14,8 +14,8 @@ SetDatablockOptimize on
 VIAddVersionKey ProductName "TWBlue"
 VIAddVersionKey LegalCopyright "Copyright 2016 Manuel Cortéz."
 VIAddVersionKey ProductVersion "0.82"
-VIAddVersionKey FileVersion "0.81"
-VIProductVersion "0.81.0.0"
+VIAddVersionKey FileVersion "0.82"
+VIProductVersion "0.82.0.0"
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_RADIOBUTTONS
 !insertmacro MUI_PAGE_LICENSE "license.txt"
@@ -72,7 +72,7 @@ WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall" "Publishe
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "DisplayVersion" "0.82"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "URLInfoAbout" "http://twblue.es"
 WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "VersionMajor" 0
-WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "VersionMinor" 80
+WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "VersionMinor" 82
 WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "NoModify" 1
 WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "NoRepair" 1
 SectionEnd
