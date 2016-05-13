@@ -44,6 +44,15 @@ class sessionManagerController(object):
     log.debug("Adding session %s" % (i,))
     strconfig = "%s/session.conf" % (paths.config_path(i))
     config_test = config_utils.load_config(strconfig)
+    if len(config_test) == 0:
+     try:
+      log.debug("Deleting session %s" % (i,))
+      shutil.rmtree(paths.config_path(i))
+      continue
+     except:
+      output.speak("An exception was raised while attempting to clean malformed session data. See the error log for details. If this message persists, contact the developers.",True)
+      os.exception("Exception thrown while removing malformed session")
+      continue
     name = config_test["twitter"]["user_name"]
     if config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
      sessionsList.append(name)
