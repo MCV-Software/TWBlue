@@ -14,6 +14,7 @@ This map is organized the order functions are documented at:
 https://dev.twitter.com/docs/api/1.1
 """
 
+import json
 import os
 import warnings
 try:
@@ -145,7 +146,10 @@ class EndpointsMixin(object):
         return self.post('https://upload.twitter.com/1.1/media/upload.json', params=params)
 
     def set_description(self, **params):
-        return self.post('media/metadata/create', params=params)
+    """ Adds a description to an image."""
+        # This method only accepts strings, no dictionaries.
+        params = json.dumps(params)
+        return self.post("media/metadata/create", params=params)
 
     def upload_video(self, media, media_type, size=None):
         """Uploads video file to Twitter servers in chunks. The file will be available to be attached
