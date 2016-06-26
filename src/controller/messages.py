@@ -165,24 +165,32 @@ class dm(basicTweet):
 
 class viewTweet(basicTweet):
  def __init__(self, tweet, tweetList, is_tweet=True):
+  """ This represents a tweet displayer. However it could be used for showing something wich is not a tweet, like a direct message or an event.
+   param tweet: A dictionary that represents a full tweet or a string for non-tweets.
+   param tweetList: If is_tweet is set to True, this could be a list of quoted tweets.
+   param is_tweet: True or false, depending wether the passed object is a tweet or not."""
   if is_tweet == True:
    image_description = []
    text = ""
    for i in xrange(0, len(tweetList)):
+    # tweets with message keys are longer tweets, the message value is the full messaje taken from twishort.
     if tweetList[i].has_key("message"):
      value = "message"
     else:
      value = "text"
     if tweetList[i].has_key("retweeted_status"):
-     text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"][value])
+     text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i][value])
     else:
      text = text + "@%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i][value])
+    # tweets with extended_entities could include image descriptions.
     if tweetList[i].has_key("extended_entities") and tweetList[i]["extended_entities"].has_key("media"):
      for z in tweetList[i]["extended_entities"]["media"]:
       if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
+   # set rt and likes counters.
    rt_count = str(tweet["retweet_count"])
    favs_count = str(tweet["favorite_count"])
+   # Gets the client from where this tweet was made.
    source = str(re.sub(r"(?s)<.*?>", "", tweet["source"].encode("utf-8")))
    if text == "":
     if tweet.has_key("message"):
@@ -190,7 +198,7 @@ class viewTweet(basicTweet):
     else:
      value = "text"
     if tweet.has_key("retweeted_status"):
-     text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
+     text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet[value])
     else:
      text = tweet[value]
    text = self.clear_text(text)

@@ -49,6 +49,7 @@ class bufferController(object):
 
 
  def get_event(self, ev):
+  """ Catches key presses in the WX interface and generate the corresponding event names."""
   if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
   elif ev.GetKeyCode() == wx.WXK_RETURN: event = "url"
   elif ev.GetKeyCode() == wx.WXK_F5: event = "volume_down"
@@ -143,14 +144,14 @@ class bufferController(object):
    if tweet.image == None:
     call_threaded(self.session.api_call, call_name="update_status", status=text)
    else:
-    call_threaded(self.post_with_media, text=text, image=tweet.image)
+    call_threaded(self.post_with_media, text=text, image=tweet.image, description="test")
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
 
  def post_with_media(self, text="", image=None, description=None):
   if image != None:
    img = self.session.twitter.twitter.upload_media(media=image)
-#   if description != None:
-#    self.session.twitter.twitter.set_description(media_id=img["media_id"], alt_text=description)
+   if description != None:
+    self.session.twitter.twitter.set_description(media_id=img["media_id"], alt_text=dict(text=description))
    self.session.api_call(call_name="update_status", status=text, media_ids=img["media_id"])
 
  def save_positions(self):
@@ -249,9 +250,9 @@ class baseBufferController(bufferController):
   tweet = self.get_right_tweet()
   tweetsList = []
   tweet_id = tweet["id"]
-  uri = None
-  if tweet.has_key("long_uri"):
-   uri = tweet["long_uri"]
+  message = None
+  if tweet.has_key("message"):
+   message = tweet["message"]
   try:
    tweet = self.session.twitter.twitter.show_status(id=tweet_id, include_ext_alt_text=True)
    urls = utils.find_urls_in_text(tweet["text"])
@@ -261,8 +262,8 @@ class baseBufferController(bufferController):
   except TwythonError as e:
    utils.twitter_error(e)
    return
-  if uri != None:
-   tweet["text"] = twishort.get_full_text(uri)
+  if message != None:
+   tweet["message"] = message
   l = tweets.is_long(tweet)
   while l != False:
    tweetsList.append(tweet)

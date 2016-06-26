@@ -146,7 +146,7 @@ class EndpointsMixin(object):
         return self.post('https://upload.twitter.com/1.1/media/upload.json', params=params)
 
     def set_description(self, **params):
-    """ Adds a description to an image."""
+        """ Adds a description to an image."""
         # This method only accepts strings, no dictionaries.
         params = json.dumps(params)
         return self.post("media/metadata/create", params=params)

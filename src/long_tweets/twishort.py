@@ -51,5 +51,4 @@ def create_tweet(user_token, user_secret, text, media=0):
  "text": text.encode("utf-8"),
  "media": media}
  response = requests.post(url, data=data)
-# print response.json()
  return response.json()["text_to_tweet"]
