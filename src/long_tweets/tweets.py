@@ -18,15 +18,10 @@
 ############################################################
 from twitter import utils
 
-def get_id(url):
- return url.split("/")[-1]
-
 def is_long(tweet):
- long = False
- for url in range(0, len(tweet["entities"]["urls"])):
-  if "twitter.com" in tweet["entities"]["urls"][url]["expanded_url"]:
-   long = get_id(tweet["entities"]["urls"][url]["expanded_url"])
- return long
+ if tweet.has_key("is_quote_status") and tweet["is_quote_status"] == True:
+  return tweet["quoted_status_id"]
+ return False
 
 def clear_url(tweet):
  urls = utils.find_urls_in_text(tweet["text"])

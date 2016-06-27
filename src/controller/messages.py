@@ -174,12 +174,15 @@ class viewTweet(basicTweet):
    text = ""
    for i in xrange(0, len(tweetList)):
     # tweets with message keys are longer tweets, the message value is the full messaje taken from twishort.
-    if tweetList[i].has_key("message"):
+    if tweetList[i].has_key("message") and tweetList[i]["is_quote_status"] == False:
      value = "message"
     else:
      value = "text"
-    if tweetList[i].has_key("retweeted_status"):
-     text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i][value])
+    if tweetList[i].has_key("retweeted_status") and tweetList[i]["is_quote_status"] == False:
+     if tweetList[i].has_key("message") == False:
+      text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["text"])
+     else:
+      text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i][value])
     else:
      text = text + "@%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i][value])
     # tweets with extended_entities could include image descriptions.
@@ -198,7 +201,10 @@ class viewTweet(basicTweet):
     else:
      value = "text"
     if tweet.has_key("retweeted_status"):
-     text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet[value])
+     if tweet.has_key("message") == False:
+      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
+     else:
+      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet[value])
     else:
      text = tweet[value]
    text = self.clear_text(text)

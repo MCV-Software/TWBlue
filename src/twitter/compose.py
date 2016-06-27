@@ -50,9 +50,11 @@ def compose_tweet(tweet, db, relative_times):
  elif tweet.has_key("user"):
   user = tweet["user"]["name"]
   source = re.sub(r"(?s)<.*?>", "", tweet["source"])
-  try: text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet[value]))
-  except KeyError: pass
-#text = "%s" % (StripChars(tweet["text"]))
+  if tweet.has_key("retweeted_status"):
+   if tweet.has_key("message") == False:
+    text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet["retweeted_status"]["text"]))
+   else:
+    text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet[value]))
   if text[-1] in chars: text=text+"."
  urls = utils.find_urls_in_text(text)
  for url in range(0, len(urls)):

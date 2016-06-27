@@ -426,7 +426,6 @@ class Session(object):
  def check_quoted_status(self, tweet):
   status = tweets.is_long(tweet)
   if status != False:
-   tweet["quoted"] = 1
    tweet = self.get_quoted_tweet(tweet)
   return tweet
 
@@ -437,8 +436,7 @@ class Session(object):
   for url in range(0, len(urls)):
    try:  quoted_tweet["text"] = quoted_tweet["text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
    except IndexError: pass
-  l = tweets.is_long(quoted_tweet)
-  id = tweets.get_id(l)
+  id = tweets.is_long(quoted_tweet)
   try: original_tweet = self.twitter.twitter.show_status(id=id)
   except: return quoted_tweet
   urls = utils.find_urls_in_text(original_tweet["text"])
