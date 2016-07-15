@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 import platform
+import attach
 system = platform.system()
 import widgetUtils
 import output
@@ -32,6 +33,7 @@ class basicTweet(object):
   widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
   widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
   widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
+  self.attachments = []
 
  def translate(self, event=None):
   dlg = translator.gui.translateDialog()
@@ -125,16 +127,9 @@ class tweet(basicTweet):
    except AttributeError: pass
 
  def upload_image(self, *args, **kwargs):
-  if self.message.get("upload_image") == _(u"Discard image"):
-   del self.image
-   self.image = None
-   output.speak(_(u"Discarded"))
-   self.message.set("upload_image", _(u"Upload a picture"))
-  else:
-   self.image = self.message.get_image()
-   if self.image != None:
-    self.message.set("upload_image", _(u"Discard image"))
-  self.message.text_focus()
+  a = attach.attach()
+  if len(a.attachments) != 0:
+   self.attachments = a.attachments
 
  def autocomplete_users(self, *args, **kwargs):
   c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
@@ -184,7 +179,7 @@ class viewTweet(basicTweet):
      else:
       text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i][value])
     else:
-     text = text + "@%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i][value])
+     text = text + " @%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i][value])
     # tweets with extended_entities could include image descriptions.
     if tweetList[i].has_key("extended_entities") and tweetList[i]["extended_entities"].has_key("media"):
      for z in tweetList[i]["extended_entities"]["media"]:
@@ -234,5 +229,5 @@ class viewTweet(basicTweet):
   urls = utils.find_urls_in_text(text)
   for i in urls:
    if "https://twitter.com/" in i:
-    text = text.replace(i, "")
+    text = text.replace(i, "\n")
   return text

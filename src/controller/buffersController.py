@@ -137,22 +137,24 @@ class bufferController(object):
    self.session.settings["mysc"]["twishort_enabled"] = tweet.message.long_tweet.GetValue()
    text = tweet.message.get_text()
    if len(text) > 140 and tweet.message.get("long_tweet") == True:
-    if tweet.image == None:
+    if not hasattr(tweet, "attachments"):
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
     else:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
-   if tweet.image == None:
+   if not hasattr(tweet, "attachments"):
     call_threaded(self.session.api_call, call_name="update_status", status=text)
    else:
-    call_threaded(self.post_with_media, text=text, image=tweet.image, description="test")
+    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments)
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
 
- def post_with_media(self, text="", image=None, description=None):
-  if image != None:
-   img = self.session.twitter.twitter.upload_media(media=image)
-   if description != None:
-    self.session.twitter.twitter.set_description(media_id=img["media_id"], alt_text=dict(text=description))
-   self.session.api_call(call_name="update_status", status=text, media_ids=img["media_id"])
+ def post_with_media(self, text, attachments):
+  media_ids = []
+  for i in attachments:
+   photo = open(i["file"], "rb")
+   img = self.session.twitter.twitter.upload_media(media=photo)
+   self.session.twitter.twitter.set_description(media_id=img["media_id"], alt_text=dict(text=i["description"]))
+   media_ids.append(img["media_id"])
+  self.session.twitter.twitter.update_status(status=text, media_ids=media_ids)
 
  def save_positions(self):
   try:
