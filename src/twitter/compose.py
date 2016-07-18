@@ -51,7 +51,7 @@ def compose_tweet(tweet, db, relative_times):
   user = tweet["user"]["name"]
   source = re.sub(r"(?s)<.*?>", "", tweet["source"])
   if tweet.has_key("retweeted_status"):
-   if tweet.has_key("message") == False or tweet["retweeted_status"]["is_quote_status"] == False:
+   if tweet.has_key("message") == False and tweet["retweeted_status"]["is_quote_status"] == False:
     text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet["retweeted_status"]["text"]))
    elif tweet["retweeted_status"]["is_quote_status"]:
     text = "%s" % (StripChars(tweet[value]))

@@ -19,7 +19,7 @@
 from twitter import utils
 
 def is_long(tweet):
- if tweet.has_key("is_quote_status") and tweet["is_quote_status"] == True:
+ if tweet.has_key("is_quote_status") and tweet["is_quote_status"] == True and tweet.has_key("quoted_status"):
   return tweet["quoted_status_id"]
  return False
 
