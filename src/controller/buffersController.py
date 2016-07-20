@@ -377,9 +377,11 @@ class baseBufferController(bufferController):
      tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
      self.buffer.list.insert_item(False, *tweet)
    else:
-    for i in self.session.db[self.name][0:number_of_items]:
+    items = self.session.db[self.name][0:number_of_items]
+    items.reverse()
+    for i in items:
      tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
-     self.buffer.list.insert_item(False, *tweet)
+     self.buffer.list.insert_item(True, *tweet)
   log.debug("Now the list contains %d items " % (self.buffer.list.get_count(),))
 
  def add_new_item(self, item):
