@@ -1082,10 +1082,10 @@ class trendsBufferController(bufferController):
 
 class conversationBufferController(searchBufferController):
 
- def start_stream(self, start=False):
+ def start_stream(self, start=False, mandatory=False):
   # starts stream every 3 minutes.
   current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
    self.execution_time = current_time
    if start == True:
     self.statuses = []
