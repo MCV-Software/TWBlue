@@ -984,10 +984,10 @@ class trendsBufferController(bufferController):
   self.get_formatted_message = self.get_message
   self.reply = self.search_topic
 
- def start_stream(self):
+ def start_stream(self, mandatory=False):
   # starts stream every 3 minutes.
   current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180:
+  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
    self.execution_time = current_time
    try:
     data = self.session.call_paged("get_place_trends", id=self.trendsFor)
@@ -1032,6 +1032,9 @@ class trendsBufferController(bufferController):
     return True
   elif dlg == widgetUtils.NO:
    return False
+
+ def url(self, *args, **kwargs):
+  self.tweet_about_this_trend()
 
  def search_topic(self, *args, **kwargs):
   topic = self.trends[self.buffer.list.get_selected()]["name"]
