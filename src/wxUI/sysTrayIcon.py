@@ -36,7 +36,6 @@ class SysTrayIcon(wx.TaskBarIcon):
 		self.update_profile = self.menu.Append(wx.ID_ANY, _(u"Update &profile"))
 		self.show_hide = self.menu.Append(wx.ID_ANY, _(u"&Show / hide"))
 		self.doc = self.menu.Append(wx.ID_ANY, _(u"&Documentation"))
-		self.doc.Enable(False)
 		self.check_for_updates = self.menu.Append(wx.ID_ANY, _(u"Check for &updates"))
 		self.exit = self.menu.Append(wx.ID_ANY, _(u"&Exit"))
 
