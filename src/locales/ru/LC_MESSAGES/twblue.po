@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2016-07-23 16:02+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-06-26 02:57+0200\n"
+"PO-Revision-Date: 2016-07-23 20:00-0600\n"
 "Last-Translator: Наталья Хедлунд <natalia.hedlund@gmail.com>\n"
 "Language-Team: Alexander Jaszyn <a.jaszyn@ya.ru>\n"
 "Language: ru\n"
@@ -14,14 +14,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.6.11\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../src\controller\attach.py:23
 msgid "Photo"
-msgstr ""
+msgstr "Фото"
 
 #: ../src\controller\buffersController.py:90
 #: ../src\controller\mainController.py:1483
@@ -163,7 +163,7 @@ msgstr "Ленты"
 #: ../src\controller\mainController.py:342
 #: ../src\controller\mainController.py:799
 msgid "Timeline for {}"
-msgstr "Лента твитов %s "
+msgstr "Лента твитов {0} "
 
 #: ../src\controller\mainController.py:345
 msgid "Likes timelines"
@@ -208,7 +208,7 @@ msgstr "Результаты поиска"
 #: ../src\controller\mainController.py:384
 #: ../src\controller\mainController.py:446
 msgid "Search for {}"
-msgstr "Поиск"
+msgstr "Поиск {}"
 
 #: ../src\controller\mainController.py:394
 #: ../src\controller\mainController.py:894
@@ -331,7 +331,7 @@ msgstr "Обновление буфера..."
 
 #: ../src\controller\mainController.py:1489
 msgid "{0} items retrieved"
-msgstr "Показано %s элементов "
+msgstr "Показано {0} элементов "
 
 #: ../src\controller\messages.py:47
 msgid "Translated"
@@ -359,7 +359,7 @@ msgstr "%s - %s из %d символов"
 
 #: ../src\controller\messages.py:97
 msgid "%s - %s characters"
-msgstr "%s - %s из %d символов"
+msgstr "%s - %d символов"
 
 #: ../src\controller\messages.py:114
 msgid "Unable to upload the audio"
@@ -387,7 +387,8 @@ msgstr "Параметры аккаунта %s"
 msgid "Information for %s"
 msgstr "Информация о %s"
 
-#: ../src\controller\user.py:55 ../src\extra\AudioUploader\audioUploader.py:126
+#: ../src\controller\user.py:55
+#: ../src\extra\AudioUploader\audioUploader.py:126
 msgid "Discarded"
 msgstr "Отменено"
 
@@ -2116,33 +2117,32 @@ msgstr "узнать местоположение"
 #: ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
 msgstr ""
+"Прикрепить вложени\n"
+"е"
 
 #: ../src\wxUI\dialogs\attach.py:12
-#, fuzzy
 msgid "Attachments"
-msgstr "Добавить"
+msgstr "Вложения"
 
 #: ../src\wxUI\dialogs\attach.py:13
 msgid "Title"
-msgstr ""
+msgstr "Название"
 
 #: ../src\wxUI\dialogs\attach.py:13
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: ../src\wxUI\dialogs\attach.py:18
-#, fuzzy
 msgid "Add attachments"
-msgstr "Добавить клиент"
+msgstr "Добавить вложения"
 
 #: ../src\wxUI\dialogs\attach.py:19
 msgid "&Photo"
-msgstr ""
+msgstr "Фото"
 
 #: ../src\wxUI\dialogs\attach.py:20
-#, fuzzy
 msgid "Remove attachment"
-msgstr "Удалить  клиент"
+msgstr "Удалить  вложение"
 
 #: ../src\wxUI\dialogs\attach.py:36 ../src\wxUI\dialogs\message.py:117
 #: ../src\wxUI\dialogs\message.py:176 ../src\wxUI\dialogs\update_profile.py:80
@@ -2155,9 +2155,8 @@ msgid "Select the picture to be uploaded"
 msgstr "Выберите картинку, которую желаете загрузить"
 
 #: ../src\wxUI\dialogs\attach.py:43
-#, fuzzy
 msgid "please provide a description"
-msgstr "Описание"
+msgstr "Сделайте описание"
 
 #: ../src\wxUI\dialogs\attach.py:43 ../src\wxUI\dialogs\lists.py:13
 #: ../src\wxUI\dialogs\lists.py:69
@@ -2201,9 +2200,8 @@ msgid "Keymap"
 msgstr "Клавиатурные команды"
 
 #: ../src\wxUI\dialogs\configuration.py:41
-#, fuzzy
 msgid "Check for updates when {0} launches"
-msgstr "Произносить приветствие при запуске {0}"
+msgstr "Проверять на наличие обновлений при запуске {0}"
 
 #: ../src\wxUI\dialogs\configuration.py:51
 msgid "Proxy server: "
@@ -2396,37 +2394,36 @@ msgid "Save"
 msgstr "Сохранить"
 
 #: ../src\wxUI\dialogs\filters.py:10
-#, fuzzy
 msgid "Create a filter  for this buffer"
-msgstr "Просмотр популярных тем"
+msgstr "Создать фильтр для этого буфера"
 
 #: ../src\wxUI\dialogs\filters.py:11
 msgid "Contains"
-msgstr ""
+msgstr "Содержит"
 
 #: ../src\wxUI\dialogs\filters.py:12
 msgid "Doesn't contain"
-msgstr ""
+msgstr "Не содержит"
 
 #: ../src\wxUI\dialogs\filters.py:17
 msgid "word"
-msgstr ""
+msgstr "Слово"
 
 #: ../src\wxUI\dialogs\filters.py:26
 msgid "Use this term as a regular expression"
-msgstr ""
+msgstr "Использовать этот термин как регулярное выражение"
 
 #: ../src\wxUI\dialogs\filters.py:28
 msgid "Load tweets in the following languages"
-msgstr ""
+msgstr "Загружать твиты на следующих языках"
 
 #: ../src\wxUI\dialogs\filters.py:29
 msgid "Ignore tweets in the following languages"
-msgstr ""
+msgstr "Игнорировать твиты на следующих языках"
 
 #: ../src\wxUI\dialogs\filters.py:30
 msgid "Don't filter by language"
-msgstr ""
+msgstr "Не фильтровать по языку"
 
 #: ../src\wxUI\dialogs\find.py:10
 msgid "Find in current buffer"
@@ -2554,26 +2551,23 @@ msgstr "Перевести"
 
 #: ../src\wxUI\dialogs\message.py:82 ../src\wxUI\dialogs\message.py:142
 #: ../src\wxUI\dialogs\message.py:187
-#, fuzzy
 msgid "Auto&complete users"
-msgstr "&Автозаполнение"
+msgstr "&Автозаполнение пользователей"
 
 #: ../src\wxUI\dialogs\message.py:83 ../src\wxUI\dialogs\message.py:143
 #: ../src\wxUI\dialogs\message.py:202
 msgid "Sen&d"
-msgstr ""
+msgstr "Отправи&ть"
 
 #: ../src\wxUI\dialogs\message.py:85 ../src\wxUI\dialogs\message.py:145
 #: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:298
 #: ../src\wxUI\dialogs\message.py:360
-#, fuzzy
 msgid "C&lose"
-msgstr "Закрыть"
+msgstr "За&крыть"
 
 #: ../src\wxUI\dialogs\message.py:185
-#, fuzzy
 msgid "&Recipient"
-msgstr "Получатель"
+msgstr "П&олучатель"
 
 #: ../src\wxUI\dialogs\message.py:237
 msgid "&Mention to all"
