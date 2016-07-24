@@ -54,7 +54,7 @@ def get_data():
 
 def get_documentation ():
 	answer = [("documentation", ["documentation/license.txt"])]
-	depth = 9
+	depth = 10
 	for root, dirs, files in os.walk('documentation'):
 		if depth == 0:
 			break
