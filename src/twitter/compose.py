@@ -58,10 +58,11 @@ def compose_tweet(tweet, db, relative_times):
    else:
     text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet[value]))
   if text[-1] in chars: text=text+"."
- urls = utils.find_urls_in_text(text)
- for url in range(0, len(urls)):
-  try:  text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
-  except IndexError: pass
+ if tweet.has_key("message") == False:
+  urls = utils.find_urls_in_text(text)
+  for url in range(0, len(urls)):
+   try:  text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
+   except IndexError: pass
   if config.app['app-settings']['handle_longtweets']: pass
 #   return [user+", ", text, ts+", ", source]
  return [user+", ", text, ts+", ", source]
@@ -75,7 +76,10 @@ def compose_quoted_tweet(quoted_tweet, original_tweet):
  except KeyError: text = "%s" % (StripChars(quoted_tweet["text"]))
  if text[-1] in chars: text=text+"."
  original_user = original_tweet["user"]["screen_name"]
- original_text = StripChars(original_tweet["text"])
+ if original_tweet.has_key("message"):
+  original_text = StripChars(original_tweet["message"])
+ else:
+  original_text = StripChars(original_tweet["text"])
  try: original_text = "rt @%s: %s" % (original_tweet["retweeted_status"]["user"]["screen_name"], StripChars(original_tweet["retweeted_status"]["text"]))
  except KeyError: original_text = "%s" % (StripChars(original_tweet["text"]))
  quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}").format( quoted_tweet["text"], original_user, original_text)
