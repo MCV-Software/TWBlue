@@ -1314,7 +1314,7 @@ class Controller(object):
    s.timelinesStream.disconnect()
    del s.timelinesStream
   s.counter = 0
-  s.reconnection_function_active = False
+#  s.reconnection_function_active = False
 #  for i in self.buffers:
 #   if i.invisible == True and i.session.session_id == s.session_id and i.type != "people":
 #    i.start_stream()

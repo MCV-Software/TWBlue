@@ -100,7 +100,9 @@ class bufferController(object):
   return False
 
  def remove_item(self, item):
+  f = self.buffer.list.get_selected()
   self.buffer.list.remove_item(item)
+  self.buffer.list.select_item(f)
 
  def bind_events(self):
   pass

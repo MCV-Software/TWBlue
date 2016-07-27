@@ -353,7 +353,7 @@ class Session(object):
    self.logged = False
    self.twitter = twitter.twitter.twitter()
    self.login(False)
-   pub.sendMessage("restart_streams", session=self.session_id)
+#   pub.sendMessage("restart_streams", session=self.session_id)
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
   if not hasattr(self, "main_stream"):
@@ -429,7 +429,6 @@ class Session(object):
    tweet = self.get_quoted_tweet(tweet)
   return tweet
 
-
  def get_quoted_tweet(self, tweet):
   quoted_tweet = tweet
   urls = utils.find_urls_in_text(quoted_tweet["text"])
@@ -439,6 +438,7 @@ class Session(object):
   id = tweets.is_long(quoted_tweet)
   try: original_tweet = self.twitter.twitter.show_status(id=id)
   except: return quoted_tweet
+  original_tweet = self.check_long_tweet(original_tweet)
   urls = utils.find_urls_in_text(original_tweet["text"])
   for url in range(0, len(urls)):
    try:  original_tweet["text"] = original_tweet["text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
