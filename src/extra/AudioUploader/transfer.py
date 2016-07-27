@@ -19,7 +19,10 @@ class Upload(object):
   self.completed_callback = completed_callback
   self.background_thread = None
   self.transfer_rate = 0
-  self.m = MultipartEncoder(fields={field:(os.path.basename(self.filename), open(self.filename, 'rb'), "application/octet-stream")})
+  self.local_filename=os.path.basename(self.filename)
+  if isinstance(self.local_filename, unicode):
+    self.local_filename=self.local_filename.encode(sys.getfilesystemencoding())
+  self.m = MultipartEncoder(fields={field:(self.local_filename, open(self.filename, 'rb'), "application/octet-stream")})
   self.monitor = MultipartEncoderMonitor(self.m, self.progress_callback)
   self.response=None
   self.obj=obj
