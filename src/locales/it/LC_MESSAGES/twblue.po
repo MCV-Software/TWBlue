@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2016-07-23 16:02+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-04-04 10:25+0100\n"
+"PO-Revision-Date: 2016-07-25 12:20+0100\n"
 "Last-Translator: Chris Leo Mameli <llajta2012@gmail.com>\n"
 "Language-Team: Christian Leo Mameli\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: ../src\controller\attach.py:23
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 #: ../src\controller\buffersController.py:90
 #: ../src\controller\mainController.py:1483
@@ -384,7 +384,8 @@ msgstr "Impostazioni Account per %s"
 msgid "Information for %s"
 msgstr "Informazioni per %s"
 
-#: ../src\controller\user.py:55 ../src\extra\AudioUploader\audioUploader.py:126
+#: ../src\controller\user.py:55
+#: ../src\extra\AudioUploader\audioUploader.py:126
 msgid "Discarded"
 msgstr "Scartato"
 
@@ -2125,34 +2126,31 @@ msgstr "Geolocalizzazione data: {0}"
 
 #: ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
-msgstr ""
+msgstr "Aggiungi allegato"
 
 #: ../src\wxUI\dialogs\attach.py:12
-#, fuzzy
 msgid "Attachments"
-msgstr "Allega"
+msgstr "Allegati"
 
 #: ../src\wxUI\dialogs\attach.py:13
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: ../src\wxUI\dialogs\attach.py:13
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: ../src\wxUI\dialogs\attach.py:18
-#, fuzzy
 msgid "Add attachments"
-msgstr "Aggiungi client"
+msgstr "Aggiungi allegato"
 
 #: ../src\wxUI\dialogs\attach.py:19
 msgid "&Photo"
-msgstr ""
+msgstr "&Foto"
 
 #: ../src\wxUI\dialogs\attach.py:20
-#, fuzzy
 msgid "Remove attachment"
-msgstr "Rimuovi client"
+msgstr "Rimuovi allegato"
 
 #: ../src\wxUI\dialogs\attach.py:36 ../src\wxUI\dialogs\message.py:117
 #: ../src\wxUI\dialogs\message.py:176 ../src\wxUI\dialogs\update_profile.py:80
@@ -2165,9 +2163,8 @@ msgid "Select the picture to be uploaded"
 msgstr "Seleziona l'immagine da caricare"
 
 #: ../src\wxUI\dialogs\attach.py:43
-#, fuzzy
 msgid "please provide a description"
-msgstr "Descrizione Immagine"
+msgstr "Aggiungi una descrizione"
 
 #: ../src\wxUI\dialogs\attach.py:43 ../src\wxUI\dialogs\lists.py:13
 #: ../src\wxUI\dialogs\lists.py:69
@@ -2212,9 +2209,8 @@ msgid "Keymap"
 msgstr "Keymap"
 
 #: ../src\wxUI\dialogs\configuration.py:41
-#, fuzzy
 msgid "Check for updates when {0} launches"
-msgstr "Avvisa con un messaggio {0} all'avvio"
+msgstr "Controlla aggiornamenti all'avvio di {0} "
 
 #: ../src\wxUI\dialogs\configuration.py:51
 msgid "Proxy server: "
@@ -2410,37 +2406,36 @@ msgid "Save"
 msgstr "Salva"
 
 #: ../src\wxUI\dialogs\filters.py:10
-#, fuzzy
 msgid "Create a filter  for this buffer"
-msgstr "Crea un buffer per gli argomenti di tendenza"
+msgstr "Crea un filtro per questo buffer"
 
 #: ../src\wxUI\dialogs\filters.py:11
 msgid "Contains"
-msgstr ""
+msgstr "Contenuto"
 
 #: ../src\wxUI\dialogs\filters.py:12
 msgid "Doesn't contain"
-msgstr ""
+msgstr "Senza contenuto"
 
 #: ../src\wxUI\dialogs\filters.py:17
 msgid "word"
-msgstr ""
+msgstr "Parola"
 
 #: ../src\wxUI\dialogs\filters.py:26
 msgid "Use this term as a regular expression"
-msgstr ""
+msgstr "Usa questo elemento come espressione regolare"
 
 #: ../src\wxUI\dialogs\filters.py:28
 msgid "Load tweets in the following languages"
-msgstr ""
+msgstr "Carica i tweet nelle seguenti lingue"
 
 #: ../src\wxUI\dialogs\filters.py:29
 msgid "Ignore tweets in the following languages"
-msgstr ""
+msgstr "Ignora i tweet nelle seguenti lingue"
 
 #: ../src\wxUI\dialogs\filters.py:30
 msgid "Don't filter by language"
-msgstr ""
+msgstr "Non filtrare per lingua"
 
 #: ../src\wxUI\dialogs\find.py:10
 msgid "Find in current buffer"
@@ -2568,26 +2563,23 @@ msgstr "&Traduci..."
 
 #: ../src\wxUI\dialogs\message.py:82 ../src\wxUI\dialogs\message.py:142
 #: ../src\wxUI\dialogs\message.py:187
-#, fuzzy
 msgid "Auto&complete users"
 msgstr "&completamento automatico per gli utenti"
 
 #: ../src\wxUI\dialogs\message.py:83 ../src\wxUI\dialogs\message.py:143
 #: ../src\wxUI\dialogs\message.py:202
 msgid "Sen&d"
-msgstr ""
+msgstr "In&via"
 
 #: ../src\wxUI\dialogs\message.py:85 ../src\wxUI\dialogs\message.py:145
 #: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:298
 #: ../src\wxUI\dialogs\message.py:360
-#, fuzzy
 msgid "C&lose"
-msgstr "Chiudi"
+msgstr "&Chiudi"
 
 #: ../src\wxUI\dialogs\message.py:185
-#, fuzzy
 msgid "&Recipient"
-msgstr "Destinatario"
+msgstr "Destinata&rio"
 
 #: ../src\wxUI\dialogs\message.py:237
 msgid "&Mention to all"

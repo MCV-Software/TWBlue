@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2016-07-23 16:02+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-07-23 20:00-0600\n"
+"PO-Revision-Date: 2016-07-24 15:59+0200\n"
 "Last-Translator: Наталья Хедлунд <natalia.hedlund@gmail.com>\n"
 "Language-Team: Alexander Jaszyn <a.jaszyn@ya.ru>\n"
 "Language: ru\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.6.11\n"
+"X-Generator: Poedit 1.8.8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -129,7 +129,7 @@ msgstr "Отправленные твиты"
 #: ../src\controller\mainController.py:315
 #: ../src\controller\mainController.py:1334
 msgid "Likes"
-msgstr "Избранное"
+msgstr "Понравившееся"
 
 #: ../src\controller\mainController.py:319
 #: ../src\controller\mainController.py:1339
@@ -167,12 +167,12 @@ msgstr "Лента твитов {0} "
 
 #: ../src\controller\mainController.py:345
 msgid "Likes timelines"
-msgstr "Ленты Избранного"
+msgstr "Понравившиеся ленты"
 
 #: ../src\controller\mainController.py:349
 #: ../src\controller\mainController.py:814
 msgid "Likes for {}"
-msgstr "Избранное для {}"
+msgstr "Понравившееся от"
 
 #: ../src\controller\mainController.py:354
 msgid "Followers' Timelines"
@@ -387,8 +387,7 @@ msgstr "Параметры аккаунта %s"
 msgid "Information for %s"
 msgstr "Информация о %s"
 
-#: ../src\controller\user.py:55
-#: ../src\extra\AudioUploader\audioUploader.py:126
+#: ../src\controller\user.py:55 ../src\extra\AudioUploader\audioUploader.py:126
 msgid "Discarded"
 msgstr "Отменено"
 
@@ -450,7 +449,7 @@ msgstr "Твитов: %s\n"
 
 #: ../src\controller\user.py:111
 msgid "Likes: %s"
-msgstr "Твитов в избранном: %s"
+msgstr "Понравившихся: %s"
 
 #: ../src\controller\userActionsController.py:75
 msgid "You can't ignore direct messages"
@@ -621,11 +620,11 @@ msgstr "Ошибка"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
 msgid "Tweet liked."
-msgstr "Твит добавлен в избранное."
+msgstr "Твит отмечен как понравившийся."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "Likes buffer updated."
-msgstr "Избранное обновлено"
+msgstr "Буфер Понравившееся обновлен"
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
 msgid "Geotweet."
@@ -1396,11 +1395,11 @@ msgstr "Отправить личное сообщение"
 
 #: ../src\keystrokeEditor\constants.py:14
 msgid "Like a tweet"
-msgstr "Добавить твит в Избранное"
+msgstr "Нравится"
 
 #: ../src\keystrokeEditor\constants.py:15
 msgid "Unlike a tweet"
-msgstr "Удалить твит из Избранного"
+msgstr "Не нравится"
 
 #: ../src\keystrokeEditor\constants.py:16
 msgid "Open the user actions dialogue"
@@ -2773,7 +2772,7 @@ msgstr "Твиты"
 
 #: ../src\wxUI\dialogs\userSelection.py:20
 msgid "&Likes"
-msgstr "Твиты в избранном: %s"
+msgstr "Понравившееся"
 
 #: ../src\wxUI\dialogs\userSelection.py:21
 msgid "&Followers"
@@ -2793,11 +2792,11 @@ msgstr "Отве&тить"
 
 #: ../src\wxUI\menus.py:11 ../src\wxUI\view.py:30
 msgid "&Like"
-msgstr "Добавить в Избранное"
+msgstr "&Нравится"
 
 #: ../src\wxUI\menus.py:13 ../src\wxUI\view.py:31
 msgid "&Unlike"
-msgstr "Удалить из Избранного"
+msgstr "н&е нравится"
 
 #: ../src\wxUI\menus.py:15 ../src\wxUI\menus.py:33 ../src\wxUI\menus.py:49
 msgid "&Open URL"
