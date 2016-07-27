@@ -2,6 +2,7 @@
 from requests.packages import urllib3
 from requests.packages.urllib3 import fields
 import six
+import urllib
 
 def fix():
  urllib3.disable_warnings()
@@ -18,5 +19,6 @@ def patched_format_header_param(name, value):
             return result
     if not six.PY3 and isinstance(value, six.text_type):  # Python 2:
         value = value.encode('utf-8')
+    value=urllib.quote(value, safe='')
     value = '%s=%s' % (name, value)
     return value
