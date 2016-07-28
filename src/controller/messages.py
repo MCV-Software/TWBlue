@@ -32,7 +32,8 @@ class basicTweet(object):
   widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
   widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
   widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
-  self.text_processor()
+  if hasattr(self.message, "long_tweet"):
+   widgetUtils.connect_event(self.message.long_tweet, widgetUtils.CHECKBOX, self.text_processor)
   self.attachments = []
 
  def translate(self, event=None):
@@ -132,6 +133,7 @@ class tweet(basicTweet):
   if twishort_enabled == False:
    try: self.message.long_tweet.SetValue(False)
    except AttributeError: pass
+  self.text_processor()
 
  def upload_image(self, *args, **kwargs):
   a = attach.attach()
@@ -150,6 +152,7 @@ class reply(tweet):
    widgetUtils.connect_event(self.message.mentionAll, widgetUtils.BUTTON_PRESSED, self.mention_all)
    self.message.enable_button("mentionAll")
   self.message.set_cursor_at_end()
+  self.text_processor()
 
  def mention_all(self, *args, **kwargs):
   self.message.set_text(self.message.get_text()+self.users)
@@ -161,6 +164,7 @@ class dm(basicTweet):
  def __init__(self, session, title, caption, text):
   super(dm, self).__init__(session, title, caption, text, messageType="dm", max=10000)
   widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
+  self.text_processor()
 
  def autocomplete_users(self, *args, **kwargs):
   c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
