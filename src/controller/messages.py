@@ -29,10 +29,10 @@ class basicTweet(object):
 #  if system == "Windows":
 #  if messageType != "dm":
   widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
-  self.text_processor()
   widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
   widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
   widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
+  self.text_processor()
   self.attachments = []
 
  def translate(self, event=None):
@@ -43,6 +43,7 @@ class basicTweet(object):
    dest = [x[0] for x in translator.translator.available_languages()][dlg.get("dest_lang")]
    msg = translator.translator.translate(text=text_to_translate, source=source, target=dest)
    self.message.set_text(msg)
+   self.text_processor()
    self.message.text_focus()
    output.speak(_(u"Translated"))
   else:
@@ -56,6 +57,7 @@ class basicTweet(object):
   elif len(urls) == 1:
    self.message.set_text(self.message.get_text().replace(urls[0], url_shortener.shorten(urls[0])))
    output.speak(_(u"URL shortened"))
+   self.text_processor()
    self.message.text_focus()
   elif len(urls) > 1:
    list_urls = urlList.urlList()
@@ -63,6 +65,7 @@ class basicTweet(object):
    if list_urls.get_response() == widgetUtils.OK:
     self.message.set_text(self.message.get_text().replace(urls[list_urls.get_item()], url_shortener.shorten(list_urls.get_string())))
     output.speak(_(u"URL shortened"))
+    self.text_processor()
     self.message.text_focus()
 
  def unshorten(self, event=None):
@@ -73,6 +76,7 @@ class basicTweet(object):
   elif len(urls) == 1:
    self.message.set_text(self.message.get_text().replace(urls[0], url_shortener.unshorten(urls[0])))
    output.speak(_(u"URL expanded"))
+   self.text_processor()
    self.message.text_focus()
   elif len(urls) > 1:
    list_urls = urlList.urlList()
@@ -80,6 +84,7 @@ class basicTweet(object):
    if list_urls.get_response() == widgetUtils.OK:
     self.message.set_text(self.message.get_text().replace(urls[list_urls.get_item()], url_shortener.unshorten(list_urls.get_string())))
     output.speak(_(u"URL expanded"))
+    self.text_processor()
     self.message.text_focus()
 
  def text_processor(self, *args, **kwargs):
@@ -101,6 +106,7 @@ class basicTweet(object):
   checker = SpellChecker.spellchecker.spellChecker(text, "")
   if hasattr(checker, "fixed_text"):
    self.message.set_text(checker.fixed_text)
+   self.text_processor()
    self.message.text_focus()
 
  def attach(self, *args, **kwargs):
@@ -110,6 +116,7 @@ class basicTweet(object):
    dlg.uploaderDialog.destroy()
    if url != 0:
     self.message.set_text(self.message.get_text()+url+" #audio")
+    self.text_processor()
    else:
     output.speak(_(u"Unable to upload the audio"))
    dlg.cleanup()
@@ -148,6 +155,7 @@ class reply(tweet):
   self.message.set_text(self.message.get_text()+self.users)
   self.message.set_cursor_at_end()
   self.message.text_focus()
+  self.text_processor()
 
 class dm(basicTweet):
  def __init__(self, session, title, caption, text):
