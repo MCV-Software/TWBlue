@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2016-07-23 16:02+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-03-24 01:20-0600\n"
+"PO-Revision-Date: 2016-07-28 20:42+0300\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Mohammed Al Shara <mohammed@atexplorer.com>\n"
 "Language: ar\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../src\controller\attach.py:23
 msgid "Photo"
-msgstr ""
+msgstr "صورة"
 
 #: ../src\controller\buffersController.py:90
 #: ../src\controller\mainController.py:1483
@@ -407,7 +407,8 @@ msgstr "التفضيلات الخاصة ب%s"
 msgid "Information for %s"
 msgstr "معلومات عن %s"
 
-#: ../src\controller\user.py:55 ../src\extra\AudioUploader\audioUploader.py:126
+#: ../src\controller\user.py:55
+#: ../src\extra\AudioUploader\audioUploader.py:126
 msgid "Discarded"
 msgstr "تم التراجع"
 
@@ -1628,6 +1629,7 @@ msgstr "حاول تشغيل المقطع الصوتي"
 #: ../src\keystrokeEditor\constants.py:54
 msgid "Updates the buffer and retrieves possible lost items there."
 msgstr ""
+"تقوم بتحديث الصفحة وتعيد  بعض العناصر التي من الممكن أن تكون قد ضاعت بها."
 
 #: ../src\keystrokeEditor\wx_ui.py:8
 msgid "Keystroke editor"
@@ -1922,11 +1924,11 @@ msgstr "عامة"
 
 #: ../src\twitter\utils.py:128
 msgid "Sorry, you are not authorised to see this status."
-msgstr ""
+msgstr "نأسف, ليس مصرح لك أن ترى هذه الحالة."
 
 #: ../src\twitter\utils.py:130
 msgid "No status found with that ID"
-msgstr ""
+msgstr "لم يتم العثور على حالة بهذا الرمز."
 
 #: ../src\twitter\utils.py:132
 msgid "Error code {0}"
@@ -2008,7 +2010,7 @@ msgstr "سجل الدخول"
 
 #: ../src\wxUI\buffers\panels.py:13
 msgid "Log in automatically"
-msgstr ""
+msgstr "تسجيل الدخول تلقائيا"
 
 #: ../src\wxUI\buffers\panels.py:21
 msgid "Logout"
@@ -2138,7 +2140,7 @@ msgstr ""
 
 #: ../src\wxUI\commonMessageDialogs.py:47
 msgid "Warning"
-msgstr ""
+msgstr "تحذير"
 
 #: ../src\wxUI\commonMessageDialogs.py:50
 msgid ""
@@ -2199,11 +2201,11 @@ msgstr "إرفق"
 
 #: ../src\wxUI\dialogs\attach.py:13
 msgid "Title"
-msgstr ""
+msgstr "عنوان"
 
 #: ../src\wxUI\dialogs\attach.py:13
 msgid "Type"
-msgstr ""
+msgstr "النوع"
 
 #: ../src\wxUI\dialogs\attach.py:18
 #, fuzzy
@@ -2267,7 +2269,7 @@ msgstr "تشغيل sapi5 عندما لا يكون أي قارء للشاشة ي�
 
 #: ../src\wxUI\dialogs\configuration.py:31
 msgid "Hide GUI on launch"
-msgstr ""
+msgstr "إخفاء الواجهة عند البدء"
 
 #: ../src\wxUI\dialogs\configuration.py:33
 msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
@@ -2275,7 +2277,7 @@ msgstr ""
 
 #: ../src\wxUI\dialogs\configuration.py:36
 msgid "Keymap"
-msgstr ""
+msgstr "خريطة المفاتيح"
 
 #: ../src\wxUI\dialogs\configuration.py:41
 #, fuzzy
@@ -2288,7 +2290,7 @@ msgstr ""
 
 #: ../src\wxUI\dialogs\configuration.py:57
 msgid "Port: "
-msgstr ""
+msgstr "رقم المنفذ;"
 
 #: ../src\wxUI\dialogs\configuration.py:63
 #, fuzzy
@@ -2342,11 +2344,11 @@ msgstr ""
 
 #: ../src\wxUI\dialogs\configuration.py:117
 msgid "Buffer"
-msgstr ""
+msgstr "الصفحة"
 
 #: ../src\wxUI\dialogs\configuration.py:117
 msgid "Status"
-msgstr ""
+msgstr "الحالة"
 
 #: ../src\wxUI\dialogs\configuration.py:120
 msgid "Show/hide"
