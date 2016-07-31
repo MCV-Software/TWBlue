@@ -2,7 +2,7 @@
 name = 'TWBlue'
 snapshot = False
 if snapshot == False:
- version = "0.83"
+ version = "0.84"
  update_url = 'http://twblue.es/updates/twblue_ngen.json'
  mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/stable.json'
 else:
