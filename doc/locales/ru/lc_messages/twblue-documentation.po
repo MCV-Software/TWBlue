@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue documentation 0.46\n"
 "POT-Creation-Date: 2016-03-31 16:51+Hora de verano romance\n"
-"PO-Revision-Date: 2016-06-28 00:44+0200\n"
+"PO-Revision-Date: 2016-07-29 03:51+0200\n"
 "Last-Translator: Наталья Хедлунд <natalia.hedlund@gmail.com>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -607,6 +607,13 @@ msgid ""
 "characters, you will be asked if you want to post it as a comment with a "
 "mention to the original user and a link to the originating tweet."
 msgstr ""
+"* Ретвит: При помощи этой кнопки выполняется ретвит сообщения, которое вы "
+"сейчас читаете. После нажатия этой кнопки, если соответствующая настройка не "
+"была изменена, вам будет предложено добавить комментарий, либо отправить как "
+"есть. Если вы выберите добавление комментария, и если комментарий вместе с "
+"исходным твитом превысят 140 символов, вам будет предложено отправить "
+"сообщение как упоминание оригинального пользователя со ссылкой на исходный "
+"твит."
 
 #: ../doc\strings.py:142
 msgid ""
@@ -618,6 +625,13 @@ msgid ""
 "all users button. When you're on the friends or followers lists, the button "
 "will be called mention instead."
 msgstr ""
+"* Ответ: Когда вы просматриваете твит, вы можете ответить написавшему его "
+"пользователю, нажав эту кнопку. Откроется диалог, подобный окну создания "
+"твита, но с уже заполненным именем пользователя (например, @user), и вам "
+"останется только написать свое сообщение. Если твит относится к нескольким "
+"пользователям, можно нажать Шифт-Таб и активировать кнопку Упомянуть всех. "
+"Если вы находитесь в списке друзей или читателей, эта кнопка будет "
+"называться Упомянуть."
 
 #: ../doc\strings.py:143
 msgid ""
@@ -627,6 +641,12 @@ msgid ""
 "reading, you can arrow up or down to choose which one to send it to, or "
 "write the username yourself without the at sign."
 msgstr ""
+"* Личное сообщение: тоже, что и отправка твита, но это приватное сообщение, "
+"которое может быть просмотрено только тем пользователем, которому вы его "
+"отправляете. Чтобы посмотреть получателя, нажмите Шифт-таб. Если в твите, "
+"который вы читаете, упомянуто несколько пользователей,стрелками вверх и вниз "
+"можно выбрать  получателя сообщения, или ввести имя вручную, без знака "
+"собаки."
 
 #: ../doc\strings.py:146
 msgid ""
@@ -637,10 +657,16 @@ msgid ""
 "tweet buttons, and on friends and followers lists the direct message, tweet, "
 "and mention buttons will be available."
 msgstr ""
+"Учтите, что кнопки будут отображаться в зависимости от того, какие действия "
+"доступны в просматриваемом списке. Например, в главной ленте, в упоминаниях, "
+"Отправленных, избраном и лентах пользователей вы увидите четыре кнопки, в то "
+"время как в списке личных сообщений будут отображаться только кнопки Личное "
+"сообщение и Твит, а в списках друзей и читающих будут доступны кнопки Личное "
+"сообщение,Твит и Упомянуть."
 
 #: ../doc\strings.py:149
 msgid "#### Menus"
-msgstr ""
+msgstr "#### Меню"
 
 #: ../doc\strings.py:152
 msgid ""
@@ -650,10 +676,15 @@ msgid ""
 "the alt key. You will find five menus listed: application, tweet, user, "
 "buffer and help. This section describes the items on each one of them."
 msgstr ""
+"Визуально, в верхней части главного окна программы, находится строка меню, в "
+"котором представлены многие из функций, описанных в предыдущем разделе, а "
+"также некоторые другие элементы. Чтобы войти в строку меню, нажмите клавишу "
+"Альт. Откроется список из пяти меню: Приложение, Твит, Пользователь, Буфер и "
+"Помощь. В данном разделе описаны элементы каждого из них."
 
 #: ../doc\strings.py:155
 msgid "##### Application menu"
-msgstr ""
+msgstr "##### Меню Приложение"
 
 #: ../doc\strings.py:158
 msgid ""
@@ -661,6 +692,8 @@ msgid ""
 "TWBlue, where you can add new sessions or delete the ones you've already "
 "created."
 msgstr ""
+"* Управление аккаунтами: открывает окно со всеми сессиями, настроенными в "
+"TWBlue, в котором можно добавлять новые сессии и и удалять уже существующие."
 
 #: ../doc\strings.py:159
 msgid ""
@@ -669,18 +702,26 @@ msgid ""
 "the fields will be prefilled with the existing information. Also, you can "
 "upload a photo to your profile."
 msgstr ""
+"* Обновить профиль: открывает диалог, в котором можно обновить собственную "
+"информацию в твиттере: имя, местоположение, сайт и биографию. Если вы уже "
+"вводили эти данные, поля будут уже заполнены введенным текстом. Также, в "
+"свой профиль можно загрузить фото."
 
 #: ../doc\strings.py:160
 msgid ""
 "* Hide window: turns off the Graphical User Interface. Read the section on "
 "the invisible interface for further details."
 msgstr ""
+"* Скрыть окно: отключает графический интерфейс. Подробнее читайте об этом в "
+"разделах, посвященных невидимому интерфейсу."
 
 #: ../doc\strings.py:161
 msgid ""
 "* Search: shows a dialogue box where you can search for tweets or users on "
 "Twitter."
 msgstr ""
+"* Поиск: показывает диалоговое окно, в котором можно искать твиты или "
+"пользователей Твиттера."
 
 #: ../doc\strings.py:162
 msgid ""
@@ -689,24 +730,35 @@ msgid ""
 "create, delete or, optionally, open them in buffers similar to user "
 "timelines."
 msgstr ""
+"* Менеджер списков: В этом диалоговом окне можно управлять своими списками "
+"Твиттера. Для того, чтобы ими пользоваться, их сначала нужно создать. Здесь "
+"их можно просматривать, редактировать, создавать, удалять, или, опционально, "
+"открывать их в буферах, подобно лентам пользователей."
 
 #: ../doc\strings.py:163
 msgid ""
 "* Edit keystrokes: this opens a dialogue where you can see and edit the "
 "shortcuts used in the invisible interface."
 msgstr ""
+"* Редактировать горячие клавиши: этот пункт меню открывает диалог, в котором "
+"можно просматривать и редактировать сочетания клавиш, используемые в "
+"невидимом интерфейсе."
 
 #: ../doc\strings.py:164
 msgid ""
 "* Account settings: Opens a dialogue box which lets you customize settings "
 "for the current account."
 msgstr ""
+"* Настройки учетной записи: открывает диалоговое окно, позволяющее изменять "
+"параметры текущей учетной записи."
 
 #: ../doc\strings.py:165
 msgid ""
 "* Global settings: Opens a dialogue which lets you configure settings for "
 "the entire application."
 msgstr ""
+"* Основные настройки: открывает диалог, позволяющий изменять параметры для "
+"всего приложения."
 
 #: ../doc\strings.py:166
 msgid ""
@@ -714,26 +766,32 @@ msgid ""
 "closes the application. If you do not want to be asked for confirmation "
 "before exiting, uncheck the checkbox from the global settings dialogue box."
 msgstr ""
+"* Выход: спрашивает хотите ли вы выйти из программы. Если ответ "
+"положительный, закрывает приложение. Если вы не хотите, чтобы выдавался "
+"запрос на подтверждение выхода, снимите флажок в основных настройках."
 
 #: ../doc\strings.py:169
 msgid "##### Tweet menu"
-msgstr ""
+msgstr "##### Меню Твит"
 
 #: ../doc\strings.py:172
 msgid ""
 "* You will first find the items to tweet, reply and retweet, which are "
 "equivalent to the buttons with the same name."
 msgstr ""
+"* в Начале находятся элементы: Твит, Ответить и Ретвитнуть, идентичные "
+"кнопкам с теми же именами."
 
 #: ../doc\strings.py:173
 msgid "* Add to favourites: marks the tweet you're viewing as a favourite."
-msgstr ""
+msgstr "* Добавить в Избранное:добавляет просматриваемый твит в Избранное."
 
 #: ../doc\strings.py:174
 msgid ""
 "* Remove from favourites: removes the tweet from your favourites, but not "
 "from Twitter."
 msgstr ""
+"* Удалить из Избранного: удаляет твит из Избранного, но не из Твиттера."
 
 #: ../doc\strings.py:175
 msgid ""
@@ -745,6 +803,13 @@ msgid ""
 "you are in the followers or the friends list, it will only contain a read-"
 "only edit box with the information in the focused item and a close button."
 msgstr ""
+"* Показать твит: открывает диалоговое окно, в котором можно прочесть твит, "
+"личное сообщение, имя друга или читателя, находящееся в фокусе. Текст можно "
+"читать клавишами стрелок. Этот диалог похож на окно отправки твита, но без "
+"возможности отправки, прикрепления вложений и автозаполнения. Однако, здесь "
+"указано число ретвитов и добавлений в Избранное. Если вы находитесь в списке "
+"читателей или друзей, будут доступны только поле для чтения информации, "
+"находящейся в фокусе, и кнопка Закрыть."
 
 #: ../doc\strings.py:176
 msgid ""
@@ -753,12 +818,18 @@ msgid ""
 "address is retrieved by sending the geographical coordinates of the tweet to "
 "Google maps."
 msgstr ""
+"* Просмотреть адрес: если в выбранном твите указано местоположение, TWBlue "
+"может отобразить диалоговое окно, в котором возможно просмотреть адрес "
+"твита. Этот адрес получается путем отправки географических координат твита в "
+"Карты Гугл. "
 
 #: ../doc\strings.py:177
 msgid ""
 "* View conversation: If you are focusing a tweet with a mention, it opens a "
 "buffer where you can view the whole conversation."
 msgstr ""
+"* Просмотр беседы: если в фокусе находится твит с упоминанием, откроется "
+"буфер, в котором можно просмотреть беседу полностью. "
 
 #: ../doc\strings.py:178
 msgid ""
@@ -766,6 +837,9 @@ msgid ""
 "from Twitter and from your lists. Bear in mind that Twitter only allows you "
 "to delete tweets you have posted yourself."
 msgstr ""
+"* Удалить: удаляет находящийся в фокусе твит или личное сообщение из "
+"Твиттера и ваших списков. Имейте в виду, что Твиттер позволяет удалять "
+"только те твиты, которые вы сами написали."
 
 #: ../doc\strings.py:181
 msgid "##### User menu"

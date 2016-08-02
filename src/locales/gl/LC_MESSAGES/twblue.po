@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2016-07-23 16:02+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-07-13 12:58+0100\n"
+"PO-Revision-Date: 2016-08-01 16:41+0200\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Juan Buño <jcbsua@gmail.com>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.11\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: ../src\controller\attach.py:23
 msgid "Photo"
-msgstr ""
+msgstr "Imaxe"
 
 #: ../src\controller\buffersController.py:90
 #: ../src\controller\mainController.py:1483
@@ -275,7 +275,7 @@ msgstr "{0}: Esta conta non está autentificada en Twitter."
 #: ../src\controller\mainController.py:1077
 #: ../src\controller\mainController.py:1098
 msgid "%s. %s, %s of %s"
-msgstr "%s, %s de %s"
+msgstr "%s. %s, %s de %s"
 
 #: ../src\controller\mainController.py:1092
 msgid "{0}: This account is not logged into twitter."
@@ -352,7 +352,7 @@ msgstr "URL expandida"
 
 #: ../src\controller\messages.py:93
 msgid "%s - %s of %d characters"
-msgstr "%s - %s de 140 caracteres"
+msgstr "%s - %s de %d caracteres"
 
 #: ../src\controller\messages.py:97
 msgid "%s - %s characters"
@@ -2118,34 +2118,31 @@ msgstr "Obter a xeolocalización: {0}"
 
 #: ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
-msgstr ""
+msgstr "Engadir un adxunto"
 
 #: ../src\wxUI\dialogs\attach.py:12
-#, fuzzy
 msgid "Attachments"
-msgstr "Adxuntar"
+msgstr "Adxuntos"
 
 #: ../src\wxUI\dialogs\attach.py:13
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: ../src\wxUI\dialogs\attach.py:13
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: ../src\wxUI\dialogs\attach.py:18
-#, fuzzy
 msgid "Add attachments"
-msgstr "Endadir cliente"
+msgstr "Endadir adxuntos"
 
 #: ../src\wxUI\dialogs\attach.py:19
 msgid "&Photo"
-msgstr ""
+msgstr "&Imaxe"
 
 #: ../src\wxUI\dialogs\attach.py:20
-#, fuzzy
 msgid "Remove attachment"
-msgstr "Quitar cliente"
+msgstr "Quitar adxuntos"
 
 #: ../src\wxUI\dialogs\attach.py:36 ../src\wxUI\dialogs\message.py:117
 #: ../src\wxUI\dialogs\message.py:176 ../src\wxUI\dialogs\update_profile.py:80
@@ -2158,9 +2155,8 @@ msgid "Select the picture to be uploaded"
 msgstr "Seleciona unha foto para subir"
 
 #: ../src\wxUI\dialogs\attach.py:43
-#, fuzzy
 msgid "please provide a description"
-msgstr "Descrición de imaxe"
+msgstr "Por favor proporciona una descrición"
 
 #: ../src\wxUI\dialogs\attach.py:43 ../src\wxUI\dialogs\lists.py:13
 #: ../src\wxUI\dialogs\lists.py:69
@@ -2207,9 +2203,8 @@ msgid "Keymap"
 msgstr "Mapa de teclado"
 
 #: ../src\wxUI\dialogs\configuration.py:41
-#, fuzzy
 msgid "Check for updates when {0} launches"
-msgstr "Falar unha mensaxe ó se lanzar {0}"
+msgstr "Procurar actualizacións cando se lance {0}"
 
 #: ../src\wxUI\dialogs\configuration.py:51
 msgid "Proxy server: "
@@ -2405,37 +2400,36 @@ msgid "Save"
 msgstr "Gardar"
 
 #: ../src\wxUI\dialogs\filters.py:10
-#, fuzzy
 msgid "Create a filter  for this buffer"
-msgstr "Crear un búfer de tendencias"
+msgstr "Crear un filtro para este búfer"
 
 #: ../src\wxUI\dialogs\filters.py:11
 msgid "Contains"
-msgstr ""
+msgstr "Contén"
 
 #: ../src\wxUI\dialogs\filters.py:12
 msgid "Doesn't contain"
-msgstr ""
+msgstr "Non contén"
 
 #: ../src\wxUI\dialogs\filters.py:17
 msgid "word"
-msgstr ""
+msgstr "palabra"
 
 #: ../src\wxUI\dialogs\filters.py:26
 msgid "Use this term as a regular expression"
-msgstr ""
+msgstr "Usa este termo coma expresión regular"
 
 #: ../src\wxUI\dialogs\filters.py:28
 msgid "Load tweets in the following languages"
-msgstr ""
+msgstr "Cargar chíos nas seguintes linguas"
 
 #: ../src\wxUI\dialogs\filters.py:29
 msgid "Ignore tweets in the following languages"
-msgstr ""
+msgstr "Ignorar chíos nas seguintes linguas"
 
 #: ../src\wxUI\dialogs\filters.py:30
 msgid "Don't filter by language"
-msgstr ""
+msgstr "Non filtrar por lingua"
 
 #: ../src\wxUI\dialogs\find.py:10
 msgid "Find in current buffer"
@@ -2563,26 +2557,23 @@ msgstr "&Traducir..."
 
 #: ../src\wxUI\dialogs\message.py:82 ../src\wxUI\dialogs\message.py:142
 #: ../src\wxUI\dialogs\message.py:187
-#, fuzzy
 msgid "Auto&complete users"
-msgstr "&Autocompletar usuarios"
+msgstr "Auto&completar usuarios"
 
 #: ../src\wxUI\dialogs\message.py:83 ../src\wxUI\dialogs\message.py:143
 #: ../src\wxUI\dialogs\message.py:202
 msgid "Sen&d"
-msgstr ""
+msgstr "En&viar"
 
 #: ../src\wxUI\dialogs\message.py:85 ../src\wxUI\dialogs\message.py:145
 #: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:298
 #: ../src\wxUI\dialogs\message.py:360
-#, fuzzy
 msgid "C&lose"
-msgstr "Pechar"
+msgstr "&Pechar"
 
 #: ../src\wxUI\dialogs\message.py:185
-#, fuzzy
 msgid "&Recipient"
-msgstr "Destinatario"
+msgstr "&Destinatario"
 
 #: ../src\wxUI\dialogs\message.py:237
 msgid "&Mention to all"

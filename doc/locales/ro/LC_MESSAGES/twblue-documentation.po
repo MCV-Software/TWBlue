@@ -6,10 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: twblue-documentation 0.46\n"
 "POT-Creation-Date: 2016-03-31 16:51+Hora de verano romance\n"
-"PO-Revision-Date: 2016-07-31 18:23+0200\n"
-"Last-Translator: Manuel Cortéz <manuel@manuelcortez.net>\n"
+"PO-Revision-Date: 2016-07-26 10:44+0300\n"
+"Last-Translator: Florian Ionașcu <florianionascu@hotmail.com>\n"
 "Language-Team: Spanish <manuel@manuelcortez.net>\n"
-"Language: es\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: ../doc\languageHandler.py:97
 msgid "User default"
-msgstr "Predeterminado del sistema"
+msgstr "Utilizator implicit"
 
 #: ../doc\strings.py:4
 msgid "Documentation for TWBlue - {0}"
-msgstr "Documentación para TWBlue {0}"
+msgstr "Documentație pentru TWBlue - {0}"
 
 #: ../doc\strings.py:6 ../doc\strings.py:11 ../doc\strings.py:14
 #: ../doc\strings.py:17 ../doc\strings.py:20 ../doc\strings.py:23
@@ -60,11 +60,11 @@ msgstr "\n"
 
 #: ../doc\strings.py:8
 msgid "## Table of contents"
-msgstr "## Tabla de contenidos"
+msgstr "## Cuprins"
 
 #: ../doc\strings.py:13
 msgid "## Warning!"
-msgstr "## ¡Peligro!"
+msgstr "## Atenție!"
 
 #: ../doc\strings.py:16
 msgid ""
@@ -75,77 +75,76 @@ msgid ""
 "is advisable to keep checking from time to time to avoid missing important "
 "information."
 msgstr ""
-"Estás leyendo un documento generado para una aplicación en estado de "
-"desarrollo. La intención de este manual es clarificar algunos detalles sobre "
-"el funcionamiento del programa. Ten en cuenta que al ser activamente "
-"desarrollado, el software puede cambiar parte de esta documentación en un "
-"futuro relativamente cercano, así que es recomendable dar un vistazo de vez "
-"en cuando para no perderte demasiado."
+"Momentan parcurgeți documentația disponibilă pentru un program aflat încă în "
+"curs de dezvoltare. Scopul acestui manual este acela de a explica unele "
+"detalii legate de modul de utilizare a programului. Vă rugăm să aveți în "
+"vedere că de vreme ce programul se află în curs de dezvoltare, părți ale "
+"prezentului manual pot suferii modificări în perioada următoare, de aceea "
+"pentru a evita pierderea unor informații importante, vă recomandăm să îl "
+"verificați din când în când."
 
 #: ../doc\strings.py:19
 msgid ""
 "If you want to see what has changed from the previous version, [read the "
 "list of updates here.](changes.html)"
 msgstr ""
-"Si quieres ver lo que ha cambiado con respecto a la versión anterior, [lee "
-"la lista de novedades aquí.](changes.html)"
+"Pentru a vedea modificările apărute față de versiunile anterioare, [citiți "
+"lista de actualizări aici.](changes.html)"
 
 #: ../doc\strings.py:22
 msgid "## Introduction"
-msgstr "## Introducción"
+msgstr "## Introducere"
 
 #: ../doc\strings.py:25
 msgid ""
 "TWBlue is an application to make Twitter simple and fast, while using as few "
 "resources as possible. With TWBlue, you can do things like the following:"
 msgstr ""
-"TWBlue es una aplicación para utilizar twitter de manera sencilla, rápida, y "
-"evitando en la medida de las posibilidades, consumir demasiados recursos del "
-"equipo donde se ejecute. Con la aplicación podrás hacer acciones en twitter "
-"tales como:"
+"TWBlue este o aplicație cu ajutorul căreia îți poți accesa și administra "
+"contul de Twitter într-un mod simplu și rapid. Cu ajutorul TWBlue poți face "
+"următoarele "
 
 #: ../doc\strings.py:28
 msgid "* Tweet, reply to, retweet and delete tweets,"
-msgstr "* Crear, responder, reenviar y eliminar Tuits,"
+msgstr "* Postarea, răspunderea, distribuirea și ștergerea postărilor,"
 
 #: ../doc\strings.py:29
 msgid "* Mark and unmark a tweet as favourite,"
-msgstr "* Marcar como favorito, eliminar de tus favoritos un tuit,"
+msgstr "* Marcarea și demarcarea unei postări ca favorită,"
 
 #: ../doc\strings.py:30
 msgid "* Send and delete direct messages,"
-msgstr "* Enviar y eliminar mensajes directos,"
+msgstr "* Trimiterea și ștergerea mesajelor private,"
 
 #: ../doc\strings.py:31
 msgid "* See your friends and followers,"
-msgstr "* Ver tus amigos y seguidores,"
+msgstr "* Vizualizarea prietenilor și a urmăritorilor,"
 
 #: ../doc\strings.py:32
 msgid "* Follow, unfollow, report and block a user,"
-msgstr "* Seguir, dejar de seguir, reportar como spam y bloquear a un usuario,"
+msgstr "* Urmărirea, ignorarea, raportare sau blocarea unui utilizator,"
 
 #: ../doc\strings.py:33
 msgid "* Open a user's timeline to see their tweets separately,"
 msgstr ""
-"* Abrir una línea temporal para un usuario, lo que permite obtener todos los "
-"Tuits de ese usuario únicamente,"
+"* Deschiderea cronologiei unui utilizator pentru a-i vizualiza postările "
+"separat,"
 
 #: ../doc\strings.py:34
 msgid "* Open URLs from a tweet or direct message,"
-msgstr "* Abrir direcciones URL cuando vayan en un tuit o mensaje directo,"
+msgstr "* Deschiderea unui URL de la o postare sau de la un mesaj privat,"
 
 #: ../doc\strings.py:35
 msgid "* Play several types of audio files from addresses,"
-msgstr ""
-"* Reproducir varios tipos de archivos o direcciones que contengan audio,"
+msgstr "* Redă diferite tipuri de fișiere audio de la adrese,"
 
 #: ../doc\strings.py:36
 msgid "* And more."
-msgstr "* Y más."
+msgstr "* Și multe altele."
 
 #: ../doc\strings.py:39
 msgid "## Usage"
-msgstr "## Uso"
+msgstr "## Utilizare"
 
 #: ../doc\strings.py:42
 msgid ""
@@ -156,13 +155,8 @@ msgid ""
 "delivery of updates to those in your circle of friends or, by default, allow "
 "anyone to access them."
 msgstr ""
-"Twitter es una red social que te permite crear actualizaciones de estado "
-"sobre tus actividades en un máximo de 140 caracteres. Twitter es una manera "
-"para mantenerte conectado con tus amigos, familiares y compañeros de trabajo "
-"a través del intercambio de mensajes breves. Puedes restringir tus "
-"actualizaciones para que solo las vean tus amigos, o permitir que cualquiera "
-"pueda verlas. Esta segunda opción es el comportamiento por defecto de "
-"Twitter."
+"Twitter este o rețea socială care îți permite să compui actualizări scurte "
+"de stare la activitățile tale în 140 de caractere."
 
 #: ../doc\strings.py:45
 msgid ""
@@ -172,11 +166,10 @@ msgid ""
 "Tweets are posted to your Twitter profile or Blog and are searchable using "
 "Twitter Search."
 msgstr ""
-"Puedes ver las actualizaciones de estado de tus amigos, familia y compañeros "
-"de trabajo (lo que se conoce como seguir a alguien), y ellos a su vez pueden "
-"ver las actualizaciones que tú publicas (lo que se conoce como seguidores). "
-"Las actualizaciones se denominan Tuits. Los tuits se publican en tu perfil "
-"en Twitter y pueden verse en blogs u otras páginas web."
+"Poți monitoriza actualizările de stare ale prietenilor, familiei și "
+"colaboratorilor și ei pot citi actualizările pe care le creezi. "
+"Actualizările se referă la postări. Tweet-urile sunt postate pe profilul tău "
+"Twitter sau pe blog și pot fi căutate utilizând căutarea Twitter."
 
 #: ../doc\strings.py:48
 msgid ""
@@ -189,26 +182,23 @@ msgid ""
 "suggest you choose a username which is memorable both to you and the people "
 "you hope will follow you."
 msgstr ""
-"Para utilizar TWBlue, primero debes haber creado una cuenta en el sitio web "
-"de Twitter. El proceso de registro en Twitter es muy accesible. Al "
-"registrarte, tendrás que elegir un nombre de usuario. Esto sirve para dos "
-"propósitos. A través de tu nombre de usuario la gente se comunicará contigo, "
-"pero lo más importante, es que se necesitará de tu nombre de usuario y una "
-"contraseña para dar permiso a TWBlue de usar tu cuenta. Te sugerimos que "
-"escojas un nombre de usuario que resulte fácil de recordar para ti y para "
-"tus futuros seguidores."
+"Pentru a folosi TWBlue, trebuie să creezi un cont pe site-ul Twitter. "
+"Procesul de  înregistrare pentru un cont Twitter este foarte accesibil. După "
+"ce accesezi secțiunea înregistrare de pe site-ul Twitter, vei avea nevoie să-"
+"ți alegi un nume de utilizator. Acesta este necesar, pentru ca prietenii, "
+"familia și cunoștințele să te găsească mai ușor și să puteți comunica. "
 
 #: ../doc\strings.py:51
 msgid ""
 "We'll start from the premise that you have a Twitter account with its "
 "corresponding username and password."
 msgstr ""
-"Para esta guía se asumirá que tienes una cuenta de Twitter y su contraseña "
-"correspondiente."
+"Noi vom porni de la premiza că ai un cont Twitter, iar numele de utilizator "
+"și parola corespund cu acesta."
 
 #: ../doc\strings.py:54
 msgid "### Authorising the application"
-msgstr "### Autorizando la aplicación"
+msgstr "### Autorizarea aplicației"
 
 #: ../doc\strings.py:57
 msgid ""
@@ -221,15 +211,12 @@ msgid ""
 "like to place a Windows shortcut on your Desktop pointing to this executable "
 "file for quick and easy location."
 msgstr ""
-"Antes de nada, lo primero que se necesita es autorizar al programa para que "
-"este pueda acceder a tu cuenta de Twitter, y desde ella realizar lo que le "
-"pidas. El proceso de autorización es bastante sencillo, y en ningún momento "
-"el programa podrá tener acceso a tus datos como usuario y contraseña. Para "
-"autorizar la aplicación, solo tienes que abrir el archivo principal del "
-"programa, llamado TWBlue.exe (en algunos PC, solo se muestra como TWBlue si "
-"el explorador de Windows no está configurado para mostrar las extensiones de "
-"archivos). Si usas una versión portable, te sugerimos crear un acceso "
-"directo en el escritorio para acceder al programa más rápida y cómodamente."
+"Mai întâi, este necesar să autorizezi programul, doar așa îți poți accesa "
+"contul tău Twitter. Procesul de autorizare este foarte simplu și rapid. "
+"Durează doar câteva secunde!Programul nu va reține niciodată parola contului."
+"Dacă dorești să faci acest lucru, este nevoie să execuți fila TWBlue.exe. "
+"Îți sugerăm să creezi o comandă rapidă pe desktop pentru acest executabil ca "
+"să-ți vină mai ușor când vrei să pornești programul. "
 
 #: ../doc\strings.py:60
 msgid ""
@@ -243,14 +230,7 @@ msgid ""
 "to authorise the application and you will be asked if you would like to "
 "continue. Activate the \"yes\" Button by pressing the letter \"Y\" so the "
 "process may start."
-msgstr ""
-"Puedes iniciar sesión con varias cuentas de Twitter de forma simultánea. El "
-"programa se refiere a cada cuenta que tienes configurada como \"sesión\". Si "
-"es la primera vez que abres TWBlue, o si no has configurado antes una "
-"sesión, verás el gestor de sesiones. Este diálogo te permite autorizar todas "
-"las cuentas que desees. Si presionas sobre el botón \"Nueva cuenta\", un "
-"mensaje te informará que tu navegador será abierto para autorizar la "
-"aplicación. Presiona \"sí\" para iniciar el proceso."
+msgstr "Poți să te conectezi la mai multe conturi Twitter simultan. "
 
 #: ../doc\strings.py:63
 msgid ""
@@ -258,10 +238,10 @@ msgid ""
 "Enter your username and password into the appropriate edit fields if you're "
 "not already logged in, select the authorise button, and press it."
 msgstr ""
-"A continuación, tu navegador predeterminado se abrirá con la página de "
-"Twitter solicitándote autorizar la aplicación. Escribe, si no estás "
-"autenticado ya, tu nombre de usuario y contraseña, luego busca el botón "
-"autorizar, y presiónalo."
+"Navigatorul setat ca implicit va deschide o pagină Twitter pentru a-ți cere "
+"autorizarea. Introdu numele de utilizator și parola în câmpurile de editare "
+"apropiate dacă nu ești deja conectat, selectează butonul autorizare și apasă-"
+"l."
 
 #: ../doc\strings.py:66
 msgid ""
@@ -272,12 +252,11 @@ msgid ""
 "new item temporarily called \"Authorised account x\" -where x is a number. "
 "The session name will change once you open that session."
 msgstr ""
-"Una vez que hayas autorizado tu cuenta de Twitter, Twitter te redirigirá a "
-"una página que te notificará que TWBlue ha sido correctamente autorizado. "
-"Ahora puedes cerrar el navegador y regresar al gestor de sesiones. En la "
-"lista de sesiones, podrás ver un nuevo elemento llamado temporalmente "
-"\"Cuenta autorizada x\", donde x es un número. El nombre cambiará una vez "
-"que inicies esa sesión."
+"După ce ai autorizat contul Twitter, site-ul web te va redirecționa către o "
+"pagină care te va notifica că TWBlue a fost autorizat cu succes. După aceea, "
+"poți închide liniștit pagina apăsând ALT+F4 care te va întoarce la "
+"administratorul de sesiuni. În lista de sesiuni vei vedea conturile de "
+"Twitter autorizate."
 
 #: ../doc\strings.py:69
 msgid ""
@@ -285,18 +264,17 @@ msgid ""
 "dialogue. By default, the program starts all the configured sessions "
 "automatically, however, you can change this behavior."
 msgstr ""
-"Para iniciar TWBlue, presiona el botón aceptar en el gestor de sesiones. De "
-"forma predeterminada, TWBlue inicia todas las sesiones configuradas "
-"automáticamente, sin embargo, puedes modificar este comportamiento más "
-"adelante."
+"Pentru a porni TWBlue, apăsați butonul OK în dialogul administratororului de "
+"sesiuni. În mod implicit, programul pornește toate sesiunile configurate "
+"automat, dar, puteți schimba acest comportament."
 
 #: ../doc\strings.py:72
 msgid ""
 "If all went well, the application will start playing sounds, indicating your "
 "data is being updated."
 msgstr ""
-"Si todo ha salido bien, la aplicación empezará a reproducir un grupo de "
-"sonidos en señal que se están actualizando tus datos."
+"Dacă toate au mers bine, aplicația va porni prin redarea sunetelor, indicânt "
+"că datele tale sunt în curs de actualizare."
 
 #: ../doc\strings.py:75
 msgid ""
@@ -304,20 +282,20 @@ msgid ""
 "sound, and the screen reader will say \"ready\" (this behaviour can be "
 "configured)."
 msgstr ""
-"Cuando termine, el programa reproducirá otro sonido, y el lector de pantalla "
-"dirá \"listo\" (esto puede ser configurado desde las opciones globales)."
+"Când procesul este finalizat, programul va reda un alt sunet, și cititorul "
+"de ecran va spune \"pregătit\" (acest comportament poate fi configurat)."
 
 #: ../doc\strings.py:78
 msgid "## General concepts"
-msgstr "## conceptos generales"
+msgstr "## Concepte generale"
 
 #: ../doc\strings.py:81
 msgid ""
 "Before starting to describe TWBlue's usage, we'll explain some concepts that "
 "will be used extensively throughout this manual."
 msgstr ""
-"Antes de profundizar en el uso de TWBlue, es necesario explicar algunos "
-"conceptos que serán usados extensivamente a lo largo de esta guía."
+"Înainte de a începe descrierea folosirii TWBlue, vom explica unele concepte "
+"ce vor fi utilizate pe scară largă pe tot parcursul acestui manual."
 
 #: ../doc\strings.py:84
 msgid "### Buffer"
@@ -332,36 +310,36 @@ msgid ""
 "users, trends or events. According to the buffer you are focusing, you will "
 "be able to do different actions with these items."
 msgstr ""
-"Un Buffer es una lista de elementos para manejar la información que proviene "
-"de Twitter, después de ser procesada por la aplicación. Cuando configuras e "
-"inicias una sesión en TWBlue, este crea algunos buffers. Cada uno de ellos "
-"puede contener elementos con los que trabaja el programa: Tuits, mensajes "
-"directos, usuarios, tendencias o eventos. Dependiendo del buffer en el que "
-"te encuentres, serás capaz de realizar distintas acciones con sus elementos."
+"Un buffer este o listă de elemente pentru a administra datele care ajung de "
+"la Twitter, după ce sunt procesate de către aplicație. Când configurezi o "
+"nouă sesiune TWBlue și o pornești, multe buffere sunt create. Toate conțin "
+"niște elemente cu care acest program funcționează: Postări, mesaje private, "
+"utilizatori, prieteni sau evenimente. În funcție de bufferul pe care îl "
+"focusezi, vei fi capabil să faci diferite lucruri cu aceste elemente."
 
 #: ../doc\strings.py:90
 msgid ""
 "The following is a description for every one of TWBlue's buffers and the "
 "kind of items they work with."
 msgstr ""
-"A continuación está una descripción para cada buffer y los diferentes tipos "
-"de elementos que pueden contener."
+"Următoarea este o descriere a fiecărui buffer al TWBlue și elementele cu "
+"care funcționează."
 
 #: ../doc\strings.py:93
 msgid ""
 "* Home: this shows all the tweets on the main timeline. These are the tweets "
 "by users you follow."
 msgstr ""
-"* Principal: Aquí van todos los Tuits que se muestran en la línea principal. "
-"Estos son los Tuits de los usuarios a los que sigues."
+"* Principal: Acesta arată toate postările pe cronologia principală. Acestea "
+"sunt postările utilizatorilor pe care îi urmărești."
 
 #: ../doc\strings.py:94
 msgid ""
 "* Mentions: if a user, whether you follow them or not, mentions you on "
 "Twitter, you will find it in this list."
 msgstr ""
-"* Menciones: Si un usuario (lo sigas o no) te menciona en Twitter, lo verás "
-"en esta lista."
+"* Mențiuni: dacă un utilizator, indiferent dacă îl urmărești sau nu, te "
+"menționează pe Twitter, îl vei găsi în listă."
 
 #: ../doc\strings.py:95
 msgid ""
@@ -370,46 +348,45 @@ msgid ""
 "messages from everyone (this setting is configurable from Twitter). This "
 "list only shows received messages."
 msgstr ""
-"* Mensajes directos: Aquí están los mensajes directos (privados) que "
-"intercambias con los usuarios que sigues y te siguen, o con cualquier "
-"usuario, si tienes configurada la opción para recibir mensajes directos de "
-"cualquier persona (esto es configurable desde las opciones de seguridad y "
-"privacidad en la web de Twitter). Esta lista solo muestra los mensajes "
-"recividos."
+"* Mesaje private: Aici vei găsi mesajele private pe care le ai  cu "
+"utilizatorii care te urmăresc, sau cu orice utilizator, dacă permiți mesaje "
+"private de la oricine (această opțiune poate fi configurată pe Twitter). "
+"Această listă îți arată doar mesajele primite."
 
 #: ../doc\strings.py:96
 msgid ""
 "* Sent direct messages: this buffer shows all the direct messages sent from "
 "your account."
 msgstr ""
-"* Mensajes directos enviados: En esta lista se muestran los mensajes "
-"directos que han sido enviados desde tu cuenta."
+"* Mesajele private trimise: acest buffer îți arată mesajele private trimise "
+"de pe contul tău."
 
 #: ../doc\strings.py:97
 msgid "* Sent tweets: this shows all the tweets sent from your account."
 msgstr ""
-"* Tuits enviados: En esta lista se muestran los Tuits que se han enviado "
-"desde tu cuenta."
+"* Postări trimise: Acest buffer arată toate postările pe care le trimiți de "
+"pe contul tău."
 
 #: ../doc\strings.py:98
 msgid "* Favourites: here you will see all the tweets you have favourited."
-msgstr "* Favoritos: Aquí verás los Tuits que has marcado como favoritos."
+msgstr ""
+"* Favorite: Aici vei vedea toate postările pe care le-ai marcat ca favorite."
 
 #: ../doc\strings.py:99
 msgid ""
 "* Followers: when users follow you, you'll be able to see them on this "
 "buffer, with some of their account details."
 msgstr ""
-"* Seguidores: Cuando los usuarios sigan tu cuenta, podrás verlos en esta "
-"lista, junto con unos cuantos detalles de su cuenta."
+"* Urmăritori: Când un utilizator te urmărește, îl vei vedea în acest buffer, "
+"cu câteva detalii despre contul lui."
 
 #: ../doc\strings.py:100
 msgid ""
 "* Friends: the same as the previous buffer, but these are the users you "
 "follow."
 msgstr ""
-"* Amigos: Igual que la lista anterior, pero estos usuarios son a los que tú "
-"sigues."
+"* Prieteni: Exact ca buffer-ul precedent, dar aceștea sunt utilizatorii pe "
+"care tu îi urmărești."
 
 #: ../doc\strings.py:101
 msgid ""
@@ -418,11 +395,10 @@ msgid ""
 "single person and you don't want to look all over your timeline. You may "
 "create as many as you like."
 msgstr ""
-"* Línea temporal de un usuario: Estas son listas que tú deberás crear. Es "
-"una lista que contiene únicamente los Tuits de un usuario. Se usan si algún "
-"día necesitas o quieres ver los Tuits que ha realizado solo una persona y no "
-"deseas buscar por todo tu timeline. Puedes crear tantas como usuarios "
-"necesites."
+"* Cronologia utilizatorului: Acesta este un buffer pe care îl poți crea. "
+"Acesta conține postările unui utilizator. Ele sunt create ca să poți vedea "
+"postările unei singure persoane și nu va trebui să te uiți pe toată "
+"cronologia."
 
 #: ../doc\strings.py:102
 msgid ""
@@ -432,35 +408,33 @@ msgid ""
 "the program shows the most common ones in the events buffer so that you can "
 "easily keep track of what is happening on your account."
 msgstr ""
-"* Eventos: Un evento en TW Blue es \"algo\" que pase en Twitter. En la línea "
-"de eventos, podrás ver registrados los eventos más comunes (p. Ej. Te han "
-"comenzado a seguir, han marcado o removido un tweet tuyo de los favoritos, "
-"te has suscrito a una lista). Son notificaciones que envía Twitter y el "
-"programa organiza para que no te pierdas lo que ha pasado con tu cuenta."
+"* Evenimente: Evenimente sunt toate lucrurile ce se întâmplă pe Twitter, cum "
+"ar fi când cineva te urmărește, când cineva își adaugă sau șterge una dintre "
+"postările tale din lista lor de postări favorite, sau când te abonezi la o "
+"listă. Ele sunt mai multe, însă programul arată doar pe cele comune din "
+"bufferul de evenimente, deci poți ușor să afli ce se întâmplă pe contul tău."
 
 #: ../doc\strings.py:103
 msgid ""
 "* Lists: A list is similar to a user timeline, except that you can configure "
 "it to contain tweets from multiple users."
 msgstr ""
-"* Lista: Una lista es parecida a una línea temporal, pero compuesta por los "
-"tweets de cada usuario que forme parte de ella."
+"* Liste: O listă este similară cu Cronologia, excepție face doar lucrul că "
+"poți configura să conțină postări ale mai multor persoane."
 
 #: ../doc\strings.py:104
 msgid "* Search: A search buffer contains the results of a search operation."
 msgstr ""
-"* Búsqueda: Un buffer de búsqueda contiene los resultados de una búsqueda "
-"hecha en TW Blue. Las búsquedas pueden ser por tuits, en cuyo caso buscas un "
-"término en los tuits relevantes de Twitter, o por usuarios, donde los "
-"resultados son nombres de usuario de Twitter."
+"* Căutare: Un buffer de căutare conține rezultatele unei operațiuni de "
+"căutare."
 
 #: ../doc\strings.py:105
 msgid ""
 "* User favourites: You can have the program create a buffer containing "
 "tweets favourited by a particular user."
 msgstr ""
-"* Favoritos de un usuario: el programa puede crear buffers que te muestren "
-"los tuits que un usuario ha marcado como favoritos."
+"* Utilizatori favoriți: Îți permite să creezi un buffer care să conțină "
+"postări marcate ca favorite de către o persoană particulară."
 
 #: ../doc\strings.py:106
 msgid ""
@@ -468,9 +442,9 @@ msgid ""
 "geographical region. This region may be a country or a city. Trends are "
 "updated every five minutes."
 msgstr ""
-"* Tendencias: Un buffer de tendencias muestra los 10 términos más utilizados "
-"en una región geográfica. Esta región puede ser una ciudad o un país. Las "
-"tendencias son actualizadas cada cinco minutos."
+"* Topic-uri populare: Un buffer care arată topul zece a celor mai utilizați "
+"termeni dintr-o regiune geografică. Această regiune poate fi o țară sau un "
+"oraș. Trendurile sunt actualizate peste fiecare cinci minute."
 
 #: ../doc\strings.py:109
 msgid ""
@@ -482,18 +456,17 @@ msgid ""
 "if a tweet contains geographical information, you can press Control + "
 "Windows + G in the invisible interface to retrieve it."
 msgstr ""
-"Si un tuit contiene una dirección web, puedes presionar enter en la interfaz "
-"gráfica o control + Windows + Enter en la interfaz invisible para abrirla. "
-"Si incluye un archivo de audio, puedes presionar Control + Enter o control + "
-"Alt + Windows + Enter para reproducirlo, respectivamente. TWBlue reproducirá "
-"un sonido cuando el tuit contenga la etiqueta #audio, pero los tuits podrían "
-"incluir ficheros de audio sin esta etiqueta. Finalmente, si el tuit incluye "
-"información geográfica, puedes presionar Control + G o Control + Windows + G "
-"para verla."
+"În caz că o postare conține un link(URL), poți apăsa enter în GUI sau Control"
+"+Windows+Enter într-o interfață invizibilă pentru a-l deschide. Dacă acesta "
+"conține audio, poți apăsa Control+Enter sau Control+Windows+Alt+Enter pentru "
+"a-l reda, respectiv. TWBlue va reda un sunet dacă postarea conține o "
+"#etichetă audio, dar aici pot apărea postări care conțin audio fără acest "
+"sunet. În fine, dacă o postare conține informații geografice, poți apăsa "
+"Control+Windows+G într-o interfață invizibilă pentru a o primi."
 
 #: ../doc\strings.py:112
 msgid "### Username fields"
-msgstr "### Campos para nombre de usuario"
+msgstr "### Câmpuri de editare pentru nume de utilizator"
 
 #: ../doc\strings.py:115
 msgid ""
@@ -509,62 +482,55 @@ msgid ""
 "are more users mentioned in it, you can use the arrow keys to switch between "
 "them. Alternatively, you can also type a username."
 msgstr ""
-"Estos campos de texto esperan un nombre de usuario de Twitter (sin el signo "
-"de arroba). Están presentes en los diálogos para enviar mensajes directos "
-"así como en el diálogo de acciones de usuario. Estos diálogos serán "
-"abordados más tarde. El valor inicial de estos campos depende del lugar "
-"desde donde fueron abiertos. Estos campos se rellenan automáticamente con el "
-"nombre de usuario del tuit actual (si ha sido abierto desde el buffer "
-"principal o de enviados, desde una línea temporal de un usuario o una "
-"lista), el usuario que envió el mensaje directo actual (si se abre desde el "
-"buffer de mensajes directos o mensajes directos enviados) o del usuario "
-"actual (desde el buffer de amigos o seguidores). Si uno de estos diálogos es "
-"abierto desde un tuit, y si hay más de un usuario mencionado, puedes usar "
-"las flechas de arriba/abajo para conmutar entre ellos. Alternativamente, "
-"puedes escribir manualmente el usuario de Twitter en el campo de texto."
+"Aceste câmpuri de editare acceptă un nume de utilizator Twitter (fără un "
+"semn) ca un câmp de editare. Acestea sunt prezente în dialogul de trimitere "
+"a unui mesaj privat sau acțiunile utilizatorului. Aceste dialoguri vor fi "
+"abordate mai târziu. Valoarea inițială a acestor câmpuri de editare depinde "
+"de locul unde acestea au fost deschise. Acestea sunt prepopulate cu numele "
+"de utilizator al expediatorului postării focusate (dacă acestea au fost "
+"deschise din pagina principală și cronologii trimise, de la cronologiile "
+"utilizatorului sau de pe liste), expediatorul mesajului privat focusat (dacă "
+"sunt deschise din mesajele private primite sau trimise). Alternativ, poți să "
+"scrii un nume de utilizator acolo."
 
 #: ../doc\strings.py:116
 msgid "## The program's interfaces"
-msgstr "## Las interfaces del programa"
+msgstr "## Interfețele programului"
 
 #: ../doc\strings.py:119
 msgid "### The graphical user interface (GUI)"
-msgstr "### Interfaz gráfica (GUI)"
+msgstr "### Interfața grafică a utilizatorului (GUI)"
 
 #: ../doc\strings.py:122
 msgid "The graphical user interface of TWBlue consists of a window containing:"
-msgstr ""
-"La interfaz gráfica de TWBlue está formada por una ventana que contiene los "
-"siguientes elementos:"
+msgstr "Interfața grafică a TWBlue constă dintr-o fereastră care conține:"
 
 #: ../doc\strings.py:125
 msgid ""
 "* a menu bar accomodating five menus (application, tweet, user, buffer and "
 "help);"
 msgstr ""
-"* Una barra de menú que tiene cinco menús (aplicación, tuit, usuario, buffer "
-"y ayuda),"
+"* O bară de meniu care conține cinci meniuri: aplicație, postări, "
+"utilizator, buffer și ajutor);"
 
 #: ../doc\strings.py:126
 msgid "* One tree view,"
-msgstr "* Una presentación en árbol,"
+msgstr "* One tree view,"
 
 #: ../doc\strings.py:127
 msgid "* One list of items"
-msgstr "* Una lista de elementos"
+msgstr "* O listă de elemente;"
 
 #: ../doc\strings.py:128
 msgid ""
 "* Four buttons in most dialogs: Tweet, retweet , reply and direct message."
 msgstr ""
-"* Cuatro botones, la mayoría de las veces: tuit, retuit, responder y mensaje "
-"directo."
+"* Patru butoane: Postează, repostează, răspunde sau trimitere mesaj privat."
 
 #: ../doc\strings.py:131
 msgid "The actions that are available for every item will be described later."
 msgstr ""
-"Las acciones disponibles para cada uno de estos elementos serán retomadas "
-"más adelante."
+"Acțiunile disponibile pentru fiecare articol vor fi descrise mai târziu."
 
 #: ../doc\strings.py:134
 msgid ""
@@ -572,13 +538,13 @@ msgid ""
 "will find while pressing the Tab key within the program's interface, and the "
 "different elements present on the menu bar."
 msgstr ""
-"La interfaz gráfica contiene dos componentes importantes. Estos son el grupo "
-"de controles que encontrarás si presionas tab en la ventana gráfica, y los "
-"diferentes elementos que están en la barra de menú."
+"În rezumat, GUI conține două componente de bază. Acestea sunt controale pe "
+"care le veți găsi în timp ce apăsați tasta Tab în interfață de program, și "
+"diferite elemente prezente pe bara de meniu."
 
 #: ../doc\strings.py:137
 msgid "#### Buttons in the application"
-msgstr "#### Botones de la aplicación"
+msgstr "#### Butoane în aplicație"
 
 #: ../doc\strings.py:140
 msgid ""
@@ -594,21 +560,16 @@ msgid ""
 "hear a sound confirming it. Otherwise, the screen reader will speak an error "
 "message in English describing the problem."
 msgstr ""
-"* Twit: Este botón abre el diálogo para escribir un tuit. El mensaje solo "
-"debe tener 140 caracteres. Al escribir el caracter número 141, un sonido "
-"será reproducido para indicarte que te has pasado del límite permitido por "
-"Twitter. Ten en cuenta que el número de caracteres escritos se muestra en la "
-"barra de título. Puedes querer acortar o desacortar una URL si la incluye tu "
-"tuit a fin de ganar más espacio donde escribir, para eso están los botones "
-"con esos nombres. Puedes también subir una foto, un archivo de audio, "
-"revisar la ortografía de tu mensaje o traducirlo seleccionando uno de los "
-"diferentes botones del diálogo. Además, puedes autocompletar los nombres de "
-"usuarios si pulsas Alt + A o el botón \"autocompletar usuarios\" del diálogo "
-"si has configurado la base de datos de autocompletado de usuarios. Pulsa "
-"Intro para enviar el tuit. Si todo sale bien, el mensaje se enviará y tú "
-"escucharás un sonido que te lo confirme, si no, el lector de pantalla te "
-"responderá con un error en inglés, que indica por qué no se ha podido enviar "
-"el mensaje."
+"* Postare: Acest buton va deschide un dialog unde îți poți scrie postarea. "
+"Mesajul nu trebuie să depășească 140 caractere. În caz că acesta va depăși "
+"acest număr, un sunet va fi redat pentru a te notifica. Noteazăți că "
+"caracterele sunt afișate în bara de titlu. Vei dori să folosești scurtătura "
+"de a expansia limita de caractere. Poți încărca o poză, verifica ortografia, "
+"atașa o pistă audio sau selectarea butoanelor disponibile în dialog. În "
+"plus, poți autocompleta introducerea unui nume de utilizator apăsând Alt+A "
+"sau butonul disponibil. Apasă enter pentru a trimite postarea. Dacă totul "
+"este OK, vei auzi un sunet care va confirma acest lucru. Dacă e o problemă, "
+"cititorul de ecran va spune un mesaj de eroare în Engleză descriind problema."
 
 #: ../doc\strings.py:141
 msgid ""
@@ -619,13 +580,12 @@ msgid ""
 "characters, you will be asked if you want to post it as a comment with a "
 "mention to the original user and a link to the originating tweet."
 msgstr ""
-"* Retuit: Este botón retuitea el mensaje que estás leyendo. Luego de "
-"presionarlo, si no has configurado la aplicación para no hacerlo, se te "
-"preguntará si deseas añadir un comentario al retuit o compartirlo tal y como "
-"fue escrito. Si decides añadir un comentario, y si el tuit original sumado a "
-"tu comentario sobrepasa los 140 caracteres, se te preguntará si quieres "
-"publicar tu comentario con una mención al usuario, y un enlace al tuit "
-"original."
+"* Repostează: Acest buton repostează o postare pe care o citești. După ce îl "
+"apeși, dacă nu ai configurat aplicația să nu facă asta, vei fi întrebat dacă "
+"vrei să adaugi un comentariu sau pur și simplu să re-trimiți postarea. Dacă "
+"alegi să adaugi un comentariu, și dacă postarea originală plus comentariu "
+"depășesc 140 caractere, vei fi întrebat dacă vrei să o postezi fără "
+"comentariu."
 
 #: ../doc\strings.py:142
 msgid ""
@@ -637,13 +597,13 @@ msgid ""
 "all users button. When you're on the friends or followers lists, the button "
 "will be called mention instead."
 msgstr ""
-"* Responder: Cuando estés visualizando un Tuit, puedes responderle al "
-"usuario que lo escribió pulsando sobre este botón. Se abrirá el mismo "
-"diálogo de Tuit, pero con el nombre del usuario (por ejemplo @usuario) en "
-"el, para que solo escribas el mensaje que quieres responderle. Si en el tuit "
-"hay más de un usuario mencionado, pulsa Shift+Tab y pulsa el botón "
-"\"Mencionar a todos\". Cuando estés en la lista de amigos o seguidores, este "
-"botón se llamará mencionar."
+"* Răspunde: Când citești o postare, îi poți răspunde persoanei care a postat-"
+"o apăsând acest buton. Un dialog va fi deschis similar cu cel de postare, "
+"dar aici va fi numele de utilizator care deja va fi scris (de exemplu "
+"@utilizator) deci va trebui doar să scrii răspunsul. Dacă sunt mai mulți "
+"utilizatori în această postare, poți să apeși shift+tab și activare "
+"menționează pe toți buton. Când ești în lista de prieteni sau urmăritori, "
+"butonul se va numi Menționează."
 
 #: ../doc\strings.py:143
 msgid ""
@@ -653,12 +613,12 @@ msgid ""
 "reading, you can arrow up or down to choose which one to send it to, or "
 "write the username yourself without the at sign."
 msgstr ""
-"* mensaje directo: Exactamente igual que enviar un Tuit, pero es un mensaje "
-"privado que solo podrá ver el usuario al que se lo envías. Pulsa Shift+Tab "
-"para ver el destinatario de tu mensaje. Si en el Tuit donde estabas para "
-"enviar el mensaje había más de un usuario mencionado, puedes navegar con las "
-"flechas de arriba y abajo para seleccionar otro, o escribir tú mismo el "
-"usuario (sin el signo de arroba)."
+"* Mesaj privat: Foarte similar cu cel de postare, dar acesta este un mesaj "
+"privat care poate fi citit doar de către un utilizator. Apasă shift+tab "
+"pentru a vedea destinatarul. Dacă sunt mai multe persoane menționate în "
+"postarea pe care o citești, poți naviga cu săgețile sus sau jos pentru a "
+"alege persoana căruia să îi trimiți mesajul, scriind numele de utilizator, "
+"fără arond (@)."
 
 #: ../doc\strings.py:146
 msgid ""
@@ -669,17 +629,16 @@ msgid ""
 "tweet buttons, and on friends and followers lists the direct message, tweet, "
 "and mention buttons will be available."
 msgstr ""
-"Ten en cuenta que los botones aparecerán según las acciones que se puedan "
-"hacer en la lista donde estés. Por ejemplo, en la línea principal, "
-"menciones, enviados, favoritos y las líneas temporales de los usuarios "
-"podrás ver los cuatro botones; mientras que en la lista de mensajes directos "
-"solo estará disponible el botón de \"Mensaje Directo\" y \"tuit\", y en las "
-"listas de amigos y seguidores, se verá el botón para \"Twit\" y el de "
-"\"Mensaje directo\" junto a \"mencionar\"."
+"ține minte că butoanele vor apărea în acordanță cu acțiunea pe care o faci. "
+"De exemplu, în cronologia principală, mențiuni, trimise, favorite sau "
+"cronologii ale utilizatorilor, vei vedea patru butoane, pe când în mesajele "
+"private vei primi doar butoanele de trimitere a mesajului și de postare, și "
+"prietenii  sau urmăritorii nu vor lista mesajele private, postările și "
+"butoanele menționate vor fi disponibile."
 
 #: ../doc\strings.py:149
 msgid "#### Menus"
-msgstr "#### Menús"
+msgstr "#### Meniuri"
 
 #: ../doc\strings.py:152
 msgid ""
@@ -689,15 +648,16 @@ msgid ""
 "the alt key. You will find five menus listed: application, tweet, user, "
 "buffer and help. This section describes the items on each one of them."
 msgstr ""
-"Visualmente, en la parte superior de la ventana del programa podrás "
-"encontrar una barra de menú que hace las mismas cosas, y algunas cuantas "
-"más. A la barra de menú se accede presionando la tecla Alt, encontrarás "
-"cinco menús: Aplicación, Tuit, Usuario, Buffer y Ayuda. En esta sección se "
-"describen las acciones para cada uno de ellos."
+"vizual, spre partea de sus din fereastra de acțiuni principale, poate fi "
+"găsită  o bară de meniuri care conține multe din aceleași funcții ca cele "
+"enumerate în secțiunea precedentă, împreună cu niște puncte suplimentare. "
+"Pentru a accesa bara de meniu, apasă alt. Vei găsi cinci meniuri incluse: "
+"aplicația, postare, utilizator, buffer și ajutor. Această secțiune descrie "
+"elementele de pe fiecare dintre ele."
 
 #: ../doc\strings.py:155
 msgid "##### Application menu"
-msgstr "##### Menú aplicación"
+msgstr "##### Meniul aplicație"
 
 #: ../doc\strings.py:158
 msgid ""
@@ -705,9 +665,9 @@ msgid ""
 "TWBlue, where you can add new sessions or delete the ones you've already "
 "created."
 msgstr ""
-"* Gestionar cuentas: Abre una ventana donde puedes ver todas las sesiones "
-"que has configurado con TWBlue, lo que te permite añadir más cuentas o "
-"eliminar las que ya hay configuradas."
+"* gestionare conturi: deschide o fereastră cu toate sesiunile configurate în "
+"TW Blue, unde poți adăuga noi sesiuni sau să le ștergi pe cele pe care le - "
+"ai creat deja."
 
 #: ../doc\strings.py:159
 msgid ""
@@ -716,27 +676,25 @@ msgid ""
 "the fields will be prefilled with the existing information. Also, you can "
 "upload a photo to your profile."
 msgstr ""
-"* Actualizar Perfil: Abre un diálogo desde donde se podrá actualizar parte "
-"de tu información en Twitter. Nombre, ubicación, dirección URL y "
-"descripción. Si ya tienes alguno de estos campos actualmente en el perfil se "
-"llenarán automáticamente con lo que tiene tu configuración de Twitter. "
-"También podrás subir una foto a tu perfil."
+"* Actualizare profil: deschide un dialog unde poți actualiza informațiile pe "
+"twitter: numele, locația, site - urile și biografia. dacă deja i - ai setat "
+"asta câmpurile vor fi pre - umplute cu informațiile existente.de asemenea, "
+"poți trimite o fotografie la profilul tău."
 
 #: ../doc\strings.py:160
 msgid ""
 "* Hide window: turns off the Graphical User Interface. Read the section on "
 "the invisible interface for further details."
 msgstr ""
-"* Esconder Ventana: Desactiva la interfaz gráfica. Lee el apartado sobre la "
-"interfaz no visible para más detalles sobre este comportamiento."
+"* Ascunde fereastra: Oprește interfața geografică a utilizatorului. Citește "
+"secțiunea de pe interfața invizibilă pentru mai multe detalii."
 
 #: ../doc\strings.py:161
 msgid ""
 "* Search: shows a dialogue box where you can search for tweets or users on "
 "Twitter."
 msgstr ""
-"* Búsqueda: Muestra un cuadro de diálogo desde donde puedes buscar por tuits "
-"o por usuarios en twitter."
+"* Căutare: Arată un dialog unde poți căuta postări sau utilizatori Twitter."
 
 #: ../doc\strings.py:162
 msgid ""
@@ -745,34 +703,34 @@ msgid ""
 "create, delete or, optionally, open them in buffers similar to user "
 "timelines."
 msgstr ""
-"* Gestor de listas: Para poder utilizar las listas de Twitter, primero "
-"necesitarás crearlas. Este diálogo permite ver tus listas, editarlas, "
-"crearlas, borrarlas y, opcionalmente, verlas en buffers tal como lo harías "
-"con las líneas temporales."
+"* Administrator de liste: Acest dialog îți permite să gestionezi listele "
+"tale pe Twitter. Pentru a le utiliza, trebuie mai întâi să le creezi. Aici, "
+"poți să vezi, editezi, creezi, ștergi, sau, opțional, să le deschizi într-un "
+"buffer asemănător cu cel al cronologiilor utilizatorilor."
 
 #: ../doc\strings.py:163
 msgid ""
 "* Edit keystrokes: this opens a dialogue where you can see and edit the "
 "shortcuts used in the invisible interface."
 msgstr ""
-"* Editar combinaciones de teclas: Abre un diálogo donde puedes configurar "
-"las combinaciones de teclado para la interfaz invisible de TWBlue."
+"* Editează scurtăturile de taste: Aceasta îți va deschide un dialog unde "
+"poți să vezi sau să editezi scurtăturile de pe interfața invizibilă."
 
 #: ../doc\strings.py:164
 msgid ""
 "* Account settings: Opens a dialogue box which lets you customize settings "
 "for the current account."
 msgstr ""
-"* Opciones de cuenta: Abre un diálogo que te permite configurar las opciones "
-"para la cuenta actual."
+"* Setări cont: Deschide un dialog care îți permite să îți modifici setările "
+"contului curent."
 
 #: ../doc\strings.py:165
 msgid ""
 "* Global settings: Opens a dialogue which lets you configure settings for "
 "the entire application."
 msgstr ""
-"* Opciones globales: Abre un diálogo para configurar las opciones que "
-"afectan a toda la aplicación."
+"* Setări globale: Deschide un dialog care îți permite să configurezi "
+"setările aplicației."
 
 #: ../doc\strings.py:166
 msgid ""
@@ -780,35 +738,32 @@ msgid ""
 "closes the application. If you do not want to be asked for confirmation "
 "before exiting, uncheck the checkbox from the global settings dialogue box."
 msgstr ""
-"* Salir: pregunta si quieres salir o no del programa. Si la respuesta es sí, "
-"cierra la aplicación. Si no deseas que TWBlue te pregunte siempre antes de "
-"salir, puedes configurar esta opción desmarcando la casilla correspondiente "
-"desde el diálogo de opciones globales."
+"* Ieșire: Te întreabă dacă vrei să părăsești aplicația. Dacă răspunsul tău "
+"este 'da', va opri aplicația. Dacă nu vrei să fii întrebat înainte de a "
+"părăsi aplicația, debifează căsuța de la setările globale."
 
 #: ../doc\strings.py:169
 msgid "##### Tweet menu"
-msgstr "##### Menú Tuit"
+msgstr "##### Meniul de postare"
 
 #: ../doc\strings.py:172
 msgid ""
 "* You will first find the items to tweet, reply and retweet, which are "
 "equivalent to the buttons with the same name."
-msgstr ""
-"* Las primeras opciones del menú son Twit, responder y retuit, que "
-"corresponden a los botones del mismo nombre."
+msgstr "* Mai întâi, vor apărea butoanele de postare, răspuns sau distribuire."
 
 #: ../doc\strings.py:173
 msgid "* Add to favourites: marks the tweet you're viewing as a favourite."
-msgstr "* Marcar como favorito: Marca el tuit que estés viendo como favorito."
+msgstr ""
+"* Adaugă la favorite: Marchează postarea pe care o citești ca favorită."
 
 #: ../doc\strings.py:174
 msgid ""
 "* Remove from favourites: removes the tweet from your favourites, but not "
 "from Twitter."
 msgstr ""
-"* Quitar tuit de favoritos: Elimina el tuit de tus favoritos. Esto no "
-"significa que se borra de Twitter, solo deja de estar en tu lista de "
-"favoritos."
+"* șterge de la favorite: șterge postarea de la lista ta de postări favorite. "
+"Nu o va șterge de pe Twitter."
 
 #: ../doc\strings.py:175
 msgid ""
@@ -820,15 +775,13 @@ msgid ""
 "you are in the followers or the friends list, it will only contain a read-"
 "only edit box with the information in the focused item and a close button."
 msgstr ""
-"* Ver tuit: Abre un diálogo donde puedes leer el tuit, mensaje directo, "
-"amigo o seguidor sobre el que te encuentras actualmente. Puedes leer el "
-"texto con las flechas de cursor. Es un diálogo muy parecido al que se "
-"utiliza para escribir un nuevo tuit, excepto que para este diálogo no se "
-"muestran las opciones de autocompletado, carga de archivos de audio e "
-"imágenes. Sin embargo, incluye un par de contadores que te permitirán saber "
-"el número de veces que el tuit ha sido retuiteado y marcado como favorito. "
-"Si estás en la lista de seguidores y amigos, el diálogo solo mostrará "
-"información del usuario y un botón para cerrarse."
+"* Arată postarea: Deschide un dialog unde poți citi postarea, mesajul "
+"privat, prietenul sau urmăritorul pe care ești focusat. Poți citi textul cu "
+"săgețile. Este un dialog asemănător ca cel de compunere a postării, fără "
+"opțiunea de a posta, atașa un fișier și autocompletare. Poți și aici să "
+"incluzi o distribuire sau să îl pui ca favorit. Dacă ești în lista de "
+"prieteni sau urmăritori, va consta un câmp de editare cu informația în "
+"elementul focusat și un buton de închidere."
 
 #: ../doc\strings.py:176
 msgid ""
@@ -837,19 +790,18 @@ msgid ""
 "address is retrieved by sending the geographical coordinates of the tweet to "
 "Google maps."
 msgstr ""
-"* Ver dirección: Si el tuit seleccionado contiene información geográfica, "
-"TWBlue puede mostrar un diálogo donde podrás leer la dirección desde donde "
-"se escribió el tuit. La dirección se obtiene enviando las coordenadas desde "
-"donde se hizo el Tuit a los servicios de mapas de Google."
+"* Vezi adresa: Dacă postarea selectată are informații geografice, TWBlue "
+"poate arăta un dialog unde poți citi adresa postării. Această adresă este "
+"primită la expedierea coordonatelor geografice a postărilor. Folosește "
+"Google Maps."
 
 #: ../doc\strings.py:177
 msgid ""
 "* View conversation: If you are focusing a tweet with a mention, it opens a "
 "buffer where you can view the whole conversation."
 msgstr ""
-"* Ver conversación: Si estás sobre un tuit donde se menciona a otro usuario, "
-"esta opción te permite abrir un nuevo buffer para seguir toda la "
-"conversación."
+"* Vezi conversația: dacă ești focusat pe o postare cu o mențiune, îți va "
+"deschide un buffer unde poți vedea conversația întreagă."
 
 #: ../doc\strings.py:178
 msgid ""
@@ -857,14 +809,13 @@ msgid ""
 "from Twitter and from your lists. Bear in mind that Twitter only allows you "
 "to delete tweets you have posted yourself."
 msgstr ""
-"* Eliminar: Elimina el Tuit o mensaje directo sobre el que estés, borrándolo "
-"definitivamente de Twitter y qitándolo de tus listas. Ten en cuenta que en "
-"el caso de los Tuits, Twitter solo permite borrar los que tú mismo has "
-"escrito."
+"* șterge: șterge permanent postarea sau mesajul privat pe care ești focusat "
+"din Twitter și de pe listele tale. ține minte că Twitter îți permite doar să "
+"ștergi postări pe care le postezi tu."
 
 #: ../doc\strings.py:181
 msgid "##### User menu"
-msgstr "##### Menú usuario"
+msgstr "##### Meniul de utilizator"
 
 #: ../doc\strings.py:184
 msgid ""
@@ -873,11 +824,11 @@ msgid ""
 "message in focus or the selected user in the friends or followers buffer. "
 "You can edit it or leave it as is and choose one of the following actions:"
 msgstr ""
-"* Acciones: Abre un diálogo donde puedes interactuar con un usuario. Este "
-"diálogo colocará por defecto el nombre de usuario del tuit o mensaje directo "
-"sobre el que estabas al abrirlo, o en el caso de los amigos y seguidores, el "
-"usuario actualmente seleccionado. Si lo deseas, puedes editar el usuario "
-"manualmente. El diálogo presenta las siguientes opciones:"
+"* Acțiuni: Deschide un dialog unde poți interacționa cu un utilizator. Acest "
+"dialog va conține numele de utilizator a persoanei care a postat sau a "
+"trimis un mesaj privat în focusare sau utilizatorul selectat în bufferul de "
+"prieteni sau urmăritori. Îl poți edita sau îl poți lăsa alegând una dintre "
+"următoarele acțiuni:"
 
 #: ../doc\strings.py:185
 msgid ""
@@ -886,12 +837,10 @@ msgid ""
 "direct messages. You may also send / receive direct messages from each other "
 "if you have configured the option to allow direct messages from anyone."
 msgstr ""
-"    * Seguir: Seguir a un usuario. Esto significa que verás sus tuits en tu "
-"línea principal, y si él también te sigue serán capaces de enviarse mensajes "
-"directos mutuamente. También puedes  enviar y recibir mensajes directos sin "
-"seguir a las personas si configuras tu cuenta de Twitter para poder recibir "
-"mensajes directos de cualquier persona, desde las opciones de privacidad y "
-"seguridad en el sitio web de Twitter."
+"   * Urmărește: Urmărește un utilizator. Aceasta înseamnă că vei vedea "
+"postările lui/ei sau cronologia principală, și dacă el/ea te urmărește, îi "
+"poți trimite un mesaj privat. Poți deasemenea să trimiți / primești mesaje "
+"private, în dependență de cum ai configurat opțiunile din Twitter."
 
 #: ../doc\strings.py:186
 msgid ""
@@ -899,10 +848,10 @@ msgid ""
 "see his/her tweets on your main timeline neither exchanging direct messages, "
 "unless they have enabled receiving direct messages from anyone."
 msgstr ""
-"    * Dejar de seguir: Deja de seguir al usuario, lo que significa que no "
-"verás sus tuits en tu línea principal y a menos que configures tu cuenta "
-"para recibir mensajes directos de cualquier persona, tampoco podrán enviarse "
-"mensajes."
+"   * Nu mai urmări: Aceasta înseamnă că nu vei mai urmări un anumit "
+"utilizator, în acest caz nu veți mai putea să vă vedeți postările în "
+"cronologia ta principală, sau să expediați mesaje private, până nu activezi "
+"primirea mesajelor private de la oricine."
 
 #: ../doc\strings.py:187
 msgid ""
@@ -911,44 +860,44 @@ msgid ""
 "both will be able to exchange direct messages. The muted user is not "
 "informed of this action."
 msgstr ""
-"    * Silenciar: al silenciar a alguien, no verás sus tuits en tu línea "
-"principal ni sus menciones, pero no lo dejarás de seguir. Se pueden enviar y "
-"recibir mensajes directos. El usuario silenciado no es informado de esta "
-"acción."
+"   * Ignoră: Când ignori pe cineva, TWBlue nu îți va mai arăta postările lui/"
+"ei în cronologia principală; Deasemenea, nu vei putea vedea mențiunile "
+"acelui utilizator. Dar, veți fi capabili să vă scrieți mesaje private. "
+"Utilizatorul ignorat nu va fi notificat despre asta."
 
 #: ../doc\strings.py:188
 msgid ""
 "    * Unmute: this option allows TWBlue to display the user's tweets and "
 "mentions again."
 msgstr ""
-"    * Desactivar silencio: Esta opción causa que TWBlue vuelva a mostrar los "
-"tuits del usuario en tu línea principal y sus menciones."
+"  * Nu mai ignora: Această opțiune, îi permite TWBlue să îți afișeze din nou "
+"postările sau mențiunile utilizatorului care a fost ignorat."
 
 #: ../doc\strings.py:189
 msgid "    * Block: Blocks a user. This forces the user to unfollow you ."
 msgstr ""
-"    * Bloquear: Bloquea a un usuario. Si te sigue, esto lo obligará a dejar "
-"de seguirte."
+"   * Blochează: Blochează un utilizator. Aceasta forțează utilizatorul să nu "
+"te mai urmărească."
 
 #: ../doc\strings.py:190
 msgid "    * Unblock: Stops blocking a user."
-msgstr "* Desbloquear: Desbloquea a un usuario."
+msgstr "   * Deblochează: Această opțiune va debloca utilizatorul."
 
 #: ../doc\strings.py:191
 msgid ""
 "    * Report as spam: this option sends a message to Twitter suggesting the "
 "user is performing prohibited practices on the social network."
 msgstr ""
-"    * Reportar como spam: Esta opción envía un reporte a Twitter sobre un "
-"comportamiento que va en contra de las políticas de uso de la red social."
+"  * Raportează ca spam(abuz): Această opțiune trimite un mesaj către Twitter "
+"indicând un utilizator care face spam."
 
 #: ../doc\strings.py:192
 msgid ""
 "    * Ignore tweets from this client: Adds the client from which the focused "
 "tweet was sent to the ignored clients list."
 msgstr ""
-"    * Ignorar Tuits de este cliente: Añade la aplicación desde la que está "
-"hecho el tuit actual a la lista de ignorados de TWBlue."
+"   * Ignoră postările de la acest client: Adaugă clientul de la care "
+"postarea focusată a fost trimisă la clienții ignorați."
 
 #: ../doc\strings.py:193
 msgid ""
@@ -958,15 +907,15 @@ msgid ""
 "creating an existing timeline the program will warn you and will not create "
 "it again."
 msgstr ""
-"* Línea temporal: Abre un diálogo desde donde puedes seleccionar el usuario "
-"para el que se creará la línea temporal. Al presionar intro, se creará. Si "
-"se hace una línea temporal de un usuario que no tenga Tuits, el programa "
-"fallará. Si se crea una línea que ya existe el programa te avisará y no "
-"permitirá crearla de nuevo."
+"  * Vezi Cronologia: Îți permite să deschizi o cronologie a unui utilizator "
+"alegând utilizator-ul dintr-un dialog. Acesta este creat când apeși Enter. "
+"Dacă aplici această opțiune către un utilizator care nu are postări, "
+"operațiunea va eșua. Dacă încerci să creezi o cronologie, TWBlue te va "
+"notifica și nu o va crea din nou."
 
 #: ../doc\strings.py:194
 msgid "* Direct message: same action as the button."
-msgstr "* Mensaje Directo: La misma acción que el botón."
+msgstr " * Mesaj privat: Aceiași acțiune ca la buton."
 
 #: ../doc\strings.py:195
 msgid ""
@@ -976,42 +925,38 @@ msgid ""
 "user to. Thereafter, the list will contain a new member and their tweets "
 "will be displayed there."
 msgstr ""
-"* Añadir a lista: Para que puedas ver los tweets de un usuario en tus "
-"listas, primero hay que añadirlo. Esta opción abrirá un diálogo desde donde "
-"puedes seleccionar al usuario que deseas añadir, para después abrir otra "
-"ventana donde puedes seleccionar la lista a la cual añadir a ese usuario. "
-"Una vez hecho esto, la lista contendrá un nuevo usuario y podrás ver sus "
-"tweets."
+"  * Adaugă în listă: Pentru a vedea postările cuiva în una sau mai multe "
+"liste, trebuie mai întâi să le adaugi. În dialogul care se deschide după "
+"selectarea utilizatorului, vei fi îndemnat să selectezi lista unde vrei să "
+"adaugi utilizatorul. Dacă totul merge OK, lista va conține un nou membru, "
+"împreună cu postările acestuia."
 
 #: ../doc\strings.py:196
 msgid "* Remove from list: lets you remove a user from a list."
-msgstr ""
-"* Remover de la lista: Te permite eliminar a un usuario de una de tus listas."
+msgstr " * șterge din listă: Îți permite să ștergi utilizatorul dintr-o listă."
 
 #: ../doc\strings.py:197
 msgid "* View lists: Shows the lists created by a specified user."
-msgstr ""
-"   * Ver listas: Muestra las listas en las que participa un usuario "
-"específico."
+msgstr "  * Vezi listele: Îți arată listele create cu utilizatori."
 
 #: ../doc\strings.py:198
 msgid ""
 "* Show user profile: opens a dialogue with the profile of the specified user."
 msgstr ""
-"* Ver Perfil del usuario: Abre un diálogo desde donde te permite seleccionar "
-"el usuario al que quieres ver el perfil."
+" * Arată profilul utilizatorului: Deschide un dialog cu profilul unui "
+"utilizator."
 
 #: ../doc\strings.py:199
 msgid ""
 "* View favourites: Opens a buffer where you can see the tweets which have "
 "been favourited by a particular user."
 msgstr ""
-"* Ver favoritos: Abre un buffer para seguir los favoritos que marca el "
-"usuario seleccionado."
+" * Vezi favoritele: Îți deschide un dialog und epoți vedea postările pe care "
+"le-ai marcat ca favorite."
 
 #: ../doc\strings.py:202
 msgid "##### Buffer menu"
-msgstr "##### Menú Buffer"
+msgstr "##### Meniul de buffere"
 
 #: ../doc\strings.py:205
 msgid ""
@@ -1023,30 +968,29 @@ msgid ""
 "the \"OK\" button has been activated within the dialogue box. Remember this "
 "kind of buffer will be updated every five minutes."
 msgstr ""
-"* Nuevo buffer de tendencias: Abre un buffer desde el cual puedes realizar "
-"un seguimiento de las 10 tendencias de una ciudad o país del mundo. Se "
-"mostrará un diálogo desde el que puedes seleccionar si quieres ver las "
-"tendencias para un país, una ciudad o las tendencias mundiales (esta opción "
-"se encuentra dentro de la lista de ciudades, como Worldwhide). El buffer "
-"será creado una vez selecciones tu país o ciudad, y presiones sobre el botón "
-"\"aceptar\". Recuerda que este tipo de buffer se actualiza cada cinco "
-"minutos."
+"* Bufferul cu subiecte noi: Aceasta va deschide un buffer care va afișa "
+"subiectele din lumea întreagă, sau cele dintr-o țară sau oraș. Vei fi "
+"capabil să selectezi un dialog în caz că vrei să primești subiecte din țări, "
+"din orașe sau din lumea întreagă (această opțiune este în lista de orașe) și "
+"selectează una dintre listele selectate. Bufferul cu subiecte noi va fi "
+"creat în dată ce apăsați butonul OK fără a fi deschis dialogul. ține minte, "
+"că acest tip de buffer va fi actualizat peste fiecare 5 minute."
 
 #: ../doc\strings.py:206
 msgid ""
 "* Load previous items: This allows more items to be loaded for the specified "
 "buffer."
 msgstr ""
-"* Cargar elementos anteriores: Permite recuperar más tuits, mensajes "
-"directos, amigos o seguidores, desde el buffer actual."
+"*  Încarcă elementele anterioare: Acesta permite mai multor elemente să fie "
+"încărcate într-un anumit buffer."
 
 #: ../doc\strings.py:207
 msgid ""
 "* Mute: Mutes notifications of a particular buffer so you will not hear when "
 "new tweets arrive."
 msgstr ""
-"* Silenciar: Silencia completamente el buffer, no escucharás sonido alguno "
-"cuando nuevos elementos aparezcan."
+"* Ignoră: Ignoră notificările unui anumit buffer pentru a nu auzi postările "
+"care le primește."
 
 #: ../doc\strings.py:208
 msgid ""
@@ -1054,48 +998,45 @@ msgid ""
 "(if enabled) will read the text of incoming tweets. Please note that this "
 "could get rather chatty if there are a lot of incoming tweets."
 msgstr ""
-"* Leer automáticamente tuits para este buffer: Esta opción activa o "
-"desactiva la lectura automática de tuits. Si está activada, el lector de "
-"pantalla o la voz Sapi5 (si está activada una) leerá automáticamente los "
-"nuevos tuits conforme estos vayan llegando al buffer."
+"* Citire automată: Când este activată, cititorul de ecran sau vocea SAPI 5 "
+"(dacă este activă) va citi textul primit de la postări. ține minte că acest "
+"lucru poate să te deranjeze în caz că sunt mai multe postări."
 
 #: ../doc\strings.py:209
 msgid "* Clear buffer: Deletes all items from the buffer."
-msgstr "* Limpiar Buffer: Vacía los elementos de este buffer."
+msgstr "* Curăță buffer: șterge toate elementele unui buffer."
 
 #: ../doc\strings.py:210
 msgid "* Destroy: dismisses the list you're on."
-msgstr ""
-"* Eliminar buffer: Borra la lista sobre la que te encuentras actualmente."
+msgstr "* șterge: Respinge lista pe care te afli."
 
 #: ../doc\strings.py:213
 msgid "##### Help menu"
-msgstr "##### Menú Ayuda"
+msgstr "##### meniul de ajutor"
 
 #: ../doc\strings.py:216
 msgid ""
 "* Documentation: opens up this file, where you can read some useful program "
 "concepts."
 msgstr ""
-"* Documentación: Abre este archivo, donde puedes leer algunos conceptos "
-"interesantes del programa."
+"* Documentație: Îți deschide acest fișier, unde poți citi informații utile "
+"despre TWBlue."
 
 #: ../doc\strings.py:217
 msgid ""
 "* Sounds tutorial: Opens a dialog box where you can familiarize yourself "
 "with the different sounds of the program."
 msgstr ""
-"* Tutorial de sonidos: Abre un diálogo donde verás una lista de los sonidos "
-"de TWBlue, para que puedas aprenderlos y no te cueste trabajo familiarizarte "
-"con el cliente."
+"* Tutorial de sunete: Deschide un dialog unde poți să te familiarizezi cu "
+"sunetele TWBlue."
 
 #: ../doc\strings.py:218
 msgid ""
 "* What's new in this version?: opens up a document with the list of changes "
 "from the current version to the earliest."
 msgstr ""
-"* ¿Qué hay de nuevo en esta versión?: Abre un documento con la lista de "
-"cambios desde la versión actual, hasta la primera en existencia."
+"* Ce este nou în această versiune?: Deschide un document cu lista de "
+"schimbări din versiunea curentă."
 
 #: ../doc\strings.py:219
 msgid ""
@@ -1105,12 +1046,11 @@ msgid ""
 "complete, TWBlue will be restarted. This item checks for new updates without "
 "having to restart the application."
 msgstr ""
-"* Comprobar actualizaciones: Cada que se abre el programa él mismo busca "
-"automáticamente si hay una nueva versión. Si lo hay, te preguntará si "
-"quieres descargarla; si aceptas, TWBlue descargará la actualización, la "
-"instalará y te pedirá reiniciarla (algo que hace automáticamente). Esta "
-"opción comprueba si hay actualizaciones sin tener que reiniciar la "
-"aplicación."
+"* Verifică pentru versiune nouă: De fiecare dată când deschizi TWBlue, "
+"acesta automat verifică pentru actualizări. Dacă o actualizare este "
+"disponibilă, te va întreba dacă vrei să descarci actualizarea. Dacă accepți, "
+"procesul de actualizare va începe. Când procesul se finalizează, TWBlue va "
+"fi repornit. Acest element verifică pentru actualizări fără a reporni TWBlue."
 
 #: ../doc\strings.py:220
 msgid ""
@@ -1118,9 +1058,9 @@ msgid ""
 "small number of fields. Pressing enter will send the report. If the "
 "operation doesn't succeed the program will display a warning."
 msgstr ""
-"* Reportar un error: Abre un diálogo que te permite reportar un error "
-"llenando unos cuantos campos. Presiona enter para enviar el reporte. si el "
-"proceso falla, el programa te notificará de ello."
+"* Raportează o eroare: Deschide un dialog unde poți raporta oun bug "
+"completând un mic formular. Când apeși Enter raportul va fi expediat. Dacă "
+"operațiunea nu este cu succes, programul va expedia o notificare."
 
 #: ../doc\strings.py:221
 msgid ""
@@ -1128,17 +1068,17 @@ msgid ""
 "find all relevant information and downloads for TWBlue and become a part of "
 "the community."
 msgstr ""
-"* Sitio web de TWBlue. Ve a  nuestra [página principal](http://twblue.es) "
-"donde podrás encontrar toda la información y descargas relativas a TW Blue, "
-"así como participar de la comunidad."
+"* Pagina web a TWBlue: Vizitează [pagina principală](http://twblue.es) unde "
+"poți găsi toate informațiile relevante și descărcările TWBlue, sau poți "
+"deveni o parte a comunității."
 
 #: ../doc\strings.py:222
 msgid "* About TWBlue: shows the credits of the program."
-msgstr "* Sobre TW Blue: Muestra información de créditos del programa."
+msgstr "* Despre TWBlue: Arată contributorii programului."
 
 #: ../doc\strings.py:225
 msgid "### The invisible user interface"
-msgstr "### La interfaz invisible"
+msgstr "### Interfața invizibilă a utilizatorului"
 
 #: ../doc\strings.py:228
 msgid ""
@@ -1152,356 +1092,329 @@ msgid ""
 "use this interface's shortcuts in the GUI, but you can configure this in the "
 "global settings dialogue."
 msgstr ""
-"La interfaz invisible, tal como su nombre lo indica, no tiene ventana "
-"gráfica y funciona directamente con los lectores de pantalla como JAWS for "
-"Windows, NVDA y System Access. Esta interfaz se encuentra desactivada por "
-"defecto, pero puedes activarla presionando Control + M. Funciona de forma "
-"parecida a The Qube y Chicken Nugget. Sus combinaciones de teclado son "
-"similares a las que existen en ambos clientes. Además, el programa incluye "
-"soporte para mapas de teclado para estos clientes, mismos que puedes "
-"configurar desde el diálogo de opciones globales. De forma predeterminada, "
-"no puedes usar los atajos de teclado de esta interfaz desde la ventana "
-"gráfica, pero esto es configurable también desde el diálogo de opciones "
-"globales."
+"Interfața invizibilă, nu are grafică și funcționează perfect cu cititoarele "
+"de ecran, cum ar fi Jaws, sau NVDA. Această interfață este dezactivată "
+"implicit, dar o poți activa apăsând control+M. Aceasta funcționează "
+"asemănător cu TheQube și Chicken Nugget. Scurtăturile acestuia sunt similare "
+"cu cele găsite în aceste două clienturi. Deasemenea, aplicația suportă "
+"scurtăturile de tastatură, care pot fi configurate din setările globale. În "
+"mod implicit, nu poți folosi aceste scurtături în GUI, dar poți configura "
+"asta în setările globale."
 
 #: ../doc\strings.py:231
 msgid ""
 "The next section contains a list of keyboard shortcuts for both interfaces. "
 "Bear in mind that we will only describe the default keymap."
 msgstr ""
-"La siguiente sección muestra la lista de atajos de teclado para ambas "
-"interfaces. Ten en cuenta que aquí solo se describirán las combinaciones de "
-"teclas para el mapa de teclado por defecto."
+"Următoarea secțiune conține o listă de scurtături pentru ambele interfețe. "
+"ține minte că vom descrie doar scurtăturile  implicite."
 
 #: ../doc\strings.py:234
 msgid "## Keyboard shortcuts"
-msgstr "## Atajos de teclado"
+msgstr "## Scurtături pentru tastatură"
 
 #: ../doc\strings.py:237
 msgid "### Shortcuts of the graphical user interface (GUI)"
-msgstr "### Atajos de teclado para la interfaz gráfica (GUI)"
+msgstr "### Scurtături pentru interfața grafică GUI"
 
 #: ../doc\strings.py:240
 msgid "* Enter: Open URL."
-msgstr "* Enter: Abre la dirección URL"
+msgstr "* Enter: Deschide URL-ul."
 
 #: ../doc\strings.py:241
 msgid "* Control + Enter: Play audio."
-msgstr "* Control + enter: Intentar reproducir un audio."
+msgstr "* Control+Enter: Redă audio."
 
 #: ../doc\strings.py:242
 msgid "* Control + M: Hide the GUI."
-msgstr "* Control + M: Esconde la interfaz gráfica."
+msgstr "* Control + M: Ascunde GUI-ul."
 
 #: ../doc\strings.py:243
 msgid "* Control + N: Compose a new tweet."
-msgstr "* Control + N: Hacer un nuevo Tuit."
+msgstr "* Control+N: Compune o nouă postare."
 
 #: ../doc\strings.py:244
 msgid "* Control + R: Reply / mention."
-msgstr "* Control + R: Responder o mencionar."
+msgstr "* Control+R: Răspunde / trimite o mențiune."
 
 #: ../doc\strings.py:245
 msgid "* Control + Shift + R: Retweet."
-msgstr "* Control+Shift+R: Hacer un Retuit."
+msgstr "* Control+Shift+R: Distribuie."
 
 #: ../doc\strings.py:246
 msgid "* Control + D: Send a direct message."
-msgstr "* Control+D: Enviar mensaje directo."
+msgstr "* Control+D: Trimite un mesaj privat."
 
 #: ../doc\strings.py:247
 msgid "* control + F: Add tweet to favourites."
-msgstr "* Control + F: marcar tuit como favorito."
+msgstr "* Control+F: Adaugă postarea la favorite."
 
 #: ../doc\strings.py:248
 msgid "* Control + Shift + F: Remove a tweet from favourites."
-msgstr "* Control+Shift+F: Quitar tuit de favoritos."
+msgstr "* Control+Shift+F: șterge o postare de la favorite."
 
 #: ../doc\strings.py:249
 msgid "* Control + S: Open the user actions dialogue."
-msgstr "* Control + S: Abre el diálogo de acciones de usuario."
+msgstr "* Control+S: Deschide dialogul acțiunilor de utilizator."
 
 #: ../doc\strings.py:250
 msgid "* Control + Shift + V: Show tweet."
-msgstr "* Control + Shift + V: Ver tuit."
+msgstr "* Control+Shift+V: Arată postarea."
 
 #: ../doc\strings.py:251
 msgid "* Control + Q: Quit this program."
-msgstr "* Control + Q: Salir del programa."
+msgstr "* Control+Q: Închide acest program."
 
 #: ../doc\strings.py:252
 msgid "* Control + I: Open user timeline."
-msgstr "* Control + I: Abrir línea temporal."
+msgstr "* Control+I: Deschide cronologia utilizatorului."
 
 #: ../doc\strings.py:253
 msgid "* Control + Shift + i: Destroy buffer."
-msgstr "* Control + Shift + I: Eliminar buffer."
+msgstr "* Control+Shift+I: șterge buffer-ul."
 
 #: ../doc\strings.py:254
 msgid "* F5: Increase volume by 5%."
-msgstr "* F5: Subir volumen un 5%."
+msgstr "* F5: Mărește volumul cu cinci la sută."
 
 #: ../doc\strings.py:255
 msgid "* F6: Decrease volume by 5%."
-msgstr "* F6: Bajar volumen un 5%."
+msgstr "* F6: Micșorează volumul cu cinci la sută."
 
 #: ../doc\strings.py:256
 msgid "* Control + P: Edit your profile."
-msgstr "* Control + P: Editar tu perfil."
+msgstr "* Control+P: Editează-ți profilul."
 
 #: ../doc\strings.py:257
 msgid "* Control + Delete: Delete a tweet or direct message."
-msgstr "* Control + Suprimir: Eliminar un tuit o mensaje directo."
+msgstr "* Control+Delete: șterge o postare sau un mesaj privat."
 
 #: ../doc\strings.py:258
 msgid "* Control + Shift + Delete: Empty the current buffer."
-msgstr "* Control + Shift + Suprimir: Vaciar el contenido del buffer actual."
+msgstr "* Control+Shift+Delete: Golește bufferul curent."
 
 #: ../doc\strings.py:261
 msgid "### Shortcuts of the invisible interface (default keymap)"
-msgstr ""
-"### Atajos de teclado para la Interfaz invisible (mapa de teclado por "
-"defecto)"
+msgstr "### Scurtăturile interfeței invizibile (Harta de taste keymap)"
 
 #: ../doc\strings.py:264
 msgid ""
 "* Control + Windows + Up Arrow: moves to the previous item in the buffer."
-msgstr ""
-"* Control + Windows + Flecha arriba: Se mueve al elemento de arriba en el "
-"buffer."
+msgstr "* Control+Windows+Săgeată sus: Trece la elementul anterior din buffer."
 
 #: ../doc\strings.py:265
 msgid "* Control + Windows + Down Arrow: moves to the next item in the buffer."
-msgstr ""
-"* Control + Windows + Flecha Abajo: Va al elemento de abajo en el buffer."
+msgstr "* Control+Windows+Săgeată Jos: Trece la următorul element din buffer."
 
 #: ../doc\strings.py:266
 msgid "* Control + Windows + Left Arrow: Move to the previous buffer."
-msgstr ""
-"* Control + Windows + Flecha Izquierda: Se desplaza hacia el buffer anterior."
+msgstr "* Controol+Windows+Săgeată Stânga: Mută bufferul anterior."
 
 #: ../doc\strings.py:267
 msgid "* Control + Windows + Right Arrow: Move to the next buffer."
-msgstr ""
-"* Control + Windows + Flecha Derecha: Se desplaza hacia el siguiente buffer."
+msgstr "* Control+Windows+Săgeată Dreapta: Mută-te la următorul buffer."
 
 #: ../doc\strings.py:268
 msgid "* Control + Windows + Shift + Left: Focus the previous session."
-msgstr ""
-"* Control + Windows + Shift + Flecha izquierda: Va a la sesión anterior."
+msgstr "* Control+Windows+Shift+Săgeată Stânga: Focusează sesiunea anterioară."
 
 #: ../doc\strings.py:269
 msgid "* Control + Windows + Shift + Right: Focus the next session."
-msgstr ""
-"* Control + Windows + Shift + flecha derecha: Va a la siguiente sesión."
+msgstr "* Control+Windows+Shift+Săgeată Dreapta: Focusează următoarea sesiune."
 
 #: ../doc\strings.py:270
 msgid "* Control + Windows + C: View conversation."
-msgstr "* Control + Windows + C: Ver conversación."
+msgstr "* Control+Windows+C: Vezi conversația."
 
 #: ../doc\strings.py:271
 msgid "* Control + Enter: Open URL."
-msgstr "* Control + Enter: Abrir dirección URL"
+msgstr "* Control+Enter: Deschide URL-ul."
 
 #: ../doc\strings.py:272
 msgid "* Control + Windows + Enter: Play audio."
-msgstr "* Control + Windows + Enter: Intentar reproducir un audio."
+msgstr "* Control+Windows+Enter: Redă audio."
 
 #: ../doc\strings.py:273
 msgid "* Control + Windows + M: Show or hide the GUI."
-msgstr "* Control + Windows + M: Mostrar o esconder la interfaz gráfica."
+msgstr "* Control+Windows+M: Arată sau ascunde GUI-ul."
 
 #: ../doc\strings.py:274
 msgid "* Control + Windows + N: New tweet."
-msgstr "* Control+Windows+N: Hacer un nuevo Tuit."
+msgstr "* Control+Windows+N: Arată postarea."
 
 #: ../doc\strings.py:275
 msgid "* Control + Windows + R: Reply / Mention."
-msgstr "* Control+Windows+R: Responder a un tuit / mencionar a un usuario."
+msgstr "* Control+Windows+R: Răspunde / Trimitere mențiune."
 
 #: ../doc\strings.py:276
 msgid "* Control + Windows + Shift + R: Retweet."
-msgstr "* Control+Windows+Shift+R: Hacer un retuit."
+msgstr "* Control+Windows+Shift+R: Distribuie."
 
 #: ../doc\strings.py:277
 msgid "* Control + Windows + D: Send direct message."
-msgstr "* Control+Windows+D: Enviar un mensaje directo."
+msgstr "* Control+Windows+D: Trimitere mesaj privat."
 
 #: ../doc\strings.py:278
 msgid "* Windows+ Alt + F: Mark as favourite."
-msgstr "* Windows+Alt+F: Marcar como favorito."
+msgstr "* Windows+Alt+F: Marchează ca favorit."
 
 #: ../doc\strings.py:279
 msgid "* Alt + Windows + Shift + F: Remove from favourites."
-msgstr "* Windows+Alt+Shift+F: Quitar de favoritos."
+msgstr "* Alt+Windows+Shift+F: șterge din preferințe."
 
 #: ../doc\strings.py:280
 msgid "* Control + Windows + S: Open the user actions dialogue."
-msgstr "* Control+Windows+S: Abrir el diálogo de acciones de usuario."
+msgstr "* Control+Windows+S: Deschide dialogul acțiunilor de utilizator."
 
 #: ../doc\strings.py:281
 msgid "* Control + Windows + Alt + N: See user details."
-msgstr "* Control+Windows+Alt+N: Ver detalles de un usuario."
+msgstr "* Control+Windows+Alt+N: Vezi detaliile utilizatorului."
 
 #: ../doc\strings.py:282
 msgid "* Control + Windows + V: Show tweet."
-msgstr "* Control+Windows+V: Ver tuit."
+msgstr "* Control+Windows+V: Arată postarea."
 
 #: ../doc\strings.py:283
 msgid "* Control + Windows + F4: Quit TWBlue."
-msgstr "* Control + Windows + F4: Salir de TWBlue."
+msgstr "* Control+Windows+F4: Ieșire TWBlue."
 
 #: ../doc\strings.py:284
 msgid "* Control + Windows + I: Open user timeline."
-msgstr "* Control+Windows+I: Abrir línea temporal."
+msgstr "* Control+Windows+I: Deschide cronologia  utilizatorului."
 
 #: ../doc\strings.py:285
 msgid "* Control + Windows + Shift + I: Destroy buffer."
-msgstr "* Control+Windows+Shift+I: Eliminar buffer."
+msgstr "* Control+Windows+Shift+I: Șterge bufferul."
 
 #: ../doc\strings.py:286
 msgid "* Control + Windows + Alt + Up: Increase volume by 5%."
-msgstr "* Control+Windows+Alt+Flecha Arriba: Subir volumen un 5%."
+msgstr "* Control+Windows+Alt+Săgeată Sus: Mărește volumul cu 5 la sută."
 
 #: ../doc\strings.py:287
 msgid "* Control + Windows + Alt + Down: Decrease volume by 5%."
-msgstr "* Control+Windows+Alt+Flecha Arriba: Subir volumen un 5%."
+msgstr "* Control+Windows+Alt+Down: Micșorează volumul cu 5 la sută."
 
 #: ../doc\strings.py:288
 msgid ""
 "* Control + Windows + Home: Jump to the first element of the current buffer."
-msgstr "* Control+Windows+Inicio: Ir al primer elemento de la lista."
+msgstr "* Control+Windows+Home: Sari la primul element din bufferul curent."
 
 #: ../doc\strings.py:289
 msgid ""
 "* Control + Windows + End: Jump to the last element of the current buffer."
-msgstr "* Control+Windows+Fin: Ir al final de la lista."
+msgstr "* Control+Windows+End: Sari la ultimul element din buffer."
 
 #: ../doc\strings.py:290
 msgid ""
 "* Control + Windows + PageUp: Jump 20 elements up in the current buffer."
 msgstr ""
-"* Control+Windows+Retroceso de página: ir 20 elementos hacia arriba en la "
-"lista actual."
+"* Control+Windows+PageUp: Sari cu 20 elemente în sus în bufferul curent."
 
 #: ../doc\strings.py:291
 msgid ""
 "* Control + Windows + PageDown: Jump 20 elements down in the current buffer."
 msgstr ""
-"* Control+Windows+Avance de página: Ir 20 elementos hacia abajo en la lista "
-"actual."
+"* Control+Windows+PageDown: Sari cu 20 elemente în jos în bufferul curent."
 
 #: ../doc\strings.py:292
 msgid "* Windows + Alt + P: Edit profile."
-msgstr "* Windows + Alt + P: Editar tu perfil."
+msgstr "* Windows+Alt+P: Editează-ți profilul."
 
 #: ../doc\strings.py:293
 msgid "* Control + Windows + Delete: Delete a tweet or direct message."
-msgstr "* Control+Windows+Suprimir: Eliminar un tuit o mensaje directo."
+msgstr "* Control+Windows+Delete: șterge o postare sau un mesaj privat."
 
 #: ../doc\strings.py:294
 msgid "* Control + Windows + Shift + Delete: Empty the current buffer."
-msgstr ""
-"* Control + Windows + Shift + Suprimir: Vaciar el contenido del buffer actual"
+msgstr "* Control + Windows + Shift + Delete: Golește bufferul curent."
 
 #: ../doc\strings.py:295
 msgid "* Control + Windows + Space: Repeat last item."
-msgstr ""
-"* Control + Windows + Barra espaciadora: Repetir el último elemento leído "
-"por el lector de pantalla."
+msgstr "* Control+Windows+Spațiu: Repetă ultimul element."
 
 #: ../doc\strings.py:296
 msgid "* Control + Windows + Shift + C: Copy to clipboard."
-msgstr "* Control +Windows + Shift + C: Copiar tweet al portapapeles."
+msgstr "* Control+Windows+Shift+C: Copiază pe planșetă."
 
 #: ../doc\strings.py:297
 msgid "* Control + Windows+ A: Add user to list."
-msgstr "* Control + Windows+ A: Añadir al usuario a una lista."
+msgstr "* Control+Windows+A: Adaugă utilizatorul la listă."
 
 #: ../doc\strings.py:298
 msgid "* Control + Windows + Shift + A: Remove user from list."
-msgstr "* Control + Windows + Shift + A: qitar al usuario de una lista."
+msgstr "* Control+Windows+Shift+A: șterge utilizatorul din listă."
 
 #: ../doc\strings.py:299
 msgid "* Control + Windows + M: Mute / unmute the current buffer."
-msgstr ""
-"* Control + Windows + M: Activar o desactivar el sonido para el buffer "
-"actual."
+msgstr "* Control+Windows+M: Dezactivează / activează bufferul curent."
 
 #: ../doc\strings.py:300
 msgid "* Windows + Alt + M: Mute / unmute the current session."
-msgstr ""
-"* Windows + Alt + M: Silencia/desactiva el silencio en la sesión actual."
+msgstr "* Windows+Alt+M: Dezactivează / activează sesiunea curentă."
 
 #: ../doc\strings.py:301
 msgid ""
 "* Control + Windows + E: Toggle the automatic reading of incoming tweets in "
 "the current buffer."
 msgstr ""
-"* Control+Windows+E: Activar o desactivar la lectura automática de nuevos "
-"tuits en el buffer actual."
+"* Control+Windows+E: Comută citirea automată a postărilor venite în bufferul "
+"curent."
 
 #: ../doc\strings.py:302
 msgid "* Control + Windows + -: Search on Twitter."
-msgstr "* Control+windows+- (guión): buscar en Twitter."
+msgstr "* Control+Windows+-: Caută pe Twitter."
 
 #: ../doc\strings.py:303
 msgid "* Control + Windows + K: Show the keystroke editor."
-msgstr "* Control+Windows+K: Mostrar el editor de atajos de teclado."
+msgstr "* Control+Windows+K: Arată editorul pentru combinațiile de taste."
 
 #: ../doc\strings.py:304
 msgid "* Control + Windows + L: Show lists for a specified user."
-msgstr ""
-"* Control + Windows + L: Muestra las listas en las que participa un usuario "
-"específico."
+msgstr "* Control+Windows+L: Araă listele pentru un utilizator specificat."
 
 #: ../doc\strings.py:305
 msgid "* Windows + Alt + PageUp: Load previous items for the current buffer."
 msgstr ""
-"* Windows + Alt+ Retroceso de página: Carga más elementos en el buffer "
-"actual."
+"* Windows+Alt+PageUp: Încarcă elementele anterioare din bufferul curent."
 
 #: ../doc\strings.py:306
 msgid "* Control + Windows + G: Get geolocation."
-msgstr "* control + Windows + G: Obtener la ubicación del tuit."
+msgstr "* Control+Windows+G: Obține geo-locația."
 
 #: ../doc\strings.py:307
 msgid ""
 "* Control + Windows + Shift + G: Display the tweet's geolocation in a "
 "dialogue."
 msgstr ""
-"* Control + Windows + Shift + G: Mostrar la ubicación del tuit en un mensaje "
-"de diálogo."
+"* Control+Windows+Shift+G: Afișează geo-locația postării într-un dialog."
 
 #: ../doc\strings.py:308
 msgid "* Control + Windows + T: Create a trending topics' buffer."
-msgstr "¨Control + Windows + T: Crear un buffer de tendencias."
+msgstr "* Control+Windows+T: Crează un buffer cu subiecte noi."
 
 #: ../doc\strings.py:309
 msgid "* Control + Windows + {: Find a string in the current buffer."
-msgstr ""
-"* Control + Windows + { (abrir llave): Buscar una cadena en el buffer actual."
+msgstr "* Control+Windows+{: Găsește o frază în bufferul curent."
 
 #: ../doc\strings.py:312
 msgid "## Configuration"
-msgstr "## Configuración"
+msgstr "## Configurare"
 
 #: ../doc\strings.py:313
 msgid ""
 "As described above, this application has two configuration dialogues, the "
 "global settings dialogue and the account settings dialogue."
 msgstr ""
-"Como se ha descrito anteriormente, la aplicación tiene dos diálogos de "
-"configuración. El diálogo de opciones globales y el diálogo de opciones de "
-"cuenta."
+"Precum a fost descris mai sus, aplicația are două dialoguri de configurare: "
+"Setările globale, și cele ale contului tău."
 
 #: ../doc\strings.py:316
 msgid "### The account settings dialogue"
-msgstr "### El diálogo de opciones de cuenta"
+msgstr "### Dialogul de setări ale contului"
 
 #: ../doc\strings.py:319 ../doc\strings.py:361
 msgid "#### General tab"
-msgstr "#### Pestaña general"
+msgstr "#### Tab-ul general"
 
 #: ../doc\strings.py:322
 msgid ""
@@ -1509,10 +1422,9 @@ msgid ""
 "database. You can add users manually or let TWBlue add your followers, "
 "friends or both."
 msgstr ""
-"* Opciones de autocompletado: Te permite configurar el comportamiento de la "
-"base de datos de autocompletado de usuarios. Puedes añadir usuarios "
-"manualmente o permitir que TWBlue añada a todos los usuarios que se "
-"encuentren en tu buffer de amigos, seguidores o ambos."
+"* Setările de auto-completare: Îți permite să configurezi baza de date a "
+"auto-completării. Poți adăuga manual utilizatori, sau îl poți lăsa pe TWBlue "
+"să îți adauge urmăritorii, prietenii, sau ambele."
 
 #: ../doc\strings.py:323
 msgid ""
@@ -1520,28 +1432,26 @@ msgid ""
 "calculate the time the tweet or direct message was sent or received based on "
 "the current time, or simply say the time it was received or sent."
 msgstr ""
-"* Tiempos relativos: Te permite configurar si quieres que el programa "
-"calcule el tiempo relativo con el que se enviaron los tuits o mensajes "
-"directos (hace 2 días, una semana, dos meses, etc.) o si solamente quieres "
-"que te informe de la fecha y hora a la que fue publicado el tuit."
+"* Calculare timp: Îți permite să configurezi dacă aplicația va calcula "
+"timpul când postarea sau mesajul privat a fost trimis sau primit bazat pe "
+"timpul curent, sau purșisimplu să spună timpul când a fost primit  sau "
+"trimis. "
 
 #: ../doc\strings.py:324
 msgid ""
 "* API calls: Allows you to adjust the number of API calls to be made to "
 "Twitter by this program."
 msgstr ""
-"* Llamadas a la API: Puedes configurar el número  de llamadas a la API de "
-"Twitter que hará el programa."
+"* Apeluri API: Îți permite să setezi numărul de apeluri API care va fi făcut "
+"către Twitter de către program."
 
 #: ../doc\strings.py:325
 msgid ""
 "* Items on each API call: Allows you to specify how many items should be "
 "retrieved from Twitter for each API call (default and maximum is 200)."
 msgstr ""
-"* Elementos por cada llamada a la API: Te permite especificar cuántos "
-"elementos se obtendrán por cada llamada a la API. De manera predeterminada, "
-"se obtienen 200 elementos por cada llamada. Este es el número máximo de  "
-"elementos que se pueden obtener."
+"* Elementele fiecărui apel API: Îți permite să specifici câte elemente se "
+"vor primi de la Twitter pentru fiecare apel API (implicit și maxim este 200)."
 
 #: ../doc\strings.py:326
 msgid ""
@@ -1549,8 +1459,9 @@ msgid ""
 "inverted, which means that the oldest items will show at the end of them and "
 "the newest at the beginning."
 msgstr ""
-"* Buffers invertidos: Puedes activar esta opción para que los nuevos tuits "
-"aparezcan al principio de los buffers, y los antiguos se ubiquen al final."
+"* Buffere inversate: Îți permiite să specifici dacă bufferul trebuie să fie "
+"inversat, asta înseamnă că elementele vechi vor apărea la sfârșit și cele "
+"noi la început."
 
 #: ../doc\strings.py:327
 msgid ""
@@ -1558,9 +1469,9 @@ msgid ""
 "you can choose between retweeting with a comment, retweeting without comment "
 "or being asked."
 msgstr ""
-"* Modo de retuit: Puedes escoger el comportamiento de TWBlue cuando haces un "
-"retuit. Las opciones son preguntar, retuitear añadiendo un comentario o "
-"hacer el retuit sin comentario."
+"* Modul de distribuire: Îți permite să specifici comportamentul când postezi "
+"o distribuire: vei alege între distribuirea cu un comentariu, distribuirea "
+"fără comentariu, sau să fii întrebat."
 
 #: ../doc\strings.py:328
 msgid ""
@@ -1568,16 +1479,14 @@ msgid ""
 "specify how many items TWBlue should cache in a database. You can type any "
 "number, 0 to cache all items, or leave blank to disable caching entirely."
 msgstr ""
-"* Número de elementos de cada buffer a conservar en la base de datos: Puedes "
-"especificar cuántos elementos de cada buffer serán guardados en la base de "
-"datos de TWBlue. Cuando se alcance este límite, los elementos más viejos del "
-"buffer se eliminarán. Puedes escribir cualquier número, 0 para guardar todos "
-"los elementos sin borrar nada, y dejar en blanco el campo de texto para "
-"desactivar la base de datos completamente."
+"* Numărul elementelor unui buffer pentru a fi salvate în baza de date: "
+"Aceasta îți permite să specifici câte elemente TWBlue va salva în baza de "
+"date. Poți să scrii orice număr , 0 pentru a salva toate elementele, sau "
+"lasă gol pentru a dezactiva salvarea."
 
 #: ../doc\strings.py:331
 msgid "#### buffers tab"
-msgstr "#### Pestaña buffers"
+msgstr "#### Tab-ul de buffere"
 
 #: ../doc\strings.py:334
 msgid ""
@@ -1585,37 +1494,37 @@ msgid ""
 "except for searches, timelines, favourites' timelines and lists. You can "
 "show, hide and move them."
 msgstr ""
-"Esta pestaña muestra la lista de los buffers disponibles en TWBlue, con "
-"excepción de las búsquedas, líneas temporales, líneas temporales de "
-"favoritos y listas. Desde aquí puedes mostrarlos, ocultarlos y moverlos."
+"Acest tab arată o listă a fiecărui buffer valabil în TWBlue, excepție face "
+"cel de căutări, cronologii, cronologiile favorite și listele. Poți arăta, "
+"ascunde sau muta."
 
 #: ../doc\strings.py:337
 msgid "#### The ignored clients tab"
-msgstr "#### La pestaña de clientes ignorados"
+msgstr "#### Tab-ul de clienturi ignorate."
 
 #: ../doc\strings.py:340
 msgid ""
 "In this tab, you can add and remove clients to be ignored by the program."
 msgstr ""
-"En esta pestaña, puedes añadir y eliminar clientes que serán ignorados por "
-"el programa."
+"În acest tab, poți adăuga sau șterge clienturile care vor fi ignorate de "
+"către program."
 
 #: ../doc\strings.py:343
 msgid "#### Sound tab"
-msgstr "#### pestaña sonido"
+msgstr "#### Tab-ul de sunete"
 
 #: ../doc\strings.py:346
 msgid ""
 "In this tab, you can adjust the sound volume, select the input and output "
 "device and set the soundpack used by the program."
 msgstr ""
-"En esta pestaña puedes ajustar el volumen del sonido, seleccionar el "
-"dispositivo de entrada y salida y establecer el paquete de sonidos que el "
-"programa usará para la sesión actual."
+"În acest tab, poți ajusta volumul sunetului, selecta dispozitivele de "
+"intrare și ieșire și să setezi un pachet de sunete care va fi utilizat de "
+"către progrram."
 
 #: ../doc\strings.py:349
 msgid "#### Audio service tab"
-msgstr "#### pestaña Servicios de audio"
+msgstr "#### Tab-ul serviciului audio"
 
 #: ../doc\strings.py:352
 msgid ""
@@ -1623,21 +1532,21 @@ msgid ""
 "audio to SndUp with your account. Note that if account credentials are not "
 "specified you will upload anonimously."
 msgstr ""
-"En esta pestaña puedes introducir tu API Key de SndUp (en caso que tengas "
-"una) para subir audios a este servicio. Ten en cuenta que si no se escribe "
-"ninguna API Key válida, los audios se subirán de forma anónima a SndUp."
+"În acest tab, poți introduce cheia ta de SndUp (dacă ai una) pentru a "
+"încărca audio pe SndUp cu contul tău. Notează-ți că dacă credențialele "
+"contului nu sunt specificate vei încărca în mod anonim."
 
 #: ../doc\strings.py:355
 msgid "### Global settings"
-msgstr "### Opciones globales"
+msgstr "### Setări generale"
 
 #: ../doc\strings.py:358
 msgid ""
 "This dialogue allows you to configure some settings which will affect the "
 "entire application."
 msgstr ""
-"Este diálogo te permite configurar algunas opciones que afectan al "
-"funcionamiento de toda la aplicación."
+"Acest dialog îți permite să configurezi unele setări care vor afecta "
+"întreaga aplicație."
 
 #: ../doc\strings.py:364
 msgid ""
@@ -1646,18 +1555,18 @@ msgid ""
 "Basque, Finnish, French, Galician, Croatian, Hungarian, Italian, Polish, "
 "Portuguese, Russian and Turkish."
 msgstr ""
-"* Idioma: Permite cambiar el idioma con el que se muestra la interfaz y "
-"documentación del cliente. Los idiomas disponibles hasta el momento son "
-"inglés, Árabe, Catalán, Alemán, Español, Vasco, Finlandés, Francés, Gallego, "
-"Croata, Húngaro, Italiano, Polaco, Portugués, Ruso y turco."
+"* Limba: Aceasta îți permite să modifici limba programului. Limbile "
+"suportate sunt: arabă, catalană, germană, engleză, spaniolă, bască, "
+"finlandeză, franceză, galeză, croată, maghiară, italiană, poloneză, "
+"portugheză, română,  rusă, sârbă și turcă."
 
 #: ../doc\strings.py:365
 msgid ""
 "* Ask before exiting TWBlue: This checkbox allows you to control whetherthe "
 "program will ask for confirmation before exiting."
 msgstr ""
-"* Preguntar al salir de TWBlue: Esta casilla permite controlar si TWBlue "
-"pedirá confirmación al ser cerrado."
+"* Întreabă înainte de a părăsi TW Blue: Această căsuță îți permite să "
+"controlezi dacă programul te va întreba înainte de a se închide."
 
 #: ../doc\strings.py:366
 msgid ""
@@ -1665,9 +1574,9 @@ msgid ""
 "whether the application will play a sound when it has finished loading the "
 "buffers."
 msgstr ""
-"* Reproducir un sonido cuando inicia TWBlue: Esta casilla permite controlar "
-"si TWBlue reproducirá un sonido cuando todos los buffers y sesiones hayan "
-"terminado de cargar."
+"* Reproduce un sunet când TWBlue pornește: Această căsuță îți permite să "
+"configurezi dacă aplicația va reda un sunet când finalizează încărcarea "
+"bufferelor."
 
 #: ../doc\strings.py:367
 msgid ""
@@ -1675,8 +1584,9 @@ msgid ""
 "option, but this checkbox configures whether the screen reader will say "
 "\"ready\"."
 msgstr ""
-"* Hablar un mensaje cuando TWBlue inicie: Esta casilla controla si TWBlue "
-"dirá \"listo\" al finalizar la carga de las sesiones y buffers."
+"* Pronunță un mesaj când TW Blue pornește: Aceasta este similară cu opțiunea "
+"anterioară, dar această căsuță configurează dacă cititorul de ecran va spune "
+"'Pregătit'."
 
 #: ../doc\strings.py:368
 msgid ""
@@ -1686,11 +1596,11 @@ msgid ""
 "option is checked, the invisible interface's shortcuts will be usable in the "
 "GUI."
 msgstr ""
-"* Usar los atajos de teclado de la interfaz invisible en la ventana gráfica: "
-"Como la interfaz invisible y la ventana gráfica tienen atajos de teclado "
-"diferentes, podrías querer usar los atajos de la interfaz invisible siempre. "
-"Si esta opción está marcada, los atajos de teclado de la interfaz invisible "
-"funcionarán, incluso si tienes la ventana gráfica activa."
+"* Folosește scurtăturile de tastatură de pe interfața invizibilă în GUI: Cum "
+"interfața invizibilă și GUI-ul au scurtăturile lor de tastatură, poți porni "
+"folosirea scurtărturilor de tastatură de pe interfața invizibilă în același "
+"tiimp. Dacă această opțiune este bifată, scurtăturile de pe interfața "
+"invizibilă vor putea fi utilizate în GUI."
 
 #: ../doc\strings.py:369
 msgid ""
@@ -1698,17 +1608,16 @@ msgid ""
 "checkbox allows to activate SAPI 5 TTS when no other screen reader is being "
 "run."
 msgstr ""
-"* Activar SAPI 5 cuando no hay ningún lector de pantalla ejecutándose: Esta "
-"casilla controla si se debería proporcionar salida de voz via Microsoft SAPI "
-"5 al no encontrarse ningún lector de pantalla en ejecución."
+"* Activează SAPPI5 dacă cititorul  de ecran nu rulează: Această căsuță îți "
+"permite să activezi SAPI5 TTS când alte cititoare de ecran nu sunt activate."
 
 #: ../doc\strings.py:370
 msgid ""
 "* Hide GUI on launch: This allows you to configure whether TWBlue will start "
 "with the GUI or the invisible interface."
 msgstr ""
-"* Esconder interfaz gráfica al iniciar: Esta casilla controla si TWBlue "
-"iniciará con la interfaz gráfica o la invisible."
+"* Ascunde GUI-ul la pornire: Aceasta îți permite să configurezi dacă TWBlue "
+"va porni cu GUI-ul sau cu interfața invizibilă."
 
 #: ../doc\strings.py:371
 msgid ""
@@ -1718,29 +1627,27 @@ msgid ""
 "can create new ones. Just create a new \".keymap\" file and change the "
 "keystrokes associated with the actions, as it is done in the shipped keymaps."
 msgstr ""
-"* Mapa de teclado: Esta opción te permite modificar el mapa de teclado de la "
-"interfaz invisible. Los mapas de teclado disponibles son Default, Qwitter, "
-"The Qube y Chicken Nugget. Los mapas de teclado se encuentran en el "
-"directorio \"keymaps\", y puedes crear los tuyos propios. Solo crea un nuevo "
-"archivo con extensión \".keymap\" y añade asociaciones a los atajos de "
-"teclado, justo como está hecho en los mapas de teclado que van incluidos con "
-"TWBlue."
+"* Hartă taste: Această opțiune îți permite să modifici harta de taste "
+"utilizată de program în interfața invizibilă. Haărțile de taste disponibile "
+"sunt Default, Quiter, Windows 10 și Chicken Nugget. Hărțile de taste se află "
+"în folderul \"keymaps\", iar tu poți crea altele. Crează un fișier cu "
+"extensia .keymap și modifică combinațiile de taste asociate cu acțiunile."
 
 #: ../doc\strings.py:374
 msgid "#### Proxi tab"
-msgstr "#### Pestaña Proxy"
+msgstr "#### Tab-ul Proxy"
 
 #: ../doc\strings.py:377
 msgid ""
 "In this tab you can configure TWBlue to use a Proxy server by completing the "
 "fields displayed (server, port, user and password)."
 msgstr ""
-"En esta pestaña puedes configurar TWBlue para usar un servidor proxy "
-"completando los campos mostrados (servidor, puerto, usuario y contraseña)."
+"Aici poți configra dacă TWBlue va folosi un server Proxy completând "
+"formularul (server-ul, portul, numele și parola)."
 
 #: ../doc\strings.py:380
 msgid "## License, source code and donations"
-msgstr "## Licencia, código fuente y donaciones"
+msgstr "## Licența, codul sursă și donațiile"
 
 #: ../doc\strings.py:383
 msgid ""
@@ -1749,17 +1656,16 @@ msgid ""
 "file named license.txt, or online at <http://www.gnu.org/licenses/old-"
 "licenses/gpl-2.0.html>."
 msgstr ""
-"TWBlue es software libre, cubierto por la licencia pública general de GNU "
-"(GPL), versión 2. Puedes ver una copia completa de la licencia en el archivo "
-"license.txt, o en internet en <http://www.gnu.org/licenses/old-licenses/"
-"gpl-2.0.html>."
+"TWBlue este un program gratuit, licențiat în baza GNU GPL, versiunea 2 "
+"sau ... orice versiune veche. Poți vedea licența în fișierul numit license."
+"txt, sau online la <http://www.gnu.org/license/old-license/gpl-2.0.html>."
 
 #: ../doc\strings.py:386
 msgid ""
 "The source code of the program is available on GitHub at <https://www.github."
 "com/manuelcortez/twblue>."
 msgstr ""
-"El código fuente de TWBlue está disponible en github en <https://github.com/"
+"Codul sursă acestui program este valabil pe GitHub la <http://www.github.com/"
 "manuelcortez/twblue>."
 
 #: ../doc\strings.py:389
@@ -1767,12 +1673,12 @@ msgid ""
 "If you want to donate to the project, you can do so at <http://twblue.es/?"
 "q=node/3&language=en>. Thank you for your support!"
 msgstr ""
-"Si te gustaría realizar un donativo para este proyecto, puedes hacerlo en "
-"[la página de donaciones de TWBlue.](http://twblue.es/es/donate)"
+"Dacă vrei să faci o donație către proect, accesează <http://twblue.es/?"
+"q=node/3&language=en>. Îți mulțumim pentru sprijin!"
 
 #: ../doc\strings.py:392
 msgid "## Contact"
-msgstr "## Contacto"
+msgstr "## Contact"
 
 #: ../doc\strings.py:395
 msgid ""
@@ -1783,15 +1689,15 @@ msgid ""
 "twitter.com/manuelcortez00) You can also visit [our website](http://twblue."
 "es)"
 msgstr ""
-"Si luego de leer esta guía todavía tienes preguntas, si deseas colaborar de "
-"alguna otra forma o si simplemente deseas mantenerte en contacto con el "
-"desarrollador de la aplicación, sigue a la cuenta [@tw_blue2](https://"
-"twitter.com/tw_blue2) o a [@manuelcortez00.](https://twitter.com/"
-"manuelcortez00) También puedes visitar nuestro [Sitio web](http://twblue.es)"
+"Dacă ai întrebări după ce ai citit această documentație, dacă dorești să "
+"colaborezi la acest proiect sau pur și simplu vrei să iei legătura cu "
+"dezvoltatorul aplicației, urmărește Contul de Twitter [@tw_blue2](https://"
+"twitter.com/tw_blue2) sau [@manuelcortez00.](https://twitter.com/"
+"manuelcortez00). De asemenea, poți vizita [Site-ul nostru](http://twblue.es)"
 
 #: ../doc\strings.py:398
 msgid "## Credits"
-msgstr "## Créditos"
+msgstr "## Mulțumiri"
 
 #: ../doc\strings.py:401
 msgid ""
@@ -1800,105 +1706,104 @@ msgid ""
 "[Bill Dengler](https://twitter.com/codeofdusk). It's supported and sponsored "
 "by [Technow S. L.](https://twitter.com/technow)"
 msgstr ""
-"TWBlue es desarrollado y mantenido por [Manuel Cortéz](https://twitter.com/"
-"manuelcortez00), [José Manuel Delicado](https://twitter.com/jmdaweb), y "
-"[Bill Dengler](https://twitter.com/codeofdusk). Es apoyado y patrocinado por "
-"[Technow S. L.](https://twitter.com/technow)"
+"TWBlue este dezvoltat și întreținut de către [Manuel Cortez](https://twitter."
+"com/manuelcortez00), [Jose Manuel Delicado](https://twitter.com/jmdaweb), și "
+"[Bill Dengler](https://twitter.com/codeofdusk). Este sprijinit și "
+"sponsorizat de către [Technow S.L](https://twitter.com/technow)."
 
 #: ../doc\strings.py:404
 msgid ""
 "We would also like to thank the translators of TWBlue, who have allowed the "
 "spreading of the application."
-msgstr ""
-"También nos gustaría agradecer a los traductores de TWBlue, que han "
-"permitido la difusión de la aplicación."
+msgstr "Dorim deasemenea să mulțumim echipei de traducători ai TWBlue,"
 
 #: ../doc\strings.py:407
 msgid ""
 "* English: [Bryner Villalobos](https://twitter.com/Bry_StarkCR) and [Bill "
 "Dengler](https://twitter.com/codeofdusk)."
 msgstr ""
-"* Inglés: [Bryner Villalobos](https://twitter.com/Bry_StarkCR) y [Bill "
+"* Engleză: [Bryner Villalobos](https://twitter.com/Bry_StarkCR) y [Bill "
 "Dengler](https://twitter.com/codeofdusk)."
 
 #: ../doc\strings.py:408
 msgid "* Arabic: [Mohammed Al Shara](https://twitter.com/mohammed0204)."
-msgstr "* Árabe: [Mohammed Al Shara](https://twitter.com/mohammed0204)."
+msgstr "* Arabă: [Mohammed Al Shara](https://twitter.com/mohammed0204)."
 
 #: ../doc\strings.py:409
 msgid ""
 "* Catalan: [Joan Rabat](https://twitter.com/joanrabat) and Juan Carlos "
 "Rivilla."
 msgstr ""
-"* Catalán: [Joan Rabat](https://twitter.com/joanrabat) y Juan Carlos Rivilla."
+"* Catalană: [Joan Rabat](https://twitter.com/joanrabat) y Juan Carlos "
+"Rivilla."
 
 #: ../doc\strings.py:410
 msgid "* Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
-msgstr "* Español: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
+msgstr "* Spaniolă: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
 
 #: ../doc\strings.py:411
 msgid "* Basque: [Sukil Etxenike](https://twitter.com/sukil2011)."
-msgstr "* Vasco: [Sukil Etxenike](https://twitter.com/sukil2011)."
+msgstr "* Bască: [Sukil Etxenike](https://twitter.com/sukil2011)."
 
 #: ../doc\strings.py:412
 msgid "* Finnish: [Jani Kinnunen](https://twitter.com/jani_kinnunen)."
-msgstr "* Finés: [Jani Kinnunen](https://twitter.com/jani_kinnunen)."
+msgstr "* Finlandeză: [Jani Kinnunen](https://twitter.com/jani_kinnunen)."
 
 #: ../doc\strings.py:413
 msgid "* French: [Rémi Ruiz](https://twitter.com/blindhelp38)."
-msgstr "* Francés: [Rémi Ruiz](https://twitter.com/blindhelp38)."
+msgstr "* Franceză: [Rémi Ruiz](https://twitter.com/blindhelp38)."
 
 #: ../doc\strings.py:414
 msgid "* Galician: [Juan Buño](https://twitter.com/Quetzatl_)."
-msgstr "* Gallego: [Juan Buño](https://twitter.com/Quetzatl_)."
+msgstr "* Galeză: [Juan Buño](https://twitter.com/Quetzatl_)."
 
 #: ../doc\strings.py:415
 msgid "* German: [Steffen Schultz](https://twitter.com/schulle4u)."
-msgstr "* Alemán: [Steffen Schultz](https://twitter.com/schulle4u)."
+msgstr "* Germană: [Steffen Schultz](https://twitter.com/schulle4u)."
 
 #: ../doc\strings.py:416
 msgid "* Croatian: [Zvonimir Stanečić](https://twitter.com/zvonimirek222)."
-msgstr "* Croata: [Zvonimir Stanečić](https://twitter.com/zvonimirek222)."
+msgstr "* Croată: [Zvonimir Stanečić](https://twitter.com/zvonimirek222)."
 
 #: ../doc\strings.py:417
 msgid "* Hungarian: Robert Osztolykan."
-msgstr "* Húngaro: Robert Osztolykan."
+msgstr "* Maghiară: Robert Osztolykan."
 
 #: ../doc\strings.py:418
 msgid "* Italian: [Christian Leo Mameli](https://twitter.com/llajta2012)."
-msgstr "* Italiano: [Christian Leo Mameli](https://twitter.com/llajta2012)."
+msgstr "* Italiană: [Christian Leo Mameli](https://twitter.com/llajta2012)."
 
 #: ../doc\strings.py:419
 msgid "* Japanese: [Riku](https://twitter.com/riku_sub001)"
-msgstr "* Japonés: [Riku](https://twitter.com/riku_sub001)."
+msgstr "* Japoneză: [Riku](https://twitter.com/riku_sub001)."
 
 #: ../doc\strings.py:420
 msgid "* Polish: [Pawel Masarczyk.](https://twitter.com/Piciok)"
-msgstr "* Polaco: [Pawel Masarczyk.](https://twitter.com/Piciok)"
+msgstr "* Poloneză: [Pawel Masarczyk.](https://twitter.com/Piciok)"
 
 #: ../doc\strings.py:421
 msgid "* Portuguese: Odenilton Júnior Santos."
-msgstr "* Portugués: Odenilton Júnior Santos."
+msgstr "* Portugheză: Odenilton Júnior Santos."
 
 #: ../doc\strings.py:422
 msgid ""
 "* Romanian: [Florian Ionașcu](https://twitter.com/7ro) and [Răzvan Ciule]"
 "(https://twitter.com/pilgrim89)"
 msgstr ""
-"* Rumano: [Florian Ionașcu](https://twitter.com/7ro) y [Răzvan Ciule]"
-"(https://twitter.com/pilgrim89)"
+"* Română: [Florian Ionașcu](https://twitter.com/florianionascu7) și [Răzvan "
+"Ciule](https://twitter.com/ciulerazvan)"
 
 #: ../doc\strings.py:423
 msgid "* Russian: [Александр Яшин](https://twitter.com/radovest)."
-msgstr "* Ruso: [Александр Яшин](https://twitter.com/radovest)."
+msgstr "* Rusă: [Александр Яшин](https://twitter.com/radovest)."
 
 #: ../doc\strings.py:424
 msgid "* Serbian: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)"
-msgstr "* Serbio: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)"
+msgstr "* Sârbă: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)"
 
 #: ../doc\strings.py:425
 msgid "* Turkish: [Burak Yüksek](https://twitter.com/burakyuksek)."
-msgstr "* Turco: [Burak Yüksek](https://twitter.com/burakyuksek)."
+msgstr "* Turcă: [Burak Yüksek](https://twitter.com/burakyuksek)."
 
 #: ../doc\strings.py:428
 msgid ""
@@ -1912,15 +1817,15 @@ msgid ""
 "sukil2011), with some valuable corrections by [Brian Hartgen](https://"
 "twitter.com/brianhartgen) and [Bill Dengler](https://twitter.com/codeofdusk)."
 msgstr ""
-"Muchas gracias también a las personas que trabajaron en la documentación. "
-"Inicialmente, [Manuel Cortez](https://twitter.com/manuelcortez00) hizo la "
-"documentación en Español, y traducido al inglés por [Bryner Villalobos]"
-"(https://twitter.com/Bry_StarkCR), [Robert Spangler](https://twitter.com/"
-"glasscity1837), [Sussan Rey](https://twitter.com/sussanrey17), [Anibal "
-"Hernandez](https://twitter.com/anibalmetal), y [Holly Scott-Gardner](https://"
-"twitter.com/holly1994). Fue actualizado por [Sukil Etxenike](https://twitter."
-"com/sukil2011), con algunas valiosas correcciones por [Brian Hartgen]"
-"(https://twitter.com/brianhartgen)."
+"La fel de mult le mulțumim și persoanelor care au lucrat la această "
+"documentație. Inițial, [Manuel Cortez](https://twitter.com/manuelcortez00) "
+"Documentația a fost făcută în spaniolă și a fost tradusă în engleză de "
+"[Bryner Villalobos](https://twitter.com/Bry_StarkCR), [Robert Spangler]"
+"(https://twitter.com/glasscity1837), [Sussan Rey](https://twitter.com/"
+"sussanrey17), [Anibal Hernandez](https://twitter.com/anibalmetal), y [Holly "
+"Scott-Gardner](https://twitter.com/holly1994). Ea a fost actualizată de  "
+"[Sukil Etxenike](https://twitter.com/sukil2011), cu câteva corecturi de "
+"[Brian Hartgen](https://twitter.com/brianhartgen)."
 
 #: ../doc\strings.py:431
 msgid "---"
