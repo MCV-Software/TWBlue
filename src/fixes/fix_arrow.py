@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 from arrow import locales
 from arrow.locales import Locale
 
@@ -23,7 +23,7 @@ def get_locale(name):
 	return locale_cls()
 
 class CatalaLocale(Locale):
-	names = ['ca', 'ca_ca']
+	names = ['ca', 'ca_es', 'ca_ca']
 	past = 'Fa {0}'
 	future = '{0}' # I don't know what's the right phrase in catala for the future.
 
@@ -48,9 +48,9 @@ class CatalaLocale(Locale):
 	day_abbreviations = ['', 'Dilluns', 'Dimars', 'Dimecres', 'Dijous', 'Divendres', 'Disabte', 'Diumenge']
 
 class GalicianLocale(Locale):
-	names = ['gl', 'gl_gl']
+	names = ['gl', 'gl_es', 'gl_gl']
 	past = 'Fai {0}'
-	future = '{0}' # I don't know what's the right phrase in Galician for the future.
+	future = 'En {0}'
 
 	timeframes = {
 		'now': 'Agora mesmo',
@@ -73,7 +73,7 @@ class GalicianLocale(Locale):
 	day_abbreviations = ['', 'Lun', 'Mar', 'Mer', 'xov', 'Ven' 'Sab', 'Dom']
 
 class BasqueLocale(Locale):
-	names = ['eu', 'eu_eu']
+	names = ['eu', 'eu_es', 'eu_eu']
 	past = 'duela {0}'
 	future = '{0} igarota'
 
