@@ -1161,6 +1161,8 @@ class Controller(object):
   return keymap
 
  def register_invisible_keyboard_shorcuts(self, keymap):
+  if config.changed_keymap:
+   commonMessageDialogs.changed_keymap()
   self.keyboard_handler = WXKeyboardHandler(self.view)
   self.keyboard_handler.register_keys(keymap)
 

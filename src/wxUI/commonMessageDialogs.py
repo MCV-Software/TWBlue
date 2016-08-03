@@ -68,3 +68,6 @@ def no_friends():
 def view_geodata(geotext):
  """Specific message dialog to display geolocation data"""
  return wx.MessageDialog(None, _(u"Geolocation data: {0}").format(geotext), _(u"Geo data for this tweet")).ShowModal()
+
+def changed_keymap():
+ return wx.MessageDialog(None, _(u"TWBlue has detected that you're running windows 10 and has changed the default keymap to the Windows 10 keymap. It means that some keyboard shorcuts could be different. Please check the keystroke editor by pressing Alt+Win+K to see all available keystrokes for this keymap."), _(u"Information"), wx.OK).ShowModal()
