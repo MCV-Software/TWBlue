@@ -106,8 +106,9 @@ Now that you have installed all these packages, you can run TW Blue from source 
 
 ### Generating the documentation
 
-To generate the documentation in html format, navigate to the doc folder inside this repo. After that, run this command:
-python generator.py
+To generate the documentation in html format, navigate to the doc folder inside this repo. After that, run these commands:  
+python document_importer.py  
+python generator.py  
 The documentation will be generated, placing each language in a separate folder in the doc directory. Move these folders (for example de, en, es, fr, it, ...) to src/documentation, creating the directory if necesary.
 Also, copy the license.txt located in the root of the repo to the documentation folder.
 
