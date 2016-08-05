@@ -313,13 +313,13 @@ If you still have questions after reading this document, if you wish to collabor
 
 ## Credits
 
-TWBlue is developed and mantained by [Manuel Cortéz](https://twitter.com/manuelcortez00), [José Manuel Delicado](https://twitter.com/jmdaweb), and [Bill Dengler](https://twitter.com/codeofdusk). It's supported and sponsored by [Technow S. L.](https://twitter.com/technow)
+TWBlue is developed and mantained by [Manuel Cortéz](https://twitter.com/manuelcortez00) and [José Manuel Delicado](https://twitter.com/jmdaweb). It's supported and sponsored by [Technow S. L.](https://twitter.com/technow)
 
 We would also like to thank the translators of TWBlue, who have allowed the spreading of the application.
 
-* English: [Bryner Villalobos](https://twitter.com/Bry_StarkCR) and [Bill Dengler](https://twitter.com/codeofdusk).
+* English: [Manuel Cortéz](https://twitter.com/manuelcortez00).
 * Arabic: [Mohammed Al Shara](https://twitter.com/mohammed0204).
-* Catalan: [Joan Rabat](https://twitter.com/joanrabat) and Juan Carlos Rivilla.
+* Catalan: [Francisco Torres](https://twitter.com/ftgalleg)
 * Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00).
 * Basque: [Sukil Etxenike](https://twitter.com/sukil2011).
 * Finnish: [Jani Kinnunen](https://twitter.com/jani_kinnunen).
@@ -333,7 +333,7 @@ We would also like to thank the translators of TWBlue, who have allowed the spre
 * Polish: [Pawel Masarczyk.](https://twitter.com/Piciok)
 * Portuguese: Odenilton Júnior Santos.
 * Romanian: [Florian Ionașcu](https://twitter.com/7ro) and [Răzvan Ciule](https://twitter.com/pilgrim89)
-* Russian: [Александр Яшин](https://twitter.com/radovest).
+* Russian: [Наталья Хедлунд](https://twitter.com/Lifestar_n).
 * Serbian: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)
 * Turkish: [Burak Yüksek](https://twitter.com/burakyuksek).
 
