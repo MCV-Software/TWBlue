@@ -585,10 +585,10 @@ class baseBufferController(bufferController):
     url=urls_list.get_string()
    if hasattr(urls_list, "destroy"): urls_list.destroy()
   if url != '':
-   try:
-    sound.URLPlayer.play(url, self.session.settings["sound"]["volume"])
-   except:
-    log.error("Exception while executing audio method.")
+#   try:
+   sound.URLPlayer.play(url, self.session.settings["sound"]["volume"])
+#   except:
+#    log.error("Exception while executing audio method.")
 
 # @_tweets_exist
  def url(self, url='', announce=True, *args, **kwargs):

@@ -38,25 +38,29 @@ class timelinesStreamer(TwythonStreamer):
      data_ = self.session.check_quoted_status(data)
      data_ = self.session.check_long_tweet(data_)
      data = data_
-    except AttributeError:
+    except ValueError:
      pass
     if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s-timeline" % (i,)].append(data)
     else: self.session.db["%s-timeline" % (i,)].insert(0, data)
     pub.sendMessage("item-in-timeline", data= data, user= self.session.db["user_name"], who= i)
+    return
   for i in self.session.lists:
    try:
     i.users.index(data["user"]["id"])
     usr = data["in_reply_to_user_id"]
     if (usr != None and usr in self.friends) or data.has_key("retweeted_status"):
      data = self.session.check_quoted_status(data)
+     data = self.session.check_long_tweet(data)
      if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s" % (i.name,)].append(data)
      else: self.session.db["%s" % (i.name,)].insert(0, data)
      pub.sendMessage("item-in-list", data=data, user=self.session.db["user_name"], where=i.name)
     elif usr == None:
+     data = self.session.check_quoted_status(data)
+     data = self.session.check_long_tweet(data)
      if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s" % (i.name,)].append(data)
      else: self.session.db["%s" % (i.name,)].insert(0, data)
      pub.sendMessage("item-in-list", data=data, user=self.session.db["user_name"], where=i.name)
-   except ValueError:
+   except NameError:
     pass
 
  def set_friends(self, friends):

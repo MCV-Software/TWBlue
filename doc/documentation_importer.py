@@ -10,14 +10,19 @@ def prepare_documentation_in_file(fileSource, fileDest):
 	f2 = open(fileDest, "w")
 	lns = f1.readlines()
 	f2.write("# -*- coding: utf-8 -*-\n")
-	f2.write("documentation = []\n")
+	f2.write("documentation = [\n")
 	for i in lns:
-		if len(i) > 2:
-			newvar = "documentation.append(_(u\"\"\"%s\"\"\"))\n" % (i[:-2])
+		if "\n" == i:
+			newvar = "\"\","
+		elif "\n" == i[-1]:
+			newvar = "_(u\"\"\"%s\"\"\"),\n" % (i[:-1])
 		else:
-			newvar = "documentation.append(_(u\"\"\"%s\"\"\"))\n" % (i)
+			newvar = "_(u\"\"\"%s\"\"\"),\n" % (i)
+#		print i[-1:]
 		f2.write(newvar)
 	f1.close()
+	f2.write("]")
 	f2.close()
 
 
+prepare_documentation_in_file("manual.md", "strings.py")
