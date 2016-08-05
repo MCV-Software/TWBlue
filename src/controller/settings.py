@@ -19,6 +19,7 @@ import config_utils
 import BaseHTTPServer
 log = logging.getLogger("Settings")
 import keys
+from collections import OrderedDict
 
 class globalSettingsController(object):
  def __init__(self):
@@ -248,14 +249,25 @@ class accountSettingsController(globalSettingsController):
   self.dialog.ignored_clients.remove_(id)
 
  def get_buffers_list(self):
-  all_buffers = ['home','mentions','dm','sent_dm','sent_tweets','favorites','followers','friends','blocks','muted','events']
+  all_buffers=OrderedDict()
+  all_buffers['home']=_(u"Home")
+  all_buffers['mentions']=_(u"Mentions")
+  all_buffers['dm']=_(u"Direct Messages")
+  all_buffers['sent_dm']=_(u"Sent direct messages")
+  all_buffers['sent_tweets']=_(u"Sent tweets")
+  all_buffers['favorites']=_(u"Likes")
+  all_buffers['followers']=_(u"Followers")
+  all_buffers['friends']=_(u"Friends")
+  all_buffers['blocks']=_(u"Blocked users")
+  all_buffers['muted']=_(u"Muted users")
+  all_buffers['events']=_(u"Events")
   list_buffers = []
   hidden_buffers=[]
-  for i in all_buffers:
+  for i in all_buffers.keys():
    if i in self.config["general"]["buffer_order"]:
-    list_buffers.append((i, True))
+    list_buffers.append((i, all_buffers[i], True))
    else:
-    hidden_buffers.append((i, False))
+    hidden_buffers.append((i, all_buffers[i], False))
   list_buffers.extend(hidden_buffers)
   return list_buffers
 

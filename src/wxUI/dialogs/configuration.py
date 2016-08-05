@@ -114,7 +114,7 @@ class other_buffers(wx.Panel):
  def __init__(self, parent):
   super(other_buffers, self).__init__(parent)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  self.buffers = widgets.list(self, _(u"Buffer"), _(u"Status"), style=wx.LC_SINGLE_SEL|wx.LC_REPORT)
+  self.buffers = widgets.list(self, _(u"Buffer"), _(u"Name"), _(u"Status"), style=wx.LC_SINGLE_SEL|wx.LC_REPORT)
   sizer.Add(self.buffers.list, 0, wx.ALL, 5)
   btnSizer = wx.BoxSizer(wx.HORIZONTAL)
   self.toggle_state = wx.Button(self, -1, _(u"Show/hide"))
@@ -128,10 +128,10 @@ class other_buffers(wx.Panel):
 
  def insert_buffers(self, buffers):
   for i in buffers:
-   if i[1] == True:
-    self.buffers.insert_item(False, *[i[0], _(u"Show")])
+   if i[2] == True:
+    self.buffers.insert_item(False, *[i[0], i[1], _(u"Show")])
    else:
-    self.buffers.insert_item(False, *[i[0], _(u"Hide")])
+    self.buffers.insert_item(False, *[i[0], i[1], _(u"Hide")])
 
  def connect_hook_func(self, func):
   self.buffers.list.Bind(wx.EVT_CHAR_HOOK, func)
@@ -141,40 +141,48 @@ class other_buffers(wx.Panel):
   if current == -1:
    output.speak(_(u"Select a buffer first."), True)
    return False
-  if self.buffers.get_text_column(current, 1) == _(u"Hide"):
+  if self.buffers.get_text_column(current, 2) == _(u"Hide"):
    output.speak(_(u"The buffer is hidden, show it first."), True)
    return False
   if current <= 0:
    output.speak(_(u"The buffer is already at the top of the list."), True)
    return False
   current_text = self.buffers.get_text_column(self.buffers.get_selected(), 0)
-  current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 1)
+  current_name = self.buffers.get_text_column(self.buffers.get_selected(), 1)
+  current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 2)
   text_above = self.buffers.get_text_column(self.buffers.get_selected()-1, 0)
-  text_above_state = self.buffers.get_text_column(self.buffers.get_selected()-1, 1)
+  name_above = self.buffers.get_text_column(self.buffers.get_selected()-1, 1)
+  text_above_state = self.buffers.get_text_column(self.buffers.get_selected()-1, 2)
   self.buffers.set_text_column(self.buffers.get_selected()-1, 0, current_text)
-  self.buffers.set_text_column(self.buffers.get_selected()-1, 1, current_text_state)
+  self.buffers.set_text_column(self.buffers.get_selected()-1, 1, current_name)
+  self.buffers.set_text_column(self.buffers.get_selected()-1, 2, current_text_state)
   self.buffers.set_text_column(self.buffers.get_selected(), 0, text_above)
-  self.buffers.set_text_column(self.buffers.get_selected(), 1, text_above_state)
+  self.buffers.set_text_column(self.buffers.get_selected(), 1, name_above)
+  self.buffers.set_text_column(self.buffers.get_selected(), 2, text_above_state)
 
  def move_down(self, *args, **kwargs):
   current = self.buffers.get_selected()
   if current == -1:
    output.speak(_(u"Select a buffer first."), True)
    return False
-  if self.buffers.get_text_column(current, 1) == _(u"Hide"):
+  if self.buffers.get_text_column(current, 2) == _(u"Hide"):
    output.speak(_(u"The buffer is hidden, show it first."), True)
    return False
   if current+1 >= self.buffers.get_count():
    output.speak(_(u"The buffer is already at the bottom of the list."), True)
    return False
   current_text = self.buffers.get_text_column(self.buffers.get_selected(), 0)
-  current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 1)
+  current_name = self.buffers.get_text_column(self.buffers.get_selected(), 1)
+  current_text_state = self.buffers.get_text_column(self.buffers.get_selected(), 2)
   text_below = self.buffers.get_text_column(self.buffers.get_selected()+1, 0)
-  text_below_state = self.buffers.get_text_column(self.buffers.get_selected()+1, 1)
+  name_below = self.buffers.get_text_column(self.buffers.get_selected()+1, 1)
+  text_below_state = self.buffers.get_text_column(self.buffers.get_selected()+1, 2)
   self.buffers.set_text_column(self.buffers.get_selected()+1, 0, current_text)
-  self.buffers.set_text_column(self.buffers.get_selected()+1, 1, current_text_state)
+  self.buffers.set_text_column(self.buffers.get_selected()+1, 1, current_name)
+  self.buffers.set_text_column(self.buffers.get_selected()+1, 2, current_text_state)
   self.buffers.set_text_column(self.buffers.get_selected(), 0, text_below)
-  self.buffers.set_text_column(self.buffers.get_selected(), 1, text_below_state)
+  self.buffers.set_text_column(self.buffers.get_selected(), 1, name_below)
+  self.buffers.set_text_column(self.buffers.get_selected(), 2, text_below_state)
 
  def get_event(self, ev):
   if ev.GetKeyCode() == wx.WXK_SPACE:
@@ -185,16 +193,16 @@ class other_buffers(wx.Panel):
 
  def change_selected_item(self):
   current = self.buffers.get_selected()
-  text = self.buffers.get_text_column(current, 1)
+  text = self.buffers.get_text_column(current, 2)
   if text == _(u"Show"):
-   self.buffers.set_text_column(current, 1, _(u"Hide"))
+   self.buffers.set_text_column(current, 2, _(u"Hide"))
   else:
-   self.buffers.set_text_column(current, 1, _(u"Show"))
-  output.speak(self.buffers.get_text_column(current, 1),True)
+   self.buffers.set_text_column(current, 2, _(u"Show"))
+  output.speak(self.buffers.get_text_column(current, 2),True)
  def get_list(self):
   buffers_list = []
   for i in xrange(0, self.buffers.get_count()):
-   if self.buffers.get_text_column(i, 1) == _(u"Show"):
+   if self.buffers.get_text_column(i, 2) == _(u"Show"):
     buffers_list.append(self.buffers.get_text_column(i, 0))
   return buffers_list
 
