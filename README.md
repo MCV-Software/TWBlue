@@ -92,7 +92,7 @@ This dependency has been built using pure basic 4.61. Its source can be found at
 
 * [NSIS Unicode Portable,](http://portableapps.com/apps/development/nsis_portable) version 2.46.5 rev 3
 * [PortableApps.com Launcher,](http://portableapps.com/apps/development/portableapps.com_launcher) version 2.2
-* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.1.3
+* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.3.2
 
 Important! Install these 3 apps into the same folder, otherwise you won't be able to build the pa.c version. For example: D:\portableApps\NSISPortable, D:\PortableApps\PortableApps.com installer, ...
 
