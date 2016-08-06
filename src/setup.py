@@ -49,7 +49,7 @@ def get_data():
   ("accessible_output2/lib", glob("accessible_output2/lib/*.dll")),
   ("keys/lib", glob("keys/lib/*.dll")),
 ("keymaps", glob("keymaps/*.keymap")),
-("share/enchant/myspell", glob("../windows-dependencies/dictionaries/*)),
+("share/enchant/myspell", glob("../windows-dependencies/dictionaries/*")),
 ]+get_sounds()+get_locales()+get_documentation()+sound_lib.find_datafiles()+enchant.utils.win32_data_files()+get_architecture_files()+wx_files()
 
 def get_documentation ():
