@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2016-08-04 09:26+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-08-06 13:30+0300\n"
+"PO-Revision-Date: 2016-08-06 21:54+0300\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Mohammed Al Shara <mohammed@atexplorer.com>\n"
 "Language: ar\n"
@@ -2251,6 +2251,8 @@ msgid ""
 "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
 "Twitter %s"
 msgstr ""
+"%s (@%s). %s متابعين,  %s أصدقاء, %s تغريدات. آخر تغريدة %s. إنضم إلى تويتر "
+"في %s"
 
 #: ../src\build\lib\twitter\compose.py:109 ../src\twitter\compose.py:111
 msgid "You've blocked %s"
@@ -2338,7 +2340,7 @@ msgstr "لقد أُلغِيَ إشتراكك في القائمة %s, التي ي
 
 #: ../src\build\lib\twitter\compose.py:146 ../src\twitter\compose.py:148
 msgid "You have retweeted a retweet from %s(@%s): %s"
-msgstr ""
+msgstr "لقد قمت بإعادة تغريد تغريدة معادة %s(@%s): %s"
 
 #: ../src\build\lib\twitter\compose.py:147 ../src\twitter\compose.py:149
 #, fuzzy
@@ -2347,7 +2349,7 @@ msgstr "%s(@%s) قام بحذفك من القائمة %s"
 
 #: ../src\build\lib\twitter\compose.py:149 ../src\twitter\compose.py:151
 msgid "@{0} quoted your tweet: {1}"
-msgstr ""
+msgstr "@{0} إقتبس تغريدتك: {1} "
 
 #: ../src\build\lib\twitter\compose.py:151 ../src\twitter\compose.py:153
 msgid "Unknown"
@@ -2375,7 +2377,7 @@ msgstr "لم يتم العثور على حالة بهذا الرمز."
 
 #: ../src\build\lib\twitter\utils.py:132 ../src\twitter\utils.py:132
 msgid "Error code {0}"
-msgstr ""
+msgstr "خطء رقم {0}"
 
 #: ../src\build\lib\update\wxUpdater.py:9 ../src\update\wxUpdater.py:9
 msgid "New version for %s"
@@ -2402,7 +2404,7 @@ msgstr "جاري تحميل الإصدار الجديد"
 
 #: ../src\build\lib\update\wxUpdater.py:27 ../src\update\wxUpdater.py:27
 msgid "Updating... %s of %s"
-msgstr ""
+msgstr "جاري التحديث... %s من %s"
 
 #: ../src\build\lib\update\wxUpdater.py:30 ../src\update\wxUpdater.py:30
 msgid "Done!"
@@ -2488,6 +2490,8 @@ msgid ""
 "This retweet is over 140 characters. Would you like to post it as a mention "
 "to the poster with your comments and a link to the original tweet?"
 msgstr ""
+"إعادة التغريدة هذه أطول من 140 حرف. هل ترغب بنشرها كذكر  لصاحبها مع تعليق "
+"ورابط للتغريدة الأصلية؟"
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:9
 #: ../src\wxUI\commonMessageDialogs.py:9
@@ -2511,7 +2515,7 @@ msgstr "هل أنت متأكد من رغبة بحذف هذه الرسالة؟ س
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:15
 #: ../src\wxUI\commonMessageDialogs.py:15
 msgid "Do you really want to close {0}?"
-msgstr ""
+msgstr "هل تىغب حقا إغلاق {0}?"
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:15
 #: ../src\wxUI\commonMessageDialogs.py:15
@@ -2521,7 +2525,7 @@ msgstr "الخروج"
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:19
 #: ../src\wxUI\commonMessageDialogs.py:19
 msgid " {0} must be restarted for these changes to take effect."
-msgstr ""
+msgstr "يجب إعادة تشغيل  {0} كي تتفعل التغييرات."
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:19
 #: ../src\wxUI\commonMessageDialogs.py:19
@@ -2809,7 +2813,7 @@ msgstr "المستخدم"
 #: ../src\build\lib\wxUI\dialogs\configuration.py:69
 #: ../src\wxUI\dialogs\configuration.py:69
 msgid "Password: "
-msgstr ""
+msgstr "كلمة المرور:"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:81
 #: ../src\wxUI\dialogs\configuration.py:81
@@ -2872,17 +2876,17 @@ msgstr "الحالة"
 #: ../src\build\lib\wxUI\dialogs\configuration.py:120
 #: ../src\wxUI\dialogs\configuration.py:120
 msgid "Show/hide"
-msgstr ""
+msgstr "إظهار / إخفاء"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:121
 #: ../src\wxUI\dialogs\configuration.py:121
 msgid "Move up"
-msgstr ""
+msgstr "التحريك إلى الأعلى"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:122
 #: ../src\wxUI\dialogs\configuration.py:122
 msgid "Move down"
-msgstr ""
+msgstr "التحريك إلى الأسفل"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:132
 #: ../src\build\lib\wxUI\dialogs\configuration.py:189
@@ -2893,7 +2897,7 @@ msgstr ""
 #: ../src\wxUI\dialogs\configuration.py:192
 #: ../src\wxUI\dialogs\configuration.py:197
 msgid "Show"
-msgstr ""
+msgstr "إظهر"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:134
 #: ../src\build\lib\wxUI\dialogs\configuration.py:144
@@ -2904,7 +2908,7 @@ msgstr ""
 #: ../src\wxUI\dialogs\configuration.py:164
 #: ../src\wxUI\dialogs\configuration.py:190
 msgid "Hide"
-msgstr ""
+msgstr "إخفي"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:142
 #: ../src\build\lib\wxUI\dialogs\configuration.py:162
@@ -3058,7 +3062,7 @@ msgstr "إعرض المواضيع المتداولة"
 #: ../src\build\lib\wxUI\dialogs\filters.py:11
 #: ../src\wxUI\dialogs\filters.py:11
 msgid "Contains"
-msgstr ""
+msgstr "تحتوي"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:12
 #: ../src\wxUI\dialogs\filters.py:12
@@ -3068,7 +3072,7 @@ msgstr ""
 #: ../src\build\lib\wxUI\dialogs\filters.py:17
 #: ../src\wxUI\dialogs\filters.py:17
 msgid "word"
-msgstr ""
+msgstr "كلمة"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:26
 #: ../src\wxUI\dialogs\filters.py:26
@@ -3097,7 +3101,7 @@ msgstr "إذهب إلى الأسفل في القائمة الحالية"
 
 #: ../src\build\lib\wxUI\dialogs\find.py:11 ../src\wxUI\dialogs\find.py:11
 msgid "String"
-msgstr ""
+msgstr "جملة"
 
 #: ../src\build\lib\wxUI\dialogs\lists.py:10 ../src\wxUI\dialogs\lists.py:10
 msgid "Lists manager"
@@ -3361,19 +3365,19 @@ msgstr ""
 #: ../src\build\lib\wxUI\dialogs\search.py:58 ../src\wxUI\dialogs\search.py:38
 #: ../src\wxUI\dialogs\search.py:58
 msgid "Mixed"
-msgstr ""
+msgstr "مخلوطة"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:38
 #: ../src\build\lib\wxUI\dialogs\search.py:59 ../src\wxUI\dialogs\search.py:38
 #: ../src\wxUI\dialogs\search.py:59
 msgid "Recent"
-msgstr ""
+msgstr "الحديث"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:38
 #: ../src\build\lib\wxUI\dialogs\search.py:60 ../src\wxUI\dialogs\search.py:38
 #: ../src\wxUI\dialogs\search.py:60
 msgid "Popular"
-msgstr ""
+msgstr "المشهور"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:43
 #: ../src\build\lib\wxUI\dialogs\trends.py:26

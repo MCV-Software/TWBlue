@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TWBlue 0.80\n"
-"POT-Creation-Date: 2016-08-04 09:26+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-08-06 18:37+0200\n"
+"POT-Creation-Date: 2016-08-06 21:49+0200\n"
+"PO-Revision-Date: 2016-08-06 22:13+0200\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Zvonimir Stanečić\n"
 "Language: hr\n"
@@ -21,15 +21,14 @@ msgstr ""
 
 #: ../src\build\lib\controller\attach.py:23 ../src\controller\attach.py:23
 msgid "Photo"
-msgstr ""
+msgstr "slika"
 
 #: ../src\build\lib\controller\buffersController.py:90
 #: ../src\build\lib\controller\mainController.py:1483
 #: ../src\controller\buffersController.py:90
 #: ../src\controller\mainController.py:1485
-#, fuzzy
 msgid "Unable to update this buffer."
-msgstr "Nemoguće otpremiti zvuk"
+msgstr "nemoguće osvježiti ovaj spremnik"
 
 #: ../src\build\lib\controller\buffersController.py:94
 #: ../src\controller\buffersController.py:94
@@ -236,17 +235,15 @@ msgstr "lajkovi za {}"
 
 #: ../src\build\lib\controller\mainController.py:354
 #: ../src\controller\mainController.py:354
-#, fuzzy
 msgid "Followers' Timelines"
-msgstr "lajkane vremenske osi"
+msgstr "osi pratitelja"
 
 #: ../src\build\lib\controller\mainController.py:358
 #: ../src\build\lib\controller\mainController.py:831
 #: ../src\controller\mainController.py:358
 #: ../src\controller\mainController.py:831
-#, fuzzy
 msgid "Followers for {}"
-msgstr "Pratitelji"
+msgstr "pratitelji za {}"
 
 #: ../src\build\lib\controller\mainController.py:363
 #: ../src\controller\mainController.py:363
@@ -567,11 +564,11 @@ msgstr "Zaštićeno: %s\n"
 
 #: ../src\build\lib\controller\user.py:99 ../src\controller\user.py:99
 msgid "You follow {0}. "
-msgstr ""
+msgstr "pratite {0}. "
 
 #: ../src\build\lib\controller\user.py:102 ../src\controller\user.py:102
 msgid "{0} is following you."
-msgstr ""
+msgstr "{0} vas prati."
 
 #: ../src\build\lib\controller\user.py:106 ../src\controller\user.py:106
 msgid ""
@@ -1985,7 +1982,7 @@ msgstr "Pokušavam reproducirati zvuk"
 #: ../src\build\lib\keystrokeEditor\constants.py:54
 #: ../src\keystrokeEditor\constants.py:54
 msgid "Updates the buffer and retrieves possible lost items there."
-msgstr ""
+msgstr "Obnavlja spremnik i izvlaći možebitne nedostajuće stavke odatle."
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:8
 #: ../src\keystrokeEditor\wx_ui.py:8
@@ -2606,7 +2603,7 @@ msgstr "Ovaj korisnik nema tweetova. {0} ne može stvoriti vremensku os."
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:70
 #: ../src\wxUI\commonMessageDialogs.py:70
 msgid "Geo data for this tweet"
-msgstr ""
+msgstr "Geografski podaci za ovaj tweet"
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:70
 #: ../src\wxUI\commonMessageDialogs.py:70
@@ -2616,34 +2613,31 @@ msgstr "isčupaj lokaciju"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:9 ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
-msgstr ""
+msgstr "Dodaj prilog"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:12 ../src\wxUI\dialogs\attach.py:12
-#, fuzzy
 msgid "Attachments"
-msgstr "Dodaj"
+msgstr "prilozi"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:13 ../src\wxUI\dialogs\attach.py:13
 msgid "Title"
-msgstr ""
+msgstr "naslov"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:13 ../src\wxUI\dialogs\attach.py:13
 msgid "Type"
-msgstr ""
+msgstr "tip"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:18 ../src\wxUI\dialogs\attach.py:18
-#, fuzzy
 msgid "Add attachments"
-msgstr "dodaj klijent"
+msgstr "dodaj priloge"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:19 ../src\wxUI\dialogs\attach.py:19
 msgid "&Photo"
-msgstr ""
+msgstr "fotografija"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:20 ../src\wxUI\dialogs\attach.py:20
-#, fuzzy
 msgid "Remove attachment"
-msgstr "Ukloni klijent"
+msgstr "ukloni priloge"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:36
 #: ../src\build\lib\wxUI\dialogs\message.py:117
@@ -2671,9 +2665,8 @@ msgid "Description"
 msgstr "Opis"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:43 ../src\wxUI\dialogs\attach.py:43
-#, fuzzy
 msgid "please provide a description"
-msgstr "Opis"
+msgstr "molimo napišite opis"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:14
 #: ../src\wxUI\dialogs\configuration.py:14
@@ -2722,9 +2715,8 @@ msgstr "Lista tipkovničkih prečaca"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:41
 #: ../src\wxUI\dialogs\configuration.py:41
-#, fuzzy
 msgid "Check for updates when {0} launches"
-msgstr "izgovori poruku kad se {0} pokrene"
+msgstr "provjeri za nadogradnju kad se {0} pokrene"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:51
 #: ../src\wxUI\dialogs\configuration.py:51
@@ -2978,37 +2970,37 @@ msgstr "napravi spremnik trending rubrike"
 #: ../src\build\lib\wxUI\dialogs\filters.py:11
 #: ../src\wxUI\dialogs\filters.py:11
 msgid "Contains"
-msgstr ""
+msgstr "sadrži"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:12
 #: ../src\wxUI\dialogs\filters.py:12
 msgid "Doesn't contain"
-msgstr ""
+msgstr "ne sadrži"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:17
 #: ../src\wxUI\dialogs\filters.py:17
 msgid "word"
-msgstr ""
+msgstr "riječ"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:26
 #: ../src\wxUI\dialogs\filters.py:26
 msgid "Use this term as a regular expression"
-msgstr ""
+msgstr "koristi ovaj termin kao regularni izraz"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:28
 #: ../src\wxUI\dialogs\filters.py:28
 msgid "Load tweets in the following languages"
-msgstr ""
+msgstr "učitavaj tweetove na slijedećim jezicima"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:29
 #: ../src\wxUI\dialogs\filters.py:29
 msgid "Ignore tweets in the following languages"
-msgstr ""
+msgstr "zaobiđi tweetove na slijedećim jezicima"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:30
 #: ../src\wxUI\dialogs\filters.py:30
 msgid "Don't filter by language"
-msgstr ""
+msgstr "ne filtriraj po jeziku"
 
 #: ../src\build\lib\wxUI\dialogs\find.py:10 ../src\wxUI\dialogs\find.py:10
 msgid "Find in current buffer"
@@ -3104,16 +3096,14 @@ msgstr "Želite li doista obrisati ovaj popis?"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:72
 #: ../src\wxUI\dialogs\message.py:72
-#, fuzzy
 msgid "&Long tweet"
 msgstr "Dugi tweet"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:74
 #: ../src\build\lib\wxUI\dialogs\message.py:134
 #: ../src\wxUI\dialogs\message.py:74 ../src\wxUI\dialogs\message.py:134
-#, fuzzy
 msgid "&Upload image..."
-msgstr "Otpremanje slike"
+msgstr "Otpremi sliku"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:75
 #: ../src\build\lib\wxUI\dialogs\message.py:135
@@ -3123,7 +3113,6 @@ msgstr "Otpremanje slike"
 #: ../src\wxUI\dialogs\message.py:75 ../src\wxUI\dialogs\message.py:135
 #: ../src\wxUI\dialogs\message.py:195 ../src\wxUI\dialogs\message.py:294
 #: ../src\wxUI\dialogs\message.py:356
-#, fuzzy
 msgid "Check &spelling..."
 msgstr "Provjeri pravopis..."
 
@@ -3132,18 +3121,16 @@ msgstr "Provjeri pravopis..."
 #: ../src\build\lib\wxUI\dialogs\message.py:196
 #: ../src\wxUI\dialogs\message.py:76 ../src\wxUI\dialogs\message.py:136
 #: ../src\wxUI\dialogs\message.py:196
-#, fuzzy
 msgid "&Attach audio..."
-msgstr "Attach audio..."
+msgstr "dodaj zvuk"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:77
 #: ../src\build\lib\wxUI\dialogs\message.py:137
 #: ../src\build\lib\wxUI\dialogs\message.py:197
 #: ../src\wxUI\dialogs\message.py:77 ../src\wxUI\dialogs\message.py:137
 #: ../src\wxUI\dialogs\message.py:197
-#, fuzzy
 msgid "Sh&orten URL"
-msgstr "Skrati adresu"
+msgstr "&Skrati adresu"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:78
 #: ../src\build\lib\wxUI\dialogs\message.py:138
@@ -3153,9 +3140,8 @@ msgstr "Skrati adresu"
 #: ../src\wxUI\dialogs\message.py:78 ../src\wxUI\dialogs\message.py:138
 #: ../src\wxUI\dialogs\message.py:198 ../src\wxUI\dialogs\message.py:295
 #: ../src\wxUI\dialogs\message.py:357
-#, fuzzy
 msgid "&Expand URL"
-msgstr "Proširi adresu"
+msgstr "&Proširi adresu"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:81
 #: ../src\build\lib\wxUI\dialogs\message.py:141
@@ -3165,9 +3151,8 @@ msgstr "Proširi adresu"
 #: ../src\wxUI\dialogs\message.py:81 ../src\wxUI\dialogs\message.py:141
 #: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:297
 #: ../src\wxUI\dialogs\message.py:359
-#, fuzzy
 msgid "&Translate..."
-msgstr "Prevedi"
+msgstr "Prev&edi"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:82
 #: ../src\build\lib\wxUI\dialogs\message.py:142
@@ -3184,7 +3169,7 @@ msgstr "&Samodovrši korisnike"
 #: ../src\wxUI\dialogs\message.py:83 ../src\wxUI\dialogs\message.py:143
 #: ../src\wxUI\dialogs\message.py:202
 msgid "Sen&d"
-msgstr ""
+msgstr "p&ošalji"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:85
 #: ../src\build\lib\wxUI\dialogs\message.py:145
@@ -3194,19 +3179,16 @@ msgstr ""
 #: ../src\wxUI\dialogs\message.py:85 ../src\wxUI\dialogs\message.py:145
 #: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:298
 #: ../src\wxUI\dialogs\message.py:360
-#, fuzzy
 msgid "C&lose"
-msgstr "Zatvori"
+msgstr "&Zatvori"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:185
 #: ../src\wxUI\dialogs\message.py:185
-#, fuzzy
 msgid "&Recipient"
-msgstr "Primatelj"
+msgstr "Pri&matelj"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:237
 #: ../src\wxUI\dialogs\message.py:237
-#, fuzzy
 msgid "&Mention to all"
 msgstr "za&pazi sve"
 
@@ -3217,9 +3199,8 @@ msgstr "Tweet - %i znakova "
 
 #: ../src\build\lib\wxUI\dialogs\message.py:263
 #: ../src\wxUI\dialogs\message.py:263
-#, fuzzy
 msgid "Image description"
-msgstr "Opis"
+msgstr "opis slike"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:274
 #: ../src\wxUI\dialogs\message.py:274
@@ -3233,9 +3214,8 @@ msgstr "lajkovi: "
 
 #: ../src\build\lib\wxUI\dialogs\message.py:284
 #: ../src\wxUI\dialogs\message.py:284
-#, fuzzy
 msgid "Source: "
-msgstr "Izvorni jezik"
+msgstr "Izvor: "
 
 #: ../src\build\lib\wxUI\dialogs\message.py:342
 #: ../src\wxUI\dialogs\message.py:342
@@ -3266,34 +3246,33 @@ msgstr "Korisnici"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:28 ../src\wxUI\dialogs\search.py:28
 msgid "&Language for results: "
-msgstr ""
+msgstr "jezik za rezultate"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:31 ../src\wxUI\dialogs\search.py:31
-#, fuzzy
 msgid "any"
-msgstr "svibanj"
+msgstr "bilo koji"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:37 ../src\wxUI\dialogs\search.py:37
 msgid "Results &type: "
-msgstr ""
+msgstr "vrsta rezultata"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:38
 #: ../src\build\lib\wxUI\dialogs\search.py:58 ../src\wxUI\dialogs\search.py:38
 #: ../src\wxUI\dialogs\search.py:58
 msgid "Mixed"
-msgstr ""
+msgstr "miješano"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:38
 #: ../src\build\lib\wxUI\dialogs\search.py:59 ../src\wxUI\dialogs\search.py:38
 #: ../src\wxUI\dialogs\search.py:59
 msgid "Recent"
-msgstr ""
+msgstr "posljednje"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:38
 #: ../src\build\lib\wxUI\dialogs\search.py:60 ../src\wxUI\dialogs\search.py:38
 #: ../src\wxUI\dialogs\search.py:60
 msgid "Popular"
-msgstr ""
+msgstr "popularni"
 
 #: ../src\build\lib\wxUI\dialogs\search.py:43
 #: ../src\build\lib\wxUI\dialogs\trends.py:26
@@ -3302,7 +3281,6 @@ msgstr ""
 #: ../src\wxUI\dialogs\search.py:43 ../src\wxUI\dialogs\trends.py:26
 #: ../src\wxUI\dialogs\userActions.py:40
 #: ../src\wxUI\dialogs\userSelection.py:32
-#, fuzzy
 msgid "&OK"
 msgstr "U redu"
 
@@ -3316,9 +3294,8 @@ msgstr "U redu"
 #: ../src\wxUI\dialogs\trends.py:28 ../src\wxUI\dialogs\update_profile.py:35
 #: ../src\wxUI\dialogs\userActions.py:42
 #: ../src\wxUI\dialogs\userSelection.py:34
-#, fuzzy
 msgid "&Close"
-msgstr "Zatvori"
+msgstr "&Zatvori"
 
 #: ../src\build\lib\wxUI\dialogs\show_user.py:10
 #: ../src\wxUI\dialogs\show_user.py:10
@@ -3327,9 +3304,8 @@ msgstr "Detalji"
 
 #: ../src\build\lib\wxUI\dialogs\show_user.py:15
 #: ../src\wxUI\dialogs\show_user.py:15
-#, fuzzy
 msgid "&Go to URL"
-msgstr "Idi na URL"
+msgstr "&Idi na URL"
 
 #: ../src\build\lib\wxUI\dialogs\trends.py:10 ../src\wxUI\dialogs\trends.py:10
 msgid "View trending topics"
@@ -3350,9 +3326,8 @@ msgstr "grad"
 #: ../src\build\lib\wxUI\dialogs\trends.py:20
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:16
 #: ../src\wxUI\dialogs\trends.py:20 ../src\wxUI\dialogs\update_profile.py:16
-#, fuzzy
 msgid "&Location"
-msgstr "lokacija"
+msgstr "&lokacija"
 
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:8
 #: ../src\wxUI\dialogs\update_profile.py:8
@@ -3361,27 +3336,23 @@ msgstr "Osvježi svoj profil"
 
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:10
 #: ../src\wxUI\dialogs\update_profile.py:10
-#, fuzzy
 msgid "&Name (20 characters maximum)"
-msgstr "Ime 20 znakova maksimalno"
+msgstr "&Ime 20 znakova maksimalno"
 
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:21
 #: ../src\wxUI\dialogs\update_profile.py:21
-#, fuzzy
 msgid "&Website"
-msgstr "web stranica"
+msgstr "&web stranica"
 
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:26
 #: ../src\wxUI\dialogs\update_profile.py:26
-#, fuzzy
 msgid "&Bio (160 characters maximum)"
-msgstr "Biografija (160 znakova aksimalnom)"
+msgstr "&Biografija (160 znakova aksimalnom)"
 
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:32
 #: ../src\wxUI\dialogs\update_profile.py:32
-#, fuzzy
 msgid "Upload a &picture"
-msgstr "Otpremi sliku"
+msgstr "&Otpremi sliku"
 
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:33
 #: ../src\build\lib\wxUI\view.py:16 ../src\wxUI\dialogs\update_profile.py:33
@@ -3424,9 +3395,8 @@ msgstr "&prati"
 
 #: ../src\build\lib\wxUI\dialogs\userActions.py:20
 #: ../src\wxUI\dialogs\userActions.py:20
-#, fuzzy
 msgid "U&nfollow"
-msgstr "Prestani pratiti"
+msgstr "Prestani prati&ti"
 
 #: ../src\build\lib\wxUI\dialogs\userActions.py:21
 #: ../src\build\lib\wxUI\view.py:55 ../src\wxUI\dialogs\userActions.py:21
@@ -3436,9 +3406,8 @@ msgstr "&Utišaj"
 
 #: ../src\build\lib\wxUI\dialogs\userActions.py:22
 #: ../src\wxUI\dialogs\userActions.py:22
-#, fuzzy
 msgid "Unmu&te"
-msgstr "Makni utišavanje"
+msgstr "Makni &utišavanje"
 
 #: ../src\build\lib\wxUI\dialogs\userActions.py:23
 #: ../src\wxUI\dialogs\userActions.py:23
@@ -3447,9 +3416,8 @@ msgstr "&Blokiraj"
 
 #: ../src\build\lib\wxUI\dialogs\userActions.py:24
 #: ../src\wxUI\dialogs\userActions.py:24
-#, fuzzy
 msgid "Unbl&ock"
-msgstr "Odblokiraj"
+msgstr "Od&blokiraj"
 
 #: ../src\build\lib\wxUI\dialogs\userActions.py:25
 #: ../src\wxUI\dialogs\userActions.py:25
@@ -3776,6 +3744,10 @@ msgid ""
 "shorcuts could be different. Please check the keystroke editor by pressing "
 "Alt+Win+K to see all available keystrokes for this keymap."
 msgstr ""
+"TWBlue je otkrio da koristite windows 10 i promjenio je podrazumjevani "
+"izgled tipkovnice na Windows 10 prečace. To znači, da neki prečaci mogu biti "
+"različiti. Molimo pogledajte uređivač tipkovničkih prečaca pritiščući Alt"
+"+Windows+K kako biste pogledali sve dostupne prečace za ovaj raspored."
 
 #, fuzzy
 #~ msgid "&Send"
