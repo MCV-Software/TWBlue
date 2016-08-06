@@ -249,6 +249,8 @@ class Controller(object):
   # Connection checker executed each minute.
   self.checker_function = RepeatingTimer(60, self.check_connection)
   self.checker_function.start()
+  self.save_db = RepeatingTimer(300, self.save_data_in_db)
+  self.save_db.start()
 
  def start(self):
   """ Starts all buffer objects. Loads their items."""
@@ -1495,3 +1497,7 @@ class Controller(object):
   for i in self.buffers:
    if hasattr(i, "remove_tweet") and hasattr(i, "name"):
     i.remove_tweet(id)
+
+ def save_data_in_db(self):
+  for i in session_.sessions:
+   session_.sessions[i].shelve()
