@@ -96,6 +96,10 @@ This dependency has been built using pure basic 4.61. Its source can be found at
 
 Important! Install these 3 apps into the same folder, otherwise you won't be able to build the pa.c version. For example: D:\portableApps\NSISPortable, D:\PortableApps\PortableApps.com installer, ...
 
+#### Dependencies to make the spell checker multilingual ####
+
+In order to add the support for spell checking in more languages than english you need to add some additional dictionaries to pyenchant. These are located on the dictionaries folder under windows-dependencies. Simply copy them to the share/enchant/myspell folder located in your enchant installation or in the compiled copy of TWBlue.
+
 ### Running TW Blue from source
 
 Now that you have installed all these packages, you can run TW Blue from source using a command prompt. Navigate to the repo's src directory, and type the following command:
