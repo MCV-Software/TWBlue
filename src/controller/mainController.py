@@ -249,6 +249,8 @@ class Controller(object):
   # Connection checker executed each minute.
   self.checker_function = RepeatingTimer(60, self.check_connection)
   self.checker_function.start()
+  self.save_db = RepeatingTimer(300, self.save_data_in_db)
+  self.save_db.start()
 
  def start(self):
   """ Starts all buffer objects. Loads their items."""
@@ -355,7 +357,7 @@ class Controller(object):
   for i in session.settings["other_buffers"]["followers_timelines"]:
    tl = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (i,), session, session.db["user_name"], screen_name=i)
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Followers for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_(u"Followers for {}").format(i,), pos=self.view.search("followers_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
    tl.timer.start()
   friends_timelines = buffersController.emptyPanel(self.view.nb, "friends_timelines", session.db["user_name"])
@@ -364,7 +366,7 @@ class Controller(object):
   for i in session.settings["other_buffers"]["friends_timelines"]:
    tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (i,), session, session.db["user_name"], screen_name=i)
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Friends for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_(u"Friends for {}").format(i,), pos=self.view.search("friends_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
    tl.timer.start()
   lists = buffersController.emptyPanel(self.view.nb, "lists", session.db["user_name"])
@@ -374,7 +376,7 @@ class Controller(object):
    tl = buffersController.listBufferController(self.view.nb, "get_list_statuses", "%s-list" % (i,), session, session.db["user_name"], bufferType=None, list_id=utils.find_list(i, session.db["lists"]))
    session.lists.append(tl)
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(i), pos=self.view.search("timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(i), pos=self.view.search("lists", session.db["user_name"]))
   searches = buffersController.emptyPanel(self.view.nb, "searches", session.db["user_name"])
   self.buffers.append(searches)
   self.view.insert_buffer(searches.buffer , name=_(u"Searches"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
@@ -1495,3 +1497,7 @@ class Controller(object):
   for i in self.buffers:
    if hasattr(i, "remove_tweet") and hasattr(i, "name"):
     i.remove_tweet(id)
+
+ def save_data_in_db(self):
+  for i in session_.sessions:
+   session_.sessions[i].shelve()

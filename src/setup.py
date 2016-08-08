@@ -41,7 +41,6 @@ def get_architecture_files():
   ("Microsoft.VC90.MFC", glob("../windows-dependencies/x64/Microsoft.VC90.MFC/*")),]
 
 def get_data():
-	import accessible_output2
 	import sound_lib
 	import enchant
 	return [
@@ -50,7 +49,8 @@ def get_data():
   ("accessible_output2/lib", glob("accessible_output2/lib/*.dll")),
   ("keys/lib", glob("keys/lib/*.dll")),
 ("keymaps", glob("keymaps/*.keymap")),
-]+get_sounds()+get_locales()+get_documentation()+sound_lib.find_datafiles()+accessible_output2.find_datafiles()+enchant.utils.win32_data_files()+get_architecture_files()+wx_files()
+("share/enchant/myspell", glob("../windows-dependencies/dictionaries/*")),
+]+get_sounds()+get_locales()+get_documentation()+sound_lib.find_datafiles()+enchant.utils.win32_data_files()+get_architecture_files()+wx_files()
 
 def get_documentation ():
 	answer = [("documentation", ["documentation/license.txt"])]

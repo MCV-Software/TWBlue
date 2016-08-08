@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """ The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
 import urllib2
+import config
 import twitter
 from keys import keyring
 import session_exceptions as Exceptions
@@ -425,7 +426,7 @@ class Session(object):
 
  def check_quoted_status(self, tweet):
   status = tweets.is_long(tweet)
-  if status != False:
+  if status != False and config.app["app-settings"]["handle_longtweets"]:
    tweet = self.get_quoted_tweet(tweet)
   return tweet
 
@@ -447,6 +448,6 @@ class Session(object):
 
  def check_long_tweet(self, tweet):
   long = twishort.is_long(tweet)
-  if long != False:
+  if long != False and config.app["app-settings"]["handle_longtweets"]:
    tweet["message"] = twishort.get_full_text(long)
   return tweet

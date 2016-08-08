@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import webbrowser
-#import pocket
 import sound_lib
 import paths
 import widgetUtils
@@ -15,10 +14,10 @@ from extra.autocompletionUsers import settings
 from pubsub import pub
 import logging
 import config_utils
-#from pocket_utils import authorisationHandler
-import BaseHTTPServer
 log = logging.getLogger("Settings")
 import keys
+from collections import OrderedDict
+from platform_utils.autostart import windows as autostart_windows
 
 class globalSettingsController(object):
  def __init__(self):
@@ -56,8 +55,11 @@ class globalSettingsController(object):
   self.dialog.create_general(langs,self.kmfriendlies)
   self.dialog.general.language.SetSelection(id)
   self.dialog.general.km.SetSelection(self.kmid)
+  if paths.mode == "installed":
+   self.dialog.set_value("general", "autostart", config.app["app-settings"]["autostart"])
+  else:
+   self.dialog.general.autostart.Enable(False)
   self.dialog.set_value("general", "ask_at_exit", config.app["app-settings"]["ask_at_exit"])
-  
   self.dialog.set_value("general", "play_ready_sound", config.app["app-settings"]["play_ready_sound"])
   self.dialog.set_value("general", "speak_ready_msg", config.app["app-settings"]["speak_ready_msg"])
   self.dialog.set_value("general", "handle_longtweets", config.app["app-settings"]["handle_longtweets"])
@@ -85,6 +87,9 @@ class globalSettingsController(object):
    kmFile.close()
    self.needs_restart = True
 
+  if config.app["app-settings"]["autostart"] != self.dialog.get_value("general", "autostart") and paths.mode == "installed":
+   config.app["app-settings"]["autostart"] = self.dialog.get_value("general", "autostart")
+   autostart_windows.setAutoStart(application.name, enable=self.dialog.get_value("general", "autostart"))
   if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] != self.dialog.get_value("general", "use_invisible_shorcuts"):
    config.app["app-settings"]["use_invisible_keyboard_shorcuts"] = self.dialog.get_value("general", "use_invisible_shorcuts")
    pub.sendMessage("invisible-shorcuts-changed", registered=self.dialog.get_value("general", "use_invisible_shorcuts"))
@@ -248,14 +253,25 @@ class accountSettingsController(globalSettingsController):
   self.dialog.ignored_clients.remove_(id)
 
  def get_buffers_list(self):
-  all_buffers = ['home','mentions','dm','sent_dm','sent_tweets','favorites','followers','friends','blocks','muted','events']
+  all_buffers=OrderedDict()
+  all_buffers['home']=_(u"Home")
+  all_buffers['mentions']=_(u"Mentions")
+  all_buffers['dm']=_(u"Direct Messages")
+  all_buffers['sent_dm']=_(u"Sent direct messages")
+  all_buffers['sent_tweets']=_(u"Sent tweets")
+  all_buffers['favorites']=_(u"Likes")
+  all_buffers['followers']=_(u"Followers")
+  all_buffers['friends']=_(u"Friends")
+  all_buffers['blocks']=_(u"Blocked users")
+  all_buffers['muted']=_(u"Muted users")
+  all_buffers['events']=_(u"Events")
   list_buffers = []
   hidden_buffers=[]
-  for i in all_buffers:
+  for i in all_buffers.keys():
    if i in self.config["general"]["buffer_order"]:
-    list_buffers.append((i, True))
+    list_buffers.append((i, all_buffers[i], True))
    else:
-    hidden_buffers.append((i, False))
+    hidden_buffers.append((i, all_buffers[i], False))
   list_buffers.extend(hidden_buffers)
   return list_buffers
 
