@@ -117,6 +117,22 @@ class URLStream(object):
    log.debug("Transformed URL: %s. Prepared" % (self.url,))
    self.prepared = True
 
+
+ def seek(self,step):
+  pos=self.stream.get_position()
+  pos=self.stream.bytes_to_seconds(pos)
+  pos+=step
+  pos=self.stream.seconds_to_bytes(pos)
+  if pos<0:
+   pos=0
+  self.stream.set_position(pos)
+
+ def playpause(self):
+  if self.stream.is_playing==True:
+   self.stream.pause()
+  else:
+   self.stream.play()
+
  def play(self, url=None, volume=1.0, stream=None,announce=True):
   if announce:
    output.speak(_(u"Playing..."))
