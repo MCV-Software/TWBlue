@@ -175,6 +175,8 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_timeline, self.view.timeline)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_favs_timeline, self.view.favs)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_conversation, menuitem=self.view.view_conversation)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.seekLeft, menuitem=self.view.seekLeft)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.seekRight, menuitem=self.view.seekRight)
   if widgetUtils.toolkit == "wx":
    widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
@@ -474,6 +476,18 @@ class Controller(object):
     return output.speak(page.get_message(), True)
   output.speak(_(u"{0} not found.").format(string,), True)
   page.buffer.list.select_item(start)
+
+ def seekLeft(self, *args, **kwargs):
+  try:
+   sound.URLPlayer.seek(-5)
+  except:
+   output.speak("Unable to seek.",True)
+
+ def seekRight(self, *args, **kwargs):
+  try:
+   sound.URLPlayer.seek(5)
+  except:
+   output.speak("Unable to seek.",True)
 
  def edit_keystrokes(self, *args, **kwargs):
   editor = keystrokeEditor.KeystrokeEditor()
