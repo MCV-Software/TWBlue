@@ -57,6 +57,11 @@ class mainFrame(wx.Frame):
   self.clear = buffer.Append(wx.NewId(), _(u"&Clear buffer"))
   self.deleteTl = buffer.Append(wx.NewId(), _(u"&Destroy"))
 
+  # audio menu
+  audio = wx.Menu()
+  self.seekLeft = audio.Append(wx.NewId(), _(u"&Seek back 5 seconds"))
+  self.seekRight = audio.Append(wx.NewId(), _(u"&Seek forward 5 seconds"))
+
  # Help Menu
   help = wx.Menu()
   self.doc = help.Append(-1, _(u"&Documentation"))
@@ -72,6 +77,7 @@ class mainFrame(wx.Frame):
   menuBar.Append(tweet, _(u"&Tweet"))
   menuBar.Append(user, _(u"&User"))
   menuBar.Append(buffer, _(u"&Buffer"))
+  menuBar.Append(audio, _(u"&Audio"))
   menuBar.Append(help, _(u"&Help"))
 
   self.accel_tbl = wx.AcceleratorTable([
@@ -88,7 +94,10 @@ class mainFrame(wx.Frame):
 (wx.ACCEL_CTRL, ord('I'), self.timeline.GetId()),
 (wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('I'), self.deleteTl.GetId()),
 (wx.ACCEL_CTRL, ord('M'), self.show_hide.GetId()),
+(wx.ACCEL_CTRL, wx.WXK_LEFT, self.seekLeft.GetId()),
 (wx.ACCEL_CTRL, ord('P'), self.updateProfile.GetId()),
+(wx.ACCEL_CTRL, wx.WXK_RIGHT, self.seekRight.GetId()),
+(wx.ACCEL_CTRL, ord(' '), self.seekLeft.GetId()),
   ])
 
   self.SetAcceleratorTable(self.accel_tbl)
