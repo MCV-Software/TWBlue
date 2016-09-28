@@ -24,7 +24,7 @@ def is_long(tweet):
  return False
 
 def clear_url(tweet):
- urls = utils.find_urls_in_text(tweet["text"])
+ urls = utils.find_urls_in_text(tweet["full_text"])
  try: tweet["message"] = tweet["message"].replace(urls[-1], "")
  except IndexError: pass
  return tweet

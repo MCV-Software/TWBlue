@@ -147,10 +147,11 @@ class tweet(basicTweet):
 class reply(tweet):
  def __init__(self, session, title, caption, text, twishort_enabled, users=None):
   super(reply, self).__init__(session, title, caption, text, twishort_enabled, messageType="reply")
-  self.users = users
-  if self.users != None and len(self.users) > 1:
-   widgetUtils.connect_event(self.message.mentionAll, widgetUtils.BUTTON_PRESSED, self.mention_all)
+  self.message.mentionAll.SetValue(True)
+  if users > 1:
+#   widgetUtils.connect_event(self.message.mentionAll, widgetUtils.CHECKBOX, self.mention_all)
    self.message.enable_button("mentionAll")
+   self.message.mentionAll.SetValue(False)
   self.message.set_cursor_at_end()
   self.text_processor()
 
@@ -184,10 +185,10 @@ class viewTweet(basicTweet):
     if tweetList[i].has_key("message") and tweetList[i]["is_quote_status"] == False:
      value = "message"
     else:
-     value = "text"
+     value = "full_text"
     if tweetList[i].has_key("retweeted_status") and tweetList[i]["is_quote_status"] == False:
      if tweetList[i].has_key("message") == False:
-      text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["text"])
+      text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["full_text"])
      else:
       text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i][value])
     else:
@@ -206,10 +207,10 @@ class viewTweet(basicTweet):
     if tweet.has_key("message"):
      value = "message"
     else:
-     value = "text"
+     value = "full_text"
     if tweet.has_key("retweeted_status"):
      if tweet.has_key("message") == False:
-      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["text"])
+      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["full_text"])
      else:
       text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet[value])
     else:
