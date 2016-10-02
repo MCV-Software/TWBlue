@@ -17,5 +17,4 @@ class handler(BaseHTTPServer.BaseHTTPRequestHandler):
         params = parse_qs(urlparse(self.path).query)
         global verifier
         verifier = params.get('oauth_verifier', [None])[0]
-        self.wfile.write("You have successfully logged into Twitter with" + application.name + ". "
-                             "You can close this window now.")
+        self.wfile.write(_(u"You have successfully logged into Twitter with {0}. You can close this window now.").format(application.name))
