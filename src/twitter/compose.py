@@ -56,7 +56,7 @@ def compose_tweet(tweet, db, relative_times):
    text = "%s" % (StripChars(tweet[value]))
   else:
    text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet[value]))
- if text[-1] in chars: text=text+"."
+# if text[-1] in chars: text=text+"."
  if tweet.has_key("message") == False:
   urls = utils.find_urls_in_text(text)
   for url in range(0, len(urls)):
