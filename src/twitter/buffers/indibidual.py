@@ -67,8 +67,11 @@ class timelinesStreamer(TwythonStreamer):
   self.friends = friends
 
  def on_success(self, data):
-  try:
-   if "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
-    self.check_tls(data)
-  except:
-   pass
+#  try:
+  if "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
+   if data.has_key("extended_tweet"):
+    data["full_text"] = data["extended_tweet"]["full_text"]
+    data["entities"] = data["extended_entities"]
+   self.check_tls(data)
+#  except:
+#   pass

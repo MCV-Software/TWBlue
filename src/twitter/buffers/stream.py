@@ -135,6 +135,10 @@ class streamer(TwythonStreamer):
     self.friends = data["friends"]
     pub.sendMessage("friends-receibed")
    elif "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
+    if data.has_key("extended_tweet"):
+     data["full_text"] = data["extended_tweet"]["full_text"]
+     data["entities"] = data["extended_entities"]
+     log.error("Extended tweet")
     if data["user"]["id"] in self.muted_users: return
     self.check_mentions(data)
     self.check_send(data)

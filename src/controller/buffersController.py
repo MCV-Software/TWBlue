@@ -224,7 +224,7 @@ class emptyPanel(bufferController):
   self.needs_init = True
 
 class baseBufferController(bufferController):
- def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, *args, **kwargs):
+ def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, compose_func="compose_tweet", *args, **kwargs):
   super(baseBufferController, self).__init__(parent, function, *args, **kwargs)
   log.debug("Initializing buffer %s, account %s" % (name, account,))
   if bufferType != None:
@@ -235,7 +235,7 @@ class baseBufferController(bufferController):
   self.name = name
   self.type = self.buffer.type
   self.session = sessionObject
-  self.compose_function = compose.compose_tweet
+  self.compose_function = getattr(compose, compose_func)
   log.debug("Compose_function: %s" % (self.compose_function,))
   self.account = account
   self.buffer.account = account
@@ -258,10 +258,10 @@ class baseBufferController(bufferController):
   if tweet.has_key("message"):
    message = tweet["message"]
   try:
-   tweet = self.session.twitter.twitter.show_status(id=tweet_id, include_ext_alt_text=True)
-   urls = utils.find_urls_in_text(tweet["text"])
+   tweet = self.session.twitter.twitter.show_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
+   urls = utils.find_urls_in_text(tweet["full_text"])
    for url in range(0, len(urls)):
-    try:  tweet["text"] = tweet["text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
+    try:  tweet["full_text"] = tweet["full_text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
     except IndexError: pass
   except TwythonError as e:
    utils.twitter_error(e)
@@ -272,10 +272,10 @@ class baseBufferController(bufferController):
   while l != False:
    tweetsList.append(tweet)
    try:
-    tweet = self.session.twitter.twitter.show_status(id=l, include_ext_alt_text=True)
-    urls = utils.find_urls_in_text(tweet["text"])
+    tweet = self.session.twitter.twitter.show_status(id=l, include_ext_alt_text=True, tweet_mode="extended")
+    urls = utils.find_urls_in_text(tweet["full_text"])
     for url in range(0, len(urls)):
-     try:  tweet["text"] = tweet["text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
+     try:  tweet["full_text"] = tweet["full_text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
      except IndexError: pass
    except TwythonError as e:
     utils.twitter_error(e)
@@ -479,8 +479,8 @@ class baseBufferController(bufferController):
   tweet = self.get_right_tweet()
   screen_name = tweet["user"]["screen_name"]
   id = tweet["id"]
-  users =  utils.get_all_mentioned(tweet, self.session.db)
-  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "@%s " % (screen_name,), twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users)
+  users = len(utils.get_all_mentioned(tweet, self.session.db))
+  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users)
   if message.message.get_response() == widgetUtils.OK:
    self.session.settings["mysc"]["twishort_enabled"] = message.message.long_tweet.GetValue()
    text = message.message.get_text()
@@ -490,9 +490,9 @@ class baseBufferController(bufferController):
     else:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
    if message.image == None:
-    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text)
+    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text, auto_populate_reply_metadata=message.message.mentionAll.GetValue())
    else:
-    call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text, media=message.file)
+    call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text, media=message.file, auto_populate_reply_metadata=message.message.mentionAll.GetValue())
   if hasattr(message.message, "destroy"): message.message.destroy()
 
  @_tweets_exist
@@ -534,14 +534,14 @@ class baseBufferController(bufferController):
    self._retweet_with_comment(tweet, id)
 
  def _retweet_with_comment(self, tweet, id, comment=''):
-  retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"]), max=116, messageType="retweet", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
+  retweet = messages.tweet(self.session, _(u"Retweet"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["full_text"]), max=116, messageType="retweet", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
   if comment != '':
    retweet.message.set_text(comment)
   if retweet.message.get_response() == widgetUtils.OK:
    text = retweet.message.get_text()
    comments=text
-   if len(text+ u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])) < 140:
-    text = text+u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["text"])
+   if len(text+ u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["full_text"])) < 140:
+    text = text+u"“@%s: %s ”" % (tweet["user"]["screen_name"], tweet["full_text"])
    else:
     answer = commonMessageDialogs.retweet_as_link(self.buffer)
     if answer == widgetUtils.YES:
@@ -1100,7 +1100,7 @@ class conversationBufferController(searchBufferController):
     tweet = self.tweet
     while tweet["in_reply_to_status_id"] != None:
      try:
-      tweet = self.session.twitter.twitter.show_status(id=tweet["in_reply_to_status_id"])
+      tweet = self.session.twitter.twitter.show_status(id=tweet["in_reply_to_status_id"], tweet_mode="extended")
      except TwythonError as err:
       break
      self.statuses.insert(0, tweet)
@@ -1108,7 +1108,7 @@ class conversationBufferController(searchBufferController):
     if tweet["in_reply_to_status_id"] == None:
      self.kwargs["since_id"] = tweet["id"]
      self.ids.append(tweet["id"])
-   val2 = self.session.search(self.name, *self.args, **self.kwargs)
+   val2 = self.session.search(self.name, tweet_mode="extended", *self.args, **self.kwargs)
    for i in val2:
     if i["in_reply_to_status_id"] in self.ids:
      self.statuses.append(i)
@@ -1128,12 +1128,3 @@ class conversationBufferController(searchBufferController):
    return True
   elif dlg == widgetUtils.NO:
    return False
-
-class pocketBufferController(baseBufferController):
- def __init__(self, parent, name, sessionObject, account, sound=None, function=None, bufferType=None, *args, **kwargs):
-  super(pocketBufferController, self).__init__(parent, name, sessionObject, account, sound, function, bufferType, *args, **kwargs)
-  self.type = "pocket"
-
- def start_stream(self):
-  log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
-  log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))

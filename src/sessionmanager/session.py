@@ -432,17 +432,17 @@ class Session(object):
 
  def get_quoted_tweet(self, tweet):
   quoted_tweet = tweet
-  urls = utils.find_urls_in_text(quoted_tweet["text"])
+  urls = utils.find_urls_in_text(quoted_tweet["full_text"])
   for url in range(0, len(urls)):
-   try:  quoted_tweet["text"] = quoted_tweet["text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
+   try:  quoted_tweet["full_text"] = quoted_tweet["full_text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
    except IndexError: pass
   id = tweets.is_long(quoted_tweet)
-  try: original_tweet = self.twitter.twitter.show_status(id=id)
+  try: original_tweet = self.twitter.twitter.show_status(id=id, tweet_mode="extended")
   except: return quoted_tweet
   original_tweet = self.check_long_tweet(original_tweet)
-  urls = utils.find_urls_in_text(original_tweet["text"])
+  urls = utils.find_urls_in_text(original_tweet["full_text"])
   for url in range(0, len(urls)):
-   try:  original_tweet["text"] = original_tweet["text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
+   try:  original_tweet["full_text"] = original_tweet["full_text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
    except IndexError: pass
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
 

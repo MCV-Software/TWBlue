@@ -25,6 +25,8 @@ def find_urls (tweet):
  urls = []
  if tweet.has_key("message"):
   i = "message"
+ elif tweet.has_key("full_text"):
+  i = "full_text"
  else:
   i = "text"
  return [s[0] for s in url_re.findall(tweet[i])]
@@ -57,6 +59,7 @@ def is_audio(tweet):
     if i["text"] == "audio":
      return True
  except:
+  print tweet["entities"]["hashtags"]
   log.exception("Exception while executing is_audio hashtag algorithm")
 
 def is_geocoded(tweet):
@@ -120,7 +123,7 @@ def is_allowed(tweet, clients):
  for i in clients:
   if i.lower() == source.lower():
    allowed = False
-   log.exception("Tuit not allowed: %s" % (tweet["text"],))
+#   log.exception("Tuit not allowed: %r" % (tweet,))
  return allowed
 
 def twitter_error(error):
