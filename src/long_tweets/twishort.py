@@ -35,11 +35,11 @@ def is_long(tweet):
  return long
 
 def get_full_text(uri):
-# try:
- r = requests.get("http://api.twishort.com/1.1/get.json", params={"uri": uri, "api_key": keys.keyring.get("twishort_api_key")})
- return r.json()["text"]
-# except:
-#  return False
+ try:
+  r = requests.get("http://api.twishort.com/1.1/get.json", params={"uri": uri, "api_key": keys.keyring.get("twishort_api_key")})
+  return r.json()["text"]
+ except:
+  return False
 
 def create_tweet(user_token, user_secret, text, media=0):
  twitter = OAuth1Session(keys.keyring.get("api_key"), client_secret=keys.keyring.get("api_secret"), resource_owner_key=user_token, resource_owner_secret=user_secret)
