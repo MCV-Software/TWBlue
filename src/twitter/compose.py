@@ -40,12 +40,11 @@ def compose_tweet(tweet, db, relative_times):
   ts = tweet["created_at"]
  if tweet.has_key("message"):
   value = "message"
-  log.error(tweet["message"])
  elif tweet.has_key("full_text"):
   value = "full_text"
  else:
   value = "text"
-  log.exception(tweet.keys())
+#  log.exception(tweet.keys())
  text = StripChars(tweet[value])
  user = tweet["user"]["name"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
