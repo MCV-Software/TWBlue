@@ -73,7 +73,7 @@ setuptools installs a script, called easy_install. You can find it in the python
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
 Run the following command to quickly install and upgrade all packages and their dependencies:
-easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib requests-toolbelt pypubsub pygeocoder arrow==0.6 python-dateutil futures markdown microsofttranslator winpaths
+easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib requests-toolbelt pypubsub pygeocoder arrow==0.6 python-dateutil futures microsofttranslator winpaths
 
 #### Other dependencies
 
