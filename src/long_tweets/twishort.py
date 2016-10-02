@@ -18,8 +18,8 @@
 ############################################################
 import requests
 import keys
-import application
 from twitter import utils
+from requests_oauthlib import OAuth1Session
 
 def get_twishort_uri(url):
  try:
@@ -42,13 +42,24 @@ def get_full_text(uri):
 #  return False
 
 def create_tweet(user_token, user_secret, text, media=0):
- if application.snapshot == True:
-  url = "http://twblue.es/snapshot_twishort.php"
- else:
-  url = "http://twblue.es/stable_twishort.php"
- data = {"user_token": user_token,
- "user_secret": user_secret,
+ twitter = OAuth1Session(keys.keyring.get("api_key"), client_secret=keys.keyring.get("api_secret"), resource_owner_key=user_token, resource_owner_secret=user_secret)
+ twishort_key=keys.keyring.get("twishort_api_key")
+ x_auth_service_provider = "https://api.twitter.com/1.1/account/verify_credentials.json"
+ twishort_post_url = "http://api.twishort.com/1.1/post.json"
+ twishort_update_ids_url = "http://api.twishort.com/1.1/update_ids.json"
+ r=requests.Request('GET', x_auth_service_provider)
+ prep=twitter.prepare_request(r)
+ resp=twitter.send(prep)
+ twitter.headers={
+  'X-Auth-Service-Provider':x_auth_service_provider,
+  'X-Verify-Credentials-Authorization':prep.headers['Authorization'],
+ }
+ data = {'api_key':twishort_key,
  "text": text.encode("utf-8"),
  "media": media}
- response = requests.post(url, data=data)
- return response.json()["text_to_tweet"]
+ response = twitter.post(twishort_post_url, data=data)
+ try:
+  return response.json()["text_to_tweet"]
+ except:
+  print "There was a problem creating a long tweet"
+  return 0
