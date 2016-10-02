@@ -4,17 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: TW Blue 0.80\n"
+"Project-Id-Version: TW Blue 0.85\n"
 "POT-Creation-Date: 2016-08-04 09:26+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-08-06 01:28+0200\n"
-"Last-Translator: Наталья Хедлунд <natalia.hedlund@gmail.com>\n"
+"PO-Revision-Date: 2016-08-11 00:16+0400\n"
+"Last-Translator: Valeria <luciana.lu3a@gmail.com>\n"
 "Language-Team: Alexander Jaszyn <a.jaszyn@ya.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.5.7\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -172,7 +172,7 @@ msgstr "Отправленные твиты"
 #: ../src\controller\mainController.py:315
 #: ../src\controller\mainController.py:1336
 msgid "Likes"
-msgstr "Понравившееся"
+msgstr "Понравившиеся"
 
 #: ../src\build\lib\controller\mainController.py:319
 #: ../src\build\lib\controller\mainController.py:1339
@@ -200,7 +200,7 @@ msgstr "Заблокированные пользователи"
 #: ../src\controller\mainController.py:331
 #: ../src\controller\mainController.py:1356
 msgid "Muted users"
-msgstr "Отключенныепользователи"
+msgstr "Отключенные пользователи"
 
 #: ../src\build\lib\controller\mainController.py:335
 #: ../src\build\lib\controller\mainController.py:1359
@@ -219,7 +219,7 @@ msgstr "Ленты"
 #: ../src\controller\mainController.py:342
 #: ../src\controller\mainController.py:799
 msgid "Timeline for {}"
-msgstr "Лента твитов {0} "
+msgstr "Лента твитов {}"
 
 #: ../src\build\lib\controller\mainController.py:345
 #: ../src\controller\mainController.py:345
@@ -231,7 +231,7 @@ msgstr "Понравившиеся ленты"
 #: ../src\controller\mainController.py:349
 #: ../src\controller\mainController.py:814
 msgid "Likes for {}"
-msgstr "Понравившееся от"
+msgstr "Понравившиеся {}"
 
 #: ../src\build\lib\controller\mainController.py:354
 #: ../src\controller\mainController.py:354
@@ -371,7 +371,7 @@ msgstr "%s. Пусто"
 #: ../src\build\lib\controller\mainController.py:1071
 #: ../src\controller\mainController.py:1071
 msgid "{0}: This account is not logged into Twitter."
-msgstr "{0}: Этот аккаунт не вошел в твиттер"
+msgstr "{0}: Этот аккаунт не вошел в твиттер."
 
 #: ../src\build\lib\controller\mainController.py:1077
 #: ../src\build\lib\controller\mainController.py:1098
@@ -475,9 +475,10 @@ msgstr "Ссылка развёрнута"
 msgid "%s - %s of %d characters"
 msgstr "%s - %s из %d символов"
 
-#: ../src\build\lib\controller\messages.py:97 ../src\controller\messages.py:103
+#: ../src\build\lib\controller\messages.py:97
+#: ../src\controller\messages.py:103
 msgid "%s - %s characters"
-msgstr "%s - %d символов"
+msgstr "%s - %s символов"
 
 #: ../src\build\lib\controller\messages.py:114
 #: ../src\controller\messages.py:122
@@ -517,7 +518,8 @@ msgstr "Информация о %s"
 
 #: ../src\build\lib\controller\user.py:55
 #: ../src\build\lib\extra\AudioUploader\audioUploader.py:126
-#: ../src\controller\user.py:55 ../src\extra\AudioUploader\audioUploader.py:126
+#: ../src\controller\user.py:55
+#: ../src\extra\AudioUploader\audioUploader.py:126
 msgid "Discarded"
 msgstr "Отменено"
 
@@ -559,7 +561,7 @@ msgstr "Защищённый аккаунт: %s\n"
 
 #: ../src\build\lib\controller\user.py:99 ../src\controller\user.py:99
 msgid "You follow {0}. "
-msgstr "ВЫ читаете {0}. "
+msgstr "Вы читаете {0}. "
 
 #: ../src\build\lib\controller\user.py:102 ../src\controller\user.py:102
 msgid "{0} is following you."
@@ -735,7 +737,7 @@ msgstr "Скорость передачи"
 #: ../src\build\lib\extra\AudioUploader\wx_transfer_dialogs.py:34
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:34
 msgid "Time left"
-msgstr "Осталось времени"
+msgstr "Оставшееся время"
 
 #: ../src\build\lib\extra\AudioUploader\wx_ui.py:28
 #: ../src\extra\AudioUploader\wx_ui.py:28
@@ -790,22 +792,22 @@ msgstr "Создан буфер для ленты пользователя."
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:6
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:6
 msgid "Buffer destroied."
-msgstr "Буфер удален"
+msgstr "Буфер удалён."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:7
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:7
 msgid "Direct message received."
-msgstr "Личное сообщение получено ."
+msgstr "Личное сообщение получено."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:8
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:8
 msgid "Direct message sent."
-msgstr "Личное сообщение отправлено"
+msgstr "Личное сообщение отправлено."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:9
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:9
 msgid "Error."
-msgstr "Ошибка"
+msgstr "Ошибка."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:10
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
@@ -815,7 +817,7 @@ msgstr "Твит отмечен как понравившийся."
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:11
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "Likes buffer updated."
-msgstr "Буфер Понравившееся обновлен"
+msgstr "Буфер Понравившиеся обновлён."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:12
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
@@ -825,22 +827,22 @@ msgstr "Твит с геолокацией."
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:13
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:13
 msgid "Boundary reached."
-msgstr "Достигнута граница ."
+msgstr "Достигнута граница."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:14
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:14
 msgid "List updated."
-msgstr "Список обновлён"
+msgstr "Список обновлён."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:15
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:15
 msgid "Too many characters."
-msgstr "МНОГОБУКАФФ"
+msgstr "Слишком много символов."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:16
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:16
 msgid "Mention received."
-msgstr "Упоминание получено "
+msgstr "Упоминание получено."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:17
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:17
@@ -865,22 +867,22 @@ msgstr "Твит ретвитнут."
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:21
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:21
 msgid "Search buffer updated."
-msgstr "Поиск обновлён"
+msgstr "Поиск обновлён."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:22
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:22
 msgid "Tweet received."
-msgstr "Твит получен ."
+msgstr "Твит получен."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:23
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:23
 msgid "Tweet sent."
-msgstr "Твитт отправлен."
+msgstr "Твит отправлен."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:24
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:24
 msgid "Trending topics buffer updated."
-msgstr "Тренды обновлены"
+msgstr "Тренды обновлены."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:25
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:25
@@ -890,7 +892,7 @@ msgstr "Новый твит в ленте пользователя."
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:26
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:26
 msgid "New follower."
-msgstr "Новый читатель"
+msgstr "Новый читатель."
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:27
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:27
@@ -1103,7 +1105,7 @@ msgstr "Албанский"
 #: ../src\build\lib\extra\translator\translator.py:12
 #: ../src\extra\translator\translator.py:12
 msgid "Amharic"
-msgstr "Дари"
+msgstr "Амхарский"
 
 #: ../src\build\lib\extra\translator\translator.py:13
 #: ../src\extra\translator\translator.py:13
@@ -1443,7 +1445,7 @@ msgstr "Сербский"
 #: ../src\build\lib\extra\translator\translator.py:80
 #: ../src\extra\translator\translator.py:80
 msgid "Sindhi"
-msgstr "Синди"
+msgstr "Синдхи"
 
 #: ../src\build\lib\extra\translator\translator.py:81
 #: ../src\extra\translator\translator.py:81
@@ -1637,7 +1639,7 @@ msgstr "Мелкая"
 #: ../src\build\lib\issueReporter\issueReporter.py:32
 #: ../src\issueReporter\issueReporter.py:32
 msgid "tweak"
-msgstr "Неудавалось настроить программу"
+msgstr "Не удавалось настроить программу"
 
 #: ../src\build\lib\issueReporter\wx_ui.py:25 ../src\issueReporter\wx_ui.py:25
 msgid "Report an error"
@@ -1655,7 +1657,7 @@ msgstr "Кратко опишите, что произошло. Вы сможе�
 
 #: ../src\build\lib\issueReporter\wx_ui.py:45 ../src\issueReporter\wx_ui.py:45
 msgid "Here, you can describe the bug in detail"
-msgstr "Здесь вы можете описать ошибку подробней"
+msgstr "Здесь вы можете описать ошибку подробнее"
 
 #: ../src\build\lib\issueReporter\wx_ui.py:55 ../src\issueReporter\wx_ui.py:55
 msgid "how often does this bug happen?"
@@ -1920,7 +1922,7 @@ msgstr "Показать списки конкретного пользоват�
 #: ../src\build\lib\keystrokeEditor\constants.py:44
 #: ../src\keystrokeEditor\constants.py:44
 msgid "load previous items"
-msgstr "Загрузить предыдущие твиты"
+msgstr "Загрузить предыдущие элементы"
 
 #: ../src\build\lib\keystrokeEditor\constants.py:45
 #: ../src\keystrokeEditor\constants.py:45
@@ -2001,8 +2003,8 @@ msgid "Keystroke"
 msgstr "Горячая клавиша"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:18
-#: ../src\build\lib\wxUI\dialogs\lists.py:19 ../src\keystrokeEditor\wx_ui.py:18
-#: ../src\wxUI\dialogs\lists.py:19
+#: ../src\build\lib\wxUI\dialogs\lists.py:19
+#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\lists.py:19
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -2013,8 +2015,9 @@ msgstr "Действие"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:21
 #: ../src\build\lib\wxUI\dialogs\configuration.py:350
-#: ../src\build\lib\wxUI\dialogs\utils.py:37 ../src\keystrokeEditor\wx_ui.py:21
-#: ../src\wxUI\dialogs\configuration.py:350 ../src\wxUI\dialogs\utils.py:37
+#: ../src\build\lib\wxUI\dialogs\utils.py:37
+#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:350
+#: ../src\wxUI\dialogs\utils.py:37
 msgid "Close"
 msgstr "Закрыть"
 
@@ -2051,9 +2054,9 @@ msgstr "Клавиша"
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:62
 #: ../src\build\lib\wxUI\dialogs\filters.py:37
 #: ../src\build\lib\wxUI\dialogs\find.py:18
-#: ../src\build\lib\wxUI\dialogs\utils.py:34 ../src\keystrokeEditor\wx_ui.py:62
-#: ../src\wxUI\dialogs\filters.py:37 ../src\wxUI\dialogs\find.py:18
-#: ../src\wxUI\dialogs\utils.py:34
+#: ../src\build\lib\wxUI\dialogs\utils.py:34
+#: ../src\keystrokeEditor\wx_ui.py:62 ../src\wxUI\dialogs\filters.py:37
+#: ../src\wxUI\dialogs\find.py:18 ../src\wxUI\dialogs\utils.py:34
 msgid "OK"
 msgstr "OK"
 
@@ -2199,19 +2202,19 @@ msgstr "Вы перестали читать %s (@%s)"
 
 #: ../src\build\lib\twitter\compose.py:121 ../src\twitter\compose.py:123
 msgid "You've liked: %s, %s"
-msgstr "Вы добавили в Избранное: %s, %s"
+msgstr "Вам понравилось: %s, %s"
 
 #: ../src\build\lib\twitter\compose.py:123 ../src\twitter\compose.py:125
 msgid "%s(@%s) has liked: %s"
-msgstr "Пользователь %s(@%s) добавил в Избранное: %s"
+msgstr "Пользователю %s(@%s) понравилось: %s"
 
 #: ../src\build\lib\twitter\compose.py:125 ../src\twitter\compose.py:127
 msgid "You've unliked: %s, %s"
-msgstr "Вы удалили из Избранного: %s, %s"
+msgstr "Вам не понравилось: %s, %s"
 
 #: ../src\build\lib\twitter\compose.py:126 ../src\twitter\compose.py:128
 msgid "%s(@%s) has unliked: %s"
-msgstr "Пользователь %s(@%s) удалил из Избранного: %s"
+msgstr "Пользователю %s(@%s) не понравилось: %s"
 
 #: ../src\build\lib\twitter\compose.py:128 ../src\twitter\compose.py:130
 msgid "You've created the list %s"
@@ -2379,7 +2382,7 @@ msgstr "Удалить событие"
 #: ../src\build\lib\wxUI\buffers\panels.py:19 ../src\wxUI\buffers\panels.py:11
 #: ../src\wxUI\buffers\panels.py:19
 msgid "Login"
-msgstr "Логин (имя пользователя)"
+msgstr "Войти в выбранную учётную запись"
 
 #: ../src\build\lib\wxUI\buffers\panels.py:13 ../src\wxUI\buffers\panels.py:13
 msgid "Log in automatically"
@@ -2397,8 +2400,9 @@ msgstr "Тренды"
 msgid "Tweet about this trend"
 msgstr "Tweet о тренде"
 
-#: ../src\build\lib\wxUI\buffers\trends.py:19 ../src\build\lib\wxUI\menus.py:90
-#: ../src\wxUI\buffers\trends.py:19 ../src\wxUI\menus.py:90
+#: ../src\build\lib\wxUI\buffers\trends.py:19
+#: ../src\build\lib\wxUI\menus.py:90 ../src\wxUI\buffers\trends.py:19
+#: ../src\wxUI\menus.py:90
 msgid "Search topic"
 msgstr "Поиск в теме"
 
@@ -2428,7 +2432,7 @@ msgid ""
 "Do you really want to delete this tweet? It will be deleted from Twitter as "
 "well."
 msgstr ""
-"Вы действительно хотите удалить этот твит? Он также будет удален из Twitterа."
+"Вы действительно хотите удалить этот твит? Он также будет удален из Твиттера."
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:15
 #: ../src\wxUI\commonMessageDialogs.py:15
@@ -2443,7 +2447,7 @@ msgstr "Выйти"
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:19
 #: ../src\wxUI\commonMessageDialogs.py:19
 msgid " {0} must be restarted for these changes to take effect."
-msgstr " {0} должен быть перезапущен, чтобы  изменения вступили в силу. "
+msgstr " {0} должен быть перезапущен, чтобы изменения вступили в силу."
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:19
 #: ../src\wxUI\commonMessageDialogs.py:19
@@ -2474,7 +2478,7 @@ msgstr "Добавить клиент"
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:25
 #: ../src\wxUI\commonMessageDialogs.py:25
 msgid "Enter the name of the client : "
-msgstr "Введите имя клиента"
+msgstr "Введите имя клиента : "
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:31
 #: ../src\wxUI\commonMessageDialogs.py:31
@@ -2543,7 +2547,7 @@ msgid ""
 "tweets or likes."
 msgstr ""
 "Учётная запись защищена. Вы должны начать читать этого пользователя, чтобы "
-"просматривать его твиты  или записи в избранном."
+"просматривать его твиты или понравившиеся ему записи."
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:53
 #: ../src\wxUI\commonMessageDialogs.py:53
@@ -2574,7 +2578,8 @@ msgstr "У пользователя ещё нет твитов. Невозмож
 #: ../src\wxUI\commonMessageDialogs.py:60
 msgid "This user has no favorited tweets. {0} can't create a timeline."
 msgstr ""
-"Пользователь ещё ничего не добавил в Избранное. Невозможно создать ленту."
+"Пользователь ещё ничего не оценил как понравившееся. Невозможно создать "
+"ленту."
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:63
 #: ../src\wxUI\commonMessageDialogs.py:63
@@ -2584,7 +2589,7 @@ msgstr "Этого пользователя ещё никто не читает.
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:66
 #: ../src\wxUI\commonMessageDialogs.py:66
 msgid "This user has no friends. {0} can't create a timeline."
-msgstr "Пользователь ещё никого не читает. Невозможно создатьленту."
+msgstr "Пользователь ещё никого не читает. Невозможно создать ленту."
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:70
 #: ../src\wxUI\commonMessageDialogs.py:70
@@ -2594,13 +2599,11 @@ msgstr "Местоположение для этого твита"
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:70
 #: ../src\wxUI\commonMessageDialogs.py:70
 msgid "Geolocation data: {0}"
-msgstr "узнать местоположение"
+msgstr "Узнать местоположение"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:9 ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
-msgstr ""
-"Прикрепить вложени\n"
-"е"
+msgstr "Прикрепить вложение"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:12 ../src\wxUI\dialogs\attach.py:12
 msgid "Attachments"
@@ -2653,7 +2656,7 @@ msgstr "Описание"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:43 ../src\wxUI\dialogs\attach.py:43
 msgid "please provide a description"
-msgstr "Сделайте описание"
+msgstr "Опишите это изображение"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:14
 #: ../src\wxUI\dialogs\configuration.py:14
@@ -2708,22 +2711,22 @@ msgstr "Проверять на наличие обновлений при за�
 #: ../src\build\lib\wxUI\dialogs\configuration.py:51
 #: ../src\wxUI\dialogs\configuration.py:51
 msgid "Proxy server: "
-msgstr "Прокси-сервер:"
+msgstr "Прокси-сервер: "
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:57
 #: ../src\wxUI\dialogs\configuration.py:57
 msgid "Port: "
-msgstr "Порт:"
+msgstr "Порт: "
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:63
 #: ../src\wxUI\dialogs\configuration.py:63
 msgid "User: "
-msgstr "Пользователь"
+msgstr "Пользователь: "
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:69
 #: ../src\wxUI\dialogs\configuration.py:69
 msgid "Password: "
-msgstr "Пароль:"
+msgstr "Пароль: "
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:81
 #: ../src\wxUI\dialogs\configuration.py:81
@@ -2738,7 +2741,9 @@ msgstr "Относительное время"
 #: ../src\build\lib\wxUI\dialogs\configuration.py:86
 #: ../src\wxUI\dialogs\configuration.py:86
 msgid "API calls (One API call = 200 tweets, two API calls = 400 tweets, etc):"
-msgstr "Количество вызовов  Api. 1 вызов равен 200 твитам."
+msgstr ""
+"Количество вызовов Api. (1 вызов равен 200 твитам, 2 вызова - 400 твитам, и "
+"т.д.):"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:93
 #: ../src\wxUI\dialogs\configuration.py:93
@@ -2776,7 +2781,7 @@ msgstr "Буфер"
 #: ../src\build\lib\wxUI\dialogs\configuration.py:117
 #: ../src\wxUI\dialogs\configuration.py:117
 msgid "Status"
-msgstr "Сообщение"
+msgstr "Статус"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:120
 #: ../src\wxUI\dialogs\configuration.py:120
@@ -2802,7 +2807,7 @@ msgstr "Вниз"
 #: ../src\wxUI\dialogs\configuration.py:192
 #: ../src\wxUI\dialogs\configuration.py:197
 msgid "Show"
-msgstr "Показать"
+msgstr "Показывается"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:134
 #: ../src\build\lib\wxUI\dialogs\configuration.py:144
@@ -2813,7 +2818,7 @@ msgstr "Показать"
 #: ../src\wxUI\dialogs\configuration.py:164
 #: ../src\wxUI\dialogs\configuration.py:190
 msgid "Hide"
-msgstr "Скрыть"
+msgstr "Скрыт"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:142
 #: ../src\build\lib\wxUI\dialogs\configuration.py:162
@@ -3192,12 +3197,12 @@ msgstr "Ретвиты:"
 #: ../src\build\lib\wxUI\dialogs\message.py:279
 #: ../src\wxUI\dialogs\message.py:279
 msgid "Likes: "
-msgstr "Избранное: "
+msgstr "Понравившиеся"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:284
 #: ../src\wxUI\dialogs\message.py:284
 msgid "Source: "
-msgstr "Исходный язык"
+msgstr "Клиент"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:342
 #: ../src\wxUI\dialogs\message.py:342
@@ -3309,7 +3314,7 @@ msgstr "Городу"
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:16
 #: ../src\wxUI\dialogs\trends.py:20 ../src\wxUI\dialogs\update_profile.py:16
 msgid "&Location"
-msgstr "Местоположению"
+msgstr "Местоположение"
 
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:8
 #: ../src\wxUI\dialogs\update_profile.py:8
@@ -3350,7 +3355,7 @@ msgstr "Загрузить фото"
 #: ../src\build\lib\wxUI\dialogs\update_profile.py:77
 #: ../src\wxUI\dialogs\update_profile.py:77
 msgid "Discard image"
-msgstr "Очистить"
+msgstr "Удалить фото"
 
 #: ../src\build\lib\wxUI\dialogs\urlList.py:6 ../src\wxUI\dialogs\urlList.py:6
 msgid "Select URL"
@@ -3622,7 +3627,7 @@ msgstr "&Удалить из списка"
 
 #: ../src\build\lib\wxUI\view.py:46 ../src\wxUI\view.py:46
 msgid "V&iew likes"
-msgstr "Просмотреть Избранное"
+msgstr "Просмотреть Понравившиеся"
 
 #: ../src\build\lib\wxUI\view.py:50 ../src\wxUI\view.py:50
 msgid "&Update buffer"
@@ -3722,7 +3727,7 @@ msgstr ""
 "TWBlue  было определено , что вы используете windows 10 и список "
 "клавиатурных команд по умолчанию был заменен на горячие клавиши для Windows "
 "10. Это значит, что некоторые сочетания клавиш могут отличаться. Чтобы "
-"посмотреть все доступнуе комбинации клавиш, откройте редактор горячих клавиш "
+"посмотреть все доступные комбинации клавиш, откройте редактор горячих клавиш "
 "нажав Альт +Win+K."
 
 #~ msgid "&Send"

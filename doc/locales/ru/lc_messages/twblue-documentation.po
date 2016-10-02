@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue documentation 0.46\n"
 "POT-Creation-Date: 2016-08-05 08:33+Hora de verano central (México)\n"
-"PO-Revision-Date: 2016-08-06 14:20-0600\n"
-"Last-Translator: Наталья Хедлунд <natalia.hedlund@gmail.com>\n"
+"PO-Revision-Date: 2016-09-17 14:53+0400\n"
+"Last-Translator: Valeria <luciana.lu3a@gmail.com>\n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.6.11\n"
+"X-Generator: Poedit 1.5.7\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -29,7 +29,7 @@ msgstr "Документация для TWBlue - 0.84"
 
 #: ../doc\strings.py:4
 msgid "## Table of contents"
-msgstr "Содержание"
+msgstr "## Содержание"
 
 #: ../doc\strings.py:5
 msgid "[TOC]"
@@ -60,9 +60,8 @@ msgid ""
 "If you want to see what has changed from the previous version, [read the "
 "list of updates here.](changes.html)"
 msgstr ""
-"Если вы хоти\n"
-"те посмотреть какие изменения произошли с предыдущей версии, [читайте список "
-"обновлений здесь.](changes.html) "
+"Если вы хотите посмотреть какие изменения произошли с предыдущей версии, "
+"[читайте список обновлений здесь.](changes.html) "
 
 #: ../doc\strings.py:9
 msgid "## Introduction"
@@ -364,14 +363,15 @@ msgstr ""
 #: ../doc\strings.py:43
 msgid "* Favourites: here you will see all the tweets you have favourited."
 msgstr ""
-"* Избранное: здесь вы увидите все твиты, которые вы добавили в Избранное."
+"* Понравившиеся: здесь вы увидите все твиты, которые вы отметили как "
+"понравившиеся."
 
 #: ../doc\strings.py:44
 msgid ""
 "* Followers: when users follow you, you'll be able to see them on this "
 "buffer, with some of their account details."
 msgstr ""
-"* Читающие: когда пользовательначнет вас читать, вы сможете увидеть его в "
+"* Читающие: когда пользователь начнет вас читать, вы сможете увидеть его в "
 "этом буфере, где также будет частично отображена информация о его учетной "
 "записи."
 
@@ -426,8 +426,8 @@ msgid ""
 "* User favourites: You can have the program create a buffer containing "
 "tweets favourited by a particular user."
 msgstr ""
-"* Избранное пользователя: вы можете создать буфер, в котором будут "
-"содержаться твиты, добавленные в Избранное определенным пользователем."
+"* Понравившиеся ленты: вы можете создать буфер, в котором будут содержаться "
+"твиты, отмеченные определённым пользователем как понравившиеся."
 
 #: ../doc\strings.py:51
 msgid ""
@@ -436,7 +436,7 @@ msgid ""
 "updated every five minutes."
 msgstr ""
 "* Трендовые (популярные) темы: в трендовом буфере отображаются десять "
-"терминов, наиболее часто используемых в определенном регионе. Регионо может "
+"терминов, наиболее часто используемых в определенном регионе. Регионом может "
 "быть как страна, так и город. Тренды обновляются каждые пять минут."
 
 #: ../doc\strings.py:52
@@ -450,8 +450,8 @@ msgid ""
 "Windows + G in the invisible interface to retrieve it."
 msgstr ""
 "Если в твите содержится ссылка, ее можно открыть, нажав клавишу Ввод в окне "
-"программы, либо нажав сочетание клавиш КОнтрол + Виндовс + Ввод в невидимом "
-"интерфейсе. Если присутстсвует аудио, его можно прослушать, нажав Контрол + "
+"программы, либо нажав сочетание клавиш Контрол + Виндовс + Ввод в невидимом "
+"интерфейсе. Если присутствует аудио, его можно прослушать, нажав Контрол + "
 "Ввод или Контрол + Виндовс, + Альт, + Ввод соответственно. Если в твите "
 "присутствует хэштег (метка) #audio, TWBlue проиграет звук, но аудио может "
 "содержаться и в твитах, не имеющих этой метки. Наконец, если в твите "
@@ -478,7 +478,7 @@ msgid ""
 msgstr ""
 "В эти поля можно вводить имя пользователя Твиттера без знака Собачка (эт). "
 "Их можно увидеть в диалоговых окнах отправки личных сообщений и меню "
-"действий с пользователем.Об этих диалоговых окнах мы поговорим позже.  "
+"действий с пользователем. Об этих диалоговых окнах мы поговорим позже.  "
 "Первоначальное значение этих полей зависит от того, где они были открыты. "
 "Такое поле ввода заполняется именем пользователя, написавшего твит, "
 "находящийся в фокусе (если он открыт из главной ленты, ленты отправленных "
@@ -631,10 +631,10 @@ msgid ""
 msgstr ""
 "Учтите, что кнопки будут отображаться в зависимости от того, какие действия "
 "доступны в просматриваемом списке. Например, в главной ленте, в упоминаниях, "
-"Отправленных, избраном и лентах пользователей вы увидите четыре кнопки, в то "
-"время как в списке личных сообщений будут отображаться только кнопки Личное "
-"сообщение и Твит, а в списках друзей и читающих будут доступны кнопки Личное "
-"сообщение,Твит и Упомянуть."
+"Отправленных, избранном и лентах пользователей вы увидите четыре кнопки, в "
+"то время как в списке личных сообщений будут отображаться только кнопки "
+"Личное сообщение и Твит, а в списках друзей и читающих будут доступны кнопки "
+"Личное сообщение,Твит и Упомянуть."
 
 #: ../doc\strings.py:70
 msgid "#### Menus"
@@ -756,14 +756,15 @@ msgstr ""
 
 #: ../doc\strings.py:84
 msgid "* Add to favourites: marks the tweet you're viewing as a favourite."
-msgstr "* Добавить в Избранное:добавляет просматриваемый твит в Избранное."
+msgstr "* Нравится: отмечает просматриваемый вами твит как понравившийся."
 
 #: ../doc\strings.py:85
 msgid ""
 "* Remove from favourites: removes the tweet from your favourites, but not "
 "from Twitter."
 msgstr ""
-"* Удалить из Избранного: удаляет твит из Избранного, но не из Твиттера."
+"* Не нравится: удаляет твит из списка понравившихся вам твитов, но не из "
+"твиттера."
 
 #: ../doc\strings.py:86
 msgid ""
@@ -779,7 +780,7 @@ msgstr ""
 "личное сообщение, имя друга или читателя, находящееся в фокусе. Текст можно "
 "читать клавишами стрелок. Этот диалог похож на окно отправки твита, но без "
 "возможности отправки, прикрепления вложений и автозаполнения. Однако, здесь "
-"указано число ретвитов и добавлений в Избранное. Если вы находитесь в списке "
+"указано число ретвитов и отметок Нравится. Если вы находитесь в списке "
 "читателей или друзей, будут доступны только поле для чтения информации, "
 "находящейся в фокусе, и кнопка Закрыть."
 
@@ -861,7 +862,7 @@ msgid ""
 "both will be able to exchange direct messages. The muted user is not "
 "informed of this action."
 msgstr ""
-"    * Выключить: TWBlue не будет отображать в вашей главной ленте твиты "
+"    * Отключить: TWBlue не будет отображать в вашей главной ленте твиты "
 "пользователя; вы также не будете видеть упоминаний этого человека. Но вы "
 "сможете обмениваться личными сообщениями. О том, что пользователь отключен, "
 "он уведомлен не будет."
@@ -946,7 +947,7 @@ msgstr ""
 msgid ""
 "* Show user profile: opens a dialogue with the profile of the specified user."
 msgstr ""
-"* Показать профиль пользователя: открываетдиалоговое окно с профилем "
+"* Показать профиль пользователя: открывает диалоговое окно с профилем "
 "указанного пользователя."
 
 #: ../doc\strings.py:106
@@ -954,8 +955,8 @@ msgid ""
 "* View favourites: Opens a buffer where you can see the tweets which have "
 "been favourited by a particular user."
 msgstr ""
-"* Просмотреть избранное: открывает буфер, в котором можно увидеть твиты, "
-"добавленные указанным пользователем в избранное."
+"* Просмотреть Понравившиеся: открывает буфер, в котором можно увидеть твиты, "
+"отмеченные указанным пользователем как понравившиеся."
 
 #: ../doc\strings.py:107
 msgid "##### Buffer menu"
@@ -971,7 +972,7 @@ msgid ""
 "the \"OK\" button has been activated within the dialogue box. Remember this "
 "kind of buffer will be updated every five minutes."
 msgstr ""
-"* Новый буфер для трендов: открывает буфер ля самых популярных тем в мире, "
+"* Новый буфер для трендов: открывает буфер для самых популярных тем в мире, "
 "стране или городе. Вы сможете выбрать из списка показывать ли популярные "
 "темы по стране, городу или со всего мира (эта опция находится в списке "
 "Город), а затем выбрать нужный элемент. Буфер для трендов будет создан как "
@@ -983,7 +984,7 @@ msgid ""
 "* Load previous items: This allows more items to be loaded for the specified "
 "buffer."
 msgstr ""
-"* Загрузить предыдущие твиты: позволяет загрузить больше элементов в "
+"* Загрузить предыдущие элементы: позволяет загрузить больше элементов в "
 "указанный буфер."
 
 #: ../doc\strings.py:110
@@ -991,7 +992,7 @@ msgid ""
 "* Mute: Mutes notifications of a particular buffer so you will not hear when "
 "new tweets arrive."
 msgstr ""
-"* Выключить звук: отключает уведомления для конкретного буфера, так что вы "
+"* Отключить: отключает звук и уведомления для конкретного буфера, так что вы "
 "не будете слышать, когда приходят новые твиты."
 
 #: ../doc\strings.py:111
@@ -1001,8 +1002,8 @@ msgid ""
 "could get rather chatty if there are a lot of incoming tweets."
 msgstr ""
 "* Авточтение: когда включено, программа экранного доступа или голос SAPI 5 "
-"(если активен) будет читать текст входящих твитов. Обратите внимание, что "
-"что, если приходит много твитов, программа может слишком много болтать."
+"(если активен) будет читать текст входящих твитов. Обратите внимание, что, "
+"если приходит много твитов, программа может слишком много болтать."
 
 #: ../doc\strings.py:112
 msgid "* Clear buffer: Deletes all items from the buffer."
@@ -1070,7 +1071,7 @@ msgid ""
 "find all relevant information and downloads for TWBlue and become a part of "
 "the community."
 msgstr ""
-"* Сайт TWBlue: посетить нашу [домашнюю страницу] (http://twblue.es), где "
+"* Сайт TWBlue: посетить нашу [домашнюю страницу](http://twblue.es) , где "
 "можно найти всю информацию о программе и загрузить TWBlue, а также стать "
 "членом сообщества."
 
@@ -1097,12 +1098,12 @@ msgstr ""
 "Невидимый интерфейс, как следует из названия, не имеет графического окна и "
 "работает напрямую с программами экранного доступа, такими как JAWS для "
 "Windows, NVDA и System Access. По умолчанию этот интерфейс отключен, но его "
-"можно включить нажав Контрл + M. Ор работает подобно TheQube и Chicken "
-"Nugget. Горячие клаиши также похожи на те, что используются в этих клиентах. "
-"Кроме того, в программе имеется возможность редактирования клавиатурных "
-"команд, которую можно выбрать в Основных настройках. По умолчанию, с "
-"горячими клавишами этого интерфейса невозможно работать в графическом окне, "
-"но этот параметр можно изменить в Основных настройках."
+"можно включить нажав Контрол + M. Он работает подобно TheQube и Chicken "
+"Nugget. Горячие клавиши также похожи на те, что используются в этих "
+"клиентах. Кроме того, в программе имеется возможность редактирования "
+"клавиатурных команд, которую можно выбрать в Основных настройках. По "
+"умолчанию, с горячими клавишами этого интерфейса невозможно работать в "
+"графическом окне, но этот параметр можно изменить в Основных настройках."
 
 #: ../doc\strings.py:124
 msgid ""
@@ -1127,55 +1128,55 @@ msgstr "* Ввод: открыть ссылку."
 
 #: ../doc\strings.py:128
 msgid "* Control + Enter: Play audio."
-msgstr "* КОнтрл + Ввод: воспроизвести аудио."
+msgstr "* Контрол + Ввод: воспроизвести аудио."
 
 #: ../doc\strings.py:129
 msgid "* Control + M: Hide the GUI."
-msgstr "* Контрл + M: скрыть графический интерфейс."
+msgstr "* Контрол + M: скрыть графический интерфейс."
 
 #: ../doc\strings.py:130
 msgid "* Control + N: Compose a new tweet."
-msgstr "* Контрл + N: создать новый твит."
+msgstr "* Контрол + N: создать новый твит."
 
 #: ../doc\strings.py:131
 msgid "* Control + R: Reply / mention."
-msgstr "* Контрл + R: ответить / упомянуть."
+msgstr "* Контрол + R: ответить / упомянуть."
 
 #: ../doc\strings.py:132
 msgid "* Control + Shift + R: Retweet."
-msgstr "* Контрл + Шифт + R: ретвитнуть."
+msgstr "* Контрол + Шифт + R: ретвитнуть."
 
 #: ../doc\strings.py:133
 msgid "* Control + D: Send a direct message."
-msgstr "* КОнтрл + D: отправить личное сообщение."
+msgstr "* Контрол + D: отправить личное сообщение."
 
 #: ../doc\strings.py:134
 msgid "* control + F: Add tweet to favourites."
-msgstr "* КОнтрл + F: добавить твит в Избранное."
+msgstr "* Контрол + F: отметить твит как понравившийся."
 
 #: ../doc\strings.py:135
 msgid "* Control + Shift + F: Remove a tweet from favourites."
-msgstr "* Контрл + Шифт + F: удалить твит из Избранного."
+msgstr "* Контрол + Шифт + F: удалить твит из списка понравившихся."
 
 #: ../doc\strings.py:136
 msgid "* Control + S: Open the user actions dialogue."
-msgstr "* Контрл + S: открыть диалог действий с пользователем."
+msgstr "* Контрол + S: открыть диалог действий с пользователем."
 
 #: ../doc\strings.py:137
 msgid "* Control + Shift + V: Show tweet."
-msgstr "* Контрл + Шифт + V: показать твит."
+msgstr "* Контрол + Шифт + V: показать твит."
 
 #: ../doc\strings.py:138
 msgid "* Control + Q: Quit this program."
-msgstr "Контрл + Q: закрыть программу."
+msgstr "* Контрол + Q: закрыть программу."
 
 #: ../doc\strings.py:139
 msgid "* Control + I: Open user timeline."
-msgstr "Контрл + I: открыть ленту пользователя."
+msgstr "* Контрол + I: открыть ленту пользователя."
 
 #: ../doc\strings.py:140
 msgid "* Control + Shift + i: Destroy buffer."
-msgstr "* КОнтрл + Шифт I: закрыть и удалить буфер."
+msgstr "* Контрол + Шифт+  I: закрыть и удалить буфер."
 
 #: ../doc\strings.py:141
 msgid "* F5: Increase volume by 5%."
@@ -1187,15 +1188,15 @@ msgstr "* F6: уменьшить громкость на 5%."
 
 #: ../doc\strings.py:143
 msgid "* Control + P: Edit your profile."
-msgstr "* Контрл + P: редактировать свой профиль."
+msgstr "* Контрол + P: редактировать свой профиль."
 
 #: ../doc\strings.py:144
 msgid "* Control + Delete: Delete a tweet or direct message."
-msgstr "* Контрл + Делит: удалить твит или личное сообщение."
+msgstr "* Контрол + Дэлит: удалить твит или личное сообщение."
 
 #: ../doc\strings.py:145
 msgid "* Control + Shift + Delete: Empty the current buffer."
-msgstr "* КОнтрл + Шифт + Делит: очистить текущий буфер."
+msgstr "* Контрол + Шифт + Дэлит: очистить текущий буфер."
 
 #: ../doc\strings.py:146
 msgid "### Shortcuts of the invisible interface (default keymap)"
@@ -1205,125 +1206,127 @@ msgstr "### Горячие клавиши для невидимого интер
 msgid ""
 "* Control + Windows + Up Arrow: moves to the previous item in the buffer."
 msgstr ""
-"* Контрл + Windows + Стрелка вверх: перемещает к предыдущему элементу в "
+"* Контрол + Windows + Стрелка вверх: перемещает к предыдущему элементу в "
 "буфере."
 
 #: ../doc\strings.py:148
 msgid "* Control + Windows + Down Arrow: moves to the next item in the buffer."
 msgstr ""
-"* Контрл + Windows + Стрелка вниз: перемещает к следующему элементу в буфере."
+"* Контрол + Windows + Стрелка вниз: перемещает к следующему элементу в "
+"буфере."
 
 #: ../doc\strings.py:149
 msgid "* Control + Windows + Left Arrow: Move to the previous buffer."
-msgstr "* Контрл + Windows + Стрелка влево: перейти к предыдущему буферу."
+msgstr "* Контрол + Windows + Стрелка влево: перейти к предыдущему буферу."
 
 #: ../doc\strings.py:150
 msgid "* Control + Windows + Right Arrow: Move to the next buffer."
-msgstr "* Контрл + Windows + Стрелка вправо: перейти к следующему буферу."
+msgstr "* Контрол + Windows + Стрелка вправо: перейти к следующему буферу."
 
 #: ../doc\strings.py:151
 msgid "* Control + Windows + Shift + Left: Focus the previous session."
-msgstr "* Контрл + Windows + Шифт + Влево: перейти к предыдущей сессии."
+msgstr "* Контрол + Windows + Шифт + Влево: перейти к предыдущей сессии."
 
 #: ../doc\strings.py:152
 msgid "* Control + Windows + Shift + Right: Focus the next session."
-msgstr "* Контрл + Windows + Шифт + Вправо: перейти к следующей сессии."
+msgstr "* Контрол + Windows + Шифт + Вправо: перейти к следующей сессии."
 
 #: ../doc\strings.py:153
 msgid "* Control + Windows + C: View conversation."
-msgstr "* Контрл + Windows + C: просмотреть беседу."
+msgstr "* Контрол + Windows + C: просмотреть беседу."
 
 #: ../doc\strings.py:154
 msgid "* Control + Windows + Enter: Open URL."
-msgstr "КОнтрл + Windows + Ввод: Открыть ссылку."
+msgstr "* Контрол + Windows + Ввод: Открыть ссылку."
 
 #: ../doc\strings.py:155
 msgid "* Control + Windows + ALT + Enter: Play audio."
-msgstr "* Контрл + Windows + Альт + Ввод: воспроизвести аудио."
+msgstr "* Контрол + Windows + Альт + Ввод: воспроизвести аудио."
 
 #: ../doc\strings.py:156
 msgid "* Control + Windows + M: Show or hide the GUI."
-msgstr "* КОнтрл + Windows + M: показать или скрыть графический интерфейс."
+msgstr "* Контрол + Windows + M: показать или скрыть графический интерфейс."
 
 #: ../doc\strings.py:157
 msgid "* Control + Windows + N: New tweet."
-msgstr "* КОнтрл + Windows + N: новый твит."
+msgstr "* Контрол + Windows + N: новый твит."
 
 #: ../doc\strings.py:158
 msgid "* Control + Windows + R: Reply / Mention."
-msgstr "* Контрл + Windows + R: ответить / упомянуть."
+msgstr "* Контрол + Windows + R: ответить / упомянуть."
 
 #: ../doc\strings.py:159
 msgid "* Control + Windows + Shift + R: Retweet."
-msgstr "* КОнтрл + Windows + Шифт + R: ретвитнуть."
+msgstr "* Контрол + Windows + Шифт + R: ретвитнуть."
 
 #: ../doc\strings.py:160
 msgid "* Control + Windows + D: Send direct message."
-msgstr "* КОнтрл + Windows + D: отправить личное сообщение."
+msgstr "* Контрол + Windows + D: отправить личное сообщение."
 
 #: ../doc\strings.py:161
 msgid "* Windows+ Alt + F: Like a tweet."
-msgstr "* Windows+ Альт + F: поставить твиту отметку Нравится."
+msgstr "* Windows+ Альт + F: отметить твит как понравившийся."
 
 #: ../doc\strings.py:162
 msgid "* Alt + Windows + Shift + F: Remove from likes."
-msgstr "* Альт + Windows + Шифт + F: удалить из понравившихся."
+msgstr "* Альт + Windows + Шифт + F: удалить из списка понравившихся."
 
 #: ../doc\strings.py:163
 msgid "* Control + Windows + S: Open the user actions dialogue."
-msgstr "* Контрл + Windows + S: открыть диалог действий с пользователем."
+msgstr "* Контрол + Windows + S: открыть диалог действий с пользователем."
 
 #: ../doc\strings.py:164
 msgid "* Control + Windows + Alt + N: See user details."
-msgstr "* КОнтрл + Windows + Альт + N: посмотреть информацию о пользователе."
+msgstr "* Контрол + Windows + Альт + N: посмотреть информацию о пользователе."
 
 #: ../doc\strings.py:165
 msgid "* Control + Windows + V: Show tweet."
-msgstr "* КОнтрл + Windows + V: показать твит."
+msgstr "* Контрол + Windows + V: показать твит."
 
 #: ../doc\strings.py:166
 msgid "* Control + Windows + F4: Quit TWBlue."
-msgstr "* Контрл + Windows + F4: закрыть TWBlue."
+msgstr "* Контрол + Windows + F4: закрыть TWBlue."
 
 #: ../doc\strings.py:167
 msgid "* Control + Windows + I: Open user timeline."
-msgstr "* Контрл + Windows + I: открыть ленту пользователя."
+msgstr "* Контрол + Windows + I: открыть ленту пользователя."
 
 #: ../doc\strings.py:168
 msgid "* Control + Windows + Shift + I: Destroy buffer."
-msgstr "* КОнтрл + Windows + Шифт + I: закрыть и удалить буфер."
+msgstr "* Контрол + Windows + Шифт + I: закрыть и удалить буфер."
 
 #: ../doc\strings.py:169
 msgid "* Control + Windows + Alt + Up: Increase volume by 5%."
-msgstr "* КОнтрл + Windows + Альт + вверх: увеличить громкость на 5%."
+msgstr "* Контрол + Windows + Альт + вверх: увеличить громкость на 5%."
 
 #: ../doc\strings.py:170
 msgid "* Control + Windows + Alt + Down: Decrease volume by 5%."
-msgstr "* Контрл + Windows + Альт + Вниз: уменьшить громкость на 5%."
+msgstr "* Контрол + Windows + Альт + Вниз: уменьшить громкость на 5%."
 
 #: ../doc\strings.py:171
 msgid ""
 "* Control + Windows + Home: Jump to the first element of the current buffer."
-msgstr "* Контрл + Windows + Хоум: перейти к первому элементу текущего буфера."
+msgstr ""
+"* Контрол + Windows + Хоум: перейти к первому элементу текущего буфера."
 
 #: ../doc\strings.py:172
 msgid ""
 "* Control + Windows + End: Jump to the last element of the current buffer."
 msgstr ""
-"* Контрл + Windows + Энд: перейти к последнему элементу текущего буфера."
+"* Контрол + Windows + Энд: перейти к последнему элементу текущего буфера."
 
 #: ../doc\strings.py:173
 msgid ""
 "* Control + Windows + PageUp: Jump 20 elements up in the current buffer."
 msgstr ""
-"* КОнтрл + Windows + Страница вверх: перейти на 20элементов вверх в текущем "
+"* Контрол + Windows + Страница вверх: перейти на 20элементов вверх в текущем "
 "буфере."
 
 #: ../doc\strings.py:174
 msgid ""
 "* Control + Windows + PageDown: Jump 20 elements down in the current buffer."
 msgstr ""
-"* Контрл + Windows + Страница вниз: перейти на 20 элементов вниз в текущем "
+"* Контрол + Windows + Страница вниз: перейти на 20 элементов вниз в текущем "
 "буфере."
 
 #: ../doc\strings.py:175
@@ -1332,57 +1335,57 @@ msgstr "* Windows + Альт + P: редактировать профиль."
 
 #: ../doc\strings.py:176
 msgid "* Control + Windows + Delete: Delete a tweet or direct message."
-msgstr "* КОнтрл + Windows + Делит: удалить твит или личное сообщение."
+msgstr "* Контрол + Windows + Дэлит: удалить твит или личное сообщение."
 
 #: ../doc\strings.py:177
 msgid "* Control + Windows + Shift + Delete: Empty the current buffer."
-msgstr "* Control + Windows + Шифт + Делит: очистить текущий буфер."
+msgstr "* Контрол + Windows + Шифт + Дэлит: очистить текущий буфер."
 
 #: ../doc\strings.py:178
 msgid "* Control + Windows + Space: Repeat last item."
-msgstr "* Контрл + Windows + Пробел: повторить последний элемент."
+msgstr "* Контрол + Windows + Пробел: повторить последний элемент."
 
 #: ../doc\strings.py:179
 msgid "* Control + Windows + Shift + C: Copy to clipboard."
-msgstr "* Контрл + Windows + Шифт + C: скопировать в буфер обмена."
+msgstr "* Контрол + Windows + Шифт + C: скопировать в буфер обмена."
 
 #: ../doc\strings.py:180
 msgid "* Control + Windows+ A: Add user to list."
-msgstr "* Контрл + Windows+ A: добавить пользователя в список."
+msgstr "* Контрол + Windows+ A: добавить пользователя в список."
 
 #: ../doc\strings.py:181
 msgid "* Control + Windows + Shift + A: Remove user from list."
-msgstr "* Контрл + Windows + Шифт + A:удалить пользователя из списка. "
+msgstr "* Контрол + Windows + Шифт + A: удалить пользователя из списка. "
 
 #: ../doc\strings.py:182
 msgid "* Control + Windows + Shift + M: Mute / unmute the current buffer."
 msgstr ""
-"* Контрл + Windows + Шифт + M: отключить / включить звуки для текущего "
+"* Контрол + Windows + Шифт + M: отключить / включить звуки для текущего "
 "буфера."
 
 #: ../doc\strings.py:183
 msgid "* Windows + Alt + M: Mute / unmute the current session."
-msgstr "* Windows + Альт + M: отключить / включить звуки для текущей сессии."
+msgstr "* Windows + Альт + M: Отключить / включить звуки для текущей сессии."
 
 #: ../doc\strings.py:184
 msgid ""
 "* Control + Windows + E: Toggle the automatic reading of incoming tweets in "
 "the current buffer."
 msgstr ""
-"* Контрл + Windows + E: переключить авточтение входящих твитов в текущем "
+"* Контрол + Windows + E: переключить авточтение входящих твитов в текущем "
 "буфере."
 
 #: ../doc\strings.py:185
 msgid "* Control + Windows + -: Search on Twitter."
-msgstr "* Контрл + Windows + -: искать в Твиттере."
+msgstr "* Контрол + Windows + -: искать в Твиттере."
 
 #: ../doc\strings.py:186
 msgid "* Control + Windows + K: Show the keystroke editor."
-msgstr "* Control + Windows + K: показать редактор горячих клавиш."
+msgstr "* Контрол + Windows + K: показать редактор горячих клавиш."
 
 #: ../doc\strings.py:187
 msgid "* Control + Windows + L: Show lists for a specified user."
-msgstr "* КОнтрл + Windows + L: показать списки указанного пользователя."
+msgstr "* Контрол + Windows + L: показать списки указанного пользователя."
 
 #: ../doc\strings.py:188
 msgid "* Windows + Alt + PageUp: Load previous items for the current buffer."
@@ -1392,22 +1395,22 @@ msgstr ""
 
 #: ../doc\strings.py:189
 msgid "* Control + Windows + G: Get geolocation."
-msgstr "* КОнтрл + Windows + G: получить местоположение."
+msgstr "* Контрол + Windows + G: получить местоположение."
 
 #: ../doc\strings.py:190
 msgid ""
 "* Control + Windows + Shift + G: Display the tweet's geolocation in a "
 "dialogue."
 msgstr ""
-"* КОнтрл + Windows + Шифт + G: показать местоположение для твита в диалоге."
+"* Контрол + Windows + Шифт + G: показать местоположение для твита в диалоге."
 
 #: ../doc\strings.py:191
 msgid "* Control + Windows + T: Create a trending topics' buffer."
-msgstr "* Контрл + Windows + T: создать буфер для трендов."
+msgstr "* Контрол + Windows + T: создать буфер для трендов."
 
 #: ../doc\strings.py:192
 msgid "* Control + Windows + {: Find a string in the current buffer."
-msgstr "* КОнтрл + Windows + {: найти фразу в текущем буфере."
+msgstr "* Контрол + Windows + {: найти фразу в текущем буфере."
 
 #: ../doc\strings.py:193
 msgid "## Configuration"
@@ -1571,7 +1574,7 @@ msgid ""
 msgstr ""
 "* Язык: здесь можно выбрать язык программы. В настоящий момент "
 "поддерживаются Арабский,Каталанский, немецкий, английский,испанский, "
-"баскский, финский, французский, Галицкий, хорватский, венгерский, "
+"баскский, финский, французский, Галисийский, хорватский, венгерский, "
 "итальянский, польский, португальский, русский и турецкий."
 
 #: ../doc\strings.py:216
@@ -1598,8 +1601,8 @@ msgid ""
 "\"ready\"."
 msgstr ""
 "* Произносить приветствие при запуске TWBlue: то же, что и предыдущий "
-"параметр, но определяетбудет ли программа экранного доступа говорить \"готово"
-"\"."
+"параметр, но определяет будет ли программа экранного доступа говорить "
+"\"готово\"."
 
 #: ../doc\strings.py:219
 msgid ""
@@ -1692,7 +1695,7 @@ msgstr ""
 
 #: ../doc\strings.py:229
 msgid "## Contact"
-msgstr "## КОнтакт"
+msgstr "## Контакт"
 
 #: ../doc\strings.py:230
 msgid ""
@@ -1704,7 +1707,7 @@ msgid ""
 "es)"
 msgstr ""
 "Если, после прочтения этого документа, у вас все еще остались вопросы, если "
-"вы хотите каким-либо образом посотрудничать с проектом, или, если вы просто "
+"вы хотите каким-либо образом сотрудничать с проектом, или, если вы просто "
 "хотите связаться с разработчиком этого приложения, начните читать в Твиттере "
 "пользователя [@tw\\_blue2](https://twitter.com/tw_blue2) или "
 "[@manuelcortez00.](https://twitter.com/manuelcortez00). Вы также можете "
@@ -1720,8 +1723,8 @@ msgid ""
 "manuelcortez00) and [José Manuel Delicado](https://twitter.com/jmdaweb). "
 "It's supported and sponsored by [Technow S. L.](https://twitter.com/technow)"
 msgstr ""
-"Разрабатывают и поддерживают TWBlue [Мануэль Кортез](https://twitter.com/"
-"manuelcortez00) и [Хосе  Мануэль Деликадо](https://twitter.com/jmdaweb). "
+"Разрабатывают и поддерживают TWBlue [Мануэль Кортес](https://twitter.com/"
+"manuelcortez00) и [Хосе Мануэль Деликадо](https://twitter.com/jmdaweb). "
 "Поддержку и спонсорскую помощь оказывает [Technow S. L.](https://twitter.com/"
 "technow)"
 
@@ -1743,7 +1746,7 @@ msgstr "* Арабский : [Mohammed Al Shara](https://twitter.com/mohammed020
 
 #: ../doc\strings.py:236
 msgid "* Catalan: [Francisco Torres](https://twitter.com/ftgalleg)"
-msgstr "* Галицийский: [Francisco Torres](https://twitter.com/ftgalleg)"
+msgstr "* Каталанский: [Francisco Torres](https://twitter.com/ftgalleg)"
 
 #: ../doc\strings.py:237
 msgid "* Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
@@ -1763,7 +1766,7 @@ msgstr "* Французский: [Rémi Ruiz](https://twitter.com/blindhelp38).
 
 #: ../doc\strings.py:241
 msgid "* Galician: [Juan Buño](https://twitter.com/Quetzatl_)."
-msgstr "* Галицийский: [Juan Buño](https://twitter.com/Quetzatl_)."
+msgstr "* Галисийский: [Juan Buño](https://twitter.com/Quetzatl_)."
 
 #: ../doc\strings.py:242
 msgid "* German: [Steffen Schultz](https://twitter.com/schulle4u)."
@@ -1826,7 +1829,7 @@ msgid ""
 "twitter.com/brianhartgen) and [Bill Dengler](https://twitter.com/codeofdusk)."
 msgstr ""
 "Также огромная благодарность всем, кто работал над документацией. Изначально "
-"[Мануэль Кортез](https://twitter.com/manuelcortez00) создал документацию на "
+"[Мануэль Кортес](https://twitter.com/manuelcortez00) создал документацию на "
 "испанском языке, затем она была переведена на английский пользователями "
 "[Bryner Villalobos](https://twitter.com/Bry_StarkCR), [Robert Spangler]"
 "(https://twitter.com/glasscity1837), [Sussan Rey](https://twitter.com/"

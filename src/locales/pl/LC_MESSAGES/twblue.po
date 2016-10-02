@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tw Blue 0.80\n"
 "POT-Creation-Date: 2016-08-04 09:26+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-03-24 01:22-0600\n"
+"PO-Revision-Date: 2016-08-07 01:27+0200\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Paweł Masarczyk <pawelmasarczyk@gmail.com>\n"
 "Language: pl\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.6.11\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../src\build\lib\controller\attach.py:23 ../src\controller\attach.py:23
 msgid "Photo"
-msgstr ""
+msgstr "Zdjęcie"
 
 #: ../src\build\lib\controller\buffersController.py:90
 #: ../src\build\lib\controller\mainController.py:1483
@@ -173,7 +173,7 @@ msgstr "Wysłane tweety "
 #: ../src\controller\mainController.py:315
 #: ../src\controller\mainController.py:1336
 msgid "Likes"
-msgstr ""
+msgstr "Polubienia"
 
 #: ../src\build\lib\controller\mainController.py:319
 #: ../src\build\lib\controller\mainController.py:1339
@@ -572,11 +572,11 @@ msgstr "Chronione: %s\n"
 
 #: ../src\build\lib\controller\user.py:99 ../src\controller\user.py:99
 msgid "You follow {0}. "
-msgstr ""
+msgstr "śledzisz {0}."
 
 #: ../src\build\lib\controller\user.py:102 ../src\controller\user.py:102
 msgid "{0} is following you."
-msgstr ""
+msgstr "{0} cie śledzi"
 
 #: ../src\build\lib\controller\user.py:106 ../src\controller\user.py:106
 msgid ""
@@ -1980,6 +1980,8 @@ msgid ""
 "Opens the list manager, which allows you to create, edit, delete and open "
 "lists in buffers."
 msgstr ""
+"Otwiera menedżera listy, który pozwala na tworzenie, edytowanie, usuwanie i "
+"otwarzanie list w buforach."
 
 #: ../src\build\lib\keystrokeEditor\constants.py:51
 #: ../src\keystrokeEditor\constants.py:51
@@ -2002,7 +2004,7 @@ msgstr "Spróbuj odtworzyć audio"
 #: ../src\build\lib\keystrokeEditor\constants.py:54
 #: ../src\keystrokeEditor\constants.py:54
 msgid "Updates the buffer and retrieves possible lost items there."
-msgstr ""
+msgstr "Aktualizuje bufor i pobiera możliwe utracone elementy tam."
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:8
 #: ../src\keystrokeEditor\wx_ui.py:8
@@ -2037,7 +2039,7 @@ msgstr "Edytuj"
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:20
 #: ../src\keystrokeEditor\wx_ui.py:20
 msgid "Execute action"
-msgstr ""
+msgstr "Wykonaj akcję"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:21
 #: ../src\build\lib\wxUI\dialogs\configuration.py:350
@@ -2191,7 +2193,7 @@ msgstr "Wiadomość prywatna do %s"
 
 #: ../src\build\lib\twitter\compose.py:81 ../src\twitter\compose.py:83
 msgid "{0}. Quoted  tweet from @{1}: {2}"
-msgstr ""
+msgstr "{0}. tweet cytowany przez @{1}: {2}"
 
 #: ../src\build\lib\twitter\compose.py:102
 #: ../src\build\lib\twitter\compose.py:104 ../src\twitter\compose.py:104
@@ -2302,7 +2304,7 @@ msgstr "%s(@%s) podał dalej przekazany przez Ciebie tweet: %s"
 
 #: ../src\build\lib\twitter\compose.py:149 ../src\twitter\compose.py:151
 msgid "@{0} quoted your tweet: {1}"
-msgstr ""
+msgstr "@{0} cytował twój tweet: {1}"
 
 #: ../src\build\lib\twitter\compose.py:151 ../src\twitter\compose.py:153
 msgid "Unknown"
@@ -2604,11 +2606,16 @@ msgid ""
 "give us the means to continue the development of {0}, and to keep {0} free. "
 "Would you like to donate now?"
 msgstr ""
+"Jeśli podoba Ci się {0} potrzebujemy Twojej pomocy, abyśmy go mogli "
+"rozwijać. Pomóż nam przez dotacje na projekt. To pomoże nam płacić za "
+"serwer, domenę i kilka innych rzeczy, aby upewnić się, że {0} będzie "
+"aktywnie rozwijany. Twoja darowizna da nam środki na dalszy rozwój {0} i "
+"utrzymanie {0} bezpłatnym. Chcesz wesprzeć teraz?"
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:53
 #: ../src\wxUI\commonMessageDialogs.py:53
 msgid "We need your help"
-msgstr ""
+msgstr "Potrzebujemy Twojej pomocy"
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:57
 #: ../src\wxUI\commonMessageDialogs.py:57
@@ -2641,7 +2648,7 @@ msgstr ""
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:70
 #: ../src\wxUI\commonMessageDialogs.py:70
 msgid "Geo data for this tweet"
-msgstr ""
+msgstr "Dane geograficzne dla tego tweetu"
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:70
 #: ../src\wxUI\commonMessageDialogs.py:70
@@ -2651,7 +2658,7 @@ msgstr "Pobierz położenie geograficzne"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:9 ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
-msgstr ""
+msgstr "Dodaj załącznik"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:12 ../src\wxUI\dialogs\attach.py:12
 #, fuzzy
@@ -2660,11 +2667,11 @@ msgstr "Dołącz"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:13 ../src\wxUI\dialogs\attach.py:13
 msgid "Title"
-msgstr ""
+msgstr "Tytuł"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:13 ../src\wxUI\dialogs\attach.py:13
 msgid "Type"
-msgstr ""
+msgstr "typ"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:18 ../src\wxUI\dialogs\attach.py:18
 #, fuzzy
@@ -2673,7 +2680,7 @@ msgstr "Dodaj klienta"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:19 ../src\wxUI\dialogs\attach.py:19
 msgid "&Photo"
-msgstr ""
+msgstr "Zdjęcie"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:20 ../src\wxUI\dialogs\attach.py:20
 #, fuzzy
@@ -3015,32 +3022,32 @@ msgstr "Stwórz zakładkę popularnych tematów"
 #: ../src\build\lib\wxUI\dialogs\filters.py:11
 #: ../src\wxUI\dialogs\filters.py:11
 msgid "Contains"
-msgstr ""
+msgstr "Zawiera"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:12
 #: ../src\wxUI\dialogs\filters.py:12
 msgid "Doesn't contain"
-msgstr ""
+msgstr "Nie zawiera"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:17
 #: ../src\wxUI\dialogs\filters.py:17
 msgid "word"
-msgstr ""
+msgstr "słowo"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:26
 #: ../src\wxUI\dialogs\filters.py:26
 msgid "Use this term as a regular expression"
-msgstr ""
+msgstr "Użyj ten termin jako wyrażenie regularne"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:28
 #: ../src\wxUI\dialogs\filters.py:28
 msgid "Load tweets in the following languages"
-msgstr ""
+msgstr "Załadować tweety w następujących językach"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:29
 #: ../src\wxUI\dialogs\filters.py:29
 msgid "Ignore tweets in the following languages"
-msgstr ""
+msgstr "Ignorować tweety w następujących językach"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:30
 #: ../src\wxUI\dialogs\filters.py:30
@@ -3221,7 +3228,7 @@ msgstr "Automatycznie uzupełniaj użytkowników"
 #: ../src\wxUI\dialogs\message.py:83 ../src\wxUI\dialogs\message.py:143
 #: ../src\wxUI\dialogs\message.py:202
 msgid "Sen&d"
-msgstr ""
+msgstr "Wyś&lij"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:85
 #: ../src\build\lib\wxUI\dialogs\message.py:145

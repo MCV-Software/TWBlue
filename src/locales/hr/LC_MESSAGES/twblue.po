@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TWBlue 0.80\n"
-"POT-Creation-Date: 2016-08-06 21:49+0200\n"
-"PO-Revision-Date: 2016-08-06 22:13+0200\n"
-"Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
+"POT-Creation-Date: 2016-08-28 11:59+0200\n"
+"PO-Revision-Date: 2016-08-28 11:59+0200\n"
+"Last-Translator: zvonimir stanecic <zvonimirek222@yandex.com>\n"
 "Language-Team: Zvonimir Stanečić\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -247,17 +247,15 @@ msgstr "pratitelji za {}"
 
 #: ../src\build\lib\controller\mainController.py:363
 #: ../src\controller\mainController.py:363
-#, fuzzy
 msgid "Friends' Timelines"
-msgstr "lajkane vremenske osi"
+msgstr "vremenske osi prijatelja"
 
 #: ../src\build\lib\controller\mainController.py:367
 #: ../src\build\lib\controller\mainController.py:848
 #: ../src\controller\mainController.py:367
 #: ../src\controller\mainController.py:848
-#, fuzzy
 msgid "Friends for {}"
-msgstr "lajkovi za {}"
+msgstr "prijatelji od {}"
 
 #: ../src\build\lib\controller\mainController.py:372
 #: ../src\build\lib\wxUI\dialogs\lists.py:12
@@ -442,15 +440,13 @@ msgstr "kopirano"
 
 #: ../src\build\lib\controller\mainController.py:1486
 #: ../src\controller\mainController.py:1488
-#, fuzzy
 msgid "Updating buffer..."
-msgstr "Prazan spremnik."
+msgstr "Osvježavam spremnik..."
 
 #: ../src\build\lib\controller\mainController.py:1489
 #: ../src\controller\mainController.py:1491
-#, fuzzy
 msgid "{0} items retrieved"
-msgstr "preuzeto stavaka %s"
+msgstr "{0} stavaka preuzeto"
 
 #: ../src\build\lib\controller\messages.py:47 ../src\controller\messages.py:49
 msgid "Translated"
@@ -1975,9 +1971,8 @@ msgstr "otvara dijaloški okvir korisničkog računa"
 
 #: ../src\build\lib\keystrokeEditor\constants.py:53
 #: ../src\keystrokeEditor\constants.py:53
-#, fuzzy
 msgid "Try to play an audio file"
-msgstr "Pokušavam reproducirati zvuk"
+msgstr "pokušati reproducirati zvučnu datoteku"
 
 #: ../src\build\lib\keystrokeEditor\constants.py:54
 #: ../src\keystrokeEditor\constants.py:54
@@ -2092,9 +2087,8 @@ msgid "%s succeeded."
 msgstr "%s uspjelo."
 
 #: ../src\build\lib\sessionmanager\wxUI.py:7 ../src\sessionmanager\wxUI.py:7
-#, fuzzy
 msgid "Session manager"
-msgstr "Utišavanje sesije"
+msgstr "upravitelj sesijama"
 
 #: ../src\build\lib\sessionmanager\wxUI.py:10 ../src\sessionmanager\wxUI.py:10
 msgid "Accounts list"
@@ -2590,15 +2584,13 @@ msgstr ""
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:63
 #: ../src\wxUI\commonMessageDialogs.py:63
-#, fuzzy
 msgid "This user has no followers. {0} can't create a timeline."
-msgstr "Ovaj korisnik nema tweetova. {0} ne može stvoriti vremensku os."
+msgstr "Ovaj korisnik nema pratitelja. {0} ne može stvoriti vremensku os."
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:66
 #: ../src\wxUI\commonMessageDialogs.py:66
-#, fuzzy
 msgid "This user has no friends. {0} can't create a timeline."
-msgstr "Ovaj korisnik nema tweetova. {0} ne može stvoriti vremensku os."
+msgstr "Ovaj korisnik nema prijatelja. {0} ne može stvoriti vremensku os."
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:70
 #: ../src\wxUI\commonMessageDialogs.py:70
@@ -2607,9 +2599,8 @@ msgstr "Geografski podaci za ovaj tweet"
 
 #: ../src\build\lib\wxUI\commonMessageDialogs.py:70
 #: ../src\wxUI\commonMessageDialogs.py:70
-#, fuzzy
 msgid "Geolocation data: {0}"
-msgstr "isčupaj lokaciju"
+msgstr "podaci o geografskoj poziciji: {0}"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:9 ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
@@ -2963,9 +2954,8 @@ msgstr "Spremi"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:10
 #: ../src\wxUI\dialogs\filters.py:10
-#, fuzzy
 msgid "Create a filter  for this buffer"
-msgstr "napravi spremnik trending rubrike"
+msgstr "&Stvori filter za ovaj spremnik"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:11
 #: ../src\wxUI\dialogs\filters.py:11
@@ -3159,7 +3149,6 @@ msgstr "Prev&edi"
 #: ../src\build\lib\wxUI\dialogs\message.py:187
 #: ../src\wxUI\dialogs\message.py:82 ../src\wxUI\dialogs\message.py:142
 #: ../src\wxUI\dialogs\message.py:187
-#, fuzzy
 msgid "Auto&complete users"
 msgstr "&Samodovrši korisnike"
 
@@ -3426,9 +3415,8 @@ msgstr "&Izvijesti kao spam"
 
 #: ../src\build\lib\wxUI\dialogs\userActions.py:26
 #: ../src\wxUI\dialogs\userActions.py:26
-#, fuzzy
 msgid "&Ignore tweets from this client"
-msgstr "Zanemari tweetove od ovog klijenta"
+msgstr "&Zanemari tweetove od ovog klijenta"
 
 #: ../src\build\lib\wxUI\dialogs\userSelection.py:9
 #: ../src\wxUI\dialogs\userSelection.py:9
@@ -3442,27 +3430,23 @@ msgstr "vrsta spremnika"
 
 #: ../src\build\lib\wxUI\dialogs\userSelection.py:19
 #: ../src\wxUI\dialogs\userSelection.py:19
-#, fuzzy
 msgid "&Tweets"
-msgstr "tweetovi"
+msgstr "&tweetovi"
 
 #: ../src\build\lib\wxUI\dialogs\userSelection.py:20
 #: ../src\wxUI\dialogs\userSelection.py:20
-#, fuzzy
 msgid "&Likes"
-msgstr "Lajkovi"
+msgstr "La&jkovi"
 
 #: ../src\build\lib\wxUI\dialogs\userSelection.py:21
 #: ../src\wxUI\dialogs\userSelection.py:21
-#, fuzzy
 msgid "&Followers"
-msgstr "Pratitelji"
+msgstr "P&ratitelji"
 
 #: ../src\build\lib\wxUI\dialogs\userSelection.py:22
 #: ../src\wxUI\dialogs\userSelection.py:22
-#, fuzzy
 msgid "F&riends"
-msgstr "Prijatelji"
+msgstr "Prij&atelji"
 
 #: ../src\build\lib\wxUI\menus.py:7 ../src\build\lib\wxUI\view.py:29
 #: ../src\wxUI\menus.py:7 ../src\wxUI\view.py:29
@@ -3648,9 +3632,8 @@ msgid "V&iew likes"
 msgstr "&Pogledaj lajkove"
 
 #: ../src\build\lib\wxUI\view.py:50 ../src\wxUI\view.py:50
-#, fuzzy
 msgid "&Update buffer"
-msgstr "Isprazni spremnik"
+msgstr "&osvježi spremnik"
 
 #: ../src\build\lib\wxUI\view.py:51 ../src\wxUI\view.py:51
 msgid "New &trending topics buffer..."
@@ -3733,9 +3716,8 @@ msgid "Stopped."
 msgstr "Zaustavljeno."
 
 #: ../src\wxUI\commonMessageDialogs.py:73
-#, fuzzy
 msgid "Information"
-msgstr "Informacije za %s"
+msgstr "informacija"
 
 #: ../src\wxUI\commonMessageDialogs.py:73
 msgid ""

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-08-04 09:26+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-04-01 22:20+0900\n"
+"POT-Creation-Date: 2016-08-16 22:28+0900\n"
+"PO-Revision-Date: 2016-09-21 13:25+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -14,12 +14,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.6.11\n"
+"X-Generator: Poedit 1.8.7\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../src\build\lib\controller\attach.py:23 ../src\controller\attach.py:23
 msgid "Photo"
-msgstr ""
+msgstr "画像"
 
 #: ../src\build\lib\controller\buffersController.py:90
 #: ../src\build\lib\controller\mainController.py:1483
@@ -354,7 +354,7 @@ msgstr "ジェオタグの取得に失敗しました"
 #: ../src\controller\mainController.py:1037
 #: ../src\controller\mainController.py:1056
 msgid "%s, %s of %s"
-msgstr "%s %s/%s"
+msgstr "%s %sの%s"
 
 #: ../src\build\lib\controller\mainController.py:1039
 #: ../src\build\lib\controller\mainController.py:1058
@@ -377,7 +377,7 @@ msgstr "このアカウント{0}は、まだツイッターにログインして
 #: ../src\controller\mainController.py:1077
 #: ../src\controller\mainController.py:1098
 msgid "%s. %s, %s of %s"
-msgstr "セッション:%s %s %s/%s/"
+msgstr "セッション:%s %s %sの%s"
 
 #: ../src\build\lib\controller\mainController.py:1092
 #: ../src\controller\mainController.py:1092
@@ -2104,7 +2104,7 @@ msgstr "このアカウントを削除"
 
 #: ../src\build\lib\sessionmanager\wxUI.py:18 ../src\sessionmanager\wxUI.py:18
 msgid "Global Settings"
-msgstr "全体の設定"
+msgstr "全般設定"
 
 #: ../src\build\lib\sessionmanager\wxUI.py:41 ../src\sessionmanager\wxUI.py:41
 msgid "Account Error"
@@ -2609,34 +2609,31 @@ msgstr "位置情報: {0}"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:9 ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
-msgstr ""
+msgstr "添付ファイルを追加"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:12 ../src\wxUI\dialogs\attach.py:12
-#, fuzzy
 msgid "Attachments"
-msgstr "添付"
+msgstr "添付ファイル"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:13 ../src\wxUI\dialogs\attach.py:13
 msgid "Title"
-msgstr ""
+msgstr "タイトル"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:13 ../src\wxUI\dialogs\attach.py:13
 msgid "Type"
-msgstr ""
+msgstr "形式"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:18 ../src\wxUI\dialogs\attach.py:18
-#, fuzzy
 msgid "Add attachments"
-msgstr "クライアントを追加"
+msgstr "添付ファイルを追加"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:19 ../src\wxUI\dialogs\attach.py:19
 msgid "&Photo"
-msgstr ""
+msgstr "画像(&P)"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:20 ../src\wxUI\dialogs\attach.py:20
-#, fuzzy
 msgid "Remove attachment"
-msgstr "クライアントを削除"
+msgstr "添付ファイルを削除"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:36
 #: ../src\build\lib\wxUI\dialogs\message.py:117
@@ -2664,9 +2661,8 @@ msgid "Description"
 msgstr "説明"
 
 #: ../src\build\lib\wxUI\dialogs\attach.py:43 ../src\wxUI\dialogs\attach.py:43
-#, fuzzy
 msgid "please provide a description"
-msgstr "画像の説明"
+msgstr "説明を入力"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:14
 #: ../src\wxUI\dialogs\configuration.py:14
@@ -2717,9 +2713,8 @@ msgstr "キーマップ"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:41
 #: ../src\wxUI\dialogs\configuration.py:41
-#, fuzzy
 msgid "Check for updates when {0} launches"
-msgstr "{0}が起動した際に、メッセージを読み上げ"
+msgstr "{0}の起動時にアップデートを確認"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:51
 #: ../src\wxUI\dialogs\configuration.py:51
@@ -2965,44 +2960,43 @@ msgstr "保存"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:10
 #: ../src\wxUI\dialogs\filters.py:10
-#, fuzzy
 msgid "Create a filter  for this buffer"
-msgstr "トレンドの話題のバッファを作成"
+msgstr "このバッファのフィルタを作成"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:11
 #: ../src\wxUI\dialogs\filters.py:11
 msgid "Contains"
-msgstr ""
+msgstr "抑制"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:12
 #: ../src\wxUI\dialogs\filters.py:12
 msgid "Doesn't contain"
-msgstr ""
+msgstr "抑制しない"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:17
 #: ../src\wxUI\dialogs\filters.py:17
 msgid "word"
-msgstr ""
+msgstr "単語"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:26
 #: ../src\wxUI\dialogs\filters.py:26
 msgid "Use this term as a regular expression"
-msgstr ""
+msgstr "正規表現を利用"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:28
 #: ../src\wxUI\dialogs\filters.py:28
 msgid "Load tweets in the following languages"
-msgstr ""
+msgstr "下記の言語のツイートを読み込み"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:29
 #: ../src\wxUI\dialogs\filters.py:29
 msgid "Ignore tweets in the following languages"
-msgstr ""
+msgstr "下記の言語のツイートを無視"
 
 #: ../src\build\lib\wxUI\dialogs\filters.py:30
 #: ../src\wxUI\dialogs\filters.py:30
 msgid "Don't filter by language"
-msgstr ""
+msgstr "言語でフィルタしない"
 
 #: ../src\build\lib\wxUI\dialogs\find.py:10 ../src\wxUI\dialogs\find.py:10
 msgid "Find in current buffer"
@@ -3161,9 +3155,8 @@ msgstr "翻訳(&T)..."
 #: ../src\build\lib\wxUI\dialogs\message.py:187
 #: ../src\wxUI\dialogs\message.py:82 ../src\wxUI\dialogs\message.py:142
 #: ../src\wxUI\dialogs\message.py:187
-#, fuzzy
 msgid "Auto&complete users"
-msgstr "自動保管されたユーザー"
+msgstr "ユーザーを自動保管(&C)"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:83
 #: ../src\build\lib\wxUI\dialogs\message.py:143
@@ -3171,7 +3164,7 @@ msgstr "自動保管されたユーザー"
 #: ../src\wxUI\dialogs\message.py:83 ../src\wxUI\dialogs\message.py:143
 #: ../src\wxUI\dialogs\message.py:202
 msgid "Sen&d"
-msgstr ""
+msgstr "送信(&D)"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:85
 #: ../src\build\lib\wxUI\dialogs\message.py:145
@@ -3181,15 +3174,13 @@ msgstr ""
 #: ../src\wxUI\dialogs\message.py:85 ../src\wxUI\dialogs\message.py:145
 #: ../src\wxUI\dialogs\message.py:204 ../src\wxUI\dialogs\message.py:298
 #: ../src\wxUI\dialogs\message.py:360
-#, fuzzy
 msgid "C&lose"
-msgstr "閉じる"
+msgstr "閉じる(&C)"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:185
 #: ../src\wxUI\dialogs\message.py:185
-#, fuzzy
 msgid "&Recipient"
-msgstr "送信先"
+msgstr "送信先(&R)"
 
 #: ../src\build\lib\wxUI\dialogs\message.py:237
 #: ../src\wxUI\dialogs\message.py:237
@@ -3616,7 +3607,7 @@ msgstr "ツイート(&T)"
 
 #: ../src\build\lib\wxUI\view.py:33 ../src\wxUI\view.py:33
 msgid "View &address"
-msgstr "住所を表示(&A)"
+msgstr "位置情報を表示(&A)"
 
 #: ../src\build\lib\wxUI\view.py:34 ../src\wxUI\view.py:34
 msgid "View conversa&tion"
@@ -3731,9 +3722,8 @@ msgid "Stopped."
 msgstr "停止"
 
 #: ../src\wxUI\commonMessageDialogs.py:73
-#, fuzzy
 msgid "Information"
-msgstr "%sの情報"
+msgstr "情報"
 
 #: ../src\wxUI\commonMessageDialogs.py:73
 msgid ""
@@ -3742,6 +3732,10 @@ msgid ""
 "shorcuts could be different. Please check the keystroke editor by pressing "
 "Alt+Win+K to see all available keystrokes for this keymap."
 msgstr ""
+"TWBlueは、Windows10で動作していることを検出したため、デフォルトのキーマップを"
+"Windows10のキーマップに変更しました。これは、一部のキーボードショートカットが"
+"違うことを意味します。このキーマップで使用できる全てのショートカットを見るに"
+"は、Alt+Win+Kで、キーストロークエディタを開いて確認してください。"
 
 #~ msgid "&Send"
 #~ msgstr "送信(&S)"
@@ -3757,6 +3751,9 @@ msgstr ""
 
 #~ msgid "Send"
 #~ msgstr "送信"
+
+#~ msgid "Recipient"
+#~ msgstr "送信先"
 
 #~ msgid "unavailable"
 #~ msgstr "無効"

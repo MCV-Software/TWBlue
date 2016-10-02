@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2016-08-04 09:26+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-07-26 07:26+0200\n"
+"PO-Revision-Date: 2016-08-08 20:18+0200\n"
 "Last-Translator: Jani Kinnunen <jani.kinnunen@wippies.fi>\n"
 "Language-Team: Jani Kinnunen <jani.kinnunen@wippies.fi>\n"
 "Language: fi\n"
@@ -474,7 +474,8 @@ msgstr "URL-osoite laajennettu"
 msgid "%s - %s of %d characters"
 msgstr "%s - %s / %d merkkiä"
 
-#: ../src\build\lib\controller\messages.py:97 ../src\controller\messages.py:103
+#: ../src\build\lib\controller\messages.py:97
+#: ../src\controller\messages.py:103
 msgid "%s - %s characters"
 msgstr "%s / %s merkkiä"
 
@@ -516,7 +517,8 @@ msgstr "Käyttäjän %s tiedot"
 
 #: ../src\build\lib\controller\user.py:55
 #: ../src\build\lib\extra\AudioUploader\audioUploader.py:126
-#: ../src\controller\user.py:55 ../src\extra\AudioUploader\audioUploader.py:126
+#: ../src\controller\user.py:55
+#: ../src\extra\AudioUploader\audioUploader.py:126
 msgid "Discarded"
 msgstr "Hylätty"
 
@@ -2004,8 +2006,8 @@ msgid "Keystroke"
 msgstr "Näppäinkomento"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:18
-#: ../src\build\lib\wxUI\dialogs\lists.py:19 ../src\keystrokeEditor\wx_ui.py:18
-#: ../src\wxUI\dialogs\lists.py:19
+#: ../src\build\lib\wxUI\dialogs\lists.py:19
+#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\lists.py:19
 msgid "Edit"
 msgstr "Muokkaa"
 
@@ -2016,8 +2018,9 @@ msgstr "Suorita toiminto"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:21
 #: ../src\build\lib\wxUI\dialogs\configuration.py:350
-#: ../src\build\lib\wxUI\dialogs\utils.py:37 ../src\keystrokeEditor\wx_ui.py:21
-#: ../src\wxUI\dialogs\configuration.py:350 ../src\wxUI\dialogs\utils.py:37
+#: ../src\build\lib\wxUI\dialogs\utils.py:37
+#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:350
+#: ../src\wxUI\dialogs\utils.py:37
 msgid "Close"
 msgstr "Sulje"
 
@@ -2054,9 +2057,9 @@ msgstr "Näppäin"
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:62
 #: ../src\build\lib\wxUI\dialogs\filters.py:37
 #: ../src\build\lib\wxUI\dialogs\find.py:18
-#: ../src\build\lib\wxUI\dialogs\utils.py:34 ../src\keystrokeEditor\wx_ui.py:62
-#: ../src\wxUI\dialogs\filters.py:37 ../src\wxUI\dialogs\find.py:18
-#: ../src\wxUI\dialogs\utils.py:34
+#: ../src\build\lib\wxUI\dialogs\utils.py:34
+#: ../src\keystrokeEditor\wx_ui.py:62 ../src\wxUI\dialogs\filters.py:37
+#: ../src\wxUI\dialogs\find.py:18 ../src\wxUI\dialogs\utils.py:34
 msgid "OK"
 msgstr "OK"
 
@@ -2400,8 +2403,9 @@ msgstr "Suosittu puheenaihe"
 msgid "Tweet about this trend"
 msgstr "Twiittaa tästä puheenaiheesta"
 
-#: ../src\build\lib\wxUI\buffers\trends.py:19 ../src\build\lib\wxUI\menus.py:90
-#: ../src\wxUI\buffers\trends.py:19 ../src\wxUI\menus.py:90
+#: ../src\build\lib\wxUI\buffers\trends.py:19
+#: ../src\build\lib\wxUI\menus.py:90 ../src\wxUI\buffers\trends.py:19
+#: ../src\wxUI\menus.py:90
 msgid "Search topic"
 msgstr "Etsi puheenaihetta"
 
@@ -3717,9 +3721,8 @@ msgid "Stopped."
 msgstr "Keskeytetty."
 
 #: ../src\wxUI\commonMessageDialogs.py:73
-#, fuzzy
 msgid "Information"
-msgstr "Käyttäjän %s tiedot"
+msgstr "Tietoja"
 
 #: ../src\wxUI\commonMessageDialogs.py:73
 msgid ""
@@ -3728,6 +3731,11 @@ msgid ""
 "shorcuts could be different. Please check the keystroke editor by pressing "
 "Alt+Win+K to see all available keystrokes for this keymap."
 msgstr ""
+"TWBlue on havainnut, että käytät Windows 10:tä, ja on siksi vaihtanut "
+"oletusnäppäinkartan. Tämän vuoksi jotkin näppäinkomennot saattavat olla "
+"erilaisia kuin mihin olet tottunut. Katso kaikki Windows 10 -näppäinkartan "
+"käytettävissä olevat komennot näppäinkomentojen editorista painamalla Alt+Win"
+"+K."
 
 #~ msgid "&Send"
 #~ msgstr "&Lähetä"

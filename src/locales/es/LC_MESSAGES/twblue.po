@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TW Blue 0.80\n"
+"Project-Id-Version: TW Blue 0.84\n"
 "POT-Creation-Date: 2016-08-04 09:26+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2016-08-05 10:26+0200\n"
+"PO-Revision-Date: 2016-08-07 14:37+0100\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Manuel Cortez <info@twblue.com.mx>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -471,7 +471,8 @@ msgstr "URL expandida"
 msgid "%s - %s of %d characters"
 msgstr "%s - %s de %d caracteres"
 
-#: ../src\build\lib\controller\messages.py:97 ../src\controller\messages.py:103
+#: ../src\build\lib\controller\messages.py:97
+#: ../src\controller\messages.py:103
 msgid "%s - %s characters"
 msgstr "%s - %s caracteres"
 
@@ -513,7 +514,8 @@ msgstr "Detalles para %s"
 
 #: ../src\build\lib\controller\user.py:55
 #: ../src\build\lib\extra\AudioUploader\audioUploader.py:126
-#: ../src\controller\user.py:55 ../src\extra\AudioUploader\audioUploader.py:126
+#: ../src\controller\user.py:55
+#: ../src\extra\AudioUploader\audioUploader.py:126
 msgid "Discarded"
 msgstr "Descartado"
 
@@ -1999,8 +2001,8 @@ msgid "Keystroke"
 msgstr "Combinación de teclado"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:18
-#: ../src\build\lib\wxUI\dialogs\lists.py:19 ../src\keystrokeEditor\wx_ui.py:18
-#: ../src\wxUI\dialogs\lists.py:19
+#: ../src\build\lib\wxUI\dialogs\lists.py:19
+#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\lists.py:19
 msgid "Edit"
 msgstr "Editar"
 
@@ -2011,8 +2013,9 @@ msgstr "Ejecutar acción"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:21
 #: ../src\build\lib\wxUI\dialogs\configuration.py:350
-#: ../src\build\lib\wxUI\dialogs\utils.py:37 ../src\keystrokeEditor\wx_ui.py:21
-#: ../src\wxUI\dialogs\configuration.py:350 ../src\wxUI\dialogs\utils.py:37
+#: ../src\build\lib\wxUI\dialogs\utils.py:37
+#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:350
+#: ../src\wxUI\dialogs\utils.py:37
 msgid "Close"
 msgstr "Cerrar"
 
@@ -2049,9 +2052,9 @@ msgstr "Tecla"
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:62
 #: ../src\build\lib\wxUI\dialogs\filters.py:37
 #: ../src\build\lib\wxUI\dialogs\find.py:18
-#: ../src\build\lib\wxUI\dialogs\utils.py:34 ../src\keystrokeEditor\wx_ui.py:62
-#: ../src\wxUI\dialogs\filters.py:37 ../src\wxUI\dialogs\find.py:18
-#: ../src\wxUI\dialogs\utils.py:34
+#: ../src\build\lib\wxUI\dialogs\utils.py:34
+#: ../src\keystrokeEditor\wx_ui.py:62 ../src\wxUI\dialogs\filters.py:37
+#: ../src\wxUI\dialogs\find.py:18 ../src\wxUI\dialogs\utils.py:34
 msgid "OK"
 msgstr "Aceptar"
 
@@ -2397,8 +2400,9 @@ msgstr "Tendencia"
 msgid "Tweet about this trend"
 msgstr "Tuitear sobre esta tendencia"
 
-#: ../src\build\lib\wxUI\buffers\trends.py:19 ../src\build\lib\wxUI\menus.py:90
-#: ../src\wxUI\buffers\trends.py:19 ../src\wxUI\menus.py:90
+#: ../src\build\lib\wxUI\buffers\trends.py:19
+#: ../src\build\lib\wxUI\menus.py:90 ../src\wxUI\buffers\trends.py:19
+#: ../src\wxUI\menus.py:90
 msgid "Search topic"
 msgstr "Buscar tema"
 
@@ -2666,7 +2670,7 @@ msgstr "Idioma"
 #: ../src\build\lib\wxUI\dialogs\configuration.py:21
 #: ../src\wxUI\dialogs\configuration.py:21
 msgid "ask before exiting {0}"
-msgstr "Preguntar antes de salir de {0}Preguntar al salir de TWBlue"
+msgstr "Preguntar antes de salir de {0}"
 
 #: ../src\build\lib\wxUI\dialogs\configuration.py:23
 #: ../src\wxUI\dialogs\configuration.py:23
