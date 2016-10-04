@@ -151,7 +151,7 @@ class reply(tweet):
   if len(users) > 1:
 #   widgetUtils.connect_event(self.message.mentionAll, widgetUtils.CHECKBOX, self.mention_all)
    self.message.enable_button("mentionAll")
-   self.message.mentionAll.SetValue(False)
+   self.message.mentionAll.SetValue(self.session.settings["mysc"]["mention_all"])
   self.message.set_cursor_at_end()
   self.text_processor()
 

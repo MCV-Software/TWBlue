@@ -483,6 +483,7 @@ class baseBufferController(bufferController):
   message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users)
   if message.message.get_response() == widgetUtils.OK:
    self.session.settings["mysc"]["twishort_enabled"] = message.message.long_tweet.GetValue()
+   self.session.settings["mysc"]["mention_all"] = message.message.mentionAll.GetValue()
    text = message.message.get_text()
    if message.message.mentionAll.GetValue() == False:
     text = u"@{0} {1}".format(screen_name, text)
