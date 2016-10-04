@@ -71,7 +71,7 @@ class timelinesStreamer(TwythonStreamer):
   if "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
    if data.has_key("extended_tweet"):
     data["full_text"] = data["extended_tweet"]["full_text"]
-    data["entities"] = data["extended_tweet"]["entities"]
+#    data["entities"] = data["extended_tweet"]["entities"]
 #    log.error(data["extended_entities"])
    self.check_tls(data)
 #  except:

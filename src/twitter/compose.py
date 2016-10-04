@@ -59,8 +59,11 @@ def compose_tweet(tweet, db, relative_times):
  if tweet.has_key("message") == False:
   urls = utils.find_urls_in_text(text)
   for url in range(0, len(urls)):
-   try:  text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
-   except IndexError: pass
+   try:
+    log.error(urls[url])
+    log.error(tweet["entities"]["urls"][url])
+    text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
+   except: pass
   if config.app['app-settings']['handle_longtweets']: pass
 #   return [user+", ", text, ts+", ", source]
  return [user+", ", text, ts+", ", source]
@@ -88,18 +91,24 @@ def compose_dm(tweet, db, relative_times):
 
 def compose_quoted_tweet(quoted_tweet, original_tweet):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
- text = StripChars(quoted_tweet["full_text"])
+ if quoted_tweet.has_key("full_text"):
+  value = "full_text"
+ else:
+  value = "text"
+ text = StripChars(quoted_tweet[value])
  quoting_user = quoted_tweet["user"]["name"]
  source = re.sub(r"(?s)<.*?>", "", quoted_tweet["source"])
- try: text = "rt @%s: %s" % (quoted_tweet["retweeted_status"]["user"]["screen_name"], StripChars(quoted_tweet["retweeted_status"]["full_text"]))
- except KeyError: text = "%s" % (StripChars(quoted_tweet["full_text"]))
+ try: text = "rt @%s: %s" % (quoted_tweet["retweeted_status"]["user"]["screen_name"], StripChars(quoted_tweet["retweeted_status"][value]))
+ except KeyError: text = "%s" % (StripChars(quoted_tweet[value]))
  if text[-1] in chars: text=text+"."
  original_user = original_tweet["user"]["screen_name"]
  if original_tweet.has_key("message"):
   original_text = StripChars(original_tweet["message"])
- else:
+ elif original_tweet.has_key("full_text"):
   original_text = StripChars(original_tweet["full_text"])
- quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}").format( quoted_tweet["full_text"], original_user, original_text)
+ else:
+   original_text = StripChars(original_tweet["text"])
+ quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}").format( quoted_tweet[value], original_user, original_text)
  quoted_tweet = tweets.clear_url(quoted_tweet)
  return quoted_tweet
 

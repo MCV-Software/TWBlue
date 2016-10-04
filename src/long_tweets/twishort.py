@@ -30,8 +30,11 @@ def get_twishort_uri(url):
 def is_long(tweet):
  long = False
  for url in range(0, len(tweet["entities"]["urls"])):
-  if "twishort.com" in tweet["entities"]["urls"][url]["expanded_url"]:
-   long = get_twishort_uri(tweet["entities"]["urls"][url]["expanded_url"])
+  try:
+   if "twishort.com" in tweet["entities"]["urls"][url]["expanded_url"]:
+    long = get_twishort_uri(tweet["entities"]["urls"][url]["expanded_url"])
+  except TypeError:
+   pass
  return long
 
 def get_full_text(uri):

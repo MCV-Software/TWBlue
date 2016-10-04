@@ -432,9 +432,13 @@ class Session(object):
 
  def get_quoted_tweet(self, tweet):
   quoted_tweet = tweet
-  urls = utils.find_urls_in_text(quoted_tweet["full_text"])
+  if tweet.has_key("full_text"):
+   value = "full_text"
+  else:
+   value = "text"
+  urls = utils.find_urls_in_text(quoted_tweet[value])
   for url in range(0, len(urls)):
-   try:  quoted_tweet["full_text"] = quoted_tweet["full_text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
+   try:  quoted_tweet[value] = quoted_tweet[value].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
    except IndexError: pass
   id = tweets.is_long(quoted_tweet)
   try: original_tweet = self.twitter.twitter.show_status(id=id, tweet_mode="extended")
