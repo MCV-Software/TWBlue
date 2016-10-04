@@ -148,7 +148,7 @@ class reply(tweet):
  def __init__(self, session, title, caption, text, twishort_enabled, users=None):
   super(reply, self).__init__(session, title, caption, text, twishort_enabled, messageType="reply")
   self.message.mentionAll.SetValue(True)
-  if users > 1:
+  if len(users) > 1:
 #   widgetUtils.connect_event(self.message.mentionAll, widgetUtils.CHECKBOX, self.mention_all)
    self.message.enable_button("mentionAll")
    self.message.mentionAll.SetValue(False)
