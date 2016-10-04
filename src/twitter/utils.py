@@ -69,7 +69,7 @@ def is_geocoded(tweet):
 def get_all_mentioned(tweet, conf):
  """ Gets all users that has been mentioned."""
  string = []
- for i in tweet["entities"]["user_mentions"][1:]:
+ for i in tweet["entities"]["user_mentions"]:
   if i["screen_name"] != conf["user_name"] and i["screen_name"] != tweet["user"]["screen_name"]:
    if i["id"] not in string:
     string.append(i["id_str"])
