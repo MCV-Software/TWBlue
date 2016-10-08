@@ -26,7 +26,7 @@ def stream_threaded(func, *args, **kwargs):
  def new_func(*a, **k):
   try:
    func(**k)
-  except exception as msg:
+  except Exception as msg:
    log.error("Error in stream with args: %r" % (a,))
    log.error(msg.message)
    pub.sendMessage("stream-error", session=a[0])
