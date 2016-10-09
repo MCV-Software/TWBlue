@@ -117,7 +117,7 @@ def makePgettext(translations):
 			return unicode(message)
 	return pgettext
 
-def setLanguage(lang):
+def setLanguage(lang, translation_file="twblue-documentation"):
 	system = platform.system()
 	global curLang
 	try:
@@ -127,10 +127,10 @@ def setLanguage(lang):
 				localeName=locale.windows_locale[windowsLCID]
 			else:
 				localeName=locale.getlocale()[0]
-			trans=gettext.translation('twblue-documentation', localedir="locales", languages=[localeName])
+			trans=gettext.translation(translation_file, localedir="locales", languages=[localeName])
 			curLang=localeName
 		else:
-			trans=gettext.translation("twblue-documentation", localedir="locales", languages=[lang])
+			trans=gettext.translation(translation_file, localedir="locales", languages=[lang])
 			curLang=lang
 			localeChanged=False
 			#Try setting Python's locale to lang
@@ -150,7 +150,7 @@ def setLanguage(lang):
 				LCID=localeNameToWindowsLCID(lang)
 				ctypes.windll.kernel32.SetThreadLocale(LCID)
 	except IOError:
-		trans=gettext.translation("twblue-documentation",fallback=True)
+		trans=gettext.translation(translation_file,fallback=True)
 		curLang="en"
 	trans.install(unicode=True)
 	# Install our pgettext function.

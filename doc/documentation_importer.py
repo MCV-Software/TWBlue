@@ -2,7 +2,7 @@
 """ This script converts the hold documentation (saved in markdown files) in a python file with a list of strings to translate it using gettext."""
 
 def prepare_documentation_in_file(fileSource, fileDest):
-	""" This takes documentation written in a markdown file and put all the contents in a python file, to create a internationalized documentation.
+	""" This takes documentation written in a markdown file and put all the contents in a python file, to create a translatable  documentation.
 	 @fileSource str: A markdown(.md) file.
 	 @fileDest str: A file where this will put the new strings"""
 
@@ -18,7 +18,6 @@ def prepare_documentation_in_file(fileSource, fileDest):
 			newvar = "_(u\"\"\"%s\"\"\"),\n" % (i[:-1])
 		else:
 			newvar = "_(u\"\"\"%s\"\"\"),\n" % (i)
-#		print i[-1:]
 		f2.write(newvar)
 	f1.close()
 	f2.write("]")
@@ -26,3 +25,4 @@ def prepare_documentation_in_file(fileSource, fileDest):
 
 
 prepare_documentation_in_file("manual.md", "strings.py")
+prepare_documentation_in_file("changelog.md", "changelog.py")
