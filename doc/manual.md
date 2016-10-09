@@ -1,4 +1,4 @@
-Documentation for TWBlue - 0.84
+Documentation for TWBlue - 0.88
 
 ## Table of contents
 
@@ -87,7 +87,7 @@ These fields accept a Twitter username (without the at sign) as the input. They 
 
 The graphical user interface of TWBlue consists of a window containing:
 
-* a menu bar accomodating five menus (application, tweet, user, buffer and help);
+* a menu bar accomodating six  menus (application, tweet, user, buffer, audio and help);
 * One tree view,
 * One list of items
 * Four buttons in most dialogs: Tweet, retweet , reply and direct message.
@@ -98,16 +98,16 @@ In summary, the GUI contains two core components. These are the controls you wil
 
 #### Buttons in the application
 
-* Tweet: this button opens up a dialogue box to write your tweet. The message must not exceed 140 characters. If you write past this limit, a sound will play to warn you. Note that the character count is displayed in the title bar. You may use the shorten and expand URL buttons to comply with the character limit. You can upload a picture, check spelling, attach audio or translate your message by selecting one of the available buttons in the dialogue box. In addition, you can autocomplete the entering of users by pressing Alt + A or the button for that purpose if you have the database of users configured. Press enter to send the tweet. If all goes well, you'll hear a sound confirming it. Otherwise, the screen reader will speak an error message in English describing the problem.
+* Tweet: this button opens up a dialogue box to write your tweet. Normal tweets must not exceed 140 characters. However you can press the long tweet checkbox and your tweet will be posted throught Twishort, wich will allow you to write longer tweets (10000 characters). If you write past this limit, a sound will play to warn you. Note that the character count is displayed in the title bar. You may use the shorten and expand URL buttons to comply with the character limit. You can upload a picture, check spelling, attach audio or translate your message by selecting one of the available buttons in the dialogue box. In addition, you can autocomplete the entering of users by pressing Alt + A or the button for that purpose if you have the database of users configured. Press enter to send the tweet. If all goes well, you'll hear a sound confirming it. Otherwise, the screen reader will speak an error message in English describing the problem.
 * Retweet: this button retweets the message you're reading. After you press it, if you haven't configured the application not to do so, you'll be asked if you want to add a comment or simply send it as written. If you choose to add a comment, and if the original tweet plus the comment exceeds 140 characters, you will be asked if you want to post it as a comment with a mention to the original user and a link to the originating tweet.
-* Reply: when you're viewing a tweet, you can reply to the user who sent it by pressing this button. A dialogue will open up similar to the one for tweeting, but with the name of the user already filled in (for example @user) so you only need to write your message. If there are more users referred to in the tweet, you can press shift-tab and activate the mention all users button. When you're on the friends or followers lists, the button will be called mention instead.
-* Direct message: exactly like sending a tweet, but it's a private message which can only be read by the user you send it to. Press shift-tab to see the recipient. If there were other users mentioned in the tweet you were reading, you can arrow up or down to choose which one to send it to, or write the username yourself without the at sign.
+* Reply: when you're viewing a tweet, you can reply to the user who sent it by pressing this button. A dialogue will open up similar to the one for tweeting, but with the name of the user already filled in (for example @user) so you only need to write your message. If there are more users referred to in the tweet, you can press shift-tab and activate the mention to all checkbox. When you're on the friends or followers lists, the button will be called mention instead.
+* Direct message: exactly like sending a tweet, but it's a private message which can only be read by the user you send it to. Press shift-tab twice to see the recipient. If there were other users mentioned in the tweet you were reading, you can arrow up or down to choose which one to send it to, or write the username yourself without the at sign. In addition, you can autocomplete the entering of users by pressing Alt + C or the button for that purpose if you have the database of users configured.
 
 Bear in mind that buttons will appear according to which actions are possible on the list you are browsing. For example, on the home timeline, mentions, sent, favourites and user timelines you will see the four buttons, while on the direct messages list you'll only get the direct message and tweet buttons, and on friends and followers lists the direct message, tweet, and mention buttons will be available.
 
 #### Menus
 
-Visually, Towards the top of the main application window, can be found a menu bar which contains many of the same functions as listed in the previous section, together with some additional items. To access the menu bar, press the alt key. You will find five menus listed: application, tweet, user, buffer and help. This section describes the items on each one of them.
+Visually, Towards the top of the main application window, can be found a menu bar which contains many of the same functions as listed in the previous section, together with some additional items. To access the menu bar, press the alt key. You will find six menus listed: application, tweet, user, buffer, audio and help. This section describes the items on each one of them.
 
 ##### Application menu
 
@@ -159,13 +159,18 @@ Visually, Towards the top of the main application window, can be found a menu ba
 * Clear buffer: Deletes all items from the buffer.
 * Destroy: dismisses the list you're on.
 
+##### Audio menu
+
+* Play/pause: try to play audio for the selected item (if available), or stop the currently played audio.
+* Seek back 5 seconds: If an audio is being played, seek 5 seconds back in the playback. This will work only in audio files. This feature cannot be used in radio stations or other streamed files.
+* Seek forward 5 seconds: If an audio is being played, seek 5 seconds forward  in the playback. This feature cannot be used in radio stations or other streamed files.
+
 ##### Help menu
 
 * Documentation: opens up this file, where you can read some useful program concepts.
 * Sounds tutorial: Opens a dialog box where you can familiarize yourself with the different sounds of the program.
 * What's new in this version?: opens up a document with the list of changes from the current version to the earliest.
 * Check for updates: every time you open the program it automatically checks for new versions. If an update is available, it will ask you if you want to download the update. If you accept, the updating process will commence. When complete, TWBlue will be restarted. This item checks for new updates without having to restart the application.
-* Report an error: opens up a dialogue box to report a bug by completing a small number of fields. Pressing enter will send the report. If the operation doesn't succeed the program will display a warning.
 * TWBlue's website: visit our [home page](http://twblue.es) where you can find all relevant information and downloads for TWBlue and become a part of the community.
 * About TWBlue: shows the credits of the program.
 
@@ -186,8 +191,8 @@ The next section contains a list of keyboard shortcuts for both interfaces. Bear
 * Control + R: Reply / mention.
 * Control + Shift + R: Retweet.
 * Control + D: Send a direct message.
-* control + F: Add tweet to favourites.
-* Control + Shift + F: Remove a tweet from favourites.
+* control + F: Add tweet to likes.
+* Control + Shift + F: Remove a tweet from likes.
 * Control + S: Open the user actions dialogue.
 * Control + Shift + V: Show tweet.
 * Control + Q: Quit this program.
@@ -200,6 +205,8 @@ The next section contains a list of keyboard shortcuts for both interfaces. Bear
 * Control + Shift + Delete: Empty the current buffer.
 
 ### Shortcuts of the invisible interface (default keymap)
+
+The invisible interface of TWBlue can be customised by using a keymap. Every keymap defines a set of keystrokes to be used along with the invisible interface. You can change the keymap in the global settings dialogue, under the application menu in the menu bar, and check or edit keystrokes for the selected keymap in the keystroke editor, also available in the application menu.
 
 * Control + Windows + Up Arrow: moves to the previous item in the buffer.
 * Control + Windows + Down Arrow: moves to the next item in the buffer.
@@ -305,25 +312,25 @@ Tw Blue is free software, licensed under the GNU GPL license, either version 2 o
 
 The source code of the program is available on GitHub at <https://www.github.com/manuelcortez/twblue>.
 
-If you want to donate to the project, you can do so at <http://twblue.es/?q=node/3&language=en>. Thank you for your support!
+If you want to donate to the project, you can do so at <https://twblue.es/donate>. Thank you for your support!
 
 ## Contact
 
-If you still have questions after reading this document, if you wish to collaborate to the project in some other way, or if you simply want to get in touch with the application developer, follow the Twitter account [@tw\_blue2](https://twitter.com/tw_blue2) or [@manuelcortez00.](https://twitter.com/manuelcortez00) You can also visit [our website](http://twblue.es)
+If you still have questions after reading this document, if you wish to collaborate to the project in some other way, or if you simply want to get in touch with the application developer, follow the Twitter account [@tw\_blue2](https://twitter.com/tw_blue2) or [@manuelcortez00.](https://twitter.com/manuelcortez00) You can also visit [our website](https://twblue.es)
 
 ## Credits
 
-TWBlue is developed and mantained by [Manuel Cortéz](https://twitter.com/manuelcortez00) and [José Manuel Delicado](https://twitter.com/jmdaweb). It's supported and sponsored by [Technow S. L.](https://twitter.com/technow)
+TWBlue is developed and mantained by [Manuel Cortéz](https://twitter.com/manuelcortez00) and [José Manuel Delicado](https://twitter.com/jmdaweb).
 
 We would also like to thank the translators of TWBlue, who have allowed the spreading of the application.
 
 * English: [Manuel Cortéz](https://twitter.com/manuelcortez00).
-* Arabic: [Mohammed Al Shara](https://twitter.com/mohammed0204).
+* Arabic: [Mohammed Al Shara,](https://twitter.com/mohammed0204) [Hatoun Felemban](https://twitter.com/HatounFelemban)
 * Catalan: [Francisco Torres](https://twitter.com/ftgalleg)
 * Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00).
 * Basque: [Sukil Etxenike](https://twitter.com/sukil2011).
 * Finnish: [Jani Kinnunen](https://twitter.com/jani_kinnunen).
-* French: [Rémi Ruiz](https://twitter.com/blindhelp38).
+* French: [Rémy Ruiz](https://twitter.com/blindhelp38).
 * Galician: [Juan Buño](https://twitter.com/Quetzatl_).
 * German: [Steffen Schultz](https://twitter.com/schulle4u).
 * Croatian: [Zvonimir Stanečić](https://twitter.com/zvonimirek222).
@@ -331,13 +338,13 @@ We would also like to thank the translators of TWBlue, who have allowed the spre
 * Italian: [Christian Leo Mameli](https://twitter.com/llajta2012).
 * Japanese: [Riku](https://twitter.com/riku_sub001)
 * Polish: [Pawel Masarczyk.](https://twitter.com/Piciok)
-* Portuguese: Odenilton Júnior Santos.
-* Romanian: [Florian Ionașcu](https://twitter.com/7ro) and [Răzvan Ciule](https://twitter.com/pilgrim89)
-* Russian: [Наталья Хедлунд](https://twitter.com/Lifestar_n).
+* Portuguese: [Odenilton Júnior Santos.](https://twitter.com/romaleif)
+* Romanian: [Florian Ionașcu](https://twitter.com/7ro) and [Nicușor Untilă](https://twitter.com/dj_storm2001)
+* Russian: [Наталья Хедлунд](https://twitter.com/Lifestar_n) and [Валерия Кузнецова](https://twitter.com/ValeriaK305).
 * Serbian: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)
 * Turkish: [Burak Yüksek](https://twitter.com/burakyuksek).
 
-Many thanks also to the people who worked on the documentation. Initially, [Manuel Cortez](https://twitter.com/manuelcortez00) did the documentation in Spanish, and translated to English by [Bryner Villalobos](https://twitter.com/Bry_StarkCR), [Robert Spangler](https://twitter.com/glasscity1837), [Sussan Rey](https://twitter.com/sussanrey17), [Anibal Hernandez](https://twitter.com/anibalmetal), and [Holly Scott-Gardner](https://twitter.com/holly1994). It was updated by [Sukil Etxenike](https://twitter.com/sukil2011), with some valuable corrections by [Brian Hartgen](https://twitter.com/brianhartgen) and [Bill Dengler](https://twitter.com/codeofdusk).
+Many thanks also to the people who worked on the documentation. Initially, [Manuel Cortez](https://twitter.com/manuelcortez00) did the documentation in Spanish, and translated to English by [Bryner Villalobos](https://twitter.com/Bry_StarkCR), [Robert Spangler](https://twitter.com/glasscity1837), [Sussan Rey](https://twitter.com/sussanrey17), [Anibal Hernandez](https://twitter.com/AnimalMetal), and [Holly Scott-Gardner](https://twitter.com/CatchTheseWords). It was updated by [Sukil Etxenike](https://twitter.com/sukil2011), with some valuable corrections by [Brian Hartgen](https://twitter.com/brianhartgen) and [Bill Dengler](https://twitter.com/codeofdusk).
 
 ------------------------------------------------------------------------
 
