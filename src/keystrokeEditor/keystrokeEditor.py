@@ -28,6 +28,7 @@ class KeystrokeEditor(object):
    if new_keystroke != self.map[action]:
     self.changed = True
     self.map[action] = new_keystroke
+    self.dialog.put_keystrokes(constants.actions, self.map)
 
  def set_keystroke(self, keystroke, dialog):
   for i in keystroke.split("+"):

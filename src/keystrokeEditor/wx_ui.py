@@ -29,6 +29,8 @@ class keystrokeEditorDialog(baseDialog.BaseWXDialog):
   self.SetClientSize(sizer.CalcMin())
 
  def put_keystrokes(self, actions, keystrokes):
+  selection = self.keys.get_selected()
+  self.keys.clear()
   for i in keystrokes:
    if actions.has_key(i) == False:
     continue
@@ -36,6 +38,7 @@ class keystrokeEditorDialog(baseDialog.BaseWXDialog):
    self.actions.append(i)
    keystroke = keystrokes[i]
    self.keys.insert_item(False, *[action, keystroke])
+  self.keys.select_item(selection)
 
  def get_action(self):
   return self.keys.get_selected()
