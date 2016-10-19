@@ -13,7 +13,7 @@ if system == "Windows":
  import trendingTopics
  import user
  import listsController
- from issueReporter import issueReporter
+# from issueReporter import issueReporter
 elif system == "Linux":
  from gtkUI import (view, commonMessageDialogs)
 from twitter import utils, compose
