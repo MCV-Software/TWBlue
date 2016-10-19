@@ -60,8 +60,6 @@ def compose_tweet(tweet, db, relative_times):
   urls = utils.find_urls_in_text(text)
   for url in range(0, len(urls)):
    try:
-    log.error(urls[url])
-    log.error(tweet["entities"]["urls"][url])
     text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
    except: pass
   if config.app['app-settings']['handle_longtweets']: pass

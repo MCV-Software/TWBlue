@@ -77,7 +77,6 @@ class soundSystem(object):
   self.check_soundpack()
 
  def clear_list(self):
-  log.debug("Cleaning sounds... Total sounds found: %i" % len(self.files))
   if len(self.files) == 0: return
   try:
    for i in range(0, len(self.files)):
@@ -86,7 +85,6 @@ class soundSystem(object):
      self.files.pop(i)
   except IndexError:
    pass
-  log.debug("Files used now: %i" % len(self.files))
 
  def play(self, sound, argument=False):
   if self.soundpack_OK == False: return
