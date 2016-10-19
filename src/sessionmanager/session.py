@@ -454,4 +454,8 @@ class Session(object):
   long = twishort.is_long(tweet)
   if long != False and config.app["app-settings"]["handle_longtweets"]:
    tweet["message"] = twishort.get_full_text(long)
+   mentions = ""
+   for i in tweet["entities"]["user_mentions"]:
+    mentions = mentions+"@{0} ".format(i["screen_name"],)
+   tweet["message"] = mentions+tweet["message"]
   return tweet
