@@ -28,10 +28,11 @@ def perform_update(endpoint, current_version, app_name='', password=None, update
   logger.debug("No update for this architecture")
   return False
  available_description = available_update.get('description', None)
+ available_date = available_update.get('date', None)
  update_url = available_update ['downloads'][platform.system()+platform.architecture()[0][:2]]
  logger.info("A new update is available. Version %s" % available_version)
  donation()
- if callable(update_available_callback) and not update_available_callback(version=available_version, description=available_description): #update_available_callback should return a falsy value to stop the process
+ if callable(update_available_callback) and not update_available_callback(version=available_version, description=available_description, date=available_date): #update_available_callback should return a falsy value to stop the process
   logger.info("User canceled update.")
   return
  base_path = tempfile.mkdtemp()
