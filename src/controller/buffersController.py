@@ -479,23 +479,23 @@ class baseBufferController(bufferController):
   tweet = self.get_right_tweet()
   screen_name = tweet["user"]["screen_name"]
   id = tweet["id"]
-  users = utils.get_all_mentioned(tweet, self.session.db)
-  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users)
+  users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
+  ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
+  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users, ids=ids)
   if message.message.get_response() == widgetUtils.OK:
    self.session.settings["mysc"]["twishort_enabled"] = message.message.long_tweet.GetValue()
    self.session.settings["mysc"]["mention_all"] = message.message.mentionAll.GetValue()
+   excluded_ids = message.get_ids()
    text = message.message.get_text()
-   if message.message.mentionAll.GetValue() == False:
-    text = u"@{0} {1}".format(screen_name, text)
    if len(text) > 140 and message.message.get("long_tweet") == True:
     if message.image == None:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
     else:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
    if message.image == None:
-    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text, auto_populate_reply_metadata=message.message.mentionAll.GetValue())
+    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text, auto_populate_reply_metadata=True, exclude_reply_user_ids=excluded_ids)
    else:
-    call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text, media=message.file, auto_populate_reply_metadata=message.message.mentionAll.GetValue())
+    call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text, media=message.file, auto_populate_reply_metadata=True, exclude_reply_user_ids=excluded_ids)
   if hasattr(message.message, "destroy"): message.message.destroy()
 
  @_tweets_exist

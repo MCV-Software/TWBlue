@@ -1324,18 +1324,17 @@ class Controller(object):
  def manage_stream_errors(self, session):
   log.error(" Restarting %s session streams. It will be destroyed" % (session,))
   s = session_.sessions[session]
-  if hasattr(s, "main_stream"):
-   s.main_stream.disconnect()
-   log.error("main stream disconnected")
-   del s.main_stream
-  if hasattr(s, "timelinesStream"):
-   s.timelinesStream.disconnect()
-   del s.timelinesStream
+  try:
+   if hasattr(s, "main_stream"):
+    s.main_stream.disconnect()
+    log.error("main stream disconnected")
+    del s.main_stream
+   if hasattr(s, "timelinesStream"):
+    s.timelinesStream.disconnect()
+    del s.timelinesStream
+  except AttributeError:
+   pass
   s.counter = 0
-#  s.reconnection_function_active = False
-#  for i in self.buffers:
-#   if i.invisible == True and i.session.session_id == s.session_id and i.type != "people":
-#    i.start_stream()
 #  s.listen_stream_error()
 
  def check_connection(self):

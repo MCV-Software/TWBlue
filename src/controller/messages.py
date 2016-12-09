@@ -18,12 +18,12 @@ from twitter import utils
 
 class basicTweet(object):
  """ This class handles the tweet main features. Other classes should derive from this class."""
- def __init__(self, session, title, caption, text, messageType="tweet", max=140):
+ def __init__(self, session, title, caption, text, messageType="tweet", max=140, *args, **kwargs):
   super(basicTweet, self).__init__()
   self.max = max
   self.title = title
   self.session = session
-  self.message = getattr(message, messageType)(title, caption, text)
+  self.message = getattr(message, messageType)(title, caption, text, *args, **kwargs)
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
   widgetUtils.connect_event(self.message.attach, widgetUtils.BUTTON_PRESSED, self.attach)
 #  if system == "Windows":
@@ -125,8 +125,8 @@ class basicTweet(object):
   self.message.text_focus()
 
 class tweet(basicTweet):
- def __init__(self, session, title, caption, text, twishort_enabled, messageType="tweet", max=140):
-  super(tweet, self).__init__(session, title, caption, text, messageType, max)
+ def __init__(self, session, title, caption, text, twishort_enabled, messageType="tweet", max=140, *args, **kwargs):
+  super(tweet, self).__init__(session, title, caption, text, messageType, max, *args, **kwargs)
   self.image = None
   widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
   widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
@@ -145,21 +145,35 @@ class tweet(basicTweet):
   c.show_menu()
 
 class reply(tweet):
- def __init__(self, session, title, caption, text, twishort_enabled, users=None):
-  super(reply, self).__init__(session, title, caption, text, twishort_enabled, messageType="reply")
-  self.message.mentionAll.SetValue(True)
-  if len(users) > 1:
-#   widgetUtils.connect_event(self.message.mentionAll, widgetUtils.CHECKBOX, self.mention_all)
+ def __init__(self, session, title, caption, text, twishort_enabled, users=[], ids=[]):
+  super(reply, self).__init__(session, title, caption, text, twishort_enabled, messageType="reply", users=users)
+  self.ids = ids 
+  if len(users) > 0:
+   widgetUtils.connect_event(self.message.mentionAll, widgetUtils.CHECKBOX, self.mention_all)
    self.message.enable_button("mentionAll")
    self.message.mentionAll.SetValue(self.session.settings["mysc"]["mention_all"])
+   if self.message.mentionAll.GetValue() == True:
+    self.mention_all()
   self.message.set_cursor_at_end()
   self.text_processor()
 
  def mention_all(self, *args, **kwargs):
-  self.message.set_text(self.message.get_text()+self.users)
-  self.message.set_cursor_at_end()
-  self.message.text_focus()
-  self.text_processor()
+  if self.message.mentionAll.GetValue() == True:
+   for i in self.message.checkboxes:
+    i.SetValue(True)
+    i.Hide()
+  else:
+   for i in self.message.checkboxes:
+    i.SetValue(False)
+    i.Show()
+
+
+ def get_ids(self):
+  excluded_ids  = ""
+  for i in xrange(0, len(self.message.checkboxes)):
+   if self.message.checkboxes[i].GetValue() == False:
+    excluded_ids = excluded_ids + "{0},".format(self.ids[i],)
+  return excluded_ids
 
 class dm(basicTweet):
  def __init__(self, session, title, caption, text):
