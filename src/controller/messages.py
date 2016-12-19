@@ -175,6 +175,13 @@ class reply(tweet):
     excluded_ids = excluded_ids + "{0},".format(self.ids[i],)
   return excluded_ids
 
+ def get_people(self):
+  people  = ""
+  for i in xrange(0, len(self.message.checkboxes)):
+   if self.message.checkboxes[i].GetValue() == True:
+    people = people + "{0} ".format(self.message.checkboxes[i].GetLabel(),)
+  return people
+
 class dm(basicTweet):
  def __init__(self, session, title, caption, text):
   super(dm, self).__init__(session, title, caption, text, messageType="dm", max=10000)

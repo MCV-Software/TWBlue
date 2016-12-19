@@ -190,9 +190,9 @@ class Session(object):
     elif report_failure and hasattr(e, 'message'):
      output.speak(_("%s failed.  Reason: %s") % (action, e.message))
     finished = True
-   except:
-    tries = tries + 1
-    time.sleep(5)
+#   except:
+#    tries = tries + 1
+#    time.sleep(5)
   if report_success:
    output.speak(_("%s succeeded.") % action)
   if _sound != None: self.sound.play(_sound)
@@ -454,8 +454,5 @@ class Session(object):
   long = twishort.is_long(tweet)
   if long != False and config.app["app-settings"]["handle_longtweets"]:
    tweet["message"] = twishort.get_full_text(long)
-   mentions = ""
-   for i in tweet["entities"]["user_mentions"]:
-    mentions = mentions+"@{0} ".format(i["screen_name"],)
-   tweet["message"] = mentions+tweet["message"]
+   tweet["twishort"] = True
   return tweet
