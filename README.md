@@ -31,7 +31,7 @@ Although most dependencies can be found in the windows-dependencies directory, w
 
 #### Dependencies packaged in windows installers
 
-* [Python,](http://python.org) version 2.7.11  
+* [Python,](http://python.org) version 2.7.13  
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
 * [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2.0
 * [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 220
@@ -86,13 +86,13 @@ This dependency has been built using pure basic 4.61. Its source can be found at
 
 #### Dependencies required to build the installer
 
-* [NSIS unicode,](http://www.scratchpaper.com/) version 2.46.5
+* [NSIS,](http://nsis.sourceforge.net/) version 3.01
 
 #### Dependencies required to build the portableApps.com format archive
 
-* [NSIS Unicode Portable,](http://portableapps.com/apps/development/nsis_portable) version 2.46.5 rev 3
-* [PortableApps.com Launcher,](http://portableapps.com/apps/development/portableapps.com_launcher) version 2.2
-* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.4.2
+* [NSIS Portable,](http://portableapps.com/apps/development/nsis_portable) version 3.0
+* [PortableApps.com Launcher,](http://portableapps.com/apps/development/portableapps.com_launcher) version 2.2.1
+* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.4.4
 
 Important! Install these 3 apps into the same folder, otherwise you won't be able to build the pa.c version. For example: D:\portableApps\NSISPortable, D:\PortableApps\PortableApps.com installer, ...
 
