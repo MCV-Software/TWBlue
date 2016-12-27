@@ -2,6 +2,7 @@
 !include "LogicLib.nsh"
 !include "x64.nsh"
 CRCCheck on
+ManifestSupportedOS all
 XPStyle on
 Name "TWBlue"
 OutFile "TWBlue_setup.exe"
@@ -11,11 +12,13 @@ RequestExecutionLevel admin
 SetCompress auto
 SetCompressor /solid lzma
 SetDatablockOptimize on
+Unicode true
 VIAddVersionKey ProductName "TWBlue"
 VIAddVersionKey LegalCopyright "Copyright 2016 Manuel Cortéz."
 VIAddVersionKey ProductVersion "0.87"
 VIAddVersionKey FileVersion "0.87"
 VIProductVersion "0.87.0.0"
+VIFileVersion "0.87.0.0"
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_RADIOBUTTONS
 !insertmacro MUI_PAGE_LICENSE "license.txt"
