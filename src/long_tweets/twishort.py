@@ -18,13 +18,15 @@
 ############################################################
 import requests
 import keys
+import logging
+log = logging.getLogger("long_tweets.twishort")
 from twitter import utils
 from requests_oauthlib import OAuth1Session
 
 def get_twishort_uri(url):
  try:
   return url.split("twishort.com/")[1]
- except IndexError:
+ except ValueError:
   return False
 
 def is_long(tweet):
@@ -33,8 +35,15 @@ def is_long(tweet):
   try:
    if "twishort.com" in tweet["entities"]["urls"][url]["expanded_url"]:
     long = get_twishort_uri(tweet["entities"]["urls"][url]["expanded_url"])
-  except TypeError:
+  except IndexError:
    pass
+ if long == False and tweet.has_key("retweeted_status"):
+  for url in range(0, len(tweet["retweeted_status"]["entities"]["urls"])):
+   try:
+    if "twishort.com" in tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"]:
+     long = get_twishort_uri(tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"])
+   except IndexError:
+    pass
  return long
 
 def get_full_text(uri):
