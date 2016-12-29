@@ -8,7 +8,7 @@ log = getLogger("config_utils")
 
 class ConfigLoadError(Exception): pass
 
-def load_config(config_path, configspec_path=None, *args, **kwargs):
+def load_config(config_path, configspec_path=None, copy=True, *args, **kwargs):
  if os.path.exists(config_path):
   clean_config(config_path)
  spec = ConfigObj(configspec_path, encoding='UTF8', list_values=False, _inspec=True)
@@ -17,7 +17,7 @@ def load_config(config_path, configspec_path=None, *args, **kwargs):
  except ParseError:
   raise ConfigLoadError("Unable to load %r" % config_path)
  validator = Validator()
- validated = config.validate(validator, preserve_errors=False, copy=True)
+ validated = config.validate(validator, preserve_errors=False, copy=copy)
  if validated == True:
   config.write()
   return config
