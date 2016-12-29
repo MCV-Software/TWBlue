@@ -3,9 +3,11 @@
 ## changes in this version
 
 * Fixed more issues with streams and reconnections.
-* newer updates will indicate their release date in the updater.
+* newer updates will indicate the release date in the updater.
 * Changes to keystrokes are reflected in keystroke editor automatically.
 * In replies with multiple users, if the mention to all checkbox is unchecked, you will see a checkbox per user so you will be able to control who will be mentioned in the reply.
+* Fixed a bug that caused duplicated user mentions in replies when the tweet was made with Twishort.
+* Retweets should be displayed normally again when the originating tweet is a Twishort's long tweet.
 
 ## Changes in version 0.87
 
