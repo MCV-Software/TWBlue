@@ -243,6 +243,14 @@ class baseBufferController(bufferController):
   self.sound = sound
   if "-timeline" in self.name or "-favorite" in self.name:
    self.finished_timeline = False
+   # Add a compatibility layer for username based timelines from config.
+   # ToDo: Remove this in some new versions of the client, when user ID timelines become mandatory.
+   try:
+    int(self.kwargs["user_id"])
+   except ValueError:
+    self.is_screen_name = True
+    self.kwargs["screen_name"] = self.kwargs["user_id"]
+    self.kwargs.pop("user_id")
 
  def get_formatted_message(self):
   if self.type == "dm" or self.name == "sent_tweets" or self.name == "sent_direct_messages":   return self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"])[1]
@@ -777,6 +785,14 @@ class peopleBufferController(baseBufferController):
   self.url = self.interact
   if "-followers" in self.name or "-friends" in self.name:
    self.finished_timeline = False
+   # Add a compatibility layer for username based timelines from config.
+   # ToDo: Remove this in some new versions of the client, when user ID timelines become mandatory.
+   try:
+    int(self.kwargs["user_id"])
+   except ValueError:
+    self.is_screen_name = True
+    self.kwargs["screen_name"] = self.kwargs["user_id"]
+    self.kwargs.pop("user_id")
 
  def remove_buffer(self):
   if "-followers" in self.name:
