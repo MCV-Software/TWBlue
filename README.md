@@ -1,8 +1,6 @@
 ﻿TWBlue -
 ======
 
-Copyright (C) 2016. [Technow S.L.](https://www.technow.es)
-
 TW Blue is an app designed to use Twitter simply and efficiently while using minimal system resources.
 With this app you’ll have access to twitter features such as:
 

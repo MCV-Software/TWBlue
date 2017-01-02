@@ -177,7 +177,8 @@ class mainFrame(wx.Frame):
   info.SetCopyright(application.copyright)
   info.SetTranslators(application.translators)
 #  info.SetLicence(application.licence)
-  info.AddDeveloper(application.author)
+  for i in application.authors:
+   info.AddDeveloper(i)
   wx.AboutBox(info)
  def set_focus(self):
   self.SetFocus()

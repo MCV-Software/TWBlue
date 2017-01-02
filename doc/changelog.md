@@ -8,6 +8,7 @@
 * In replies with multiple users, if the mention to all checkbox is unchecked, you will see a checkbox per user so you will be able to control who will be mentioned in the reply.
 * Fixed a bug that caused duplicated user mentions in replies when the tweet was made with Twishort.
 * Retweets should be displayed normally again when the originating tweet is a Twishort's long tweet.
+* Changed the way TWBlue saves user timelines in configuration. Now it uses user IDS instead usernames. With user IDS, if an user changes the username, TWBlue still will create his/her timeline. This was not possible by using usernames.
 
 ## Changes in version 0.87
 
