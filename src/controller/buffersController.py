@@ -241,6 +241,8 @@ class baseBufferController(bufferController):
   self.buffer.account = account
   self.bind_events()
   self.sound = sound
+  if "-timeline" in self.name or "-favorite" in self.name:
+   self.finished_timeline = False
 
  def get_formatted_message(self):
   if self.type == "dm" or self.name == "sent_tweets" or self.name == "sent_direct_messages":   return self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"])[1]
@@ -296,6 +298,13 @@ class baseBufferController(bufferController):
    number_of_items = self.session.order_buffer(self.name, val)
    log.debug("Number of items retrieved: %d" % (number_of_items,))
    self.put_items_on_list(number_of_items)
+   if hasattr(self, "finished_timeline") and self.finished_timeline == False:
+    if "-timeline" in self.name:
+     self.username = val[0]["user"]["screen_name"]
+    elif "-favorite" in self.name:
+     self.username = self.session.api_call("show_user", **self.kwargs)["screen_name"]
+    self.finished_timeline = True
+    pub.sendMessage("buffer-title-changed", buffer=self)
    if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages" and self.sound != None:
     self.session.sound.play(self.sound)
    return number_of_items
@@ -766,6 +775,8 @@ class peopleBufferController(baseBufferController):
   log.debug("Compose_function: %s" % (self.compose_function,))
   self.get_tweet = self.get_right_tweet
   self.url = self.interact
+  if "-followers" in self.name or "-friends" in self.name:
+   self.finished_timeline = False
 
  def remove_buffer(self):
   if "-followers" in self.name:
@@ -819,6 +830,10 @@ class peopleBufferController(baseBufferController):
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
    val = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
    self.put_items_on_list(val)
+   if hasattr(self, "finished_timeline") and self.finished_timeline == False:
+    self.username = self.session.api_call("show_user", **self.kwargs)["screen_name"]
+    self.finished_timeline = True
+    pub.sendMessage("buffer-title-changed", buffer=self)
    return val
 
  def get_more_items(self):

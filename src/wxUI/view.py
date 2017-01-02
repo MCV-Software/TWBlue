@@ -186,5 +186,11 @@ class mainFrame(wx.Frame):
   if hasattr(self, menuitem):
    getattr(self, menuitem).Check(check)
 
+ def set_page_title(self, page, title):
+  return self.nb.SetPageText(page, title)
+
+ def get_page_title(self, page):
+  return self.nb.GetPageText(page)
+
 def no_update_available():
  wx.MessageDialog(None, _(u"Your {0} version is up to date").format(application.name,), _(u"Update"), style=wx.OK).ShowModal()

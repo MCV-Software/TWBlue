@@ -120,6 +120,7 @@ class Controller(object):
   pub.subscribe(self.manage_item_in_list, "item-in-list")
   pub.subscribe(self.restart_streams_, "restart_streams")
   pub.subscribe(self.on_tweet_deleted, "tweet-deleted")
+  pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
 
  def bind_other_events(self):
@@ -341,14 +342,14 @@ class Controller(object):
   self.buffers.append(timelines)
   self.view.insert_buffer(timelines.buffer , name=_(u"Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["timelines"]:
-   tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (i,), session, session.db["user_name"], bufferType=None, screen_name=i, tweet_mode="extended")
+   tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (i,), session, session.db["user_name"], bufferType=None, user_id=i, tweet_mode="extended")
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(i,), pos=self.view.search("timelines", session.db["user_name"]))
   favs_timelines = buffersController.emptyPanel(self.view.nb, "favs_timelines", session.db["user_name"])
   self.buffers.append(favs_timelines)
   self.view.insert_buffer(favs_timelines.buffer , name=_(u"Likes timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["favourites_timelines"]:
-   tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (i,), session, session.db["user_name"], bufferType=None, screen_name=i, tweet_mode="extended")
+   tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (i,), session, session.db["user_name"], bufferType=None, user_id=i, tweet_mode="extended")
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Likes for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
@@ -357,7 +358,7 @@ class Controller(object):
   self.buffers.append(followers_timelines)
   self.view.insert_buffer(followers_timelines.buffer , name=_(u"Followers' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["followers_timelines"]:
-   tl = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (i,), session, session.db["user_name"], screen_name=i)
+   tl = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (i,), session, session.db["user_name"], user_id=i)
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Followers for {}").format(i,), pos=self.view.search("followers_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
@@ -366,7 +367,7 @@ class Controller(object):
   self.buffers.append(friends_timelines)
   self.view.insert_buffer(friends_timelines.buffer , name=_(u"Friends' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["friends_timelines"]:
-   tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (i,), session, session.db["user_name"], screen_name=i)
+   tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (i,), session, session.db["user_name"], user_id=i)
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Friends for {}").format(i,), pos=self.view.search("friends_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
@@ -397,7 +398,7 @@ class Controller(object):
    buffer.timer.start()
    self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
 
- def set_buffer_positions(self,session):
+ def set_buffer_positions(self, session):
   "Sets positions for buffers if values exist in the database."
   for i in self.buffers:
    if i.account == session.db["user_name"] and session.db.has_key(i.name+"_pos") and hasattr(i.buffer,'list'):
@@ -807,13 +808,12 @@ class Controller(object):
      if dlg.get_user() in buff.session.settings["other_buffers"]["timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (dlg.get_user(),), buff.session, buff.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
-     tl.start_stream()
+     tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, user_id=usr["id_str"])
      pos=self.view.search("timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
-#     self.buffers.insert(pos+1, tl)
      self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
-     buff.session.settings["other_buffers"]["timelines"].append(dlg.get_user())
+     buff.session.settings["other_buffers"]["timelines"].append(usr["id_str"])
+     tl.start_stream()
      pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
      buff.session.sound.play("create_timeline.ogg")
     elif tl_type == "favourites":
@@ -823,15 +823,14 @@ class Controller(object):
      if dlg.get_user() in buff.session.settings["other_buffers"]["favourites_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (dlg.get_user(),), buff.session, buff.session.db["user_name"], bufferType=None, screen_name=dlg.get_user())
+     tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, user_id=usr["id_str"])
      pos=self.view.search("favs_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
-#     self.buffers.insert(pos+1, tl)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Likes for {}").format(dlg.get_user()), pos=pos)
      tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
-     buff.session.settings["other_buffers"]["favourites_timelines"].append(dlg.get_user())
+     buff.session.settings["other_buffers"]["favourites_timelines"].append(usr["id_str"])
      buff.session.sound.play("create_timeline.ogg")
     elif tl_type == "followers":
      if usr["followers_count"] == 0:
@@ -840,17 +839,15 @@ class Controller(object):
      if dlg.get_user() in buff.session.settings["other_buffers"]["followers_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (dlg.get_user(),), buff.session, buff.session.db["user_name"], screen_name=dlg.get_user())
+     tl = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (usr["id_str"],), buff.session, buff.session.db["user_name"], user_id=usr["id_str"])
      pos=self.view.search("followers_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
-#     self.buffers.insert(pos+1, tl)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Followers for {}").format(dlg.get_user()), pos=pos)
      tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
-     buff.session.settings["other_buffers"]["followers_timelines"].append(dlg.get_user())
+     buff.session.settings["other_buffers"]["followers_timelines"].append(usr["id_str"])
      buff.session.sound.play("create_timeline.ogg")
-
     elif tl_type == "friends":
      if usr["friends_count"] == 0:
       commonMessageDialogs.no_friends()
@@ -858,14 +855,14 @@ class Controller(object):
      if dlg.get_user() in buff.session.settings["other_buffers"]["friends_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (dlg.get_user(),), buff.session, buff.session.db["user_name"], screen_name=dlg.get_user())
+     tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (usr["id_str"],), buff.session, buff.session.db["user_name"], user_id=usr["id_str"])
      pos=self.view.search("friends_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Friends for {}").format(dlg.get_user()), pos=pos)
      tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
-     buff.session.settings["other_buffers"]["friends_timelines"].append(dlg.get_user())
+     buff.session.settings["other_buffers"]["friends_timelines"].append(usr["id_str"])
      buff.session.sound.play("create_timeline.ogg")
    else:
     commonMessageDialogs.user_not_exist()
@@ -1510,6 +1507,18 @@ class Controller(object):
   for i in self.buffers:
    if hasattr(i, "remove_tweet") and hasattr(i, "name"):
     i.remove_tweet(id)
+
+ def buffer_title_changed(self, buffer):
+  if "-timeline" in buffer.name:
+   title = _(u"Timeline for {}").format(buffer.username,)
+  elif "-favorite" in buffer.name:
+   title = _(u"Likes for {}").format(buffer.username,)
+  elif "-followers" in buffer.name:
+   title = _(u"Followers for {}").format(buffer.username,)
+  elif "-friends" in buffer.name:
+   title = _(u"Friends for {}").format(buffer.username,)
+  buffer_index = self.view.search(buffer.name, buffer.account)
+  self.view.set_page_title(buffer_index, title)
 
  def save_data_in_db(self):
   for i in session_.sessions:
