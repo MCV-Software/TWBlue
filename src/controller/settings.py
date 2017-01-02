@@ -121,6 +121,7 @@ class accountSettingsController(globalSettingsController):
   self.dialog.create_general_account()
   widgetUtils.connect_event(self.dialog.general.au, widgetUtils.BUTTON_PRESSED, self.manage_autocomplete)
   self.dialog.set_value("general", "relative_time", self.config["general"]["relative_times"])
+  self.dialog.set_value("general", "show_screen_names", self.config["general"]["show_screen_names"])
   self.dialog.set_value("general", "apiCalls", self.config["general"]["max_api_calls"])
   self.dialog.set_value("general", "itemsPerApiCall", self.config["general"]["max_tweets_per_call"])
   self.dialog.set_value("general", "reverse_timelines", self.config["general"]["reverse_timelines"])
@@ -169,6 +170,7 @@ class accountSettingsController(globalSettingsController):
   if self.config["general"]["relative_times"] != self.dialog.get_value("general", "relative_time"):
    self.needs_restart = True
    self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
+  self.config["general"]["show_screen_names"] = self.dialog.get_value("general", "show_screen_names")
   self.config["general"]["max_api_calls"] = self.dialog.get_value("general", "apiCalls")
   self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
   if self.config["general"]["persist_size"] != self.dialog.get_value("general", "persist_size"):

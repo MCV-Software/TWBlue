@@ -9,6 +9,7 @@
 * Fixed a bug that caused duplicated user mentions in replies when the tweet was made with Twishort.
 * Retweets should be displayed normally again when the originating tweet is a Twishort's long tweet.
 * Changed the way TWBlue saves user timelines in configuration. Now it uses user IDS instead usernames. With user IDS, if an user changes the username, TWBlue still will create his/her timeline. This was not possible by using usernames.
+* Added a new setting in the account settings dialogue that makes TWBlue to show twitter usernames instead the full name.
 
 ## Changes in version 0.87
 
@@ -94,4 +95,4 @@
 * New followers and friends buffer for user timelines.
 
 ---
-Copyright © 2014-2016, Manuel Cortez.
+Copyright © 2014-2017, Manuel Cortez.

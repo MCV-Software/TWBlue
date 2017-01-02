@@ -348,4 +348,4 @@ Many thanks also to the people who worked on the documentation. Initially, [Manu
 
 ------------------------------------------------------------------------
 
-Copyright © 2013-2016. Manuel Cortéz
+Copyright © 2013-2017. Manuel Cortéz

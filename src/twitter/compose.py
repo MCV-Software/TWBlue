@@ -28,7 +28,7 @@ def StripChars(s):
 
 chars = "abcdefghijklmnopqrstuvwxyz"
 
-def compose_tweet(tweet, db, relative_times):
+def compose_tweet(tweet, db, relative_times, show_screen_names=False):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
  if system == "Windows":
   original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
@@ -46,7 +46,10 @@ def compose_tweet(tweet, db, relative_times):
   value = "text"
 #  log.exception(tweet.keys())
  text = StripChars(tweet[value])
- user = tweet["user"]["name"]
+ if show_screen_names:
+  user = tweet["user"]["screen_name"]
+ else:
+  user = tweet["user"]["name"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
  if tweet.has_key("retweeted_status"):
   if tweet.has_key("message") == False and tweet["retweeted_status"]["is_quote_status"] == False:
@@ -66,7 +69,7 @@ def compose_tweet(tweet, db, relative_times):
 #   return [user+", ", text, ts+", ", source]
  return [user+", ", text, ts+", ", source]
 
-def compose_dm(tweet, db, relative_times):
+def compose_dm(tweet, db, relative_times, show_screen_names=False):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
  if system == "Windows":
   original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
@@ -78,8 +81,16 @@ def compose_dm(tweet, db, relative_times):
   ts = tweet["created_at"]
  text = StripChars(tweet["text"])
  source = "DM"
- if db["user_name"] == tweet["sender"]["screen_name"]: user = _(u"Dm to %s ") % (tweet["recipient"]["name"],)
- else: user = tweet["sender"]["name"]
+ if db["user_name"] == tweet["sender"]["screen_name"]:
+  if show_screen_names:
+   user = _(u"Dm to %s ") % (tweet["recipient"]["screen_name"],)
+  else:
+   user = _(u"Dm to %s ") % (tweet["recipient"]["name"],)
+ else:
+  if show_screen_names:
+   user = tweet["sender"]["screen_name"]
+  else:
+   user = tweet["sender"]["name"]
  if text[-1] in chars: text=text+"."
  urls = utils.find_urls_in_text(text)
  for url in range(0, len(urls)):
@@ -87,14 +98,17 @@ def compose_dm(tweet, db, relative_times):
   except IndexError: pass
  return [user+", ", text, ts+", ", source]
 
-def compose_quoted_tweet(quoted_tweet, original_tweet):
+def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
  if quoted_tweet.has_key("full_text"):
   value = "full_text"
  else:
   value = "text"
  text = StripChars(quoted_tweet[value])
- quoting_user = quoted_tweet["user"]["name"]
+ if show_screen_names:
+  quoting_user = quoted_tweet["user"]["screen_name"]
+ else:
+  quoting_user = quoted_tweet["user"]["name"]
  source = re.sub(r"(?s)<.*?>", "", quoted_tweet["source"])
  try: text = "rt @%s: %s" % (quoted_tweet["retweeted_status"]["user"]["screen_name"], StripChars(quoted_tweet["retweeted_status"][value]))
  except KeyError: text = "%s" % (StripChars(quoted_tweet[value]))
@@ -110,7 +124,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet):
  quoted_tweet = tweets.clear_url(quoted_tweet)
  return quoted_tweet
 
-def compose_followers_list(tweet, db, relative_times=True):
+def compose_followers_list(tweet, db, relative_times=True, show_screen_names=False):
  if system == "Windows":
   original_date = arrow.get(tweet["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
   if relative_times == True:
@@ -132,11 +146,15 @@ def compose_followers_list(tweet, db, relative_times=True):
   ts2 = _("Unavailable")
  return [_(u"%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined Twitter %s") % (tweet["name"], tweet["screen_name"], tweet["followers_count"], tweet["friends_count"],  tweet["statuses_count"], ts2, ts)]
 
-def compose_event(data, username):
+def compose_event(data, username, show_screen_names=False):
+ if show_screen_names:
+  value = "screen_name"
+ else:
+  value = "name"
  if data["event"] == "block":
-  event = _("You've blocked %s") % (data["target"]["name"])
+  event = _("You've blocked %s") % (data["target"][value])
  elif data["event"] == "unblock":
-  event = _(u"You've unblocked %s") % (data["target"]["name"])
+  event = _(u"You've unblocked %s") % (data["target"][value])
  elif data["event"] == "follow":
   if data["target"]["screen_name"] == username:
    event = _(u"%s(@%s) has followed you") % (data["source"]["name"], data["source"]["screen_name"])
@@ -146,11 +164,11 @@ def compose_event(data, username):
   event = _(u"You've unfollowed %s (@%s)") % (data["target"]["name"], data["target"]["screen_name"])
  elif data["event"] == "favorite":
   if data["source"]["screen_name"] == username:
-   event = _(u"You've liked: %s, %s") % (data["target"]["name"], data["target_object"]["text"])
+   event = _(u"You've liked: %s, %s") % (data["target"][value], data["target_object"]["text"])
   else:
    event = _(u"%s(@%s) has liked: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
  elif data["event"] == "unfavorite":
-  if data["source"]["screen_name"] == username: event = _(u"You've unliked: %s, %s") % (data["target"]["name"], data["target_object"]["text"])
+  if data["source"]["screen_name"] == username: event = _(u"You've unliked: %s, %s") % (data["target"][value], data["target_object"]["text"])
   else: event = _(u"%s(@%s) has unliked: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
  elif data["event"] == "list_created":
   event = _(u"You've created the list %s") % (data["target_object"]["name"])
