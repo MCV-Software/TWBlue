@@ -10,6 +10,7 @@
 * Retweets should be displayed normally again when the originating tweet is a Twishort's long tweet.
 * Changed the way TWBlue saves user timelines in configuration. Now it uses user IDS instead usernames. With user IDS, if an user changes the username, TWBlue still will create his/her timeline. This was not possible by using usernames.
 * Added a new setting in the account settings dialogue that makes TWBlue to show twitter usernames instead the full name.
+* Added OCR in twitter pictures. There is a new item in the tweet menu that allows you to extract and display text in images. Also the keystroke alt+Win+o has been added for the same purpose from the invisible interface.
 
 ## Changes in version 0.87
 

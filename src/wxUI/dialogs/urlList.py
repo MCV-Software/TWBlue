@@ -2,8 +2,8 @@
 import wx
 
 class urlList(wx.Dialog):
- def __init__(self):
-  super(urlList, self).__init__(parent=None, title=_(u"Select URL"))
+ def __init__(self, title=_(u"Select URL")):
+  super(urlList, self).__init__(parent=None, title=title)
   panel = wx.Panel(self)
   self.lista = wx.ListBox(panel, -1)
   self.lista.SetFocus()

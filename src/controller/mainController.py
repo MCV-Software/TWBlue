@@ -6,7 +6,7 @@ if system == "Windows":
  from update import updater
  from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
  import settings
- from extra import SoundsTutorial
+ from extra import SoundsTutorial, ocr
  import keystrokeEditor
  from keyboard_handler.wx_handler import WXKeyboardHandler
  import userActionsController
@@ -142,7 +142,7 @@ class Controller(object):
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.find, menuitem=self.view.find)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
-
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.ocr_image, menuitem=self.view.ocr)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit)
@@ -1519,6 +1519,32 @@ class Controller(object):
    title = _(u"Friends for {}").format(buffer.username,)
   buffer_index = self.view.search(buffer.name, buffer.account)
   self.view.set_page_title(buffer_index, title)
+
+ def ocr_image(self, *args, **kwargs):
+  buffer = self.get_current_buffer()
+  if hasattr(buffer, "get_right_tweet") == False:
+   output.speak(_(u"Invalid buffer"))
+   return
+  tweet = buffer.get_right_tweet()
+  if tweet.has_key("entities") == False or tweet["entities"].has_key("media") == False:
+   output.speak(_(u"This tweet doesn't contain images"))
+   return
+  if len(tweet["entities"]["media"]) > 1:
+   image_list = [_(u"Picture {0}").format(i,) for i in xrange(0, len(tweet["entities"]["media"]))]
+   dialog = dialogs.urlList.urlList(title=_(u"Select the picture"))
+   if dialog.get_response() == widgetUtils.OK:
+    img = tweet["entities"]["media"][dialog.get_item()]
+   else:
+    return
+  else:
+   img = tweet["entities"]["media"][0]
+  api = ocr.OCRSpace.OCRSpaceAPI()
+  try:
+   text = api.OCR_URL(img["media_url"])
+  except ocr.OCRSpace.APIError as er:
+   output.speak(_(u"Unable to extract text"))
+   return
+  msg = messages.viewTweet(text["ParsedText"], [], False)
 
  def save_data_in_db(self):
   for i in session_.sessions:

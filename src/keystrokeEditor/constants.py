@@ -52,4 +52,5 @@ actions = {
 "accountConfiguration": _(u"Opens the account settings dialogue"),
 "audio": _(u"Try to play an audio file"),
 "update_buffer": _(u"Updates the buffer and retrieves possible lost items there."),
+"ocr_image": _(u"Extracts the text from a picture and displays the result in a dialog."),
 }

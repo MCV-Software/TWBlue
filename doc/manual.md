@@ -129,6 +129,7 @@ Visually, Towards the top of the main application window, can be found a menu ba
 * Show tweet: opens up a dialogue box where you can read the tweet, direct message, friend or follower which has focus. You can read the text with the arrow keys. It's a similar dialog box as used for composing tweets, without the ability to send the tweet, file attachment and autocompleting capabilities. It does however include a retweets and favourites count. If you are in the followers or the friends list, it will only contain a read-only edit box with the information in the focused item and a close button.
 * View address: If the selected tweet has geographical information, TWBlue may display a dialogue box where you can read the tweet address. This address is retrieved by sending the geographical coordinates of the tweet to Google maps.
 * View conversation: If you are focusing a tweet with a mention, it opens a buffer where you can view the whole conversation.
+* Read text in pictures: Attempt to apply OCR technology to the image attached to the tweet. The result will be displayed in another dialog.
 * Delete: permanently removes the tweet or direct message which has focus from Twitter and from your lists. Bear in mind that Twitter only allows you to delete tweets you have posted yourself.
 
 ##### User menu
@@ -254,6 +255,7 @@ The invisible interface of TWBlue can be customised by using a keymap. Every key
 * Control + Windows + Shift + G: Display the tweet's geolocation in a dialogue.
 * Control + Windows + T: Create a trending topics' buffer.
 * Control + Windows + {: Find a string in the current buffer.
+* Alt + Windows + O: Extracts text from the picture and display the result in a dialog.
 
 ## Configuration
 
