@@ -496,7 +496,7 @@ class baseBufferController(bufferController):
   tweet = self.get_right_tweet()
   screen_name = tweet["user"]["screen_name"]
   id = tweet["id"]
-  twishort = tweet.has_key("twishort")
+  twishort_enabled = tweet.has_key("twishort")
   users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
   ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
   message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users, ids=ids)
@@ -505,7 +505,7 @@ class baseBufferController(bufferController):
    self.session.settings["mysc"]["twishort_enabled"] = message.message.long_tweet.GetValue()
    self.session.settings["mysc"]["mention_all"] = message.message.mentionAll.GetValue()
    text = message.message.get_text()
-   if twishort == False:
+   if twishort_enabled == False:
     excluded_ids = message.get_ids()
     params["exclude_reply_user_ids"] =excluded_ids
     params["auto_populate_reply_metadata"] =True
@@ -524,7 +524,6 @@ class baseBufferController(bufferController):
     params["call_name"] = "update_status_with_media"
     params["media"] = message.file
    call_threaded(self.session.api_call, **params)
-#call_name="update_status_with_media", _sound="reply_send.ogg", in_reply_to_status_id=id, status=text, media=message.file,  exclude_reply_user_ids=excluded_ids)
   if hasattr(message.message, "destroy"): message.message.destroy()
 
  @_tweets_exist
