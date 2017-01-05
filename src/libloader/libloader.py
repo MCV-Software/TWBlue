@@ -29,7 +29,7 @@ class LibraryLoadError(OSError): pass
 
 def load_library(library, x86_path='.', x64_path='.', *args, **kwargs):
  lib = find_library_path(library, x86_path=x86_path, x64_path=x64_path)
- loaded = _do_load(lib, *args, **kwargs)
+ loaded = _do_load(str(lib), *args, **kwargs)
  if loaded is not None:
   return loaded
  raise LibraryLoadError('unable to load %r. Provided library path: %r' % (library, lib))
