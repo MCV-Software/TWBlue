@@ -595,6 +595,8 @@ class baseBufferController(bufferController):
    self.session.sound.play("audio.ogg")
   if utils.is_geocoded(tweet):
    self.session.sound.play("geo.ogg")
+  if utils.is_media(tweet):
+   self.session.sound.play("image.ogg")
 
 # @_tweets_exist
  def audio(self, url='', *args, **kwargs):

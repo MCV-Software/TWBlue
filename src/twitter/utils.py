@@ -66,6 +66,14 @@ def is_geocoded(tweet):
  if tweet.has_key("coordinates") and tweet["coordinates"] != None:
   return True
 
+def is_media(tweet):
+ if tweet["entities"].has_key("media") == False:
+  return False
+ for i in tweet["entities"]["media"]:
+  if i.has_key("type") and i["type"] == "photo":
+   return True
+ return False
+
 def get_all_mentioned(tweet, conf, field="screen_name"):
  """ Gets all users that has been mentioned."""
  results = []

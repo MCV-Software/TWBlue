@@ -106,7 +106,7 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
   rMode.Add(lbl, 0, wx.ALL, 5)
   rMode.Add(self.retweet_mode, 0, wx.ALL, 5)
   sizer.Add(rMode, 0, wx.ALL, 5)
-  self.show_screen_names = wx.CheckBox(self, wx.NewId(), _(U"Show screen names instead full names"))
+  self.show_screen_names = wx.CheckBox(self, wx.NewId(), _(U"Show screen names instead of full names"))
   sizer.Add(self.show_screen_names, 0, wx.ALL, 5)
   PersistSizeLabel = wx.StaticText(self, -1, _(u"Number of items per buffer to cache in database (0 to disable caching, blank for unlimited)"))
   self.persist_size = wx.TextCtrl(self, -1)
