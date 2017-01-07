@@ -83,9 +83,10 @@ class streamer(TwythonStreamer):
     pub.sendMessage("mention", data=data, user=self.get_user())
 
  def set_quoted_tweet(self, data):
-  d = self.put_data("mentions", data)   
-  if d != False:
-   pub.sendMessage("mention", data=data, user=self.get_user())
+  if data["source"]["screen_name"] != self.session.db["user_name"]:
+   d = self.put_data("mentions", data["target_object"])   
+   if d != False:
+    pub.sendMessage("mention", data=data["target_object"], user=self.get_user())
 
  def process_dm(self, data):
   if self.session.db["user_name"] != data["direct_message"]["sender"]["screen_name"]:
@@ -179,7 +180,7 @@ class streamer(TwythonStreamer):
      if list != None: self.session.db["lists"].pop(list)
      pub.sendMessage("list-deleted", **{"item":list, "user":self.get_user()})
     elif "quoted_tweet" == data["event"]:
-     self.set_quoted_tweet(data["target_object"])
+     self.set_quoted_tweet(data)
 
     if "events" in self.session.settings["general"]["buffer_order"]:
      pub.sendMessage("event", data= data, user= self.get_user())
