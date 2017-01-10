@@ -15,7 +15,7 @@ If you want to see what has changed from the previous version, [read the list of
 TWBlue is an application to make Twitter simple and fast, while using as few resources as possible. With TWBlue, you can do things like the following:
 
 * Tweet, reply to, retweet and delete tweets,
-* Mark and unmark a tweet as favourite,
+* Like and unlike a tweet,
 * Send and delete direct messages,
 * See your friends and followers,
 * Follow, unfollow, report and block a user,
@@ -65,14 +65,14 @@ The following is a description for every one of TWBlue's buffers and the kind of
 * Direct messages: here you will find the private direct messages you exchange with users who follow you , or with any user, if you allow direct messages from everyone (this setting is configurable from Twitter). This list only shows received messages.
 * Sent direct messages: this buffer shows all the direct messages sent from your account.
 * Sent tweets: this shows all the tweets sent from your account.
-* Favourites: here you will see all the tweets you have favourited.
+* Likes: here you will see all the tweets you have liked.
 * Followers: when users follow you, you'll be able to see them on this buffer, with some of their account details.
 * Friends: the same as the previous buffer, but these are the users you follow.
 * User timelines: these are buffers you may create. They contain only the tweets by a specific user. They're used so you can see the tweets by a single person and you don't want to look all over your timeline. You may create as many as you like.
-* Events: An event is anything that happens on Twitter, such as when someone follows you, when someone adds or removes one of your tweets from their favourites list, or when you subscribe to a list. There are many more, but the program shows the most common ones in the events buffer so that you can easily keep track of what is happening on your account.
+* Events: An event is anything that happens on Twitter, such as when someone follows you, when someone adds or removes one of your tweets from their likes list, or when you subscribe to a list. There are many more, but the program shows the most common ones in the events buffer so that you can easily keep track of what is happening on your account.
 * Lists: A list is similar to a user timeline, except that you can configure it to contain tweets from multiple users.
 * Search: A search buffer contains the results of a search operation.
-* User favourites: You can have the program create a buffer containing tweets favourited by a particular user.
+* User likes: You can have the program create a buffer containing tweets liked by a particular user.
 * Trending Topics: a trend buffer shows the top ten most used terms in a geographical region. This region may be a country or a city. Trends are updated every five minutes.
 
 If a tweet contains a URL, you can press enter in the GUI or Control + Windows + Enter in the invisible interface to open it. If it contains audio, you can press Control + Enter or Control + Windows + Alt + Enter to play it, respectively. TWBlue will play a sound if the tweet contains the \#audio hashtag, but there may be tweets which contain audio without this. Finally, if a tweet contains geographical information, you can press Control + Windows + G in the invisible interface to retrieve it.
@@ -103,7 +103,7 @@ In summary, the GUI contains two core components. These are the controls you wil
 * Reply: when you're viewing a tweet, you can reply to the user who sent it by pressing this button. A dialogue will open up similar to the one for tweeting. If there are more users referred to in the tweet, you can press tab and activate the mention to all checkbox, or enabling checkbox for the users you want to mention separately. When you're on the friends or followers lists, the button will be called mention instead.
 * Direct message: exactly like sending a tweet, but it's a private message which can only be read by the user you send it to. Press shift-tab twice to see the recipient. If there were other users mentioned in the tweet you were reading, you can arrow up or down to choose which one to send it to, or write the username yourself without the at sign. In addition, you can autocomplete the entering of users by pressing Alt + C or the button for that purpose if you have the database of users configured.
 
-Bear in mind that buttons will appear according to which actions are possible on the list you are browsing. For example, on the home timeline, mentions, sent, favourites and user timelines you will see the four buttons, while on the direct messages list you'll only get the direct message and tweet buttons, and on friends and followers lists the direct message, tweet, and mention buttons will be available.
+Bear in mind that buttons will appear according to which actions are possible on the list you are browsing. For example, on the home timeline, mentions, sent, likes and user timelines you will see the four buttons, while on the direct messages list you'll only get the direct message and tweet buttons, and on friends and followers lists the direct message, tweet, and mention buttons will be available.
 
 #### Menus
 
@@ -124,9 +124,9 @@ Visually, Towards the top of the main application window, can be found a menu ba
 ##### Tweet menu
 
 * You will first find the items to tweet, reply and retweet, which are equivalent to the buttons with the same name.
-* Add to favourites: marks the tweet you're viewing as a favourite.
-* Remove from favourites: removes the tweet from your favourites, but not from Twitter.
-* Show tweet: opens up a dialogue box where you can read the tweet, direct message, friend or follower which has focus. You can read the text with the arrow keys. It's a similar dialog box as used for composing tweets, without the ability to send the tweet, file attachment and autocompleting capabilities. It does however include a retweets and favourites count. If you are in the followers or the friends list, it will only contain a read-only edit box with the information in the focused item and a close button.
+* Like: Adds the tweet you're viewing to your likes list.
+* Unlike: removes the tweet from your likes, but not from Twitter.
+* Show tweet: opens up a dialogue box where you can read the tweet, direct message, friend or follower which has focus. You can read the text with the arrow keys. It's a similar dialog box as used for composing tweets, without the ability to send the tweet, file attachment and autocompleting capabilities. It does however include a retweets and likes count. If you are in the followers or the friends list, it will only contain a read-only edit box with the information in the focused item and a close button.
 * View address: If the selected tweet has geographical information, TWBlue may display a dialogue box where you can read the tweet address. This address is retrieved by sending the geographical coordinates of the tweet to Google maps.
 * View conversation: If you are focusing a tweet with a mention, it opens a buffer where you can view the whole conversation.
 * Read text in pictures: Attempt to apply OCR technology to the image attached to the tweet. The result will be displayed in another dialog.
@@ -149,7 +149,7 @@ Visually, Towards the top of the main application window, can be found a menu ba
 * Remove from list: lets you remove a user from a list.
 * View lists: Shows the lists created by a specified user.
 * Show user profile: opens a dialogue with the profile of the specified user.
-* View favourites: Opens a buffer where you can see the tweets which have been favourited by a particular user.
+* View likes: Opens a buffer where you can see the tweets which have been liked by a particular user.
 
 ##### Buffer menu
 
@@ -275,7 +275,7 @@ As described above, this application has two configuration dialogues, the global
 
 #### buffers tab
 
-This tab displays a list for each buffer you have available in TWBlue, except for searches, timelines, favourites' timelines and lists. You can show, hide and move them.
+This tab displays a list for each buffer you have available in TWBlue, except for searches, timelines, likes' timelines and lists. You can show, hide and move them.
 
 #### The ignored clients tab
 
@@ -322,28 +322,28 @@ If you still have questions after reading this document, if you wish to collabor
 
 ## Credits
 
-TWBlue is developed and mantained by [Manuel Cortéz](https://twitter.com/manuelcortez00) and [José Manuel Delicado](https://twitter.com/jmdaweb).
+TWBlue is developed and maintained by [Manuel Cortéz](https://twitter.com/manuelcortez00) and [José Manuel Delicado](https://twitter.com/jmdaweb).
 
 We would also like to thank the translators of TWBlue, who have allowed the spreading of the application.
 
-* English: [Manuel Cortéz](https://twitter.com/manuelcortez00).
 * Arabic: [Mohammed Al Shara,](https://twitter.com/mohammed0204) [Hatoun Felemban](https://twitter.com/HatounFelemban)
-* Catalan: [Francisco Torres](https://twitter.com/ftgalleg)
-* Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00).
 * Basque: [Sukil Etxenike](https://twitter.com/sukil2011).
+* Catalan: [Francisco Torres](https://twitter.com/ftgalleg)
+* Croatian: [Zvonimir Stanečić](https://twitter.com/zvonimirek222).
+* English: [Manuel Cortéz](https://twitter.com/manuelcortez00).
 * Finnish: [Jani Kinnunen](https://twitter.com/jani_kinnunen).
 * French: [Rémy Ruiz](https://twitter.com/blindhelp38).
 * Galician: [Juan Buño](https://twitter.com/Quetzatl_).
 * German: [Steffen Schultz](https://twitter.com/schulle4u).
-* Croatian: [Zvonimir Stanečić](https://twitter.com/zvonimirek222).
 * Hungarian: Robert Osztolykan.
 * Italian: [Christian Leo Mameli](https://twitter.com/llajta2012).
-* Japanese: [Riku](https://twitter.com/riku_sub001)
+* Japanese: [Riku](https://twitter.com/_riku02)
 * Polish: [Pawel Masarczyk.](https://twitter.com/Piciok)
 * Portuguese: [Odenilton Júnior Santos.](https://twitter.com/romaleif)
-* Romanian: [Florian Ionașcu](https://twitter.com/7ro) and [Nicușor Untilă](https://twitter.com/dj_storm2001)
+* Romanian: [Florian Ionașcu](https://twitter.com/florianionascu7) and [Nicușor Untilă](https://twitter.com/dj_storm2001)
 * Russian: [Наталья Хедлунд](https://twitter.com/Lifestar_n) and [Валерия Кузнецова](https://twitter.com/ValeriaK305).
 * Serbian: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)
+* Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00).
 * Turkish: [Burak Yüksek](https://twitter.com/burakyuksek).
 
 Many thanks also to the people who worked on the documentation. Initially, [Manuel Cortez](https://twitter.com/manuelcortez00) did the documentation in Spanish, and translated to English by [Bryner Villalobos](https://twitter.com/Bry_StarkCR), [Robert Spangler](https://twitter.com/glasscity1837), [Sussan Rey](https://twitter.com/sussanrey17), [Anibal Hernandez](https://twitter.com/AnimalMetal), and [Holly Scott-Gardner](https://twitter.com/CatchTheseWords). It was updated by [Sukil Etxenike](https://twitter.com/sukil2011), with some valuable corrections by [Brian Hartgen](https://twitter.com/brianhartgen) and [Bill Dengler](https://twitter.com/codeofdusk).

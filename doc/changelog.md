@@ -11,6 +11,10 @@
 * Changed the way TWBlue saves user timelines in configuration. Now it uses user IDS instead usernames. With user IDS, if an user changes the username, TWBlue still will create his/her timeline. This was not possible by using usernames.
 * Added a new setting in the account settings dialogue that makes TWBlue to show twitter usernames instead the full name.
 * Added OCR in twitter pictures. There is a new item in the tweet menu that allows you to extract and display text in images. Also the keystroke alt+Win+o has been added for the same purpose from the invisible interface.
+* Now TWBlue will play a sound when the focused tweet contains  images.
+* Your own quoted tweets will not appear in the mentions buffer anymore.
+* The config file is saved in a different way, it should fix the bug where TWBlue needs to be restarted after the config folder is deleted.
+* Mentioning people from friends or followers buffers works again.
 
 ## Changes in version 0.87
 
@@ -52,7 +56,7 @@
 * If the tweet source (client) is an application with unicode characters (example: российская газета) it will not break the tweet displayer.
 * Added a new field for image description in tweet displayer. When available, it will show description for images posted in tweets.
 * users can add image descriptions to their photos. When uploading an image, a dialog will show for asking a description.
-* Redessigned upload image dialog.
+* Redesigned upload image dialog.
 * Fixed photo uploads when posting tweets.
 * When getting tweets for a conversation, ignores deleted tweets or some errors, now TWBlue will try to get as much tweets as possible, even if some of these are no longer available.
 * Added audio playback from soundcloud.
@@ -65,14 +69,14 @@
 * The invisible interface and the window should be synchronized when the client reconnects.
 * The documentation option in the systray icon should be enabled.
 * In trending buffers, you can press enter for posting a tweet about  the focused trend.
-* Updated russian documentation and main program interface (thanks to Natalia Hedlund (Наталья Хедлунд), [\@lifestar](https://twitter.com/lifestar) in twitter)
+* Updated russian documentation and main program interface (thanks to Natalia Hedlund (Наталья Хедлунд), [\@lifestar_n](https://twitter.com/lifestar_n) in twitter)
 * updated translations.
 
 ## Changes in Version 0.81
 
 * Updated translations
-* The updater module has receibed some improvements. Now it includes a Mirror URL for checking updates  if the main URL is not available at the moment. If something is wrong and both locations don't work, the program will start anyway.
-* some GUI elements now use keyboard shorcuts for common actions.
+* The updater module has received some improvements. Now it includes a Mirror URL for checking updates  if the main URL is not available at the moment. If something is wrong and both locations don't work, the program will start anyway.
+* some GUI elements now use keyboard shortcuts for common actions.
 * fixed a bug in the geolocation dialog.
 * the chicken nugget keymap should work properly.
 * Added a new soundpack to the default installation of TWBlue, thanks to [\@Deng90](https://twitter.com/deng90)
