@@ -805,7 +805,7 @@ class Controller(object):
      if usr["statuses_count"] == 0:
       commonMessageDialogs.no_tweets()
       return
-     if dlg.get_user() in buff.session.settings["other_buffers"]["timelines"]:
+     if usr["id_str"] in buff.session.settings["other_buffers"]["timelines"]:
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, user_id=usr["id_str"])
@@ -820,7 +820,7 @@ class Controller(object):
      if usr["favourites_count"] == 0:
       commonMessageDialogs.no_favs()
       return
-     if dlg.get_user() in buff.session.settings["other_buffers"]["favourites_timelines"]:
+     if usr["id_str"] in buff.session.settings["other_buffers"]["favourites_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, user_id=usr["id_str"])
@@ -836,7 +836,7 @@ class Controller(object):
      if usr["followers_count"] == 0:
       commonMessageDialogs.no_followers()
       return
-     if dlg.get_user() in buff.session.settings["other_buffers"]["followers_timelines"]:
+     if usr["id_str"] in buff.session.settings["other_buffers"]["followers_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (usr["id_str"],), buff.session, buff.session.db["user_name"], user_id=usr["id_str"])
@@ -852,7 +852,7 @@ class Controller(object):
      if usr["friends_count"] == 0:
       commonMessageDialogs.no_friends()
       return
-     if dlg.get_user() in buff.session.settings["other_buffers"]["friends_timelines"]:
+     if usr["id_str"] in buff.session.settings["other_buffers"]["friends_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (usr["id_str"],), buff.session, buff.session.db["user_name"], user_id=usr["id_str"])
