@@ -591,11 +591,11 @@ class baseBufferController(bufferController):
    original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
    ts = original_date.humanize(locale=languageHandler.getLanguage())
    self.buffer.list.list.SetStringItem(self.buffer.list.get_selected(), 2, ts)
-  if utils.is_audio(tweet):
+  if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
    self.session.sound.play("audio.ogg")
-  if utils.is_geocoded(tweet):
+  if self.session.settings['sound']['indicate_geo'] and utils.is_geocoded(tweet):
    self.session.sound.play("geo.ogg")
-  if utils.is_media(tweet):
+  if self.session.settings['sound']['indicate_img'] and utils.is_media(tweet):
    self.session.sound.play("image.ogg")
 
 # @_tweets_exist

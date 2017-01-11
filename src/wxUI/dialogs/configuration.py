@@ -276,6 +276,12 @@ class sound(wx.Panel):
   soundBox.Add(soundpack_label, 0, wx.ALL, 5)
   soundBox.Add(self.soundpack, 0, wx.ALL, 5)
   sizer.Add(soundBox, 0, wx.ALL, 5)
+  self.indicate_audio = wx.CheckBox(self, -1, _(u"Indicate audio tweets with sound"))
+  sizer.Add(self.indicate_audio, 0, wx.ALL, 5)
+  self.indicate_geo = wx.CheckBox(self, -1, _(u"Indicate geotweets with sound"))
+  sizer.Add(self.indicate_geo, 0, wx.ALL, 5)
+  self.indicate_img = wx.CheckBox(self, -1, _(u"Indicate tweets containing images with sound"))
+  sizer.Add(self.indicate_img, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
  def get(self, control):

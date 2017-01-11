@@ -155,6 +155,9 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("sound", "output", self.config["sound"]["output_device"])
   self.dialog.set_value("sound", "session_mute", self.config["sound"]["session_mute"])
   self.dialog.set_value("sound", "soundpack", self.config["sound"]["current_soundpack"])
+  self.dialog.set_value("sound", "indicate_audio", self.config["sound"]["indicate_audio"])
+  self.dialog.set_value("sound", "indicate_geo", self.config["sound"]["indicate_geo"])
+  self.dialog.set_value("sound", "indicate_img", self.config["sound"]["indicate_img"])
   self.dialog.create_services()
 #  if self.config["services"]["pocket_access_token"] == "":
 #   self.dialog.services.set_pocket(False)
@@ -231,6 +234,9 @@ class accountSettingsController(globalSettingsController):
   self.config["sound"]["volume"] = self.dialog.get_value("sound", "volumeCtrl")/100.0
   self.config["sound"]["session_mute"] = self.dialog.get_value("sound", "session_mute")
   self.config["sound"]["current_soundpack"] = self.dialog.sound.get("soundpack")
+  self.config["sound"]["indicate_audio"] = self.dialog.get_value("sound", "indicate_audio")
+  self.config["sound"]["indicate_geo"] = self.dialog.get_value("sound", "indicate_geo")
+  self.config["sound"]["indicate_img"] = self.dialog.get_value("sound", "indicate_img")
   self.buffer.session.sound.config = self.config["sound"]
   self.buffer.session.sound.check_soundpack()
   self.config["sound"]["sndup_api_key"] = self.dialog.get_value("services", "apiKey")
