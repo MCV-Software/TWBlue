@@ -77,3 +77,4 @@ class userActionsController(object):
   client = re.sub(r"(?s)<.*?>", "", tweet["source"])
   if client not in self.session.settings["twitter"]["ignored_clients"]:
    self.session.settings["twitter"]["ignored_clients"].append(client)
+   self.session.settings.write()

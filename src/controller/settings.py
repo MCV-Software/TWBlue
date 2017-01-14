@@ -234,6 +234,7 @@ class accountSettingsController(globalSettingsController):
   self.buffer.session.sound.config = self.config["sound"]
   self.buffer.session.sound.check_soundpack()
   self.config["sound"]["sndup_api_key"] = self.dialog.get_value("services", "apiKey")
+  self.config.write()
 
  def toggle_state(self,*args,**kwargs):
   return self.dialog.buffers.change_selected_item()

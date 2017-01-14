@@ -74,6 +74,7 @@ class bufferController(object):
   if hasattr(sound.URLPlayer, "stream"):
    sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
   self.session.sound.play("volume_changed.ogg")
+  self.session.settings.write()
 
  def volume_up(self):
   if self.session.settings["sound"]["volume"] < 1.0:
@@ -84,6 +85,7 @@ class bufferController(object):
   if hasattr(sound.URLPlayer, "stream"):
    sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
   self.session.sound.play("volume_changed.ogg")
+  self.session.settings.write()
 
  def start_stream(self, mandatory=False):
   if mandatory == True:
@@ -148,6 +150,7 @@ class bufferController(object):
    else:
     call_threaded(self.post_with_media, text=text, attachments=tweet.attachments)
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
+  self.session.settings.write()
 
  def post_with_media(self, text, attachments):
   media_ids = []
@@ -209,6 +212,7 @@ class accountPanel(bufferController):
   else:
    self.buffer.change_autostart(False)
    config.app["sessions"]["ignored_sessions"].append(self.account_id)
+  config.app.write()
 
 class emptyPanel(bufferController):
  def __init__(self, parent, name, account):
@@ -356,6 +360,7 @@ class baseBufferController(bufferController):
    if dlg == widgetUtils.YES:
     if self.name[:-9] in self.session.settings["other_buffers"]["timelines"]:
      self.session.settings["other_buffers"]["timelines"].remove(self.name[:-9])
+     self.session.settings.write()
      self.session.db.pop(self.name)
      return True
    elif dlg == widgetUtils.NO:
@@ -366,6 +371,7 @@ class baseBufferController(bufferController):
     if self.name[:-9] in self.session.settings["other_buffers"]["favourites_timelines"]:
      self.session.settings["other_buffers"]["favourites_timelines"].remove(self.name[:-9])
      self.session.db.pop(self.name)
+     self.session.settings.write()
      return True
    elif dlg == widgetUtils.NO:
     return False
@@ -525,6 +531,7 @@ class baseBufferController(bufferController):
     params["media"] = message.file
    call_threaded(self.session.api_call, **params)
   if hasattr(message.message, "destroy"): message.message.destroy()
+  self.session.settings.write()
 
  @_tweets_exist
  def direct_message(self, *args, **kwargs):
@@ -720,6 +727,7 @@ class listBufferController(baseBufferController):
    if self.name[:-5] in self.session.settings["other_buffers"]["lists"]:
     self.session.settings["other_buffers"]["lists"].remove(self.name[:-5])
     self.session.db.pop(self.name)
+    self.session.settings.write()
     return True
   elif dlg == widgetUtils.NO:
    return False
@@ -802,6 +810,7 @@ class peopleBufferController(baseBufferController):
     if self.name[:-10] in self.session.settings["other_buffers"]["followers_timelines"]:
      self.session.settings["other_buffers"]["followers_timelines"].remove(self.name[:-10])
      self.session.db.pop(self.name)
+     self.session.settings.write()
      return True
    elif dlg == widgetUtils.NO:
     return False
@@ -811,6 +820,7 @@ class peopleBufferController(baseBufferController):
     if self.name[:-8] in self.session.settings["other_buffers"]["friends_timelines"]:
      self.session.settings["other_buffers"]["friends_timelines"].remove(self.name[:-8])
      self.session.db.pop(self.name)
+     self.session.settings.write()
      return True
    elif dlg == widgetUtils.NO:
     return False
@@ -963,6 +973,7 @@ class searchBufferController(baseBufferController):
   if dlg == widgetUtils.YES:
    if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
+    self.session.settings.write()
     self.timer.cancel()
     self.session.db.pop(self.name)
     return True
@@ -1004,6 +1015,7 @@ class searchPeopleBufferController(peopleBufferController):
   if dlg == widgetUtils.YES:
    if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
+    self.session.settings.write()
     self.timer.cancel()
     self.session.db.pop(self.name)
     return True
@@ -1072,6 +1084,7 @@ class trendsBufferController(bufferController):
   if dlg == widgetUtils.YES:
    if self.name[:-3] in self.session.settings["other_buffers"]["trending_topic_buffers"]:
     self.session.settings["other_buffers"]["trending_topic_buffers"].remove(self.name[:-3])
+    self.session.settings.write()
     self.timer.cancel()
     self.session.db.pop(self.name)
     return True

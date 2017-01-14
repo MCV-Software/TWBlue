@@ -438,6 +438,7 @@ class Controller(object):
    if dlg.get("tweets") == True:
     if term not in buffer.session.settings["other_buffers"]["tweet_searches"]:
      buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
+     buffer.session.settings.write()
      args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
      search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, count=buffer.session.settings["general"]["max_tweets_per_call"], **args)
     else:
@@ -496,6 +497,7 @@ class Controller(object):
  def edit_keystrokes(self, *args, **kwargs):
   editor = keystrokeEditor.KeystrokeEditor()
   if editor.changed == True:
+   config.keymap.write()
    register = False
    # determines if we need to reassign the keymap.
    if self.showing == False:
@@ -637,12 +639,8 @@ class Controller(object):
   for i in self.buffers: i.save_positions()
   log.debug("Exiting...")
   log.debug("Saving global configuration...")
-  config.app.write()
-  config.keymap.write()
   for item in session_.sessions:
    if session_.sessions[item].logged == False: continue
-   log.debug("Saving config for %s session" % (session_.sessions[item].session_id,))
-   session_.sessions[item].settings.write()
    log.debug("Disconnecting streams for %s session" % (session_.sessions[item].session_id,))
    if hasattr(session_.sessions[item], "main_stream"): session_.sessions[item].main_stream.disconnect()
    if hasattr(session_.sessions[item], "timelinesStream"): session_.sessions[item].timelinesStream.disconnect()
@@ -866,6 +864,7 @@ class Controller(object):
      buff.session.sound.play("create_timeline.ogg")
    else:
     commonMessageDialogs.user_not_exist()
+  buff.session.settings.write()
 
  def open_conversation(self, *args, **kwargs):
   buffer = self.get_current_buffer()
@@ -910,6 +909,7 @@ class Controller(object):
    timer = RepeatingTimer(300, buffer.start_stream)
    timer.start()
    buffer.session.settings["other_buffers"]["trending_topic_buffers"].append(woeid)
+   buffer.session.settings.write()
 
  def reverse_geocode(self, event=None):
   try:
@@ -1384,6 +1384,7 @@ class Controller(object):
    self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(create), pos=self.view.search("lists", buff.session.db["user_name"]))
    tl.start_stream()
    buff.session.settings["other_buffers"]["lists"].append(create)
+   buff.session.settings.write()
    pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
 
  def restart_streams(self, streams=[], session=None):
@@ -1438,6 +1439,7 @@ class Controller(object):
   elif buffer.name in buffer.session.settings["other_buffers"]["autoread_buffers"]:
    buffer.session.settings["other_buffers"]["autoread_buffers"].remove(buffer.name)
    output.speak(_(u"The auto-reading of new tweets is disabled for this buffer"), True)
+  buffer.session.settings.write()
 
  def toggle_session_mute(self, *args, **kwargs):
   buffer = self.get_best_buffer()
@@ -1447,6 +1449,7 @@ class Controller(object):
   elif buffer.session.settings["sound"]["session_mute"] == True:
    buffer.session.settings["sound"]["session_mute"] = False
    output.speak(_(u"Session mute off"), True)
+  buffer.session.settings.write()
 
  def toggle_buffer_mute(self, *args, **kwargs):
   buffer = self.get_current_buffer()
@@ -1457,6 +1460,7 @@ class Controller(object):
   elif buffer.name in buffer.session.settings["other_buffers"]["muted_buffers"]:
    buffer.session.settings["other_buffers"]["muted_buffers"].remove(buffer.name)
    output.speak(_(u"Buffer mute off"), True)
+  buffer.session.settings.write()
 
  def view_documentation(self, *args, **kwargs):
   lang = localization.get("documentation")
@@ -1487,9 +1491,6 @@ class Controller(object):
   for i in self.buffers:
    if i.session != None and i.session.session_id == session:
     i.start_stream()
-
- def __del__(self):
-  config.app.write()
 
  def update_buffer(self, *args, **kwargs):
   bf = self.get_current_buffer()

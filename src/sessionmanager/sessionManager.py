@@ -95,6 +95,8 @@ class sessionManagerController(object):
    s.authorise()
    self.sessions.append(location)
    self.view.add_new_session_to_list()
+   s.settings.write()
+   config.write()
 #   except:
 #    log.exception("Error authorising the session")
 #    self.view.show_unauthorised_error()
