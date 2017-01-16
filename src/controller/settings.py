@@ -67,9 +67,12 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
   self.dialog.set_value("general", "check_for_updates", config.app["app-settings"]["check_for_updates"])
-  proxyTypes=[_(u"Direct connection"), u"http", u"https", u"socks4", u"socks5"]
-  self.dialog.create_proxy(proxyTypes)
-  self.dialog.proxy.type.SetSelection(proxyTypes.index(config.app["proxy"]["type"]))
+  proxyTypes=config.proxyTypes
+  self.dialog.create_proxy([_(u"Direct connection")]+proxyTypes)
+  if config.app["proxy"]["type"] not in proxyTypes:
+   self.dialog.proxy.type.SetSelection(0)
+  else:
+   self.dialog.proxy.type.SetSelection(proxyTypes.index(config.app["proxy"]["type"])+1)
   self.dialog.set_value("proxy", "server", config.app["proxy"]["server"])
   self.dialog.set_value("proxy", "port", config.app["proxy"]["port"])
   self.dialog.set_value("proxy", "user", config.app["proxy"]["user"])
