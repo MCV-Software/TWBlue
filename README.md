@@ -57,7 +57,7 @@ setuptools installs a script, called easy_install. You can find it in the python
 
 	The -z switch unzips the package, instead of installing it compressed. If you add the --upgrade switch, you can upgrade a package to its latest version. The following packages need to be installed:
 
-* pypubsub
+* pypubsub==3.3.0
 * configobj
 * requests-oauthlib
 * requests-toolbelt
@@ -71,7 +71,7 @@ setuptools installs a script, called easy_install. You can find it in the python
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
 Run the following command to quickly install and upgrade all packages and their dependencies:
-easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib requests-toolbelt pypubsub pygeocoder arrow==0.6 python-dateutil futures microsofttranslator winpaths
+easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib requests-toolbelt pypubsub==3.3.0 pygeocoder arrow==0.6 python-dateutil futures microsofttranslator winpaths
 
 #### Other dependencies
 
