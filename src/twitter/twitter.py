@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from requests.auth import HTTPProxyAuth
 import config
 import random
 import BaseHTTPServer
@@ -14,15 +13,7 @@ log = logging.getLogger("sessionTwitter")
 class twitter(object):
 
  def login(self, user_key, user_secret, verify_credentials):
-  if config.app["proxy"]["server"] != "" and config.app["proxy"]["port"] != "":
-   args = {"proxies": {"http": "http://{0}:{1}".format(config.app["proxy"]["server"], config.app["proxy"]["port"]),
-  "https": "https://{0}:{1}".format(config.app["proxy"]["server"], config.app["proxy"]["port"])}}
-   if config.app["proxy"]["user"] != "" and config.app["proxy"]["password"] != "":
-    auth = HTTPProxyAuth(config.app["proxy"]["user"], config.app["proxy"]["password"])
-    args["auth"] = auth
-   self.twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), user_key, user_secret, client_args=args)
-  else:
-   self.twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), user_key, user_secret)
+  self.twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), user_key, user_secret)
   if verify_credentials == True:
    self.credentials = self.twitter.verify_credentials()
 
@@ -30,15 +21,7 @@ class twitter(object):
   authorisationHandler.logged = False
   port = random.randint(30000, 65535)
   httpd = BaseHTTPServer.HTTPServer(('127.0.0.1', port), authorisationHandler.handler)
-  if config.app["proxy"]["server"] != "" and config.app["proxy"]["port"] != "":
-   args = {"proxies": {"http": "http://{0}:{1}".format(config.app["proxy"]["server"], config.app["proxy"]["port"]),
-  "https": "https://{0}:{1}".format(config.app["proxy"]["server"], config.app["proxy"]["port"])}}
-   if config.app["proxy"]["user"] != "" and config.app["proxy"]["password"] != "":
-    auth = HTTPProxyAuth(config.app["proxy"]["user"], config.app["proxy"]["password"])
-    args["auth"] = auth
-   twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), auth_endpoint='authorize', client_args=args)
-  else:
-   twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), auth_endpoint='authorize')
+  twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), auth_endpoint='authorize')
   auth = twitter.get_authentication_tokens("http://127.0.0.1:{0}".format(port,))
   webbrowser.open_new_tab(auth['auth_url'])
   while authorisationHandler.logged == False:
