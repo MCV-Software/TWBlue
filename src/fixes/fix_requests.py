@@ -17,7 +17,15 @@ def patched_session_init(self):
  orig_session_init(self)
  if config.app["proxy"]["server"] != "" and config.app["proxy"]["port"] != "":
   self.proxies={"http":"http://{0}:{1}/".format(config.app["proxy"]["server"], config.app["proxy"]["port"]),
-   "https": "https://{0}:{1}/".format(config.app["proxy"]["server"], config.app["proxy"]["port"])}
+   "https": "https://{0}:{1}/".format(config.app["proxy"]["server"], config.app["proxy"]["port"]),
+   "http": "socks5://{0}:{1}/".format(config.app["proxy"]["server"], config.app["proxy"]["port"]),
+   "https": "socks5://{0}:{1}/".format(config.app["proxy"]["server"], config.app["proxy"]["port"])
+   "http": "socks4://{0}:{1}/".format(config.app["proxy"]["server"], config.app["proxy"]["port"]),
+   "https": "socks4://{0}:{1}/".format(config.app["proxy"]["server"], config.app["proxy"]["port"])}
   if config.app["proxy"]["user"] != "" and config.app["proxy"]["password"] != "":
    self.proxies={"http": "http://{0}:{1}@{2}:{3}/".format(config.app["proxy"]["user"], config.app["proxy"]["password"], config.app["proxy"]["server"], config.app["proxy"]["port"]),
-    "https": "https://{0}:{1}@{2}:{3}/".format(config.app["proxy"]["user"], config.app["proxy"]["password"], config.app["proxy"]["server"], config.app["proxy"]["port"])}
+    "https": "https://{0}:{1}@{2}:{3}/".format(config.app["proxy"]["user"], config.app["proxy"]["password"], config.app["proxy"]["server"], config.app["proxy"]["port"])
+    "http": "socks5://{0}:{1}@{2}:{3}/".format(config.app["proxy"]["user"], config.app["proxy"]["password"], config.app["proxy"]["server"], config.app["proxy"]["port"]),
+    "https": "socks5://{0}:{1}@{2}:{3}/".format(config.app["proxy"]["user"], config.app["proxy"]["password"], config.app["proxy"]["server"], config.app["proxy"]["port"]),
+    "http": "socks4://{0}:{1}@{2}:{3}/".format(config.app["proxy"]["user"], config.app["proxy"]["password"], config.app["proxy"]["server"], config.app["proxy"]["port"]),
+    "https": "socks4://{0}:{1}@{2}:{3}/".format(config.app["proxy"]["user"], config.app["proxy"]["password"], config.app["proxy"]["server"], config.app["proxy"]["port"])}

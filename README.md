@@ -68,10 +68,12 @@ setuptools installs a script, called easy_install. You can find it in the python
 * markdown
 * winpaths
 * microsofttranslator
+* PySocks
+* win_inet_pton
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
 Run the following command to quickly install and upgrade all packages and their dependencies:
-easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib requests-toolbelt pypubsub==3.3.0 pygeocoder arrow==0.6 python-dateutil futures microsofttranslator winpaths
+easy_install -Z --upgrade six configobj goslate markdown future suds requests oauthlib requests-oauthlib requests-toolbelt pypubsub==3.3.0 pygeocoder arrow==0.6 python-dateutil futures microsofttranslator winpaths PySocks win_inet_pton
 
 #### Other dependencies
 
