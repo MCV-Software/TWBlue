@@ -47,9 +47,16 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
 
 class proxy(wx.Panel, baseDialog.BaseWXDialog):
 
- def __init__(self, parent):
+ def __init__(self, parent, proxyTypes):
   super(proxy, self).__init__(parent)
   sizer = wx.BoxSizer(wx.VERTICAL)
+  type=wx.StaticText(self, wx.NewId(), _(u"Proxy type: "))
+  self.type=wx.ComboBox(self, -1, choices=proxyTypes, style=wx.CB_READONLY)
+  self.type.SetSize(self.type.GetBestSize())
+  typeBox = wx.BoxSizer(wx.HORIZONTAL)
+  typeBox.Add(type, 0, wx.ALL, 5)
+  typeBox.Add(self.type, 0, wx.ALL, 5)
+  sizer.Add(typeBox, 0, wx.ALL, 5)
   lbl = wx.StaticText(self, wx.NewId(), _(u"Proxy server: "))
   self.server = wx.TextCtrl(self, -1)
   serverBox = wx.BoxSizer(wx.HORIZONTAL)
@@ -335,8 +342,8 @@ class configurationDialog(baseDialog.BaseWXDialog):
   self.notebook.AddPage(self.general, _(u"General"))
   self.general.SetFocus()
 
- def create_proxy(self):
-  self.proxy = proxy(self.notebook)
+ def create_proxy(self, proxyTypes):
+  self.proxy = proxy(self.notebook, proxyTypes)
   self.notebook.AddPage(self.proxy, _(u"Proxy"))
 
  def create_general_account(self):

@@ -19,6 +19,7 @@ donation_dialog_displayed = boolean(default=False)
 check_for_updates = boolean(default=True)
 
 [proxy]
+type = string(default="Direct connection")
 server = string(default="")
 port = string(default="")
 user = string(default="")

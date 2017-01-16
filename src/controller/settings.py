@@ -67,7 +67,9 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
   self.dialog.set_value("general", "check_for_updates", config.app["app-settings"]["check_for_updates"])
-  self.dialog.create_proxy()
+  proxyTypes=[_(u"Direct connection"), u"http", u"https", u"socks4", u"socks5"]
+  self.dialog.create_proxy(proxyTypes)
+  self.dialog.proxy.type.SetSelection(proxyTypes.index(config.app["proxy"]["type"]))
   self.dialog.set_value("proxy", "server", config.app["proxy"]["server"])
   self.dialog.set_value("proxy", "port", config.app["proxy"]["port"])
   self.dialog.set_value("proxy", "user", config.app["proxy"]["user"])
@@ -100,9 +102,10 @@ class globalSettingsController(object):
   config.app["app-settings"]["play_ready_sound"] = self.dialog.get_value("general", "play_ready_sound")
   config.app["app-settings"]["speak_ready_msg"] = self.dialog.get_value("general", "speak_ready_msg")
   config.app["app-settings"]["check_for_updates"] = self.dialog.get_value("general", "check_for_updates")
-  if config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
+  if config.app["proxy"]["type"]!=self.dialog.get_value("proxy", "type") or config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
    if self.is_started == True:
     self.needs_restart = True
+   config.app["proxy"]["type"]=self.dialog.get_value("proxy", "type")
    config.app["proxy"]["server"] = self.dialog.get_value("proxy", "server")
    config.app["proxy"]["port"] = self.dialog.get_value("proxy", "port")
    config.app["proxy"]["user"] = self.dialog.get_value("proxy", "user")
