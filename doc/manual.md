@@ -306,7 +306,7 @@ This dialogue allows you to configure some settings which will affect the entire
 
 #### Proxi tab
 
-In this tab you can configure TWBlue to use a Proxy server by completing the fields displayed (server, port, user and password).
+In this tab you can configure TWBlue to use a Proxy server by completing the fields displayed (type, server, port, user and password).
 
 ## License, source code and donations
 

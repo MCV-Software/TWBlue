@@ -15,6 +15,7 @@
 * Your own quoted tweets will not appear in the mentions buffer anymore.
 * The config file is saved in a different way, it should fix the bug where TWBlue needs to be restarted after the config folder is deleted.
 * Mentioning people from friends or followers buffers works again.
+* Support for proxy servers has been improved. Now TWBlue supports http, https, socks4 and socks5 proxies, with and without autentication.
 
 ## Changes in version 0.87
 
