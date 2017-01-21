@@ -10,14 +10,7 @@ log = original_logger.getLogger("TimelinesStream")
 class timelinesStreamer(TwythonStreamer):
  def __init__(self, app_key, app_secret, oauth_token, oauth_token_secret, timeout=300, retry_count=None, retry_in=10, client_args=None, handlers=None, chunk_size=1, session=None):
   self.session = session
-  args = None
-  if config.app["proxy"]["server"] != "" and config.app["proxy"]["port"] != "":
-   args = {"proxies": {"http": "http://{0}:{1}".format(config.app["proxy"]["server"], config.app["proxy"]["port"]),
-  "https": "https://{0}:{1}".format(config.app["proxy"]["server"], config.app["proxy"]["port"])}}
-   if config.app["proxy"]["user"] != "" and config.app["proxy"]["password"] != "":
-    auth = HTTPProxyAuth(config.app["proxy"]["user"], config.app["proxy"]["password"])
-    args["auth"] = auth
-  super(timelinesStreamer, self).__init__(app_key, app_secret, oauth_token, oauth_token_secret, timeout=60, retry_count=None, retry_in=180, client_args=args, handlers=None, chunk_size=1)
+  super(timelinesStreamer, self).__init__(app_key, app_secret, oauth_token, oauth_token_secret, timeout=60, retry_count=None, retry_in=180, handlers=None, chunk_size=1)
   self.lists = self.session.lists
 
  def on_error(self, status_code, data):
