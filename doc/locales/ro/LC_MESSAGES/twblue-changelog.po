@@ -1,0 +1,581 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2017-01-18 15:11+Hora estndar central (Mxico)\n"
+"PO-Revision-Date: 2017-01-19 18:46+0200\n"
+"Last-Translator: Florian Ionașcu <florianionascu@hotmail.com>\n"
+"Language-Team: \n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 1.8.9\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
+
+#: ../doc/changelog.py:3
+msgid "﻿TWBlue Changelog"
+msgstr "﻿Noutățile TWBlue"
+
+#: ../doc/changelog.py:4
+msgid "## changes in this version"
+msgstr "## modificări în această versiune"
+
+#: ../doc/changelog.py:5
+msgid "* Fixed more issues with streams and reconnections."
+msgstr "* Au fost reparate multe erori cu stream-urile și reconectările."
+
+#: ../doc/changelog.py:6
+msgid "* newer updates will indicate the release date in the updater."
+msgstr "* Actualizările mai noi vor indica data lansării în actualizator."
+
+#: ../doc/changelog.py:7
+msgid ""
+"* Changes to keystrokes are reflected in keystroke editor automatically."
+msgstr ""
+"* Modificările la combinațiile de taste sunt reflectate automat în editorul "
+"acestora."
+
+#: ../doc/changelog.py:8
+msgid ""
+"* In replies with multiple users, if the mention to all checkbox is "
+"unchecked, you will see a checkbox per user so you will be able to control "
+"who will be mentioned in the reply."
+msgstr ""
+"* La răspunsurile cu utilizatori multipli, dacă mențiunea pentru toți este "
+"nebifată, veți vedea o casetă de bifat per utilizator, deci veți fi capabil "
+"să controlați cine va fi menționat în răspuns."
+
+#: ../doc/changelog.py:9
+msgid ""
+"* Fixed a bug that caused duplicated user mentions in replies when the tweet "
+"was made with Twishort."
+msgstr ""
+"* A fost reparată o eroare care a cauzat mențiunile duplicate ale "
+"utilizatorului când postarea a fost făcută cu Twishort."
+
+#: ../doc/changelog.py:10
+msgid ""
+"* Retweets should be displayed normally again when the originating tweet is "
+"a Twishort's long tweet."
+msgstr ""
+"* Ar trebui ca distribuirile să fie afișate normal din nou când postarea "
+"originală este o postare lungă a Twishort-ului."
+
+#: ../doc/changelog.py:11
+msgid ""
+"* Changed the way TWBlue saves user timelines in configuration. Now it uses "
+"user IDS instead usernames. With user IDS, if an user changes the username, "
+"TWBlue still will create his/her timeline. This was not possible by using "
+"usernames."
+msgstr ""
+"* A fost modificat modul TWBlue de salvarea cronologiei utilizatorului în "
+"configurație. Acum el folosește IDS-ul utilizatorului în loc de numele de "
+"utilizator. Cu IDS-ul utilizatorului, dacă un utilizator își schimbă numele, "
+"TWBlue va crea cronologia lui/ei. Aceasta nu era posibilă folosind numele de "
+"utilizator."
+
+#: ../doc/changelog.py:12
+msgid ""
+"* Added a new setting in the account settings dialogue that makes TWBlue to "
+"show twitter usernames instead the full name."
+msgstr ""
+"& A fost adăugată o nouă setare în dialogul de setări ale contului care face "
+"TWBlue să afișeze numele de utilizator Twitter în loc de numele întreg."
+
+#: ../doc/changelog.py:13
+msgid ""
+"* Added OCR in twitter pictures. There is a new item in the tweet menu that "
+"allows you to extract and display text in images. Also the keystroke alt+Win"
+"+o has been added for the same purpose from the invisible interface."
+msgstr ""
+"* A fost adăugat OCR-ul în pictogramele Twitter. Există un element nou în "
+"meniul „Postare” care vă permite să extrageți și să afișați text în imagini. "
+"De asenea, scurtătura alt+Win+o a fost adăugată pentru interfața invizibilă."
+
+#: ../doc/changelog.py:14
+msgid "* Now TWBlue will play a sound when the focused tweet contains  images."
+msgstr "* TWBlue va reda un sunet când postarea focalizată conține imagini."
+
+#: ../doc/changelog.py:15
+msgid ""
+"* Your own quoted tweets will not appear in the mentions buffer anymore."
+msgstr ""
+"Postările citate ale dumneavoastră nu vor apărea numai în buffer-ul mențiuni."
+
+#: ../doc/changelog.py:16
+msgid ""
+"* The config file is saved in a different way, it should fix the bug where "
+"TWBlue needs to be restarted after the config folder is deleted."
+msgstr ""
+"* Fișierul config este salvat într-un mod diferit, el ar trebui să repare "
+"eroarea unde TWBlue are nevoie de o repornire după ștergerea dosarului "
+"config."
+
+#: ../doc/changelog.py:17
+msgid "* Mentioning people from friends or followers buffers works again."
+msgstr ""
+"* Menționarea persoanelor din prieteni sau urmăritori funcționează din nou."
+
+#: ../doc/changelog.py:18
+msgid ""
+"* Support for proxy servers has been improved. Now TWBlue supports http, "
+"https, socks4 and socks5 proxies, with and without autentication."
+msgstr ""
+"* Suportul pentru serverele Proxy a fost îmbunătățit. Acum, TWBlue suportă "
+"proxy-urile http, https, socks4 și socks5 cu și fără autentificare."
+
+#: ../doc/changelog.py:19
+msgid "## Changes in version 0.87"
+msgstr "## Modificări în versiunea 0.87"
+
+#: ../doc/changelog.py:20
+msgid "* Fixed stream connection errors."
+msgstr "* Au fost reparate erori de conectare la stream."
+
+#: ../doc/changelog.py:21
+msgid ""
+"* Now TWBlue can handle properly a reply to the sender without including all "
+"other mentioned users."
+msgstr ""
+"* Acum, TWBlue poate  face un răspuns în mod corespunzător către expeditor "
+"fără a-i include pe toți ceilalți utilizatori menționați."
+
+#: ../doc/changelog.py:22
+msgid "* Updated translations."
+msgstr "* Au fost actualizate traducerile."
+
+#: ../doc/changelog.py:23
+msgid ""
+"* The status of the mention to all checkbox will be remembered the next time "
+"you  reply to multiple users."
+msgstr ""
+"* Starea casetei de bifat mențiune la toți va fi amintită data viitoare, "
+"când vei răspunde la utilizatori multipli."
+
+#: ../doc/changelog.py:24
+msgid "## Changes in version 0.86"
+msgstr "## Modificări în versiunea 0.86"
+
+#: ../doc/changelog.py:25
+msgid ""
+"* Fixed a very important security issue. Now TWBlue will send tweets to "
+"twishort without using any other server."
+msgstr ""
+"* A fost reparată o eroare de securitate foarte importantă. TWBlue va "
+"trimite postări către twishort fără a utiliza un alt server."
+
+#: ../doc/changelog.py:26
+msgid ""
+"* When you add a comment to a tweet, it will be sent as a quoted tweet, even "
+"if your reply plus the original tweet is not exceeding 140 characters."
+msgstr ""
+"* Când adăugați un comentariu la o postare, el va fi trimis ca o postare "
+"citată, chiar dacă răspundeți pșlus mesajul original nu depășește 140 de "
+"caractere."
+
+#: ../doc/changelog.py:27
+msgid ""
+"* Updated windows 10 keymap for reflecting changes made in the last windows "
+"10 build."
+msgstr ""
+"* A fost actualizată harta de taste windows 10 pentru reflectarea "
+"modificărilor făcute în ultimul build windows 10."
+
+#: ../doc/changelog.py:28
+msgid "* Added last changes in the twitter API."
+msgstr "* Au fost adăugate ultimele modificări în API-ul twitter."
+
+#: ../doc/changelog.py:29
+msgid ""
+"* When replying, it will not show the twitter username in the text box. When "
+"you send the tweet, the username will be added automatically."
+msgstr ""
+"* Câmd răspundeți, nu se va afișa numele de utilizator twitter în caseta de "
+"text. Când trimiteți postarea, numele de utilizator va fi adăugat automat."
+
+#: ../doc/changelog.py:30
+msgid ""
+"* When replying to multiple users, you'll have a checkbox instead a button "
+"for mentioning all people. If this is checked, twitter usernames will be "
+"added automatically when you send your reply."
+msgstr ""
+"* când răspundeți la utilizatori multipli, veți avea o casetă de bifat în "
+"loc de un buton pentru menționarea tuturor persoanelor. Dacă aceasta este "
+"bifată, numele de utilizator twitter vor fi adăugate automat când trimiteți "
+"răspunsul."
+
+#: ../doc/changelog.py:31
+msgid "## Changes in version 0.85"
+msgstr "## Modificări în versiunea 0.85"
+
+#: ../doc/changelog.py:32
+msgid "* Long and quoted tweets should be displayed properly In lists."
+msgstr ""
+"* Ar trebui ca postările lungi și citate să fie afișate corect în liste. "
+
+#: ../doc/changelog.py:33
+msgid "* The connection should be more stable."
+msgstr "* Conexiunea ar trebui să fie mult mai stabilă."
+
+#: ../doc/changelog.py:34
+msgid "* Added an autostart option in the global settings dialogue."
+msgstr ""
+"* A fost adăugată o opțiune de autopornire în dialogul setărilor globale."
+
+#: ../doc/changelog.py:35
+msgid "* Updated translation."
+msgstr "* Traducerea a fost actualizată."
+
+#: ../doc/changelog.py:36
+msgid "* Updated russian documentation."
+msgstr "* A fost actualizată documentația în limba rusă."
+
+#: ../doc/changelog.py:37
+msgid "* Tweets in cached database should be loaded properly."
+msgstr ""
+"* Ar trebui să fie afișate corect postările în baza de date din memoria "
+"cache."
+
+#: ../doc/changelog.py:38
+msgid "* Added some missed dictionaries for spelling correction."
+msgstr ""
+"* Au fost adăugate unele dicționare omise pentru corectarea ortografică."
+
+#: ../doc/changelog.py:39
+msgid ""
+"* Timelines, lists and other buffer should be created in the right order at "
+"startup."
+msgstr ""
+"* Ar trebui ca listele, cronologiile și alte buffere să să fie create în "
+"ordinea corectă la pornire."
+
+#: ../doc/changelog.py:40
+msgid "## Changes in version 0.84 "
+msgstr "## Modificări în versiunea 0.84 "
+
+#: ../doc/changelog.py:41
+msgid "* More improvements in quoted and long tweets."
+msgstr "* Multe îmbunătățiri la postările lungi și citate."
+
+#: ../doc/changelog.py:42
+msgid ""
+"* Updated translations: Russian, Italian, French, Romanian, Galician and "
+"Finnish."
+msgstr ""
+"* Au fost actualizate traducerile: Rusă, Italiană, Franceză, Română, "
+"Galiciană și Finlandeză."
+
+#: ../doc/changelog.py:43
+msgid ""
+"* Improvements in the audio uploader module: Now it can handle audio with "
+"non-english characters."
+msgstr ""
+"* Îmbunătățiri în modulul audio uploader: acum poate manipula audio cu "
+"caractere non-englezești."
+
+#: ../doc/changelog.py:44
+msgid ""
+"* the title of the window should be updated properly when spellcheck, "
+"translate or shorten/unshorten URL buttons are pressed."
+msgstr ""
+"* Ar trebui ca titlul ferestrei să fie actualizat corect la verificarea "
+"ortografică, la traducere sau când sunt apăsate butoanele scurtare/extindere "
+"URL."
+
+#: ../doc/changelog.py:45
+msgid ""
+"* the bug that changes the selected tweet in the home timeline shouldn't be "
+"happening so often."
+msgstr ""
+"* Eroarea care modifică postarea selectată în cronologia principală nu ar "
+"trebui să se întâmple atât de des."
+
+#: ../doc/changelog.py:46
+msgid "## Changes in version 0.82 and 0.83"
+msgstr "## Modificări în versiunile 0.82 și 0.83"
+
+#: ../doc/changelog.py:47
+msgid ""
+"* If the tweet source (client) is an application with unicode characters "
+"(example: российская газета) it will not break the tweet displayer."
+msgstr ""
+"* Dacă sursa postării (client) este o aplicație cu caractere unicode "
+"(exemplu: nu va afecta afișatorul postării."
+
+#: ../doc/changelog.py:48
+msgid ""
+"* Added a new field for image description in tweet displayer. When "
+"available, it will show description for images posted in tweets."
+msgstr ""
+"* A fost adăugat un câmp pentru descrierea imaginei în afișatorul postării. "
+"Când este disponibil, va afișa o descriere pentru imagini postate în postări."
+
+#: ../doc/changelog.py:49
+msgid ""
+"* users can add image descriptions to their photos. When uploading an image, "
+"a dialog will show for asking a description."
+msgstr ""
+"* Utilizatorii pot adăuga descrieri la imagini în fotografiile lor. Când se "
+"încarcă o imagine, se va afișa un dialog pentru întrebarea unei descrieri."
+
+#: ../doc/changelog.py:50
+msgid "* Redesigned upload image dialog."
+msgstr "* A fost reproiectat dialogul de încărcare al imaginii."
+
+#: ../doc/changelog.py:51
+msgid "* Fixed photo uploads when posting tweets."
+msgstr "* A fost rezolvată problema cu încărcările pozelor când postezi."
+
+#: ../doc/changelog.py:52
+msgid ""
+"* When getting tweets for a conversation, ignores deleted tweets or some "
+"errors, now TWBlue will try to get as much tweets as possible, even if some "
+"of these are no longer available."
+msgstr ""
+"* Când primești postări de la o conversație ignorând postările șterse și "
+"unele erori, TWBlue va încerca acum să afișeze cât mai multe postări "
+"posibil, chiar dacă unele dintre acestea nu sunt disponibile."
+
+#: ../doc/changelog.py:53
+msgid "* Added audio playback from soundcloud."
+msgstr "* A fost adăugată redarea audio din sound cloud."
+
+#: ../doc/changelog.py:54
+msgid "* Now the session mute option don't makes the screen reader speaks."
+msgstr ""
+"* Opțiunea ”ignorare sesiune” nu face pe cititorul de ecran să vorbească."
+
+#: ../doc/changelog.py:55
+msgid "* Fixed the direct message dialog. Now it should be displayed properly."
+msgstr ""
+"* A fost fixată problema dialogului unui mesaj direct. Acum acesta ar trebui "
+"să fie afișat corespunzător."
+
+#: ../doc/changelog.py:56
+msgid ""
+"* when a tweet is deleted in twitter, TWBlue should reflect this change and "
+"delete that tweet in every buffer it is displayed."
+msgstr ""
+"* Când o postare este ștearsă din Twitter, TWBlue ar trebui să reflecteze "
+"această modificare și să șteargă din toate bufferele."
+
+#: ../doc/changelog.py:57
+msgid ""
+"* If your session is broken, TWBlue will be able to remove it automatically "
+"instead just crashing."
+msgstr ""
+"* Dacă sesiunea ta nu mai funcționează, TWBlue va avea capabilitatea de a o "
+"șterge automat, înloc să mai facă crash."
+
+#: ../doc/changelog.py:58
+msgid "* audio uploader should display the current progress."
+msgstr "* Încărcătorul audio ar trebui acum să arate bara de progres."
+
+#: ../doc/changelog.py:59
+msgid ""
+"* users can disable the check for updates feature at startup from the "
+"general tab, in the global settings dialogue."
+msgstr ""
+"* Utilizatorii pot dezactiva funcția de verificare pentru actualizări la "
+"pornire din tabulatorul general, în dialogul de setări globale."
+
+#: ../doc/changelog.py:60
+msgid ""
+"* The invisible interface and the window should be synchronized when the "
+"client reconnects."
+msgstr ""
+"* Interfața invizibilă și fereastra normală ar trebui să se sincronizeze "
+"când se re-conectează."
+
+#: ../doc/changelog.py:61
+msgid "* The documentation option in the systray icon should be enabled."
+msgstr ""
+"* Opțiunea „documentație” în iconița systray ar trebui să fie activată."
+
+#: ../doc/changelog.py:62
+msgid ""
+"* In trending buffers, you can press enter for posting a tweet about  the "
+"focused trend."
+msgstr ""
+"* În buferele trending, puteți apăsa enter pentru publuicarea unei postări "
+"despre trendul focalizat."
+
+#: ../doc/changelog.py:63
+msgid ""
+"* Updated russian documentation and main program interface (thanks to "
+"Natalia Hedlund (Наталья Хедлунд), [@lifestar_n](https://twitter.com/"
+"lifestar_n) in twitter)"
+msgstr ""
+"* Au fost actualizate traducerile la documentația și interfața programului "
+"în limba rusă (mulțumim Nataliei Hedlund (Наталья Хедлунд), [@lifestar_n]"
+"(https://twitter.com/lifestar) pe Twitter)"
+
+#: ../doc/changelog.py:64
+msgid "* updated translations."
+msgstr "* Au fost actualizate traducerile."
+
+#: ../doc/changelog.py:65
+msgid "## Changes in Version 0.81"
+msgstr "## Modificările aduse în versiunea 0.81"
+
+#: ../doc/changelog.py:66
+msgid "* Updated translations"
+msgstr "* Au fost actualizate traducerile."
+
+#: ../doc/changelog.py:67
+msgid ""
+"* The updater module has received some improvements. Now it includes a "
+"Mirror URL for checking updates  if the main URL is not available at the "
+"moment. If something is wrong and both locations don't work, the program "
+"will start anyway."
+msgstr ""
+"* Verificatorul de actualizări, acum a mai fost îmbunătățit.  Acum acesta "
+"conține un URL alternativ de descărcare a actualizării în caz că linkul "
+"normal nu mai funcționează. În caz că există o problemă și ambele nu mai "
+"funcționează, TWBlue va porni oricum."
+
+#: ../doc/changelog.py:68
+msgid "* some GUI elements now use keyboard shortcuts for common actions."
+msgstr ""
+"* Unele elemente din GUI vor utiliza acum scurtături pentru tastatură  "
+"pentru acțiuni comune."
+
+#: ../doc/changelog.py:69
+msgid "* fixed a bug in the geolocation dialog."
+msgstr "* A fost fixat un bug în dialogul locației geografice."
+
+#: ../doc/changelog.py:70
+msgid "* the chicken nugget keymap should work properly."
+msgstr ""
+"* keymap-ul chicken nugget-ului acum ar trebui să funcționeze corespunzător."
+
+#: ../doc/changelog.py:71
+msgid ""
+"* Added a new soundpack to the default installation of TWBlue, thanks to "
+"[@Deng90](https://twitter.com/deng90)"
+msgstr ""
+"* A fost adăugat un nou pachet de sunete la instalatorul implicit al TWBlue, "
+"mulțumim lui [@Deng90](https://twitter.com/deng90)"
+
+#: ../doc/changelog.py:72
+msgid "* Now the changelog is  written in an html File."
+msgstr "* Acum changelog-ul este scris într-un fișier html."
+
+#: ../doc/changelog.py:73
+msgid ""
+"* Added some missed dictionaries in last version for the spell checking "
+"feature."
+msgstr ""
+"* Au fost adăugate unele dicționare care lipseau în ultima versiune pentru "
+"funcția de verificare a ortografiei."
+
+#: ../doc/changelog.py:74
+msgid ""
+"* Trimmed the beginnings of the sounds in the default soundpack. Thanks to "
+"[@masonasons](https://github.com/masonasons)"
+msgstr ""
+"* Au fost reduse începuturile sunetelor în pachetul de sunete implicit. Îi "
+"mulțumim lui [@masonasons](https://github.com/masonasons)"
+
+#: ../doc/changelog.py:75
+msgid ""
+"* Added Opus support for sound playback in TWBlue. Thanks to [@masonasons]"
+"(https://github.com/masonasons)"
+msgstr ""
+"* A fost adăugat suportul Opus pentru  redarea sunetului în TWBlue. îi "
+"mulțumim lui [@masonasons](https://github.com/masonasons)"
+
+#: ../doc/changelog.py:76
+msgid ""
+"* Added a source field in view tweet dialogue. Thanks to [@masonasons]"
+"(https://github.com/masonasons)"
+msgstr ""
+"* A fost adăugat un câmp sursă în dialogul „vizualizare postare”. Îi "
+"mulțumim lui [@masonasons](https://github.com/masonasons)"
+
+#: ../doc/changelog.py:77
+msgid ""
+"* You can load previous items in followers and friend buffers for others."
+msgstr ""
+"* Puteți încărca elementele precedente în bufferele urmăritori și prieteni "
+"pentru alții."
+
+#: ../doc/changelog.py:78
+msgid ""
+"* The Spell Checker dialogue should not display an error message when you "
+"have set \"default language\" in the global settings dialogue if your "
+"language is supported [#168](http://twblue.es/bugs/view.php?id=168)"
+msgstr ""
+"* Nu ar trebui ca dialogul verificatorului ortografic să afișeze un mesaj de "
+"eroare când aveți setată „limba implicită” în dialogul setărilor globale "
+"dacă limba dumneavoastră este suportată [#168](http://twblue.es/bugs/view."
+"php?id=168)"
+
+#: ../doc/changelog.py:79
+msgid "* Updated romanian translation."
+msgstr "* A fost actualizată traducerea românească."
+
+#: ../doc/changelog.py:80
+msgid "* Some code cleanups."
+msgstr "* Niște curățări de coduri."
+
+#: ../doc/changelog.py:81
+msgid "* The bug reports feature is fully operational again."
+msgstr "* Caracteristica de raportare a erorile este funcțională din nou."
+
+#: ../doc/changelog.py:82
+msgid ""
+"* TWBlue should work again for users that contains special characters in "
+"windows usernames."
+msgstr ""
+"* Ar trebui ca TWBlue să funcționeze din nou pentru utilizatorii care conțin "
+"caractere speciale în numele de utilizator Windows."
+
+#: ../doc/changelog.py:83
+msgid "* Added more options for the tweet searches."
+msgstr "* Au fost adăugate multe opțiuni pentru căutările Twitter."
+
+#: ../doc/changelog.py:84
+msgid "* Added play_audio to the keymap editor."
+msgstr "* A fost adăugată redarea audio pentru editorul hărțillor de taste."
+
+#: ../doc/changelog.py:85
+msgid "* Windows key is no longer required in the keymap editor"
+msgstr "* Tasta Windows nu mai este necesară în editorul hărților de taste."
+
+#: ../doc/changelog.py:86
+msgid "* Switched to the Microsoft translator."
+msgstr "* Am schimbat pe Microsoft Translator."
+
+#: ../doc/changelog.py:87
+msgid ""
+"* You can update the current buffer by pressing ctrl+win+shift+u in the "
+"default keymap or in the buffer menu."
+msgstr ""
+"* Puteți actualiza Buffer-ul în apăsând ctrl+win+shift+u în harta de taste "
+"implicită sau în meniul buffer-ului."
+
+#: ../doc/changelog.py:88
+msgid "* Changed some keystrokes in the windows 10 default keymap"
+msgstr ""
+"* Au fost modificate niște combinații de taste în harta de taste implicită "
+"Windows 10."
+
+#: ../doc/changelog.py:89
+msgid "* New followers and friends buffer for user timelines."
+msgstr ""
+"* Buffere noi „prieteni” și „urmăritori” pentru cronologiile utilizatorului."
+
+#: ../doc/changelog.py:90
+msgid "---"
+msgstr "---"
+
+#: ../doc/changelog.py:91
+msgid "Copyright © 2014-2017, Manuel Cortez."
+msgstr "Drepturi de autor © 2014-2017, Manuel Cortez."
