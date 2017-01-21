@@ -1,6 +1,7 @@
 !include "MUI2.nsh"
 !include "LogicLib.nsh"
 !include "x64.nsh"
+Unicode true
 CRCCheck on
 ManifestSupportedOS all
 XPStyle on
@@ -12,7 +13,6 @@ RequestExecutionLevel admin
 SetCompress auto
 SetCompressor /solid lzma
 SetDatablockOptimize on
-Unicode true
 VIAddVersionKey ProductName "TWBlue"
 VIAddVersionKey LegalCopyright "Copyright 2016 Manuel Cortéz."
 VIAddVersionKey ProductVersion "0.88"
