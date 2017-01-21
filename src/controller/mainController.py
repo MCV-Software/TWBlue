@@ -1469,7 +1469,8 @@ class Controller(object):
   os.chdir("../../")
 
  def view_changelog(self, *args, **kwargs):
-  os.chdir("documentation")
+  lang = localization.get("documentation")
+  os.chdir("documentation/%s" % (lang,))
   webbrowser.open("changelog.html")
   os.chdir("../")
 
