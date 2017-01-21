@@ -70,7 +70,7 @@
 * The invisible interface and the window should be synchronized when the client reconnects.
 * The documentation option in the systray icon should be enabled.
 * In trending buffers, you can press enter for posting a tweet about  the focused trend.
-* Updated russian documentation and main program interface (thanks to Natalia Hedlund (Наталья Хедлунд), [\@lifestar_n](https://twitter.com/lifestar_n) in twitter)
+* Updated russian documentation and main program interface (thanks to Natalia Hedlund (Наталья Хедлунд), [@lifestar_n](https://twitter.com/lifestar_n) in twitter)
 * updated translations.
 
 ## Changes in Version 0.81
@@ -80,12 +80,12 @@
 * some GUI elements now use keyboard shortcuts for common actions.
 * fixed a bug in the geolocation dialog.
 * the chicken nugget keymap should work properly.
-* Added a new soundpack to the default installation of TWBlue, thanks to [\@Deng90](https://twitter.com/deng90)
+* Added a new soundpack to the default installation of TWBlue, thanks to [@Deng90](https://twitter.com/deng90)
 * Now the changelog is  written in an html File.
 * Added some missed dictionaries in last version for the spell checking feature.
-* Trimmed the beginnings of the sounds in the default soundpack. Thanks to [\@masonasons](https://github.com/masonasons)
-* Added Opus support for sound playback in TWBlue. Thanks to [\@masonasons](https://github.com/masonasons)
-* Added a source field in view tweet dialogue. Thanks to [\@masonasons](https://github.com/masonasons)
+* Trimmed the beginnings of the sounds in the default soundpack. Thanks to [@masonasons](https://github.com/masonasons)
+* Added Opus support for sound playback in TWBlue. Thanks to [@masonasons](https://github.com/masonasons)
+* Added a source field in view tweet dialogue. Thanks to [@masonasons](https://github.com/masonasons)
 * You can load previous items in followers and friend buffers for others.
 * The Spell Checker dialogue should not display an error message when you have set "default language" in the global settings dialogue if your language is supported [#168](http://twblue.es/bugs/view.php?id=168)
 * Updated romanian translation.
