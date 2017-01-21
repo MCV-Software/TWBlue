@@ -713,12 +713,12 @@ class listBufferController(baseBufferController):
   super(listBufferController, self).start_stream(mandatory)
 
  def get_user_ids(self):
-  self.users = []
   next_cursor = -1
   while(next_cursor):
    users = self.session.twitter.twitter.get_list_members(list_id=self.list_id, cursor=next_cursor, include_entities=False, skip_status=True)
    for i in users['users']:
-    self.users.append(i["id"])
+    if i["id"] not in self.users:
+     self.users.append(i["id"])
     next_cursor = users["next_cursor"]
 
  def remove_buffer(self):
