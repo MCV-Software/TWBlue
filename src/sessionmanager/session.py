@@ -455,4 +455,7 @@ class Session(object):
   if long != False and config.app["app-settings"]["handle_longtweets"]:
    tweet["message"] = twishort.get_full_text(long)
    tweet["twishort"] = True
+   for i in tweet["entities"]["user_mentions"]:
+    if "@%s" % (i["screen_name"] not in tweet["message"]):
+      tweet["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
   return tweet
