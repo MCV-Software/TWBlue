@@ -3,6 +3,7 @@
 ## changes in this version
 
 * Fixed a bug in long tweet parsing that was making TWBlue to disconnect the streaming API. [#103](https://github.com/manuelcortez/TWBlue/issues/103)
+* Now OCR will work in images from retweets. It fixes a bug where TWBlue was detecting images but couldn't apply OCR on them. [#105](https://github.com/manuelcortez/TWBlue/issues/105)
 
 ## Changes in version 0.88 and 0.89
 

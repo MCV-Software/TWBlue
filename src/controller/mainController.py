@@ -1527,7 +1527,7 @@ class Controller(object):
   if hasattr(buffer, "get_right_tweet") == False:
    output.speak(_(u"Invalid buffer"))
    return
-  tweet = buffer.get_right_tweet()
+  tweet = buffer.get_tweet()
   if tweet.has_key("entities") == False or tweet["entities"].has_key("media") == False:
    output.speak(_(u"This tweet doesn't contain images"))
    return
