@@ -2,6 +2,10 @@
 
 ## changes in this version
 
+* Fixed a bug in long tweet parsing that was making TWBlue to disconnect the streaming API. [#103](https://github.com/manuelcortez/TWBlue/issues/103)
+
+## Changes in version 0.88 and 0.89
+
 * Fixed more issues with streams and reconnections.
 * newer updates will indicate the release date in the updater.
 * Changes to keystrokes are reflected in keystroke editor automatically.
