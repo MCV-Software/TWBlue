@@ -32,7 +32,7 @@ class mainFrame(wx.Frame):
   self.view = tweet.Append(wx.NewId(), _(u"&Show tweet"))
   self.view_coordinates = tweet.Append(wx.NewId(), _(u"View &address"))
   self.view_conversation = tweet.Append(wx.NewId(), _(u"View conversa&tion"))
-  self.ocr = tweet.Append(wx.NewId(), _(u"Read text in pictures"))
+  self.ocr = tweet.Append(wx.NewId(), _(u"Read text in picture"))
   self.delete = tweet.Append(wx.NewId(), _(u"&Delete"))
 
   # User menu
