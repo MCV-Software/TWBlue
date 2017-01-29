@@ -66,6 +66,7 @@ class Session(object):
     try: i = self.check_quoted_status(i)
     except: pass
     i = self.check_long_tweet(i)
+    if i == False: continue
     if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
     else: self.db[name].insert(0, i)
     num = num+1
@@ -454,13 +455,11 @@ class Session(object):
   long = twishort.is_long(tweet)
   if long != False and config.app["app-settings"]["handle_longtweets"]:
    tweet["message"] = twishort.get_full_text(long)
+   if tweet["message"] == False: return False
    tweet["twishort"] = True
-   try:
-    for i in tweet["entities"]["user_mentions"]:
-     if "@%s" % (i["screen_name"] not in tweet["message"]) and i["screen_name"] != tweet["user"]["screen_name"]:
-      if tweet.has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
-       continue
-       tweet["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
-   except TypeError:
-    pass
+   for i in tweet["entities"]["user_mentions"]:
+    if "@%s" % (i["screen_name"] not in tweet["message"]) and i["screen_name"] != tweet["user"]["screen_name"]:
+     if tweet.has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+      continue
+      tweet["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
   return tweet
