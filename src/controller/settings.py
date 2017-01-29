@@ -164,13 +164,7 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("sound", "indicate_audio", self.config["sound"]["indicate_audio"])
   self.dialog.set_value("sound", "indicate_geo", self.config["sound"]["indicate_geo"])
   self.dialog.set_value("sound", "indicate_img", self.config["sound"]["indicate_img"])
-  self.dialog.create_services()
-#  if self.config["services"]["pocket_access_token"] == "":
-#   self.dialog.services.set_pocket(False)
-#  else:
-#   self.dialog.services.set_pocket(True)
-#  widgetUtils.connect_event(self.dialog.services.pocketBtn, widgetUtils.BUTTON_PRESSED, self.manage_pocket)
-  self.dialog.set_value("services", "apiKey", self.config["sound"]["sndup_api_key"])
+  self.dialog.create_extras()
   self.dialog.realize()
   self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
   self.response = self.dialog.get_response()
@@ -245,7 +239,7 @@ class accountSettingsController(globalSettingsController):
   self.config["sound"]["indicate_img"] = self.dialog.get_value("sound", "indicate_img")
   self.buffer.session.sound.config = self.config["sound"]
   self.buffer.session.sound.check_soundpack()
-  self.config["sound"]["sndup_api_key"] = self.dialog.get_value("services", "apiKey")
+
   self.config.write()
 
  def toggle_state(self,*args,**kwargs):

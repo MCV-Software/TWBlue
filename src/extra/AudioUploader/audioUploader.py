@@ -52,11 +52,7 @@ class audioUploader(object):
    self.uploaderDialog = wx_transfer_dialogs.UploadDialog(self.file)
    output.speak(_(u"Attaching..."))
    if self.dialog.get("services") == "SNDUp":
-    base_url = "http://sndup.net/post.php"
-    if len(self.config["sound"]["sndup_api_key"]) > 0:
-     url = base_url + '?apikey=' + self.config['sound']['sndup_api_key']
-    else:
-     url = base_url
+    url = "http://sndup.net/post.php"
    elif self.dialog.get("services") == "TwUp":
     url = "http://api.twup.me/post.json"
    self.uploaderFunction = transfer.Upload(obj=self, field='file', url=url, filename=self.file, completed_callback=completed_callback)
