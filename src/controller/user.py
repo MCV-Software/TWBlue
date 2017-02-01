@@ -4,6 +4,8 @@ import webbrowser
 import widgetUtils
 import output
 from wxUI.dialogs import update_profile, show_user
+import logging
+log = logging.getLogger("controller.user")
 from twython import TwythonError
 
 class profileController(object):
@@ -24,6 +26,9 @@ class profileController(object):
    except TwythonError as err:
     if err.error_code == 404:
      wx.MessageDialog(None, _(u"That user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
+    if err.error_code == 403:
+     wx.MessageDialog(None, _(u"User has been suspended"), _(u"Error"), wx.ICON_ERROR).ShowModal()
+    log.error("error %d: %s" % (err.error_code, err.msg))
     return
    self.dialog = show_user.showUserProfile()
    string = self.get_user_info()
