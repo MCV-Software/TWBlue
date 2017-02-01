@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import wx
 import webbrowser
 import widgetUtils
 import output
@@ -12,14 +13,19 @@ class profileController(object):
   self.session = session
   self.user = user
   if user == None:
-   self.dialog = update_profile.updateProfileDialog()
    self.get_data(screen_name=self.session.db["user_name"])
+   self.dialog = update_profile.updateProfileDialog()
    self.fill_profile_fields()
    self.uploaded = False
    widgetUtils.connect_event(self.dialog.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
   else:
+   try:
+    self.get_data(screen_name=self.user)
+   except TwythonError as err:
+    if err.error_code == 404:
+     wx.MessageDialog(None, _(u"That user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
+    return
    self.dialog = show_user.showUserProfile()
-   self.get_data(screen_name=self.user)
    string = self.get_user_info()
    self.dialog.set("text", string)
    self.dialog.set_title(_(u"Information for %s") % (self.data["screen_name"]))
