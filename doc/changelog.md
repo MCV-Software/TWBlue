@@ -6,6 +6,7 @@
 * Now OCR will work in images from retweets. It fixes a bug where TWBlue was detecting images but couldn't apply OCR on them. [#105](https://github.com/manuelcortez/TWBlue/issues/105)
 * TWBlue won't try to load tweets already deleted, made with Twishort. Before, if someone posted a long tweet but deleted it in the Twishort's site, TWBlue was trying to load the tweet and it was causing problems in all the client. [#113](https://github.com/manuelcortez/TWBlue/issues/113)
 * TWBlue shows an error message when you try to view the profile of a user that does not exist or has been suspended. [#114,](https://github.com/manuelcortez/TWBlue/issues/114) [#115](https://github.com/manuelcortez/TWBlue/issues/115)
+* The spellchecker module should select the right language when is set to "user default". [#117](https://github.com/manuelcortez/TWBlue/issues/117)
 
 ## Changes in version 0.88 and 0.89
 
