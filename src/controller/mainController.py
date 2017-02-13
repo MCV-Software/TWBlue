@@ -994,7 +994,8 @@ class Controller(object):
     if buffer != None: break
   else:
    buffer = self.view.search("home_timeline", buf.session.db["user_name"])
-  self.view.change_buffer(buffer)
+  if buffer!=None:
+   self.view.change_buffer(buffer)
 
  def up(self, *args, **kwargs):
   page = self.get_current_buffer()

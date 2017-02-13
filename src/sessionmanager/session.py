@@ -135,11 +135,15 @@ class Session(object):
   if the user account isn't authorised, it needs to call self.authorise() before login."""
 
   if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
-   log.debug("Logging in to twitter...")
-   self.twitter.login(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], verify_credentials)
-   self.logged = True
-   log.debug("Logged.")
-   self.counter = 0
+   try:
+    log.debug("Logging in to twitter...")
+    self.twitter.login(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], verify_credentials)
+    self.logged = True
+    log.debug("Logged.")
+    self.counter = 0
+   except:
+    log.error("The login attempt failed.")
+    self.logged = False
   else:
    self.logged = False
    raise Exceptions.RequireCredentialsSessionError
