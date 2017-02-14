@@ -11,6 +11,7 @@ import application
 from wxUI.dialogs import configuration
 from wxUI import commonMessageDialogs
 from extra.autocompletionUsers import settings
+from extra.ocr import OCRSpace
 from pubsub import pub
 import logging
 import config_utils
@@ -164,7 +165,7 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("sound", "indicate_audio", self.config["sound"]["indicate_audio"])
   self.dialog.set_value("sound", "indicate_geo", self.config["sound"]["indicate_geo"])
   self.dialog.set_value("sound", "indicate_img", self.config["sound"]["indicate_img"])
-  self.dialog.create_extras()
+  self.dialog.create_extras(OCRSpace.translatable_langs)
   self.dialog.realize()
   self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
   self.response = self.dialog.get_response()

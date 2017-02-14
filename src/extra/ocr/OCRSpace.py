@@ -2,6 +2,10 @@
 """ original module taken and modified from https://github.com/ctoth/cloudOCR"""
 import requests
 
+translatable_langs = [_(u"Detect automatically"), _(u"Danish"), _(u"Dutch"), _(u"English"), _(u"Finnish"), _(u"French"), _(u"German"), _(u"Hungarian"), _(u"Korean"), _(u"Italian"), _(u"Japanese"), _(u"Polish"), _(u"Portuguese"), _(u"Russian"), _(u"Spanish"), _(u"Turkish")]
+short_langs = ["", "da", "du", "en", "fi", "fr", "de", "hu", "ko", "it", "ja", "pl", "pt", "ru", "es", "tr"]
+OcrLangs = ["", "dan", "dut", "eng", "fin", "fre", "ger", "hun", "kor", "ita", "jpn", "pol", "por", "rus", "spa", "tur"]
+
 class APIError(Exception):
 	pass
 

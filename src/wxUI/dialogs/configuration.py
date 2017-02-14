@@ -294,37 +294,18 @@ class sound(wx.Panel):
  def get(self, control):
   return getattr(self, control).GetStringSelection()
 
-class servicesPanel(wx.Panel):
- def __init__(self, parent):
-  super(servicesPanel, self).__init__(parent)
+class extrasPanel(wx.Panel):
+ def __init__(self, parent, ocr_languages=[], translation_languages=[]):
+  super(extrasPanel, self).__init__(parent)
   mainSizer = wx.BoxSizer(wx.VERTICAL)
-  apiKeyLabel = wx.StaticText(self, -1, _(u"If you have a SndUp account, enter your API Key here. If your API Key is invalid, {0} will fail to upload. If there is no API Key here, {0} will upload annonymously.").format(application.name,))
-  self.apiKey = wx.TextCtrl(self, -1)
-  dc = wx.WindowDC(self.apiKey)
-  dc.SetFont(self.apiKey.GetFont())
-  self.apiKey.SetSize(dc.GetTextExtent("0"*100))
-  apiKeyBox = wx.BoxSizer(wx.HORIZONTAL)
-  apiKeyBox.Add(apiKeyLabel, 0, wx.ALL, 5)
-  apiKeyBox.Add(self.apiKey, 0, wx.ALL, 5)
-  mainSizer.Add(apiKeyBox, 0, wx.ALL, 5)
-#  self.pocketBtn = wx.Button(self, -1)
-#  mainSizer.Add(self.pocketBtn, 0, wx.ALL, 5)
+  OCRBox = wx.StaticBox(self, label=_(u"Language for OCR"))
+  self.ocr_lang = wx.ListBox(self, -1, choices=ocr_languages)
+  self.ocr_lang.SetSize(self.ocr_lang.GetBestSize())
+  ocrLanguageSizer = wx.StaticBoxSizer(OCRBox, wx.HORIZONTAL)
+  ocrLanguageSizer.Add(self.ocr_lang, 0, wx.ALL, 5)
+  mainSizer.Add(ocrLanguageSizer, 0, wx.ALL, 5)
+
   self.SetSizer(mainSizer)
-
- def set_pocket(self, active=True):
-  if active == True:
-   self.pocketBtn.SetLabel(_(u"Disconnect your Pocket account"))
-  else:
-   self.pocketBtn.SetLabel(_(u"Connect your Pocket account"))
-
- def show_pocket_dialog(self):
-  return wx.MessageDialog(self, _(u"The authorization request will be opened in your browser. You only need to do this once. Do you want to continue?"), _(u"Pocket Authorization"), wx.YES_NO).ShowModal()
-
- def show_pocket_authorization_error(self):
-  wx.MessageDialog(self, _(u"Error during authorization. Try again later."), _(u"Error!"), wx.ICON_ERROR).ShowModal()
-
- def get_pocket_status(self):
-  return self.pocketBtn.GetLabel()
 
 class configurationDialog(baseDialog.BaseWXDialog):
  def set_title(self, title):
@@ -363,9 +344,9 @@ class configurationDialog(baseDialog.BaseWXDialog):
   self.sound = sound(self.notebook, output_devices, input_devices, soundpacks)
   self.notebook.AddPage(self.sound, _(u"Sound"))
 
- def create_services(self):
-  self.services = servicesPanel(self.notebook)
-  self.notebook.AddPage(self.services, _(u"Services"))
+ def create_extras(self, ocr_languages=[], translator_languages=[]):
+  self.extras = extrasPanel(self.notebook, ocr_languages, translator_languages)
+  self.notebook.AddPage(self.extras, _(u"Extras"))
 
  def realize(self):
   self.sizer.Add(self.notebook, 0, wx.ALL, 5)
