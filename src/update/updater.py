@@ -11,7 +11,7 @@ logger = logging.getLogger("updater")
 def do_update(endpoint=application.update_url):
  try:
   update.perform_update(endpoint=endpoint, current_version=application.version, app_name=application.name, update_available_callback=available_update_dialog, progress_callback=progress_callback, update_complete_callback=update_finished)
- except ConnectionError:
+ except:
   if endpoint == application.update_url:
    logger.error("Update failed! Using mirror URL...")
    return do_update(endpoint=application.mirror_update_url)
