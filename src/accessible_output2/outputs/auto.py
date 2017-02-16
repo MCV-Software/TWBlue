@@ -9,8 +9,9 @@ class Auto(Output):
   self.outputs = []
   for output in output_classes:
    try:
-    self.outputs.append(output())
-   except OutputError:
+    a=output()
+    self.outputs.append(a)
+   except:
     pass
 
  def get_first_available_output(self):
