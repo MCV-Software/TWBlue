@@ -7,11 +7,14 @@ orig_session_init=requests.sessions.Session.__init__
 def patched_where():
  return paths.app_path(u"cacert.pem")
 
-def fix():
- certs.where=patched_where
- utils.DEFAULT_CA_BUNDLE_PATH=patched_where()
- adapters.DEFAULT_CA_BUNDLE_PATH=patched_where()
+def fix(frozen):
+ if frozen==True:
+  certs.where=patched_where
+  utils.DEFAULT_CA_BUNDLE_PATH=patched_where()
+  adapters.DEFAULT_CA_BUNDLE_PATH=patched_where()
  requests.sessions.Session.__init__=patched_session_init
+ requests.Session.__init__=patched_session_init
+ requests.session.__init__=patched_session_init
 
 def patched_session_init(self):
  orig_session_init(self)

@@ -9,5 +9,7 @@ def setup():
 	fix_arrow.fix()
 	if hasattr(sys, "frozen"):
 		fix_win32com.fix()
-		fix_requests.fix()
+		fix_requests.fix(True)
+	else:
+		fix_requests.fix(False)
 	fix_urllib3_warnings.fix()
