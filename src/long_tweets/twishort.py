@@ -55,7 +55,11 @@ def is_long(tweet):
 def get_full_text(uri):
  try:
   r = requests.get("http://api.twishort.com/1.1/get.json", params={"uri": uri, "api_key": keys.keyring.get("twishort_api_key")})
-  return r.json()["text"]
+  msg = r.json()["text"]
+  # Try to parse possible HTML entities.
+  from twitter.compose import StripChars
+  msg = StripChars(msg)
+  return msg
  except:
   return False
 

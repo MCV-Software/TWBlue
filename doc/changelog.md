@@ -8,6 +8,7 @@
 * TWBlue shows an error message when you try to view the profile of an user that does not exist or has been suspended. ([#114,](https://github.com/manuelcortez/TWBlue/issues/114) [#115](https://github.com/manuelcortez/TWBlue/issues/115))
 * The spellchecker module should select the right language when is set to "user default". ([#117](https://github.com/manuelcortez/TWBlue/issues/117))
 * Image description will be displayed in retweets too. ([#119](https://github.com/manuelcortez/TWBlue/issues/119))
+* When reading a long tweet, you shouldn't read strange entities anymore. ([#118](https://github.com/manuelcortez/twblue/issues/118))
 
 ## Changes in version 0.88 and 0.89
 
