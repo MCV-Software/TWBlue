@@ -219,6 +219,10 @@ class viewTweet(basicTweet):
      for z in tweetList[i]["extended_entities"]["media"]:
       if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
+    if tweetList[i].has_key("retweeted_status") and tweetList[i]["retweeted_status"].has_key("extended_entities") and tweetList[i]["retweeted_status"]["extended_entities"].has_key("media"):
+     for z in tweetList[i]["retweeted_status"]["extended_entities"]["media"]:
+      if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+       image_description.append(z["ext_alt_text"])
    # set rt and likes counters.
    rt_count = str(tweet["retweet_count"])
    favs_count = str(tweet["favorite_count"])
@@ -239,6 +243,10 @@ class viewTweet(basicTweet):
    text = self.clear_text(text)
    if tweet.has_key("extended_entities") and tweet["extended_entities"].has_key("media"):
     for z in tweet["extended_entities"]["media"]:
+     if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+      image_description.append(z["ext_alt_text"])
+   if tweet.has_key("retweeted_status") and tweet["retweeted_status"].has_key("extended_entities") and tweet["retweeted_status"]["extended_entities"].has_key("media"):
+    for z in tweet["retweeted_status"]["extended_entities"]["media"]:
      if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
    self.message = message.viewTweet(text, rt_count, favs_count, source.decode("utf-8"))
