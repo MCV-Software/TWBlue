@@ -34,6 +34,7 @@ class Auto(Output):
   output = self.get_first_available_output()
   if output:
    output.speak(*args, **kwargs)
+   output.braille(*args, **kwargs)
 
  def is_system_output(self):
   output = self.get_first_available_output()
