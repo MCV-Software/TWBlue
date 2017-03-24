@@ -316,7 +316,6 @@ class baseBufferController(bufferController):
     elif "-favorite" in self.name:
      self.username = self.session.api_call("show_user", **self.kwargs)["screen_name"]
     self.finished_timeline = True
-    pub.sendMessage("buffer-title-changed", buffer=self)
    if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages" and self.sound != None:
     self.session.sound.play(self.sound)
    return number_of_items
@@ -354,9 +353,12 @@ class baseBufferController(bufferController):
    self.buffer.list.select_item(selection)
   output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
 
- def remove_buffer(self):
+ def remove_buffer(self, force=False):
   if "-timeline" in self.name:
-   dlg = commonMessageDialogs.remove_buffer()
+   if force == False:
+    dlg = commonMessageDialogs.remove_buffer()
+   else:
+    dlg = widgetUtils.YES
    if dlg == widgetUtils.YES:
     if self.name[:-9] in self.session.settings["other_buffers"]["timelines"]:
      self.session.settings["other_buffers"]["timelines"].remove(self.name[:-9])
@@ -366,7 +368,10 @@ class baseBufferController(bufferController):
    elif dlg == widgetUtils.NO:
     return False
   elif "favorite" in self.name:
-   dlg = commonMessageDialogs.remove_buffer()
+   if force == False:
+    dlg = commonMessageDialogs.remove_buffer()
+   else:
+    dlg = widgetUtils.YES
    if dlg == widgetUtils.YES:
     if self.name[:-9] in self.session.settings["other_buffers"]["favourites_timelines"]:
      self.session.settings["other_buffers"]["favourites_timelines"].remove(self.name[:-9])
@@ -721,8 +726,11 @@ class listBufferController(baseBufferController):
      self.users.append(i["id"])
     next_cursor = users["next_cursor"]
 
- def remove_buffer(self):
-  dlg = commonMessageDialogs.remove_buffer()
+ def remove_buffer(self, force=False):
+  if force == False:
+   dlg = commonMessageDialogs.remove_buffer()
+  else:
+   dlg = widgetUtils.YES
   if dlg == widgetUtils.YES:
    if self.name[:-5] in self.session.settings["other_buffers"]["lists"]:
     self.session.settings["other_buffers"]["lists"].remove(self.name[:-5])
@@ -803,9 +811,12 @@ class peopleBufferController(baseBufferController):
     self.kwargs["screen_name"] = self.kwargs["user_id"]
     self.kwargs.pop("user_id")
 
- def remove_buffer(self):
+ def remove_buffer(self, force=True):
   if "-followers" in self.name:
-   dlg = commonMessageDialogs.remove_buffer()
+   if force == False:
+    dlg = commonMessageDialogs.remove_buffer()
+   else:
+    dlg = widgetUtils.YES
    if dlg == widgetUtils.YES:
     if self.name[:-10] in self.session.settings["other_buffers"]["followers_timelines"]:
      self.session.settings["other_buffers"]["followers_timelines"].remove(self.name[:-10])
@@ -815,7 +826,10 @@ class peopleBufferController(baseBufferController):
    elif dlg == widgetUtils.NO:
     return False
   elif "-friends" in self.name:
-   dlg = commonMessageDialogs.remove_buffer()
+   if force == False:
+    dlg = commonMessageDialogs.remove_buffer()
+   else:
+    dlg = widgetUtils.YES
    if dlg == widgetUtils.YES:
     if self.name[:-8] in self.session.settings["other_buffers"]["friends_timelines"]:
      self.session.settings["other_buffers"]["friends_timelines"].remove(self.name[:-8])
@@ -860,7 +874,6 @@ class peopleBufferController(baseBufferController):
    if hasattr(self, "finished_timeline") and self.finished_timeline == False:
     self.username = self.session.api_call("show_user", **self.kwargs)["screen_name"]
     self.finished_timeline = True
-    pub.sendMessage("buffer-title-changed", buffer=self)
    return val
 
  def get_more_items(self):
@@ -968,8 +981,11 @@ class searchBufferController(baseBufferController):
     self.session.sound.play("search_updated.ogg")
    return num
 
- def remove_buffer(self):
-  dlg = commonMessageDialogs.remove_buffer()
+ def remove_buffer(self, force=False):
+  if force == False:
+   dlg = commonMessageDialogs.remove_buffer()
+  else:
+   dlg = widgetUtils.YES
   if dlg == widgetUtils.YES:
    if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
@@ -1010,8 +1026,11 @@ class searchPeopleBufferController(peopleBufferController):
     self.session.sound.play("search_updated.ogg")
    return number_of_items
 
- def remove_buffer(self):
-  dlg = commonMessageDialogs.remove_buffer()
+ def remove_buffer(self, force=False):
+  if force == False:
+   dlg = commonMessageDialogs.remove_buffer()
+  else:
+   dlg = widgetUtils.YES
   if dlg == widgetUtils.YES:
    if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
@@ -1079,8 +1098,11 @@ class trendsBufferController(bufferController):
  def get_message(self):
   return self.compose_function(self.trends[self.buffer.list.get_selected()])[0]
 
- def remove_buffer(self):
-  dlg = commonMessageDialogs.remove_buffer()
+ def remove_buffer(self, force=False):
+  if force == False:
+   dlg = commonMessageDialogs.remove_buffer()
+  else:
+   dlg = widgetUtils.YES
   if dlg == widgetUtils.YES:
    if self.name[:-3] in self.session.settings["other_buffers"]["trending_topic_buffers"]:
     self.session.settings["other_buffers"]["trending_topic_buffers"].remove(self.name[:-3])
@@ -1177,8 +1199,11 @@ class conversationBufferController(searchBufferController):
     self.session.sound.play("search_updated.ogg")
    return number_of_items
 
- def remove_buffer(self):
-  dlg = commonMessageDialogs.remove_buffer()
+ def remove_buffer(self, force=False):
+  if force == False:
+   dlg = commonMessageDialogs.remove_buffer()
+  else:
+   dlg = widgetUtils.YES
   if dlg == widgetUtils.YES:
    self.timer.cancel()
    return True
