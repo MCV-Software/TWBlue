@@ -363,7 +363,8 @@ class baseBufferController(bufferController):
     if self.name[:-9] in self.session.settings["other_buffers"]["timelines"]:
      self.session.settings["other_buffers"]["timelines"].remove(self.name[:-9])
      self.session.settings.write()
-     self.session.db.pop(self.name)
+     if self.session.db.has_key(self.name):
+      self.session.db.pop(self.name)
      return True
    elif dlg == widgetUtils.NO:
     return False
@@ -375,7 +376,8 @@ class baseBufferController(bufferController):
    if dlg == widgetUtils.YES:
     if self.name[:-9] in self.session.settings["other_buffers"]["favourites_timelines"]:
      self.session.settings["other_buffers"]["favourites_timelines"].remove(self.name[:-9])
-     self.session.db.pop(self.name)
+     if self.session.db.has_key(self.name):
+      self.session.db.pop(self.name)
      self.session.settings.write()
      return True
    elif dlg == widgetUtils.NO:
@@ -734,7 +736,8 @@ class listBufferController(baseBufferController):
   if dlg == widgetUtils.YES:
    if self.name[:-5] in self.session.settings["other_buffers"]["lists"]:
     self.session.settings["other_buffers"]["lists"].remove(self.name[:-5])
-    self.session.db.pop(self.name)
+    if self.session.db.has_key(self.name):
+     self.session.db.pop(self.name)
     self.session.settings.write()
     return True
   elif dlg == widgetUtils.NO:
@@ -820,7 +823,8 @@ class peopleBufferController(baseBufferController):
    if dlg == widgetUtils.YES:
     if self.name[:-10] in self.session.settings["other_buffers"]["followers_timelines"]:
      self.session.settings["other_buffers"]["followers_timelines"].remove(self.name[:-10])
-     self.session.db.pop(self.name)
+     if self.session.db.has_key(self.name):
+      self.session.db.pop(self.name)
      self.session.settings.write()
      return True
    elif dlg == widgetUtils.NO:
@@ -833,7 +837,8 @@ class peopleBufferController(baseBufferController):
    if dlg == widgetUtils.YES:
     if self.name[:-8] in self.session.settings["other_buffers"]["friends_timelines"]:
      self.session.settings["other_buffers"]["friends_timelines"].remove(self.name[:-8])
-     self.session.db.pop(self.name)
+     if self.session.db.has_key(self.name):
+      self.session.db.pop(self.name)
      self.session.settings.write()
      return True
    elif dlg == widgetUtils.NO:
@@ -991,7 +996,8 @@ class searchBufferController(baseBufferController):
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
     self.session.settings.write()
     self.timer.cancel()
-    self.session.db.pop(self.name)
+    if self.session.db.has_key(self.name):
+     self.session.db.pop(self.name)
     return True
   elif dlg == widgetUtils.NO:
    return False
@@ -1036,7 +1042,8 @@ class searchPeopleBufferController(peopleBufferController):
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
     self.session.settings.write()
     self.timer.cancel()
-    self.session.db.pop(self.name)
+    if self.session.db.has_key(self.name):
+     self.session.db.pop(self.name)
     return True
   elif dlg == widgetUtils.NO:
    return False
@@ -1108,7 +1115,8 @@ class trendsBufferController(bufferController):
     self.session.settings["other_buffers"]["trending_topic_buffers"].remove(self.name[:-3])
     self.session.settings.write()
     self.timer.cancel()
-    self.session.db.pop(self.name)
+    if self.session.db.has_key(self.name):
+     self.session.db.pop(self.name)
     return True
   elif dlg == widgetUtils.NO:
    return False
