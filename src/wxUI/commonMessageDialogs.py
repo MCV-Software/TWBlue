@@ -71,3 +71,9 @@ def view_geodata(geotext):
 
 def changed_keymap():
  return wx.MessageDialog(None, _(u"TWBlue has detected that you're running windows 10 and has changed the default keymap to the Windows 10 keymap. It means that some keyboard shorcuts could be different. Please check the keystroke editor by pressing Alt+Win+K to see all available keystrokes for this keymap."), _(u"Information"), wx.OK).ShowModal()
+
+def unauthorized():
+ return wx.MessageDialog(None, _(u"You have been blocked from viewing  this content"), _(u"Error"), wx.OK).ShowModal()
+
+def blocked_timeline():
+ return wx.MessageDialog(None, _(u"You have been blocked from viewing  someone's content. In order to avoid conflicts with the full session, TWBlue will remove the affected timeline."), _(u"Error"), wx.OK).ShowModal()

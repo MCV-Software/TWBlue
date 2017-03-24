@@ -25,7 +25,7 @@ from sessionmanager import session as session_
 from pubsub import pub
 import sound
 import output
-from twython import TwythonError
+from twython import TwythonError, TwythonAuthError
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 from mysc import restart
@@ -807,11 +807,16 @@ class Controller(object):
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, user_id=usr["id_str"], tweet_mode="extended")
+     try:
+      tl.start_stream()
+     except TwythonAuthError:
+      commonMessageDialogs.unauthorized()
+      return
      pos=self.view.search("timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
      self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
      buff.session.settings["other_buffers"]["timelines"].append(usr["id_str"])
-     tl.start_stream()
+     pub.sendMessage("buffer-title-changed", buffer=tl)
      pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
      buff.session.sound.play("create_timeline.ogg")
     elif tl_type == "favourites":
@@ -822,13 +827,18 @@ class Controller(object):
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, user_id=usr["id_str"], tweet_mode="extended")
+     try:
+      tl.start_stream()
+     except TwythonAuthError:
+      commonMessageDialogs.unauthorized()
+      return
      pos=self.view.search("favs_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Likes for {}").format(dlg.get_user()), pos=pos)
-     tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
      buff.session.settings["other_buffers"]["favourites_timelines"].append(usr["id_str"])
+     pub.sendMessage("buffer-title-changed", buffer=i)
      buff.session.sound.play("create_timeline.ogg")
     elif tl_type == "followers":
      if usr["followers_count"] == 0:
@@ -838,14 +848,19 @@ class Controller(object):
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (usr["id_str"],), buff.session, buff.session.db["user_name"], user_id=usr["id_str"])
+     try:
+      tl.start_stream()
+     except TwythonAuthError:
+      commonMessageDialogs.unauthorized()
+      return
      pos=self.view.search("followers_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Followers for {}").format(dlg.get_user()), pos=pos)
-     tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
      buff.session.settings["other_buffers"]["followers_timelines"].append(usr["id_str"])
      buff.session.sound.play("create_timeline.ogg")
+     pub.sendMessage("buffer-title-changed", buffer=i)
     elif tl_type == "friends":
      if usr["friends_count"] == 0:
       commonMessageDialogs.no_friends()
@@ -854,14 +869,19 @@ class Controller(object):
       commonMessageDialogs.timeline_exist()
       return
      tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (usr["id_str"],), buff.session, buff.session.db["user_name"], user_id=usr["id_str"])
+     try:
+      tl.start_stream()
+     except TwythonAuthError:
+      commonMessageDialogs.unauthorized()
+      return
      pos=self.view.search("friends_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Friends for {}").format(dlg.get_user()), pos=pos)
-     tl.start_stream()
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
      buff.session.settings["other_buffers"]["friends_timelines"].append(usr["id_str"])
      buff.session.sound.play("create_timeline.ogg")
+     pub.sendMessage("buffer-title-changed", buffer=i)
    else:
     commonMessageDialogs.user_not_exist()
   buff.session.settings.write()
@@ -1311,7 +1331,24 @@ class Controller(object):
   log.debug("starting buffers... Session %s" % (session.session_id,))
   for i in self.buffers:
    if i.session == session and i.needs_init == True:
-    i.start_stream()
+    if hasattr(i, "finished_timeline") and i.finished_timeline == False:
+     change_title = True
+    else:
+     change_title = False
+    try:
+     i.start_stream()
+    except TwythonAuthError:
+     buff = self.view.search(i.name, i.account)
+     i.remove_buffer(force=True)
+     commonMessageDialogs.blocked_timeline()
+     if self.get_current_buffer() == i:
+      self.right()
+     self.view.delete_buffer(buff)
+     self.buffers.remove(i)
+     del i
+     continue
+    if change_title:
+     pub.sendMessage("buffer-title-changed", buffer=i)
   log.debug("Starting the streaming endpoint")
   session.start_streaming()
 
@@ -1490,9 +1527,19 @@ class Controller(object):
    getattr(self, action)()
 
  def restart_streams_(self, session):
-  for i in self.buffers:
+  for i in self.buffers[:]:
    if i.session != None and i.session.session_id == session:
-    i.start_stream()
+    try:
+     i.start_stream()
+    except TwythonAuthError:
+     buff = self.view.search(i.name, i.account)
+     i.remove_buffer(force=True)
+     commonMessageDialogs.blocked_timeline()
+     if self.get_current_buffer() == i:
+      self.right()
+     self.view.delete_buffer(buff)
+     self.buffers.remove(i)
+     del i
 
  def update_buffer(self, *args, **kwargs):
   bf = self.get_current_buffer()

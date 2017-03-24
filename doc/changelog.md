@@ -9,6 +9,7 @@
 * The spellchecker module should select the right language when is set to "user default". ([#117](https://github.com/manuelcortez/TWBlue/issues/117))
 * Image description will be displayed in retweets too. ([#119](https://github.com/manuelcortez/TWBlue/issues/119))
 * When reading a long tweet, you shouldn't read strange entities anymore. ([#118](https://github.com/manuelcortez/twblue/issues/118))
+* TWBlue will not try to load timelines if the user is blocking you. ([#125](https://github.com/manuelcortez/twblue/issues/125))
 
 ## Changes in version 0.88 and 0.89
 
