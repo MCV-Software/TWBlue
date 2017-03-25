@@ -516,7 +516,8 @@ class baseBufferController(bufferController):
   if message.message.get_response() == widgetUtils.OK:
    params = {"_sound": "reply_send.ogg", "in_reply_to_status_id": id,}
    self.session.settings["mysc"]["twishort_enabled"] = message.message.long_tweet.GetValue()
-   self.session.settings["mysc"]["mention_all"] = message.message.mentionAll.GetValue()
+   if len(message.users) > 0:
+    self.session.settings["mysc"]["mention_all"] = message.message.mentionAll.GetValue()
    text = message.message.get_text()
    if twishort_enabled == False:
     excluded_ids = message.get_ids()
