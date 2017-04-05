@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-01-18 08:42+Hora estndar central (Mxico)\n"
-"PO-Revision-Date: 2017-01-23 00:08+0900\n"
+"PO-Revision-Date: 2017-01-25 12:07+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -232,7 +232,7 @@ msgstr "「{}」のタイムライン"
 #: ../src\build\lib\controller\mainController.py:345
 #: ../src\controller\mainController.py:350
 msgid "Likes timelines"
-msgstr "ほかのユーザーの「いいね」の一覧"
+msgstr "ほかのユーザーのいいね一覧"
 
 #: ../src\build\lib\controller\mainController.py:349
 #: ../src\build\lib\controller\mainController.py:814
@@ -240,7 +240,7 @@ msgstr "ほかのユーザーの「いいね」の一覧"
 #: ../src\controller\mainController.py:827
 #: ../src\controller\mainController.py:1516
 msgid "Likes for {}"
-msgstr "{}の「いいね」一覧"
+msgstr "{}のいいね一覧"
 
 #: ../src\build\lib\controller\mainController.py:354
 #: ../src\controller\mainController.py:359
@@ -535,7 +535,8 @@ msgstr "%sの情報"
 
 #: ../src\build\lib\controller\user.py:55
 #: ../src\build\lib\extra\AudioUploader\audioUploader.py:126
-#: ../src\controller\user.py:55 ../src\extra\AudioUploader\audioUploader.py:126
+#: ../src\controller\user.py:55
+#: ../src\extra\AudioUploader\audioUploader.py:126
 msgid "Discarded"
 msgstr "拒否されました"
 
@@ -601,7 +602,7 @@ msgstr "ツイート数: %s\n"
 
 #: ../src\build\lib\controller\user.py:111 ../src\controller\user.py:111
 msgid "Likes: %s"
-msgstr "「いいね」の数: %s"
+msgstr "いいね数: %s"
 
 #: ../src\build\lib\controller\userActionsController.py:75
 #: ../src\controller\userActionsController.py:75
@@ -828,12 +829,12 @@ msgstr "エラー"
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:10
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
 msgid "Tweet liked."
-msgstr "ツイートが「いいね」された"
+msgstr "ツイートがいいねされた"
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:11
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "Likes buffer updated."
-msgstr "「いいね」バッファが更新された"
+msgstr "いいねバッファが更新された"
 
 #: ../src\build\lib\extra\SoundsTutorial\soundsTutorial_constants.py:12
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
@@ -1789,12 +1790,12 @@ msgstr "ダイレクトメッセージを作成"
 #: ../src\build\lib\keystrokeEditor\constants.py:14
 #: ../src\keystrokeEditor\constants.py:14
 msgid "Like a tweet"
-msgstr "ツイートを「いいね」する"
+msgstr "ツイートをいいねする"
 
 #: ../src\build\lib\keystrokeEditor\constants.py:15
 #: ../src\keystrokeEditor\constants.py:15
 msgid "Unlike a tweet"
-msgstr "ツイートの「いいね」を解除"
+msgstr "ツイートのいいねを解除"
 
 #: ../src\build\lib\keystrokeEditor\constants.py:16
 #: ../src\keystrokeEditor\constants.py:16
@@ -2019,8 +2020,8 @@ msgid "Keystroke"
 msgstr "キーストローク"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:18
-#: ../src\build\lib\wxUI\dialogs\lists.py:19 ../src\keystrokeEditor\wx_ui.py:18
-#: ../src\wxUI\dialogs\lists.py:19
+#: ../src\build\lib\wxUI\dialogs\lists.py:19
+#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\lists.py:19
 msgid "Edit"
 msgstr "編集"
 
@@ -2031,8 +2032,9 @@ msgstr "現在の動作を実行"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:21
 #: ../src\build\lib\wxUI\dialogs\configuration.py:360
-#: ../src\build\lib\wxUI\dialogs\utils.py:37 ../src\keystrokeEditor\wx_ui.py:21
-#: ../src\wxUI\dialogs\configuration.py:375 ../src\wxUI\dialogs\utils.py:37
+#: ../src\build\lib\wxUI\dialogs\utils.py:37
+#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:375
+#: ../src\wxUI\dialogs\utils.py:37
 msgid "Close"
 msgstr "閉じる"
 
@@ -2069,9 +2071,9 @@ msgstr "キー名"
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:62
 #: ../src\build\lib\wxUI\dialogs\filters.py:37
 #: ../src\build\lib\wxUI\dialogs\find.py:18
-#: ../src\build\lib\wxUI\dialogs\utils.py:34 ../src\keystrokeEditor\wx_ui.py:65
-#: ../src\wxUI\dialogs\filters.py:37 ../src\wxUI\dialogs\find.py:18
-#: ../src\wxUI\dialogs\utils.py:34
+#: ../src\build\lib\wxUI\dialogs\utils.py:34
+#: ../src\keystrokeEditor\wx_ui.py:65 ../src\wxUI\dialogs\filters.py:37
+#: ../src\wxUI\dialogs\find.py:18 ../src\wxUI\dialogs\utils.py:34
 msgid "OK"
 msgstr "OK"
 
@@ -2220,7 +2222,7 @@ msgstr "「%s: @%s」のフォローを解除しました"
 
 #: ../src\build\lib\twitter\compose.py:125 ../src\twitter\compose.py:167
 msgid "You've liked: %s, %s"
-msgstr "%s %sを「いいね」しました"
+msgstr "%s %sをいいねしました"
 
 #: ../src\build\lib\twitter\compose.py:127 ../src\twitter\compose.py:169
 msgid "%s(@%s) has liked: %s"
@@ -2228,11 +2230,11 @@ msgstr "%s(@%s)が「%s」をいいねしました"
 
 #: ../src\build\lib\twitter\compose.py:129 ../src\twitter\compose.py:171
 msgid "You've unliked: %s, %s"
-msgstr "%s %sの「いいね」を解除しました"
+msgstr "%s %sのいいねを解除しました"
 
 #: ../src\build\lib\twitter\compose.py:130 ../src\twitter\compose.py:172
 msgid "%s(@%s) has unliked: %s"
-msgstr "%s(@%s)が%sの「いいね」を解除しました"
+msgstr "%s(@%s)が%sのいいねを解除しました"
 
 #: ../src\build\lib\twitter\compose.py:132 ../src\twitter\compose.py:174
 msgid "You've created the list %s"
@@ -2248,7 +2250,7 @@ msgstr "リスト「%s」をアップデートしました"
 
 #: ../src\build\lib\twitter\compose.py:138 ../src\twitter\compose.py:180
 msgid "You've added %s(@%s) to the list %s"
-msgstr "リスト「%s」に「%s: @%s」を追加しました"
+msgstr "「%s: @%s」をリスト「%s」に追加しました"
 
 #: ../src\build\lib\twitter\compose.py:139 ../src\twitter\compose.py:181
 msgid "%s(@%s) has added you to the list %s"
@@ -2420,8 +2422,9 @@ msgstr "トレンドの話題"
 msgid "Tweet about this trend"
 msgstr "このトレンドのツイート"
 
-#: ../src\build\lib\wxUI\buffers\trends.py:19 ../src\build\lib\wxUI\menus.py:90
-#: ../src\wxUI\buffers\trends.py:19 ../src\wxUI\menus.py:90
+#: ../src\build\lib\wxUI\buffers\trends.py:19
+#: ../src\build\lib\wxUI\menus.py:90 ../src\wxUI\buffers\trends.py:19
+#: ../src\wxUI\menus.py:90
 msgid "Search topic"
 msgstr "トピックを検索"
 
@@ -3521,7 +3524,7 @@ msgstr "いいね(&L)"
 #: ../src\build\lib\wxUI\menus.py:13 ../src\build\lib\wxUI\view.py:31
 #: ../src\wxUI\menus.py:13 ../src\wxUI\view.py:31
 msgid "&Unlike"
-msgstr "「いいね」を解除(&U)"
+msgstr "いいねを解除(&U)"
 
 #: ../src\build\lib\wxUI\menus.py:15 ../src\build\lib\wxUI\menus.py:33
 #: ../src\build\lib\wxUI\menus.py:49 ../src\wxUI\menus.py:15
@@ -3683,7 +3686,7 @@ msgstr "リストから削除(&E)"
 
 #: ../src\build\lib\wxUI\view.py:46 ../src\wxUI\view.py:47
 msgid "V&iew likes"
-msgstr "「いいね」の一覧を見る(&I)"
+msgstr "いいね一覧を見る(&I)"
 
 #: ../src\build\lib\wxUI\view.py:50 ../src\wxUI\view.py:51
 msgid "&Update buffer"

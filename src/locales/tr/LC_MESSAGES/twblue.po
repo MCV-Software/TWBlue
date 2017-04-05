@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2017-01-18 08:42+Hora estndar central (Mxico)\n"
-"PO-Revision-Date: 2017-01-22 00:09+0300\n"
+"PO-Revision-Date: 2017-03-31 23:28+0300\n"
 "Last-Translator: Burak <burakyuksek252@hotmail.com>\n"
 "Language-Team: Burak <burakyuksek252@hotmail.com>\n"
 "Language: tr\n"
@@ -125,12 +125,12 @@ msgstr "Boş"
 #: ../src\build\lib\wxUI\buffers\people.py:15
 #: ../src\controller\buffersController.py:843 ../src\wxUI\buffers\people.py:15
 msgid "Mention"
-msgstr "mention"
+msgstr "Yanıt"
 
 #: ../src\build\lib\controller\buffersController.py:794
 #: ../src\controller\buffersController.py:843
 msgid "Mention to %s"
-msgstr "mention:"
+msgstr "%s kişisine yanıt"
 
 #: ../src\build\lib\controller\mainController.py:262
 #: ../src\controller\mainController.py:267
@@ -533,8 +533,7 @@ msgstr "%s için kullanıcı bilgisi"
 
 #: ../src\build\lib\controller\user.py:55
 #: ../src\build\lib\extra\AudioUploader\audioUploader.py:126
-#: ../src\controller\user.py:55
-#: ../src\extra\AudioUploader\audioUploader.py:126
+#: ../src\controller\user.py:55 ../src\extra\AudioUploader\audioUploader.py:126
 msgid "Discarded"
 msgstr "Ses silindi"
 
@@ -2015,8 +2014,8 @@ msgid "Keystroke"
 msgstr "Kısayol"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:18
-#: ../src\build\lib\wxUI\dialogs\lists.py:19
-#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\lists.py:19
+#: ../src\build\lib\wxUI\dialogs\lists.py:19 ../src\keystrokeEditor\wx_ui.py:18
+#: ../src\wxUI\dialogs\lists.py:19
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -2027,9 +2026,8 @@ msgstr "Eylemi uygula"
 
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:21
 #: ../src\build\lib\wxUI\dialogs\configuration.py:360
-#: ../src\build\lib\wxUI\dialogs\utils.py:37
-#: ../src\keystrokeEditor\wx_ui.py:21 ../src\wxUI\dialogs\configuration.py:375
-#: ../src\wxUI\dialogs\utils.py:37
+#: ../src\build\lib\wxUI\dialogs\utils.py:37 ../src\keystrokeEditor\wx_ui.py:21
+#: ../src\wxUI\dialogs\configuration.py:375 ../src\wxUI\dialogs\utils.py:37
 msgid "Close"
 msgstr "Kapat"
 
@@ -2066,9 +2064,9 @@ msgstr "Tuş"
 #: ../src\build\lib\keystrokeEditor\wx_ui.py:62
 #: ../src\build\lib\wxUI\dialogs\filters.py:37
 #: ../src\build\lib\wxUI\dialogs\find.py:18
-#: ../src\build\lib\wxUI\dialogs\utils.py:34
-#: ../src\keystrokeEditor\wx_ui.py:65 ../src\wxUI\dialogs\filters.py:37
-#: ../src\wxUI\dialogs\find.py:18 ../src\wxUI\dialogs\utils.py:34
+#: ../src\build\lib\wxUI\dialogs\utils.py:34 ../src\keystrokeEditor\wx_ui.py:65
+#: ../src\wxUI\dialogs\filters.py:37 ../src\wxUI\dialogs\find.py:18
+#: ../src\wxUI\dialogs\utils.py:34
 msgid "OK"
 msgstr "Tamam"
 
@@ -2413,9 +2411,8 @@ msgstr "Trend konu"
 msgid "Tweet about this trend"
 msgstr "Bu trend hakkında tweetle"
 
-#: ../src\build\lib\wxUI\buffers\trends.py:19
-#: ../src\build\lib\wxUI\menus.py:90 ../src\wxUI\buffers\trends.py:19
-#: ../src\wxUI\menus.py:90
+#: ../src\build\lib\wxUI\buffers\trends.py:19 ../src\build\lib\wxUI\menus.py:90
+#: ../src\wxUI\buffers\trends.py:19 ../src\wxUI\menus.py:90
 msgid "Search topic"
 msgstr "Konu ara"
 
@@ -3696,7 +3693,7 @@ msgstr "Ses &denemesi"
 
 #: ../src\build\lib\wxUI\view.py:64 ../src\wxUI\view.py:70
 msgid "&What's new in this version?"
-msgstr "&Bu versiyondaki yenilikler"
+msgstr "&Bu sürümdeki yenilikler"
 
 #: ../src\build\lib\wxUI\view.py:65 ../src\wxUI\view.py:71
 msgid "&Check for updates"
