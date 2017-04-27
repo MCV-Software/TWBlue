@@ -53,8 +53,6 @@ class audioUploader(object):
    output.speak(_(u"Attaching..."))
    if self.dialog.get("services") == "SNDUp":
     url = "http://sndup.net/post.php"
-   elif self.dialog.get("services") == "TwUp":
-    url = "http://api.twup.me/post.json"
    self.uploaderFunction = transfer.Upload(obj=self, field='file', url=url, filename=self.file, completed_callback=completed_callback)
    pub.subscribe(self.uploaderDialog.update, "uploading")
    self.uploaderDialog.get_response(self.uploaderFunction.perform_threaded)
@@ -62,7 +60,6 @@ class audioUploader(object):
  def get_available_services(self):
   services = []
   services.append("SNDUp")
-  services.append("TwUp")
   return services
 
  def on_pause(self, *args, **kwargs):

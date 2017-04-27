@@ -2,7 +2,8 @@
 
 ## changes in this version
 
-* TWBlue will show an error when trying to open a timeline for a suspended user. ([#125](https://github.com/manuelcortez/TWBlue/issues/125))
+* TWBlue will show an error when trying to open a timeline for a suspended user. ([#128](https://github.com/manuelcortez/TWBlue/issues/128))
+* Removed TwUp as service as it no longer exists. ([#112](https://github.com/manuelcortez/TWBlue/issues/112))
 
 ## Changes in version 0.90
 
