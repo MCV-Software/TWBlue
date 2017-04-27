@@ -792,6 +792,9 @@ class Controller(object):
   if dlg.get_response() == widgetUtils.OK:
    usr = utils.if_user_exists(buff.session.twitter.twitter, dlg.get_user())
    if usr != None:
+    if usr == dlg.get_user():
+     commonMessageDialogs.suspended_user()
+     return
     if usr["protected"] == True:
      if usr["following"] == False:
       commonMessageDialogs.no_following()

@@ -2,6 +2,10 @@
 
 ## changes in this version
 
+* TWBlue will show an error when trying to open a timeline for a suspended user. ([#125](https://github.com/manuelcortez/TWBlue/issues/125))
+
+## Changes in version 0.90
+
 * Fixed a bug in long tweet parsing that was making TWBlue to disconnect the streaming API. ([#103](https://github.com/manuelcortez/TWBlue/issues/103))
 * Now OCR will work in images from retweets. It fixes a bug where TWBlue was detecting images but couldn't apply OCR on them. ([#105](https://github.com/manuelcortez/TWBlue/issues/105))
 * TWBlue won't try to load tweets already deleted, made with Twishort. Before, if someone posted a long tweet but deleted it in the Twishort's site, TWBlue was trying to load the tweet and it was causing problems in all the client. ([#113](https://github.com/manuelcortez/TWBlue/issues/113))

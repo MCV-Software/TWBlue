@@ -77,3 +77,6 @@ def unauthorized():
 
 def blocked_timeline():
  return wx.MessageDialog(None, _(u"You have been blocked from viewing  someone's content. In order to avoid conflicts with the full session, TWBlue will remove the affected timeline."), _(u"Error"), wx.OK).ShowModal()
+ 
+def suspended_user():
+ return wx.MessageDialog(None, _(u"TWBlue cannot load this timeline because the user has been suspended from Twitter."), _(u"Error"), wx.OK).ShowModal()
