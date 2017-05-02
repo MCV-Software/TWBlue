@@ -22,7 +22,8 @@ class Upload(object):
   self.local_filename=os.path.basename(self.filename)
   if isinstance(self.local_filename, unicode):
     self.local_filename=self.local_filename.encode(sys.getfilesystemencoding())
-  self.m = MultipartEncoder(fields={field:(self.local_filename, open(self.filename, 'rb'), "application/octet-stream")})
+  self.fin=open(self.filename, 'rb')
+  self.m = MultipartEncoder(fields={field:(self.local_filename, self.fin, "application/octet-stream")})
   self.monitor = MultipartEncoderMonitor(self.m, self.progress_callback)
   self.response=None
   self.obj=obj
@@ -66,6 +67,7 @@ class Upload(object):
  def complete_transfer(self):
   if callable(self.completed_callback):
    self.completed_callback(self.obj)
-
+  if hasattr(self,'fin') and callable(self.fin.close):
+   self.fin.close()
  def get_url(self):
   return self.response.json()['url']
