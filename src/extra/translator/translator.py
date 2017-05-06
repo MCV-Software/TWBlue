@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from microsofttranslator import Translator
+from yandex_translate import YandexTranslate
 
 def translate(text="", source="auto", target="en"):
-	t = Translator("twblue", "4KZA26GYIfmVAqQA/z16Hlucbg64hVSDTIpRjT2FqIU=")
-	return t.translate(text, target)
+	t = YandexTranslate("trnsl.1.1.20161012T134532Z.d01b9c75fc39aa74.7d1be75a5166a80583eeb020e10f584168da6bf7")
+	return t.translate(text, target)["text"][0]
 
 
 languages = {
