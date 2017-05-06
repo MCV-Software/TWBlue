@@ -36,11 +36,11 @@ class textLimited(widgetUtils.BaseDialog):
   return self.SetTitle(new_title)
 
  def enable_button(self, buttonName):
-  if getattr(self, buttonName):
+  if hasattr(self, buttonName):
    return getattr(self, buttonName).Enable()
 
  def disable_button(self, buttonName):
-  if getattr(self, buttonName):
+  if hasattr(self, buttonName):
    return getattr(self, buttonName).Disable()
 
  def onSelect(self, ev):
@@ -387,7 +387,7 @@ class viewTweet(widgetUtils.BaseDialog):
   self.text.SelectAll()
 
  def enable_button(self, buttonName):
-  if getattr(self, buttonName):
+  if hasattr(self, buttonName):
    return getattr(self, buttonName).Enable()
 
 class viewNonTweet(widgetUtils.BaseDialog):
