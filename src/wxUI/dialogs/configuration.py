@@ -304,7 +304,12 @@ class extrasPanel(wx.Panel):
   ocrLanguageSizer = wx.StaticBoxSizer(OCRBox, wx.HORIZONTAL)
   ocrLanguageSizer.Add(self.ocr_lang, 0, wx.ALL, 5)
   mainSizer.Add(ocrLanguageSizer, 0, wx.ALL, 5)
-
+  lbl = wx.StaticText(self, wx.NewId(), _(u"API Key for SndUp"))
+  self.sndup_apiKey = wx.TextCtrl(self, -1)
+  sndupBox = wx.BoxSizer(wx.HORIZONTAL)
+  sndupBox.Add(lbl, 0, wx.ALL, 5)
+  sndupBox.Add(self.sndup_apiKey, 0, wx.ALL, 5)
+  mainSizer.Add(sndupBox, 0, wx.ALL, 5)
   self.SetSizer(mainSizer)
 
 class configurationDialog(baseDialog.BaseWXDialog):
