@@ -7,6 +7,7 @@
 * Release audio files after uploading them. ([#130](https://github.com/manuelcortez/TWBlue/issues/130))
 * Now TWBlue will use Yandex's translation services instead microsoft translator. ([#132](https://github.com/manuelcortez/TWBlue/issues/132))
 * SndUp users will be able to upload audio in their account by using their API Key again. ([#134](https://github.com/manuelcortez/TWBlue/issues/134))
+* old tweets shouldn't be added as new items in buffers. ([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) ([#133](https://github.com/manuelcortez/TWBlue/issues/133))
 
 ## Changes in version 0.90
 

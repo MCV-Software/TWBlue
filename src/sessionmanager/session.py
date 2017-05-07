@@ -51,7 +51,7 @@ class Session(object):
     raise Exceptions.NotConfiguredSessionError("Not configured.")
   return f
 
- def order_buffer(self, name, data):
+ def order_buffer(self, name, data, ignore_older=True):
 
   """ Put the new items in the local database.
   name str: The name for the buffer stored in the dictionary.
@@ -59,9 +59,19 @@ class Session(object):
   returns the number of items that have been added in this execution"""
 
   num = 0
+  last_id = None
   if self.db.has_key(name) == False:
    self.db[name] = []
+  if ignore_older and len(self.db[name]) > 0:
+   if self.settings["general"]["reverse_timelines"] == False:
+    last_id = self.db[name][0]["id"]
+   else:
+    last_id = self.session.db[self.name][-1]["id"]
   for i in data:
+   if ignore_older and last_id != None:
+    if i["id"] < last_id:
+     log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, tweet["id"]))
+     continue
    if utils.find_item(i["id"], self.db[name]) == None and     utils.is_allowed(i, self.settings["twitter"]["ignored_clients"]) == True:
     try: i = self.check_quoted_status(i)
     except: pass
