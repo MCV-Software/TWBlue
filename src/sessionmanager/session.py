@@ -66,7 +66,7 @@ class Session(object):
    if self.settings["general"]["reverse_timelines"] == False:
     last_id = self.db[name][0]["id"]
    else:
-    last_id = self.db[self.name][-1]["id"]
+    last_id = self.db[name][-1]["id"]
   for i in data:
    if ignore_older and last_id != None:
     if i["id"] < last_id:
