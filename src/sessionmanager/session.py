@@ -472,8 +472,8 @@ class Session(object):
    if tweet["message"] == False: return False
    tweet["twishort"] = True
    for i in tweet["entities"]["user_mentions"]:
-    if "@%s" % (i["screen_name"] not in tweet["message"]) and i["screen_name"] != tweet["user"]["screen_name"]:
+    if "@%s" % (i["screen_name"]) not in tweet["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
      if tweet.has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
       continue
-      tweet["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
+     tweet["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
   return tweet
