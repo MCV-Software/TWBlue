@@ -217,6 +217,7 @@ class Controller(object):
   self.view = view.mainFrame()
   # buffers list.
   self.buffers = []
+  self.started = False
   # accounts list.
   self.accounts = []
   # This saves the current account (important in invisible mode)
@@ -265,6 +266,7 @@ class Controller(object):
    session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
   if config.app["app-settings"]["speak_ready_msg"] == True:
    output.speak(_(u"Ready"))
+  self.started = True
 
  def create_ignored_session_buffer(self, session):
   self.accounts.append(session.settings["twitter"]["user_name"])
@@ -1376,9 +1378,14 @@ class Controller(object):
 #  s.listen_stream_error()
 
  def check_connection(self):
+  if self.started == False:
+   return
   for i in session_.sessions:
-   if session_.sessions[i].is_logged == False: continue
-   session_.sessions[i].check_connection()
+   try:
+    if session_.sessions[i].is_logged == False: continue
+    session_.sessions[i].check_connection()
+   except TwythonError: # We shouldn't allow this function to die.
+    pass
 
  def create_new_buffer(self, buffer, account, create):
   buff = self.search_buffer("home_timeline", account)
