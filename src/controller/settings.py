@@ -167,6 +167,8 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("sound", "indicate_img", self.config["sound"]["indicate_img"])
   self.dialog.create_extras(OCRSpace.translatable_langs)
   self.dialog.set_value("extras", "sndup_apiKey", self.config["sound"]["sndup_api_key"])
+  language_index = OCRSpace.OcrLangs.index(self.config["mysc"]["ocr_language"])
+  self.dialog.extras.ocr_lang.SetSelection(language_index)
   self.dialog.realize()
   self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
   self.response = self.dialog.get_response()
@@ -202,7 +204,7 @@ class accountSettingsController(globalSettingsController):
   if set(self.config["general"]["buffer_order"]) != set(buffers_list) or buffers_list != self.config["general"]["buffer_order"]:
    self.needs_restart = True
    self.config["general"]["buffer_order"] = buffers_list
-
+  self.config["mysc"]["ocr_language"] = OCRSpace.OcrLangs[self.dialog.extras.ocr_lang.GetSelection()]
 #  if self.config["other_buffers"]["show_followers"] != self.dialog.get_value("buffers", "followers"):
 #   self.config["other_buffers"]["show_followers"] = self.dialog.get_value("buffers", "followers")
 #   pub.sendMessage("create-new-buffer", buffer="followers", account=self.user, create=self.config["other_buffers"]["show_followers"])
@@ -239,7 +241,7 @@ class accountSettingsController(globalSettingsController):
   self.config["sound"]["indicate_audio"] = self.dialog.get_value("sound", "indicate_audio")
   self.config["sound"]["indicate_geo"] = self.dialog.get_value("sound", "indicate_geo")
   self.config["sound"]["indicate_img"] = self.dialog.get_value("sound", "indicate_img")
-  self.config["sound"]["sndup_api_key"] = self.dialog.get_value("extras", "apiKey")
+  self.config["sound"]["sndup_api_key"] = self.dialog.get_value("extras", "sndup_apiKey")
   self.buffer.session.sound.config = self.config["sound"]
   self.buffer.session.sound.check_soundpack()
   self.config.write()

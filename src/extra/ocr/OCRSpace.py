@@ -15,12 +15,14 @@ class OCRSpaceAPI(object):
 		self.key = key
 		self.url = url
 
-	def OCR_URL(self, url, overlay=False):
+	def OCR_URL(self, url, overlay=False, lang=None):
 		payload = {
 			'url': url,
 			'isOverlayRequired': overlay,
 			'apikey': self.key,
 		}
+		if lang != None:
+			payload.update(language=lang)
 		r = requests.post(self.url, data=payload)
 		result = r.json()['ParsedResults'][0]
 		if result['ErrorMessage']:

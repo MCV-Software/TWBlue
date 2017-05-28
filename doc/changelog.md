@@ -9,6 +9,7 @@
 * SndUp users will be able to upload audio in their account by using their API Key again. ([#134](https://github.com/manuelcortez/TWBlue/issues/134))
 * old tweets shouldn't be added as new items in buffers. ([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) ([#133](https://github.com/manuelcortez/TWBlue/issues/133))
 * All mentionned users should be displayed correctly in Twishort's long tweets. ([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) ([#135](https://github.com/manuelcortez/TWBlue/issues/135))
+* It is possible to select a language for OCR service from the extras panel, in the account settings dialogue. You can, however, set this to detect automatically. OCR should work better in languages with special characters or non-english symbols. ([#107](https://github.com/manuelcortez/TWBlue/issues/107))
 * And more ([#136,](https://github.com/manuelcortez/TWBlue/issues/136))
 
 ## Changes in version 0.90

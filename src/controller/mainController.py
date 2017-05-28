@@ -1598,9 +1598,14 @@ class Controller(object):
     return
   else:
    img = tweet["entities"]["media"][0]
+  if buffer.session.settings["mysc"]["ocr_language"] != "":
+   ocr_lang = buffer.session.settings["mysc"]["ocr_language"]
+  else:
+   ocr_lang = ocr.OCRSpace.short_langs.index(tweet["lang"])
+   ocr_lang = ocr.OCRSpace.OcrLangs[ocr_lang]
   api = ocr.OCRSpace.OCRSpaceAPI()
   try:
-   text = api.OCR_URL(img["media_url"])
+   text = api.OCR_URL(img["media_url"], lang=ocr_lang)
   except ocr.OCRSpace.APIError as er:
    output.speak(_(u"Unable to extract text"))
    return
