@@ -37,9 +37,9 @@ class list(object):
   if self.system == "Windows":
    if reversed == False: items = self.list.GetItemCount()
    else: items = 0
-   self.list.InsertItem(items, str(item[0]))
+   self.list.InsertItem(items, unicode(item[0]))
    for i in xrange(1, len(self.columns)):
-    self.list.SetStringItem(items, i, item[i])
+    self.list.SetItem(items, i, unicode(item[i]))
   else:
    self.list.Append(" ".join(item))
 
@@ -85,5 +85,5 @@ class list(object):
   return item.GetText()
 
  def set_text_column(self, indexId, column, text):
-  item = self.list.SetStringItem(indexId, column, text)
+  item = self.list.SetItem(indexId, column, unicode(text))
   return item
