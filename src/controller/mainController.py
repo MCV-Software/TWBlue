@@ -987,6 +987,10 @@ class Controller(object):
   buff = self.view.search(buffer.name, buffer.account)
   answer = buffer.remove_buffer()
   if answer == False: return
+  if hasattr(buff, "timer"):
+   log.debug("Stopping timer...")
+   buff.timer.cancel()
+   log.debug("Timer cancelled.")
   self.right()
   self.view.delete_buffer(buff)
   buffer.session.sound.play("delete_timeline.ogg")

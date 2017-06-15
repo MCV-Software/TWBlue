@@ -996,7 +996,6 @@ class searchBufferController(baseBufferController):
    if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
     self.session.settings.write()
-    self.timer.cancel()
     if self.session.db.has_key(self.name):
      self.session.db.pop(self.name)
     return True
@@ -1042,7 +1041,6 @@ class searchPeopleBufferController(peopleBufferController):
    if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
     self.session.settings.write()
-    self.timer.cancel()
     if self.session.db.has_key(self.name):
      self.session.db.pop(self.name)
     return True
@@ -1115,7 +1113,6 @@ class trendsBufferController(bufferController):
    if self.name[:-3] in self.session.settings["other_buffers"]["trending_topic_buffers"]:
     self.session.settings["other_buffers"]["trending_topic_buffers"].remove(self.name[:-3])
     self.session.settings.write()
-    self.timer.cancel()
     if self.session.db.has_key(self.name):
      self.session.db.pop(self.name)
     return True
@@ -1214,7 +1211,8 @@ class conversationBufferController(searchBufferController):
   else:
    dlg = widgetUtils.YES
   if dlg == widgetUtils.YES:
-   self.timer.cancel()
+   if self.session.db.has_key(self.name):
+    self.session.db.pop(self.name)
    return True
   elif dlg == widgetUtils.NO:
    return False
