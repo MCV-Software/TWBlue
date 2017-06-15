@@ -16,13 +16,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
+from __future__ import absolute_import
 import keys
 import wx
-import wx_ui
+from . import wx_ui
 import widgetUtils
 import application
 from suds.client import Client
-import constants
+from . import constants
 
 class reportBug(object):
  def __init__(self, user_name):

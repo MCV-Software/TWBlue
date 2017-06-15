@@ -23,9 +23,9 @@ def find_urls_in_text(text):
 
 def find_urls (tweet):
  urls = []
- if tweet.has_key("message"):
+ if "message" in tweet:
   i = "message"
- elif tweet.has_key("full_text"):
+ elif "full_text" in tweet:
   i = "full_text"
  else:
   i = "text"
@@ -64,18 +64,18 @@ def is_audio(tweet):
     if i["text"] == "audio":
      return True
  except:
-  print tweet["entities"]["hashtags"]
+  print(tweet["entities"]["hashtags"])
   log.exception("Exception while executing is_audio hashtag algorithm")
 
 def is_geocoded(tweet):
- if tweet.has_key("coordinates") and tweet["coordinates"] != None:
+ if "coordinates" in tweet and tweet["coordinates"] != None:
   return True
 
 def is_media(tweet):
- if tweet["entities"].has_key("media") == False:
+ if ("media" in tweet["entities"]) == False:
   return False
  for i in tweet["entities"]["media"]:
-  if i.has_key("type") and i["type"] == "photo":
+  if "type" in i and i["type"] == "photo":
    return True
  return False
 
@@ -90,10 +90,10 @@ def get_all_mentioned(tweet, conf, field="screen_name"):
 
 def get_all_users(tweet, conf):
  string = []
- if tweet.has_key("retweeted_status"):
+ if "retweeted_status" in tweet:
   string.append(tweet["user"]["screen_name"])
   tweet = tweet["retweeted_status"]
- if tweet.has_key("sender"):
+ if "sender" in tweet:
   string.append(tweet["sender"]["screen_name"])
  else:
   if tweet["user"]["screen_name"] != conf["user_name"]:
@@ -129,9 +129,9 @@ def api_call(parent=None, call_name=None, preexec_message="", success="", succes
  return val
 
 def is_allowed(tweet, clients):
- if tweet.has_key("sender"): return True
+ if "sender" in tweet: return True
  allowed = True
- if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
+ if "retweeted_status" in tweet: tweet = tweet["retweeted_status"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
  for i in clients:
   if i.lower() == source.lower():
@@ -141,9 +141,9 @@ def is_allowed(tweet, clients):
 
 def twitter_error(error):
  if error.error_code == 403:
-  msg = _(u"Sorry, you are not authorised to see this status.")
+  msg = _("Sorry, you are not authorised to see this status.")
  elif error.error_code == 404:
-  msg = _(u"No status found with that ID")
+  msg = _("No status found with that ID")
  else:
-  msg = _(u"Error code {0}").format(error.error_code,)
+  msg = _("Error code {0}").format(error.error_code,)
  output.speak(msg)

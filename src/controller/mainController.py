@@ -5,22 +5,22 @@ import application
 if system == "Windows":
  from update import updater
  from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
- import settings
+ from . import settings
  from extra import SoundsTutorial, ocr
  import keystrokeEditor
  from keyboard_handler.wx_handler import WXKeyboardHandler
- import userActionsController
- import trendingTopics
- import user
- import listsController
+ from . import userActionsController
+ from . import trendingTopics
+ from . import user
+ from . import listsController
 # from issueReporter import issueReporter
 elif system == "Linux":
  from gtkUI import (view, commonMessageDialogs)
 from twitter import utils, compose
 from sessionmanager import manager, sessionManager
 
-import buffersController
-import messages
+from . import buffersController
+from . import messages
 from sessionmanager import session as session_
 from pubsub import pub
 import sound
@@ -263,9 +263,9 @@ class Controller(object):
    self.start_buffers(session_.sessions[i])
    self.set_buffer_positions(session_.sessions[i])
   if config.app["app-settings"]["play_ready_sound"] == True:
-   session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
+   session_.sessions[list(session_.sessions.keys())[0]].sound.play("ready.ogg")
   if config.app["app-settings"]["speak_ready_msg"] == True:
-   output.speak(_(u"Ready"))
+   output.speak(_("Ready"))
   self.started = True
 
  def create_ignored_session_buffer(self, session):
@@ -298,97 +298,97 @@ class Controller(object):
    if i == 'home':
     home = buffersController.baseBufferController(self.view.nb, "get_home_timeline", "home_timeline", session, session.db["user_name"], tweet_mode="extended")
     self.buffers.append(home)
-    self.view.insert_buffer(home.buffer, name=_(u"Home"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(home.buffer, name=_("Home"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'mentions':
     mentions = buffersController.baseBufferController(self.view.nb, "get_mentions_timeline", "mentions", session, session.db["user_name"], sound="mention_received.ogg", tweet_mode="extended")
     self.buffers.append(mentions)
-    self.view.insert_buffer(mentions.buffer, name=_(u"Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(mentions.buffer, name=_("Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'dm':
     dm = buffersController.baseBufferController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_dm", sound="dm_received.ogg", full_text=True)
     self.buffers.append(dm)
-    self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(dm.buffer, name=_("Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'sent_dm':
     sent_dm = buffersController.baseBufferController(self.view.nb, "get_sent_messages", "sent_direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_dm", full_text=True)
     self.buffers.append(sent_dm)
-    self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(sent_dm.buffer, name=_("Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'sent_tweets':
     sent_tweets = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "sent_tweets", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"], tweet_mode="extended")
     self.buffers.append(sent_tweets)
-    self.view.insert_buffer(sent_tweets.buffer, name=_(u"Sent tweets"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(sent_tweets.buffer, name=_("Sent tweets"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'favorites':
     favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", session, session.db["user_name"], tweet_mode="extended")
     self.buffers.append(favourites)
 
-    self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(favourites.buffer, name=_("Likes"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'followers':
     followers = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "followers", session, session.db["user_name"], screen_name=session.db["user_name"])
     self.buffers.append(followers)
-    self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(followers.buffer, name=_("Followers"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'friends':
     friends = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "friends", session, session.db["user_name"], screen_name=session.db["user_name"])
     self.buffers.append(friends)
-    self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(friends.buffer, name=_("Friends"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'blocks':
     blocks = buffersController.peopleBufferController(self.view.nb, "list_blocks", "blocked", session, session.db["user_name"])
     self.buffers.append(blocks)
-    self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(blocks.buffer, name=_("Blocked users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'muted':
     muted = buffersController.peopleBufferController(self.view.nb, "list_mutes", "muted", session, session.db["user_name"])
     self.buffers.append(muted)
-    self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(muted.buffer, name=_("Muted users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'events':
     events = buffersController.eventsBufferController(self.view.nb, "events", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"])
     self.buffers.append(events)
-    self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+    self.view.insert_buffer(events.buffer, name=_("Events"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   timelines = buffersController.emptyPanel(self.view.nb, "timelines", session.db["user_name"])
   self.buffers.append(timelines)
-  self.view.insert_buffer(timelines.buffer , name=_(u"Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  self.view.insert_buffer(timelines.buffer , name=_("Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["timelines"]:
    tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (i,), session, session.db["user_name"], bufferType=None, user_id=i, tweet_mode="extended")
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(i,), pos=self.view.search("timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_("Timeline for {}").format(i,), pos=self.view.search("timelines", session.db["user_name"]))
   favs_timelines = buffersController.emptyPanel(self.view.nb, "favs_timelines", session.db["user_name"])
   self.buffers.append(favs_timelines)
-  self.view.insert_buffer(favs_timelines.buffer , name=_(u"Likes timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  self.view.insert_buffer(favs_timelines.buffer , name=_("Likes timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["favourites_timelines"]:
    tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (i,), session, session.db["user_name"], bufferType=None, user_id=i, tweet_mode="extended")
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Likes for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_("Likes for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
    tl.timer.start()
   followers_timelines = buffersController.emptyPanel(self.view.nb, "followers_timelines", session.db["user_name"])
   self.buffers.append(followers_timelines)
-  self.view.insert_buffer(followers_timelines.buffer , name=_(u"Followers' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  self.view.insert_buffer(followers_timelines.buffer , name=_("Followers' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["followers_timelines"]:
    tl = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (i,), session, session.db["user_name"], user_id=i)
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Followers for {}").format(i,), pos=self.view.search("followers_timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_("Followers for {}").format(i,), pos=self.view.search("followers_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
    tl.timer.start()
   friends_timelines = buffersController.emptyPanel(self.view.nb, "friends_timelines", session.db["user_name"])
   self.buffers.append(friends_timelines)
-  self.view.insert_buffer(friends_timelines.buffer , name=_(u"Friends' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  self.view.insert_buffer(friends_timelines.buffer , name=_("Friends' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["friends_timelines"]:
    tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (i,), session, session.db["user_name"], user_id=i)
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Friends for {}").format(i,), pos=self.view.search("friends_timelines", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_("Friends for {}").format(i,), pos=self.view.search("friends_timelines", session.db["user_name"]))
    tl.timer = RepeatingTimer(300, tl.start_stream)
    tl.timer.start()
   lists = buffersController.emptyPanel(self.view.nb, "lists", session.db["user_name"])
   self.buffers.append(lists)
-  self.view.insert_buffer(lists.buffer , name=_(u"Lists"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  self.view.insert_buffer(lists.buffer , name=_("Lists"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["lists"]:
    tl = buffersController.listBufferController(self.view.nb, "get_list_statuses", "%s-list" % (i,), session, session.db["user_name"], bufferType=None, list_id=utils.find_list(i, session.db["lists"]), tweet_mode="extended")
    session.lists.append(tl)
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(i), pos=self.view.search("lists", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_("List for {}").format(i), pos=self.view.search("lists", session.db["user_name"]))
   searches = buffersController.emptyPanel(self.view.nb, "searches", session.db["user_name"])
   self.buffers.append(searches)
-  self.view.insert_buffer(searches.buffer , name=_(u"Searches"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+  self.view.insert_buffer(searches.buffer , name=_("Searches"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["tweet_searches"]:
    tl = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (i,), session, session.db["user_name"], bufferType="searchPanel", q=i, tweet_mode="extended")
    self.buffers.append(tl)
-   self.view.insert_buffer(tl.buffer, name=_(u"Search for {}").format(i), pos=self.view.search("searches", session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_("Search for {}").format(i), pos=self.view.search("searches", session.db["user_name"]))
    tl.timer = RepeatingTimer(180, tl.start_stream)
    tl.timer.start()
   for i in session.settings["other_buffers"]["trending_topic_buffers"]:
@@ -398,12 +398,12 @@ class Controller(object):
    self.buffers.append(buffer)
    buffer.timer = RepeatingTimer(300, buffer.start_stream)
    buffer.timer.start()
-   self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   self.view.insert_buffer(buffer.buffer, name=_("Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
 
  def set_buffer_positions(self, session):
   "Sets positions for buffers if values exist in the database."
   for i in self.buffers:
-   if i.account == session.db["user_name"] and session.db.has_key(i.name+"_pos") and hasattr(i.buffer,'list'):
+   if i.account == session.db["user_name"] and i.name+"_pos" in session.db and hasattr(i.buffer,'list'):
     i.buffer.list.select_item(session.db[str(i.name+"_pos")])
 
  def logout_account(self, session_id):
@@ -451,7 +451,7 @@ class Controller(object):
    search.start_stream(mandatory=True)
    pos=self.view.search("searches", buffer.session.db["user_name"])
    self.insert_buffer(search, pos)
-   self.view.insert_buffer(search.buffer, name=_(u"Search for {}").format(term), pos=pos)
+   self.view.insert_buffer(search.buffer, name=_("Search for {}").format(term), pos=pos)
    search.timer = RepeatingTimer(180, search.start_stream)
    search.timer.start()
   dlg.Destroy()
@@ -470,18 +470,18 @@ class Controller(object):
    return
   page = self.get_current_buffer()
   if not hasattr(page.buffer, "list"):
-   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
+   output.speak(_("No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   count = page.buffer.list.get_count()
   if count < 1:
-   output.speak(_(u"Empty buffer."), True)
+   output.speak(_("Empty buffer."), True)
    return
   start = page.buffer.list.get_selected()
-  for i in xrange(start, count):
+  for i in range(start, count):
    if string.lower() in page.buffer.list.get_text_column(i, 1).lower():
     page.buffer.list.select_item(i)
     return output.speak(page.get_message(), True)
-  output.speak(_(u"{0} not found.").format(string,), True)
+  output.speak(_("{0} not found.").format(string,), True)
 
  def seekLeft(self, *args, **kwargs):
   try:
@@ -526,7 +526,7 @@ class Controller(object):
    users = utils.get_all_users(tweet, buff.session.db)
   else:
    users = [tweet["screen_name"]]
-  dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
+  dlg = dialogs.utils.selectUserDialog(_("Select the user"), users)
   if dlg.get_response() == widgetUtils.OK:
    user = dlg.get_user()
   else:
@@ -541,7 +541,7 @@ class Controller(object):
    users = utils.get_all_users(tweet, buff.session.db)
   else:
    users = [tweet["screen_name"]]
-  dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
+  dlg = dialogs.utils.selectUserDialog(_("Select the user"), users)
   if dlg.get_response() == widgetUtils.OK:
    user = dlg.get_user()
   else:
@@ -568,7 +568,7 @@ class Controller(object):
    users = utils.get_all_users(tweet, buff.session.db)
   else:
    users = [tweet["screen_name"]]
-  dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
+  dlg = dialogs.utils.selectUserDialog(_("Select the user"), users)
   if dlg.get_response() == widgetUtils.OK:
    user = dlg.get_user()
   else:
@@ -818,7 +818,7 @@ class Controller(object):
       return
      pos=self.view.search("timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
-     self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
+     self.view.insert_buffer(tl.buffer, name=_("Timeline for {}").format(dlg.get_user()), pos=pos)
      buff.session.settings["other_buffers"]["timelines"].append(usr["id_str"])
      pub.sendMessage("buffer-title-changed", buffer=tl)
      pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
@@ -838,7 +838,7 @@ class Controller(object):
       return
      pos=self.view.search("favs_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
-     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Likes for {}").format(dlg.get_user()), pos=pos)
+     self.view.insert_buffer(buffer=tl.buffer, name=_("Likes for {}").format(dlg.get_user()), pos=pos)
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
      buff.session.settings["other_buffers"]["favourites_timelines"].append(usr["id_str"])
@@ -859,7 +859,7 @@ class Controller(object):
       return
      pos=self.view.search("followers_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
-     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Followers for {}").format(dlg.get_user()), pos=pos)
+     self.view.insert_buffer(buffer=tl.buffer, name=_("Followers for {}").format(dlg.get_user()), pos=pos)
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
      buff.session.settings["other_buffers"]["followers_timelines"].append(usr["id_str"])
@@ -880,7 +880,7 @@ class Controller(object):
       return
      pos=self.view.search("friends_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
-     self.view.insert_buffer(buffer=tl.buffer, name=_(u"Friends for {}").format(dlg.get_user()), pos=pos)
+     self.view.insert_buffer(buffer=tl.buffer, name=_("Friends for {}").format(dlg.get_user()), pos=pos)
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
      buff.session.settings["other_buffers"]["friends_timelines"].append(usr["id_str"])
@@ -900,7 +900,7 @@ class Controller(object):
   pos=self.view.search("searches", buffer.session.db["user_name"])
 #  self.buffers.append(search)
   self.insert_buffer(search, pos)
-  self.view.insert_buffer(search.buffer, name=_(u"Conversation with {0}").format(user), pos=pos)
+  self.view.insert_buffer(search.buffer, name=_("Conversation with {0}").format(user), pos=pos)
   search.timer = RepeatingTimer(300, search.start_stream)
   search.timer.start()
 
@@ -927,7 +927,7 @@ class Controller(object):
    buffer = buffersController.trendsBufferController(self.view.nb, "%s_tt" % (woeid,), buff.session, buff.account, woeid)
    buffer.searchfunction = self.search
    pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"])
-   self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (trends.get_string()), pos=pos)
+   self.view.insert_buffer(buffer.buffer, name=_("Trending topics for %s") % (trends.get_string()), pos=pos)
    self.buffers.append(buffer)
    buffer.start_stream()
    buffer.timer = RepeatingTimer(300, buffer.start_stream)
@@ -945,11 +945,11 @@ class Controller(object):
     if event == None: output.speak(address[0].__str__().decode("utf-8"))
     else: self.view.show_address(address[0].__str__().decode("utf-8"))
    else:
-    output.speak(_(u"There are no coordinates in this tweet"))
+    output.speak(_("There are no coordinates in this tweet"))
   except GeocoderError:
-   output.speak(_(u"There are no results for the coordinates in this tweet"))
+   output.speak(_("There are no results for the coordinates in this tweet"))
   except ValueError:
-   output.speak(_(u"Error decoding coordinates. Try again later."))
+   output.speak(_("Error decoding coordinates. Try again later."))
   except KeyError:
    pass
   except AttributeError:
@@ -964,11 +964,11 @@ class Controller(object):
     address = geocoder.reverse_geocode(y, x)
     dlg = commonMessageDialogs.view_geodata(address[0].__str__())
    else:
-    output.speak(_(u"There are no coordinates in this tweet"))
+    output.speak(_("There are no coordinates in this tweet"))
   except GeocoderError:
-   output.speak(_(u"There are no results for the coordinates in this tweet"))
+   output.speak(_("There are no results for the coordinates in this tweet"))
   except ValueError:
-   output.speak(_(u"Error decoding coordinates. Try again later."))
+   output.speak(_("Error decoding coordinates. Try again later."))
   except KeyError:
    pass
   except AttributeError:
@@ -1029,7 +1029,7 @@ class Controller(object):
  def up(self, *args, **kwargs):
   page = self.get_current_buffer()
   if not hasattr(page.buffer, "list"):
-   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
+   output.speak(_("No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   position = page.buffer.list.get_selected()
   index = position-1
@@ -1048,7 +1048,7 @@ class Controller(object):
  def down(self, *args, **kwargs):
   page = self.get_current_buffer()
   if not hasattr(page.buffer, "list"):
-   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
+   output.speak(_("No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   position = page.buffer.list.get_selected()
   index = position+1
@@ -1067,7 +1067,7 @@ class Controller(object):
   buff = self.view.get_current_buffer_pos()
   buffer = self.get_current_buffer()
   if not hasattr(buffer.buffer, "list"):
-   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
+   output.speak(_("No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   if buff == self.get_first_buffer(buffer.account) or buff == 0:
    self.view.change_buffer(self.get_last_buffer(buffer.account))
@@ -1077,16 +1077,16 @@ class Controller(object):
   buffer = self.get_current_buffer()
   if self.showing == True: buffer.buffer.set_focus_in_list()
   try:
-   msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
+   msg = _("%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
-   msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
+   msg = _("%s. Empty") % (self.view.get_buffer_text(),)
   output.speak(msg, True)
 
  def right(self, *args, **kwargs):
   buff = self.view.get_current_buffer_pos()
   buffer = self.get_current_buffer()
   if not hasattr(buffer.buffer, "list"):
-   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
+   output.speak(_("No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   if buff == self.get_last_buffer(buffer.account) or buff+1 == self.view.get_buffer_count():
    self.view.change_buffer(self.get_first_buffer(buffer.account))
@@ -1096,9 +1096,9 @@ class Controller(object):
   buffer = self.get_current_buffer()
   if self.showing == True: buffer.buffer.set_focus_in_list()
   try:
-   msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
+   msg = _("%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
-   msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
+   msg = _("%s. Empty") % (self.view.get_buffer_text(),)
   output.speak(msg, True)
 
  def next_account(self, *args, **kwargs):
@@ -1111,15 +1111,15 @@ class Controller(object):
   self.current_account = account
   buff = self.view.search("home_timeline", account)
   if buff == None:
-   output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
+   output.speak(_("{0}: This account is not logged into Twitter.").format(account), True)
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
   if self.showing == True: buffer.buffer.set_focus_in_list()
   try:
-   msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
+   msg = _("%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
-   msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
+   msg = _("%s. Empty") % (self.view.get_buffer_text(),)
   output.speak(msg, True)
 
  def previous_account(self, *args, **kwargs):
@@ -1132,15 +1132,15 @@ class Controller(object):
   self.current_account = account
   buff = self.view.search("home_timeline", account)
   if buff == None:
-   output.speak(_(u"{0}: This account is not logged into twitter.").format(account), True)
+   output.speak(_("{0}: This account is not logged into twitter.").format(account), True)
    return
   self.view.change_buffer(buff)
   buffer = self.get_current_buffer()
   if self.showing == True: buffer.buffer.set_focus_in_list()
   try:
-   msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
+   msg = _("%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
   except:
-   msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
+   msg = _("%s. Empty") % (self.view.get_buffer_text(),)
   output.speak(msg, True)
 
  def go_home(self):
@@ -1235,7 +1235,7 @@ class Controller(object):
   buffer = self.search_buffer("mentions", user)
   if buffer == None: return
   play_sound = "mention_received.ogg"
-  message = _(u"One mention from %s ") % (data["user"]["name"])
+  message = _("One mention from %s ") % (data["user"]["name"])
   if "mentions"  not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound, message=message)
   buffer.add_new_item(data)
@@ -1244,7 +1244,7 @@ class Controller(object):
   buffer = self.search_buffer("direct_messages", user)
   if buffer == None: return
   play_sound = "dm_received.ogg"
-  message = _(u"New direct message")
+  message = _("New direct message")
   if "direct_messages"  not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound, message=message)
   buffer.add_new_item(data)
@@ -1324,7 +1324,7 @@ class Controller(object):
   play_sound = "tweet_timeline.ogg"
   if "%s-timeline" % (who,) not in buffer.session.settings["other_buffers"]["muted_buffers"] and buffer.session.settings["sound"]["session_mute"] == False:
    self.notify(buffer.session, play_sound=play_sound)
-   output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
+   output.speak(_("One tweet from %s") % (data["user"]["name"]))
   buffer.add_new_item(data)
 
  def manage_item_in_list(self, data, user, where):
@@ -1333,7 +1333,7 @@ class Controller(object):
   play_sound = "list_tweet.ogg"
   if "%s" % (where,) not in buffer.session.settings["other_buffers"]["muted_buffers"] and buffer.session.settings["sound"]["session_mute"] == False:
    self.notify(buffer.session, play_sound=play_sound)
-   output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
+   output.speak(_("One tweet from %s") % (data["user"]["name"]))
   buffer.add_new_item(data)
 
  def start_buffers(self, session):
@@ -1397,43 +1397,43 @@ class Controller(object):
    if buffer == "favourites":
     favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"])
     self.buffers.append(favourites)
-    self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    self.view.insert_buffer(favourites.buffer, name=_("Likes"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     favourites.start_stream()
    if buffer == "followers":
     followers = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "followers", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
     self.buffers.append(followers)
-    self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    self.view.insert_buffer(followers.buffer, name=_("Followers"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     followers.start_stream()
    elif buffer == "friends":
     friends = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "friends", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
     self.buffers.append(friends)
-    self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    self.view.insert_buffer(friends.buffer, name=_("Friends"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     friends.start_stream()
    elif buffer == "blocked":
     blocks = buffersController.peopleBufferController(self.view.nb, "list_blocks", "blocked", buff.session, buff.session.db["user_name"])
     self.buffers.append(blocks)
-    self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    self.view.insert_buffer(blocks.buffer, name=_("Blocked users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     blocks.start_stream()
    elif buffer == "muted":
     muted = buffersController.peopleBufferController(self.view.nb, "get_muted_users_list", "muted", buff.session, buff.session.db["user_name"])
     self.buffers.append(muted)
-    self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    self.view.insert_buffer(muted.buffer, name=_("Muted users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     muted.start_stream()
    elif buffer == "events":
     events = buffersController.eventsBufferController(self.view.nb, "events", buff.session, buff.session.db["user_name"], bufferType="dmPanel", screen_name=buff.session.db["user_name"])
     self.buffers.append(events)
-    self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
+    self.view.insert_buffer(events.buffer, name=_("Events"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
   elif create == False:
    self.destroy_buffer(buffer, buff.session.db["user_name"])
   elif buffer == "list":
    if create in buff.session.settings["other_buffers"]["lists"]:
-    output.speak(_(u"This list is already opened"), True)
+    output.speak(_("This list is already opened"), True)
     return
    tl = buffersController.listBufferController(self.view.nb, "get_list_statuses", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]))
    buff.session.lists.append(tl)
    pos=self.view.search("lists", buff.session.db["user_name"])
    self.insert_buffer(tl, pos)
-   self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(create), pos=self.view.search("lists", buff.session.db["user_name"]))
+   self.view.insert_buffer(tl.buffer, name=_("List for {}").format(create), pos=self.view.search("lists", buff.session.db["user_name"]))
    tl.start_stream()
    buff.session.settings["other_buffers"]["lists"].append(create)
    buff.session.settings.write()
@@ -1487,20 +1487,20 @@ class Controller(object):
   if hasattr(buffer, "session") and buffer.session == None: return
   if buffer.name not in buffer.session.settings["other_buffers"]["autoread_buffers"]:
    buffer.session.settings["other_buffers"]["autoread_buffers"].append(buffer.name)
-   output.speak(_(u"The auto-reading of new tweets is enabled for this buffer"), True)
+   output.speak(_("The auto-reading of new tweets is enabled for this buffer"), True)
   elif buffer.name in buffer.session.settings["other_buffers"]["autoread_buffers"]:
    buffer.session.settings["other_buffers"]["autoread_buffers"].remove(buffer.name)
-   output.speak(_(u"The auto-reading of new tweets is disabled for this buffer"), True)
+   output.speak(_("The auto-reading of new tweets is disabled for this buffer"), True)
   buffer.session.settings.write()
 
  def toggle_session_mute(self, *args, **kwargs):
   buffer = self.get_best_buffer()
   if buffer.session.settings["sound"]["session_mute"] == False:
    buffer.session.settings["sound"]["session_mute"] = True
-   output.speak(_(u"Session mute on"), True)
+   output.speak(_("Session mute on"), True)
   elif buffer.session.settings["sound"]["session_mute"] == True:
    buffer.session.settings["sound"]["session_mute"] = False
-   output.speak(_(u"Session mute off"), True)
+   output.speak(_("Session mute off"), True)
   buffer.session.settings.write()
 
  def toggle_buffer_mute(self, *args, **kwargs):
@@ -1508,10 +1508,10 @@ class Controller(object):
   if hasattr(buffer, "session") and buffer.session == None: return
   if buffer.name not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    buffer.session.settings["other_buffers"]["muted_buffers"].append(buffer.name)
-   output.speak(_(u"Buffer mute on"), True)
+   output.speak(_("Buffer mute on"), True)
   elif buffer.name in buffer.session.settings["other_buffers"]["muted_buffers"]:
    buffer.session.settings["other_buffers"]["muted_buffers"].remove(buffer.name)
-   output.speak(_(u"Buffer mute off"), True)
+   output.speak(_("Buffer mute off"), True)
   buffer.session.settings.write()
 
  def view_documentation(self, *args, **kwargs):
@@ -1534,7 +1534,7 @@ class Controller(object):
 
  def copy_to_clipboard(self, *args, **kwargs):
   output.copy(self.get_current_buffer().get_message())
-  output.speak(_(u"Copied"))
+  output.speak(_("Copied"))
 
  def repeat_item(self, *args, **kwargs):
   output.speak(self.get_current_buffer().get_message())
@@ -1561,13 +1561,13 @@ class Controller(object):
  def update_buffer(self, *args, **kwargs):
   bf = self.get_current_buffer()
   if not hasattr(bf, "start_stream"):
-   output.speak(_(u"Unable to update this buffer."))
+   output.speak(_("Unable to update this buffer."))
    return
   else:
-   output.speak(_(u"Updating buffer..."))
+   output.speak(_("Updating buffer..."))
    n = bf.start_stream(mandatory=True)
    if n != None:
-    output.speak(_(u"{0} items retrieved").format(n,))
+    output.speak(_("{0} items retrieved").format(n,))
 
  def on_tweet_deleted(self, data):
   id = data["delete"]["status"]["id"]
@@ -1577,28 +1577,28 @@ class Controller(object):
 
  def buffer_title_changed(self, buffer):
   if "-timeline" in buffer.name:
-   title = _(u"Timeline for {}").format(buffer.username,)
+   title = _("Timeline for {}").format(buffer.username,)
   elif "-favorite" in buffer.name:
-   title = _(u"Likes for {}").format(buffer.username,)
+   title = _("Likes for {}").format(buffer.username,)
   elif "-followers" in buffer.name:
-   title = _(u"Followers for {}").format(buffer.username,)
+   title = _("Followers for {}").format(buffer.username,)
   elif "-friends" in buffer.name:
-   title = _(u"Friends for {}").format(buffer.username,)
+   title = _("Friends for {}").format(buffer.username,)
   buffer_index = self.view.search(buffer.name, buffer.account)
   self.view.set_page_title(buffer_index, title)
 
  def ocr_image(self, *args, **kwargs):
   buffer = self.get_current_buffer()
   if hasattr(buffer, "get_right_tweet") == False:
-   output.speak(_(u"Invalid buffer"))
+   output.speak(_("Invalid buffer"))
    return
   tweet = buffer.get_tweet()
-  if tweet.has_key("entities") == False or tweet["entities"].has_key("media") == False:
-   output.speak(_(u"This tweet doesn't contain images"))
+  if ("entities" in tweet) == False or ("media" in tweet["entities"]) == False:
+   output.speak(_("This tweet doesn't contain images"))
    return
   if len(tweet["entities"]["media"]) > 1:
-   image_list = [_(u"Picture {0}").format(i,) for i in xrange(0, len(tweet["entities"]["media"]))]
-   dialog = dialogs.urlList.urlList(title=_(u"Select the picture"))
+   image_list = [_("Picture {0}").format(i,) for i in range(0, len(tweet["entities"]["media"]))]
+   dialog = dialogs.urlList.urlList(title=_("Select the picture"))
    if dialog.get_response() == widgetUtils.OK:
     img = tweet["entities"]["media"][dialog.get_item()]
    else:
@@ -1614,7 +1614,7 @@ class Controller(object):
   try:
    text = api.OCR_URL(img["media_url"], lang=ocr_lang)
   except ocr.OCRSpace.APIError as er:
-   output.speak(_(u"Unable to extract text"))
+   output.speak(_("Unable to extract text"))
    return
   msg = messages.viewTweet(text["ParsedText"], [], False)
 

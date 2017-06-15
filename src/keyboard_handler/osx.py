@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from AppKit import *
 from PyObjCTools import AppHelper
 from Carbon.CarbonEvt import RegisterEventHotKey, GetApplicationEventTarget
@@ -5,7 +6,7 @@ from Carbon.Events import cmdKey, controlKey
 import struct
 from threading import Thread
 
-from main import KeyboardHandler
+from .main import KeyboardHandler
 
 kEventHotKeyPressedSubtype = 6
 kEventHotKeyReleasedSubtype = 9
@@ -35,9 +36,9 @@ class OSXKeyboardHandler(KeyboardHandler):
  #replacements
  #Modifier keys:
   for index, item in enumerate(key[0:-1]):
-   if self.replacement_mods.has_key(item):
+   if item in self.replacement_mods:
     key[index] = self.replacement_mods[item]
-  if self.replacement_keys.has_key(key[-1]):
+  if key[-1] in self.replacement_keys:
    key[-1] = self.replacement_keys[key[-1]]
   elif len(key[-1])==1:
    key[-1] = ord(str(key[-1]))-36

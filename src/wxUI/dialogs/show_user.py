@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import wx
-import baseDialog
+from . import baseDialog
 
 class showUserProfile(baseDialog.BaseWXDialog):
  def __init__(self):

@@ -1,4 +1,5 @@
-from main import KeyboardHandler
+from __future__ import absolute_import
+from .main import KeyboardHandler
 import threading
 import thread
 import pyatspi
@@ -21,7 +22,7 @@ Unknown modifiers will return ValueError."""
    lst.remove(item)
 #end if
  if len(lst) > 1: #more than one key, parse error
-  raise ValueError, 'unknown modifier %s' % lst[0]
+  raise ValueError('unknown modifier %s' % lst[0])
  return (m, lst[0].lower())
 class AtspiThread(threading.Thread):
  def run(self):

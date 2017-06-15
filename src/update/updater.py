@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import application
-import update
+from . import update
 import platform
 import logging
 import output
 from requests.exceptions import ConnectionError
-from wxUpdater import *
+from .wxUpdater import *
 logger = logging.getLogger("updater")
 
 def do_update(endpoint=application.update_url):

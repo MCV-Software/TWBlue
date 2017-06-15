@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import wx
 from multiplatform_widgets import widgets
-from base import basePanel
+from .base import basePanel
 
 class peoplePanel(basePanel):
  """ Buffer used to show people."""

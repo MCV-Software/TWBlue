@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import wx
-from utils import *
+from .utils import *
 import widgetUtils
 
 class UploadDialog(widgetUtils.BaseDialog):

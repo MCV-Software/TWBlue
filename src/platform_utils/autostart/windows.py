@@ -1,3 +1,4 @@
+from __future__ import print_function
 import _winreg
 import os
 import sys
@@ -31,7 +32,7 @@ def getAutoStart(app_name):
 
 def setAutoStart(app_name, enable=True):
  """Configures automatic startup for the application, if the enable argument is set to True. If set to False, deletes the application AutoStart value."""
- print paths.get_executable()
+ print(paths.get_executable())
  if getAutoStart(app_name) == enable:
   return
  key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER, RUN_REGKEY, 0, _winreg.KEY_WRITE)

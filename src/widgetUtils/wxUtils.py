@@ -1,4 +1,5 @@
 import wx
+from wx import adv
 import paths
 import languageHandler
 import sys
@@ -52,8 +53,8 @@ NOTEBOOK_PAGE_CHANGED = wx.EVT_TREEBOOK_PAGE_CHANGED
 RADIOBUTTON = wx.EVT_RADIOBUTTON
 
 # Taskbar mouse clicks.
-TASKBAR_RIGHT_CLICK = wx.EVT_TASKBAR_RIGHT_DOWN
-TASKBAR_LEFT_CLICK = wx.EVT_TASKBAR_LEFT_DOWN
+TASKBAR_RIGHT_CLICK = adv.EVT_TASKBAR_RIGHT_DOWN
+TASKBAR_LEFT_CLICK = adv.EVT_TASKBAR_LEFT_DOWN
 
 def exit_application():
 	""" Closes the current window cleanly. """

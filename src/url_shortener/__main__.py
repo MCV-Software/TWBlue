@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 from functools import wraps
-import shorteners
+from . import shorteners
 
 
 def service_selecter (func):
@@ -26,6 +27,7 @@ def unshorten (url, service=None, **kwargs):
 
 def default_service ():
  return shorteners.AcortameShortener
+
 
 def find_service (service, **kwargs):
  for i in shorteners.__all__:

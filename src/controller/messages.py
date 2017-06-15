@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 import platform
-import attach
+from . import attach
 system = platform.system()
 import widgetUtils
 import output
@@ -45,18 +45,18 @@ class basicTweet(object):
    self.message.set_text(msg)
    self.text_processor()
    self.message.text_focus()
-   output.speak(_(u"Translated"))
+   output.speak(_("Translated"))
   else:
    return
 
  def shorten(self, event=None):
   urls = utils.find_urls_in_text(self.message.get_text())
   if len(urls) == 0:
-   output.speak(_(u"There's no URL to be shortened"))
+   output.speak(_("There's no URL to be shortened"))
    self.message.text_focus()
   elif len(urls) == 1:
    self.message.set_text(self.message.get_text().replace(urls[0], url_shortener.shorten(urls[0])))
-   output.speak(_(u"URL shortened"))
+   output.speak(_("URL shortened"))
    self.text_processor()
    self.message.text_focus()
   elif len(urls) > 1:
@@ -64,18 +64,18 @@ class basicTweet(object):
    list_urls.populate_list(urls)
    if list_urls.get_response() == widgetUtils.OK:
     self.message.set_text(self.message.get_text().replace(urls[list_urls.get_item()], url_shortener.shorten(list_urls.get_string())))
-    output.speak(_(u"URL shortened"))
+    output.speak(_("URL shortened"))
     self.text_processor()
     self.message.text_focus()
 
  def unshorten(self, event=None):
   urls = utils.find_urls_in_text(self.message.get_text())
   if len(urls) == 0:
-   output.speak(_(u"There's no URL to be expanded"))
+   output.speak(_("There's no URL to be expanded"))
    self.message.text_focus()
   elif len(urls) == 1:
    self.message.set_text(self.message.get_text().replace(urls[0], url_shortener.unshorten(urls[0])))
-   output.speak(_(u"URL expanded"))
+   output.speak(_("URL expanded"))
    self.text_processor()
    self.message.text_focus()
   elif len(urls) > 1:
@@ -83,7 +83,7 @@ class basicTweet(object):
    list_urls.populate_list(urls)
    if list_urls.get_response() == widgetUtils.OK:
     self.message.set_text(self.message.get_text().replace(urls[list_urls.get_item()], url_shortener.unshorten(list_urls.get_string())))
-    output.speak(_(u"URL expanded"))
+    output.speak(_("URL expanded"))
     self.text_processor()
     self.message.text_focus()
 
@@ -95,11 +95,11 @@ class basicTweet(object):
    self.message.disable_button("shortenButton")
    self.message.disable_button("unshortenButton")
   if self.message.get("long_tweet") == False:
-   self.message.set_title(_(u"%s - %s of %d characters") % (self.title, len(self.message.get_text()), self.max))
+   self.message.set_title(_("%s - %s of %d characters") % (self.title, len(self.message.get_text()), self.max))
    if len(self.message.get_text()) > self.max:
     self.session.sound.play("max_length.ogg")
   else:
-   self.message.set_title(_(u"%s - %s characters") % (self.title, len(self.message.get_text())))
+   self.message.set_title(_("%s - %s characters") % (self.title, len(self.message.get_text())))
 
  def spellcheck(self, event=None):
   text = self.message.get_text()
@@ -118,7 +118,7 @@ class basicTweet(object):
     self.message.set_text(self.message.get_text()+url+" #audio")
     self.text_processor()
    else:
-    output.speak(_(u"Unable to upload the audio"))
+    output.speak(_("Unable to upload the audio"))
    dlg.cleanup()
   dlg = audioUploader.audioUploader(self.session.settings, completed_callback)
   self.message.text_focus()
@@ -165,14 +165,14 @@ class reply(tweet):
 
  def get_ids(self):
   excluded_ids  = ""
-  for i in xrange(0, len(self.message.checkboxes)):
+  for i in range(0, len(self.message.checkboxes)):
    if self.message.checkboxes[i].GetValue() == False:
     excluded_ids = excluded_ids + "{0},".format(self.ids[i],)
   return excluded_ids
 
  def get_people(self):
   people  = ""
-  for i in xrange(0, len(self.message.checkboxes)):
+  for i in range(0, len(self.message.checkboxes)):
    if self.message.checkboxes[i].GetValue() == True:
     people = people + "{0} ".format(self.message.checkboxes[i].GetLabel(),)
   return people
@@ -196,27 +196,27 @@ class viewTweet(basicTweet):
   if is_tweet == True:
    image_description = []
    text = ""
-   for i in xrange(0, len(tweetList)):
+   for i in range(0, len(tweetList)):
     # tweets with message keys are longer tweets, the message value is the full messaje taken from twishort.
-    if tweetList[i].has_key("message") and tweetList[i]["is_quote_status"] == False:
+    if "message" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
      value = "message"
     else:
      value = "full_text"
-    if tweetList[i].has_key("retweeted_status") and tweetList[i]["is_quote_status"] == False:
-     if tweetList[i].has_key("message") == False:
+    if "retweeted_status" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
+     if ("message" in tweetList[i]) == False:
       text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["full_text"])
      else:
       text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i][value])
     else:
      text = text + " @%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i][value])
     # tweets with extended_entities could include image descriptions.
-    if tweetList[i].has_key("extended_entities") and tweetList[i]["extended_entities"].has_key("media"):
+    if "extended_entities" in tweetList[i] and "media" in tweetList[i]["extended_entities"]:
      for z in tweetList[i]["extended_entities"]["media"]:
-      if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+      if "ext_alt_text" in z and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
-    if tweetList[i].has_key("retweeted_status") and tweetList[i]["retweeted_status"].has_key("extended_entities") and tweetList[i]["retweeted_status"]["extended_entities"].has_key("media"):
+    if "retweeted_status" in tweetList[i] and "extended_entities" in tweetList[i]["retweeted_status"] and "media" in tweetList[i]["retweeted_status"]["extended_entities"]:
      for z in tweetList[i]["retweeted_status"]["extended_entities"]["media"]:
-      if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+      if "ext_alt_text" in z and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
    # set rt and likes counters.
    rt_count = str(tweet["retweet_count"])
@@ -224,25 +224,25 @@ class viewTweet(basicTweet):
    # Gets the client from where this tweet was made.
    source = str(re.sub(r"(?s)<.*?>", "", tweet["source"].encode("utf-8")))
    if text == "":
-    if tweet.has_key("message"):
+    if "message" in tweet:
      value = "message"
     else:
      value = "full_text"
-    if tweet.has_key("retweeted_status"):
-     if tweet.has_key("message") == False:
+    if "retweeted_status" in tweet:
+     if ("message" in tweet) == False:
       text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["full_text"])
      else:
       text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet[value])
     else:
      text = tweet[value]
    text = self.clear_text(text)
-   if tweet.has_key("extended_entities") and tweet["extended_entities"].has_key("media"):
+   if "extended_entities" in tweet and "media" in tweet["extended_entities"]:
     for z in tweet["extended_entities"]["media"]:
-     if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+     if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
-   if tweet.has_key("retweeted_status") and tweet["retweeted_status"].has_key("extended_entities") and tweet["retweeted_status"]["extended_entities"].has_key("media"):
+   if "retweeted_status" in tweet and "extended_entities" in tweet["retweeted_status"] and "media" in tweet["retweeted_status"]["extended_entities"]:
     for z in tweet["retweeted_status"]["extended_entities"]["media"]:
-     if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+     if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
    self.message = message.viewTweet(text, rt_count, favs_count, source.decode("utf-8"))
    self.message.set_title(len(text))

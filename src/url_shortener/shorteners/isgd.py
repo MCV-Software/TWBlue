@@ -1,6 +1,6 @@
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import requests
-from url_shortener import URLShortener
+from .url_shortener import URLShortener
 
 
 class IsgdShortener (URLShortener):
@@ -10,7 +10,7 @@ class IsgdShortener (URLShortener):
 
  def _shorten (self, url):
   answer = url
-  api = requests.get ("http://is.gd/api.php?longurl=" + urllib.quote(url))
+  api = requests.get ("http://is.gd/api.php?longurl=" + urllib.parse.quote(url))
   if api.status_code == 200:
    answer = api.text
   return answer

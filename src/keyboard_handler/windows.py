@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 import win32api
 import win32con
 
-from main import KeyboardHandler
+from .main import KeyboardHandler
 
 class WindowsKeyboardHandler(KeyboardHandler):
 

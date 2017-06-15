@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import sys
 import threading
 import time
 import logging
-from utils import convert_bytes
+from .utils import convert_bytes
 from pubsub import pub
 log = logging.getLogger("extra.AudioUploader.transfer")
 from requests_toolbelt.multipart.encoder import MultipartEncoder, MultipartEncoderMonitor

@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import config
 import random
 import BaseHTTPServer
 import webbrowser
 from twython import Twython, TwythonError
 from keys import keyring
-import authorisationHandler
+from . import authorisationHandler
 from requests import certs
 import logging
 log = logging.getLogger("sessionTwitter")
