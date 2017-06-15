@@ -978,7 +978,7 @@ class searchBufferController(baseBufferController):
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
    log.debug("Function: %s" % (self.function,))
 #  try:
-   val = self.session.search(self.name, *self.args, **self.kwargs)
+   val = self.session.search(self.name, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
 #  except:
 #   return None
    num = self.session.order_buffer(self.name, val)
@@ -1002,6 +1002,39 @@ class searchBufferController(baseBufferController):
   elif dlg == widgetUtils.NO:
    return False
 
+ def get_more_items(self):
+  elements = []
+  if self.session.settings["general"]["reverse_timelines"] == False:
+   last_id = self.session.db[self.name][0]["id"]
+  else:
+   last_id = self.session.db[self.name][-1]["id"]
+  try:
+   items = self.session.search(self.name, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
+  except TwythonError as e:
+   output.speak(e.message, True)
+  for i in items:
+   if utils.is_allowed(i, self.session.settings["twitter"]["ignored_clients"]) == True and utils.find_item(i["id"], self.session.db[self.name]) == None:
+    i = self.session.check_quoted_status(i)
+    i = self.session.check_long_tweet(i)
+    elements.append(i)
+    if self.session.settings["general"]["reverse_timelines"] == False:
+     self.session.db[self.name].insert(0, i)
+    else:
+     self.session.db[self.name].append(i)
+  selection = self.buffer.list.get_selected()
+  if self.session.settings["general"]["reverse_timelines"] == False:
+   for i in elements:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+    self.buffer.list.insert_item(True, *tweet)
+  else:
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+    self.buffer.list.insert_item(False, *tweet)
+#   self.buffer.list.select_item(selection+elements)
+#  else:
+   self.buffer.list.select_item(selection)
+  output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
+
 class searchPeopleBufferController(peopleBufferController):
 
  def __init__(self, parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs):
@@ -1012,6 +1045,8 @@ class searchPeopleBufferController(peopleBufferController):
   self.args = args
   self.kwargs = kwargs
   self.function = function
+  if self.kwargs.has_key("page") == False:
+   self.kwargs["page"] = 1
 
  def start_stream(self, mandatory=False):
   # starts stream every 3 minutes.
@@ -1031,6 +1066,35 @@ class searchPeopleBufferController(peopleBufferController):
    if number_of_items > 0:
     self.session.sound.play("search_updated.ogg")
    return number_of_items
+
+ def get_more_items(self, *args, **kwargs):
+  self.kwargs["page"] += 1
+  try:
+   items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"],  *self.args, **self.kwargs)
+  except TwythonError as e:
+   output.speak(e.message, True)
+   return
+  for i in items:
+   if self.session.settings["general"]["reverse_timelines"] == False:
+    self.session.db[self.name]["items"].insert(0, i)
+   else:
+    self.session.db[self.name]["items"].append(i)
+  selected = self.buffer.list.get_selected()
+#  self.put_items_on_list(len(items))
+  if self.session.settings["general"]["reverse_timelines"] == True:
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    self.buffer.list.insert_item(True, *tweet)
+   self.buffer.list.select_item(selected)
+  else:
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    self.buffer.list.insert_item(True, *tweet)
+#   self.buffer.list.select_item(selection)
+#  else:
+#   self.buffer.list.select_item(selection-elements)
+  output.speak(_(u"%s items retrieved") % (len(items)), True)
+
 
  def remove_buffer(self, force=False):
   if force == False:

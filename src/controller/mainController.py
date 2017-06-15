@@ -386,7 +386,7 @@ class Controller(object):
   self.buffers.append(searches)
   self.view.insert_buffer(searches.buffer , name=_(u"Searches"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["tweet_searches"]:
-   tl = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (i,), session, session.db["user_name"], bufferType="searchPanel", q=i, count=session.settings["general"]["max_tweets_per_call"], tweet_mode="extended")
+   tl = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (i,), session, session.db["user_name"], bufferType="searchPanel", q=i, tweet_mode="extended")
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Search for {}").format(i), pos=self.view.search("searches", session.db["user_name"]))
    tl.timer = RepeatingTimer(180, tl.start_stream)
@@ -442,7 +442,7 @@ class Controller(object):
      buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
      buffer.session.settings.write()
      args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
-     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, count=buffer.session.settings["general"]["max_tweets_per_call"], **args)
+     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, **args)
     else:
      log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
      return
