@@ -1,7 +1,3 @@
-from __future__ import division
-from __future__ import absolute_import
-from future.builtins import str
-from future.builtins import range
 # copyright(c) Max Kolosov 2009 maxkolosov@inbox.ru
 # http://vosolok2008.narod.ru
 # BSD license
@@ -523,7 +519,7 @@ BASS_STREAMPROC_END = (-2147483648)# end of user stream flag
 
 # special STREAMPROCs
 def streamproc_dummy(handle, buffer, length, user): return 0
-def streamproc_push(handle, buffer, length, user): return -1
+streamproc_push = -1
 STREAMPROC_DUMMY = STREAMPROC(streamproc_dummy)# "dummy" stream
 STREAMPROC_PUSH = STREAMPROC(streamproc_push)# push stream
 
@@ -887,9 +883,13 @@ BASS_SetVolume = func_type(ctypes.c_byte, ctypes.c_float)(('BASS_SetVolume', bas
 BASS_GetVolume = func_type(ctypes.c_float)(('BASS_GetVolume', bass_module))
 
 #HPLUGIN BASSDEF(BASS_PluginLoad)(const char *file, DWORD flags);
-BASS_PluginLoad_ = func_type(HPLUGIN, ctypes.c_char_p, ctypes.c_ulong)(('BASS_PluginLoad', bass_module))
-def BASS_PluginLoad(path, flags):
-	return BASS_PluginLoad_(path.encode(sys.getfilesystemencoding()), flags)
+_BASS_PluginLoad = func_type(HPLUGIN, ctypes.c_char_p, ctypes.c_ulong)(('BASS_PluginLoad', bass_module))
+def BASS_PluginLoad(file, flags):
+    if type(file) != bytes:
+        file = file.encode(sys.getfilesystemencoding())
+    return _BASS_PluginLoad(file, flags)
+
+
 #BOOL BASSDEF(BASS_PluginFree)(HPLUGIN handle);
 BASS_PluginFree = func_type(ctypes.c_byte, HPLUGIN)(('BASS_PluginFree', bass_module))
 #const BASS_PLUGININFO *BASSDEF(BASS_PluginGetInfo)(HPLUGIN handle);

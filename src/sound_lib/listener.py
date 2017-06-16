@@ -1,9 +1,7 @@
-from __future__ import absolute_import
-from future.builtins import object
 from ctypes import pointer
 from functools import partial
-from .main import bass_call, update_3d_system
-from .external.pybass import *
+from main import bass_call, update_3d_system
+from external.pybass import *
 
 def _getter(base_prop, attr, obj):
  return getattr(getattr(obj, base_prop), attr)
