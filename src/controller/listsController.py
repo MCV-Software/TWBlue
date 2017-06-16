@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from builtins import object
 import widgetUtils
 import output
 from wxUI.dialogs import lists

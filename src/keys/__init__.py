@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from builtins import object
 import application
 import platform
-import exceptions
 from ctypes import c_char_p
 from libloader import load_library
 import paths

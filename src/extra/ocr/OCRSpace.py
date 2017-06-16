@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ original module taken and modified from https://github.com/ctoth/cloudOCR"""
+from builtins import object
 import requests
 
 translatable_langs = [_(u"Detect automatically"), _(u"Danish"), _(u"Dutch"), _(u"English"), _(u"Finnish"), _(u"French"), _(u"German"), _(u"Hungarian"), _(u"Korean"), _(u"Italian"), _(u"Japanese"), _(u"Polish"), _(u"Portuguese"), _(u"Russian"), _(u"Spanish"), _(u"Turkish")]

@@ -51,7 +51,7 @@ def hist(keys):
 def find_problems(hist):
  "Takes a histogram and returns a list of items occurring more than once."
  res=[]
- for k,v in hist.items():
+ for k,v in list(hist.items()):
   if v>1:
    res.append(k)
  return res

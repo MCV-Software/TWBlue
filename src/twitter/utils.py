@@ -64,7 +64,7 @@ def is_audio(tweet):
     if i["text"] == "audio":
      return True
  except:
-  print(tweet["entities"]["hashtags"])
+  print((tweet["entities"]["hashtags"]))
   log.exception("Exception while executing is_audio hashtag algorithm")
 
 def is_geocoded(tweet):

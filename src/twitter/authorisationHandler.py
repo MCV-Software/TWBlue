@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-import BaseHTTPServer
+from future import standard_library
+standard_library.install_aliases()
+import http.server
 import application
-from urlparse import urlparse, parse_qs
-from pubsub import pub
+from urllib.parse import urlparse, parse_qs
 
 logged = False
 verifier = None
  
-class handler(BaseHTTPServer.BaseHTTPRequestHandler, object):
+class handler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
         global logged
@@ -18,15 +19,5 @@ class handler(BaseHTTPServer.BaseHTTPRequestHandler, object):
         params = parse_qs(urlparse(self.path).query)
         global verifier
         verifier = params.get('oauth_verifier', [None])[0]
-        self.wfile.write(u"You have successfully logged into Twitter with {0}. You can close this window now.".format(application.name))
-        pub.sendMessage("authorisation-accepted")
-        pub.unsubscribe(self.cancelled, "authorisation-cancelled")
-        self.finish()
-
-    def __init__(self, *args, **kwargs):
-        pub.subscribe(self.cancelled, "authorisation-cancelled")
-        super(handler, self).__init__(*args, **kwargs)
-
-    def cancelled(self):
-        pub.unsubscribe(self.cancelled, "authorisation-cancelled")
+        self.wfile.write("You have successfully logged into Twitter with {0}. You can close this window now.".format(application.name))
         self.finish()

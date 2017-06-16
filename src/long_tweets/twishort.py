@@ -17,6 +17,7 @@
 #
 ############################################################
 from __future__ import print_function
+from builtins import range
 import requests
 import keys
 import logging
@@ -42,7 +43,7 @@ def is_long(tweet):
   # see https://github.com/manuelcortez/TWBlue/issues/103
   except TypeError:
    pass
- if long == False and "retweeted_status" in tweet:
+ if int == False and "retweeted_status" in tweet:
   for url in range(0, len(tweet["retweeted_status"]["entities"]["urls"])):
    try:
     if tweet["retweeted_status"]["entities"]["urls"][url] != None and "twishort.com" in tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"]:
@@ -51,7 +52,7 @@ def is_long(tweet):
     pass
    except TypeError:
     pass
- return long
+ return int
 
 def get_full_text(uri):
  try:

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from builtins import str
 import config
 from requests.auth import HTTPProxyAuth
 from twitter import utils

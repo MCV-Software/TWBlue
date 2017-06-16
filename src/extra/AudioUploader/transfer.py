@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import division
+from builtins import object
+from past.utils import old_div
 import sys
 import threading
 import time
@@ -21,7 +24,7 @@ class Upload(object):
   self.background_thread = None
   self.transfer_rate = 0
   self.local_filename=os.path.basename(self.filename)
-  if isinstance(self.local_filename, unicode):
+  if isinstance(self.local_filename, str):
     self.local_filename=self.local_filename.encode(sys.getfilesystemencoding())
   self.fin=open(self.filename, 'rb')
   self.m = MultipartEncoder(fields={field:(self.local_filename, self.fin, "application/octet-stream")})
@@ -44,11 +47,11 @@ class Upload(object):
    progress["percent"] = 0
    self.transfer_rate = 0
   else:
-   progress["percent"] = int((float(progress["current"]) / progress["total"]) * 100)
-   self.transfer_rate = progress["current"] / self.elapsed_time()
+   progress["percent"] = int((old_div(float(progress["current"]), progress["total"])) * 100)
+   self.transfer_rate = old_div(progress["current"], self.elapsed_time())
   progress["speed"] = '%s/s' % convert_bytes(self.transfer_rate)
   if self.transfer_rate:
-   progress["eta"] = (progress["total"] - progress["current"]) / self.transfer_rate
+   progress["eta"] = old_div((progress["total"] - progress["current"]), self.transfer_rate)
   else:
    progress["eta"] = 0
   pub.sendMessage("uploading", data=progress)

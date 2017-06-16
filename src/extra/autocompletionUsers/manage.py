@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 # -*- coding: utf-8 -*-
+from builtins import object
 from . import storage
 import widgetUtils
 from . import wx_manage

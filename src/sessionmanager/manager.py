@@ -1,6 +1,7 @@
 # -*- coding: cp1252 -*-
 #from config_utils import Configuration, ConfigurationResetException
 from __future__ import absolute_import
+from builtins import object
 import config
 import paths
 import os

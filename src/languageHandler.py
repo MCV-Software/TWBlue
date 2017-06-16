@@ -1,4 +1,4 @@
-import __builtin__
+import builtins
 import os
 import sys
 import ctypes
@@ -29,12 +29,12 @@ def localeNameToWindowsLCID(localeName):
 	func_LocaleNameToLCID=getattr(ctypes.windll.kernel32,'LocaleNameToLCID',None)
 	if func_LocaleNameToLCID is not None:
 		localeName=localeName.replace('_','-')
-		LCID=func_LocaleNameToLCID(unicode(localeName),0)
+		LCID=func_LocaleNameToLCID(str(localeName),0)
 	else: #Windows doesn't have this functionality, manually search Python's windows_locale dictionary for the LCID
 		localeName=locale.normalize(localeName)
 		if '.' in localeName:
 			localeName=localeName.split('.')[0]
-		LCList=[x[0] for x in locale.windows_locale.iteritems() if x[1]==localeName]
+		LCList=[x[0] for x in locale.windows_locale.items() if x[1]==localeName]
 		if len(LCList)>0:
 			LCID=LCList[0]
 		else:
@@ -98,7 +98,7 @@ def getAvailableLanguages():
 	# Translators: the label for the Windows default NVDA interface language.
 	d.append(_("User default"))
 	#return a zipped up version of both the lists (a list with tuples of locale,label)
-	return zip(l,d)
+	return list(zip(l,d))
 
 def makePgettext(translations):
 	"""Obtaina  pgettext function for use with a gettext translations instance.
@@ -108,15 +108,15 @@ def makePgettext(translations):
 	"""
 	if isinstance(translations, gettext.GNUTranslations):
 		def pgettext(context, message):
-			message = unicode(message)
+			message = str(message)
 			try:
 				# Look up the message with its context.
-				return translations._catalog[u"%s\x04%s" % (context, message)]
+				return translations._catalog["%s\x04%s" % (context, message)]
 			except KeyError:
 				return message
 	else:
 		def pgettext(context, message):
-			return unicode(message)
+			return str(message)
 	return pgettext
 
 def setLanguage(lang):
@@ -166,7 +166,7 @@ def setLanguage(lang):
 	except IOError:
 		trans=gettext.translation("twblue",fallback=True)
 		curLang="en"
-	trans.install(unicode=True)
+	trans.install()
 	# Install our pgettext function.
 #	__builtin__.__dict__["pgettext"] = makePgettext(trans)
 

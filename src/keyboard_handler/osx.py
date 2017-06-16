@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from builtins import str
 from AppKit import *
 from PyObjCTools import AppHelper
 from Carbon.CarbonEvt import RegisterEventHotKey, GetApplicationEventTarget

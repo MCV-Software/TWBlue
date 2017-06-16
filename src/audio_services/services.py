@@ -1,7 +1,7 @@
 from audio_services import matches_url
 import json
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 @matches_url('https://audioboom.com')
 def convert_audioboom(url):
@@ -13,14 +13,14 @@ def convert_audioboom(url):
 @matches_url ('https://soundcloud.com/')
 def convert_soundcloud (url):
  client_id = "df8113ca95c157b6c9731f54b105b473"
- permalink = urllib.urlopen ('http://api.soundcloud.com/resolve.json?client_id=%s&url=%s' %(client_id, url))
+ permalink = urllib.request.urlopen ('http://api.soundcloud.com/resolve.json?client_id=%s&url=%s' %(client_id, url))
  if permalink.getcode () == 404:
   permalink.close ()
   raise TypeError('%r is not a valid URL' % url)
  else:
   resolved_url = permalink.geturl ()
   permalink.close ()
- track_url = urllib.urlopen (resolved_url)
+ track_url = urllib.request.urlopen (resolved_url)
  track_data = json.loads (track_url.read ())
  track_url.close ()
  if track_data ['streamable']:
