@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """ The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
+from __future__ import absolute_import
 import urllib2
 import config
 import twitter
 from keys import keyring
-import session_exceptions as Exceptions
+from . import session_exceptions as Exceptions
 import paths
 import output
 import time
@@ -60,7 +61,7 @@ class Session(object):
 
   num = 0
   last_id = None
-  if self.db.has_key(name) == False:
+  if (name in self.db) == False:
    self.db[name] = []
   if ignore_older and len(self.db[name]) > 0:
    if self.settings["general"]["reverse_timelines"] == False:
@@ -90,7 +91,7 @@ class Session(object):
   returns the number of items that have been added in this execution"""
 
   num = 0
-  if self.db.has_key(name) == False:
+  if (name in self.db) == False:
    self.db[name] = {}
    self.db[name]["items"] = []
 #  if len(self.db[name]["items"]) > 0:
@@ -172,7 +173,7 @@ class Session(object):
   results = []
   data = getattr(self.twitter.twitter, update_function)(*args, **kwargs)
   if users == True:
-   if type(data) == dict and data.has_key("cursor"):
+   if type(data) == dict and "cursor" in data:
     self.db[name]["cursor"] = data["next_cursor"]
     for i in data["users"]: results.append(i)
    elif type(data) == list:
@@ -288,7 +289,7 @@ class Session(object):
   function str: A function to get the items."""
 
   last_id = -1
-  if self.db.has_key(name):
+  if name in self.db:
    try:
     if self.db[name][0]["id"] > self.db[name][-1]["id"]:
      last_id = self.db[name][0]["id"]
@@ -309,7 +310,7 @@ class Session(object):
 
   items_ = []
   try:
-   if self.db[name].has_key("cursor") and get_previous:
+   if "cursor" in self.db[name] and get_previous:
     cursor = self.db[name]["cursor"]
    else:
     cursor = -1
@@ -450,7 +451,7 @@ class Session(object):
 
  def get_quoted_tweet(self, tweet):
   quoted_tweet = tweet
-  if tweet.has_key("full_text"):
+  if "full_text" in tweet:
    value = "full_text"
   else:
    value = "text"
@@ -476,7 +477,7 @@ class Session(object):
    tweet["twishort"] = True
    for i in tweet["entities"]["user_mentions"]:
     if "@%s" % (i["screen_name"]) not in tweet["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
-     if tweet.has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+     if "retweeted_status" in tweet and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
       continue
      tweet["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
   return tweet

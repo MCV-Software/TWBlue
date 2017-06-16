@@ -1,7 +1,9 @@
+from __future__ import print_function
+from __future__ import absolute_import
 import functools
 import wx
 import platform
-from main import KeyboardHandler
+from .main import KeyboardHandler
 
 __all__ = ['WXKeyboardHandler', 'WXControlKeyboardHandler']
 
@@ -42,18 +44,18 @@ class BaseWXKeyboardHandler(KeyboardHandler):
     result -= 277
   elif len(key) == 1:
    result = ord(key.upper()) 
-  print "result: ", result
+  print("result: ", result)
   return result
 
 
 
 #try:
 if platform.system() == "Windows":
- from windows import WindowsKeyboardHandler as keyboard_handler
+ from .windows import WindowsKeyboardHandler as keyboard_handler
 elif platform.system() == "Linux":
- from linux import LinuxKeyboardHandler as keyboard_handler
+ from .linux import LinuxKeyboardHandler as keyboard_handler
 elif platform.system() == "Darwin":
- from osx import OSXKeyboardHandler as keyboard_handler
+ from .osx import OSXKeyboardHandler as keyboard_handler
 
 class WXKeyboardHandler(keyboard_handler):
  def __init__ (self, parent, *args, **kwargs):

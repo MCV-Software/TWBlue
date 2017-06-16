@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import platform
 system = platform.system()
-import utils
+from . import utils
 import re
 import htmlentitydefs
 import time
@@ -38,9 +39,9 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False):
    ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
   ts = tweet["created_at"]
- if tweet.has_key("message"):
+ if "message" in tweet:
   value = "message"
- elif tweet.has_key("full_text"):
+ elif "full_text" in tweet:
   value = "full_text"
  else:
   value = "text"
@@ -51,15 +52,15 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False):
  else:
   user = tweet["user"]["name"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
- if tweet.has_key("retweeted_status"):
-  if tweet.has_key("message") == False and tweet["retweeted_status"]["is_quote_status"] == False:
+ if "retweeted_status" in tweet:
+  if ("message" in tweet) == False and tweet["retweeted_status"]["is_quote_status"] == False:
    text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet["retweeted_status"][value]))
   elif tweet["retweeted_status"]["is_quote_status"]:
    text = "%s" % (StripChars(tweet[value]))
   else:
    text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet[value]))
 # if text[-1] in chars: text=text+"."
- if tweet.has_key("message") == False:
+ if ("message" in tweet) == False:
   urls = utils.find_urls_in_text(text)
   for url in range(0, len(urls)):
    try:
@@ -100,7 +101,7 @@ def compose_dm(tweet, db, relative_times, show_screen_names=False):
 
 def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
- if quoted_tweet.has_key("full_text"):
+ if "full_text" in quoted_tweet:
   value = "full_text"
  else:
   value = "text"
@@ -114,9 +115,9 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
  except KeyError: text = "%s" % (StripChars(quoted_tweet[value]))
  if text[-1] in chars: text=text+"."
  original_user = original_tweet["user"]["screen_name"]
- if original_tweet.has_key("message"):
+ if "message" in original_tweet:
   original_text = StripChars(original_tweet["message"])
- elif original_tweet.has_key("full_text"):
+ elif "full_text" in original_tweet:
   original_text = StripChars(original_tweet["full_text"])
  else:
    original_text = StripChars(original_tweet["text"])
@@ -133,7 +134,7 @@ def compose_followers_list(tweet, db, relative_times=True, show_screen_names=Fal
    ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
   ts = tweet["created_at"]
- if tweet.has_key("status"):
+ if "status" in tweet:
   if len(tweet["status"]) > 4 and system == "Windows":
    original_date2 = arrow.get(tweet["status"]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
    if relative_times:

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import logging
 log = logging.getLogger("extra.SpellChecker.spellChecker")
-import wx_ui
+from . import wx_ui
 import widgetUtils
 import output
 import config
@@ -9,7 +10,7 @@ import languageHandler
 from enchant.checker import SpellChecker
 from enchant.errors import DictNotFoundError
 from enchant import tokenize
-import twitterFilter
+from . import twitterFilter
 
 class spellChecker(object):
  def __init__(self, text, dictionary):
@@ -41,7 +42,7 @@ class spellChecker(object):
 
  def check(self):
   try:
-   self.checker.next()
+   next(self.checker)
    textToSay = _(u"Misspelled word: %s") % (self.checker.word,)
    context = u"... %s %s %s" % (self.checker.leading_context(10), self.checker.word, self.checker.trailing_context(10))
    self.dialog.set_title(textToSay)

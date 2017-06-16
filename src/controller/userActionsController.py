@@ -71,7 +71,7 @@ class userActionsController(object):
 
  def ignore_client(self, user):
   tweet = self.buffer.get_right_tweet()
-  if tweet.has_key("sender"):
+  if "sender" in tweet:
    output.speak(_(u"You can't ignore direct messages"))
    return
   client = re.sub(r"(?s)<.*?>", "", tweet["source"])

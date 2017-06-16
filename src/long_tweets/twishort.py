@@ -16,6 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
+from __future__ import print_function
 import requests
 import keys
 import logging
@@ -41,7 +42,7 @@ def is_long(tweet):
   # see https://github.com/manuelcortez/TWBlue/issues/103
   except TypeError:
    pass
- if long == False and tweet.has_key("retweeted_status"):
+ if long == False and "retweeted_status" in tweet:
   for url in range(0, len(tweet["retweeted_status"]["entities"]["urls"])):
    try:
     if tweet["retweeted_status"]["entities"]["urls"][url] != None and "twishort.com" in tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"]:
@@ -83,5 +84,5 @@ def create_tweet(user_token, user_secret, text, media=0):
  try:
   return response.json()["text_to_tweet"]
  except:
-  print "There was a problem creating a long tweet"
+  print("There was a problem creating a long tweet")
   return 0

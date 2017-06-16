@@ -26,7 +26,7 @@ class streamer(TwythonStreamer):
   return self.session.db["user_name"]
 
  def put_data(self, place, data):
-  if self.session.db.has_key(place):
+  if place in self.session.db:
    if utils.find_item(data["id"], self.session.db[place]) != None:
     log.error("duplicated tweet. Ignoring it...")
     return False
@@ -129,7 +129,7 @@ class streamer(TwythonStreamer):
     self.friends = data["friends"]
     pub.sendMessage("friends-receibed")
    elif "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
-    if data.has_key("extended_tweet"):
+    if "extended_tweet" in data:
      data["full_text"] = data["extended_tweet"]["full_text"]
      data["entities"] = data["extended_tweet"]["entities"]
 #     log.error(data["extended_tweet"])
@@ -141,7 +141,7 @@ class streamer(TwythonStreamer):
      d = self.put_data("home_timeline", data)
      if d != False:
       pub.sendMessage("item-in-home", data=data, user=self.get_user())
-   elif data.has_key("event"):
+   elif "event" in data:
     if "favorite" == data["event"] and "favorites" in self.session.settings["general"]["buffer_order"]:
      self.check_favs(data)
     elif "unfavorite" == data["event"] and "favorites" in self.session.settings["general"]["buffer_order"]:

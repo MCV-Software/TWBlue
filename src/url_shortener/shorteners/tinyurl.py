@@ -1,4 +1,5 @@
-from url_shortener import URLShortener
+from __future__ import absolute_import
+from .url_shortener import URLShortener
 import urllib
 class TinyurlShortener (URLShortener):
  def __init__(self, *args, **kwargs):

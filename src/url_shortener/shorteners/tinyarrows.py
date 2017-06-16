@@ -1,6 +1,7 @@
+from __future__ import absolute_import
 import urllib
 
-from url_shortener import URLShortener
+from .url_shortener import URLShortener
 
 class TinyArrowsShortener (URLShortener):
  def __init__ (self, *args, **kwargs):

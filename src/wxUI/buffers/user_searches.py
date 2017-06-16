@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import wx
-from tweet_searches import searchPanel
+from .tweet_searches import searchPanel
 from multiplatform_widgets import widgets
 
 class searchUsersPanel(searchPanel):

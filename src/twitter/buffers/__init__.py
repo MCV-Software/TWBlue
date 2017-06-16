@@ -1,1 +1,2 @@
-import stream, indibidual
+from __future__ import absolute_import
+from . import stream, indibidual

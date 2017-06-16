@@ -24,7 +24,7 @@ class URLShortener (object):
  def unshorten(self, url):
   working = urlparse(url)
   if not working.netloc:
-   raise TypeError, "Unable to parse URL."
+   raise TypeError("Unable to parse URL.")
   con = HTTPConnection(working.netloc)
   con.connect()
   con.request('GET', working.path)

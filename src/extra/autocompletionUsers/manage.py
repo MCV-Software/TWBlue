@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-import storage
+from __future__ import absolute_import
+# -*- coding: utf-8 -*-
+from . import storage
 import widgetUtils
-import wx_manage
+from . import wx_manage
 from wxUI import commonMessageDialogs
 
 class autocompletionManage(object):

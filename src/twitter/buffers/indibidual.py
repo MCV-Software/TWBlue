@@ -41,7 +41,7 @@ class timelinesStreamer(TwythonStreamer):
    try:
     i.users.index(data["user"]["id"])
     usr = data["in_reply_to_user_id"]
-    if (usr != None and usr in self.friends) or data.has_key("retweeted_status"):
+    if (usr != None and usr in self.friends) or "retweeted_status" in data:
      data = self.session.check_quoted_status(data)
      data = self.session.check_long_tweet(data)
      if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s" % (i.name,)].append(data)
@@ -62,7 +62,7 @@ class timelinesStreamer(TwythonStreamer):
  def on_success(self, data):
 #  try:
   if "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
-   if data.has_key("extended_tweet"):
+   if "extended_tweet" in data:
     data["full_text"] = data["extended_tweet"]["full_text"]
 #    data["entities"] = data["extended_tweet"]["entities"]
 #    log.error(data["extended_entities"])

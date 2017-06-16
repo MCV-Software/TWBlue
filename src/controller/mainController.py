@@ -1,26 +1,27 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import platform
 system = platform.system()
 import application
 if system == "Windows":
  from update import updater
  from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
- import settings
+ from . import settings
  from extra import SoundsTutorial, ocr
  import keystrokeEditor
  from keyboard_handler.wx_handler import WXKeyboardHandler
- import userActionsController
- import trendingTopics
- import user
- import listsController
+ from . import userActionsController
+ from . import trendingTopics
+ from . import user
+ from . import listsController
 # from issueReporter import issueReporter
 elif system == "Linux":
  from gtkUI import (view, commonMessageDialogs)
 from twitter import utils, compose
 from sessionmanager import manager, sessionManager
 
-import buffersController
-import messages
+from . import buffersController
+from . import messages
 from sessionmanager import session as session_
 from pubsub import pub
 import sound
@@ -403,7 +404,7 @@ class Controller(object):
  def set_buffer_positions(self, session):
   "Sets positions for buffers if values exist in the database."
   for i in self.buffers:
-   if i.account == session.db["user_name"] and session.db.has_key(i.name+"_pos") and hasattr(i.buffer,'list'):
+   if i.account == session.db["user_name"] and i.name+"_pos" in session.db and hasattr(i.buffer,'list'):
     i.buffer.list.select_item(session.db[str(i.name+"_pos")])
 
  def logout_account(self, session_id):
@@ -1590,7 +1591,7 @@ class Controller(object):
    output.speak(_(u"Invalid buffer"))
    return
   tweet = buffer.get_tweet()
-  if tweet.has_key("entities") == False or tweet["entities"].has_key("media") == False:
+  if ("entities" in tweet) == False or ("media" in tweet["entities"]) == False:
    output.speak(_(u"This tweet doesn't contain images"))
    return
   if len(tweet["entities"]["media"]) > 1:

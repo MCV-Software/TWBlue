@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import time
 import platform
 if platform.system() == "Windows":
  import wx
  from wxUI import buffers, dialogs, commonMessageDialogs, menus
- import user
+ from . import user
 elif platform.system() == "Linux":
  from gi.repository import Gtk
  from gtkUI import buffers, dialogs, commonMessageDialogs
-import messages
+from . import messages
 import widgetUtils
 import arrow
 import webbrowser
@@ -269,7 +270,7 @@ class baseBufferController(bufferController):
   tweetsList = []
   tweet_id = tweet["id"]
   message = None
-  if tweet.has_key("message"):
+  if "message" in tweet:
    message = tweet["message"]
   try:
    tweet = self.session.twitter.twitter.show_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
@@ -363,7 +364,7 @@ class baseBufferController(bufferController):
     if self.name[:-9] in self.session.settings["other_buffers"]["timelines"]:
      self.session.settings["other_buffers"]["timelines"].remove(self.name[:-9])
      self.session.settings.write()
-     if self.session.db.has_key(self.name):
+     if self.name in self.session.db:
       self.session.db.pop(self.name)
      return True
    elif dlg == widgetUtils.NO:
@@ -376,7 +377,7 @@ class baseBufferController(bufferController):
    if dlg == widgetUtils.YES:
     if self.name[:-9] in self.session.settings["other_buffers"]["favourites_timelines"]:
      self.session.settings["other_buffers"]["favourites_timelines"].remove(self.name[:-9])
-     if self.session.db.has_key(self.name):
+     if self.name in self.session.db:
       self.session.db.pop(self.name)
      self.session.settings.write()
      return True
@@ -494,7 +495,7 @@ class baseBufferController(bufferController):
    self.show_menu(widgetUtils.MENU, pos=self.buffer.list.list.GetPosition())
 
  def get_tweet(self):
-  if self.session.db[self.name][self.buffer.list.get_selected()].has_key("retweeted_status"):
+  if "retweeted_status" in self.session.db[self.name][self.buffer.list.get_selected()]:
    tweet = self.session.db[self.name][self.buffer.list.get_selected()]["retweeted_status"]
   else:
    tweet = self.session.db[self.name][self.buffer.list.get_selected()]
@@ -509,7 +510,7 @@ class baseBufferController(bufferController):
   tweet = self.get_right_tweet()
   screen_name = tweet["user"]["screen_name"]
   id = tweet["id"]
-  twishort_enabled = tweet.has_key("twishort")
+  twishort_enabled = "twishort" in tweet
   users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
   ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
   message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users, ids=ids)
@@ -580,7 +581,7 @@ class baseBufferController(bufferController):
    self._retweet_with_comment(tweet, id)
 
  def _retweet_with_comment(self, tweet, id, comment=''):
-  if tweet.has_key("full_text"):
+  if "full_text" in tweet:
    comments = tweet["full_text"]
   else:
    comments = tweet["text"]
@@ -737,7 +738,7 @@ class listBufferController(baseBufferController):
   if dlg == widgetUtils.YES:
    if self.name[:-5] in self.session.settings["other_buffers"]["lists"]:
     self.session.settings["other_buffers"]["lists"].remove(self.name[:-5])
-    if self.session.db.has_key(self.name):
+    if self.name in self.session.db:
      self.session.db.pop(self.name)
     self.session.settings.write()
     return True
@@ -824,7 +825,7 @@ class peopleBufferController(baseBufferController):
    if dlg == widgetUtils.YES:
     if self.name[:-10] in self.session.settings["other_buffers"]["followers_timelines"]:
      self.session.settings["other_buffers"]["followers_timelines"].remove(self.name[:-10])
-     if self.session.db.has_key(self.name):
+     if self.name in self.session.db:
       self.session.db.pop(self.name)
      self.session.settings.write()
      return True
@@ -838,7 +839,7 @@ class peopleBufferController(baseBufferController):
    if dlg == widgetUtils.YES:
     if self.name[:-8] in self.session.settings["other_buffers"]["friends_timelines"]:
      self.session.settings["other_buffers"]["friends_timelines"].remove(self.name[:-8])
-     if self.session.db.has_key(self.name):
+     if self.name in self.session.db:
       self.session.db.pop(self.name)
      self.session.settings.write()
      return True
@@ -996,7 +997,7 @@ class searchBufferController(baseBufferController):
    if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
     self.session.settings.write()
-    if self.session.db.has_key(self.name):
+    if self.name in self.session.db:
      self.session.db.pop(self.name)
     return True
   elif dlg == widgetUtils.NO:
@@ -1045,7 +1046,7 @@ class searchPeopleBufferController(peopleBufferController):
   self.args = args
   self.kwargs = kwargs
   self.function = function
-  if self.kwargs.has_key("page") == False:
+  if ("page" in self.kwargs) == False:
    self.kwargs["page"] = 1
 
  def start_stream(self, mandatory=False):
@@ -1105,7 +1106,7 @@ class searchPeopleBufferController(peopleBufferController):
    if self.name[:-11] in self.session.settings["other_buffers"]["tweet_searches"]:
     self.session.settings["other_buffers"]["tweet_searches"].remove(self.name[:-11])
     self.session.settings.write()
-    if self.session.db.has_key(self.name):
+    if self.name in self.session.db:
      self.session.db.pop(self.name)
     return True
   elif dlg == widgetUtils.NO:
@@ -1177,7 +1178,7 @@ class trendsBufferController(bufferController):
    if self.name[:-3] in self.session.settings["other_buffers"]["trending_topic_buffers"]:
     self.session.settings["other_buffers"]["trending_topic_buffers"].remove(self.name[:-3])
     self.session.settings.write()
-    if self.session.db.has_key(self.name):
+    if self.name in self.session.db:
      self.session.db.pop(self.name)
     return True
   elif dlg == widgetUtils.NO:
@@ -1275,7 +1276,7 @@ class conversationBufferController(searchBufferController):
   else:
    dlg = widgetUtils.YES
   if dlg == widgetUtils.YES:
-   if self.session.db.has_key(self.name):
+   if self.name in self.session.db:
     self.session.db.pop(self.name)
    return True
   elif dlg == widgetUtils.NO:
