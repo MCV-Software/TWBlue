@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from builtins import str
+from builtins import range
+from builtins import object
 import re
 import platform
 from . import attach
@@ -172,14 +175,14 @@ class reply(tweet):
 
  def get_ids(self):
   excluded_ids  = ""
-  for i in xrange(0, len(self.message.checkboxes)):
+  for i in range(0, len(self.message.checkboxes)):
    if self.message.checkboxes[i].GetValue() == False:
     excluded_ids = excluded_ids + "{0},".format(self.ids[i],)
   return excluded_ids
 
  def get_people(self):
   people  = ""
-  for i in xrange(0, len(self.message.checkboxes)):
+  for i in range(0, len(self.message.checkboxes)):
    if self.message.checkboxes[i].GetValue() == True:
     people = people + "{0} ".format(self.message.checkboxes[i].GetLabel(),)
   return people
@@ -203,7 +206,7 @@ class viewTweet(basicTweet):
   if is_tweet == True:
    image_description = []
    text = ""
-   for i in xrange(0, len(tweetList)):
+   for i in range(0, len(tweetList)):
     # tweets with message keys are longer tweets, the message value is the full messaje taken from twishort.
     if "message" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
      value = "message"

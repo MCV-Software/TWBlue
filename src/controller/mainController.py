@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from builtins import str
+from builtins import range
+from builtins import object
 import platform
 system = platform.system()
 import application
@@ -264,7 +267,7 @@ class Controller(object):
    self.start_buffers(session_.sessions[i])
    self.set_buffer_positions(session_.sessions[i])
   if config.app["app-settings"]["play_ready_sound"] == True:
-   session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
+   session_.sessions[list(session_.sessions.keys())[0]].sound.play("ready.ogg")
   if config.app["app-settings"]["speak_ready_msg"] == True:
    output.speak(_(u"Ready"))
   self.started = True
@@ -478,7 +481,7 @@ class Controller(object):
    output.speak(_(u"Empty buffer."), True)
    return
   start = page.buffer.list.get_selected()
-  for i in xrange(start,count):
+  for i in range(start,count):
    page.buffer.list.select_item(i)
    if string.lower() in page.get_message().lower():
     return output.speak(page.get_message(), True)
@@ -1595,7 +1598,7 @@ class Controller(object):
    output.speak(_(u"This tweet doesn't contain images"))
    return
   if len(tweet["entities"]["media"]) > 1:
-   image_list = [_(u"Picture {0}").format(i,) for i in xrange(0, len(tweet["entities"]["media"]))]
+   image_list = [_(u"Picture {0}").format(i,) for i in range(0, len(tweet["entities"]["media"]))]
    dialog = dialogs.urlList.urlList(title=_(u"Select the picture"))
    if dialog.get_response() == widgetUtils.OK:
     img = tweet["entities"]["media"][dialog.get_item()]

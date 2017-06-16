@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+from __future__ import division
+from builtins import str
+from past.utils import old_div
+from builtins import object
 import os
 import webbrowser
 import sound_lib
@@ -49,7 +53,7 @@ class globalSettingsController(object):
   id = self.codes.index(config.app["app-settings"]["language"])
   self.kmfriendlies=[]
   self.kmnames=[]
-  for k,v in self.kmmap.items():
+  for k,v in list(self.kmmap.items()):
    self.kmfriendlies.append(k)
    self.kmnames.append(v)
   self.kmid=self.kmnames.index(config.app['app-settings']['load_keymap'])
@@ -235,7 +239,7 @@ class accountSettingsController(globalSettingsController):
     self.buffer.session.sound.output.set_device(self.buffer.session.sound.output.find_device_by_name(self.config["sound"]["output_device"]))
    except:
     self.config["sound"]["output_device"] = "default"
-  self.config["sound"]["volume"] = self.dialog.get_value("sound", "volumeCtrl")/100.0
+  self.config["sound"]["volume"] = old_div(self.dialog.get_value("sound", "volumeCtrl"),100.0)
   self.config["sound"]["session_mute"] = self.dialog.get_value("sound", "session_mute")
   self.config["sound"]["current_soundpack"] = self.dialog.sound.get("soundpack")
   self.config["sound"]["indicate_audio"] = self.dialog.get_value("sound", "indicate_audio")
@@ -280,7 +284,7 @@ class accountSettingsController(globalSettingsController):
   all_buffers['events']=_(u"Events")
   list_buffers = []
   hidden_buffers=[]
-  for i in all_buffers.keys():
+  for i in list(all_buffers.keys()):
    if i in self.config["general"]["buffer_order"]:
     list_buffers.append((i, all_buffers[i], True))
    else:

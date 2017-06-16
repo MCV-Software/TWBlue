@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from builtins import str
 import platform
 import os
 import sys
@@ -15,7 +16,7 @@ log = logging.getLogger("paths")
 def merge_paths(func):
  @wraps(func)
  def merge_paths_wrapper(*a):
-  return unicode(os.path.join(func(), *a))
+  return str(os.path.join(func(), *a))
  return merge_paths_wrapper
 
 @merge_paths

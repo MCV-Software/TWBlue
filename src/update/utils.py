@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 def convert_bytes(n):
  K, M, G, T, P = 1 << 10, 1 << 20, 1 << 30, 1 << 40, 1 << 50
  if   n >= P:
-  return '%.2fPb' % (float(n) / T)
+  return '%.2fPb' % (old_div(float(n), T))
  elif   n >= T:
-  return '%.2fTb' % (float(n) / T)
+  return '%.2fTb' % (old_div(float(n), T))
  elif n >= G:
-  return '%.2fGb' % (float(n) / G)
+  return '%.2fGb' % (old_div(float(n), G))
  elif n >= M:
-  return '%.2fMb' % (float(n) / M)
+  return '%.2fMb' % (old_div(float(n), M))
  elif n >= K:
-  return '%.2fKb' % (float(n) / K)
+  return '%.2fKb' % (old_div(float(n), K))
  else:
   return '%d' % n
 

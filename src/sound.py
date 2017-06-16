@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from builtins import range
+from builtins import object
 import sys
 import url_shortener
 import audio_services

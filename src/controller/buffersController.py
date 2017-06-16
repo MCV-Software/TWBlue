@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from builtins import str
+from builtins import range
+from builtins import object
 import time
 import platform
 if platform.system() == "Windows":
@@ -389,7 +392,7 @@ class baseBufferController(bufferController):
 
  def remove_tweet(self, id):
   if type(self.session.db[self.name]) == dict: return
-  for i in xrange(0, len(self.session.db[self.name])):
+  for i in range(0, len(self.session.db[self.name])):
    if self.session.db[self.name][i]["id"] == id:
     self.session.db[self.name].pop(i)
     self.remove_item(i)
@@ -606,7 +609,7 @@ class baseBufferController(bufferController):
    # fix this:
    original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
    ts = original_date.humanize(locale=languageHandler.getLanguage())
-   self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, unicode(ts))
+   self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, str(ts))
   if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
    self.session.sound.play("audio.ogg")
   if self.session.settings['sound']['indicate_geo'] and utils.is_geocoded(tweet):

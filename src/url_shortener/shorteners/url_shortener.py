@@ -1,5 +1,8 @@
-from httplib import HTTPConnection
-from urlparse import urlparse
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
+from http.client import HTTPConnection
+from urllib.parse import urlparse
 
 
 class URLShortener (object):

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from builtins import next
+from builtins import object
 import logging
 log = logging.getLogger("extra.SpellChecker.spellChecker")
 from . import wx_ui

@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import chr
 import functools
 import wx
 import platform
@@ -84,7 +85,7 @@ class WXKeyboardHandler(keyboard_handler):
 
  def process_key (self, evt, id):
   evt.Skip()
-  key_ids = self.key_ids.keys()
+  key_ids = list(self.key_ids.keys())
   for i in key_ids:
    if self.key_ids.get(i) == id:
     self.handle_key(i)

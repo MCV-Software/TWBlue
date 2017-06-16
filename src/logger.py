@@ -9,7 +9,7 @@ ERROR_LOG_FILE = "error.log"
 MESSAGE_FORMAT = "%(asctime)s %(name)s %(levelname)s: %(message)s"
 DATE_FORMAT = u"%d/%m/%Y %H:%M:%S"
 
-formatter = logging.Formatter(MESSAGE_FORMAT.decode("utf-8"), datefmt=DATE_FORMAT)
+formatter = logging.Formatter(MESSAGE_FORMAT, datefmt=DATE_FORMAT)
 
 requests_log = logging.getLogger("requests")
 requests_log.setLevel(logging.WARNING)

@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import chr
+from builtins import range
 import platform
 system = platform.system()
 from . import utils
 import re
-import htmlentitydefs
+import html.entities
 import time
 import output
 import languageHandler
@@ -22,10 +27,10 @@ def StripChars(s):
  If we match &blah; and it's not found, &blah; will be returned.
  if we match #\d+, unichr(digits) will be returned.
  Else, a unicode string will be returned."""
-  if match.group(1).startswith('#'): return unichr(int(match.group(1)[1:]))
-  replacement = htmlentitydefs.entitydefs.get(match.group(1), "&%s;" % match.group(1))
+  if match.group(1).startswith('#'): return chr(int(match.group(1)[1:]))
+  replacement = html.entities.entitydefs.get(match.group(1), "&%s;" % match.group(1))
   return replacement.decode('iso-8859-1')
- return unicode(entity_re.sub(matchFunc, s))
+ return str(entity_re.sub(matchFunc, s))
 
 chars = "abcdefghijklmnopqrstuvwxyz"
 

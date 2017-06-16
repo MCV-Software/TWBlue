@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from builtins import zip
 from yandex_translate import YandexTranslate
 
 def translate(text="", source="auto", target="en"):
@@ -101,8 +102,8 @@ languages = {
 }
 
 def available_languages():
-	l = languages.keys()
-	d = languages.values()
+	l = list(languages.keys())
+	d = list(languages.values())
 	l.insert(0, '')
 	d.insert(0, _(u"autodetect"))
 	return sorted(zip(l, d))

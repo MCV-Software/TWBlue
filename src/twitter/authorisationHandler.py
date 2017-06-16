@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-import BaseHTTPServer
+from future import standard_library
+standard_library.install_aliases()
+import http.server
 import application
-from urlparse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs
 
 logged = False
 verifier = None
  
-class handler(BaseHTTPServer.BaseHTTPRequestHandler):
+class handler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
         global logged

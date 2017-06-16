@@ -1,7 +1,10 @@
 from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
+from builtins import chr
 from .main import KeyboardHandler
 import threading
-import thread
+import _thread
 import pyatspi
 def parse(s):
  """parse a string like control+f into (modifier, key).
@@ -37,7 +40,7 @@ def handler(e):
  if (not e.is_text) and e.id >= 97 <= 126:
   k = chr(e.id)
  if (m,k) not in keys: return False
- thread.start_new(keys[(m,k)], ())
+ _thread.start_new(keys[(m,k)], ())
  return True #don't pass it on
 class LinuxKeyboardHandler(KeyboardHandler):
  def __init__(self, *args, **kwargs):

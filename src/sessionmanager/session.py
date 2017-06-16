@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 """ The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
 from __future__ import absolute_import
-import urllib2
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import range
+from builtins import object
+import urllib.request, urllib.error, urllib.parse
 import config
 import twitter
 from keys import keyring
@@ -408,8 +413,8 @@ class Session(object):
    if not os.path.exists(shelfname):
     output.speak("Generating database, this might take a while.",True)
    shelf=shelve.open(paths.config_path(shelfname),'c')
-   for key,value in self.db.items():
-    if type(key) != str and type(key) != unicode:
+   for key,value in list(self.db.items()):
+    if type(key) != str and type(key) != str:
         output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
         log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
     # Convert unicode objects to UTF-8 strings before shelve these objects.
@@ -432,7 +437,7 @@ class Session(object):
    return
   try:
    shelf=shelve.open(paths.config_path(shelfname),'c')
-   for key,value in shelf.items():
+   for key,value in list(shelf.items()):
     self.db[key]=value
    shelf.close()
   except:
@@ -471,8 +476,8 @@ class Session(object):
 
  def check_long_tweet(self, tweet):
   long = twishort.is_long(tweet)
-  if long != False and config.app["app-settings"]["handle_longtweets"]:
-   tweet["message"] = twishort.get_full_text(long)
+  if int != False and config.app["app-settings"]["handle_longtweets"]:
+   tweet["message"] = twishort.get_full_text(int)
    if tweet["message"] == False: return False
    tweet["twishort"] = True
    for i in tweet["entities"]["user_mentions"]:

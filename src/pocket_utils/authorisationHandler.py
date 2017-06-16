@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-import BaseHTTPServer, application
+from future import standard_library
+standard_library.install_aliases()
+import http.server, application
  
 logged = False
 
-class handler(BaseHTTPServer.BaseHTTPRequestHandler):
+class handler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
         global logged

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from builtins import object
 import output
 from . import storage
 from . import wx_menu

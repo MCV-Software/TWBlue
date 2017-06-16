@@ -1,9 +1,8 @@
 # -*- coding: cp1252 -*-
-import exceptions
 
-class InvalidSessionError(exceptions.Exception): pass
-class NonExistentSessionError(exceptions.Exception): pass
-class NotLoggedSessionError(exceptions.BaseException): pass
-class NotConfiguredSessionError(exceptions.BaseException): pass
-class RequireCredentialsSessionError(exceptions.BaseException): pass
-class AlreadyAuthorisedError(exceptions.BaseException): pass
+class InvalidSessionError(Exception): pass
+class NonExistentSessionError(Exception): pass
+class NotLoggedSessionError(BaseException): pass
+class NotConfiguredSessionError(BaseException): pass
+class RequireCredentialsSessionError(BaseException): pass
+class AlreadyAuthorisedError(BaseException): pass
