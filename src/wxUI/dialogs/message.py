@@ -400,7 +400,7 @@ class viewNonTweet(widgetUtils.BaseDialog):
   self.text = wx.TextCtrl(parent=panel, id=-1, value=text, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
   dc = wx.WindowDC(self.text)
   dc.SetFont(self.text.GetFont())
-  (x, y, z) = dc.GetMultiLineTextExtent("0"*140)
+  (x, y) = dc.GetMultiLineTextExtent("0"*140)
   self.text.SetSize((x, y))
   self.text.SetFocus()
   textBox = wx.BoxSizer(wx.HORIZONTAL)
