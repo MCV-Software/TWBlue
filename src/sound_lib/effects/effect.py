@@ -1,4 +1,3 @@
-from future.builtins import object
 from sound_lib.main import bass_call
 import ctypes
 from sound_lib.external import pybass

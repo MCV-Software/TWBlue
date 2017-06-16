@@ -6,7 +6,11 @@ import os
 import logging as original_logger 
 log = original_logger.getLogger("sound")
 import paths
-import sound_lib
+from sound_lib.output import Output
+from sound_lib.input import Input
+from sound_lib.recording import WaveRecording
+from sound_lib.stream import FileStream
+from sound_lib.stream import URLStream as SoundlibURLStream
 import subprocess
 import platform
 import output
@@ -30,7 +34,7 @@ def recode_audio(filename, quality=4.5):
 
 def recording(filename):
 # try:
- val = sound_lib.recording.WaveRecording(filename=filename)
+ val = WaveRecording(filename=filename)
 # except sound_lib.main.BassError:
 #  sound_lib.input.Input()
 #  val = sound_lib.recording.WaveRecording(filename=filename)
@@ -57,17 +61,17 @@ class soundSystem(object):
   self.config = soundConfig
   # Set the output and input default devices.
   try:
-   self.output = sound_lib.output.Output()
-   self.input = sound_lib.input.Input()
-  except:
+   self.output = Output()
+   self.input = Input()
+  except IOError:
    pass
-   # Try to use the selected device from the configuration. It can fail if the machine does not has a mic.
+  # Try to use the selected device from the configuration. It can fail if the machine does not has a mic.
   try:
    log.debug("Setting input and output devices...")
    self.output.set_device(self.output.find_device_by_name(self.config["output_device"]))
    self.input.set_device(self.input.find_device_by_name(self.config["input_device"]))
   except:
-   log.error("Error in input or output devices, using defaults...")
+   log.exception("Error in input or output devices, using defaults...")
    self.config["output_device"] = "Default"
    self.config["input_device"] = "Default"
 
@@ -89,7 +93,7 @@ class soundSystem(object):
  def play(self, sound, argument=False):
   if self.soundpack_OK == False: return
   if self.config["session_mute"] == True: return
-  sound_object = sound_lib.stream.FileStream(file="%s/%s" % (self.path, sound))
+  sound_object = FileStream(file="%s/%s" % (self.path, sound))
   sound_object.volume = float(self.config["volume"])
   self.files.append(sound_object)
   sound_object.play()
@@ -140,7 +144,7 @@ class URLStream(object):
   elif stream != None:
    self.stream=stream
   if self.prepared == True:
-   self.stream = sound_lib.stream.URLStream(url=self.url)
+   self.stream = SoundlibURLStream(url=self.url)
   if hasattr(self,'stream'):
    self.stream.volume = float(volume)
    self.stream.play()

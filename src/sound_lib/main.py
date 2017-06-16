@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from future.builtins import object
 from .external.pybass import *
 from functools import update_wrapper
 

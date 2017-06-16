@@ -136,7 +136,7 @@ class Session(object):
 
  def init_sound(self):
   try: self.sound = sound.soundSystem(self.settings["sound"])
-  except: pass
+  except: log.exception("Exception thrown during sound system initialization")
 
  @_require_configuration
  def login(self, verify_credentials=True):

@@ -1,12 +1,10 @@
-from __future__ import absolute_import
-from future.builtins import range
 "BASSENC wrapper by Christopher Toth"""
 
 import ctypes
 import os
 import platform
-from . import pybass
-from .paths import x86_path, x64_path
+import pybass
+from paths import x86_path, x64_path
 import libloader
 
 bassenc_module = libloader.load_library('bassenc', x86_path=x86_path, x64_path=x64_path)

@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from future.builtins import range
 "BASS_FX wrapper by Christopher Toth"""
 
 import ctypes
