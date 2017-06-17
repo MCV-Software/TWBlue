@@ -32,18 +32,18 @@ def get_twishort_uri(url):
   return False
 
 def is_long(tweet):
- long = False
+ longtw = False
  for url in range(0, len(tweet["entities"]["urls"])):
   try:
    if tweet["entities"]["urls"][url] != None and "twishort.com" in tweet["entities"]["urls"][url]["expanded_url"]:
-    long = get_twishort_uri(tweet["entities"]["urls"][url]["expanded_url"])
+    longtw = get_twishort_uri(tweet["entities"]["urls"][url]["expanded_url"])
   except IndexError:
    pass
   # sometimes Twitter returns URL's with None objects, so let's take it.
   # see https://github.com/manuelcortez/TWBlue/issues/103
   except TypeError:
    pass
- if int == False and "retweeted_status" in tweet:
+ if not longtw and "retweeted_status" in tweet:
   for url in range(0, len(tweet["retweeted_status"]["entities"]["urls"])):
    try:
     if tweet["retweeted_status"]["entities"]["urls"][url] != None and "twishort.com" in tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"]:
@@ -52,7 +52,7 @@ def is_long(tweet):
     pass
    except TypeError:
     pass
- return int
+ return longtw
 
 def get_full_text(uri):
  try:
@@ -85,5 +85,4 @@ def create_tweet(user_token, user_secret, text, media=0):
  try:
   return response.json()["text_to_tweet"]
  except:
-  print("There was a problem creating a long tweet")
-  return 0
+  log.exception("There was a problem creating a long tweet.")

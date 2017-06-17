@@ -475,9 +475,9 @@ class Session(object):
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
 
  def check_long_tweet(self, tweet):
-  long = twishort.is_long(tweet)
-  if int != False and config.app["app-settings"]["handle_longtweets"]:
-   tweet["message"] = twishort.get_full_text(int)
+  longtw = twishort.is_long(tweet)
+  if longtw and config.app["app-settings"]["handle_longtweets"]:
+   tweet["message"] = twishort.get_full_text(longtw)
    if tweet["message"] == False: return False
    tweet["twishort"] = True
    for i in tweet["entities"]["user_mentions"]:
