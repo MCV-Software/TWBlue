@@ -5,15 +5,15 @@ from multiplatform_widgets import widgets
 import application
 class autocompletionManageDialog(widgetUtils.BaseDialog):
  def __init__(self):
-  super(autocompletionManageDialog, self).__init__(parent=None, id=-1, title=_(u"Manage Autocompletion database"))
+  super(autocompletionManageDialog, self).__init__(parent=None, id=-1, title=_("Manage Autocompletion database"))
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  label = wx.StaticText(panel, -1, _(u"Editing {0} users database").format(application.name,))
-  self.users = widgets.list(panel, _(u"Username"), _(u"Name"), style=wx.LC_REPORT)
+  label = wx.StaticText(panel, -1, _("Editing {0} users database").format(application.name,))
+  self.users = widgets.list(panel, _("Username"), _("Name"), style=wx.LC_REPORT)
   sizer.Add(label, 0, wx.ALL, 5)
   sizer.Add(self.users.list, 0, wx.ALL, 5)
-  self.add = wx.Button(panel, -1, _(u"Add user"))
-  self.remove = wx.Button(panel, -1, _(u"Remove user"))
+  self.add = wx.Button(panel, -1, _("Add user"))
+  self.remove = wx.Button(panel, -1, _("Remove user"))
   optionsBox = wx.BoxSizer(wx.HORIZONTAL)
   optionsBox.Add(self.add, 0, wx.ALL, 5)
   optionsBox.Add(self.remove, 0, wx.ALL, 5)
@@ -34,10 +34,10 @@ class autocompletionManageDialog(widgetUtils.BaseDialog):
 
  def get_user(self):
   usr = False
-  userDlg = wx.TextEntryDialog(None, _(u"Twitter username"), _(u"Add user to database"))
+  userDlg = wx.TextEntryDialog(None, _("Twitter username"), _("Add user to database"))
   if userDlg.ShowModal() == wx.ID_OK:
    usr = userDlg.GetValue()
   return usr
 
  def show_invalid_user_error(self):
-  wx.MessageDialog(None, _(u"The user does not exist"), _(u"Error!"), wx.ICON_ERROR).ShowModal()
+  wx.MessageDialog(None, _("The user does not exist"), _("Error!"), wx.ICON_ERROR).ShowModal()

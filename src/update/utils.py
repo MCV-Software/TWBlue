@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import division
+
 from builtins import str
 from past.utils import old_div
 def convert_bytes(n):
@@ -27,19 +27,19 @@ def seconds_to_string(seconds, precision=0):
  sec_string = sec.__format__(sec_spec)
  string = ""
  if day == 1:
-  string += _(u"%d day, ") % day
+  string += _("%d day, ") % day
  elif day >= 2:
-  string += _(u"%d days, ") % day
+  string += _("%d days, ") % day
  if (hour == 1):
-  string += _(u"%d hour, ") % hour
+  string += _("%d hour, ") % hour
  elif (hour >= 2):
   string += _("%d hours, ") % hour
  if (min == 1):
-  string += _(u"%d minute, ") % min
+  string += _("%d minute, ") % min
  elif (min >= 2):
-  string += _(u"%d minutes, ") % min
+  string += _("%d minutes, ") % min
  if sec >= 0 and sec <= 2:
-  string += _(u"%s second") % sec_string
+  string += _("%s second") % sec_string
  else:
-  string += _(u"%s seconds") % sec_string
+  string += _("%s seconds") % sec_string
  return string

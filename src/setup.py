@@ -54,7 +54,7 @@ def get_data():
 
 def get_documentation ():
 	answer = [("documentation", ["documentation/license.txt"])]
-	depth = 20
+	depth = 10
 	for root, dirs, files in os.walk('documentation'):
 		if depth == 0:
 			break
@@ -102,7 +102,7 @@ def wx_files():
 if __name__ == '__main__':
 	setup(
   name = application.name,
-  author = u", ".join(application.authors),
+  author = ", ".join(application.authors),
   author_email = application.authorEmail,
   version = application.version,
   url = application.url,

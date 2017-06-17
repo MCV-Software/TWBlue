@@ -8,7 +8,7 @@ log = logging.getLogger("config")
 
 MAINFILE = "twblue.conf"
 MAINSPEC = "app-configuration.defaults"
-proxyTypes=[u"http", u"https", u"socks4", u"socks5"]
+proxyTypes=["http", "https", "socks4", "socks5"]
 app = None
 keymap=None
 changed_keymap = False

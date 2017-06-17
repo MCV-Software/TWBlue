@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import platform
 if platform.system() == 'Linux':
  from .linux import LinuxKeyboardHandler as GlobalKeyboardHandler

@@ -8,7 +8,7 @@ class basePanel(wx.Panel):
   self.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, f)
 
  def create_list(self):
-  self.list = widgets.list(self, _(u"User"), _(u"Text"), _(u"Date"), _(u"Client"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
+  self.list = widgets.list(self, _("User"), _("Text"), _("Date"), _("Client"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
   self.list.set_windows_size(0, 60)
   self.list.set_windows_size(1, 320)
   self.list.set_windows_size(2, 110)
@@ -21,10 +21,10 @@ class basePanel(wx.Panel):
   self.type = "baseBuffer"
   self.sizer = wx.BoxSizer(wx.VERTICAL)
   self.create_list()
-  self.tweet = wx.Button(self, -1, _(u"Tweet"))
-  self.retweet = wx.Button(self, -1, _(u"Retweet"))
-  self.reply = wx.Button(self, -1, _(u"Reply"))
-  self.dm = wx.Button(self, -1, _(u"Direct message"))
+  self.tweet = wx.Button(self, -1, _("Tweet"))
+  self.retweet = wx.Button(self, -1, _("Retweet"))
+  self.reply = wx.Button(self, -1, _("Reply"))
+  self.dm = wx.Button(self, -1, _("Direct message"))
   btnSizer = wx.BoxSizer(wx.HORIZONTAL)
   btnSizer.Add(self.tweet, 0, wx.ALL, 5)
   btnSizer.Add(self.retweet, 0, wx.ALL, 5)

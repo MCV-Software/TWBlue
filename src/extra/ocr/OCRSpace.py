@@ -3,7 +3,7 @@
 from builtins import object
 import requests
 
-translatable_langs = [_(u"Detect automatically"), _(u"Danish"), _(u"Dutch"), _(u"English"), _(u"Finnish"), _(u"French"), _(u"German"), _(u"Hungarian"), _(u"Korean"), _(u"Italian"), _(u"Japanese"), _(u"Polish"), _(u"Portuguese"), _(u"Russian"), _(u"Spanish"), _(u"Turkish")]
+translatable_langs = [_("Detect automatically"), _("Danish"), _("Dutch"), _("English"), _("Finnish"), _("French"), _("German"), _("Hungarian"), _("Korean"), _("Italian"), _("Japanese"), _("Polish"), _("Portuguese"), _("Russian"), _("Spanish"), _("Turkish")]
 short_langs = ["", "da", "du", "en", "fi", "fr", "de", "hu", "ko", "it", "ja", "pl", "pt", "ru", "es", "tr"]
 OcrLangs = ["", "dan", "dut", "eng", "fin", "fre", "ger", "hun", "kor", "ita", "jpn", "pol", "por", "rus", "spa", "tur"]
 

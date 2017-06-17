@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import platform
 if platform.system() == "Windows":
  from .wxUtils import *

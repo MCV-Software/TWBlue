@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
-from __future__ import absolute_import
+
 import wx
 from . import baseDialog
 
@@ -27,15 +27,15 @@ class selectUserDialog(baseDialog.BaseWXDialog):
   userSizer = wx.BoxSizer()
   self.cb = wx.ComboBox(panel, -1, choices=users, value=users[0], size=wx.DefaultSize)
   self.cb.SetFocus()
-  self.autocompletion = wx.Button(panel, -1, _(u"&Autocomplete users"))
-  userSizer.Add(wx.StaticText(panel, -1, _(u"User")), 0, wx.ALL, 5)
+  self.autocompletion = wx.Button(panel, -1, _("&Autocomplete users"))
+  userSizer.Add(wx.StaticText(panel, -1, _("User")), 0, wx.ALL, 5)
   userSizer.Add(self.cb, 0, wx.ALL, 5)
   userSizer.Add(self.autocompletion, 0, wx.ALL, 5)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  ok = wx.Button(panel, wx.ID_OK, _(u"OK"))
+  ok = wx.Button(panel, wx.ID_OK, _("OK"))
   ok.SetDefault()
 #  ok.Bind(wx.EVT_BUTTON, self.onok)
-  cancel = wx.Button(panel, wx.ID_CANCEL, _(u"Close"))
+  cancel = wx.Button(panel, wx.ID_CANCEL, _("Close"))
   btnsizer = wx.BoxSizer()
   btnsizer.Add(ok, 0, wx.ALL, 5)
   btnsizer.Add(cancel, 0, wx.ALL, 5)

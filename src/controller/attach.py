@@ -21,7 +21,7 @@ class attach(object):
 			imageInfo = {"type": "photo", "file": image, "description": description}
 			log.debug("Image data to upload: %r" % (imageInfo,))
 			self.attachments.append(imageInfo)
-			info = [_(u"Photo"), description]
+			info = [_("Photo"), description]
 			self.dialog.attachments.insert_item(False, *info)
 			self.dialog.remove.Enable(True)
 

@@ -34,7 +34,7 @@ def localeNameToWindowsLCID(localeName):
 		localeName=locale.normalize(localeName)
 		if '.' in localeName:
 			localeName=localeName.split('.')[0]
-		LCList=[x[0] for x in locale.windows_locale.items() if x[1]==localeName]
+		LCList=[x[0] for x in list(locale.windows_locale.items()) if x[1]==localeName]
 		if len(LCList)>0:
 			LCID=LCList[0]
 		else:

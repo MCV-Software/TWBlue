@@ -8,17 +8,17 @@ class accountPanel(wx.Panel):
   self.name = name
   self.type = "account"
   sizer = wx.BoxSizer(wx.VERTICAL)
-  self.login = wx.Button(self, -1, _(u"Login"))
+  self.login = wx.Button(self, -1, _("Login"))
   sizer.Add(self.login, 0, wx.ALL, 5)
-  self.autostart_account = wx.CheckBox(self, -1, _(u"Log in automatically"))
+  self.autostart_account = wx.CheckBox(self, -1, _("Log in automatically"))
   sizer.Add(self.autostart_account, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
  def change_login(self, login=True):
   if login == True:
-   self.login.SetLabel(_(u"Login"))
+   self.login.SetLabel(_("Login"))
   else:
-   self.login.SetLabel(_(u"Logout"))
+   self.login.SetLabel(_("Logout"))
 
  def change_autostart(self, autostart=True):
   self.autostart_account.SetValue(autostart)

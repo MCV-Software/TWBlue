@@ -222,7 +222,7 @@ class viewTweet(basicTweet):
    rt_count = str(tweet["retweet_count"])
    favs_count = str(tweet["favorite_count"])
    # Gets the client from where this tweet was made.
-   source = str(re.sub(r"(?s)<.*?>", "", tweet["source"].encode("utf-8")))
+   source = str(re.sub(r"(?s)<.*?>", "", str(tweet["source"])))
    if text == "":
     if "message" in tweet:
      value = "message"
@@ -244,7 +244,7 @@ class viewTweet(basicTweet):
     for z in tweet["retweeted_status"]["extended_entities"]["media"]:
      if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
-   self.message = message.viewTweet(text, rt_count, favs_count, source.decode("utf-8"))
+   self.message = message.viewTweet(text, rt_count, favs_count, source)
    self.message.set_title(len(text))
    [self.message.set_image_description(i) for i in image_description]
   else:

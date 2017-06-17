@@ -15,7 +15,7 @@ if system == "Windows":
 import languageHandler
 import paths
 #check if TWBlue is installed (Windows only)
-if os.path.exists(paths.app_path(u"Uninstall.exe")):
+if os.path.exists(paths.app_path("Uninstall.exe")):
  paths.mode="installed"
 import commandline
 import config

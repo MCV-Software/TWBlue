@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import division
+
 from builtins import str
 from past.utils import old_div
 from builtins import object
@@ -73,7 +73,7 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
   self.dialog.set_value("general", "check_for_updates", config.app["app-settings"]["check_for_updates"])
   proxyTypes=config.proxyTypes
-  self.dialog.create_proxy([_(u"Direct connection")]+proxyTypes)
+  self.dialog.create_proxy([_("Direct connection")]+proxyTypes)
   if config.app["proxy"]["type"] not in proxyTypes:
    self.dialog.proxy.type.SetSelection(0)
   else:
@@ -138,11 +138,11 @@ class accountSettingsController(globalSettingsController):
   self.dialog.set_value("general", "reverse_timelines", self.config["general"]["reverse_timelines"])
   rt = self.config["general"]["retweet_mode"]
   if rt == "ask":
-   self.dialog.set_value("general", "retweet_mode", _(u"Ask"))
+   self.dialog.set_value("general", "retweet_mode", _("Ask"))
   elif rt == "direct":
-   self.dialog.set_value("general", "retweet_mode", _(u"Retweet without comments"))
+   self.dialog.set_value("general", "retweet_mode", _("Retweet without comments"))
   else:
-   self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
+   self.dialog.set_value("general", "retweet_mode", _("Retweet with comments"))
   self.dialog.set_value("general", "persist_size", str(self.config["general"]["persist_size"]))
   self.dialog.create_other_buffers()
   buffer_values = self.get_buffers_list()
@@ -174,7 +174,7 @@ class accountSettingsController(globalSettingsController):
   language_index = OCRSpace.OcrLangs.index(self.config["mysc"]["ocr_language"])
   self.dialog.extras.ocr_lang.SetSelection(language_index)
   self.dialog.realize()
-  self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
+  self.dialog.set_title(_("Account settings for %s") % (self.user,))
   self.response = self.dialog.get_response()
 
  def save_configuration(self):
@@ -198,9 +198,9 @@ class accountSettingsController(globalSettingsController):
    self.needs_restart = True
    self.config["general"]["reverse_timelines"] = self.dialog.get_value("general", "reverse_timelines")
   rt = self.dialog.get_value("general", "retweet_mode")
-  if rt == _(u"Ask"):
+  if rt == _("Ask"):
    self.config["general"]["retweet_mode"] = "ask"
-  elif rt == _(u"Retweet without comments"):
+  elif rt == _("Retweet without comments"):
    self.config["general"]["retweet_mode"] = "direct"
   else:
    self.config["general"]["retweet_mode"] = "comment"
@@ -271,17 +271,17 @@ class accountSettingsController(globalSettingsController):
 
  def get_buffers_list(self):
   all_buffers=OrderedDict()
-  all_buffers['home']=_(u"Home")
-  all_buffers['mentions']=_(u"Mentions")
-  all_buffers['dm']=_(u"Direct Messages")
-  all_buffers['sent_dm']=_(u"Sent direct messages")
-  all_buffers['sent_tweets']=_(u"Sent tweets")
-  all_buffers['favorites']=_(u"Likes")
-  all_buffers['followers']=_(u"Followers")
-  all_buffers['friends']=_(u"Friends")
-  all_buffers['blocks']=_(u"Blocked users")
-  all_buffers['muted']=_(u"Muted users")
-  all_buffers['events']=_(u"Events")
+  all_buffers['home']=_("Home")
+  all_buffers['mentions']=_("Mentions")
+  all_buffers['dm']=_("Direct Messages")
+  all_buffers['sent_dm']=_("Sent direct messages")
+  all_buffers['sent_tweets']=_("Sent tweets")
+  all_buffers['favorites']=_("Likes")
+  all_buffers['followers']=_("Followers")
+  all_buffers['friends']=_("Friends")
+  all_buffers['blocks']=_("Blocked users")
+  all_buffers['muted']=_("Muted users")
+  all_buffers['events']=_("Events")
   list_buffers = []
   hidden_buffers=[]
   for i in list(all_buffers.keys()):

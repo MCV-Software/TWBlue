@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 # -*- coding: utf-8 -*-
 from . import baseDialog
 import wx
@@ -9,25 +9,25 @@ class trendingTopicsDialog(baseDialog.BaseWXDialog):
   super(trendingTopicsDialog, self).__init__(None, -1)
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  self.SetTitle(_(u"View trending topics"))
-  label = wx.StaticText(panel, -1, _(u"Trending topics by"))
+  self.SetTitle(_("View trending topics"))
+  label = wx.StaticText(panel, -1, _("Trending topics by"))
   sizer.Add(label, 0, wx.ALL, 5)
-  self.country = wx.RadioButton(panel, -1, _(u"Country"), style=wx.RB_GROUP)
-  self.city = wx.RadioButton(panel, -1, _(u"City"))
+  self.country = wx.RadioButton(panel, -1, _("Country"), style=wx.RB_GROUP)
+  self.city = wx.RadioButton(panel, -1, _("City"))
   radioSizer = wx.BoxSizer(wx.HORIZONTAL)
   radioSizer.Add(label, 0, wx.ALL, 5)
   radioSizer.Add(self.country, 0, wx.ALL, 5)
   radioSizer.Add(self.city, 0, wx.ALL, 5)
   sizer.Add(radioSizer, 0, wx.ALL, 5)
-  label = wx.StaticText(panel, -1, _(u"&Location"))
+  label = wx.StaticText(panel, -1, _("&Location"))
   self.location = wx.ListBox(panel, -1, choices=[], style=wx.CB_READONLY)
   locationBox = wx.BoxSizer(wx.HORIZONTAL)
   locationBox.Add(label, 0, wx.ALL, 5)
   locationBox.Add(self.location, 0, wx.ALL, 5)
   sizer.Add(locationBox, 0, wx.ALL, 5)
-  ok = wx.Button(panel, wx.ID_OK, _(u"&OK"))
+  ok = wx.Button(panel, wx.ID_OK, _("&OK"))
   ok.SetDefault()
-  cancel = wx.Button(panel, wx.ID_CANCEL, _(u"&Close"))
+  cancel = wx.Button(panel, wx.ID_CANCEL, _("&Close"))
   btnsizer = wx.BoxSizer()
   btnsizer.Add(ok, 0, wx.ALL, 5)
   btnsizer.Add(cancel, 0, wx.ALL, 5)

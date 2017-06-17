@@ -1,37 +1,37 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 import wx
 from . import baseDialog
 
 class updateProfileDialog(baseDialog.BaseWXDialog):
  def __init__(self):
   super(updateProfileDialog, self).__init__(parent=None, id=-1)
-  self.SetTitle(_(u"Update your profile"))
+  self.SetTitle(_("Update your profile"))
   panel = wx.Panel(self)
-  labelName = wx.StaticText(panel, -1, _(u"&Name (20 characters maximum)"))
+  labelName = wx.StaticText(panel, -1, _("&Name (20 characters maximum)"))
   self.name = wx.TextCtrl(panel, -1)
   self.name.SetFocus()
   dc = wx.WindowDC(self.name)
   dc.SetFont(self.name.GetFont())
   self.name.SetSize(dc.GetTextExtent("0"*20))
-  labelLocation = wx.StaticText(panel, -1, _(u"&Location"))
+  labelLocation = wx.StaticText(panel, -1, _("&Location"))
   self.location = wx.TextCtrl(panel, -1)
   dc = wx.WindowDC(self.location)
   dc.SetFont(self.location.GetFont())
   self.location.SetSize(dc.GetTextExtent("0"*35))
-  labelUrl = wx.StaticText(panel, -1, _(u"&Website"))
+  labelUrl = wx.StaticText(panel, -1, _("&Website"))
   self.url = wx.TextCtrl(panel, -1)
   dc = wx.WindowDC(self.url)
   dc.SetFont(self.url.GetFont())
   self.url.SetSize(dc.GetTextExtent("0"*22))
-  labelDescription = wx.StaticText(panel, -1, _(u"&Bio (160 characters maximum)"))
+  labelDescription = wx.StaticText(panel, -1, _("&Bio (160 characters maximum)"))
   self.description = wx.TextCtrl(panel, -1, size=(400, 400))
   dc = wx.WindowDC(self.description)
   dc.SetFont(self.description.GetFont())
   self.description.SetSize(dc.GetTextExtent("0"*160))
   self.image = None
-  self.upload_image = wx.Button(panel, -1, _(u"Upload a &picture"))
-  self.ok = wx.Button(panel, wx.ID_OK, _(u"&Update profile"))
+  self.upload_image = wx.Button(panel, -1, _("Upload a &picture"))
+  self.ok = wx.Button(panel, wx.ID_OK, _("&Update profile"))
   self.ok.SetDefault()
   close = wx.Button(panel, wx.ID_CANCEL, _("&Close"))
   sizer = wx.BoxSizer(wx.VERTICAL)
@@ -73,12 +73,12 @@ class updateProfileDialog(baseDialog.BaseWXDialog):
 
  def change_upload_button(self, uploaded=False):
   if uploaded == False:
-   self.upload_image.SetLabel(_(u"Upload a picture"))
+   self.upload_image.SetLabel(_("Upload a picture"))
   else:
-   self.upload_image.SetLabel(_(u"Discard image"))
+   self.upload_image.SetLabel(_("Discard image"))
 
  def upload_picture(self):
-  openFileDialog = wx.FileDialog(self, _(u"Select the picture to be uploaded"), "", "", _("Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+  openFileDialog = wx.FileDialog(self, _("Select the picture to be uploaded"), "", "", _("Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
   if openFileDialog.ShowModal() == wx.ID_CANCEL:
    return None
   return openFileDialog.GetPath()

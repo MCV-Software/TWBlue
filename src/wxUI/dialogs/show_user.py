@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 import wx
 from . import baseDialog
 
@@ -8,14 +8,14 @@ class showUserProfile(baseDialog.BaseWXDialog):
   super(showUserProfile, self).__init__(parent=None, id=wx.NewId())
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  static = wx.StaticText(panel, -1, _(u"Details"))
+  static = wx.StaticText(panel, -1, _("Details"))
   sizer.Add(static, 0, wx.ALL, 5)
   self.text = wx.TextCtrl(panel, -1, style=wx.TE_MULTILINE|wx.TE_READONLY, size=(350, 250))
   self.text.SetFocus()
   sizer.Add(self.text, 0, wx.ALL|wx.EXPAND, 5)
-  self.url = wx.Button(panel, -1, _(u"&Go to URL"), size=wx.DefaultSize)
+  self.url = wx.Button(panel, -1, _("&Go to URL"), size=wx.DefaultSize)
   self.url.Disable()
-  close = wx.Button(panel, wx.ID_CANCEL, _(u"&Close"))
+  close = wx.Button(panel, wx.ID_CANCEL, _("&Close"))
   btnSizer = wx.BoxSizer(wx.HORIZONTAL)
   btnSizer.Add(self.url, 0, wx.ALL, 5)
   btnSizer.Add(close, 0, wx.ALL, 5)

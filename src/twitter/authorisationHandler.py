@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from future import standard_library
-standard_library.install_aliases()
 import http.server
 import application
 from urllib.parse import urlparse, parse_qs
@@ -19,5 +17,5 @@ class handler(http.server.BaseHTTPRequestHandler):
         params = parse_qs(urlparse(self.path).query)
         global verifier
         verifier = params.get('oauth_verifier', [None])[0]
-        self.wfile.write("You have successfully logged into Twitter with {0}. You can close this window now.".format(application.name))
+        self.wfile.write(bytes(_("You have successfully logged into Twitter with {0}. You can close this window now.".format(application.name)),"utf-8"))
         self.finish()

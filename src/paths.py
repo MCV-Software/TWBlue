@@ -28,9 +28,9 @@ def config_path():
  global mode, directory
  if mode == "portable":
   if directory != None: path = os.path.join(directory, "config")
-  elif directory == None: path = app_path(u"config")
+  elif directory == None: path = app_path("config")
  elif mode == "installed":
-  path = data_path(u"config")
+  path = data_path("config")
  if not os.path.exists(path):
   log.debug("%s path does not exist, creating..." % (path,))
   os.mkdir(path)
@@ -41,9 +41,9 @@ def logs_path():
  global mode, directory
  if mode == "portable":
   if directory != None: path = os.path.join(directory, "logs")
-  elif directory == None: path = app_path(u"logs")
+  elif directory == None: path = app_path("logs")
  elif mode == "installed":
-  path = data_path(u"logs")
+  path = data_path("logs")
  if not os.path.exists(path):
   log.debug("%s path does not exist, creating..." % (path,))
   os.mkdir(path)
@@ -66,20 +66,20 @@ def data_path(app_name='TW blue'):
 
 @merge_paths
 def locale_path():
- return app_path(u"locales")
+ return app_path("locales")
 
 @merge_paths
 def sound_path():
- return app_path(u"sounds")
+ return app_path("sounds")
 
 @merge_paths
 def com_path():
  global mode, directory
  if mode == "portable":
   if directory != None: path = os.path.join(directory, "com_cache")
-  elif directory == None: path = app_path(u"com_cache")
+  elif directory == None: path = app_path("com_cache")
  elif mode == "installed":
-  path = data_path(u"com_cache")
+  path = data_path("com_cache")
  if not os.path.exists(path):
   log.debug("%s path does not exist, creating..." % (path,))
   os.mkdir(path)
