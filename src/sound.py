@@ -146,7 +146,7 @@ class URLStream(object):
   elif stream != None:
    self.stream=stream
   if self.prepared == True:
-   self.stream = SoundlibURLStream(url=self.url)
+   self.stream = SoundlibURLStream(url=bytes(self.url,'utf-8'))
   if hasattr(self,'stream'):
    self.stream.volume = float(volume)
    self.stream.play()
