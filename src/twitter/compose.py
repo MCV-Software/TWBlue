@@ -29,7 +29,7 @@ def StripChars(s):
  Else, a unicode string will be returned."""
   if match.group(1).startswith('#'): return chr(int(match.group(1)[1:]))
   replacement = html.entities.entitydefs.get(match.group(1), "&%s;" % match.group(1))
-  return replacement.decode('iso-8859-1')
+  return replacement
  return str(entity_re.sub(matchFunc, s))
 
 chars = "abcdefghijklmnopqrstuvwxyz"

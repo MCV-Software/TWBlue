@@ -13,7 +13,7 @@ class TinyArrowsShortener (URLShortener):
  def _shorten (self, url):
   answer = url
   answer = urllib.request.urlopen("http://tinyarro.ws/api-create.php?utfpure=1&url=%s" % urllib.parse.quote(url)).read()
-  return answer.decode('UTF-8')
+  return answer
 
  def created_url(self, url):
   return False

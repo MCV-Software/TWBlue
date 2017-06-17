@@ -947,8 +947,8 @@ class Controller(object):
     x = tweet["coordinates"]["coordinates"][0]
     y = tweet["coordinates"]["coordinates"][1]
     address = geocoder.reverse_geocode(y, x)
-    if event == None: output.speak(address[0].__str__().decode("utf-8"))
-    else: self.view.show_address(address[0].__str__().decode("utf-8"))
+    if event == None: output.speak(address[0].__str__())
+    else: self.view.show_address(address[0].__str__())
    else:
     output.speak(_(u"There are no coordinates in this tweet"))
   except GeocoderError:
