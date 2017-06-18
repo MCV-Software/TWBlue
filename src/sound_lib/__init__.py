@@ -1,7 +1,6 @@
-import output, input, recording, stream
 
 __author__ = 'Christopher Toth'
-__version__ = 0.73
+__version__ = 0.8
 
 def find_datafiles():
  from glob import glob

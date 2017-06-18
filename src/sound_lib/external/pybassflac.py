@@ -14,7 +14,7 @@ enabling the playing of FLAC (Free Lossless Audio Codec) encoded files.
 
 import os, sys, ctypes
 from . import pybass
-from .paths import x86_path, x64_path
+from . paths import x86_path, x64_path
 import libloader
 
 bassflac_module = libloader.load_library('bassflac', x86_path=x86_path, x64_path=x64_path)

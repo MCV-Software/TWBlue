@@ -202,3 +202,4 @@ BASS_MIDI_FontUnpack = func_type(ctypes.c_byte, HSOUNDFONT, ctypes.c_void_p, cty
 BASS_MIDI_FontSetVolume = func_type(ctypes.c_byte, HSOUNDFONT, ctypes.c_float)(('BASS_MIDI_FontSetVolume', bassmidi_module))
 #float BASSMIDIDEF(BASS_MIDI_FontGetVolume)(HSOUNDFONT handle);
 BASS_MIDI_FontGetVolume = func_type(ctypes.c_float, HSOUNDFONT)(('BASS_MIDI_FontGetVolume', bassmidi_module))
+
