@@ -22,6 +22,8 @@ import tempfile
 import glob
 URLPlayer = None
 
+is_created = False
+
 def setup():
  global URLPlayer
  if not URLPlayer:
@@ -58,23 +60,26 @@ class soundSystem(object):
 
  def __init__(self, soundConfig):
   """ Sound Player."""
+  global is_created
   self.config = soundConfig
   # Set the output and input default devices.
-  try:
-   self.output = Output()
-   self.input = Input()
-  except IOError:
-   pass
+  if is_created == False:
+   try:
+    self.output = Output()
+    self.input = Input()
+   except IOError:
+    pass
   # Try to use the selected device from the configuration. It can fail if the machine does not has a mic.
-  try:
-   log.debug("Setting input and output devices...")
-   self.output.set_device(self.output.find_device_by_name(self.config["output_device"]))
-   self.input.set_device(self.input.find_device_by_name(self.config["input_device"]))
-  except:
-   log.exception("Error in input or output devices, using defaults...")
-   self.config["output_device"] = "Default"
-   self.config["input_device"] = "Default"
-
+  if is_created == False:
+   try:
+    log.debug("Setting input and output devices...")
+    self.output.set_device(self.output.find_device_by_name(self.config["output_device"]))
+    self.input.set_device(self.input.find_device_by_name(self.config["input_device"]))
+   except:
+    log.exception("Error in input or output devices, using defaults...")
+    self.config["output_device"] = "Default"
+    self.config["input_device"] = "Default"
+  is_created = True
   self.files = []
   self.cleaner = RepeatingTimer(60, self.clear_list)
   self.cleaner.start()
