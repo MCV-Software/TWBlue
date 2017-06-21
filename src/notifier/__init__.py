@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ A cross platform notification system.
 Under Linux, the wx.NotificationMessage does not show a notification on the taskbar, so we decided to use dbus for showing notifications for linux and wx for Windows."""
-from __future__ import absolute_import
+
 import platform
 
 notify = None

@@ -5,7 +5,7 @@ from multiplatform_widgets import widgets
 class trendsPanel(wx.Panel):
  def create_list(self):
   """ Returns the list for put the tweets here."""
-  self.list = widgets.list(self, _(u"Trending topic"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
+  self.list = widgets.list(self, _("Trending topic"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
   self.list.set_windows_size(0, 30)
   self.list.set_size()
 
@@ -14,9 +14,9 @@ class trendsPanel(wx.Panel):
   self.type = "trends"
   self.sizer = wx.BoxSizer(wx.VERTICAL)
   self.create_list()
-  self.tweet = wx.Button(self, -1, _(u"Tweet"))
-  self.tweetTrendBtn = wx.Button(self, -1, _(u"Tweet about this trend"))
-  self.search_topic = wx.Button(self, -1, _(u"Search topic"))
+  self.tweet = wx.Button(self, -1, _("Tweet"))
+  self.tweetTrendBtn = wx.Button(self, -1, _("Tweet about this trend"))
+  self.search_topic = wx.Button(self, -1, _("Search topic"))
   btnSizer = wx.BoxSizer(wx.HORIZONTAL)
   btnSizer.Add(self.tweet, 0, wx.ALL, 5)
   btnSizer.Add(self.tweetTrendBtn, 0, wx.ALL, 5)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 from builtins import next
 from builtins import object
 import logging
@@ -45,8 +45,8 @@ class spellChecker(object):
  def check(self):
   try:
    next(self.checker)
-   textToSay = _(u"Misspelled word: %s") % (self.checker.word,)
-   context = u"... %s %s %s" % (self.checker.leading_context(10), self.checker.word, self.checker.trailing_context(10))
+   textToSay = _("Misspelled word: %s") % (self.checker.word,)
+   context = "... %s %s %s" % (self.checker.leading_context(10), self.checker.word, self.checker.trailing_context(10))
    self.dialog.set_title(textToSay)
    output.speak(textToSay)
    self.dialog.set_word_and_suggestions(word=self.checker.word, context=context, suggestions=self.checker.suggest())

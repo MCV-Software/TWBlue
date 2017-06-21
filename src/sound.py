@@ -139,7 +139,7 @@ class URLStream(object):
 
  def play(self, url=None, volume=1.0, stream=None,announce=True):
   if announce:
-   output.speak(_(u"Playing..."))
+   output.speak(_("Playing..."))
   log.debug("Attempting to play an URL...")
   if url != None:
    self.prepare(url)
@@ -155,7 +155,7 @@ class URLStream(object):
 
  def stop_audio(self,delete=False):
   if hasattr(self, "stream"):
-   output.speak(_(u"Stopped."), True)
+   output.speak(_("Stopped."), True)
    try:
     self.stream.stop()
     log.debug("Stopped audio stream.")

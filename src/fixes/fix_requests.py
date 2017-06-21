@@ -5,7 +5,7 @@ import requests.sessions
 orig_session_init=requests.sessions.Session.__init__
 
 def patched_where():
- return paths.app_path(u"cacert.pem")
+ return paths.app_path("cacert.pem")
 
 def fix(frozen):
  if frozen==True:

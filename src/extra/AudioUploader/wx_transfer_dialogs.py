@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 import wx
 from .utils import *
 import widgetUtils
@@ -11,28 +11,28 @@ class UploadDialog(widgetUtils.BaseDialog):
   self.pane = wx.Panel(self)
   self.progress_bar = wx.Gauge(parent=self.pane)
   fileBox = wx.BoxSizer(wx.HORIZONTAL)
-  fileLabel = wx.StaticText(self.pane, -1, _(u"File"))
+  fileLabel = wx.StaticText(self.pane, -1, _("File"))
   self.file = wx.TextCtrl(self.pane, -1, value=filename, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(200, 100))
   self.file.SetFocus()
   fileBox.Add(fileLabel)
   fileBox.Add(self.file)
   currentAmountBox = wx.BoxSizer(wx.HORIZONTAL)
-  current_amount_label = wx.StaticText(self.pane, -1, _(u"Transferred"))
+  current_amount_label = wx.StaticText(self.pane, -1, _("Transferred"))
   self.current_amount = wx.TextCtrl(self.pane, -1, value='0', style=wx.TE_READONLY|wx.TE_MULTILINE)
   currentAmountBox.Add(current_amount_label)
   currentAmountBox.Add(self.current_amount)
   totalSizeBox = wx.BoxSizer(wx.HORIZONTAL)
-  total_size_label = wx.StaticText(self.pane, -1, _(u"Total file size"))
+  total_size_label = wx.StaticText(self.pane, -1, _("Total file size"))
   self.total_size = wx.TextCtrl(self.pane, -1, value='0', style=wx.TE_READONLY|wx.TE_MULTILINE)
   totalSizeBox.Add(total_size_label)
   totalSizeBox.Add(self.total_size)
   speedBox = wx.BoxSizer(wx.HORIZONTAL)
-  speedLabel = wx.StaticText(self.pane, -1, _(u"Transfer rate"))
+  speedLabel = wx.StaticText(self.pane, -1, _("Transfer rate"))
   self.speed = wx.TextCtrl(self.pane, -1, style=wx.TE_READONLY|wx.TE_MULTILINE, value="0 Kb/s")
   speedBox.Add(speedLabel)
   speedBox.Add(self.speed)
   etaBox = wx.BoxSizer(wx.HORIZONTAL)
-  etaLabel = wx.StaticText(self.pane, -1, _(u"Time left"))
+  etaLabel = wx.StaticText(self.pane, -1, _("Time left"))
   self.eta = wx.TextCtrl(self.pane, -1, style=wx.TE_READONLY|wx.TE_MULTILINE, value="Unknown", size=(200, 100))
   etaBox.Add(etaLabel)
   etaBox.Add(self.eta)

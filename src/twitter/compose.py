@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 from future import standard_library
 standard_library.install_aliases()
 from builtins import str
@@ -41,7 +41,7 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False):
   if relative_times == True:
    ts = original_date.humanize(locale=languageHandler.getLanguage())
   else:
-   ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
+   ts = original_date.replace(seconds=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
   ts = tweet["created_at"]
  if "message" in tweet:
@@ -82,16 +82,16 @@ def compose_dm(tweet, db, relative_times, show_screen_names=False):
   if relative_times == True:
    ts = original_date.humanize(locale=languageHandler.getLanguage())
   else:
-   ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
+   ts = original_date.replace(seconds=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
   ts = tweet["created_at"]
  text = StripChars(tweet["text"])
  source = "DM"
  if db["user_name"] == tweet["sender"]["screen_name"]:
   if show_screen_names:
-   user = _(u"Dm to %s ") % (tweet["recipient"]["screen_name"],)
+   user = _("Dm to %s ") % (tweet["recipient"]["screen_name"],)
   else:
-   user = _(u"Dm to %s ") % (tweet["recipient"]["name"],)
+   user = _("Dm to %s ") % (tweet["recipient"]["name"],)
  else:
   if show_screen_names:
    user = tweet["sender"]["screen_name"]
@@ -126,7 +126,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
   original_text = StripChars(original_tweet["full_text"])
  else:
    original_text = StripChars(original_tweet["text"])
- quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}").format( quoted_tweet[value], original_user, original_text)
+ quoted_tweet["message"] = _("{0}. Quoted  tweet from @{1}: {2}").format( quoted_tweet[value], original_user, original_text)
  quoted_tweet = tweets.clear_url(quoted_tweet)
  return quoted_tweet
 
@@ -136,7 +136,7 @@ def compose_followers_list(tweet, db, relative_times=True, show_screen_names=Fal
   if relative_times == True:
    ts = original_date.humanize(locale=languageHandler.getLanguage())
   else:
-   ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
+   ts = original_date.replace(seconds=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
   ts = tweet["created_at"]
  if "status" in tweet:
@@ -145,12 +145,12 @@ def compose_followers_list(tweet, db, relative_times=True, show_screen_names=Fal
    if relative_times:
     ts2 = original_date2.humanize(locale=languageHandler.getLanguage())
    else:
-    ts2 = original_date2.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
+    ts2 = original_date2.replace(seconds=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
   else:
    ts2 = _("Unavailable")
  else:
   ts2 = _("Unavailable")
- return [_(u"%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined Twitter %s") % (tweet["name"], tweet["screen_name"], tweet["followers_count"], tweet["friends_count"],  tweet["statuses_count"], ts2, ts)]
+ return [_("%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined Twitter %s") % (tweet["name"], tweet["screen_name"], tweet["followers_count"], tweet["friends_count"],  tweet["statuses_count"], ts2, ts)]
 
 def compose_event(data, username, show_screen_names=False):
  if show_screen_names:
@@ -160,45 +160,45 @@ def compose_event(data, username, show_screen_names=False):
  if data["event"] == "block":
   event = _("You've blocked %s") % (data["target"][value])
  elif data["event"] == "unblock":
-  event = _(u"You've unblocked %s") % (data["target"][value])
+  event = _("You've unblocked %s") % (data["target"][value])
  elif data["event"] == "follow":
   if data["target"]["screen_name"] == username:
-   event = _(u"%s(@%s) has followed you") % (data["source"]["name"], data["source"]["screen_name"])
+   event = _("%s(@%s) has followed you") % (data["source"]["name"], data["source"]["screen_name"])
   elif data["source"]["screen_name"] == username:
-   event = _(u"You've followed %s(@%s)") % (data["target"]["name"], data["target"]["screen_name"])
+   event = _("You've followed %s(@%s)") % (data["target"]["name"], data["target"]["screen_name"])
  elif data["event"] == "unfollow":
-  event = _(u"You've unfollowed %s (@%s)") % (data["target"]["name"], data["target"]["screen_name"])
+  event = _("You've unfollowed %s (@%s)") % (data["target"]["name"], data["target"]["screen_name"])
  elif data["event"] == "favorite":
   if data["source"]["screen_name"] == username:
-   event = _(u"You've liked: %s, %s") % (data["target"][value], data["target_object"]["text"])
+   event = _("You've liked: %s, %s") % (data["target"][value], data["target_object"]["text"])
   else:
-   event = _(u"%s(@%s) has liked: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
+   event = _("%s(@%s) has liked: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
  elif data["event"] == "unfavorite":
-  if data["source"]["screen_name"] == username: event = _(u"You've unliked: %s, %s") % (data["target"][value], data["target_object"]["text"])
-  else: event = _(u"%s(@%s) has unliked: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
+  if data["source"]["screen_name"] == username: event = _("You've unliked: %s, %s") % (data["target"][value], data["target_object"]["text"])
+  else: event = _("%s(@%s) has unliked: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["text"])
  elif data["event"] == "list_created":
-  event = _(u"You've created the list %s") % (data["target_object"]["name"])
+  event = _("You've created the list %s") % (data["target_object"]["name"])
  elif data["event"] == "list_destroyed":
   event = _("You've deleted the list %s") % (data["target_object"]["name"])
  elif data["event"] == "list_updated":
   event = _("You've updated the list %s") % (data["target_object"]["name"])
  elif data["event"] == "list_member_added":
-  if data["source"]["screen_name"] == username: event = _(u"You've added %s(@%s) to the list %s") % (data["target"]["name"], data["target"]["screen_name"], data["target_object"]["name"])
-  else: event = _(u"%s(@%s) has added you to the list %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["name"])
+  if data["source"]["screen_name"] == username: event = _("You've added %s(@%s) to the list %s") % (data["target"]["name"], data["target"]["screen_name"], data["target_object"]["name"])
+  else: event = _("%s(@%s) has added you to the list %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["name"])
  elif data["event"] == "list_member_removed":
-  if data["source"]["screen_name"] == username: event = _(u"You'be removed %s(@%s) from the list %s") % (data["target"]["name"], data["target"]["screen_name"], data["target_object"]["name"])
-  else: event = _(u"%s(@%s) has removed you from the list %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["name"])
+  if data["source"]["screen_name"] == username: event = _("You'be removed %s(@%s) from the list %s") % (data["target"]["name"], data["target"]["screen_name"], data["target_object"]["name"])
+  else: event = _("%s(@%s) has removed you from the list %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["name"])
  elif data["event"] == "list_user_subscribed":
-  if data["source"]["screen_name"] == username: event = _(u"You've subscribed to the list %s, which is owned by %s(@%s)") % (data["target_object"]["name"], data["target"]["name"], data["target"]["screen_name"])
-  else: event = _(u"%s(@%s) has suscribed you to the list %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["name"])
+  if data["source"]["screen_name"] == username: event = _("You've subscribed to the list %s, which is owned by %s(@%s)") % (data["target_object"]["name"], data["target"]["name"], data["target"]["screen_name"])
+  else: event = _("%s(@%s) has suscribed you to the list %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["name"])
  elif data["event"] == "list_user_unsubscribed":
-  if data["source"]["screen_name"] == username: event = _(u"You've unsubscribed from the list %s, which is owned by %s(@%s)") % (data["target_object"]["name"], data["target"]["name"], data["target"]["screen_name"])
+  if data["source"]["screen_name"] == username: event = _("You've unsubscribed from the list %s, which is owned by %s(@%s)") % (data["target_object"]["name"], data["target"]["name"], data["target"]["screen_name"])
   else: event = _("You've been unsubscribed from the list %s, which is owned by %s(@%s)") % (data["target_object"]["name"], data["source"]["name"], data["source"]["screen_name"])
  elif data["event"] == "retweeted_retweet":
-  if data["source"]["screen_name"] == username: event = _(u"You have retweeted a retweet from %s(@%s): %s") % (data["target"]["name"], data["target"]["screen_name"], data["target_object"]["retweeted_status"]["text"])
-  else: event = _(u"%s(@%s) has retweeted your retweet: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["retweeted_status"]["text"])
+  if data["source"]["screen_name"] == username: event = _("You have retweeted a retweet from %s(@%s): %s") % (data["target"]["name"], data["target"]["screen_name"], data["target_object"]["retweeted_status"]["text"])
+  else: event = _("%s(@%s) has retweeted your retweet: %s") % (data["source"]["name"], data["source"]["screen_name"], data["target_object"]["retweeted_status"]["text"])
  elif data["event"] == "quoted_tweet":
-   event = _(u"@{0} quoted your tweet: {1}").format(data["source"]["screen_name"], data["target_object"]["text"])
+   event = _("@{0} quoted your tweet: {1}").format(data["source"]["screen_name"], data["target_object"]["text"])
  else:
   event = _("Unknown")
   log.error("event: %s\n target: %s\n source: %s\n target_object: %s" % (data["event"], data["target"], data["source"], data["target_object"]))
@@ -206,10 +206,10 @@ def compose_event(data, username, show_screen_names=False):
 
 def compose_list(list):
  name = list["name"]
- if list["description"] == None: description = _(u"No description available")
+ if list["description"] == None: description = _("No description available")
  else: description = list["description"]
  user = list["user"]["name"]
  members = str(list["member_count"])
- if list["mode"] == "private": status = _(u"private")
- else: status = _(u"public")
+ if list["mode"] == "private": status = _("private")
+ else: status = _("public")
  return [name, description, user, members, status]

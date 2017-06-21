@@ -36,7 +36,7 @@ def localeNameToWindowsLCID(localeName):
 		localeName=locale.normalize(localeName)
 		if '.' in localeName:
 			localeName=localeName.split('.')[0]
-		LCList=[x[0] for x in locale.windows_locale.items() if x[1]==localeName]
+		LCList=[x[0] for x in list(locale.windows_locale.items()) if x[1]==localeName]
 		if len(LCList)>0:
 			LCID=LCList[0]
 		else:
@@ -113,7 +113,7 @@ def makePgettext(translations):
 			message = str(message)
 			try:
 				# Look up the message with its context.
-				return translations._catalog[u"%s\x04%s" % (context, message)]
+				return translations._catalog["%s\x04%s" % (context, message)]
 			except KeyError:
 				return message
 	else:

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 from builtins import str
 from builtins import range
 import url_shortener, re
@@ -139,9 +139,9 @@ def is_allowed(tweet, clients):
 
 def twitter_error(error):
  if error.error_code == 403:
-  msg = _(u"Sorry, you are not authorised to see this status.")
+  msg = _("Sorry, you are not authorised to see this status.")
  elif error.error_code == 404:
-  msg = _(u"No status found with that ID")
+  msg = _("No status found with that ID")
  else:
-  msg = _(u"Error code {0}").format(error.error_code,)
+  msg = _("Error code {0}").format(error.error_code,)
  output.speak(msg)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 from builtins import str
 from builtins import range
 from builtins import object
@@ -50,18 +50,18 @@ class basicTweet(object):
    self.message.set_text(msg)
    self.text_processor()
    self.message.text_focus()
-   output.speak(_(u"Translated"))
+   output.speak(_("Translated"))
   else:
    return
 
  def shorten(self, event=None):
   urls = utils.find_urls_in_text(self.message.get_text())
   if len(urls) == 0:
-   output.speak(_(u"There's no URL to be shortened"))
+   output.speak(_("There's no URL to be shortened"))
    self.message.text_focus()
   elif len(urls) == 1:
    self.message.set_text(self.message.get_text().replace(urls[0], url_shortener.shorten(urls[0])))
-   output.speak(_(u"URL shortened"))
+   output.speak(_("URL shortened"))
    self.text_processor()
    self.message.text_focus()
   elif len(urls) > 1:
@@ -69,18 +69,18 @@ class basicTweet(object):
    list_urls.populate_list(urls)
    if list_urls.get_response() == widgetUtils.OK:
     self.message.set_text(self.message.get_text().replace(urls[list_urls.get_item()], url_shortener.shorten(list_urls.get_string())))
-    output.speak(_(u"URL shortened"))
+    output.speak(_("URL shortened"))
     self.text_processor()
     self.message.text_focus()
 
  def unshorten(self, event=None):
   urls = utils.find_urls_in_text(self.message.get_text())
   if len(urls) == 0:
-   output.speak(_(u"There's no URL to be expanded"))
+   output.speak(_("There's no URL to be expanded"))
    self.message.text_focus()
   elif len(urls) == 1:
    self.message.set_text(self.message.get_text().replace(urls[0], url_shortener.unshorten(urls[0])))
-   output.speak(_(u"URL expanded"))
+   output.speak(_("URL expanded"))
    self.text_processor()
    self.message.text_focus()
   elif len(urls) > 1:
@@ -88,7 +88,7 @@ class basicTweet(object):
    list_urls.populate_list(urls)
    if list_urls.get_response() == widgetUtils.OK:
     self.message.set_text(self.message.get_text().replace(urls[list_urls.get_item()], url_shortener.unshorten(list_urls.get_string())))
-    output.speak(_(u"URL expanded"))
+    output.speak(_("URL expanded"))
     self.text_processor()
     self.message.text_focus()
 
@@ -100,11 +100,11 @@ class basicTweet(object):
    self.message.disable_button("shortenButton")
    self.message.disable_button("unshortenButton")
   if self.message.get("long_tweet") == False:
-   self.message.set_title(_(u"%s - %s of %d characters") % (self.title, len(self.message.get_text()), self.max))
+   self.message.set_title(_("%s - %s of %d characters") % (self.title, len(self.message.get_text()), self.max))
    if len(self.message.get_text()) > self.max:
     self.session.sound.play("max_length.ogg")
   else:
-   self.message.set_title(_(u"%s - %s characters") % (self.title, len(self.message.get_text())))
+   self.message.set_title(_("%s - %s characters") % (self.title, len(self.message.get_text())))
 
  def spellcheck(self, event=None):
   text = self.message.get_text()
@@ -123,7 +123,7 @@ class basicTweet(object):
     self.message.set_text(self.message.get_text()+url+" #audio")
     self.text_processor()
    else:
-    output.speak(_(u"Unable to upload the audio"))
+    output.speak(_("Unable to upload the audio"))
    dlg.cleanup()
   dlg = audioUploader.audioUploader(self.session.settings, completed_callback)
   self.message.text_focus()

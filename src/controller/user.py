@@ -26,15 +26,15 @@ class profileController(object):
     self.get_data(screen_name=self.user)
    except TwythonError as err:
     if err.error_code == 404:
-     wx.MessageDialog(None, _(u"That user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
+     wx.MessageDialog(None, _("That user does not exist"), _("Error"), wx.ICON_ERROR).ShowModal()
     if err.error_code == 403:
-     wx.MessageDialog(None, _(u"User has been suspended"), _(u"Error"), wx.ICON_ERROR).ShowModal()
+     wx.MessageDialog(None, _("User has been suspended"), _("Error"), wx.ICON_ERROR).ShowModal()
     log.error("error %d: %s" % (err.error_code, err.msg))
     return
    self.dialog = show_user.showUserProfile()
    string = self.get_user_info()
    self.dialog.set("text", string)
-   self.dialog.set_title(_(u"Information for %s") % (self.data["screen_name"]))
+   self.dialog.set_title(_("Information for %s") % (self.data["screen_name"]))
    if self.data["url"] != None:
     self.dialog.enable_url()
     widgetUtils.connect_event(self.dialog.url, widgetUtils.BUTTON_PRESSED, self.visit_url)
@@ -64,7 +64,7 @@ class profileController(object):
 
  def discard_image(self):
   self.file = None
-  output.speak(_(u"Discarded"))
+  output.speak(_("Discarded"))
   self.uploaded = False
   self.dialog.change_upload_button(self.uploaded)
 
@@ -84,43 +84,43 @@ class profileController(object):
    try:
     self.session.twitter.twitter.update_profile_image(image=self.file)
    except TwythonError as e:
-    output.speak(u"Error %s. %s" % (e.error_code, e.msg))
+    output.speak("Error %s. %s" % (e.error_code, e.msg))
   try:
    self.session.twitter.twitter.update_profile(name=name, description=description, location=location, url=url)
   except TwythonError as e:
-   output.speak(u"Error %s. %s" % (e.error_code, e.msg))
+   output.speak("Error %s. %s" % (e.error_code, e.msg))
 
  def get_user_info(self):
  
-  string = u""
-  string = string + _(u"Username: @%s\n") % (self.data["screen_name"])
-  string = string + _(u"Name: %s\n") % (self.data["name"])
+  string = ""
+  string = string + _("Username: @%s\n") % (self.data["screen_name"])
+  string = string + _("Name: %s\n") % (self.data["name"])
   if self.data["location"] != "":
-   string = string + _(u"Location: %s\n") % (self.data["location"])
+   string = string + _("Location: %s\n") % (self.data["location"])
   if self.data["url"] != None:
-   string = string+ _(u"URL: %s\n") % (self.data["url"])
+   string = string+ _("URL: %s\n") % (self.data["url"])
   if self.data["description"] != "":
-   string = string+ _(u"Bio: %s\n") % (self.data["description"])
-  if self.data["protected"] == True: protected = _(u"Yes")
-  else: protected = _(u"No")
-  string = string+ _(u"Protected: %s\n") % (protected)
+   string = string+ _("Bio: %s\n") % (self.data["description"])
+  if self.data["protected"] == True: protected = _("Yes")
+  else: protected = _("No")
+  string = string+ _("Protected: %s\n") % (protected)
   if hasattr(self, "friendship_status"):
    relation = False
    friendship = "Relationship: "
    if self.friendship_status["relationship"]["target"]["followed_by"]:
-    friendship += _(u"You follow {0}. ").format(self.data["name"],)
+    friendship += _("You follow {0}. ").format(self.data["name"],)
     relation = True
    if self.friendship_status["relationship"]["target"]["following"]:
-    friendship += _(u"{0} is following you.").format(self.data["name"],)
+    friendship += _("{0} is following you.").format(self.data["name"],)
     relation = True
    if relation == True:
     string = string+friendship+"\n"
-  string = string+_(u"Followers: %s\n Friends: %s\n") % (self.data["followers_count"], self.data["friends_count"])
-  if self.data["verified"] == True: verified = _(u"Yes")
-  else: verified = _(u"No")
-  string = string+ _(u"Verified: %s\n") % (verified)
-  string = string+ _(u"Tweets: %s\n") % (self.data["statuses_count"])
-  string = string+ _(u"Likes: %s") % (self.data["favourites_count"])
+  string = string+_("Followers: %s\n Friends: %s\n") % (self.data["followers_count"], self.data["friends_count"])
+  if self.data["verified"] == True: verified = _("Yes")
+  else: verified = _("No")
+  string = string+ _("Verified: %s\n") % (verified)
+  string = string+ _("Tweets: %s\n") % (self.data["statuses_count"])
+  string = string+ _("Likes: %s") % (self.data["favourites_count"])
   return string
 
  def visit_url(self, *args, **kwargs):

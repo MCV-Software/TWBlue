@@ -102,7 +102,7 @@ def wx_files():
 if __name__ == '__main__':
 	setup(
   name = application.name,
-  author = u", ".join(application.authors),
+  author = ", ".join(application.authors),
   author_email = application.authorEmail,
   version = application.version,
   url = application.url,

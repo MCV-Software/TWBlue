@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 from builtins import str
 from builtins import range
 from builtins import object
@@ -93,11 +93,11 @@ class bufferController(object):
 
  def start_stream(self, mandatory=False):
   if mandatory == True:
-   output.speak(_(u"Unable to update this buffer."))
+   output.speak(_("Unable to update this buffer."))
   pass
 
  def get_more_items(self):
-  output.speak(_(u"This action is not supported for this buffer"), True)
+  output.speak(_("This action is not supported for this buffer"), True)
 
  def put_items_on_list(self, items):
   pass
@@ -138,8 +138,8 @@ class bufferController(object):
   pass
 
  def post_tweet(self, *args, **kwargs):
-  title = _(u"Tweet")
-  caption = _(u"Write the tweet here")
+  title = _("Tweet")
+  caption = _("Write the tweet here")
   tweet = messages.tweet(self.session, title, caption, "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
   if tweet.message.get_response() == widgetUtils.OK:
    self.session.settings["mysc"]["twishort_enabled"] = tweet.message.long_tweet.GetValue()
@@ -355,7 +355,7 @@ class baseBufferController(bufferController):
 #   self.buffer.list.select_item(selection+elements)
 #  else:
    self.buffer.list.select_item(selection)
-  output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
+  output.speak(_("%s items retrieved") % (str(len(elements))), True)
 
  def remove_buffer(self, force=False):
   if "-timeline" in self.name:
@@ -387,11 +387,11 @@ class baseBufferController(bufferController):
    elif dlg == widgetUtils.NO:
     return False
   else:
-   output.speak(_(u"This buffer is not a timeline; it can't be deleted."), True)
+   output.speak(_("This buffer is not a timeline; it can't be deleted."), True)
    return False
 
  def remove_tweet(self, id):
-  if type(self.session.db[self.name]) == dict: return
+  if isinstance(self.session.db[self.name], dict): return
   for i in range(0, len(self.session.db[self.name])):
    if self.session.db[self.name][i]["id"] == id:
     self.session.db[self.name].pop(i)
@@ -516,7 +516,7 @@ class baseBufferController(bufferController):
   twishort_enabled = "twishort" in tweet
   users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
   ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
-  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users, ids=ids)
+  message = messages.reply(self.session, _("Reply"), _("Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users, ids=ids)
   if message.message.get_response() == widgetUtils.OK:
    params = {"_sound": "reply_send.ogg", "in_reply_to_status_id": id,}
    self.session.settings["mysc"]["twishort_enabled"] = message.message.long_tweet.GetValue()
@@ -529,7 +529,7 @@ class baseBufferController(bufferController):
     params["auto_populate_reply_metadata"] =True
    else:
     mentioned_people = message.get_people()
-    text = "@"+screen_name+" "+mentioned_people+u" "+text
+    text = "@"+screen_name+" "+mentioned_people+" "+text
    if len(text) > 140 and message.message.get("long_tweet") == True:
     if message.image == None:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
@@ -557,7 +557,7 @@ class baseBufferController(bufferController):
   else:
    screen_name = tweet["user"]["screen_name"]
    users = utils.get_all_users(tweet, self.session.db)
-  dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
+  dm = messages.dm(self.session, _("Direct message to %s") % (screen_name,), _("New direct message"), users)
   if dm.message.get_response() == widgetUtils.OK:
    val = self.session.api_call(call_name="send_direct_message", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
    if val != None:
@@ -588,7 +588,7 @@ class baseBufferController(bufferController):
    comments = tweet["full_text"]
   else:
    comments = tweet["text"]
-  retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], comments), max=116, messageType="retweet", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
+  retweet = messages.tweet(self.session, _("Quote"), _("Add your comment to the tweet"), "“@%s: %s ”" % (tweet["user"]["screen_name"], comments), max=116, messageType="retweet", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
   if comment != '':
    retweet.message.set_text(comment)
   if retweet.message.get_response() == widgetUtils.OK:
@@ -653,7 +653,7 @@ class baseBufferController(bufferController):
     if hasattr(urls_list, "destroy"): urls_list.destroy()
    if url != '':
     if announce:
-     output.speak(_(u"Opening URL..."), True)
+     output.speak(_("Opening URL..."), True)
     webbrowser.open_new_tab(url)
 
  def clear_list(self):
@@ -688,7 +688,7 @@ class baseBufferController(bufferController):
    users = [tweet["screen_name"]]
   else:
    users = utils.get_all_users(tweet, self.session.db)
-  dlg = dialogs.utils.selectUserDialog(title=_(u"User details"), users=users)
+  dlg = dialogs.utils.selectUserDialog(title=_("User details"), users=users)
   if dlg.get_response() == widgetUtils.OK:
    user.profileController(session=self.session, user=dlg.get_user())
   if hasattr(dlg, "destroy"): dlg.destroy()
@@ -763,7 +763,7 @@ class eventsBufferController(bufferController):
   self.get_formatted_message = self.get_message
 
  def get_message(self):
-  if self.buffer.list.get_count() == 0: return _(u"Empty")
+  if self.buffer.list.get_count() == 0: return _("Empty")
   # fix this:
   return "%s. %s" % (self.buffer.list.list.GetItemText(self.buffer.list.get_selected()), self.buffer.list.list.GetItemText(self.buffer.list.get_selected(), 1))
 
@@ -849,7 +849,7 @@ class peopleBufferController(baseBufferController):
    elif dlg == widgetUtils.NO:
     return False
   else:
-   output.speak(_(u"This buffer is not a timeline; it can't be deleted."), True)
+   output.speak(_("This buffer is not a timeline; it can't be deleted."), True)
    return False
 
  def onFocus(self, ev):
@@ -864,7 +864,7 @@ class peopleBufferController(baseBufferController):
  def reply(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   screen_name = tweet["screen_name"]
-  message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
+  message = messages.reply(self.session, _("Mention"), _("Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
   if message.message.get_response() == widgetUtils.OK:
    if message.image == None:
     call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
@@ -911,7 +911,7 @@ class peopleBufferController(baseBufferController):
 #   self.buffer.list.select_item(selection)
 #  else:
 #   self.buffer.list.select_item(selection-elements)
-  output.speak(_(u"%s items retrieved") % (len(items)), True)
+  output.speak(_("%s items retrieved") % (len(items)), True)
 
  def put_items_on_list(self, number_of_items):
   log.debug("The list contains %d items" % (self.buffer.list.get_count(),))
@@ -1037,7 +1037,7 @@ class searchBufferController(baseBufferController):
 #   self.buffer.list.select_item(selection+elements)
 #  else:
    self.buffer.list.select_item(selection)
-  output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
+  output.speak(_("%s items retrieved") % (str(len(elements))), True)
 
 class searchPeopleBufferController(peopleBufferController):
 
@@ -1097,7 +1097,7 @@ class searchPeopleBufferController(peopleBufferController):
 #   self.buffer.list.select_item(selection)
 #  else:
 #   self.buffer.list.select_item(selection-elements)
-  output.speak(_(u"%s items retrieved") % (len(items)), True)
+  output.speak(_("%s items retrieved") % (len(items)), True)
 
 
  def remove_buffer(self, force=False):
@@ -1213,8 +1213,8 @@ class trendsBufferController(bufferController):
 
  def tweet_about_this_trend(self, *args, **kwargs):
   if self.buffer.list.get_count() == 0: return
-  title = _(u"Tweet")
-  caption = _(u"Write the tweet here")
+  title = _("Tweet")
+  caption = _("Write the tweet here")
   tweet = messages.tweet(self.session, title, caption, self.get_message()+ " ", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
   tweet.message.set_cursor_at_end()
   if tweet.message.get_response() == widgetUtils.OK:

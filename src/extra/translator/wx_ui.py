@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
-from __future__ import absolute_import
+
 # -*- coding: utf-8 -*-
 ############################################################
 #    Copyright (c) 2013, 2014 Manuel Eduardo Cortéz Vallejo <manuel@manuelcortez.net>
@@ -41,13 +41,13 @@ from wxUI.dialogs import baseDialog
 
 class translateDialog(baseDialog.BaseWXDialog):
  def __init__(self):
-  super(translateDialog, self).__init__(None, -1, title=_(u"Translate message"))
+  super(translateDialog, self).__init__(None, -1, title=_("Translate message"))
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
-  staticSource = wx.StaticText(panel, -1, _(u"Source language"))
+  staticSource = wx.StaticText(panel, -1, _("Source language"))
   self.source_lang = wx.ComboBox(panel, -1, choices=[x[1] for x in translator.available_languages()], style = wx.CB_READONLY)
   self.source_lang.SetFocus()
-  staticDest = wx.StaticText(panel, -1, _(u"Target language"))
+  staticDest = wx.StaticText(panel, -1, _("Target language"))
   self.source_lang.SetSelection(0)
   self.dest_lang = wx.ComboBox(panel, -1, choices=[x[1] for x in translator.available_languages()], style = wx.CB_READONLY)
   listSizer = wx.BoxSizer(wx.HORIZONTAL)

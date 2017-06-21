@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
-from __future__ import absolute_import
+
 from builtins import object
 import keys
 import wx
@@ -29,9 +29,9 @@ from . import constants
 class reportBug(object):
  def __init__(self, user_name):
   self.user_name = user_name
-  self.categories = [_(u"General")]
-  self.reproducibilities = [_(u"always"), _(u"sometimes"), _(u"random"), _(u"have not tried"), _(u"unable to duplicate")]
-  self.severities = [_(u"block"), _(u"crash"), _(u"major"), _(u"minor"), _(u"tweak"), _(u"text"), _(u"trivial"), _(u"feature")]
+  self.categories = [_("General")]
+  self.reproducibilities = [_("always"), _("sometimes"), _("random"), _("have not tried"), _("unable to duplicate")]
+  self.severities = [_("block"), _("crash"), _("major"), _("minor"), _("tweak"), _("text"), _("trivial"), _("feature")]
   self.dialog = wx_ui.reportBugDialog(self.categories, self.reproducibilities, self.severities)
   widgetUtils.connect_event(self.dialog.ok, widgetUtils.BUTTON_PRESSED, self.send)
   self.dialog.get_response()
