@@ -516,7 +516,12 @@ class baseBufferController(bufferController):
   twishort_enabled = "twishort" in tweet
   users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
   ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
-  message = messages.reply(self.session, _(u"Reply"), _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users, ids=ids)
+  # Build the window title
+  if len(users) < 1:
+    title=_("Reply to {}".format(screen_name))
+  else:
+    title=_("Reply")
+  message = messages.reply(self.session, title, _(u"Reply to {}".format(screen_name)), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users, ids=ids)
   if message.message.get_response() == widgetUtils.OK:
    params = {"_sound": "reply_send.ogg", "in_reply_to_status_id": id,}
    self.session.settings["mysc"]["twishort_enabled"] = message.message.long_tweet.GetValue()
