@@ -843,7 +843,7 @@ class Controller(object):
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
      buff.session.settings["other_buffers"]["favourites_timelines"].append(usr["id_str"])
-     pub.sendMessage("buffer-title-changed", buffer=i)
+     pub.sendMessage("buffer-title-changed", buffer=buff)
      buff.session.sound.play("create_timeline.ogg")
     elif tl_type == "followers":
      if usr["followers_count"] == 0:
