@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-
-from builtins import str
-from builtins import range
-from builtins import object
 import platform
 system = platform.system()
 import application
@@ -847,7 +843,7 @@ class Controller(object):
      tl.timer = RepeatingTimer(300, tl.start_stream)
      tl.timer.start()
      buff.session.settings["other_buffers"]["favourites_timelines"].append(usr["id_str"])
-     pub.sendMessage("buffer-title-changed", buffer=i)
+     pub.sendMessage("buffer-title-changed", buffer=buff)
      buff.session.sound.play("create_timeline.ogg")
     elif tl_type == "followers":
      if usr["followers_count"] == 0:
@@ -947,8 +943,8 @@ class Controller(object):
     x = tweet["coordinates"]["coordinates"][0]
     y = tweet["coordinates"]["coordinates"][1]
     address = geocoder.reverse_geocode(y, x)
-    if event == None: output.speak(address[0].__str__())
-    else: self.view.show_address(address[0].__str__())
+    if event == None: output.speak(address[0].__str__().decode("utf-8"))
+    else: self.view.show_address(address[0].__str__().decode("utf-8"))
    else:
     output.speak(_("There are no coordinates in this tweet"))
   except GeocoderError:
