@@ -20,6 +20,7 @@ def load_com(*names):
  global fixed
  if fixed==False:
   gencache._GetModule=patched_getmodule
+  prepare_gencache()
   fixed=True
  result = None
  for name in names:
