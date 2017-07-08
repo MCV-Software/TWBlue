@@ -514,7 +514,7 @@ class baseBufferController(bufferController):
   ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
   # Build the window title
   if len(users) < 1:
-   title=_("Reply to {}".format(screen_name))
+   title=_("Reply to {arg0}").format(arg0=screen_name)
   else:
    title=_("Reply")
   message = messages.reply(self.session, title, _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users, ids=ids)
