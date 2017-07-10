@@ -172,7 +172,7 @@ class Session(object):
   results = []
   data = getattr(self.twitter.twitter, update_function)(*args, **kwargs)
   if users == True:
-   if type(data) == dict and data.has_key("cursor"):
+   if type(data) == dict and data.has_key("next_cursor"):
     self.db[name]["cursor"] = data["next_cursor"]
     for i in data["users"]: results.append(i)
    elif type(data) == list:
