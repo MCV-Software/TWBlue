@@ -45,6 +45,8 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   kmbox.Add(self.km, 0, wx.ALL, 5)
   self.check_for_updates = wx.CheckBox(self, -1, _("Check for updates when {0} launches").format(application.name,))
   sizer.Add(self.check_for_updates, 0, wx.ALL, 5)
+  self.paranoid = wx.CheckBox(self, -1, _("Require re-authorization of all accounts when {0} is restarted").format(application.name,))
+  sizer.Add(self.paranoid, 0, wx.ALL, 5)
   sizer.Add(kmbox, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 

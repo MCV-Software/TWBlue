@@ -17,6 +17,7 @@ log_level = string(default="error")
 load_keymap = string(default="default.keymap")
 donation_dialog_displayed = boolean(default=False)
 check_for_updates = boolean(default=True)
+paranoid = boolean(default=False)
 
 [proxy]
 type = string(default="Direct connection")
