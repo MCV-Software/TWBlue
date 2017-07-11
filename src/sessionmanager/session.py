@@ -156,6 +156,10 @@ class Session(object):
     self.twitter.login(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], verify_credentials)
     self.logged = True
     log.debug("Logged.")
+    if config.app['app-settings']['paranoid']:
+     log.debug("Paranoid: forgetting Twitter auth credentials...")
+     self.settings['twitter']['user_key']=''
+     self.settings['twitter']['user_secret']=''
     self.counter = 0
    except:
     log.error("The login attempt failed.")

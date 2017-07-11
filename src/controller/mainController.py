@@ -37,6 +37,8 @@ import logging
 import webbrowser
 from mysc import localization
 import os
+import shutil
+import paths
 
 log = logging.getLogger("mainController")
 
@@ -648,7 +650,8 @@ class Controller(object):
    session_.sessions[item].sound.cleaner.cancel()
    log.debug("Shelving database for " +    session_.sessions[item].session_id)
    session_.sessions[item].shelve()
-
+   if config.app['app-settings']['paranoid']:
+    shutil.rmtree(paths.config_path(session_.sessions[item].session_id))
   if system == "Windows":
    self.systrayIcon.RemoveIcon()
   widgetUtils.exit_application()
