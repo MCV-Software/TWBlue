@@ -8,7 +8,7 @@ import strings
 import changelog
 
 # the list of supported language codes of TW Blue
-languages = ["en", "es", "fr", "de", "it", "gl", "ja", "ru", "ro"]
+languages = ["en", "es", "fr", "de", "it", "gl", "ja", "ru", "ro", "eu"]
 #"eu", "ar", "ca", "es", "fi", "fr", "gl", "hu", "it", "pl", "pt", "ru", "tr"]
 
 def generate_document(language, document_type="documentation"):
