@@ -4,17 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: TWBlue-Changelog V0.88\n"
-"POT-Creation-Date: 2017-01-18 15:11+Hora estndar central (Mxico)\n"
-"PO-Revision-Date: 2017-01-22 17:39+0100\n"
+"Project-Id-Version: TWBlue-Changelog V0.89\n"
+"POT-Creation-Date: 2017-07-08 16:25+Hora de verano central (Mxico)\n"
+"PO-Revision-Date: 2017-07-10 10:00+0200\n"
 "Last-Translator: \n"
-"Language-Team: Francisco Torres Gallego. <frantorresgallego@gmail.com>\n"
+"Language-Team: Fran Torres Gallego. <frantorresgallego@gmail.com>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../doc/changelog.py:3
@@ -26,21 +26,186 @@ msgid "## changes in this version"
 msgstr "##Cambis en aquesta versió"
 
 #: ../doc/changelog.py:5
-msgid "* Fixed more issues with streams and reconnections."
-msgstr "*El·liminats molts errors amb els streams i les reconexions."
+msgid ""
+"* TWBlue will show an error when trying to open a timeline for a suspended "
+"user. ([#128](https://github.com/manuelcortez/TWBlue/issues/128))"
+msgstr ""
+"TWBlue ara mostra un error quan s'intenta accedir al time-line d'un usuari "
+"que ha estat suspès. ([#128](https://github.com/manuelcortez/TWBlue/"
+"issues/128))"
 
 #: ../doc/changelog.py:6
-msgid "* newer updates will indicate the release date in the updater."
-msgstr "*ara s'indica la data de la nova versió al actualitzador."
+msgid ""
+"* Removed TwUp as service as it no longer exists. ([#112](https://github.com/"
+"manuelcortez/TWBlue/issues/112))"
+msgstr ""
+"S'ha eliminat el servei TWBlueUp ja que ha deixat d'existir. ([#112](https://"
+"github.com/manuelcortez/TWBlue/issues/112))"
 
 #: ../doc/changelog.py:7
 msgid ""
-"* Changes to keystrokes are reflected in keystroke editor automatically."
+"* Release audio files after uploading them. ([#130](https://github.com/"
+"manuelcortez/TWBlue/issues/130))"
 msgstr ""
-"*els cambis als accessos de teclat es mostraràn automàticament a l'editor de "
-"teclat."
 
 #: ../doc/changelog.py:8
+msgid ""
+"* Now TWBlue will use Yandex's translation services instead microsoft "
+"translator. ([#132](https://github.com/manuelcortez/TWBlue/issues/132))"
+msgstr ""
+"TWBlue ara utilitza el servei de traducció de Microsoft Yandex. ([#132]"
+"(https://github.com/manuelcortez/TWBlue/issues/132))"
+
+#: ../doc/changelog.py:9
+msgid ""
+"* SndUp users will be able to upload audio in their account by using their "
+"API Key again. ([#134](https://github.com/manuelcortez/TWBlue/issues/134))"
+msgstr ""
+"Els usuaris de SndUp ja poden carregar audios al seu compte directament "
+"utilitzant de nou la clau API. ([#134](https://github.com/manuelcortez/"
+"TWBlue/issues/134))"
+
+#: ../doc/changelog.py:10
+msgid ""
+"* old tweets shouldn't be added as new items in buffers. ([#116,](https://"
+"github.com/manuelcortez/TWBlue/issues/116)) ([#133](https://github.com/"
+"manuelcortez/TWBlue/issues/133))"
+msgstr ""
+"Els tuits antics no deuen afegir-se als nous elements. ([#116,](https://"
+"github.com/manuelcortez/TWBlue/issues/116)) ([#133](https://github.com/"
+"manuelcortez/TWBlue/issues/133))"
+
+#: ../doc/changelog.py:11
+msgid ""
+"* All mentionned users should be displayed correctly in Twishort's long "
+"tweets. ([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) ([#135]"
+"(https://github.com/manuelcortez/TWBlue/issues/135))"
+msgstr ""
+"en tuits llargs, tots els usuaris aurien de mostrar-se correctament amb "
+"twishort. ([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) "
+"([#135](https://github.com/manuelcortez/TWBlue/issues/135))"
+
+#: ../doc/changelog.py:12
+msgid ""
+"* It is possible to select a language for OCR service from the extras panel, "
+"in the account settings dialogue. You can, however, set this to detect "
+"automatically. OCR should work better in languages with special characters "
+"or non-english symbols. ([#107](https://github.com/manuelcortez/TWBlue/"
+"issues/107))"
+msgstr ""
+"Es posible sel·leccionar l'idioma de l'OCR desde la finestra d'extres, al "
+"diàleg configuració del compte. Pots establir l'idioma o, permetre que l'OCR "
+"detecti automàticament el millor idioma. l'OCR treballa correctament amb "
+"idiomas que tinguin simbols especials o sense puntuació anglessa. ([#107]"
+"(https://github.com/manuelcortez/TWBlue/issues/107))"
+
+#: ../doc/changelog.py:13
+msgid ""
+"* Fixed a problem with JAWS for Windows and TWBlue. Now JAWS will work "
+"normally in this update. [#100](https://github.com/manuelcortez/twblue/"
+"issues/100)"
+msgstr ""
+"Corregit un error amb JAWS for Windows i TWBlue. JAWS funciona de forma "
+"normal en aquesta actualització. [#100](https://github.com/manuelcortez/"
+"twblue/issues/100)"
+
+#: ../doc/changelog.py:14
+msgid "* And more ([#136,](https://github.com/manuelcortez/TWBlue/issues/136))"
+msgstr "I més. ([#136,](https://github.com/manuelcortez/TWBlue/issues/136))"
+
+#: ../doc/changelog.py:15
+msgid "## Changes in version 0.90"
+msgstr "##Cambis a la versió 0.90"
+
+#: ../doc/changelog.py:16
+msgid ""
+"* Fixed a bug in long tweet parsing that was making TWBlue to disconnect the "
+"streaming API. ([#103](https://github.com/manuelcortez/TWBlue/issues/103))"
+msgstr ""
+"Correixit un error amb els tuits llargs que probocaven la desconexió a l'API "
+"d'un stream. ([#103](https://github.com/manuelcortez/TWBlue/issues/103))"
+
+#: ../doc/changelog.py:17
+msgid ""
+"* Now OCR will work in images from retweets. It fixes a bug where TWBlue was "
+"detecting images but couldn't apply OCR on them. ([#105](https://github.com/"
+"manuelcortez/TWBlue/issues/105))"
+msgstr ""
+
+#: ../doc/changelog.py:18
+msgid ""
+"* TWBlue won't try to load tweets already deleted, made with Twishort. "
+"Before, if someone posted a long tweet but deleted it in the Twishort's "
+"site, TWBlue was trying to load the tweet and it was causing problems in all "
+"the client. ([#113](https://github.com/manuelcortez/TWBlue/issues/113))"
+msgstr ""
+"TWBlue no intentarà carregar els tuits eliminats, fets amb twishort. Avans, "
+"si algú postejava un tuit pero desprès s'el·liminava des del lloc de "
+"twishort, TWBlue intentaba carregar el tuit llarg, caussant problemas en tot "
+"el client. ([#113](https://github.com/manuelcortez/TWBlue/issues/113))"
+
+#: ../doc/changelog.py:19
+msgid ""
+"* TWBlue shows an error message when you try to view the profile of an user "
+"that does not exist or has been suspended. ([#114,](https://github.com/"
+"manuelcortez/TWBlue/issues/114) [#115](https://github.com/manuelcortez/"
+"TWBlue/issues/115))"
+msgstr ""
+"TWBlue mostra un missatge d'error quan s'intenta veure el perfil d'un usuari "
+"inexistent o que ha estat suspès. ([#114,](https://github.com/manuelcortez/"
+"TWBlue/issues/114) [#115](https://github.com/manuelcortez/TWBlue/issues/115))"
+
+#: ../doc/changelog.py:20
+msgid ""
+"* The spellchecker module should select the right language when is set to "
+"\"user default\". ([#117](https://github.com/manuelcortez/TWBlue/issues/117))"
+msgstr ""
+"El corrector ortogràfic ha de ser capaç de detectar l'idioma correctament "
+"quan es trova configurat com \"usuari per defecte\". ([#117](https://github."
+"com/manuelcortez/TWBlue/issues/117))"
+
+#: ../doc/changelog.py:21
+msgid ""
+"* Image description will be displayed in retweets too. ([#119](https://"
+"github.com/manuelcortez/TWBlue/issues/119))"
+msgstr ""
+"La descripció d'imatges es mostrarà també als retuits. ([#119](https://"
+"github.com/manuelcortez/TWBlue/issues/119))"
+
+#: ../doc/changelog.py:22
+msgid ""
+"* When reading a long tweet, you shouldn't read strange entities anymore. "
+"([#118](https://github.com/manuelcortez/twblue/issues/118))"
+msgstr ""
+
+#: ../doc/changelog.py:23
+msgid ""
+"* TWBlue will not try to load timelines if the user is blocking you. ([#125]"
+"(https://github.com/manuelcortez/twblue/issues/125))"
+msgstr ""
+"TWBlue no intentarà carregar els tuits del time-line d'un usuari que li està "
+"bloquejant. ([#125](https://github.com/manuelcortez/twblue/issues/125))"
+
+#: ../doc/changelog.py:24
+msgid "## Changes in version 0.88 and 0.89"
+msgstr "##cambis a les versións 0.88 i 0.89"
+
+#: ../doc/changelog.py:25
+msgid "* Fixed more issues with streams and reconnections."
+msgstr "*Eliminats molts errors amb els streams i les reconexions."
+
+#: ../doc/changelog.py:26
+msgid "* newer updates will indicate the release date in the updater."
+msgstr "*ara s'indica la data de la nova versió al mòdul d'actualitzacions."
+
+#: ../doc/changelog.py:27
+msgid ""
+"* Changes to keystrokes are reflected in keystroke editor automatically."
+msgstr ""
+"*els cambis de tecles es mostraràn automàticament a l'editor del mapa de "
+"teclat."
+
+#: ../doc/changelog.py:28
 msgid ""
 "* In replies with multiple users, if the mention to all checkbox is "
 "unchecked, you will see a checkbox per user so you will be able to control "
@@ -50,7 +215,7 @@ msgstr ""
 "es trova desverificada, podreu veure una casella per usuari i també "
 "controlar a qui mencioneu en la resposta."
 
-#: ../doc/changelog.py:9
+#: ../doc/changelog.py:29
 msgid ""
 "* Fixed a bug that caused duplicated user mentions in replies when the tweet "
 "was made with Twishort."
@@ -58,7 +223,7 @@ msgstr ""
 "*corregit un bug que causava la duplicitat de mencions quan es creava un "
 "twits mitjansant twisort."
 
-#: ../doc/changelog.py:10
+#: ../doc/changelog.py:30
 msgid ""
 "* Retweets should be displayed normally again when the originating tweet is "
 "a Twishort's long tweet."
@@ -66,7 +231,7 @@ msgstr ""
 "*Els retwits aurien de mostrar-se correctament de nou quan el twit original "
 "es un twit llarg recortat amb twisort."
 
-#: ../doc/changelog.py:11
+#: ../doc/changelog.py:31
 msgid ""
 "* Changed the way TWBlue saves user timelines in configuration. Now it uses "
 "user IDS instead usernames. With user IDS, if an user changes the username, "
@@ -78,7 +243,7 @@ msgstr ""
 "D'aquesta manera, si l'usuari cambia el seu nom, TWBlue será capaç de "
 "sincronitzar el seu fil temporal."
 
-#: ../doc/changelog.py:12
+#: ../doc/changelog.py:32
 msgid ""
 "* Added a new setting in the account settings dialogue that makes TWBlue to "
 "show twitter usernames instead the full name."
@@ -86,7 +251,7 @@ msgstr ""
 "*s'Ha afegit una nova configuració al diàleg de configuració de comptes per "
 "fer que TWBlue mostri els noms d'usuari de twitter, així com el nom complert."
 
-#: ../doc/changelog.py:13
+#: ../doc/changelog.py:33
 msgid ""
 "* Added OCR in twitter pictures. There is a new item in the tweet menu that "
 "allows you to extract and display text in images. Also the keystroke alt+Win"
@@ -97,18 +262,18 @@ msgstr ""
 "També s'ha afegit el comandament alt+win+o des de l'interfaç invisible pel "
 "mateix propossit."
 
-#: ../doc/changelog.py:14
+#: ../doc/changelog.py:34
 msgid "* Now TWBlue will play a sound when the focused tweet contains  images."
 msgstr "*Ara TWBlue pot reproduir un só quan un twit contingui imatges."
 
-#: ../doc/changelog.py:15
+#: ../doc/changelog.py:35
 msgid ""
 "* Your own quoted tweets will not appear in the mentions buffer anymore."
 msgstr ""
 "*Les tevés propies mencions a twits citats no tornaràn a apareixer més com a "
 "mencions."
 
-#: ../doc/changelog.py:16
+#: ../doc/changelog.py:36
 msgid ""
 "* The config file is saved in a different way, it should fix the bug where "
 "TWBlue needs to be restarted after the config folder is deleted."
@@ -116,13 +281,13 @@ msgstr ""
 "*La configuración ara es guarda de forma diferent. D'aquesta manera ja no es "
 "necessari eliminar el directori i reiniciar TWBlue."
 
-#: ../doc/changelog.py:17
+#: ../doc/changelog.py:37
 msgid "* Mentioning people from friends or followers buffers works again."
 msgstr ""
 "*Les mencións desde'l bufer \"amics\" o \"seguidors\" tornen a funcionar de "
 "nou"
 
-#: ../doc/changelog.py:18
+#: ../doc/changelog.py:38
 msgid ""
 "* Support for proxy servers has been improved. Now TWBlue supports http, "
 "https, socks4 and socks5 proxies, with and without autentication."
@@ -130,15 +295,15 @@ msgstr ""
 "*s'Ha implementat el suport per a servidors proxi. TWBlue ara suporta http, "
 "https, socks4 i socks5; amb i sense autenticació."
 
-#: ../doc/changelog.py:19
+#: ../doc/changelog.py:39
 msgid "## Changes in version 0.87"
 msgstr "##Cambis a la versió 0.87"
 
-#: ../doc/changelog.py:20
+#: ../doc/changelog.py:40
 msgid "* Fixed stream connection errors."
 msgstr "*Corregits errors a la conexión dels streams."
 
-#: ../doc/changelog.py:21
+#: ../doc/changelog.py:41
 msgid ""
 "* Now TWBlue can handle properly a reply to the sender without including all "
 "other mentioned users."
@@ -146,11 +311,11 @@ msgstr ""
 "*ara el TWBlue pot respondre correctament a l'emisor sense incluir totes les "
 "mencions a la resta d'usuaris."
 
-#: ../doc/changelog.py:22
+#: ../doc/changelog.py:42
 msgid "* Updated translations."
 msgstr "*Traduccións actualitzades."
 
-#: ../doc/changelog.py:23
+#: ../doc/changelog.py:43
 msgid ""
 "* The status of the mention to all checkbox will be remembered the next time "
 "you  reply to multiple users."
@@ -158,11 +323,11 @@ msgstr ""
 "*Es recorda l'estat de la casella per a mencionar a tothom per a futures "
 "respostes a multiples usuaris."
 
-#: ../doc/changelog.py:24
+#: ../doc/changelog.py:44
 msgid "## Changes in version 0.86"
 msgstr "##cambis a la versió 0.86"
 
-#: ../doc/changelog.py:25
+#: ../doc/changelog.py:45
 msgid ""
 "* Fixed a very important security issue. Now TWBlue will send tweets to "
 "twishort without using any other server."
@@ -170,7 +335,7 @@ msgstr ""
 "El·liminat un error molt important de seguretat. TWBlue ara envía els twits "
 "llargs mitjansant twishort sense utilizar cap altre servidor."
 
-#: ../doc/changelog.py:26
+#: ../doc/changelog.py:46
 msgid ""
 "* When you add a comment to a tweet, it will be sent as a quoted tweet, even "
 "if your reply plus the original tweet is not exceeding 140 characters."
@@ -178,7 +343,7 @@ msgstr ""
 "*quan s'afegeix un comentari a un twit, aquest apareix com una citació "
 "sempre que el twit original no excedeixi els 140 caràcters."
 
-#: ../doc/changelog.py:27
+#: ../doc/changelog.py:47
 msgid ""
 "* Updated windows 10 keymap for reflecting changes made in the last windows "
 "10 build."
@@ -186,11 +351,11 @@ msgstr ""
 "*Actualitzats els accessos directes de teclat del mapa de Windows 10 per "
 "reflectar el mapa de l'ùltima build de Windows 10."
 
-#: ../doc/changelog.py:28
+#: ../doc/changelog.py:48
 msgid "* Added last changes in the twitter API."
 msgstr "*Afegits els ùltims cambis a l'API de Twitter."
 
-#: ../doc/changelog.py:29
+#: ../doc/changelog.py:49
 msgid ""
 "* When replying, it will not show the twitter username in the text box. When "
 "you send the tweet, the username will be added automatically."
@@ -198,7 +363,7 @@ msgstr ""
 "*Quan es respòn, al quadre de edició no es mostra el nom d'usuari de "
 "twitter. A l'enviar el twit, l'usuari s'afegirà automàticament."
 
-#: ../doc/changelog.py:30
+#: ../doc/changelog.py:50
 msgid ""
 "* When replying to multiple users, you'll have a checkbox instead a button "
 "for mentioning all people. If this is checked, twitter usernames will be "
@@ -208,42 +373,42 @@ msgstr ""
 "tothom. Si està verificada, s'afegiràn els usuaris automàticament quan "
 "s'envii el twit."
 
-#: ../doc/changelog.py:31
+#: ../doc/changelog.py:51
 msgid "## Changes in version 0.85"
 msgstr "## Cambis a la versió 0.85."
 
-#: ../doc/changelog.py:32
+#: ../doc/changelog.py:52
 msgid "* Long and quoted tweets should be displayed properly In lists."
 msgstr ""
 "*Els twits llargs i citats aurien de mostrar-se correctament en una llista."
 
-#: ../doc/changelog.py:33
+#: ../doc/changelog.py:53
 msgid "* The connection should be more stable."
 msgstr "*La conexión auria de ser mes estable."
 
-#: ../doc/changelog.py:34
+#: ../doc/changelog.py:54
 msgid "* Added an autostart option in the global settings dialogue."
 msgstr "*S'ha afegit l'opció per autoiniciar al diàleg de configuració."
 
-#: ../doc/changelog.py:35
+#: ../doc/changelog.py:55
 msgid "* Updated translation."
 msgstr "*traducció actualitzada."
 
-#: ../doc/changelog.py:36
+#: ../doc/changelog.py:56
 msgid "* Updated russian documentation."
 msgstr "*Actualitzada la documentació en rus."
 
-#: ../doc/changelog.py:37
+#: ../doc/changelog.py:57
 msgid "* Tweets in cached database should be loaded properly."
 msgstr ""
 "*els twits a la cachè de la base de dades s'han de carregar correctament."
 
-#: ../doc/changelog.py:38
+#: ../doc/changelog.py:58
 msgid "* Added some missed dictionaries for spelling correction."
 msgstr ""
 "*Afegits alguns diccionaris que faltaben per a la correcció d'escritura."
 
-#: ../doc/changelog.py:39
+#: ../doc/changelog.py:59
 msgid ""
 "* Timelines, lists and other buffer should be created in the right order at "
 "startup."
@@ -251,22 +416,22 @@ msgstr ""
 "*Fils temporals, twits, llistes i altres bufers, es creen en l'òrdre "
 "correcte al iniciar."
 
-#: ../doc/changelog.py:40
+#: ../doc/changelog.py:60
 msgid "## Changes in version 0.84 "
 msgstr "##Cambis a la versió 0.84"
 
-#: ../doc/changelog.py:41
+#: ../doc/changelog.py:61
 msgid "* More improvements in quoted and long tweets."
 msgstr "*Introduides algunes millores als twits curts i llargs."
 
-#: ../doc/changelog.py:42
+#: ../doc/changelog.py:62
 msgid ""
 "* Updated translations: Russian, Italian, French, Romanian, Galician and "
 "Finnish."
 msgstr ""
 "*Traduccións actualitzades: Rus, italià, francés, rumà, Galleg i finès."
 
-#: ../doc/changelog.py:43
+#: ../doc/changelog.py:63
 msgid ""
 "* Improvements in the audio uploader module: Now it can handle audio with "
 "non-english characters."
@@ -274,7 +439,7 @@ msgstr ""
 "*Millorat el mòdul de càrrega de sons: Ara es poden carregar audios que no "
 "utilitcin caracters anglosajons."
 
-#: ../doc/changelog.py:44
+#: ../doc/changelog.py:64
 msgid ""
 "* the title of the window should be updated properly when spellcheck, "
 "translate or shorten/unshorten URL buttons are pressed."
@@ -282,17 +447,19 @@ msgstr ""
 "*El titol de la finestra auria d'actualitzar-se correctament quan es "
 "pressionen els botons de corregir, traduir o acortar/desacortar URL."
 
-#: ../doc/changelog.py:45
+#: ../doc/changelog.py:65
 msgid ""
 "* the bug that changes the selected tweet in the home timeline shouldn't be "
 "happening so often."
 msgstr ""
+"*El bug que feia que el twit sel·leccionat cambiés a l'interfaç visible "
+"auria d'estar parcialment corregit."
 
-#: ../doc/changelog.py:46
+#: ../doc/changelog.py:66
 msgid "## Changes in version 0.82 and 0.83"
 msgstr "##cambis a les versións 0.82 i 0.83"
 
-#: ../doc/changelog.py:47
+#: ../doc/changelog.py:67
 msgid ""
 "* If the tweet source (client) is an application with unicode characters "
 "(example: российская газета) it will not break the tweet displayer."
@@ -300,7 +467,7 @@ msgstr ""
 "*si la Font del twit (client) es una aplicación amb caràcters Unicode "
 "(exemple:  российская газета) no es trencarà el twit al mostrar-se."
 
-#: ../doc/changelog.py:48
+#: ../doc/changelog.py:68
 msgid ""
 "* Added a new field for image description in tweet displayer. When "
 "available, it will show description for images posted in tweets."
@@ -308,7 +475,7 @@ msgstr ""
 "*Afegit un nou camp per descriure les imatges. Quan es trova disponible, es "
 "mostren les descripcions de les imatges postejades a un twit."
 
-#: ../doc/changelog.py:49
+#: ../doc/changelog.py:69
 msgid ""
 "* users can add image descriptions to their photos. When uploading an image, "
 "a dialog will show for asking a description."
@@ -316,15 +483,15 @@ msgstr ""
 "*els usuaris poden afegir una descripció a les imatges carregades. Al "
 "carregar una imatge, es mostrarà un diàleg preguntant per una descripció."
 
-#: ../doc/changelog.py:50
+#: ../doc/changelog.py:70
 msgid "* Redesigned upload image dialog."
 msgstr "*Redissenyat el diàleg per a la càrrega d'imatges."
 
-#: ../doc/changelog.py:51
+#: ../doc/changelog.py:71
 msgid "* Fixed photo uploads when posting tweets."
 msgstr "*Corregit un problema al postear imatges."
 
-#: ../doc/changelog.py:52
+#: ../doc/changelog.py:72
 msgid ""
 "* When getting tweets for a conversation, ignores deleted tweets or some "
 "errors, now TWBlue will try to get as much tweets as possible, even if some "
@@ -334,23 +501,23 @@ msgstr ""
 "alguns errors, TWBlue ara intenta obtener la major quantitat de twits sempre "
 "que sigui posible."
 
-#: ../doc/changelog.py:53
+#: ../doc/changelog.py:73
 msgid "* Added audio playback from soundcloud."
 msgstr "*Afegida la reproducció d'audio mitjançant soundcloud."
 
-#: ../doc/changelog.py:54
+#: ../doc/changelog.py:74
 msgid "* Now the session mute option don't makes the screen reader speaks."
 msgstr ""
 "*Al silenciar una sessió, el lector de pantalles ja no anunciarà cap "
 "contingut automàticament."
 
-#: ../doc/changelog.py:55
+#: ../doc/changelog.py:75
 msgid "* Fixed the direct message dialog. Now it should be displayed properly."
 msgstr ""
 "*Corregit un error al diàleg de missatges directes. Ara auria de mostrar-se "
 "correctament."
 
-#: ../doc/changelog.py:56
+#: ../doc/changelog.py:76
 msgid ""
 "* when a tweet is deleted in twitter, TWBlue should reflect this change and "
 "delete that tweet in every buffer it is displayed."
@@ -358,17 +525,19 @@ msgstr ""
 "*Quan s'elimina un twit de twitter, TWBlue reflecteix els cambis i elimina "
 "el twit al bufer mostrat."
 
-#: ../doc/changelog.py:57
+#: ../doc/changelog.py:77
 msgid ""
 "* If your session is broken, TWBlue will be able to remove it automatically "
 "instead just crashing."
 msgstr ""
+"*Si una sessió de TWBlue ha estat danyada, el programa auria de ser capaç "
+"d'eliminar-la i continuar, en lloc de no obrir-se."
 
-#: ../doc/changelog.py:58
+#: ../doc/changelog.py:78
 msgid "* audio uploader should display the current progress."
 msgstr "El carregador d'audio mostra el progres actual de forma correcta."
 
-#: ../doc/changelog.py:59
+#: ../doc/changelog.py:79
 msgid ""
 "* users can disable the check for updates feature at startup from the "
 "general tab, in the global settings dialogue."
@@ -376,7 +545,7 @@ msgstr ""
 "*Els usuaris poden desactivar l'autoactualització desde la configuración "
 "general, pestanya configuración global."
 
-#: ../doc/changelog.py:60
+#: ../doc/changelog.py:80
 msgid ""
 "* The invisible interface and the window should be synchronized when the "
 "client reconnects."
@@ -384,13 +553,13 @@ msgstr ""
 "*L'interfaç invisible i la finestra es sincronitcen quan el client es "
 "reconecta."
 
-#: ../doc/changelog.py:61
+#: ../doc/changelog.py:81
 msgid "* The documentation option in the systray icon should be enabled."
 msgstr ""
 "*l'opció de documentació a l'àrea de notificacións del sistema auria de ser "
 "activa."
 
-#: ../doc/changelog.py:62
+#: ../doc/changelog.py:82
 msgid ""
 "* In trending buffers, you can press enter for posting a tweet about  the "
 "focused trend."
@@ -398,7 +567,7 @@ msgstr ""
 "*Al bufer de tendencies, es pot presionar enter i postejar dintre de la "
 "tendencia on es trova el focus."
 
-#: ../doc/changelog.py:63
+#: ../doc/changelog.py:83
 msgid ""
 "* Updated russian documentation and main program interface (thanks to "
 "Natalia Hedlund (Наталья Хедлунд), [@lifestar_n](https://twitter.com/"
@@ -408,19 +577,19 @@ msgstr ""
 "Hedlund (Наталья Хедлунд), [@lifestar_n](https://twitter.com/lifestar_n) a "
 "twitter)"
 
-#: ../doc/changelog.py:64
+#: ../doc/changelog.py:84
 msgid "* updated translations."
 msgstr "*Actualitzades les traduccións"
 
-#: ../doc/changelog.py:65
+#: ../doc/changelog.py:85
 msgid "## Changes in Version 0.81"
 msgstr "##Cambis a la versió 0.81"
 
-#: ../doc/changelog.py:66
+#: ../doc/changelog.py:86
 msgid "* Updated translations"
 msgstr "*Actualitzades les traduccións."
 
-#: ../doc/changelog.py:67
+#: ../doc/changelog.py:87
 msgid ""
 "* The updater module has received some improvements. Now it includes a "
 "Mirror URL for checking updates  if the main URL is not available at the "
@@ -432,21 +601,21 @@ msgstr ""
 "la comprobació. Si hi ha algún error o o alguna traducció no funciona, el "
 "programa s'executarà de totes formes."
 
-#: ../doc/changelog.py:68
+#: ../doc/changelog.py:88
 msgid "* some GUI elements now use keyboard shortcuts for common actions."
 msgstr ""
 "*Alguns elements de l'interfaç gràfica ara utilitza comandaments de teclat "
 "per realizar algunes acción común."
 
-#: ../doc/changelog.py:69
+#: ../doc/changelog.py:89
 msgid "* fixed a bug in the geolocation dialog."
 msgstr "*Correixit un error al diàleg de la geolocalització."
 
-#: ../doc/changelog.py:70
+#: ../doc/changelog.py:90
 msgid "* the chicken nugget keymap should work properly."
 msgstr "*El mapa de Chicken nougget auria de funcionar correctament."
 
-#: ../doc/changelog.py:71
+#: ../doc/changelog.py:91
 msgid ""
 "* Added a new soundpack to the default installation of TWBlue, thanks to "
 "[@Deng90](https://twitter.com/deng90)"
@@ -454,11 +623,11 @@ msgstr ""
 "*Afegit un nou paquet de sons a l'instalador per defecte de TWBlue. Gracies "
 "a  [@Deng90](https://twitter.com/deng90)"
 
-#: ../doc/changelog.py:72
+#: ../doc/changelog.py:92
 msgid "* Now the changelog is  written in an html File."
 msgstr "*L'historial de cambis ara està escrit en un fitxer HTML."
 
-#: ../doc/changelog.py:73
+#: ../doc/changelog.py:93
 msgid ""
 "* Added some missed dictionaries in last version for the spell checking "
 "feature."
@@ -466,19 +635,23 @@ msgstr ""
 "*Afegits nous diccionaris per a la funció de correcció d'escritura que no "
 "s'habien afegit a la versió anterior."
 
-#: ../doc/changelog.py:74
+#: ../doc/changelog.py:94
 msgid ""
 "* Trimmed the beginnings of the sounds in the default soundpack. Thanks to "
 "[@masonasons](https://github.com/masonasons)"
 msgstr ""
+"*s'han eliminat els silencis al principi dels sons al paquet de sons "
+"predeterminat."
 
-#: ../doc/changelog.py:75
+#: ../doc/changelog.py:95
 msgid ""
 "* Added Opus support for sound playback in TWBlue. Thanks to [@masonasons]"
 "(https://github.com/masonasons)"
 msgstr ""
+"*Afegit suport Opus per la reproducció de só a TWBlue. Gracies a "
+"[@masonasons](https://github.com/masonasons)"
 
-#: ../doc/changelog.py:76
+#: ../doc/changelog.py:96
 msgid ""
 "* Added a source field in view tweet dialogue. Thanks to [@masonasons]"
 "(https://github.com/masonasons)"
@@ -486,33 +659,33 @@ msgstr ""
 "*afegit un camp per veure la dirección al diàleg veure twit. Gracies a "
 "[@masonasons](https://github.com/masonasons)"
 
-#: ../doc/changelog.py:77
+#: ../doc/changelog.py:97
 msgid ""
 "* You can load previous items in followers and friend buffers for others."
 msgstr ""
 "*Es poden carregar els ítems previs en els bufers d'amics i seguidors dels "
 "altres."
 
-#: ../doc/changelog.py:78
+#: ../doc/changelog.py:98
 msgid ""
 "* The Spell Checker dialogue should not display an error message when you "
 "have set \"default language\" in the global settings dialogue if your "
 "language is supported [#168](http://twblue.es/bugs/view.php?id=168)"
-msgstr ""
+msgstr "*"
 
-#: ../doc/changelog.py:79
+#: ../doc/changelog.py:99
 msgid "* Updated romanian translation."
 msgstr "*Actualitzada la traducció al rumà."
 
-#: ../doc/changelog.py:80
+#: ../doc/changelog.py:100
 msgid "* Some code cleanups."
 msgstr "*S'ha optimitzat el códi del programa."
 
-#: ../doc/changelog.py:81
+#: ../doc/changelog.py:101
 msgid "* The bug reports feature is fully operational again."
 msgstr "*El report d'errors torna a ser operatiu de nou."
 
-#: ../doc/changelog.py:82
+#: ../doc/changelog.py:102
 msgid ""
 "* TWBlue should work again for users that contains special characters in "
 "windows usernames."
@@ -520,23 +693,24 @@ msgstr ""
 "*TWBlue auria de treballar de nou correctament amb els nombs d'usuari en "
 "Windows que continguin caràcters especials."
 
-#: ../doc/changelog.py:83
+#: ../doc/changelog.py:103
 msgid "* Added more options for the tweet searches."
 msgstr "*Afegides mes opcions per a la búsqueda de twits."
 
-#: ../doc/changelog.py:84
+#: ../doc/changelog.py:104
 msgid "* Added play_audio to the keymap editor."
 msgstr ""
+"*S'ha afegit la funció de reproducció d'audio a l'editor de mapa de teclat."
 
-#: ../doc/changelog.py:85
+#: ../doc/changelog.py:105
 msgid "* Windows key is no longer required in the keymap editor"
 msgstr "*La tecla Windows ja no es requerida a l'editor de teclat."
 
-#: ../doc/changelog.py:86
+#: ../doc/changelog.py:106
 msgid "* Switched to the Microsoft translator."
 msgstr "S'ha començat a utilitzar el servei de traduccións de Microsoft."
 
-#: ../doc/changelog.py:87
+#: ../doc/changelog.py:107
 msgid ""
 "* You can update the current buffer by pressing ctrl+win+shift+u in the "
 "default keymap or in the buffer menu."
@@ -544,21 +718,21 @@ msgstr ""
 "*pots actualitzar el bufer actual pressionant: ctrl+win+shift+u o des de'l "
 "menú bufer."
 
-#: ../doc/changelog.py:88
+#: ../doc/changelog.py:108
 msgid "* Changed some keystrokes in the windows 10 default keymap"
 msgstr ""
 "*s'han modificat algunes combinacions de teclat al mapa per defecte de "
 "windows10."
 
-#: ../doc/changelog.py:89
+#: ../doc/changelog.py:109
 msgid "* New followers and friends buffer for user timelines."
 msgstr ""
 "*nous bufers per als seguidors i amics, separat del fil temporal de l'usuari."
 
-#: ../doc/changelog.py:90
+#: ../doc/changelog.py:110
 msgid "---"
-msgstr ""
+msgstr "---"
 
-#: ../doc/changelog.py:91
+#: ../doc/changelog.py:111
 msgid "Copyright © 2014-2017, Manuel Cortez."
-msgstr ""
+msgstr "Copyright © 2014-2017, Manuel Cortez."
