@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: TWBlue-Changelog V0.89\n"
+"Project-Id-Version: TWBlue-Changelog V0.91\n"
 "POT-Creation-Date: 2017-07-08 16:25+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2017-07-10 10:00+0200\n"
+"PO-Revision-Date: 2017-07-16 11:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: Fran Torres Gallego. <frantorresgallego@gmail.com>\n"
 "Language: ca\n"
@@ -47,6 +47,9 @@ msgid ""
 "* Release audio files after uploading them. ([#130](https://github.com/"
 "manuelcortez/TWBlue/issues/130))"
 msgstr ""
+"Correixit un problema que impedia que els fitxers d'audio no "
+"s'actualitcessin correctament tras carregar-los a algun servidor d'audio. "
+"([#130](https://github.com/manuelcortez/TWBlue/issues/130))"
 
 #: ../doc/changelog.py:8
 msgid ""
@@ -131,6 +134,9 @@ msgid ""
 "detecting images but couldn't apply OCR on them. ([#105](https://github.com/"
 "manuelcortez/TWBlue/issues/105))"
 msgstr ""
+"Ara l'OCR pot treballar amb imatges procedents ddes del's retuits. Aquest "
+"error es produía quan TWBlue detectava una imatge i no es podia aplicar "
+"l'OCR. ([#105](https://github.com/manuelcortez/TWBlue/issues/105))"
 
 #: ../doc/changelog.py:18
 msgid ""
@@ -177,6 +183,8 @@ msgid ""
 "* When reading a long tweet, you shouldn't read strange entities anymore. "
 "([#118](https://github.com/manuelcortez/twblue/issues/118))"
 msgstr ""
+"Al llegir un tuit llarg, ja no s'aurien de mostrar mès elements extranys. "
+"([#118](https://github.com/manuelcortez/twblue/issues/118))"
 
 #: ../doc/changelog.py:23
 msgid ""
@@ -671,7 +679,11 @@ msgid ""
 "* The Spell Checker dialogue should not display an error message when you "
 "have set \"default language\" in the global settings dialogue if your "
 "language is supported [#168](http://twblue.es/bugs/view.php?id=168)"
-msgstr "*"
+msgstr ""
+"El diàleg de comprobació ortogràfica ja no auria de mostrar cap missatge "
+"d'error quan s'ha establert lidioma per defecte al diàleg de configuració "
+"global si el vostre idioma es troba soportat. [#168](http://twblue.es/bugs/"
+"view.php?id=168)"
 
 #: ../doc/changelog.py:99
 msgid "* Updated romanian translation."
