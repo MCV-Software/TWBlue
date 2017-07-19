@@ -50,7 +50,7 @@ class BassConfig(collections.Mapping):
   return bass_call(pybass.BASS_SetConfig, key, val)
 
  def __iter__(self):
-  for key in self.config_map.iterkeys():
+  for key in self.config_map.keys():
    yield key
 
  def __len__(self):

@@ -21,9 +21,9 @@ Windows Media player, so will already be on most users' systems, but they
 can also be installed separately (WMFDIST.EXE is available from the BASS website).
 '''
 
-
 import os, sys, ctypes
-from . import pybass
+from sound_lib.external import pybass
+
 from .paths import x86_path, x64_path
 import libloader
 
@@ -146,4 +146,3 @@ BASS_WMA_EncodeClose = func_type(ctypes.c_byte, HWMENCODE)(('BASS_WMA_EncodeClos
 
 #void *BASSWMADEF(BASS_WMA_GetWMObject)(DWORD handle);
 BASS_WMA_GetWMObject = func_type(ctypes.c_void_p, ctypes.c_ulong)(('BASS_WMA_GetWMObject', basswma_module))
-

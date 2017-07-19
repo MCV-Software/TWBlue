@@ -4,10 +4,8 @@ import sys
 from .channel import Channel
 from .main import bass_call, bass_call_0
 from .external.pybass import *
-try:
- convert_to_unicode = unicode
-except NameError:
- convert_to_unicode = str
+
+convert_to_unicode = str
 
 class BaseStream(Channel):
 
@@ -34,7 +32,7 @@ class FileStream(BaseStream):
 
  def __init__(self, mem=False, file=None, offset=0, length=0, flags=0, three_d=False, mono=False, autofree=False, decode=False, unicode=True):
   """Creates a sample stream from an MP3, MP2, MP1, OGG, WAV, AIFF or plugin supported file."""
-  if platform.system() == 'Darwin':
+  if platform.system() == 'Darwin' or platform.system() == "Linux":
    unicode = False
    file = file.encode(sys.getfilesystemencoding())
   self.setup_flag_mapping()
@@ -61,14 +59,3 @@ class URLStream(BaseStream):
   flags = flags | self.flags_for(three_d=three_d, autofree=autofree, decode=decode)
   handle = bass_call(BASS_StreamCreateURL, url, offset, flags, self.downloadproc, user)
   super(URLStream, self).__init__(handle)
-
-class PushStream(BaseStream):
- def __init__(self, freq=44100, chans=2, flags=0, user=None, three_d=False, autofree=False, decode=False):
-  self.proc = STREAMPROC_PUSH
-  self.setup_flag_mapping()
-  flags = flags | self.flags_for(three_d=three_d, autofree=autofree, decode=decode)
-  handle = bass_call(BASS_StreamCreate, freq, chans, flags, self.proc, user)
-  super(PushStream, self).__init__(handle)
-
- def push(self, data):
-  return bass_call_0(BASS_StreamPutData, self.handle, data, len(data))
