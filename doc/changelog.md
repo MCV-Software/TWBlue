@@ -2,6 +2,10 @@
 
 ## changes in this version
 
+* Fixed incorrect unicode handling when copying tweet to clipboard. ([#150](https://github.com/manuelcortez/TWBlue/issues/150))
+
+## changes in version 0.91
+
 * TWBlue will show an error when trying to open a timeline for a suspended user. ([#128](https://github.com/manuelcortez/TWBlue/issues/128))
 * Removed TwUp as service as it no longer exists. ([#112](https://github.com/manuelcortez/TWBlue/issues/112))
 * Release audio files after uploading them. ([#130](https://github.com/manuelcortez/TWBlue/issues/130))

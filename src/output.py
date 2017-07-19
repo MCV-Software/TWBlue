@@ -29,5 +29,5 @@ def copy(text):
  #Copies text to the clipboard.
  win32clipboard.OpenClipboard()
  win32clipboard.EmptyClipboard()
- win32clipboard.SetClipboardText(text)
+ win32clipboard.SetClipboardText(text, win32clipboard.CF_UNICODETEXT)
  win32clipboard.CloseClipboard()
