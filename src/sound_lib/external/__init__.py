@@ -1,10 +1,9 @@
-from __future__ import absolute_import
 import platform
-from . import pybassopus
-if platform.system() == 'Windows':
- from . import pybasswma
+#if platform.system() == 'Windows':
+# import sound_lib.external.pybasswma
 if platform.system() != 'Darwin':
- from . import pybass_aac
- from . import pybass_alac
- from . import pybassflac
- from . import pybassmidi
+ import sound_lib.external.pybass_aac
+ import sound_lib.external.pybass_alac
+ import sound_lib.external.pybassopus
+ import sound_lib.external.pybassflac
+ import sound_lib.external.pybassmidi

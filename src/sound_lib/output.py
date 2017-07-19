@@ -1,8 +1,10 @@
+from __future__ import division
 from __future__ import absolute_import
+from future.builtins import object
 from functools import partial
 import platform
 from ctypes import c_char_p, c_float, pointer, string_at
-from .external.pybass import *
+from sound_lib.external.pybass import *
 from . import config
 from .main import bass_call, bass_call_0, EAX_ENVIRONMENTS, update_3d_system
 
@@ -109,8 +111,6 @@ class Output (object):
     retrieved = info.name
     if platform.system() == 'Windows':
      retrieved = retrieved.decode('mbcs')
-    elif platform.system() == 'Darwin':
-     retrieved = retrieved.decode('utf-8')
     retrieved = retrieved.replace('(', '').replace(')', '').strip()
     result.append(retrieved)
    count += 1
@@ -168,7 +168,7 @@ class ThreeDOutput(Output):
     arg = -1
    return arg
   environment = convert_arg(environment)
-  if isinstance(environment, basestring) and environment in EAX_ENVIRONMENTS:
+  if isinstance(environment, str) and environment in EAX_ENVIRONMENTS:
    environment = EAX_ENVIRONMENTS[environment]
   volume = convert_arg(volume)
   decay = convert_arg(decay)

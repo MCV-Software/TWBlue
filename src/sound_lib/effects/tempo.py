@@ -1,9 +1,8 @@
-from __future__ import absolute_import
 import ctypes
-from ..external import pybass, pybass_fx
-from ..stream import BaseStream
-from ..channel import Channel
-from ..main import bass_call, bass_call_0
+from sound_lib.external import pybass, pybass_fx
+from sound_lib.stream import BaseStream
+from sound_lib.channel import Channel
+from sound_lib.main import bass_call, bass_call_0
 
 class Tempo(BaseStream):
  

@@ -73,7 +73,7 @@ class Channel (FlagObject):
 
  __len__ = get_length
 
- def __nonzero__(self):
+ def __bool__(self):
   return True
 
  def get_device(self):
