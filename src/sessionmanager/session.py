@@ -130,10 +130,10 @@ class Session(object):
 
    """ Gets settings for a session."""
  
-   file_ = "%s/session.conf" % (self.session_id,)
+   file_ = os.path.join(self.session_id,"session.conf")
 #  try:
    log.debug("Creating config file %s" % (file_,))
-   self.settings = config_utils.load_config(paths.config_path(file_), paths.app_path("Conf.defaults"))
+   self.settings = config_utils.load_config(paths.config_path(file_,paranoid=config.app['app-settings']['paranoid']), paths.app_path("Conf.defaults"))
    self.init_sound()
    self.deshelve()
 #  except:
@@ -434,13 +434,13 @@ class Session(object):
 
  def deshelve(self):
   "Import a shelved database."
-  shelfname=paths.config_path(str(self.session_id)+"/cache.db")
+  shelfname=paths.config_path(str(self.session_id)+"/cache.db",paranoid=config.app['app-settings']['paranoid'])
   if self.settings["general"]["persist_size"] == 0:
    if os.path.exists(shelfname):
     os.remove(shelfname)
    return
   try:
-   shelf=shelve.open(paths.config_path(shelfname),'c')
+   shelf=shelve.open(paths.config_path(shelfname,paranoid=config.app['app-settings']['paranoid']),'c')
    for key,value in list(shelf.items()):
     self.db[key]=value
    shelf.close()

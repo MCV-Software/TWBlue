@@ -32,7 +32,7 @@ class sessionManager(object):
 
  def add_session(self, id):
   log.debug("Adding a new session: %s" % (id,))
-  path = paths.config_path(id)
+  path = paths.config_path(id,paranoid=config.app['app-settings']['paranoid'])
   if not os.path.exists(path):
    log.debug("Creating %s path" % (paths.config_path(path),))
    os.mkdir(path)

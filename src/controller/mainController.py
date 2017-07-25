@@ -651,7 +651,7 @@ class Controller(object):
    log.debug("Shelving database for " +    session_.sessions[item].session_id)
    session_.sessions[item].shelve()
    if config.app['app-settings']['paranoid']:
-    shutil.rmtree(paths.config_path(session_.sessions[item].session_id))
+    shutil.rmtree(paths.config_path(session_.sessions[item].session_id,paranoid=config.app['app-settings']['paranoid']))
   if system == "Windows":
    self.systrayIcon.RemoveIcon()
   widgetUtils.exit_application()

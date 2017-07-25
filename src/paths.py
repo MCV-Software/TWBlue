@@ -4,29 +4,35 @@ import platform
 import os
 import sys
 import logging
+import tempfile
 from platform_utils import paths as paths_
 
 from functools import wraps
 
 mode = "portable"
 directory = None
-
+paranoidpath = None
 log = logging.getLogger("paths")
 
 def merge_paths(func):
  @wraps(func)
- def merge_paths_wrapper(*a):
-  return str(os.path.join(func(), *a))
+ def merge_paths_wrapper(*a,paranoid=False):
+  return str(os.path.join(func(paranoid=paranoid), *a))
  return merge_paths_wrapper
 
 @merge_paths
-def app_path():
+def app_path(paranoid=False):
  return paths_.app_path()
 
 @merge_paths
-def config_path():
+def config_path(paranoid=False):
  global mode, directory
- if mode == "portable":
+ if paranoid:
+  global paranoidpath
+  if not paranoidpath:
+   paranoidpath=tempfile.mkdtemp()
+  path = paranoidpath
+ elif mode == "portable":
   if directory != None: path = os.path.join(directory, "config")
   elif directory == None: path = app_path("config")
  elif mode == "installed":
@@ -37,7 +43,7 @@ def config_path():
  return path
 
 @merge_paths
-def logs_path():
+def logs_path(paranoid=False):
  global mode, directory
  if mode == "portable":
   if directory != None: path = os.path.join(directory, "logs")
@@ -50,7 +56,7 @@ def logs_path():
  return path
 
 @merge_paths
-def data_path(app_name='TW blue'):
+def data_path(app_name='TW blue',paranoid=False):
 # if platform.system() == "Windows":
 #  import shlobj
 #  data_path = os.path.join(shlobj.SHGetFolderPath(0, shlobj.CSIDL_APPDATA), app_name)
@@ -65,15 +71,15 @@ def data_path(app_name='TW blue'):
  return data_path
 
 @merge_paths
-def locale_path():
+def locale_path(paranoid=False):
  return app_path("locales")
 
 @merge_paths
-def sound_path():
+def sound_path(paranoid=False):
  return app_path("sounds")
 
 @merge_paths
-def com_path():
+def com_path(paranoid=False):
  global mode, directory
  if mode == "portable":
   if directory != None: path = os.path.join(directory, "com_cache")
