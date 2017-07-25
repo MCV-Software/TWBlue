@@ -12,6 +12,7 @@ import config
 import languageHandler
 import output
 import application
+import shutil
 from wxUI.dialogs import configuration
 from wxUI import commonMessageDialogs
 from extra.autocompletionUsers import settings
@@ -97,7 +98,14 @@ class globalSettingsController(object):
    kmFile = open(paths.config_path("keymap.keymap"), "w")
    kmFile.close()
    self.needs_restart = True
-
+  if   config.app["app-settings"]["paranoid"] != self.dialog.get_value("general", "paranoid"):
+   self.needs_restart = True
+   if self.dialog.get_value("general", "paranoid"):
+    cp=paths.config_path()
+    shutil.rmtree(cp)
+    os.makedirs(cp)
+   elif paths.paranoidpath != None:
+    shutil.rmtree(paths.paranoidpath)
   if config.app["app-settings"]["autostart"] != self.dialog.get_value("general", "autostart") and paths.mode == "installed":
    config.app["app-settings"]["autostart"] = self.dialog.get_value("general", "autostart")
    autostart_windows.setAutoStart(application.name, enable=self.dialog.get_value("general", "autostart"))
