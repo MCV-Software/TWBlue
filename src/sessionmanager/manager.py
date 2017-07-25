@@ -25,8 +25,8 @@ class sessionManager(object):
 #   pass
 
  def get_current_session(self):
-  if self.is_valid(config.app["sessions"]["current_session"]):
-   return config.app["sessions"]["current_session"]
+  if self.is_valid(config.sessions["current_session"]):
+   return config.sessions["current_session"]
   else:
    return False
 
@@ -36,16 +36,16 @@ class sessionManager(object):
   if not os.path.exists(path):
    log.debug("Creating %s path" % (paths.config_path(path),))
    os.mkdir(path)
-   config.app["sessions"]["sessions"].append(id)
+   config.sessions["sessions"].append(id)
 
  def set_current_session(self, sessionID):
-  config.app["sessions"]["current_session"] = sessionID
+  config.sessions["current_session"] = sessionID
   config.app.write()
 
  def is_valid(self, id):
   if not os.path.exists(paths.config_path(id)):
    raise session_exceptions.NonExistentSessionError("That session does not exist.")
-   config.app["sessions"]["current_session"] = ""
+   config.sessions["current_session"] = ""
    return False
   else:
    return True

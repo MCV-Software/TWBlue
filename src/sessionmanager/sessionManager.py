@@ -81,7 +81,7 @@ class sessionManagerController(object):
    if (i in session.sessions) == True: continue
    s = session.Session(i)
    s.get_configuration()
-   if i not in config.app["sessions"]["ignored_sessions"]:
+   if i not in config.sessions["ignored_sessions"]:
     s.login()
    session.sessions[i] = s
    self.new_sessions[i] = s

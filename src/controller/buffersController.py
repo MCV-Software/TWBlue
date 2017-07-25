@@ -183,7 +183,7 @@ class accountPanel(bufferController):
 
  def setup_account(self):
   widgetUtils.connect_event(self.buffer, widgetUtils.CHECKBOX, self.autostart, menuitem=self.buffer.autostart_account)
-  if self.account_id in config.app["sessions"]["ignored_sessions"]:
+  if self.account_id in config.sessions["ignored_sessions"]:
    self.buffer.change_autostart(False)
   else:
    self.buffer.change_autostart(True)
@@ -205,12 +205,12 @@ class accountPanel(bufferController):
   pub.sendMessage("logout", session_id=self.account_id)
 
  def autostart(self, *args, **kwargs):
-  if self.account_id in config.app["sessions"]["ignored_sessions"]:
+  if self.account_id in config.sessions["ignored_sessions"]:
    self.buffer.change_autostart(True)
-   config.app["sessions"]["ignored_sessions"].remove(self.account_id)
+   config.sessions["ignored_sessions"].remove(self.account_id)
   else:
    self.buffer.change_autostart(False)
-   config.app["sessions"]["ignored_sessions"].append(self.account_id)
+   config.sessions["ignored_sessions"].append(self.account_id)
   config.app.write()
 
 class emptyPanel(bufferController):

@@ -10,13 +10,20 @@ MAINFILE = "twblue.conf"
 MAINSPEC = "app-configuration.defaults"
 proxyTypes=["http", "https", "socks4", "socks5"]
 app = None
+sessions=None
 keymap=None
 changed_keymap = False
 
 def setup ():
  global app
+ global sessions
  log.debug("Loading global app settings...")
  app = config_utils.load_config(paths.config_path(MAINFILE), paths.app_path(MAINSPEC))
+ if app['app-settings']['paranoid']:
+  log.debug("We're paranoid, creating temporary session storage area...")
+  sessions={"current_session":"","sessions":[],"ignored_sessions":[]}
+ else:
+  sessions=app['sessions']
  log.debug("Loading keymap...")
  global keymap
  if float(platform.version()[:2]) >= 10 and app["app-settings"]["load_keymap"] == "default.keymap":
