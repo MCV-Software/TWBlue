@@ -54,8 +54,10 @@ if system == "Linux":
 log = logging.getLogger("main")
 
 def setup():
- log.debug("Starting " + application.name + " %s" % (application.version,))
  config.setup()
+ if not config.app['app-settings']['paranoid']:
+  logger.setLevel(logging.DEBUG)
+ log.debug("Starting " + application.name + " %s" % (application.version,))
  log.debug("Using %s %s" % (platform.system(), platform.architecture()[0]))
  log.debug("Application path is %s" % (paths.app_path(),))
  log.debug("config path  is %s" % (paths.config_path(),))

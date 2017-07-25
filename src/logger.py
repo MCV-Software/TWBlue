@@ -3,6 +3,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import paths
 import sys
+import config
 
 APP_LOG_FILE = 'debug.log'
 ERROR_LOG_FILE = "error.log"
@@ -24,8 +25,7 @@ server_log.setLevel(logging.WARNING)
 
 
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-
+logger.setLevel(logging.WARNING)
 #handlers
 
 app_handler = RotatingFileHandler(paths.logs_path(APP_LOG_FILE), mode="w")
