@@ -4,6 +4,7 @@
 
 * When authorising an account, you will see a dialogue with a cancel button, in case you want to abort the process. Also, NVDA will not be blocked when the process starts. ([#101](https://github.com/manuelcortez/TWBlue/issues/101))
 * In the translator module, the list of available languages is fetched automatically from the provider. That means all of these languages will work and there will not be inconsistencies. Also we've removed the first combo box, because the language is detected automatically by Yandex'S API. ([#153](https://github.com/manuelcortez/TWBlue/issues/153))
+* And more. ([#156](https://github.com/manuelcortez/TWBlue/issues/156))
 
 ## changes in version 0.91 and 0.92
 
