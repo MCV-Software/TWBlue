@@ -1,6 +1,4 @@
-from httplib import HTTPConnection
-from urlparse import urlparse
-
+import requests
 
 class URLShortener (object):
 
@@ -22,12 +20,8 @@ class URLShortener (object):
   raise NotImplementedError
 
  def unshorten(self, url):
-  working = urlparse(url)
-  if not working.netloc:
-   raise TypeError, "Unable to parse URL."
-  con = HTTPConnection(working.netloc)
-  con.connect()
-  con.request('GET', working.path)
-  resp = con.getresponse()
-  con.close()
-  return resp.getheader('location')
+  try:
+   r=requests.get(url)
+   return r.url
+  except:
+   return url #we cannot expand
