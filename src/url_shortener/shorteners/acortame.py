@@ -1,4 +1,5 @@
 from url_shortener import URLShortener
+import requests
 import urllib
 class AcortameShortener (URLShortener):
  def __init__(self, *args, **kwargs):
@@ -8,10 +9,9 @@ class AcortameShortener (URLShortener):
  def _shorten (self, url):
 
   answer = url
-  api = urllib.urlopen ("https://acorta.me/api.php?action=shorturl&format=simple&url=" + urllib.quote(url))
-  if api.getcode() == 200:
-   answer = api.read()
-  api.close()
+  api = requests.get ("https://acorta.me/api.php?action=shorturl&format=simple&url=" + urllib.quote(url))
+  if api.status_code == 200:
+   answer = api.text
   return answer
 
  def created_url (self, url):
@@ -20,7 +20,7 @@ class AcortameShortener (URLShortener):
  def unshorten (self, url):
 
   answer = url
-  api = urllib.urlopen ("https://acorta.me/api.php?action=expand&format=simple&shorturl=" + urllib.quote(url))
-  answer = api.read()
-  api.close()
+  api = requests.get ("https://acorta.me/api.php?action=expand&format=simple&shorturl=" + urllib.quote(url))
+  if api.status_code == 200:
+   answer = api.text
   return answer
