@@ -1,6 +1,6 @@
-from url_shortener import URLShortener
+from .url_shortener import URLShortener
 import requests
-import urllib
+import urllib.request, urllib.parse, urllib.error
 class AcortameShortener (URLShortener):
  def __init__(self, *args, **kwargs):
   self.name = "acorta.me"
@@ -8,7 +8,7 @@ class AcortameShortener (URLShortener):
 
  def _shorten (self, url):
   answer = url
-  api = requests.get ("https://acorta.me/api.php?action=shorturl&format=simple&url=" + urllib.quote(url))
+  api = requests.get ("https://acorta.me/api.php?action=shorturl&format=simple&url=" + urllib.parse.quote(url))
   if api.status_code == 200:
    answer = api.text
   return answer
@@ -21,7 +21,7 @@ class AcortameShortener (URLShortener):
    #use generic expand method
    return super(AcortameShortener, self).unshorten(url)
   answer = url
-  api = requests.get ("https://acorta.me/api.php?action=expand&format=simple&shorturl=" + urllib.quote(url))
+  api = requests.get ("https://acorta.me/api.php?action=expand&format=simple&shorturl=" + urllib.parse.quote(url))
   if api.status_code == 200:
    answer = api.text
   return answer
