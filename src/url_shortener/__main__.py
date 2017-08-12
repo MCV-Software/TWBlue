@@ -17,7 +17,7 @@ def service_selecter (func):
 
 @service_selecter
 def shorten (url, service=None, **kwargs):
- return service(**kwargs).shorten(url)
+ return service(**kwargs).shorten(url).decode("utf-8")
 
 
 @service_selecter
