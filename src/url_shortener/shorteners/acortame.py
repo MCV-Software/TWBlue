@@ -18,7 +18,9 @@ class AcortameShortener (URLShortener):
   return 'acorta.me' in url
 
  def unshorten (self, url):
-
+  if not 'acorta.me' in url:
+   #use generic expand method
+   return super(AcortameShortener, self).unshorten(url)
   answer = url
   api = requests.get ("https://acorta.me/api.php?action=expand&format=simple&shorturl=" + urllib.quote(url))
   if api.status_code == 200:
