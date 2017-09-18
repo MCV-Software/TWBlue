@@ -20,4 +20,8 @@ class URLShortener (object):
   raise NotImplementedError
 
  def unshorten(self, url):
-  return url
+  try:
+   r=requests.head(url, allow_redirects=True)
+   return r.url
+  except:
+   return url #we cannot expand
