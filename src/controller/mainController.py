@@ -477,12 +477,11 @@ class Controller(object):
    output.speak(_(u"Empty buffer."), True)
    return
   start = page.buffer.list.get_selected()
-  for i in xrange(start,count):
-   page.buffer.list.select_item(i)
-   if string.lower() in page.get_message().lower():
+  for i in xrange(start, count):
+   if string.lower() in page.buffer.list.get_text_column(i, 1).lower():
+    page.buffer.list.select_item(i)
     return output.speak(page.get_message(), True)
   output.speak(_(u"{0} not found.").format(string,), True)
-  page.buffer.list.select_item(start)
 
  def seekLeft(self, *args, **kwargs):
   try:

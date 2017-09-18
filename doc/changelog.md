@@ -5,7 +5,7 @@
 * When authorising an account, you will see a dialogue with a cancel button, in case you want to abort the process. Also, NVDA will not be blocked when the process starts. ([#101](https://github.com/manuelcortez/TWBlue/issues/101))
 * In the translator module, the list of available languages is fetched automatically from the provider. That means all of these languages will work and there will not be inconsistencies. Also we've removed the first combo box, because the language is detected automatically by Yandex'S API. ([#153](https://github.com/manuelcortez/TWBlue/issues/153))
 * Trending topics, searches and conversation buffers will use mute settings set for the session in wich  they were opened. ([#157](https://github.com/manuelcortez/TWBlue/issues/157))
-* And more. ([#156](https://github.com/manuelcortez/TWBlue/issues/156))
+* And more. ([#156,](https://github.com/manuelcortez/TWBlue/issues/156) [#163,](https://github.com/manuelcortez/TWBlue/issues/163))
 
 ## changes in version 0.91 and 0.92
 
