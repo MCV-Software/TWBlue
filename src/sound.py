@@ -95,7 +95,7 @@ class soundSystem(object):
   sound_object.play()
 
 class URLStream(object):
- def __init__(self,url=None):
+ def __init__(self, url=None):
   self.url = url
   self.prepared = False
   log.debug("URL Player initialized")
@@ -114,7 +114,6 @@ class URLStream(object):
    self.url = url
    log.debug("Transformed URL: %s. Prepared" % (self.url,))
    self.prepared = True
-
 
  def seek(self,step):
   pos=self.stream.get_position()
@@ -145,7 +144,6 @@ class URLStream(object):
    self.stream.volume = float(volume)
    self.stream.play()
    log.debug("played")
-#   call_threaded(self.delete_when_done)
 
  def stop_audio(self,delete=False):
   if hasattr(self, "stream"):
