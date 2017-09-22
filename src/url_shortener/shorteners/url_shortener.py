@@ -21,7 +21,7 @@ class URLShortener (object):
 
  def unshorten(self, url):
   try:
-   r=requests.head(url, allow_redirects=True)
-   return r.url
+   r=requests.head(url)
+   return r.headers['location']
   except:
    return url #we cannot expand
