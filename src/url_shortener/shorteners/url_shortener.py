@@ -22,6 +22,16 @@ class URLShortener (object):
  def unshorten(self, url):
   try:
    r=requests.head(url)
-   return r.headers['location']
+   if 'location' in r.headers.keys():
+    if 'dropbox.com' in r.headers['location']:
+     return handle_dropbox(r.headers['location'])
+    else:
+     return r.headers['location']
   except:
    return url #we cannot expand
+
+def handle_dropbox(url):
+ if url.endswith("dl=1"):
+  return url
+ else:
+  return url.replace("dl=0", "dl=1")
