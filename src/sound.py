@@ -109,11 +109,10 @@ class URLStream(object):
    transformer = audio_services.find_url_transformer(self.url)
    self.url = transformer(self.url)
    log.debug("Transformed URL: %s. Prepared" % (self.url,))
-   self.prepared = True
   else:
    self.url = url
    log.debug("Transformed URL: %s. Prepared" % (self.url,))
-   self.prepared = True
+  self.prepared = True
 
  def seek(self,step):
   pos=self.stream.get_position()
@@ -144,6 +143,7 @@ class URLStream(object):
    self.stream.volume = float(volume)
    self.stream.play()
    log.debug("played")
+  self.prepared=False
 
  def stop_audio(self,delete=False):
   if hasattr(self, "stream"):
@@ -156,6 +156,7 @@ class URLStream(object):
    if delete:
     del self.stream
     log.debug("Deleted audio stream.")
+   self.prepared=False
    return True
   else:
    return False
