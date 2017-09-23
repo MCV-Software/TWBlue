@@ -29,10 +29,10 @@ Although most dependencies can be found in the windows-dependencies directory, w
 
 #### Dependencies packaged in windows installers
 
-* [Python,](http://python.org) version 2.7.13  
+* [Python,](http://python.org) version 2.7.14  
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
 * [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2.0
-* [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 220
+* [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 221
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
 x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
 
@@ -85,19 +85,19 @@ This dependency has been built using pure basic 4.61. Its source can be found at
 
 #### Dependencies required to build the installer
 
-* [NSIS,](http://nsis.sourceforge.net/) version 3.01
+* [NSIS,](http://nsis.sourceforge.net/) version 3.02.1
 
 #### Dependencies required to build the portableApps.com format archive
 
-* [NSIS Portable,](http://portableapps.com/apps/development/nsis_portable) version 3.0
+* [NSIS Portable,](http://portableapps.com/apps/development/nsis_portable) version 3.02.1
 * [PortableApps.com Launcher,](http://portableapps.com/apps/development/portableapps.com_launcher) version 2.2.1
-* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.4.4
+* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.5.5
 
 Important! Install these 3 apps into the same folder, otherwise you won't be able to build the pa.c version. For example: D:\portableApps\NSISPortable, D:\PortableApps\PortableApps.com installer, ...
 
 #### Dependencies to make the spell checker multilingual ####
 
-In order to add the support for spell checking in more languages than english you need to add some additional dictionaries to pyenchant. These are located on the dictionaries folder under windows-dependencies. Simply copy them to the share/enchant/myspell folder located in your enchant installation or in the compiled copy of TWBlue.
+In order to add the support for spell checking in more languages than english you need to add some additional dictionaries to pyenchant. These are located on the dictionaries folder under windows-dependencies. Simply copy them to the share/enchant/myspell folder located in your enchant installation. They will be automatically copied when building a binary version.
 
 ### Running TW Blue from source
 
