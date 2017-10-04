@@ -1,5 +1,5 @@
 import urllib
-
+import requests
 from url_shortener import URLShortener
 
 class XedccShortener (URLShortener):
@@ -9,10 +9,9 @@ class XedccShortener (URLShortener):
 
  def _shorten (self, url):
   answer = url
-  api = urllib.urlopen ("http://xed.cc/yourls-api.php?action=shorturl&format=simple&url=" + urllib.quote(url))
-  if api.getcode() == 200:
-   answer = api.read()
-  api.close()
+  api = requests.get ("http://xed.cc/yourls-api.php?action=shorturl&format=simple&url=" + urllib.quote(url))
+  if api.status_code == 200:
+   answer = api.text
   return answer
 
  def created_url (self, url):

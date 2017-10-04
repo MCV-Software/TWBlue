@@ -7,7 +7,6 @@ class AcortameShortener (URLShortener):
   super(AcortameShortener, self).__init__(*args, **kwargs)
 
  def _shorten (self, url):
-
   answer = url
   api = requests.get ("https://acorta.me/api.php?action=shorturl&format=simple&url=" + urllib.quote(url))
   if api.status_code == 200:
