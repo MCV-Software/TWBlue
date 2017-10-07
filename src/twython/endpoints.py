@@ -145,11 +145,12 @@ class EndpointsMixin(object):
         """
         return self.post('https://upload.twitter.com/1.1/media/upload.json', params=params)
 
-    def set_description(self, **params):
-        """ Adds a description to an image."""
-        # This method only accepts strings, no dictionaries.
+    def create_metadata(self, **params):
+        """ Adds metadata to a media element, such as image descriptions for visually impaired.
+        Docs: https://developer.twitter.com/en/docs/media/upload-media/api-reference/post-media-metadata-create
+        """
         params = json.dumps(params)
-        return self.post("media/metadata/create", params=params)
+        return self.post("https://upload.twitter.com/1.1/media/metadata/create.json", params=params)
 
     def upload_video(self, media, media_type, size=None):
         """Uploads video file to Twitter servers in chunks. The file will be available to be attached

@@ -157,7 +157,7 @@ class bufferController(object):
   for i in attachments:
    photo = open(i["file"], "rb")
    img = self.session.twitter.twitter.upload_media(media=photo)
-   self.session.twitter.twitter.set_description(media_id=img["media_id"], alt_text=dict(text=i["description"]))
+   self.session.twitter.twitter.create_metadata(media_id=img["media_id"], alt_text=dict(text=i["description"]))
    media_ids.append(img["media_id"])
   self.session.twitter.twitter.update_status(status=text, media_ids=media_ids)
 
