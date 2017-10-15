@@ -29,53 +29,22 @@ Although most dependencies can be found in the windows-dependencies directory, w
 
 #### Dependencies packaged in windows installers
 
-* [Python,](http://python.org) version 2.7.14  
-If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
-* [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2.0
-* [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 221
+* [Python,](http://python.org) version 3.6.3  
+If you want to build both x86 and x64 binaries, you can install python x86 to C:\python36 and python x64 to C:\python36x64, for example.
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
-x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
+x64 version has been built by TWBlue developers, so you will only find it in windows-dependencies folder
 
-The windows installers are available only in the windows-dependencies folder
+#### Dependencies that must be installed using pip
 
-To build a binary version:
+Python includes `pip`, a tool for managing and installing Python packages.
 
-* [Py2exe](http://www.sourceforge.net/projects/py2exe/) for Python 2.7, version 0.6.9
+TW Blue includes a `requirements` file which instructs `pip` where to find its dependencies. Assuming Python and `pip` are on your path and you are in the `twblue\src` directory, you can install all needed dependencies with the following command:
 
-#### Dependencies that must be installed using easy_install
+	pip install -r requirements.txt --upgrade
 
-setuptools installs a script, called easy_install. You can find it in the python scripts directory. To install packages using easy_install, you have to navigate to the scripts directory using a command prompt, for example:
-
-    cd C:\python27x64\scripts
-
-	You can also add the scripts folder to your path environment variable.
-	Note: pip and setuptools are included in the Python installer since version 2.7.9.
-
-	After that, run the following command to install a package, replacing packagename with the names listed below:
-
-    easy_install -Z package
-
-	The -z switch unzips the package, instead of installing it compressed. If you add the --upgrade switch, you can upgrade a package to its latest version. The following packages need to be installed:
-
-* pypubsub==3.3.0
-* configobj
-* requests-oauthlib
-* requests-toolbelt
-* future
-* pygeocoder
-* arrow
-* markdown
-* winpaths
-* PySocks
-* win_inet_pton
-* yandex.translate
-
-easy_install will automatically get the additional libraries that these packages need to work properly.
-Run the following command to quickly install and upgrade all packages and their dependencies:  
-easy_install -Z --upgrade six configobj markdown future requests oauthlib requests-oauthlib requests-toolbelt pypubsub==3.3.0 pygeocoder arrow python-dateutil futures winpaths PySocks win_inet_pton yandex.translate idna chardet urllib3
+If you have updated Tw Blue's source to the latest version, you should rerun the above command to insure  that you have the latest versions of installed dependencies, as well as any new dependencies that may have been added.
 
 #### Other dependencies
-
 These dependencies are located in the windows-dependencies directory. You don't need to install or modify them.
 
 * Bootstrap 1.2.1: included in dependencies directory.  
@@ -121,7 +90,7 @@ A binary version doesn't need python and the other dependencies to run, it's the
 
 To build it, run the following command from the src folder:
 
-    python setup.py py2exe
+    pyinstaller TWBlue.spec
 
 	You will find the binaries in the dist directory.
 
