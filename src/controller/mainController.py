@@ -477,12 +477,11 @@ class Controller(object):
    output.speak(_(u"Empty buffer."), True)
    return
   start = page.buffer.list.get_selected()
-  for i in xrange(start,count):
-   page.buffer.list.select_item(i)
-   if string.lower() in page.get_message().lower():
+  for i in xrange(start, count):
+   if string.lower() in page.buffer.list.get_text_column(i, 1).lower():
+    page.buffer.list.select_item(i)
     return output.speak(page.get_message(), True)
   output.speak(_(u"{0} not found.").format(string,), True)
-  page.buffer.list.select_item(start)
 
  def seekLeft(self, *args, **kwargs):
   try:
@@ -931,8 +930,8 @@ class Controller(object):
    self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (trends.get_string()), pos=pos)
    self.buffers.append(buffer)
    buffer.start_stream()
-   timer = RepeatingTimer(300, buffer.start_stream)
-   timer.start()
+   buffer.timer = RepeatingTimer(300, buffer.start_stream)
+   buffer.timer.start()
    buffer.session.settings["other_buffers"]["trending_topic_buffers"].append(woeid)
    buffer.session.settings.write()
 
@@ -987,9 +986,10 @@ class Controller(object):
   buff = self.view.search(buffer.name, buffer.account)
   answer = buffer.remove_buffer()
   if answer == False: return
-  if hasattr(buff, "timer"):
+  log.debug("destroying buffer...")
+  if hasattr(buffer, "timer"):
    log.debug("Stopping timer...")
-   buff.timer.cancel()
+   buffer.timer.cancel()
    log.debug("Timer cancelled.")
   self.right()
   self.view.delete_buffer(buff)

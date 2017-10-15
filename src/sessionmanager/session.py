@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
+import wx
 import urllib2
 import config
 import twitter
@@ -16,10 +17,11 @@ import config_utils
 import shelve
 import application
 import os
-from mysc.thread_utils import stream_threaded
+from mysc.thread_utils import stream_threaded, call_threaded
 from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
 from long_tweets import tweets, twishort
+from wxUI import authorisationDialog
 
 sessions = {}
 
@@ -166,7 +168,20 @@ class Session(object):
   if self.logged == True:
    raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
   else:
-   self.twitter.authorise(self.settings)
+   self.authorisation_thread = call_threaded(self.twitter.authorise, self.settings)
+   self.authorisation_dialog = authorisationDialog()
+   self.authorisation_dialog.cancel.Bind(wx.EVT_BUTTON, self.authorisation_cancelled)
+   pub.subscribe(self.authorisation_accepted, "authorisation-accepted")
+   self.authorisation_dialog.ShowModal()
+
+ def authorisation_cancelled(self, *args, **kwargs):
+  pub.sendMessage("authorisation-cancelled")
+  self.authorisation_dialog.Destroy()
+  del self.authorisation_dialog 
+
+ def authorisation_accepted(self):
+  pub.unsubscribe(self.authorisation_accepted, "authorisation-accepted")
+  self.authorisation_dialog.Destroy()
 
  def get_more_items(self, update_function, users=False, name=None, *args, **kwargs):
   results = []

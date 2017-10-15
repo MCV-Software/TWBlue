@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from yandex_translate import YandexTranslate
 
-def translate(text="", source="auto", target="en"):
+def translate(text="", target="en"):
 	t = YandexTranslate("trnsl.1.1.20161012T134532Z.d01b9c75fc39aa74.7d1be75a5166a80583eeb020e10f584168da6bf7")
-	return t.translate(text, target)["text"][0]
+	vars = dict(text=text, lang=target)
+	return t.translate(**vars)["text"][0]
 
-
+supported_langs = None
+d = None
 languages = {
   "af": _(u"Afrikaans"),
   "sq": _(u"Albanian"),
@@ -71,7 +73,7 @@ languages = {
   "ps": _(u"Pashto"),
   "fa": _(u"Persian"),
   "pl": _(u"Polish"),
-  "pt-PT": _(u"Portuguese"),
+  "pt": _(u"Portuguese"),
   "pa": _(u"Punjabi"),
   "ro": _(u"Romanian"),
   "ru": _(u"Russian"),
@@ -101,8 +103,11 @@ languages = {
 }
 
 def available_languages():
-	l = languages.keys()
-	d = languages.values()
-	l.insert(0, '')
-	d.insert(0, _(u"autodetect"))
-	return sorted(zip(l, d))
+	global supported_langs, d
+	if supported_langs == None and d == None:
+		t = YandexTranslate("trnsl.1.1.20161012T134532Z.d01b9c75fc39aa74.7d1be75a5166a80583eeb020e10f584168da6bf7")
+		supported_langs = t.langs
+		d = []
+		for i in supported_langs:
+			d.append(languages[i])
+	return sorted(zip(supported_langs, d))

@@ -1,6 +1,4 @@
-from httplib import HTTPConnection
-from urlparse import urlparse
-
+import requests
 
 class URLShortener (object):
 
@@ -22,12 +20,18 @@ class URLShortener (object):
   raise NotImplementedError
 
  def unshorten(self, url):
-  working = urlparse(url)
-  if not working.netloc:
-   raise TypeError, "Unable to parse URL."
-  con = HTTPConnection(working.netloc)
-  con.connect()
-  con.request('GET', working.path)
-  resp = con.getresponse()
-  con.close()
-  return resp.getheader('location')
+  try:
+   r=requests.head(url)
+   if 'location' in r.headers.keys():
+    if 'dropbox.com' in r.headers['location']:
+     return handle_dropbox(r.headers['location'])
+    else:
+     return r.headers['location']
+  except:
+   return url #we cannot expand
+
+def handle_dropbox(url):
+ if url.endswith("dl=1"):
+  return url
+ else:
+  return url.replace("dl=0", "dl=1")

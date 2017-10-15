@@ -1,4 +1,5 @@
 from url_shortener import URLShortener
+import requests
 import urllib
 class TinyurlShortener (URLShortener):
  def __init__(self, *args, **kwargs):
@@ -6,12 +7,10 @@ class TinyurlShortener (URLShortener):
   super(TinyurlShortener, self).__init__(*args, **kwargs)
 
  def _shorten (self, url):
-
   answer = url
-  api = urllib.urlopen ("http://tinyurl.com/api-create.php?url=" + urllib.quote(url))
-  if api.getcode() == 200:
-   answer = api.read()
-  api.close()
+  api = requests.get ("http://tinyurl.com/api-create.php?url=" + urllib.quote(url))
+  if api.status_code == 200:
+   answer = api.text
   return answer
 
  def created_url (self, url):

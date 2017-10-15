@@ -29,7 +29,12 @@ def find_urls (tweet):
   i = "full_text"
  else:
   i = "text"
- return [s[0] for s in url_re.findall(tweet[i])]
+ shorten_urls = find_urls_in_text(tweet[i])
+ for url in range(0, len(shorten_urls)):
+  try:
+   urls.append(tweet["entities"]["urls"][url]["expanded_url"])
+  except: pass
+ return urls
 
 def find_item(id, listItem):
  for i in range(0, len(listItem)):

@@ -1,5 +1,5 @@
 import urllib
-
+import requests
 from url_shortener import URLShortener
 
 class TinyArrowsShortener (URLShortener):
@@ -9,8 +9,10 @@ class TinyArrowsShortener (URLShortener):
 
  def _shorten (self, url):
   answer = url
-  answer = urllib.urlopen("http://tinyarro.ws/api-create.php?utfpure=1&url=%s" % urllib.quote(url)).read()
+  api = requests.get("http://tinyarro.ws/api-create.php?utfpure=1&url=%s" % urllib.quote(url))
+  if api.status_code == 200:
+   answer = api.text
   return answer.decode('UTF-8')
 
  def created_url(self, url):
-  return False
+  return "tinyarro.ws" in url

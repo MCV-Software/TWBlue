@@ -2,6 +2,14 @@
 
 ## changes in this version
 
+* When authorising an account, you will see a dialogue with a cancel button, in case you want to abort the process. Also, NVDA will not be blocked when the process starts. ([#101](https://github.com/manuelcortez/TWBlue/issues/101))
+* In the translator module, the list of available languages is fetched automatically from the provider. That means all of these languages will work and there will not be inconsistencies. Also we've removed the first combo box, because the language is detected automatically by Yandex'S API. ([#153](https://github.com/manuelcortez/TWBlue/issues/153))
+* Trending topics, searches and conversation buffers will use mute settings set for the session in wich  they were opened. ([#157](https://github.com/manuelcortez/TWBlue/issues/157))
+* And more. ([#156,](https://github.com/manuelcortez/TWBlue/issues/156) [#163,](https://github.com/manuelcortez/TWBlue/issues/163) [#159,](https://github.com/manuelcortez/TWBlue/issues/159))
+
+## changes in version 0.91 and 0.92
+
+* Fixed incorrect unicode handling when copying tweet to clipboard. ([#150](https://github.com/manuelcortez/TWBlue/issues/150))
 * TWBlue will show an error when trying to open a timeline for a suspended user. ([#128](https://github.com/manuelcortez/TWBlue/issues/128))
 * Removed TwUp as service as it no longer exists. ([#112](https://github.com/manuelcortez/TWBlue/issues/112))
 * Release audio files after uploading them. ([#130](https://github.com/manuelcortez/TWBlue/issues/130))

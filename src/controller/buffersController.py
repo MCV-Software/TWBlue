@@ -157,7 +157,7 @@ class bufferController(object):
   for i in attachments:
    photo = open(i["file"], "rb")
    img = self.session.twitter.twitter.upload_media(media=photo)
-   self.session.twitter.twitter.set_description(media_id=img["media_id"], alt_text=dict(text=i["description"]))
+   self.session.twitter.twitter.create_metadata(media_id=img["media_id"], alt_text=dict(text=i["description"]))
    media_ids.append(img["media_id"])
   self.session.twitter.twitter.update_status(status=text, media_ids=media_ids)
 
@@ -988,7 +988,7 @@ class searchBufferController(baseBufferController):
 #   return None
    num = self.session.order_buffer(self.name, val)
    self.put_items_on_list(num)
-   if num > 0:
+   if num > 0 and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
     self.session.sound.play("search_updated.ogg")
    return num
 
@@ -1068,7 +1068,7 @@ class searchPeopleBufferController(peopleBufferController):
    number_of_items = self.session.order_cursored_buffer(self.name, val)
    log.debug("Number of items retrieved: %d" % (number_of_items,))
    self.put_items_on_list(number_of_items)
-   if number_of_items > 0:
+   if number_of_items > 0 and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
     self.session.sound.play("search_updated.ogg")
    return number_of_items
 
@@ -1148,7 +1148,8 @@ class trendsBufferController(bufferController):
     self.name_ = data[0]["locations"][0]["name"]
    self.trends = data[0]["trends"]
    self.put_items_on_the_list()
-   self.session.sound.play(self.sound)
+   if self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
+    self.session.sound.play(self.sound)
 
  def put_items_on_the_list(self):
   selected_item = self.buffer.list.get_selected()
@@ -1270,7 +1271,7 @@ class conversationBufferController(searchBufferController):
    number_of_items = self.session.order_buffer(self.name, self.statuses)
    log.debug("Number of items retrieved: %d" % (number_of_items,))
    self.put_items_on_list(number_of_items)
-   if number_of_items > 0:
+   if number_of_items > 0 and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
     self.session.sound.play("search_updated.ogg")
    return number_of_items
 
