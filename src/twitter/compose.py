@@ -44,8 +44,10 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False):
   value = "full_text"
  else:
   value = "text"
-#  log.exception(tweet.keys())
- text = StripChars(tweet[value])
+ if tweet.has_key("retweeted_status") and value == "full_text":
+  text = StripChars(tweet["retweeted_status"][value])
+ else:
+  text = StripChars(tweet[value])
  if show_screen_names:
   user = tweet["user"]["screen_name"]
  else:
