@@ -44,7 +44,7 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False):
   value = "full_text"
  else:
   value = "text"
- if tweet.has_key("retweeted_status") and value == "full_text":
+ if tweet.has_key("retweeted_status") and value != "message":
   text = StripChars(tweet["retweeted_status"][value])
  else:
   text = StripChars(tweet[value])
@@ -55,12 +55,11 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False):
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
  if tweet.has_key("retweeted_status"):
   if tweet.has_key("message") == False and tweet["retweeted_status"]["is_quote_status"] == False:
-   text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet["retweeted_status"][value]))
+   text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], text)
   elif tweet["retweeted_status"]["is_quote_status"]:
-   text = "%s" % (StripChars(tweet[value]))
+   text = "%s" % (text)
   else:
-   text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], StripChars(tweet[value]))
-# if text[-1] in chars: text=text+"."
+   text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], text)
  if tweet.has_key("message") == False:
   urls = utils.find_urls_in_text(text)
   for url in range(0, len(urls)):
