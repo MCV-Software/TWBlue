@@ -18,7 +18,7 @@ from twitter import utils
 
 class basicTweet(object):
  """ This class handles the tweet main features. Other classes should derive from this class."""
- def __init__(self, session, title, caption, text, messageType="tweet", max=140, *args, **kwargs):
+ def __init__(self, session, title, caption, text, messageType="tweet", max=280, *args, **kwargs):
   super(basicTweet, self).__init__()
   self.max = max
   self.title = title
@@ -124,7 +124,7 @@ class basicTweet(object):
   self.message.text_focus()
 
 class tweet(basicTweet):
- def __init__(self, session, title, caption, text, twishort_enabled, messageType="tweet", max=140, *args, **kwargs):
+ def __init__(self, session, title, caption, text, twishort_enabled, max=280, messageType="tweet", *args, **kwargs):
   super(tweet, self).__init__(session, title, caption, text, messageType, max, *args, **kwargs)
   self.image = None
   widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
