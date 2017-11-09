@@ -18,7 +18,7 @@ from twitter import utils
 
 class basicTweet(object):
  """ This class handles the tweet main features. Other classes should derive from this class."""
- def __init__(self, session, title, caption, text, messageType="tweet", max=140, *args, **kwargs):
+ def __init__(self, session, title, caption, text, messageType="tweet", max=280, *args, **kwargs):
   super(basicTweet, self).__init__()
   self.max = max
   self.title = title
@@ -124,14 +124,11 @@ class basicTweet(object):
   self.message.text_focus()
 
 class tweet(basicTweet):
- def __init__(self, session, title, caption, text, twishort_enabled, messageType="tweet", max=140, *args, **kwargs):
+ def __init__(self, session, title, caption, text, max=280, messageType="tweet", *args, **kwargs):
   super(tweet, self).__init__(session, title, caption, text, messageType, max, *args, **kwargs)
   self.image = None
   widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
   widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
-  if twishort_enabled == False:
-   try: self.message.long_tweet.SetValue(False)
-   except AttributeError: pass
   self.text_processor()
 
  def upload_image(self, *args, **kwargs):
@@ -144,16 +141,13 @@ class tweet(basicTweet):
   c.show_menu()
 
 class reply(tweet):
- def __init__(self, session, title, caption, text, twishort_enabled, users=[], ids=[]):
-  super(reply, self).__init__(session, title, caption, text, twishort_enabled, messageType="reply", users=users)
+ def __init__(self, session, title, caption, text, users=[], ids=[]):
+  super(reply, self).__init__(session, title, caption, text, messageType="reply", users=users)
   self.ids = ids
   self.users = users
   if len(users) > 0:
    widgetUtils.connect_event(self.message.mentionAll, widgetUtils.CHECKBOX, self.mention_all)
    self.message.enable_button("mentionAll")
-   self.message.mentionAll.SetValue(self.session.settings["mysc"]["mention_all"])
-   if self.message.mentionAll.GetValue() == True:
-    self.mention_all()
   self.message.set_cursor_at_end()
   self.text_processor()
 
@@ -166,7 +160,6 @@ class reply(tweet):
    for i in self.message.checkboxes:
     i.SetValue(False)
     i.Show()
-
 
  def get_ids(self):
   excluded_ids  = ""

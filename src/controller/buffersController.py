@@ -136,11 +136,10 @@ class bufferController(object):
  def post_tweet(self, *args, **kwargs):
   title = _(u"Tweet")
   caption = _(u"Write the tweet here")
-  tweet = messages.tweet(self.session, title, caption, "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
+  tweet = messages.tweet(self.session, title, caption, "")
   if tweet.message.get_response() == widgetUtils.OK:
-   self.session.settings["mysc"]["twishort_enabled"] = tweet.message.long_tweet.GetValue()
    text = tweet.message.get_text()
-   if len(text) > 140 and tweet.message.get("long_tweet") == True:
+   if len(text) > 280 and tweet.message.get("long_tweet") == True:
     if not hasattr(tweet, "attachments"):
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
     else:
@@ -517,12 +516,9 @@ class baseBufferController(bufferController):
    title=_("Reply to {arg0}").format(arg0=screen_name)
   else:
    title=_("Reply")
-  message = messages.reply(self.session, title, _(u"Reply to %s") % (screen_name,), "", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"], users=users, ids=ids)
+  message = messages.reply(self.session, title, _(u"Reply to %s") % (screen_name,), "", users=users, ids=ids)
   if message.message.get_response() == widgetUtils.OK:
    params = {"_sound": "reply_send.ogg", "in_reply_to_status_id": id,}
-   self.session.settings["mysc"]["twishort_enabled"] = message.message.long_tweet.GetValue()
-   if len(message.users) > 0:
-    self.session.settings["mysc"]["mention_all"] = message.message.mentionAll.GetValue()
    text = message.message.get_text()
    if twishort_enabled == False:
     excluded_ids = message.get_ids()
@@ -531,7 +527,7 @@ class baseBufferController(bufferController):
    else:
     mentioned_people = message.get_people()
     text = "@"+screen_name+" "+mentioned_people+u" "+text
-   if len(text) > 140 and message.message.get("long_tweet") == True:
+   if len(text) > 280 and message.message.get("long_tweet") == True:
     if message.image == None:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
     else:
@@ -589,7 +585,7 @@ class baseBufferController(bufferController):
    comments = tweet["full_text"]
   else:
    comments = tweet["text"]
-  retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], comments), max=116, messageType="retweet", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
+  retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], comments), max=256, messageType="retweet")
   if comment != '':
    retweet.message.set_text(comment)
   if retweet.message.get_response() == widgetUtils.OK:
@@ -1217,12 +1213,11 @@ class trendsBufferController(bufferController):
   if self.buffer.list.get_count() == 0: return
   title = _(u"Tweet")
   caption = _(u"Write the tweet here")
-  tweet = messages.tweet(self.session, title, caption, self.get_message()+ " ", twishort_enabled=self.session.settings["mysc"]["twishort_enabled"])
+  tweet = messages.tweet(self.session, title, caption, self.get_message()+ " ")
   tweet.message.set_cursor_at_end()
   if tweet.message.get_response() == widgetUtils.OK:
-   self.session.settings["mysc"]["twishort_enabled"] = tweet.message.long_tweet.GetValue()
    text = tweet.message.get_text()
-   if len(text) > 140 and tweet.message.get("long_tweet") == True:
+   if len(text) > 280 and tweet.message.get("long_tweet") == True:
     if tweet.image == None:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
     else:
