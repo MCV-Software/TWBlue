@@ -7,7 +7,8 @@
 * Trending topics, searches and conversation buffers will use mute settings set for the session in wich  they were opened. ([#157](https://github.com/manuelcortez/TWBlue/issues/157))
 * The Tweet limit is now 280 characters lenght instead 140. It means you can tweet longer tweets. ([#172](https://github.com/manuelcortez/TWBlue/issues/172))
 * Per popular request, Status for mention to all and long tweet checkboxes will not be saved in settings. ([#170](https://github.com/manuelcortez/TWBlue/issues/170))
-* And more. ([#156,](https://github.com/manuelcortez/TWBlue/issues/156) [#163,](https://github.com/manuelcortez/TWBlue/issues/163) [#159,](https://github.com/manuelcortez/TWBlue/issues/159) [#173,](https://github.com/manuelcortez/TWBlue/issues/173) [#174,](https://github.com/manuelcortez/TWBlue/issues/174))
+* Fixed a problem that was making TWBlue unable to start if it was being ran in Windows with Serbian language. ([#175](https://github.com/manuelcortez/TWBlue/issues/175))
+* And more. ([#156,](https://github.com/manuelcortez/TWBlue/issues/156) [#163,](https://github.com/manuelcortez/TWBlue/issues/163) [#159,](https://github.com/manuelcortez/TWBlue/issues/159) [#173,](https://github.com/manuelcortez/TWBlue/issues/173) [#174,](https://github.com/manuelcortez/TWBlue/issues/174) [#176,](https://github.com/manuelcortez/TWBlue/issues/176))
 
 ## changes in version 0.91 and 0.92
 

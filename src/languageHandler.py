@@ -3,6 +3,8 @@ import os
 import sys
 import ctypes
 import locale
+# add mapping for Serbian (latin) language
+locale.windows_locale[9242]='sr_RS'
 import gettext
 import paths
 import platform
