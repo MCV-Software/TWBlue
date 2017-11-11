@@ -442,7 +442,7 @@ class Controller(object):
      buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
      buffer.session.settings.write()
      args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
-     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, **args)
+     search = buffersController.searchBufferController(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", q=term, tweet_mode="extended", **args)
     else:
      log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
      return
@@ -1521,10 +1521,13 @@ class Controller(object):
   os.chdir("../../")
 
  def view_changelog(self, *args, **kwargs):
-  lang = localization.get("documentation")
-  os.chdir("documentation/%s" % (lang,))
-  webbrowser.open("changelog.html")
-  os.chdir("../../")
+  if application.snapshot == True:
+   webbrowser.open("https://github.com/manuelcortez/twblue/blob/next-gen/doc/changelog.md")
+  else:
+   lang = localization.get("documentation")
+   os.chdir("documentation/%s" % (lang,))
+   webbrowser.open("changelog.html")
+   os.chdir("../../")
 
  def insert_buffer(self, buffer, position):
   self.buffers.insert(position, buffer)
