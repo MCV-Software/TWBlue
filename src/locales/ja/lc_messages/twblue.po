@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-07-08 13:55+Hora de verano romance\n"
-"PO-Revision-Date: 2017-01-25 12:07+0900\n"
+"PO-Revision-Date: 2017-10-13 08:38+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.11\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../src\controller\attach.py:23
@@ -55,9 +55,8 @@ msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "このバッファは、タイムラインではないため、削除できません"
 
 #: ../src\controller\buffersController.py:517
-#, fuzzy
 msgid "Reply to {arg0}"
-msgstr "「%s」への返信:"
+msgstr "「{arg0}」への返信:"
 
 #: ../src\controller\buffersController.py:519
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
@@ -439,7 +438,7 @@ msgstr "そのユーザーは存在しません。"
 
 #: ../src\controller\user.py:30
 msgid "User has been suspended"
-msgstr ""
+msgstr "ユーザーが凍結されています。"
 
 #: ../src\controller\user.py:36
 msgid "Information for %s"
@@ -891,9 +890,8 @@ msgid "{0}'s database of users has been updated."
 msgstr "{0}のユーザーのデータベースが更新されました"
 
 #: ../src\extra\ocr\OCRSpace.py:5
-#, fuzzy
 msgid "Detect automatically"
-msgstr "自動的にログインする"
+msgstr "自動検出"
 
 #: ../src\extra\ocr\OCRSpace.py:5 ../src\extra\translator\translator.py:29
 msgid "Danish"
@@ -1701,7 +1699,7 @@ msgstr "ユーザーのデフォルト"
 
 #: ../src\main.py:96
 msgid "https://twblue.es/donate"
-msgstr ""
+msgstr "https://twblue.es/donate"
 
 #: ../src\sessionmanager\session.py:209
 msgid "%s failed.  Reason: %s"
@@ -2210,19 +2208,22 @@ msgstr ""
 
 #: ../src\wxUI\commonMessageDialogs.py:76
 msgid "You have been blocked from viewing  this content"
-msgstr ""
+msgstr "このコンテンツの表示がブロックされています"
 
 #: ../src\wxUI\commonMessageDialogs.py:79
 msgid ""
 "You have been blocked from viewing  someone's content. In order to avoid "
 "conflicts with the full session, TWBlue will remove the affected timeline."
 msgstr ""
+"他のユーザーのコンテンツを表示できないようになっています。フルセッションとの"
+"競合を避けるため、TWBlueは影響を受けるタイムラインを削除します。"
 
 #: ../src\wxUI\commonMessageDialogs.py:82
 msgid ""
 "TWBlue cannot load this timeline because the user has been suspended from "
 "Twitter."
 msgstr ""
+"ユーザーがTwitterから凍結されているため、このタイムラインをロードできません。"
 
 #: ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
@@ -2474,13 +2475,12 @@ msgid "Indicate tweets containing images with sound"
 msgstr "画像付きツイートを音で報告"
 
 #: ../src\wxUI\dialogs\configuration.py:301
-#, fuzzy
 msgid "Language for OCR"
-msgstr "結果の言語(&L):"
+msgstr "OCRの言語"
 
 #: ../src\wxUI\dialogs\configuration.py:307
 msgid "API Key for SndUp"
-msgstr ""
+msgstr "SndUpのAPIキー"
 
 #: ../src\wxUI\dialogs\configuration.py:322
 msgid "{0} preferences"
@@ -2500,7 +2500,7 @@ msgstr "サウンド"
 
 #: ../src\wxUI\dialogs\configuration.py:354
 msgid "Extras"
-msgstr ""
+msgstr "その他"
 
 #: ../src\wxUI\dialogs\configuration.py:359
 msgid "Save"
@@ -3000,7 +3000,6 @@ msgid "View conversa&tion"
 msgstr "会話を見る(&T)"
 
 #: ../src\wxUI\view.py:35
-#, fuzzy
 msgid "Read text in picture"
 msgstr "画像からテキストを読み取り"
 

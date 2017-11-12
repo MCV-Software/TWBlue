@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2017-07-08 13:55+Hora de verano romance\n"
-"PO-Revision-Date: 2017-03-10 14:47+0300\n"
+"PO-Revision-Date: 2017-10-09 13:25+0300\n"
 "Last-Translator: José Manuel Delicado Alcolea <jmdaweb@hotmail.com>\n"
 "Language-Team: Mohammed Al Shara <mohammed@atexplorer.com>\n"
 "Language: ar\n"
@@ -58,7 +58,6 @@ msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "هذه الصفحة ليست سياق زمني ولا يمكن حذفها"
 
 #: ../src\controller\buffersController.py:517
-#, fuzzy
 msgid "Reply to {arg0}"
 msgstr "الرد على %s"
 
@@ -86,11 +85,11 @@ msgstr "أَضفْ تعليقك للتغريدة"
 
 #: ../src\controller\buffersController.py:592
 msgid "Quote"
-msgstr "إقتباس"
+msgstr "اقتباس"
 
 #: ../src\controller\buffersController.py:657
 msgid "Opening URL..."
-msgstr "فتح عنوان جديد"
+msgstr "فتح عنوان"
 
 #: ../src\controller\buffersController.py:692
 msgid "User details"
@@ -102,7 +101,7 @@ msgstr "فارغ"
 
 #: ../src\controller\buffersController.py:868
 msgid "Mention to %s"
-msgstr "تمت الإشارة إل%s"
+msgstr "أَشِرْ ل%s"
 
 #: ../src\controller\buffersController.py:868 ../src\wxUI\buffers\people.py:15
 msgid "Mention"
@@ -440,15 +439,15 @@ msgid "That user does not exist"
 msgstr "هذا المستخدم غير موجود"
 
 #: ../src\controller\user.py:30
-#, fuzzy
 msgid "User has been suspended"
-msgstr "تم تحديث بحث"
+msgstr "المستخدم موقوف"
 
 #: ../src\controller\user.py:36
 msgid "Information for %s"
 msgstr "معلومات عن %s"
 
-#: ../src\controller\user.py:66 ../src\extra\AudioUploader\audioUploader.py:123
+#: ../src\controller\user.py:66
+#: ../src\extra\AudioUploader\audioUploader.py:123
 msgid "Discarded"
 msgstr "تم التراجع"
 
@@ -894,9 +893,8 @@ msgid "{0}'s database of users has been updated."
 msgstr "لقد حُدّثت قاعدة بيانات المستخدمين ل{0}'"
 
 #: ../src\extra\ocr\OCRSpace.py:5
-#, fuzzy
 msgid "Detect automatically"
-msgstr "إبدء من هذا الحساب تلقائيا"
+msgstr "اكتشف تلقائيا"
 
 #: ../src\extra\ocr\OCRSpace.py:5 ../src\extra\translator\translator.py:29
 msgid "Danish"
@@ -1703,7 +1701,7 @@ msgstr "الإفتراضي للمستخدم"
 
 #: ../src\main.py:96
 msgid "https://twblue.es/donate"
-msgstr ""
+msgstr "https://twblue.es/donate"
 
 #: ../src\sessionmanager\session.py:209
 msgid "%s failed.  Reason: %s"
@@ -2196,7 +2194,7 @@ msgstr ""
 
 #: ../src\wxUI\commonMessageDialogs.py:76
 msgid "You have been blocked from viewing  this content"
-msgstr ""
+msgstr "المحتوى محجوب ولا يمكن لك عرضه"
 
 #: ../src\wxUI\commonMessageDialogs.py:79
 msgid ""
@@ -2209,6 +2207,7 @@ msgid ""
 "TWBlue cannot load this timeline because the user has been suspended from "
 "Twitter."
 msgstr ""
+"لا يمنك لTW Blue تحميل هذا الخط الزمني لكون هذا المستخدم موقوفا من تويتر"
 
 #: ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
@@ -2462,13 +2461,12 @@ msgid "Indicate tweets containing images with sound"
 msgstr "يشير إلى تغريدة تتضمن صور من خلال نغمة"
 
 #: ../src\wxUI\dialogs\configuration.py:301
-#, fuzzy
 msgid "Language for OCR"
-msgstr "لغة النتائج"
+msgstr "لغة التعرّف الضوئي على النصلغة النتائج"
 
 #: ../src\wxUI\dialogs\configuration.py:307
 msgid "API Key for SndUp"
-msgstr ""
+msgstr "API Key for SndUp"
 
 #: ../src\wxUI\dialogs\configuration.py:322
 msgid "{0} preferences"
@@ -2488,7 +2486,7 @@ msgstr "الصوت"
 
 #: ../src\wxUI\dialogs\configuration.py:354
 msgid "Extras"
-msgstr ""
+msgstr "إضافات"
 
 #: ../src\wxUI\dialogs\configuration.py:359
 msgid "Save"
@@ -2988,9 +2986,8 @@ msgid "View conversa&tion"
 msgstr "عرض المحادثة"
 
 #: ../src\wxUI\view.py:35
-#, fuzzy
 msgid "Read text in picture"
-msgstr "إقرء النص الذي في الصور"
+msgstr "اقرء النص الذي في الصورة"
 
 #: ../src\wxUI\view.py:40
 msgid "&Actions..."

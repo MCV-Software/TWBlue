@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "POT-Creation-Date: 2017-07-08 13:55+Hora de verano romance\n"
-"PO-Revision-Date: 2017-01-24 14:32+0100\n"
+"PO-Revision-Date: 2017-07-18 16:45+0100\n"
 "Last-Translator: Chris Leo Mameli <llajta2012@gmail.com>\n"
 "Language-Team: Christian Leo Mameli\n"
 "Language: it\n"
@@ -53,9 +53,8 @@ msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Impossivile eliminare. Questo buffer non è una Cronologia;"
 
 #: ../src\controller\buffersController.py:517
-#, fuzzy
 msgid "Reply to {arg0}"
-msgstr "Rispondi a %s"
+msgstr "Rispondi a {arg0}"
 
 #: ../src\controller\buffersController.py:519
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:26
@@ -436,15 +435,15 @@ msgid "That user does not exist"
 msgstr "Questo utente non esiste su Twitter"
 
 #: ../src\controller\user.py:30
-#, fuzzy
 msgid "User has been suspended"
-msgstr "Una ricerca è stata aggiornata"
+msgstr "L'utente è stato sospeso."
 
 #: ../src\controller\user.py:36
 msgid "Information for %s"
 msgstr "Informazioni per %s"
 
-#: ../src\controller\user.py:66 ../src\extra\AudioUploader\audioUploader.py:123
+#: ../src\controller\user.py:66
+#: ../src\extra\AudioUploader\audioUploader.py:123
 msgid "Discarded"
 msgstr "Scartato"
 
@@ -891,9 +890,8 @@ msgid "{0}'s database of users has been updated."
 msgstr "Il {0} database di TWBlue per gli utenti è stato aggiornato."
 
 #: ../src\extra\ocr\OCRSpace.py:5
-#, fuzzy
 msgid "Detect automatically"
-msgstr "Connetti account automaticamente all'avvio"
+msgstr "Rileva automaticamente"
 
 #: ../src\extra\ocr\OCRSpace.py:5 ../src\extra\translator\translator.py:29
 msgid "Danish"
@@ -1707,7 +1705,7 @@ msgstr "Utente predefinito"
 
 #: ../src\main.py:96
 msgid "https://twblue.es/donate"
-msgstr ""
+msgstr "https://twblue.es/donate"
 
 #: ../src\sessionmanager\session.py:209
 msgid "%s failed.  Reason: %s"
@@ -2213,19 +2211,24 @@ msgstr ""
 
 #: ../src\wxUI\commonMessageDialogs.py:76
 msgid "You have been blocked from viewing  this content"
-msgstr ""
+msgstr "Impossibile visualizzare il contenuto perché sei stato bloccato."
 
 #: ../src\wxUI\commonMessageDialogs.py:79
 msgid ""
 "You have been blocked from viewing  someone's content. In order to avoid "
 "conflicts with the full session, TWBlue will remove the affected timeline."
 msgstr ""
+"Sei stato bloccato e non puoi visualizzare alcun contenuto. Al fine di "
+"evitare conflitti con l'intera sezione, TWblue rimuoverà la relativa "
+"cronologia. "
 
 #: ../src\wxUI\commonMessageDialogs.py:82
 msgid ""
 "TWBlue cannot load this timeline because the user has been suspended from "
 "Twitter."
 msgstr ""
+"TWBlue non può caricare la cronologia perché l'utente è stato sospeso da "
+"Twitter."
 
 #: ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
@@ -2477,13 +2480,12 @@ msgid "Indicate tweets containing images with sound"
 msgstr "Avvisa con un suono i tweet con immagini"
 
 #: ../src\wxUI\dialogs\configuration.py:301
-#, fuzzy
 msgid "Language for OCR"
-msgstr "&Lingua per i risultati:"
+msgstr "Lingua per l'OCR"
 
 #: ../src\wxUI\dialogs\configuration.py:307
 msgid "API Key for SndUp"
-msgstr ""
+msgstr "API Key per SndUp"
 
 #: ../src\wxUI\dialogs\configuration.py:322
 msgid "{0} preferences"
@@ -2503,7 +2505,7 @@ msgstr "Audio"
 
 #: ../src\wxUI\dialogs\configuration.py:354
 msgid "Extras"
-msgstr ""
+msgstr "Extra"
 
 #: ../src\wxUI\dialogs\configuration.py:359
 msgid "Save"
@@ -3003,7 +3005,6 @@ msgid "View conversa&tion"
 msgstr "Visualizza &conversazione"
 
 #: ../src\wxUI\view.py:35
-#, fuzzy
 msgid "Read text in picture"
 msgstr "Lettura testo da un immagine"
 
