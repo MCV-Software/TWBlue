@@ -24,7 +24,7 @@ class timelinesStreamer(TwythonStreamer):
  def check_tls(self, data):
   for i in self.session.settings["other_buffers"]["timelines"]:
    if data["user"]["id_str"] == i:
-    if utils.find_item(data["id"], self.session.db["%s-timeline" % (i,)]) != None:
+    if utils.find_item(data["id"], self.session.db["%s-timeline" % (i,)]) != None and utils.is_allowed(data, self.session.settings, "%s-timeline" % (i,)):
      log.error("duplicated tweet. Ignoring it...")
      return
 #    try:
@@ -60,7 +60,7 @@ class timelinesStreamer(TwythonStreamer):
   self.friends = friends
 
  def on_success(self, data):
-  if "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
+  if "text" in data:
    if data.has_key("extended_tweet"):
     data["full_text"] = data["extended_tweet"]["full_text"]
    if data.has_key("retweeted_status"):

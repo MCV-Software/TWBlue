@@ -74,7 +74,7 @@ class Session(object):
     if i["id"] < last_id:
      log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i["id"]))
      continue
-   if utils.find_item(i["id"], self.db[name]) == None and     utils.is_allowed(i, self.settings["twitter"]["ignored_clients"]) == True:
+   if utils.find_item(i["id"], self.db[name]) == None and     utils.is_allowed(i, self.settings, name) == True:
     try: i = self.check_quoted_status(i)
     except: pass
     i = self.check_long_tweet(i)

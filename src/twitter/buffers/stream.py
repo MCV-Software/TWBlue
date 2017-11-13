@@ -27,7 +27,7 @@ class streamer(TwythonStreamer):
 
  def put_data(self, place, data):
   if self.session.db.has_key(place):
-   if utils.find_item(data["id"], self.session.db[place]) != None:
+   if utils.find_item(data["id"], self.session.db[place]) != None and utils.is_allowed(data, self.session.settings, place):
     log.error("duplicated tweet. Ignoring it...")
     return False
 #   try:
@@ -128,7 +128,7 @@ class streamer(TwythonStreamer):
    elif "friends" in data:
     self.friends = data["friends"]
     pub.sendMessage("friends-receibed")
-   elif "text" in data and utils.is_allowed(data, self.session.settings["twitter"]["ignored_clients"]) == True:
+   elif "text" in data:
     if data.has_key("extended_tweet"):
      data["full_text"] = data["extended_tweet"]["full_text"]
      data["entities"] = data["extended_tweet"]["entities"]

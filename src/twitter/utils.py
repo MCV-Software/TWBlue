@@ -128,16 +128,36 @@ def api_call(parent=None, call_name=None, preexec_message="", success="", succes
   parent.parent.sound.play("error.ogg")
  return val
 
-def is_allowed(tweet, clients):
+def is_allowed(tweet, settings, buffer_name):
+ clients = settings["twitter"]["ignored_clients"]
  if tweet.has_key("sender"): return True
  allowed = True
  if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
  for i in clients:
   if i.lower() == source.lower():
-   allowed = False
-#   log.exception("Tuit not allowed: %r" % (tweet,))
- return allowed
+   return False
+ return filter_tweet(tweet, settings, buffer_name)
+
+def filter_tweet(tweet, settings, buffer_name):
+ for i in settings["filters"]:
+  if settings["filters"][i]["in_buffer"] == buffer_name:
+   result = True
+   regexp = settings["filters"][i]["regexp"]
+   word = settings["filters"][i]["word"]
+   if word != "" and settings["filters"][i]["if_word_exists"]:
+    if word not in tweet["full_text"]:
+     return False
+   elif word != "" and settings["filters"][i]["if_word_exists"] == False:
+    if word in tweet["full_text"]:
+     return False
+   if settings["filters"][i]["in_lang"] == True:
+    if tweet["lang"] not in settings["filters"][i]["languages"]:
+     return False
+   elif settings["filters"][i]["in_lang"] == False:
+    if tweet["lang"] in settings["filters"][i]["languages"]:
+     return False
+ return True
 
 def twitter_error(error):
  if error.error_code == 403:
