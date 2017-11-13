@@ -13,6 +13,7 @@ if system == "Windows":
  import trendingTopics
  import user
  import listsController
+ import filterController
 # from issueReporter import issueReporter
 elif system == "Linux":
  from gtkUI import (view, commonMessageDialogs)
@@ -139,6 +140,7 @@ class Controller(object):
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.filter, menuitem=self.view.filter)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.find, menuitem=self.view.find)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
@@ -482,6 +484,13 @@ class Controller(object):
     page.buffer.list.select_item(i)
     return output.speak(page.get_message(), True)
   output.speak(_(u"{0} not found.").format(string,), True)
+
+ def filter(self, *args, **kwargs):
+  page = self.get_current_buffer()
+  if not hasattr(page.buffer, "list"):
+   output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
+   return
+  new_filter = filterController.filter()
 
  def seekLeft(self, *args, **kwargs):
   try:
