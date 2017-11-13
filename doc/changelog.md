@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* Increased display name limit up to 50 characters in update profile dialog.
 * When authorising an account, you will see a dialogue with a cancel button, in case you want to abort the process. Also, NVDA will not be blocked when the process starts. ([#101](https://github.com/manuelcortez/TWBlue/issues/101))
 * In the translator module, the list of available languages is fetched automatically from the provider. That means all of these languages will work and there will not be inconsistencies. Also we've removed the first combo box, because the language is detected automatically by Yandex'S API. ([#153](https://github.com/manuelcortez/TWBlue/issues/153))
 * Trending topics, searches and conversation buffers will use mute settings set for the session in wich  they were opened. ([#157](https://github.com/manuelcortez/TWBlue/issues/157))
