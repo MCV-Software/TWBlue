@@ -79,5 +79,5 @@ class filterDialog(baseDialog.BaseWXDialog):
   self.langs.Delete(n)
   self.indexes.remove(v)
 
- def get_all_langs(self):
+ def get_selected_langs(self):
   return self.indexes
