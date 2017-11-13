@@ -3,8 +3,9 @@ import baseDialog
 import wx
 
 class filterDialog(baseDialog.BaseWXDialog):
- def __init__(self, value=""):
+ def __init__(self, value="", languages=[]):
   super(filterDialog, self).__init__(None, -1)
+  self.langs_list = languages
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
   self.SetTitle(_(u"Create a filter  for this buffer"))
@@ -34,6 +35,25 @@ class filterDialog(baseDialog.BaseWXDialog):
   radioSizer2.Add(self.ignore_language, 0, wx.ALL, 5)
   radioSizer2.Add(self.skip_language_filtering, 0, wx.ALL, 5)
   sizer.Add(radioSizer2, 0, wx.ALL, 5)
+  self.indexes = []
+  langsLabel = wx.StaticText(panel, -1, _(u"Supported languages"))
+  self.cb = wx.ComboBox(panel, -1, choices=languages, value=languages[0])
+  langsSizer = wx.BoxSizer()
+  langsSizer.Add(langsLabel, 0, wx.ALL, 5)
+  langsSizer.Add(self.cb, 0, wx.ALL, 5)
+  self.add = wx.Button(panel, wx.NewId(), _(u"Add selected language to filter"))
+  self.add.Bind(wx.EVT_BUTTON, self.add_lang)
+  langsSizer.Add(self.add, 0, wx.ALL, 5)
+  sizer.Add(langsSizer, 0, wx.ALL, 5)
+  lbl = wx.StaticText(panel, wx.NewId(), _(u"Selected languages"))
+  self.langs = wx.ListBox(panel, -1)
+  self.remove = wx.Button(panel, wx.NewId(), _(u"Remove"))
+  self.remove.Bind(wx.EVT_BUTTON, self.remove_lang)
+  selectionSizer = wx.BoxSizer(wx.HORIZONTAL)
+  selectionSizer.Add(lbl, 0, wx.ALL, 5)
+  selectionSizer.Add(self.langs, 0, wx.ALL, 5)
+  selectionSizer.Add(self.remove, 0, wx.ALL, 5)
+  sizer.Add(selectionSizer, 0, wx.ALL, 5)
   ok = wx.Button(panel, wx.ID_OK, _(u"OK"))
   ok.SetDefault()
   cancel = wx.Button(panel, wx.ID_CANCEL, _(u"Cancel"))
@@ -43,3 +63,21 @@ class filterDialog(baseDialog.BaseWXDialog):
   sizer.Add(btnsizer, 0, wx.ALL, 5)
   panel.SetSizer(sizer)
   self.SetClientSize(sizer.CalcMin())
+
+ def get_lang(self):
+  return self.cb.GetValue()
+
+ def add_lang(self, *args, **kwargs):
+  selection = self.get_lang()
+  if selection in self.langs_list:
+   self.langs.Append(selection)
+   self.indexes.append(selection)
+
+ def remove_lang(self, *args, **kwargs):
+  n = self.langs.GetSelection()
+  v = self.langs.GetStringSelection()
+  self.langs.Delete(n)
+  self.indexes.remove(v)
+
+ def get_all_langs(self):
+  return self.indexes
