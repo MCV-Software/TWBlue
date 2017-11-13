@@ -277,6 +277,11 @@ class Session(object):
    self.db["utc_offset"] = f["time_zone"]["utc_offset"]
   except KeyError:
    self.db["utc_offset"] = -time.timezone
+  # Get twitter's supported languages and save them in a global variable
+  #so we won't call to this method once per session.
+  if len(application.supported_languages) == 0:
+   application.supported_languages = self.twitter.twitter.get_supported_languages()
+   print application.supported_languages
   self.get_lists()
   self.get_muted_users()
   self.settings.write()
