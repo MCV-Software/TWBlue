@@ -24,19 +24,20 @@ class timelinesStreamer(TwythonStreamer):
  def check_tls(self, data):
   for i in self.session.settings["other_buffers"]["timelines"]:
    if data["user"]["id_str"] == i:
-    if utils.find_item(data["id"], self.session.db["%s-timeline" % (i,)]) != None and utils.is_allowed(data, self.session.settings, "%s-timeline" % (i,)):
+    if utils.find_item(data["id"], self.session.db["%s-timeline" % (i,)]) != None:
      log.error("duplicated tweet. Ignoring it...")
      return
 #    try:
-    data_ = self.session.check_quoted_status(data)
-    data_ = self.session.check_long_tweet(data_)
-    data = data_
+    if utils.is_allowed(data, self.session.settings, "%s-timeline" % (i,)):
+     data_ = self.session.check_quoted_status(data)
+     data_ = self.session.check_long_tweet(data_)
+     data = data_
 #    except ValueError:
 #     pass
-    if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s-timeline" % (i,)].append(data)
-    else: self.session.db["%s-timeline" % (i,)].insert(0, data)
-    pub.sendMessage("item-in-timeline", data= data, user= self.session.db["user_name"], who= i)
-    return
+     if self.session.settings["general"]["reverse_timelines"] == False: self.session.db["%s-timeline" % (i,)].append(data)
+     else: self.session.db["%s-timeline" % (i,)].insert(0, data)
+     pub.sendMessage("item-in-timeline", data= data, user= self.session.db["user_name"], who= i)
+     return
   for i in self.session.lists:
    try:
     i.users.index(data["user"]["id"])
