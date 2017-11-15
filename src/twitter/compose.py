@@ -123,6 +123,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
    original_text = StripChars(original_tweet["text"])
  quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}").format( quoted_tweet[value], original_user, original_text)
  quoted_tweet = tweets.clear_url(quoted_tweet)
+ quoted_tweet["entities"]["urls"].extend(original_tweet["entities"]["urls"])
  return quoted_tweet
 
 def compose_followers_list(tweet, db, relative_times=True, show_screen_names=False):

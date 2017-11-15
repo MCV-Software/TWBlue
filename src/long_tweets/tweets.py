@@ -31,4 +31,8 @@ def clear_url(tweet):
  urls = utils.find_urls_in_text(tweet[value])
  try: tweet["message"] = tweet["message"].replace(urls[-1], "")
  except IndexError: pass
+ try:
+  tweet["entities"]["urls"].remove(tweet["entities"]["urls"][-1])
+ except ValueError:
+  pass
  return tweet
