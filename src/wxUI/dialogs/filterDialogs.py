@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import baseDialog
 import wx
+import widgetUtils
 
 class filterDialog(baseDialog.BaseWXDialog):
  def __init__(self, value="", languages=[]):
@@ -30,6 +31,9 @@ class filterDialog(baseDialog.BaseWXDialog):
   self.ignore_language = wx.RadioButton(panel, -1, _(u"Ignore tweets in the following languages"))
   self.skip_language_filtering = wx.RadioButton(panel, -1, _(u"Don't filter by language"))
   self.skip_language_filtering.SetValue(True)
+  widgetUtils.connect_event(self.load_language, widgetUtils.RADIOBUTTON, self.show_language_options)
+  widgetUtils.connect_event(self.ignore_language, widgetUtils.RADIOBUTTON, self.show_language_options)
+  widgetUtils.connect_event(self.skip_language_filtering, widgetUtils.RADIOBUTTON, self.hide_language_options)
   radioSizer2 = wx.BoxSizer(wx.HORIZONTAL)
   radioSizer2.Add(self.load_language, 0, wx.ALL, 5)
   radioSizer2.Add(self.ignore_language, 0, wx.ALL, 5)
@@ -62,6 +66,7 @@ class filterDialog(baseDialog.BaseWXDialog):
   btnsizer.Add(cancel, 0, wx.ALL, 5)
   sizer.Add(btnsizer, 0, wx.ALL, 5)
   panel.SetSizer(sizer)
+  self.hide_language_options()
   self.SetClientSize(sizer.CalcMin())
 
  def get_lang(self):
@@ -81,3 +86,11 @@ class filterDialog(baseDialog.BaseWXDialog):
 
  def get_selected_langs(self):
   return self.indexes
+
+ def hide_language_options(self, *args, **kwargs):
+  for i in [self.cb, self.add, self.langs, self.remove]:
+   i.Hide()
+
+ def show_language_options(self, *args, **kwargs):
+  for i in [self.cb, self.add, self.langs, self.remove]:
+   i.Show()
