@@ -83,3 +83,6 @@ def suspended_user():
 
 def delete_filter():
  return wx.MessageDialog(None, _(u"Do you really want to delete this filter?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO).ShowModal()
+
+def existing_filter():
+ return wx.MessageDialog(None, _(u"This filter already exists. Please use a different title"), _(u"Error"), wx.OK).ShowModal()

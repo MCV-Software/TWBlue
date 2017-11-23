@@ -10,6 +10,7 @@ class filter(object):
   self.buffer = buffer
   self.dialog = filterDialogs.filterDialog(languages=[i["name"] for i in application.supported_languages])
   if self.dialog.get_response()  == widgetUtils.OK:
+   title = self.dialog.get("title")
    contains = self.dialog.get("contains")
    term = self.dialog.get("term")
    regexp = self.dialog.get("regexp")
@@ -26,8 +27,9 @@ class filter(object):
     if i["name"] in langs:
      langcodes.append(i["code"])
    d = dict(in_buffer=self.buffer.name, word=term, regexp=regexp, in_lang=lang_option, languages=langcodes, if_word_exists=contains)
-   filter_title = "filter_{0}".format(str(time.time()))
-   self.buffer.session.settings["filters"][filter_title] = d
+   if self.buffer.session.settings["filters"].has_key(title):
+    return commonMessageDialogs.existing_filter()
+   self.buffer.session.settings["filters"][title] = d
    self.buffer.session.settings.write()
 
 class filterManager(object):
