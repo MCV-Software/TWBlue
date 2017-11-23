@@ -490,6 +490,10 @@ class Controller(object):
   if not hasattr(page.buffer, "list"):
    output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
+  # Let's prevent filtering of some buffers (people buffers, direct messages, events and sent items).
+  if (page.name == "direct_messages" or page.name =="sent_direct_messages" or page.name == "sent_tweets" or page.name == "events") or page.type == "people":
+   output.speak(_(u"Filters cannot be applied on this buffer"))
+   return
   new_filter = filterController.filter(page)
 
  def seekLeft(self, *args, **kwargs):
