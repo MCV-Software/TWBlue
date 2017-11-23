@@ -3,9 +3,10 @@ import time
 import widgetUtils
 import application
 from wxUI.dialogs import filterDialogs
+from wxUI import commonMessageDialogs
 
 class filter(object):
- def __init__(self, buffer):
+ def __init__(self, buffer, filter_title=None, if_word_exists=None, in_lang=None, regexp=None, word=None, in_buffer=None):
   self.buffer = buffer
   self.dialog = filterDialogs.filterDialog(languages=[i["name"] for i in application.supported_languages])
   if self.dialog.get_response()  == widgetUtils.OK:
@@ -28,3 +29,44 @@ class filter(object):
    filter_title = "filter_{0}".format(str(time.time()))
    self.buffer.session.settings["filters"][filter_title] = d
    self.buffer.session.settings.write()
+
+class filterManager(object):
+
+ def __init__(self, session):
+  self.session = session
+  self.dialog = filterDialogs.filterManagerDialog()
+  self.insert_filters(self.session.settings["filters"])
+  if self.dialog.filters.get_count() == 0:
+   self.dialog.edit.Enable(False)
+   self.dialog.delete.Enable(False)
+  else:
+   widgetUtils.connect_event(self.dialog.edit, widgetUtils.BUTTON_PRESSED, self.edit_filter)
+   widgetUtils.connect_event(self.dialog.delete, widgetUtils.BUTTON_PRESSED, self.delete_filter)
+  response = self.dialog.get_response()
+
+ def insert_filters(self, filters):
+  self.dialog.filters.clear()
+  for f in filters.keys():
+   # ToDo: Add titles to filters.
+   filterName = f
+   buffer = filters[f]["in_buffer"]
+   if filters[f]["if_word_exists"] == "True" and filters[f]["word"] != "":
+    filter_by_word = "True"
+   else:
+    filter_by_word = "False"
+   filter_by_lang = ""
+   if filters[f]["in_lang"] != "None":
+    filter_by_lang = "True"
+   b = [f, buffer, filter_by_word, filter_by_lang]
+   self.dialog.filters.insert_item(False, *b)
+
+ def edit_filter(self, *args, **kwargs):
+  pass
+
+ def delete_filter(self, *args, **kwargs):
+  filter_title = self.dialog.filters.get_text_column(self.dialog.filters.get_selected(), 0)
+  response = commonMessageDialogs.delete_filter()
+  if response == widgetUtils.YES:
+   self.session.settings["filters"].pop(filter_title)
+   self.session.settings.write()
+   self.insert_filters(self.session.settings["filters"])

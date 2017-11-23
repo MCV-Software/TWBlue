@@ -2,6 +2,7 @@
 import baseDialog
 import wx
 import widgetUtils
+from multiplatform_widgets import widgets
 
 class filterDialog(baseDialog.BaseWXDialog):
  def __init__(self, value="", languages=[]):
@@ -96,3 +97,32 @@ class filterDialog(baseDialog.BaseWXDialog):
  def show_language_options(self, *args, **kwargs):
   for i in [self.cb, self.add, self.langs, self.remove]:
    i.Show()
+
+class filterManagerDialog(widgetUtils.BaseDialog):
+
+ def __init__(self, *args, **kwargs):
+  super(filterManagerDialog, self).__init__(parent=None, *args, **kwargs)
+  self.SetTitle(_(u"Manage filters"))
+  panel = wx.Panel(self)
+  label = wx.StaticText(panel, -1, _(u"Filters"))
+  self.filters = widgets.list(panel, _(u"Filter"), _(u"Buffer"), _(u"Filter by word"), _(u"Filter by language"), size=(800, 800), style=wx.LC_REPORT|wx.LC_SINGLE_SEL)
+  self.filters.list.SetFocus()
+  sizer = wx.BoxSizer(wx.VERTICAL)
+  sizer.Add(label)
+  sizer.Add(self.filters.list)
+  self.edit = wx.Button(panel, wx.NewId(), _(u"Edit"))
+  self.edit.Enable(False)
+  self.delete = wx.Button(panel, wx.NewId(), _(u"Remove"))
+  self.cancel = wx.Button(panel, wx.ID_CANCEL)
+  btnSizer = wx.BoxSizer()
+  btnSizer.Add(self.edit, 0, wx.ALL, 5)
+  btnSizer.Add(self.delete, 0, wx.ALL, 5)
+  btnSizer.Add(self.cancel, 0, wx.ALL, 5)
+  sizer.Add(btnSizer, 0, wx.ALL, 5)
+  panel.SetSizer(sizer)
+
+ def get_item(self):
+  return self.filters.get_selected()
+
+ def clear(self):
+  self.filters.clear()

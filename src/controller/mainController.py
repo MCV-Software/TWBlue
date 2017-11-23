@@ -141,6 +141,7 @@ class Controller(object):
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.filter, menuitem=self.view.filter)
+   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_filters, menuitem=self.view.manage_filters)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.find, menuitem=self.view.find)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
@@ -495,6 +496,10 @@ class Controller(object):
    output.speak(_(u"Filters cannot be applied on this buffer"))
    return
   new_filter = filterController.filter(page)
+
+ def manage_filters(self, *args, **kwargs):
+  page = self.get_best_buffer()
+  manage_filters = filterController.filterManager(page.session)
 
  def seekLeft(self, *args, **kwargs):
   try:

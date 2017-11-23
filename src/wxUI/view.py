@@ -51,6 +51,7 @@ class mainFrame(wx.Frame):
   self.update_buffer = buffer.Append(wx.NewId(), _(u"&Update buffer"))
   self.trends = buffer.Append(wx.NewId(), _(u"New &trending topics buffer..."))
   self.filter = buffer.Append(wx.NewId(), _(u"Create a filter"))
+  self.manage_filters = buffer.Append(wx.NewId(), _(u"Manage filters"))
   self.find = buffer.Append(wx.NewId(), _(u"Find a string in the currently focused buffer..."))
   self.load_previous_items = buffer.Append(wx.NewId(), _(u"&Load previous items"))
   buffer.AppendSeparator()

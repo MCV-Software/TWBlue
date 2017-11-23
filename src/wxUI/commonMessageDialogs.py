@@ -80,3 +80,6 @@ def blocked_timeline():
  
 def suspended_user():
  return wx.MessageDialog(None, _(u"TWBlue cannot load this timeline because the user has been suspended from Twitter."), _(u"Error"), wx.OK).ShowModal()
+
+def delete_filter():
+ return wx.MessageDialog(None, _(u"Do you really want to delete this filter?"), _(u"Attention"), style=wx.ICON_QUESTION|wx.YES_NO).ShowModal()
