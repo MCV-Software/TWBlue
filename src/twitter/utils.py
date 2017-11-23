@@ -149,10 +149,10 @@ def filter_tweet(tweet, settings, buffer_name):
    regexp = settings["filters"][i]["regexp"]
    word = settings["filters"][i]["word"]
    if word != "" and settings["filters"][i]["if_word_exists"]:
-    if word not in tweet[value]:
+    if word in tweet[value]:
      return False
    elif word != "" and settings["filters"][i]["if_word_exists"] == False:
-    if word in tweet[value]:
+    if word not in tweet[value]:
      return False
    if settings["filters"][i]["in_lang"] == "True":
     if tweet["lang"] not in settings["filters"][i]["languages"]:
