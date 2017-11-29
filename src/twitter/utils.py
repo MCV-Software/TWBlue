@@ -23,17 +23,33 @@ def find_urls_in_text(text):
 
 def find_urls (tweet):
  urls = []
+ # Let's add URLS from tweet entities.
+ for i in tweet["entities"]["urls"]:
+  if i["expanded_url"] not in urls:
+   urls.append(i["expanded_url"])
+ if tweet.has_key("quoted_status"):
+  for i in tweet["quoted_status"]["entities"]["urls"]:
+   if i["expanded_url"] not in urls:
+    urls.append(i["expanded_url"])
+ if tweet.has_key("retweeted_status"):
+  for i in tweet["retweeted_status"]["entities"]["urls"]:
+   if i["expanded_url"] not in urls:
+    urls.append(i["expanded_url"])
+  if tweet["retweeted_status"].has_key("quoted_status"):
+   for i in tweet["retweeted_status"]["quoted_status"]["entities"]["urls"]:
+    if i["expanded_url"] not in urls:
+     urls.append(i["expanded_url"])
  if tweet.has_key("message"):
   i = "message"
  elif tweet.has_key("full_text"):
   i = "full_text"
  else:
   i = "text"
- shorten_urls = find_urls_in_text(tweet[i])
- for url in range(0, len(shorten_urls)):
-  try:
-   urls.append(tweet["entities"]["urls"][url]["expanded_url"])
-  except: pass
+ extracted_urls = find_urls_in_text(tweet[i])
+ # Don't include t.co links (mostly they are photos or shortened versions of already added URLS).
+ for i in extracted_urls:
+  if i not in urls and "https://t.co" not in i:
+   urls.append(i)
  return urls
 
 def find_item(id, listItem):

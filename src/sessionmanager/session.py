@@ -75,8 +75,7 @@ class Session(object):
      log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i["id"]))
      continue
    if utils.find_item(i["id"], self.db[name]) == None and     utils.is_allowed(i, self.settings, name) == True:
-    try: i = self.check_quoted_status(i)
-    except: pass
+    i = self.check_quoted_status(i)
     i = self.check_long_tweet(i)
     if i == False: continue
     if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
@@ -367,7 +366,6 @@ class Session(object):
 
  def add_friends(self):
   try:
-#   print "setting friends"
    self.timelinesStream.set_friends(self.main_stream.friends)
   except AttributeError:
    pass
@@ -463,7 +461,8 @@ class Session(object):
  def check_quoted_status(self, tweet):
   status = tweets.is_long(tweet)
   if status != False and config.app["app-settings"]["handle_longtweets"]:
-   tweet = self.get_quoted_tweet(tweet)
+   quoted_tweet = self.get_quoted_tweet(tweet)
+   return quoted_tweet
   return tweet
 
  def get_quoted_tweet(self, tweet):
@@ -476,9 +475,12 @@ class Session(object):
   for url in range(0, len(urls)):
    try:  quoted_tweet[value] = quoted_tweet[value].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
    except IndexError: pass
-  id = tweets.is_long(quoted_tweet)
-  try: original_tweet = self.twitter.twitter.show_status(id=id, tweet_mode="extended")
-  except: return quoted_tweet
+  if quoted_tweet.has_key("quoted_status"):
+   original_tweet = quoted_tweet["quoted_status"]
+  elif quoted_tweet.has_key("retweeted_status") and quoted_tweet["retweeted_status"].has_key("quoted_status"):
+   original_tweet = quoted_tweet["retweeted_status"]["quoted_status"]
+  else:
+   return quoted_tweet
   original_tweet = self.check_long_tweet(original_tweet)
   urls = utils.find_urls_in_text(original_tweet["full_text"])
   for url in range(0, len(urls)):

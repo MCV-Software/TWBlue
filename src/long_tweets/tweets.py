@@ -19,8 +19,10 @@
 from twitter import utils
 
 def is_long(tweet):
- if tweet.has_key("quoted_status_id") and tweet["quoted_status_id"] != None:
+ if tweet.has_key("quoted_status_id") and tweet.has_key("quoted_status"):
   return tweet["quoted_status_id"]
+ elif tweet.has_key("retweeted_status") and tweet["retweeted_status"].has_key("quoted_status_id") and tweet["retweeted_status"].has_key("quoted_status"):
+  return tweet["retweeted_status"]["quoted_status_id"]
  return False
 
 def clear_url(tweet):
@@ -33,6 +35,8 @@ def clear_url(tweet):
  except IndexError: pass
  try:
   tweet["entities"]["urls"].remove(tweet["entities"]["urls"][-1])
- except ValueError:
+ except IndexError:
+  tweet["retweeted_status"]["entities"]["urls"].remove(tweet["retweeted_status"]["entities"]["urls"][-1])
+ else:
   pass
  return tweet
