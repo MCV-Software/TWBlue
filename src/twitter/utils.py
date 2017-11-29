@@ -140,15 +140,19 @@ def is_allowed(tweet, settings, buffer_name):
  return filter_tweet(tweet, settings, buffer_name)
 
 def filter_tweet(tweet, settings, buffer_name):
+ if tweet.has_key("full_text"):
+  value = "full_text"
+ else:
+  value = "text"
  for i in settings["filters"]:
   if settings["filters"][i]["in_buffer"] == buffer_name:
    regexp = settings["filters"][i]["regexp"]
    word = settings["filters"][i]["word"]
    if word != "" and settings["filters"][i]["if_word_exists"]:
-    if word not in tweet["full_text"]:
+    if word in tweet[value]:
      return False
    elif word != "" and settings["filters"][i]["if_word_exists"] == False:
-    if word in tweet["full_text"]:
+    if word not in tweet[value]:
      return False
    if settings["filters"][i]["in_lang"] == "True":
     if tweet["lang"] not in settings["filters"][i]["languages"]:

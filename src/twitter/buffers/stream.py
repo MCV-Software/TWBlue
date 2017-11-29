@@ -27,21 +27,23 @@ class streamer(TwythonStreamer):
 
  def put_data(self, place, data):
   if self.session.db.has_key(place):
-   if utils.find_item(data["id"], self.session.db[place]) != None and utils.is_allowed(data, self.session.settings, place):
+   if utils.find_item(data["id"], self.session.db[place]) != None:
     log.error("duplicated tweet. Ignoring it...")
     return False
 #   try:
-   data_ = self.session.check_quoted_status(data)
-   data_ = self.session.check_long_tweet(data_)
-   data = data_
+   if utils.is_allowed(data, self.session.settings, place):
+    data_ = self.session.check_quoted_status(data)
+    data_ = self.session.check_long_tweet(data_)
+    data = data_
 #   except:
 #    pass
-   if self.session.settings["general"]["reverse_timelines"] == False:
-    self.session.db[place].append(data)
-   else:
-    self.session.db[place].insert(0, data)
-  utils.is_audio(data)
-  return True
+    if self.session.settings["general"]["reverse_timelines"] == False:
+     self.session.db[place].append(data)
+    else:
+     self.session.db[place].insert(0, data)
+    utils.is_audio(data)
+    return True
+   return False
 
  def block_user(self, data):
   id = data["target"]["id"]
