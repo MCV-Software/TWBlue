@@ -7,4 +7,5 @@ from tinyurl import TinyurlShortener
 from xedcc import XedccShortener
 from clckru import ClckruShortener
 from acortame import AcortameShortener
-__all__ = ["HKCShortener", "IsgdShortener", "OnjmeShortener", "TinyArrowsShortener", "TinyurlShortener", "XedccShortener", "ClckruShortener", "AcortameShortener"]
+from igal import IgalShortener
+__all__ = ["HKCShortener", "IsgdShortener", "OnjmeShortener", "TinyArrowsShortener", "TinyurlShortener", "XedccShortener", "ClckruShortener", "AcortameShortener", "IgalShortener"]
