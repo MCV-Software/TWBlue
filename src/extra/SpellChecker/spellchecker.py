@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 import logging
-log = logging.getLogger("extra.SpellChecker.spellChecker")
 import wx_ui
 import widgetUtils
 import output
 import config
 import languageHandler
+import enchant
+import paths
+import twitterFilter
 from enchant.checker import SpellChecker
 from enchant.errors import DictNotFoundError
 from enchant import tokenize
-import twitterFilter
+log = logging.getLogger("extra.SpellChecker.spellChecker")
 
 class spellChecker(object):
  def __init__(self, text, dictionary):
@@ -19,15 +21,16 @@ class spellChecker(object):
   try:
    if config.app["app-settings"]["language"] == "system":
     log.debug("Using the system language")
-    self.checker = SpellChecker(languageHandler.curLang[:2], filters=[twitterFilter.TwitterFilter, tokenize.EmailFilter, tokenize.URLFilter])
+    self.dict = enchant.DictWithPWL(languageHandler.curLang[:2], paths.config_path("wordlist.dict"))
    else:
     log.debug("Using language: %s" % (languageHandler.getLanguage(),))
-    self.checker = SpellChecker(languageHandler.getLanguage()[:2], filters=[twitterFilter.TwitterFilter, tokenize.EmailFilter, tokenize.URLFilter])
-   self.checker.set_text(text)
+    self.dict = enchant.DictWithPWL(languageHandler.getLanguage()[:2], paths.config_path("wordlist.dict"))
   except DictNotFoundError:
    log.exception("Dictionary for language %s not found." % (dictionary,))
    wx_ui.dict_not_found_error()
    self.active = False
+  self.checker = SpellChecker(self.dict, filters=[twitterFilter.TwitterFilter, tokenize.EmailFilter, tokenize.URLFilter])
+  self.checker.set_text(text)
   if self.active == True:
    log.debug("Creating dialog...")
    self.dialog = wx_ui.spellCheckerDialog()
@@ -35,6 +38,7 @@ class spellChecker(object):
    widgetUtils.connect_event(self.dialog.ignoreAll, widgetUtils.BUTTON_PRESSED, self.ignoreAll)
    widgetUtils.connect_event(self.dialog.replace, widgetUtils.BUTTON_PRESSED, self.replace)
    widgetUtils.connect_event(self.dialog.replaceAll, widgetUtils.BUTTON_PRESSED, self.replaceAll)
+   widgetUtils.connect_event(self.dialog.add, widgetUtils.BUTTON_PRESSED, self.add)
    self.check()
    self.dialog.get_response()
    self.fixed_text = self.checker.get_text()
@@ -51,8 +55,6 @@ class spellChecker(object):
    log.debug("Process finished.")
    wx_ui.finished()
    self.dialog.Destroy()
-#  except AttributeError:
-#   pass
 
  def ignore(self, ev):
   self.check()
@@ -67,4 +69,8 @@ class spellChecker(object):
 
  def replaceAll(self, ev):
   self.checker.replace_always(self.dialog.get_selected_suggestion())
+  self.check()
+
+ def add(self, ev):
+  self.checker.add()
   self.check()

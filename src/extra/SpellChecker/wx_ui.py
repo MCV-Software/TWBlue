@@ -18,6 +18,7 @@
 ############################################################
 import wx
 import application
+
 class spellCheckerDialog(wx.Dialog):
  def __init__(self):
   super(spellCheckerDialog, self).__init__(None, 1)
@@ -42,12 +43,14 @@ class spellCheckerDialog(wx.Dialog):
   self.ignoreAll = wx.Button(panel, -1, _(u"Ignore all"))
   self.replace = wx.Button(panel, -1, _(u"Replace"))
   self.replaceAll = wx.Button(panel, -1, _(u"Replace all"))
+  self.add = wx.Button(panel, -1, _(u"Add to personal dictionary"))
   close = wx.Button(panel, wx.ID_CANCEL)
   btnBox = wx.BoxSizer(wx.HORIZONTAL)
   btnBox.Add(self.ignore, 0, wx.ALL, 5)
   btnBox.Add(self.ignoreAll, 0, wx.ALL, 5)
   btnBox.Add(self.replace, 0, wx.ALL, 5)
   btnBox.Add(self.replaceAll, 0, wx.ALL, 5)
+  btnBox.Add(self.add, 0, wx.ALL, 5)
   btnBox.Add(close, 0, wx.ALL, 5)
   sizer.Add(wordBox, 0, wx.ALL, 5)
   sizer.Add(contextBox, 0, wx.ALL, 5)
