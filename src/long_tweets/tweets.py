@@ -26,17 +26,20 @@ def is_long(tweet):
  return False
 
 def clear_url(tweet):
- if tweet.has_key("full_text"):
-  value = "full_text"
+ if tweet.has_key("retweeted_status"):
+  if tweet["retweeted_status"].has_key("full_text"):
+   value = "full_text"
+  else:
+   value = "text"
+  urls = utils.find_urls_in_text(tweet["retweeted_status"][value])
+  try: tweet["message"] = tweet["message"].replace(urls[-1], "")
+  except IndexError: pass
  else:
-  value = "text"
- urls = utils.find_urls_in_text(tweet[value])
- try: tweet["message"] = tweet["message"].replace(urls[-1], "")
- except IndexError: pass
- try:
-  tweet["entities"]["urls"].remove(tweet["entities"]["urls"][-1])
- except IndexError:
-  tweet["retweeted_status"]["entities"]["urls"].remove(tweet["retweeted_status"]["entities"]["urls"][-1])
- else:
-  pass
+  if tweet.has_key("full_text"):
+   value = "full_text"
+  else:
+   value = "text"
+  urls = utils.find_urls_in_text(tweet[value])
+  try: tweet["message"] = tweet["message"].replace(urls[-1], "")
+  except IndexError: pass
  return tweet

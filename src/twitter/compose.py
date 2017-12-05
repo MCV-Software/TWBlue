@@ -101,18 +101,26 @@ def compose_dm(tweet, db, relative_times, show_screen_names=False):
 
 def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
- if quoted_tweet.has_key("full_text"):
-  value = "full_text"
+ if quoted_tweet.has_key("retweeted_status"):
+  if quoted_tweet["retweeted_status"].has_key("full_text"):
+   value = "full_text"
+   log.error(quoted_tweet["retweeted_status"]["full_text"])
+  else:
+   value = "text"
+  text = StripChars(quoted_tweet["retweeted_status"][value])
  else:
-  value = "text"
- text = StripChars(quoted_tweet[value])
+  if quoted_tweet.has_key("full_text"):
+   value = "full_text"
+  else:
+   value = "text"
+  text = StripChars(quoted_tweet[value])
  if show_screen_names:
   quoting_user = quoted_tweet["user"]["screen_name"]
  else:
   quoting_user = quoted_tweet["user"]["name"]
  source = re.sub(r"(?s)<.*?>", "", quoted_tweet["source"])
- try: text = "rt @%s: %s" % (quoted_tweet["retweeted_status"]["user"]["screen_name"], StripChars(quoted_tweet["retweeted_status"][value]))
- except KeyError: text = "%s" % (StripChars(quoted_tweet[value]))
+ if quoted_tweet.has_key("retweeted_status"):
+  text = "rt @%s: %s" % (quoted_tweet["retweeted_status"]["user"]["screen_name"], text)
  if text[-1] in chars: text=text+"."
  original_user = original_tweet["user"]["screen_name"]
  if original_tweet.has_key("message"):
@@ -121,7 +129,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
   original_text = StripChars(original_tweet["full_text"])
  else:
    original_text = StripChars(original_tweet["text"])
- quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}").format( quoted_tweet[value], original_user, original_text)
+ quoted_tweet["message"] = _(u"{0}. Quoted  tweet from @{1}: {2}").format( text, original_user, original_text)
  quoted_tweet = tweets.clear_url(quoted_tweet)
  quoted_tweet["entities"]["urls"].extend(original_tweet["entities"]["urls"])
  return quoted_tweet
