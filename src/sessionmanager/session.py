@@ -482,9 +482,13 @@ class Session(object):
   else:
    return quoted_tweet
   original_tweet = self.check_long_tweet(original_tweet)
-  urls = utils.find_urls_in_text(original_tweet["full_text"])
+  if original_tweet.has_key("full_text"):
+   value = "full_text"
+  else:
+   value = "text"
+  urls = utils.find_urls_in_text(original_tweet[value])
   for url in range(0, len(urls)):
-   try:  original_tweet["full_text"] = original_tweet["full_text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
+   try:  original_tweet[value] = original_tweet[value].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
    except IndexError: pass
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
 
