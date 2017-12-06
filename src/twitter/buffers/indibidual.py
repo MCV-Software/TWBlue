@@ -73,5 +73,5 @@ class timelinesStreamer(TwythonStreamer):
     if data["quoted_status"].has_key("extended_tweet"):
      data["quoted_status"]["full_text"] = data["quoted_status"]["extended_tweet"]["full_text"]
      data["quoted_status"]["entities"] = data["quoted_status"]["extended_tweet"]["entities"]
-     data["full_text"] = data["text"]
+#     data["full_text"] = data["text"]
    self.check_tls(data)

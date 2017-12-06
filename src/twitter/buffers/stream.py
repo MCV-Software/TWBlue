@@ -143,7 +143,7 @@ class streamer(TwythonStreamer):
      if data["quoted_status"].has_key("extended_tweet"):
       data["quoted_status"]["full_text"] = data["quoted_status"]["extended_tweet"]["full_text"]
       data["quoted_status"]["entities"] = data["quoted_status"]["extended_tweet"]["entities"]
-      data["full_text"] = data["text"]
+#      data["full_text"] = data["quoted_status"]["full_text"]
     if data["user"]["id"] in self.muted_users: return
     self.check_mentions(data)
     self.check_send(data)
