@@ -2,6 +2,8 @@
 
 ## changes in this version
 
+* TWBlue has received improvements in some functions for handling extended tweets, long tweets and quoted retweets. It should ender some tweets in a better way.
+* In the spell checker module, there is a new button that will allow you to add your own words to your personal dictionary so the module won't mark them as mispelled the next time you will check spelling.
 * Added filtering capabilities to TWBlue. ([#102](https://github.com/manuelcortez/TWBlue/issues/102))
     * You can create a filter for the current buffer from the buffer menu in the menu bar. At this moment, invisible interface does not have any shorcut for this.
     * You can create filters by word or languages.
