@@ -104,14 +104,13 @@ class URLStream(object):
   log.debug("Preparing URL: %s" % (url,))
   self.prepared = False
   self.url = url_shortener.unshorten(url)
+  if self.url == None:
+   self.url = url
   log.debug("Expanded URL: %s" % (self.url,))
   if self.url != None:
    transformer = audio_services.find_url_transformer(self.url)
-   self.url = transformer(self.url)
-   log.debug("Transformed URL: %s. Prepared" % (self.url,))
-  else:
-   self.url = url
-   log.debug("Transformed URL: %s. Prepared" % (self.url,))
+  self.url = transformer(self.url)
+  log.debug("Transformed URL: %s. Prepared" % (self.url,))
   self.prepared = True
 
  def seek(self,step):

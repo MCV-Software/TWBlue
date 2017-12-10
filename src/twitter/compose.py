@@ -109,7 +109,6 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
  if quoted_tweet.has_key("retweeted_status"):
   if quoted_tweet["retweeted_status"].has_key("full_text"):
    value = "full_text"
-   log.error(quoted_tweet["retweeted_status"]["full_text"])
   else:
    value = "text"
   text = StripChars(quoted_tweet["retweeted_status"][value])
