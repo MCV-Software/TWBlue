@@ -62,12 +62,17 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False):
    text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], text)
  if tweet.has_key("message") == False:
   urls = utils.find_urls_in_text(text)
-  for url in range(0, len(urls)):
-   try:
-    text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
-   except: pass
+  if tweet.has_key("retweeted_status"):
+   for url in range(0, len(urls)):
+    try:
+     text = text.replace(urls[url], tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"])
+    except: pass
+  else:
+   for url in range(0, len(urls)):
+    try:
+     text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
+    except: pass
   if config.app['app-settings']['handle_longtweets']: pass
-#   return [user+", ", text, ts+", ", source]
  return [user+", ", text, ts+", ", source]
 
 def compose_dm(tweet, db, relative_times, show_screen_names=False):
