@@ -2,6 +2,9 @@
 
 ## changes in this version
 
+* In the Windows 10 keymap, we have changed some default keystrokes as windows now uses some previously assigned shortcuts:
+    * For liking a tweet, press Control+Windows+alt+f
+    * for opening a trends buffer, press control+Windows+T
 * TWBlue has received improvements in some functions for handling extended tweets, long tweets and quoted retweets. It should ender some tweets in a better way.
 * In the spell checker module, there is a new button that will allow you to add your own words to your personal dictionary so the module won't mark them as mispelled the next time you will check spelling.
 * Added filtering capabilities to TWBlue. ([#102](https://github.com/manuelcortez/TWBlue/issues/102))
