@@ -27,6 +27,9 @@ class URLShortener (object):
      return handle_dropbox(r.headers['location'])
     else:
      return r.headers['location']
+   else: # if the head method does not work, use get instead. Performance may decrease
+    r=requests.get(url, allow_redirects=False)
+    return r.headers['location']
   except:
    return url #we cannot expand
 
