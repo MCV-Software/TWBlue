@@ -28,7 +28,9 @@ class URLShortener (object):
     else:
      return r.headers['location']
    else: # if the head method does not work, use get instead. Performance may decrease
-    r=requests.get(url, allow_redirects=False)
+    r=requests.get(url, allow_redirects=False, stream=True)
+    # release the connection without downloading the content, we only need the response headers
+    r.close()
     return r.headers['location']
   except:
    return url #we cannot expand
