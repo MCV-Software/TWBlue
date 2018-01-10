@@ -157,7 +157,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_retweet, self.view.retweet)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_favourites, self.view.fav)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.unfav)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.fav)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_item, self.view.view)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.reverse_geocode, menuitem=self.view.view_coordinates)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
@@ -781,6 +781,18 @@ class Controller(object):
   else:
    id = buffer.get_tweet()["id"]
    call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
+
+ def toggle_like(self, *args, **kwargs):
+  buffer = self.get_current_buffer()
+  if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
+   return
+  else:
+   id = buffer.get_tweet()["id"]
+   tweet = buffer.session.twitter.twitter.show_status(id=id, include_ext_alt_text=True, tweet_mode="extended")
+   if tweet["favorited"] == False:
+    call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
+   else:
+    call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
 
  def view_item(self, *args, **kwargs):
   buffer = self.get_current_buffer()
