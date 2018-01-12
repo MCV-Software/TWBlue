@@ -2,6 +2,11 @@
 
 ## changes in this version
 
+* For windows 10 users, some keystrokes in the invisible user interface have been changed or merged:
+    * control+Windows+alt+F will be used for toggling between adding and removing a tweet to user's likes. This function will execute the needed action based in the current status for the focused tweet.
+
+## Changes in version 0.93
+
 * A new soundpack has been added to TWBlue. Thanks to [@ValeriaK305](https://twitter.com/ValeriaK305)
 * In the Windows 10 keymap, we have changed some default keystrokes as windows now uses some previously assigned shortcuts:
     * For liking a tweet, press Control+Windows+alt+f

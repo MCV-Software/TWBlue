@@ -12,6 +12,7 @@ actions = {
 "post_retweet": _(u"Retweet"),
 "send_dm": _(u"Send direct message"),
 "add_to_favourites": _(u"Like a tweet"),
+"toggle_like": _(u"Like/unlike a tweet"),
 "remove_from_favourites": _(u"Unlike a tweet"),
 "follow": _(u"Open the user actions dialogue"),
 "user_details": _(u"See user details"),
