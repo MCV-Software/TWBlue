@@ -55,6 +55,7 @@ class Upload(object):
  def perform_transfer(self):
   log.debug("starting upload...")
   self.start_time = time.time()
+  print self.url
   self.response=requests.post(url=self.url, data=self.monitor, headers={"Content-Type":self.m.content_type}, allow_redirects=self.follow_location, stream=True)
   log.debug("Upload finished.")
   self.complete_transfer()
@@ -69,5 +70,15 @@ class Upload(object):
    self.completed_callback(self.obj)
   if hasattr(self,'fin') and callable(self.fin.close):
    self.fin.close()
+
  def get_url(self):
-  return self.response.json()['url']
+  try:
+   data = self.response.json()
+  except:
+   return _("Error in file upload: {0}").format(self.data.content,)
+  if data.has_key("url") and data["url"] != "0":
+   return data["url"]
+  elif data.has_key("error") and data["error"] != "0":
+   return data["error"]
+  else:
+   return _("Error in file upload: {0}").format(self.data.content,)

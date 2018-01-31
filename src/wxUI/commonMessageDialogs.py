@@ -86,3 +86,6 @@ def delete_filter():
 
 def existing_filter():
  return wx.MessageDialog(None, _(u"This filter already exists. Please use a different title"), _(u"Error"), wx.OK).ShowModal()
+
+def common_error(reason):
+ return wx.MessageDialog(None, reason, _(u"Error"), wx.OK).ShowModal()

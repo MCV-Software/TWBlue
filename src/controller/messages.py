@@ -10,6 +10,8 @@ import sound
 from pubsub import pub
 if system == "Windows":
  from wxUI.dialogs import message, urlList
+ from wxUI import commonMessageDialogs
+
  from extra import translator, SpellChecker, autocompletionUsers
  from extra.AudioUploader import audioUploader
 elif system == "Linux":
@@ -114,11 +116,12 @@ class basicTweet(object):
    url = dlg.uploaderFunction.get_url()
    pub.unsubscribe(dlg.uploaderDialog.update, "uploading")
    dlg.uploaderDialog.destroy()
-   if url != 0:
+   if "sndup.net/" in url:
     self.message.set_text(self.message.get_text()+url+" #audio")
     self.text_processor()
    else:
-    output.speak(_(u"Unable to upload the audio"))
+    commonMessageDialogs.common_error(url)
+
    dlg.cleanup()
   dlg = audioUploader.audioUploader(self.session.settings, completed_callback)
   self.message.text_focus()

@@ -52,7 +52,7 @@ class audioUploader(object):
    self.uploaderDialog = wx_transfer_dialogs.UploadDialog(self.file)
    output.speak(_(u"Attaching..."))
    if self.dialog.get("services") == "SNDUp":
-    base_url = "http://sndup.net/post.php"
+    base_url = "https://sndup.net/post.php"
     if len(self.config["sound"]["sndup_api_key"]) > 0:
      url = base_url + '?apikey=' + self.config['sound']['sndup_api_key']
     else:
