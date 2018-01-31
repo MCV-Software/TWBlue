@@ -55,7 +55,6 @@ class Upload(object):
  def perform_transfer(self):
   log.debug("starting upload...")
   self.start_time = time.time()
-  print self.url
   self.response=requests.post(url=self.url, data=self.monitor, headers={"Content-Type":self.m.content_type}, allow_redirects=self.follow_location, stream=True)
   log.debug("Upload finished.")
   self.complete_transfer()
