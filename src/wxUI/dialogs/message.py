@@ -243,6 +243,7 @@ class reply(textLimited):
   self.mainBox.Add(self.textBox, 0, wx.ALL, 5)
   self.usersbox = wx.BoxSizer(wx.VERTICAL)
   self.mentionAll = wx.CheckBox(self.panel, -1, _(u"&Mention to all"), size=wx.DefaultSize)
+  self.mentionAll.Disable()
   self.usersbox.Add(self.mentionAll, 0, wx.ALL, 5)
   self.checkboxes = []
   for i in self.users:
