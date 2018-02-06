@@ -47,7 +47,6 @@ class bufferController(object):
 
  def clear_list(self): pass
 
-
  def get_event(self, ev):
   """ Catches key presses in the WX interface and generate the corresponding event names."""
   if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
@@ -165,7 +164,6 @@ class bufferController(object):
    self.session.db[self.name+"_pos"]=self.buffer.list.get_selected()
   except AttributeError:
    pass
-
 
 class accountPanel(bufferController):
  def __init__(self, parent, name, account, account_id):
@@ -925,7 +923,9 @@ class peopleBufferController(baseBufferController):
      tweet = self.compose_function(i, self.session.db)
      self.buffer.list.insert_item(False, *tweet)
    else:
-    for i in self.session.db[self.name]["items"][0:number_of_items]:
+    items = self.session.db[self.name]["items"][0:number_of_items]
+    items.reverse()
+    for i in items:
      tweet = self.compose_function(i, self.session.db)
      self.buffer.list.insert_item(True, *tweet)
   log.debug("now the list contains %d items" % (self.buffer.list.get_count(),))

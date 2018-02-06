@@ -4,6 +4,7 @@
 
 * For windows 10 users, some keystrokes in the invisible user interface have been changed or merged:
     * control+Windows+alt+F will be used for toggling between adding and removing a tweet to user's likes. This function will execute the needed action based in the current status for the focused tweet.
+* TWBlue will show an error if something goes wrong in an audio upload.
 
 ## Changes in version 0.93
 
