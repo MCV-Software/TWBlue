@@ -137,6 +137,9 @@ class bufferController(object):
   caption = _(u"Write the tweet here")
   tweet = messages.tweet(self.session, title, caption, "")
   if tweet.message.get_response() == widgetUtils.OK:
+   if config.app["app-settings"]["remember_mention_and_longtweet"]:
+    config.app["app-settings"]["longtweet"] = tweet.message.long_tweet.GetValue()
+    config.app.write()
    text = tweet.message.get_text()
    if len(text) > 280 and tweet.message.get("long_tweet") == True:
     if not hasattr(tweet, "attachments"):
@@ -516,6 +519,10 @@ class baseBufferController(bufferController):
    title=_("Reply")
   message = messages.reply(self.session, title, _(u"Reply to %s") % (screen_name,), "", users=users, ids=ids)
   if message.message.get_response() == widgetUtils.OK:
+   if config.app["app-settings"]["remember_mention_and_longtweet"]:
+    config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
+    config.app["app-settings"]["mention_all"] = message.message.mentionAll.GetValue()
+    config.app.write()
    params = {"_sound": "reply_send.ogg", "in_reply_to_status_id": id,}
    text = message.message.get_text()
    if twishort_enabled == False:
@@ -861,6 +868,9 @@ class peopleBufferController(baseBufferController):
   screen_name = tweet["screen_name"]
   message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
   if message.message.get_response() == widgetUtils.OK:
+   if config.app["app-settings"]["remember_mention_and_longtweet"]:
+    config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
+    config.app.write()
    if message.image == None:
     call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
    else:

@@ -2,6 +2,8 @@
 
 ## changes in this version
 
+* the checkbox for indicating wether TWBlue will include everyone in a reply or not, will be unchecked by default.
+* You can request TWBlue to save the state for two checkboxes: Long tweet and mention all, from the global settings dialogue.
 * For windows 10 users, some keystrokes in the invisible user interface have been changed or merged:
     * control+Windows+alt+F will be used for toggling between adding and removing a tweet to user's likes. This function will execute the needed action based in the current status for the focused tweet.
 * TWBlue will show an error if something goes wrong in an audio upload.

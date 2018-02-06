@@ -68,6 +68,7 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
   self.dialog.set_value("general", "check_for_updates", config.app["app-settings"]["check_for_updates"])
+  self.dialog.set_value("general", "remember_mention_and_longtweet", config.app["app-settings"]["remember_mention_and_longtweet"])
   proxyTypes=config.proxyTypes
   self.dialog.create_proxy([_(u"Direct connection")]+proxyTypes)
   if config.app["proxy"]["type"] not in proxyTypes:
@@ -92,7 +93,6 @@ class globalSettingsController(object):
    kmFile = open(paths.config_path("keymap.keymap"), "w")
    kmFile.close()
    self.needs_restart = True
-
   if config.app["app-settings"]["autostart"] != self.dialog.get_value("general", "autostart") and paths.mode == "installed":
    config.app["app-settings"]["autostart"] = self.dialog.get_value("general", "autostart")
    autostart_windows.setAutoStart(application.name, enable=self.dialog.get_value("general", "autostart"))
@@ -106,6 +106,7 @@ class globalSettingsController(object):
   config.app["app-settings"]["play_ready_sound"] = self.dialog.get_value("general", "play_ready_sound")
   config.app["app-settings"]["speak_ready_msg"] = self.dialog.get_value("general", "speak_ready_msg")
   config.app["app-settings"]["check_for_updates"] = self.dialog.get_value("general", "check_for_updates")
+  config.app["app-settings"]["remember_mention_and_longtweet"] = self.dialog.get_value("general", "remember_mention_and_longtweet")
   if config.app["proxy"]["type"]!=self.dialog.get_value("proxy", "type") or config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
    if self.is_started == True:
     self.needs_restart = True

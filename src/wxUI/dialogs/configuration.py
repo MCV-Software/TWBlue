@@ -34,6 +34,8 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(self.hide_gui, 0, wx.ALL, 5)
   self.handle_longtweets = wx.CheckBox(self, wx.NewId(), _(u"Use Codeofdusk's longtweet handlers (may decrease client performance)"))
   sizer.Add(self.handle_longtweets, 0, wx.ALL, 5)
+  self.remember_mention_and_longtweet = wx.CheckBox(self, -1, _(u"Remember state for mention all and long tweet"))
+  sizer.Add(self.remember_mention_and_longtweet, 0, wx.ALL, 5)
   kmbox =  wx.BoxSizer(wx.VERTICAL)
   km_label = wx.StaticText(self, -1, _(u"Keymap"))
   self.km = wx.ComboBox(self, -1, choices=keymaps, style=wx.CB_READONLY)

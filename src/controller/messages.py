@@ -7,6 +7,7 @@ import widgetUtils
 import output
 import url_shortener
 import sound
+import config
 from pubsub import pub
 if system == "Windows":
  from wxUI.dialogs import message, urlList
@@ -36,6 +37,8 @@ class basicTweet(object):
   widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
   if hasattr(self.message, "long_tweet"):
    widgetUtils.connect_event(self.message.long_tweet, widgetUtils.CHECKBOX, self.text_processor)
+   if config.app["app-settings"]["remember_mention_and_longtweet"]:
+    self.message.long_tweet.SetValue(config.app["app-settings"]["longtweet"])
   self.attachments = []
 
  def translate(self, event=None):
@@ -151,6 +154,8 @@ class reply(tweet):
   if len(users) > 0:
    widgetUtils.connect_event(self.message.mentionAll, widgetUtils.CHECKBOX, self.mention_all)
    self.message.enable_button("mentionAll")
+   if config.app["app-settings"]["remember_mention_and_longtweet"]:
+    self.message.mentionAll.SetValue(config.app["app-settings"]["mention_all"])
    self.mention_all()
   self.message.set_cursor_at_end()
   self.text_processor()
