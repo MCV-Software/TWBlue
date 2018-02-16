@@ -2,6 +2,7 @@
 import platform
 system = platform.system()
 import application
+import youtube_utils
 if system == "Windows":
  from update import updater
  from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
@@ -655,6 +656,7 @@ class Controller(object):
    self.exit_()
 
  def exit_(self, *args, **kwargs):
+  youtube_utils.stop()
   for i in self.buffers: i.save_positions()
   log.debug("Exiting...")
   log.debug("Saving global configuration...")

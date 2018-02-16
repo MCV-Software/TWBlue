@@ -28,5 +28,9 @@ def convert_soundcloud (url):
  else:
   raise TypeError('%r is not streamable' % url)
 
+@matches_url ('https://www.youtube.com/watch')
+def convert_long_youtube(url):
+ return "youtube-url"
+
 def convert_generic_audio(url):
  return url

@@ -17,6 +17,7 @@ import config
 import sound
 import languageHandler
 import logging
+import youtube_utils
 from twitter import compose, utils
 from mysc.thread_utils import call_threaded
 from twython import TwythonError
@@ -623,6 +624,8 @@ class baseBufferController(bufferController):
  def audio(self, url='', *args, **kwargs):
   if hasattr(sound.URLPlayer,'stream') and sound.URLPlayer.stream.is_playing == True:
    return sound.URLPlayer.stop_audio(delete=True)
+  elif sound.URLPlayer.mode == "youtube":
+   return sound.URLPlayer.stop_audio()
   tweet = self.get_tweet()
   if tweet == None: return
   urls = utils.find_urls(tweet)

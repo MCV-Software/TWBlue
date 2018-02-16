@@ -10,6 +10,7 @@ import sound_lib
 import subprocess
 import platform
 import output
+import youtube_utils
 system = platform.system()
 from mysc.repeating_timer import RepeatingTimer
 from mysc.thread_utils import call_threaded
@@ -99,6 +100,7 @@ class URLStream(object):
   self.url = url
   self.prepared = False
   log.debug("URL Player initialized")
+  self.mode = "generic"
 
  def prepare(self, url):
   log.debug("Preparing URL: %s" % (url,))
@@ -109,11 +111,19 @@ class URLStream(object):
   log.debug("Expanded URL: %s" % (self.url,))
   if self.url != None:
    transformer = audio_services.find_url_transformer(self.url)
-  self.url = transformer(self.url)
+  transformed_url = transformer(self.url)
+  if transformed_url == "youtube-url":
+   self.url = youtube_utils.get_video_url(url)
+   self.mode = "youtube"
+  else:
+   self.url = transformed_url
+   self.mode = "generic"
   log.debug("Transformed URL: %s. Prepared" % (self.url,))
   self.prepared = True
 
  def seek(self,step):
+  if self.mode == "youtube":
+   return
   pos=self.stream.get_position()
   pos=self.stream.bytes_to_seconds(pos)
   pos+=step
@@ -123,6 +133,11 @@ class URLStream(object):
   self.stream.set_position(pos)
 
  def playpause(self):
+  if self.mode == "youtube":
+   if youtube_utils.player != None:
+    youtube_utils.player.kill()
+    self.mode = "generic"
+    youtube_utils.player = None
   if self.stream.is_playing==True:
    self.stream.pause()
   else:
@@ -137,28 +152,37 @@ class URLStream(object):
   elif stream != None:
    self.stream=stream
   if self.prepared == True:
-   self.stream = sound_lib.stream.URLStream(url=self.url)
-  if hasattr(self,'stream'):
-   self.stream.volume = float(volume)
-   self.stream.play()
-   log.debug("played")
-  self.prepared=False
+   if self.mode == "youtube":
+    youtube_utils.play_video(self.url)
+   else:
+    self.stream = sound_lib.stream.URLStream(url=self.url)
+   if hasattr(self,'stream'):
+    self.stream.volume = float(volume)
+    self.stream.play()
+    log.debug("played")
+   self.prepared=False
 
  def stop_audio(self,delete=False):
-  if hasattr(self, "stream"):
+  if self.mode == "youtube":
+   youtube_utils.stop()
+   self.prepared = False
    output.speak(_(u"Stopped."), True)
-   try:
-    self.stream.stop()
-    log.debug("Stopped audio stream.")
-   except:
-    log.exception("Exception while stopping stream.")
-   if delete:
-    del self.stream
-    log.debug("Deleted audio stream.")
-   self.prepared=False
    return True
   else:
-   return False
+   if hasattr(self, "stream"):
+    output.speak(_(u"Stopped."), True)
+    try:
+     self.stream.stop()
+     log.debug("Stopped audio stream.")
+    except:
+     log.exception("Exception while stopping stream.")
+    if delete:
+     del self.stream
+     log.debug("Deleted audio stream.")
+    self.prepared=False
+    return True
+   else:
+    return False
 
  @staticmethod
  def delete_old_tempfiles():
