@@ -74,7 +74,7 @@ setuptools installs a script, called easy_install. You can find it in the python
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
 Run the following command to quickly install and upgrade all packages and their dependencies:  
-easy_install -Z --upgrade six configobj markdown future requests oauthlib requests-oauthlib requests-toolbelt pypubsub==3.3.0 pygeocoder arrow python-dateutil futures winpaths PySocks win_inet_pton yandex.translate idna chardet urllib3
+easy_install -Z --upgrade six configobj markdown future requests oauthlib requests-oauthlib requests-toolbelt pypubsub==3.3.0 pygeocoder arrow python-dateutil futures winpaths PySocks win_inet_pton yandex.translate idna chardet urllib3 youtube-dl python-vlc
 
 #### Other dependencies
 
