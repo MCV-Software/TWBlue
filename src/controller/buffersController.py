@@ -71,8 +71,7 @@ class bufferController(object):
     self.session.settings["sound"]["volume"] = 0.0
    else:
     self.session.settings["sound"]["volume"] -=0.05
-  if hasattr(sound.URLPlayer, "stream"):
-   sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
+  sound.URLPlayer.player.audio_set_volume(int(self.session.settings["sound"]["volume"]*100.0))
   self.session.sound.play("volume_changed.ogg")
   self.session.settings.write()
 
@@ -82,8 +81,7 @@ class bufferController(object):
     self.session.settings["sound"]["volume"] = 1.0
    else:
     self.session.settings["sound"]["volume"] +=0.05
-  if hasattr(sound.URLPlayer, "stream"):
-   sound.URLPlayer.stream.volume = self.session.settings["sound"]["volume"]
+  sound.URLPlayer.player.audio_set_volume(int(self.session.settings["sound"]["volume"]*100))
   self.session.sound.play("volume_changed.ogg")
   self.session.settings.write()
 
@@ -620,11 +618,8 @@ class baseBufferController(bufferController):
   if self.session.settings['sound']['indicate_img'] and utils.is_media(tweet):
    self.session.sound.play("image.ogg")
 
-# @_tweets_exist
  def audio(self, url='', *args, **kwargs):
-  if hasattr(sound.URLPlayer,'stream') and sound.URLPlayer.stream.is_playing == True:
-   return sound.URLPlayer.stop_audio(delete=True)
-  elif sound.URLPlayer.mode == "youtube":
+  if sound.URLPlayer.player.is_playing():
    return sound.URLPlayer.stop_audio()
   tweet = self.get_tweet()
   if tweet == None: return

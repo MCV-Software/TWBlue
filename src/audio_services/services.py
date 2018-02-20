@@ -2,6 +2,7 @@ from audio_services import matches_url
 import json
 import re
 import urllib
+import youtube_utils
 
 @matches_url('https://audioboom.com')
 def convert_audioboom(url):
@@ -29,8 +30,8 @@ def convert_soundcloud (url):
   raise TypeError('%r is not streamable' % url)
 
 @matches_url ('https://www.youtube.com/watch')
-def convert_long_youtube(url):
- return "youtube-url"
+def convert_youtube_long (url):
+ return youtube_utils.get_video_url(url)
 
 def convert_generic_audio(url):
  return url

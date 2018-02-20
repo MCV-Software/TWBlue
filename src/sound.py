@@ -11,6 +11,7 @@ import subprocess
 import platform
 import output
 import youtube_utils
+import vlc
 system = platform.system()
 from mysc.repeating_timer import RepeatingTimer
 from mysc.thread_utils import call_threaded
@@ -96,99 +97,56 @@ class soundSystem(object):
   sound_object.play()
 
 class URLStream(object):
- def __init__(self, url=None):
-  self.url = url
+ """ URL Stream Player implementation."""
+
+ def __init__(self):
+  # URL status. Should be True after URL expansion and transformation.
   self.prepared = False
   log.debug("URL Player initialized")
-  self.mode = "generic"
+  # LibVLC controls.
+  self.instance = vlc.Instance()
+  self.player = self.instance.media_player_new()
 
  def prepare(self, url):
+  """ Takes an URL and prepares it to be streamed. This function will try to unshorten the passed URL and, if needed, to transform it into a valid URL."""
   log.debug("Preparing URL: %s" % (url,))
   self.prepared = False
   self.url = url_shortener.unshorten(url)
   if self.url == None:
    self.url = url
-  log.debug("Expanded URL: %s" % (self.url,))
+   log.debug("Expanded URL: %s" % (self.url,))
   if self.url != None:
    transformer = audio_services.find_url_transformer(self.url)
-  transformed_url = transformer(self.url)
-  if transformed_url == "youtube-url":
-   self.url = youtube_utils.get_video_url(url)
-   self.mode = "youtube"
-  else:
+   transformed_url = transformer(self.url)
    self.url = transformed_url
-   self.mode = "generic"
   log.debug("Transformed URL: %s. Prepared" % (self.url,))
   self.prepared = True
 
- def seek(self,step):
-  if self.mode == "youtube":
-   return
-  pos=self.stream.get_position()
-  pos=self.stream.bytes_to_seconds(pos)
+ def seek(self, step):
+  pos=self.player.get_time()
   pos+=step
-  pos=self.stream.seconds_to_bytes(pos)
-  if pos<0:
-   pos=0
-  self.stream.set_position(pos)
+  pos=self.player.set_time(pos)
 
  def playpause(self):
-  if self.mode == "youtube":
-   if youtube_utils.player != None:
-    youtube_utils.player.kill()
-    self.mode = "generic"
-    youtube_utils.player = None
-  if self.stream.is_playing==True:
-   self.stream.pause()
+  if self.player.is_playing() == True:
+   self.player.pause()
   else:
-   self.stream.play()
+   self.player.play()
 
- def play(self, url=None, volume=1.0, stream=None,announce=True):
+ def play(self, url=None, volume=1.0, announce=True):
   if announce:
    output.speak(_(u"Playing..."))
   log.debug("Attempting to play an URL...")
   if url != None:
    self.prepare(url)
-  elif stream != None:
-   self.stream=stream
   if self.prepared == True:
-   if self.mode == "youtube":
-    youtube_utils.play_video(self.url)
-   else:
-    self.stream = sound_lib.stream.URLStream(url=self.url)
-   if hasattr(self,'stream'):
-    self.stream.volume = float(volume)
-    self.stream.play()
-    log.debug("played")
+   media = self.instance.media_new(self.url)
+   self.player.set_media(media)
+   self.player.audio_set_volume(int(volume*100))
+   self.player.play()
+   log.debug("played")
    self.prepared=False
 
- def stop_audio(self,delete=False):
-  if self.mode == "youtube":
-   youtube_utils.stop()
-   self.prepared = False
-   output.speak(_(u"Stopped."), True)
-   return True
-  else:
-   if hasattr(self, "stream"):
-    output.speak(_(u"Stopped."), True)
-    try:
-     self.stream.stop()
-     log.debug("Stopped audio stream.")
-    except:
-     log.exception("Exception while stopping stream.")
-    if delete:
-     del self.stream
-     log.debug("Deleted audio stream.")
-    self.prepared=False
-    return True
-   else:
-    return False
-
- @staticmethod
- def delete_old_tempfiles():
-  for f in glob(os.path.join(tempfile.gettempdir(), 'tmp*.wav')):
-   try:
-    os.remove(f)
-   except:
-    pass
-
+ def stop_audio(self):
+  output.speak(_(u"Stopped."), True)
+  self.player.stop()

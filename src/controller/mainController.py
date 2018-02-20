@@ -504,13 +504,13 @@ class Controller(object):
 
  def seekLeft(self, *args, **kwargs):
   try:
-   sound.URLPlayer.seek(-5)
+   sound.URLPlayer.seek(-5000)
   except:
    output.speak("Unable to seek.",True)
 
  def seekRight(self, *args, **kwargs):
   try:
-   sound.URLPlayer.seek(5)
+   sound.URLPlayer.seek(5000)
   except:
    output.speak("Unable to seek.",True)
 

@@ -2,6 +2,8 @@
 
 ## changes in this version
 
+* Added support for playing youtube Links directly from the client. ([#94](https://github.com/manuelcortez/TWBlue/issues/94))
+* Replaced Bass with libVLC for playing URL streams.
 * the checkbox for indicating wether TWBlue will include everyone in a reply or not, will be unchecked by default.
 * You can request TWBlue to save the state for two checkboxes: Long tweet and mention all, from the global settings dialogue.
 * For windows 10 users, some keystrokes in the invisible user interface have been changed or merged:
