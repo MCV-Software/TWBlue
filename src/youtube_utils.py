@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import youtube_dl
 
-player = None # Let's control player from here
-
 def get_video_url(url):
  ydl = youtube_dl.YoutubeDL({'quiet': True, 'format': 'bestaudio/best', 'outtmpl': u'%(id)s%(ext)s'})
  with ydl:
