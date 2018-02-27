@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* It is possible to filter by retweets, quotes and replies when creating a new filter.
 * Added support for playing youtube Links directly from the client. ([#94](https://github.com/manuelcortez/TWBlue/issues/94))
 * Replaced Bass with libVLC for playing URL streams.
 * the checkbox for indicating wether TWBlue will include everyone in a reply or not, will be unchecked by default.
