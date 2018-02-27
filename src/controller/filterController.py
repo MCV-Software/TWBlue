@@ -14,6 +14,9 @@ class filter(object):
    contains = self.dialog.get("contains")
    term = self.dialog.get("term")
    regexp = self.dialog.get("regexp")
+   allow_rts = self.dialog.get("allow_rts")
+   allow_quotes = self.dialog.get("allow_quotes")
+   allow_replies = self.dialog.get("allow_replies")
    load_language = self.dialog.get("load_language")
    ignore_language = self.dialog.get("ignore_language")
    lang_option = None
@@ -26,7 +29,7 @@ class filter(object):
    for i in application.supported_languages:
     if i["name"] in langs:
      langcodes.append(i["code"])
-   d = dict(in_buffer=self.buffer.name, word=term, regexp=regexp, in_lang=lang_option, languages=langcodes, if_word_exists=contains)
+   d = dict(in_buffer=self.buffer.name, word=term, regexp=regexp, in_lang=lang_option, languages=langcodes, if_word_exists=contains, allow_rts=allow_rts, allow_quotes=allow_quotes, allow_replies=allow_replies)
    if self.buffer.session.settings["filters"].has_key(title):
     return commonMessageDialogs.existing_filter()
    self.buffer.session.settings["filters"][title] = d
@@ -49,7 +52,6 @@ class filterManager(object):
  def insert_filters(self, filters):
   self.dialog.filters.clear()
   for f in filters.keys():
-   # ToDo: Add titles to filters.
    filterName = f
    buffer = filters[f]["in_buffer"]
    if filters[f]["if_word_exists"] == "True" and filters[f]["word"] != "":

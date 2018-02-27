@@ -148,14 +148,21 @@ def is_allowed(tweet, settings, buffer_name):
  clients = settings["twitter"]["ignored_clients"]
  if tweet.has_key("sender"): return True
  allowed = True
+ tweet_data = {}
+ if tweet.has_key("retweeted_status"):
+  tweet_data["retweet"] = True
+ if tweet["in_reply_to_status_id_str"] != None:
+  tweet_data["reply"] = True
+ if tweet.has_key("quoted_status"):
+  tweet_data["quote"] = True
  if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
  for i in clients:
   if i.lower() == source.lower():
    return False
- return filter_tweet(tweet, settings, buffer_name)
+ return filter_tweet(tweet, tweet_data, settings, buffer_name)
 
-def filter_tweet(tweet, settings, buffer_name):
+def filter_tweet(tweet, tweet_data, settings, buffer_name):
  if tweet.has_key("full_text"):
   value = "full_text"
  else:
@@ -164,6 +171,15 @@ def filter_tweet(tweet, settings, buffer_name):
   if settings["filters"][i]["in_buffer"] == buffer_name:
    regexp = settings["filters"][i]["regexp"]
    word = settings["filters"][i]["word"]
+   allow_rts = settings["filters"][i]["allow_rts"]
+   allow_quotes = settings["filters"][i]["allow_quotes"]
+   allow_replies = settings["filters"][i]["allow_replies"]
+   if allow_rts == "False" and tweet_data.has_key("retweet"):
+    return False
+   if allow_quotes == "False" and tweet_data.has_key("quote"):
+    return False
+   if allow_replies == "False" and tweet_data.has_key("reply"):
+    return False
    if word != "" and settings["filters"][i]["if_word_exists"]:
     if word in tweet[value]:
      return False
