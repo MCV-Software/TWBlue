@@ -656,7 +656,6 @@ class Controller(object):
    self.exit_()
 
  def exit_(self, *args, **kwargs):
-  youtube_utils.stop()
   for i in self.buffers: i.save_positions()
   log.debug("Exiting...")
   log.debug("Saving global configuration...")
