@@ -171,9 +171,19 @@ def filter_tweet(tweet, tweet_data, settings, buffer_name):
   if settings["filters"][i]["in_buffer"] == buffer_name:
    regexp = settings["filters"][i]["regexp"]
    word = settings["filters"][i]["word"]
-   allow_rts = settings["filters"][i]["allow_rts"]
-   allow_quotes = settings["filters"][i]["allow_quotes"]
-   allow_replies = settings["filters"][i]["allow_replies"]
+   # Added if/else for compatibility reasons.
+   if settings["filters"][i].has_key("allow_rts"):
+    allow_rts = settings["filters"][i]["allow_rts"]
+   else:
+    allow_rts = "True"
+   if settings["filters"][i].has_key("allow_quotes"):
+    allow_quotes = settings["filters"][i]["allow_quotes"]
+   else:
+    allow_quotes = "True"
+   if settings["filters"][i].has_key("allow_replies"):
+    allow_replies = settings["filters"][i]["allow_replies"]
+   else:
+    allow_replies = "True"
    if allow_rts == "False" and tweet_data.has_key("retweet"):
     return False
    if allow_quotes == "False" and tweet_data.has_key("quote"):
