@@ -29,8 +29,6 @@ class basicTweet(object):
   self.message = getattr(message, messageType)(title, caption, text, *args, **kwargs)
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
   widgetUtils.connect_event(self.message.attach, widgetUtils.BUTTON_PRESSED, self.attach)
-#  if system == "Windows":
-#  if messageType != "dm":
   widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
   widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
   widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
@@ -201,6 +199,7 @@ class viewTweet(basicTweet):
    param tweetList: If is_tweet is set to True, this could be a list of quoted tweets.
    param is_tweet: True or false, depending wether the passed object is a tweet or not."""
   if is_tweet == True:
+   self.title = _(u"Tweet")
    image_description = []
    text = ""
    for i in xrange(0, len(tweetList)):
@@ -255,6 +254,7 @@ class viewTweet(basicTweet):
    self.message.set_title(len(text))
    [self.message.set_image_description(i) for i in image_description]
   else:
+   self.title = _(u"View item")
    text = tweet
    self.message = message.viewNonTweet(text)
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
