@@ -610,7 +610,7 @@ class baseBufferController(bufferController):
    # fix this:
    original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
    ts = original_date.humanize(locale=languageHandler.getLanguage())
-   self.buffer.list.list.SetStringItem(self.buffer.list.get_selected(), 2, ts)
+   self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
   if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
    self.session.sound.play("audio.ogg")
   if self.session.settings['sound']['indicate_geo'] and utils.is_geocoded(tweet):
