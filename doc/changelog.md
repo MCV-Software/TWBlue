@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* When you quote a Tweet, if the original tweet was posted with Twishort, TWBlue should display properly the quoted tweet. Before it was displaying the original tweet only. ([#206](https://github.com/manuelcortez/TWBlue/issues/206))
 * It is possible to filter by retweets, quotes and replies when creating a new filter.
 * Added support for playing youtube Links directly from the client. ([#94](https://github.com/manuelcortez/TWBlue/issues/94))
 * Replaced Bass with libVLC for playing URL streams.

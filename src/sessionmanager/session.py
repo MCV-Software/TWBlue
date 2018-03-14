@@ -484,6 +484,8 @@ class Session(object):
   original_tweet = self.check_long_tweet(original_tweet)
   if original_tweet.has_key("full_text"):
    value = "full_text"
+  elif original_tweet.has_key("message"):
+   value = "message"
   else:
    value = "text"
   urls = utils.find_urls_in_text(original_tweet[value])
@@ -495,12 +497,22 @@ class Session(object):
  def check_long_tweet(self, tweet):
   long = twishort.is_long(tweet)
   if long != False and config.app["app-settings"]["handle_longtweets"]:
-   tweet["message"] = twishort.get_full_text(long)
-   if tweet["message"] == False: return False
-   tweet["twishort"] = True
-   for i in tweet["entities"]["user_mentions"]:
-    if "@%s" % (i["screen_name"]) not in tweet["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
-     if tweet.has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
-      continue
-     tweet["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
+   message = twishort.get_full_text(long)
+   if tweet.has_key("quoted_status"):
+    tweet["quoted_status"]["message"] = message
+    if tweet["quoted_status"]["message"] == False: return False
+    tweet["quoted_status"]["twishort"] = True
+    for i in tweet["quoted_status"]["entities"]["user_mentions"]:
+     if "@%s" % (i["screen_name"]) not in tweet["quoted_status"]["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
+      if tweet["quoted_status"].has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+       continue
+     tweet["quoted_status"]["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
+   else:
+    tweet["message"] = message
+    if tweet["message"] == False: return False
+    tweet["twishort"] = True
+    for i in tweet["entities"]["user_mentions"]:
+     if "@%s" % (i["screen_name"]) not in tweet["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
+      if tweet.has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+       continue
   return tweet

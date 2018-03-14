@@ -127,7 +127,9 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
   text = "rt @%s: %s" % (quoted_tweet["retweeted_status"]["user"]["screen_name"], text)
  if text[-1] in chars: text=text+"."
  original_user = original_tweet["user"]["screen_name"]
- if original_tweet.has_key("full_text"):
+ if original_tweet.has_key("message"):
+  original_text = original_tweet["message"]
+ elif original_tweet.has_key("full_text"):
   original_text = StripChars(original_tweet["full_text"])
  else:
    original_text = StripChars(original_tweet["text"])
