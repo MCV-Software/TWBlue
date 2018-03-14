@@ -31,7 +31,6 @@ Although most dependencies can be found in the windows-dependencies directory, w
 
 * [Python,](http://python.org) version 2.7.14  
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
-* [wxPython](http://www.wxpython.org) for Python 2.7, version 3.0.2.0
 * [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 221
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
 x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
@@ -57,6 +56,7 @@ setuptools installs a script, called easy_install. You can find it in the python
 
 	The -z switch unzips the package, instead of installing it compressed. If you add the --upgrade switch, you can upgrade a package to its latest version. The following packages need to be installed:
 
+* wxpython
 * pypubsub==3.3.0
 * configobj
 * requests-oauthlib
@@ -74,7 +74,7 @@ setuptools installs a script, called easy_install. You can find it in the python
 
 easy_install will automatically get the additional libraries that these packages need to work properly.
 Run the following command to quickly install and upgrade all packages and their dependencies:  
-easy_install -Z --upgrade six configobj markdown future requests oauthlib requests-oauthlib requests-toolbelt pypubsub==3.3.0 pygeocoder arrow python-dateutil futures winpaths PySocks win_inet_pton yandex.translate idna chardet urllib3 youtube-dl python-vlc
+easy_install -Z --upgrade wxpython six configobj markdown future requests oauthlib requests-oauthlib requests-toolbelt pypubsub==3.3.0 pygeocoder arrow python-dateutil futures winpaths PySocks win_inet_pton yandex.translate idna chardet urllib3 youtube-dl python-vlc
 
 #### Other dependencies
 
