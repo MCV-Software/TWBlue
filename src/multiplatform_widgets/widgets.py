@@ -37,9 +37,9 @@ class list(object):
   if self.system == "Windows":
    if reversed == False: items = self.list.GetItemCount()
    else: items = 0
-   self.list.InsertStringItem(items, item[0])
-   for i in xrange(1, len(self.columns)):
-    self.list.SetStringItem(items, i, item[i])
+   self.list.InsertItem(items, item[0])
+   for i in range(1, len(self.columns)):
+    self.list.SetItem(items, i, item[i])
   else:
    self.list.Append(" ".join(item))
 

@@ -19,11 +19,12 @@
 ############################################################
 
 import wx
+import wx.adv
 import application
 import paths
 import os
 
-class SysTrayIcon(wx.TaskBarIcon):
+class SysTrayIcon(wx.adv.TaskBarIcon):
 
 	def __init__(self):
 		super(SysTrayIcon, self).__init__()

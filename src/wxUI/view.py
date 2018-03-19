@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import wx
+import wx.adv
 import application
 
 class mainFrame(wx.Frame):
@@ -173,7 +174,7 @@ class mainFrame(wx.Frame):
   self.nb.DeletePage(pos)
 
  def about_dialog(self):
-  info = wx.AboutDialogInfo()
+  info = wx.adv.AboutDialogInfo()
   info.SetName(application.name)
   info.SetVersion(application.version)
   info.SetDescription(application.description)
@@ -182,7 +183,8 @@ class mainFrame(wx.Frame):
 #  info.SetLicence(application.licence)
   for i in application.authors:
    info.AddDeveloper(i)
-  wx.AboutBox(info)
+  wx.adv.AboutBox(info)
+
  def set_focus(self):
   self.SetFocus()
 
