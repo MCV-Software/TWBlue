@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* TWBlue now Uses WXPython 4.0.1. This will allow us to migrate all important components to Python 3 in the future. ([#207](https://github.com/manuelcortez/TWBlue/issues/207))
 * When you quote a Tweet, if the original tweet was posted with Twishort, TWBlue should display properly the quoted tweet. Before it was displaying the original tweet only. ([#206](https://github.com/manuelcortez/TWBlue/issues/206))
 * It is possible to filter by retweets, quotes and replies when creating a new filter.
 * Added support for playing youtube Links directly from the client. ([#94](https://github.com/manuelcortez/TWBlue/issues/94))
