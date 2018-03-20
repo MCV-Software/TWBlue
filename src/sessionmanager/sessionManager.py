@@ -37,10 +37,11 @@ class sessionManagerController(object):
 
  def fill_list(self):
   sessionsList = []
+  reserved_dirs = ["dicts"]
   log.debug("Filling the sessions list.")
   self.sessions = []
   for i in os.listdir(paths.config_path()):
-   if os.path.isdir(paths.config_path(i)):
+   if os.path.isdir(paths.config_path(i)) and i not in reserved_dirs:
     log.debug("Adding session %s" % (i,))
     strconfig = "%s/session.conf" % (paths.config_path(i))
     config_test = config_utils.load_config(strconfig)
