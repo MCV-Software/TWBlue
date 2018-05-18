@@ -44,4 +44,8 @@ save_followers_in_autocompletion_db = boolean(default=False)
 save_friends_in_autocompletion_db = boolean(default=False)
 ocr_language = string(default="")
 
+[reporting]
+braille_reporting = boolean(default=True)
+speech_reporting = boolean(default=True)
+
 [filters]

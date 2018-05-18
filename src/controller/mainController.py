@@ -1252,7 +1252,7 @@ class Controller(object):
   if play_sound != None:
    session.sound.play(play_sound)
   if message != None:
-   output.speak(message)
+   output.speak(message, speech=session.settings["reporting"]["speech_reporting"], braille=session.settings["reporting"]["braille_reporting"])
 
  def manage_home_timelines(self, data, user):
   buffer = self.search_buffer("home_timeline", user)
@@ -1354,8 +1354,7 @@ class Controller(object):
   if buffer == None: return
   play_sound = "tweet_timeline.ogg"
   if "%s-timeline" % (who,) not in buffer.session.settings["other_buffers"]["muted_buffers"] and buffer.session.settings["sound"]["session_mute"] == False:
-   self.notify(buffer.session, play_sound=play_sound)
-   output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
+   self.notify(buffer.session, play_sound=play_sound, message=_(u"One tweet from %s") % (data["user"]["name"]))
   buffer.add_new_item(data)
 
  def manage_item_in_list(self, data, user, where):
@@ -1363,8 +1362,7 @@ class Controller(object):
   if buffer == None: return
   play_sound = "list_tweet.ogg"
   if "%s" % (where,) not in buffer.session.settings["other_buffers"]["muted_buffers"] and buffer.session.settings["sound"]["session_mute"] == False:
-   self.notify(buffer.session, play_sound=play_sound)
-   output.speak(_(u"One tweet from %s") % (data["user"]["name"]))
+   self.notify(buffer.session, play_sound=play_sound, message=_(u"One tweet from %s") % (data["user"]["name"]))
   buffer.add_new_item(data)
 
  def start_buffers(self, session):

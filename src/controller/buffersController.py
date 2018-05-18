@@ -422,7 +422,7 @@ class baseBufferController(bufferController):
   else:
    self.buffer.list.insert_item(True, *tweet)
   if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
-   output.speak(" ".join(tweet[:2]))
+   output.speak(" ".join(tweet[:2]), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
   #Improve performance on Windows
 #  if platform.system() == "Windows":
 #   call_threaded(utils.is_audio,item)
@@ -774,7 +774,7 @@ class eventsBufferController(bufferController):
   else:
    self.buffer.list.insert_item(True, *tweet)
   if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
-   output.speak(" ".join(tweet))
+   output.speak(" ".join(tweet), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
   if self.buffer.list.get_count() == 1:
    self.buffer.list.select_item(0)
 

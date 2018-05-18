@@ -123,6 +123,16 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(self.persist_size, 0, wx.ALL, 5)
   self.SetSizer(sizer)
 
+class reporting(wx.Panel, baseDialog.BaseWXDialog):
+ def __init__(self, parent):
+  super(reporting, self).__init__(parent)
+  sizer = wx.BoxSizer(wx.VERTICAL)
+  self.speech_reporting = wx.CheckBox(self, wx.NewId(), _(U"Enable automatic speech feedback"))
+  sizer.Add(self.speech_reporting, 0, wx.ALL, 5)
+  self.braille_reporting = wx.CheckBox(self, wx.NewId(), _(U"Enable automatic Braille feedback"))
+  sizer.Add(self.braille_reporting, 0, wx.ALL, 5)
+  self.SetSizer(sizer)
+
 class other_buffers(wx.Panel):
  def __init__(self, parent):
   super(other_buffers, self).__init__(parent)
@@ -338,6 +348,10 @@ class configurationDialog(baseDialog.BaseWXDialog):
   self.general = generalAccount(self.notebook)
   self.notebook.AddPage(self.general, _(u"General"))
   self.general.SetFocus()
+
+ def create_reporting(self):
+  self.reporting = reporting(self.notebook)
+  self.notebook.AddPage(self.reporting, _(u"Feedback"))
 
  def create_other_buffers(self):
   self.buffers = other_buffers(self.notebook)

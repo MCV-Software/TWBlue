@@ -2,6 +2,8 @@
 
 ## changes in this version
 
+* Added a new tab called feedback, in the account settings dialog. This tab allows you to control wether automatic speech or Braille feedbak in certain events (mentions and direct messages received) is enabled. Take into account that this option will take preference over automatic reading of buffers and any kind of automatic output. ([#203](https://github.com/manuelcortez/TWBlue/issues/203))
+* The spell checking dialog now has access keys defined for the most important actions. ([#211](https://github.com/manuelcortez/TWBlue/issues/211))
 * TWBlue now Uses WXPython 4.0.1. This will allow us to migrate all important components to Python 3 in the future. ([#207](https://github.com/manuelcortez/TWBlue/issues/207))
 * When you quote a Tweet, if the original tweet was posted with Twishort, TWBlue should display properly the quoted tweet. Before it was displaying the original tweet only. ([#206](https://github.com/manuelcortez/TWBlue/issues/206))
 * It is possible to filter by retweets, quotes and replies when creating a new filter.

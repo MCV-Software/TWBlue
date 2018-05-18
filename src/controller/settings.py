@@ -141,6 +141,9 @@ class accountSettingsController(globalSettingsController):
   else:
    self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
   self.dialog.set_value("general", "persist_size", str(self.config["general"]["persist_size"]))
+  self.dialog.create_reporting()
+  self.dialog.set_value("reporting", "speech_reporting", self.config["reporting"]["speech_reporting"])
+  self.dialog.set_value("reporting", "braille_reporting", self.config["reporting"]["braille_reporting"])
   self.dialog.create_other_buffers()
   buffer_values = self.get_buffers_list()
   self.dialog.buffers.insert_buffers(buffer_values)
@@ -205,6 +208,8 @@ class accountSettingsController(globalSettingsController):
   if set(self.config["general"]["buffer_order"]) != set(buffers_list) or buffers_list != self.config["general"]["buffer_order"]:
    self.needs_restart = True
    self.config["general"]["buffer_order"] = buffers_list
+  self.config["reporting"]["speech_reporting"] = self.dialog.get_value("reporting", "speech_reporting")
+  self.config["reporting"]["braille_reporting"] = self.dialog.get_value("reporting", "braille_reporting")
   self.config["mysc"]["ocr_language"] = OCRSpace.OcrLangs[self.dialog.extras.ocr_lang.GetSelection()]
 #  if self.config["other_buffers"]["show_followers"] != self.dialog.get_value("buffers", "followers"):
 #   self.config["other_buffers"]["show_followers"] = self.dialog.get_value("buffers", "followers")

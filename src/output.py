@@ -7,12 +7,14 @@ import sys
 
 speaker = None
 
-def speak(text, interrupt=0):
+def speak(text, interrupt=0, speech=True, braille=True):
  global speaker
  if not speaker:
   setup()
- speaker.speak(text, interrupt)
- speaker.braille(text)
+ if speech:
+  speaker.speak(text, interrupt)
+ if braille:
+  speaker.braille(text)
 
 def setup ():
  global speaker
