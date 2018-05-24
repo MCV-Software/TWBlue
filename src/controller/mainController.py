@@ -54,26 +54,27 @@ class Controller(object):
  name_ str: The name for the buffer
  user str: The account for the buffer.
  for example you may want to search the home_timeline buffer for the tw_blue2 user.
-  returns buffersController.buffer object with the result if there is one."""
+  Return type: buffersController.buffer object."""
   for i in self.buffers:
    if i.name == name_ and i.account == user: return i
 
  def get_current_buffer(self):
-  """ Get the current bufferObject"""
+  """ Get the current focused bufferObject.
+  Return type: BuffersController.buffer object."""
   buffer = self.view.get_current_buffer()
   if hasattr(buffer, "account"):
    buffer = self.search_buffer(buffer.name, buffer.account)
    return buffer
 
  def get_best_buffer(self):
-  """ Gets the best buffer for doing  something using the session object.
+  """ Get the best buffer for doing  something using the session object.
   This function is useful when you need to open a timeline or post a tweet, and the user is in a buffer without a session, for example the events buffer.
-  This returns a bufferObject."""
+  Return type: buffersController.buffer object."""
   # Gets the parent buffer to know what account is doing an action
   view_buffer = self.view.get_current_buffer()
-  # If the account has no session attached, we will need to search the home_timeline for that account to use its session.
+  # If the account has no session attached, we will need to search the first available non-empty buffer for that account to use its session.
   if view_buffer.type == "account" or view_buffer.type == "empty":
-   buffer = self.search_buffer("home_timeline", view_buffer.account)
+   buffer = self.get_first_buffer(view_buffer.account)
   else:
    buffer = self.search_buffer(view_buffer.name, view_buffer.account)
   if buffer != None: return buffer
@@ -83,18 +84,23 @@ class Controller(object):
   account str: A twitter username.
   The first valid buffer is the home timeline."""
   for i in self.buffers:
-   if i.account == account and i.invisible == True:
-    buff = i
-    break
-  return self.view.search(buff.name, buff.account)
+   if i.account == account and i.invisible == True and i.session != None:
+    return i
 
  def get_last_buffer(self, account):
   """ Gets the last valid buffer for an account.
   account str: A twitter username.
   The last valid buffer is the last buffer that contains a session object assigned."""
-#  results = self.get_buffers_for_account(account)
   results = self.get_buffers_for_account(account)
-  return self.view.search(results[-1].name, results[-1].account)
+  return results[-1]
+
+ def get_first_buffer_index(self, account):
+  buff = self.get_first_buffer(account)
+  return self.view.search(buff.name, buff.account)
+
+ def get_last_buffer_index(self, account):
+  buff = self.get_last_buffer(account)
+  return self.view.search(buff.name, buff.account)
 
  def get_buffers_for_account(self, account):
   results = []
@@ -1100,8 +1106,8 @@ class Controller(object):
   if not hasattr(buffer.buffer, "list"):
    output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
-  if buff == self.get_first_buffer(buffer.account) or buff == 0:
-   self.view.change_buffer(self.get_last_buffer(buffer.account))
+  if buff == self.get_first_buffer_index(buffer.account) or buff == 0:
+   self.view.change_buffer(self.get_last_buffer_index(buffer.account))
   else:
    self.view.change_buffer(buff-1)
   while self.get_current_buffer().invisible == False: self.skip_buffer(False)
@@ -1119,8 +1125,8 @@ class Controller(object):
   if not hasattr(buffer.buffer, "list"):
    output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
-  if buff == self.get_last_buffer(buffer.account) or buff+1 == self.view.get_buffer_count():
-   self.view.change_buffer(self.get_first_buffer(buffer.account))
+  if buff == self.get_last_buffer_index(buffer.account) or buff+1 == self.view.get_buffer_count():
+   self.view.change_buffer(self.get_first_buffer_index(buffer.account))
   else:
    self.view.change_buffer(buff+1)
   while self.get_current_buffer().invisible == False: self.skip_buffer(True)
@@ -1140,7 +1146,11 @@ class Controller(object):
    index = index+1
   account = self.accounts[index]
   self.current_account = account
-  buff = self.view.search("home_timeline", account)
+  buffer_object = self.get_first_buffer(account)
+  if buffer_object == None:
+   output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
+   return
+  buff = self.view.search(buffer_object.name, account)
   if buff == None:
    output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
    return
@@ -1161,7 +1171,11 @@ class Controller(object):
    index = index-1
   account = self.accounts[index]
   self.current_account = account
-  buff = self.view.search("home_timeline", account)
+  buffer_object = self.get_first_buffer(account)
+  if buffer_object == None:
+   output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
+   return
+  buff = self.view.search(buffer_object.name, account)
   if buff == None:
    output.speak(_(u"{0}: This account is not logged into twitter.").format(account), True)
    return
