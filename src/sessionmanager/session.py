@@ -251,7 +251,10 @@ class Session(object):
   update_function str: The function to call. This function must be child of self.twitter.twitter
   returns a list with all items retrieved."""
 
-  max = int(self.settings["general"]["max_api_calls"])-1
+  if application.streaming_lives():
+   max = int(self.settings["general"]["max_api_calls"])-1
+  else:
+   max = 0
   results = []
   data = getattr(self.twitter.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
   results.extend(data)
