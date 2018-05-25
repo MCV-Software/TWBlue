@@ -345,40 +345,44 @@ class Session(object):
  def start_streaming(self):
 
   """ Start the streaming for sending tweets in realtime."""
-  if not hasattr(self, "main_stream"):
-   self.get_timelines()
-  if not hasattr(self, "timelinesStream"):
-   self.get_main_stream()
+  if application.streaming_lives():
+   if not hasattr(self, "main_stream"):
+    self.get_timelines()
+   if not hasattr(self, "timelinesStream"):
+    self.get_main_stream()
 
  def get_main_stream(self):
-  log.debug("Starting the main stream...")
-  self.main_stream = twitter.buffers.stream.streamer(keyring.get("api_key"), keyring.get("api_secret"), self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], self)
-  stream_threaded(self.main_stream.user, self.session_id)
+  if application.streaming_lives():
+   log.debug("Starting the main stream...")
+   self.main_stream = twitter.buffers.stream.streamer(keyring.get("api_key"), keyring.get("api_secret"), self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], self)
+   stream_threaded(self.main_stream.user, self.session_id)
 
  def get_timelines(self):
-  log.debug("Starting the timelines stream...")
-  self.timelinesStream = twitter.buffers.indibidual.timelinesStreamer(keyring.get("api_key"), keyring.get("api_secret"), self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], session=self)
-  ids = ""
-  for i in self.settings["other_buffers"]["timelines"]:
-   ids = ids + "%s, " % (self.db[i+"-timeline"][0]["user"]["id_str"])
-  for i in self.lists:
-   for z in i.users:
-    ids += str(z) + ", "
-  if ids != "":
-   stream_threaded(self.timelinesStream.statuses.filter, self.session_id, follow=ids)
+  if application.streaming_lives():
+   log.debug("Starting the timelines stream...")
+   self.timelinesStream = twitter.buffers.indibidual.timelinesStreamer(keyring.get("api_key"), keyring.get("api_secret"), self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], session=self)
+   ids = ""
+   for i in self.settings["other_buffers"]["timelines"]:
+    ids = ids + "%s, " % (self.db[i+"-timeline"][0]["user"]["id_str"])
+   for i in self.lists:
+    for z in i.users:
+     ids += str(z) + ", "
+   if ids != "":
+    stream_threaded(self.timelinesStream.statuses.filter, self.session_id, follow=ids)
 
  def add_friends(self):
-  try:
-   self.timelinesStream.set_friends(self.main_stream.friends)
-  except AttributeError:
-   pass
+  if application.streaming_lives():
+   try:
+    self.timelinesStream.set_friends(self.main_stream.friends)
+   except AttributeError:
+    pass
 
  def listen_stream_error(self):
-  if hasattr(self, "main_stream"):
+  if hasattr(self, "main_stream") and application.streaming_lives():
    log.debug("Disconnecting the main stream...")
    self.main_stream.disconnect()
    del self.main_stream
-  if hasattr(self, "timelinesStream"):
+  if hasattr(self, "timelinesStream") and application.streaming_lives():
    log.debug("disconnecting the timelines stream...")
    self.timelinesStream.disconnect()
    del self.timelinesStream
@@ -394,9 +398,9 @@ class Session(object):
    pub.sendMessage("restart_streams", session=self.session_id)
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
-  if not hasattr(self, "main_stream"):
+  if not hasattr(self, "main_stream") or not application.streaming_lives():
    self.get_main_stream()
-  if not hasattr(self, "timelinesStream"):
+  if not hasattr(self, "timelinesStream") or application.streaming_lives():
    self.get_timelines()
   self.reconnection_function_active = False
   if hasattr(self, "timelinesStream") and not hasattr(self.timelinesStream, "friends"):
@@ -407,13 +411,14 @@ class Session(object):
 #   pub.sendMessage("stream-error", session=self.session_id)
 
  def remove_stream(self, stream):
-  if stream == "timelinesStream":
-   if hasattr(self, "timelinesStream"):
-    self.timelinesStream.disconnect()
-    del self.timelinesStream
-  else:
-   self.main_stream.disconnect()
-   del self.main_stream
+  if application.streaming_lives():
+   if stream == "timelinesStream":
+    if hasattr(self, "timelinesStream"):
+     self.timelinesStream.disconnect()
+     del self.timelinesStream
+   else:
+    self.main_stream.disconnect()
+    del self.main_stream
 
  def shelve(self):
   "Shelve the database to allow for persistance."
