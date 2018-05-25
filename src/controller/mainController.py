@@ -126,19 +126,19 @@ class Controller(object):
   pub.subscribe(self.manage_unblocked_user, "unblocked-user")
   pub.subscribe(self.manage_item_in_timeline, "item-in-timeline")
   pub.subscribe(self.manage_item_in_list, "item-in-list")
-  pub.subscribe(self.restart_streams_, "restart_streams")
   pub.subscribe(self.on_tweet_deleted, "tweet-deleted")
-  pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
-  widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
+  pub.subscribe(self.manage_stream_errors, "stream-error")
+  pub.subscribe(self.restart_streams, "restart-streams")
 
  def bind_other_events(self):
   """ Binds the local application events with their functions."""
   log.debug("Binding other application events...")
+  pub.subscribe(self.restart_streams_, "restart_streams")
+  pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
+  widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
   pub.subscribe(self.logout_account, "logout")
   pub.subscribe(self.login_account, "login")
-  pub.subscribe(self.manage_stream_errors, "stream-error")
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
-  pub.subscribe(self.restart_streams, "restart-streams")
   pub.subscribe(self.execute_action, "execute-action")
   pub.subscribe(self.search_topic, "search")
   if system == "Windows":
@@ -233,7 +233,8 @@ class Controller(object):
   # This saves the current account (important in invisible mode)
   self.current_account = ""
   self.view.prepare()
-  self.bind_stream_events()
+  if application.streaming_lives():
+   self.bind_stream_events()
   self.bind_other_events()
   if system == "Windows":
    self.set_systray_icon()
@@ -346,7 +347,7 @@ class Controller(object):
     muted = buffersController.peopleBufferController(self.view.nb, "list_mutes", "muted", session, session.db["user_name"])
     self.buffers.append(muted)
     self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-   elif i == 'events':
+   elif i == 'events' and application.streaming_lives():
     events = buffersController.eventsBufferController(self.view.nb, "events", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"])
     self.buffers.append(events)
     self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
