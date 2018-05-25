@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import datetime
+
 name = 'TWBlue'
 snapshot = False
 if snapshot == False:
@@ -17,3 +19,10 @@ translators = [u"Manuel Cortéz (English)", u"Mohammed Al Shara, Hatoun Felemban
 url = u"https://twblue.es"
 report_bugs_url = "https://github.com/manuelcortez/twblue/issues"
 supported_languages = []
+
+def streaming_lives():
+ """ Check if we are in August 16.
+ ToDo: This method should be removed after deadline==True"""
+ deadline = datetime.date(2018, 8, 16)
+ now = datetime.datetime.now().date()
+ return deadline>now
