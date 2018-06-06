@@ -167,19 +167,19 @@ class Session(object):
   if self.logged == True:
    raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
   else:
-   self.authorisation_thread = call_threaded(self.twitter.authorise, self.settings)
+   self.twitter.authorise()
    self.authorisation_dialog = authorisationDialog()
    self.authorisation_dialog.cancel.Bind(wx.EVT_BUTTON, self.authorisation_cancelled)
-   pub.subscribe(self.authorisation_accepted, "authorisation-accepted")
+   self.authorisation_dialog.ok.Bind(wx.EVT_BUTTON, self.authorisation_accepted)
    self.authorisation_dialog.ShowModal()
 
  def authorisation_cancelled(self, *args, **kwargs):
-  pub.sendMessage("authorisation-cancelled")
   self.authorisation_dialog.Destroy()
   del self.authorisation_dialog 
 
- def authorisation_accepted(self):
-  pub.unsubscribe(self.authorisation_accepted, "authorisation-accepted")
+ def authorisation_accepted(self, *args, **kwargs):
+  pincode = self.authorisation_dialog.text.GetValue()
+  self.twitter.verify_authorisation(self.settings, pincode)
   self.authorisation_dialog.Destroy()
 
  def get_more_items(self, update_function, users=False, name=None, *args, **kwargs):
