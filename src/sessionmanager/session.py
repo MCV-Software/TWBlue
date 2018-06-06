@@ -395,13 +395,13 @@ class Session(object):
    self.logged = False
    self.twitter = twitter.twitter.twitter()
    self.login(False)
-   pub.sendMessage("restart_streams", session=self.session_id)
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
   if not hasattr(self, "main_stream") or not application.streaming_lives():
    self.get_main_stream()
   if not hasattr(self, "timelinesStream") or application.streaming_lives():
    self.get_timelines()
+  self.counter = 0
   self.reconnection_function_active = False
   if hasattr(self, "timelinesStream") and not hasattr(self.timelinesStream, "friends"):
    self.add_friends()

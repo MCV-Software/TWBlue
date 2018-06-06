@@ -127,12 +127,11 @@ class Controller(object):
   pub.subscribe(self.manage_item_in_list, "item-in-list")
   pub.subscribe(self.on_tweet_deleted, "tweet-deleted")
   pub.subscribe(self.manage_stream_errors, "stream-error")
-  pub.subscribe(self.restart_streams, "restart-streams")
+#  pub.subscribe(self.restart_streams, "restart-streams")
 
  def bind_other_events(self):
   """ Binds the local application events with their functions."""
   log.debug("Binding other application events...")
-  pub.subscribe(self.restart_streams_, "restart_streams")
   pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
   pub.subscribe(self.manage_sent_dm, "sent-dm")
   widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
@@ -266,6 +265,8 @@ class Controller(object):
   self.checker_function.start()
   self.save_db = RepeatingTimer(300, self.save_data_in_db)
   self.save_db.start()
+  self.update_buffers_function = RepeatingTimer(60, self.update_buffers)
+  self.update_buffers_function.start()
 
  def start(self):
   """ Starts all buffer objects. Loads their items."""
@@ -1587,9 +1588,9 @@ class Controller(object):
   if hasattr(self, action):
    getattr(self, action)()
 
- def restart_streams_(self, session):
+ def update_buffers(self):
   for i in self.buffers[:]:
-   if i.session != None and i.session.session_id == session:
+   if i.session != None and i.session.is_logged == True:
     try:
      i.start_stream()
     except TwythonAuthError:
