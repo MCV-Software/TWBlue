@@ -839,8 +839,9 @@ class Controller(object):
      if usr["following"] == False:
       commonMessageDialogs.no_following()
       return
-     answer = commonMessageDialogs.protected_user()
-     if answer == widgetUtils.NO: return
+     if application.streaming_lives():
+      answer = commonMessageDialogs.protected_user()
+      if answer == widgetUtils.NO: return
     tl_type = dlg.get_action()
     if tl_type  == "tweets":
      if usr["statuses_count"] == 0:
