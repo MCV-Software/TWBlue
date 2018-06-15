@@ -20,6 +20,7 @@ check_for_updates = boolean(default=True)
 remember_mention_and_longtweet = boolean(default=False)
 longtweet = boolean(default=false)
 mention_all = boolean(default=False)
+no_streaming = boolean(default=False)
 
 [proxy]
 type = string(default="Direct connection")

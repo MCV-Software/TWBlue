@@ -61,6 +61,7 @@ class globalSettingsController(object):
   else:
    self.dialog.general.autostart.Enable(False)
   self.dialog.set_value("general", "ask_at_exit", config.app["app-settings"]["ask_at_exit"])
+  self.dialog.set_value("general", "no_streaming", config.app["app-settings"]["no_streaming"])
   self.dialog.set_value("general", "play_ready_sound", config.app["app-settings"]["play_ready_sound"])
   self.dialog.set_value("general", "speak_ready_msg", config.app["app-settings"]["speak_ready_msg"])
   self.dialog.set_value("general", "handle_longtweets", config.app["app-settings"]["handle_longtweets"])
@@ -99,6 +100,9 @@ class globalSettingsController(object):
   if config.app["app-settings"]["use_invisible_keyboard_shorcuts"] != self.dialog.get_value("general", "use_invisible_shorcuts"):
    config.app["app-settings"]["use_invisible_keyboard_shorcuts"] = self.dialog.get_value("general", "use_invisible_shorcuts")
    pub.sendMessage("invisible-shorcuts-changed", registered=self.dialog.get_value("general", "use_invisible_shorcuts"))
+  if config.app["app-settings"]["no_streaming"] != self.dialog.get_value("general", "no_streaming"):
+   config.app["app-settings"]["no_streaming"] = self.dialog.get_value("general", "no_streaming")
+   self.needs_restart = True
   config.app["app-settings"]["voice_enabled"] = self.dialog.get_value("general", "disable_sapi5")
   config.app["app-settings"]["hide_gui"] = self.dialog.get_value("general", "hide_gui")
   config.app["app-settings"]["ask_at_exit"] = self.dialog.get_value("general", "ask_at_exit")

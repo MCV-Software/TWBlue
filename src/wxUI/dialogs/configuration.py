@@ -22,6 +22,8 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   self.ask_at_exit = wx.CheckBox(self, -1, _(U"ask before exiting {0}").format(application.name,))
   sizer.Add(self.autostart, 0, wx.ALL, 5)
   sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
+  self.no_streaming = wx.CheckBox(self, -1, _(U"Disable Streaming functions"))
+  sizer.Add(self.no_streaming, 0, wx.ALL, 5)
   self.play_ready_sound = wx.CheckBox(self, -1, _(U"Play a sound when {0} launches").format(application.name,))
   sizer.Add(self.play_ready_sound, 0, wx.ALL, 5)
   self.speak_ready_msg = wx.CheckBox(self, -1, _(U"Speak a message when {0} launches").format(application.name,))

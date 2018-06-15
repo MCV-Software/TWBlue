@@ -1403,8 +1403,9 @@ class Controller(object):
      continue
     if change_title:
      pub.sendMessage("buffer-title-changed", buffer=i)
-  log.debug("Starting the streaming endpoint")
-  session.start_streaming()
+  if application.streaming_lives():
+   log.debug("Starting the streaming endpoint")
+   session.start_streaming()
 
  def set_positions(self):
   for i in session_.sessions:
