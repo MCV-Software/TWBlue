@@ -2,13 +2,13 @@
 import datetime
 
 name = 'TWBlue'
-snapshot = False
+snapshot = True
 if snapshot == False:
  version = "0.93"
  update_url = 'https://twblue.es/updates/stable.php'
  mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/stable.json'
 else:
- version = "3"
+ version = "6"
  update_url = 'https://twblue.es/updates/snapshot.php'
  mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/snapshots.json'
 authors = [u"Manuel Cortéz", u"José Manuel Delicado"]
