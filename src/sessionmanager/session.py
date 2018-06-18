@@ -388,20 +388,22 @@ class Session(object):
    del self.timelinesStream
 
  def check_connection(self):
+  log.debug("Executing check connection...")
   instan = 0
   self.counter += 1
   if self.counter >= 4:
+   log.debug("Restarting connection after 5 minutes.")
    del self.twitter
    self.logged = False
    self.twitter = twitter.twitter.twitter()
    self.login(False)
+   self.counter = 0
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
   if not hasattr(self, "main_stream") and application.streaming_lives():
    self.get_main_stream()
   if not hasattr(self, "timelinesStream") and application.streaming_lives():
    self.get_timelines()
-  self.counter = 0
   self.reconnection_function_active = False
   if hasattr(self, "timelinesStream") and not hasattr(self.timelinesStream, "friends"):
    self.add_friends()
