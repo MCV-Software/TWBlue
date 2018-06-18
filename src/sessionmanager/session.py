@@ -397,9 +397,9 @@ class Session(object):
    self.login(False)
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
-  if not hasattr(self, "main_stream") or not application.streaming_lives():
+  if not hasattr(self, "main_stream") and application.streaming_lives():
    self.get_main_stream()
-  if not hasattr(self, "timelinesStream") or application.streaming_lives():
+  if not hasattr(self, "timelinesStream") and application.streaming_lives():
    self.get_timelines()
   self.counter = 0
   self.reconnection_function_active = False
