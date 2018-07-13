@@ -520,7 +520,8 @@ class baseBufferController(bufferController):
   if message.message.get_response() == widgetUtils.OK:
    if config.app["app-settings"]["remember_mention_and_longtweet"]:
     config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
-    config.app["app-settings"]["mention_all"] = message.message.mentionAll.GetValue()
+    if len(users) > 0:
+     config.app["app-settings"]["mention_all"] = message.message.mentionAll.GetValue()
     config.app.write()
    params = {"_sound": "reply_send.ogg", "in_reply_to_status_id": id,}
    text = message.message.get_text()
