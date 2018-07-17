@@ -104,6 +104,39 @@ def compose_dm(tweet, db, relative_times, show_screen_names=False):
   except IndexError: pass
  return [user+", ", text, ts+", ", source]
 
+def compose_direct_message(item, db, relative_times, show_screen_names=False, session=None):
+ # for a while this function will be together with compose_dm.
+ # this one composes direct messages based on events (new API Endpoints).
+ if system == "Windows":
+   # Let's remove the last 3 digits in the timestamp string.
+   # Twitter sends their "epoch" timestamp with 3 digits for milliseconds and arrow doesn't like it.
+  original_date = arrow.get(item["created_timestamp"][:-3])
+  if relative_times == True:
+   ts = original_date.humanize(locale=languageHandler.getLanguage())
+  else:
+   ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
+ else:
+  ts = item["created_timestamp"]
+ text = StripChars(item["message_create"]["message_data"]["text"])
+ source = "DM"
+ sender = session.get_user(item["message_create"]["sender_id"])
+ if db["user_name"] == sender["screen_name"]:
+  if show_screen_names:
+   user = _(u"Dm to %s ") % (session.get_user(item["message_create"]["target"]["recipient_id"])["screen_name"])
+  else:
+   user = _(u"Dm to %s ") % (session.get_user(item["message_create"]["target"]["recipient_id"])["name"])
+ else:
+  if show_screen_names:
+   user = sender["screen_name"]
+  else:
+   user = sender["name"]
+ if text[-1] in chars: text=text+"."
+ urls = utils.find_urls_in_text(text)
+ for url in range(0, len(urls)):
+  try:  text = text.replace(urls[url], item["message_create"]["message_data"]["entities"]["urls"][url]["expanded_url"])
+  except IndexError: pass
+ return [user+", ", text, ts+", ", source]
+
 def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
  if quoted_tweet.has_key("retweeted_status"):
