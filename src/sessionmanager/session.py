@@ -64,6 +64,8 @@ class Session(object):
   last_id = None
   if self.db.has_key(name) == False:
    self.db[name] = []
+  if self.db.has_key("users") == False:
+   self.db["users"] = {}
   if ignore_older and len(self.db[name]) > 0:
    if self.settings["general"]["reverse_timelines"] == False:
     last_id = self.db[name][0]["id"]
@@ -81,6 +83,9 @@ class Session(object):
     if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
     else: self.db[name].insert(0, i)
     num = num+1
+    if i.has_key("user") == True:
+     if self.db["users"].has_key(i["user"]["id"]) == False:
+      self.db["users"][i["user"]["id"]] = i["user"]
   return num
 
  def order_cursored_buffer(self, name, data):
