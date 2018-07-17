@@ -531,3 +531,11 @@ class Session(object):
       if tweet.has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
        continue
   return tweet
+
+ def get_user(self, id):
+  if self.db.has_key("users") == False or self.db["users"].has_key(id) == False:
+   user = self.twitter.twitter.show_user(id=id)
+   self.db["users"][user["id"]] = user
+   return user
+  else:
+   return self.db["users"][id]
