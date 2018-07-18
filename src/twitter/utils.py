@@ -22,6 +22,8 @@ def find_urls_in_text(text):
  return [s.strip(bad_chars) for s in url_re2.findall(text)]
 
 def find_urls (tweet):
+ if tweet.has_key("entities") == False:
+  return []
  urls = []
  # Let's add URLS from tweet entities.
  for i in tweet["entities"]["urls"]:
@@ -72,6 +74,7 @@ def find_next_reply(id, listItem):
  return None
 
 def is_audio(tweet):
+ if tweet.has_key("entities") == False: return False
  try:
   if len(find_urls(tweet)) < 1:
    return False
@@ -88,6 +91,7 @@ def is_geocoded(tweet):
   return True
 
 def is_media(tweet):
+ if tweet.has_key("entities") == False: return False
  if tweet["entities"].has_key("media") == False:
   return False
  for i in tweet["entities"]["media"]:
