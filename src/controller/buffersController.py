@@ -256,12 +256,13 @@ class baseBufferController(bufferController):
     self.kwargs.pop("user_id")
 
  def get_formatted_message(self):
-  if self.type == "dm" or self.name == "sent_tweets" or self.name == "sent_direct_messages":   return self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
+  if self.type == "dm" or self.name == "direct_messages":
+   return self.compose_function(self.get_right_tweet(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)[1]
   return self.get_message()
 
  def get_message(self):
   tweet = self.get_right_tweet()
-  return " ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"]))
+  return " ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session))
 
  def get_full_tweet(self):
   tweet = self.get_right_tweet()
@@ -305,9 +306,12 @@ class baseBufferController(bufferController):
    self.execution_time = current_time
    log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-   val = self.session.call_paged(self.function, *self.args, **self.kwargs)
-   number_of_items = self.session.order_buffer(self.name, val)
-   log.debug("Number of items retrieved: %d" % (number_of_items,))
+   if self.name == "direct_messages":
+    number_of_items = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
+   else:
+    val = self.session.call_paged(self.function, *self.args, **self.kwargs)
+    number_of_items = self.session.order_buffer(self.name, val)
+    log.debug("Number of items retrieved: %d" % (number_of_items,))
    self.put_items_on_list(number_of_items)
    if hasattr(self, "finished_timeline") and self.finished_timeline == False:
     if "-timeline" in self.name:
@@ -341,11 +345,11 @@ class baseBufferController(bufferController):
   selection = self.buffer.list.get_selected()
   if self.session.settings["general"]["reverse_timelines"] == False:
    for i in elements:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(True, *tweet)
   else:
    for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(False, *tweet)
 #   self.buffer.list.select_item(selection+elements)
 #  else:
@@ -393,30 +397,35 @@ class baseBufferController(bufferController):
     self.remove_item(i)
 
  def put_items_on_list(self, number_of_items):
+  # Define the list we're going to use as cursored stuff are a bit different.
+  if self.name != "direct_messages":
+   list_to_use = self.session.db[self.name]
+  else:
+   list_to_use = self.session.db[self.name]["items"]
   if number_of_items == 0 and self.session.settings["general"]["persist_size"] == 0: return
   log.debug("The list contains %d items " % (self.buffer.list.get_count(),))
   log.debug("Putting %d items on the list" % (number_of_items,))
   if self.buffer.list.get_count() == 0:
-   for i in self.session.db[self.name]:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+   for i in list_to_use:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(False, *tweet)
    self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
   elif self.buffer.list.get_count() > 0 and number_of_items > 0:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    items = self.session.db[self.name][len(self.session.db[self.name])-number_of_items:]
+    items = list_to_use[len(self.session.db[self.name])-number_of_items:]
     for i in items:
-     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
      self.buffer.list.insert_item(False, *tweet)
    else:
-    items = self.session.db[self.name][0:number_of_items]
+    items = list_to_use[0:number_of_items]
     items.reverse()
     for i in items:
-     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
      self.buffer.list.insert_item(True, *tweet)
   log.debug("Now the list contains %d items " % (self.buffer.list.get_count(),))
 
  def add_new_item(self, item):
-  tweet = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+  tweet = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
   if self.session.settings["general"]["reverse_timelines"] == False:
    self.buffer.list.insert_item(False, *tweet)
   else:
@@ -442,7 +451,7 @@ class baseBufferController(bufferController):
 
  def show_menu(self, ev, pos=0, *args, **kwargs):
   if self.buffer.list.get_count() == 0: return
-  if self.name == "sent_tweets" or self.name == "sent_direct_messages":
+  if self.name == "sent_tweets" or self.name == "direct_messages":
    menu = menus.sentPanelMenu()
   elif self.name == "direct_messages":
    menu = menus.dmPanelMenu()
@@ -551,8 +560,8 @@ class baseBufferController(bufferController):
  def direct_message(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   if self.type == "dm":
-   screen_name = tweet["sender"]["screen_name"]
-   users = utils.get_all_users(tweet, self.session.db)
+   screen_name = self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]
+   users = [screen_name]
   elif self.type == "people":
    screen_name = tweet["screen_name"]
    users = [screen_name]
@@ -684,7 +693,7 @@ class baseBufferController(bufferController):
  def user_details(self):
   tweet = self.get_right_tweet()
   if self.type == "dm":
-   users = utils.get_all_users(tweet, self.session.db)
+   users = self.session.get_user(tweet["message_create"]["sender_id"])
   elif self.type == "people":
    users = [tweet["screen_name"]]
   else:
@@ -713,6 +722,50 @@ class baseBufferController(bufferController):
    try:  original_tweet["text"] = original_tweet["text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
    except IndexError: pass
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet, self.session.db, self.session.settings["general"]["relative_times"])
+
+class directMessagesController(baseBufferController):
+
+ def get_more_items(self):
+  output.speak(_(u"This action is not supported for this buffer"), True)
+
+ def get_tweet(self):
+  tweet = self.session.db[self.name]["items"][self.buffer.list.get_selected()]
+  return tweet
+
+ get_right_tweet = get_tweet
+
+ @_tweets_exist
+ def reply(self, *args, **kwargs):
+  tweet = self.get_right_tweet()
+  screen_name = self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]
+  message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
+  if message.message.get_response() == widgetUtils.OK:
+   if config.app["app-settings"]["remember_mention_and_longtweet"]:
+    config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
+    config.app.write()
+   if message.image == None:
+    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
+   else:
+    call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
+  if hasattr(message.message, "destroy"): message.message.destroy()
+
+ def onFocus(self, *args, **kwargs):
+  tweet = self.get_tweet()
+  if platform.system() == "Windows" and self.session.settings["general"]["relative_times"] == True:
+   # fix this:
+   original_date = arrow.get(tweet["created_timestamp"][:-3])
+   ts = original_date.humanize(locale=languageHandler.getLanguage())
+   self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
+  if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
+   self.session.sound.play("audio.ogg")
+  if self.session.settings['sound']['indicate_img'] and utils.is_media(tweet):
+   self.session.sound.play("image.ogg")
+
+ def clear_list(self):
+  dlg = commonMessageDialogs.clear_list()
+  if dlg == widgetUtils.YES:
+   self.session.db[self.name]["items"] = []
+   self.buffer.list.clear()
 
 class listBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, list_id=None, *args, **kwargs):
@@ -857,7 +910,7 @@ class peopleBufferController(baseBufferController):
   pass
 
  def get_message(self):
-  return " ".join(self.compose_function(self.get_tweet(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"]))
+  return " ".join(self.compose_function(self.get_tweet(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session))
 
  def delete_item(self): pass
 
@@ -905,12 +958,12 @@ class peopleBufferController(baseBufferController):
 #  self.put_items_on_list(len(items))
   if self.session.settings["general"]["reverse_timelines"] == True:
    for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
     self.buffer.list.insert_item(True, *tweet)
    self.buffer.list.select_item(selected)
   else:
    for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
     self.buffer.list.insert_item(True, *tweet)
 #   self.buffer.list.select_item(selection)
 #  else:
@@ -922,7 +975,7 @@ class peopleBufferController(baseBufferController):
 #  log.debug("Putting %d items on the list..." % (number_of_items,))
   if self.buffer.list.get_count() == 0:
    for i in self.session.db[self.name]["items"]:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
     self.buffer.list.insert_item(False, *tweet)
    self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
 #   self.buffer.set_list_position()
@@ -944,7 +997,7 @@ class peopleBufferController(baseBufferController):
   return tweet
 
  def add_new_item(self, item):
-  tweet = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"])
+  tweet = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session)
   if self.session.settings["general"]["reverse_timelines"] == False:
    self.buffer.list.insert_item(False, *tweet)
   else:
@@ -1034,11 +1087,11 @@ class searchBufferController(baseBufferController):
   selection = self.buffer.list.get_selected()
   if self.session.settings["general"]["reverse_timelines"] == False:
    for i in elements:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(True, *tweet)
   else:
    for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(False, *tweet)
 #   self.buffer.list.select_item(selection+elements)
 #  else:
@@ -1093,12 +1146,12 @@ class searchPeopleBufferController(peopleBufferController):
 #  self.put_items_on_list(len(items))
   if self.session.settings["general"]["reverse_timelines"] == True:
    for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
     self.buffer.list.insert_item(True, *tweet)
    self.buffer.list.select_item(selected)
   else:
    for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"])
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
     self.buffer.list.insert_item(True, *tweet)
 #   self.buffer.list.select_item(selection)
 #  else:
