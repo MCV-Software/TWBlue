@@ -571,12 +571,13 @@ class baseBufferController(bufferController):
   dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
   if dm.message.get_response() == widgetUtils.OK:
    val = self.session.api_call(call_name="send_direct_message", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
-   if val != None:
-    if self.session.settings["general"]["reverse_timelines"] == False:
-     self.session.db["sent_direct_messages"].append(val)
-    else:
-     self.session.db["sent_direct_messages"].insert(0, val)
-    pub.sendMessage("sent-dm", data=val, user=self.session.db["user_name"])
+   # let's avoid this for now as sent dm's are quite different to new dm objects.
+#   if val != None:
+#    if self.session.settings["general"]["reverse_timelines"] == False:
+#     self.session.db["sent_direct_messages"].append(val)
+#    else:
+#     self.session.db["sent_direct_messages"].insert(0, val)
+#    pub.sendMessage("sent-dm", data=val, user=self.session.db["user_name"])
   if hasattr(dm.message, "destroy"): dm.message.destroy()
 
  @_tweets_exist
