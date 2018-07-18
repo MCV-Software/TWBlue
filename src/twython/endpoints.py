@@ -285,7 +285,7 @@ class EndpointsMixin(object):
         Docs: https://dev.twitter.com/docs/api/1.1/get/direct_messages
 
         """
-        return self.get('direct_messages', params=params)
+        return self.get('direct_messages/events/list', params=params)
     get_direct_messages.iter_mode = 'id'
 
     def get_sent_messages(self, **params):
@@ -303,7 +303,7 @@ class EndpointsMixin(object):
         Docs: https://dev.twitter.com/docs/api/1.1/get/direct_messages/show
 
         """
-        return self.get('direct_messages/show', params=params)
+        return self.get('direct_messages/events/show', params=params)
 
     def destroy_direct_message(self, **params):
         """Destroys the direct message specified in the required id parameter
