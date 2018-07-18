@@ -28,7 +28,7 @@ def StripChars(s):
 
 chars = "abcdefghijklmnopqrstuvwxyz"
 
-def compose_tweet(tweet, db, relative_times, show_screen_names=False):
+def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=None):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
  if system == "Windows":
   original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
@@ -75,7 +75,7 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False):
   if config.app['app-settings']['handle_longtweets']: pass
  return [user+", ", text, ts+", ", source]
 
-def compose_dm(tweet, db, relative_times, show_screen_names=False):
+def compose_dm(tweet, db, relative_times, show_screen_names=False, session=None):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
  if system == "Windows":
   original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
@@ -137,7 +137,7 @@ def compose_direct_message(item, db, relative_times, show_screen_names=False, se
   except IndexError: pass
  return [user+", ", text, ts+", ", source]
 
-def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
+def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, session=None):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
  if quoted_tweet.has_key("retweeted_status"):
   if quoted_tweet["retweeted_status"].has_key("full_text"):
@@ -171,7 +171,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False):
  quoted_tweet["entities"]["urls"].extend(original_tweet["entities"]["urls"])
  return quoted_tweet
 
-def compose_followers_list(tweet, db, relative_times=True, show_screen_names=False):
+def compose_followers_list(tweet, db, relative_times=True, show_screen_names=False, session=None):
  if system == "Windows":
   original_date = arrow.get(tweet["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
   if relative_times == True:
@@ -193,7 +193,7 @@ def compose_followers_list(tweet, db, relative_times=True, show_screen_names=Fal
   ts2 = _("Unavailable")
  return [_(u"%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined Twitter %s") % (tweet["name"], tweet["screen_name"], tweet["followers_count"], tweet["friends_count"],  tweet["statuses_count"], ts2, ts)]
 
-def compose_event(data, username, show_screen_names=False):
+def compose_event(data, username, show_screen_names=False, session=None):
  if show_screen_names:
   value = "screen_name"
  else:
