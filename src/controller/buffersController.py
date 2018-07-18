@@ -412,7 +412,7 @@ class baseBufferController(bufferController):
    self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
   elif self.buffer.list.get_count() > 0 and number_of_items > 0:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    items = list_to_use[len(self.session.db[self.name])-number_of_items:]
+    items = list_to_use[len(list_to_use)-number_of_items:]
     for i in items:
      tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
      self.buffer.list.insert_item(False, *tweet)
