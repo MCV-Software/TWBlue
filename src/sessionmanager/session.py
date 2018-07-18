@@ -341,10 +341,15 @@ class Session(object):
     cursor = -1
   except KeyError:
    cursor = -1
-  tl = getattr(self.twitter.twitter, function)(cursor=cursor, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+  if cursor != -1:
+   tl = getattr(self.twitter.twitter, function)(cursor=cursor, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+  else:
+   tl = getattr(self.twitter.twitter, function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
   tl[items].reverse()
   num = self.order_cursored_buffer(name, tl[items])
-  self.db[name]["cursor"] = tl["next_cursor"]
+  # Recently, Twitter's new endpoints have cursor if there are more results.
+  if tl.has_key("next_cursor"):
+   self.db[name]["cursor"] = tl["next_cursor"]
   return num
 
  def start_streaming(self):
@@ -535,7 +540,7 @@ class Session(object):
  def get_user(self, id):
   if self.db.has_key("users") == False or self.db["users"].has_key(id) == False:
    user = self.twitter.twitter.show_user(id=id)
-   self.db["users"][user["id"]] = user
+   self.db["users"][user["id_str"]] = user
    return user
   else:
    return self.db["users"][id]
