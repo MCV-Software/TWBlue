@@ -316,13 +316,9 @@ class Controller(object):
     self.buffers.append(mentions)
     self.view.insert_buffer(mentions.buffer, name=_(u"Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'dm':
-    dm = buffersController.baseBufferController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_dm", sound="dm_received.ogg", full_text=True)
+    dm = buffersController.directMessagesController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message", sound="dm_received.ogg", full_text=True, items="events")
     self.buffers.append(dm)
     self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-   elif i == 'sent_dm':
-    sent_dm = buffersController.baseBufferController(self.view.nb, "get_sent_messages", "sent_direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_dm", full_text=True)
-    self.buffers.append(sent_dm)
-    self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'sent_tweets':
     sent_tweets = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "sent_tweets", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"], tweet_mode="extended")
     self.buffers.append(sent_tweets)
