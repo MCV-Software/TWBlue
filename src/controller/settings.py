@@ -282,7 +282,6 @@ class accountSettingsController(globalSettingsController):
   all_buffers['home']=_(u"Home")
   all_buffers['mentions']=_(u"Mentions")
   all_buffers['dm']=_(u"Direct Messages")
-  all_buffers['sent_dm']=_(u"Sent direct messages")
   all_buffers['sent_tweets']=_(u"Sent tweets")
   all_buffers['favorites']=_(u"Likes")
   all_buffers['followers']=_(u"Followers")
@@ -304,26 +303,3 @@ class accountSettingsController(globalSettingsController):
   change = self.dialog.buffers.get_event(ev)
   if change == True:
    self.dialog.buffers.change_selected_item()
-
-# def manage_pocket(self, *args, **kwargs):
-#  if self.dialog.services.get_pocket_status() == _(u"Connect your Pocket account"):
-#   self.connect_pocket()
-#  else:
-#   self.disconnect_pocket()
-
-# def connect_pocket(self):
-#  dlg = self.dialog.services.show_pocket_dialog()
-#  if dlg == widgetUtils.YES:
-#   request_token = pocket.Pocket.get_request_token(consumer_key=keys.keyring.get("pocket_consumer_key"), redirect_uri="http://127.0.0.1:8080")
-#   auth_url = pocket.Pocket.get_auth_url(code=request_token, redirect_uri="http://127.0.0.1:8080")
-#   webbrowser.open_new_tab(auth_url)
-#   httpd = BaseHTTPServer.HTTPServer(('127.0.0.1', 8080), authorisationHandler.handler)
-#   while authorisationHandler.logged == False:
-#    httpd.handle_request()
-#   user_credentials = pocket.Pocket.get_credentials(consumer_key=keys.keyring.get("pocket_consumer_key"), code=request_token)
-#   self.dialog.services.set_pocket(True)
-#   self.config["services"]["pocket_access_token"] = user_credentials["access_token"]
-
- def disconnect_dropbox(self):
-  self.config["services"]["pocket_access_token"] = ""
-  self.dialog.services.set_pocket(False)
