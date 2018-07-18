@@ -84,6 +84,7 @@ class streamer(TwythonStreamer):
     pub.sendMessage("mention", data=data["target_object"], user=self.get_user())
 
  def process_dm(self, data):
+  return
   if self.session.db["user_name"] != data["direct_message"]["sender"]["screen_name"]:
 #   d = self.put_data("sent_direct_messages", data["direct_message"])
 #   if d != False:
