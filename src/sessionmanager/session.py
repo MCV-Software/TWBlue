@@ -187,7 +187,7 @@ class Session(object):
   self.twitter.verify_authorisation(self.settings, pincode)
   self.authorisation_dialog.Destroy()
 
- def get_more_items(self, update_function, users=False, name=None, *args, **kwargs):
+ def get_more_items(self, update_function, users=False, dm=False, name=None, *args, **kwargs):
   results = []
   data = getattr(self.twitter.twitter, update_function)(*args, **kwargs)
   if users == True:
@@ -196,6 +196,9 @@ class Session(object):
     for i in data["users"]: results.append(i)
    elif type(data) == list:
     results.extend(data[1:])
+  elif dm == True:
+   self.db[name]["cursor"] = data["next_cursor"]
+   for i in data["events"]: results.append(i)
   else:
    results.extend(data[1:])
   return results

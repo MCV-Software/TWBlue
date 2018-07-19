@@ -727,7 +727,27 @@ class baseBufferController(bufferController):
 class directMessagesController(baseBufferController):
 
  def get_more_items(self):
-  output.speak(_(u"This action is not supported for this buffer"), True)
+  try:
+   items = self.session.get_more_items(self.function, dm=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"], *self.args, **self.kwargs)
+  except TwythonError as e:
+   output.speak(e.message, True)
+   return
+  for i in items:
+   if self.session.settings["general"]["reverse_timelines"] == False:
+    self.session.db[self.name]["items"].insert(0, i)
+   else:
+    self.session.db[self.name]["items"].append(i)
+  selected = self.buffer.list.get_selected()
+  if self.session.settings["general"]["reverse_timelines"] == True:
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
+    self.buffer.list.insert_item(True, *tweet)
+   self.buffer.list.select_item(selected)
+  else:
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
+    self.buffer.list.insert_item(True, *tweet)
+  output.speak(_(u"%s items retrieved") % (len(items)), True)
 
  def get_tweet(self):
   tweet = self.session.db[self.name]["items"][self.buffer.list.get_selected()]
@@ -956,7 +976,6 @@ class peopleBufferController(baseBufferController):
    else:
     self.session.db[self.name]["items"].append(i)
   selected = self.buffer.list.get_selected()
-#  self.put_items_on_list(len(items))
   if self.session.settings["general"]["reverse_timelines"] == True:
    for i in items:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
@@ -966,9 +985,6 @@ class peopleBufferController(baseBufferController):
    for i in items:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
     self.buffer.list.insert_item(True, *tweet)
-#   self.buffer.list.select_item(selection)
-#  else:
-#   self.buffer.list.select_item(selection-elements)
   output.speak(_(u"%s items retrieved") % (len(items)), True)
 
  def put_items_on_list(self, number_of_items):
