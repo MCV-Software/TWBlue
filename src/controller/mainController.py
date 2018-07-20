@@ -497,7 +497,8 @@ class Controller(object):
    output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
    return
   # Let's prevent filtering of some buffers (people buffers, direct messages, events and sent items).
-  if (page.name == "direct_messages" or page.name =="sent_direct_messages" or page.name == "sent_tweets" or page.name == "events") or page.type == "people":
+  # ToDo: Remove events from here after August 16.
+  if (page.name == "direct_messages" or page.name == "sent_tweets" or page.name == "events") or page.type == "people":
    output.speak(_(u"Filters cannot be applied on this buffer"))
    return
   new_filter = filterController.filter(page)
@@ -545,10 +546,12 @@ class Controller(object):
   buff = self.get_best_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
   if dlg.get_response() == widgetUtils.OK:
    user = dlg.get_user()
@@ -560,10 +563,12 @@ class Controller(object):
   buff = self.get_best_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
   if dlg.get_response() == widgetUtils.OK:
    user = dlg.get_user()
@@ -587,10 +592,12 @@ class Controller(object):
   buff = self.get_best_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
   if dlg.get_response() == widgetUtils.OK:
    user = dlg.get_user()
@@ -671,7 +678,6 @@ class Controller(object):
    session_.sessions[item].sound.cleaner.cancel()
    log.debug("Shelving database for " +    session_.sessions[item].session_id)
    session_.sessions[item].shelve()
-
   if system == "Windows":
    self.systrayIcon.RemoveIcon()
   widgetUtils.exit_application()
@@ -680,70 +686,84 @@ class Controller(object):
   buff = self.get_current_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users)
 
  def unfollow(self, *args, **kwargs):
   buff = self.get_current_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "unfollow")
 
  def mute(self, *args, **kwargs):
   buff = self.get_current_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "mute")
 
  def unmute(self, *args, **kwargs):
   buff = self.get_current_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "unmute")
 
  def block(self, *args, **kwargs):
   buff = self.get_current_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "block")
 
  def unblock(self, *args, **kwargs):
   buff = self.get_current_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "unblock")
 
  def report(self, *args, **kwargs):
   buff = self.get_current_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "report")
 
  def post_tweet(self, event=None):
@@ -752,17 +772,14 @@ class Controller(object):
 
  def post_reply(self, *args, **kwargs):
   buffer = self.get_current_buffer()
-  if buffer.name == "sent_direct_messages" or buffer.name == "sent-tweets": return
-  elif buffer.name == "direct_messages":
+  if buffer.name == "direct_messages":
    buffer.direct_message()
   else:
    buffer.reply()
 
  def send_dm(self, *args, **kwargs):
   buffer = self.get_current_buffer()
-  if buffer.name == "sent_direct_messages" or buffer.name == "sent-tweets": return
-  else:
-   buffer.direct_message()
+  buffer.direct_message()
 
  def post_retweet(self, *args, **kwargs):
   buffer = self.get_current_buffer()
@@ -820,10 +837,12 @@ class Controller(object):
   buff = self.get_best_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
-  if buff.type != "people":
-   users = utils.get_all_users(tweet, buff.session.db)
-  else:
+  if buff.type == "people":
    users = [tweet["screen_name"]]
+  elif buff.type == "dm":
+   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+  else:
+   users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
   if dlg.get_response() == widgetUtils.OK:
    usr = utils.if_user_exists(buff.session.twitter.twitter, dlg.get_user())

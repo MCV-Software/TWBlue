@@ -694,7 +694,7 @@ class baseBufferController(bufferController):
  def user_details(self):
   tweet = self.get_right_tweet()
   if self.type == "dm":
-   users = self.session.get_user(tweet["message_create"]["sender_id"])
+   users = [self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
   elif self.type == "people":
    users = [tweet["screen_name"]]
   else:
