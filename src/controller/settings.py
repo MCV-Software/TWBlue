@@ -288,7 +288,8 @@ class accountSettingsController(globalSettingsController):
   all_buffers['friends']=_(u"Friends")
   all_buffers['blocks']=_(u"Blocked users")
   all_buffers['muted']=_(u"Muted users")
-  all_buffers['events']=_(u"Events")
+  if application.streaming_lives():
+   all_buffers['events']=_(u"Events")
   list_buffers = []
   hidden_buffers=[]
   for i in all_buffers.keys():
