@@ -22,11 +22,13 @@ def find_urls_in_text(text):
  return [s.strip(bad_chars) for s in url_re2.findall(text)]
 
 def find_urls (tweet):
- if tweet.has_key("entities") == False:
-  return []
  urls = []
  # Let's add URLS from tweet entities.
- for i in tweet["entities"]["urls"]:
+ if tweet.has_key("message_create"):
+  entities = tweet["message_create"]["message_data"]["entities"]
+ else:
+  entities = tweet["entities"]
+ for i in entities["urls"]:
   if i["expanded_url"] not in urls:
    urls.append(i["expanded_url"])
  if tweet.has_key("quoted_status"):
@@ -47,7 +49,10 @@ def find_urls (tweet):
   i = "full_text"
  else:
   i = "text"
- extracted_urls = find_urls_in_text(tweet[i])
+ if tweet.has_key("message_create"):
+  extracted_urls = find_urls_in_text(tweet["message_create"]["message_data"]["text"])
+ else:
+  extracted_urls = find_urls_in_text(tweet[i])
  # Don't include t.co links (mostly they are photos or shortened versions of already added URLS).
  for i in extracted_urls:
   if i not in urls and "https://t.co" not in i:
@@ -74,15 +79,18 @@ def find_next_reply(id, listItem):
  return None
 
 def is_audio(tweet):
- if tweet.has_key("entities") == False: return False
  try:
   if len(find_urls(tweet)) < 1:
    return False
-  if len(tweet["entities"]["hashtags"]) > 0:
-   for i in tweet["entities"]["hashtags"]:
+  if tweet.has_key("message_create"):
+   entities = tweet["message_create"]["message_data"]["entities"]
+  else:
+   entities = tweet["entities"]
+  if len(entities["hashtags"]) > 0:
+   for i in entities["hashtags"]:
     if i["text"] == "audio":
      return True
- except:
+ except IndexError:
   print tweet["entities"]["hashtags"]
   log.exception("Exception while executing is_audio hashtag algorithm")
 
@@ -91,10 +99,13 @@ def is_geocoded(tweet):
   return True
 
 def is_media(tweet):
- if tweet.has_key("entities") == False: return False
- if tweet["entities"].has_key("media") == False:
+ if tweet.has_key("message_create"):
+  entities = tweet["message_create"]["message_data"]["entities"]
+ else:
+  entities = tweet["entities"]
+ if entities.has_key("media") == False:
   return False
- for i in tweet["entities"]["media"]:
+ for i in entities["media"]:
   if i.has_key("type") and i["type"] == "photo":
    return True
  return False
