@@ -547,3 +547,16 @@ class Session(object):
    return user
   else:
    return self.db["users"][id]
+
+ def get_user_by_screen_name(self, screen_name):
+  if self.db.has_key("users") == False:
+   user = utils.if_user_exists(self.twitter.twitter, screen_name)
+   self.db["users"][user["id_str"]] = user
+   return user["id_str"]
+  else:
+   for i in self.db["users"].keys():
+    if self.db["users"][i]["screen_name"] == screen_name:
+     return self.db["users"][i]["id_str"]
+   user = utils.if_user_exists(self.twitter.twitter, screen_name)
+   self.db["users"][user["id_str"]] = user
+   return user["id_str"]

@@ -1313,10 +1313,10 @@ class Controller(object):
   buffer.add_new_item(data)
 
  def manage_sent_dm(self, data, user):
-  buffer = self.search_buffer("sent_direct_messages", user)
+  buffer = self.search_buffer("direct_messages", user)
   if buffer == None: return
   play_sound = "dm_sent.ogg"
-  if "sent_direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+  if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
 

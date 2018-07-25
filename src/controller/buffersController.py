@@ -570,14 +570,28 @@ class baseBufferController(bufferController):
    users = utils.get_all_users(tweet, self.session.db)
   dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
   if dm.message.get_response() == widgetUtils.OK:
-   val = self.session.api_call(call_name="send_direct_message", text=dm.message.get_text(), screen_name=dm.message.get("cb"))
-   # let's avoid this for now as sent dm's are quite different to new dm objects.
-#   if val != None:
-#    if self.session.settings["general"]["reverse_timelines"] == False:
-#     self.session.db["sent_direct_messages"].append(val)
-#    else:
-#     self.session.db["sent_direct_messages"].insert(0, val)
-#    pub.sendMessage("sent-dm", data=val, user=self.session.db["user_name"])
+   screen_name = dm.message.get("cb")
+   user = self.session.get_user_by_screen_name(screen_name)
+   event_data = {
+    'event': {
+        'type': 'message_create',
+        'message_create': {
+            'target': {
+                'recipient_id': user,
+            },
+            'message_data': {
+                'text': dm.message.get_text(),
+            }
+        }
+    }
+}
+   val = self.session.api_call(call_name="send_direct_message", **event_data)
+   if val != None:
+    if self.session.settings["general"]["reverse_timelines"] == False:
+     self.session.db["direct_messages"]["items"].append(val["event"])
+    else:
+     self.session.db["direct_messages"]["items"].insert(0, val["event"])
+    pub.sendMessage("sent-dm", data=val["event"], user=self.session.db["user_name"])
   if hasattr(dm.message, "destroy"): dm.message.destroy()
 
  @_tweets_exist
