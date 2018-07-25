@@ -320,7 +320,7 @@ class EndpointsMixin(object):
         Docs: https://dev.twitter.com/docs/api/1.1/post/direct_messages/new
 
         """
-        return self.post('direct_messages/new', params=params)
+        return self.post('direct_messages/events/new', params=params, encode_json=True)
 
     # Friends & Followers
     def get_user_ids_of_blocked_retweets(self, **params):

@@ -134,13 +134,13 @@ class Twython(EndpointsMixin, object):
     def __repr__(self):
         return '<Twython: %s>' % (self.app_key)
 
-    def _request(self, url, method='GET', params=None, api_call=None):
+    def _request(self, url, method='GET', params=None, api_call=None, encode_json=False):
         """Internal request method"""
         method = method.lower()
         params = params or {}
 
         func = getattr(self.client, method)
-        if type(params) is dict:
+        if type(params) is dict and encode_json == False:
             params, files = _transparent_params(params)
         else:
             params = params
@@ -155,9 +155,15 @@ class Twython(EndpointsMixin, object):
         if method == 'get':
             requests_args['params'] = params
         else:
-            requests_args.update({
-                'data': params,
+
+            if encode_json == False:
+                requests_args.update({
                 'files': files,
+                'data': params,
+            })
+            else:
+                requests_args.update({
+                'json': params,
             })
         try:
             response = func(url, **requests_args)
@@ -229,7 +235,7 @@ class Twython(EndpointsMixin, object):
 
         return error_message
 
-    def request(self, endpoint, method='GET', params=None, version='1.1'):
+    def request(self, endpoint, method='GET', params=None, version='1.1', encode_json=False):
         """Return dict of response received from Twitter's API
 
         :param endpoint: (required) Full url or Twitter API endpoint
@@ -260,7 +266,7 @@ class Twython(EndpointsMixin, object):
             url = '%s/%s.json' % (self.api_url % version, endpoint)
 
         content = self._request(url, method=method, params=params,
-                                api_call=url)
+                                api_call=url, encode_json=encode_json)
 
         return content
 
@@ -268,9 +274,9 @@ class Twython(EndpointsMixin, object):
         """Shortcut for GET requests via :class:`request`"""
         return self.request(endpoint, params=params, version=version)
 
-    def post(self, endpoint, params=None, version='1.1'):
+    def post(self, endpoint, params=None, version='1.1', encode_json=False):
         """Shortcut for POST requests via :class:`request`"""
-        return self.request(endpoint, 'POST', params=params, version=version)
+        return self.request(endpoint, 'POST', params=params, version=version, encode_json=encode_json)
 
     def get_lastfunction_header(self, header, default_return_value=None):
         """Returns a specific header from the last API call
