@@ -320,7 +320,7 @@ class Controller(object):
     self.buffers.append(dm)
     self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'sent_tweets':
-    sent_tweets = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "sent_tweets", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"], tweet_mode="extended")
+    sent_tweets = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "sent_tweets", session, session.db["user_name"], screen_name=session.db["user_name"], tweet_mode="extended")
     self.buffers.append(sent_tweets)
     self.view.insert_buffer(sent_tweets.buffer, name=_(u"Sent tweets"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'favorites':
