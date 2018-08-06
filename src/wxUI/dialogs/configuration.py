@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-import baseDialog
-import wx
 import logging as original_logger
+import wx
 import application
-from multiplatform_widgets import widgets
 import output
 import config
+import baseDialog
+from multiplatform_widgets import widgets
 
 class general(wx.Panel, baseDialog.BaseWXDialog):
  def __init__(self, parent, languages,keymaps):
@@ -24,6 +24,13 @@ class general(wx.Panel, baseDialog.BaseWXDialog):
   sizer.Add(self.ask_at_exit, 0, wx.ALL, 5)
   self.no_streaming = wx.CheckBox(self, -1, _(U"Disable Streaming functions"))
   sizer.Add(self.no_streaming, 0, wx.ALL, 5)
+  updatePeriodBox = wx.BoxSizer(wx.HORIZONTAL)
+  updatePeriodBox.Add(wx.StaticText(self, -1, _(u"Buffer update interval, in minutes")), 0, wx.ALL, 5)
+  self.update_period = wx.SpinCtrl(self, wx.NewId())
+  self.update_period.SetRange(1, 30)
+  self.update_period.SetSize(self.update_period.GetBestSize())
+  updatePeriodBox.Add(self.update_period, 0, wx.ALL, 5)
+  sizer.Add(updatePeriodBox, 0, wx.ALL, 5)
   self.play_ready_sound = wx.CheckBox(self, -1, _(U"Play a sound when {0} launches").format(application.name,))
   sizer.Add(self.play_ready_sound, 0, wx.ALL, 5)
   self.speak_ready_msg = wx.CheckBox(self, -1, _(U"Speak a message when {0} launches").format(application.name,))

@@ -68,6 +68,7 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "use_invisible_shorcuts", config.app["app-settings"]["use_invisible_keyboard_shorcuts"])
   self.dialog.set_value("general", "disable_sapi5", config.app["app-settings"]["voice_enabled"])
   self.dialog.set_value("general", "hide_gui", config.app["app-settings"]["hide_gui"])  
+  self.dialog.set_value("general", "update_period", config.app["app-settings"]["update_period"])
   self.dialog.set_value("general", "check_for_updates", config.app["app-settings"]["check_for_updates"])
   self.dialog.set_value("general", "remember_mention_and_longtweet", config.app["app-settings"]["remember_mention_and_longtweet"])
   proxyTypes=config.proxyTypes
@@ -102,6 +103,9 @@ class globalSettingsController(object):
    pub.sendMessage("invisible-shorcuts-changed", registered=self.dialog.get_value("general", "use_invisible_shorcuts"))
   if config.app["app-settings"]["no_streaming"] != self.dialog.get_value("general", "no_streaming"):
    config.app["app-settings"]["no_streaming"] = self.dialog.get_value("general", "no_streaming")
+   self.needs_restart = True
+  if config.app["app-settings"]["update_period"] != self.dialog.get_value("general", "update_period"):
+   config.app["app-settings"]["update_period"] = self.dialog.get_value("general", "update_period")
    self.needs_restart = True
   config.app["app-settings"]["voice_enabled"] = self.dialog.get_value("general", "disable_sapi5")
   config.app["app-settings"]["hide_gui"] = self.dialog.get_value("general", "hide_gui")

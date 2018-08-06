@@ -265,7 +265,8 @@ class Controller(object):
   self.checker_function.start()
   self.save_db = RepeatingTimer(300, self.save_data_in_db)
   self.save_db.start()
-  self.update_buffers_function = RepeatingTimer(60, self.update_buffers)
+  log.debug("Setting updates to buffers every %d seconds..." % (60*config.app["app-settings"]["update_period"],))
+  self.update_buffers_function = RepeatingTimer(60*config.app["app-settings"]["update_period"], self.update_buffers)
   self.update_buffers_function.start()
 
  def start(self):

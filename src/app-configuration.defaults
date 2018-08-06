@@ -5,6 +5,7 @@ ignored_sessions = list(default=list())
 
 [app-settings]
 language = string(default="system")
+update_period = integer(default=2)
 hide_gui = boolean(default=False)
 voice_enabled = boolean(default=False)
 ask_at_exit = boolean(default=True)
