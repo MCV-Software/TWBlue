@@ -585,14 +585,14 @@ class baseBufferController(bufferController):
         }
     }
 }
-   val = self.session.api_call(call_name="send_direct_message", **event_data)
-   if val != None:
-    if self.session.settings["general"]["reverse_timelines"] == False:
-     self.session.db["direct_messages"]["items"].append(val["event"])
-    else:
-     self.session.db["direct_messages"]["items"].insert(0, val["event"])
-    pub.sendMessage("sent-dm", data=val["event"], user=self.session.db["user_name"])
-  if hasattr(dm.message, "destroy"): dm.message.destroy()
+   val = self.session.api_call(call_name="send_direct_message", _sound="dm_sent.ogg", **event_data)
+#   if val != None:
+#    if self.session.settings["general"]["reverse_timelines"] == False:
+#     self.session.db["direct_messages"]["items"].append(val["event"])
+#    else:
+#     self.session.db["direct_messages"]["items"].insert(0, val["event"])
+#    pub.sendMessage("sent-dm", data=val["event"], user=self.session.db["user_name"])
+#  if hasattr(dm.message, "destroy"): dm.message.destroy()
 
  @_tweets_exist
  def retweet(self, *args, **kwargs):
