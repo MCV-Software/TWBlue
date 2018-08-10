@@ -1,7 +1,7 @@
 ﻿TWBlue -
 ======
 
-TW Blue is an app designed to use Twitter simply and efficiently while using minimal system resources.
+TW Blue is an app designed to use Twitter simply and efficiently while using minimal system resources.  
 With this app you’ll have access to twitter features such as:
 
 * Create, reply to, like, retweet and delete tweets,
@@ -35,46 +35,33 @@ If you want to build both x86 and x64 binaries, you can install python x86 to C:
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
 x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
 
-The windows installers are available only in the windows-dependencies folder
+The windows installers are available only in the windows-dependencies folder.
 
 To build a binary version:
 
 * [Py2exe](http://www.sourceforge.net/projects/py2exe/) for Python 2.7, version 0.6.9
 
-#### Dependencies that must be installed using easy_install
+#### Dependencies that must be installed using pip
 
-setuptools installs a script, called easy_install. You can find it in the python scripts directory. To install packages using easy_install, you have to navigate to the scripts directory using a command prompt, for example:
+Python installs a tool called Pip that allows to install packages in a simple way. You can find it in the python scripts directory. To install packages using Pip, you have to navigate to the scripts directory using a command prompt, for example:
 
     cd C:\python27x64\scripts
 
-	You can also add the scripts folder to your path environment variable.
+	You can also add the scripts folder to your path environment variable or choose the corresponding option when installing Python.  
 	Note: pip and setuptools are included in the Python installer since version 2.7.9.
 
-	After that, run the following command to install a package, replacing packagename with the names listed below:
+Pip is able to install packages listed in a special text file, called the requirements file. To install all remaining dependencies, perform the following command:
 
-    easy_install -Z package
+    pip install -r requirements.txt
 
-	The -z switch unzips the package, instead of installing it compressed. If you add the --upgrade switch, you can upgrade a package to its latest version. The following packages need to be installed:
+Note that if you perform the command from the path where Pip is located, you need to specify the path to your Tw Blue root folder where the requirements file is located, for example:
 
-* wxpython
-* pypubsub==3.3.0
-* configobj
-* requests-oauthlib
-* requests-toolbelt
-* future
-* pygeocoder
-* arrow
-* markdown
-* winpaths
-* PySocks
-* win_inet_pton
-* yandex.translate
-* youtube-dl
-* python-vlc
+    pip install -r D:\repos\TwBlue\requirements.txt
 
-easy_install will automatically get the additional libraries that these packages need to work properly.
-Run the following command to quickly install and upgrade all packages and their dependencies:  
-easy_install -Z --upgrade wxpython six configobj markdown future requests oauthlib requests-oauthlib requests-toolbelt pypubsub==3.3.0 pygeocoder arrow python-dateutil futures winpaths PySocks win_inet_pton yandex.translate idna chardet urllib3 youtube-dl python-vlc
+Pip will automatically get the additional libraries that the listed packages need to work properly.  
+If you need to update your dependencies, perform the following command:
+
+    pip install --upgrade -r requirements.txt
 
 #### Other dependencies
 
@@ -84,6 +71,7 @@ These dependencies are located in the windows-dependencies directory. You don't 
 This dependency has been built using pure basic 4.61. Its source can be found at http://hg.q-continuum.net/updater
 * [oggenc2.exe,](http://www.rarewares.org/ogg-oggenc.php) version 2.87  
 * Microsoft Visual c++ 2008 redistributable dlls.
+* VLC plugins and DLL libraries.
 
 #### Dependencies required to build the installer
 
@@ -103,19 +91,21 @@ In order to add the support for spell checking in more languages than english yo
 
 ### Running TW Blue from source
 
-Now that you have installed all these packages, you can run TW Blue from source using a command prompt. Navigate to the repo's src directory, and type the following command:
+Now that you have installed all these packages, you can run TW Blue from source using a command prompt. Navigate to the repo's `src` directory, and type the following command:
 
     python main.py
 
-	If necessary, change the first part of the command to reflect the location of your python executable. You can run TW Blue using python x86 and x64
+	If necessary, change the first part of the command to reflect the location of your python executable. You can run TW Blue using python x86 and x64.
 
 ### Generating the documentation
 
 To generate the documentation in html format, navigate to the doc folder inside this repo. After that, run these commands:  
-python document_importer.py  
-python generator.py  
-The documentation will be generated, placing each language in a separate folder in the doc directory. Move these folders (for example de, en, es, fr, it, ...) to src/documentation, creating the directory if necesary.
-Also, copy the license.txt located in the root of the repo to the documentation folder.
+
+    python document_importer.py  
+    python generator.py  
+
+The documentation will be generated, placing each language in a separate folder in the doc directory. Move these folders (for example `de`, `en`, `es`, `fr`, `it`, ...) to `src/documentation`, creating the directory if necessary.  
+Also, copy the `license.txt` file located in the root of the repo to the documentation folder.
 
 ### Building a binary version
 
