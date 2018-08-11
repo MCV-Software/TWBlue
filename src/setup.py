@@ -37,9 +37,10 @@ def get_architecture_files():
 ("plugins", glob("../windows-dependencies/x86/plugins/*/*.dll")),]
 	elif platform.architecture()[0][:2] == "64":
 		return [
-  ("", ["../windows-dependencies/x64/oggenc2.exe", "../windows-dependencies/x64/bootstrap.exe"]),
+  ("", ["../windows-dependencies/x64/oggenc2.exe", "../windows-dependencies/x64/bootstrap.exe", "../windows-dependencies/x64/libvlc.dll", "../windows-dependencies/x64/libvlccore.dll"]),
   ("Microsoft.VC90.CRT", glob("../windows-dependencies/x64/Microsoft.VC90.CRT/*")),
   ("Microsoft.VC90.MFC", glob("../windows-dependencies/x64/Microsoft.VC90.MFC/*")),]
+("plugins", glob("../windows-dependencies/x64/plugins/*/*.dll")),]
 
 def get_data():
 	import sound_lib
