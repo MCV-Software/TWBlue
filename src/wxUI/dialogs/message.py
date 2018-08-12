@@ -98,7 +98,7 @@ class tweet(textLimited):
   self.ok_cancelSizer.Add(self.okButton, 0, wx.ALL, 10)
   self.ok_cancelSizer.Add(cancelButton, 0, wx.ALL, 10)
   self.mainBox.Add(self.ok_cancelSizer)
-  selectId = wx.NewId()
+  selectId = wx.ID_ANY
   self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
   self.accel_tbl = wx.AcceleratorTable([
 (wx.ACCEL_CTRL, ord('A'), selectId),
@@ -157,7 +157,7 @@ class retweet(tweet):
   self.ok_cancelSizer.Add(self.okButton, 0, wx.ALL, 10)
   self.ok_cancelSizer.Add(cancelButton, 0, wx.ALL, 10)
   self.mainBox.Add(self.ok_cancelSizer)
-  selectId = wx.NewId()
+  selectId = wx.ID_ANY
   self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
   self.accel_tbl = wx.AcceleratorTable([
 (wx.ACCEL_CTRL, ord('A'), selectId),
@@ -279,7 +279,7 @@ class reply(textLimited):
   self.ok_cancelSizer.Add(self.okButton, 0, wx.ALL, 10)
   self.ok_cancelSizer.Add(cancelButton, 0, wx.ALL, 10)
   self.mainBox.Add(self.ok_cancelSizer, 0, wx.ALL, 10)
-  selectId = wx.NewId()
+  selectId = wx.ID_ANY
   self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
   self.accel_tbl = wx.AcceleratorTable([
 (wx.ACCEL_CTRL, ord('A'), selectId),
@@ -356,7 +356,7 @@ class viewTweet(widgetUtils.BaseDialog):
   buttonsBox.Add(self.translateButton, 0, wx.ALL, 5)
   buttonsBox.Add(cancelButton, 0, wx.ALL, 5)
   mainBox.Add(buttonsBox, 0, wx.ALL, 5)
-  selectId = wx.NewId()
+  selectId = wx.ID_ANY
   self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
   self.accel_tbl = wx.AcceleratorTable([
 (wx.ACCEL_CTRL, ord('A'), selectId),
@@ -418,7 +418,7 @@ class viewNonTweet(widgetUtils.BaseDialog):
   buttonsBox.Add(self.translateButton, 0, wx.ALL, 5)
   buttonsBox.Add(cancelButton, 0, wx.ALL, 5)
   mainBox.Add(buttonsBox, 0, wx.ALL, 5)
-  selectId = wx.NewId()
+  selectId = wx.ID_ANY
   self.Bind(wx.EVT_MENU, self.onSelect, id=selectId)
   self.accel_tbl = wx.AcceleratorTable([
 (wx.ACCEL_CTRL, ord('A'), selectId),

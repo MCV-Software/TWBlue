@@ -15,7 +15,7 @@ class listViewer(widgetUtils.BaseDialog):
   sizer = wx.BoxSizer(wx.VERTICAL)
   sizer.Add(label)
   sizer.Add(self.lista.list)
-  self.createBtn = wx.Button(panel, wx.NewId(), _(u"Create a new list"))
+  self.createBtn = wx.Button(panel, wx.ID_ANY, _(u"Create a new list"))
   self.editBtn = wx.Button(panel, -1, _(u"Edit"))
   self.deleteBtn = wx.Button(panel, -1, _(u"Remove"))
   self.view = wx.Button(panel, -1, _(u"Open in buffer"))

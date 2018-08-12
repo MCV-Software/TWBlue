@@ -4,7 +4,7 @@ import baseDialog
 
 class showUserProfile(baseDialog.BaseWXDialog):
  def __init__(self):
-  super(showUserProfile, self).__init__(parent=None, id=wx.NewId())
+  super(showUserProfile, self).__init__(parent=None, id=wx.ID_ANY)
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
   static = wx.StaticText(panel, -1, _(u"Details"))

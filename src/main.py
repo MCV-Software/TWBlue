@@ -19,14 +19,12 @@ if os.path.exists(paths.app_path(u"Uninstall.exe")):
  paths.mode="installed"
 import commandline
 import config
-import sound
 import output
 import logging
 import application
 import keys
 from mysc.thread_utils import call_threaded
 import fixes
-#extra variables to control the temporary stdout and stderr, while the final files are opened. We understand that some errors could happen while all outputs are closed, so let's try to avoid it.
 import widgetUtils
 import webbrowser
 from wxUI import commonMessageDialogs
@@ -47,14 +45,18 @@ if system == "Windows":
    arch="x86"
    if platform.architecture()[0][:2] == "64":
     arch="x64"
-   os.environ['PYTHON_VLC_MODULE_PATH']=paths.app_path("..", "windows-dependencies", arch, "plugins")
-   os.environ['PYTHON_VLC_LIB_PATH']=paths.app_path("..", "windows-dependencies", arch, "libvlc.dll")
+   os.environ['PYTHON_VLC_MODULE_PATH']=os.path.abspath(paths.app_path("..", "windows-dependencies", arch))
+   os.environ['PYTHON_VLC_LIB_PATH']=os.path.abspath(paths.app_path("..", "windows-dependencies", arch, "libvlc.dll"))
+   # I don't know why libvlccore.dll needs to be loaded first, but it works when doing it
+   from ctypes import CDLL
+   CDLL(os.path.abspath(paths.app_path("..", "windows-dependencies", arch, "libvlccore.dll")))
  #the final log files have been opened succesfully, let's close the temporary files
  stdout_temp.close()
  stderr_temp.close()
- #finally, remove the temporal files. TW Blue doesn't need them anymore, and we will get more free space on the harddrive
+ #finally, remove the temporary files. TW Blue doesn't need them anymore, and we will get more free space on the harddrive
  os.remove(stdout_temp.name)
  os.remove(stderr_temp.name)
+import sound
 if system == "Linux":
  from gi.repository import Gdk, GObject, GLib
 

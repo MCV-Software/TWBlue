@@ -21,7 +21,7 @@ import baseDialog
 
 class selectUserDialog(baseDialog.BaseWXDialog):
  def __init__(self, title, users):
-  super(selectUserDialog, self).__init__(parent=None, id=wx.NewId(), title=title)
+  super(selectUserDialog, self).__init__(parent=None, id=wx.ID_ANY, title=title)
   panel = wx.Panel(self)
   userSizer = wx.BoxSizer()
   self.cb = wx.ComboBox(panel, -1, choices=users, value=users[0], size=wx.DefaultSize)
