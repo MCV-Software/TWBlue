@@ -286,6 +286,7 @@ class accountSettingsController(globalSettingsController):
   all_buffers['home']=_(u"Home")
   all_buffers['mentions']=_(u"Mentions")
   all_buffers['dm']=_(u"Direct Messages")
+  all_buffers['sent_dm']=_(u"Sent direct messages")
   all_buffers['sent_tweets']=_(u"Sent tweets")
   all_buffers['favorites']=_(u"Likes")
   all_buffers['followers']=_(u"Followers")
