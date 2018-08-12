@@ -47,9 +47,6 @@ if system == "Windows":
     arch="x64"
    os.environ['PYTHON_VLC_MODULE_PATH']=os.path.abspath(paths.app_path("..", "windows-dependencies", arch))
    os.environ['PYTHON_VLC_LIB_PATH']=os.path.abspath(paths.app_path("..", "windows-dependencies", arch, "libvlc.dll"))
-   # I don't know why libvlccore.dll needs to be loaded first, but it works when doing it
-   from ctypes import CDLL
-   CDLL(os.path.abspath(paths.app_path("..", "windows-dependencies", arch, "libvlccore.dll")))
  #the final log files have been opened succesfully, let's close the temporary files
  stdout_temp.close()
  stderr_temp.close()

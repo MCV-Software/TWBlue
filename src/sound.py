@@ -11,8 +11,13 @@ import subprocess
 import platform
 import output
 import youtube_utils
-import vlc
 system = platform.system()
+if system=="Windows" and not hasattr(sys, 'frozen'): # We are running from source on Windows
+ current_dir=os.getcwd()
+ os.chdir(os.environ['PYTHON_VLC_MODULE_PATH'])
+import vlc
+if system=="Windows" and not hasattr(sys, 'frozen'): # Restore the original folder
+ os.chdir(current_dir)
 from mysc.repeating_timer import RepeatingTimer
 from mysc.thread_utils import call_threaded
 import application
