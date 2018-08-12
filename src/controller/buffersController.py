@@ -585,14 +585,14 @@ class baseBufferController(bufferController):
         }
     }
 }
-   val = self.session.api_call(call_name="send_direct_message", _sound="dm_sent.ogg", **event_data)
-#   if val != None:
-#    if self.session.settings["general"]["reverse_timelines"] == False:
-#     self.session.db["direct_messages"]["items"].append(val["event"])
-#    else:
-#     self.session.db["direct_messages"]["items"].insert(0, val["event"])
-#    pub.sendMessage("sent-dm", data=val["event"], user=self.session.db["user_name"])
-#  if hasattr(dm.message, "destroy"): dm.message.destroy()
+   val = self.session.api_call(call_name="send_direct_message", **event_data)
+   if val != None:
+    if self.session.settings["general"]["reverse_timelines"] == False:
+     self.session.db["sent_direct_messages"]["items"].append(val["event"])
+    else:
+     self.session.db["sent_direct_messages"]["items"].insert(0, val["event"])
+    pub.sendMessage("sent-dm", data=val["event"], user=self.session.db["user_name"])
+  if hasattr(dm.message, "destroy"): dm.message.destroy()
 
  @_tweets_exist
  def retweet(self, *args, **kwargs):
@@ -801,6 +801,19 @@ class directMessagesController(baseBufferController):
   if dlg == widgetUtils.YES:
    self.session.db[self.name]["items"] = []
    self.buffer.list.clear()
+
+class sentDirectMessagesController(directMessagesController):
+
+ def __init__(self, *args, **kwargs):
+  super(sentDirectMessagesController, self).__init__(*args, **kwargs)
+  if self.session.db.has_key("sent_direct_messages") == False:
+   self.session.db["sent_direct_messages"] = {"items": []}
+
+ def get_more_items(self):
+  output.speak(_(u"Getting more items cannot be done in this buffer. Use the direct messages buffer instead."))
+
+ def start_stream(self):
+  pass
 
 class listBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, list_id=None, *args, **kwargs):
