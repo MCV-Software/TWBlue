@@ -320,6 +320,10 @@ class Controller(object):
     dm = buffersController.directMessagesController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message", sound="dm_received.ogg", full_text=True, items="events")
     self.buffers.append(dm)
     self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+   elif i == 'sent_dm':
+    sent_dm = buffersController.sentDirectMessagesController(self.view.nb, "", "sent_direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message")
+    self.buffers.append(sent_dm)
+    self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'sent_tweets':
     sent_tweets = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "sent_tweets", session, session.db["user_name"], screen_name=session.db["user_name"], tweet_mode="extended")
     self.buffers.append(sent_tweets)
@@ -1314,10 +1318,10 @@ class Controller(object):
   buffer.add_new_item(data)
 
  def manage_sent_dm(self, data, user):
-  buffer = self.search_buffer("direct_messages", user)
+  buffer = self.search_buffer("sent_direct_messages", user)
   if buffer == None: return
   play_sound = "dm_sent.ogg"
-  if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+  if "sent_direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
 
