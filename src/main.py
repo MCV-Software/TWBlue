@@ -45,8 +45,8 @@ if system == "Windows":
    arch="x86"
    if platform.architecture()[0][:2] == "64":
     arch="x64"
-   os.environ['PYTHON_VLC_MODULE_PATH']=os.path.abspath(paths.app_path("..", "windows-dependencies", arch))
-   os.environ['PYTHON_VLC_LIB_PATH']=os.path.abspath(paths.app_path("..", "windows-dependencies", arch, "libvlc.dll"))
+   os.environ['PYTHON_VLC_MODULE_PATH']=str(os.path.abspath(paths.app_path("..", "windows-dependencies", arch)))
+   os.environ['PYTHON_VLC_LIB_PATH']=str(os.path.abspath(paths.app_path("..", "windows-dependencies", arch, "libvlc.dll")))
  #the final log files have been opened succesfully, let's close the temporary files
  stdout_temp.close()
  stderr_temp.close()
