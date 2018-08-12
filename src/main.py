@@ -42,7 +42,14 @@ if system == "Windows":
  else:
   sys.stdout=stdout
   sys.stderr=stderr
- #the final log files have been opened succesfully, let's close the temporal files
+  # We are running from source, let's prepare vlc module for that situation
+  if system=="Windows":
+   arch="x86"
+   if platform.architecture()[0][:2] == "64":
+    arch="x64"
+   os.environ['PYTHON_VLC_MODULE_PATH']=paths.app_path("..", "windows-dependencies", arch, "plugins")
+   os.environ['PYTHON_VLC_LIB_PATH']=paths.app_path("..", "windows-dependencies", arch, "libvlc.dll")
+ #the final log files have been opened succesfully, let's close the temporary files
  stdout_temp.close()
  stderr_temp.close()
  #finally, remove the temporal files. TW Blue doesn't need them anymore, and we will get more free space on the harddrive
