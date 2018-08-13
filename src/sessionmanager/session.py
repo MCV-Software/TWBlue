@@ -94,7 +94,8 @@ class Session(object):
   name str: The name for the buffer stored in the dictionary.
   data list: A list with items and some information about cursors.
   returns the number of items that have been added in this execution"""
-
+  if name == "direct_messages":
+   return self.order_direct_messages(data)
   num = 0
   if self.db.has_key(name) == False:
    self.db[name] = {}
@@ -106,6 +107,26 @@ class Session(object):
     else: self.db[name]["items"].insert(0, i)
     num = num+1
   return num
+
+ def order_direct_messages(self, data):
+  incoming = 0
+  sent = 0
+  if self.db.has_key("direct_messages") == False:
+   self.db["direct_messages"] = {}
+   self.db["direct_messages"]["items"] = []
+  for i in data:
+   if i["message_create"]["sender_id"] == self.db["user_id"]:
+    if utils.find_item(i["id"], self.db["sent_direct_messages"]["items"]) == None:
+     if self.settings["general"]["reverse_timelines"] == False: self.db["sent_direct_messages"]["items"].append(i)
+     else: self.db["sent_direct_messages"]["items"].insert(0, i)
+     sent = sent+1
+   else:
+    if utils.find_item(i["id"], self.db["direct_messages"]["items"]) == None:
+     if self.settings["general"]["reverse_timelines"] == False: self.db["direct_messages"]["items"].append(i)
+     else: self.db["direct_messages"]["items"].insert(0, i)
+     incoming = incoming+1
+  pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
+  return incoming
 
  def __init__(self, session_id):
 

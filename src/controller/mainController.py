@@ -140,6 +140,8 @@ class Controller(object):
   pub.subscribe(self.create_new_buffer, "create-new-buffer")
   pub.subscribe(self.execute_action, "execute-action")
   pub.subscribe(self.search_topic, "search")
+  pub.subscribe(self.update_sent_dms, "sent-dms-updated")
+  pub.subscribe(self.more_dms, "more-sent-dms")
   if system == "Windows":
    pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -1684,6 +1686,16 @@ class Controller(object):
    output.speak(_(u"Unable to extract text"))
    return
   msg = messages.viewTweet(text["ParsedText"], [], False)
+
+ def update_sent_dms(self, total, account):
+  sent_dms = self.search_buffer("sent_direct_messages", account)
+  if sent_dms != None:
+   sent_dms.put_items_on_list(total)
+
+ def more_dms(self, data, account):
+  sent_dms = self.search_buffer("sent_direct_messages", account)
+  if sent_dms != None:
+   sent_dms.put_more_items(data)
 
  def save_data_in_db(self):
   for i in session_.sessions:

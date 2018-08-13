@@ -398,7 +398,7 @@ class baseBufferController(bufferController):
 
  def put_items_on_list(self, number_of_items):
   # Define the list we're going to use as cursored stuff are a bit different.
-  if self.name != "direct_messages":
+  if self.name != "direct_messages" and self.name != "sent_direct_messages":
    list_to_use = self.session.db[self.name]
   else:
    list_to_use = self.session.db[self.name]["items"]
@@ -746,19 +746,32 @@ class directMessagesController(baseBufferController):
   except TwythonError as e:
    output.speak(e.message, True)
    return
+  sent = []
   for i in items:
-   if self.session.settings["general"]["reverse_timelines"] == False:
-    self.session.db[self.name]["items"].insert(0, i)
+   if i["message_create"]["sender_id"] == self.session.db["user_id"]:
+    if self.session.settings["general"]["reverse_timelines"] == False:
+     self.session.db["sent_direct_messages"]["items"].insert(0, i)
+    else:
+     self.session.db["sent_direct_messages"]["items"].append(i)
+    sent.append(i)
    else:
-    self.session.db[self.name]["items"].append(i)
+    if self.session.settings["general"]["reverse_timelines"] == False:
+     self.session.db[self.name]["items"].insert(0, i)
+    else:
+     self.session.db[self.name]["items"].append(i)
+  pub.sendMessage("more-sent-dms", data=sent, account=self.session.db["user_name"])
   selected = self.buffer.list.get_selected()
   if self.session.settings["general"]["reverse_timelines"] == True:
    for i in items:
+    if i["message_create"]["sender_id"] == self.session.db["user_id"]:
+     continue
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(True, *tweet)
    self.buffer.list.select_item(selected)
   else:
    for i in items:
+    if i["message_create"]["sender_id"] == self.session.db["user_id"]:
+     continue
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(True, *tweet)
   output.speak(_(u"%s items retrieved") % (len(items)), True)
@@ -812,8 +825,18 @@ class sentDirectMessagesController(directMessagesController):
  def get_more_items(self):
   output.speak(_(u"Getting more items cannot be done in this buffer. Use the direct messages buffer instead."))
 
- def start_stream(self):
+ def start_stream(self, *args, **kwargs):
   pass
+
+ def put_more_items(self, items):
+  if self.session.settings["general"]["reverse_timelines"] == True:
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
+    self.buffer.list.insert_item(True, *tweet)
+  else:
+   for i in items:
+    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
+    self.buffer.list.insert_item(True, *tweet)
 
 class listBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, list_id=None, *args, **kwargs):
