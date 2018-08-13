@@ -5,9 +5,7 @@
 * Added an option in the global settings dialog to disable the Streaming features of TWBlue. TWBlue will remove all Streaming features after August 16, so this option will give people an idea about how it will be. ([#219](https://github.com/manuelcortez/TWBlue/issues/219))
 * Due to Twitter API changes, Switched authorisation method to Pin-code based authorisation. When you add new accounts to TWBlue, you will be required to paste a code displayed in the Twitter website in order to grant access to TWBlue. ([#216](https://github.com/manuelcortez/TWBlue/issues/216))
 * In order to comply with latest Twitter changes, TWBlue has switched to the new method used to send and receive direct messages, according to issue [#215.](https://github.com/manuelcortez/twblue/issues/215)
-    * The sent direct messages buffer has been removed. All direct messages will be placed in one buffer only. 
     * The new method does not allow direct messages to be processed in real time. Direct messages will be updated periodically.
-    * When sending a direct message, you will hear a sound if the message has been sent properly, but the direct message will not be added to the buffer inmediately.
 * After august 16 or when streaming is disabled, the events buffer will no longer be created in TWBlue.
 * You can configure frequency for buffer updates in TWBlue. By default, TWBlue will update all buffers every 2 minutes, but you can change this setting in the global settings dialog. ([#223](https://github.com/manuelcortez/TWBlue/issues/223))
 * Added a new tab called feedback, in the account settings dialog. This tab allows you to control wether automatic speech or Braille feedbak in certain events (mentions and direct messages received) is enabled. Take into account that this option will take preference over automatic reading of buffers and any kind of automatic output. ([#203](https://github.com/manuelcortez/TWBlue/issues/203))
