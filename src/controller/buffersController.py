@@ -696,13 +696,14 @@ class baseBufferController(bufferController):
    try:
     if self.name == "direct_messages" or self.name == "sent_direct_messages":
      self.session.twitter.twitter.destroy_direct_message(id=self.get_right_tweet()["id"])
+     self.session.db[self.name]["items"].pop(index)
     else:
      self.session.twitter.twitter.destroy_status(id=self.get_right_tweet()["id"])
-    self.session.db[self.name].pop(index)
+     self.session.db[self.name].pop(index)
     self.buffer.list.remove_item(index)
 #    if index > 0:
    except TwythonError:
-    self.session.sound.play("error")
+    self.session.sound.play("error.ogg")
 
  @_tweets_exist
  def user_details(self):
