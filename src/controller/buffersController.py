@@ -34,16 +34,32 @@ def _tweets_exist(function):
  return function_
 
 class bufferController(object):
+ """ A basic buffer object. This should be the base class for all other derived buffers."""
+
  def __init__(self, parent=None, function=None, session=None, *args, **kwargs):
+  """Inits the main controller for this buffer:
+    @ parent wx.Treebook object: Container where we will put this buffer.
+    @ function str or None: function to be called periodically and update items on this buffer.
+    @ session sessionmanager.session object or None: Session handler for settings, database and Twitter access.
+  """
   super(bufferController, self).__init__()
   self.function = function
+  # Compose_function will be used to render an object on this buffer. Normally, signature is as follows:
+  # compose_function(item, db, relative_times, show_screen_names=False, session=None)
+  # Compose functions will be defined in every buffer if items are different than tweets.
+  # Read more about compose functions in twitter/compose.py.
   self.compose_function = None
   self.args = args
   self.kwargs = kwargs
+  # This will be used as a reference to the wx.Panel object wich stores the buffer GUI.
   self.buffer = None
+  # This should countains the account associated to this buffer.
   self.account = ""
+  # This controls wether the start_stream function should be called when starting the program.
   self.needs_init = True
-  self.invisible = False # False if the buffer will be ignored on the invisible interface.
+  # if this is set to False, the buffer will be ignored on the invisible interface.
+  self.invisible = False
+  # Control variable, used to track time of execution for calls to start_stream.
   self.execution_time = 0
 
  def clear_list(self): pass
