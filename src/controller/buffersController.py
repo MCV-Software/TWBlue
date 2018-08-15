@@ -162,9 +162,9 @@ class bufferController(object):
     else:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
    if not hasattr(tweet, "attachments") or len(tweet.attachments) == 0:
-    call_threaded(self.session.api_call, call_name="update_status", status=text)
+    call_threaded(self.session.api_call, call_name="update_status", status=text, _sound="tweet_send.ogg")
    else:
-    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments)
+    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments, _sound="tweet_send.ogg")
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
   self.session.settings.write()
 
