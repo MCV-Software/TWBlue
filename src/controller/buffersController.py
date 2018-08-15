@@ -102,8 +102,8 @@ class bufferController(object):
   self.session.settings.write()
 
  def start_stream(self, mandatory=False):
-  if mandatory == True:
-   output.speak(_(u"Unable to update this buffer."))
+#  if mandatory == True:
+#   output.speak(_(u"Unable to update this buffer."))
   pass
 
  def get_more_items(self):
