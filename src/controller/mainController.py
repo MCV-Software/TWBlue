@@ -1616,7 +1616,7 @@ class Controller(object):
   for i in self.buffers[:]:
    if i.session != None and i.session.is_logged == True:
     try:
-     i.start_stream()
+     i.start_stream(mandatory=True)
     except TwythonAuthError:
      buff = self.view.search(i.name, i.account)
      i.remove_buffer(force=True)
