@@ -399,7 +399,7 @@ class Controller(object):
    self.view.insert_buffer(tl.buffer, name=_(u"Search for {}").format(i), pos=self.view.search("searches", session.db["user_name"]))
   for i in session.settings["other_buffers"]["trending_topic_buffers"]:
    buffer = buffersController.trendsBufferController(self.view.nb, "%s_tt" % (i,), session, session.db["user_name"], i, sound="trends_updated.ogg")
-   buffer.start_stream()
+   buffer.start_stream(play_sound=False)
    buffer.searchfunction = self.search
    self.buffers.append(buffer)
    self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
@@ -919,7 +919,7 @@ class Controller(object):
       return
      tl = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (usr["id_str"],), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr["id_str"])
      try:
-      tl.start_stream()
+      tl.start_stream(play_sound=False)
      except TwythonAuthError:
       commonMessageDialogs.unauthorized()
       return
@@ -1390,7 +1390,10 @@ class Controller(object):
     else:
      change_title = False
     try:
-     i.start_stream()
+     if "mentions" in i.name or "direct_messages" in i.name:
+      i.start_stream()
+     else:
+      i.start_stream(play_sound=False)
     except TwythonAuthError:
      buff = self.view.search(i.name, i.account)
      i.remove_buffer(force=True)
@@ -1444,27 +1447,27 @@ class Controller(object):
     favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"])
     self.buffers.append(favourites)
     self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-    favourites.start_stream()
+    favourites.start_stream(play_sound=False)
    if buffer == "followers":
     followers = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "followers", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
     self.buffers.append(followers)
     self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-    followers.start_stream()
+    followers.start_stream(play_sound=False)
    elif buffer == "friends":
     friends = buffersController.peopleBufferController(self.view.nb, "get_friends_list", "friends", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
     self.buffers.append(friends)
     self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-    friends.start_stream()
+    friends.start_stream(play_sound=False)
    elif buffer == "blocked":
     blocks = buffersController.peopleBufferController(self.view.nb, "list_blocks", "blocked", buff.session, buff.session.db["user_name"])
     self.buffers.append(blocks)
     self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-    blocks.start_stream()
+    blocks.start_stream(play_sound=False)
    elif buffer == "muted":
     muted = buffersController.peopleBufferController(self.view.nb, "get_muted_users_list", "muted", buff.session, buff.session.db["user_name"])
     self.buffers.append(muted)
     self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-    muted.start_stream()
+    muted.start_stream(play_sound=False)
    elif buffer == "events":
     events = buffersController.eventsBufferController(self.view.nb, "events", buff.session, buff.session.db["user_name"], bufferType="dmPanel", screen_name=buff.session.db["user_name"])
     self.buffers.append(events)
@@ -1480,7 +1483,7 @@ class Controller(object):
    pos=self.view.search("lists", buff.session.db["user_name"])
    self.insert_buffer(tl, pos)
    self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(create), pos=self.view.search("lists", buff.session.db["user_name"]))
-   tl.start_stream()
+   tl.start_stream(play_sound=False)
    buff.session.settings["other_buffers"]["lists"].append(create)
    buff.session.settings.write()
    pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
