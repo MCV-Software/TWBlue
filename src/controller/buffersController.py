@@ -335,7 +335,7 @@ class baseBufferController(bufferController):
     elif "-favorite" in self.name:
      self.username = self.session.api_call("show_user", **self.kwargs)["screen_name"]
     self.finished_timeline = True
-   if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages" and self.sound != None:
+   if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
     self.session.sound.play(self.sound)
    return number_of_items
 
@@ -1029,6 +1029,8 @@ class peopleBufferController(baseBufferController):
    if hasattr(self, "finished_timeline") and self.finished_timeline == False:
     self.username = self.session.api_call("show_user", **self.kwargs)["screen_name"]
     self.finished_timeline = True
+   if val > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
+    self.session.sound.play(self.sound)
    return val
 
  def get_more_items(self):
@@ -1130,8 +1132,8 @@ class searchBufferController(baseBufferController):
 #   return None
    num = self.session.order_buffer(self.name, val)
    self.put_items_on_list(num)
-   if num > 0 and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
-    self.session.sound.play("search_updated.ogg")
+   if num > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
+    self.session.sound.play(self.sound)
    return num
 
  def remove_buffer(self, force=False):
@@ -1210,8 +1212,8 @@ class searchPeopleBufferController(peopleBufferController):
    number_of_items = self.session.order_cursored_buffer(self.name, val)
    log.debug("Number of items retrieved: %d" % (number_of_items,))
    self.put_items_on_list(number_of_items)
-   if number_of_items > 0 and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
-    self.session.sound.play("search_updated.ogg")
+   if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
+    self.session.sound.play(self.sound)
    return number_of_items
 
  def get_more_items(self, *args, **kwargs):
@@ -1241,7 +1243,6 @@ class searchPeopleBufferController(peopleBufferController):
 #  else:
 #   self.buffer.list.select_item(selection-elements)
   output.speak(_(u"%s items retrieved") % (len(items)), True)
-
 
  def remove_buffer(self, force=False):
   if force == False:
@@ -1290,7 +1291,7 @@ class trendsBufferController(bufferController):
     self.name_ = data[0]["locations"][0]["name"]
    self.trends = data[0]["trends"]
    self.put_items_on_the_list()
-   if self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
+   if self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
     self.session.sound.play(self.sound)
 
  def put_items_on_the_list(self):
@@ -1412,8 +1413,8 @@ class conversationBufferController(searchBufferController):
    number_of_items = self.session.order_buffer(self.name, self.statuses)
    log.debug("Number of items retrieved: %d" % (number_of_items,))
    self.put_items_on_list(number_of_items)
-   if number_of_items > 0 and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
-    self.session.sound.play("search_updated.ogg")
+   if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"]:
+    self.session.sound.play(self.sound)
    return number_of_items
 
  def remove_buffer(self, force=False):
