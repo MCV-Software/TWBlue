@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-07-08 16:25+Hora de verano central (Mxico)\n"
-"PO-Revision-Date: 2017-07-15 23:43+0200\n"
-"Last-Translator: Sukil Etxenike <sukiletxe@yahoo.es>\n"
+"POT-Creation-Date: 2018-08-07 13:19+Hora de verano central (Mexico)\n"
+"PO-Revision-Date: 2018-08-07 13:51-0500\n"
+"Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
 "Language-Team: \n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../doc/changelog.py:3
+#, fuzzy
 msgid "﻿TWBlue Changelog"
 msgstr "﻿TwBlueren aldaketak"
 
@@ -27,6 +28,336 @@ msgstr "## Aldaketak bertsio honetan"
 
 #: ../doc/changelog.py:5
 msgid ""
+"* Added an option in the global settings dialog to disable the Streaming "
+"features of TWBlue. TWBlue will remove all Streaming features after August "
+"16, so this option will give people an idea about how it will be. ([#219]"
+"(https://github.com/manuelcortez/TWBlue/issues/219))"
+msgstr ""
+
+#: ../doc/changelog.py:6
+msgid ""
+"* Due to Twitter API changes, Switched authorisation method to Pin-code "
+"based authorisation. When you add new accounts to TWBlue, you will be "
+"required to paste a code displayed in the Twitter website in order to grant "
+"access to TWBlue. ([#216](https://github.com/manuelcortez/TWBlue/issues/216))"
+msgstr ""
+
+#: ../doc/changelog.py:7
+msgid ""
+"* In order to comply with latest Twitter changes, TWBlue has switched to the "
+"new method used to send and receive direct messages, according to issue "
+"[#215.](https://github.com/manuelcortez/twblue/issues/215)"
+msgstr ""
+
+#: ../doc/changelog.py:8
+msgid ""
+"    * The sent direct messages buffer has been removed. All direct messages "
+"will be placed in one buffer only. "
+msgstr ""
+
+#: ../doc/changelog.py:9
+msgid ""
+"    * The new method does not allow direct messages to be processed in real "
+"time. Direct messages will be updated periodically."
+msgstr ""
+
+#: ../doc/changelog.py:10
+msgid ""
+"    * When sending a direct message, you will hear a sound if the message "
+"has been sent properly, but the direct message will not be added to the "
+"buffer inmediately."
+msgstr ""
+
+#: ../doc/changelog.py:11
+msgid ""
+"* After august 16 or when streaming is disabled, the events buffer will no "
+"longer be created in TWBlue."
+msgstr ""
+
+#: ../doc/changelog.py:12
+msgid ""
+"* You can configure frequency for buffer updates in TWBlue. By default, "
+"TWBlue will update all buffers every 2 minutes, but you can change this "
+"setting in the global settings dialog. ([#223](https://github.com/"
+"manuelcortez/TWBlue/issues/223))"
+msgstr ""
+
+#: ../doc/changelog.py:13
+msgid ""
+"* Added a new tab called feedback, in the account settings dialog. This tab "
+"allows you to control wether automatic speech or Braille feedbak in certain "
+"events (mentions and direct messages received) is enabled. Take into account "
+"that this option will take preference over automatic reading of buffers and "
+"any kind of automatic output. ([#203](https://github.com/manuelcortez/TWBlue/"
+"issues/203))"
+msgstr ""
+
+#: ../doc/changelog.py:14
+#, fuzzy
+msgid ""
+"* The spell checking dialog now has access keys defined for the most "
+"important actions. ([#211](https://github.com/manuelcortez/TWBlue/"
+"issues/211))"
+msgstr ""
+"* Zuzentzaileak hizkuntza zuzena au,eratu beharko luke \"User default\" "
+"aukeratzen bada. ([#117](https://github.com/manuelcortez/TWBlue/issues/117))"
+
+#: ../doc/changelog.py:15
+#, fuzzy
+msgid ""
+"* TWBlue now Uses WXPython 4.0.1. This will allow us to migrate all "
+"important components to Python 3 in the future. ([#207](https://github.com/"
+"manuelcortez/TWBlue/issues/207))"
+msgstr ""
+"* TWBluek errore bat erakutsiko du ezabatutako erabiltzaile batn denbora "
+"lerro bat irekitzen saiatzean . ([#128](https://github.com/manuelcortez/"
+"TWBlue/issues/128))"
+
+#: ../doc/changelog.py:16
+#, fuzzy
+msgid ""
+"* When you quote a Tweet, if the original tweet was posted with Twishort, "
+"TWBlue should display properly the quoted tweet. Before it was displaying "
+"the original tweet only. ([#206](https://github.com/manuelcortez/TWBlue/"
+"issues/206))"
+msgstr ""
+"* TWBlue jada ez da Twishortekin egindako eta ezabatutako txiorik kargatzen "
+"saiatuko. Lehenago, norbaitek txio luze bat argitaratu eta Twishorten gunean "
+"ezabatzen bazuen, TWBlue txioa kargatzen saiatuko zen, aplikaio osoan "
+"arazoak sortuz. ([#113](https://github.com/manuelcortez/TWBlue/issues/113))"
+
+#: ../doc/changelog.py:17
+msgid ""
+"* It is possible to filter by retweets, quotes and replies when creating a "
+"new filter."
+msgstr ""
+
+#: ../doc/changelog.py:18
+#, fuzzy
+msgid ""
+"* Added support for playing youtube Links directly from the client. ([#94]"
+"(https://github.com/manuelcortez/TWBlue/issues/94))"
+msgstr ""
+"* Orain audio fitxategiak askatzen dira igo ondoren. ([#130](https://github."
+"com/manuelcortez/TWBlue/issues/130))"
+
+#: ../doc/changelog.py:19
+msgid "* Replaced Bass with libVLC for playing URL streams."
+msgstr ""
+
+#: ../doc/changelog.py:20
+msgid ""
+"* the checkbox for indicating wether TWBlue will include everyone in a reply "
+"or not, will be unchecked by default."
+msgstr ""
+
+#: ../doc/changelog.py:21
+#, fuzzy
+msgid ""
+"* You can request TWBlue to save the state for two checkboxes: Long tweet "
+"and mention all, from the global settings dialogue."
+msgstr ""
+"* Erabiltzaileek aplikazioa hastean eguneratzeak bilatzea desaktiba dezakete "
+"ezarpen globaletan, Orokorra erlaitzean."
+
+#: ../doc/changelog.py:22
+msgid ""
+"* For windows 10 users, some keystrokes in the invisible user interface have "
+"been changed or merged:"
+msgstr ""
+
+#: ../doc/changelog.py:23
+msgid ""
+"    * control+Windows+alt+F will be used for toggling between adding and "
+"removing a tweet to user's likes. This function will execute the needed "
+"action based in the current status for the focused tweet."
+msgstr ""
+
+#: ../doc/changelog.py:24
+msgid "* TWBlue will show an error if something goes wrong in an audio upload."
+msgstr ""
+
+#: ../doc/changelog.py:25
+#, fuzzy
+msgid ""
+"* And more. ([#171,](https://github.com/manuelcortez/TWBlue/issues/171) "
+msgstr ""
+"* Eta gehiago ([#136,](https://github.com/manuelcortez/TWBlue/issues/136))"
+
+#: ../doc/changelog.py:26
+#, fuzzy
+msgid "## Changes in version 0.93"
+msgstr "## 0.90 bertsioaren aldaketak"
+
+#: ../doc/changelog.py:27
+#, fuzzy
+msgid ""
+"* A new soundpack has been added to TWBlue. Thanks to [@ValeriaK305](https://"
+"twitter.com/ValeriaK305)"
+msgstr ""
+"* Soinu pakete berri bat gehitu zaio TWBlueren lehenetsitako instalazioari, "
+"eskerrak [@Deng90](https://twitter.com/deng90)"
+
+#: ../doc/changelog.py:28
+msgid ""
+"* In the Windows 10 keymap, we have changed some default keystrokes as "
+"windows now uses some previously assigned shortcuts:"
+msgstr ""
+
+#: ../doc/changelog.py:29
+msgid "    * For liking a tweet, press Control+Windows+alt+f"
+msgstr ""
+
+#: ../doc/changelog.py:30
+msgid "    * for opening a trends buffer, press control+Windows+T"
+msgstr ""
+
+#: ../doc/changelog.py:31
+msgid ""
+"* TWBlue has received improvements in some functions for handling extended "
+"tweets, long tweets and quoted retweets. It should render some tweets in a "
+"better way."
+msgstr ""
+
+#: ../doc/changelog.py:32
+msgid ""
+"* In the spell checker module, there is a new button that will allow you to "
+"add your own words to your personal dictionary so the module won't mark them "
+"as mispelled the next time you will check spelling."
+msgstr ""
+
+#: ../doc/changelog.py:33
+#, fuzzy
+msgid ""
+"* Added filtering capabilities to TWBlue. ([#102](https://github.com/"
+"manuelcortez/TWBlue/issues/102))"
+msgstr ""
+"* Orain audio fitxategiak askatzen dira igo ondoren. ([#130](https://github."
+"com/manuelcortez/TWBlue/issues/130))"
+
+#: ../doc/changelog.py:34
+msgid ""
+"    * You can create a filter for the current buffer from the buffer menu in "
+"the menu bar. At this moment, invisible interface does not have any shorcut "
+"for this."
+msgstr ""
+
+#: ../doc/changelog.py:35
+msgid "    * You can create filters by word or languages."
+msgstr ""
+
+#: ../doc/changelog.py:36
+msgid ""
+"    * For deleting already created filters, you can go to the filter manager "
+"in the buffer menu and delete the filters you won't need."
+msgstr ""
+
+#: ../doc/changelog.py:37
+#, fuzzy
+msgid ""
+"* Links should be opened properly in quoted tweets ([#167,](https://github."
+"com/manuelcortez/TWBlue/issues/167) [#184](https://github.com/manuelcortez/"
+"TWBlue/issues/184))"
+msgstr ""
+"* Aipatutako erabiltzaile guztiak ondo agertu beharko lirateke Tuishort-en "
+"txio luzeetan. ([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) "
+"([#135](https://github.com/manuelcortez/TWBlue/issues/135))"
+
+#: ../doc/changelog.py:38
+msgid ""
+"* Increased display name limit up to 50 characters in update profile dialog."
+msgstr ""
+
+#: ../doc/changelog.py:39
+msgid ""
+"* When authorising an account, you will see a dialogue with a cancel button, "
+"in case you want to abort the process. Also, NVDA will not be blocked when "
+"the process starts. ([#101](https://github.com/manuelcortez/TWBlue/"
+"issues/101))"
+msgstr ""
+
+#: ../doc/changelog.py:40
+msgid ""
+"* In the translator module, the list of available languages is fetched "
+"automatically from the provider. That means all of these languages will work "
+"and there will not be inconsistencies. Also we've removed the first combo "
+"box, because the language is detected automatically by Yandex'S API. ([#153]"
+"(https://github.com/manuelcortez/TWBlue/issues/153))"
+msgstr ""
+
+#: ../doc/changelog.py:41
+#, fuzzy
+msgid ""
+"* Trending topics, searches and conversation buffers will use mute settings "
+"set for the session in wich  they were opened. ([#157](https://github.com/"
+"manuelcortez/TWBlue/issues/157))"
+msgstr ""
+"* TWBluek errore bat erakutsiko du ezabatutako erabiltzaile batn denbora "
+"lerro bat irekitzen saiatzean . ([#128](https://github.com/manuelcortez/"
+"TWBlue/issues/128))"
+
+#: ../doc/changelog.py:42
+#, fuzzy
+msgid ""
+"* The Tweet limit is now 280 characters lenght instead 140. It means you can "
+"tweet longer tweets. ([#172](https://github.com/manuelcortez/TWBlue/"
+"issues/172))"
+msgstr ""
+"* TwUp zerbitzua kendu da, jada ez delako existitzen. ([#112](https://github."
+"com/manuelcortez/TWBlue/issues/112)) "
+
+#: ../doc/changelog.py:43
+#, fuzzy
+msgid ""
+"* Per popular request, Status for mention to all and long tweet checkboxes "
+"will not be saved in settings. ([#170](https://github.com/manuelcortez/"
+"TWBlue/issues/170))"
+msgstr ""
+"* Irudien deskribapena bertxioetan ere agertuko da. ([#119](https://github."
+"com/manuelcortez/TWBlue/issues/119))"
+
+#: ../doc/changelog.py:44
+#, fuzzy
+msgid ""
+"* Fixed a problem that was making TWBlue unable to start if it was being ran "
+"in Windows with Serbian language. ([#175](https://github.com/manuelcortez/"
+"TWBlue/issues/175))"
+msgstr ""
+"* Txio luzeak irakurtzean TWBluek zeukan errore bat konpondu da. Errore "
+"honek Twitterren streamingerako APIa deskonektatzea eragiten zuen. ([#103]"
+"(https://github.com/manuelcortez/TWBlue/issues/103))"
+
+#: ../doc/changelog.py:45
+#, fuzzy
+msgid "* Added Danish translation."
+msgstr "* Errumaniera itzulpena eguneratua izan da."
+
+#: ../doc/changelog.py:46
+msgid ""
+"* And more. ([#156,](https://github.com/manuelcortez/TWBlue/issues/156) "
+"[#163,](https://github.com/manuelcortez/TWBlue/issues/163) [#159,](https://"
+"github.com/manuelcortez/TWBlue/issues/159) [#173,](https://github.com/"
+"manuelcortez/TWBlue/issues/173) [#174,](https://github.com/manuelcortez/"
+"TWBlue/issues/174) [#176,](https://github.com/manuelcortez/TWBlue/"
+"issues/176))"
+msgstr ""
+
+#: ../doc/changelog.py:47
+#, fuzzy
+msgid "## changes in version 0.91 and 0.92"
+msgstr "## 0.88 eta 0.89 bertsioen aldaketak"
+
+#: ../doc/changelog.py:48
+#, fuzzy
+msgid ""
+"* Fixed incorrect unicode handling when copying tweet to clipboard. ([#150]"
+"(https://github.com/manuelcortez/TWBlue/issues/150))"
+msgstr ""
+"* Irudien deskribapena bertxioetan ere agertuko da. ([#119](https://github."
+"com/manuelcortez/TWBlue/issues/119))"
+
+#: ../doc/changelog.py:49
+msgid ""
 "* TWBlue will show an error when trying to open a timeline for a suspended "
 "user. ([#128](https://github.com/manuelcortez/TWBlue/issues/128))"
 msgstr ""
@@ -34,7 +365,7 @@ msgstr ""
 "lerro bat irekitzen saiatzean . ([#128](https://github.com/manuelcortez/"
 "TWBlue/issues/128))"
 
-#: ../doc/changelog.py:6
+#: ../doc/changelog.py:50
 msgid ""
 "* Removed TwUp as service as it no longer exists. ([#112](https://github.com/"
 "manuelcortez/TWBlue/issues/112))"
@@ -42,7 +373,7 @@ msgstr ""
 "* TwUp zerbitzua kendu da, jada ez delako existitzen. ([#112](https://github."
 "com/manuelcortez/TWBlue/issues/112)) "
 
-#: ../doc/changelog.py:7
+#: ../doc/changelog.py:51
 msgid ""
 "* Release audio files after uploading them. ([#130](https://github.com/"
 "manuelcortez/TWBlue/issues/130))"
@@ -50,7 +381,7 @@ msgstr ""
 "* Orain audio fitxategiak askatzen dira igo ondoren. ([#130](https://github."
 "com/manuelcortez/TWBlue/issues/130))"
 
-#: ../doc/changelog.py:8
+#: ../doc/changelog.py:52
 msgid ""
 "* Now TWBlue will use Yandex's translation services instead microsoft "
 "translator. ([#132](https://github.com/manuelcortez/TWBlue/issues/132))"
@@ -59,7 +390,7 @@ msgstr ""
 "itzultzailearen ordez. ([#132](https://github.com/manuelcortez/TWBlue/"
 "issues/132))"
 
-#: ../doc/changelog.py:9
+#: ../doc/changelog.py:53
 msgid ""
 "* SndUp users will be able to upload audio in their account by using their "
 "API Key again. ([#134](https://github.com/manuelcortez/TWBlue/issues/134))"
@@ -67,7 +398,7 @@ msgstr ""
 "* SndUp-en erabiltzaileek orain audioak igo ditzakete haien API kodea "
 "erabilita. ([#134](https://github.com/manuelcortez/TWBlue/issues/134))"
 
-#: ../doc/changelog.py:10
+#: ../doc/changelog.py:54
 msgid ""
 "* old tweets shouldn't be added as new items in buffers. ([#116,](https://"
 "github.com/manuelcortez/TWBlue/issues/116)) ([#133](https://github.com/"
@@ -77,7 +408,7 @@ msgstr ""
 "([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) ([#133](https://"
 "github.com/manuelcortez/TWBlue/issues/133))"
 
-#: ../doc/changelog.py:11
+#: ../doc/changelog.py:55
 msgid ""
 "* All mentionned users should be displayed correctly in Twishort's long "
 "tweets. ([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) ([#135]"
@@ -87,7 +418,7 @@ msgstr ""
 "txio luzeetan. ([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) "
 "([#135](https://github.com/manuelcortez/TWBlue/issues/135))"
 
-#: ../doc/changelog.py:12
+#: ../doc/changelog.py:56
 msgid ""
 "* It is possible to select a language for OCR service from the extras panel, "
 "in the account settings dialogue. You can, however, set this to detect "
@@ -101,7 +432,7 @@ msgstr ""
 "sinbolo ez-ingelesak dituzten hizkuntzetan. ([#107](https://github.com/"
 "manuelcortez/TWBlue/issues/107))"
 
-#: ../doc/changelog.py:13
+#: ../doc/changelog.py:57
 msgid ""
 "* Fixed a problem with JAWS for Windows and TWBlue. Now JAWS will work "
 "normally in this update. [#100](https://github.com/manuelcortez/twblue/"
@@ -111,16 +442,16 @@ msgstr ""
 "For Windowsek ondo funtzionatu beharko luke. [#100](https://github.com/"
 "manuelcortez/twblue/issues/100)"
 
-#: ../doc/changelog.py:14
+#: ../doc/changelog.py:58
 msgid "* And more ([#136,](https://github.com/manuelcortez/TWBlue/issues/136))"
 msgstr ""
 "* Eta gehiago ([#136,](https://github.com/manuelcortez/TWBlue/issues/136))"
 
-#: ../doc/changelog.py:15
+#: ../doc/changelog.py:59
 msgid "## Changes in version 0.90"
 msgstr "## 0.90 bertsioaren aldaketak"
 
-#: ../doc/changelog.py:16
+#: ../doc/changelog.py:60
 msgid ""
 "* Fixed a bug in long tweet parsing that was making TWBlue to disconnect the "
 "streaming API. ([#103](https://github.com/manuelcortez/TWBlue/issues/103))"
@@ -129,7 +460,7 @@ msgstr ""
 "honek Twitterren streamingerako APIa deskonektatzea eragiten zuen. ([#103]"
 "(https://github.com/manuelcortez/TWBlue/issues/103))"
 
-#: ../doc/changelog.py:17
+#: ../doc/changelog.py:61
 msgid ""
 "* Now OCR will work in images from retweets. It fixes a bug where TWBlue was "
 "detecting images but couldn't apply OCR on them. ([#105](https://github.com/"
@@ -139,7 +470,7 @@ msgstr ""
 "Lehenago, TWBluek irudiak detektatzen zituen baina ezin zuen testua "
 "detektatu. ([#105](https://github.com/manuelcortez/TWBlue/issues/105))"
 
-#: ../doc/changelog.py:18
+#: ../doc/changelog.py:62
 msgid ""
 "* TWBlue won't try to load tweets already deleted, made with Twishort. "
 "Before, if someone posted a long tweet but deleted it in the Twishort's "
@@ -151,7 +482,7 @@ msgstr ""
 "ezabatzen bazuen, TWBlue txioa kargatzen saiatuko zen, aplikaio osoan "
 "arazoak sortuz. ([#113](https://github.com/manuelcortez/TWBlue/issues/113))"
 
-#: ../doc/changelog.py:19
+#: ../doc/changelog.py:63
 msgid ""
 "* TWBlue shows an error message when you try to view the profile of an user "
 "that does not exist or has been suspended. ([#114,](https://github.com/"
@@ -161,7 +492,7 @@ msgstr ""
 "* TWBluek errore bat erakutsiko du ezabatua izan den edo existitzen ez den "
 "erabiltzaile baten profila erakusten saiatzen bazara. ezabatutako edo "
 
-#: ../doc/changelog.py:20
+#: ../doc/changelog.py:64
 msgid ""
 "* The spellchecker module should select the right language when is set to "
 "\"user default\". ([#117](https://github.com/manuelcortez/TWBlue/issues/117))"
@@ -169,7 +500,7 @@ msgstr ""
 "* Zuzentzaileak hizkuntza zuzena au,eratu beharko luke \"User default\" "
 "aukeratzen bada. ([#117](https://github.com/manuelcortez/TWBlue/issues/117))"
 
-#: ../doc/changelog.py:21
+#: ../doc/changelog.py:65
 msgid ""
 "* Image description will be displayed in retweets too. ([#119](https://"
 "github.com/manuelcortez/TWBlue/issues/119))"
@@ -177,7 +508,7 @@ msgstr ""
 "* Irudien deskribapena bertxioetan ere agertuko da. ([#119](https://github."
 "com/manuelcortez/TWBlue/issues/119))"
 
-#: ../doc/changelog.py:22
+#: ../doc/changelog.py:66
 msgid ""
 "* When reading a long tweet, you shouldn't read strange entities anymore. "
 "([#118](https://github.com/manuelcortez/twblue/issues/118))"
@@ -185,7 +516,7 @@ msgstr ""
 "* Txio luze bat irakurtzean, orain ez zenuke sinbolo arrarorik irakurri "
 "beharko. ([#118](https://github.com/manuelcortez/twblue/issues/118))"
 
-#: ../doc/changelog.py:23
+#: ../doc/changelog.py:67
 msgid ""
 "* TWBlue will not try to load timelines if the user is blocking you. ([#125]"
 "(https://github.com/manuelcortez/twblue/issues/125))"
@@ -193,25 +524,25 @@ msgstr ""
 "* TWBlue ez da denbora lerrorik kargatzen saiatuko erabiltzaileak blokeatzen "
 "bazaitu. ([#125](https://github.com/manuelcortez/twblue/issues/125))"
 
-#: ../doc/changelog.py:24
+#: ../doc/changelog.py:68
 msgid "## Changes in version 0.88 and 0.89"
 msgstr "## 0.88 eta 0.89 bertsioen aldaketak"
 
-#: ../doc/changelog.py:25
+#: ../doc/changelog.py:69
 msgid "* Fixed more issues with streams and reconnections."
 msgstr "* Streamekin eta berkonexioekin errore gehiago konpondu dira."
 
-#: ../doc/changelog.py:26
+#: ../doc/changelog.py:70
 msgid "* newer updates will indicate the release date in the updater."
 msgstr "* Eguneraketa berriagoek argitaratze-data erakutsiko dute."
 
-#: ../doc/changelog.py:27
+#: ../doc/changelog.py:71
 msgid ""
 "* Changes to keystrokes are reflected in keystroke editor automatically."
 msgstr ""
 "* Lasterbideen aldaketak lasterbideen editorean automatikoki agertuko dira."
 
-#: ../doc/changelog.py:28
+#: ../doc/changelog.py:72
 msgid ""
 "* In replies with multiple users, if the mention to all checkbox is "
 "unchecked, you will see a checkbox per user so you will be able to control "
@@ -221,7 +552,7 @@ msgstr ""
 "laukia desmarkatua badago, erabiltzaile bakoitzeko kontrol-lauki bat "
 "agertuko da, horrela zein erabiltzaile aipatuko diren kontrolatu ahalko duzu."
 
-#: ../doc/changelog.py:29
+#: ../doc/changelog.py:73
 msgid ""
 "* Fixed a bug that caused duplicated user mentions in replies when the tweet "
 "was made with Twishort."
@@ -229,7 +560,7 @@ msgstr ""
 "* Twishortekin egindako erantzunetan, aipamen bikoitzeko erantzunak agertzen "
 "ziren. Errore hau konpondua izan da."
 
-#: ../doc/changelog.py:30
+#: ../doc/changelog.py:74
 msgid ""
 "* Retweets should be displayed normally again when the originating tweet is "
 "a Twishort's long tweet."
@@ -237,7 +568,7 @@ msgstr ""
 "* Bertxioak ondo agertu beharko lirateke berriro, jatorrizko txioa "
 "Twishortekin egindako txio luze bat bada."
 
-#: ../doc/changelog.py:31
+#: ../doc/changelog.py:75
 msgid ""
 "* Changed the way TWBlue saves user timelines in configuration. Now it uses "
 "user IDS instead usernames. With user IDS, if an user changes the username, "
@@ -250,7 +581,7 @@ msgstr ""
 "badu, TWBluek bere denbora-lerroa sortuko du. Hau ezinezkoa zen erabiltzaile-"
 "izenak erabilita."
 
-#: ../doc/changelog.py:32
+#: ../doc/changelog.py:76
 msgid ""
 "* Added a new setting in the account settings dialogue that makes TWBlue to "
 "show twitter usernames instead the full name."
@@ -258,7 +589,7 @@ msgstr ""
 "* TWBlueren ezarpenetan aukera bat gehitu da, erabiltzaile-izenak erakusteko "
 "izen osoen ordez."
 
-#: ../doc/changelog.py:33
+#: ../doc/changelog.py:77
 msgid ""
 "* Added OCR in twitter pictures. There is a new item in the tweet menu that "
 "allows you to extract and display text in images. Also the keystroke alt+Win"
@@ -267,18 +598,18 @@ msgstr ""
 "* OCR (testu detekzioa) gehitu da irudientzat. Gainera, win+alt+o lasterbide "
 "tekla gehitu da interfaze ikusezinean hori egiteko."
 
-#: ../doc/changelog.py:34
+#: ../doc/changelog.py:78
 msgid "* Now TWBlue will play a sound when the focused tweet contains  images."
 msgstr ""
 "* Orain TWBluek soinu bat erreproduzituko du enfokatutako txioak irudi bat "
 "baldin badu."
 
-#: ../doc/changelog.py:35
+#: ../doc/changelog.py:79
 msgid ""
 "* Your own quoted tweets will not appear in the mentions buffer anymore."
 msgstr "* Zure zitatutako txioak ez dira aipamenetan agertuko."
 
-#: ../doc/changelog.py:36
+#: ../doc/changelog.py:80
 msgid ""
 "* The config file is saved in a different way, it should fix the bug where "
 "TWBlue needs to be restarted after the config folder is deleted."
@@ -286,13 +617,13 @@ msgstr ""
 "* Konfigurazioa modu ezberdin batean gordetzen da, honek TWBlue berrabiazi "
 "beharra konpontzen du konfigurazioaren karpeta ezabatzean."
 
-#: ../doc/changelog.py:37
+#: ../doc/changelog.py:81
 msgid "* Mentioning people from friends or followers buffers works again."
 msgstr ""
 "* Jendea jarraitzaile edo lagunen denbora-lerroetatik berriz zuzen aipa "
 "daiteke."
 
-#: ../doc/changelog.py:38
+#: ../doc/changelog.py:82
 msgid ""
 "* Support for proxy servers has been improved. Now TWBlue supports http, "
 "https, socks4 and socks5 proxies, with and without autentication."
@@ -300,15 +631,15 @@ msgstr ""
 "* Proxy zerbitzari gehiago erabil daitezke: orain TWBluen http, https, "
 "socks4 eta socks5 proxyak erabil daitezke, autentifikazioarekin edo gabe."
 
-#: ../doc/changelog.py:39
+#: ../doc/changelog.py:83
 msgid "## Changes in version 0.87"
 msgstr "## 0.87 bertsioaren aldaketak"
 
-#: ../doc/changelog.py:40
+#: ../doc/changelog.py:84
 msgid "* Fixed stream connection errors."
 msgstr "* Streametara konektatzeko erroreak konpondu dira."
 
-#: ../doc/changelog.py:41
+#: ../doc/changelog.py:85
 msgid ""
 "* Now TWBlue can handle properly a reply to the sender without including all "
 "other mentioned users."
@@ -316,11 +647,11 @@ msgstr ""
 "* Orain TWBluek igorleari soilik bidalitako erantzunak (beste erabiltzaileak "
 "barnean hartu gabe) zuzen erakusten eta bidaltzen ditu."
 
-#: ../doc/changelog.py:42
+#: ../doc/changelog.py:86
 msgid "* Updated translations."
 msgstr "* Itzulpenak eguneratu dira."
 
-#: ../doc/changelog.py:43
+#: ../doc/changelog.py:87
 msgid ""
 "* The status of the mention to all checkbox will be remembered the next time "
 "you  reply to multiple users."
@@ -328,11 +659,11 @@ msgstr ""
 "* Guztiak aipatu kontrol-laukiaren egoera gogoratuko da hainbat "
 "erabiltzaileri erantzuten diozun hurrengo aldian."
 
-#: ../doc/changelog.py:44
+#: ../doc/changelog.py:88
 msgid "## Changes in version 0.86"
 msgstr "## 0.86 bertsioaren aldaketak"
 
-#: ../doc/changelog.py:45
+#: ../doc/changelog.py:89
 msgid ""
 "* Fixed a very important security issue. Now TWBlue will send tweets to "
 "twishort without using any other server."
@@ -340,7 +671,7 @@ msgstr ""
 "* Segurtasun errore oso garrantzitsu bat konpondu da. Orain TWBluek "
 "Twishortera txioak beste zerbitzari bat erabili gabe bidaliko ditu."
 
-#: ../doc/changelog.py:46
+#: ../doc/changelog.py:90
 msgid ""
 "* When you add a comment to a tweet, it will be sent as a quoted tweet, even "
 "if your reply plus the original tweet is not exceeding 140 characters."
@@ -349,7 +680,7 @@ msgstr ""
 "erakutsiko da, jatorrizko txioaren eta iruzkinaren karaktere kopurua 140 "
 "karaktere baino gutxiago bada ereere."
 
-#: ../doc/changelog.py:47
+#: ../doc/changelog.py:91
 msgid ""
 "* Updated windows 10 keymap for reflecting changes made in the last windows "
 "10 build."
@@ -357,59 +688,59 @@ msgstr ""
 "* Windows 10 teklatu-mapa eguneratu da, Windows 10aren azken bertsioan "
 "agertutako aldaketak kontuan hartzen dituena."
 
-#: ../doc/changelog.py:48
+#: ../doc/changelog.py:92
 msgid "* Added last changes in the twitter API."
 msgstr "* Twitterren APIaren azken aldaketak gehitu dira."
 
-#: ../doc/changelog.py:49
+#: ../doc/changelog.py:93
 msgid ""
 "* When replying, it will not show the twitter username in the text box. When "
 "you send the tweet, the username will be added automatically."
 msgstr ""
 
-#: ../doc/changelog.py:50
+#: ../doc/changelog.py:94
 msgid ""
 "* When replying to multiple users, you'll have a checkbox instead a button "
 "for mentioning all people. If this is checked, twitter usernames will be "
 "added automatically when you send your reply."
 msgstr ""
 
-#: ../doc/changelog.py:51
+#: ../doc/changelog.py:95
 msgid "## Changes in version 0.85"
 msgstr "## 0.85 bertsioko aldaketak"
 
-#: ../doc/changelog.py:52
+#: ../doc/changelog.py:96
 msgid "* Long and quoted tweets should be displayed properly In lists."
 msgstr ""
 "* Txio luzeak eta zitatutako txioak ondo agertu beharko lirateke zerrendetan."
 
-#: ../doc/changelog.py:53
+#: ../doc/changelog.py:97
 msgid "* The connection should be more stable."
 msgstr "* Konexioa  egonkorragoa izan beharko litzateke."
 
-#: ../doc/changelog.py:54
+#: ../doc/changelog.py:98
 msgid "* Added an autostart option in the global settings dialogue."
 msgstr ""
 "* Automatikoki hasteko aukera gehitu da ezarpen globalen elkarrizketa-"
 "koadroan."
 
-#: ../doc/changelog.py:55
+#: ../doc/changelog.py:99
 msgid "* Updated translation."
 msgstr "* Itzulpenak eguneratu dira."
 
-#: ../doc/changelog.py:56
+#: ../doc/changelog.py:100
 msgid "* Updated russian documentation."
 msgstr ""
 
-#: ../doc/changelog.py:57
+#: ../doc/changelog.py:101
 msgid "* Tweets in cached database should be loaded properly."
 msgstr "* Errusieraz dagoen dokumentazioa eguneratu da."
 
-#: ../doc/changelog.py:58
+#: ../doc/changelog.py:102
 msgid "* Added some missed dictionaries for spelling correction."
 msgstr "* Zuzentzailearentzat falta ziren hiztegi batzuk gehitu dira."
 
-#: ../doc/changelog.py:59
+#: ../doc/changelog.py:103
 msgid ""
 "* Timelines, lists and other buffer should be created in the right order at "
 "startup."
@@ -417,15 +748,15 @@ msgstr ""
 "* Denbora-lerroak, zerrendak eta beste buferrak orden egokian sortu beharko "
 "lirateke aplikazioa hastean."
 
-#: ../doc/changelog.py:60
+#: ../doc/changelog.py:104
 msgid "## Changes in version 0.84 "
 msgstr "## 0.84 bertsioaren aldaketak"
 
-#: ../doc/changelog.py:61
+#: ../doc/changelog.py:105
 msgid "* More improvements in quoted and long tweets."
 msgstr "* Hobekuntza gehiago zitatutako txioetan eta txio luzeetan."
 
-#: ../doc/changelog.py:62
+#: ../doc/changelog.py:106
 msgid ""
 "* Updated translations: Russian, Italian, French, Romanian, Galician and "
 "Finnish."
@@ -433,7 +764,7 @@ msgstr ""
 "* Itzulpen hauek eguneratu dira: errusiera,italiera, frantsesa, errumaniera, "
 "galegoa eta finlandiera."
 
-#: ../doc/changelog.py:63
+#: ../doc/changelog.py:107
 msgid ""
 "* Improvements in the audio uploader module: Now it can handle audio with "
 "non-english characters."
@@ -441,74 +772,74 @@ msgstr ""
 "* Hobekuntzak audio igoeran: orain karaktere ez-ingelesdun audioak igo "
 "daitezke."
 
-#: ../doc/changelog.py:64
+#: ../doc/changelog.py:108
 msgid ""
 "* the title of the window should be updated properly when spellcheck, "
 "translate or shorten/unshorten URL buttons are pressed."
 msgstr ""
 
-#: ../doc/changelog.py:65
+#: ../doc/changelog.py:109
 msgid ""
 "* the bug that changes the selected tweet in the home timeline shouldn't be "
 "happening so often."
 msgstr ""
 
-#: ../doc/changelog.py:66
+#: ../doc/changelog.py:110
 msgid "## Changes in version 0.82 and 0.83"
 msgstr "## 0.82 eta 0.83 bertsioen aldaketak"
 
-#: ../doc/changelog.py:67
+#: ../doc/changelog.py:111
 msgid ""
 "* If the tweet source (client) is an application with unicode characters "
 "(example: российская газета) it will not break the tweet displayer."
 msgstr ""
 
-#: ../doc/changelog.py:68
+#: ../doc/changelog.py:112
 msgid ""
 "* Added a new field for image description in tweet displayer. When "
 "available, it will show description for images posted in tweets."
 msgstr ""
 
-#: ../doc/changelog.py:69
+#: ../doc/changelog.py:113
 msgid ""
 "* users can add image descriptions to their photos. When uploading an image, "
 "a dialog will show for asking a description."
 msgstr ""
 
-#: ../doc/changelog.py:70
+#: ../doc/changelog.py:114
 msgid "* Redesigned upload image dialog."
 msgstr ""
 
-#: ../doc/changelog.py:71
+#: ../doc/changelog.py:115
 msgid "* Fixed photo uploads when posting tweets."
 msgstr ""
 
-#: ../doc/changelog.py:72
+#: ../doc/changelog.py:116
 msgid ""
 "* When getting tweets for a conversation, ignores deleted tweets or some "
 "errors, now TWBlue will try to get as much tweets as possible, even if some "
 "of these are no longer available."
 msgstr ""
 
-#: ../doc/changelog.py:73
+#: ../doc/changelog.py:117
 msgid "* Added audio playback from soundcloud."
 msgstr ""
 
-#: ../doc/changelog.py:74
+#: ../doc/changelog.py:118
 msgid "* Now the session mute option don't makes the screen reader speaks."
 msgstr ""
 
-#: ../doc/changelog.py:75
+#: ../doc/changelog.py:119
 msgid "* Fixed the direct message dialog. Now it should be displayed properly."
 msgstr ""
 
-#: ../doc/changelog.py:76
+#: ../doc/changelog.py:120
 msgid ""
 "* when a tweet is deleted in twitter, TWBlue should reflect this change and "
 "delete that tweet in every buffer it is displayed."
 msgstr ""
 
-#: ../doc/changelog.py:77
+#: ../doc/changelog.py:121
 msgid ""
 "* If your session is broken, TWBlue will be able to remove it automatically "
 "instead just crashing."
@@ -516,12 +847,12 @@ msgstr ""
 "* Zure sesioa hasi ezin bada, TWBluek sesioa ezabatuko du, irekitzea "
 "galarazi ordez."
 
-#: ../doc/changelog.py:78
+#: ../doc/changelog.py:122
 msgid "* audio uploader should display the current progress."
 msgstr ""
 "* Audioak igotzeko elkarrizketa-koadroak aurreratzea erakutsi beharko luke."
 
-#: ../doc/changelog.py:79
+#: ../doc/changelog.py:123
 msgid ""
 "* users can disable the check for updates feature at startup from the "
 "general tab, in the global settings dialogue."
@@ -529,7 +860,7 @@ msgstr ""
 "* Erabiltzaileek aplikazioa hastean eguneratzeak bilatzea desaktiba dezakete "
 "ezarpen globaletan, Orokorra erlaitzean."
 
-#: ../doc/changelog.py:80
+#: ../doc/changelog.py:124
 msgid ""
 "* The invisible interface and the window should be synchronized when the "
 "client reconnects."
@@ -537,13 +868,13 @@ msgstr ""
 "* Interfaze ikusezina eta leihoa bersinkronizatu beharko lirateke aplikazioa "
 "berkonektatzean."
 
-#: ../doc/changelog.py:81
+#: ../doc/changelog.py:125
 msgid "* The documentation option in the systray icon should be enabled."
 msgstr ""
 "* Sistemaren ikonoetako dokumentazioa ikusteko aukera erabilgarria egon "
 "beharko litzateke."
 
-#: ../doc/changelog.py:82
+#: ../doc/changelog.py:126
 msgid ""
 "* In trending buffers, you can press enter for posting a tweet about  the "
 "focused trend."
@@ -551,26 +882,26 @@ msgstr ""
 "* Tendentzien buferretan, enter saka dezakezu enfokatutako tendentziari "
 "buruz txio bat argitaratzeko."
 
-#: ../doc/changelog.py:83
+#: ../doc/changelog.py:127
 msgid ""
 "* Updated russian documentation and main program interface (thanks to "
 "Natalia Hedlund (Наталья Хедлунд), [@lifestar_n](https://twitter.com/"
 "lifestar_n) in twitter)"
 msgstr ""
 
-#: ../doc/changelog.py:84
+#: ../doc/changelog.py:128
 msgid "* updated translations."
 msgstr "* Itzulpenak eguneratuak izan dira."
 
-#: ../doc/changelog.py:85
+#: ../doc/changelog.py:129
 msgid "## Changes in Version 0.81"
 msgstr "## 0.81bertsioaren aldaketak"
 
-#: ../doc/changelog.py:86
+#: ../doc/changelog.py:130
 msgid "* Updated translations"
 msgstr "* Itzulpenak eguneratuak izan dira"
 
-#: ../doc/changelog.py:87
+#: ../doc/changelog.py:131
 msgid ""
 "* The updater module has received some improvements. Now it includes a "
 "Mirror URL for checking updates  if the main URL is not available at the "
@@ -578,21 +909,21 @@ msgid ""
 "will start anyway."
 msgstr ""
 
-#: ../doc/changelog.py:88
+#: ../doc/changelog.py:132
 msgid "* some GUI elements now use keyboard shortcuts for common actions."
 msgstr ""
 "* Interfaze grafikoko elementu batzuek lasterbide teklak dituzte ohiko "
 "ekintzetarako."
 
-#: ../doc/changelog.py:89
+#: ../doc/changelog.py:133
 msgid "* fixed a bug in the geolocation dialog."
 msgstr "* Errore bat konpondu da geottxioen elkarrizketa-koadroan."
 
-#: ../doc/changelog.py:90
+#: ../doc/changelog.py:134
 msgid "* the chicken nugget keymap should work properly."
 msgstr "* Chicken Nuggetaren teklatu-mapak ondo funtzionatu beharko luke."
 
-#: ../doc/changelog.py:91
+#: ../doc/changelog.py:135
 msgid ""
 "* Added a new soundpack to the default installation of TWBlue, thanks to "
 "[@Deng90](https://twitter.com/deng90)"
@@ -600,11 +931,11 @@ msgstr ""
 "* Soinu pakete berri bat gehitu zaio TWBlueren lehenetsitako instalazioari, "
 "eskerrak [@Deng90](https://twitter.com/deng90)"
 
-#: ../doc/changelog.py:92
+#: ../doc/changelog.py:136
 msgid "* Now the changelog is  written in an html File."
 msgstr "* Orain aldaketen fitxategia html fitxategi bat da."
 
-#: ../doc/changelog.py:93
+#: ../doc/changelog.py:137
 msgid ""
 "* Added some missed dictionaries in last version for the spell checking "
 "feature."
@@ -612,7 +943,7 @@ msgstr ""
 "* Aurreko bertsioan falta ziren hiztegi batzuk gehitu dira, zuzentzaleak "
 "erabiltzen dituenak."
 
-#: ../doc/changelog.py:94
+#: ../doc/changelog.py:138
 msgid ""
 "* Trimmed the beginnings of the sounds in the default soundpack. Thanks to "
 "[@masonasons](https://github.com/masonasons)"
@@ -620,7 +951,7 @@ msgstr ""
 "* ehenetsitako soiinu paketearen soinuen hasierak moztu dira. Eskerrak "
 "[@masonasons-i.](https://github.com/masonasons)"
 
-#: ../doc/changelog.py:95
+#: ../doc/changelog.py:139
 msgid ""
 "* Added Opus support for sound playback in TWBlue. Thanks to [@masonasons]"
 "(https://github.com/masonasons)"
@@ -628,7 +959,7 @@ msgstr ""
 "* Opus formatua erreproduzi daiteke, eskerrak [@masonasons-i.](https://"
 "github.com/masonasons)."
 
-#: ../doc/changelog.py:96
+#: ../doc/changelog.py:140
 msgid ""
 "* Added a source field in view tweet dialogue. Thanks to [@masonasons]"
 "(https://github.com/masonasons)"
@@ -636,14 +967,14 @@ msgstr ""
 "* \"Iturria\" gehitu zaio txioa erakusteko elkarrizketa koadroari. Eskerrak "
 "[@masonasons-i.](https://github.com/masonasons)"
 
-#: ../doc/changelog.py:97
+#: ../doc/changelog.py:141
 msgid ""
 "* You can load previous items in followers and friend buffers for others."
 msgstr ""
 "* Aurreko elementuak karga ditzakezu besteen jarraitzaile eta lagunen "
 "buferretan."
 
-#: ../doc/changelog.py:98
+#: ../doc/changelog.py:142
 msgid ""
 "* The Spell Checker dialogue should not display an error message when you "
 "have set \"default language\" in the global settings dialogue if your "
@@ -653,19 +984,19 @@ msgstr ""
 "aukera globaletan \"Lehenetsitako hizkuntza\" aukeratua dagoenean eta zure "
 "hizkuntza erabilgarria denean [#168](http://twblue.es/bugs/view.php?id=168)"
 
-#: ../doc/changelog.py:99
+#: ../doc/changelog.py:143
 msgid "* Updated romanian translation."
 msgstr "* Errumaniera itzulpena eguneratua izan da."
 
-#: ../doc/changelog.py:100
+#: ../doc/changelog.py:144
 msgid "* Some code cleanups."
 msgstr "* Kode garbiketa batzuk."
 
-#: ../doc/changelog.py:101
+#: ../doc/changelog.py:145
 msgid "* The bug reports feature is fully operational again."
 msgstr "* Arazoez informatzeko ezaugarriak berriz funtzionaten du"
 
-#: ../doc/changelog.py:102
+#: ../doc/changelog.py:146
 msgid ""
 "* TWBlue should work again for users that contains special characters in "
 "windows usernames."
@@ -673,23 +1004,23 @@ msgstr ""
 "* TWBluek berriz funtzionatu beharko luke haien Windows erabiltzaile-"
 "izenetan karaktere bereziak dituzten erabiltzaileentzat."
 
-#: ../doc/changelog.py:103
+#: ../doc/changelog.py:147
 msgid "* Added more options for the tweet searches."
 msgstr "* Txioen bilaketarako aukera gehiago gehitu dira."
 
-#: ../doc/changelog.py:104
+#: ../doc/changelog.py:148
 msgid "* Added play_audio to the keymap editor."
 msgstr "* play_audio teklatu-mapen editorera gehitua izan da."
 
-#: ../doc/changelog.py:105
+#: ../doc/changelog.py:149
 msgid "* Windows key is no longer required in the keymap editor"
 msgstr "* Windows tekla ez da jada bearrezkoa teklatu-mapen editorean."
 
-#: ../doc/changelog.py:106
+#: ../doc/changelog.py:150
 msgid "* Switched to the Microsoft translator."
 msgstr "* Microsoften itzultzailera aldatu gara."
 
-#: ../doc/changelog.py:107
+#: ../doc/changelog.py:151
 msgid ""
 "* You can update the current buffer by pressing ctrl+win+shift+u in the "
 "default keymap or in the buffer menu."
@@ -697,20 +1028,21 @@ msgstr ""
 "* Enfokatutako uferra ktrl+shift+win+u sakatuta (lehenetsitako teklatu-"
 "mapak) edo menuan eguneratu daitezke."
 
-#: ../doc/changelog.py:108
+#: ../doc/changelog.py:152
 msgid "* Changed some keystrokes in the windows 10 default keymap"
 msgstr ""
 "* Lasterbide-tekla batzuk aldatuak izan dira Windows 10erako teklatu-mapan."
 
-#: ../doc/changelog.py:109
+#: ../doc/changelog.py:153
 msgid "* New followers and friends buffer for user timelines."
 msgstr ""
 "* Jarraitzaileen eta lagunen bufer berria erabiltzaileen denbora-lerroentzat."
 
-#: ../doc/changelog.py:110
+#: ../doc/changelog.py:154
 msgid "---"
 msgstr "---"
 
-#: ../doc/changelog.py:111
+#: ../doc/changelog.py:155
+#, fuzzy
 msgid "Copyright © 2014-2017, Manuel Cortez."
 msgstr "Copyright © 2014-2017, Manuel Cortez."
