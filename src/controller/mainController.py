@@ -861,7 +861,7 @@ class Controller(object):
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, sound="tweet_timeline.ogg", user_id=usr["id_str"], tweet_mode="extended")
      try:
-      tl.start_stream()
+      tl.start_stream(play_sound=False)
      except TwythonAuthError:
       commonMessageDialogs.unauthorized()
       return
@@ -881,7 +881,7 @@ class Controller(object):
       return
      tl = buffersController.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr["id_str"], tweet_mode="extended")
      try:
-      tl.start_stream()
+      tl.start_stream(play_sound=False)
      except TwythonAuthError:
       commonMessageDialogs.unauthorized()
       return
@@ -900,7 +900,7 @@ class Controller(object):
       return
      tl = buffersController.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (usr["id_str"],), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr["id_str"])
      try:
-      tl.start_stream()
+      tl.start_stream(play_sound=False)
      except TwythonAuthError:
       commonMessageDialogs.unauthorized()
       return
