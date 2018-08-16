@@ -116,7 +116,7 @@ class Session(object):
    self.db["direct_messages"]["items"] = []
   for i in data:
    if i["message_create"]["sender_id"] == self.db["user_id"]:
-    if utils.find_item(i["id"], self.db["sent_direct_messages"]["items"]) == None:
+    if self.db.has_key("sent_direct_messages") and utils.find_item(i["id"], self.db["sent_direct_messages"]["items"]) == None:
      if self.settings["general"]["reverse_timelines"] == False: self.db["sent_direct_messages"]["items"].append(i)
      else: self.db["sent_direct_messages"]["items"].insert(0, i)
      sent = sent+1

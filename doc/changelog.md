@@ -2,6 +2,10 @@
 
 ## changes in this version
 
+* If the sent direct messages buffer is hidden, TWBlue should keep loading everything as expected. ([#246](https://github.com/manuelcortez/TWBlue/issues/246))
+
+## Changes in version 0.94
+
 * Added an option in the global settings dialog to disable the Streaming features of TWBlue. TWBlue will remove all Streaming features after August 16, so this option will give people an idea about how it will be. ([#219](https://github.com/manuelcortez/TWBlue/issues/219))
 * Due to Twitter API changes, Switched authorisation method to Pin-code based authorisation. When you add new accounts to TWBlue, you will be required to paste a code displayed in the Twitter website in order to grant access to TWBlue. ([#216](https://github.com/manuelcortez/TWBlue/issues/216))
 * In order to comply with latest Twitter changes, TWBlue has switched to the new method used to send and receive direct messages, according to issue [#215.](https://github.com/manuelcortez/twblue/issues/215)
