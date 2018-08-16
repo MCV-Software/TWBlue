@@ -138,8 +138,6 @@ class accountSettingsController(globalSettingsController):
   widgetUtils.connect_event(self.dialog.general.au, widgetUtils.BUTTON_PRESSED, self.manage_autocomplete)
   self.dialog.set_value("general", "relative_time", self.config["general"]["relative_times"])
   self.dialog.set_value("general", "show_screen_names", self.config["general"]["show_screen_names"])
-  if application.streaming_lives():
-   self.dialog.set_value("general", "apiCalls", self.config["general"]["max_api_calls"])
   self.dialog.set_value("general", "itemsPerApiCall", self.config["general"]["max_tweets_per_call"])
   self.dialog.set_value("general", "reverse_timelines", self.config["general"]["reverse_timelines"])
   rt = self.config["general"]["retweet_mode"]
@@ -191,8 +189,6 @@ class accountSettingsController(globalSettingsController):
    self.needs_restart = True
    self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
   self.config["general"]["show_screen_names"] = self.dialog.get_value("general", "show_screen_names")
-  if application.streaming_lives():
-   self.config["general"]["max_api_calls"] = self.dialog.get_value("general", "apiCalls")
   self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
   if self.config["general"]["persist_size"] != self.dialog.get_value("general", "persist_size"):
    if self.dialog.get_value("general", "persist_size") == '':
@@ -293,8 +289,6 @@ class accountSettingsController(globalSettingsController):
   all_buffers['friends']=_(u"Friends")
   all_buffers['blocks']=_(u"Blocked users")
   all_buffers['muted']=_(u"Muted users")
-  if application.streaming_lives():
-   all_buffers['events']=_(u"Events")
   list_buffers = []
   hidden_buffers=[]
   for i in all_buffers.keys():

@@ -108,27 +108,6 @@ class Controller(object):
   [results.append(self.search_buffer(i.name, i.account)) for i in buffers if i.account == account and (i.type != "account")]
   return results
 
- def bind_stream_events(self):
-  """ Binds all the streaming events with their functions."""
-  log.debug("Binding events for the Twitter stream API...")
-  pub.subscribe(self.manage_home_timelines, "item-in-home")
-  pub.subscribe(self.manage_mentions, "mention")
-  pub.subscribe(self.manage_direct_messages, "direct-message")
-  pub.subscribe(self.manage_sent_tweets, "sent-tweet")
-  pub.subscribe(self.manage_events, "event")
-  pub.subscribe(self.manage_followers, "follower")
-  pub.subscribe(self.manage_friend, "friend")
-  pub.subscribe(self.manage_unfollowing, "unfollowing")
-  pub.subscribe(self.manage_favourite, "favourite")
-  pub.subscribe(self.manage_unfavourite, "unfavourite")
-  pub.subscribe(self.manage_blocked_user, "blocked-user")
-  pub.subscribe(self.manage_unblocked_user, "unblocked-user")
-  pub.subscribe(self.manage_item_in_timeline, "item-in-timeline")
-  pub.subscribe(self.manage_item_in_list, "item-in-list")
-  pub.subscribe(self.on_tweet_deleted, "tweet-deleted")
-  pub.subscribe(self.manage_stream_errors, "stream-error")
-#  pub.subscribe(self.restart_streams, "restart-streams")
-
  def bind_other_events(self):
   """ Binds the local application events with their functions."""
   log.debug("Binding other application events...")
@@ -142,6 +121,13 @@ class Controller(object):
   pub.subscribe(self.search_topic, "search")
   pub.subscribe(self.update_sent_dms, "sent-dms-updated")
   pub.subscribe(self.more_dms, "more-sent-dms")
+  pub.subscribe(self.manage_sent_tweets, "sent-tweet")
+  pub.subscribe(self.manage_friend, "friend")
+  pub.subscribe(self.manage_unfollowing, "unfollowing")
+  pub.subscribe(self.manage_favourite, "favourite")
+  pub.subscribe(self.manage_unfavourite, "unfavourite")
+  pub.subscribe(self.manage_blocked_user, "blocked-user")
+  pub.subscribe(self.manage_unblocked_user, "unblocked-user")
   if system == "Windows":
    pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
    widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -234,8 +220,6 @@ class Controller(object):
   # This saves the current account (important in invisible mode)
   self.current_account = ""
   self.view.prepare()
-  if application.streaming_lives():
-   self.bind_stream_events()
   self.bind_other_events()
   if system == "Windows":
    self.set_systray_icon()
@@ -350,10 +334,6 @@ class Controller(object):
     muted = buffersController.peopleBufferController(self.view.nb, "list_mutes", "muted", session, session.db["user_name"])
     self.buffers.append(muted)
     self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-   elif i == 'events' and application.streaming_lives():
-    events = buffersController.eventsBufferController(self.view.nb, "events", session, session.db["user_name"], bufferType="dmPanel", screen_name=session.db["user_name"])
-    self.buffers.append(events)
-    self.view.insert_buffer(events.buffer, name=_(u"Events"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   timelines = buffersController.emptyPanel(self.view.nb, "timelines", session.db["user_name"])
   self.buffers.append(timelines)
   self.view.insert_buffer(timelines.buffer , name=_(u"Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
@@ -578,7 +558,6 @@ class Controller(object):
     if listBuffer != None: listBuffer.get_user_ids()
     buff.session.db["lists"].pop(older_list)
     buff.session.db["lists"].append(list)
-    if listBuffer != None: pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
    except TwythonError as e:
     output.speak("error %s: %s" % (e.error_code, e.msg))
 
@@ -607,7 +586,6 @@ class Controller(object):
     if listBuffer != None: listBuffer.get_user_ids()
     buff.session.db["lists"].pop(older_list)
     buff.session.db["lists"].append(list)
-    if listBuffer != None: pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
    except TwythonError as e:
     output.speak("error %s: %s" % (e.error_code, e.msg))
 
@@ -667,8 +645,6 @@ class Controller(object):
   for item in session_.sessions:
    if session_.sessions[item].logged == False: continue
    log.debug("Disconnecting streams for %s session" % (session_.sessions[item].session_id,))
-   if hasattr(session_.sessions[item], "main_stream"): session_.sessions[item].main_stream.disconnect()
-   if hasattr(session_.sessions[item], "timelinesStream"): session_.sessions[item].timelinesStream.disconnect()
    session_.sessions[item].sound.cleaner.cancel()
    log.debug("Shelving database for " +    session_.sessions[item].session_id)
    session_.sessions[item].shelve()
@@ -848,9 +824,6 @@ class Controller(object):
      if usr["following"] == False:
       commonMessageDialogs.no_following()
       return
-     if application.streaming_lives():
-      answer = commonMessageDialogs.protected_user()
-      if answer == widgetUtils.NO: return
     tl_type = dlg.get_action()
     if tl_type  == "tweets":
      if usr["statuses_count"] == 0:
@@ -870,7 +843,6 @@ class Controller(object):
      self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
      buff.session.settings["other_buffers"]["timelines"].append(usr["id_str"])
      pub.sendMessage("buffer-title-changed", buffer=tl)
-     pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
      buff.session.sound.play("create_timeline.ogg")
     elif tl_type == "favourites":
      if usr["favourites_count"] == 0:
@@ -941,7 +913,6 @@ class Controller(object):
   search.tweet = buffer.get_right_tweet()
   search.start_stream(start=True)
   pos=self.view.search("searches", buffer.session.db["user_name"])
-#  self.buffers.append(search)
   self.insert_buffer(search, pos)
   self.view.insert_buffer(search.buffer, name=_(u"Conversation with {0}").format(user), pos=pos)
 
@@ -1270,32 +1241,6 @@ class Controller(object):
   if message != None:
    output.speak(message, speech=session.settings["reporting"]["speech_reporting"], braille=session.settings["reporting"]["braille_reporting"])
 
- def manage_home_timelines(self, data, user):
-  buffer = self.search_buffer("home_timeline", user)
-  if buffer == None: return
-  play_sound = "tweet_received.ogg"
-  if "home_timeline" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-   self.notify(buffer.session, play_sound=play_sound)
-  buffer.add_new_item(data)
-
- def manage_mentions(self, data, user):
-  buffer = self.search_buffer("mentions", user)
-  if buffer == None: return
-  play_sound = "mention_received.ogg"
-  message = _(u"One mention from %s ") % (data["user"]["name"])
-  if "mentions"  not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-   self.notify(buffer.session, play_sound=play_sound, message=message)
-  buffer.add_new_item(data)
-
- def manage_direct_messages(self, data, user):
-  buffer = self.search_buffer("direct_messages", user)
-  if buffer == None: return
-  play_sound = "dm_received.ogg"
-  message = _(u"New direct message")
-  if "direct_messages"  not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-   self.notify(buffer.session, play_sound=play_sound, message=message)
-  buffer.add_new_item(data)
-
  def manage_sent_dm(self, data, user):
   buffer = self.search_buffer("sent_direct_messages", user)
   if buffer == None: return
@@ -1312,33 +1257,15 @@ class Controller(object):
    self.notify(buffer.session, play_sound=play_sound)
   buffer.add_new_item(data)
 
- def manage_events(self, data, user):
-  buffer = self.search_buffer("events", user)
-  if buffer == None: return
-  play_sound = "new_event.ogg"
-  if "events" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-   self.notify(buffer.session, play_sound=play_sound)
-  buffer.add_new_item(data)
-
- def manage_followers(self, data, user):
-  buffer = self.search_buffer("followers", user)
-  if buffer == None: return
-  play_sound = "update_followers.ogg"
-  if "followers" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-   self.notify(buffer.session, play_sound=play_sound)
-  buffer.add_new_item(data)
-
  def manage_friend(self, data, user):
   buffer = self.search_buffer("friends", user)
   if buffer == None: return
   buffer.add_new_item(data)
-  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_unfollowing(self, item, user):
   buffer = self.search_buffer("friends", user)
   if buffer == None: return
   buffer.remove_item(item)
-  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_favourite(self, data, user):
   buffer = self.search_buffer("favourites", user)
@@ -1357,29 +1284,11 @@ class Controller(object):
   buffer = self.search_buffer("blocked", user)
   if buffer == None: return
   buffer.add_new_item(data)
-  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
 
  def manage_unblocked_user(self, item, user):
   buffer = self.search_buffer("blocked", user)
   if buffer == None: return
   buffer.remove_item(item)
-  pub.sendMessage("restart-streams", streams=["main_stream"], session=buffer.session)
-
- def manage_item_in_timeline(self, data, user, who):
-  buffer = self.search_buffer("%s-timeline" % (who,), user)
-  if buffer == None: return
-  play_sound = "tweet_timeline.ogg"
-  if "%s-timeline" % (who,) not in buffer.session.settings["other_buffers"]["muted_buffers"] and buffer.session.settings["sound"]["session_mute"] == False:
-   self.notify(buffer.session, play_sound=play_sound, message=_(u"One tweet from %s") % (data["user"]["name"]))
-  buffer.add_new_item(data)
-
- def manage_item_in_list(self, data, user, where):
-  buffer = self.search_buffer("%s" % (where,), user)
-  if buffer == None: return
-  play_sound = "list_tweet.ogg"
-  if "%s" % (where,) not in buffer.session.settings["other_buffers"]["muted_buffers"] and buffer.session.settings["sound"]["session_mute"] == False:
-   self.notify(buffer.session, play_sound=play_sound, message=_(u"One tweet from %s") % (data["user"]["name"]))
-  buffer.add_new_item(data)
 
  def start_buffers(self, session):
   log.debug("starting buffers... Session %s" % (session.session_id,))
@@ -1406,29 +1315,10 @@ class Controller(object):
      continue
     if change_title:
      pub.sendMessage("buffer-title-changed", buffer=i)
-  if application.streaming_lives():
-   log.debug("Starting the streaming endpoint")
-   session.start_streaming()
 
  def set_positions(self):
   for i in session_.sessions:
    self.set_buffer_positions(i)
-
- def manage_stream_errors(self, session):
-  log.error(" Restarting %s session streams. It will be destroyed" % (session,))
-  s = session_.sessions[session]
-  try:
-   if hasattr(s, "main_stream"):
-    s.main_stream.disconnect()
-    log.error("main stream disconnected")
-    del s.main_stream
-   if hasattr(s, "timelinesStream"):
-    s.timelinesStream.disconnect()
-    del s.timelinesStream
-  except AttributeError:
-   pass
-  s.counter = 0
-#  s.listen_stream_error()
 
  def check_connection(self):
   if self.started == False:
@@ -1486,13 +1376,6 @@ class Controller(object):
    tl.start_stream(play_sound=False)
    buff.session.settings["other_buffers"]["lists"].append(create)
    buff.session.settings.write()
-   pub.sendMessage("restart-streams", streams=["timelinesStream"], session=buff.session)
-
- def restart_streams(self, streams=[], session=None):
-  for i in streams:
-   log.debug("Restarting the %s stream" % (i,))
-   session.remove_stream(i)
-  session.check_connection()
 
  def invisible_shorcuts_changed(self, registered):
   if registered == True:
@@ -1617,12 +1500,6 @@ class Controller(object):
    n = bf.start_stream(mandatory=True)
    if n != None:
     output.speak(_(u"{0} items retrieved").format(n,))
-
- def on_tweet_deleted(self, data):
-  id = data["delete"]["status"]["id"]
-  for i in self.buffers:
-   if hasattr(i, "remove_tweet") and hasattr(i, "name"):
-    i.remove_tweet(id)
 
  def buffer_title_changed(self, buffer):
   if "-timeline" in buffer.name:

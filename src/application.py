@@ -19,17 +19,3 @@ translators = [u"Manuel Cortéz (English)", u"Mohammed Al Shara, Hatoun Felemban
 url = u"https://twblue.es"
 report_bugs_url = "https://github.com/manuelcortez/twblue/issues"
 supported_languages = []
-
-def streaming_lives():
- """ Check if we are in August 16.
- ToDo: This method should be removed after deadline==True"""
- # Let's import config here so we will avoid breaking things when setup.py is going to be used.
- # Check if user has disabled the streaming API things from settings.
- import config
- if config.app != None:
-  no_streaming = config.app["app-settings"]["no_streaming"]
-  if no_streaming == True:
-   return False
- deadline = datetime.date(2018, 8, 16)
- now = datetime.datetime.now().date()
- return deadline>now
