@@ -3,7 +3,7 @@ import widgetUtils
 import output
 from wxUI.dialogs import lists
 from twython import TwythonError
-from twitter import compose, utils
+from sessions.twitter import compose, utils
 from pubsub import pub
 
 class listsController(object):

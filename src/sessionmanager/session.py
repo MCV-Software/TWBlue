@@ -3,7 +3,6 @@
 import wx
 import urllib2
 import config
-import twitter
 from keys import keyring
 import session_exceptions as Exceptions
 import paths
@@ -11,7 +10,7 @@ import output
 import time
 import sound
 import logging
-from twitter import utils, compose
+from sessions.twitter import client, utils, compose
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
 import config_utils
 import shelve
@@ -20,7 +19,7 @@ import os
 from mysc.thread_utils import stream_threaded, call_threaded
 from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
-from long_tweets import tweets, twishort
+from sessions.twitter.long_tweets import tweets, twishort
 from wxUI import authorisationDialog
 
 sessions = {}
@@ -136,7 +135,7 @@ class Session(object):
   self.session_id = session_id
   self.logged = False
   self.settings = None
-  self.twitter = twitter.twitter.twitter()
+  self.twitter = client.twitter()
   self.db={}
   self.reconnection_function_active = False
   self.counter = 0
@@ -380,7 +379,7 @@ class Session(object):
    log.debug("Restarting connection after 5 minutes.")
    del self.twitter
    self.logged = False
-   self.twitter = twitter.twitter.twitter()
+   self.twitter = client.twitter()
    self.login(False)
    self.counter = 0
   if self.reconnection_function_active == True:  return

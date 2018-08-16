@@ -17,7 +17,7 @@ if system == "Windows":
  from extra.AudioUploader import audioUploader
 elif system == "Linux":
  from gtkUI.dialogs import message
-from twitter import utils
+from sessions.twitter import utils
 
 class basicTweet(object):
  """ This class handles the tweet main features. Other classes should derive from this class."""

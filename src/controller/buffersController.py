@@ -18,11 +18,11 @@ import sound
 import languageHandler
 import logging
 import youtube_utils
-from twitter import compose, utils
+from sessions.twitter import compose, utils
 from mysc.thread_utils import call_threaded
 from twython import TwythonError
 from pubsub import pub
-from long_tweets import twishort, tweets
+from sessions.twitter.long_tweets import twishort, tweets
 
 log = logging.getLogger("controller.buffers")
 

@@ -18,7 +18,7 @@ if system == "Windows":
 # from issueReporter import issueReporter
 elif system == "Linux":
  from gtkUI import (view, commonMessageDialogs)
-from twitter import utils, compose
+from sessions.twitter import utils, compose
 from sessionmanager import manager, sessionManager
 
 import buffersController
