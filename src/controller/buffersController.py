@@ -162,9 +162,11 @@ class bufferController(object):
     else:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
    if not hasattr(tweet, "attachments") or len(tweet.attachments) == 0:
-    call_threaded(self.session.api_call, call_name="update_status", status=text, _sound="tweet_send.ogg")
-   else:
-    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments, _sound="tweet_send.ogg")
+    item = self.session.api_call(call_name="update_status", status=text, _sound="tweet_send.ogg")
+#   else:
+#    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments, _sound="tweet_send.ogg")
+   if item != None:
+    pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
   self.session.settings.write()
 
@@ -568,7 +570,9 @@ class baseBufferController(bufferController):
    else:
     params["call_name"] = "update_status_with_media"
     params["media"] = message.file
-   call_threaded(self.session.api_call, **params)
+   item = self.session.api_call(**params)
+   if item != None:
+    pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
   if hasattr(message.message, "destroy"): message.message.destroy()
   self.session.settings.write()
 
@@ -637,13 +641,17 @@ class baseBufferController(bufferController):
    text = retweet.message.get_text()
    text = text+" https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id)
    if retweet.image == None:
-    call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id)
+    item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id)
+    if item != None:
+     pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
    else:
     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, media=retweet.image)
   if hasattr(retweet.message, "destroy"): retweet.message.destroy()
 
  def _direct_retweet(self, id):
-  call_threaded(self.session.api_call, call_name="retweet", _sound="retweet_send.ogg", id=id)
+  item = self.session.api_call(call_name="retweet", _sound="retweet_send.ogg", id=id)
+  if item != None:
+   pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
 
  def onFocus(self, *args, **kwargs):
   tweet = self.get_tweet()
@@ -809,7 +817,9 @@ class directMessagesController(baseBufferController):
     config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
     config.app.write()
    if message.image == None:
-    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
+    item = self.session.api_call(call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
+    if item != None:
+     pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
    else:
     call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
   if hasattr(message.message, "destroy"): message.message.destroy()
@@ -1012,7 +1022,9 @@ class peopleBufferController(baseBufferController):
     config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
     config.app.write()
    if message.image == None:
-    call_threaded(self.session.api_call, call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
+    item = self.session.api_call(call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
+    if item != None:
+     pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
    else:
     call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
   if hasattr(message.message, "destroy"): message.message.destroy()

@@ -1252,9 +1252,12 @@ class Controller(object):
  def manage_sent_tweets(self, data, user):
   buffer = self.search_buffer("sent_tweets", user)
   if buffer == None: return
-  play_sound = "tweet_send.ogg"
-  if "sent_tweets" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-   self.notify(buffer.session, play_sound=play_sound)
+#  if "sent_tweets" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+#   self.notify(buffer.session, play_sound=play_sound)
+  if buffer.session.settings["general"]["reverse_timelines"] == False:
+   buffer.session.db[buffer.name].append(data)
+  else:
+   buffer.session.db[buffer.name].insert(0, data)
   buffer.add_new_item(data)
 
  def manage_friend(self, data, user):
