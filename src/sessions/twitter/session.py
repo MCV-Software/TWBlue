@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-""" The main session object. Here are the twitter functions to interact with the "model" of TWBlue."""
 import wx
-import urllib2
 import config
 from keys import keyring
-import session_exceptions as Exceptions
 import paths
 import output
 import time
@@ -12,8 +9,6 @@ import sound
 import logging
 from sessions.twitter import client, utils, compose
 from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
-import config_utils
-import shelve
 import application
 import os
 from mysc.thread_utils import stream_threaded, call_threaded
@@ -21,36 +16,12 @@ from pubsub import pub
 log = logging.getLogger("sessionmanager.session")
 from sessions.twitter.long_tweets import tweets, twishort
 from wxUI import authorisationDialog
+from sessions import base
 
 sessions = {}
 
-class Session(object):
+class Session(base.baseSession):
  """ A session object where we will save configuration, the twitter object and a local storage for saving the items retrieved through the Twitter API methods"""
-
- # Decorators.
-
- def _require_login(fn):
-
-  """ Decorator for checking if the user is logged in(a twitter object has credentials) on twitter.
-  Some functions may need this to avoid making unneeded twitter API calls."""
-
-  def f(self, *args, **kwargs):
-   if self.logged == True:
-    fn(self, *args, **kwargs)
-   else:
-    raise Exceptions.NotLoggedSessionError("You are not logged in yet.")
-  return f
-
- def _require_configuration(fn):
-
-  """ Check if the user has a configured session."""
-
-  def f(self, *args, **kwargs):
-   if self.settings != None:
-    fn(self, *args, **kwargs)
-   else:
-    raise Exceptions.NotConfiguredSessionError("Not configured.")
-  return f
 
  def order_buffer(self, name, data, ignore_older=True):
 
@@ -127,43 +98,17 @@ class Session(object):
   pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
   return incoming
 
- def __init__(self, session_id):
+ def __init__(self, *args, **kwargs):
 
   """ session_id (str): The name of the folder inside the config directory where the session is located."""
 
-  super(Session, self).__init__()
-  self.session_id = session_id
-  self.logged = False
-  self.settings = None
+  super(Session, self).__init__(*args, **kwargs)
   self.twitter = client.twitter()
-  self.db={}
   self.reconnection_function_active = False
   self.counter = 0
   self.lists = []
 
- @property
- def is_logged(self):
-  return self.logged
-
- def get_configuration(self):
-
-   """ Gets settings for a session."""
- 
-   file_ = "%s/session.conf" % (self.session_id,)
-#  try:
-   log.debug("Creating config file %s" % (file_,))
-   self.settings = config_utils.load_config(paths.config_path(file_), paths.app_path("Conf.defaults"))
-   self.init_sound()
-   self.deshelve()
-#  except:
-#   log.exception("The session configuration has failed.")
-#   self.settings = None
-
- def init_sound(self):
-  try: self.sound = sound.soundSystem(self.settings["sound"])
-  except: pass
-
- @_require_configuration
+# @_require_configuration
  def login(self, verify_credentials=True):
 
   """ Log into twitter using  credentials from settings.
@@ -183,7 +128,7 @@ class Session(object):
    self.logged = False
    raise Exceptions.RequireCredentialsSessionError
 
- @_require_configuration
+# @_require_configuration
  def authorise(self):
 
   """ Authorises a Twitter account. This function needs to be called for each new session, after self.get_configuration() and before self.login()"""
@@ -262,7 +207,7 @@ class Session(object):
   tl["statuses"].reverse()
   return tl["statuses"]
 
- @_require_login
+# @_require_login
  def get_favourites_timeline(self, name, *args, **kwargs):
 
   """ Gets favourites for the authenticated user or a friend or follower.
@@ -290,7 +235,7 @@ class Session(object):
   results.reverse()
   return results
 
- @_require_login
+# @_require_login
  def get_user_info(self):
 
   """ Retrieves some information required by TWBlue for setup."""
@@ -311,21 +256,21 @@ class Session(object):
   self.get_muted_users()
   self.settings.write()
 
- @_require_login
+# @_require_login
  def get_lists(self):
 
   """ Gets the lists that the user is subscribed to and stores them in the database. Returns None."""
   
   self.db["lists"] = self.twitter.twitter.show_lists(reverse=True)
 
- @_require_login
+# @_require_login
  def get_muted_users(self):
 
   """ Gets muted users (oh really?)."""
 
   self.db["muted_users"] = self.twitter.twitter.list_mute_ids()["ids"]
 
- @_require_login
+# @_require_login
  def get_stream(self, name, function, *args, **kwargs):
 
   """ Retrieves the items for a regular stream.
@@ -385,52 +330,6 @@ class Session(object):
   if self.reconnection_function_active == True:  return
   self.reconnection_function_active = True
   self.reconnection_function_active = False
-
- def shelve(self):
-  "Shelve the database to allow for persistance."
-  shelfname=paths.config_path(str(self.session_id)+"/cache.db")
-  if self.settings["general"]["persist_size"] == 0:
-   if os.path.exists(shelfname):
-    os.remove(shelfname)
-   return
-  try:
-   if not os.path.exists(shelfname):
-    output.speak("Generating database, this might take a while.",True)
-   shelf=shelve.open(paths.config_path(shelfname),'c')
-   for key,value in self.db.items():
-    if type(key) != str and type(key) != unicode:
-        output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
-        log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
-    # Convert unicode objects to UTF-8 strings before shelve these objects.
-    if type(value) == list and self.settings["general"]["persist_size"] != -1 and len(value) > self.settings["general"]["persist_size"]:
-        shelf[str(key.encode("utf-8"))]=value[self.settings["general"]["persist_size"]:]
-    else:
-        shelf[str(key.encode("utf-8"))]=value
-   shelf.close()
-  except:
-   output.speak("An exception occurred while shelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
-   log.exception("Exception while shelving" + shelfname)
-   os.remove(shelfname)
-
- def deshelve(self):
-  "Import a shelved database."
-  shelfname=paths.config_path(str(self.session_id)+"/cache.db")
-  if self.settings["general"]["persist_size"] == 0:
-   if os.path.exists(shelfname):
-    os.remove(shelfname)
-   return
-  try:
-   shelf=shelve.open(paths.config_path(shelfname),'c')
-   for key,value in shelf.items():
-    self.db[key]=value
-   shelf.close()
-  except:
-   output.speak("An exception occurred while deshelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
-   log.exception("Exception while deshelving" + shelfname)
-   try: 
-    os.remove(shelfname)
-   except:
-    pass
 
  def check_quoted_status(self, tweet):
   status = tweets.is_long(tweet)

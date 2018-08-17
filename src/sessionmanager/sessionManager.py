@@ -12,7 +12,7 @@ import paths
 import time
 import os
 import logging
-import session
+from sessions.twitter import session
 import manager
 import config_utils
 import config

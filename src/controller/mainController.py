@@ -23,7 +23,7 @@ from sessionmanager import manager, sessionManager
 
 import buffersController
 import messages
-from sessionmanager import session as session_
+from sessions.twitter  import session as session_
 from pubsub import pub
 import sound
 import output

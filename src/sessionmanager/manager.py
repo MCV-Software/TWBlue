@@ -5,7 +5,7 @@ import paths
 import os
 import logging
 log = logging.getLogger("sessionmanager.manager")
-import session_exceptions
+from sessions import session_exceptions
 
 manager = None
 def setup():
