@@ -23,6 +23,7 @@ from sessionmanager import manager, sessionManager
 
 import buffersController
 import messages
+import sessions
 from sessions.twitter  import session as session_
 from pubsub import pub
 import sound
@@ -239,12 +240,12 @@ class Controller(object):
  def do_work(self):
   """ Creates the buffer objects for all accounts. This does not starts the buffer streams, only creates the objects."""
   log.debug("Creating buffers for all sessions...")
-  for i in session_.sessions:
+  for i in sessions.sessions:
    log.debug("Working on session %s" % (i,))
-   if session_.sessions[i].is_logged == False:
-    self.create_ignored_session_buffer(session_.sessions[i])
+   if sessions.sessions[i].is_logged == False:
+    self.create_ignored_session_buffer(sessions.sessions[i])
     continue
-   self.create_buffers(session_.sessions[i])
+   self.create_buffers(sessions.sessions[i])
 
   # Connection checker executed each minute.
   self.checker_function = RepeatingTimer(60, self.check_connection)
@@ -257,12 +258,12 @@ class Controller(object):
 
  def start(self):
   """ Starts all buffer objects. Loads their items."""
-  for i in session_.sessions:
-   if session_.sessions[i].is_logged == False: continue
-   self.start_buffers(session_.sessions[i])
-   self.set_buffer_positions(session_.sessions[i])
+  for i in sessions.sessions:
+   if sessions.sessions[i].is_logged == False: continue
+   self.start_buffers(sessions.sessions[i])
+   self.set_buffer_positions(sessions.sessions[i])
   if config.app["app-settings"]["play_ready_sound"] == True:
-   session_.sessions[session_.sessions.keys()[0]].sound.play("ready.ogg")
+   sessions.sessions[sessions.sessions.keys()[0]].sound.play("ready.ogg")
   if config.app["app-settings"]["speak_ready_msg"] == True:
    output.speak(_(u"Ready"))
   self.started = True
@@ -276,8 +277,8 @@ class Controller(object):
   self.view.add_buffer(account.buffer , name=session.settings["twitter"]["user_name"])
 
  def login_account(self, session_id):
-  for i in session_.sessions:
-   if session_.sessions[i].session_id == session_id: session = session_.sessions[i]
+  for i in sessions.sessions:
+   if sessions.sessions[i].session_id == session_id: session = sessions.sessions[i]
   session.login()
   session.db = dict()
   self.create_buffers(session, False)
@@ -391,8 +392,8 @@ class Controller(object):
     i.buffer.list.select_item(session.db[str(i.name+"_pos")])
 
  def logout_account(self, session_id):
-  for i in session_.sessions:
-   if session_.sessions[i].session_id == session_id: session = session_.sessions[i]
+  for i in sessions.sessions:
+   if sessions.sessions[i].session_id == session_id: session = sessions.sessions[i]
   user = session.db["user_name"]
   delete_buffers = []
   for i in self.buffers:
@@ -642,12 +643,12 @@ class Controller(object):
   for i in self.buffers: i.save_positions()
   log.debug("Exiting...")
   log.debug("Saving global configuration...")
-  for item in session_.sessions:
-   if session_.sessions[item].logged == False: continue
-   log.debug("Disconnecting streams for %s session" % (session_.sessions[item].session_id,))
-   session_.sessions[item].sound.cleaner.cancel()
-   log.debug("Shelving database for " +    session_.sessions[item].session_id)
-   session_.sessions[item].shelve()
+  for item in sessions.sessions:
+   if sessions.sessions[item].logged == False: continue
+   log.debug("Disconnecting streams for %s session" % (sessions.sessions[item].session_id,))
+   sessions.sessions[item].sound.cleaner.cancel()
+   log.debug("Shelving database for " +    sessions.sessions[item].session_id)
+   sessions.sessions[item].shelve()
   if system == "Windows":
    self.systrayIcon.RemoveIcon()
   widgetUtils.exit_application()
@@ -1320,16 +1321,16 @@ class Controller(object):
      pub.sendMessage("buffer-title-changed", buffer=i)
 
  def set_positions(self):
-  for i in session_.sessions:
+  for i in sessions.sessions:
    self.set_buffer_positions(i)
 
  def check_connection(self):
   if self.started == False:
    return
-  for i in session_.sessions:
+  for i in sessions.sessions:
    try:
-    if session_.sessions[i].is_logged == False: continue
-    session_.sessions[i].check_connection()
+    if sessions.sessions[i].is_logged == False: continue
+    sessions.sessions[i].check_connection()
    except TwythonError: # We shouldn't allow this function to die.
     pass
 
@@ -1399,14 +1400,14 @@ class Controller(object):
   sm.fill_list()
   sm.show()
   for i in sm.new_sessions:
-   self.create_buffers(session_.sessions[i])
-   call_threaded(self.start_buffers, session_.sessions[i])
+   self.create_buffers(sessions.sessions[i])
+   call_threaded(self.start_buffers, sessions.sessions[i])
   for i in sm.removed_sessions:
-   if session_.sessions[i].logged == True:
-    self.logout_account(session_.sessions[i].session_id)
-   self.destroy_buffer(session_.sessions[i].settings["twitter"]["user_name"], session_.sessions[i].settings["twitter"]["user_name"])
-   self.accounts.remove(session_.sessions[i].settings["twitter"]["user_name"])
-   session_.sessions.pop(i)
+   if sessions.sessions[i].logged == True:
+    self.logout_account(sessions.sessions[i].session_id)
+   self.destroy_buffer(sessions.sessions[i].settings["twitter"]["user_name"], sessions.sessions[i].settings["twitter"]["user_name"])
+   self.accounts.remove(sessions.sessions[i].settings["twitter"]["user_name"])
+   sessions.sessions.pop(i)
 
  def update_profile(self, *args, **kwargs):
   r = user.profileController(self.get_best_buffer().session)
@@ -1558,5 +1559,5 @@ class Controller(object):
    sent_dms.put_more_items(data)
 
  def save_data_in_db(self):
-  for i in session_.sessions:
-   session_.sessions[i].shelve()
+  for i in sessions.sessions:
+   sessions.sessions[i].shelve()

@@ -12,6 +12,7 @@ import paths
 import time
 import os
 import logging
+import sessions
 from sessions.twitter import session
 import manager
 import config_utils
@@ -76,12 +77,12 @@ class sessionManagerController(object):
  def do_ok(self):
   log.debug("Starting sessions...")
   for i in self.sessions:
-   if session.sessions.has_key(i) == True: continue
+   if sessions.sessions.has_key(i) == True: continue
    s = session.Session(i)
    s.get_configuration()
    if i not in config.app["sessions"]["ignored_sessions"]:
     s.login()
-   session.sessions[i] = s
+   sessions.sessions[i] = s
    self.new_sessions[i] = s
 #  self.view.destroy()
 

@@ -18,8 +18,6 @@ from sessions.twitter.long_tweets import tweets, twishort
 from wxUI import authorisationDialog
 from sessions import base
 
-sessions = {}
-
 class Session(base.baseSession):
  """ A session object where we will save configuration, the twitter object and a local storage for saving the items retrieved through the Twitter API methods"""
 
