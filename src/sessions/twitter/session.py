@@ -1,33 +1,32 @@
 # -*- coding: utf-8 -*-
+""" This is the main session needed to access all Twitter Features."""
+import os
+import time
+import logging
 import wx
 import config
-from keys import keyring
-import paths
 import output
-import time
-import sound
-import logging
-from sessions.twitter import client, utils, compose
-from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
 import application
-import os
-from mysc.thread_utils import stream_threaded, call_threaded
 from pubsub import pub
-log = logging.getLogger("sessionmanager.session")
+from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
+from mysc.thread_utils import call_threaded
+from keys import keyring
+from sessions import base
+from sessions.twitter import client, utils, compose
 from sessions.twitter.long_tweets import tweets, twishort
 from wxUI import authorisationDialog
-from sessions import base
+
+log = logging.getLogger("sessions.twitterSession")
 
 class Session(base.baseSession):
  """ A session object where we will save configuration, the twitter object and a local storage for saving the items retrieved through the Twitter API methods"""
 
  def order_buffer(self, name, data, ignore_older=True):
-
-  """ Put the new items in the local database.
+  """ Put new items in the local database.
   name str: The name for the buffer stored in the dictionary.
   data list: A list with tweets.
+  ignore_older bool: if set to True, items older than the first element on the list will be ignored.
   returns the number of items that have been added in this execution"""
-
   num = 0
   last_id = None
   if self.db.has_key(name) == False:
@@ -57,18 +56,18 @@ class Session(base.baseSession):
   return num
 
  def order_cursored_buffer(self, name, data):
-
-  """ Put the new items on the local database. Useful for cursored buffers (followers, friends, users of a list and searches)
+  """ Put new items on the local database. Useful for cursored buffers (followers, friends, users of a list and searches)
   name str: The name for the buffer stored in the dictionary.
   data list: A list with items and some information about cursors.
   returns the number of items that have been added in this execution"""
+  # Direct messages should be added to db in other function.
+  # Because they will be populating two buffers with one endpoint.
   if name == "direct_messages":
    return self.order_direct_messages(data)
   num = 0
   if self.db.has_key(name) == False:
    self.db[name] = {}
    self.db[name]["items"] = []
-#  if len(self.db[name]["items"]) > 0:
   for i in data:
    if utils.find_item(i["id"], self.db[name]["items"]) == None:
     if self.settings["general"]["reverse_timelines"] == False: self.db[name]["items"].append(i)
@@ -77,6 +76,9 @@ class Session(base.baseSession):
   return num
 
  def order_direct_messages(self, data):
+  """ Add incoming and sent direct messages to their corresponding database items.
+  data list: A list of direct messages to add.
+  returns the number of incoming messages processed in this execution, and sends an event with data regarding amount of sent direct messages added."""
   incoming = 0
   sent = 0
   if self.db.has_key("direct_messages") == False:
@@ -97,9 +99,6 @@ class Session(base.baseSession):
   return incoming
 
  def __init__(self, *args, **kwargs):
-
-  """ session_id (str): The name of the folder inside the config directory where the session is located."""
-
   super(Session, self).__init__(*args, **kwargs)
   self.twitter = client.twitter()
   self.reconnection_function_active = False
@@ -108,10 +107,8 @@ class Session(base.baseSession):
 
 # @_require_configuration
  def login(self, verify_credentials=True):
-
   """ Log into twitter using  credentials from settings.
   if the user account isn't authorised, it needs to call self.authorise() before login."""
-
   if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
    try:
     log.debug("Logging in to twitter...")
@@ -128,9 +125,7 @@ class Session(base.baseSession):
 
 # @_require_configuration
  def authorise(self):
-
   """ Authorises a Twitter account. This function needs to be called for each new session, after self.get_configuration() and before self.login()"""
-
   if self.logged == True:
    raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
   else:
@@ -141,15 +136,21 @@ class Session(base.baseSession):
    self.authorisation_dialog.ShowModal()
 
  def authorisation_cancelled(self, *args, **kwargs):
+  """ Destroy the authorization dialog. """
   self.authorisation_dialog.Destroy()
   del self.authorisation_dialog 
 
  def authorisation_accepted(self, *args, **kwargs):
+  """ Gets the PIN code entered by user and validate it through Twitter."""
   pincode = self.authorisation_dialog.text.GetValue()
   self.twitter.verify_authorisation(self.settings, pincode)
   self.authorisation_dialog.Destroy()
 
  def get_more_items(self, update_function, users=False, dm=False, name=None, *args, **kwargs):
+  """ Get more items for twitter objects.
+  update_function str: function to call for getting more items. Must be member of self.twitter.
+  users, dm bool: If any of these is set to True, the function will treat items as users or dm (they need different handling).
+  name str: name of the database item to put new element in."""
   results = []
   data = getattr(self.twitter.twitter, update_function)(*args, **kwargs)
   if users == True:
@@ -166,7 +167,6 @@ class Session(base.baseSession):
   return results
 
  def api_call(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
-
   """ Make a call to the Twitter API. If there is a connectionError or another exception not related to Twitter, It will call the method again at least 25 times, waiting a while between calls. Useful for  post methods.
   If twitter returns an error, it will not call the method anymore.
   call_name str: The method to call
@@ -175,7 +175,6 @@ class Session(base.baseSession):
   _sound str: a sound to play if the call is executed properly.
   report_success and report_failure bool: These are self explanatory. True or False.
   preexec_message str: A message to speak to the user while the method is running, example: "trying to follow x user"."""
-
   finished = False
   tries = 0
   if preexec_message:
@@ -200,27 +199,24 @@ class Session(base.baseSession):
   if _sound != None: self.sound.play(_sound)
   return val
 
- def search(self, name, *args, **kwargs):
+ def search(self, *args, **kwargs):
+  """ Search in twitter, passing args and kwargs as arguments to the Twython function."""
   tl = self.twitter.twitter.search(*args, **kwargs)
   tl["statuses"].reverse()
   return tl["statuses"]
 
 # @_require_login
  def get_favourites_timeline(self, name, *args, **kwargs):
-
   """ Gets favourites for the authenticated user or a friend or follower.
   name str: Name for storage in the database."""
-
   tl = self.call_paged(self.twitter.twitter.get_favorites, *args, **kwargs)
   return self.order_buffer(name, tl)
 
  def call_paged(self, update_function, *args, **kwargs):
-
   """ Makes a call to the Twitter API methods several times. Useful for get methods.
   this function is needed for retrieving more than 200 items.
   update_function str: The function to call. This function must be child of self.twitter.twitter
   returns a list with all items retrieved."""
-
   max = 0
   results = []
   data = getattr(self.twitter.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
@@ -235,7 +231,6 @@ class Session(base.baseSession):
 
 # @_require_login
  def get_user_info(self):
-
   """ Retrieves some information required by TWBlue for setup."""
   f = self.twitter.twitter.get_account_settings()
   sn = f["screen_name"]
@@ -256,25 +251,19 @@ class Session(base.baseSession):
 
 # @_require_login
  def get_lists(self):
-
   """ Gets the lists that the user is subscribed to and stores them in the database. Returns None."""
-  
   self.db["lists"] = self.twitter.twitter.show_lists(reverse=True)
 
 # @_require_login
  def get_muted_users(self):
-
   """ Gets muted users (oh really?)."""
-
   self.db["muted_users"] = self.twitter.twitter.list_mute_ids()["ids"]
 
 # @_require_login
  def get_stream(self, name, function, *args, **kwargs):
-
   """ Retrieves the items for a regular stream.
   name str: Name to save items to the database.
   function str: A function to get the items."""
-
   last_id = -1
   if self.db.has_key(name):
    try:
@@ -288,13 +277,12 @@ class Session(base.baseSession):
   self.order_buffer(name, tl)
 
  def get_cursored_stream(self, name, function, items="users", get_previous=False, *args, **kwargs):
-
   """ Gets items for API calls that require using cursors to paginate the results.
   name str: Name to save it in the database.
   function str: Function that provides the items.
-  items: When the function returns the list with results, items will tell how the order function should be look.
-    for example get_followers_list returns a list and users are under list["users"], here the items should point to "users"."""
-
+  items: When the function returns the list with results, items will tell how the order function should be look. for example get_followers_list returns a list and users are under list["users"], here the items should point to "users".
+  get_previous bool: wether this function will be used to get previous items in a buffer or load the buffer from scratch.
+  returns number of items retrieved."""
   items_ = []
   try:
    if self.db[name].has_key("cursor") and get_previous:
