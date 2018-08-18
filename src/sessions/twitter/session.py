@@ -199,7 +199,7 @@ class Session(base.baseSession):
   if _sound != None: self.sound.play(_sound)
   return val
 
- def search(self, *args, **kwargs):
+ def search(self, name, *args, **kwargs):
   """ Search in twitter, passing args and kwargs as arguments to the Twython function."""
   tl = self.twitter.twitter.search(*args, **kwargs)
   tl["statuses"].reverse()
@@ -208,7 +208,8 @@ class Session(base.baseSession):
 # @_require_login
  def get_favourites_timeline(self, name, *args, **kwargs):
   """ Gets favourites for the authenticated user or a friend or follower.
-  name str: Name for storage in the database."""
+  name str: Name for storage in the database.
+  args and kwargs are passed directly to the Twython function."""
   tl = self.call_paged(self.twitter.twitter.get_favorites, *args, **kwargs)
   return self.order_buffer(name, tl)
 
@@ -216,6 +217,7 @@ class Session(base.baseSession):
   """ Makes a call to the Twitter API methods several times. Useful for get methods.
   this function is needed for retrieving more than 200 items.
   update_function str: The function to call. This function must be child of self.twitter.twitter
+  args and kwargs are passed to update_function.
   returns a list with all items retrieved."""
   max = 0
   results = []
@@ -303,8 +305,8 @@ class Session(base.baseSession):
   return num
 
  def check_connection(self):
+  """ Restart the Twitter object every 5 executions. It is useful for dealing with requests timeout and other oddities."""
   log.debug("Executing check connection...")
-  instan = 0
   self.counter += 1
   if self.counter >= 4:
    log.debug("Restarting connection after 5 minutes.")
@@ -313,11 +315,11 @@ class Session(base.baseSession):
    self.twitter = client.twitter()
    self.login(False)
    self.counter = 0
-  if self.reconnection_function_active == True:  return
-  self.reconnection_function_active = True
-  self.reconnection_function_active = False
 
  def check_quoted_status(self, tweet):
+  """ Helper for get_quoted_tweet. Get a quoted status inside a tweet and create a special tweet with all info available.
+  tweet dict: A tweet dictionary.
+  Returns a quoted tweet or the original tweet if is not a quote"""
   status = tweets.is_long(tweet)
   if status != False and config.app["app-settings"]["handle_longtweets"]:
    quoted_tweet = self.get_quoted_tweet(tweet)
@@ -325,6 +327,7 @@ class Session(base.baseSession):
   return tweet
 
  def get_quoted_tweet(self, tweet):
+  """ Process a tweet and extract all information related to the quote."""
   quoted_tweet = tweet
   if tweet.has_key("full_text"):
    value = "full_text"
@@ -354,6 +357,9 @@ class Session(base.baseSession):
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
 
  def check_long_tweet(self, tweet):
+  """ Process a tweet and add extra info if it's a long tweet made with Twyshort.
+  tweet dict: a tweet object.
+  returns a tweet with a new argument message, or original tweet if it's not a long tweet."""
   long = twishort.is_long(tweet)
   if long != False and config.app["app-settings"]["handle_longtweets"]:
    message = twishort.get_full_text(long)
@@ -377,6 +383,9 @@ class Session(base.baseSession):
   return tweet
 
  def get_user(self, id):
+  """ Returns an user object associated with an ID.
+  id str: User identifier, provided by Twitter.
+  returns an user dict."""
   if self.db.has_key("users") == False or self.db["users"].has_key(id) == False:
    user = self.twitter.twitter.show_user(id=id)
    self.db["users"][user["id_str"]] = user
@@ -385,6 +394,9 @@ class Session(base.baseSession):
    return self.db["users"][id]
 
  def get_user_by_screen_name(self, screen_name):
+  """ Returns an user identifier associated with a screen_name.
+  screen_name str: User name, such as tw_blue2, provided by Twitter.
+  returns an user ID."""
   if self.db.has_key("users") == False:
    user = utils.if_user_exists(self.twitter.twitter, screen_name)
    self.db["users"][user["id_str"]] = user
