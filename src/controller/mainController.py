@@ -40,6 +40,7 @@ import logging
 import webbrowser
 from mysc import localization
 import os
+import languageHandler
 
 log = logging.getLogger("mainController")
 
@@ -952,7 +953,7 @@ class Controller(object):
    if tweet["coordinates"] != None:
     x = tweet["coordinates"]["coordinates"][0]
     y = tweet["coordinates"]["coordinates"][1]
-    address = geocoder.reverse_geocode(y, x)
+    address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
     if event == None: output.speak(address[0].__str__().decode("utf-8"))
     else: self.view.show_address(address[0].__str__().decode("utf-8"))
    else:
@@ -972,7 +973,7 @@ class Controller(object):
    if tweet["coordinates"] != None:
     x = tweet["coordinates"]["coordinates"][0]
     y = tweet["coordinates"]["coordinates"][1]
-    address = geocoder.reverse_geocode(y, x)
+    address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
     dlg = commonMessageDialogs.view_geodata(address[0].__str__())
    else:
     output.speak(_(u"There are no coordinates in this tweet"))
