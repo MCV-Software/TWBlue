@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-import config
 import random
 import webbrowser
+import logging
+import config
+from requests import certs
 from twython import Twython, TwythonError
 from keys import keyring
-from requests import certs
-import logging
+
 log = logging.getLogger("sessionTwitter")
 
 class twitter(object):

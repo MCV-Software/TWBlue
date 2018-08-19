@@ -19,6 +19,9 @@
 from sessions.twitter import utils
 
 def is_long(tweet):
+ """ Check if the passed tweet contains a quote in its metadata.
+  tweet dict: a tweet dictionary.
+  returns True if a quote is detected, False otherwise."""
  if tweet.has_key("quoted_status_id") and tweet.has_key("quoted_status"):
   return tweet["quoted_status_id"]
  elif tweet.has_key("retweeted_status") and tweet["retweeted_status"].has_key("quoted_status_id") and tweet["retweeted_status"].has_key("quoted_status"):
@@ -26,6 +29,9 @@ def is_long(tweet):
  return False
 
 def clear_url(tweet):
+ """ Reads data from a quoted tweet and removes the link to the Status from the tweet's text.
+  tweet dict: a tweet dictionary.
+  returns a tweet dictionary without the URL to the status ID in its text to display."""
  if tweet.has_key("retweeted_status"):
   if tweet["retweeted_status"].has_key("full_text"):
    value = "full_text"
