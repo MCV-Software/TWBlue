@@ -553,7 +553,7 @@ class Controller(object):
   dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
   if dlg.get_response() == widgetUtils.OK:
    try:
-    list = buff.session.twitter.twitter.add_list_member(list_id=buff.session.db["lists"][dlg.get_item()]["id"], screen_name=user)
+    list = buff.session.twitter.add_list_member(list_id=buff.session.db["lists"][dlg.get_item()]["id"], screen_name=user)
     older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()]["id"], buff.session.db["lists"])
     listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()]["name"].lower()), buff.session.db["user_name"])
     if listBuffer != None: listBuffer.get_user_ids()
@@ -581,7 +581,7 @@ class Controller(object):
   dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
   if dlg.get_response() == widgetUtils.OK:
    try:
-    list = buff.session.twitter.twitter.delete_list_member(list_id=buff.session.db["lists"][dlg.get_item()]["id"], screen_name=user)
+    list = buff.session.twitter.delete_list_member(list_id=buff.session.db["lists"][dlg.get_item()]["id"], screen_name=user)
     older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()]["id"], buff.session.db["lists"])
     listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()]["name"].lower()), buff.session.db["user_name"])
     if listBuffer != None: listBuffer.get_user_ids()
@@ -781,7 +781,7 @@ class Controller(object):
    return
   else:
    id = buffer.get_tweet()["id"]
-   tweet = buffer.session.twitter.twitter.show_status(id=id, include_ext_alt_text=True, tweet_mode="extended")
+   tweet = buffer.session.twitter.show_status(id=id, include_ext_alt_text=True, tweet_mode="extended")
    if tweet["favorited"] == False:
     call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
    else:
@@ -816,7 +816,7 @@ class Controller(object):
    users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
   if dlg.get_response() == widgetUtils.OK:
-   usr = utils.if_user_exists(buff.session.twitter.twitter, dlg.get_user())
+   usr = utils.if_user_exists(buff.session.twitter, dlg.get_user())
    if usr != None:
     if usr == dlg.get_user():
      commonMessageDialogs.suspended_user()

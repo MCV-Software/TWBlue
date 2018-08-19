@@ -174,10 +174,10 @@ class bufferController(object):
   media_ids = []
   for i in attachments:
    photo = open(i["file"], "rb")
-   img = self.session.twitter.twitter.upload_media(media=photo)
-   self.session.twitter.twitter.create_metadata(media_id=img["media_id"], alt_text=dict(text=i["description"]))
+   img = self.session.twitter.upload_media(media=photo)
+   self.session.twitter.create_metadata(media_id=img["media_id"], alt_text=dict(text=i["description"]))
    media_ids.append(img["media_id"])
-  self.session.twitter.twitter.update_status(status=text, media_ids=media_ids)
+  self.session.twitter.update_status(status=text, media_ids=media_ids)
 
  def save_positions(self):
   try:
@@ -290,7 +290,7 @@ class baseBufferController(bufferController):
   if tweet.has_key("message"):
    message = tweet["message"]
   try:
-   tweet = self.session.twitter.twitter.show_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
+   tweet = self.session.twitter.show_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
    urls = utils.find_urls_in_text(tweet["full_text"])
    for url in range(0, len(urls)):
     try:  tweet["full_text"] = tweet["full_text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
@@ -304,7 +304,7 @@ class baseBufferController(bufferController):
   while l != False:
    tweetsList.append(tweet)
    try:
-    tweet = self.session.twitter.twitter.show_status(id=l, include_ext_alt_text=True, tweet_mode="extended")
+    tweet = self.session.twitter.show_status(id=l, include_ext_alt_text=True, tweet_mode="extended")
     urls = utils.find_urls_in_text(tweet["full_text"])
     for url in range(0, len(urls)):
      try:  tweet["full_text"] = tweet["full_text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
@@ -719,10 +719,10 @@ class baseBufferController(bufferController):
   if answer == widgetUtils.YES:
    try:
     if self.name == "direct_messages" or self.name == "sent_direct_messages":
-     self.session.twitter.twitter.destroy_direct_message(id=self.get_right_tweet()["id"])
+     self.session.twitter.destroy_direct_message(id=self.get_right_tweet()["id"])
      self.session.db[self.name]["items"].pop(index)
     else:
-     self.session.twitter.twitter.destroy_status(id=self.get_right_tweet()["id"])
+     self.session.twitter.destroy_status(id=self.get_right_tweet()["id"])
      self.session.db[self.name].pop(index)
     self.buffer.list.remove_item(index)
 #    if index > 0:
@@ -745,7 +745,7 @@ class baseBufferController(bufferController):
 
  def get_quoted_tweet(self, tweet):
 #  try:
-  quoted_tweet = self.session.twitter.twitter.show_status(id=tweet["id"])
+  quoted_tweet = self.session.twitter.show_status(id=tweet["id"])
   urls = utils.find_urls_in_text(quoted_tweet["text"])
   for url in range(0, len(urls)):
    try:  quoted_tweet["text"] = quoted_tweet["text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
@@ -756,7 +756,7 @@ class baseBufferController(bufferController):
   l = tweets.is_long(quoted_tweet)
   id = tweets.get_id(l)
 #  try:
-  original_tweet = self.session.twitter.twitter.show_status(id=id)
+  original_tweet = self.session.twitter.show_status(id=id)
   urls = utils.find_urls_in_text(original_tweet["text"])
   for url in range(0, len(urls)):
    try:  original_tweet["text"] = original_tweet["text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
@@ -879,7 +879,7 @@ class listBufferController(baseBufferController):
  def get_user_ids(self):
   next_cursor = -1
   while(next_cursor):
-   users = self.session.twitter.twitter.get_list_members(list_id=self.list_id, cursor=next_cursor, include_entities=False, skip_status=True)
+   users = self.session.twitter.get_list_members(list_id=self.list_id, cursor=next_cursor, include_entities=False, skip_status=True)
    for i in users['users']:
     if i["id"] not in self.users:
      self.users.append(i["id"])
@@ -1408,7 +1408,7 @@ class conversationBufferController(searchBufferController):
     tweet = self.tweet
     while tweet["in_reply_to_status_id"] != None:
      try:
-      tweet = self.session.twitter.twitter.show_status(id=tweet["in_reply_to_status_id"], tweet_mode="extended")
+      tweet = self.session.twitter.show_status(id=tweet["in_reply_to_status_id"], tweet_mode="extended")
      except TwythonError as err:
       break
      self.statuses.insert(0, tweet)

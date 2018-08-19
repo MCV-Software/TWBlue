@@ -29,43 +29,43 @@ class userActionsController(object):
 
  def follow(self, user):
   try:
-   self.session.twitter.twitter.create_friendship(screen_name=user )
+   self.session.twitter.create_friendship(screen_name=user )
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
  def unfollow(self, user):
   try:
-   id = self.session.twitter.twitter.destroy_friendship(screen_name=user )
+   id = self.session.twitter.destroy_friendship(screen_name=user )
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
  def mute(self, user):
   try:
-   id = self.session.twitter.twitter.create_mute(screen_name=user )
+   id = self.session.twitter.create_mute(screen_name=user )
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
  def unmute(self, user):
   try:
-   id = self.session.twitter.twitter.destroy_mute(screen_name=user )
+   id = self.session.twitter.destroy_mute(screen_name=user )
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
  def report(self, user):
   try:
-   id = self.session.twitter.twitter.report_spam(screen_name=user )
+   id = self.session.twitter.report_spam(screen_name=user )
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
  def block(self, user):
   try:
-   id = self.session.twitter.twitter.create_block(screen_name=user )
+   id = self.session.twitter.create_block(screen_name=user )
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 
  def unblock(self, user):
   try:
-   id = self.session.twitter.twitter.destroy_block(screen_name=user )
+   id = self.session.twitter.destroy_block(screen_name=user )
   except TwythonError as err:
    output.speak("Error %s: %s" % (err.error_code, err.msg), True)
 

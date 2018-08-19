@@ -29,7 +29,7 @@ class listsController(object):
   return [compose.compose_list(item) for item in self.session.db["lists"]]
 
  def get_user_lists(self, user):
-  self.lists = self.session.twitter.twitter.show_lists(reverse=True, screen_name=user)
+  self.lists = self.session.twitter.show_lists(reverse=True, screen_name=user)
   return [compose.compose_list(item) for item in self.lists]
 
  def create_list(self, *args, **kwargs):
@@ -43,7 +43,7 @@ class listsController(object):
    else:
     mode = "private"
    try:
-    new_list = self.session.twitter.twitter.create_list(name=name, description=description, mode=mode)
+    new_list = self.session.twitter.create_list(name=name, description=description, mode=mode)
     self.session.db["lists"].append(new_list)
     self.dialog.lista.insert_item(False, *compose.compose_list(new_list))
    except TwythonError as e:
@@ -63,7 +63,7 @@ class listsController(object):
    else:
     mode = "private"
    try:
-    self.session.twitter.twitter.update_list(list_id=list["id"], name=name, description=description, mode=mode)
+    self.session.twitter.update_list(list_id=list["id"], name=name, description=description, mode=mode)
     self.session.get_lists()
     self.dialog.populate_list(self.get_all_lists(), True)
    except TwythonError as e:
@@ -75,7 +75,7 @@ class listsController(object):
   list = self.session.db["lists"][self.dialog.get_item()]["id"]
   if lists.remove_list() == widgetUtils.YES:
    try:
-    self.session.twitter.twitter.delete_list(list_id=list)
+    self.session.twitter.delete_list(list_id=list)
     self.session.db["lists"].pop(self.dialog.get_item())
     self.dialog.lista.remove_item(self.dialog.get_item())
    except TwythonError as e:
@@ -90,7 +90,7 @@ class listsController(object):
   if self.dialog.lista.get_count() == 0: return
   list_id = self.lists[self.dialog.get_item()]["id"]
   try:
-   list = self.session.twitter.twitter.subscribe_to_list(list_id=list_id)
+   list = self.session.twitter.subscribe_to_list(list_id=list_id)
    item = utils.find_item(list["id"], self.session.db["lists"])
    self.session.db["lists"].append(list)
   except TwythonError as e:
@@ -100,7 +100,7 @@ class listsController(object):
   if self.dialog.lista.get_count() == 0: return
   list_id = self.lists[self.dialog.get_item()]["id"]
   try:
-   list = self.session.twitter.twitter.unsubscribe_from_list(list_id=list_id)
+   list = self.session.twitter.unsubscribe_from_list(list_id=list_id)
    self.session.db["lists"].remove(list)
   except TwythonError as e:
    output.speak("error %s: %s" % (e.status_code, e.msg))

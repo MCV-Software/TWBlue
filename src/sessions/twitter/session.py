@@ -3,16 +3,17 @@
 import os
 import time
 import logging
+import webbrowser
 import wx
 import config
 import output
 import application
 from pubsub import pub
-from twython import TwythonError, TwythonRateLimitError, TwythonAuthError
+from twython import Twython, TwythonError, TwythonRateLimitError, TwythonAuthError
 from mysc.thread_utils import call_threaded
 from keys import keyring
 from sessions import base
-from sessions.twitter import client, utils, compose
+from sessions.twitter import utils, compose
 from sessions.twitter.long_tweets import tweets, twishort
 from wxUI import authorisationDialog
 
@@ -100,7 +101,6 @@ class Session(base.baseSession):
 
  def __init__(self, *args, **kwargs):
   super(Session, self).__init__(*args, **kwargs)
-  self.twitter = client.twitter()
   self.reconnection_function_active = False
   self.counter = 0
   self.lists = []
@@ -112,11 +112,13 @@ class Session(base.baseSession):
   if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
    try:
     log.debug("Logging in to twitter...")
-    self.twitter.login(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"], verify_credentials)
+    self.twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
+    if verify_credentials == True:
+     self.credentials = self.twitter.verify_credentials()
     self.logged = True
     log.debug("Logged.")
     self.counter = 0
-   except:
+   except IOError:
     log.error("The login attempt failed.")
     self.logged = False
   else:
@@ -129,11 +131,21 @@ class Session(base.baseSession):
   if self.logged == True:
    raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
   else:
-   self.twitter.authorise()
+   twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"))
+   self.auth = twitter.get_authentication_tokens(callback_url="oob")
+   webbrowser.open_new_tab(self.auth['auth_url'])
    self.authorisation_dialog = authorisationDialog()
    self.authorisation_dialog.cancel.Bind(wx.EVT_BUTTON, self.authorisation_cancelled)
    self.authorisation_dialog.ok.Bind(wx.EVT_BUTTON, self.authorisation_accepted)
    self.authorisation_dialog.ShowModal()
+
+ def verify_authorisation(self, pincode):
+  twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), self.auth['oauth_token'], self.auth['oauth_token_secret'])
+  final = twitter.get_authorized_tokens(pincode)
+  self.settings["twitter"]["user_key"] = final["oauth_token"]
+  self.settings["twitter"]["user_secret"] = final["oauth_token_secret"]
+  self.settings.write()
+  del self.auth
 
  def authorisation_cancelled(self, *args, **kwargs):
   """ Destroy the authorization dialog. """
@@ -143,7 +155,7 @@ class Session(base.baseSession):
  def authorisation_accepted(self, *args, **kwargs):
   """ Gets the PIN code entered by user and validate it through Twitter."""
   pincode = self.authorisation_dialog.text.GetValue()
-  self.twitter.verify_authorisation(self.settings, pincode)
+  self.verify_authorisation(pincode)
   self.authorisation_dialog.Destroy()
 
  def get_more_items(self, update_function, users=False, dm=False, name=None, *args, **kwargs):
@@ -152,7 +164,7 @@ class Session(base.baseSession):
   users, dm bool: If any of these is set to True, the function will treat items as users or dm (they need different handling).
   name str: name of the database item to put new element in."""
   results = []
-  data = getattr(self.twitter.twitter, update_function)(*args, **kwargs)
+  data = getattr(self.twitter, update_function)(*args, **kwargs)
   if users == True:
    if type(data) == dict and data.has_key("next_cursor"):
     self.db[name]["cursor"] = data["next_cursor"]
@@ -181,7 +193,7 @@ class Session(base.baseSession):
    output.speak(preexec_message, True)
   while finished==False and tries < 25:
    try:
-    val = getattr(self.twitter.twitter, call_name)(*args, **kwargs)
+    val = getattr(self.twitter, call_name)(*args, **kwargs)
     finished = True
    except TwythonError as e:
     output.speak(e.message)
@@ -201,7 +213,7 @@ class Session(base.baseSession):
 
  def search(self, name, *args, **kwargs):
   """ Search in twitter, passing args and kwargs as arguments to the Twython function."""
-  tl = self.twitter.twitter.search(*args, **kwargs)
+  tl = self.twitter.search(*args, **kwargs)
   tl["statuses"].reverse()
   return tl["statuses"]
 
@@ -210,23 +222,23 @@ class Session(base.baseSession):
   """ Gets favourites for the authenticated user or a friend or follower.
   name str: Name for storage in the database.
   args and kwargs are passed directly to the Twython function."""
-  tl = self.call_paged(self.twitter.twitter.get_favorites, *args, **kwargs)
+  tl = self.call_paged("get_favorites", *args, **kwargs)
   return self.order_buffer(name, tl)
 
  def call_paged(self, update_function, *args, **kwargs):
   """ Makes a call to the Twitter API methods several times. Useful for get methods.
   this function is needed for retrieving more than 200 items.
-  update_function str: The function to call. This function must be child of self.twitter.twitter
+  update_function str: The function to call. This function must be child of self.twitter
   args and kwargs are passed to update_function.
   returns a list with all items retrieved."""
   max = 0
   results = []
-  data = getattr(self.twitter.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+  data = getattr(self.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
   results.extend(data)
   for i in range(0, max):
    if i == 0: max_id = results[-1]["id"]
    else: max_id = results[0]["id"]
-   data = getattr(self.twitter.twitter, update_function)(max_id=max_id, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+   data = getattr(self.twitter, update_function)(max_id=max_id, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
    results.extend(data)
   results.reverse()
   return results
@@ -234,11 +246,11 @@ class Session(base.baseSession):
 # @_require_login
  def get_user_info(self):
   """ Retrieves some information required by TWBlue for setup."""
-  f = self.twitter.twitter.get_account_settings()
+  f = self.twitter.get_account_settings()
   sn = f["screen_name"]
   self.settings["twitter"]["user_name"] = sn
   self.db["user_name"] = sn
-  self.db["user_id"] = self.twitter.twitter.show_user(screen_name=sn)["id_str"]
+  self.db["user_id"] = self.twitter.show_user(screen_name=sn)["id_str"]
   try:
    self.db["utc_offset"] = f["time_zone"]["utc_offset"]
   except KeyError:
@@ -246,7 +258,7 @@ class Session(base.baseSession):
   # Get twitter's supported languages and save them in a global variable
   #so we won't call to this method once per session.
   if len(application.supported_languages) == 0:
-   application.supported_languages = self.twitter.twitter.get_supported_languages()
+   application.supported_languages = self.twitter.get_supported_languages()
   self.get_lists()
   self.get_muted_users()
   self.settings.write()
@@ -254,12 +266,12 @@ class Session(base.baseSession):
 # @_require_login
  def get_lists(self):
   """ Gets the lists that the user is subscribed to and stores them in the database. Returns None."""
-  self.db["lists"] = self.twitter.twitter.show_lists(reverse=True)
+  self.db["lists"] = self.twitter.show_lists(reverse=True)
 
 # @_require_login
  def get_muted_users(self):
   """ Gets muted users (oh really?)."""
-  self.db["muted_users"] = self.twitter.twitter.list_mute_ids()["ids"]
+  self.db["muted_users"] = self.twitter.list_mute_ids()["ids"]
 
 # @_require_login
  def get_stream(self, name, function, *args, **kwargs):
@@ -294,9 +306,9 @@ class Session(base.baseSession):
   except KeyError:
    cursor = -1
   if cursor != -1:
-   tl = getattr(self.twitter.twitter, function)(cursor=cursor, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+   tl = getattr(self.twitter, function)(cursor=cursor, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
   else:
-   tl = getattr(self.twitter.twitter, function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+   tl = getattr(self.twitter, function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
   tl[items].reverse()
   num = self.order_cursored_buffer(name, tl[items])
   # Recently, Twitter's new endpoints have cursor if there are more results.
@@ -312,7 +324,6 @@ class Session(base.baseSession):
    log.debug("Restarting connection after 5 minutes.")
    del self.twitter
    self.logged = False
-   self.twitter = client.twitter()
    self.login(False)
    self.counter = 0
 
@@ -387,7 +398,7 @@ class Session(base.baseSession):
   id str: User identifier, provided by Twitter.
   returns an user dict."""
   if self.db.has_key("users") == False or self.db["users"].has_key(id) == False:
-   user = self.twitter.twitter.show_user(id=id)
+   user = self.twitter.show_user(id=id)
    self.db["users"][user["id_str"]] = user
    return user
   else:
@@ -398,13 +409,13 @@ class Session(base.baseSession):
   screen_name str: User name, such as tw_blue2, provided by Twitter.
   returns an user ID."""
   if self.db.has_key("users") == False:
-   user = utils.if_user_exists(self.twitter.twitter, screen_name)
+   user = utils.if_user_exists(self.twitter, screen_name)
    self.db["users"][user["id_str"]] = user
    return user["id_str"]
   else:
    for i in self.db["users"].keys():
     if self.db["users"][i]["screen_name"] == screen_name:
      return self.db["users"][i]["id_str"]
-   user = utils.if_user_exists(self.twitter.twitter, screen_name)
+   user = utils.if_user_exists(self.twitter, screen_name)
    self.db["users"][user["id_str"]] = user
    return user["id_str"]

@@ -8,7 +8,7 @@ class trendingTopicsController(object):
   self.countries = {}
   self.cities = {}
   self.dialog = trends.trendingTopicsDialog()
-  self.information = session.twitter.twitter.get_available_trends()
+  self.information = session.twitter.get_available_trends()
   self.split_information()
   widgetUtils.connect_event(self.dialog.country, widgetUtils.RADIOBUTTON, self.get_places)
   widgetUtils.connect_event(self.dialog.city, widgetUtils.RADIOBUTTON, self.get_places)

@@ -41,9 +41,9 @@ class profileController(object):
    self.do_update()
 
  def get_data(self, screen_name):
-  self.data = self.session.twitter.twitter.show_user(screen_name=screen_name)
+  self.data = self.session.twitter.show_user(screen_name=screen_name)
   if screen_name != self.session.db["user_name"]:
-   self.friendship_status = self.session.twitter.twitter.show_friendship(source_screen_name=self.session.db["user_name"], target_screen_name=screen_name)
+   self.friendship_status = self.session.twitter.show_friendship(source_screen_name=self.session.db["user_name"], target_screen_name=screen_name)
 
  def fill_profile_fields(self):
   self.dialog.set_name(self.data["name"])
@@ -81,11 +81,11 @@ class profileController(object):
   url = self.dialog.get("url")
   if self.file != None:
    try:
-    self.session.twitter.twitter.update_profile_image(image=self.file)
+    self.session.twitter.update_profile_image(image=self.file)
    except TwythonError as e:
     output.speak(u"Error %s. %s" % (e.error_code, e.msg))
   try:
-   self.session.twitter.twitter.update_profile(name=name, description=description, location=location, url=url)
+   self.session.twitter.update_profile(name=name, description=description, location=location, url=url)
   except TwythonError as e:
    output.speak(u"Error %s. %s" % (e.error_code, e.msg))
 
