@@ -1339,7 +1339,7 @@ class Controller(object):
   buff = self.search_buffer("home_timeline", account)
   if create == True:
    if buffer == "favourites":
-    favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"])
+    favourites = buffersController.baseBufferController(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"], tweet_mode="extended")
     self.buffers.append(favourites)
     self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     favourites.start_stream(play_sound=False)
@@ -1373,7 +1373,7 @@ class Controller(object):
    if create in buff.session.settings["other_buffers"]["lists"]:
     output.speak(_(u"This list is already opened"), True)
     return
-   tl = buffersController.listBufferController(self.view.nb, "get_list_statuses", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]))
+   tl = buffersController.listBufferController(self.view.nb, "get_list_statuses", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]), tweet_mode="extended")
    buff.session.lists.append(tl)
    pos=self.view.search("lists", buff.session.db["user_name"])
    self.insert_buffer(tl, pos)
