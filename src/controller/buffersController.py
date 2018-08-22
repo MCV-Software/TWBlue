@@ -162,7 +162,7 @@ class bufferController(object):
     else:
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
    if not hasattr(tweet, "attachments") or len(tweet.attachments) == 0:
-    item = self.session.api_call(call_name="update_status", status=text, _sound="tweet_send.ogg")
+    item = self.session.api_call(call_name="update_status", status=text, _sound="tweet_send.ogg", tweet_mode="extended")
 #   else:
 #    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments, _sound="tweet_send.ogg")
    if item != None:
@@ -550,7 +550,7 @@ class baseBufferController(bufferController):
     if len(users) > 0:
      config.app["app-settings"]["mention_all"] = message.message.mentionAll.GetValue()
     config.app.write()
-   params = {"_sound": "reply_send.ogg", "in_reply_to_status_id": id,}
+   params = {"_sound": "reply_send.ogg", "in_reply_to_status_id": id, "tweet_mode": "extended"}
    text = message.message.get_text()
    if twishort_enabled == False:
     excluded_ids = message.get_ids()
@@ -570,6 +570,7 @@ class baseBufferController(bufferController):
    else:
     params["call_name"] = "update_status_with_media"
     params["media"] = message.file
+
    item = self.session.api_call(**params)
    if item != None:
     pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
@@ -641,7 +642,7 @@ class baseBufferController(bufferController):
    text = retweet.message.get_text()
    text = text+" https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id)
    if retweet.image == None:
-    item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id)
+    item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id, tweet_mode="extended")
     if item != None:
      pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
    else:
@@ -649,8 +650,11 @@ class baseBufferController(bufferController):
   if hasattr(retweet.message, "destroy"): retweet.message.destroy()
 
  def _direct_retweet(self, id):
-  item = self.session.api_call(call_name="retweet", _sound="retweet_send.ogg", id=id)
+  item = self.session.api_call(call_name="retweet", _sound="retweet_send.ogg", id=id, tweet_mode="extended")
   if item != None:
+   # Retweets are returned as non-extended tweets, so let's get the object as extended
+   # just before sending the event message. See https://github.com/manuelcortez/TWBlue/issues/253
+   item = self.session.twitter.show_status(id=item["id"], include_ext_alt_text=True, tweet_mode="extended")
    pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
 
  def onFocus(self, *args, **kwargs):
@@ -817,7 +821,7 @@ class directMessagesController(baseBufferController):
     config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
     config.app.write()
    if message.image == None:
-    item = self.session.api_call(call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
+    item = self.session.api_call(call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text(), tweet_mode="extended")
     if item != None:
      pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
    else:
@@ -1022,7 +1026,7 @@ class peopleBufferController(baseBufferController):
     config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
     config.app.write()
    if message.image == None:
-    item = self.session.api_call(call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text())
+    item = self.session.api_call(call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text(), tweet_mode="extended")
     if item != None:
      pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
    else:
