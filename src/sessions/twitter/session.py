@@ -197,6 +197,7 @@ class Session(base.baseSession):
     finished = True
    except TwythonError as e:
     output.speak(e.message)
+    val = None
     if e.error_code != 403 and e.error_code != 404:
      tries = tries+1
      time.sleep(5)
