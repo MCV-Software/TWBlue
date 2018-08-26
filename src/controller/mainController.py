@@ -2,6 +2,7 @@
 import platform
 system = platform.system()
 import application
+import requests
 import youtube_utils
 if system == "Windows":
  from update import updater
@@ -167,6 +168,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.check_for_updates, self.view.check_for_updates)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.about, menuitem=self.view.about)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.visit_website, menuitem=self.view.visit_website)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_soundpacks, menuitem=self.view.get_soundpacks)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_accounts, self.view.manage_accounts)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_profile, menuitem=self.view.updateProfile)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.user_details, menuitem=self.view.details)
@@ -1393,8 +1395,37 @@ class Controller(object):
  def about(self, *args, **kwargs):
   self.view.about_dialog()
 
+ def get_soundpacks(self, *args, **kwargs):
+  # This should redirect users of other languages to the right version of the TWBlue website.
+  lang = languageHandler.curLang[:2]
+  url = application.url
+  final_url = "{0}/{1}/soundpacks".format(url, lang)
+  try:
+   response = requests.get(final_url)
+  except:
+   output.speak(_(u"An error happened while trying to connect to the server. Please try later."))
+   return
+  # There is no twblue.es/en, so if English is the language used this should be False anyway.
+  if response.status_code == 200 and lang != "en":
+   webbrowser.open_new_tab(final_url)
+  else:
+   webbrowser.open_new_tab(application.url+"/soundpacks")
+
  def visit_website(self, *args, **kwargs):
-  webbrowser.open(application.url)
+  # This should redirect users of other languages to the right version of the TWBlue website.
+  lang = languageHandler.curLang[:2]
+  url = application.url
+  final_url = "{0}/{1}".format(url, lang)
+  try:
+   response = requests.get(final_url)
+  except:
+   output.speak(_(u"An error happened while trying to connect to the server. Please try later."))
+   return
+  # There is no twblue.es/en, so if English is the language used this should be False anyway.
+  if response.status_code == 200 and lang != "en":
+   webbrowser.open_new_tab(final_url)
+  else:
+   webbrowser.open_new_tab(application.url)
 
  def manage_accounts(self, *args, **kwargs):
   sm = sessionManager.sessionManagerController(started=True)
