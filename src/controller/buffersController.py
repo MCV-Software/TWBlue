@@ -644,6 +644,7 @@ class baseBufferController(bufferController):
    if retweet.image == None:
     item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id, tweet_mode="extended")
     if item != None:
+     item = self.session.twitter.show_status(id=item["id"], include_ext_alt_text=True, tweet_mode="extended")
      pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
    else:
     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, media=retweet.image)
