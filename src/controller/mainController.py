@@ -154,7 +154,7 @@ class Controller(object):
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_retweet, self.view.retweet)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_favourites, self.view.fav)
-  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.fav)
+  widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.unfav)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_item, self.view.view)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.reverse_geocode, menuitem=self.view.view_coordinates)
   widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
