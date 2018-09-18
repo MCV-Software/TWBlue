@@ -13,7 +13,7 @@ environment:
       PYTHON_ARCH: "32"
 
   # perhaps we may enable this one in future?
-    - PYTHON: "C:\\Python27-x64"
+#    - PYTHON: "C:\\Python27-x64"
 #      PYTHON_VERSION: "2.7.x" # currently 2.7.9
 #      PYTHON_ARCH: "64"
 
@@ -65,3 +65,12 @@ build_script:
 
 artifacts:
   - path: src\dist\twblue-snapshot.zip
+
+deploy:
+- provider: FTP
+  host: twblue.es
+  protocol: ftp
+  username: twblue
+  password:
+    secure: ml/xB8YEoZ7DmjzDr+KSNw==
+  folder: web/updates
