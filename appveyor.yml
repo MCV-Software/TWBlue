@@ -47,7 +47,7 @@ install:
 
 build_script:
   - "cd src"
-  - "%CMD_IN_ENV% python ..\doc\generator.py"
+  - "%CMD_IN_ENV% python ..\\doc\\generator.py"
   - "%CMD_IN_ENV% python setup.py py2exe"
 
 artifacts:
