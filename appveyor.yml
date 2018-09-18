@@ -70,7 +70,8 @@ deploy:
 - provider: FTP
   host: twblue.es
   protocol: ftp
+  beta: true
   username: twblue
   password:
     secure: ml/xB8YEoZ7DmjzDr+KSNw==
-  folder: 2017
+  folder: '//pubs'
