@@ -61,10 +61,10 @@ build_script:
   - "%CMD_IN_ENV% python ..\\doc\\generator.py"
   - "%CMD_IN_ENV% python setup.py py2exe"
   - "cd dist"
-  - cmd: 7z a ..\..\twblue-snapshot.zip *
+  - cmd: 7z a ..\..\snapshot.zip *
 
 artifacts:
-  - path: twblue-snapshot.zip
+  - path: snapshot.zip
 
 deploy:
 - provider: FTP
@@ -73,4 +73,4 @@ deploy:
   username: twblue
   password:
     secure: ml/xB8YEoZ7DmjzDr+KSNw==
-  folder: web/updates
+  folder: updates
