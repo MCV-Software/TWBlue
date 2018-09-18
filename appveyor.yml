@@ -1,15 +1,24 @@
+pull_requests:
+  do_not_increment_build_number: true
+
+#skip_non_tags: true
+
 environment:
 
   matrix:
 
+  # List of python versions we want to work with.
     - PYTHON: "C:\\Python27"
       PYTHON_VERSION: "2.7.x" # currently 2.7.9
       PYTHON_ARCH: "32"
 
+  # perhaps we may enable this one in future?
     - PYTHON: "C:\\Python27-x64"
-      PYTHON_VERSION: "2.7.x" # currently 2.7.9
-      PYTHON_ARCH: "64"
+#      PYTHON_VERSION: "2.7.x" # currently 2.7.9
+#      PYTHON_ARCH: "64"
 
+
+# This is important so we will retrieve everything in submodules as opposed to default method.
 clone_script:
   - cmd: >-
       git clone -q --branch=%APPVEYOR_REPO_BRANCH% https://github.com/%APPVEYOR_REPO_NAME%.git %APPVEYOR_BUILD_FOLDER%
@@ -55,5 +64,4 @@ build_script:
   - cmd: 7z a twblue-snapshot.zip *
 
 artifacts:
-  # Archive the generated packages in the ci.appveyor.com build report.
   - path: src\dist\twblue-snapshot.zip
