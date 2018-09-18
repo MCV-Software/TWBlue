@@ -351,6 +351,8 @@ class baseBufferController(bufferController):
    items = self.session.get_more_items(self.function, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
   except TwythonError as e:
    output.speak(e.message, True)
+  if items == None:
+   return
   for i in items:
    if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i["id"], self.session.db[self.name]) == None:
     i = self.session.check_quoted_status(i)
@@ -776,6 +778,8 @@ class directMessagesController(baseBufferController):
   except TwythonError as e:
    output.speak(e.message, True)
    return
+  if items == None:
+   return
   sent = []
   for i in items:
    if i["message_create"]["sender_id"] == self.session.db["user_id"]:
@@ -1056,6 +1060,8 @@ class peopleBufferController(baseBufferController):
   except TwythonError as e:
    output.speak(e.message, True)
    return
+  if items == None:
+   return
   for i in items:
    if self.session.settings["general"]["reverse_timelines"] == False:
     self.session.db[self.name]["items"].insert(0, i)
@@ -1178,6 +1184,8 @@ class searchBufferController(baseBufferController):
    items = self.session.search(self.name, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
   except TwythonError as e:
    output.speak(e.message, True)
+  if items == None:
+   return
   for i in items:
    if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i["id"], self.session.db[self.name]) == None:
     i = self.session.check_quoted_status(i)
@@ -1239,6 +1247,8 @@ class searchPeopleBufferController(peopleBufferController):
    items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"],  *self.args, **self.kwargs)
   except TwythonError as e:
    output.speak(e.message, True)
+   return
+  if items == None:
    return
   for i in items:
    if self.session.settings["general"]["reverse_timelines"] == False:

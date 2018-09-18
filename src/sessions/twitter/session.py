@@ -164,15 +164,24 @@ class Session(base.baseSession):
   users, dm bool: If any of these is set to True, the function will treat items as users or dm (they need different handling).
   name str: name of the database item to put new element in."""
   results = []
+  if kwargs.has_key("cursor") and kwargs["cursor"] == 0:
+   output.speak(_(u"There are no more items to retrieve in this buffer."))
+   return
   data = getattr(self.twitter, update_function)(*args, **kwargs)
   if users == True:
    if type(data) == dict and data.has_key("next_cursor"):
-    self.db[name]["cursor"] = data["next_cursor"]
+    if data.has_key("next_cursor"): # There are more objects to retrieve.
+     self.db[name]["cursor"] = data["next_cursor"]
+    else: # Set cursor to 0, wich means no more items available.
+     self.db[name]["cursor"] = 0
     for i in data["users"]: results.append(i)
    elif type(data) == list:
     results.extend(data[1:])
   elif dm == True:
-   self.db[name]["cursor"] = data["next_cursor"]
+   if data.has_key("next_cursor"): # There are more objects to retrieve.
+    self.db[name]["cursor"] = data["next_cursor"]
+   else: # Set cursor to 0, wich means no more items available.
+    self.db[name]["cursor"] = 0
    for i in data["events"]: results.append(i)
   else:
    results.extend(data[1:])
@@ -315,6 +324,8 @@ class Session(base.baseSession):
   # Recently, Twitter's new endpoints have cursor if there are more results.
   if tl.has_key("next_cursor"):
    self.db[name]["cursor"] = tl["next_cursor"]
+  else:
+   self.db[name]["cursor"] = 0
   return num
 
  def check_connection(self):
