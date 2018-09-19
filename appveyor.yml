@@ -3,7 +3,7 @@ pull_requests:
   do_not_increment_build_number: true
 
 # Only build whenever we add tags to the repo.
-skip_non_tags: true
+#skip_non_tags: true
 
 environment:
 
@@ -80,4 +80,4 @@ deploy:
   username: twblue
   password:
     secure: ml/xB8YEoZ7DmjzDr+KSNw==
-  folder: '//var/web/twblue/pubs'
+  folder: '//pubs'
