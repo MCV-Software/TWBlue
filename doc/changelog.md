@@ -7,6 +7,11 @@
 * There is a new option in the help menu that allows you to visit the soundpacks section in the TWBlue website. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))
 * When reading location of a geotagged tweet, it will be translated for users of other languages. ([#251](https://github.com/manuelcortez/TWBlue/pull/251))
 * In the Windows 10 Keymap, the action to read location of a tweet has been remapped to Ctrl+Win+G. ([#177](https://github.com/manuelcortez/TWBlue/pull/177))
+* When there are no more items to retrieve in direct messages and people buffers, a message will announce it.
+* Fixed an issue reported by some users that was making them unable to load more items in their direct messages.
+* It is possible to add a tweet to the likes buffer from the menu bar again.
+* Tweets, replies and retweets will be added to sent tweets right after being posted in the Twitter.
+* Extended Tweets should be displayed properly in list buffers.
 
 ## Changes in version 0.94
 
