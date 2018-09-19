@@ -1,6 +1,8 @@
 ﻿TWBlue -
 ======
 
+[![Build status](https://ci.appveyor.com/api/projects/status/fml5fu7h1fj8vf6l?svg=true)](https://ci.appveyor.com/project/manuelcortez/twblue)
+
 TW Blue is an app designed to use Twitter simply and efficiently while using minimal system resources.  
 With this app you’ll have access to twitter features such as:
 
