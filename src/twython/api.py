@@ -19,6 +19,7 @@ from requests_oauthlib import OAuth1, OAuth2
 from . import __version__
 from .advisory import TwythonDeprecationWarning
 from .compat import json, urlencode, parse_qsl, quote_plus, str, is_py2
+from .compat import urlsplit
 from .endpoints import EndpointsMixin
 from .exceptions import TwythonError, TwythonAuthError, TwythonRateLimitError
 from .helpers import _transparent_params
@@ -134,13 +135,13 @@ class Twython(EndpointsMixin, object):
     def __repr__(self):
         return '<Twython: %s>' % (self.app_key)
 
-    def _request(self, url, method='GET', params=None, api_call=None, encode_json=False):
+    def _request(self, url, method='GET', params=None, api_call=None, json_encoded=False):
         """Internal request method"""
         method = method.lower()
         params = params or {}
 
         func = getattr(self.client, method)
-        if type(params) is dict and encode_json == False:
+        if isinstance(params, dict) and json_encoded == False:
             params, files = _transparent_params(params)
         else:
             params = params
@@ -155,15 +156,14 @@ class Twython(EndpointsMixin, object):
         if method == 'get':
             requests_args['params'] = params
         else:
-
-            if encode_json == False:
-                requests_args.update({
-                'files': files,
-                'data': params,
-            })
+            # Check for json_encoded so we will sent params as "data" or "json"
+            if json_encoded:
+                data_key = "json"
             else:
-                requests_args.update({
-                'json': params,
+               data_key = "data"
+            requests_args.update({
+                data_key: params,
+                'files': files,
             })
         try:
             response = func(url, **requests_args)
@@ -202,14 +202,14 @@ class Twython(EndpointsMixin, object):
                 error_message,
                 error_code=response.status_code,
                 retry_after=response.headers.get('X-Rate-Limit-Reset'))
-        content=""
+        content = ''
         try:
             if response.status_code == 204:
                 content = response.content
             else:
                 content = response.json()
         except ValueError:
-            if response.content!="":
+            if response.content != '':
                 raise TwythonError('Response was not valid JSON. \
                                    Unable to decode.')
 
@@ -235,7 +235,7 @@ class Twython(EndpointsMixin, object):
 
         return error_message
 
-    def request(self, endpoint, method='GET', params=None, version='1.1', encode_json=False):
+    def request(self, endpoint, method='GET', params=None, version='1.1', json_encoded=False):
         """Return dict of response received from Twitter's API
 
         :param endpoint: (required) Full url or Twitter API endpoint
@@ -251,6 +251,9 @@ class Twython(EndpointsMixin, object):
         :param version: (optional) Twitter API version to access
                         (default 1.1)
         :type version: string
+        :param json_encoded: (optional) Flag to indicate if this method should send data encoded as json
+                        (default False)
+        :type json_encoded: bool
 
         :rtype: dict
         """
@@ -266,7 +269,7 @@ class Twython(EndpointsMixin, object):
             url = '%s/%s.json' % (self.api_url % version, endpoint)
 
         content = self._request(url, method=method, params=params,
-                                api_call=url, encode_json=encode_json)
+                                api_call=url, json_encoded=json_encoded)
 
         return content
 
@@ -274,9 +277,9 @@ class Twython(EndpointsMixin, object):
         """Shortcut for GET requests via :class:`request`"""
         return self.request(endpoint, params=params, version=version)
 
-    def post(self, endpoint, params=None, version='1.1', encode_json=False):
+    def post(self, endpoint, params=None, version='1.1', json_encoded=False):
         """Shortcut for POST requests via :class:`request`"""
-        return self.request(endpoint, 'POST', params=params, version=version, encode_json=encode_json)
+        return self.request(endpoint, 'POST', params=params, version=version, json_encoded=json_encoded)
 
     def get_lastfunction_header(self, header, default_return_value=None):
         """Returns a specific header from the last API call
@@ -513,19 +516,27 @@ class Twython(EndpointsMixin, object):
 
             try:
                 if function.iter_mode == 'id':
-                    if 'max_id' not in params:
-                        # Add 1 to the id because since_id and
-                        # max_id are inclusive
-                        if hasattr(function, 'iter_metadata'):
-                            since_id = content[function.iter_metadata].get('since_id_str')
+                    # Set max_id in params to one less than lowest tweet id
+                    if hasattr(function, 'iter_metadata'):
+                        # Get supplied next max_id
+                        metadata = content.get(function.iter_metadata)
+                        if 'next_results' in metadata:
+                            next_results = urlsplit(metadata['next_results'])
+                            params = dict(parse_qsl(next_results.query))
                         else:
-                            since_id = content[0]['id_str']
-                        params['since_id'] = (int(since_id) - 1)
+                            # No more results
+                            raise StopIteration
+                    else:
+                        # Twitter gives tweets in reverse chronological order:
+                        params['max_id'] = str(int(content[-1]['id_str']) - 1)
                 elif function.iter_mode == 'cursor':
                     params['cursor'] = content['next_cursor_str']
             except (TypeError, ValueError):  # pragma: no cover
                 raise TwythonError('Unable to generate next page of search \
                                    results, `page` is not a number.')
+            except (KeyError, AttributeError):  #pragma no cover
+                raise TwythonError('Unable to generate next page of search \
+                                   results, content has unexpected structure.')
 
     @staticmethod
     def unicode2utf8(text):
@@ -587,6 +598,8 @@ class Twython(EndpointsMixin, object):
 
                     if display_text_start <= temp['start'] <= display_text_end:
                         temp['replacement'] = mention_html
+                        temp['start'] -= display_text_start
+                        temp['end'] -= display_text_start
                         entities.append(temp)
                     else:
                         # Make the '@username' at the start, before
@@ -598,8 +611,8 @@ class Twython(EndpointsMixin, object):
             if 'hashtags' in tweet['entities']:
                 for entity in tweet['entities']['hashtags']:
                     temp = {}
-                    temp['start'] = entity['indices'][0]
-                    temp['end'] = entity['indices'][1]
+                    temp['start'] = entity['indices'][0] - display_text_start
+                    temp['end'] = entity['indices'][1] - display_text_start
 
                     url_html = '<a href="https://twitter.com/search?q=%%23%(hashtag)s" class="twython-hashtag">#%(hashtag)s</a>' % {'hashtag': entity['text']}
 
@@ -610,8 +623,8 @@ class Twython(EndpointsMixin, object):
             if 'symbols' in tweet['entities']:
                 for entity in tweet['entities']['symbols']:
                     temp = {}
-                    temp['start'] = entity['indices'][0]
-                    temp['end'] = entity['indices'][1]
+                    temp['start'] = entity['indices'][0] - display_text_start
+                    temp['end'] = entity['indices'][1] - display_text_start
 
                     url_html = '<a href="https://twitter.com/search?q=%%24%(symbol)s" class="twython-symbol">$%(symbol)s</a>' % {'symbol': entity['text']}
 
@@ -622,8 +635,8 @@ class Twython(EndpointsMixin, object):
             if 'urls' in tweet['entities']:
                 for entity in tweet['entities']['urls']:
                     temp = {}
-                    temp['start'] = entity['indices'][0]
-                    temp['end'] = entity['indices'][1]
+                    temp['start'] = entity['indices'][0] - display_text_start
+                    temp['end'] = entity['indices'][1] - display_text_start
 
                     if use_display_url and entity.get('display_url') and not use_expanded_url:
                         shown_url = entity['display_url']
@@ -640,26 +653,30 @@ class Twython(EndpointsMixin, object):
                     else:
                         suffix_text = suffix_text.replace(orig_tweet_text[temp['start']:temp['end']], url_html)
 
-            if 'media' in tweet['entities']:
-                for entity in tweet['entities']['media']:
-                    temp = {}
-                    temp['start'] = entity['indices'][0]
-                    temp['end'] = entity['indices'][1]
+            if 'media' in tweet['entities'] and len(tweet['entities']['media']) > 0:
+                # We just link to the overall URL for the tweet's media,
+                # rather than to each individual item.
+                # So, we get the URL from the first media item:
+                entity = tweet['entities']['media'][0]
 
-                    if use_display_url and entity.get('display_url') and not use_expanded_url:
-                        shown_url = entity['display_url']
-                    elif use_expanded_url and entity.get('expanded_url'):
-                        shown_url = entity['expanded_url']
-                    else:
-                        shown_url = entity['url']
+                temp = {}
+                temp['start'] = entity['indices'][0]
+                temp['end'] = entity['indices'][1]
 
-                    url_html = '<a href="%s" class="twython-media">%s</a>' % (entity['url'], shown_url)
+                if use_display_url and entity.get('display_url') and not use_expanded_url:
+                    shown_url = entity['display_url']
+                elif use_expanded_url and entity.get('expanded_url'):
+                    shown_url = entity['expanded_url']
+                else:
+                    shown_url = entity['url']
 
-                    if display_text_start <= temp['start'] <= display_text_end:
-                        temp['replacement'] = url_html
-                        entities.append(temp)
-                    else:
-                        suffix_text = suffix_text.replace(orig_tweet_text[temp['start']:temp['end']], url_html)
+                url_html = '<a href="%s" class="twython-media">%s</a>' % (entity['url'], shown_url)
+
+                if display_text_start <= temp['start'] <= display_text_end:
+                    temp['replacement'] = url_html
+                    entities.append(temp)
+                else:
+                    suffix_text = suffix_text.replace(orig_tweet_text[temp['start']:temp['end']], url_html)
 
             # Now do all the replacements, starting from the end, so that the
             # start/end indices still work:
