@@ -633,6 +633,9 @@ class baseBufferController(bufferController):
    self._retweet_with_comment(tweet, id)
 
  def _retweet_with_comment(self, tweet, id, comment=''):
+  # If quoting a retweet, let's quote the original tweet instead the retweet.
+  if tweet.has_key("retweeted_status"):
+   tweet = tweet["retweeted_status"]
   if tweet.has_key("full_text"):
    comments = tweet["full_text"]
   else:
