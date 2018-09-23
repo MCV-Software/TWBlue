@@ -4,11 +4,11 @@ import platform
 if platform.system() == "Windows":
  import wx
  from wxUI import buffers, dialogs, commonMessageDialogs, menus
- import user
+ from controller import user
 elif platform.system() == "Linux":
  from gi.repository import Gtk
  from gtkUI import buffers, dialogs, commonMessageDialogs
-import messages
+from controller import messages
 import widgetUtils
 import arrow
 import webbrowser
@@ -18,6 +18,7 @@ import sound
 import languageHandler
 import logging
 import youtube_utils
+from controller.buffers import baseBuffers
 from sessions.twitter import compose, utils
 from mysc.thread_utils import call_threaded
 from twython import TwythonError
@@ -33,121 +34,36 @@ def _tweets_exist(function):
    function(self, *args, **kwargs)
  return function_
 
-class bufferController(object):
- """ A basic buffer object. This should be the base class for all other derived buffers."""
-
- def __init__(self, parent=None, function=None, session=None, *args, **kwargs):
-  """Inits the main controller for this buffer:
-    @ parent wx.Treebook object: Container where we will put this buffer.
-    @ function str or None: function to be called periodically and update items on this buffer.
-    @ session sessionmanager.session object or None: Session handler for settings, database and Twitter access.
-  """
-  super(bufferController, self).__init__()
-  self.function = function
-  # Compose_function will be used to render an object on this buffer. Normally, signature is as follows:
-  # compose_function(item, db, relative_times, show_screen_names=False, session=None)
-  # Compose functions will be defined in every buffer if items are different than tweets.
-  # Read more about compose functions in twitter/compose.py.
-  self.compose_function = None
-  self.args = args
-  self.kwargs = kwargs
-  # This will be used as a reference to the wx.Panel object wich stores the buffer GUI.
-  self.buffer = None
-  # This should countains the account associated to this buffer.
-  self.account = ""
-  # This controls wether the start_stream function should be called when starting the program.
-  self.needs_init = True
-  # if this is set to False, the buffer will be ignored on the invisible interface.
-  self.invisible = False
-  # Control variable, used to track time of execution for calls to start_stream.
-  self.execution_time = 0
-
- def clear_list(self): pass
-
- def get_event(self, ev):
-  """ Catches key presses in the WX interface and generate the corresponding event names."""
-  if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
-  elif ev.GetKeyCode() == wx.WXK_RETURN: event = "url"
-  elif ev.GetKeyCode() == wx.WXK_F5: event = "volume_down"
-  elif ev.GetKeyCode() == wx.WXK_F6: event = "volume_up"
-  elif ev.GetKeyCode() == wx.WXK_DELETE and ev.ShiftDown(): event = "clear_list"
-  elif ev.GetKeyCode() == wx.WXK_DELETE: event = "destroy_status"
+class baseBufferController(baseBuffers.buffer):
+ def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, compose_func="compose_tweet", *args, **kwargs):
+  super(baseBufferController, self).__init__(parent, function, *args, **kwargs)
+  log.debug("Initializing buffer %s, account %s" % (name, account,))
+  if bufferType != None:
+   self.buffer = getattr(buffers, bufferType)(parent, name)
   else:
-   event = None
-   ev.Skip()
-  if event != None:
+   self.buffer = buffers.basePanel(parent, name)
+  self.invisible = True
+  self.name = name
+  self.type = self.buffer.type
+  self.session = sessionObject
+  self.compose_function = getattr(compose, compose_func)
+  log.debug("Compose_function: %s" % (self.compose_function,))
+  self.account = account
+  self.buffer.account = account
+  self.bind_events()
+  self.sound = sound
+  if "-timeline" in self.name or "-favorite" in self.name:
+   self.finished_timeline = False
+   # Add a compatibility layer for username based timelines from config.
+   # ToDo: Remove this in some new versions of the client, when user ID timelines become mandatory.
    try:
-    getattr(self, event)()
-   except AttributeError:
-    pass
- 
- def volume_down(self):
-  if self.session.settings["sound"]["volume"] > 0.0:
-   if self.session.settings["sound"]["volume"] <= 0.05:
-    self.session.settings["sound"]["volume"] = 0.0
-   else:
-    self.session.settings["sound"]["volume"] -=0.05
-  sound.URLPlayer.player.audio_set_volume(int(self.session.settings["sound"]["volume"]*100.0))
-  self.session.sound.play("volume_changed.ogg")
-  self.session.settings.write()
+    int(self.kwargs["user_id"])
+   except ValueError:
+    self.is_screen_name = True
+    self.kwargs["screen_name"] = self.kwargs["user_id"]
+    self.kwargs.pop("user_id")
 
- def volume_up(self):
-  if self.session.settings["sound"]["volume"] < 1.0:
-   if self.session.settings["sound"]["volume"] >= 0.95:
-    self.session.settings["sound"]["volume"] = 1.0
-   else:
-    self.session.settings["sound"]["volume"] +=0.05
-  sound.URLPlayer.player.audio_set_volume(int(self.session.settings["sound"]["volume"]*100))
-  self.session.sound.play("volume_changed.ogg")
-  self.session.settings.write()
-
- def start_stream(self, mandatory=False, play_sound=True):
-#  if mandatory == True:
-#   output.speak(_(u"Unable to update this buffer."))
-  pass
-
- def get_more_items(self):
-  output.speak(_(u"This action is not supported for this buffer"), True)
-
- def put_items_on_list(self, items):
-  pass
-
- def remove_buffer(self):
-  return False
-
- def remove_item(self, item):
-  f = self.buffer.list.get_selected()
-  self.buffer.list.remove_item(item)
-  self.buffer.list.select_item(f)
-
- def bind_events(self):
-  pass
-
- def get_object(self):
-  return self.buffer
-
- def get_message(self):
-  pass
-
- def set_list_position(self, reversed=False):
-  if reversed == False:
-   self.buffer.list.select_item(-1)
-  else:
-   self.buffer.list.select_item(0)
-
- def reply(self):
-  pass
-
- def direct_message(self):
-  pass
-
- def retweet(self):
-  pass
-
- def destroy_status(self):
-  pass
-
- def post_tweet(self, *args, **kwargs):
+ def post_status(self, *args, **kwargs):
   title = _(u"Tweet")
   caption = _(u"Write the tweet here")
   tweet = messages.tweet(self.session, title, caption, "")
@@ -178,100 +94,6 @@ class bufferController(object):
    self.session.twitter.create_metadata(media_id=img["media_id"], alt_text=dict(text=i["description"]))
    media_ids.append(img["media_id"])
   self.session.twitter.update_status(status=text, media_ids=media_ids)
-
- def save_positions(self):
-  try:
-   self.session.db[self.name+"_pos"]=self.buffer.list.get_selected()
-  except AttributeError:
-   pass
-
-class accountPanel(bufferController):
- def __init__(self, parent, name, account, account_id):
-  super(accountPanel, self).__init__(parent, None, name)
-  log.debug("Initializing buffer %s, account %s" % (name, account,))
-  self.buffer = buffers.accountPanel(parent, name)
-  self.type = self.buffer.type
-  self.compose_function = None
-  self.session = None
-  self.needs_init = False
-  self.account = account
-  self.buffer.account = account
-  self.name = name
-  self.account_id = account_id
-
- def setup_account(self):
-  widgetUtils.connect_event(self.buffer, widgetUtils.CHECKBOX, self.autostart, menuitem=self.buffer.autostart_account)
-  if self.account_id in config.app["sessions"]["ignored_sessions"]:
-   self.buffer.change_autostart(False)
-  else:
-   self.buffer.change_autostart(True)
-  if not hasattr(self, "logged"):
-   self.buffer.change_login(login=False)
-   widgetUtils.connect_event(self.buffer.login, widgetUtils.BUTTON_PRESSED, self.logout)
-  else:
-   self.buffer.change_login(login=True)
-   widgetUtils.connect_event(self.buffer.login, widgetUtils.BUTTON_PRESSED, self.login)
-
- def login(self, *args, **kwargs):
-  del self.logged
-  self.setup_account()
-  pub.sendMessage("login", session_id=self.account_id)
-
- def logout(self, *args, **kwargs):
-  self.logged = False
-  self.setup_account()
-  pub.sendMessage("logout", session_id=self.account_id)
-
- def autostart(self, *args, **kwargs):
-  if self.account_id in config.app["sessions"]["ignored_sessions"]:
-   self.buffer.change_autostart(True)
-   config.app["sessions"]["ignored_sessions"].remove(self.account_id)
-  else:
-   self.buffer.change_autostart(False)
-   config.app["sessions"]["ignored_sessions"].append(self.account_id)
-  config.app.write()
-
-class emptyPanel(bufferController):
- def __init__(self, parent, name, account):
-  super(emptyPanel, self).__init__(parent=parent)
-  log.debug("Initializing buffer %s, account %s" % (name, account,))
-  self.buffer = buffers.emptyPanel(parent, name)
-  self.type = self.buffer.type
-  self.compose_function = None
-  self.account = account
-  self.buffer.account = account
-  self.name = name
-  self.session = None
-  self.needs_init = True
-
-class baseBufferController(bufferController):
- def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, compose_func="compose_tweet", *args, **kwargs):
-  super(baseBufferController, self).__init__(parent, function, *args, **kwargs)
-  log.debug("Initializing buffer %s, account %s" % (name, account,))
-  if bufferType != None:
-   self.buffer = getattr(buffers, bufferType)(parent, name)
-  else:
-   self.buffer = buffers.basePanel(parent, name)
-  self.invisible = True
-  self.name = name
-  self.type = self.buffer.type
-  self.session = sessionObject
-  self.compose_function = getattr(compose, compose_func)
-  log.debug("Compose_function: %s" % (self.compose_function,))
-  self.account = account
-  self.buffer.account = account
-  self.bind_events()
-  self.sound = sound
-  if "-timeline" in self.name or "-favorite" in self.name:
-   self.finished_timeline = False
-   # Add a compatibility layer for username based timelines from config.
-   # ToDo: Remove this in some new versions of the client, when user ID timelines become mandatory.
-   try:
-    int(self.kwargs["user_id"])
-   except ValueError:
-    self.is_screen_name = True
-    self.kwargs["screen_name"] = self.kwargs["user_id"]
-    self.kwargs.pop("user_id")
 
  def get_formatted_message(self):
   if self.type == "dm" or self.name == "direct_messages":
@@ -460,10 +282,10 @@ class baseBufferController(bufferController):
   log.debug("Binding events...")
   self.buffer.set_focus_function(self.onFocus)
   widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
-  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.tweet)
 #  if self.type == "baseBuffer":
-  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.retweet, self.buffer.retweet)
-  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.direct_message, self.buffer.dm)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.share_item, self.buffer.retweet)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.send_message, self.buffer.dm)
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
   # Replace for the correct way in other platforms.
   widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
@@ -475,13 +297,13 @@ class baseBufferController(bufferController):
    menu = menus.sentPanelMenu()
   elif self.name == "direct_messages":
    menu = menus.dmPanelMenu()
-   widgetUtils.connect_event(menu, widgetUtils.MENU, self.direct_message, menuitem=menu.reply)
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.send_message, menuitem=menu.reply)
    widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
   else:
    menu = menus.basePanelMenu()
    widgetUtils.connect_event(menu, widgetUtils.MENU, self.reply, menuitem=menu.reply)
    widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
-   widgetUtils.connect_event(menu, widgetUtils.MENU, self.retweet, menuitem=menu.retweet)
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.retweet)
    widgetUtils.connect_event(menu, widgetUtils.MENU, self.fav, menuitem=menu.fav)
    widgetUtils.connect_event(menu, widgetUtils.MENU, self.unfav, menuitem=menu.unfav)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.url_, menuitem=menu.openUrl)
@@ -580,7 +402,7 @@ class baseBufferController(bufferController):
   self.session.settings.write()
 
  @_tweets_exist
- def direct_message(self, *args, **kwargs):
+ def send_message(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   if self.type == "dm":
    screen_name = self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]
@@ -618,7 +440,7 @@ class baseBufferController(bufferController):
   if hasattr(dm.message, "destroy"): dm.message.destroy()
 
  @_tweets_exist
- def retweet(self, *args, **kwargs):
+ def share_item(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   id = tweet["id"]
   if self.session.settings["general"]["retweet_mode"] == "ask":
@@ -912,58 +734,6 @@ class listBufferController(baseBufferController):
   elif dlg == widgetUtils.NO:
    return False
 
-class eventsBufferController(bufferController):
- def __init__(self, parent, name, session, account, *args, **kwargs):
-  super(eventsBufferController, self).__init__(parent, *args, **kwargs)
-  log.debug("Initializing buffer %s, account %s" % (name, account,))
-  self.invisible = True
-  self.buffer = buffers.eventsPanel(parent, name)
-  self.name = name
-  self.account = account
-  self.buffer.account = self.account
-  self.compose_function = compose.compose_event
-  self.session = session
-  self.type = self.buffer.type
-  self.get_formatted_message = self.get_message
-
- def get_message(self):
-  if self.buffer.list.get_count() == 0: return _(u"Empty")
-  # fix this:
-  return "%s. %s" % (self.buffer.list.list.GetItemText(self.buffer.list.get_selected()), self.buffer.list.list.GetItemText(self.buffer.list.get_selected(), 1))
-
- def add_new_item(self, item):
-  tweet = self.compose_function(item, self.session.db["user_name"], self.session.settings["general"]["show_screen_names"])
-  if self.session.settings["general"]["reverse_timelines"] == False:
-   self.buffer.list.insert_item(False, *tweet)
-  else:
-   self.buffer.list.insert_item(True, *tweet)
-  if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
-   output.speak(" ".join(tweet), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
-  if self.buffer.list.get_count() == 1:
-   self.buffer.list.select_item(0)
-
- def clear_list(self):
-  dlg = commonMessageDialogs.clear_list()
-  if dlg == widgetUtils.YES:
-   self.buffer.list.clear()
-
- def show_menu(self, ev, pos=0, *args, **kwargs):
-  if self.buffer.list.get_count() == 0: return
-  menu = menus.eventsPanelMenu()
-  widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
-  widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
-  widgetUtils.connect_event(menu, widgetUtils.MENU, self.destroy_status, menuitem=menu.remove)
-  if pos != 0:
-   self.buffer.PopupMenu(menu, pos)
-  else:
-   self.buffer.PopupMenu(menu, ev.GetPosition())
-
- def view(self, *args, **kwargs):
-  pub.sendMessage("execute-action", action="view_item")
-
- def copy(self, *args, **kwargs):
-  pub.sendMessage("execute-action", action="copy_to_clipboard")
-
 class peopleBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, bufferType=None, *args, **kwargs):
   super(peopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs)
@@ -1129,7 +899,7 @@ class peopleBufferController(baseBufferController):
 
  def show_menu(self, ev, pos=0, *args, **kwargs):
   menu = menus.peoplePanelMenu()
-  widgetUtils.connect_event(menu, widgetUtils.MENU, self.direct_message, menuitem=menu.reply)
+  widgetUtils.connect_event(menu, widgetUtils.MENU, self.send_message, menuitem=menu.reply)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.details, menuitem=menu.details)
 #  widgetUtils.connect_event(menu, widgetUtils.MENU, self.lists, menuitem=menu.lists)
@@ -1289,7 +1059,7 @@ class searchPeopleBufferController(peopleBufferController):
   elif dlg == widgetUtils.NO:
    return False
 
-class trendsBufferController(bufferController):
+class trendsBufferController(baseBuffers.buffer):
  def __init__(self, parent, name, session, account, trendsFor, *args, **kwargs):
   super(trendsBufferController, self).__init__(parent=parent, session=session)
   self.trendsFor = trendsFor
@@ -1339,7 +1109,7 @@ class trendsBufferController(bufferController):
   log.debug("Binding events...")
   self.buffer.list.list.Bind(wx.EVT_CHAR_HOOK, self.get_event)
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.tweet_about_this_trend, self.buffer.tweetTrendBtn)
-  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_tweet, self.buffer.tweet)
+  widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.tweet)
   widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
   widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
   widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.search_topic, self.buffer.search_topic)
