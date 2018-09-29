@@ -557,7 +557,6 @@ class baseBufferController(baseBuffers.buffer):
      self.session.twitter.destroy_status(id=self.get_right_tweet()["id"])
      self.session.db[self.name].pop(index)
     self.buffer.list.remove_item(index)
-#    if index > 0:
    except TwythonError:
     self.session.sound.play("error.ogg")
 

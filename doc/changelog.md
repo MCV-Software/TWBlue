@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* Added support for deleting direct messages by using the new Twitter API methods.
 * When quoting a retweet, the quote will be made to the original tweet instead of the retweet.
 * If the sent direct messages buffer is hidden, TWBlue should keep loading everything as expected. ([#246](https://github.com/manuelcortez/TWBlue/issues/246))
 * There is a new soundpack, called FreakyBlue (Thanks to [Andre Louis](https://twitter.com/FreakyFwoof)) as a new option in TWBlue. This pack can be the default in the next stable, so users can take a look and share their opinion in snapshot versions. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))
