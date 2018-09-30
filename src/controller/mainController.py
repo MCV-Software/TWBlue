@@ -4,6 +4,7 @@ system = platform.system()
 import application
 import requests
 import youtube_utils
+import arrow
 if system == "Windows":
  from update import updater
  from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
@@ -792,14 +793,17 @@ class Controller(object):
 
  def view_item(self, *args, **kwargs):
   buffer = self.get_current_buffer()
-  if buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
-   tweet, tweetsList = buffer.get_full_tweet()
-   msg = messages.viewTweet(tweet, tweetsList)
-  elif buffer.type == "account" or buffer.type == "empty":
+  if buffer.type == "account" or buffer.type == "empty":
    return
-  elif buffer.name == "sent_tweets":
+  elif buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
    tweet, tweetsList = buffer.get_full_tweet()
-   msg = messages.viewTweet(tweet, tweetsList)
+   msg = messages.viewTweet(tweet, tweetsList, utc_offset=buffer.session.db["utc_offset"])
+  elif buffer.type == "dm":
+   non_tweet = buffer.get_formatted_message()
+   item = buffer.get_right_tweet()
+   original_date = arrow.get(item["created_timestamp"][:-3])
+   date = original_date.replace(seconds=buffer.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
+   msg = messages.viewTweet(non_tweet, [], False, date=date)
   else:
    non_tweet = buffer.get_formatted_message()
    msg = messages.viewTweet(non_tweet, [], False)

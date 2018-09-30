@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* When displaying tweets or direct messages, a new field has been added to show the date when the item has been posted to Twitter.
 * Added support for deleting direct messages by using the new Twitter API methods.
 * When quoting a retweet, the quote will be made to the original tweet instead of the retweet.
 * If the sent direct messages buffer is hidden, TWBlue should keep loading everything as expected. ([#246](https://github.com/manuelcortez/TWBlue/issues/246))

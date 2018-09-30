@@ -2,6 +2,8 @@
 import re
 import platform
 import attach
+import arrow
+import languageHandler
 system = platform.system()
 import widgetUtils
 import output
@@ -193,7 +195,7 @@ class dm(basicTweet):
   c.show_menu("dm")
 
 class viewTweet(basicTweet):
- def __init__(self, tweet, tweetList, is_tweet=True):
+ def __init__(self, tweet, tweetList, is_tweet=True, utc_offset=0, date=""):
   """ This represents a tweet displayer. However it could be used for showing something wich is not a tweet, like a direct message or an event.
    param tweet: A dictionary that represents a full tweet or a string for non-tweets.
    param tweetList: If is_tweet is set to True, this could be a list of quoted tweets.
@@ -229,6 +231,8 @@ class viewTweet(basicTweet):
    favs_count = str(tweet["favorite_count"])
    # Gets the client from where this tweet was made.
    source = str(re.sub(r"(?s)<.*?>", "", tweet["source"].encode("utf-8")))
+   original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
+   date = original_date.replace(seconds=utc_offset).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
    if text == "":
     if tweet.has_key("message"):
      value = "message"
@@ -250,13 +254,13 @@ class viewTweet(basicTweet):
     for z in tweet["retweeted_status"]["extended_entities"]["media"]:
      if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
-   self.message = message.viewTweet(text, rt_count, favs_count, source.decode("utf-8"))
+   self.message = message.viewTweet(text, rt_count, favs_count, source.decode("utf-8"), date)
    self.message.set_title(len(text))
    [self.message.set_image_description(i) for i in image_description]
   else:
    self.title = _(u"View item")
    text = tweet
-   self.message = message.viewNonTweet(text)
+   self.message = message.viewNonTweet(text, date)
   widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
   widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
   if self.contain_urls() == True:
