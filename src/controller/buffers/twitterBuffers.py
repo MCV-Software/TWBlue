@@ -63,6 +63,13 @@ class baseBufferController(baseBuffers.buffer):
     self.kwargs["screen_name"] = self.kwargs["user_id"]
     self.kwargs.pop("user_id")
 
+ def get_buffer_name(self):
+  """ Get buffer name from a set of different techniques."""
+  # firstly let's take the easier buffers.
+  basic_buffers = dict(home_timeline=_(u"Home"), mentions=_(u"Mentions"), direct_messages=_(u"Direct messages"), sent_direct_messages=_(u"Sent direct messages"), sent_tweets=_(u"Sent tweets"), favourites=_(u"Likes"), followers=_(u"Followers"), friends=_(u"Friends"), blocked=_(u"Blocked users"), muted=_(u"Muted users"))
+  if self.name in basic_buffers.keys():
+   return basic_buffers[self.name]
+
  def post_status(self, *args, **kwargs):
   title = _(u"Tweet")
   caption = _(u"Write the tweet here")
@@ -139,7 +146,7 @@ class baseBufferController(baseBuffers.buffer):
     tweetsList.append(tweet)
   return (tweet, tweetsList)
 
- def start_stream(self, mandatory=False, play_sound=True):
+ def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
   # starts stream every 3 minutes.
   current_time = time.time()
   if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
@@ -161,7 +168,20 @@ class baseBufferController(baseBuffers.buffer):
     self.finished_timeline = True
    if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
     self.session.sound.play(self.sound)
+   # Autoread settings
+   if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
+    self.auto_read(number_of_items)
    return number_of_items
+
+ def auto_read(self, number_of_items):
+  if number_of_items == 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
+   if self.session.settings["general"]["reverse_timelines"] == False:
+    tweet = self.session.db[self.name][0]
+   else:
+    tweet = self.session.db[self.name][-1]
+   output.speak(" ".join(tweet[:2]), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
+  elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
+   output.speak(_(u"{0} tweets in {1}.").format(number_of_items, self.get_buffer_name()))
 
  def get_more_items(self):
   elements = []

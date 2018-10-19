@@ -1537,7 +1537,7 @@ class Controller(object):
    return
   else:
    output.speak(_(u"Updating buffer..."))
-   n = bf.start_stream(mandatory=True)
+   n = bf.start_stream(mandatory=True, avoid_autoreading=True)
    if n != None:
     output.speak(_(u"{0} items retrieved").format(n,))
 
