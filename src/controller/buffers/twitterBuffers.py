@@ -69,6 +69,7 @@ class baseBufferController(baseBuffers.buffer):
   basic_buffers = dict(home_timeline=_(u"Home"), mentions=_(u"Mentions"), direct_messages=_(u"Direct messages"), sent_direct_messages=_(u"Sent direct messages"), sent_tweets=_(u"Sent tweets"), favourites=_(u"Likes"), followers=_(u"Followers"), friends=_(u"Friends"), blocked=_(u"Blocked users"), muted=_(u"Muted users"))
   if self.name in basic_buffers.keys():
    return basic_buffers[self.name]
+  return "unknown buffer"
 
  def post_status(self, *args, **kwargs):
   title = _(u"Tweet")
@@ -176,12 +177,12 @@ class baseBufferController(baseBuffers.buffer):
  def auto_read(self, number_of_items):
   if number_of_items == 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    tweet = self.session.db[self.name][0]
-   else:
     tweet = self.session.db[self.name][-1]
-   output.speak(" ".join(tweet[:2]), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
+   else:
+    tweet = self.session.db[self.name][0]
+   output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
   elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
-   output.speak(_(u"{0} tweets in {1}.").format(number_of_items, self.get_buffer_name()))
+   output.speak(_(u"{0} new tweets in {1}.").format(number_of_items, self.get_buffer_name()))
 
  def get_more_items(self):
   elements = []
@@ -695,6 +696,16 @@ class directMessagesController(baseBufferController):
    self.session.db[self.name]["items"] = []
    self.buffer.list.clear()
 
+ def auto_read(self, number_of_items):
+  if number_of_items == 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
+   if self.session.settings["general"]["reverse_timelines"] == False:
+    tweet = self.session.db[self.name]["items"][-1]
+   else:
+    tweet = self.session.db[self.name]["items"][0]
+   output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
+  elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
+   output.speak(_(u"{0} new direct messages.").format(number_of_items,))
+
 class sentDirectMessagesController(directMessagesController):
 
  def __init__(self, *args, **kwargs):
@@ -725,9 +736,9 @@ class listBufferController(baseBufferController):
   self.list_id = list_id
   self.kwargs["list_id"] = list_id
 
- def start_stream(self, mandatory=False, play_sound=True):
+ def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
   self.get_user_ids()
-  super(listBufferController, self).start_stream(mandatory, play_sound)
+  super(listBufferController, self).start_stream(mandatory, play_sound, avoid_autoreading)
 
  def get_user_ids(self):
   next_cursor = -1
@@ -830,7 +841,7 @@ class peopleBufferController(baseBufferController):
     call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
   if hasattr(message.message, "destroy"): message.message.destroy()
 
- def start_stream(self, mandatory=False, play_sound=True):
+ def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
   # starts stream every 3 minutes.
   current_time = time.time()
   if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
@@ -844,6 +855,9 @@ class peopleBufferController(baseBufferController):
     self.finished_timeline = True
    if val > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
     self.session.sound.play(self.sound)
+   # Autoread settings
+   if avoid_autoreading == False and mandatory == True and val > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
+    self.auto_read(val)
    return val
 
  def get_more_items(self):
@@ -932,8 +946,18 @@ class peopleBufferController(baseBufferController):
  def details(self, *args, **kwargs):
   pub.sendMessage("execute-action", action="user_details")
 
+ def auto_read(self, number_of_items):
+  if number_of_items == 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
+   if self.session.settings["general"]["reverse_timelines"] == False:
+    tweet = self.session.db[self.name]["items"][-1]
+   else:
+    tweet = self.session.db[self.name["items"]][0]
+   output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
+  elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
+   output.speak(_(u"{0} new followers.").format(number_of_items))
+
 class searchBufferController(baseBufferController):
- def start_stream(self, mandatory=False, play_sound=True):
+ def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
   # starts stream every 3 minutes.
   current_time = time.time()
   if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
@@ -949,6 +973,9 @@ class searchBufferController(baseBufferController):
    self.put_items_on_list(num)
    if num > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
     self.session.sound.play(self.sound)
+   # Autoread settings
+   if avoid_autoreading == False and mandatory == True and num > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
+    self.auto_read(num)
    return num
 
  def remove_buffer(self, force=False):
@@ -1014,7 +1041,7 @@ class searchPeopleBufferController(peopleBufferController):
   if self.kwargs.has_key("page") == False:
    self.kwargs["page"] = 1
 
- def start_stream(self, mandatory=False, play_sound=True):
+ def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=True):
   # starts stream every 3 minutes.
   current_time = time.time()
   if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
@@ -1031,6 +1058,9 @@ class searchPeopleBufferController(peopleBufferController):
    self.put_items_on_list(number_of_items)
    if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
     self.session.sound.play(self.sound)
+   # Autoread settings
+   if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
+    self.auto_read(number_of_items)
    return number_of_items
 
  def get_more_items(self, *args, **kwargs):
@@ -1097,7 +1127,7 @@ class trendsBufferController(baseBuffers.buffer):
   self.get_formatted_message = self.get_message
   self.reply = self.search_topic
 
- def start_stream(self, mandatory=False, play_sound=True):
+ def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
   # starts stream every 3 minutes.
   current_time = time.time()
   if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
@@ -1202,7 +1232,7 @@ class trendsBufferController(baseBuffers.buffer):
 
 class conversationBufferController(searchBufferController):
 
- def start_stream(self, start=False, mandatory=False, play_sound=True):
+ def start_stream(self, start=False, mandatory=False, play_sound=True, avoid_autoreading=False):
   # starts stream every 3 minutes.
   current_time = time.time()
   if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
@@ -1234,6 +1264,9 @@ class conversationBufferController(searchBufferController):
    self.put_items_on_list(number_of_items)
    if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
     self.session.sound.play(self.sound)
+   # Autoread settings
+   if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
+    self.auto_read(number_of_items)
    return number_of_items
 
  def remove_buffer(self, force=False):
