@@ -69,7 +69,18 @@ class baseBufferController(baseBuffers.buffer):
   basic_buffers = dict(home_timeline=_(u"Home"), mentions=_(u"Mentions"), direct_messages=_(u"Direct messages"), sent_direct_messages=_(u"Sent direct messages"), sent_tweets=_(u"Sent tweets"), favourites=_(u"Likes"), followers=_(u"Followers"), friends=_(u"Friends"), blocked=_(u"Blocked users"), muted=_(u"Muted users"))
   if self.name in basic_buffers.keys():
    return basic_buffers[self.name]
-  return "unknown buffer"
+  # Check user timelines
+  elif hasattr(self, "username"):
+   if "-timeline" in self.name:
+    return _(u"{username}'s timeline").format(username=self.username,)
+   elif "-favorite" in self.name:
+    return _(u"{username}'s likes").format(username=self.username,)
+   elif "-followers" in self.name:
+    return _(u"{username}'s followers").format(username=self.username,)
+   elif "-friends" in self.name:
+    return _(u"{username}'s friends").format(username=self.username,)
+  log.error("Error getting name for buffer %s" % (self.name,))
+  return _(u"Unknown buffer")
 
  def post_status(self, *args, **kwargs):
   title = _(u"Tweet")
@@ -180,6 +191,7 @@ class baseBufferController(baseBuffers.buffer):
     tweet = self.session.db[self.name][-1]
    else:
     tweet = self.session.db[self.name][0]
+   output.speak(_(u"New tweet in {0}").format(self.get_buffer_name()))
    output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
   elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(_(u"{0} new tweets in {1}.").format(number_of_items, self.get_buffer_name()))
@@ -702,6 +714,7 @@ class directMessagesController(baseBufferController):
     tweet = self.session.db[self.name]["items"][-1]
    else:
     tweet = self.session.db[self.name]["items"][0]
+   output.speak(_(u"New direct message"))
    output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
   elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(_(u"{0} new direct messages.").format(number_of_items,))

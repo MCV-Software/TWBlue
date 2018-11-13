@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* autoreading has been redesigned to work in a similar way for almost all buffers. Needs testing. ([#221](https://github.com/manuelcortez/TWBlue/issues/221))
 * When displaying tweets or direct messages, a new field has been added to show the date when the item has been posted to Twitter.
 * Added support for deleting direct messages by using the new Twitter API methods.
 * When quoting a retweet, the quote will be made to the original tweet instead of the retweet.
