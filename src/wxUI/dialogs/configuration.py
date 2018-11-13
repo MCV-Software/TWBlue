@@ -4,6 +4,7 @@ import wx
 import application
 import output
 import config
+import widgetUtils
 import baseDialog
 from multiplatform_widgets import widgets
 
@@ -268,6 +269,9 @@ class sound(wx.Panel):
   sizer = wx.BoxSizer(wx.VERTICAL)
   volume = wx.StaticText(self, -1, _(u"Volume"))
   self.volumeCtrl = wx.Slider(self)
+  # Connect a key handler here to handle volume slider being inverted when moving with up and down arrows.
+  # see https://github.com/manuelcortez/TWBlue/issues/261
+  widgetUtils.connect_event(self.volumeCtrl, widgetUtils.KEYPRESS, self.on_keypress)
   self.volumeCtrl.SetRange(0, 100)
   self.volumeCtrl.SetSize(self.volumeCtrl.GetBestSize())
   volumeBox = wx.BoxSizer(wx.HORIZONTAL)
@@ -304,6 +308,18 @@ class sound(wx.Panel):
   self.indicate_img = wx.CheckBox(self, -1, _(u"Indicate tweets containing images with sound"))
   sizer.Add(self.indicate_img, 0, wx.ALL, 5)
   self.SetSizer(sizer)
+
+ def on_keypress(self, event, *args, **kwargs):
+  """ Invert movement of up and down arrow keys when dealing with a wX Slider.
+  See https://github.com/manuelcortez/TWBlue/issues/261
+  and http://trac.wxwidgets.org/ticket/2068
+  """
+  keycode = event.GetKeyCode()
+  if keycode == wx.WXK_UP:
+   return self.volumeCtrl.SetValue(self.volumeCtrl.GetValue()+1)
+  elif keycode == wx.WXK_DOWN:
+   return self.volumeCtrl.SetValue(self.volumeCtrl.GetValue()-1)
+  event.Skip()
 
  def get(self, control):
   return getattr(self, control).GetStringSelection()
