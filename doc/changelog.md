@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* Fixed an issue that was making the list manager keystroke unable to be shown in the keystroke editor. Now the keystroke is listed properly. ([#260](https://github.com/manuelcortez/TWBlue/issues/260))
 * The volume slider, located in the account settings of TWBlue, now should decrease and increase value properly when up and down arrows are pressed. Before it was doing it in inverted order. ([#261](https://github.com/manuelcortez/TWBlue/issues/261))
 * autoreading has been redesigned to work in a similar way for almost all buffers. Needs testing. ([#221](https://github.com/manuelcortez/TWBlue/issues/221))
 * When displaying tweets or direct messages, a new field has been added to show the date when the item has been posted to Twitter.
