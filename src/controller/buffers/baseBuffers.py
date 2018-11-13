@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
+""" Common logic to all buffers in TWBlue."""
+import logging
 import wx
 import output
 import config
 import sound
 import widgetUtils
-import logging
 from pubsub import pub
 from wxUI import buffers
 
-log = logging.getLogger("controller.buffers")
+log = logging.getLogger("controller.buffers.baseBuffers")
 
 def _items_exist(function):
  """ A decorator to execute a function only if the selected buffer contains at least one item."""
@@ -24,13 +25,12 @@ class buffer(object):
   """Inits the main controller for this buffer:
     @ parent wx.Treebook object: Container where we will put this buffer.
     @ function str or None: function to be called periodically and update items on this buffer.
-    @ session sessionmanager.session object or None: Session handler for settings, database and Twitter access.
+    @ session sessionmanager.session object or None: Session handler for settings, database and data access.
   """
   super(buffer, self).__init__()
   self.function = function
   # Compose_function will be used to render an object on this buffer. Normally, signature is as follows:
   # compose_function(item, db, relative_times, show_screen_names=False, session=None)
-  # Compose functions will be defined in every buffer if items are different than tweets.
   # Read more about compose functions in twitter/compose.py.
   self.compose_function = None
   self.args = args
@@ -39,7 +39,7 @@ class buffer(object):
   self.buffer = None
   # This should countains the account associated to this buffer.
   self.account = ""
-  # This controls wether the start_stream function should be called when starting the program.
+  # This controls whether the start_stream function should be called when starting the program.
   self.needs_init = True
   # if this is set to False, the buffer will be ignored on the invisible interface.
   self.invisible = False
@@ -50,7 +50,7 @@ class buffer(object):
   pass
 
  def get_event(self, ev):
-  """ Catches key presses in the WX interface and generate the corresponding event names."""
+  """ Catch key presses in the WX interface and generate the corresponding event names."""
   if ev.GetKeyCode() == wx.WXK_RETURN and ev.ControlDown(): event = "audio"
   elif ev.GetKeyCode() == wx.WXK_RETURN: event = "url"
   elif ev.GetKeyCode() == wx.WXK_F5: event = "volume_down"
@@ -67,6 +67,7 @@ class buffer(object):
     pass
  
  def volume_down(self):
+  """ Decreases volume by 5%"""
   if self.session.settings["sound"]["volume"] > 0.0:
    if self.session.settings["sound"]["volume"] <= 0.05:
     self.session.settings["sound"]["volume"] = 0.0
@@ -77,6 +78,7 @@ class buffer(object):
   self.session.settings.write()
 
  def volume_up(self):
+  """ Increases volume by 5%."""
   if self.session.settings["sound"]["volume"] < 1.0:
    if self.session.settings["sound"]["volume"] >= 0.95:
     self.session.settings["sound"]["volume"] = 1.0
