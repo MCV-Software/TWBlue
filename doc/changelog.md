@@ -17,7 +17,7 @@
 * When there are no more items to retrieve in direct messages and people buffers, a message will announce it.
 * Fixed an issue reported by some users that was making them unable to load more items in their direct messages.
 * It is possible to add a tweet to the likes buffer from the menu bar again.
-* Tweets, replies and retweets will be added to sent tweets right after being posted in the Twitter.
+* Tweets, replies and retweets will be added to sent tweets right after being posted in Twitter.
 * Extended Tweets should be displayed properly in list buffers.
 
 ## Changes in version 0.94
