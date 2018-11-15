@@ -1262,6 +1262,10 @@ class Controller(object):
   if buffer == None: return
 #  if "sent_tweets" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
 #   self.notify(buffer.session, play_sound=play_sound)
+  data = buffer.session.check_quoted_status(data)
+  data = buffer.session.check_long_tweet(data)
+  if data == False: # Long tweet deleted from twishort.
+   return 
   if buffer.session.settings["general"]["reverse_timelines"] == False:
    buffer.session.db[buffer.name].append(data)
   else:
