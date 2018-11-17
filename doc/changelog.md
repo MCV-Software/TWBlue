@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* When adding or removing an user from a list, it is possible to press enter in the focused list instead of having to search for the "add" or "delete" button.
 * Quoted and long tweets are displayed properly in the sent tweets buffer after being send. ([#253](https://github.com/manuelcortez/TWBlue/issues/253))
 * Fixed an issue that was making the list manager keystroke unable to be shown in the keystroke editor. Now the keystroke is listed properly. ([#260](https://github.com/manuelcortez/TWBlue/issues/260))
 * The volume slider, located in the account settings of TWBlue, now should decrease and increase value properly when up and down arrows are pressed. Before it was doing it in inverted order. ([#261](https://github.com/manuelcortez/TWBlue/issues/261))

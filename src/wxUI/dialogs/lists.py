@@ -113,6 +113,13 @@ class addUserListDialog(listViewer):
 #  self.subscriptors.Disable()
 #  self.members.Disable()
   self.deleteBtn.Disable()
+  widgetUtils.connect_event(self.lista.list, widgetUtils.KEYPRESS, self.on_keypress)
+
+ def on_keypress(self, event):
+  """Catch return and execute ok()"""
+  if event.GetKeyCode() == wx.WXK_RETURN:
+   return self.ok()
+  event.Skip()
 
  def ok(self, *args, **kwargs):
   self.EndModal(wx.ID_OK)
@@ -129,6 +136,13 @@ class removeUserListDialog(listViewer):
 #  self.subscriptors.Disable()
 #  self.members.Disable()
   self.deleteBtn.Disable()
+  widgetUtils.connect_event(self.lista.list, widgetUtils.KEYPRESS, self.on_keypress)
+
+ def on_keypress(self, event):
+  """Catch return and execute EndModal()"""
+  if event.GetKeyCode() == wx.WXK_RETURN:
+   return self.EndModal(wx.ID_OK)
+  event.Skip()
 
 def remove_list():
  return wx.MessageDialog(None, _("Do you really want to delete this list?"), _("Delete"), wx.YES_NO).ShowModal()
