@@ -211,7 +211,7 @@ class accountSettingsController(globalSettingsController):
   else:
    self.config["general"]["retweet_mode"] = "comment"
   buffers_list = self.dialog.buffers.get_list()
-  if set(self.config["general"]["buffer_order"]) != set(buffers_list) or buffers_list != self.config["general"]["buffer_order"]:
+  if buffers_list != self.config["general"]["buffer_order"]:
    self.needs_restart = True
    self.config["general"]["buffer_order"] = buffers_list
   self.config["reporting"]["speech_reporting"] = self.dialog.get_value("reporting", "speech_reporting")
@@ -291,10 +291,14 @@ class accountSettingsController(globalSettingsController):
   all_buffers['muted']=_(u"Muted users")
   list_buffers = []
   hidden_buffers=[]
-  for i in all_buffers.keys():
-   if i in self.config["general"]["buffer_order"]:
+  all_buffers_keys = all_buffers.keys()
+  # Check buffers shown first.
+  for i in self.config["general"]["buffer_order"]:
+   if i in all_buffers_keys:
     list_buffers.append((i, all_buffers[i], True))
-   else:
+   # This second pass will retrieve all hidden buffers.
+  for i in all_buffers_keys:
+   if i not in self.config["general"]["buffer_order"]:
     hidden_buffers.append((i, all_buffers[i], False))
   list_buffers.extend(hidden_buffers)
   return list_buffers
