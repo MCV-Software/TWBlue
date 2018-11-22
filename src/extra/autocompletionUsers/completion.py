@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import output
-import storage
-import wx_menu
+from . import storage
+from . import wx_menu
 
 class autocompletionUsers(object):
  def __init__(self, window, session_id):

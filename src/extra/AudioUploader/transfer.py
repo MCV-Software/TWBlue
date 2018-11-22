@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import sys
 import threading
 import time
 import logging
-from utils import convert_bytes
+from .utils import convert_bytes
 from pubsub import pub
 log = logging.getLogger("extra.AudioUploader.transfer")
 from requests_toolbelt.multipart.encoder import MultipartEncoder, MultipartEncoderMonitor
@@ -75,9 +76,9 @@ class Upload(object):
    data = self.response.json()
   except:
    return _("Error in file upload: {0}").format(self.data.content,)
-  if data.has_key("url") and data["url"] != "0":
+  if "url" in data and data["url"] != "0":
    return data["url"]
-  elif data.has_key("error") and data["error"] != "0":
+  elif "error" in data and data["error"] != "0":
    return data["error"]
   else:
    return _("Error in file upload: {0}").format(self.data.content,)

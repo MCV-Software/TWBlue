@@ -1,1 +1,2 @@
-from soundsTutorial import soundsTutorial
+from __future__ import absolute_import
+from .soundsTutorial import soundsTutorial

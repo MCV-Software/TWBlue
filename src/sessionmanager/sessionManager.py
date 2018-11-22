@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import shutil
 import widgetUtils
 import platform
 import output
 if platform.system() == "Windows":
- import wxUI as view
+ from . import wxUI as view
  from controller import settings
 elif platform.system() == "Linux":
- import gtkUI as view
+ from . import gtkUI as view
 import paths
 import time
 import os
 import logging
 import sessions
 from sessions.twitter import session
-import manager
+from . import manager
 import config_utils
 import config
 
@@ -77,7 +78,7 @@ class sessionManagerController(object):
  def do_ok(self):
   log.debug("Starting sessions...")
   for i in self.sessions:
-   if sessions.sessions.has_key(i) == True: continue
+   if (i in sessions.sessions) == True: continue
    s = session.Session(i)
    s.get_configuration()
    if i not in config.app["sessions"]["ignored_sessions"]:

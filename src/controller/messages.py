@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import re
 import platform
-import attach
+from . import attach
 import arrow
 import languageHandler
 system = platform.system()
@@ -206,25 +207,25 @@ class viewTweet(basicTweet):
    text = ""
    for i in xrange(0, len(tweetList)):
     # tweets with message keys are longer tweets, the message value is the full messaje taken from twishort.
-    if tweetList[i].has_key("message") and tweetList[i]["is_quote_status"] == False:
+    if "message" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
      value = "message"
     else:
      value = "full_text"
-    if tweetList[i].has_key("retweeted_status") and tweetList[i]["is_quote_status"] == False:
-     if tweetList[i].has_key("message") == False:
+    if "retweeted_status" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
+     if ("message" in tweetList[i]) == False:
       text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["full_text"])
      else:
       text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i][value])
     else:
      text = text + " @%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i][value])
     # tweets with extended_entities could include image descriptions.
-    if tweetList[i].has_key("extended_entities") and tweetList[i]["extended_entities"].has_key("media"):
+    if "extended_entities" in tweetList[i] and "media" in tweetList[i]["extended_entities"]:
      for z in tweetList[i]["extended_entities"]["media"]:
-      if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+      if "ext_alt_text" in z and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
-    if tweetList[i].has_key("retweeted_status") and tweetList[i]["retweeted_status"].has_key("extended_entities") and tweetList[i]["retweeted_status"]["extended_entities"].has_key("media"):
+    if "retweeted_status" in tweetList[i] and "extended_entities" in tweetList[i]["retweeted_status"] and "media" in tweetList[i]["retweeted_status"]["extended_entities"]:
      for z in tweetList[i]["retweeted_status"]["extended_entities"]["media"]:
-      if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+      if "ext_alt_text" in z and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
    # set rt and likes counters.
    rt_count = str(tweet["retweet_count"])
@@ -234,25 +235,25 @@ class viewTweet(basicTweet):
    original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
    date = original_date.replace(seconds=utc_offset).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
    if text == "":
-    if tweet.has_key("message"):
+    if "message" in tweet:
      value = "message"
     else:
      value = "full_text"
-    if tweet.has_key("retweeted_status"):
-     if tweet.has_key("message") == False:
+    if "retweeted_status" in tweet:
+     if ("message" in tweet) == False:
       text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["full_text"])
      else:
       text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet[value])
     else:
      text = tweet[value]
    text = self.clear_text(text)
-   if tweet.has_key("extended_entities") and tweet["extended_entities"].has_key("media"):
+   if "extended_entities" in tweet and "media" in tweet["extended_entities"]:
     for z in tweet["extended_entities"]["media"]:
-     if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+     if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
-   if tweet.has_key("retweeted_status") and tweet["retweeted_status"].has_key("extended_entities") and tweet["retweeted_status"]["extended_entities"].has_key("media"):
+   if "retweeted_status" in tweet and "extended_entities" in tweet["retweeted_status"] and "media" in tweet["retweeted_status"]["extended_entities"]:
     for z in tweet["retweeted_status"]["extended_entities"]["media"]:
-     if z.has_key("ext_alt_text") and z["ext_alt_text"] != None:
+     if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
    self.message = message.viewTweet(text, rt_count, favs_count, source.decode("utf-8"), date)
    self.message.set_title(len(text))

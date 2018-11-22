@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import logging as original_logger
 import wx
 import application
 import output
 import config
 import widgetUtils
-import baseDialog
+from . import baseDialog
 from multiplatform_widgets import widgets
 
 class general(wx.Panel, baseDialog.BaseWXDialog):
