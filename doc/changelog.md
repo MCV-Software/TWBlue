@@ -2,7 +2,8 @@
 
 ## changes in this version
 
-* Custom buffer ordering will not be reseted every time the application restarts after an account setting has been modified.
+* Added support for playing audios posted in [AnyAudio.net](http://anyaudio.net) directly from TWBlue. Thanks to [Sam Tupy](http://www.samtupy.com/)
+* Custom buffer ordering will not be reset every time the application restarts after an account setting has been modified.
 * When adding or removing an user from a list, it is possible to press enter in the focused list instead of having to search for the "add" or "delete" button.
 * Quoted and long tweets are displayed properly in the sent tweets buffer after being send. ([#253](https://github.com/manuelcortez/TWBlue/issues/253))
 * Fixed an issue that was making the list manager keystroke unable to be shown in the keystroke editor. Now the keystroke is listed properly. ([#260](https://github.com/manuelcortez/TWBlue/issues/260))
