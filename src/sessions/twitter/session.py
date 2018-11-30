@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ This is the main session needed to access all Twitter Features."""
+from __future__ import absolute_import
 import os
 import time
 import logging
@@ -15,7 +16,7 @@ from keys import keyring
 from sessions import base
 from sessions.twitter import utils, compose
 from sessions.twitter.long_tweets import tweets, twishort
-from wxUI import authorisationDialog
+from .wxUI import authorisationDialog
 
 log = logging.getLogger("sessions.twitterSession")
 
@@ -30,9 +31,9 @@ class Session(base.baseSession):
   returns the number of items that have been added in this execution"""
   num = 0
   last_id = None
-  if self.db.has_key(name) == False:
+  if (name in self.db) == False:
    self.db[name] = []
-  if self.db.has_key("users") == False:
+  if ("users" in self.db) == False:
    self.db["users"] = {}
   if ignore_older and len(self.db[name]) > 0:
    if self.settings["general"]["reverse_timelines"] == False:
@@ -51,8 +52,8 @@ class Session(base.baseSession):
     if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
     else: self.db[name].insert(0, i)
     num = num+1
-    if i.has_key("user") == True:
-     if self.db["users"].has_key(i["user"]["id"]) == False:
+    if ("user" in i) == True:
+     if (i["user"]["id"] in self.db["users"]) == False:
       self.db["users"][i["user"]["id"]] = i["user"]
   return num
 
@@ -66,7 +67,7 @@ class Session(base.baseSession):
   if name == "direct_messages":
    return self.order_direct_messages(data)
   num = 0
-  if self.db.has_key(name) == False:
+  if (name in self.db) == False:
    self.db[name] = {}
    self.db[name]["items"] = []
   for i in data:
@@ -82,12 +83,12 @@ class Session(base.baseSession):
   returns the number of incoming messages processed in this execution, and sends an event with data regarding amount of sent direct messages added."""
   incoming = 0
   sent = 0
-  if self.db.has_key("direct_messages") == False:
+  if ("direct_messages" in self.db) == False:
    self.db["direct_messages"] = {}
    self.db["direct_messages"]["items"] = []
   for i in data:
    if i["message_create"]["sender_id"] == self.db["user_id"]:
-    if self.db.has_key("sent_direct_messages") and utils.find_item(i["id"], self.db["sent_direct_messages"]["items"]) == None:
+    if "sent_direct_messages" in self.db and utils.find_item(i["id"], self.db["sent_direct_messages"]["items"]) == None:
      if self.settings["general"]["reverse_timelines"] == False: self.db["sent_direct_messages"]["items"].append(i)
      else: self.db["sent_direct_messages"]["items"].insert(0, i)
      sent = sent+1
@@ -164,15 +165,24 @@ class Session(base.baseSession):
   users, dm bool: If any of these is set to True, the function will treat items as users or dm (they need different handling).
   name str: name of the database item to put new element in."""
   results = []
+  if "cursor" in kwargs and kwargs["cursor"] == 0:
+   output.speak(_(u"There are no more items to retrieve in this buffer."))
+   return
   data = getattr(self.twitter, update_function)(*args, **kwargs)
   if users == True:
-   if type(data) == dict and data.has_key("next_cursor"):
-    self.db[name]["cursor"] = data["next_cursor"]
+   if type(data) == dict and "next_cursor" in data:
+    if "next_cursor" in data: # There are more objects to retrieve.
+     self.db[name]["cursor"] = data["next_cursor"]
+    else: # Set cursor to 0, wich means no more items available.
+     self.db[name]["cursor"] = 0
     for i in data["users"]: results.append(i)
    elif type(data) == list:
     results.extend(data[1:])
   elif dm == True:
-   self.db[name]["cursor"] = data["next_cursor"]
+   if "next_cursor" in data: # There are more objects to retrieve.
+    self.db[name]["cursor"] = data["next_cursor"]
+   else: # Set cursor to 0, wich means no more items available.
+    self.db[name]["cursor"] = 0
    for i in data["events"]: results.append(i)
   else:
    results.extend(data[1:])
@@ -197,6 +207,7 @@ class Session(base.baseSession):
     finished = True
    except TwythonError as e:
     output.speak(e.message)
+    val = None
     if e.error_code != 403 and e.error_code != 404:
      tries = tries+1
      time.sleep(5)
@@ -279,7 +290,7 @@ class Session(base.baseSession):
   name str: Name to save items to the database.
   function str: A function to get the items."""
   last_id = -1
-  if self.db.has_key(name):
+  if name in self.db:
    try:
     if self.db[name][0]["id"] > self.db[name][-1]["id"]:
      last_id = self.db[name][0]["id"]
@@ -299,7 +310,7 @@ class Session(base.baseSession):
   returns number of items retrieved."""
   items_ = []
   try:
-   if self.db[name].has_key("cursor") and get_previous:
+   if "cursor" in self.db[name] and get_previous:
     cursor = self.db[name]["cursor"]
    else:
     cursor = -1
@@ -312,8 +323,10 @@ class Session(base.baseSession):
   tl[items].reverse()
   num = self.order_cursored_buffer(name, tl[items])
   # Recently, Twitter's new endpoints have cursor if there are more results.
-  if tl.has_key("next_cursor"):
+  if "next_cursor" in tl:
    self.db[name]["cursor"] = tl["next_cursor"]
+  else:
+   self.db[name]["cursor"] = 0
   return num
 
  def check_connection(self):
@@ -340,7 +353,7 @@ class Session(base.baseSession):
  def get_quoted_tweet(self, tweet):
   """ Process a tweet and extract all information related to the quote."""
   quoted_tweet = tweet
-  if tweet.has_key("full_text"):
+  if "full_text" in tweet:
    value = "full_text"
   else:
    value = "text"
@@ -348,16 +361,16 @@ class Session(base.baseSession):
   for url in range(0, len(urls)):
    try:  quoted_tweet[value] = quoted_tweet[value].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
    except IndexError: pass
-  if quoted_tweet.has_key("quoted_status"):
+  if "quoted_status" in quoted_tweet:
    original_tweet = quoted_tweet["quoted_status"]
-  elif quoted_tweet.has_key("retweeted_status") and quoted_tweet["retweeted_status"].has_key("quoted_status"):
+  elif "retweeted_status" in quoted_tweet and "quoted_status" in quoted_tweet["retweeted_status"]:
    original_tweet = quoted_tweet["retweeted_status"]["quoted_status"]
   else:
    return quoted_tweet
   original_tweet = self.check_long_tweet(original_tweet)
-  if original_tweet.has_key("full_text"):
+  if "full_text" in original_tweet:
    value = "full_text"
-  elif original_tweet.has_key("message"):
+  elif "message" in original_tweet:
    value = "message"
   else:
    value = "text"
@@ -374,13 +387,13 @@ class Session(base.baseSession):
   long = twishort.is_long(tweet)
   if long != False and config.app["app-settings"]["handle_longtweets"]:
    message = twishort.get_full_text(long)
-   if tweet.has_key("quoted_status"):
+   if "quoted_status" in tweet:
     tweet["quoted_status"]["message"] = message
     if tweet["quoted_status"]["message"] == False: return False
     tweet["quoted_status"]["twishort"] = True
     for i in tweet["quoted_status"]["entities"]["user_mentions"]:
      if "@%s" % (i["screen_name"]) not in tweet["quoted_status"]["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
-      if tweet["quoted_status"].has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+      if "retweeted_status" in tweet["quoted_status"] and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
        continue
      tweet["quoted_status"]["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
    else:
@@ -389,7 +402,7 @@ class Session(base.baseSession):
     tweet["twishort"] = True
     for i in tweet["entities"]["user_mentions"]:
      if "@%s" % (i["screen_name"]) not in tweet["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
-      if tweet.has_key("retweeted_status") and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+      if "retweeted_status" in tweet and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
        continue
   return tweet
 
@@ -397,7 +410,7 @@ class Session(base.baseSession):
   """ Returns an user object associated with an ID.
   id str: User identifier, provided by Twitter.
   returns an user dict."""
-  if self.db.has_key("users") == False or self.db["users"].has_key(id) == False:
+  if ("users" in self.db) == False or (id in self.db["users"]) == False:
    user = self.twitter.show_user(id=id)
    self.db["users"][user["id_str"]] = user
    return user
@@ -408,7 +421,7 @@ class Session(base.baseSession):
   """ Returns an user identifier associated with a screen_name.
   screen_name str: User name, such as tw_blue2, provided by Twitter.
   returns an user ID."""
-  if self.db.has_key("users") == False:
+  if ("users" in self.db) == False:
    user = utils.if_user_exists(self.twitter, screen_name)
    self.db["users"][user["id_str"]] = user
    return user["id_str"]

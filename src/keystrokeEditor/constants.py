@@ -50,6 +50,7 @@ actions = {
 "check_for_updates": _(u"Check and download updates"),
 "lists_manager": _(u"Opens the list manager, which allows you to create, edit, delete and open lists in buffers."),
 "configuration": _(u"Opens the global settings dialogue"),
+"list_manager": _(u"Opens the list manager"),
 "accountConfiguration": _(u"Opens the account settings dialogue"),
 "audio": _(u"Try to play an audio file"),
 "update_buffer": _(u"Updates the buffer and retrieves possible lost items there."),

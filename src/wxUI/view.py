@@ -74,6 +74,7 @@ class mainFrame(wx.Frame):
   self.check_for_updates = help.Append(wx.ID_ANY, _(u"&Check for updates"))
   self.reportError = help.Append(wx.ID_ANY, _(u"&Report an error"))
   self.visit_website = help.Append(-1, _(u"{0}'s &website").format(application.name,))
+  self.get_soundpacks = help.Append(-1, _(u"Get soundpacks for TWBlue"))
   self.about = help.Append(-1, _(u"About &{0}").format(application.name,))
 
   # Add all to the menu Bar

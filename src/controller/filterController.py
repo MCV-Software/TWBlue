@@ -30,7 +30,7 @@ class filter(object):
     if i["name"] in langs:
      langcodes.append(i["code"])
    d = dict(in_buffer=self.buffer.name, word=term, regexp=regexp, in_lang=lang_option, languages=langcodes, if_word_exists=contains, allow_rts=allow_rts, allow_quotes=allow_quotes, allow_replies=allow_replies)
-   if self.buffer.session.settings["filters"].has_key(title):
+   if title in self.buffer.session.settings["filters"]:
     return commonMessageDialogs.existing_filter()
    self.buffer.session.settings["filters"][title] = d
    self.buffer.session.settings.write()

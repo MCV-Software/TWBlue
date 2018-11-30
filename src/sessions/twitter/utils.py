@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import url_shortener, re
 import output
 from twython import TwythonError
@@ -24,32 +25,32 @@ def find_urls_in_text(text):
 def find_urls (tweet):
  urls = []
  # Let's add URLS from tweet entities.
- if tweet.has_key("message_create"):
+ if "message_create" in tweet:
   entities = tweet["message_create"]["message_data"]["entities"]
  else:
   entities = tweet["entities"]
  for i in entities["urls"]:
   if i["expanded_url"] not in urls:
    urls.append(i["expanded_url"])
- if tweet.has_key("quoted_status"):
+ if "quoted_status" in tweet:
   for i in tweet["quoted_status"]["entities"]["urls"]:
    if i["expanded_url"] not in urls:
     urls.append(i["expanded_url"])
- if tweet.has_key("retweeted_status"):
+ if "retweeted_status" in tweet:
   for i in tweet["retweeted_status"]["entities"]["urls"]:
    if i["expanded_url"] not in urls:
     urls.append(i["expanded_url"])
-  if tweet["retweeted_status"].has_key("quoted_status"):
+  if "quoted_status" in tweet["retweeted_status"]:
    for i in tweet["retweeted_status"]["quoted_status"]["entities"]["urls"]:
     if i["expanded_url"] not in urls:
      urls.append(i["expanded_url"])
- if tweet.has_key("message"):
+ if "message" in tweet:
   i = "message"
- elif tweet.has_key("full_text"):
+ elif "full_text" in tweet:
   i = "full_text"
  else:
   i = "text"
- if tweet.has_key("message_create"):
+ if "message_create" in tweet:
   extracted_urls = find_urls_in_text(tweet["message_create"]["message_data"]["text"])
  else:
   extracted_urls = find_urls_in_text(tweet[i])
@@ -82,7 +83,7 @@ def is_audio(tweet):
  try:
   if len(find_urls(tweet)) < 1:
    return False
-  if tweet.has_key("message_create"):
+  if "message_create" in tweet:
    entities = tweet["message_create"]["message_data"]["entities"]
   else:
    entities = tweet["entities"]
@@ -91,22 +92,22 @@ def is_audio(tweet):
     if i["text"] == "audio":
      return True
  except IndexError:
-  print tweet["entities"]["hashtags"]
+  print(tweet["entities"]["hashtags"])
   log.exception("Exception while executing is_audio hashtag algorithm")
 
 def is_geocoded(tweet):
- if tweet.has_key("coordinates") and tweet["coordinates"] != None:
+ if "coordinates" in tweet and tweet["coordinates"] != None:
   return True
 
 def is_media(tweet):
- if tweet.has_key("message_create"):
+ if "message_create" in tweet:
   entities = tweet["message_create"]["message_data"]["entities"]
  else:
   entities = tweet["entities"]
- if entities.has_key("media") == False:
+ if ("media" in entities) == False:
   return False
  for i in entities["media"]:
-  if i.has_key("type") and i["type"] == "photo":
+  if "type" in i and i["type"] == "photo":
    return True
  return False
 
@@ -121,10 +122,10 @@ def get_all_mentioned(tweet, conf, field="screen_name"):
 
 def get_all_users(tweet, conf):
  string = []
- if tweet.has_key("retweeted_status"):
+ if "retweeted_status" in tweet:
   string.append(tweet["user"]["screen_name"])
   tweet = tweet["retweeted_status"]
- if tweet.has_key("sender"):
+ if "sender" in tweet:
   string.append(tweet["sender"]["screen_name"])
  else:
   if tweet["user"]["screen_name"] != conf["user_name"]:
@@ -161,16 +162,16 @@ def api_call(parent=None, call_name=None, preexec_message="", success="", succes
 
 def is_allowed(tweet, settings, buffer_name):
  clients = settings["twitter"]["ignored_clients"]
- if tweet.has_key("sender"): return True
+ if "sender" in tweet: return True
  allowed = True
  tweet_data = {}
- if tweet.has_key("retweeted_status"):
+ if "retweeted_status" in tweet:
   tweet_data["retweet"] = True
  if tweet["in_reply_to_status_id_str"] != None:
   tweet_data["reply"] = True
- if tweet.has_key("quoted_status"):
+ if "quoted_status" in tweet:
   tweet_data["quote"] = True
- if tweet.has_key("retweeted_status"): tweet = tweet["retweeted_status"]
+ if "retweeted_status" in tweet: tweet = tweet["retweeted_status"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
  for i in clients:
   if i.lower() == source.lower():
@@ -178,7 +179,7 @@ def is_allowed(tweet, settings, buffer_name):
  return filter_tweet(tweet, tweet_data, settings, buffer_name)
 
 def filter_tweet(tweet, tweet_data, settings, buffer_name):
- if tweet.has_key("full_text"):
+ if "full_text" in tweet:
   value = "full_text"
  else:
   value = "text"
@@ -187,23 +188,23 @@ def filter_tweet(tweet, tweet_data, settings, buffer_name):
    regexp = settings["filters"][i]["regexp"]
    word = settings["filters"][i]["word"]
    # Added if/else for compatibility reasons.
-   if settings["filters"][i].has_key("allow_rts"):
+   if "allow_rts" in settings["filters"][i]:
     allow_rts = settings["filters"][i]["allow_rts"]
    else:
     allow_rts = "True"
-   if settings["filters"][i].has_key("allow_quotes"):
+   if "allow_quotes" in settings["filters"][i]:
     allow_quotes = settings["filters"][i]["allow_quotes"]
    else:
     allow_quotes = "True"
-   if settings["filters"][i].has_key("allow_replies"):
+   if "allow_replies" in settings["filters"][i]:
     allow_replies = settings["filters"][i]["allow_replies"]
    else:
     allow_replies = "True"
-   if allow_rts == "False" and tweet_data.has_key("retweet"):
+   if allow_rts == "False" and "retweet" in tweet_data:
     return False
-   if allow_quotes == "False" and tweet_data.has_key("quote"):
+   if allow_quotes == "False" and "quote" in tweet_data:
     return False
-   if allow_replies == "False" and tweet_data.has_key("reply"):
+   if allow_replies == "False" and "reply" in tweet_data:
     return False
    if word != "" and settings["filters"][i]["if_word_exists"]:
     if word in tweet[value]:

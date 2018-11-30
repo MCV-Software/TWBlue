@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import platform
 import widgetUtils
 import os
 import paths
 import logging
 log = logging.getLogger("extra.SoundsTutorial.soundsTutorial")
-import soundsTutorial_constants
+from . import soundsTutorial_constants
 if platform.system() == "Windows":
- import wx_ui as UI
+ from . import wx_ui as UI
 elif platform.system() == "Linux":
- import gtk_ui as UI
+ from . import gtk_ui as UI
 
 class soundsTutorial(object):
  def __init__(self, sessionObject):

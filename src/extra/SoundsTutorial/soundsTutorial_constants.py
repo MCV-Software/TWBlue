@@ -1,5 +1,7 @@
 #-*- coding: utf-8 -*-
-import reverse_sort
+from __future__ import absolute_import
+#-*- coding: utf-8 -*-
+from . import reverse_sort
 import application
 actions = reverse_sort.reverse_sort([  ("audio", _(u"Audio tweet.")),
   ("create_timeline", _(u"User timeline buffer created.")),

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import platform
 system = platform.system()
-import utils
+from . import utils
 import re
 import htmlentitydefs
 import time
@@ -10,7 +11,7 @@ import languageHandler
 import arrow
 import logging
 import config
-from long_tweets import twishort, tweets
+from .long_tweets import twishort, tweets
 log = logging.getLogger("compose")
 
 def StripChars(s):
@@ -38,13 +39,13 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=No
    ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
   ts = tweet["created_at"]
- if tweet.has_key("message"):
+ if "message" in tweet:
   value = "message"
- elif tweet.has_key("full_text"):
+ elif "full_text" in tweet:
   value = "full_text"
  else:
   value = "text"
- if tweet.has_key("retweeted_status") and value != "message":
+ if "retweeted_status" in tweet and value != "message":
   text = StripChars(tweet["retweeted_status"][value])
  else:
   text = StripChars(tweet[value])
@@ -53,16 +54,16 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=No
  else:
   user = tweet["user"]["name"]
  source = re.sub(r"(?s)<.*?>", "", tweet["source"])
- if tweet.has_key("retweeted_status"):
-  if tweet.has_key("message") == False and tweet["retweeted_status"]["is_quote_status"] == False:
+ if "retweeted_status" in tweet:
+  if ("message" in tweet) == False and tweet["retweeted_status"]["is_quote_status"] == False:
    text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], text)
   elif tweet["retweeted_status"]["is_quote_status"]:
    text = "%s" % (text)
   else:
    text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], text)
- if tweet.has_key("message") == False:
+ if ("message" in tweet) == False:
   urls = utils.find_urls_in_text(text)
-  if tweet.has_key("retweeted_status"):
+  if "retweeted_status" in tweet:
    for url in range(0, len(urls)):
     try:
      text = text.replace(urls[url], tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"])
@@ -110,14 +111,14 @@ def compose_direct_message(item, db, relative_times, show_screen_names=False, se
 
 def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, session=None):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
- if quoted_tweet.has_key("retweeted_status"):
-  if quoted_tweet["retweeted_status"].has_key("full_text"):
+ if "retweeted_status" in quoted_tweet:
+  if "full_text" in quoted_tweet["retweeted_status"]:
    value = "full_text"
   else:
    value = "text"
   text = StripChars(quoted_tweet["retweeted_status"][value])
  else:
-  if quoted_tweet.has_key("full_text"):
+  if "full_text" in quoted_tweet:
    value = "full_text"
   else:
    value = "text"
@@ -127,13 +128,13 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, 
  else:
   quoting_user = quoted_tweet["user"]["name"]
  source = re.sub(r"(?s)<.*?>", "", quoted_tweet["source"])
- if quoted_tweet.has_key("retweeted_status"):
+ if "retweeted_status" in quoted_tweet:
   text = "rt @%s: %s" % (quoted_tweet["retweeted_status"]["user"]["screen_name"], text)
  if text[-1] in chars: text=text+"."
  original_user = original_tweet["user"]["screen_name"]
- if original_tweet.has_key("message"):
+ if "message" in original_tweet:
   original_text = original_tweet["message"]
- elif original_tweet.has_key("full_text"):
+ elif "full_text" in original_tweet:
   original_text = StripChars(original_tweet["full_text"])
  else:
    original_text = StripChars(original_tweet["text"])
@@ -151,7 +152,7 @@ def compose_followers_list(tweet, db, relative_times=True, show_screen_names=Fal
    ts = original_date.replace(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.getLanguage())
  else:
   ts = tweet["created_at"]
- if tweet.has_key("status"):
+ if "status" in tweet:
   if len(tweet["status"]) > 4 and system == "Windows":
    original_date2 = arrow.get(tweet["status"]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
    if relative_times:

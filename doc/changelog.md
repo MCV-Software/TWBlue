@@ -2,7 +2,26 @@
 
 ## changes in this version
 
+* Added support for playing audios posted in [AnyAudio.net](http://anyaudio.net) directly from TWBlue. Thanks to [Sam Tupy](http://www.samtupy.com/)
+* Custom buffer ordering will not be reset every time the application restarts after an account setting has been modified.
+* When adding or removing an user from a list, it is possible to press enter in the focused list instead of having to search for the "add" or "delete" button.
+* Quoted and long tweets are displayed properly in the sent tweets buffer after being send. ([#253](https://github.com/manuelcortez/TWBlue/issues/253))
+* Fixed an issue that was making the list manager keystroke unable to be shown in the keystroke editor. Now the keystroke is listed properly. ([#260](https://github.com/manuelcortez/TWBlue/issues/260))
+* The volume slider, located in the account settings of TWBlue, now should decrease and increase value properly when up and down arrows are pressed. Before it was doing it in inverted order. ([#261](https://github.com/manuelcortez/TWBlue/issues/261))
+* autoreading has been redesigned to work in a similar way for almost all buffers. Needs testing. ([#221](https://github.com/manuelcortez/TWBlue/issues/221))
+* When displaying tweets or direct messages, a new field has been added to show the date when the item has been posted to Twitter.
+* Added support for deleting direct messages by using the new Twitter API methods.
+* When quoting a retweet, the quote will be made to the original tweet instead of the retweet.
 * If the sent direct messages buffer is hidden, TWBlue should keep loading everything as expected. ([#246](https://github.com/manuelcortez/TWBlue/issues/246))
+* There is a new soundpack, called FreakyBlue (Thanks to [Andre Louis](https://twitter.com/FreakyFwoof)) as a new option in TWBlue. This pack can be the default in the next stable, so users can take a look and share their opinion in snapshot versions. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))
+* There is a new option in the help menu that allows you to visit the soundpacks section in the TWBlue website. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))
+* When reading location of a geotagged tweet, it will be translated for users of other languages. ([#251](https://github.com/manuelcortez/TWBlue/pull/251))
+* In the Windows 10 Keymap, the action to read location of a tweet has been remapped to Ctrl+Win+G. ([#177](https://github.com/manuelcortez/TWBlue/pull/177))
+* When there are no more items to retrieve in direct messages and people buffers, a message will announce it.
+* Fixed an issue reported by some users that was making them unable to load more items in their direct messages.
+* It is possible to add a tweet to the likes buffer from the menu bar again.
+* Tweets, replies and retweets will be added to sent tweets right after being posted in Twitter.
+* Extended Tweets should be displayed properly in list buffers.
 
 ## Changes in version 0.94
 
@@ -12,14 +31,14 @@
     * The new method does not allow direct messages to be processed in real time. Direct messages will be updated periodically.
 * After august 16 or when streaming is disabled, the events buffer will no longer be created in TWBlue.
 * You can configure frequency for buffer updates in TWBlue. By default, TWBlue will update all buffers every 2 minutes, but you can change this setting in the global settings dialog. ([#223](https://github.com/manuelcortez/TWBlue/issues/223))
-* Added a new tab called feedback, in the account settings dialog. This tab allows you to control wether automatic speech or Braille feedbak in certain events (mentions and direct messages received) is enabled. Take into account that this option will take preference over automatic reading of buffers and any kind of automatic output. ([#203](https://github.com/manuelcortez/TWBlue/issues/203))
+* Added a new tab called feedback, in the account settings dialog. This tab allows you to control whether automatic speech or Braille feedbak in certain events (mentions and direct messages received) is enabled. Take into account that this option will take preference over automatic reading of buffers and any kind of automatic output. ([#203](https://github.com/manuelcortez/TWBlue/issues/203))
 * The spell checking dialog now has access keys defined for the most important actions. ([#211](https://github.com/manuelcortez/TWBlue/issues/211))
 * TWBlue now Uses WXPython 4.0.1. This will allow us to migrate all important components to Python 3 in the future. ([#207](https://github.com/manuelcortez/TWBlue/issues/207))
 * When you quote a Tweet, if the original tweet was posted with Twishort, TWBlue should display properly the quoted tweet. Before it was displaying the original tweet only. ([#206](https://github.com/manuelcortez/TWBlue/issues/206))
 * It is possible to filter by retweets, quotes and replies when creating a new filter.
 * Added support for playing youtube Links directly from the client. ([#94](https://github.com/manuelcortez/TWBlue/issues/94))
 * Replaced Bass with libVLC for playing URL streams.
-* the checkbox for indicating wether TWBlue will include everyone in a reply or not, will be unchecked by default.
+* the checkbox for indicating whether TWBlue will include everyone in a reply or not, will be unchecked by default.
 * You can request TWBlue to save the state for two checkboxes: Long tweet and mention all, from the global settings dialogue.
 * For windows 10 users, some keystrokes in the invisible user interface have been changed or merged:
     * control+Windows+alt+F will be used for toggling between adding and removing a tweet to user's likes. This function will execute the needed action based in the current status for the focused tweet.

@@ -32,7 +32,7 @@ class keystrokeEditorDialog(baseDialog.BaseWXDialog):
   selection = self.keys.get_selected()
   self.keys.clear()
   for i in keystrokes:
-   if actions.has_key(i) == False:
+   if (i in actions) == False:
     continue
    action = actions[i]
    self.actions.append(i)

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ A base class to be derived in possible new sessions for TWBlue and services."""
+from __future__ import absolute_import
 import paths
 import output
 import time
@@ -9,7 +10,7 @@ import config_utils
 import shelve
 import application
 import os
-import session_exceptions as Exceptions
+from . import session_exceptions as Exceptions
 log = logging.getLogger("sessionmanager.session")
 
 class baseSession(object):

@@ -16,10 +16,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
+from __future__ import absolute_import
 import widgetUtils
-import wx_ui
-import wx_transfer_dialogs
-import transfer
+from . import wx_ui
+from . import wx_transfer_dialogs
+from . import transfer
 import output
 import tempfile
 import sound

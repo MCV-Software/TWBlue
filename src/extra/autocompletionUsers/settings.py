@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-import storage
+from __future__ import absolute_import
+# -*- coding: utf-8 -*-
+from . import storage
 import widgetUtils
-import wx_settings
-import manage
+from . import wx_settings
+from . import manage
 import output
 from mysc.thread_utils import call_threaded
 

@@ -22,9 +22,9 @@ def is_long(tweet):
  """ Check if the passed tweet contains a quote in its metadata.
   tweet dict: a tweet dictionary.
   returns True if a quote is detected, False otherwise."""
- if tweet.has_key("quoted_status_id") and tweet.has_key("quoted_status"):
+ if "quoted_status_id" in tweet and "quoted_status" in tweet:
   return tweet["quoted_status_id"]
- elif tweet.has_key("retweeted_status") and tweet["retweeted_status"].has_key("quoted_status_id") and tweet["retweeted_status"].has_key("quoted_status"):
+ elif "retweeted_status" in tweet and "quoted_status_id" in tweet["retweeted_status"] and "quoted_status" in tweet["retweeted_status"]:
   return tweet["retweeted_status"]["quoted_status_id"]
  return False
 
@@ -32,8 +32,8 @@ def clear_url(tweet):
  """ Reads data from a quoted tweet and removes the link to the Status from the tweet's text.
   tweet dict: a tweet dictionary.
   returns a tweet dictionary without the URL to the status ID in its text to display."""
- if tweet.has_key("retweeted_status"):
-  if tweet["retweeted_status"].has_key("full_text"):
+ if "retweeted_status" in tweet:
+  if "full_text" in tweet["retweeted_status"]:
    value = "full_text"
   else:
    value = "text"
@@ -41,7 +41,7 @@ def clear_url(tweet):
   try: tweet["message"] = tweet["message"].replace(urls[-1], "")
   except IndexError: pass
  else:
-  if tweet.has_key("full_text"):
+  if "full_text" in tweet:
    value = "full_text"
   else:
    value = "text"

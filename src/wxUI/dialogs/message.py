@@ -298,7 +298,7 @@ class viewTweet(widgetUtils.BaseDialog):
  def set_title(self, lenght):
   self.SetTitle(_(u"Tweet - %i characters ") % (lenght,))
 
- def __init__(self, text, rt_count, favs_count,source, *args, **kwargs):
+ def __init__(self, text, rt_count, favs_count, source, date="", *args, **kwargs):
   super(viewTweet, self).__init__(None, size=(850,850))
   panel = wx.Panel(self)
   label = wx.StaticText(panel, -1, _(u"Tweet"))
@@ -339,11 +339,21 @@ class viewTweet(widgetUtils.BaseDialog):
   sourceBox = wx.BoxSizer(wx.HORIZONTAL)
   sourceBox.Add(sourceLabel, 0, wx.ALL, 5)
   sourceBox.Add(sourceTweet, 0, wx.ALL, 5)
+  dateLabel = wx.StaticText(panel, -1, _(u"Date: "))
+  dateTweet = wx.TextCtrl(panel, -1, date, size=wx.DefaultSize, style=wx.TE_READONLY|wx.TE_MULTILINE)
+  dc = wx.WindowDC(dateTweet)
+  dc.SetFont(dateTweet.GetFont())
+  (x, y) = dc.GetTextExtent("0"*100)
+  dateTweet.SetSize((x, y))
+  dateBox = wx.BoxSizer(wx.HORIZONTAL)
+  dateBox.Add(dateLabel, 0, wx.ALL, 5)
+  dateBox.Add(dateTweet, 0, wx.ALL, 5)
   infoBox = wx.BoxSizer(wx.HORIZONTAL)
   infoBox.Add(rtBox, 0, wx.ALL, 5)
   infoBox.Add(favsBox, 0, wx.ALL, 5)
   infoBox.Add(sourceBox, 0, wx.ALL, 5)
   mainBox.Add(infoBox, 0, wx.ALL, 5)
+  mainBox.Add(dateBox, 0, wx.ALL, 5)
   self.spellcheck = wx.Button(panel, -1, _("Check &spelling..."), size=wx.DefaultSize)
   self.unshortenButton = wx.Button(panel, -1, _(u"&Expand URL"), size=wx.DefaultSize)
   self.unshortenButton.Disable()
@@ -390,7 +400,7 @@ class viewTweet(widgetUtils.BaseDialog):
 
 class viewNonTweet(widgetUtils.BaseDialog):
 
- def __init__(self, text, *args, **kwargs):
+ def __init__(self, text, date="", *args, **kwargs):
   super(viewNonTweet, self).__init__(None, size=(850,850))
   self.SetTitle(_(u"View"))
   panel = wx.Panel(self)
@@ -406,6 +416,17 @@ class viewNonTweet(widgetUtils.BaseDialog):
   textBox.Add(self.text, 1, wx.EXPAND, 5)
   mainBox = wx.BoxSizer(wx.VERTICAL)
   mainBox.Add(textBox, 0, wx.ALL, 5)
+  if date != "":
+   dateLabel = wx.StaticText(panel, -1, _(u"Date: "))
+   date = wx.TextCtrl(panel, -1, date, size=wx.DefaultSize, style=wx.TE_READONLY|wx.TE_MULTILINE)
+   dc = wx.WindowDC(date)
+   dc.SetFont(date.GetFont())
+   (x, y) = dc.GetTextExtent("0"*100)
+   date.SetSize((x, y))
+   dateBox = wx.BoxSizer(wx.HORIZONTAL)
+   dateBox.Add(dateLabel, 0, wx.ALL, 5)
+   dateBox.Add(date, 0, wx.ALL, 5)
+   mainBox.Add(dateBox, 0, wx.ALL, 5)
   self.spellcheck = wx.Button(panel, -1, _("Check &spelling..."), size=wx.DefaultSize)
   self.unshortenButton = wx.Button(panel, -1, _(u"&Expand URL"), size=wx.DefaultSize)
   self.unshortenButton.Disable()

@@ -1,6 +1,8 @@
 ﻿TWBlue -
 ======
 
+[![Build status](https://ci.appveyor.com/api/projects/status/fml5fu7h1fj8vf6l?svg=true)](https://ci.appveyor.com/project/manuelcortez/twblue)
+
 TW Blue is an app designed to use Twitter simply and efficiently while using minimal system resources.  
 With this app you’ll have access to twitter features such as:
 
@@ -31,7 +33,6 @@ Although most dependencies can be found in the windows-dependencies directory, w
 
 * [Python,](http://python.org) version 2.7.15  
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
-* [Python windows extensions (pywin32)](http://www.sourceforge.net/projects/pywin32/) for python 2.7, build 223
 * [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
 x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
 

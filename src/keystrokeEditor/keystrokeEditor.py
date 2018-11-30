@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import widgetUtils
 import config
-import wx_ui
-import constants
+from . import wx_ui
+from . import constants
 from pubsub import pub
 
 class KeystrokeEditor(object):

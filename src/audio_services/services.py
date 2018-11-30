@@ -33,5 +33,12 @@ def convert_soundcloud (url):
 def convert_youtube_long (url):
  return youtube_utils.get_video_url(url)
 
+@matches_url ('http://anyaudio.net/listen')
+def convert_anyaudio(url):
+ values = url.split("audio=")
+ if len(values) != 2:
+  raise TypeError('%r is not streamable' % url)
+ return "http://anyaudio.net/audiodownload?audio=%s" % (values[1],)
+
 def convert_generic_audio(url):
  return url

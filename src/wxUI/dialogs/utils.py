@@ -16,8 +16,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
+from __future__ import absolute_import
 import wx
-import baseDialog
+from . import baseDialog
 
 class selectUserDialog(baseDialog.BaseWXDialog):
  def __init__(self, title, users):
