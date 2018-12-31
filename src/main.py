@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import platform
+from win32com.client import GetObject
+
 """ there are lots of things not implemented for Gtk+ yet.
     We've started this effort 1 Apr 2015 so it isn't fully functional. We will remove the ifs statements when are no needed"""
 
@@ -86,6 +88,7 @@ def setup():
  if hasattr(sm.view, "destroy"):
   sm.view.destroy()
  del sm
+ check_pid()
  r = mainController.Controller()
  r.view.show()
  r.do_work()
@@ -101,5 +104,27 @@ def donation():
  if dlg == widgetUtils.YES:
   webbrowser.open_new_tab(_("https://twblue.es/donate"))
  config.app["app-settings"]["donation_dialog_displayed"] = True
+
+def is_running(pid):
+ "Check if the process with ID pid is running. Adapted from https://stackoverflow.com/a/568589"
+ WMI = GetObject('winmgmts:')
+ processes = WMI.InstancesOf('Win32_Process')
+ return [process.Properties_('ProcessID').Value for process in processes if process.Properties_('ProcessID').Value == pid]
+
+def check_pid():
+ "Insures that only one copy of the application is running at a time."
+ pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
+ if os.path.exists(pidpath):
+  with open(pidpath) as fin:
+   pid = int(fin.read())
+  if is_running(pid):
+   # Display warning dialog
+   commonMessageDialogs.common_error(_(u"{0} is already running. Close the other instance before starting this one. If you're sure that {0} isn't running, try deleting the file at {1}. If you're unsure of how to do this, contact the {0} developers.").format(application.name, pidpath))
+   sys.exit(1)
+  else:
+   commonMessageDialogs.dead_pid()
+ # Write the new PID
+ with open(pidpath,"w") as cam:
+  cam.write(str(os.getpid()))
 
 setup()

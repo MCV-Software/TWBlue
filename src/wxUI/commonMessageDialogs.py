@@ -89,3 +89,6 @@ def existing_filter():
 
 def common_error(reason):
  return wx.MessageDialog(None, reason, _(u"Error"), wx.OK).ShowModal()
+
+def dead_pid():
+ return wx.MessageDialog(None, _(u"{0} quit unexpectedly the last time it was run. If the problem persists, please report it to the {0} developers.").format(application.name), _(u"Warning"), wx.OK).ShowModal()
