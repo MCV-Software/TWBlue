@@ -18,7 +18,7 @@ import config_utils
 log = logging.getLogger("Settings")
 import keys
 from collections import OrderedDict
-from platform_utils.autostart import windows as autostart_windows
+from mysc import autostart as autostart_windows
 
 class globalSettingsController(object):
  def __init__(self):
