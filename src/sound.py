@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-import sys
-import url_shortener
-import audio_services
 import os
 import logging as original_logger 
-log = original_logger.getLogger("sound")
-import paths
-import sound_lib
+import sys
 import subprocess
 import platform
+import tempfile
+import glob
+import url_shortener
+import audio_services
+import paths
+import sound_lib
 import output
 import youtube_utils
+import application
 system = platform.system()
 if system=="Windows" and not hasattr(sys, 'frozen'): # We are running from source on Windows
  current_dir=os.getcwd()
@@ -18,12 +20,13 @@ if system=="Windows" and not hasattr(sys, 'frozen'): # We are running from sourc
 import vlc
 if system=="Windows" and not hasattr(sys, 'frozen'): # Restore the original folder
  os.chdir(current_dir)
+import sound_lib.output, sound_lib.input, sound_lib.stream
 from mysc.repeating_timer import RepeatingTimer
 from mysc.thread_utils import call_threaded
-import application
-import tempfile
-import glob
+
 URLPlayer = None
+
+log = original_logger.getLogger("sound")
 
 def setup():
  global URLPlayer
