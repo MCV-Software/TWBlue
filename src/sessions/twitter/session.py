@@ -411,7 +411,11 @@ class Session(base.baseSession):
   id str: User identifier, provided by Twitter.
   returns an user dict."""
   if ("users" in self.db) == False or (id in self.db["users"]) == False:
-   user = self.twitter.show_user(id=id)
+   try:
+    user = self.twitter.show_user(id=id)
+   except TwythonError:
+    user = dict(screen_name="deleted_account", name="Deleted account")
+    return user
    self.db["users"][user["id_str"]] = user
    return user
   else:
