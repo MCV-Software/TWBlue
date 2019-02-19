@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* TWBlue can open a Tweet or user directly in Twitter. There is a new option in the context menu for people and tweet buffers, and also, the shortcut control+win+alt+Enter will open the focused item in Twitter.
 * Fixed an error that was preventing TWBlue to load the direct messages buffer if an user who sent a message has been deleted.
 * Added support for playing audios posted in [AnyAudio.net](http://anyaudio.net) directly from TWBlue. Thanks to [Sam Tupy](http://www.samtupy.com/)
 * Custom buffer ordering will not be reset every time the application restarts after an account setting has been modified.

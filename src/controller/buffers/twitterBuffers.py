@@ -344,6 +344,8 @@ class baseBufferController(baseBuffers.buffer):
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.destroy_status, menuitem=menu.remove)
+  if hasattr(menu, "openInBrowser"):
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.open_in_browser, menuitem=menu.openInBrowser)
   if pos != 0:
    self.buffer.PopupMenu(menu, pos)
   else:
@@ -627,6 +629,12 @@ class baseBufferController(baseBuffers.buffer):
    except IndexError: pass
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet, self.session.db, self.session.settings["general"]["relative_times"])
 
+ def open_in_browser(self, *args, **kwargs):
+  tweet = self.get_tweet()
+  output.speak(_(u"Opening item in web browser..."))
+  url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=tweet["user"]["screen_name"], tweet_id=tweet["id"])
+  webbrowser.open(url)
+
 class directMessagesController(baseBufferController):
 
  def get_more_items(self):
@@ -718,6 +726,9 @@ class directMessagesController(baseBufferController):
    output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
   elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(_(u"{0} new direct messages.").format(number_of_items,))
+
+ def open_in_browser(self, *args, **kwargs):
+  output.speak(_(u"This action is not supported in the buffer yet."))
 
 class sentDirectMessagesController(directMessagesController):
 
@@ -951,6 +962,8 @@ class peopleBufferController(baseBufferController):
 #  widgetUtils.connect_event(menu, widgetUtils.MENU, self.lists, menuitem=menu.lists)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
   widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
+  if hasattr(menu, "openInBrowser"):
+   widgetUtils.connect_event(menu, widgetUtils.MENU, self.open_in_browser, menuitem=menu.openInBrowser)
   if pos != 0:
    self.buffer.PopupMenu(menu, pos)
   else:
@@ -968,6 +981,12 @@ class peopleBufferController(baseBufferController):
    output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
   elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(_(u"{0} new followers.").format(number_of_items))
+
+ def open_in_browser(self, *args, **kwargs):
+  tweet = self.get_tweet()
+  output.speak(_(u"Opening item in web browser..."))
+  url = "https://twitter.com/{screen_name}".format(screen_name=tweet["screen_name"])
+  webbrowser.open(url)
 
 class searchBufferController(baseBufferController):
  def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
@@ -1242,6 +1261,9 @@ class trendsBufferController(baseBuffers.buffer):
    return
   if ev.GetKeyCode() == wx.WXK_WINDOWS_MENU:
    self.show_menu(widgetUtils.MENU, pos=self.buffer.list.list.GetPosition())
+
+ def open_in_browser(self, *args, **kwargs):
+  output.speak(_(u"This action is not supported in the buffer, yet."))
 
 class conversationBufferController(searchBufferController):
 
