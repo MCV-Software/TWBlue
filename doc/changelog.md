@@ -3,6 +3,10 @@
 ## changes in this version
 
 * TWBlue can open a Tweet or user directly in Twitter. There is a new option in the context menu for people and tweet buffers, and also, the shortcut control+win+alt+Enter will open the focused item in Twitter.
+* Some keystrokes were remapped in the Windows 10 Keymap:
+    * Read location of a tweet: Ctrl+Win+G. ([#177](https://github.com/manuelcortez/TWBlue/pull/177))
+    * Open global settings dialogue: Ctrl+Win+Alt+O.
+    * Mute/unmute current session: Control + Windows + Alt + M.
 * Fixed an error that was preventing TWBlue to load the direct messages buffer if an user who sent a message has been deleted.
 * Added support for playing audios posted in [AnyAudio.net](http://anyaudio.net) directly from TWBlue. Thanks to [Sam Tupy](http://www.samtupy.com/)
 * Custom buffer ordering will not be reset every time the application restarts after an account setting has been modified.
@@ -18,8 +22,6 @@
 * There is a new soundpack, called FreakyBlue (Thanks to [Andre Louis](https://twitter.com/FreakyFwoof)) as a new option in TWBlue. This pack can be the default in the next stable, so users can take a look and share their opinion in snapshot versions. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))
 * There is a new option in the help menu that allows you to visit the soundpacks section in the TWBlue website. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))
 * When reading location of a geotagged tweet, it will be translated for users of other languages. ([#251](https://github.com/manuelcortez/TWBlue/pull/251))
-* In the Windows 10 Keymap, the action to read location of a tweet has been remapped to Ctrl+Win+G. ([#177](https://github.com/manuelcortez/TWBlue/pull/177))
-* In the windows 10 Keymap, the action to open the configuration dialog has been remapped to Ctrl+Win+Alt+O.
 * When there are no more items to retrieve in direct messages and people buffers, a message will announce it.
 * Fixed an issue reported by some users that was making them unable to load more items in their direct messages.
 * It is possible to add a tweet to the likes buffer from the menu bar again.
