@@ -812,7 +812,7 @@ class Controller(object):
    non_tweet = buffer.get_formatted_message()
    msg = messages.viewTweet(non_tweet, [], False)
 
- def view_in_browser(self, *args, **kwargs):
+ def open_in_browser(self, *args, **kwargs):
   buffer = self.get_current_buffer()
   if hasattr(buffer, "open_in_browser"):
    buffer.open_in_browser()

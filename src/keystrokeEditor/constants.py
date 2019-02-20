@@ -22,6 +22,7 @@ actions = {
 "remove_buffer": _(u"Destroy buffer"),
 "interact": _(u"Interact with the currently focused tweet."),
 "url": _(u"Open URL"),
+"open_in_browser": _(u"View in Twitter"),
 "volume_up": _(u"Increase volume by 5%"),
 "volume_down": _(u"Decrease volume by 5%"),
 "go_home": _(u"Jump to the first element of a buffer"),
