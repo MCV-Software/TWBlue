@@ -20,7 +20,7 @@ if system=="Windows" and not hasattr(sys, 'frozen'): # We are running from sourc
 import vlc
 if system=="Windows" and not hasattr(sys, 'frozen'): # Restore the original folder
  os.chdir(current_dir)
-import sound_lib.output, sound_lib.input, sound_lib.stream
+import sound_lib.output, sound_lib.input, sound_lib.stream, sound_lib.recording
 from mysc.repeating_timer import RepeatingTimer
 from mysc.thread_utils import call_threaded
 
