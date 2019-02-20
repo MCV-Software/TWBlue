@@ -45,13 +45,13 @@ def get_architecture_files():
 def get_data():
 	import sound_lib
 	import enchant
+	import accessible_output2
 	return [
   ("", ["conf.defaults", "app-configuration.defaults", "icon.ico"]),
-    ("", [certs.where()]),
-  ("accessible_output2/lib", glob("accessible_output2/lib/*.dll")),
+  ("", [certs.where()]),
   ("keys/lib", glob("keys/lib/*.dll")),
 ("keymaps", glob("keymaps/*.keymap")),
-]+get_sounds()+get_locales()+get_documentation()+sound_lib.find_datafiles()+enchant.utils.win32_data_files()+get_architecture_files()+wx_files()
+]+get_sounds()+get_locales()+get_documentation()+sound_lib.find_datafiles()+accessible_output2.find_datafiles()+enchant.utils.win32_data_files()+get_architecture_files()+wx_files()
 
 def get_documentation ():
 	answer = [("documentation", ["documentation/license.txt"])]
