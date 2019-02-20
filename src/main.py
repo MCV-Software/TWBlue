@@ -68,9 +68,9 @@ def setup():
  log.debug("Application path is %s" % (paths.app_path(),))
  log.debug("config path  is %s" % (paths.config_path(),))
  sound.setup()
- output.setup()
  languageHandler.setLanguage(config.app["app-settings"]["language"])
  fixes.setup() 
+ output.setup()
  keys.setup()
  from controller import mainController
  from sessionmanager import sessionManager

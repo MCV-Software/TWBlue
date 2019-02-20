@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 import win32com
 import paths
 win32com.__gen_path__=paths.com_path()
@@ -8,6 +9,8 @@ sys.path.append(os.path.join(win32com.__gen_path__, "."))
 from win32com.client import gencache
 from pywintypes import com_error
 from libloader import com
+
+log = logging.getLogger("fixes.fix_libloader")
 
 fixed=False
 
@@ -33,4 +36,6 @@ def load_com(*names):
 	return result
 
 def fix():
+	log.debug("Applying fix for Libloader...")
 	com.load_com = load_com
+	log.debug("Load_com has been mapped correctly.")
