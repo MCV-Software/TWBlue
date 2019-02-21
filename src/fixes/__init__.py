@@ -10,9 +10,9 @@ from . import fix_requests #fix cacert.pem location for TWBlue binary copies
 def setup():
 	fix_arrow.fix()
 	if hasattr(sys, "frozen"):
+		fix_libloader.fix()
 		fix_win32com.fix()
 		fix_requests.fix(True)
-		fix_libloader.fix()
 	else:
 		fix_requests.fix(False)
 	fix_urllib3_warnings.fix()
