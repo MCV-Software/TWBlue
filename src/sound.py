@@ -11,7 +11,7 @@ import audio_services
 import paths
 import sound_lib
 import output
-import youtube_utils
+from audio_services import youtube_utils
 import application
 system = platform.system()
 if system=="Windows" and not hasattr(sys, 'frozen'): # We are running from source on Windows
