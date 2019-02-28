@@ -2,7 +2,7 @@
 import logging
 import win32com
 import paths
-win32com.__gen_path__=paths.com_path()
+win32com.__build_path__=paths.com_path()
 import sys
 import os
 sys.path.append(os.path.join(win32com.__gen_path__, "."))
