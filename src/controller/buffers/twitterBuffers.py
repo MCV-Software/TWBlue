@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import time
 import platform
 if platform.system() == "Windows":
@@ -17,7 +17,7 @@ import config
 import sound
 import languageHandler
 import logging
-import youtube_utils
+from audio_services import youtube_utils
 from controller.buffers import baseBuffers
 from sessions.twitter import compose, utils
 from mysc.thread_utils import call_threaded

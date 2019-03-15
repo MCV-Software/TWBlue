@@ -4,7 +4,7 @@ import platform
 system = platform.system()
 import application
 import requests
-import youtube_utils
+from audio_services import youtube_utils
 import arrow
 if system == "Windows":
  from update import updater
