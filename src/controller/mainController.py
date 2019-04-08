@@ -1572,18 +1572,25 @@ class Controller(object):
    output.speak(_(u"Invalid buffer"))
    return
   tweet = buffer.get_tweet()
-  if ("entities" in tweet) == False or ("media" in tweet["entities"]) == False:
-   output.speak(_(u"This tweet doesn't contain images"))
-   return
-  if len(tweet["entities"]["media"]) > 1:
-   image_list = [_(u"Picture {0}").format(i,) for i in xrange(0, len(tweet["entities"]["media"]))]
+  media_list = []
+  if ("entities" in tweet) and ("media" in tweet["entities"]):
+   [media_list.append(i) for i in tweet["entities"]["media"] if i not in media_list]
+  elif "retweeted_status" in tweet and "media" in tweet["retweeted_status"]["entities"]:
+   [media_list.append(i) for i in tweet["retweeted_status"]["entities"]["media"] if i not in media_list]
+  elif "quoted_status" in tweet and "media" in tweet["quoted_status"]["entities"]:
+   [media_list.append(i) for i in tweet["quoted_status"]["entities"]["media"] if i not in media_list]
+  if len(media_list) > 1:
+   image_list = [_(u"Picture {0}").format(i,) for i in xrange(0, len(media_list))]
    dialog = dialogs.urlList.urlList(title=_(u"Select the picture"))
    if dialog.get_response() == widgetUtils.OK:
-    img = tweet["entities"]["media"][dialog.get_item()]
+    img = media_list[dialog.get_item()]
    else:
     return
+  elif len(media_list) == 1:
+   img = media_list[0]
   else:
-   img = tweet["entities"]["media"][0]
+   output.speak(_(u"Invalid buffer"))
+   return
   if buffer.session.settings["mysc"]["ocr_language"] != "":
    ocr_lang = buffer.session.settings["mysc"]["ocr_language"]
   else:
