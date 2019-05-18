@@ -656,7 +656,7 @@ class Controller(object):
    sessions.sessions[item].shelve()
   if system == "Windows":
    self.systrayIcon.RemoveIcon()
-   pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
+   pidpath = os.path.join(os.getenv("temp"), "client.pid")
    if os.path.exists(pidpath):
     os.remove(pidpath)
   widgetUtils.exit_application()

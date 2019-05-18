@@ -7,5 +7,8 @@ def restart_program():
  if not hasattr(sys, "frozen"):
   args.insert(0, sys.executable)
  if sys.platform == 'win32':
+  pidpath = os.path.join(os.getenv("temp"), "client.pid")
+  if os.path.exists(pidpath):
+   os.remove(pidpath)
   args = ['"%s"' % arg for arg in args]
  os.execv(sys.executable, args)

@@ -113,7 +113,7 @@ def is_running(pid):
 
 def check_pid():
  "Insures that only one copy of the application is running at a time."
- pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
+ pidpath = os.path.join(os.getenv("temp"), "client.pid")
  if os.path.exists(pidpath):
   with open(pidpath) as fin:
    pid = int(fin.read())
