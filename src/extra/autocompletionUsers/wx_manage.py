@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import wx
 import widgetUtils
 from multiplatform_widgets import widgets

@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import unicode_literals
+from builtins import str
+from builtins import range
+from builtins import object
 import re
 import platform
 from . import attach
@@ -173,14 +177,14 @@ class reply(tweet):
 
  def get_ids(self):
   excluded_ids  = ""
-  for i in xrange(0, len(self.message.checkboxes)):
+  for i in range(0, len(self.message.checkboxes)):
    if self.message.checkboxes[i].GetValue() == False:
     excluded_ids = excluded_ids + "{0},".format(self.ids[i],)
   return excluded_ids
 
  def get_people(self):
   people  = ""
-  for i in xrange(0, len(self.message.checkboxes)):
+  for i in range(0, len(self.message.checkboxes)):
    if self.message.checkboxes[i].GetValue() == True:
     people = people + "{0} ".format(self.message.checkboxes[i].GetLabel(),)
   return people
@@ -205,7 +209,7 @@ class viewTweet(basicTweet):
    self.title = _(u"Tweet")
    image_description = []
    text = ""
-   for i in xrange(0, len(tweetList)):
+   for i in range(0, len(tweetList)):
     # tweets with message keys are longer tweets, the message value is the full messaje taken from twishort.
     if "message" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
      value = "message"
@@ -231,7 +235,7 @@ class viewTweet(basicTweet):
    rt_count = str(tweet["retweet_count"])
    favs_count = str(tweet["favorite_count"])
    # Gets the client from where this tweet was made.
-   source = str(re.sub(r"(?s)<.*?>", "", tweet["source"].encode("utf-8")))
+   source = re.sub(r"(?s)<.*?>", "", tweet["source"])
    original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
    date = original_date.replace(seconds=utc_offset).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
    if text == "":
@@ -255,7 +259,7 @@ class viewTweet(basicTweet):
     for z in tweet["retweeted_status"]["extended_entities"]["media"]:
      if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
-   self.message = message.viewTweet(text, rt_count, favs_count, source.decode("utf-8"), date)
+   self.message = message.viewTweet(text, rt_count, favs_count, source, date)
    self.message.set_title(len(text))
    [self.message.set_image_description(i) for i in image_description]
   else:

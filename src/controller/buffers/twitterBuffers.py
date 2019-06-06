@@ -1,4 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from builtins import str
+from builtins import range
 import time
 import platform
 if platform.system() == "Windows":
@@ -67,7 +70,7 @@ class baseBufferController(baseBuffers.buffer):
   """ Get buffer name from a set of different techniques."""
   # firstly let's take the easier buffers.
   basic_buffers = dict(home_timeline=_(u"Home"), mentions=_(u"Mentions"), direct_messages=_(u"Direct messages"), sent_direct_messages=_(u"Sent direct messages"), sent_tweets=_(u"Sent tweets"), favourites=_(u"Likes"), followers=_(u"Followers"), friends=_(u"Friends"), blocked=_(u"Blocked users"), muted=_(u"Muted users"))
-  if self.name in basic_buffers.keys():
+  if self.name in list(basic_buffers.keys()):
    return basic_buffers[self.name]
   # Check user timelines
   elif hasattr(self, "username"):
@@ -266,7 +269,7 @@ class baseBufferController(baseBuffers.buffer):
 
  def remove_tweet(self, id):
   if type(self.session.db[self.name]) == dict: return
-  for i in xrange(0, len(self.session.db[self.name])):
+  for i in range(0, len(self.session.db[self.name])):
    if self.session.db[self.name][i]["id"] == id:
     self.session.db[self.name].pop(i)
     self.remove_item(i)

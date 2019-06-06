@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from builtins import object
+import os
 import application
 import platform
-import exceptions
 from ctypes import c_char_p
 from libloader import load_library
 import paths
@@ -13,9 +14,9 @@ import paths
 #	lib = load_library("snapshot_api_keys64", x64_path=paths.app_path("keys/lib"))
 #else:
 if platform.architecture()[0][:2] == "32":
-	lib = load_library("stable_api_keys32", x86_path=paths.app_path("keys/lib"))
+	lib = load_library("stable_api_keys32", x86_path=os.path.join(paths.app_path(), "keys", "lib"))
 else:
-	lib = load_library("stable_api_keys64", x64_path=paths.app_path("keys/lib"))
+	lib = load_library("stable_api_keys64", x64_path=os.path.join(paths.app_path(), "keys", "lib"))
 
 #	import linuxKeys
 #	lib = linuxKeys

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import unicode_literals
+from builtins import str
+from builtins import object
 import shutil
 import widgetUtils
 import platform
@@ -43,14 +46,14 @@ class sessionManagerController(object):
   log.debug("Filling the sessions list.")
   self.sessions = []
   for i in os.listdir(paths.config_path()):
-   if os.path.isdir(paths.config_path(i)) and i not in reserved_dirs:
+   if os.path.isdir(os.path.join(paths.config_path(), i)) and i not in reserved_dirs:
     log.debug("Adding session %s" % (i,))
-    strconfig = "%s/session.conf" % (paths.config_path(i))
+    strconfig = "%s/session.conf" % (os.path.join(paths.config_path(), i))
     config_test = config_utils.load_config(strconfig)
     if len(config_test) == 0:
      try:
       log.debug("Deleting session %s" % (i,))
-      shutil.rmtree(paths.config_path(i))
+      shutil.rmtree(os.path.join(paths.config_path(), i))
       continue
      except:
       output.speak("An exception was raised while attempting to clean malformed session data. See the error log for details. If this message persists, contact the developers.",True)
@@ -63,7 +66,7 @@ class sessionManagerController(object):
     else:
      try:
       log.debug("Deleting session %s" % (i,))
-      shutil.rmtree(paths.config_path(i))
+      shutil.rmtree(os.path.join(paths.config_path(), i))
      except:
       output.speak("An exception was raised while attempting to clean malformed session data. See the error log for details. If this message persists, contact the developers.",True)
       os.exception("Exception thrown while removing malformed session")
@@ -110,7 +113,7 @@ class sessionManagerController(object):
    self.view.remove_session(self.view.get_selected())
    self.removed_sessions.append(selected_account)
    self.sessions.remove(selected_account)
-   shutil.rmtree(path=paths.config_path(selected_account), ignore_errors=True)
+   shutil.rmtree(path=os.path.join(paths.config_path(), selected_account), ignore_errors=True)
 
 
  def configuration(self, *args, **kwargs):

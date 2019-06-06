@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from builtins import range
+from builtins import object
 import wx
 import platform
 import logging
@@ -27,7 +30,7 @@ class list(object):
  def create_list(self, parent):
   if self.system == "Windows":
    self.list = wx.ListCtrl(parent, -1, **self.listArguments)
-   for i in xrange(0, len(self.columns)):
+   for i in range(0, len(self.columns)):
     self.list.InsertColumn(i, u"%s" % (self.columns[i]))
   else:
    self.list = wx.ListBox(parent, -1, choices=[])

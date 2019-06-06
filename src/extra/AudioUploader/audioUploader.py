@@ -17,6 +17,9 @@
 #
 ############################################################
 from __future__ import absolute_import
+from __future__ import unicode_literals
+from builtins import str
+from builtins import object
 import widgetUtils
 from . import wx_ui
 from . import wx_transfer_dialogs
@@ -132,7 +135,7 @@ class audioUploader(object):
  def _play(self):
   output.speak(_(u"Playing..."))
 #  try:
-  self.playing = sound_lib.stream.FileStream(file=unicode(self.file), flags=sound_lib.stream.BASS_UNICODE)
+  self.playing = sound_lib.stream.FileStream(file=str(self.file), flags=sound_lib.stream.BASS_UNICODE)
   self.playing.play()
   self.dialog.set("play", _(u"&Stop"))
   try:

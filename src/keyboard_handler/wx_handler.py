@@ -1,10 +1,13 @@
+from __future__ import absolute_import
 import functools
+import logging
+logger = logging.getLogger("keyboard_handler")
 import wx
-import platform
-from main import KeyboardHandler
+
+from .main import KeyboardHandler, KeyboardHandlerError
+from . import key_constants
 
 __all__ = ['WXKeyboardHandler', 'WXControlKeyboardHandler']
-
 
 def call_after(func):
  def wrapper(*args, **kwargs):
@@ -34,6 +37,7 @@ class BaseWXKeyboardHandler(KeyboardHandler):
   return (mods, keystroke[-1])
 
  def keycode_from_key(self, key):
+  result = None
   if key in self.replacement_mods:
    result = self.replacement_mods[key]
   elif key in self.replacement_keys:
@@ -42,33 +46,40 @@ class BaseWXKeyboardHandler(KeyboardHandler):
     result -= 277
   elif len(key) == 1:
    result = ord(key.upper()) 
-  print "result: ", result
+  if result is None:
+   raise KeyboardHandlerError("Could not translate key %r into a valid keycode." % key)
   return result
 
 
+ 
+class WXKeyboardHandler(BaseWXKeyboardHandler):
 
-#try:
-if platform.system() == "Windows":
- from windows import WindowsKeyboardHandler as keyboard_handler
-elif platform.system() == "Linux":
- from linux import LinuxKeyboardHandler as keyboard_handler
-elif platform.system() == "Darwin":
- from osx import OSXKeyboardHandler as keyboard_handler
-
-class WXKeyboardHandler(keyboard_handler):
  def __init__ (self, parent, *args, **kwargs):
   super(WXKeyboardHandler, self).__init__(*args, **kwargs)
   self.parent = parent
   self.key_ids = {}
+  self.replacement_keys = key_constants.keys
+  self.replacement_mods = key_constants.modifiers
 
  @call_after
  def register_key(self, key, function):
   super(WXKeyboardHandler, self).register_key(key, function)
   key_id = wx.NewId()
   parsed = self.parse_key(key)
-  self.parent.RegisterHotKey(key_id, *parsed)
+  res = self.parent.RegisterHotKey(key_id, *parsed)
+  if not res:
+   logger.warn("Failed to register hotkey: %s for function %r", key, function)
   self.parent.Bind(wx.EVT_HOTKEY, lambda evt: self.process_key(evt, key_id), id=key_id)
   self.key_ids[key] = key_id
+  return res
+
+ def parse_key (self, keystroke, separator="+"):
+  keystroke = str(keystroke) #We don't want unicode
+  keystroke = [self.keycode_from_key(i) for i in keystroke.split(separator)]
+  mods = 0
+  for i in keystroke[:-1]:
+   mods = mods | i #or everything together
+  return (mods, keystroke[-1])
 
  @call_after
  def unregister_key (self, key, function):

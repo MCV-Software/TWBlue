@@ -1,3 +1,6 @@
+from __future__ import unicode_literals
+from builtins import range
+from builtins import object
 from gi.repository import Gtk, Gdk
 from gi.repository import GObject
 

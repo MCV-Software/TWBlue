@@ -36,7 +36,7 @@ def setup():
 
 def recode_audio(filename, quality=4.5):
  global system
- if system == "Windows": subprocess.call(r'"%s" -q %r "%s"' % (paths.app_path('oggenc2.exe'), quality, filename))
+ if system == "Windows": subprocess.call(r'"%s" -q %r "%s"' % (os.path.join(paths.app_path(), 'oggenc2.exe'), quality, filename))
 
 def recording(filename):
 # try:
@@ -51,12 +51,12 @@ class soundSystem(object):
  def check_soundpack(self):
   """ Checks if the folder where live the current soundpack exists."""
   self.soundpack_OK = False
-  if os.path.exists(paths.sound_path(self.config["current_soundpack"])):
-   self.path = paths.sound_path(self.config["current_soundpack"])
+  if os.path.exists(os.path.join(paths.sound_path(), self.config["current_soundpack"])):
+   self.path = os.path.join(paths.sound_path(), self.config["current_soundpack"])
    self.soundpack_OK = True
-  elif os.path.exists(paths.sound_path("default")):
+  elif os.path.exists(os.path.join(paths.sound_path(), "default")):
    log.error("The soundpack does not exist, using default...")
-   self.path = paths.sound_path("default")
+   self.path = os.path.join(paths.sound_path(), "default")
    self.soundpack_OK = True
   else:
    log.error("The current soundpack could not be found and the default soundpack has been deleted, " + application.name + " will not play sounds.")

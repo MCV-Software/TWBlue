@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """ This module contains some bugfixes for packages used in TWBlue."""
 from __future__ import absolute_import
+from __future__ import unicode_literals
 import sys
 from . import fix_arrow # A few new locales for Three languages in arrow.
 from . import fix_libloader # Regenerates comcache properly.
