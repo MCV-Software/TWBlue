@@ -4,7 +4,7 @@ import datetime
 name = 'TWBlue'
 snapshot = True
 if snapshot == False:
- version = "0.94"
+ version = "0.95"
  update_url = 'https://twblue.es/updates/stable.php'
  mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/stable.json'
 else:
