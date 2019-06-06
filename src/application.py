@@ -2,7 +2,7 @@
 import datetime
 
 name = 'TWBlue'
-snapshot = True
+snapshot = False
 if snapshot == False:
  version = "0.95"
  update_url = 'https://twblue.es/updates/stable.php'
