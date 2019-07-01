@@ -10,4 +10,4 @@ def get_video_url(url):
   video = result['entries'][0]
  else:
   video = result
- return video["url"]
+ return video["formats"][0]["url"]

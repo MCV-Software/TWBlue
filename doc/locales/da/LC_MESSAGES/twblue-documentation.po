@@ -5,16 +5,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-08-07 13:19+Hora de verano central (Mexico)\n"
-"PO-Revision-Date: 2017-12-11 09:17-0600\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2019-03-17 13:34+Hora estndar romance\n"
+"PO-Revision-Date: 2018-11-17 10:25+0100\n"
+"Last-Translator: Nicolai Svendsen <chojiro1990@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../doc/strings.py:3
@@ -110,7 +110,6 @@ msgid "## Usage"
 msgstr "## Brug"
 
 #: ../doc/strings.py:21
-#, fuzzy
 msgid ""
 "Twitter is a social networking or micro-blogging tool which allows you to "
 "compose short status updates of your activities in 280 characters or less. "
@@ -120,7 +119,7 @@ msgid ""
 "anyone to access them."
 msgstr ""
 "Twitter er et socialt netværk eller mikro-blogging-værktøj, der giver dig "
-"mulighed for at skrive korte statusopdateringer om dine aktiviteter i 140 "
+"mulighed for at skrive korte statusopdateringer om dine aktiviteter på 280 "
 "tegn eller mindre. Twitter er en måde for venner, familie og kollegaer til "
 "at kommunikere og holde kontakten gennem udveksling af hurtige, hyppige "
 "meddelelser. Du kan begrænse levering af opdateringer til dem i din cirkel "
@@ -170,7 +169,7 @@ msgstr ""
 
 #: ../doc/strings.py:25
 msgid "### Authorising the application"
-msgstr "### Tillad applikationen"
+msgstr "### Godkend applikationen"
 
 #: ../doc/strings.py:26
 msgid ""
@@ -222,8 +221,8 @@ msgid ""
 "Enter your username and password into the appropriate edit fields if you're "
 "not already logged in, select the authorise button, and press it."
 msgstr ""
-"Standardbrowseren åbnes på Twitter-siden for at anmode om tilladelse. "
-"Indtast dit Brugernavn og adgangskode i de passende redigeringsfelterne hvis "
+"Standardbrowseren åbnes på Twitter-siden for at anmode om godkendelse. "
+"Indtast dit Brugernavn og adgangskode i de passende redigeringsfelter, hvis "
 "du ikke allerede er logget ind. Vælg så knappen Godkend, og tryk den."
 
 #: ../doc/strings.py:29
@@ -266,7 +265,7 @@ msgid ""
 "sound, and the screen reader will say \"ready\" (this behaviour can be "
 "configured)."
 msgstr ""
-"Når processen er afsluttet, vil programmet afspilles en anden lyd som "
+"Når processen er afsluttet, vil programmet afspille en anden lyd som "
 "standard og skærmlæseren vil sige “Klar” (denne adfærd kan blive "
 "konfigureret)."
 
@@ -352,7 +351,7 @@ msgstr "* Sendte tweets: Denne viser alle tweets sendt fra din konto."
 
 #: ../doc/strings.py:43
 msgid "* Likes: here you will see all the tweets you have liked."
-msgstr "* Synes godt om: Her vil du se alle de tweets, du har synes godt om."
+msgstr "* Synes godt om: Her vil du se alle de tweets, du synes godt om."
 
 #: ../doc/strings.py:44
 msgid ""
@@ -422,7 +421,7 @@ msgid ""
 "geographical region. This region may be a country or a city. Trends are "
 "updated every five minutes."
 msgstr ""
-"* Trending emner: Denne  buffer viser top ti mest anvendte udtryk i et "
+"* Trending emner: Denne  buffer viser top ti mest anvendte ord i et "
 "geografisk område. Dette område kan være et land eller en by. Trends "
 "opdateres hvert femte minut."
 
@@ -494,8 +493,8 @@ msgid ""
 "* a menu bar accomodating six  menus (application, tweet, user, buffer, "
 "audio and help);"
 msgstr ""
-"* en menu bar der består af seks menuer (Applikation, tweet, bruger, buffer, "
-"lyd og hjælp);"
+"* en menulinje der består af seks menuer (Applikation, tweet, bruger, "
+"buffer, lyd og hjælp);"
 
 #: ../doc/strings.py:59
 msgid "* One tree view,"
@@ -533,7 +532,6 @@ msgid "#### Buttons in the application"
 msgstr "### Knapper i programmet"
 
 #: ../doc/strings.py:65
-#, fuzzy
 msgid ""
 "* Tweet: this button opens up a dialogue box to write your tweet. Normal "
 "tweets must not exceed 280 characters. However you can press the long tweet "
@@ -550,7 +548,7 @@ msgid ""
 "message in English describing the problem."
 msgstr ""
 "* Tweet: Denne knap åbner en dialogboks hvor du kan skrive dit tweet. "
-"Normale tweets må ikke overstige 140 tegn. Du kan dog markere checkboksen "
+"Normale tweets må ikke overstige 280 tegn. Du kan dog markere checkboksen "
 "“Lang tweet”, og dit tweet vil blive sendt gennem Twishort, som tillader dig "
 "at skrive længere tweets (10000 tegn). Hvis du skriver og overstiger denne "
 "grænse, afspilles en lyd for at advare dig. Bemærk at antallet af indtastede "
@@ -1762,14 +1760,12 @@ msgid "## Credits"
 msgstr "## Krediteringer"
 
 #: ../doc/strings.py:238
-#, fuzzy
 msgid ""
 "TWBlue is developed and maintained by [Manuel Cortéz](https://twitter.com/"
 "manuelcortez00) and [José Manuel Delicado](https://twitter.com/jmdaweb)."
 msgstr ""
-"TWBlue er udviklet og vedligeholdt af [Manuel Cort\\303\\251z](https://"
-"twitter.com/manuelcortez00) og [Jos\\303\\251 Manuel Delicado](https://"
-"twitter.com/jmdaweb)."
+"TWBlue et udviklet og vedligeholdt af [Manuel Cortéz](https://twitter.com/"
+"manuelcortez00) and [José Manuel Delicado](https://twitter.com/jmdaweb)."
 
 #: ../doc/strings.py:239
 msgid ""
@@ -1796,31 +1792,24 @@ msgid "* Catalan: [Francisco Torres](https://twitter.com/ftgalleg)"
 msgstr "* Catalansk: [Francisco Torres](https://twitter.com/ftgalleg)"
 
 #: ../doc/strings.py:243
-#, fuzzy
 msgid "* Croatian: [Zvonimir Stanečić](https://twitter.com/zvonimirek222)."
-msgstr ""
-"* Kroatisk: [Zvonimir Stane\\304\\215i\\304\\207](https://twitter.com/"
-"zvonimirek222)."
+msgstr "* Kroatisk: [Zvonimir Stanečić](https://twitter.com/zvonimirek222)."
 
 #: ../doc/strings.py:244
-#, fuzzy
 msgid "* English: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
-msgstr ""
-"* Engelsk: [Manuel Cort\\303\\251z](https://twitter.com/manuelcortez00)."
+msgstr "* Engelsk: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
 
 #: ../doc/strings.py:245
 msgid "* Finnish: [Jani Kinnunen](https://twitter.com/jani_kinnunen)."
 msgstr "* Finsk: [Jani Kinnunen](https://twitter.com/jani_kinnunen)."
 
 #: ../doc/strings.py:246
-#, fuzzy
 msgid "* French: [Rémy Ruiz](https://twitter.com/blindhelp38)."
-msgstr "* Fransk: [R\\303\\251my Ruiz](https://twitter.com/blindhelp38)."
+msgstr "* Fransk: [Rémy Ruiz](https://twitter.com/blindhelp38)."
 
 #: ../doc/strings.py:247
-#, fuzzy
 msgid "* Galician: [Juan Buño](https://twitter.com/Quetzatl_)."
-msgstr "* Galicisk: [Juan Bu\\303\\261o](https://twitter.com/Quetzatl_)."
+msgstr "* Galicisk: [Juan Buño](https://twitter.com/Quetzatl_)."
 
 #: ../doc/strings.py:248
 msgid "* German: [Steffen Schultz](https://twitter.com/schulle4u)."
@@ -1843,44 +1832,37 @@ msgid "* Polish: [Pawel Masarczyk.](https://twitter.com/Piciok)"
 msgstr "* Polsk: [Pawel Masarczyk.](https://twitter.com/Piciok)"
 
 #: ../doc/strings.py:253
-#, fuzzy
 msgid "* Portuguese: [Odenilton Júnior Santos.](https://twitter.com/romaleif)"
 msgstr ""
-"* Portugisisk: [Odenilton J\\303\\272nior Santos.](https://twitter.com/"
-"romaleif)"
+"* Portugisisk: [Odenilton Júnior Santos.](https://twitter.com/romaleif)"
 
 #: ../doc/strings.py:254
-#, fuzzy
 msgid ""
 "* Romanian: [Florian Ionașcu](https://twitter.com/florianionascu7) and "
 "[Nicușor Untilă](https://twitter.com/dj_storm2001)"
 msgstr ""
-"* Rumænsk: [Florian Iona\\310\\231cu](https://twitter.com/florianionascu7) "
-"og [Nicu\\310\\231or Until\\304\\203](https://twitter.com/dj_storm2001)"
+"* Rumænsk: [Florian Ionașcu](https://twitter.com/florianionascu7) and "
+"[Nicușor Untilă](https://twitter.com/dj_storm2001)"
 
 #: ../doc/strings.py:255
 msgid ""
 "* Russian: [Наталья Хедлунд](https://twitter.com/Lifestar_n) and [Валерия "
 "Кузнецова](https://twitter.com/ValeriaK305)."
 msgstr ""
+"* Russisk: [Наталья Хедлунд](https://twitter.com/Lifestar_n) and [Валерия "
+"Кузнецова](https://twitter.com/ValeriaK305)."
 
 #: ../doc/strings.py:256
-#, fuzzy
 msgid "* Serbian: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)"
-msgstr ""
-"* Serbisk: [Aleksandar \\304\\220uri\\304\\207](https://twitter.com/"
-"sokodtreshnje)"
+msgstr "* Serbisk: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)"
 
 #: ../doc/strings.py:257
-#, fuzzy
 msgid "* Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
-msgstr ""
-"* Spansk: [Manuel Cort\\303\\251z](https://twitter.com/manuelcortez00)."
+msgstr "* Spansk: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
 
 #: ../doc/strings.py:258
-#, fuzzy
 msgid "* Turkish: [Burak Yüksek](https://twitter.com/burakyuksek)."
-msgstr "* Tyrkisk: [Burak Y\\303\\274ksek](https://twitter.com/burakyuksek)."
+msgstr "* Tyrkisk: [Burak Yüksek](https://twitter.com/burakyuksek)."
 
 #: ../doc/strings.py:259
 msgid ""
@@ -1910,9 +1892,8 @@ msgid "------------------------------------------------------------------------"
 msgstr "————————————————————————————————————"
 
 #: ../doc/strings.py:261
-#, fuzzy
 msgid "Copyright © 2013-2017. Manuel Cortéz"
-msgstr "Copyright \\302\\251 2013-2017. Manuel Cort\\303\\251z"
+msgstr "Copyright © 2013-2017. Manuel Cortéz"
 
 #~ msgid ""
 #~ "* Russian: "

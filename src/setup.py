@@ -51,7 +51,10 @@ def get_data():
   ("", [certs.where()]),
   ("keys/lib", glob("keys/lib/*.dll")),
 ("keymaps", glob("keymaps/*.keymap")),
-]+get_sounds()+get_locales()+get_documentation()+sound_lib.find_datafiles()+accessible_output2.find_datafiles()+enchant.utils.win32_data_files()+get_architecture_files()+wx_files()
+]+get_sounds()+get_locales()+get_documentation()+sound_lib.find_datafiles()+accessible_output2.find_datafiles()+enchant.utils.win32_data_files()+get_architecture_files()+wx_files()+get_dictionaries()
+
+def get_dictionaries():
+	return [("share/enchant/myspell", glob("../windows-dependencies/dictionaries/*"))]
 
 def get_documentation ():
 	answer = [("documentation", ["documentation/license.txt"])]
@@ -66,7 +69,7 @@ def get_documentation ():
 
 def get_sounds():
 	answer = []
-	depth = 6
+	depth = 10
 	for root, dirs, files in os.walk('sounds'):
 		if depth == 0:
 			break
