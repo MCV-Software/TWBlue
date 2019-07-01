@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from builtins import object
 import time
 import widgetUtils
 import application
@@ -51,7 +53,7 @@ class filterManager(object):
 
  def insert_filters(self, filters):
   self.dialog.filters.clear()
-  for f in filters.keys():
+  for f in list(filters.keys()):
    filterName = f
    buffer = filters[f]["in_buffer"]
    if filters[f]["if_word_exists"] == "True" and filters[f]["word"] != "":

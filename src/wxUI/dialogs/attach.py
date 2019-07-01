@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ Attach dialog. Taken from socializer: https://github.com/manuelcortez/socializer"""
+from __future__ import unicode_literals
 import wx
 import widgetUtils
 from multiplatform_widgets  import widgets 

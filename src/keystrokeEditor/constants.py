@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 actions = {
 "up": _(u"Go up in the current buffer"),
 "down": _(u"Go down in the current buffer"),

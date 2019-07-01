@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 def get_api_key():
  return "8pDLbyOW3saYnvSZ4uLFg\0"
 

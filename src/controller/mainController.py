@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+from __future__ import unicode_literals
+from builtins import str
+from builtins import range
+from builtins import object
 import platform
 system = platform.system()
 import application
@@ -268,7 +271,7 @@ class Controller(object):
    self.start_buffers(sessions.sessions[i])
    self.set_buffer_positions(sessions.sessions[i])
   if config.app["app-settings"]["play_ready_sound"] == True:
-   sessions.sessions[sessions.sessions.keys()[0]].sound.play("ready.ogg")
+   sessions.sessions[list(sessions.sessions.keys())[0]].sound.play("ready.ogg")
   if config.app["app-settings"]["speak_ready_msg"] == True:
    output.speak(_(u"Ready"))
   self.started = True
@@ -465,7 +468,7 @@ class Controller(object):
    output.speak(_(u"Empty buffer."), True)
    return
   start = page.buffer.list.get_selected()
-  for i in xrange(start, count):
+  for i in range(start, count):
    if string.lower() in page.buffer.list.get_text_column(i, 1).lower():
     page.buffer.list.select_item(i)
     return output.speak(page.get_message(), True)
@@ -969,8 +972,8 @@ class Controller(object):
     x = tweet["coordinates"]["coordinates"][0]
     y = tweet["coordinates"]["coordinates"][1]
     address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
-    if event == None: output.speak(address[0].__str__().decode("utf-8"))
-    else: self.view.show_address(address[0].__str__().decode("utf-8"))
+    if event == None: output.speak(address[0].__str__())
+    else: self.view.show_address(address[0].__str__())
    else:
     output.speak(_(u"There are no coordinates in this tweet"))
   except GeocoderError:
@@ -1580,7 +1583,7 @@ class Controller(object):
   elif "quoted_status" in tweet and "media" in tweet["quoted_status"]["entities"]:
    [media_list.append(i) for i in tweet["quoted_status"]["entities"]["media"] if i not in media_list]
   if len(media_list) > 1:
-   image_list = [_(u"Picture {0}").format(i,) for i in xrange(0, len(media_list))]
+   image_list = [_(u"Picture {0}").format(i,) for i in range(0, len(media_list))]
    dialog = dialogs.urlList.urlList(title=_(u"Select the picture"))
    if dialog.get_response() == widgetUtils.OK:
     img = media_list[dialog.get_item()]

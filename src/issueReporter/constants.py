@@ -16,6 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################
+from __future__ import unicode_literals
 categories = ["General"]
 reproducibilities = ["always", "sometimes", "random", "have not tried", "unable to duplicate"]
 severities = ["block", "crash", "major", "minor", "tweak", "text", "trivial", "feature"]

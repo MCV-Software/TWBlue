@@ -17,7 +17,8 @@ if system == "Windows":
 import languageHandler
 import paths
 #check if TWBlue is installed (Windows only)
-if os.path.exists(paths.app_path(u"Uninstall.exe")):
+# ToDo: Remove this soon as this is done already when importing the paths module.
+if os.path.exists(os.path.join(paths.app_path(), "Uninstall.exe")):
  paths.mode="installed"
 import commandline
 import config
@@ -37,8 +38,8 @@ if system == "Windows":
  stderr_temp=sys.stderr
 #if it's a binary version
  if hasattr(sys, 'frozen'):
-  sys.stderr = open(paths.logs_path("stderr.log"), 'w')
-  sys.stdout = open(paths.logs_path("stdout.log"), 'w')
+  sys.stderr = open(os.path.join(paths.logs_path(), "stderr.log"), 'w')
+  sys.stdout = open(os.path.join(paths.logs_path(), "stdout.log"), 'w')
  else:
   sys.stdout=stdout
   sys.stderr=stderr
@@ -47,8 +48,8 @@ if system == "Windows":
    arch="x86"
    if platform.architecture()[0][:2] == "64":
     arch="x64"
-   os.environ['PYTHON_VLC_MODULE_PATH']=str(os.path.abspath(paths.app_path("..", "windows-dependencies", arch)))
-   os.environ['PYTHON_VLC_LIB_PATH']=str(os.path.abspath(paths.app_path("..", "windows-dependencies", arch, "libvlc.dll")))
+   os.environ['PYTHON_VLC_MODULE_PATH']=os.path.abspath(os.path.join(paths.app_path(), "..", "windows-dependencies", arch))
+   os.environ['PYTHON_VLC_LIB_PATH']=os.path.abspath(os.path.join(paths.app_path(), "..", "windows-dependencies", arch, "libvlc.dll"))
  #the final log files have been opened succesfully, let's close the temporary files
  stdout_temp.close()
  stderr_temp.close()
@@ -72,6 +73,7 @@ def setup():
  fixes.setup() 
  output.setup()
  keys.setup()
+ from controller import settings
  from controller import mainController
  from sessionmanager import sessionManager
  app = widgetUtils.mainLoopObject()

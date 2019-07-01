@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from audio_services import matches_url
 import youtube_utils
 import requests

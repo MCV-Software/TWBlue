@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import unicode_literals
+from builtins import str
+from past.utils import old_div
 import wx
 import application
 from . import utils
@@ -25,7 +29,7 @@ def progress_callback(total_downloaded, total_size):
 	if total_downloaded == total_size:
 		progress_dialog.Destroy()
 	else:
-		progress_dialog.Update((total_downloaded*100)/total_size, _(u"Updating... %s of %s") % (str(utils.convert_bytes(total_downloaded)), str(utils.convert_bytes(total_size))))
+		progress_dialog.Update(old_div((total_downloaded*100),total_size), _(u"Updating... %s of %s") % (str(utils.convert_bytes(total_downloaded)), str(utils.convert_bytes(total_size))))
 
 def update_finished():
 	ms = wx.MessageDialog(None, _(u"The update has been downloaded and installed successfully. Press OK to continue."), _(u"Done!")).ShowModal()

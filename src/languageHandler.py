@@ -1,16 +1,17 @@
-import __builtin__
+from __future__ import unicode_literals
+from future import standard_library
+standard_library.install_aliases()
+from builtins import zip
+from builtins import str
+import builtins
 import os
 import sys
 import ctypes
 import locale
-# add mapping for Serbian (latin) language
-locale.windows_locale[9242]='sr_RS'
 import gettext
 import paths
 import platform
-
-# A fix for the mac locales
-#if platform.system() == 'Darwin':
+import application
  
 #a few Windows locale constants
 LOCALE_SLANGUAGE=0x2
@@ -29,12 +30,12 @@ def localeNameToWindowsLCID(localeName):
 	func_LocaleNameToLCID=getattr(ctypes.windll.kernel32,'LocaleNameToLCID',None)
 	if func_LocaleNameToLCID is not None:
 		localeName=localeName.replace('_','-')
-		LCID=func_LocaleNameToLCID(unicode(localeName),0)
+		LCID=func_LocaleNameToLCID(str(localeName),0)
 	else: #Windows doesn't have this functionality, manually search Python's windows_locale dictionary for the LCID
 		localeName=locale.normalize(localeName)
 		if '.' in localeName:
 			localeName=localeName.split('.')[0]
-		LCList=[x[0] for x in locale.windows_locale.iteritems() if x[1]==localeName]
+		LCList=[x[0] for x in locale.windows_locale.items() if x[1]==localeName]
 		if len(LCList)>0:
 			LCID=LCList[0]
 		else:
@@ -72,7 +73,6 @@ def getLanguageDescription(language):
 			"ne":pgettext("languageName","Nepali"),
 			"sr":pgettext("languageName","Serbian (Latin)"),
 			"ja":pgettext("languageName","Japanese"),
-			"ro":pgettext("languageName","Romanian"),
 		}.get(language,None)
 	return desc
 
@@ -82,7 +82,7 @@ def getAvailableLanguages():
 	"""
 	#Make a list of all the locales found in NVDA's locale dir
 	l=[x for x in os.listdir(paths.locale_path()) if not x.startswith('.')]
-	l=[x for x in l if os.path.isfile(paths.locale_path('%s/LC_MESSAGES/twblue.mo' % x))]
+	l=[x for x in l if os.path.isfile(os.path.join(paths.locale_path(), '%s/LC_MESSAGES/%s.po' % (x, application.short_name)))]
 	#Make sure that en (english) is in the list as it may not have any locale files, but is default
 	if 'en' not in l:
 		l.append('en')
@@ -98,7 +98,7 @@ def getAvailableLanguages():
 	# Translators: the label for the Windows default NVDA interface language.
 	d.append(_("User default"))
 	#return a zipped up version of both the lists (a list with tuples of locale,label)
-	return zip(l,d)
+	return list(zip(l,d))
 
 def makePgettext(translations):
 	"""Obtaina  pgettext function for use with a gettext translations instance.
@@ -108,15 +108,15 @@ def makePgettext(translations):
 	"""
 	if isinstance(translations, gettext.GNUTranslations):
 		def pgettext(context, message):
-			message = unicode(message)
+			message = str(message)
 			try:
 				# Look up the message with its context.
-				return translations._catalog[u"%s\x04%s" % (context, message)]
+				return translations._catalog["%s\x04%s" % (context, message)]
 			except KeyError:
 				return message
 	else:
 		def pgettext(context, message):
-			return unicode(message)
+			return str(message)
 	return pgettext
 
 def setLanguage(lang):
@@ -132,7 +132,7 @@ def setLanguage(lang):
 				localeName = Foundation.NSLocale.currentLocale().identifier()
 			elif system == "Linux":
 				localeName = locale.getdefaultlocale()[0]
-			trans=gettext.translation('twblue', localedir=paths.locale_path(), languages=[localeName])
+			trans=gettext.translation(application.short_name, localedir=paths.locale_path(), languages=[localeName])
 			curLang=localeName
 #			else:
 #				localeName=locale.getdefaultlocale()[0]
@@ -140,7 +140,7 @@ def setLanguage(lang):
 #			curLang=localeName
 
 		else:
-			trans=gettext.translation("twblue", localedir=paths.locale_path(), languages=[lang])
+			trans=gettext.translation(application.short_name, localedir=paths.locale_path(), languages=[lang])
 			curLang=lang
 			localeChanged=False
 			#Try setting Python's locale to lang
@@ -164,9 +164,12 @@ def setLanguage(lang):
 				LCID=localeNameToWindowsLCID(lang)
 				ctypes.windll.kernel32.SetThreadLocale(LCID)
 	except IOError:
-		trans=gettext.translation("twblue",fallback=True)
+		trans=gettext.translation(application.short_name, fallback=True)
 		curLang="en"
-	trans.install(unicode=True)
+	if sys.version[0] == "3":
+		trans.install()
+	else:
+		trans.install(unicode=True)
 	# Install our pgettext function.
 #	__builtin__.__dict__["pgettext"] = makePgettext(trans)
 
@@ -192,8 +195,7 @@ def langToWindowsLocale(lang):
 	languages = {"en": "eng",
 	"ar": "ara",
 	"ca": "cat",
-	"da": "dan",
-	"de": "deu",
+"de": "deu",
 	"es": "esp",
 	"fi": "fin",
 	"fr": "fre_FRA",
@@ -205,7 +207,6 @@ def langToWindowsLocale(lang):
 	"ja": "jpn",
 	"pl": "plk",
 	"pt": "ptb",
-	"ro": "rom",
 	"ru": "rus",
 	"tr": "trk",
 	"sr": "eng",

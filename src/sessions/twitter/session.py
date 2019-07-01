@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """ This is the main session needed to access all Twitter Features."""
 from __future__ import absolute_import
+from __future__ import unicode_literals
+from builtins import range
 import os
 import time
 import logging
@@ -368,6 +370,7 @@ class Session(base.baseSession):
   else:
    return quoted_tweet
   original_tweet = self.check_long_tweet(original_tweet)
+
   if "full_text" in original_tweet:
    value = "full_text"
   elif "message" in original_tweet:
@@ -430,7 +433,7 @@ class Session(base.baseSession):
    self.db["users"][user["id_str"]] = user
    return user["id_str"]
   else:
-   for i in self.db["users"].keys():
+   for i in list(self.db["users"].keys()):
     if self.db["users"][i]["screen_name"] == screen_name:
      return self.db["users"][i]["id_str"]
    user = utils.if_user_exists(self.twitter, screen_name)

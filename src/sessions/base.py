@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """ A base class to be derived in possible new sessions for TWBlue and services."""
 from __future__ import absolute_import
+from __future__ import unicode_literals
+from builtins import str
+from builtins import object
+import os
 import paths
 import output
 import time
@@ -53,7 +57,7 @@ class baseSession(object):
 		""" Get settings for a session."""
 		file_ = "%s/session.conf" % (self.session_id,)
 		log.debug("Creating config file %s" % (file_,))
-		self.settings = config_utils.load_config(paths.config_path(file_), paths.app_path("Conf.defaults"))
+		self.settings = config_utils.load_config(os.path.join(paths.config_path(), file_), os.path.join(paths.app_path(), "Conf.defaults"))
 		self.init_sound()
 		self.deshelve()
 
@@ -71,7 +75,7 @@ class baseSession(object):
 
 	def shelve(self):
 		"""Shelve the database to allow for persistance."""
-		shelfname=paths.config_path(str(self.session_id)+"/cache.db")
+		shelfname=os.path.join(paths.config_path(), str(self.session_id)+"/cache.db")
 		if self.settings["general"]["persist_size"] == 0:
 			if os.path.exists(shelfname):
 				os.remove(shelfname)
@@ -79,9 +83,9 @@ class baseSession(object):
 		try:
 			if not os.path.exists(shelfname):
 				output.speak("Generating database, this might take a while.",True)
-			shelf=shelve.open(paths.config_path(shelfname),'c')
-			for key,value in self.db.items():
-				if type(key) != str and type(key) != unicode:
+			shelf=shelve.open(os.path.join(paths.config_path(), shelfname),'c')
+			for key,value in list(self.db.items()):
+				if type(key) != str and type(key) != str:
 					output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
 					log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
 				# Convert unicode objects to UTF-8 strings before shelve these objects.
@@ -97,14 +101,14 @@ class baseSession(object):
 
 	def deshelve(self):
 		"""Import a shelved database."""
-		shelfname=paths.config_path(str(self.session_id)+"/cache.db")
+		shelfname=os.path.join(paths.config_path(), str(self.session_id)+"/cache.db")
 		if self.settings["general"]["persist_size"] == 0:
 			if os.path.exists(shelfname):
 				os.remove(shelfname)
 			return
 		try:
-			shelf=shelve.open(paths.config_path(shelfname),'c')
-			for key,value in shelf.items():
+			shelf=shelve.open(os.path.join(paths.config_path(), shelfname),'c')
+			for key,value in list(shelf.items()):
 				self.db[key]=value
 			shelf.close()
 		except:

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 """ Common logic to all buffers in TWBlue."""
+from __future__ import unicode_literals
+from builtins import object
 import logging
 import wx
 import output

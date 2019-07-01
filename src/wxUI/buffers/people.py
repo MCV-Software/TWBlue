@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import unicode_literals
 import wx
 from multiplatform_widgets import widgets
 from .base import basePanel

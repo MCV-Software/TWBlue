@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+from builtins import object
 import requests
 
 class URLShortener (object):
@@ -22,7 +24,7 @@ class URLShortener (object):
  def unshorten(self, url):
   try:
    r=requests.head(url)
-   if 'location' in r.headers.keys():
+   if 'location' in list(r.headers.keys()):
     if 'dropbox.com' in r.headers['location']:
      return handle_dropbox(r.headers['location'])
     else:
