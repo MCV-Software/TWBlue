@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
-"POT-Creation-Date: 2019-06-16 16:32+Paris, Madrid (heure dété)\n"
-"PO-Revision-Date: 2019-06-16 16:44+0200\n"
+"POT-Creation-Date: 2019-03-17 13:34+Hora estándar romance\n"
+"PO-Revision-Date: 2019-07-22 13:46+0200\n"
 "Last-Translator: Corentin BACQUÉ-CAZENAVE <corentin@progaccess33.net>\n"
 "Language-Team: Corentin Bacqué-Cazenave <corentin@progaccess33.net>\n"
 "Language: fr\n"
@@ -417,19 +417,22 @@ msgid "{0} items retrieved"
 msgstr "{0} éléments récupérés"
 
 #: ../src\controller\mainController.py:1572
-#: ../src\controller\mainController.py:1592
 msgid "Invalid buffer"
 msgstr "Tampon invalide"
 
-#: ../src\controller\mainController.py:1583
+#: ../src\controller\mainController.py:1576
+msgid "This tweet doesn't contain images"
+msgstr "Ce tweet ne contient pas d'images"
+
+#: ../src\controller\mainController.py:1579
 msgid "Picture {0}"
 msgstr "Photo {0}"
 
-#: ../src\controller\mainController.py:1584
+#: ../src\controller\mainController.py:1580
 msgid "Select the picture"
 msgstr "Sélectionner la photo"
 
-#: ../src\controller\mainController.py:1603
+#: ../src\controller\mainController.py:1596
 msgid "Unable to extract text"
 msgstr "Impossible d'extraire le texte"
 
@@ -3294,9 +3297,6 @@ msgstr "Mise à jour"
 #: ../src\wxUI\view.py:203
 msgid "Your {0} version is up to date"
 msgstr "Votre version de {0} est à jour"
-
-#~ msgid "This tweet doesn't contain images"
-#~ msgstr "Ce tweet ne contient pas d'images"
 
 #~ msgid "Empty"
 #~ msgstr "Vide"
