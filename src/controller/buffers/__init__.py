@@ -5,3 +5,4 @@
     * baseBuffers: Define a set of functions and structure to be expected in all buffers. New buffers should inherit its classes from one of the classes present here.
     * twitterBuffers: All other code, specific to Twitter.
 """
+from __future__ import unicode_literals

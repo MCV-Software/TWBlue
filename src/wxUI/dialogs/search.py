@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import unicode_literals
 import widgetUtils
 from . import baseDialog
 import wx
@@ -27,7 +28,7 @@ class searchDialog(baseDialog.BaseWXDialog):
   radioSizer.Add(self.users, 0, wx.ALL, 5)
   sizer.Add(radioSizer, 0, wx.ALL, 5)
   lang = wx.StaticText(panel, -1, _(u"&Language for results: "))
-  langs = [x for x in translator.translator.languages.values()]
+  langs = [x for x in list(translator.translator.languages.values())]
   langs.insert(0, _(u"any"))
   self.lang = wx.ComboBox(panel, -1, choices=langs, value=langs[0], style = wx.CB_READONLY)
   langBox = wx.BoxSizer(wx.HORIZONTAL)
@@ -54,7 +55,7 @@ class searchDialog(baseDialog.BaseWXDialog):
   l = self.lang.GetStringSelection()
   if l == _(u"any"):
    return ""
-  for langcode, langname in translator.translator.languages.iteritems():
+  for langcode, langname in translator.translator.languages.items():
    if langname == l:
     return langcode
 

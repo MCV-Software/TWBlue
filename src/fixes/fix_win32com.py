@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import win32com.client
 def fix():
 	if win32com.client.gencache.is_readonly == True:

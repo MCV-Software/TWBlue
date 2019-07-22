@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import youtube_dl
 
 def get_video_url(url):
@@ -9,4 +10,4 @@ def get_video_url(url):
   video = result['entries'][0]
  else:
   video = result
- return video["url"]
+ return video["formats"][0]["url"]

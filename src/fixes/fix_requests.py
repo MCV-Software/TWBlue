@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from requests import certs, utils, adapters
 import paths
 import config

@@ -1,5 +1,6 @@
 ﻿# -*- coding: utf-8 -*-
 """ A systray for TW Blue """
+from __future__ import unicode_literals
 ############################################################
 #    Copyright (c) 2014 José Manuel Delicado Alcolea <jmdaweb@gmail.com>
 #       

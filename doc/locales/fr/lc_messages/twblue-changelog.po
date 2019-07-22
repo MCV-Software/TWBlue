@@ -39,7 +39,7 @@ msgstr ""
 msgid "* Some keystrokes were remapped in the Windows 10 Keymap:"
 msgstr "* Certains raccourcis clavier ont été modifiés dans la disposition de clavier Windows 10"
 
-#: ../doc/changelog.py:7
+#: ../doc/changelog.py:33
 msgid ""
 "    * Read location of a tweet: Ctrl+Win+G. ([#177](https://github.com/manuelcortez/TWBlue/pull/177))"
 msgstr ""
@@ -70,7 +70,7 @@ msgstr ""
 "* Ajout de la possibilité de lire directement dans TWBlue les fichiers audio postés sur [AnyAudio."
 "net](http://anyaudio.net). Merci à [Sam Tupy](http://www.samtupy.com/)."
 
-#: ../doc/changelog.py:12
+#: ../doc/changelog.py:36
 msgid ""
 "* Custom buffer ordering will not be reset every time the application restarts after an account "
 "setting has been modified."
@@ -78,7 +78,8 @@ msgstr ""
 "* L'ordre d'affichage des tampons ne sera plus réinitialisé lorsque TWBlue redémarre après qu'un "
 "paramètre du compte est été modifié."
 
-#: ../doc/changelog.py:13
+#: ../doc/changelog.py:37
+#, fuzzy
 msgid ""
 "* When adding or removing an user from a list, it is possible to press enter in the focused list "
 "instead of having to search for the \"add\" or \"delete\" button."
@@ -86,7 +87,7 @@ msgstr ""
 "* Pour ajouter ou supprimer un utilisateur dans une liste, vous pouvez maintenant simplement presser "
 "entrée lorsque la liste a le focus au lieu de chercher le bouton \"Ajouter\" ou \"Supprimer\"."
 
-#: ../doc/changelog.py:14
+#: ../doc/changelog.py:38
 msgid ""
 "* Quoted and long tweets are displayed properly in the sent tweets buffer after being send. ([#253]"
 "(https://github.com/manuelcortez/TWBlue/issues/253))"
@@ -94,7 +95,7 @@ msgstr ""
 "* Les citations et les tweets longs sont maintenant affichés correctement dans le tampon \"Tweets "
 "envoyés\" lorsqu'ils ont été envoyés. ([#253](https://github.com/manuelcortez/TWBlue/issues/253))"
 
-#: ../doc/changelog.py:15
+#: ../doc/changelog.py:39
 msgid ""
 "* Fixed an issue that was making the list manager keystroke unable to be shown in the keystroke "
 "editor. Now the keystroke is listed properly. ([#260](https://github.com/manuelcortez/TWBlue/"
@@ -104,7 +105,7 @@ msgstr ""
 "n'était pas listé dans ce dernier, il est désormais affiché correctement. ([#260](https://github.com/"
 "manuelcortez/TWBlue/issues/260))"
 
-#: ../doc/changelog.py:16
+#: ../doc/changelog.py:40
 msgid ""
 "* The volume slider, located in the account settings of TWBlue, now should decrease and increase "
 "value properly when up and down arrows are pressed. Before it was doing it in inverted order. ([#261]"
@@ -114,7 +115,7 @@ msgstr ""
 "désormais correctement les valeurs lorsque les flèches haute ou basse sont pressées. Précédemment, "
 "le potentiomètre fonctionné à l'envers. ([#261](https://github.com/manuelcortez/TWBlue/issues/261))"
 
-#: ../doc/changelog.py:17
+#: ../doc/changelog.py:41
 msgid ""
 "* autoreading has been redesigned to work in a similar way for almost all buffers. Needs testing. "
 "([#221](https://github.com/manuelcortez/TWBlue/issues/221))"
@@ -122,7 +123,7 @@ msgstr ""
 "* La lecture automatique a été réécrite pour fonctionner de manière identique pour presque tous les "
 "tampons. Des tests sont demandés. ([#221](https://github.com/manuelcortez/TWBlue/issues/221))"
 
-#: ../doc/changelog.py:18
+#: ../doc/changelog.py:42
 msgid ""
 "* When displaying tweets or direct messages, a new field has been added to show the date when the "
 "item has been posted to Twitter."
@@ -141,7 +142,7 @@ msgstr ""
 "* Lors de la citation d'un retweet, la citation se fera sur le tweet original au lieu de se faire "
 "sur le retweet."
 
-#: ../doc/changelog.py:21
+#: ../doc/changelog.py:45
 msgid ""
 "* If the sent direct messages buffer is hidden, TWBlue should keep loading everything as expected. "
 "([#246](https://github.com/manuelcortez/TWBlue/issues/246))"
@@ -149,7 +150,7 @@ msgstr ""
 "* Lorsque le tampon \"Messages privés envoyés\" est masqué, TWBlue ne le chargera plus de manière "
 "intempestive. ([#246](https://github.com/manuelcortez/TWBlue/issues/246))"
 
-#: ../doc/changelog.py:22
+#: ../doc/changelog.py:46
 msgid ""
 "* There is a new soundpack, called FreakyBlue (Thanks to [Andre Louis](https://twitter.com/"
 "FreakyFwoof)) as a new option in TWBlue. This pack can be the default in the next stable, so users "
@@ -161,7 +162,7 @@ msgstr ""
 "les utilisateurs peuvent donner leurs avis dans les versions snapshot. ([#247](https://github.com/"
 "manuelcortez/TWBlue/issues/247))"
 
-#: ../doc/changelog.py:23
+#: ../doc/changelog.py:47
 msgid ""
 "* There is a new option in the help menu that allows you to visit the soundpacks section in the "
 "TWBlue website. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))"
@@ -177,7 +178,7 @@ msgstr ""
 "* Lors de la lecture de la localisation d'un tweet géolocalisé, celle-ci sera traduite pour les "
 "utilisateurs d'autres langues. ([#251](https://github.com/manuelcortez/TWBlue/pull/251))"
 
-#: ../doc/changelog.py:25
+#: ../doc/changelog.py:49
 msgid ""
 "* When there are no more items to retrieve in direct messages and people buffers, a message will "
 "announce it."
@@ -197,7 +198,7 @@ msgstr ""
 msgid "* It is possible to add a tweet to the likes buffer from the menu bar again."
 msgstr "* Il est à nouveau possible d'ajouter un tweet aux favoris via la barre de menu."
 
-#: ../doc/changelog.py:28
+#: ../doc/changelog.py:52
 msgid ""
 "* Tweets, replies and retweets will be added to sent tweets right after being posted in Twitter."
 msgstr ""
@@ -212,7 +213,7 @@ msgstr "* Les longs tweets seront maintenant affichés correctement dans les tam
 msgid "## Changes in version 0.94"
 msgstr "## Changements dans la version 0.94"
 
-#: ../doc/changelog.py:31
+#: ../doc/changelog.py:55
 msgid ""
 "* Added an option in the global settings dialog to disable the Streaming features of TWBlue. TWBlue "
 "will remove all Streaming features after August 16, so this option will give people an idea about "
@@ -223,7 +224,7 @@ msgstr ""
 "après le 16 août, donc cette option donnera aux gens une idée de ce que cela sera. ([#219](https://"
 "github.com/manuelcortez/TWBlue/issues/219))"
 
-#: ../doc/changelog.py:32
+#: ../doc/changelog.py:56
 msgid ""
 "* Due to Twitter API changes, Switched authorisation method to Pin-code based authorisation. When "
 "you add new accounts to TWBlue, you will be required to paste a code displayed in the Twitter "
@@ -235,7 +236,7 @@ msgstr ""
 "coller le code affiché sur le site Web de Twitter pour autoriser l'accès à TWBlue. ([#216](https://"
 "github.com/manuelcortez/TWBlue/issues/216))"
 
-#: ../doc/changelog.py:33
+#: ../doc/changelog.py:57
 msgid ""
 "* In order to comply with latest Twitter changes, TWBlue has switched to the new method used to send "
 "and receive direct messages, according to issue [#215.](https://github.com/manuelcortez/twblue/"
@@ -245,7 +246,7 @@ msgstr ""
 "méthode utilisée pour envoyer et recevoir des messages directs, selon l'incidence [#215.](https://"
 "github.com/manuelcortez/twblue/issues/215)"
 
-#: ../doc/changelog.py:34
+#: ../doc/changelog.py:58
 msgid ""
 "    * The new method does not allow direct messages to be processed in real time. Direct messages "
 "will be updated periodically."
@@ -261,7 +262,7 @@ msgstr ""
 "* Après le 16 août ou lorsque le streaming est désactivé, le tampon d'événements ne sera plus créé "
 "dans TWBlue."
 
-#: ../doc/changelog.py:36
+#: ../doc/changelog.py:60
 msgid ""
 "* You can configure frequency for buffer updates in TWBlue. By default, TWBlue will update all "
 "buffers every 2 minutes, but you can change this setting in the global settings dialog. ([#223]"
@@ -293,7 +294,7 @@ msgstr ""
 "la préférence sur la lecture automatique des tampons et tout type de sortie automatique. ([#203]"
 "(https://github.com/manuelcortez/TWBlue/issues/203))"
 
-#: ../doc/changelog.py:38
+#: ../doc/changelog.py:62
 msgid ""
 "* The spell checking dialog now has access keys defined for the most important actions. ([#211]"
 "(https://github.com/manuelcortez/TWBlue/issues/211))"
@@ -301,7 +302,7 @@ msgstr ""
 "* La boîte de dialogue du correcteur orthographique a maintenant des touches d'accès définies pour "
 "les actions les plus importantes. ([#211](https://github.com/manuelcortez/TWBlue/issues/211))"
 
-#: ../doc/changelog.py:39
+#: ../doc/changelog.py:63
 msgid ""
 "* TWBlue now Uses WXPython 4.0.1. This will allow us to migrate all important components to Python 3 "
 "in the future. ([#207](https://github.com/manuelcortez/TWBlue/issues/207))"
@@ -309,7 +310,7 @@ msgstr ""
 "* TWBlue utilise maintenant WXPython 4.0.1. Cela nous permettra de migrer tous les composants "
 "importants vers Python 3 à l'avenir. ([#207](https://github.com/manuelcortez/TWBlue/issues/207))"
 
-#: ../doc/changelog.py:40
+#: ../doc/changelog.py:64
 msgid ""
 "* When you quote a Tweet, if the original tweet was posted with Twishort, TWBlue should display "
 "properly the quoted tweet. Before it was displaying the original tweet only. ([#206](https://github."
@@ -325,7 +326,7 @@ msgstr ""
 "* Il est possible de filtrer par retweets, citations et réponses lors de la création d'un nouveau "
 "filtre."
 
-#: ../doc/changelog.py:42
+#: ../doc/changelog.py:66
 msgid ""
 "* Added support for playing youtube Links directly from the client. ([#94](https://github.com/"
 "manuelcortez/TWBlue/issues/94))"
@@ -357,7 +358,7 @@ msgstr ""
 "* Vous pouvez demander à TWBlue d'enregistrer l'état pour deux cases à cocher: Long tweet et "
 "mentionner à tous, depuis la boîte de dialogue Paramètres Globaux."
 
-#: ../doc/changelog.py:46
+#: ../doc/changelog.py:70
 msgid ""
 "* For windows 10 users, some keystrokes in the invisible user interface have been changed or merged:"
 msgstr ""
@@ -386,14 +387,14 @@ msgstr "* Et plus. ([#171,](https://github.com/manuelcortez/TWBlue/issues/171) "
 msgid "## Changes in version 0.93"
 msgstr "## Changements dans la version 0.93"
 
-#: ../doc/changelog.py:51
+#: ../doc/changelog.py:75
 msgid ""
 "* A new soundpack has been added to TWBlue. Thanks to [@ValeriaK305](https://twitter.com/ValeriaK305)"
 msgstr ""
 "* Un nouveau paquet de sons a été ajouté à TWBlue. Merci à [@ValeriaK305](https://twitter.com/"
 "ValeriaK305)"
 
-#: ../doc/changelog.py:52
+#: ../doc/changelog.py:76
 msgid ""
 "* In the Windows 10 keymap, we have changed some default keystrokes as windows now uses some "
 "previously assigned shortcuts:"
@@ -409,7 +410,7 @@ msgstr "    * Pour marquer un tuit comme favori, appuyez sur Contrôle+Windows+a
 msgid "    * for opening a trends buffer, press control+Windows+T"
 msgstr "    * pour ouvrir le tampon des tendances, appuyez sur Contrôle+Windows+T"
 
-#: ../doc/changelog.py:55
+#: ../doc/changelog.py:79
 msgid ""
 "* TWBlue has received improvements in some functions for handling extended tweets, long tweets and "
 "quoted retweets. It should render some tweets in a better way."
@@ -417,7 +418,7 @@ msgstr ""
 "* TWBlue a reçu des améliorations dans certaines fonctions pour gérer les tweets étendus, les longs "
 "tweets et les retweets cités. Il devrait rendre quelques tweets d'une meilleure manière."
 
-#: ../doc/changelog.py:56
+#: ../doc/changelog.py:80
 msgid ""
 "* In the spell checker module, there is a new button that will allow you to add your own words to "
 "your personal dictionary so the module won't mark them as mispelled the next time you will check "
@@ -427,7 +428,7 @@ msgstr ""
 "à votre dictionnaire personnel afin que le module ne les marque pas comme mal orthographiés la "
 "prochaine fois que vous vérifierez l'orthographe."
 
-#: ../doc/changelog.py:57
+#: ../doc/changelog.py:81
 msgid ""
 "* Added filtering capabilities to TWBlue. ([#102](https://github.com/manuelcortez/TWBlue/issues/102))"
 msgstr ""
@@ -446,7 +447,7 @@ msgstr ""
 msgid "    * You can create filters by word or languages."
 msgstr "    * Vous pouvez créer des filtres par mot ou par langues."
 
-#: ../doc/changelog.py:60
+#: ../doc/changelog.py:84
 msgid ""
 "    * For deleting already created filters, you can go to the filter manager in the buffer menu and "
 "delete the filters you won't need."
@@ -454,7 +455,7 @@ msgstr ""
 "    * Pour supprimer les filtres déjà créés, vous pouvez accéder à l'élément Gérer les filtres dans "
 "le menu tampon et supprimer les filtres dont vous n'avez pas besoin."
 
-#: ../doc/changelog.py:61
+#: ../doc/changelog.py:85
 msgid ""
 "* Links should be opened properly in quoted tweets ([#167,](https://github.com/manuelcortez/TWBlue/"
 "issues/167) [#184](https://github.com/manuelcortez/TWBlue/issues/184))"
@@ -468,7 +469,7 @@ msgstr ""
 "* Limite de nom d'affichage augmentée jusqu'à 50 caractères dans la boîte de dialogue Mettre à jour "
 "le profil."
 
-#: ../doc/changelog.py:63
+#: ../doc/changelog.py:87
 msgid ""
 "* When authorising an account, you will see a dialogue with a cancel button, in case you want to "
 "abort the process. Also, NVDA will not be blocked when the process starts. ([#101](https://github."
@@ -478,7 +479,7 @@ msgstr ""
 "souhaitez annuler le processus. De plus, NVDA ne sera pas bloqué au démarrage du processus. ([#101]"
 "(https://github.com/manuelcortez/TWBlue/issues/101))"
 
-#: ../doc/changelog.py:64
+#: ../doc/changelog.py:88
 msgid ""
 "* In the translator module, the list of available languages is fetched automatically from the "
 "provider. That means all of these languages will work and there will not be inconsistencies. Also "
@@ -491,7 +492,7 @@ msgstr ""
 "est détectée automatiquement par l'API de Yandex. ([#153](https://github.com/manuelcortez/TWBlue/"
 "issues/153))"
 
-#: ../doc/changelog.py:65
+#: ../doc/changelog.py:89
 msgid ""
 "* Trending topics, searches and conversation buffers will use mute settings set for the session in "
 "wich  they were opened. ([#157](https://github.com/manuelcortez/TWBlue/issues/157))"
@@ -500,7 +501,7 @@ msgstr ""
 "muet pour la session dans laquelle ils ont été ouverts. ([#157](https://github.com/manuelcortez/"
 "TWBlue/issues/157))"
 
-#: ../doc/changelog.py:66
+#: ../doc/changelog.py:90
 msgid ""
 "* The Tweet limit is now 280 characters lenght instead 140. It means you can tweet longer tweets. "
 "([#172](https://github.com/manuelcortez/TWBlue/issues/172))"
@@ -508,7 +509,7 @@ msgstr ""
 "* La limite de Tweet est maintenant de 280 caractères au lieu de 140. Cela signifie que vous pouvez "
 "tweeter des tweets plus longs. ([#172](https://github.com/manuelcortez/TWBlue/issues/172))"
 
-#: ../doc/changelog.py:67
+#: ../doc/changelog.py:91
 msgid ""
 "* Per popular request, Status for mention to all and long tweet checkboxes will not be saved in "
 "settings. ([#170](https://github.com/manuelcortez/TWBlue/issues/170))"
@@ -544,7 +545,7 @@ msgstr ""
 msgid "## changes in version 0.91 and 0.92"
 msgstr "## Changements dans la version 0.91 et 0.92"
 
-#: ../doc/changelog.py:72
+#: ../doc/changelog.py:96
 msgid ""
 "* Fixed incorrect unicode handling when copying tweet to clipboard. ([#150](https://github.com/"
 "manuelcortez/TWBlue/issues/150))"
@@ -552,7 +553,7 @@ msgstr ""
 "* Correction d'un traitement unicode incorrect lors de la copie de tweet dans le presse-papiers. "
 "([#150](https://github.com/manuelcortez/TWBlue/issues/150))"
 
-#: ../doc/changelog.py:73
+#: ../doc/changelog.py:97
 msgid ""
 "* TWBlue will show an error when trying to open a timeline for a suspended user. ([#128](https://"
 "github.com/manuelcortez/TWBlue/issues/128))"
@@ -560,7 +561,7 @@ msgstr ""
 "* TWBlue affichera une erreur en essayant d'ouvrir une chronologie pour un utilisateur suspendu. "
 "([#128](https://github.com/manuelcortez/TWBlue/issues/128))"
 
-#: ../doc/changelog.py:74
+#: ../doc/changelog.py:98
 msgid ""
 "* Removed TwUp as service as it no longer exists. ([#112](https://github.com/manuelcortez/TWBlue/"
 "issues/112))"
@@ -568,7 +569,7 @@ msgstr ""
 "* Supprimé TwUp en tant que service car il n'existe plus. ([#112](https://github.com/manuelcortez/"
 "TWBlue/issues/112))"
 
-#: ../doc/changelog.py:75
+#: ../doc/changelog.py:99
 msgid ""
 "* Release audio files after uploading them. ([#130](https://github.com/manuelcortez/TWBlue/"
 "issues/130))"
@@ -576,7 +577,7 @@ msgstr ""
 "* Relancez les fichiers audio après leur chargement. ([#130](https://github.com/manuelcortez/TWBlue/"
 "issues/130))"
 
-#: ../doc/changelog.py:76
+#: ../doc/changelog.py:100
 msgid ""
 "* Now TWBlue will use Yandex's translation services instead microsoft translator. ([#132](https://"
 "github.com/manuelcortez/TWBlue/issues/132))"
@@ -584,7 +585,7 @@ msgstr ""
 "* Maintenant, TWBlue utilisera les services de traduction de Yandex au lieu du traducteur Microsoft. "
 "([#132](https://github.com/manuelcortez/TWBlue/issues/132))"
 
-#: ../doc/changelog.py:77
+#: ../doc/changelog.py:101
 msgid ""
 "* SndUp users will be able to upload audio in their account by using their API Key again. ([#134]"
 "(https://github.com/manuelcortez/TWBlue/issues/134))"
@@ -601,7 +602,7 @@ msgstr ""
 "([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) ([#133](https://github.com/manuelcortez/"
 "TWBlue/issues/133))"
 
-#: ../doc/changelog.py:79
+#: ../doc/changelog.py:103
 msgid ""
 "* All mentionned users should be displayed correctly in Twishort's long tweets. ([#116,](https://"
 "github.com/manuelcortez/TWBlue/issues/116)) ([#135](https://github.com/manuelcortez/TWBlue/"
@@ -611,7 +612,7 @@ msgstr ""
 "Twishort. ([#116,](https://github.com/manuelcortez/TWBlue/issues/116)) ([#135](https://github.com/"
 "manuelcortez/TWBlue/issues/135))"
 
-#: ../doc/changelog.py:80
+#: ../doc/changelog.py:104
 msgid ""
 "* It is possible to select a language for OCR service from the extras panel, in the account settings "
 "dialogue. You can, however, set this to detect automatically. OCR should work better in languages "
@@ -648,7 +649,7 @@ msgstr ""
 "* Correction d'un bug durant l'analyse dans long tweet qui causé que TWBlue se déconnecte du "
 "Streaming API. ([#103](https://github.com/manuelcortez/TWBlue/issues/103))"
 
-#: ../doc/changelog.py:85
+#: ../doc/changelog.py:109
 msgid ""
 "* Now OCR will work in images from retweets. It fixes a bug where TWBlue was detecting images but "
 "couldn't apply OCR on them. ([#105](https://github.com/manuelcortez/TWBlue/issues/105))"
@@ -668,7 +669,7 @@ msgstr ""
 "charger le tweet et causait des problèmes dans tout le client. ([#113](https://github.com/"
 "manuelcortez/TWBlue/issues/113))"
 
-#: ../doc/changelog.py:87
+#: ../doc/changelog.py:111
 msgid ""
 "* TWBlue shows an error message when you try to view the profile of an user that does not exist or "
 "has been suspended. ([#114,](https://github.com/manuelcortez/TWBlue/issues/114) [#115](https://"
@@ -686,7 +687,7 @@ msgstr ""
 "* Le module du correcteur orthographique doit sélectionner la langue appropriée quand est défini sur "
 "\"Utilisateur par défaut\". ([#117](https://github.com/manuelcortez/TWBlue/issues/117))"
 
-#: ../doc/changelog.py:89
+#: ../doc/changelog.py:113
 msgid ""
 "* Image description will be displayed in retweets too. ([#119](https://github.com/manuelcortez/"
 "TWBlue/issues/119))"
@@ -694,7 +695,7 @@ msgstr ""
 "* La description de l'image sera également affichée dans les retweets. ([#119](https://github.com/"
 "manuelcortez/TWBlue/issues/119))"
 
-#: ../doc/changelog.py:90
+#: ../doc/changelog.py:114
 msgid ""
 "* When reading a long tweet, you shouldn't read strange entities anymore. ([#118](https://github.com/"
 "manuelcortez/twblue/issues/118))"
@@ -702,7 +703,7 @@ msgstr ""
 "* Lors de la lecture d'un long tweet, vous ne devriez plus lire des entités étranges. ([#118]"
 "(https://github.com/manuelcortez/twblue/issues/118))"
 
-#: ../doc/changelog.py:91
+#: ../doc/changelog.py:115
 msgid ""
 "* TWBlue will not try to load timelines if the user is blocking you. ([#125](https://github.com/"
 "manuelcortez/twblue/issues/125))"

@@ -1,4 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from arrow import locales
 from arrow.locales import Locale
 

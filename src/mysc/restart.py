@@ -1,4 +1,5 @@
 # -*- coding: cp1252
+from __future__ import unicode_literals
 import sys, os
 
 def restart_program():

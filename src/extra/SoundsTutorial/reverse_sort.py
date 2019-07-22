@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 #Reverse sort, by Bill Dengler <codeofdusk@gmail.com> for use in TWBlue http://twblue.es
 def invert_tuples(t):
     "Invert a list of tuples, so that the 0th element becomes the -1th, and the -1th becomes the 0th."

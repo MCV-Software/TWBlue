@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import wx
 
 class BaseWXDialog(wx.Dialog):

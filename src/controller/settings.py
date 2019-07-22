@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from builtins import str
+from builtins import object
 import os
 import webbrowser
 import sound_lib
@@ -49,7 +52,7 @@ class globalSettingsController(object):
   id = self.codes.index(config.app["app-settings"]["language"])
   self.kmfriendlies=[]
   self.kmnames=[]
-  for k,v in self.kmmap.items():
+  for k,v in list(self.kmmap.items()):
    self.kmfriendlies.append(k)
    self.kmnames.append(v)
   self.kmid=self.kmnames.index(config.app['app-settings']['load_keymap'])
@@ -291,7 +294,7 @@ class accountSettingsController(globalSettingsController):
   all_buffers['muted']=_(u"Muted users")
   list_buffers = []
   hidden_buffers=[]
-  all_buffers_keys = all_buffers.keys()
+  all_buffers_keys = list(all_buffers.keys())
   # Check buffers shown first.
   for i in self.config["general"]["buffer_order"]:
    if i in all_buffers_keys:

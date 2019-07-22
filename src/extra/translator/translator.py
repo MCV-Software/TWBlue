@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from builtins import zip
 from yandex_translate import YandexTranslate
 
 def translate(text="", target="en"):

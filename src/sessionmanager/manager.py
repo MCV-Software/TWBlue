@@ -1,5 +1,7 @@
 # -*- coding: cp1252 -*-
 #from config_utils import Configuration, ConfigurationResetException
+from __future__ import unicode_literals
+from builtins import object
 import config
 import paths
 import os
@@ -30,9 +32,9 @@ class sessionManager(object):
 
  def add_session(self, id):
   log.debug("Adding a new session: %s" % (id,))
-  path = paths.config_path(id)
+  path = os.path.join(paths.config_path(), id)
   if not os.path.exists(path):
-   log.debug("Creating %s path" % (paths.config_path(path),))
+   log.debug("Creating %s path" % (os.path.join(paths.config_path(), path),))
    os.mkdir(path)
    config.app["sessions"]["sessions"].append(id)
 
@@ -41,7 +43,7 @@ class sessionManager(object):
   config.app.write()
 
  def is_valid(self, id):
-  if not os.path.exists(paths.config_path(id)):
+  if not os.path.exists(os.path.join(paths.config_path(), id)):
    raise session_exceptions.NonExistentSessionError("That session does not exist.")
    config.app["sessions"]["current_session"] = ""
    return False

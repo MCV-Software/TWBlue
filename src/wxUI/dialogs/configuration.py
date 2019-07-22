@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import unicode_literals
+from builtins import range
 import logging as original_logger
 import wx
 import application
@@ -228,7 +230,7 @@ class other_buffers(wx.Panel):
   output.speak(self.buffers.get_text_column(current, 2),True)
  def get_list(self):
   buffers_list = []
-  for i in xrange(0, self.buffers.get_count()):
+  for i in range(0, self.buffers.get_count()):
    if self.buffers.get_text_column(i, 2) == _(u"Show"):
     buffers_list.append(self.buffers.get_text_column(i, 0))
   return buffers_list

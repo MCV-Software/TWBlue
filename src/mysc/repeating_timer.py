@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import threading
 import logging
 log = logging.getLogger("mysc.repeating_timer")
