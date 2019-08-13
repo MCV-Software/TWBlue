@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2019-03-17 13:34+Hora estndar romance\n"
-"PO-Revision-Date: 2019-04-02 16:51+0900\n"
+"PO-Revision-Date: 2019-07-06 23:53+0900\n"
 "Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../src\controller\attach.py:23
@@ -175,7 +175,7 @@ msgstr "ユーザーの詳細"
 #: ../src\controller\buffers\twitterBuffers.py:634
 #: ../src\controller\buffers\twitterBuffers.py:987
 msgid "Opening item in web browser..."
-msgstr ""
+msgstr "アイテムをブラウザで開いています…"
 
 #: ../src\controller\buffers\twitterBuffers.py:688
 #: ../src\controller\buffers\twitterBuffers.py:855
@@ -203,6 +203,8 @@ msgid ""
 "Getting more items cannot be done in this buffer. Use the direct messages "
 "buffer instead."
 msgstr ""
+"このバッファでは、これ以上のアイテムを取得することはできません。代わりに、"
+"「ダイレクトメッセージ」バッファを使用してください。"
 
 #: ../src\controller\buffers\twitterBuffers.py:983
 #, fuzzy
@@ -1582,9 +1584,8 @@ msgid "Open URL"
 msgstr "URLを開く"
 
 #: ../src\keystrokeEditor\constants.py:25
-#, fuzzy
 msgid "View in Twitter"
-msgstr "ツイッターを検索"
+msgstr "ツイッターで見る"
 
 #: ../src\keystrokeEditor\constants.py:26
 msgid "Increase volume by 5%"
@@ -1808,6 +1809,9 @@ msgid ""
 "If you're sure that {0} isn't running, try deleting the file at {1}. If "
 "you're unsure of how to do this, contact the {0} developers."
 msgstr ""
+"{0} は、すでに起動しています。実行する前に、以前に起動しているものを終了させ"
+"てください。{0} が起動していないことが確実な場合は、 {1} にあるファイルを削除"
+"してみてください.削除方法が不明の場合は、 {0} の開発者までご連絡ください。"
 
 #: ../src\sessionmanager\wxUI.py:8
 msgid "Session manager"
@@ -2267,6 +2271,8 @@ msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
 msgstr ""
+"前回、 {0} は正常に終了しませんでした. この問題が継続して発生する場合には、 "
+"{0} の開発者までレポートを送ってください。"
 
 #: ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
@@ -3251,7 +3257,7 @@ msgstr "「{0}」のウェブサイト(&W)"
 
 #: ../src\wxUI\view.py:77
 msgid "Get soundpacks for TWBlue"
-msgstr ""
+msgstr "TWBlue のサウンドパックを入手"
 
 #: ../src\wxUI\view.py:78
 msgid "About &{0}"
