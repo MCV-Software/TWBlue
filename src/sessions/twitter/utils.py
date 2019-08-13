@@ -19,11 +19,11 @@ __doc__ = "Find urls in tweets and #audio hashtag."
 
 url_re = re.compile(r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))")
 
-url_re2 = re.compile("(?:\w+://|www\.)[^ ,.?!#%=+][^ ]*")
-bad_chars = '\'\\.,[](){}:;"'
+url_re2 = re.compile("(?:\w+://|www\.)[^ ,.?!#%=+][^ \\n\\t]*")
+bad_chars = '\'\\\n.,[](){}:;"'
 
 def find_urls_in_text(text):
- return [s.strip(bad_chars) for s in url_re2.findall(text)]
+ return  url_re2.findall(text)
 
 def find_urls (tweet):
  urls = []

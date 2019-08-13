@@ -2,6 +2,10 @@
 
 ## changes in this version
 
+* Fixed error when displaying an URL at the end of a line, when the tweet or direct message contained multiple lines. Now the URL should be displayed correctly. ((#305,)[https://github.com/manuelcortez/TWBlue/issues/305])
+
+## Changes in version 0.95
+
 * TWBlue can open a Tweet or user directly in Twitter. There is a new option in the context menu for people and tweet buffers, and also, the shortcut control+win+alt+Enter will open the focused item in Twitter.
 * Some keystrokes were remapped in the Windows 10 Keymap:
     * Read location of a tweet: Ctrl+Win+G. ([#177](https://github.com/manuelcortez/TWBlue/pull/177))
