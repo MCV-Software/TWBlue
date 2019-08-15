@@ -95,7 +95,7 @@ class globalSettingsController(object):
    self.needs_restart = True
   if self.kmnames[self.dialog.general.km.GetSelection()] != config.app["app-settings"]["load_keymap"]:
    config.app["app-settings"]["load_keymap"] =self.kmnames[self.dialog.general.km.GetSelection()]
-   kmFile = open(paths.config_path("keymap.keymap"), "w")
+   kmFile = open(os.path.join(paths.config_path(), "keymap.keymap"), "w")
    kmFile.close()
    self.needs_restart = True
   if config.app["app-settings"]["autostart"] != self.dialog.get_value("general", "autostart") and paths.mode == "installed":
@@ -169,7 +169,7 @@ class accountSettingsController(globalSettingsController):
   self.input_devices = sound_lib.input.Input.get_device_names()
   self.output_devices = sound_lib.output.Output.get_device_names()
   self.soundpacks = []
-  [self.soundpacks.append(i) for i in os.listdir(paths.sound_path()) if os.path.isdir(paths.sound_path(i)) == True ]
+  [self.soundpacks.append(i) for i in os.listdir(paths.sound_path()) if os.path.isdir(os.path.join(paths.sound_path(), i)) == True ]
   self.dialog.create_sound(self.input_devices, self.output_devices, self.soundpacks)
   self.dialog.set_value("sound", "volumeCtrl", self.config["sound"]["volume"]*100)
   self.dialog.set_value("sound", "input", self.config["sound"]["input_device"])
