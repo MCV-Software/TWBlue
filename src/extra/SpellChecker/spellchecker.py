@@ -32,10 +32,10 @@ class spellChecker(object):
   try:
    if config.app["app-settings"]["language"] == "system":
     log.debug("Using the system language")
-    self.dict = enchant.DictWithPWL(languageHandler.curLang[:2], paths.config_path("wordlist.dict"))
+    self.dict = enchant.DictWithPWL(languageHandler.curLang[:2], os.path.join(paths.config_path(), "wordlist.dict"))
    else:
     log.debug("Using language: %s" % (languageHandler.getLanguage(),))
-    self.dict = enchant.DictWithPWL(languageHandler.getLanguage()[:2], paths.config_path("wordlist.dict"))
+    self.dict = enchant.DictWithPWL(languageHandler.getLanguage()[:2], os.path.join(paths.config_path(), "wordlist.dict"))
   except DictNotFoundError:
    log.exception("Dictionary for language %s not found." % (dictionary,))
    wx_ui.dict_not_found_error()
