@@ -17,8 +17,12 @@ import languageHandler
 import arrow
 import logging
 import config
+import warnings
+from arrow.factory import ArrowParseWarning
 from .long_tweets import twishort, tweets
 log = logging.getLogger("compose")
+
+warnings.simplefilter("ignore", ArrowParseWarning)
 
 def StripChars(s):
  """Converts any html entities in s to their unicode-decoded equivalents and returns a string."""
