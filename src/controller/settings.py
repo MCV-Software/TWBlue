@@ -33,7 +33,7 @@ class globalSettingsController(object):
 
  def make_kmmap(self):
   res={}
-  for i in os.listdir(paths.app_path('keymaps')):
+  for i in os.listdir(os.path.join(paths.app_path(), 'keymaps')):
    if ".keymap" not in i:
     continue
    try:
