@@ -237,7 +237,7 @@ class viewTweet(basicTweet):
    # Gets the client from where this tweet was made.
    source = re.sub(r"(?s)<.*?>", "", tweet["source"])
    original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
-   date = original_date.replace(seconds=utc_offset).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
+   date = original_date.shift(seconds=utc_offset).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
    if text == "":
     if "message" in tweet:
      value = "message"
