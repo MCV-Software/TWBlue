@@ -13,7 +13,7 @@ def setup():
 	if hasattr(sys, "frozen"):
 		fix_libloader.fix()
 		fix_win32com.fix()
-		fix_requests.fix(True)
-	else:
-		fix_requests.fix(False)
+		fix_requests.fix()
+#	else:
+#		fix_requests.fix(False)
 	fix_urllib3_warnings.fix()
