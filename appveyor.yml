@@ -3,20 +3,20 @@ pull_requests:
   do_not_increment_build_number: true
 
 # Only build whenever we add tags to the repo.
-skip_non_tags: true
+#skip_non_tags: true
 
 environment:
 
   matrix:
 
   # List of python versions we want to work with.
-    - PYTHON: "C:\\Python27"
-      PYTHON_VERSION: "2.7.x" # currently 2.7.9
+    - PYTHON: "C:\\Python37"
+      PYTHON_VERSION: "3.7.x" # currently 2.7.9
       PYTHON_ARCH: "32"
 
   # perhaps we may enable this one in future?
-#    - PYTHON: "C:\\Python27-x64"
-#      PYTHON_VERSION: "2.7.x" # currently 2.7.9
+#    - PYTHON: "C:\\Python37-x64"
+#      PYTHON_VERSION: "3.7.x" # currently 2.7.9
 #      PYTHON_ARCH: "64"
 
 # This is important so we will retrieve everything in submodules as opposed to default method.
@@ -64,13 +64,13 @@ build_script:
   - "cd ..\\src"
   - "%CMD_IN_ENV% python ..\\doc\\generator.py"
   # Build distributable files.
-  - "%CMD_IN_ENV% python setup.py py2exe"
-  - "cd dist"
+  - "%CMD_IN_ENV% pyinstaller main.spec"
+  - "cd dist\\TWBlue"
   # Zip it all.
-  - cmd: 7z a ..\..\snapshot.zip *
+  - cmd: 7z a ..\..\..\snapshot_python3.zip *
 
 artifacts:
-  - path: snapshot.zip
+  - path: snapshot_python3.zip
 
 deploy:
 - provider: FTP
