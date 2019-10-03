@@ -41,6 +41,7 @@ install:
 #  - ps: "ls \"C:/\""
 
   # Check that we have the expected version and architecture for Python
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - "python --version"
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
 
