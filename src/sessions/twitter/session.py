@@ -208,13 +208,13 @@ class Session(base.baseSession):
     val = getattr(self.twitter, call_name)(*args, **kwargs)
     finished = True
    except TwythonError as e:
-    output.speak(e.message)
+    output.speak(e.msg)
     val = None
     if e.error_code != 403 and e.error_code != 404:
      tries = tries+1
      time.sleep(5)
     elif report_failure and hasattr(e, 'message'):
-     output.speak(_("%s failed.  Reason: %s") % (action, e.message))
+     output.speak(_("%s failed.  Reason: %s") % (action, e.msg))
     finished = True
 #   except:
 #    tries = tries + 1
