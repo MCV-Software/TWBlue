@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from codecs import open
 """ This script converts the hold documentation (saved in markdown files) in a python file with a list of strings to translate it using gettext."""
 
 def prepare_documentation_in_file(fileSource, fileDest):
@@ -6,8 +7,8 @@ def prepare_documentation_in_file(fileSource, fileDest):
 	 @fileSource str: A markdown(.md) file.
 	 @fileDest str: A file where this will put the new strings"""
 
-	f1 = open(fileSource, "r")
-	f2 = open(fileDest, "w")
+	f1 = open(fileSource, "r", encoding="utf-8")
+	f2 = open(fileDest, "w", encoding="utf-8")
 	lns = f1.readlines()
 	f2.write("# -*- coding: utf-8 -*-\n")
 	f2.write("documentation = [\n")
