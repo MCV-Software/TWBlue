@@ -808,7 +808,7 @@ class Controller(object):
   elif buffer.type == "dm":
    non_tweet = buffer.get_formatted_message()
    item = buffer.get_right_tweet()
-   original_date = arrow.get(item["created_timestamp"][:-3])
+   original_date = arrow.get(int(item["created_timestamp"][:-3]))
    date = original_date.shift(seconds=buffer.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
    msg = messages.viewTweet(non_tweet, [], False, date=date)
   else:

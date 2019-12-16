@@ -705,7 +705,7 @@ class directMessagesController(baseBufferController):
   tweet = self.get_tweet()
   if platform.system() == "Windows" and self.session.settings["general"]["relative_times"] == True:
    # fix this:
-   original_date = arrow.get(tweet["created_timestamp"][:-3])
+   original_date = arrow.get(int(tweet["created_timestamp"][:-3]))
    ts = original_date.humanize(locale=languageHandler.getLanguage())
    self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
   if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
