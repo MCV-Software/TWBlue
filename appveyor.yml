@@ -65,10 +65,10 @@ build_script:
   - "cd ..\\src"
   - "%CMD_IN_ENV% python ..\\doc\\generator.py"
   # Build distributable files.
-  - "%CMD_IN_ENV% pyinstaller main.spec"
-  - "cd dist\\TWBlue"
+  - "%CMD_IN_ENV% python setup.py build"
+  - "cd dist"
   # Zip it all.
-  - cmd: 7z a ..\..\..\snapshot_python3.zip *
+  - cmd: 7z a ..\..\snapshot_python3.zip *
 
 artifacts:
   - path: snapshot_python3.zip
