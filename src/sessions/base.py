@@ -75,24 +75,23 @@ class baseSession(object):
 
 	def shelve(self):
 		"""Shelve the database to allow for persistance."""
-		shelfname=os.path.join(paths.config_path(), str(self.session_id)+"/cache.db")
+		shelfname=os.path.join(paths.config_path(), str(self.session_id)+"/cache")
 		if self.settings["general"]["persist_size"] == 0:
-			if os.path.exists(shelfname):
-				os.remove(shelfname)
+			if os.path.exists(shelfname+".dat"):
+				os.remove(shelfname+".dat")
 			return
 		try:
-			if not os.path.exists(shelfname):
+			if not os.path.exists(shelfname+".dat"):
 				output.speak("Generating database, this might take a while.",True)
 			shelf=shelve.open(os.path.join(paths.config_path(), shelfname),'c')
 			for key,value in list(self.db.items()):
 				if type(key) != str and type(key) != str:
 					output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
 					log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
-				# Convert unicode objects to UTF-8 strings before shelve these objects.
 				if type(value) == list and self.settings["general"]["persist_size"] != -1 and len(value) > self.settings["general"]["persist_size"]:
-					shelf[str(key.encode("utf-8"))]=value[self.settings["general"]["persist_size"]:]
+					shelf[key]=value[self.settings["general"]["persist_size"]:]
 				else:
-					shelf[str(key.encode("utf-8"))]=value
+					shelf[key]=value
 			shelf.close()
 		except:
 			output.speak("An exception occurred while shelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
@@ -101,10 +100,10 @@ class baseSession(object):
 
 	def deshelve(self):
 		"""Import a shelved database."""
-		shelfname=os.path.join(paths.config_path(), str(self.session_id)+"/cache.db")
+		shelfname=os.path.join(paths.config_path(), str(self.session_id)+"/cache")
 		if self.settings["general"]["persist_size"] == 0:
-			if os.path.exists(shelfname):
-				os.remove(shelfname)
+			if os.path.exists(shelfname+".dat"):
+				os.remove(shelfname+".dat")
 			return
 		try:
 			shelf=shelve.open(os.path.join(paths.config_path(), shelfname),'c')
