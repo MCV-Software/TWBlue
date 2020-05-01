@@ -23,10 +23,10 @@ class spellChecker(object):
   super(spellChecker, self).__init__()
   # Set Dictionary path if not set in a previous call to this method.
   # Dictionary path will be located in user config, see https://github.com/manuelcortez/twblue/issues/208
-  dict_path = enchant.get_param("enchant.myspell.dictionary.path")
-  if dict_path == None:
-   enchant.set_param("enchant.myspell.dictionary.path", os.path.join(paths.config_path(), "dicts"))
-   log.debug("Dictionary path set to %s" % (os.path.join(paths.config_path(), "dicts"),))
+#  dict_path = enchant.get_param("enchant.myspell.dictionary.path")
+#  if dict_path == None:
+#   enchant.set_param("enchant.myspell.dictionary.path", os.path.join(paths.config_path(), "dicts"))
+#   log.debug("Dictionary path set to %s" % (os.path.join(paths.config_path(), "dicts"),))
   log.debug("Creating the SpellChecker object. Dictionary: %s" % (dictionary,))
   self.active = True
   try:
