@@ -40,9 +40,9 @@ build_exe_options = dict(
 	build_exe="dist",
 	optimize=1,
 	include_msvcr=True,
-	zip_include_packages=["accessible_output2", "sound_lib", "arrow"],
+#	zip_include_packages=["accessible_output2", "sound_lib", "arrow"],
 	replace_paths = [("*", "")],
-	include_files=["icon.ico", "conf.defaults", "app-configuration.defaults", "keymaps", "locales", "sounds", "documentation", ("keys\lib", "keys"), find_sound_lib_datafiles(), find_accessible_output2_datafiles()]+get_architecture_files(),
+	include_files=["icon.ico", "conf.defaults", "app-configuration.defaults", "keymaps", "locales", "sounds", "documentation", ("keys/lib", "keys/lib"), ["../windows-dependencies/dictionaries", "dictionaries"], find_sound_lib_datafiles(), find_accessible_output2_datafiles()]+get_architecture_files(),
 	packages=["wxUI"],
 	)
 
