@@ -8,9 +8,9 @@ from requests import certs
 
 def get_architecture_files():
 	if platform.architecture()[0][:2] == "32":
-		return ["../windows-dependencies/x86/oggenc2.exe", "../windows-dependencies/x86/bootstrap.exe", "../windows-dependencies/x86/libvlc.dll", "../windows-dependencies/x86/libvlccore.dll", "../windows-dependencies/x86/plugins"]
+		return ["../windows-dependencies/x86/oggenc2.exe", "../windows-dependencies/x86/bootstrap.exe", "../windows-dependencies/x86/libvlc.dll", "../windows-dependencies/x86/libvlccore.dll", "../windows-dependencies/x86/plugins",  ["../windows-dependencies/dictionaries", "lib/enchant/data/mingw32/share/enchant/hunspell"]]
 	elif platform.architecture()[0][:2] == "64":
-		return ["../windows-dependencies/x64/oggenc2.exe", "../windows-dependencies/x64/bootstrap.exe", "../windows-dependencies/x64/libvlc.dll", "../windows-dependencies/x64/libvlccore.dll", "../windows-dependencies/x64/plugins"]
+		return ["../windows-dependencies/x64/oggenc2.exe", "../windows-dependencies/x64/bootstrap.exe", "../windows-dependencies/x64/libvlc.dll", "../windows-dependencies/x64/libvlccore.dll", "../windows-dependencies/x64/plugins", ["../windows-dependencies/dictionaries", "lib/enchant/data/mingw64/share/enchant/hunspell"]]
 
 def find_sound_lib_datafiles():
 	import os
@@ -39,10 +39,10 @@ if sys.platform == 'win32':
 build_exe_options = dict(
 	build_exe="dist",
 	optimize=1,
+	includes=["enchant.tokenize.en"], # This is not handled automatically by cx_freeze.
 	include_msvcr=True,
-#	zip_include_packages=["accessible_output2", "sound_lib", "arrow"],
 	replace_paths = [("*", "")],
-	include_files=["icon.ico", "conf.defaults", "app-configuration.defaults", "keymaps", "locales", "sounds", "documentation", ("keys/lib", "keys/lib"), ["../windows-dependencies/dictionaries", "dictionaries"], find_sound_lib_datafiles(), find_accessible_output2_datafiles()]+get_architecture_files(),
+	include_files=["icon.ico", "conf.defaults", "app-configuration.defaults", "keymaps", "locales", "sounds", "documentation", ("keys/lib", "keys/lib"), find_sound_lib_datafiles(), find_accessible_output2_datafiles()]+get_architecture_files(),
 	packages=["wxUI"],
 	)
 
