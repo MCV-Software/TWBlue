@@ -68,7 +68,7 @@ build_script:
   - "%CMD_IN_ENV% python setup.py build"
   - "cd dist"
   # Zip it all.
-  - cmd: 7z a ..\..\snapshot_python3.zip *
+  - cmd: 7z a ..\..\snapshot.zip *
 
 artifacts:
   - path: snapshot.zip
@@ -78,7 +78,7 @@ deploy:
   host: twblue.es
   protocol: ftp
   beta: true
-  username: twblue
+  username: twblue.es
   password:
     secure: ml/xB8YEoZ7DmjzDr+KSNw==
   folder: 'web/pubs'
