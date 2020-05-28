@@ -8,9 +8,9 @@ from requests import certs
 
 def get_architecture_files():
 	if platform.architecture()[0][:2] == "32":
-		return ["../windows-dependencies/x86/oggenc2.exe", "../windows-dependencies/x86/bootstrap.exe", "../windows-dependencies/x86/libvlc.dll", "../windows-dependencies/x86/libvlccore.dll", "../windows-dependencies/x86/plugins",  ["../windows-dependencies/dictionaries", "lib/enchant/data/mingw32/share/enchant/hunspell"]]
+		return ["../windows-dependencies/x86/oggenc2.exe", "../windows-dependencies/x86/bootstrap.exe", "../windows-dependencies/x86/libvlc.dll", "../windows-dependencies/x86/libvlccore.dll", "../windows-dependencies/x86/plugins",  ["../windows-dependencies/dictionaries", "lib/enchant/data/mingw32/share/enchant/hunspell"], ["../windows-dependencies/x86/Microsoft.VC142.CRT", "."], ["../windows-dependencies/x86/Microsoft.VC142.MFC", "."]]
 	elif platform.architecture()[0][:2] == "64":
-		return ["../windows-dependencies/x64/oggenc2.exe", "../windows-dependencies/x64/bootstrap.exe", "../windows-dependencies/x64/libvlc.dll", "../windows-dependencies/x64/libvlccore.dll", "../windows-dependencies/x64/plugins", ["../windows-dependencies/dictionaries", "lib/enchant/data/mingw64/share/enchant/hunspell"]]
+		return ["../windows-dependencies/x64/oggenc2.exe", "../windows-dependencies/x64/bootstrap.exe", "../windows-dependencies/x64/libvlc.dll", "../windows-dependencies/x64/libvlccore.dll", "../windows-dependencies/x64/plugins", ["../windows-dependencies/dictionaries", "lib/enchant/data/mingw64/share/enchant/hunspell"], ["../windows-dependencies/x64/Microsoft.VC142.CRT", "."], ["../windows-dependencies/x64/Microsoft.VC142.MFC", "."]]
 
 def find_sound_lib_datafiles():
 	import os
