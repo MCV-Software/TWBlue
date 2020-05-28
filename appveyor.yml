@@ -71,7 +71,7 @@ build_script:
   - cmd: 7z a ..\..\snapshot_python3.zip *
 
 artifacts:
-  - path: snapshot_python3.zip
+  - path: snapshot.zip
 
 deploy:
 - provider: FTP
