@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from functools import wraps
-import shorteners
+from . import shorteners
 
 
 def service_selecter (func):
