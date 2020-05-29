@@ -3,6 +3,8 @@
 ## changes in this version
 
 * Fixed error when displaying an URL at the end of a line, when the tweet or direct message contained multiple lines. Now the URL should be displayed correctly. ((#305,)[https://github.com/manuelcortez/TWBlue/issues/305])
+* TWBlue has been migrated completely to Python 3 (currently, the software builds with Python 3.7).
+* TWBlue should be restarted gracefully. Before, the application was alerting users of not being closed properly every time the application restarted by itself.
 
 ## Changes in version 0.95
 
