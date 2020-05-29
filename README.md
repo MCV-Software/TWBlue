@@ -27,26 +27,16 @@ Although most dependencies can be found in the windows-dependencies directory, w
     git submodule init  
     git submodule update
 
-	All the dependencies provided in this folder are prebuilt. If you want to build them from source, you will need Microsoft visual Studio 2008.
-
 #### Dependencies packaged in windows installers
 
-* [Python,](http://python.org) version 2.7.16  
-If you want to build both x86 and x64 binaries, you can install python x86 to C:\python27 and python x64 to C:\python27x64, for example.
-* [PyEnchant,](http://pythonhosted.org/pyenchant/) version 1.6.6.  
-x64 version has been built by TWBlue developers, so you only will find it in windows-dependencies folder
-
-The windows installers are available only in the windows-dependencies folder.
-
-To build a binary version:
-
-* [Py2exe](http://www.sourceforge.net/projects/py2exe/) for Python 2.7, version 0.6.9
+* [Python,](http://python.org) version 3.7.7  
+If you want to build both x86 and x64 binaries, you can install python x86 to C:\python37 and python x64 to C:\python37x64, for example.
 
 #### Dependencies that must be installed using pip
 
 Python installs a tool called Pip that allows to install packages in a simple way. You can find it in the python scripts directory. To install packages using Pip, you have to navigate to the scripts directory using a command prompt, for example:
 
-    cd C:\python27x64\scripts
+    cd C:\python37x64\scripts
 
 	You can also add the scripts folder to your path environment variable or choose the corresponding option when installing Python.  
 	Note: pip and setuptools are included in the Python installer since version 2.7.9.
@@ -71,7 +61,7 @@ These dependencies are located in the windows-dependencies directory. You don't 
 * Bootstrap 1.2.1: included in dependencies directory.  
 This dependency has been built using pure basic 4.61. Its source can be found at http://hg.q-continuum.net/updater
 * [oggenc2.exe,](http://www.rarewares.org/ogg-oggenc.php) version 2.87  
-* Microsoft Visual c++ 2008 redistributable dlls.
+* Microsoft Visual c++ 2017 redistributable dlls.
 * VLC plugins and DLL libraries.
 
 #### Dependencies required to build the installer
@@ -114,7 +104,7 @@ A binary version doesn't need python and the other dependencies to run, it's the
 
 To build it, run the following command from the src folder:
 
-    python setup.py py2exe
+    python setup.py build
 
 	You will find the binaries in the dist directory.
 
@@ -122,9 +112,9 @@ To build it, run the following command from the src folder:
 
 If you want to install TWBlue on your computer, you must create the installer first. Follow these steps:
 
-* Navigate to the src directory, and create a binary version for x86: C:\python27\python setup.py py2exe
+* Navigate to the src directory, and create a binary version for x86: C:\python37\python setup.py build
 * Move the dist directory to the scripts folder in this repo, and rename it to twblue
-* Repeat these steps with Python for x64: C:\python27x64\python setup.py py2exe
+* Repeat these steps with Python for x64: C:\python37x64\python setup.py build
 * Move the new dist directory to the scripts folder, and rename it to twblue64
 * Go to the scripts folder, right click on the twblue.nsi file, and choose compyle unicode NSIS script
 * This may take a while. After the process, you will find the installer in the scripts folder
@@ -137,9 +127,9 @@ Run the gen_pot.bat file, located in the tools directory. Your python installati
 
 If you want to have TWBlue on your PortableApps.com platform, follow these steps:
 
-* Navigate to the src directory, and create a binary version for x86: C:\python27\python setup.py py2exe
+* Navigate to the src directory, and create a binary version for x86: C:\python37\python setup.py build
 * Move the dist directory to the misc\pa.c format\app folder in this repo, and rename it to twblue
-* Repeat these steps with Python for x64: C:\python27x64\python setup.py py2exe
+* Repeat these steps with Python for x64: C:\python37x64\python setup.py build
 * Move the new dist directory to the misc\pa.c format\app folder, and rename it to twblue64
 * Run the PortableApps.com Launcher Generator, and follow the wizard. Choose the pa.c format folder and continue to generate the launcher. If the wizard is completed, you will see a file named TWBlue portable.exe inside the pa.c format folder.
 * Run the PortableApps.com Installer, and follow the wizard. As in the above step, choose the pa.c format folder. When it completes, you will see a file named TWBluePortable_x.y.paf.exe inside the misc folder, where x.y is the version number.
