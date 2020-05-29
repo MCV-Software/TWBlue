@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from builtins import object
-import sqlite3, paths
+import os, sqlite3, paths
 
 class storage(object):
  def __init__(self, session_id):
-  self.connection = sqlite3.connect(paths.config_path("%s/autocompletionUsers.dat" % (session_id)))
+  self.connection = sqlite3.connect(os.path.join(paths.config_path(), "%s/autocompletionUsers.dat" % (session_id)))
   self.cursor = self.connection.cursor()
   if self.table_exist("users") == False:
    self.create_table()
