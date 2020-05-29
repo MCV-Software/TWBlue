@@ -76,3 +76,6 @@ class sessionManagerWindow(wx.Dialog):
 
  def destroy(self):
   self.Destroy()
+
+def auth_error(user_name):
+ return wx.MessageDialog(None, _("TWBlue is unable to authenticate the account for {} in Twitter. It might be due to an invalid or expired token, revoqued access to the application, or after an account reactivation. Please remove the account manually from your Twitter sessions in order to stop seeing this message.").format(user_name,), _("Authentication error for session {}").format(user_name,), wx.OK).ShowModal()

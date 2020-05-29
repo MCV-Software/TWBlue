@@ -21,7 +21,7 @@ from sessions.twitter import session
 from . import manager
 import config_utils
 import config
-
+from twython.exceptions import TwythonAuthError
 log = logging.getLogger("sessionmanager.sessionManager")
 
 class sessionManagerController(object):
@@ -85,10 +85,17 @@ class sessionManagerController(object):
    s = session.Session(i)
    s.get_configuration()
    if i not in config.app["sessions"]["ignored_sessions"]:
-    s.login()
+    try:
+     s.login()
+    except TwythonAuthError:
+     self.show_auth_error(s.settings["twitter"]["user_name"])
+     continue
    sessions.sessions[i] = s
    self.new_sessions[i] = s
 #  self.view.destroy()
+
+ def show_auth_error(self, user_name):
+  error = view.auth_error(user_name)
 
  def manage_new_account(self, *args, **kwargs):
   if self.view.new_account_dialog() == widgetUtils.YES:
