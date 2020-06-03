@@ -194,6 +194,11 @@ class dm(basicTweet):
   super(dm, self).__init__(session, title, caption, text, messageType="dm", max=10000)
   widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
   self.text_processor()
+  widgetUtils.connect_event(self.message.cb, widgetUtils.ENTERED_TEXT, self.user_changed)
+
+ def user_changed(self, *args, **kwargs):
+  self.title = _("Direct message to %s") % (self.message.get_user())
+  self.text_processor()
 
  def autocomplete_users(self, *args, **kwargs):
   c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
