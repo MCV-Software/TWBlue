@@ -92,14 +92,13 @@ class profileController(object):
    output.speak(u"Error %s. %s" % (e.error_code, e.msg))
 
  def get_user_info(self):
- 
   string = u""
   string = string + _(u"Username: @%s\n") % (self.data["screen_name"])
   string = string + _(u"Name: %s\n") % (self.data["name"])
   if self.data["location"] != "":
    string = string + _(u"Location: %s\n") % (self.data["location"])
   if self.data["url"] != None:
-   string = string+ _(u"URL: %s\n") % (self.data["url"])
+   string = string+ _(u"URL: %s\n") % (self.data["entities"]["url"]["urls"][0]["expanded_url"])
   if self.data["description"] != "":
    string = string+ _(u"Bio: %s\n") % (self.data["description"])
   if self.data["protected"] == True: protected = _(u"Yes")
