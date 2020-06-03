@@ -2,10 +2,10 @@
 
 ## changes in this version
 
-* Fixed error when displaying an URL at the end of a line, when the tweet or direct message contained multiple lines. Now the URL should be displayed correctly. ((#305,)[https://github.com/manuelcortez/TWBlue/issues/305])
+* Fixed error when displaying an URL at the end of a line, when the tweet or direct message contained multiple lines. Now the URL should be displayed correctly. ([#305,](https://github.com/manuelcortez/TWBlue/issues/305))
 * TWBlue has been migrated completely to Python 3 (currently, the software builds with Python 3.7).
 * TWBlue should be restarted gracefully. Before, the application was alerting users of not being closed properly every time the application restarted by itself.
-* If TWBlue attemps to load an account with invalid tokens (this happens when reactivating a previously deactivated account, or when access to the ap is revoqued), TWBlue will inform the user about this error and will skip the account. Before, the app was unable to start due to a critical error. ((#328,)[https://github.com/manuelcortez/TWBlue/issues/328])
+* If TWBlue attemps to load an account with invalid tokens (this happens when reactivating a previously deactivated account, or when access to the ap is revoqued), TWBlue will inform the user about this error and will skip the account. Before, the app was unable to start due to a critical error. ([#328,](https://github.com/manuelcortez/TWBlue/issues/328))
 * When sending a direct message, the title of the window will change appropiately when the recipient is edited. ((#276,)[https://github.com/manuelcortez/TWBlue/issues/276])
 
 ## Changes in version 0.95
