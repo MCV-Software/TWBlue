@@ -100,6 +100,10 @@ class profileController(object):
   if self.data["url"] != None:
    string = string+ _(u"URL: %s\n") % (self.data["entities"]["url"]["urls"][0]["expanded_url"])
   if self.data["description"] != "":
+   if self.data["entities"].get("description") != None and self.data["entities"]["description"].get("urls"):
+    for url in self.data["entities"]["description"]["urls"]:
+     if url["url"] in self.data["description"]:
+      self.data["description"] = self.data["description"].replace(url["url"], url["expanded_url"])
    string = string+ _(u"Bio: %s\n") % (self.data["description"])
   if self.data["protected"] == True: protected = _(u"Yes")
   else: protected = _(u"No")
