@@ -72,16 +72,6 @@ def find_list(name, lists):
  for i in range(0, len(lists)):
   if lists[i]["name"] == name:  return lists[i]["id"]
 
-def find_previous_reply(id, listItem):
- for i in range(0, len(listItem)):
-  if listItem[i]["id_str"] == str(id): return i
- return None
-
-def find_next_reply(id, listItem):
- for i in range(0, len(listItem)):
-  if listItem[i]["in_reply_to_status_id_str"] == str(id): return i
- return None
-
 def is_audio(tweet):
  try:
   if len(find_urls(tweet)) < 1:
@@ -115,7 +105,7 @@ def is_media(tweet):
  return False
 
 def get_all_mentioned(tweet, conf, field="screen_name"):
- """ Gets all users that has been mentioned."""
+ """ Gets all users that have been mentioned."""
  results = []
  for i in tweet["entities"]["user_mentions"]:
   if i["screen_name"] != conf["user_name"] and i["screen_name"] != tweet["user"]["screen_name"]:
@@ -150,18 +140,6 @@ def if_user_exists(twitter, user):
    return None
   else:
    return user
-
-def api_call(parent=None, call_name=None, preexec_message="", success="", success_snd="", *args, **kwargs):
- if preexec_message:
-  output.speak(preexec_message, True)
- try:
-  val = getattr(parent.twitter.twitter, call_name)(*args, **kwargs)
-  output.speak(success)
-  parent.parent.sound.play(success_snd)
- except TwythonError as e:
-  output.speak("Error %s: %s" % (e.error_code, e.msg), True)
-  parent.parent.sound.play("error.ogg")
- return val
 
 def is_allowed(tweet, settings, buffer_name):
  clients = settings["twitter"]["ignored_clients"]
