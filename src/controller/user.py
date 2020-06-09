@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from builtins import object
 import wx
 import webbrowser
 import widgetUtils
@@ -9,6 +7,7 @@ from wxUI.dialogs import update_profile, show_user
 import logging
 log = logging.getLogger("controller.user")
 from twython import TwythonError
+from sessions.twitter import utils
 
 class profileController(object):
  def __init__(self, session, user=None):
@@ -101,9 +100,7 @@ class profileController(object):
    string = string+ _(u"URL: %s\n") % (self.data["entities"]["url"]["urls"][0]["expanded_url"])
   if self.data["description"] != "":
    if self.data["entities"].get("description") != None and self.data["entities"]["description"].get("urls"):
-    for url in self.data["entities"]["description"]["urls"]:
-     if url["url"] in self.data["description"]:
-      self.data["description"] = self.data["description"].replace(url["url"], url["expanded_url"])
+    self.data["description"] = utils.expand_urls(self.data["description"], self.data["entities"]["description"])
    string = string+ _(u"Bio: %s\n") % (self.data["description"])
   if self.data["protected"] == True: protected = _(u"Yes")
   else: protected = _(u"No")

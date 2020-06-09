@@ -135,10 +135,7 @@ class baseBufferController(baseBuffers.buffer):
    message = tweet["message"]
   try:
    tweet = self.session.twitter.show_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
-   urls = utils.find_urls_in_text(tweet["full_text"])
-   for url in range(0, len(urls)):
-    try:  tweet["full_text"] = tweet["full_text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
-    except IndexError: pass
+   tweet["full_text"] = utils.expand_urls(tweet["full_text"], tweet["entities"])
   except TwythonError as e:
    utils.twitter_error(e)
    return
@@ -149,10 +146,7 @@ class baseBufferController(baseBuffers.buffer):
    tweetsList.append(tweet)
    try:
     tweet = self.session.twitter.show_status(id=l, include_ext_alt_text=True, tweet_mode="extended")
-    urls = utils.find_urls_in_text(tweet["full_text"])
-    for url in range(0, len(urls)):
-     try:  tweet["full_text"] = tweet["full_text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
-     except IndexError: pass
+    tweet["full_text"] = utils.find_urls_in_text(tweet["full_text"], tweet["entities"])
    except TwythonError as e:
     utils.twitter_error(e)
     return
@@ -613,23 +607,12 @@ class baseBufferController(baseBuffers.buffer):
   if hasattr(dlg, "destroy"): dlg.destroy()
 
  def get_quoted_tweet(self, tweet):
-#  try:
   quoted_tweet = self.session.twitter.show_status(id=tweet["id"])
-  urls = utils.find_urls_in_text(quoted_tweet["text"])
-  for url in range(0, len(urls)):
-   try:  quoted_tweet["text"] = quoted_tweet["text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
-   except IndexError: pass
-#  except TwythonError as e:
-#   utils.twitter_error(e)
-#   return
+  quoted_tweet["text"] = utils.find_urls_in_text(quoted_tweet["text"], quoted_tweet["entities"])
   l = tweets.is_long(quoted_tweet)
   id = tweets.get_id(l)
-#  try:
   original_tweet = self.session.twitter.show_status(id=id)
-  urls = utils.find_urls_in_text(original_tweet["text"])
-  for url in range(0, len(urls)):
-   try:  original_tweet["text"] = original_tweet["text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
-   except IndexError: pass
+  original_tweet["text"] = utils.find_urls_in_text(original_tweet["text"], original_tweet["entities"])
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet, self.session.db, self.session.settings["general"]["relative_times"])
 
  def open_in_browser(self, *args, **kwargs):

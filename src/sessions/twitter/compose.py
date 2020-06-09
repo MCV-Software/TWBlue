@@ -69,17 +69,11 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=No
   else:
    text = "RT @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], text)
  if ("message" in tweet) == False:
-  urls = utils.find_urls_in_text(text)
+
   if "retweeted_status" in tweet:
-   for url in range(0, len(urls)):
-    try:
-     text = text.replace(urls[url], tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"])
-    except: pass
+   text = utils.expand_urls(text, tweet["retweeted_status"]["entities"])
   else:
-   for url in range(0, len(urls)):
-    try:
-     text = text.replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
-    except: pass
+   text = utils.expand_urls(text, tweet["entities"])
   if config.app['app-settings']['handle_longtweets']: pass
  return [user+", ", text, ts+", ", source]
 
@@ -110,10 +104,7 @@ def compose_direct_message(item, db, relative_times, show_screen_names=False, se
   else:
    user = sender["name"]
  if text[-1] in chars: text=text+"."
- urls = utils.find_urls_in_text(text)
- for url in range(0, len(urls)):
-  try:  text = text.replace(urls[url], item["message_create"]["message_data"]["entities"]["urls"][url]["expanded_url"])
-  except IndexError: pass
+ text = utils.expand_urls(text, item["message_create"]["message_data"]["entities"])
  return [user+", ", text, ts+", ", source]
 
 def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, session=None):

@@ -359,10 +359,7 @@ class Session(base.baseSession):
    value = "full_text"
   else:
    value = "text"
-  urls = utils.find_urls_in_text(quoted_tweet[value])
-  for url in range(0, len(urls)):
-   try:  quoted_tweet[value] = quoted_tweet[value].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
-   except IndexError: pass
+  quoted_tweet[value] = utils.expand_urls(quoted_tweet[value], quoted_tweet["entities"])
   if "quoted_status" in quoted_tweet:
    original_tweet = quoted_tweet["quoted_status"]
   elif "retweeted_status" in quoted_tweet and "quoted_status" in quoted_tweet["retweeted_status"]:
@@ -370,17 +367,13 @@ class Session(base.baseSession):
   else:
    return quoted_tweet
   original_tweet = self.check_long_tweet(original_tweet)
-
   if "full_text" in original_tweet:
    value = "full_text"
   elif "message" in original_tweet:
    value = "message"
   else:
    value = "text"
-  urls = utils.find_urls_in_text(original_tweet[value])
-  for url in range(0, len(urls)):
-   try:  original_tweet[value] = original_tweet[value].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
-   except IndexError: pass
+  original_tweet[value] = utils.expand_urls(original_tweet[value], original_tweet["entities"])
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
 
  def check_long_tweet(self, tweet):

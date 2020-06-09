@@ -209,3 +209,11 @@ def twitter_error(error):
  else:
   msg = _(u"Error code {0}").format(error.error_code,)
  output.speak(msg)
+
+def expand_urls(text, entities):
+ """ Expand all URLS present in text with information found in entities"""
+ urls = find_urls_in_text(text)
+ for url in entities["urls"]:
+  if url["url"] in text:
+   text = text.replace(url["url"], url["expanded_url"])
+ return text
