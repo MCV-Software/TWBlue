@@ -12,7 +12,8 @@ import config
 import output
 import application
 from pubsub import pub
-from twython import Twython, TwythonError, TwythonRateLimitError, TwythonAuthError
+from twython import Twython
+import tweepy
 from mysc.thread_utils import call_threaded
 from keys import keyring
 from sessions import base
@@ -115,7 +116,9 @@ class Session(base.baseSession):
   if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
    try:
     log.debug("Logging in to twitter...")
-    self.twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
+    self.auth = tweepy.OAuthHandler(keyring.get("api_key"), keyring.get("api_secret"))
+    self.auth.set_access_token(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
+    self.twitter = tweepy.API(self.auth)
     if verify_credentials == True:
      self.credentials = self.twitter.verify_credentials()
     self.logged = True
@@ -134,19 +137,18 @@ class Session(base.baseSession):
   if self.logged == True:
    raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
   else:
-   twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"))
-   self.auth = twitter.get_authentication_tokens(callback_url="oob")
-   webbrowser.open_new_tab(self.auth['auth_url'])
+   self.auth = tweepy.OAuthHandler(keyring.get("api_key"), keyring.get("api_secret"))
+   redirect_url = self.auth.get_authorization_url()
+   webbrowser.open_new_tab(redirect_url)
    self.authorisation_dialog = authorisationDialog()
    self.authorisation_dialog.cancel.Bind(wx.EVT_BUTTON, self.authorisation_cancelled)
    self.authorisation_dialog.ok.Bind(wx.EVT_BUTTON, self.authorisation_accepted)
    self.authorisation_dialog.ShowModal()
 
  def verify_authorisation(self, pincode):
-  twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), self.auth['oauth_token'], self.auth['oauth_token_secret'])
-  final = twitter.get_authorized_tokens(pincode)
-  self.settings["twitter"]["user_key"] = final["oauth_token"]
-  self.settings["twitter"]["user_secret"] = final["oauth_token_secret"]
+  self.auth.get_access_token(pincode)
+  self.settings["twitter"]["user_key"] = self.auth.access_token
+  self.settings["twitter"]["user_secret"] = self.auth.access_token_secret
   self.settings.write()
   del self.auth
 
