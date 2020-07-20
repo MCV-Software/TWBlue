@@ -261,11 +261,11 @@ class Session(base.baseSession):
 # @_require_login
  def get_user_info(self):
   """ Retrieves some information required by TWBlue for setup."""
-  f = self.twitter.get_account_settings()
+  f = self.twitter.get_settings()
   sn = f["screen_name"]
   self.settings["twitter"]["user_name"] = sn
   self.db["user_name"] = sn
-  self.db["user_id"] = self.twitter.show_user(screen_name=sn)["id_str"]
+  self.db["user_id"] = self.twitter.get_user(screen_name=sn).id
   try:
    self.db["utc_offset"] = f["time_zone"]["utc_offset"]
   except KeyError:
@@ -273,7 +273,7 @@ class Session(base.baseSession):
   # Get twitter's supported languages and save them in a global variable
   #so we won't call to this method once per session.
   if len(application.supported_languages) == 0:
-   application.supported_languages = self.twitter.get_supported_languages()
+   application.supported_languages = self.twitter.supported_languages
   self.get_lists()
   self.get_muted_users()
   self.settings.write()
@@ -281,12 +281,12 @@ class Session(base.baseSession):
 # @_require_login
  def get_lists(self):
   """ Gets the lists that the user is subscribed to and stores them in the database. Returns None."""
-  self.db["lists"] = self.twitter.show_lists(reverse=True)
+  self.db["lists"] = self.twitter.lists_all(reverse=True)
 
 # @_require_login
  def get_muted_users(self):
   """ Gets muted users (oh really?)."""
-  self.db["muted_users"] = self.twitter.list_mute_ids()["ids"]
+  self.db["muted_users"] = self.twitter.mutes_ids
 
 # @_require_login
  def get_stream(self, name, function, *args, **kwargs):
