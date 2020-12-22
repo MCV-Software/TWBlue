@@ -304,15 +304,15 @@ class Controller(object):
    self.view.add_buffer(account.buffer , name=session.db["user_name"])
   for i in session.settings['general']['buffer_order']:
    if i == 'home':
-    home = twitterBuffers.baseBufferController(self.view.nb, "get_home_timeline", "home_timeline", session, session.db["user_name"], sound="tweet_received.ogg", tweet_mode="extended")
+    home = twitterBuffers.baseBufferController(self.view.nb, "home_timeline", "home_timeline", session, session.db["user_name"], sound="tweet_received.ogg", tweet_mode="extended")
     self.buffers.append(home)
     self.view.insert_buffer(home.buffer, name=_(u"Home"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'mentions':
-    mentions = twitterBuffers.baseBufferController(self.view.nb, "get_mentions_timeline", "mentions", session, session.db["user_name"], sound="mention_received.ogg", tweet_mode="extended")
+    mentions = twitterBuffers.baseBufferController(self.view.nb, "mentions_timeline", "mentions", session, session.db["user_name"], sound="mention_received.ogg", tweet_mode="extended")
     self.buffers.append(mentions)
     self.view.insert_buffer(mentions.buffer, name=_(u"Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'dm':
-    dm = twitterBuffers.directMessagesController(self.view.nb, "get_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message", sound="dm_received.ogg", full_text=True, items="events")
+    dm = twitterBuffers.directMessagesController(self.view.nb, "list_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message", sound="dm_received.ogg", full_text=True, items="events")
     self.buffers.append(dm)
     self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'sent_dm':
@@ -320,62 +320,62 @@ class Controller(object):
     self.buffers.append(sent_dm)
     self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'sent_tweets':
-    sent_tweets = twitterBuffers.baseBufferController(self.view.nb, "get_user_timeline", "sent_tweets", session, session.db["user_name"], screen_name=session.db["user_name"], tweet_mode="extended")
+    sent_tweets = twitterBuffers.baseBufferController(self.view.nb, "user_timeline", "sent_tweets", session, session.db["user_name"], screen_name=session.db["user_name"], tweet_mode="extended")
     self.buffers.append(sent_tweets)
     self.view.insert_buffer(sent_tweets.buffer, name=_(u"Sent tweets"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'favorites':
-    favourites = twitterBuffers.baseBufferController(self.view.nb, "get_favorites", "favourites", session, session.db["user_name"], sound="favourite.ogg", tweet_mode="extended")
+    favourites = twitterBuffers.baseBufferController(self.view.nb, "favorites", "favourites", session, session.db["user_name"], sound="favourite.ogg", tweet_mode="extended")
     self.buffers.append(favourites)
     self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'followers':
-    followers = twitterBuffers.peopleBufferController(self.view.nb, "get_followers_list", "followers", session, session.db["user_name"], sound="update_followers.ogg", screen_name=session.db["user_name"])
+    followers = twitterBuffers.peopleBufferController(self.view.nb, "followers", "followers", session, session.db["user_name"], sound="update_followers.ogg", screen_name=session.db["user_name"])
     self.buffers.append(followers)
     self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'friends':
-    friends = twitterBuffers.peopleBufferController(self.view.nb, "get_friends_list", "friends", session, session.db["user_name"], screen_name=session.db["user_name"])
+    friends = twitterBuffers.peopleBufferController(self.view.nb, "friends", "friends", session, session.db["user_name"], screen_name=session.db["user_name"])
     self.buffers.append(friends)
     self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'blocks':
-    blocks = twitterBuffers.peopleBufferController(self.view.nb, "list_blocks", "blocked", session, session.db["user_name"])
+    blocks = twitterBuffers.peopleBufferController(self.view.nb, "blocks", "blocked", session, session.db["user_name"])
     self.buffers.append(blocks)
     self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
    elif i == 'muted':
-    muted = twitterBuffers.peopleBufferController(self.view.nb, "list_mutes", "muted", session, session.db["user_name"])
+    muted = twitterBuffers.peopleBufferController(self.view.nb, "mutes", "muted", session, session.db["user_name"])
     self.buffers.append(muted)
     self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   timelines = baseBuffers.emptyPanel(self.view.nb, "timelines", session.db["user_name"])
   self.buffers.append(timelines)
   self.view.insert_buffer(timelines.buffer , name=_(u"Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["timelines"]:
-   tl = twitterBuffers.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (i,), session, session.db["user_name"], sound="tweet_timeline.ogg", bufferType=None, user_id=i, tweet_mode="extended")
+   tl = twitterBuffers.baseBufferController(self.view.nb, "user_timeline", "%s-timeline" % (i,), session, session.db["user_name"], sound="tweet_timeline.ogg", bufferType=None, user_id=i, tweet_mode="extended")
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(i,), pos=self.view.search("timelines", session.db["user_name"]))
   favs_timelines = baseBuffers.emptyPanel(self.view.nb, "favs_timelines", session.db["user_name"])
   self.buffers.append(favs_timelines)
   self.view.insert_buffer(favs_timelines.buffer , name=_(u"Likes timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["favourites_timelines"]:
-   tl = twitterBuffers.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (i,), session, session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=i, tweet_mode="extended")
+   tl = twitterBuffers.baseBufferController(self.view.nb, "favorites", "%s-favorite" % (i,), session, session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=i, tweet_mode="extended")
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Likes for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
   followers_timelines = baseBuffers.emptyPanel(self.view.nb, "followers_timelines", session.db["user_name"])
   self.buffers.append(followers_timelines)
   self.view.insert_buffer(followers_timelines.buffer , name=_(u"Followers' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["followers_timelines"]:
-   tl = twitterBuffers.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (i,), session, session.db["user_name"], sound="new_event.ogg", user_id=i)
+   tl = twitterBuffers.peopleBufferController(self.view.nb, "followers", "%s-followers" % (i,), session, session.db["user_name"], sound="new_event.ogg", user_id=i)
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Followers for {}").format(i,), pos=self.view.search("followers_timelines", session.db["user_name"]))
   friends_timelines = baseBuffers.emptyPanel(self.view.nb, "friends_timelines", session.db["user_name"])
   self.buffers.append(friends_timelines)
   self.view.insert_buffer(friends_timelines.buffer , name=_(u"Friends' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["friends_timelines"]:
-   tl = twitterBuffers.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (i,), session, session.db["user_name"], sound="new_event.ogg", user_id=i)
+   tl = twitterBuffers.peopleBufferController(self.view.nb, "friends", "%s-friends" % (i,), session, session.db["user_name"], sound="new_event.ogg", user_id=i)
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"Friends for {}").format(i,), pos=self.view.search("friends_timelines", session.db["user_name"]))
   lists = baseBuffers.emptyPanel(self.view.nb, "lists", session.db["user_name"])
   self.buffers.append(lists)
   self.view.insert_buffer(lists.buffer , name=_(u"Lists"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
   for i in session.settings["other_buffers"]["lists"]:
-   tl = twitterBuffers.listBufferController(self.view.nb, "get_list_statuses", "%s-list" % (i,), session, session.db["user_name"], bufferType=None, sound="list_tweet.ogg", list_id=utils.find_list(i, session.db["lists"]), tweet_mode="extended")
+   tl = twitterBuffers.listBufferController(self.view.nb, "list_timeline", "%s-list" % (i,), session, session.db["user_name"], bufferType=None, sound="list_tweet.ogg", list_id=utils.find_list(i, session.db["lists"]), tweet_mode="extended")
    session.lists.append(tl)
    self.buffers.append(tl)
    self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(i), pos=self.view.search("lists", session.db["user_name"]))

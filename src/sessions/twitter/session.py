@@ -40,24 +40,24 @@ class Session(base.baseSession):
    self.db["users"] = {}
   if ignore_older and len(self.db[name]) > 0:
    if self.settings["general"]["reverse_timelines"] == False:
-    last_id = self.db[name][0]["id"]
+    last_id = self.db[name][0].id
    else:
-    last_id = self.db[name][-1]["id"]
+    last_id = self.db[name][-1].id
   for i in data:
    if ignore_older and last_id != None:
-    if i["id"] < last_id:
-     log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i["id"]))
+    if i.id < last_id:
+     log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i.id))
      continue
-   if utils.find_item(i["id"], self.db[name]) == None and     utils.is_allowed(i, self.settings, name) == True:
+   if utils.find_item(i.id, self.db[name]) == None and     utils.is_allowed(i, self.settings, name) == True:
     i = self.check_quoted_status(i)
     i = self.check_long_tweet(i)
     if i == False: continue
     if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
     else: self.db[name].insert(0, i)
     num = num+1
-    if ("user" in i) == True:
-     if (i["user"]["id"] in self.db["users"]) == False:
-      self.db["users"][i["user"]["id"]] = i["user"]
+    if hasattr(i, "user"):
+     if (i.user.id in self.db["users"]) == False:
+      self.db["users"][i.user.id] = i.user
   return num
 
  def order_cursored_buffer(self, name, data):
@@ -74,7 +74,7 @@ class Session(base.baseSession):
    self.db[name] = {}
    self.db[name]["items"] = []
   for i in data:
-   if utils.find_item(i["id"], self.db[name]["items"]) == None:
+   if utils.find_item(i.id, self.db[name]["items"]) == None:
     if self.settings["general"]["reverse_timelines"] == False: self.db[name]["items"].append(i)
     else: self.db[name]["items"].insert(0, i)
     num = num+1
@@ -90,13 +90,13 @@ class Session(base.baseSession):
    self.db["direct_messages"] = {}
    self.db["direct_messages"]["items"] = []
   for i in data:
-   if i["message_create"]["sender_id"] == self.db["user_id"]:
-    if "sent_direct_messages" in self.db and utils.find_item(i["id"], self.db["sent_direct_messages"]["items"]) == None:
+   if i.message_create.sender_id == self.db["user_id"]:
+    if "sent_direct_messages" in self.db and utils.find_item(i.id, self.db["sent_direct_messages"]["items"]) == None:
      if self.settings["general"]["reverse_timelines"] == False: self.db["sent_direct_messages"]["items"].append(i)
      else: self.db["sent_direct_messages"]["items"].insert(0, i)
      sent = sent+1
    else:
-    if utils.find_item(i["id"], self.db["direct_messages"]["items"]) == None:
+    if utils.find_item(i.id, self.db["direct_messages"]["items"]) == None:
      if self.settings["general"]["reverse_timelines"] == False: self.db["direct_messages"]["items"].append(i)
      else: self.db["direct_messages"]["items"].insert(0, i)
      incoming = incoming+1
@@ -229,15 +229,15 @@ class Session(base.baseSession):
  def search(self, name, *args, **kwargs):
   """ Search in twitter, passing args and kwargs as arguments to the Twython function."""
   tl = self.twitter.search(*args, **kwargs)
-  tl["statuses"].reverse()
-  return tl["statuses"]
+  tl.reverse()
+  return tl
 
 # @_require_login
  def get_favourites_timeline(self, name, *args, **kwargs):
   """ Gets favourites for the authenticated user or a friend or follower.
   name str: Name for storage in the database.
   args and kwargs are passed directly to the Twython function."""
-  tl = self.call_paged("get_favorites", *args, **kwargs)
+  tl = self.call_paged("favorites", *args, **kwargs)
   return self.order_buffer(name, tl)
 
  def call_paged(self, update_function, *args, **kwargs):
@@ -251,8 +251,8 @@ class Session(base.baseSession):
   data = getattr(self.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
   results.extend(data)
   for i in range(0, max):
-   if i == 0: max_id = results[-1]["id"]
-   else: max_id = results[0]["id"]
+   if i == 0: max_id = results[-1].id
+   else: max_id = results[0].id
    data = getattr(self.twitter, update_function)(max_id=max_id, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
    results.extend(data)
   results.reverse()
@@ -357,25 +357,25 @@ class Session(base.baseSession):
  def get_quoted_tweet(self, tweet):
   """ Process a tweet and extract all information related to the quote."""
   quoted_tweet = tweet
-  if "full_text" in tweet:
+  if hasattr(tweet, "full_text"):
    value = "full_text"
   else:
    value = "text"
-  quoted_tweet[value] = utils.expand_urls(quoted_tweet[value], quoted_tweet["entities"])
-  if "quoted_status" in quoted_tweet:
-   original_tweet = quoted_tweet["quoted_status"]
-  elif "retweeted_status" in quoted_tweet and "quoted_status" in quoted_tweet["retweeted_status"]:
-   original_tweet = quoted_tweet["retweeted_status"]["quoted_status"]
+  setattr(quoted_tweet, value)(utils.expand_urls(getattr(quoted_tweet, value), quoted_tweet.entities))
+  if hasattr(quoted_tweet, "quoted_status"):
+   original_tweet = quoted_tweet.quoted_status
+  elif hasattr(quoted_tweet, "retweeted_status") and hasattr(quoted_tweet.retweeted_status, "quoted_status"):
+   original_tweet = quoted_tweet.retweeted_status.quoted_status
   else:
    return quoted_tweet
   original_tweet = self.check_long_tweet(original_tweet)
-  if "full_text" in original_tweet:
+  if hasattr(original_tweet, "full_text"):
    value = "full_text"
-  elif "message" in original_tweet:
+  elif hasattr(original_tweet, "message"):
    value = "message"
   else:
    value = "text"
-  original_tweet[value] = utils.expand_urls(original_tweet[value], original_tweet["entities"])
+  setattr(original_tweet, value)(utils.expand_urls(getattr(original_tweet, value), original_tweet.entities))
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
 
  def check_long_tweet(self, tweet):
@@ -385,22 +385,22 @@ class Session(base.baseSession):
   long = twishort.is_long(tweet)
   if long != False and config.app["app-settings"]["handle_longtweets"]:
    message = twishort.get_full_text(long)
-   if "quoted_status" in tweet:
-    tweet["quoted_status"]["message"] = message
-    if tweet["quoted_status"]["message"] == False: return False
-    tweet["quoted_status"]["twishort"] = True
-    for i in tweet["quoted_status"]["entities"]["user_mentions"]:
-     if "@%s" % (i["screen_name"]) not in tweet["quoted_status"]["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
-      if "retweeted_status" in tweet["quoted_status"] and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+   if hasattr(tweet, "quoted_status"):
+    tweet.quoted_status.message = message
+    if tweet.quoted_status.message == False: return False
+    tweet.quoted_status.twishort = True
+    for i in tweet.quoted_status.entities.user_mentions:
+     if "@%s" % (i.screen_name) not in tweet.quoted_status.message and i.screen_name != tweet.user.screen_name:
+      if hasattr(tweet["quoted_status"], "retweeted_status")  and tweet.retweeted_status.user.screen_name == i.screen_name:
        continue
-     tweet["quoted_status"]["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
+     tweet.quoted_status.message = u"@%s %s" % (i.screen_name, tweet.message)
    else:
-    tweet["message"] = message
-    if tweet["message"] == False: return False
-    tweet["twishort"] = True
-    for i in tweet["entities"]["user_mentions"]:
-     if "@%s" % (i["screen_name"]) not in tweet["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
-      if "retweeted_status" in tweet and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+    tweet.message = message
+    if tweet.message == False: return False
+    tweet.twishort = True
+    for i in tweet.entities.user_mentions:
+     if "@%s" % (i.screen_name) not in tweet.message and i.screen_name != tweet.user.screen_name:
+      if hasattr(tweet, "retweeted_status") and tweet.retweeted_status.user.screen_name == i.screen_name:
        continue
   return tweet
 
