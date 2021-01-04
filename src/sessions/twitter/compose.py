@@ -39,7 +39,7 @@ chars = "abcdefghijklmnopqrstuvwxyz"
 def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=None):
  """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
  if system == "Windows":
-  original_date = arrow.get(tweet.created_at, "ddd MMM DD H:m:s Z YYYY", locale="en")
+  original_date = arrow.get(tweet.created_at, locale="en")
   if relative_times == True:
    ts = original_date.humanize(locale=languageHandler.curLang[:2])
   else:
@@ -138,7 +138,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, 
    original_text = StripChars(original_tweet.text)
  quoted_tweet.message = _(u"{0}. Quoted  tweet from @{1}: {2}").format( text, original_user, original_text)
  quoted_tweet = tweets.clear_url(quoted_tweet)
- quoted_tweet.entities.urls.extend(original_tweet.entities.urls)
+ quoted_tweet.entities["urls"].extend(original_tweet.entities["urls"])
  return quoted_tweet
 
 def compose_followers_list(tweet, db, relative_times=True, show_screen_names=False, session=None):
