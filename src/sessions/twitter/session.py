@@ -361,7 +361,7 @@ class Session(base.baseSession):
    value = "full_text"
   else:
    value = "text"
-  setattr(quoted_tweet, value)(utils.expand_urls(getattr(quoted_tweet, value), quoted_tweet.entities))
+  setattr(quoted_tweet, value, utils.expand_urls(getattr(quoted_tweet, value), quoted_tweet.entities))
   if hasattr(quoted_tweet, "quoted_status"):
    original_tweet = quoted_tweet.quoted_status
   elif hasattr(quoted_tweet, "retweeted_status") and hasattr(quoted_tweet.retweeted_status, "quoted_status"):
@@ -375,7 +375,7 @@ class Session(base.baseSession):
    value = "message"
   else:
    value = "text"
-  setattr(original_tweet, value)(utils.expand_urls(getattr(original_tweet, value), original_tweet.entities))
+  setattr(original_tweet, value, utils.expand_urls(getattr(original_tweet, value), original_tweet.entities))
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
 
  def check_long_tweet(self, tweet):

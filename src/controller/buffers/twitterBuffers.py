@@ -108,6 +108,7 @@ class baseBufferController(baseBuffers.buffer):
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
   self.session.settings.write()
 
+ # ToDo: Update to tweepy.
  def post_with_media(self, text, attachments):
   media_ids = []
   for i in attachments:
@@ -129,24 +130,24 @@ class baseBufferController(baseBuffers.buffer):
  def get_full_tweet(self):
   tweet = self.get_right_tweet()
   tweetsList = []
-  tweet_id = tweet["id"]
+  tweet_id = tweet.id
   message = None
-  if "message" in tweet:
-   message = tweet["message"]
+  if hasattr(tweet, "message"):
+   message = tweet.message
   try:
-   tweet = self.session.twitter.show_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
-   tweet["full_text"] = utils.expand_urls(tweet["full_text"], tweet["entities"])
+   tweet = self.session.twitter.get_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
+   tweet.full_text = utils.expand_urls(tweet.full_text, tweet.entities)
   except TwythonError as e:
    utils.twitter_error(e)
    return
   if message != None:
-   tweet["message"] = message
+   tweet.message = message
   l = tweets.is_long(tweet)
   while l != False:
    tweetsList.append(tweet)
    try:
-    tweet = self.session.twitter.show_status(id=l, include_ext_alt_text=True, tweet_mode="extended")
-    tweet["full_text"] = utils.expand_urls(tweet["full_text"], tweet["entities"])
+    tweet = self.session.twitter.get_status(id=l, include_ext_alt_text=True)
+    tweet.full_text = utils.expand_urls(tweet.full_text, tweet.entities)
    except TwythonError as e:
     utils.twitter_error(e)
     return
@@ -376,8 +377,8 @@ class baseBufferController(baseBuffers.buffer):
    self.show_menu(widgetUtils.MENU, pos=self.buffer.list.list.GetPosition())
 
  def get_tweet(self):
-  if "retweeted_status" in self.session.db[self.name][self.buffer.list.get_selected()]:
-   tweet = self.session.db[self.name][self.buffer.list.get_selected()]["retweeted_status"]
+  if hasattr(self.session.db[self.name][self.buffer.list.get_selected()], "retweeted_status"):
+   tweet = self.session.db[self.name][self.buffer.list.get_selected()].retweeted_status
   else:
    tweet = self.session.db[self.name][self.buffer.list.get_selected()]
   return tweet
@@ -389,9 +390,9 @@ class baseBufferController(baseBuffers.buffer):
  @_tweets_exist
  def reply(self, *args, **kwargs):
   tweet = self.get_right_tweet()
-  screen_name = tweet["user"]["screen_name"]
-  id = tweet["id"]
-  twishort_enabled = "twishort" in tweet
+  screen_name = tweet.user["screen_name"]
+  id = tweet.id
+  twishort_enabled = getattr(tweet, "twishort")
   users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
   ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
   # Build the window title
@@ -426,7 +427,6 @@ class baseBufferController(baseBuffers.buffer):
    else:
     params["call_name"] = "update_status_with_media"
     params["media"] = message.file
-
    item = self.session.api_call(**params)
    if item != None:
     pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
@@ -437,32 +437,21 @@ class baseBufferController(baseBuffers.buffer):
  def send_message(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   if self.type == "dm":
-   screen_name = self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]
+   screen_name = self.session.get_user(tweet.message_create["sender_id"])["screen_name"]
    users = [screen_name]
   elif self.type == "people":
-   screen_name = tweet["screen_name"]
+   screen_name = tweet.screen_name
    users = [screen_name]
   else:
-   screen_name = tweet["user"]["screen_name"]
+   screen_name = tweet.user["screen_name"]
    users = utils.get_all_users(tweet, self.session.db)
   dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
   if dm.message.get_response() == widgetUtils.OK:
    screen_name = dm.message.get("cb")
    user = self.session.get_user_by_screen_name(screen_name)
-   event_data = {
-    'event': {
-        'type': 'message_create',
-        'message_create': {
-            'target': {
-                'recipient_id': user,
-            },
-            'message_data': {
-                'text': dm.message.get_text(),
-            }
-        }
-    }
-}
-   val = self.session.api_call(call_name="send_direct_message", **event_data)
+   recipient_id =  user
+   text = dm.message.get_text()
+   val = self.session.api_call(call_name="send_direct_message", recipient_id=recipient_id, text=text)
    if val != None:
     if self.session.settings["general"]["reverse_timelines"] == False:
      self.session.db["sent_direct_messages"]["items"].append(val["event"])
@@ -474,7 +463,7 @@ class baseBufferController(baseBuffers.buffer):
  @_tweets_exist
  def share_item(self, *args, **kwargs):
   tweet = self.get_right_tweet()
-  id = tweet["id"]
+  id = tweet.id
   if self.session.settings["general"]["retweet_mode"] == "ask":
    answer = commonMessageDialogs.retweet_question(self.buffer)
    if answer == widgetUtils.YES:
@@ -488,22 +477,22 @@ class baseBufferController(baseBuffers.buffer):
 
  def _retweet_with_comment(self, tweet, id, comment=''):
   # If quoting a retweet, let's quote the original tweet instead the retweet.
-  if "retweeted_status" in tweet:
-   tweet = tweet["retweeted_status"]
-  if "full_text" in tweet:
-   comments = tweet["full_text"]
+  if hasattr(tweet, "retweeted_status"):
+   tweet = tweet.retweeted_status
+  if hasattr(tweet, "full_text"):
+   comments = tweet.full_text
   else:
-   comments = tweet["text"]
-  retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], comments), max=256, messageType="retweet")
+   comments = tweet.text
+  retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet.user["screen_name"], comments), max=256, messageType="retweet")
   if comment != '':
    retweet.message.set_text(comment)
   if retweet.message.get_response() == widgetUtils.OK:
    text = retweet.message.get_text()
-   text = text+" https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id)
+   text = text+" https://twitter.com/{0}/status/{1}".format(tweet.user["screen_name"], id)
    if retweet.image == None:
     item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id, tweet_mode="extended")
     if item != None:
-     new_item = self.session.twitter.show_status(id=item["id"], include_ext_alt_text=True, tweet_mode="extended")
+     new_item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
      pub.sendMessage("sent-tweet", data=new_item, user=self.session.db["user_name"])
    else:
     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, media=retweet.image)
@@ -514,14 +503,14 @@ class baseBufferController(baseBuffers.buffer):
   if item != None:
    # Retweets are returned as non-extended tweets, so let's get the object as extended
    # just before sending the event message. See https://github.com/manuelcortez/TWBlue/issues/253
-   item = self.session.twitter.show_status(id=item["id"], include_ext_alt_text=True, tweet_mode="extended")
+   item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
    pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
 
  def onFocus(self, *args, **kwargs):
   tweet = self.get_tweet()
   if platform.system() == "Windows" and self.session.settings["general"]["relative_times"] == True:
    # fix this:
-   original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
+   original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()].created_at, locale="en")
    ts = original_date.humanize(locale=languageHandler.getLanguage())
    self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
   if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
@@ -583,10 +572,10 @@ class baseBufferController(baseBuffers.buffer):
   if answer == widgetUtils.YES:
    try:
     if self.name == "direct_messages" or self.name == "sent_direct_messages":
-     self.session.twitter.destroy_direct_message(id=self.get_right_tweet()["id"])
+     self.session.twitter.destroy_direct_message(id=self.get_right_tweet().id)
      self.session.db[self.name]["items"].pop(index)
     else:
-     self.session.twitter.destroy_status(id=self.get_right_tweet()["id"])
+     self.session.twitter.destroy_status(id=self.get_right_tweet().id)
      self.session.db[self.name].pop(index)
     self.buffer.list.remove_item(index)
    except TwythonError:
@@ -596,9 +585,9 @@ class baseBufferController(baseBuffers.buffer):
  def user_details(self):
   tweet = self.get_right_tweet()
   if self.type == "dm":
-   users = [self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [self.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   elif self.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   else:
    users = utils.get_all_users(tweet, self.session.db)
   dlg = dialogs.utils.selectUserDialog(title=_(u"User details"), users=users)
@@ -607,18 +596,18 @@ class baseBufferController(baseBuffers.buffer):
   if hasattr(dlg, "destroy"): dlg.destroy()
 
  def get_quoted_tweet(self, tweet):
-  quoted_tweet = self.session.twitter.show_status(id=tweet["id"])
-  quoted_tweet["text"] = utils.find_urls_in_text(quoted_tweet["text"], quoted_tweet["entities"])
+  quoted_tweet = self.session.twitter.get_status(id=tweet.id)
+  quoted_tweet.text = utils.find_urls_in_text(quoted_tweet.text, quoted_tweet.entities)
   l = tweets.is_long(quoted_tweet)
   id = tweets.get_id(l)
-  original_tweet = self.session.twitter.show_status(id=id)
-  original_tweet["text"] = utils.find_urls_in_text(original_tweet["text"], original_tweet["entities"])
+  original_tweet = self.session.twitter.get_status(id=id)
+  original_tweet.text = utils.find_urls_in_text(original_tweet.text, original_tweet.entities)
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet, self.session.db, self.session.settings["general"]["relative_times"])
 
  def open_in_browser(self, *args, **kwargs):
   tweet = self.get_tweet()
   output.speak(_(u"Opening item in web browser..."))
-  url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=tweet["user"]["screen_name"], tweet_id=tweet["id"])
+  url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=tweet.user["screen_name"], tweet_id=tweet.id)
   webbrowser.open(url)
 
 class directMessagesController(baseBufferController):
@@ -670,7 +659,7 @@ class directMessagesController(baseBufferController):
  @_tweets_exist
  def reply(self, *args, **kwargs):
   tweet = self.get_right_tweet()
-  screen_name = self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]
+  screen_name = self.session.get_user(tweet.message_create["sender_id"])["screen_name"]
   message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
   if message.message.get_response() == widgetUtils.OK:
    if config.app["app-settings"]["remember_mention_and_longtweet"]:
