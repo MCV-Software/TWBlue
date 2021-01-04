@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-from __future__ import unicode_literals
-from builtins import str
-from builtins import range
 import url_shortener, re
 import output
-from twython import TwythonError
 import config
 import logging
 import requests
 import time
 import sound
+from tweepy.error import TweepError
 log = logging.getLogger("twitter.utils")
 """ Some utilities for the twitter interface."""
 
@@ -131,14 +127,13 @@ def get_all_users(tweet, conf):
   string.append(tweet.user.screen_name)
  return string
 
-# ToDo: implement this using tweepy
 def if_user_exists(twitter, user):
  try:
-  data = twitter.show_user(screen_name=user)
+  data = twitter.get_user(screen_name=user)
   return data
- except TwythonError as err:
-  if err.error_code == 404:
-   return None
+ except TweepError as err:
+  if err.error_code == 50:
+  return None
   else:
    return user
 
@@ -204,12 +199,12 @@ def filter_tweet(tweet, tweet_data, settings, buffer_name):
  return True
 
 def twitter_error(error):
- if error.error_code == 403:
+ if error.api_code == 179:
   msg = _(u"Sorry, you are not authorised to see this status.")
- elif error.error_code == 404:
+ elif error.error_code == 144:
   msg = _(u"No status found with that ID")
  else:
-  msg = _(u"Error code {0}").format(error.error_code,)
+  msg = _(u"Error code {0}").format(error.api_code,)
  output.speak(msg)
 
 def expand_urls(text, entities):

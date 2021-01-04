@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from builtins import str
-from builtins import range
-from builtins import object
 import platform
 system = platform.system()
 import application
@@ -828,9 +824,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
@@ -840,85 +836,85 @@ class Controller(object):
     if usr == dlg.get_user():
      commonMessageDialogs.suspended_user()
      return
-    if usr["protected"] == True:
-     if usr["following"] == False:
+    if usr.protected == True:
+     if usr.following == False:
       commonMessageDialogs.no_following()
       return
     tl_type = dlg.get_action()
     if tl_type  == "tweets":
-     if usr["statuses_count"] == 0:
+     if usr.statuses_count == 0:
       commonMessageDialogs.no_tweets()
       return
-     if usr["id_str"] in buff.session.settings["other_buffers"]["timelines"]:
+     if usr.id_str in buff.session.settings["other_buffers"]["timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = twitterBuffers.baseBufferController(self.view.nb, "get_user_timeline", "%s-timeline" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, sound="tweet_timeline.ogg", user_id=usr["id_str"], tweet_mode="extended")
+     tl = twitterBuffers.baseBufferController(self.view.nb, "user_timeline", "%s-timeline" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="tweet_timeline.ogg", user_id=usr.id_str, tweet_mode="extended")
      try:
       tl.start_stream(play_sound=False)
-     except TwythonAuthError:
+     except ValueError:
       commonMessageDialogs.unauthorized()
       return
      pos=self.view.search("timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
      self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
-     buff.session.settings["other_buffers"]["timelines"].append(usr["id_str"])
+     buff.session.settings["other_buffers"]["timelines"].append(usr.id_str)
      pub.sendMessage("buffer-title-changed", buffer=tl)
      buff.session.sound.play("create_timeline.ogg")
     elif tl_type == "favourites":
-     if usr["favourites_count"] == 0:
+     if usr.favourites_count == 0:
       commonMessageDialogs.no_favs()
       return
-     if usr["id_str"] in buff.session.settings["other_buffers"]["favourites_timelines"]:
+     if usr.id_str in buff.session.settings["other_buffers"]["favourites_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = twitterBuffers.baseBufferController(self.view.nb, "get_favorites", "%s-favorite" % (usr["id_str"],), buff.session, buff.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr["id_str"], tweet_mode="extended")
+     tl = twitterBuffers.baseBufferController(self.view.nb, "favorites", "%s-favorite" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr.id_str, tweet_mode="extended")
      try:
       tl.start_stream(play_sound=False)
-     except TwythonAuthError:
+     except ValueError:
       commonMessageDialogs.unauthorized()
       return
      pos=self.view.search("favs_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Likes for {}").format(dlg.get_user()), pos=pos)
-     buff.session.settings["other_buffers"]["favourites_timelines"].append(usr["id_str"])
+     buff.session.settings["other_buffers"]["favourites_timelines"].append(usr.id_str)
      pub.sendMessage("buffer-title-changed", buffer=buff)
      buff.session.sound.play("create_timeline.ogg")
     elif tl_type == "followers":
-     if usr["followers_count"] == 0:
+     if usr.followers_count == 0:
       commonMessageDialogs.no_followers()
       return
-     if usr["id_str"] in buff.session.settings["other_buffers"]["followers_timelines"]:
+     if usr.id_str in buff.session.settings["other_buffers"]["followers_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = twitterBuffers.peopleBufferController(self.view.nb, "get_followers_list", "%s-followers" % (usr["id_str"],), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr["id_str"])
+     tl = twitterBuffers.peopleBufferController(self.view.nb, "followers", "%s-followers" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
      try:
       tl.start_stream(play_sound=False)
-     except TwythonAuthError:
+     except ValueError:
       commonMessageDialogs.unauthorized()
       return
      pos=self.view.search("followers_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Followers for {}").format(dlg.get_user()), pos=pos)
-     buff.session.settings["other_buffers"]["followers_timelines"].append(usr["id_str"])
+     buff.session.settings["other_buffers"]["followers_timelines"].append(usr.id_str)
      buff.session.sound.play("create_timeline.ogg")
      pub.sendMessage("buffer-title-changed", buffer=i)
     elif tl_type == "friends":
-     if usr["friends_count"] == 0:
+     if usr.friends_count == 0:
       commonMessageDialogs.no_friends()
       return
-     if usr["id_str"] in buff.session.settings["other_buffers"]["friends_timelines"]:
+     if usr.id_str in buff.session.settings["other_buffers"]["friends_timelines"]:
       commonMessageDialogs.timeline_exist()
       return
-     tl = twitterBuffers.peopleBufferController(self.view.nb, "get_friends_list", "%s-friends" % (usr["id_str"],), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr["id_str"])
+     tl = twitterBuffers.peopleBufferController(self.view.nb, "friends", "%s-friends" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
      try:
       tl.start_stream(play_sound=False)
-     except TwythonAuthError:
+     except ValueError:
       commonMessageDialogs.unauthorized()
       return
      pos=self.view.search("friends_timelines", buff.session.db["user_name"])
      self.insert_buffer(tl, pos+1)
      self.view.insert_buffer(buffer=tl.buffer, name=_(u"Friends for {}").format(dlg.get_user()), pos=pos)
-     buff.session.settings["other_buffers"]["friends_timelines"].append(usr["id_str"])
+     buff.session.settings["other_buffers"]["friends_timelines"].append(usr.id_str)
      buff.session.sound.play("create_timeline.ogg")
      pub.sendMessage("buffer-title-changed", buffer=i)
    else:
