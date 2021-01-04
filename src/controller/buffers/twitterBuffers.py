@@ -172,7 +172,7 @@ class baseBufferController(baseBuffers.buffer):
    self.put_items_on_list(number_of_items)
    if hasattr(self, "finished_timeline") and self.finished_timeline == False:
     if "-timeline" in self.name:
-     self.username = val[0]["user"]["screen_name"]
+     self.username = val[0].user.screen_name
     elif "-favorite" in self.name:
      self.username = self.session.api_call("show_user", **self.kwargs)["screen_name"]
     self.finished_timeline = True
