@@ -273,7 +273,7 @@ class Session(base.baseSession):
   # Get twitter's supported languages and save them in a global variable
   #so we won't call to this method once per session.
   if len(application.supported_languages) == 0:
-   application.supported_languages = self.twitter.supported_languages
+   application.supported_languages = self.twitter.supported_languages()
   self.get_lists()
   self.get_muted_users()
   self.settings.write()
@@ -389,18 +389,18 @@ class Session(base.baseSession):
     tweet.quoted_status.message = message
     if tweet.quoted_status.message == False: return False
     tweet.quoted_status.twishort = True
-    for i in tweet.quoted_status.entities.user_mentions:
-     if "@%s" % (i.screen_name) not in tweet.quoted_status.message and i.screen_name != tweet.user.screen_name:
-      if hasattr(tweet["quoted_status"], "retweeted_status")  and tweet.retweeted_status.user.screen_name == i.screen_name:
+    for i in tweet.quoted_status.entities["user_mentions"]:
+     if "@%s" % (i["screen_name"]) not in tweet.quoted_status.message and i["screen_name"] != tweet.user.screen_name:
+      if hasattr(tweet["quoted_status"], "retweeted_status")  and tweet.retweeted_status.user.screen_name == i["screen_name"]:
        continue
-     tweet.quoted_status.message = u"@%s %s" % (i.screen_name, tweet.message)
+     tweet.quoted_status.message = u"@%s %s" % (i["screen_name"], tweet.message)
    else:
     tweet.message = message
     if tweet.message == False: return False
     tweet.twishort = True
-    for i in tweet.entities.user_mentions:
-     if "@%s" % (i.screen_name) not in tweet.message and i.screen_name != tweet.user.screen_name:
-      if hasattr(tweet, "retweeted_status") and tweet.retweeted_status.user.screen_name == i.screen_name:
+    for i in tweet.entities["user_mentions"]:
+     if "@%s" % (i["screen_name"]) not in tweet.message and i["screen_name"] != tweet.user.screen_name:
+      if hasattr(tweet, "retweeted_status") and tweet.retweeted_status.user.screen_name == i["screen_name"]:
        continue
   return tweet
 
