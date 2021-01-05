@@ -20,7 +20,6 @@ import config
 from .long_tweets import twishort, tweets
 log = logging.getLogger("compose")
 
-
 def StripChars(s):
  """Converts any html entities in s to their unicode-decoded equivalents and returns a string."""
  entity_re = re.compile(r"&(#\d+|\w+);")
@@ -92,19 +91,19 @@ def compose_direct_message(item, db, relative_times, show_screen_names=False, se
   ts = item.created_timestamp
  text = StripChars(item.message_create.message_data.text)
  source = "DM"
- sender = session.get_user(item.message_create.sender_id)
- if db["user_name"] == sender.screen_name:
+ sender = session.get_user(item.message_create["sender_id"])
+ if db["user_name"] == sender["screen_name"]:
   if show_screen_names:
-   user = _(u"Dm to %s ") % (session.get_user(item.message_create.target.recipient_id).screen_name)
+   user = _(u"Dm to %s ") % (session.get_user(item.message_create["target"]["recipient_id"]).screen_name)
   else:
-   user = _(u"Dm to %s ") % (session.get_user(item.message_create.target.recipient_id).name)
+   user = _(u"Dm to %s ") % (session.get_user(item["message_create"]["target"]["recipient_id"]).name)
  else:
   if show_screen_names:
-   user = sender.screen_name
+   user = sender["screen_name"]
   else:
-   user = sender.name
+   user = sender["name"]
  if text[-1] in chars: text=text+"."
- text = utils.expand_urls(text, item.message_create.message_data.entities)
+ text = utils.expand_urls(text, item.message_create["message_data"]["entities"])
  return [user+", ", text, ts+", ", source]
 
 def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, session=None):
@@ -125,7 +124,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, 
   quoting_user = quoted_tweet.user.screen_name
  else:
   quoting_user = quoted_tweet.user.name
- source = re.sub(r"(?s)<.*?>", "", quoted_tweet.source)
+ source = quoted_tweet.source
  if hasattr(quoted_tweet, "retweeted_status"):
   text = "rt @%s: %s" % (quoted_tweet.retweeted_status.user.screen_name, text)
  if text[-1] in chars: text=text+"."
@@ -143,7 +142,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, 
 
 def compose_followers_list(tweet, db, relative_times=True, show_screen_names=False, session=None):
  if system == "Windows":
-  original_date = arrow.get(tweet.created_at, "ddd MMM D H:m:s Z YYYY", locale="en")
+  original_date = arrow.get(tweet.created_at, locale="en")
   if relative_times == True:
    ts = original_date.humanize(locale=languageHandler.curLang[:2])
   else:
@@ -152,7 +151,7 @@ def compose_followers_list(tweet, db, relative_times=True, show_screen_names=Fal
   ts = tweet.created_at
  if hasattr(tweet, "status"):
   if len(tweet.status) > 4 and system == "Windows":
-   original_date2 = arrow.get(tweet.status.created_at, "ddd MMM D H:m:s Z YYYY", locale="en")
+   original_date2 = arrow.get(tweet.status.created_at, locale="en")
    if relative_times:
     ts2 = original_date2.humanize(locale=languageHandler.curLang[:2])
    else:
