@@ -1,7 +1,4 @@
 ﻿# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from builtins import str
-from builtins import range
 import time
 import platform
 if platform.system() == "Windows":
@@ -24,7 +21,7 @@ from audio_services import youtube_utils
 from controller.buffers import baseBuffers
 from sessions.twitter import compose, utils
 from mysc.thread_utils import call_threaded
-from twython import TwythonError
+from tweepy.error import TweepError
 from pubsub import pub
 from sessions.twitter.long_tweets import twishort, tweets
 
@@ -137,7 +134,7 @@ class baseBufferController(baseBuffers.buffer):
   try:
    tweet = self.session.twitter.get_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
    tweet.full_text = utils.expand_urls(tweet.full_text, tweet.entities)
-  except TwythonError as e:
+  except TweepError as e:
    utils.twitter_error(e)
    return
   if message != None:
@@ -148,7 +145,7 @@ class baseBufferController(baseBuffers.buffer):
    try:
     tweet = self.session.twitter.get_status(id=l, include_ext_alt_text=True)
     tweet.full_text = utils.expand_urls(tweet.full_text, tweet.entities)
-   except TwythonError as e:
+   except TweepError as e:
     utils.twitter_error(e)
     return
    l = tweets.is_long(tweet)
@@ -202,8 +199,8 @@ class baseBufferController(baseBuffers.buffer):
    last_id = self.session.db[self.name][-1]["id"]
   try:
    items = self.session.get_more_items(self.function, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
+  except TweepError as e:
+   output.speak(e.reason, True)
   if items == None:
    return
   for i in items:
@@ -578,7 +575,7 @@ class baseBufferController(baseBuffers.buffer):
      self.session.twitter.destroy_status(id=self.get_right_tweet().id)
      self.session.db[self.name].pop(index)
     self.buffer.list.remove_item(index)
-   except TwythonError:
+   except TweepError:
     self.session.sound.play("error.ogg")
 
  @_tweets_exist
@@ -615,8 +612,8 @@ class directMessagesController(baseBufferController):
  def get_more_items(self):
   try:
    items = self.session.get_more_items(self.function, dm=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"], *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
+  except TweepError as e:
+   output.speak(e.reason, True)
    return
   if items == None:
    return
@@ -862,8 +859,8 @@ class peopleBufferController(baseBufferController):
  def get_more_items(self):
   try:
    items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"], *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
+  except TweepError as e:
+   output.speak(e.reason, True)
    return
   if items == None:
    return
@@ -1008,8 +1005,8 @@ class searchBufferController(baseBufferController):
    last_id = self.session.db[self.name][-1]["id"]
   try:
    items = self.session.search(self.name, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
+  except TweepError as e:
+   output.speak(e.reason, True)
   if items == None:
    return
   for i in items:
@@ -1074,8 +1071,8 @@ class searchPeopleBufferController(peopleBufferController):
   self.kwargs["page"] += 1
   try:
    items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"],  *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
+  except TweepError as e:
+   output.speak(e.reason, True)
    return
   if items == None:
    return
@@ -1256,7 +1253,7 @@ class conversationBufferController(searchBufferController):
     while tweet["in_reply_to_status_id"] != None:
      try:
       tweet = self.session.twitter.show_status(id=tweet["in_reply_to_status_id"], tweet_mode="extended")
-     except TwythonError as err:
+     except TweepError as err:
       break
      self.statuses.insert(0, tweet)
      self.ids.append(tweet["id"])
