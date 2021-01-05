@@ -133,7 +133,7 @@ def if_user_exists(twitter, user):
   return data
  except TweepError as err:
   if err.error_code == 50:
-  return None
+   return None
   else:
    return user
 
