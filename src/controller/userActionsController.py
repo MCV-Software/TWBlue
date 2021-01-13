@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from builtins import object
-import re
 import widgetUtils
 import output
 from wxUI.dialogs import userActions
 from pubsub import pub
-from twython import TwythonError
+from tweepy.error  import TweepError
 from extra import autocompletionUsers
 
 class userActionsController(object):
@@ -32,51 +29,51 @@ class userActionsController(object):
  def follow(self, user):
   try:
    self.session.twitter.create_friendship(screen_name=user )
-  except TwythonError as err:
-   output.speak("Error %s: %s" % (err.error_code, err.msg), True)
+  except TweepError as err:
+   output.speak("Error %s: %s" % (err.api_code, err.reason), True)
 
  def unfollow(self, user):
   try:
    id = self.session.twitter.destroy_friendship(screen_name=user )
-  except TwythonError as err:
-   output.speak("Error %s: %s" % (err.error_code, err.msg), True)
+  except TweepError as err:
+   output.speak("Error %s: %s" % (err.api_code, err.reason), True)
 
  def mute(self, user):
   try:
    id = self.session.twitter.create_mute(screen_name=user )
-  except TwythonError as err:
-   output.speak("Error %s: %s" % (err.error_code, err.msg), True)
+  except TweepError as err:
+   output.speak("Error %s: %s" % (err.api_code, err.reason), True)
 
  def unmute(self, user):
   try:
    id = self.session.twitter.destroy_mute(screen_name=user )
-  except TwythonError as err:
-   output.speak("Error %s: %s" % (err.error_code, err.msg), True)
+  except TweepError as err:
+   output.speak("Error %s: %s" % (err.api_code, err.reason), True)
 
  def report(self, user):
   try:
    id = self.session.twitter.report_spam(screen_name=user )
-  except TwythonError as err:
-   output.speak("Error %s: %s" % (err.error_code, err.msg), True)
+  except TweepError as err:
+   output.speak("Error %s: %s" % (err.api_code, err.reason), True)
 
  def block(self, user):
   try:
    id = self.session.twitter.create_block(screen_name=user )
-  except TwythonError as err:
-   output.speak("Error %s: %s" % (err.error_code, err.msg), True)
+  except TweepError as err:
+   output.speak("Error %s: %s" % (err.api_code, err.reason), True)
 
  def unblock(self, user):
   try:
    id = self.session.twitter.destroy_block(screen_name=user )
-  except TwythonError as err:
-   output.speak("Error %s: %s" % (err.error_code, err.msg), True)
+  except TweepError as err:
+   output.speak("Error %s: %s" % (err.api_code, err.reason), True)
 
  def ignore_client(self, user):
   tweet = self.buffer.get_right_tweet()
-  if "sender" in tweet:
+  if hasattr(tweet, "sender"):
    output.speak(_(u"You can't ignore direct messages"))
    return
-  client = re.sub(r"(?s)<.*?>", "", tweet["source"])
+  client = tweet.source
   if client not in self.session.settings["twitter"]["ignored_clients"]:
    self.session.settings["twitter"]["ignored_clients"].append(client)
    self.session.settings.write()
