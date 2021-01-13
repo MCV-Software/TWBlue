@@ -132,7 +132,7 @@ def if_user_exists(twitter, user):
   data = twitter.get_user(screen_name=user)
   return data
  except TweepError as err:
-  if err.error_code == 50:
+  if err.api_code == 50:
    return None
   else:
    return user
@@ -201,7 +201,7 @@ def filter_tweet(tweet, tweet_data, settings, buffer_name):
 def twitter_error(error):
  if error.api_code == 179:
   msg = _(u"Sorry, you are not authorised to see this status.")
- elif error.error_code == 144:
+ elif error.api_code == 144:
   msg = _(u"No status found with that ID")
  else:
   msg = _(u"Error code {0}").format(error.api_code,)
