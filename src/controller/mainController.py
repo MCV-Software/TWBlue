@@ -564,7 +564,7 @@ class Controller(object):
     buff.session.db["lists"].pop(older_list)
     buff.session.db["lists"].append(list)
    except TweepError as e:
-    output.speak("error %s: %s" % (e.error_code, e.reason))
+    output.speak("error %s: %s" % (e.api_code, e.reason))
 
  def remove_from_list(self, *args, **kwargs):
   buff = self.get_best_buffer()
@@ -592,7 +592,7 @@ class Controller(object):
     buff.session.db["lists"].pop(older_list)
     buff.session.db["lists"].append(list)
    except TweepError as e:
-    output.speak("error %s: %s" % (e.error_code, e.reason))
+    output.speak("error %s: %s" % (e.api_code, e.reason))
 
  def list_manager(self, *args, **kwargs):
   s = self.get_best_buffer().session
