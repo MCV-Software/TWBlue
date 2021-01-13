@@ -30,7 +30,7 @@ from sessions.twitter  import session as session_
 from pubsub import pub
 import sound
 import output
-from twython import TwythonError, TwythonAuthError
+from tweepy.error import TweepError
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 from mysc import restart
@@ -526,9 +526,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
@@ -543,9 +543,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
@@ -557,23 +557,23 @@ class Controller(object):
   dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
   if dlg.get_response() == widgetUtils.OK:
    try:
-    list = buff.session.twitter.add_list_member(list_id=buff.session.db["lists"][dlg.get_item()]["id"], screen_name=user)
-    older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()]["id"], buff.session.db["lists"])
-    listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()]["name"].lower()), buff.session.db["user_name"])
+    list = buff.session.twitter.add_list_member(list_id=buff.session.db["lists"][dlg.get_item()].id, screen_name=user)
+    older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()].id, buff.session.db["lists"])
+    listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()].name.lower()), buff.session.db["user_name"])
     if listBuffer != None: listBuffer.get_user_ids()
     buff.session.db["lists"].pop(older_list)
     buff.session.db["lists"].append(list)
-   except TwythonError as e:
-    output.speak("error %s: %s" % (e.error_code, e.msg))
+   except TweepError as e:
+    output.speak("error %s: %s" % (e.error_code, e.reason))
 
  def remove_from_list(self, *args, **kwargs):
   buff = self.get_best_buffer()
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
@@ -585,14 +585,14 @@ class Controller(object):
   dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
   if dlg.get_response() == widgetUtils.OK:
    try:
-    list = buff.session.twitter.delete_list_member(list_id=buff.session.db["lists"][dlg.get_item()]["id"], screen_name=user)
-    older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()]["id"], buff.session.db["lists"])
-    listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()]["name"].lower()), buff.session.db["user_name"])
+    list = buff.session.twitter.remove_list_member(list_id=buff.session.db["lists"][dlg.get_item()].id, screen_name=user)
+    older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()].id, buff.session.db["lists"])
+    listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()].name.lower()), buff.session.db["user_name"])
     if listBuffer != None: listBuffer.get_user_ids()
     buff.session.db["lists"].pop(older_list)
     buff.session.db["lists"].append(list)
-   except TwythonError as e:
-    output.speak("error %s: %s" % (e.error_code, e.msg))
+   except TweepError as e:
+    output.speak("error %s: %s" % (e.error_code, e.reason))
 
  def list_manager(self, *args, **kwargs):
   s = self.get_best_buffer().session
@@ -665,9 +665,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users)
@@ -677,9 +677,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "unfollow")
@@ -689,9 +689,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "mute")
@@ -701,9 +701,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "unmute")
@@ -713,9 +713,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "block")
@@ -725,9 +725,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "unblock")
@@ -737,9 +737,9 @@ class Controller(object):
   if not hasattr(buff, "get_right_tweet"): return
   tweet = buff.get_right_tweet()
   if buff.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "report")
@@ -771,7 +771,7 @@ class Controller(object):
   if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
    return
   else:
-   id = buffer.get_tweet()["id"]
+   id = buffer.get_tweet().id
    call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
 
  def remove_from_favourites(self, *args, **kwargs):
@@ -779,7 +779,7 @@ class Controller(object):
   if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
    return
   else:
-   id = buffer.get_tweet()["id"]
+   id = buffer.get_tweet().id
    call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
 
  def toggle_like(self, *args, **kwargs):
@@ -787,9 +787,9 @@ class Controller(object):
   if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
    return
   else:
-   id = buffer.get_tweet()["id"]
-   tweet = buffer.session.twitter.show_status(id=id, include_ext_alt_text=True, tweet_mode="extended")
-   if tweet["favorited"] == False:
+   id = buffer.get_tweet().id
+   tweet = buffer.session.twitter.get_status(id=id, include_ext_alt_text=True, tweet_mode="extended")
+   if tweet.favorited == False:
     call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
    else:
     call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
@@ -923,8 +923,8 @@ class Controller(object):
 
  def open_conversation(self, *args, **kwargs):
   buffer = self.get_current_buffer()
-  id = buffer.get_right_tweet()["id_str"]
-  user = buffer.get_right_tweet()["user"]["screen_name"]
+  id = buffer.get_right_tweet().id_str
+  user = buffer.get_right_tweet().user["screen_name"]
   search = twitterBuffers.conversationBufferController(self.view.nb, "search", "%s-searchterm" % (id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=id, q="@{0}".format(user,))
   search.tweet = buffer.get_right_tweet()
   search.start_stream(start=True)
@@ -964,9 +964,9 @@ class Controller(object):
  def reverse_geocode(self, event=None):
   try:
    tweet = self.get_current_buffer().get_tweet()
-   if tweet["coordinates"] != None:
-    x = tweet["coordinates"]["coordinates"][0]
-    y = tweet["coordinates"]["coordinates"][1]
+   if tweet.coordinates != None:
+    x = tweet.coordinates["coordinates"][0]
+    y = tweet.coordinates["coordinates"][1]
     address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
     if event == None: output.speak(address[0].__str__())
     else: self.view.show_address(address[0].__str__())
@@ -984,9 +984,9 @@ class Controller(object):
  def view_reverse_geocode(self, event=None):
   try:
    tweet = self.get_current_buffer().get_right_tweet()
-   if tweet["coordinates"] != None:
-    x = tweet["coordinates"]["coordinates"][0]
-    y = tweet["coordinates"]["coordinates"][1]
+   if tweet.coordinates != None:
+    x = tweet.coordinates["coordinates"][0]
+    y = tweet.coordinates["coordinates"][1]
     address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
     dlg = commonMessageDialogs.view_geodata(address[0].__str__())
    else:
@@ -1259,7 +1259,7 @@ class Controller(object):
 
  def manage_sent_dm(self, data, user):
   buffer = self.search_buffer("sent_direct_messages", user)
-  if buffer == None: return
+  if buffer == Nogne: return
   play_sound = "dm_sent.ogg"
   if "sent_direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
@@ -1326,7 +1326,7 @@ class Controller(object):
       i.start_stream()
      else:
       i.start_stream(play_sound=False)
-    except TwythonAuthError:
+    except TweepError:
      buff = self.view.search(i.name, i.account)
      i.remove_buffer(force=True)
      commonMessageDialogs.blocked_timeline()
@@ -1350,34 +1350,34 @@ class Controller(object):
    try:
     if sessions.sessions[i].is_logged == False: continue
     sessions.sessions[i].check_connection()
-   except TwythonError: # We shouldn't allow this function to die.
+   except TweepError: # We shouldn't allow this function to die.
     pass
 
  def create_new_buffer(self, buffer, account, create):
   buff = self.search_buffer("home_timeline", account)
   if create == True:
    if buffer == "favourites":
-    favourites = twitterBuffers.baseBufferController(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"], tweet_mode="extended")
+    favourites = twitterBuffers.baseBufferController(self.view.nb, "favorites", "favourites", buff.session, buff.session.db["user_name"], tweet_mode="extended")
     self.buffers.append(favourites)
     self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     favourites.start_stream(play_sound=False)
    if buffer == "followers":
-    followers = twitterBuffers.peopleBufferController(self.view.nb, "get_followers_list", "followers", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
+    followers = twitterBuffers.peopleBufferController(self.view.nb, "followers", "followers", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
     self.buffers.append(followers)
     self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     followers.start_stream(play_sound=False)
    elif buffer == "friends":
-    friends = twitterBuffers.peopleBufferController(self.view.nb, "get_friends_list", "friends", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
+    friends = twitterBuffers.peopleBufferController(self.view.nb, "friends", "friends", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
     self.buffers.append(friends)
     self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     friends.start_stream(play_sound=False)
    elif buffer == "blocked":
-    blocks = twitterBuffers.peopleBufferController(self.view.nb, "list_blocks", "blocked", buff.session, buff.session.db["user_name"])
+    blocks = twitterBuffers.peopleBufferController(self.view.nb, "blocks", "blocked", buff.session, buff.session.db["user_name"])
     self.buffers.append(blocks)
     self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     blocks.start_stream(play_sound=False)
    elif buffer == "muted":
-    muted = twitterBuffers.peopleBufferController(self.view.nb, "get_muted_users_list", "muted", buff.session, buff.session.db["user_name"])
+    muted = twitterBuffers.peopleBufferController(self.view.nb, "mutes", "muted", buff.session, buff.session.db["user_name"])
     self.buffers.append(muted)
     self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
     muted.start_stream(play_sound=False)
@@ -1391,7 +1391,7 @@ class Controller(object):
    if create in buff.session.settings["other_buffers"]["lists"]:
     output.speak(_(u"This list is already opened"), True)
     return
-   tl = twitterBuffers.listBufferController(self.view.nb, "get_list_statuses", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]), tweet_mode="extended")
+   tl = twitterBuffers.listBufferController(self.view.nb, "list_timeline", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]), tweet_mode="extended")
    buff.session.lists.append(tl)
    pos=self.view.search("lists", buff.session.db["user_name"])
    self.insert_buffer(tl, pos)
@@ -1532,7 +1532,7 @@ class Controller(object):
    if i.session != None and i.session.is_logged == True:
     try:
      i.start_stream(mandatory=True)
-    except TwythonAuthError:
+    except TweepError:
      buff = self.view.search(i.name, i.account)
      i.remove_buffer(force=True)
      commonMessageDialogs.blocked_timeline()
