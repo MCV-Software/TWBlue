@@ -924,7 +924,7 @@ class Controller(object):
  def open_conversation(self, *args, **kwargs):
   buffer = self.get_current_buffer()
   id = buffer.get_right_tweet().id_str
-  user = buffer.get_right_tweet().user["screen_name"]
+  user = buffer.get_right_tweet().user.screen_name
   search = twitterBuffers.conversationBufferController(self.view.nb, "search", "%s-searchterm" % (id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=id, q="@{0}".format(user,))
   search.tweet = buffer.get_right_tweet()
   search.start_stream(start=True)

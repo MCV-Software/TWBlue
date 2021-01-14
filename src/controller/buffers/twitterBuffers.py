@@ -1248,23 +1248,23 @@ class conversationBufferController(searchBufferController):
     self.statuses = []
     self.ids = []
     self.statuses.append(self.tweet)
-    self.ids.append(self.tweet["id"])
+    self.ids.append(self.tweet.id)
     tweet = self.tweet
-    while tweet["in_reply_to_status_id"] != None:
+    while tweet.in_reply_to_status_id != None:
      try:
-      tweet = self.session.twitter.show_status(id=tweet["in_reply_to_status_id"], tweet_mode="extended")
+      tweet = self.session.twitter.get_status(id=tweet.in_reply_to_status_id, tweet_mode="extended")
      except TweepError as err:
       break
      self.statuses.insert(0, tweet)
-     self.ids.append(tweet["id"])
-    if tweet["in_reply_to_status_id"] == None:
-     self.kwargs["since_id"] = tweet["id"]
-     self.ids.append(tweet["id"])
+     self.ids.append(tweet.id)
+    if tweet.in_reply_to_status_id == None:
+     self.kwargs["since_id"] = tweet.id
+     self.ids.append(tweet.id)
    val2 = self.session.search(self.name, tweet_mode="extended", *self.args, **self.kwargs)
    for i in val2:
-    if i["in_reply_to_status_id"] in self.ids:
+    if i.in_reply_to_status_id in self.ids:
      self.statuses.append(i)
-     self.ids.append(i["id"])
+     self.ids.append(i.id)
      tweet = i
    number_of_items = self.session.order_buffer(self.name, self.statuses)
    log.debug("Number of items retrieved: %d" % (number_of_items,))
