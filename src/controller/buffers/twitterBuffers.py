@@ -22,6 +22,7 @@ from controller.buffers import baseBuffers
 from sessions.twitter import compose, utils
 from mysc.thread_utils import call_threaded
 from tweepy.error import TweepError
+from tweepy.cursor import Cursor
 from pubsub import pub
 from sessions.twitter.long_tweets import twishort, tweets
 
@@ -737,13 +738,9 @@ class listBufferController(baseBufferController):
   super(listBufferController, self).start_stream(mandatory, play_sound, avoid_autoreading)
 
  def get_user_ids(self):
-  next_cursor = -1
-  while(next_cursor):
-   users = self.session.twitter.get_list_members(list_id=self.list_id, cursor=next_cursor, include_entities=False, skip_status=True)
-   for i in users['users']:
-    if i["id"] not in self.users:
-     self.users.append(i["id"])
-    next_cursor = users["next_cursor"]
+  for i in Cursor(self.session.twitter.list_members, list_id=self.list_id, include_entities=False, skip_status=True).items():
+    if i.id not in self.users:
+     self.users.append(i.id)
 
  def remove_buffer(self, force=False):
   if force == False:
