@@ -584,7 +584,7 @@ class baseBufferController(baseBuffers.buffer):
    try:
     if self.name == "direct_messages" or self.name == "sent_direct_messages":
      self.session.twitter.destroy_direct_message(id=self.get_right_tweet().id)
-     self.session.db[self.name]["items"].pop(index)
+     self.session.db[self.name].pop(index)
     else:
      self.session.twitter.destroy_status(id=self.get_right_tweet().id)
      self.session.db[self.name].pop(index)
@@ -866,31 +866,48 @@ class peopleBufferController(baseBufferController):
    self.execution_time = current_time
    log.debug("Starting stream for %s buffer, %s account" % (self.name, self.account,))
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-   val = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
+   # try to retrieve the cursor for the current buffer.
+   cursor = self.session.db["cursors"].get(self.name)
+   try:
+    # We need to assign all results somewhere else so the cursor variable would b generated.
+    val = Cursor(getattr(self.session.twitter, self.function), *self.args, **self.kwargs).items(self.session.settings["general"]["max_tweets_per_call"])
+    results = [i for i in val]
+    self.session.db["cursors"][self.name] = val.page_iterator.next_cursor
+    val = results
+    val.reverse()
+   except TweepError as e:
+    log.error("Error %s: %s" % (e.api_code, e.reason))
+    return
+   number_of_items = self.session.order_people(self.name, val)
+   log.debug("Number of items retrieved: %d" % (number_of_items,))
    self.put_items_on_list(val)
    if hasattr(self, "finished_timeline") and self.finished_timeline == False:
     self.username = self.session.api_call("get_user", **self.kwargs).screen_name
     self.finished_timeline = True
-   if val > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
+   if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
     self.session.sound.play(self.sound)
    # Autoread settings
    if avoid_autoreading == False and mandatory == True and val > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
-    self.auto_read(val)
-   return val
+    self.auto_read(number_of_items)
+   return number_of_items
 
  def get_more_items(self):
   try:
-   items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"], *self.args, **self.kwargs)
+   cursor = self.session.db["cursors"].get(self.name)
+   items = Cursor(getattr(self.session.twitter, self.function), users=True, cursor=cursor, *self.args, **self.kwargs).items(self.session.settings["general"]["max_tweets_per_call"])
+   results = [i for i in items]
+   self.session.db["cursors"][self.name] = items.page_iterator.next_cursor
+   items = results
   except TweepError as e:
-   output.speak(e.reason, True)
+   log.error("Error %s: %s" % (e.api_code, e.reason))
    return
   if items == None:
    return
   for i in items:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    self.session.db[self.name]["items"].insert(0, i)
+    self.session.db[self.name].insert(0, i)
    else:
-    self.session.db[self.name]["items"].append(i)
+    self.session.db[self.name].append(i)
   selected = self.buffer.list.get_selected()
   if self.session.settings["general"]["reverse_timelines"] == True:
    for i in items:
@@ -907,18 +924,18 @@ class peopleBufferController(baseBufferController):
   log.debug("The list contains %d items" % (self.buffer.list.get_count(),))
 #  log.debug("Putting %d items on the list..." % (number_of_items,))
   if self.buffer.list.get_count() == 0:
-   for i in self.session.db[self.name]["items"]:
+   for i in self.session.db[self.name]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
     self.buffer.list.insert_item(False, *tweet)
    self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
 #   self.buffer.set_list_position()
   elif self.buffer.list.get_count() > 0:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    for i in self.session.db[self.name]["items"][len(self.session.db[self.name]["items"])-number_of_items:]:
+    for i in self.session.db[self.name][len(self.session.db[self.name])-number_of_items:]:
      tweet = self.compose_function(i, self.session.db)
      self.buffer.list.insert_item(False, *tweet)
    else:
-    items = self.session.db[self.name]["items"][0:number_of_items]
+    items = self.session.db[self.name][0:number_of_items]
     items.reverse()
     for i in items:
      tweet = self.compose_function(i, self.session.db)
@@ -926,7 +943,7 @@ class peopleBufferController(baseBufferController):
   log.debug("now the list contains %d items" % (self.buffer.list.get_count(),))
 
  def get_right_tweet(self):
-  tweet = self.session.db[self.name]["items"][self.buffer.list.get_selected()]
+  tweet = self.session.db[self.name][self.buffer.list.get_selected()]
   return tweet
 
  def add_new_item(self, item):
@@ -941,8 +958,8 @@ class peopleBufferController(baseBufferController):
  def clear_list(self):
   dlg = commonMessageDialogs.clear_list()
   if dlg == widgetUtils.YES:
-   self.session.db[self.name]["items"] = []
-   self.session.db[self.name]["cursor"] = -1
+   self.session.db[self.name] = []
+   self.session.db["cursors"][self.name] = -1
    self.buffer.list.clear()
 
  def interact(self):
@@ -969,9 +986,9 @@ class peopleBufferController(baseBufferController):
  def auto_read(self, number_of_items):
   if number_of_items == 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    tweet = self.session.db[self.name]["items"][-1]
+    tweet = self.session.db[self.name][-1]
    else:
-    tweet = self.session.db[self.name["items"]][0]
+    tweet = self.session.db[self.name][0]
    output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
   elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(_(u"{0} new followers.").format(number_of_items))
@@ -1065,9 +1082,9 @@ class searchPeopleBufferController(peopleBufferController):
    return
   for i in items:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    self.session.db[self.name]["items"].insert(0, i)
+    self.session.db[self.name].insert(0, i)
    else:
-    self.session.db[self.name]["items"].append(i)
+    self.session.db[self.name].append(i)
   selected = self.buffer.list.get_selected()
 #  self.put_items_on_list(len(items))
   if self.session.settings["general"]["reverse_timelines"] == True:
