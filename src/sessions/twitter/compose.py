@@ -150,7 +150,7 @@ def compose_followers_list(tweet, db, relative_times=True, show_screen_names=Fal
  else:
   ts = tweet.created_at
  if hasattr(tweet, "status"):
-  if len(tweet.status) > 4 and system == "Windows":
+  if system == "Windows":
    original_date2 = arrow.get(tweet.status.created_at, locale="en")
    if relative_times:
     ts2 = original_date2.humanize(locale=languageHandler.curLang[:2])
