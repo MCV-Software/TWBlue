@@ -82,26 +82,26 @@ def compose_direct_message(item, db, relative_times, show_screen_names=False, se
  if system == "Windows":
    # Let's remove the last 3 digits in the timestamp string.
    # Twitter sends their "epoch" timestamp with 3 digits for milliseconds and arrow doesn't like it.
-  original_date = arrow.get(int(item.created_timestamp[:-3]))
+  original_date = arrow.get(int(item.created_timestamp))
   if relative_times == True:
    ts = original_date.humanize(locale=languageHandler.curLang[:2])
   else:
    ts = original_date.shift(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
  else:
   ts = item.created_timestamp
- text = StripChars(item.message_create.message_data.text)
+ text = StripChars(item.message_create["message_data"]["text"])
  source = "DM"
  sender = session.get_user(item.message_create["sender_id"])
- if db["user_name"] == sender["screen_name"]:
+ if db["user_name"] == sender.screen_name:
   if show_screen_names:
    user = _(u"Dm to %s ") % (session.get_user(item.message_create["target"]["recipient_id"]).screen_name)
   else:
-   user = _(u"Dm to %s ") % (session.get_user(item["message_create"]["target"]["recipient_id"]).name)
+   user = _(u"Dm to %s ") % (session.get_user(item.message_create["target"]["recipient_id"]).name)
  else:
   if show_screen_names:
-   user = sender["screen_name"]
+   user = sender.screen_name
   else:
-   user = sender["name"]
+   user = sender.name
  if text[-1] in chars: text=text+"."
  text = utils.expand_urls(text, item.message_create["message_data"]["entities"])
  return [user+", ", text, ts+", ", source]

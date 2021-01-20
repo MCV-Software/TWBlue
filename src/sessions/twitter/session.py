@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 """ This is the main session needed to access all Twitter Features."""
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from builtins import range
 import os
 import time
 import logging
@@ -12,8 +9,8 @@ import config
 import output
 import application
 from pubsub import pub
-from twython import Twython
 import tweepy
+from tweepy.error import TweepError
 from mysc.thread_utils import call_threaded
 from keys import keyring
 from sessions import base
@@ -32,6 +29,8 @@ class Session(base.baseSession):
   data list: A list with tweets.
   ignore_older bool: if set to True, items older than the first element on the list will be ignored.
   returns the number of items that have been added in this execution"""
+  if name == "direct_messages":
+   return self.order_direct_messages(data)
   num = 0
   last_id = None
   if (name in self.db) == False:
@@ -87,24 +86,27 @@ class Session(base.baseSession):
   incoming = 0
   sent = 0
   if ("direct_messages" in self.db) == False:
-   self.db["direct_messages"] = {}
-   self.db["direct_messages"]["items"] = []
+   self.db["direct_messages"] = []
   for i in data:
-   if i.message_create.sender_id == self.db["user_id"]:
-    if "sent_direct_messages" in self.db and utils.find_item(i.id, self.db["sent_direct_messages"]["items"]) == None:
-     if self.settings["general"]["reverse_timelines"] == False: self.db["sent_direct_messages"]["items"].append(i)
-     else: self.db["sent_direct_messages"]["items"].insert(0, i)
+   # Twitter returns sender_id as str, which must be converted to int in order to match to our user_id object.
+   if int(i.message_create["sender_id"]) == self.db["user_id"]:
+    if "sent_direct_messages" in self.db and utils.find_item(i.id, self.db["sent_direct_messages"]) == None:
+     if self.settings["general"]["reverse_timelines"] == False: self.db["sent_direct_messages"].append(i)
+     else: self.db["sent_direct_messages"].insert(0, i)
      sent = sent+1
    else:
-    if utils.find_item(i.id, self.db["direct_messages"]["items"]) == None:
-     if self.settings["general"]["reverse_timelines"] == False: self.db["direct_messages"]["items"].append(i)
-     else: self.db["direct_messages"]["items"].insert(0, i)
+    if utils.find_item(i.id, self.db["direct_messages"]) == None:
+     if self.settings["general"]["reverse_timelines"] == False: self.db["direct_messages"].append(i)
+     else: self.db["direct_messages"].insert(0, i)
      incoming = incoming+1
   pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
   return incoming
 
  def __init__(self, *args, **kwargs):
   super(Session, self).__init__(*args, **kwargs)
+  # Adds here the optional cursors objects.
+  cursors = dict(direct_messages=-1)
+  self.db["cursors"] = cursors
   self.reconnection_function_active = False
   self.counter = 0
   self.lists = []
@@ -410,11 +412,11 @@ class Session(base.baseSession):
   returns an user dict."""
   if ("users" in self.db) == False or (id in self.db["users"]) == False:
    try:
-    user = self.twitter.show_user(id=id)
-   except TwythonError:
+    user = self.twitter.get_user(id=id)
+   except TweepError as err:
     user = dict(screen_name="deleted_account", name="Deleted account")
     return user
-   self.db["users"][user["id_str"]] = user
+   self.db["users"][user.id_str] = user
    return user
   else:
    return self.db["users"][id]
@@ -429,8 +431,8 @@ class Session(base.baseSession):
    return user["id_str"]
   else:
    for i in list(self.db["users"].keys()):
-    if self.db["users"][i]["screen_name"] == screen_name:
-     return self.db["users"][i]["id_str"]
+    if self.db["users"][i].screen_name == screen_name:
+     return self.db["users"][i].id_str
    user = utils.if_user_exists(self.twitter, screen_name)
-   self.db["users"][user["id_str"]] = user
-   return user["id_str"]
+   self.db["users"][user.id_str] = user
+   return user.id_str

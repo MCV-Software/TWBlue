@@ -528,7 +528,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
@@ -545,7 +545,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
@@ -573,7 +573,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
@@ -667,7 +667,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users)
@@ -679,7 +679,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "unfollow")
@@ -691,7 +691,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "mute")
@@ -703,7 +703,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "unmute")
@@ -715,7 +715,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "block")
@@ -727,7 +727,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "unblock")
@@ -739,7 +739,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   u = userActionsController.userActionsController(buff, users, "report")
@@ -804,7 +804,7 @@ class Controller(object):
   elif buffer.type == "dm":
    non_tweet = buffer.get_formatted_message()
    item = buffer.get_right_tweet()
-   original_date = arrow.get(int(item["created_timestamp"][:-3]))
+   original_date = arrow.get(int(item.created_timestamp))
    date = original_date.shift(seconds=buffer.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
    msg = messages.viewTweet(non_tweet, [], False, date=date)
   else:
@@ -826,7 +826,7 @@ class Controller(object):
   if buff.type == "people":
    users = [tweet.screen_name]
   elif buff.type == "dm":
-   users = [buff.session.get_user(tweet.message_create["sender_id"])["screen_name"]]
+   users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
   else:
    users = utils.get_all_users(tweet, buff.session.db)
   dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
@@ -1259,7 +1259,7 @@ class Controller(object):
 
  def manage_sent_dm(self, data, user):
   buffer = self.search_buffer("sent_direct_messages", user)
-  if buffer == Nogne: return
+  if buffer == None: return
   play_sound = "dm_sent.ogg"
   if "sent_direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
    self.notify(buffer.session, play_sound=play_sound)
