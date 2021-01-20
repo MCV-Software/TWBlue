@@ -41,7 +41,7 @@ class attachDialog(widgetUtils.BaseDialog):
 		return (openFileDialog.GetPath(), dsc)
 
 	def ask_description(self):
-		dlg = wx.TextEntryDialog(self, _(u"please provide a description"), _(u"Description"), defaultValue="")
+		dlg = wx.TextEntryDialog(self, _(u"please provide a description"), _(u"Description"))
 		dlg.ShowModal()
 		result = dlg.GetValue()
 		dlg.Destroy()

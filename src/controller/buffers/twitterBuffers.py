@@ -84,6 +84,7 @@ class baseBufferController(baseBuffers.buffer):
   return _(u"Unknown buffer")
 
  def post_status(self, *args, **kwargs):
+  item = None
   title = _(u"Tweet")
   caption = _(u"Write the tweet here")
   tweet = messages.tweet(self.session, title, caption, "")
@@ -99,22 +100,22 @@ class baseBufferController(baseBuffers.buffer):
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
    if not hasattr(tweet, "attachments") or len(tweet.attachments) == 0:
     item = self.session.api_call(call_name="update_status", status=text, _sound="tweet_send.ogg", tweet_mode="extended")
-#   else:
-#    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments, _sound="tweet_send.ogg")
+   else:
+    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments)
    if item != None:
     pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
   self.session.settings.write()
 
- # ToDo: Update to tweepy.
  def post_with_media(self, text, attachments):
   media_ids = []
   for i in attachments:
-   photo = open(i["file"], "rb")
-   img = self.session.twitter.upload_media(media=photo)
-   self.session.twitter.create_metadata(media_id=img["media_id"], alt_text=dict(text=i["description"]))
-   media_ids.append(img["media_id"])
-  self.session.twitter.update_status(status=text, media_ids=media_ids)
+   img = self.session.twitter.media_upload(i["file"])
+   self.session.twitter.create_media_metadata(media_id=img.media_id, alt_text=i["description"])
+   media_ids.append(img.media_id)
+  item = self.session.twitter.update_status(status=text, media_ids=media_ids)
+  if item != None:
+   pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
 
  def get_formatted_message(self):
   if self.type == "dm" or self.name == "direct_messages":
