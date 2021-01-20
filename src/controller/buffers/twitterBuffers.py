@@ -196,17 +196,18 @@ class baseBufferController(baseBuffers.buffer):
  def get_more_items(self):
   elements = []
   if self.session.settings["general"]["reverse_timelines"] == False:
-   last_id = self.session.db[self.name][0]["id"]
+   last_id = self.session.db[self.name][0].id
   else:
-   last_id = self.session.db[self.name][-1]["id"]
+   last_id = self.session.db[self.name][-1].id
   try:
-   items = self.session.get_more_items(self.function, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
+   items = Cursor(getattr(self.session.twitter, self.function), max_id=last_id, *self.args, **self.kwargs).items(self.session.settings["general"]["max_tweets_per_call"])
   except TweepError as e:
-   output.speak(e.reason, True)
+   log.error("Error %s: %s" % (e.api_code, e.reason))
+   return
   if items == None:
    return
   for i in items:
-   if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i["id"], self.session.db[self.name]) == None:
+   if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i.id, self.session.db[self.name]) == None:
     i = self.session.check_quoted_status(i)
     i = self.session.check_long_tweet(i)
     elements.append(i)
@@ -223,8 +224,6 @@ class baseBufferController(baseBuffers.buffer):
    for i in items:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(False, *tweet)
-#   self.buffer.list.select_item(selection+elements)
-#  else:
    self.buffer.list.select_item(selection)
   output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
 
@@ -994,41 +993,6 @@ class searchBufferController(baseBufferController):
     return True
   elif dlg == widgetUtils.NO:
    return False
-
- def get_more_items(self):
-  elements = []
-  if self.session.settings["general"]["reverse_timelines"] == False:
-   last_id = self.session.db[self.name][0]["id"]
-  else:
-   last_id = self.session.db[self.name][-1]["id"]
-  try:
-   items = self.session.search(self.name, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
-  except TweepError as e:
-   output.speak(e.reason, True)
-  if items == None:
-   return
-  for i in items:
-   if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i["id"], self.session.db[self.name]) == None:
-    i = self.session.check_quoted_status(i)
-    i = self.session.check_long_tweet(i)
-    elements.append(i)
-    if self.session.settings["general"]["reverse_timelines"] == False:
-     self.session.db[self.name].insert(0, i)
-    else:
-     self.session.db[self.name].append(i)
-  selection = self.buffer.list.get_selected()
-  if self.session.settings["general"]["reverse_timelines"] == False:
-   for i in elements:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
-    self.buffer.list.insert_item(True, *tweet)
-  else:
-   for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
-    self.buffer.list.insert_item(False, *tweet)
-#   self.buffer.list.select_item(selection+elements)
-#  else:
-   self.buffer.list.select_item(selection)
-  output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
 
 class searchPeopleBufferController(peopleBufferController):
 
