@@ -1134,9 +1134,9 @@ class trendsBufferController(baseBuffers.buffer):
   if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
    self.execution_time = current_time
    try:
-    data = self.session.call_paged("get_place_trends", id=self.trendsFor)
-   except:
-    return
+    data = self.session.twitter.trends_place(id=self.trendsFor)
+   except TweepError as err:
+    log.error("Error %s: %s" % (err.api_code, err.reason))
    if not hasattr(self, "name_"):
     self.name_ = data[0]["locations"][0]["name"]
    self.trends = data[0]["trends"]
