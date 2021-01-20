@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-# -*- coding: utf-8 -*-
 from . import baseDialog
 import wx
 
@@ -11,8 +8,7 @@ class trendingTopicsDialog(baseDialog.BaseWXDialog):
   panel = wx.Panel(self)
   sizer = wx.BoxSizer(wx.VERTICAL)
   self.SetTitle(_(u"View trending topics"))
-  label = wx.StaticText(panel, -1, _(u"Trending topics by"))
-  sizer.Add(label, 0, wx.ALL, 5)
+  label = wx.StaticText(panel, wx.NewId(), _(u"Trending topics by"))
   self.country = wx.RadioButton(panel, -1, _(u"Country"), style=wx.RB_GROUP)
   self.city = wx.RadioButton(panel, -1, _(u"City"))
   radioSizer = wx.BoxSizer(wx.HORIZONTAL)
