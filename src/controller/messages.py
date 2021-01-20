@@ -216,52 +216,52 @@ class viewTweet(basicTweet):
    text = ""
    for i in range(0, len(tweetList)):
     # tweets with message keys are longer tweets, the message value is the full messaje taken from twishort.
-    if "message" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
+    if hasattr(tweetList[i], "message")  and tweetList[i].is_quote_status == False:
      value = "message"
     else:
      value = "full_text"
-    if "retweeted_status" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
-     if ("message" in tweetList[i]) == False:
-      text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["full_text"])
+    if hasattr(tweetList[i], "retweeted_status") and tweetList[i].is_quote_status == False:
+     if not hasattr(tweetList[i], "message"):
+      text = text + "rt @%s: %s\n" % (tweetList[i].retweeted_status.user.screen_name, tweetList[i].retweeted_status.full_text)
      else:
-      text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i][value])
+      text = text + "rt @%s: %s\n" % (tweetList[i].retweeted_status.user.screen_name, getattr(tweetList[i], value))
     else:
-     text = text + " @%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i][value])
+     text = text + " @%s: %s\n" % (tweetList[i].user.screen_name, getattr(tweetList[i], value))
     # tweets with extended_entities could include image descriptions.
-    if "extended_entities" in tweetList[i] and "media" in tweetList[i]["extended_entities"]:
-     for z in tweetList[i]["extended_entities"]["media"]:
+    if getattr(tweetList[i], "extended_entities") and "media" in tweetList[i].extended_entities:
+     for z in tweetList[i].extended_entities["media"]:
       if "ext_alt_text" in z and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
-    if "retweeted_status" in tweetList[i] and "extended_entities" in tweetList[i]["retweeted_status"] and "media" in tweetList[i]["retweeted_status"]["extended_entities"]:
-     for z in tweetList[i]["retweeted_status"]["extended_entities"]["media"]:
+    if hasattr(tweetList[i], "retweeted_status") and hasattr(tweetList[i].retweeted_status, "extended_entities") and "media" in tweetList[i].retweeted_status["extended_entities"]:
+     for z in tweetList[i].retweeted_status.extended_entities["media"]:
       if "ext_alt_text" in z and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
    # set rt and likes counters.
-   rt_count = str(tweet["retweet_count"])
-   favs_count = str(tweet["favorite_count"])
+   rt_count = str(tweet.retweet_count)
+   favs_count = str(tweet.favorite_count)
    # Gets the client from where this tweet was made.
-   source = re.sub(r"(?s)<.*?>", "", tweet["source"])
-   original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
+   source = tweet.source
+   original_date = arrow.get(tweet.created_at, locale="en")
    date = original_date.shift(seconds=utc_offset).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
    if text == "":
-    if "message" in tweet:
+    if hasattr(tweet, "message"):
      value = "message"
     else:
      value = "full_text"
-    if "retweeted_status" in tweet:
-     if ("message" in tweet) == False:
-      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["full_text"])
+    if hasattr(tweet, "retweeted_status"):
+     if not hasattr(tweet, "message"):
+      text = "rt @%s: %s" % (tweet.retweeted_status.user.screen_name, tweet.retweeted_status.full_text)
      else:
-      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet[value])
+      text = "rt @%s: %s" % (tweet.retweeted_status.user.screen_name, getattr(tweet, value))
     else:
-     text = tweet[value]
+     text = getattr(tweet, value)
    text = self.clear_text(text)
-   if "extended_entities" in tweet and "media" in tweet["extended_entities"]:
-    for z in tweet["extended_entities"]["media"]:
+   if hasattr(tweet, "extended_entities") and "media" in tweet.extended_entities:
+    for z in tweet.extended_entities["media"]:
      if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
-   if "retweeted_status" in tweet and "extended_entities" in tweet["retweeted_status"] and "media" in tweet["retweeted_status"]["extended_entities"]:
-    for z in tweet["retweeted_status"]["extended_entities"]["media"]:
+   if hasattr(tweet, "retweeted_status") and hasattr(tweet.retweeted_status, "extended_entities") and "media" in tweet.retweeted_status.extended_entities:
+    for z in tweet.retweeted_status.extended_entities["media"]:
      if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
    self.message = message.viewTweet(text, rt_count, favs_count, source, date)
