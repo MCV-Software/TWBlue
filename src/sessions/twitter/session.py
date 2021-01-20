@@ -59,23 +59,18 @@ class Session(base.baseSession):
       self.db["users"][i.user.id] = i.user
   return num
 
- def order_cursored_buffer(self, name, data):
+ def order_people(self, name, data):
   """ Put new items on the local database. Useful for cursored buffers (followers, friends, users of a list and searches)
   name str: The name for the buffer stored in the dictionary.
   data list: A list with items and some information about cursors.
   returns the number of items that have been added in this execution"""
-  # Direct messages should be added to db in other function.
-  # Because they will be populating two buffers with one endpoint.
-  if name == "direct_messages":
-   return self.order_direct_messages(data)
   num = 0
   if (name in self.db) == False:
-   self.db[name] = {}
-   self.db[name]["items"] = []
+   self.db[name] = []
   for i in data:
-   if utils.find_item(i.id, self.db[name]["items"]) == None:
-    if self.settings["general"]["reverse_timelines"] == False: self.db[name]["items"].append(i)
-    else: self.db[name]["items"].insert(0, i)
+   if utils.find_item(i.id, self.db[name]) == None:
+    if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
+    else: self.db[name].insert(0, i)
     num = num+1
   return num
 
