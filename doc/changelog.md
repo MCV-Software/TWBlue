@@ -10,6 +10,7 @@
 * URL'S in user profiles are expanded automatically. ([#275,](https://github.com/manuelcortez/TWBlue/issues/275))
 * TWBlue now uses [Tweepy,](https://github.com/tweepy/tweepy) to connect with Twitter. We have adopted this change in order to support Twitter'S API V 2 in the very near future. ([#333,](https://github.com/manuelcortez/TWBlue/issues/337) [#347](https://github.com/manuelcortez/TWBlue/pull/347))
 * TWBlue can upload images in Tweets and replies again. ([#240,](https://github.com/manuelcortez/TWBlue/issues/240))
+* Fixed the way we use to count characters in Twitter. The new methods in TWBlue take into account special characters and URLS as documented in Twitter. ([#199,](https://github.com/manuelcortez/TWBlue/issues/199) [#315](https://github.com/manuelcortez/TWBlue/issues/315))
 
 ## Changes in version 0.95
 

@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from builtins import str
-from builtins import range
-from builtins import object
 import re
 import platform
-from . import attach
 import arrow
 import languageHandler
 system = platform.system()
@@ -16,15 +10,16 @@ import url_shortener
 import sound
 import config
 from pubsub import pub
+from twitter_text import parse_tweet
 if system == "Windows":
  from wxUI.dialogs import message, urlList
  from wxUI import commonMessageDialogs
-
  from extra import translator, SpellChecker, autocompletionUsers
  from extra.AudioUploader import audioUploader
 elif system == "Linux":
  from gtkUI.dialogs import message
 from sessions.twitter import utils
+from . import attach
 
 class basicTweet(object):
  """ This class handles the tweet main features. Other classes should derive from this class."""
@@ -105,11 +100,13 @@ class basicTweet(object):
    self.message.disable_button("shortenButton")
    self.message.disable_button("unshortenButton")
   if self.message.get("long_tweet") == False:
-   self.message.set_title(_(u"%s - %s of %d characters") % (self.title, len(self.message.get_text()), self.max))
-   if len(self.message.get_text()) > self.max:
+   text = self.message.get_text()
+   results = parse_tweet(text)
+   self.message.set_title(_(u"%s - %s of %d characters") % (self.title, results.weightedLength, self.max))
+   if results.weightedLength > self.max:
     self.session.sound.play("max_length.ogg")
   else:
-   self.message.set_title(_(u"%s - %s characters") % (self.title, len(self.message.get_text())))
+   self.message.set_title(_(u"%s - %s characters") % (self.title, results.weightedLength))
 
  def spellcheck(self, event=None):
   text = self.message.get_text()
@@ -265,7 +262,8 @@ class viewTweet(basicTweet):
      if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
    self.message = message.viewTweet(text, rt_count, favs_count, source, date)
-   self.message.set_title(len(text))
+   results = parse_tweet(text)
+   self.message.set_title(results.weightedLength)
    [self.message.set_image_description(i) for i in image_description]
   else:
    self.title = _(u"View item")
