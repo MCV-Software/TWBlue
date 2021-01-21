@@ -880,14 +880,14 @@ class peopleBufferController(baseBufferController):
     return
    number_of_items = self.session.order_people(self.name, val)
    log.debug("Number of items retrieved: %d" % (number_of_items,))
-   self.put_items_on_list(val)
+   self.put_items_on_list(number_of_items)
    if hasattr(self, "finished_timeline") and self.finished_timeline == False:
     self.username = self.session.api_call("get_user", **self.kwargs).screen_name
     self.finished_timeline = True
    if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
     self.session.sound.play(self.sound)
    # Autoread settings
-   if avoid_autoreading == False and mandatory == True and val > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
+   if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
     self.auto_read(number_of_items)
    return number_of_items
 
