@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from builtins import str
-from builtins import object
 import shutil
 import widgetUtils
 import platform
@@ -21,7 +17,7 @@ from sessions.twitter import session
 from . import manager
 import config_utils
 import config
-from twython.exceptions import TwythonAuthError
+from tweepy.error import TweepError
 log = logging.getLogger("sessionmanager.sessionManager")
 
 class sessionManagerController(object):
@@ -87,7 +83,7 @@ class sessionManagerController(object):
    if i not in config.app["sessions"]["ignored_sessions"]:
     try:
      s.login()
-    except TwythonAuthError:
+    except TweepError:
      self.show_auth_error(s.settings["twitter"]["user_name"])
      continue
    sessions.sessions[i] = s
