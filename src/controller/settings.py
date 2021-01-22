@@ -120,7 +120,7 @@ class globalSettingsController(object):
   if config.app["proxy"]["type"]!=self.dialog.get_value("proxy", "type") or config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
    if self.is_started == True:
     self.needs_restart = True
-   config.app["proxy"]["type"]=self.dialog.get_value("proxy", "type")
+   config.app["proxy"]["type"] = self.dialog.proxy.type.Selection
    config.app["proxy"]["server"] = self.dialog.get_value("proxy", "server")
    config.app["proxy"]["port"] = self.dialog.get_value("proxy", "port")
    config.app["proxy"]["user"] = self.dialog.get_value("proxy", "user")
