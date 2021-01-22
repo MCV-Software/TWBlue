@@ -78,6 +78,7 @@ def setup():
  from controller import mainController
  from sessionmanager import sessionManager
  app = widgetUtils.mainLoopObject()
+ check_pid()
  if system == "Windows":
   if config.app["app-settings"]["donation_dialog_displayed"] == False:
    donation()
@@ -91,7 +92,6 @@ def setup():
  if hasattr(sm.view, "destroy"):
   sm.view.destroy()
  del sm
- check_pid()
  r = mainController.Controller()
  r.view.show()
  r.do_work()
