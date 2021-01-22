@@ -24,7 +24,7 @@ mention_all = boolean(default=False)
 no_streaming = boolean(default=False)
 
 [proxy]
-type = string(default="Direct connection")
+type = integer(default=0)
 server = string(default="")
 port = integer(default=8080)
 user = string(default="")
