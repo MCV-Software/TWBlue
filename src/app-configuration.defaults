@@ -26,6 +26,6 @@ no_streaming = boolean(default=False)
 [proxy]
 type = string(default="Direct connection")
 server = string(default="")
-port = string(default="")
+port = integer(default=8080)
 user = string(default="")
 password = string(default="")
