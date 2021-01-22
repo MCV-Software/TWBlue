@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from builtins import zip
-from yandex_translate import YandexTranslate
+from googletrans import Translator, LANGUAGES
 
 def translate(text="", target="en"):
-	t = YandexTranslate("trnsl.1.1.20161012T134532Z.d01b9c75fc39aa74.7d1be75a5166a80583eeb020e10f584168da6bf7")
-	vars = dict(text=text, lang=target)
-	return t.translate(**vars)["text"][0]
+	t = Translator()
+	vars = dict(text=text, dst=target)
+	return t.translate(**vars).text
 
 supported_langs = None
-d = None
+
 languages = {
   "af": _(u"Afrikaans"),
   "sq": _(u"Albanian"),
@@ -105,11 +103,4 @@ languages = {
 }
 
 def available_languages():
-	global supported_langs, d
-	if supported_langs == None and d == None:
-		t = YandexTranslate("trnsl.1.1.20161012T134532Z.d01b9c75fc39aa74.7d1be75a5166a80583eeb020e10f584168da6bf7")
-		supported_langs = t.langs
-		d = []
-		for i in supported_langs:
-			d.append(languages[i])
-	return sorted(zip(supported_langs, d))
+	return languages
