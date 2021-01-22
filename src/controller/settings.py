@@ -74,7 +74,7 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "update_period", config.app["app-settings"]["update_period"])
   self.dialog.set_value("general", "check_for_updates", config.app["app-settings"]["check_for_updates"])
   self.dialog.set_value("general", "remember_mention_and_longtweet", config.app["app-settings"]["remember_mention_and_longtweet"])
-  proxyTypes = [_("System default"), _("HTTP"), _("SOCKS v4"), _("SOCKS v5"), _("SOCKS v5 with DNS support")]
+  proxyTypes = [_("System default"), _("HTTP"), _("SOCKS v4"), _("SOCKS v4 with DNS support"), _("SOCKS v5"), _("SOCKS v5 with DNS support")]
   self.dialog.create_proxy(proxyTypes)
   try:
    self.dialog.proxy.type.SetSelection(config.app["proxy"]["type"])

@@ -108,6 +108,8 @@ def proxy_setup():
   proxy_url = config.app["proxy"]["server"] + ":" + str(config.app["proxy"]["port"])
   if config.app["proxy"]["user"] != "" and config.app["proxy"]["password"] != "":
    proxy_url = config.app["proxy"]["user"] + ":" + config.app["proxy"]["password"] + "@" + proxy_url
+  elif config.app["proxy"]["user"] != "" and config.proxyTypes[config.app["proxy"]["type"]] in ["socks4", "socks4a"]:
+   proxy_url = config.app["proxy"]["user"] + "@" + proxy_url
   proxy_url = config.proxyTypes[config.app["proxy"]["type"]] + "://" + proxy_url
   os.environ["HTTP_PROXY"] = proxy_url
   os.environ["HTTPS_PROXY"] = proxy_url
