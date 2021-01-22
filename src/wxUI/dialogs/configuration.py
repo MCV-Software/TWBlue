@@ -79,7 +79,7 @@ class proxy(wx.Panel, baseDialog.BaseWXDialog):
   serverBox.Add(self.server, 0, wx.ALL, 5)
   sizer.Add(serverBox, 0, wx.ALL, 5)
   lbl = wx.StaticText(self, wx.ID_ANY, _(u"Port: "))
-  self.port = wx.TextCtrl(self, wx.ID_ANY)
+  self.port = wx.SpinCtrl(self, wx.ID_ANY, min=1, max=65535)
   portBox = wx.BoxSizer(wx.HORIZONTAL)
   portBox.Add(lbl, 0, wx.ALL, 5)
   portBox.Add(self.port, 0, wx.ALL, 5)
