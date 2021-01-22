@@ -74,12 +74,11 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "update_period", config.app["app-settings"]["update_period"])
   self.dialog.set_value("general", "check_for_updates", config.app["app-settings"]["check_for_updates"])
   self.dialog.set_value("general", "remember_mention_and_longtweet", config.app["app-settings"]["remember_mention_and_longtweet"])
-  proxyTypes=config.proxyTypes
-  self.dialog.create_proxy([_(u"Direct connection")]+proxyTypes)
-  if config.app["proxy"]["type"] not in proxyTypes:
+  self.dialog.create_proxy(config.proxyTypes)
+  try:
+   self.dialog.proxy.type.SetSelection(config.app["proxy"]["type"])
+  except:
    self.dialog.proxy.type.SetSelection(0)
-  else:
-   self.dialog.proxy.type.SetSelection(proxyTypes.index(config.app["proxy"]["type"])+1)
   self.dialog.set_value("proxy", "server", config.app["proxy"]["server"])
   self.dialog.set_value("proxy", "port", config.app["proxy"]["port"])
   self.dialog.set_value("proxy", "user", config.app["proxy"]["user"])
