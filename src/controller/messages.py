@@ -225,7 +225,7 @@ class viewTweet(basicTweet):
     else:
      text = text + " @%s: %s\n" % (tweetList[i].user.screen_name, getattr(tweetList[i], value))
     # tweets with extended_entities could include image descriptions.
-    if getattr(tweetList[i], "extended_entities") and "media" in tweetList[i].extended_entities:
+    if hasattr(tweetList[i], "extended_entities") and "media" in tweetList[i].extended_entities:
      for z in tweetList[i].extended_entities["media"]:
       if "ext_alt_text" in z and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])

@@ -65,6 +65,7 @@ log = logging.getLogger("main")
 def setup():
  log.debug("Starting " + application.name + " %s" % (application.version,))
  config.setup()
+ proxy_setup()
  log.debug("Using %s %s" % (platform.system(), platform.architecture()[0]))
  log.debug("Application path is %s" % (paths.app_path(),))
  log.debug("config path  is %s" % (paths.config_path(),))
@@ -77,6 +78,7 @@ def setup():
  from controller import mainController
  from sessionmanager import sessionManager
  app = widgetUtils.mainLoopObject()
+ check_pid()
  if system == "Windows":
   if config.app["app-settings"]["donation_dialog_displayed"] == False:
    donation()
@@ -90,7 +92,6 @@ def setup():
  if hasattr(sm.view, "destroy"):
   sm.view.destroy()
  del sm
- check_pid()
  r = mainController.Controller()
  r.view.show()
  r.do_work()
@@ -100,6 +101,18 @@ def setup():
  elif system == "Linux":
   GLib.idle_add(r.start)
  app.run()
+
+def proxy_setup():
+ if config.app["proxy"]["server"] != "" and config.app["proxy"]["type"] > 0:
+  log.debug("Loading proxy settings")
+  proxy_url = config.app["proxy"]["server"] + ":" + str(config.app["proxy"]["port"])
+  if config.app["proxy"]["user"] != "" and config.app["proxy"]["password"] != "":
+   proxy_url = config.app["proxy"]["user"] + ":" + config.app["proxy"]["password"] + "@" + proxy_url
+  elif config.app["proxy"]["user"] != "" and config.proxyTypes[config.app["proxy"]["type"]] in ["socks4", "socks4a"]:
+   proxy_url = config.app["proxy"]["user"] + "@" + proxy_url
+  proxy_url = config.proxyTypes[config.app["proxy"]["type"]] + "://" + proxy_url
+  os.environ["HTTP_PROXY"] = proxy_url
+  os.environ["HTTPS_PROXY"] = proxy_url
 
 def donation():
  dlg = commonMessageDialogs.donation()
