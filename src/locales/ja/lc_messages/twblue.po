@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-22 12:23+0900\n"
-"PO-Revision-Date: 2021-01-22 12:49+0900\n"
+"POT-Creation-Date: 2021-01-23 09:00+0900\n"
+"PO-Revision-Date: 2021-01-23 09:05+0900\n"
 "Last-Translator: 陸 <support@riku22.net>\n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "User default"
 msgstr "ユーザーのデフォルト"
 
-#: src\main.py:107
+#: src\main.py:120
 msgid "https://twblue.es/donate"
 msgstr "https://twblue.es/donate"
 
-#: src\main.py:124
+#: src\main.py:137
 #, python-brace-format
 msgid ""
 "{0} is already running. Close the other instance before starting this one. "
@@ -356,9 +356,29 @@ msgstr "ツイート"
 msgid "View item"
 msgstr "アイテムを見る"
 
-#: src\controller\settings.py:78
-msgid "Direct connection"
-msgstr "直接接続"
+#: src\controller\settings.py:77
+msgid "System default"
+msgstr "システムのデフォルト"
+
+#: src\controller\settings.py:77
+msgid "HTTP"
+msgstr "HTTP"
+
+#: src\controller\settings.py:77
+msgid "SOCKS v4"
+msgstr "SOCKS v4"
+
+#: src\controller\settings.py:77
+msgid "SOCKS v4 with DNS support"
+msgstr "DNSをサポートする SOCKS v4"
+
+#: src\controller\settings.py:77
+msgid "SOCKS v5"
+msgstr "SOCKS v5"
+
+#: src\controller\settings.py:77
+msgid "SOCKS v5 with DNS support"
+msgstr "DNSをサポートする SOCKS v5"
 
 #: src\controller\settings.py:148 src\controller\settings.py:210
 #: src\wxUI\dialogs\configuration.py:119
@@ -3327,6 +3347,9 @@ msgstr "フォロワー(&F)"
 #: src\wxUI\dialogs\userSelection.py:23
 msgid "F&riends"
 msgstr "フォロー(&R)"
+
+#~ msgid "Direct connection"
+#~ msgstr "直接接続"
 
 #~ msgid "This tweet doesn't contain images"
 #~ msgstr "このツイートは、画像を含んでいません"
