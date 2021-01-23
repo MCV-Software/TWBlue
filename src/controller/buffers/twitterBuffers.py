@@ -145,7 +145,7 @@ class baseBufferController(baseBuffers.buffer):
   while l != False:
    tweetsList.append(tweet)
    try:
-    tweet = self.session.twitter.get_status(id=l, include_ext_alt_text=True)
+    tweet = self.session.twitter.get_status(id=l, include_ext_alt_text=True, tweet_mode="extended")
     tweet.full_text = utils.expand_urls(tweet.full_text, tweet.entities)
    except TweepError as e:
     utils.twitter_error(e)

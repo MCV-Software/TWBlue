@@ -74,12 +74,12 @@ class globalSettingsController(object):
   self.dialog.set_value("general", "update_period", config.app["app-settings"]["update_period"])
   self.dialog.set_value("general", "check_for_updates", config.app["app-settings"]["check_for_updates"])
   self.dialog.set_value("general", "remember_mention_and_longtweet", config.app["app-settings"]["remember_mention_and_longtweet"])
-  proxyTypes=config.proxyTypes
-  self.dialog.create_proxy([_(u"Direct connection")]+proxyTypes)
-  if config.app["proxy"]["type"] not in proxyTypes:
+  proxyTypes = [_("System default"), _("HTTP"), _("SOCKS v4"), _("SOCKS v4 with DNS support"), _("SOCKS v5"), _("SOCKS v5 with DNS support")]
+  self.dialog.create_proxy(proxyTypes)
+  try:
+   self.dialog.proxy.type.SetSelection(config.app["proxy"]["type"])
+  except:
    self.dialog.proxy.type.SetSelection(0)
-  else:
-   self.dialog.proxy.type.SetSelection(proxyTypes.index(config.app["proxy"]["type"])+1)
   self.dialog.set_value("proxy", "server", config.app["proxy"]["server"])
   self.dialog.set_value("proxy", "port", config.app["proxy"]["port"])
   self.dialog.set_value("proxy", "user", config.app["proxy"]["user"])
@@ -121,7 +121,7 @@ class globalSettingsController(object):
   if config.app["proxy"]["type"]!=self.dialog.get_value("proxy", "type") or config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
    if self.is_started == True:
     self.needs_restart = True
-   config.app["proxy"]["type"]=self.dialog.get_value("proxy", "type")
+   config.app["proxy"]["type"] = self.dialog.proxy.type.Selection
    config.app["proxy"]["server"] = self.dialog.get_value("proxy", "server")
    config.app["proxy"]["port"] = self.dialog.get_value("proxy", "port")
    config.app["proxy"]["user"] = self.dialog.get_value("proxy", "user")

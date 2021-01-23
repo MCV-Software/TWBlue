@@ -2,7 +2,7 @@
 
 ## changes in this version
 
-* Fixed error when displaying an URL at the end of a line, when the tweet or direct message contained multiple lines. Now the URL should be displayed correctly. ([#305,](https://github.com/manuelcortez/TWBlue/issues/305))
+* Fixed error when displaying an URL at the end of a line, when the tweet or direct message contained multiple lines. Now the URL should be displayed correctly. ([#305,](https://github.com/manuelcortez/TWBlue/issues/305) [#272,](https://github.com/manuelcortez/TWBlue/issues/272))
 * TWBlue has been migrated completely to Python 3 (currently, the software builds with Python 3.8).
 * TWBlue should be restarted gracefully. Before, the application was alerting users of not being closed properly every time the application restarted by itself.
 * If TWBlue attemps to load an account with invalid tokens (this happens when reactivating a previously deactivated account, or when access to the ap is revoqued), TWBlue will inform the user about this error and will skip the account. Before, the app was unable to start due to a critical error. ([#328,](https://github.com/manuelcortez/TWBlue/issues/328))
@@ -11,6 +11,8 @@
 * TWBlue now uses [Tweepy,](https://github.com/tweepy/tweepy) to connect with Twitter. We have adopted this change in order to support Twitter'S API V 2 in the very near future. ([#333,](https://github.com/manuelcortez/TWBlue/issues/337) [#347](https://github.com/manuelcortez/TWBlue/pull/347))
 * TWBlue can upload images in Tweets and replies again. ([#240,](https://github.com/manuelcortez/TWBlue/issues/240))
 * Fixed the way we use to count characters in Twitter. The new methods in TWBlue take into account special characters and URLS as documented in Twitter. ([#199,](https://github.com/manuelcortez/TWBlue/issues/199) [#315](https://github.com/manuelcortez/TWBlue/issues/315))
+* Proxy support now works as expected.
+* And more. ([#352,](https://github.com/manuelcortez/TWBlue/issues/352))
 
 ## Changes in version 0.95
 
