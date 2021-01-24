@@ -93,3 +93,6 @@ def common_error(reason):
 
 def dead_pid():
  return wx.MessageDialog(None, _(u"{0} quit unexpectedly the last time it was run. If the problem persists, please report it to the {0} developers.").format(application.name), _(u"Warning"), wx.OK).ShowModal()
+
+def invalid_configration():
+ return wx.MessageDialog(None, _(u"The configuration file is invalid."), _(u"Error"), wx.OK).ShowModal()
