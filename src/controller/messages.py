@@ -46,7 +46,6 @@ class basicTweet(object):
   if dlg.get_response() == widgetUtils.OK:
    text_to_translate = self.message.get_text()
    language_dict = translator.translator.available_languages()
-   print(dlg.dest_lang.GetStringSelection())
    for k in language_dict:
     if language_dict[k] == dlg.dest_lang.GetStringSelection():
      dst = k
