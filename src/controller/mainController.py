@@ -1572,12 +1572,12 @@ class Controller(object):
    return
   tweet = buffer.get_tweet()
   media_list = []
-  if ("entities" in tweet) and ("media" in tweet["entities"]):
-   [media_list.append(i) for i in tweet["entities"]["media"] if i not in media_list]
-  elif "retweeted_status" in tweet and "media" in tweet["retweeted_status"]["entities"]:
-   [media_list.append(i) for i in tweet["retweeted_status"]["entities"]["media"] if i not in media_list]
-  elif "quoted_status" in tweet and "media" in tweet["quoted_status"]["entities"]:
-   [media_list.append(i) for i in tweet["quoted_status"]["entities"]["media"] if i not in media_list]
+  if hasattr(tweet, "entities") and tweet.entities.get("media") != None:
+   [media_list.append(i) for i in tweet.entities["media"] if i not in media_list]
+  elif hasattr(tweet, "retweeted_status") and tweet.retweeted_status.get("media") != None:
+   [media_list.append(i) for i in tweet.retweeted_status.entities["media"] if i not in media_list]
+  elif hasattr(tweet, "quoted_status") and tweet.quoted_status.entities.get("media") != None:
+   [media_list.append(i) for i in tweet.quoted_status.entities["media"] if i not in media_list]
   if len(media_list) > 1:
    image_list = [_(u"Picture {0}").format(i,) for i in range(0, len(media_list))]
    dialog = dialogs.urlList.urlList(title=_(u"Select the picture"))
@@ -1593,7 +1593,7 @@ class Controller(object):
   if buffer.session.settings["mysc"]["ocr_language"] != "":
    ocr_lang = buffer.session.settings["mysc"]["ocr_language"]
   else:
-   ocr_lang = ocr.OCRSpace.short_langs.index(tweet["lang"])
+   ocr_lang = ocr.OCRSpace.short_langs.index(tweet.lang)
    ocr_lang = ocr.OCRSpace.OcrLangs[ocr_lang]
   api = ocr.OCRSpace.OCRSpaceAPI()
   try:
