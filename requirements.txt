@@ -16,7 +16,9 @@ futures
 winpaths
 PySocks
 win_inet_pton
-yandex.translate
+# Install the latest RC of this lib
+# see https://github.com/ssut/py-googletrans/issues/234
+googletrans==4.0.0-rc1
 idna<3,>=2.5
 chardet
 urllib3

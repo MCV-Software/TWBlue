@@ -1,9 +1,19 @@
 # -*- coding: utf-8 -*-
+import logging
 from googletrans import Translator, LANGUAGES
 
+log = logging.getLogger("extras.translator")
+
+# create a single translator instance
+# see https://github.com/ssut/py-googletrans/issues/234
+t = None
+
 def translate(text="", target="en"):
-	t = Translator()
-	vars = dict(text=text, dst=target)
+	global t
+	log.debug("Received translation request for language %s, text=%s" % (target, text))
+	if t == None:
+		t = Translator()
+	vars = dict(text=text, dest=target)
 	return t.translate(**vars).text
 
 supported_langs = None
@@ -103,4 +113,4 @@ languages = {
 }
 
 def available_languages():
-	return languages
+	return dict(sorted(languages.items(), key=lambda x: x[1]))
