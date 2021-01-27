@@ -1020,26 +1020,6 @@ class peopleBufferController(baseBufferController):
   webbrowser.open(url)
 
 class searchBufferController(baseBufferController):
- def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
-  # starts stream every 3 minutes.
-  current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
-   self.execution_time = current_time
-   log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
-   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-   log.debug("Function: %s" % (self.function,))
-#  try:
-   val = self.session.search(self.name, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
-#  except:
-#   return None
-   num = self.session.order_buffer(self.name, val)
-   self.put_items_on_list(num)
-   if num > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
-    self.session.sound.play(self.sound)
-   # Autoread settings
-   if avoid_autoreading == False and mandatory == True and num > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
-    self.auto_read(num)
-   return num
 
  def remove_buffer(self, force=False):
   if force == False:
@@ -1057,69 +1037,21 @@ class searchBufferController(baseBufferController):
    return False
 
 class searchPeopleBufferController(peopleBufferController):
-
+ """ This is identical to a normal peopleBufferController, except that uses the page parameter instead of a cursor."""
  def __init__(self, parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs):
   super(searchPeopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs)
-  log.debug("Initializing buffer %s, account %s" % (name, account,))
-#  self.compose_function = compose.compose_followers_list
-  log.debug("Compose_function: %s" % (self.compose_function,))
-  self.args = args
-  self.kwargs = kwargs
-  self.function = function
   if ("page" in self.kwargs) == False:
-   self.kwargs["page"] = 1
-
- def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=True):
-  # starts stream every 3 minutes.
-  current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
-   self.execution_time = current_time
-   log.debug("starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
-   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-   log.debug("Function: %s" % (self.function,))
-#  try:
-   val = self.session.call_paged(self.function, *self.args, **self.kwargs)
-#  except:
-#   return
-   number_of_items = self.session.order_cursored_buffer(self.name, val)
-   log.debug("Number of items retrieved: %d" % (number_of_items,))
-   self.put_items_on_list(number_of_items)
-   if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
-    self.session.sound.play(self.sound)
-   # Autoread settings
-   if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
-    self.auto_read(number_of_items)
-   return number_of_items
+   self.page = 1
+  else:
+   self.page = self.kwargs.pop("page")
 
  def get_more_items(self, *args, **kwargs):
-  self.kwargs["page"] += 1
-  try:
-   items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"],  *self.args, **self.kwargs)
-  except TweepError as e:
-   output.speak(e.reason, True)
-   return
-  if items == None:
-   return
-  for i in items:
-   if self.session.settings["general"]["reverse_timelines"] == False:
-    self.session.db[self.name].insert(0, i)
-   else:
-    self.session.db[self.name].append(i)
-  selected = self.buffer.list.get_selected()
-#  self.put_items_on_list(len(items))
-  if self.session.settings["general"]["reverse_timelines"] == True:
-   for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
-    self.buffer.list.insert_item(True, *tweet)
-   self.buffer.list.select_item(selected)
-  else:
-   for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
-    self.buffer.list.insert_item(True, *tweet)
-#   self.buffer.list.select_item(selection)
-#  else:
-#   self.buffer.list.select_item(selection-elements)
-  output.speak(_(u"%s items retrieved") % (len(items)), True)
+  # Add 1 to the page parameter, put it in kwargs and calls to get_more_items in the parent buffer.
+  self.page = self.page +1
+  self.kwargs["page"] = self.page
+  super(searchPeopleBufferController, self).get_more_items(*args, **kwargs)
+  # remove the parameter again to make sure start_stream won't fetch items for this page indefinitely.
+  self.kwargs.pop("page")
 
  def remove_buffer(self, force=False):
   if force == False:
