@@ -431,3 +431,15 @@ class Session(base.baseSession):
    user = utils.if_user_exists(self.twitter, screen_name)
    self.db["users"][user.id_str] = user
    return user.id_str
+
+ def save_users(self, user_ids):
+  """ Adds all new users to the users database. """
+  log.debug("Received %d user IDS to be added in the database." % (len(user_ids)))
+  users_to_retrieve = [user_id for user_id in user_ids if user_id not in self.db["users"]]
+  # Remove duplicates
+  users_to_retrieve = list(dict.fromkeys(users_to_retrieve))
+  log.debug("TWBlue will get %d new users from Twitter." % (len(users_to_retrieve)))
+  users = self.twitter.lookup_users(user_ids=users_to_retrieve, tweet_mode="extended")
+  for user in users:
+   self.db["users"][user.id_str] = user
+  log.debug("Added %d new users" % (len(users)))

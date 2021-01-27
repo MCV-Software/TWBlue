@@ -13,6 +13,7 @@
 * Fixed the way we use to count characters in Twitter. The new methods in TWBlue take into account special characters and URLS as documented in Twitter. ([#199,](https://github.com/manuelcortez/TWBlue/issues/199) [#315](https://github.com/manuelcortez/TWBlue/issues/315))
 * Proxy support now works as expected.
 * Changed translation service from yandex.translate to Google Translator. ([#355,](https://github.com/manuelcortez/TWBlue/issues/355))
+* Improved method to load direct messages in the buffers. Now it should be faster due to less calls to Twitter API performed from the client.
 * And more. ([#352,](https://github.com/manuelcortez/TWBlue/issues/352))
 
 ## Changes in version 0.95

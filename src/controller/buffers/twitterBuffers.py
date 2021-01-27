@@ -181,11 +181,14 @@ class baseBufferController(baseBuffers.buffer):
      val = results
      val.reverse()
      log.debug("Retrieved %d items from the cursored search on function %s." %(len(val), self.function))
+     user_ids = [item.message_create["sender_id"] for item in val]
+     self.session.save_users(user_ids)
     except TweepError as e:
      log.error("Error %s: %s" % (e.api_code, e.reason))
      return
    number_of_items = self.session.order_buffer(self.name, val)
    log.debug("Number of items retrieved: %d" % (number_of_items,))
+
    self.put_items_on_list(number_of_items)
    if hasattr(self, "finished_timeline") and self.finished_timeline == False:
     if "-timeline" in self.name:
@@ -664,9 +667,10 @@ class directMessagesController(baseBufferController):
      self.session.db[self.name].append(i)
      received.insert(0, i)
    total = total+1
+  user_ids = [item.message_create["sender_id"] for item in items]
+  self.session.save_users(user_ids)
   pub.sendMessage("more-sent-dms", data=sent, account=self.session.db["user_name"])
   selected = self.buffer.list.get_selected()
-
   if self.session.settings["general"]["reverse_timelines"] == True:
    for i in received:
     if int(i.message_create["sender_id"]) == self.session.db["user_id"]:
