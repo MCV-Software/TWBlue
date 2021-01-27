@@ -172,12 +172,14 @@ class baseBufferController(baseBuffers.buffer):
     else:
      count = self.session.settings["general"]["max_tweets_per_call"]
     # try to retrieve the cursor for the current buffer.
-    cursor = self.session.db["cursors"].get(self.name)
     try:
-     # We need to assign all results somewhere else so the cursor variable would b generated.
-     val = Cursor(getattr(self.session.twitter, self.function), count=count, *self.args, **self.kwargs).items(count)
+     val = getattr(self.session.twitter, self.function)(return_cursors=True, count=count, *self.args, **self.kwargs)
+     if type(val) == tuple:
+      val, cursor = val
+      if type(cursor) == tuple:
+       cursor = cursor[1]
+      self.session.db["cursors"][self.name] = cursor
      results = [i for i in val]
-     self.session.db["cursors"][self.name] = val.page_iterator.next_cursor
      val = results
      val.reverse()
      log.debug("Retrieved %d items from the cursored search on function %s." %(len(val), self.function))
@@ -221,7 +223,7 @@ class baseBufferController(baseBuffers.buffer):
   else:
    last_id = self.session.db[self.name][-1].id
   try:
-   items = Cursor(getattr(self.session.twitter, self.function), max_id=last_id, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs).items(self.session.settings["general"]["max_tweets_per_call"])
+   items = getattr(self.session.twitter, self.function)(max_id=last_id, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
   except TweepError as e:
    log.error("Error %s: %s" % (e.api_code, e.reason))
    return
@@ -639,9 +641,13 @@ class directMessagesController(baseBufferController):
   # try to retrieve the cursor for the current buffer.
   cursor = self.session.db["cursors"].get(self.name)
   try:
-   items = Cursor(getattr(self.session.twitter, self.function), cursor=cursor, count=count, *self.args, **self.kwargs).items(count)
+   items = getattr(self.session.twitter, self.function)(return_cursors=True, cursor=cursor, count=count, *self.args, **self.kwargs)
+   if type(items) == tuple:
+    items, cursor = items
+    if type(cursor) == tuple:
+     cursor = cursor[1]
+    self.session.db["cursors"][self.name] = cursor
    results = [i for i in items]
-   self.session.db["cursors"][self.name] = items.page_iterator.next_cursor
    items = results
    log.debug("Retrieved %d items for cursored search in function %s" % (len(items), self.function))
   except TweepError as e:
@@ -873,13 +879,14 @@ class peopleBufferController(baseBufferController):
    self.execution_time = current_time
    log.debug("Starting stream for %s buffer, %s account" % (self.name, self.account,))
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-   # try to retrieve the cursor for the current buffer.
-   cursor = self.session.db["cursors"].get(self.name)
    try:
-    # We need to assign all results somewhere else so the cursor variable would b generated.
-    val = Cursor(getattr(self.session.twitter, self.function), count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs).items(self.session.settings["general"]["max_tweets_per_call"])
+    val = getattr(self.session.twitter, self.function)(return_cursors=True, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
+    if type(val) == tuple:
+     val, cursor = val
+     if type(cursor) == tuple:
+      cursor = cursor[1]
+     self.session.db["cursors"][self.name] = cursor
     results = [i for i in val]
-    self.session.db["cursors"][self.name] = val.page_iterator.next_cursor
     val = results
     val.reverse()
     log.debug("Retrieved %d items from cursored search in function %s" % (len(val), self.function))
@@ -902,9 +909,13 @@ class peopleBufferController(baseBufferController):
  def get_more_items(self):
   try:
    cursor = self.session.db["cursors"].get(self.name)
-   items = Cursor(getattr(self.session.twitter, self.function), users=True, cursor=cursor, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs).items(self.session.settings["general"]["max_tweets_per_call"])
+   items = getattr(self.session.twitter, self.function)(return_cursors=True, users=True, cursor=cursor, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
+   if type(items) == tuple:
+    items, cursor = items
+    if type(cursor) == tuple:
+     cursor = cursor[1]
+    self.session.db["cursors"][self.name] = cursor
    results = [i for i in items]
-   self.session.db["cursors"][self.name] = items.page_iterator.next_cursor
    items = results
    log.debug("Retrieved %d items from cursored search in function %s" % (len(items), self.function))
   except TweepError as e:
