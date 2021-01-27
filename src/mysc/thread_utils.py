@@ -10,8 +10,6 @@ def call_threaded(func, *args, **kwargs):
  def new_func(*a, **k):
   try:
    func(*a, **k)
-  except TwythonRateLimitError:
-   pass
   except:
    log.exception("Thread %d with function %r, args of %r, and kwargs of %r failed to run." % (threading.current_thread().ident, func, a, k))
 #   pass
