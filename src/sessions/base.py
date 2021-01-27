@@ -75,7 +75,7 @@ class baseSession(object):
 
 	def shelve(self):
 		"""Shelve the database to allow for persistance."""
-		shelfname=os.path.join(paths.config_path(), str(self.session_id)+"/cache")
+		shelfname=os.path.join(paths.config_path(), str(self.session_id), "cache")
 		if self.settings["general"]["persist_size"] == 0:
 			if os.path.exists(shelfname+".dat"):
 				os.remove(shelfname+".dat")
@@ -84,7 +84,7 @@ class baseSession(object):
 			if not os.path.exists(shelfname+".dat"):
 				output.speak("Generating database, this might take a while.",True)
 			shelf=shelve.open(os.path.join(paths.config_path(), shelfname),'c')
-			for key,value in list(self.db.items()):
+			for key, value in list(self.db.items()):
 				if type(key) != str and type(key) != str:
 					output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
 					log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
