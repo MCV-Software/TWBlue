@@ -283,7 +283,7 @@ class Session(base.baseSession):
 # @_require_login
  def get_muted_users(self):
   """ Gets muted users (oh really?)."""
-  self.db["muted_users"] = self.twitter.mutes_ids
+  self.db["muted_users"] = self.twitter.mutes_ids()
 
 # @_require_login
  def get_stream(self, name, function, *args, **kwargs):
@@ -434,10 +434,14 @@ class Session(base.baseSession):
 
  def save_users(self, user_ids):
   """ Adds all new users to the users database. """
+  if len(user_ids) == 0:
+   return
   log.debug("Received %d user IDS to be added in the database." % (len(user_ids)))
   users_to_retrieve = [user_id for user_id in user_ids if user_id not in self.db["users"]]
   # Remove duplicates
   users_to_retrieve = list(dict.fromkeys(users_to_retrieve))
+  if len(users_to_retrieve) == 0:
+   return
   log.debug("TWBlue will get %d new users from Twitter." % (len(users_to_retrieve)))
   users = self.twitter.lookup_users(user_ids=users_to_retrieve, tweet_mode="extended")
   for user in users:
