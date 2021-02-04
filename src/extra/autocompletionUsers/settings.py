@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-# -*- coding: utf-8 -*-
-from builtins import object
-from . import storage
 import widgetUtils
+import output
 from . import wx_settings
 from . import manage
-import output
+from . import storage
 from mysc.thread_utils import call_threaded
 
 class autocompletionSettings(object):
@@ -30,14 +26,14 @@ class autocompletionSettings(object):
   database = storage.storage(self.buffer.session.session_id)
   if self.dialog.get("followers_buffer") == True:
    buffer = self.window.search_buffer("followers", self.config["twitter"]["user_name"])
-   for i in buffer.session.db[buffer.name]["items"]:
-    database.set_user(i["screen_name"], i["name"], 1)
+   for i in buffer.session.db[buffer.name]:
+    database.set_user(i.screen_name, i.name, 1)
   else:
    database.remove_by_buffer(1)
   if self.dialog.get("friends_buffer") == True:
    buffer = self.window.search_buffer("friends", self.config["twitter"]["user_name"])
-   for i in buffer.session.db[buffer.name]["items"]:
-    database.set_user(i["screen_name"], i["name"], 2)
+   for i in buffer.session.db[buffer.name]:
+    database.set_user(i.screen_name, i.name, 2)
   else:
    database.remove_by_buffer(2)
   wx_settings.show_success_dialog()
@@ -52,12 +48,12 @@ def execute_at_startup(window, buffer, config):
  if config["mysc"]["save_followers_in_autocompletion_db"] == True and config["other_buffers"]["show_followers"] == True:
   buffer = window.search_buffer("followers", config["twitter"]["user_name"])
   for i in buffer.session.db[buffer.name]:
-   database.set_user(i["screen_name"], i["name"], 1)
+   database.set_user(i.screen_name, i.name, 1)
  else:
   database.remove_by_buffer(1)
  if config["mysc"]["save_friends_in_autocompletion_db"] == True and config["other_buffers"]["show_friends"] == True:
   buffer = window.search_buffer("friends", config["twitter"]["user_name"])
   for i in buffer.session.db[buffer.name]:
-   database.set_user(i["screen_name"], i["name"], 2)
+   database.set_user(i.screen_name, i.name, 2)
  else:
   database.remove_by_buffer(2)  

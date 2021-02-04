@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-# -*- coding: utf-8 -*-
-from builtins import object
-from . import storage
 import widgetUtils
-from . import wx_manage
+from . import storage, wx_manage
 from wxUI import commonMessageDialogs
 
 class autocompletionManage(object):
@@ -32,11 +27,11 @@ class autocompletionManage(object):
   if usr == False:
    return
   try:
-   data = self.session.twitter.twitter.show_user(screen_name=usr)
+   data = self.session.twitter.twitter.get_user(screen_name=usr)
   except:
    self.dialog.show_invalid_user_error()
    return
-  self.database.set_user(data["screen_name"], data["name"], 0)
+  self.database.set_user(data.screen_name, data.name, 0)
   self.update_list()
 
  def remove_user(self, ev):
