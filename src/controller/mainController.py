@@ -253,7 +253,7 @@ class Controller(object):
 
   # Connection checker executed each minute.
   self.checker_function = RepeatingTimer(60, self.check_connection)
-  self.checker_function.start()
+#  self.checker_function.start()
   self.save_db = RepeatingTimer(300, self.save_data_in_db)
   self.save_db.start()
   log.debug("Setting updates to buffers every %d seconds..." % (60*config.app["app-settings"]["update_period"],))
@@ -1535,15 +1535,18 @@ class Controller(object):
    if i.session != None and i.session.is_logged == True:
     try:
      i.start_stream(mandatory=True)
-    except TweepError:
-     buff = self.view.search(i.name, i.account)
-     i.remove_buffer(force=True)
-     commonMessageDialogs.blocked_timeline()
-     if self.get_current_buffer() == i:
-      self.right()
-     self.view.delete_buffer(buff)
-     self.buffers.remove(i)
-     del i
+    except TweepError as err:
+     log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r due to the following reason: %s" % (err.api_code, i.name, i.account, i.args, i.kwargs, err.reason))
+     # Determine if this error was caused by a block applied to the current user (IE permission errors).
+     if err.api_code != None: # A twitter error, so safely try to remove the buffer.
+      buff = self.view.search(i.name, i.account)
+      i.remove_buffer(force=True)
+      commonMessageDialogs.blocked_timeline()
+      if self.get_current_buffer() == i:
+       self.right()
+      self.view.delete_buffer(buff)
+      self.buffers.remove(i)
+      del i
 
  def update_buffer(self, *args, **kwargs):
   bf = self.get_current_buffer()
