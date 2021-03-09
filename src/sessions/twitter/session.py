@@ -388,7 +388,7 @@ class Session(base.baseSession):
     tweet.quoted_status.twishort = True
     for i in tweet.quoted_status.entities["user_mentions"]:
      if "@%s" % (i["screen_name"]) not in tweet.quoted_status.message and i["screen_name"] != tweet.user.screen_name:
-      if hasattr(tweet["quoted_status"], "retweeted_status")  and tweet.retweeted_status.user.screen_name == i["screen_name"]:
+      if hasattr(tweet.quoted_status, "retweeted_status")  and tweet.retweeted_status.user.screen_name == i["screen_name"]:
        continue
      tweet.quoted_status.message = u"@%s %s" % (i["screen_name"], tweet.message)
    else:
