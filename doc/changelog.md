@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* Fixed an error that was causing TWBlue to be unable to output to screen readers at times. ([#369,](https://github.com/manuelcortez/TWBlue/issues/369))
 * Fixed autocomplete users feature. ([#367,](https://github.com/manuelcortez/TWBlue/issues/367))
 * Fixed error when displaying an URL at the end of a line, when the tweet or direct message contained multiple lines. Now the URL should be displayed correctly. ([#305,](https://github.com/manuelcortez/TWBlue/issues/305) [#272,](https://github.com/manuelcortez/TWBlue/issues/272))
 * TWBlue has been migrated completely to Python 3 (currently, the software builds with Python 3.8).
