@@ -25,7 +25,7 @@ def is_long(tweet):
   returns True if a quote is detected, False otherwise."""
  if hasattr(tweet, "quoted_status_id") and hasattr(tweet, "quoted_status"):
   return tweet.quoted_status_id
- elif hasattr(tweet, "retweeted_status")  and hasattr(tweet, "quoted_status_id") and hasattr(tweet, "quoted_status"):
+ elif hasattr(tweet, "retweeted_status")  and hasattr(tweet.retweeted_status, "quoted_status_id") and hasattr(tweet.retweeted_status, "quoted_status"):
   return tweet.retweeted_status.quoted_status_id
  return False
 

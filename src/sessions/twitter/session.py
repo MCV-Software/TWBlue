@@ -352,16 +352,16 @@ class Session(base.baseSession):
   return tweet
 
  def get_quoted_tweet(self, tweet):
-  """ Process a tweet and extract all information related to the quote."""
+  """ Process a tweet and extract all information related to the quote. """
   quoted_tweet = tweet
   if hasattr(tweet, "full_text"):
    value = "full_text"
   else:
    value = "text"
   setattr(quoted_tweet, value, utils.expand_urls(getattr(quoted_tweet, value), quoted_tweet.entities))
-  if hasattr(quoted_tweet, "quoted_status"):
+  if quoted_tweet.is_quote_status == True and hasattr(quoted_tweet, "quoted_status"):
    original_tweet = quoted_tweet.quoted_status
-  elif hasattr(quoted_tweet, "retweeted_status") and hasattr(quoted_tweet.retweeted_status, "quoted_status"):
+  elif hasattr(quoted_tweet, "retweeted_status") and quoted_tweet.retweeted_status.is_quote_status == True and hasattr(quoted_tweet.retweeted_status, "quoted_status"):
    original_tweet = quoted_tweet.retweeted_status.quoted_status
   else:
    return quoted_tweet
