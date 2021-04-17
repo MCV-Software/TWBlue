@@ -1330,7 +1330,7 @@ class Controller(object):
      log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r due to the following reason: %s" % (err.api_code, i.name, i.account, i.args, i.kwargs, err.reason))
      # Determine if this error was caused by a block applied to the current user (IE permission errors).
      errors_allowed = [130]
-     if err.api_code != None and err.api_code not in errors_allowed: # A twitter error, so safely try to remove the buffer.
+     if (err.api_code != None and err.api_code not in errors_allowed) or (err.api_code == None and 'Not authorized' in err.reason): # A twitter error, so safely try to remove the buffer.
       buff = self.view.search(i.name, i.account)
       i.remove_buffer(force=True)
       commonMessageDialogs.blocked_timeline()
@@ -1540,7 +1540,7 @@ class Controller(object):
      log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r due to the following reason: %s" % (err.api_code, i.name, i.account, i.args, i.kwargs, err.reason))
      # Determine if this error was caused by a block applied to the current user (IE permission errors).
      errors_allowed = [130]
-     if err.api_code != None and err.api_code not in errors_allowed: # A twitter error, so safely try to remove the buffer.
+     if (err.api_code != None and err.api_code not in errors_allowed) or (err.api_code == None and 'Not authorized' in err.reason): # A twitter error, so safely try to remove the buffer.
       buff = self.view.search(i.name, i.account)
       i.remove_buffer(force=True)
       commonMessageDialogs.blocked_timeline()
