@@ -109,7 +109,7 @@ class basicTweet(object):
    if results.weightedLength > self.max:
     self.session.sound.play("max_length.ogg")
   else:
-   self.message.set_title(_(u"%s - %s characters") % (self.title, results.weightedLength))
+   self.message.set_title(_(u"%s - %s characters") % (self.title, len(self.message.get_text())))
 
  def spellcheck(self, event=None):
   text = self.message.get_text()
