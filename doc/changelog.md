@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* TWBlue will take Shift+F10 again as the contextual menu key in the list of items in a buffer. This stopped working after we have migrated to WX 4.1. ([#353,](https://github.com/manuelcortez/TWBlue/issues/353))
 * TWBlue should render correctly retweets of quoted tweets. ([#365,](https://github.com/manuelcortez/TWBlue/issues/365))
 * Fixed an error that was causing TWBlue to be unable to output to screen readers at times. ([#369,](https://github.com/manuelcortez/TWBlue/issues/369))
 * Fixed autocomplete users feature. ([#367,](https://github.com/manuelcortez/TWBlue/issues/367))
