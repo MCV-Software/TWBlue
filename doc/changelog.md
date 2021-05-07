@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* Changed the label in the direct message's text control so it will indicate that the user needs to write the text there, without referring to any username in particular. ([#366,](https://github.com/manuelcortez/TWBlue/issues/366))
 * TWBlue will take Shift+F10 again as the contextual menu key in the list of items in a buffer. This stopped working after we have migrated to WX 4.1. ([#353,](https://github.com/manuelcortez/TWBlue/issues/353))
 * TWBlue should render correctly retweets of quoted tweets. ([#365,](https://github.com/manuelcortez/TWBlue/issues/365))
 * Fixed an error that was causing TWBlue to be unable to output to screen readers at times. ([#369,](https://github.com/manuelcortez/TWBlue/issues/369))
