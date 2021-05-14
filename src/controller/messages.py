@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from builtins import str
-from builtins import range
-from builtins import object
 import re
 import platform
-from . import attach
 import arrow
 import languageHandler
 system = platform.system()
@@ -16,15 +10,16 @@ import url_shortener
 import sound
 import config
 from pubsub import pub
+from twitter_text import parse_tweet
 if system == "Windows":
  from wxUI.dialogs import message, urlList
  from wxUI import commonMessageDialogs
-
  from extra import translator, SpellChecker, autocompletionUsers
  from extra.AudioUploader import audioUploader
 elif system == "Linux":
  from gtkUI.dialogs import message
 from sessions.twitter import utils
+from . import attach
 
 class basicTweet(object):
  """ This class handles the tweet main features. Other classes should derive from this class."""
@@ -50,8 +45,11 @@ class basicTweet(object):
   dlg = translator.gui.translateDialog()
   if dlg.get_response() == widgetUtils.OK:
    text_to_translate = self.message.get_text()
-   dest = [x[0] for x in translator.translator.available_languages()][dlg.get("dest_lang")]
-   msg = translator.translator.translate(text=text_to_translate, target=dest)
+   language_dict = translator.translator.available_languages()
+   for k in language_dict:
+    if language_dict[k] == dlg.dest_lang.GetStringSelection():
+     dst = k
+   msg = translator.translator.translate(text=text_to_translate, target=dst)
    self.message.set_text(msg)
    self.text_processor()
    self.message.text_focus()
@@ -105,8 +103,10 @@ class basicTweet(object):
    self.message.disable_button("shortenButton")
    self.message.disable_button("unshortenButton")
   if self.message.get("long_tweet") == False:
-   self.message.set_title(_(u"%s - %s of %d characters") % (self.title, len(self.message.get_text()), self.max))
-   if len(self.message.get_text()) > self.max:
+   text = self.message.get_text()
+   results = parse_tweet(text)
+   self.message.set_title(_(u"%s - %s of %d characters") % (self.title, results.weightedLength, self.max))
+   if results.weightedLength > self.max:
     self.session.sound.play("max_length.ogg")
   else:
    self.message.set_title(_(u"%s - %s characters") % (self.title, len(self.message.get_text())))
@@ -216,56 +216,57 @@ class viewTweet(basicTweet):
    text = ""
    for i in range(0, len(tweetList)):
     # tweets with message keys are longer tweets, the message value is the full messaje taken from twishort.
-    if "message" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
+    if hasattr(tweetList[i], "message")  and tweetList[i].is_quote_status == False:
      value = "message"
     else:
      value = "full_text"
-    if "retweeted_status" in tweetList[i] and tweetList[i]["is_quote_status"] == False:
-     if ("message" in tweetList[i]) == False:
-      text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i]["retweeted_status"]["full_text"])
+    if hasattr(tweetList[i], "retweeted_status") and tweetList[i].is_quote_status == False:
+     if not hasattr(tweetList[i], "message"):
+      text = text + "rt @%s: %s\n" % (tweetList[i].retweeted_status.user.screen_name, tweetList[i].retweeted_status.full_text)
      else:
-      text = text + "rt @%s: %s\n" % (tweetList[i]["retweeted_status"]["user"]["screen_name"], tweetList[i][value])
+      text = text + "rt @%s: %s\n" % (tweetList[i].retweeted_status.user.screen_name, getattr(tweetList[i], value))
     else:
-     text = text + " @%s: %s\n" % (tweetList[i]["user"]["screen_name"], tweetList[i][value])
+     text = text + " @%s: %s\n" % (tweetList[i].user.screen_name, getattr(tweetList[i], value))
     # tweets with extended_entities could include image descriptions.
-    if "extended_entities" in tweetList[i] and "media" in tweetList[i]["extended_entities"]:
-     for z in tweetList[i]["extended_entities"]["media"]:
+    if hasattr(tweetList[i], "extended_entities") and "media" in tweetList[i].extended_entities:
+     for z in tweetList[i].extended_entities["media"]:
       if "ext_alt_text" in z and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
-    if "retweeted_status" in tweetList[i] and "extended_entities" in tweetList[i]["retweeted_status"] and "media" in tweetList[i]["retweeted_status"]["extended_entities"]:
-     for z in tweetList[i]["retweeted_status"]["extended_entities"]["media"]:
+    if hasattr(tweetList[i], "retweeted_status") and hasattr(tweetList[i].retweeted_status, "extended_entities") and "media" in tweetList[i].retweeted_status["extended_entities"]:
+     for z in tweetList[i].retweeted_status.extended_entities["media"]:
       if "ext_alt_text" in z and z["ext_alt_text"] != None:
        image_description.append(z["ext_alt_text"])
    # set rt and likes counters.
-   rt_count = str(tweet["retweet_count"])
-   favs_count = str(tweet["favorite_count"])
+   rt_count = str(tweet.retweet_count)
+   favs_count = str(tweet.favorite_count)
    # Gets the client from where this tweet was made.
-   source = re.sub(r"(?s)<.*?>", "", tweet["source"])
-   original_date = arrow.get(tweet["created_at"], "ddd MMM DD H:m:s Z YYYY", locale="en")
+   source = tweet.source
+   original_date = arrow.get(tweet.created_at, locale="en")
    date = original_date.shift(seconds=utc_offset).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
    if text == "":
-    if "message" in tweet:
+    if hasattr(tweet, "message"):
      value = "message"
     else:
      value = "full_text"
-    if "retweeted_status" in tweet:
-     if ("message" in tweet) == False:
-      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet["retweeted_status"]["full_text"])
+    if hasattr(tweet, "retweeted_status"):
+     if not hasattr(tweet, "message"):
+      text = "rt @%s: %s" % (tweet.retweeted_status.user.screen_name, tweet.retweeted_status.full_text)
      else:
-      text = "rt @%s: %s" % (tweet["retweeted_status"]["user"]["screen_name"], tweet[value])
+      text = "rt @%s: %s" % (tweet.retweeted_status.user.screen_name, getattr(tweet, value))
     else:
-     text = tweet[value]
+     text = getattr(tweet, value)
    text = self.clear_text(text)
-   if "extended_entities" in tweet and "media" in tweet["extended_entities"]:
-    for z in tweet["extended_entities"]["media"]:
+   if hasattr(tweet, "extended_entities") and "media" in tweet.extended_entities:
+    for z in tweet.extended_entities["media"]:
      if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
-   if "retweeted_status" in tweet and "extended_entities" in tweet["retweeted_status"] and "media" in tweet["retweeted_status"]["extended_entities"]:
-    for z in tweet["retweeted_status"]["extended_entities"]["media"]:
+   if hasattr(tweet, "retweeted_status") and hasattr(tweet.retweeted_status, "extended_entities") and "media" in tweet.retweeted_status.extended_entities:
+    for z in tweet.retweeted_status.extended_entities["media"]:
      if "ext_alt_text" in z and z["ext_alt_text"] != None:
       image_description.append(z["ext_alt_text"])
    self.message = message.viewTweet(text, rt_count, favs_count, source, date)
-   self.message.set_title(len(text))
+   results = parse_tweet(text)
+   self.message.set_title(results.weightedLength)
    [self.message.set_image_description(i) for i in image_description]
   else:
    self.title = _(u"View item")

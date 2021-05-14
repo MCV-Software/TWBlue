@@ -1,7 +1,4 @@
 ﻿# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from builtins import str
-from builtins import range
 import time
 import platform
 if platform.system() == "Windows":
@@ -24,7 +21,8 @@ from audio_services import youtube_utils
 from controller.buffers import baseBuffers
 from sessions.twitter import compose, utils
 from mysc.thread_utils import call_threaded
-from twython import TwythonError
+from tweepy.error import TweepError
+from tweepy.cursor import Cursor
 from pubsub import pub
 from sessions.twitter.long_tweets import twishort, tweets
 
@@ -86,6 +84,7 @@ class baseBufferController(baseBuffers.buffer):
   return _(u"Unknown buffer")
 
  def post_status(self, *args, **kwargs):
+  item = None
   title = _(u"Tweet")
   caption = _(u"Write the tweet here")
   tweet = messages.tweet(self.session, title, caption, "")
@@ -101,8 +100,8 @@ class baseBufferController(baseBuffers.buffer):
      text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
    if not hasattr(tweet, "attachments") or len(tweet.attachments) == 0:
     item = self.session.api_call(call_name="update_status", status=text, _sound="tweet_send.ogg", tweet_mode="extended")
-#   else:
-#    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments, _sound="tweet_send.ogg")
+   else:
+    call_threaded(self.post_with_media, text=text, attachments=tweet.attachments)
    if item != None:
     pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
   if hasattr(tweet.message, "destroy"): tweet.message.destroy()
@@ -111,11 +110,12 @@ class baseBufferController(baseBuffers.buffer):
  def post_with_media(self, text, attachments):
   media_ids = []
   for i in attachments:
-   photo = open(i["file"], "rb")
-   img = self.session.twitter.upload_media(media=photo)
-   self.session.twitter.create_metadata(media_id=img["media_id"], alt_text=dict(text=i["description"]))
-   media_ids.append(img["media_id"])
-  self.session.twitter.update_status(status=text, media_ids=media_ids)
+   img = self.session.twitter.media_upload(i["file"])
+   self.session.twitter.create_media_metadata(media_id=img.media_id, alt_text=i["description"])
+   media_ids.append(img.media_id)
+  item = self.session.twitter.update_status(status=text, media_ids=media_ids)
+  if item != None:
+   pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
 
  def get_formatted_message(self):
   if self.type == "dm" or self.name == "direct_messages":
@@ -129,31 +129,25 @@ class baseBufferController(baseBuffers.buffer):
  def get_full_tweet(self):
   tweet = self.get_right_tweet()
   tweetsList = []
-  tweet_id = tweet["id"]
+  tweet_id = tweet.id
   message = None
-  if "message" in tweet:
-   message = tweet["message"]
+  if hasattr(tweet, "message"):
+   message = tweet.message
   try:
-   tweet = self.session.twitter.show_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
-   urls = utils.find_urls_in_text(tweet["full_text"])
-   for url in range(0, len(urls)):
-    try:  tweet["full_text"] = tweet["full_text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
-    except IndexError: pass
-  except TwythonError as e:
+   tweet = self.session.twitter.get_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
+   tweet.full_text = utils.expand_urls(tweet.full_text, tweet.entities)
+  except TweepError as e:
    utils.twitter_error(e)
    return
   if message != None:
-   tweet["message"] = message
+   tweet.message = message
   l = tweets.is_long(tweet)
   while l != False:
    tweetsList.append(tweet)
    try:
-    tweet = self.session.twitter.show_status(id=l, include_ext_alt_text=True, tweet_mode="extended")
-    urls = utils.find_urls_in_text(tweet["full_text"])
-    for url in range(0, len(urls)):
-     try:  tweet["full_text"] = tweet["full_text"].replace(urls[url], tweet["entities"]["urls"][url]["expanded_url"])
-     except IndexError: pass
-   except TwythonError as e:
+    tweet = self.session.twitter.get_status(id=l, include_ext_alt_text=True, tweet_mode="extended")
+    tweet.full_text = utils.expand_urls(tweet.full_text, tweet.entities)
+   except TweepError as e:
     utils.twitter_error(e)
     return
    l = tweets.is_long(tweet)
@@ -168,18 +162,41 @@ class baseBufferController(baseBuffers.buffer):
    self.execution_time = current_time
    log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-   if self.name == "direct_messages":
-    number_of_items = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
-   else:
+   if self.name != "direct_messages":
     val = self.session.call_paged(self.function, *self.args, **self.kwargs)
-    number_of_items = self.session.order_buffer(self.name, val)
-    log.debug("Number of items retrieved: %d" % (number_of_items,))
+   else:
+    # 50 results are allowed per API call, so let's assume max value can be 50.
+    # reference: https://developer.twitter.com/en/docs/twitter-api/v1/direct-messages/sending-and-receiving/api-reference/list-events
+    if self.session.settings["general"]["max_tweets_per_call"] > 50:
+     count = 50
+    else:
+     count = self.session.settings["general"]["max_tweets_per_call"]
+    # try to retrieve the cursor for the current buffer.
+    try:
+     val = getattr(self.session.twitter, self.function)(return_cursors=True, count=count, *self.args, **self.kwargs)
+     if type(val) == tuple:
+      val, cursor = val
+      if type(cursor) == tuple:
+       cursor = cursor[1]
+      self.session.db["cursors"][self.name] = cursor
+     results = [i for i in val]
+     val = results
+     val.reverse()
+     log.debug("Retrieved %d items from the cursored search on function %s." %(len(val), self.function))
+     user_ids = [item.message_create["sender_id"] for item in val]
+     self.session.save_users(user_ids)
+    except TweepError as e:
+     log.error("Error %s: %s" % (e.api_code, e.reason))
+     return
+   number_of_items = self.session.order_buffer(self.name, val)
+   log.debug("Number of items retrieved: %d" % (number_of_items,))
+
    self.put_items_on_list(number_of_items)
    if hasattr(self, "finished_timeline") and self.finished_timeline == False:
     if "-timeline" in self.name:
-     self.username = val[0]["user"]["screen_name"]
+     self.username = val[0].user.screen_name
     elif "-favorite" in self.name:
-     self.username = self.session.api_call("show_user", **self.kwargs)["screen_name"]
+     self.username = self.session.api_call("get_user", **self.kwargs).screen_name
     self.finished_timeline = True
    if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
     self.session.sound.play(self.sound)
@@ -202,17 +219,18 @@ class baseBufferController(baseBuffers.buffer):
  def get_more_items(self):
   elements = []
   if self.session.settings["general"]["reverse_timelines"] == False:
-   last_id = self.session.db[self.name][0]["id"]
+   last_id = self.session.db[self.name][0].id
   else:
-   last_id = self.session.db[self.name][-1]["id"]
+   last_id = self.session.db[self.name][-1].id
   try:
-   items = self.session.get_more_items(self.function, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
+   items = getattr(self.session.twitter, self.function)(max_id=last_id, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
+  except TweepError as e:
+   log.error("Error %s: %s" % (e.api_code, e.reason))
+   return
   if items == None:
    return
   for i in items:
-   if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i["id"], self.session.db[self.name]) == None:
+   if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i.id, self.session.db[self.name]) == None:
     i = self.session.check_quoted_status(i)
     i = self.session.check_long_tweet(i)
     elements.append(i)
@@ -221,6 +239,7 @@ class baseBufferController(baseBuffers.buffer):
     else:
      self.session.db[self.name].append(i)
   selection = self.buffer.list.get_selected()
+  log.debug("Retrieved %d items from cursored search in function %s." % (len(elements), self.function))
   if self.session.settings["general"]["reverse_timelines"] == False:
    for i in elements:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
@@ -229,8 +248,6 @@ class baseBufferController(baseBuffers.buffer):
    for i in items:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(False, *tweet)
-#   self.buffer.list.select_item(selection+elements)
-#  else:
    self.buffer.list.select_item(selection)
   output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
 
@@ -270,16 +287,12 @@ class baseBufferController(baseBuffers.buffer):
  def remove_tweet(self, id):
   if type(self.session.db[self.name]) == dict: return
   for i in range(0, len(self.session.db[self.name])):
-   if self.session.db[self.name][i]["id"] == id:
+   if self.session.db[self.name][i].id == id:
     self.session.db[self.name].pop(i)
     self.remove_item(i)
 
  def put_items_on_list(self, number_of_items):
-  # Define the list we're going to use as cursored stuff are a bit different.
-  if self.name != "direct_messages" and self.name != "sent_direct_messages":
-   list_to_use = self.session.db[self.name]
-  else:
-   list_to_use = self.session.db[self.name]["items"]
+  list_to_use = self.session.db[self.name]
   if number_of_items == 0 and self.session.settings["general"]["persist_size"] == 0: return
   log.debug("The list contains %d items " % (self.buffer.list.get_count(),))
   log.debug("Putting %d items on the list" % (number_of_items,))
@@ -382,8 +395,8 @@ class baseBufferController(baseBuffers.buffer):
    self.show_menu(widgetUtils.MENU, pos=self.buffer.list.list.GetPosition())
 
  def get_tweet(self):
-  if "retweeted_status" in self.session.db[self.name][self.buffer.list.get_selected()]:
-   tweet = self.session.db[self.name][self.buffer.list.get_selected()]["retweeted_status"]
+  if hasattr(self.session.db[self.name][self.buffer.list.get_selected()], "retweeted_status"):
+   tweet = self.session.db[self.name][self.buffer.list.get_selected()].retweeted_status
   else:
    tweet = self.session.db[self.name][self.buffer.list.get_selected()]
   return tweet
@@ -395,9 +408,9 @@ class baseBufferController(baseBuffers.buffer):
  @_tweets_exist
  def reply(self, *args, **kwargs):
   tweet = self.get_right_tweet()
-  screen_name = tweet["user"]["screen_name"]
-  id = tweet["id"]
-  twishort_enabled = "twishort" in tweet
+  screen_name = tweet.user.screen_name
+  id = tweet.id
+  twishort_enabled = hasattr(tweet, "twishort")
   users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
   ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
   # Build the window title
@@ -432,7 +445,6 @@ class baseBufferController(baseBuffers.buffer):
    else:
     params["call_name"] = "update_status_with_media"
     params["media"] = message.file
-
    item = self.session.api_call(**params)
    if item != None:
     pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
@@ -443,44 +455,33 @@ class baseBufferController(baseBuffers.buffer):
  def send_message(self, *args, **kwargs):
   tweet = self.get_right_tweet()
   if self.type == "dm":
-   screen_name = self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]
+   screen_name = self.session.get_user(tweet.message_create["sender_id"]).screen_name
    users = [screen_name]
   elif self.type == "people":
-   screen_name = tweet["screen_name"]
+   screen_name = tweet.screen_name
    users = [screen_name]
   else:
-   screen_name = tweet["user"]["screen_name"]
+   screen_name = tweet.user.screen_name
    users = utils.get_all_users(tweet, self.session.db)
   dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
   if dm.message.get_response() == widgetUtils.OK:
    screen_name = dm.message.get("cb")
    user = self.session.get_user_by_screen_name(screen_name)
-   event_data = {
-    'event': {
-        'type': 'message_create',
-        'message_create': {
-            'target': {
-                'recipient_id': user,
-            },
-            'message_data': {
-                'text': dm.message.get_text(),
-            }
-        }
-    }
-}
-   val = self.session.api_call(call_name="send_direct_message", **event_data)
+   recipient_id =  user
+   text = dm.message.get_text()
+   val = self.session.api_call(call_name="send_direct_message", recipient_id=recipient_id, text=text)
    if val != None:
     if self.session.settings["general"]["reverse_timelines"] == False:
-     self.session.db["sent_direct_messages"]["items"].append(val["event"])
+     self.session.db["sent_direct_messages"].append(val)
     else:
-     self.session.db["sent_direct_messages"]["items"].insert(0, val["event"])
-    pub.sendMessage("sent-dm", data=val["event"], user=self.session.db["user_name"])
+     self.session.db["sent_direct_messages"].insert(0, val)
+    pub.sendMessage("sent-dm", data=val, user=self.session.db["user_name"])
   if hasattr(dm.message, "destroy"): dm.message.destroy()
 
  @_tweets_exist
  def share_item(self, *args, **kwargs):
   tweet = self.get_right_tweet()
-  id = tweet["id"]
+  id = tweet.id
   if self.session.settings["general"]["retweet_mode"] == "ask":
    answer = commonMessageDialogs.retweet_question(self.buffer)
    if answer == widgetUtils.YES:
@@ -494,40 +495,40 @@ class baseBufferController(baseBuffers.buffer):
 
  def _retweet_with_comment(self, tweet, id, comment=''):
   # If quoting a retweet, let's quote the original tweet instead the retweet.
-  if "retweeted_status" in tweet:
-   tweet = tweet["retweeted_status"]
-  if "full_text" in tweet:
-   comments = tweet["full_text"]
+  if hasattr(tweet, "retweeted_status"):
+   tweet = tweet.retweeted_status
+  if hasattr(tweet, "full_text"):
+   comments = tweet.full_text
   else:
-   comments = tweet["text"]
-  retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet["user"]["screen_name"], comments), max=256, messageType="retweet")
+   comments = tweet.text
+  retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet.user.screen_name, comments), max=256, messageType="retweet")
   if comment != '':
    retweet.message.set_text(comment)
   if retweet.message.get_response() == widgetUtils.OK:
    text = retweet.message.get_text()
-   text = text+" https://twitter.com/{0}/status/{1}".format(tweet["user"]["screen_name"], id)
+   text = text+" https://twitter.com/{0}/status/{1}".format(tweet.user.screen_name, id)
    if retweet.image == None:
     item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id, tweet_mode="extended")
     if item != None:
-     new_item = self.session.twitter.show_status(id=item["id"], include_ext_alt_text=True, tweet_mode="extended")
+     new_item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
      pub.sendMessage("sent-tweet", data=new_item, user=self.session.db["user_name"])
    else:
     call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, media=retweet.image)
   if hasattr(retweet.message, "destroy"): retweet.message.destroy()
 
  def _direct_retweet(self, id):
-  item = self.session.api_call(call_name="retweet", _sound="retweet_send.ogg", id=id, tweet_mode="extended")
+  item = self.session.api_call(call_name="retweet", _sound="retweet_send.ogg", id=id)
   if item != None:
    # Retweets are returned as non-extended tweets, so let's get the object as extended
    # just before sending the event message. See https://github.com/manuelcortez/TWBlue/issues/253
-   item = self.session.twitter.show_status(id=item["id"], include_ext_alt_text=True, tweet_mode="extended")
+   item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
    pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
 
  def onFocus(self, *args, **kwargs):
   tweet = self.get_tweet()
   if platform.system() == "Windows" and self.session.settings["general"]["relative_times"] == True:
    # fix this:
-   original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()]["created_at"], "ddd MMM D H:m:s Z YYYY", locale="en")
+   original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()].created_at, locale="en")
    ts = original_date.humanize(locale=languageHandler.getLanguage())
    self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
   if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
@@ -589,22 +590,22 @@ class baseBufferController(baseBuffers.buffer):
   if answer == widgetUtils.YES:
    try:
     if self.name == "direct_messages" or self.name == "sent_direct_messages":
-     self.session.twitter.destroy_direct_message(id=self.get_right_tweet()["id"])
-     self.session.db[self.name]["items"].pop(index)
+     self.session.twitter.destroy_direct_message(id=self.get_right_tweet().id)
+     self.session.db[self.name].pop(index)
     else:
-     self.session.twitter.destroy_status(id=self.get_right_tweet()["id"])
+     self.session.twitter.destroy_status(id=self.get_right_tweet().id)
      self.session.db[self.name].pop(index)
     self.buffer.list.remove_item(index)
-   except TwythonError:
+   except TweepError:
     self.session.sound.play("error.ogg")
 
  @_tweets_exist
  def user_details(self):
   tweet = self.get_right_tweet()
   if self.type == "dm":
-   users = [self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]]
+   users = [self.session.get_user(tweet.message_create["sender_id"]).screen_name]
   elif self.type == "people":
-   users = [tweet["screen_name"]]
+   users = [tweet.screen_name]
   else:
    users = utils.get_all_users(tweet, self.session.db)
   dlg = dialogs.utils.selectUserDialog(title=_(u"User details"), users=users)
@@ -613,81 +614,88 @@ class baseBufferController(baseBuffers.buffer):
   if hasattr(dlg, "destroy"): dlg.destroy()
 
  def get_quoted_tweet(self, tweet):
-#  try:
-  quoted_tweet = self.session.twitter.show_status(id=tweet["id"])
-  urls = utils.find_urls_in_text(quoted_tweet["text"])
-  for url in range(0, len(urls)):
-   try:  quoted_tweet["text"] = quoted_tweet["text"].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
-   except IndexError: pass
-#  except TwythonError as e:
-#   utils.twitter_error(e)
-#   return
+  quoted_tweet = self.session.twitter.get_status(id=tweet.id)
+  quoted_tweet.text = utils.find_urls_in_text(quoted_tweet.text, quoted_tweet.entities)
   l = tweets.is_long(quoted_tweet)
   id = tweets.get_id(l)
-#  try:
-  original_tweet = self.session.twitter.show_status(id=id)
-  urls = utils.find_urls_in_text(original_tweet["text"])
-  for url in range(0, len(urls)):
-   try:  original_tweet["text"] = original_tweet["text"].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
-   except IndexError: pass
+  original_tweet = self.session.twitter.get_status(id=id)
+  original_tweet.text = utils.find_urls_in_text(original_tweet.text, original_tweet.entities)
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet, self.session.db, self.session.settings["general"]["relative_times"])
 
  def open_in_browser(self, *args, **kwargs):
   tweet = self.get_tweet()
   output.speak(_(u"Opening item in web browser..."))
-  url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=tweet["user"]["screen_name"], tweet_id=tweet["id"])
+  url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=tweet.user.screen_name, tweet_id=tweet.id)
   webbrowser.open(url)
 
 class directMessagesController(baseBufferController):
 
  def get_more_items(self):
+  # 50 results are allowed per API call, so let's assume max value can be 50.
+  # reference: https://developer.twitter.com/en/docs/twitter-api/v1/direct-messages/sending-and-receiving/api-reference/list-events
+  if self.session.settings["general"]["max_tweets_per_call"] > 50:
+   count = 50
+  else:
+   count = self.session.settings["general"]["max_tweets_per_call"]
+  total = 0
+  # try to retrieve the cursor for the current buffer.
+  cursor = self.session.db["cursors"].get(self.name)
   try:
-   items = self.session.get_more_items(self.function, dm=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"], *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
+   items = getattr(self.session.twitter, self.function)(return_cursors=True, cursor=cursor, count=count, *self.args, **self.kwargs)
+   if type(items) == tuple:
+    items, cursor = items
+    if type(cursor) == tuple:
+     cursor = cursor[1]
+    self.session.db["cursors"][self.name] = cursor
+   results = [i for i in items]
+   items = results
+   log.debug("Retrieved %d items for cursored search in function %s" % (len(items), self.function))
+  except TweepError as e:
+   log.error("Error %s: %s" % (e.api_code, e.reason))
    return
   if items == None:
    return
   sent = []
+  received = []
   for i in items:
-   if i["message_create"]["sender_id"] == self.session.db["user_id"]:
+   if int(i.message_create["sender_id"]) == self.session.db["user_id"]:
     if self.session.settings["general"]["reverse_timelines"] == False:
-     self.session.db["sent_direct_messages"]["items"].insert(0, i)
+     self.session.db["sent_direct_messages"].insert(0, i)
+     sent.append(i)
     else:
-     self.session.db["sent_direct_messages"]["items"].append(i)
-    sent.append(i)
+     self.session.db["sent_direct_messages"].append(i)
+     sent.insert(0, i)
    else:
     if self.session.settings["general"]["reverse_timelines"] == False:
-     self.session.db[self.name]["items"].insert(0, i)
+     self.session.db[self.name].insert(0, i)
+     received.append(i)
     else:
-     self.session.db[self.name]["items"].append(i)
+     self.session.db[self.name].append(i)
+     received.insert(0, i)
+   total = total+1
+  user_ids = [item.message_create["sender_id"] for item in items]
+  self.session.save_users(user_ids)
   pub.sendMessage("more-sent-dms", data=sent, account=self.session.db["user_name"])
   selected = self.buffer.list.get_selected()
   if self.session.settings["general"]["reverse_timelines"] == True:
-   for i in items:
-    if i["message_create"]["sender_id"] == self.session.db["user_id"]:
+   for i in received:
+    if int(i.message_create["sender_id"]) == self.session.db["user_id"]:
      continue
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(True, *tweet)
    self.buffer.list.select_item(selected)
   else:
-   for i in items:
-    if i["message_create"]["sender_id"] == self.session.db["user_id"]:
+   for i in received:
+    if int(i.message_create["sender_id"]) == self.session.db["user_id"]:
      continue
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
     self.buffer.list.insert_item(True, *tweet)
-  output.speak(_(u"%s items retrieved") % (len(items)), True)
-
- def get_tweet(self):
-  tweet = self.session.db[self.name]["items"][self.buffer.list.get_selected()]
-  return tweet
-
- get_right_tweet = get_tweet
+  output.speak(_(u"%s items retrieved") % (total), True)
 
  @_tweets_exist
  def reply(self, *args, **kwargs):
   tweet = self.get_right_tweet()
-  screen_name = self.session.get_user(tweet["message_create"]["sender_id"])["screen_name"]
+  screen_name = self.session.get_user(tweet.message_create["sender_id"]).screen_name
   message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
   if message.message.get_response() == widgetUtils.OK:
    if config.app["app-settings"]["remember_mention_and_longtweet"]:
@@ -705,7 +713,7 @@ class directMessagesController(baseBufferController):
   tweet = self.get_tweet()
   if platform.system() == "Windows" and self.session.settings["general"]["relative_times"] == True:
    # fix this:
-   original_date = arrow.get(int(tweet["created_timestamp"][:-3]))
+   original_date = arrow.get(int(tweet.created_timestamp))
    ts = original_date.humanize(locale=languageHandler.getLanguage())
    self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
   if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
@@ -716,15 +724,15 @@ class directMessagesController(baseBufferController):
  def clear_list(self):
   dlg = commonMessageDialogs.clear_list()
   if dlg == widgetUtils.YES:
-   self.session.db[self.name]["items"] = []
+   self.session.db[self.name] = []
    self.buffer.list.clear()
 
  def auto_read(self, number_of_items):
   if number_of_items == 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    tweet = self.session.db[self.name]["items"][-1]
+    tweet = self.session.db[self.name][-1]
    else:
-    tweet = self.session.db[self.name]["items"][0]
+    tweet = self.session.db[self.name][0]
    output.speak(_(u"New direct message"))
    output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
   elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
@@ -738,7 +746,7 @@ class sentDirectMessagesController(directMessagesController):
  def __init__(self, *args, **kwargs):
   super(sentDirectMessagesController, self).__init__(*args, **kwargs)
   if ("sent_direct_messages" in self.session.db) == False:
-   self.session.db["sent_direct_messages"] = {"items": []}
+   self.session.db["sent_direct_messages"] = []
 
  def get_more_items(self):
   output.speak(_(u"Getting more items cannot be done in this buffer. Use the direct messages buffer instead."))
@@ -750,11 +758,11 @@ class sentDirectMessagesController(directMessagesController):
   if self.session.settings["general"]["reverse_timelines"] == True:
    for i in items:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
-    self.buffer.list.insert_item(True, *tweet)
+    self.buffer.list.insert_item(False, *tweet)
   else:
    for i in items:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
-    self.buffer.list.insert_item(True, *tweet)
+    self.buffer.list.insert_item(False, *tweet)
 
 class listBufferController(baseBufferController):
  def __init__(self, parent, function, name, sessionObject, account, sound=None, bufferType=None, list_id=None, *args, **kwargs):
@@ -768,13 +776,9 @@ class listBufferController(baseBufferController):
   super(listBufferController, self).start_stream(mandatory, play_sound, avoid_autoreading)
 
  def get_user_ids(self):
-  next_cursor = -1
-  while(next_cursor):
-   users = self.session.twitter.get_list_members(list_id=self.list_id, cursor=next_cursor, include_entities=False, skip_status=True)
-   for i in users['users']:
-    if i["id"] not in self.users:
-     self.users.append(i["id"])
-    next_cursor = users["next_cursor"]
+  for i in Cursor(self.session.twitter.list_members, list_id=self.list_id, include_entities=False, skip_status=True, count=5000).items():
+    if i.id not in self.users:
+     self.users.append(i.id)
 
  def remove_buffer(self, force=False):
   if force == False:
@@ -854,7 +858,7 @@ class peopleBufferController(baseBufferController):
  @_tweets_exist
  def reply(self, *args, **kwargs):
   tweet = self.get_right_tweet()
-  screen_name = tweet["screen_name"]
+  screen_name = tweet.screen_name
   message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
   if message.message.get_response() == widgetUtils.OK:
    if config.app["app-settings"]["remember_mention_and_longtweet"]:
@@ -875,31 +879,55 @@ class peopleBufferController(baseBufferController):
    self.execution_time = current_time
    log.debug("Starting stream for %s buffer, %s account" % (self.name, self.account,))
    log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-   val = self.session.get_cursored_stream(self.name, self.function, *self.args, **self.kwargs)
-   self.put_items_on_list(val)
+   try:
+    val = getattr(self.session.twitter, self.function)(return_cursors=True, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
+    if type(val) == tuple:
+     val, cursor = val
+     if type(cursor) == tuple:
+      cursor = cursor[1]
+     self.session.db["cursors"][self.name] = cursor
+    results = [i for i in val]
+    val = results
+    val.reverse()
+    log.debug("Retrieved %d items from cursored search in function %s" % (len(val), self.function))
+   except TweepError as e:
+    log.error("Error %s: %s" % (e.api_code, e.reason))
+    return
+   number_of_items = self.session.order_people(self.name, val)
+   log.debug("Number of items retrieved: %d" % (number_of_items,))
+   self.put_items_on_list(number_of_items)
    if hasattr(self, "finished_timeline") and self.finished_timeline == False:
-    self.username = self.session.api_call("show_user", **self.kwargs)["screen_name"]
+    self.username = self.session.api_call("get_user", **self.kwargs).screen_name
     self.finished_timeline = True
-   if val > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
+   if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
     self.session.sound.play(self.sound)
    # Autoread settings
-   if avoid_autoreading == False and mandatory == True and val > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
-    self.auto_read(val)
-   return val
+   if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
+    self.auto_read(number_of_items)
+   return number_of_items
 
  def get_more_items(self):
   try:
-   items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"], cursor=self.session.db[self.name]["cursor"], *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
+   cursor = self.session.db["cursors"].get(self.name)
+   items = getattr(self.session.twitter, self.function)(return_cursors=True, users=True, cursor=cursor, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
+   if type(items) == tuple:
+    items, cursor = items
+    if type(cursor) == tuple:
+     cursor = cursor[1]
+    self.session.db["cursors"][self.name] = cursor
+   results = [i for i in items]
+   items = results
+   log.debug("Retrieved %d items from cursored search in function %s" % (len(items), self.function))
+  except TweepError as e:
+   log.error("Error %s: %s" % (e.api_code, e.reason))
    return
   if items == None:
    return
   for i in items:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    self.session.db[self.name]["items"].insert(0, i)
+    self.session.db[self.name].insert(0, i)
    else:
-    self.session.db[self.name]["items"].append(i)
+    self.session.db[self.name].append(i)
   selected = self.buffer.list.get_selected()
   if self.session.settings["general"]["reverse_timelines"] == True:
    for i in items:
@@ -916,18 +944,18 @@ class peopleBufferController(baseBufferController):
   log.debug("The list contains %d items" % (self.buffer.list.get_count(),))
 #  log.debug("Putting %d items on the list..." % (number_of_items,))
   if self.buffer.list.get_count() == 0:
-   for i in self.session.db[self.name]["items"]:
+   for i in self.session.db[self.name]:
     tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
     self.buffer.list.insert_item(False, *tweet)
    self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
 #   self.buffer.set_list_position()
   elif self.buffer.list.get_count() > 0:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    for i in self.session.db[self.name]["items"][len(self.session.db[self.name]["items"])-number_of_items:]:
+    for i in self.session.db[self.name][len(self.session.db[self.name])-number_of_items:]:
      tweet = self.compose_function(i, self.session.db)
      self.buffer.list.insert_item(False, *tweet)
    else:
-    items = self.session.db[self.name]["items"][0:number_of_items]
+    items = self.session.db[self.name][0:number_of_items]
     items.reverse()
     for i in items:
      tweet = self.compose_function(i, self.session.db)
@@ -935,7 +963,7 @@ class peopleBufferController(baseBufferController):
   log.debug("now the list contains %d items" % (self.buffer.list.get_count(),))
 
  def get_right_tweet(self):
-  tweet = self.session.db[self.name]["items"][self.buffer.list.get_selected()]
+  tweet = self.session.db[self.name][self.buffer.list.get_selected()]
   return tweet
 
  def add_new_item(self, item):
@@ -950,12 +978,12 @@ class peopleBufferController(baseBufferController):
  def clear_list(self):
   dlg = commonMessageDialogs.clear_list()
   if dlg == widgetUtils.YES:
-   self.session.db[self.name]["items"] = []
-   self.session.db[self.name]["cursor"] = -1
+   self.session.db[self.name] = []
+   self.session.db["cursors"][self.name] = -1
    self.buffer.list.clear()
 
  def interact(self):
-  user.profileController(self.session, user=self.get_right_tweet()["screen_name"])
+  user.profileController(self.session, user=self.get_right_tweet().screen_name)
 
  def show_menu(self, ev, pos=0, *args, **kwargs):
   menu = menus.peoplePanelMenu()
@@ -978,9 +1006,9 @@ class peopleBufferController(baseBufferController):
  def auto_read(self, number_of_items):
   if number_of_items == 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    if self.session.settings["general"]["reverse_timelines"] == False:
-    tweet = self.session.db[self.name]["items"][-1]
+    tweet = self.session.db[self.name][-1]
    else:
-    tweet = self.session.db[self.name["items"]][0]
+    tweet = self.session.db[self.name][0]
    output.speak(" ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)))
   elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
    output.speak(_(u"{0} new followers.").format(number_of_items))
@@ -988,30 +1016,10 @@ class peopleBufferController(baseBufferController):
  def open_in_browser(self, *args, **kwargs):
   tweet = self.get_tweet()
   output.speak(_(u"Opening item in web browser..."))
-  url = "https://twitter.com/{screen_name}".format(screen_name=tweet["screen_name"])
+  url = "https://twitter.com/{screen_name}".format(screen_name=tweet.screen_name)
   webbrowser.open(url)
 
 class searchBufferController(baseBufferController):
- def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
-  # starts stream every 3 minutes.
-  current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
-   self.execution_time = current_time
-   log.debug("Starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
-   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-   log.debug("Function: %s" % (self.function,))
-#  try:
-   val = self.session.search(self.name, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
-#  except:
-#   return None
-   num = self.session.order_buffer(self.name, val)
-   self.put_items_on_list(num)
-   if num > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
-    self.session.sound.play(self.sound)
-   # Autoread settings
-   if avoid_autoreading == False and mandatory == True and num > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
-    self.auto_read(num)
-   return num
 
  def remove_buffer(self, force=False):
   if force == False:
@@ -1028,105 +1036,22 @@ class searchBufferController(baseBufferController):
   elif dlg == widgetUtils.NO:
    return False
 
- def get_more_items(self):
-  elements = []
-  if self.session.settings["general"]["reverse_timelines"] == False:
-   last_id = self.session.db[self.name][0]["id"]
-  else:
-   last_id = self.session.db[self.name][-1]["id"]
-  try:
-   items = self.session.search(self.name, count=self.session.settings["general"]["max_tweets_per_call"], max_id=last_id, *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
-  if items == None:
-   return
-  for i in items:
-   if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i["id"], self.session.db[self.name]) == None:
-    i = self.session.check_quoted_status(i)
-    i = self.session.check_long_tweet(i)
-    elements.append(i)
-    if self.session.settings["general"]["reverse_timelines"] == False:
-     self.session.db[self.name].insert(0, i)
-    else:
-     self.session.db[self.name].append(i)
-  selection = self.buffer.list.get_selected()
-  if self.session.settings["general"]["reverse_timelines"] == False:
-   for i in elements:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
-    self.buffer.list.insert_item(True, *tweet)
-  else:
-   for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
-    self.buffer.list.insert_item(False, *tweet)
-#   self.buffer.list.select_item(selection+elements)
-#  else:
-   self.buffer.list.select_item(selection)
-  output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
-
 class searchPeopleBufferController(peopleBufferController):
-
+ """ This is identical to a normal peopleBufferController, except that uses the page parameter instead of a cursor."""
  def __init__(self, parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs):
   super(searchPeopleBufferController, self).__init__(parent, function, name, sessionObject, account, bufferType="peoplePanel", *args, **kwargs)
-  log.debug("Initializing buffer %s, account %s" % (name, account,))
-#  self.compose_function = compose.compose_followers_list
-  log.debug("Compose_function: %s" % (self.compose_function,))
-  self.args = args
-  self.kwargs = kwargs
-  self.function = function
   if ("page" in self.kwargs) == False:
-   self.kwargs["page"] = 1
-
- def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=True):
-  # starts stream every 3 minutes.
-  current_time = time.time()
-  if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory==True:
-   self.execution_time = current_time
-   log.debug("starting stream for %s buffer, %s account and %s type" % (self.name, self.account, self.type))
-   log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-   log.debug("Function: %s" % (self.function,))
-#  try:
-   val = self.session.call_paged(self.function, *self.args, **self.kwargs)
-#  except:
-#   return
-   number_of_items = self.session.order_cursored_buffer(self.name, val)
-   log.debug("Number of items retrieved: %d" % (number_of_items,))
-   self.put_items_on_list(number_of_items)
-   if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
-    self.session.sound.play(self.sound)
-   # Autoread settings
-   if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
-    self.auto_read(number_of_items)
-   return number_of_items
+   self.page = 1
+  else:
+   self.page = self.kwargs.pop("page")
 
  def get_more_items(self, *args, **kwargs):
-  self.kwargs["page"] += 1
-  try:
-   items = self.session.get_more_items(self.function, users=True, name=self.name, count=self.session.settings["general"]["max_tweets_per_call"],  *self.args, **self.kwargs)
-  except TwythonError as e:
-   output.speak(e.message, True)
-   return
-  if items == None:
-   return
-  for i in items:
-   if self.session.settings["general"]["reverse_timelines"] == False:
-    self.session.db[self.name]["items"].insert(0, i)
-   else:
-    self.session.db[self.name]["items"].append(i)
-  selected = self.buffer.list.get_selected()
-#  self.put_items_on_list(len(items))
-  if self.session.settings["general"]["reverse_timelines"] == True:
-   for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
-    self.buffer.list.insert_item(True, *tweet)
-   self.buffer.list.select_item(selected)
-  else:
-   for i in items:
-    tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session)
-    self.buffer.list.insert_item(True, *tweet)
-#   self.buffer.list.select_item(selection)
-#  else:
-#   self.buffer.list.select_item(selection-elements)
-  output.speak(_(u"%s items retrieved") % (len(items)), True)
+  # Add 1 to the page parameter, put it in kwargs and calls to get_more_items in the parent buffer.
+  self.page = self.page +1
+  self.kwargs["page"] = self.page
+  super(searchPeopleBufferController, self).get_more_items(*args, **kwargs)
+  # remove the parameter again to make sure start_stream won't fetch items for this page indefinitely.
+  self.kwargs.pop("page")
 
  def remove_buffer(self, force=False):
   if force == False:
@@ -1168,9 +1093,9 @@ class trendsBufferController(baseBuffers.buffer):
   if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
    self.execution_time = current_time
    try:
-    data = self.session.call_paged("get_place_trends", id=self.trendsFor)
-   except:
-    return
+    data = self.session.twitter.trends_place(id=self.trendsFor)
+   except TweepError as err:
+    log.error("Error %s: %s" % (err.api_code, err.reason))
    if not hasattr(self, "name_"):
     self.name_ = data[0]["locations"][0]["name"]
    self.trends = data[0]["trends"]
@@ -1279,23 +1204,23 @@ class conversationBufferController(searchBufferController):
     self.statuses = []
     self.ids = []
     self.statuses.append(self.tweet)
-    self.ids.append(self.tweet["id"])
+    self.ids.append(self.tweet.id)
     tweet = self.tweet
-    while tweet["in_reply_to_status_id"] != None:
+    while tweet.in_reply_to_status_id != None:
      try:
-      tweet = self.session.twitter.show_status(id=tweet["in_reply_to_status_id"], tweet_mode="extended")
-     except TwythonError as err:
+      tweet = self.session.twitter.get_status(id=tweet.in_reply_to_status_id, tweet_mode="extended")
+     except TweepError as err:
       break
      self.statuses.insert(0, tweet)
-     self.ids.append(tweet["id"])
-    if tweet["in_reply_to_status_id"] == None:
-     self.kwargs["since_id"] = tweet["id"]
-     self.ids.append(tweet["id"])
+     self.ids.append(tweet.id)
+    if tweet.in_reply_to_status_id == None:
+     self.kwargs["since_id"] = tweet.id
+     self.ids.append(tweet.id)
    val2 = self.session.search(self.name, tweet_mode="extended", *self.args, **self.kwargs)
    for i in val2:
-    if i["in_reply_to_status_id"] in self.ids:
+    if i.in_reply_to_status_id in self.ids:
      self.statuses.append(i)
-     self.ids.append(i["id"])
+     self.ids.append(i.id)
      tweet = i
    number_of_items = self.session.order_buffer(self.name, self.statuses)
    log.debug("Number of items retrieved: %d" % (number_of_items,))

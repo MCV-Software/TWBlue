@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from builtins import object
 from wxUI.dialogs import trends
 import widgetUtils
 
@@ -10,7 +8,7 @@ class trendingTopicsController(object):
   self.countries = {}
   self.cities = {}
   self.dialog = trends.trendingTopicsDialog()
-  self.information = session.twitter.get_available_trends()
+  self.information = session.twitter.trends_available()
   self.split_information()
   widgetUtils.connect_event(self.dialog.country, widgetUtils.RADIOBUTTON, self.get_places)
   widgetUtils.connect_event(self.dialog.city, widgetUtils.RADIOBUTTON, self.get_places)

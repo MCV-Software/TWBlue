@@ -59,15 +59,21 @@ class buffer(object):
   elif ev.GetKeyCode() == wx.WXK_F6: event = "volume_up"
   elif ev.GetKeyCode() == wx.WXK_DELETE and ev.ShiftDown(): event = "clear_list"
   elif ev.GetKeyCode() == wx.WXK_DELETE: event = "destroy_status"
+  # Raise a Special event when pressed Shift+F10 because Wx==4.1.x does not seems to trigger this by itself.
+  # See https://github.com/manuelcortez/TWBlue/issues/353
+  elif ev.GetKeyCode() == wx.WXK_F10 and ev.ShiftDown(): event = "show_menu"
   else:
    event = None
    ev.Skip()
   if event != None:
    try:
+    ### ToDo: Remove after WX fixes issue #353 in the widgets.
+    if event == "show_menu":
+     return self.show_menu(widgetUtils.MENU, pos=self.buffer.list.list.GetPosition())
     getattr(self, event)()
    except AttributeError:
     pass
- 
+
  def volume_down(self):
   """ Decreases volume by 5%"""
   if self.session.settings["sound"]["volume"] > 0.0:

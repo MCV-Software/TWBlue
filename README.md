@@ -24,35 +24,37 @@ This document describes how to run tw blue from source and how to build a binary
 ### Required dependencies.
 
 Although most dependencies can be found in the windows-dependencies directory, we provide links to their official websites. If you are cloning with git, don't forget to initialize and update the submodules to get the windows-dependencies folder. You can use these two commands to perform this task from git bash:  
+```
     git submodule init  
     git submodule update
+```
 
 #### Dependencies packaged in windows installers
 
-* [Python,](http://python.org) version 3.7.7  
-If you want to build both x86 and x64 binaries, you can install python x86 to C:\python37 and python x64 to C:\python37x64, for example.
+* [Python,](https://python.org) version 3.8.7  
+If you want to build both x86 and x64 binaries, you can install python x86 to C:\python38 and python x64 to C:\python38x64, for example.
 
 #### Dependencies that must be installed using pip
 
 Python installs a tool called Pip that allows to install packages in a simple way. You can find it in the python scripts directory. To install packages using Pip, you have to navigate to the scripts directory using a command prompt, for example:
 
-    cd C:\python37x64\scripts
+    `cd C:\python37x64\scripts`
 
 	You can also add the scripts folder to your path environment variable or choose the corresponding option when installing Python.  
 	Note: pip and setuptools are included in the Python installer since version 2.7.9.
 
 Pip is able to install packages listed in a special text file, called the requirements file. To install all remaining dependencies, perform the following command:
 
-    pip install -r requirements.txt
+    `pip install -r requirements.txt`
 
 Note that if you perform the command from the path where Pip is located, you need to specify the path to your Tw Blue root folder where the requirements file is located, for example:
 
-    pip install -r D:\repos\TwBlue\requirements.txt
+    `pip install -r D:\repos\TwBlue\requirements.txt`
 
 Pip will automatically get the additional libraries that the listed packages need to work properly.  
 If you need to update your dependencies, perform the following command:
 
-    pip install --upgrade -r requirements.txt
+    `pip install --upgrade -r requirements.txt`
 
 #### Other dependencies
 
@@ -61,7 +63,7 @@ These dependencies are located in the windows-dependencies directory. You don't 
 * Bootstrap 1.2.1: included in dependencies directory.  
 This dependency has been built using pure basic 4.61. Its source can be found at http://hg.q-continuum.net/updater
 * [oggenc2.exe,](http://www.rarewares.org/ogg-oggenc.php) version 2.87  
-* Microsoft Visual c++ 2017 redistributable dlls.
+* Microsoft Visual c++ 2019 redistributable dlls.
 * VLC plugins and DLL libraries.
 
 #### Dependencies required to build the installer
@@ -84,7 +86,7 @@ In order to add the support for spell checking in more languages than english yo
 
 Now that you have installed all these packages, you can run TW Blue from source using a command prompt. Navigate to the repo's `src` directory, and type the following command:
 
-    python main.py
+    `python main.py`
 
 	If necessary, change the first part of the command to reflect the location of your python executable. You can run TW Blue using python x86 and x64.
 
@@ -92,8 +94,8 @@ Now that you have installed all these packages, you can run TW Blue from source 
 
 To generate the documentation in html format, navigate to the doc folder inside this repo. After that, run these commands:  
 
-    python document_importer.py  
-    python generator.py  
+    `python document_importer.py`  
+    `python generator.py`  
 
 The documentation will be generated, placing each language in a separate folder in the doc directory. Move these folders (for example `de`, `en`, `es`, `fr`, `it`, ...) to `src/documentation`, creating the directory if necessary.  
 Also, copy the `license.txt` file located in the root of the repo to the documentation folder.
@@ -104,7 +106,7 @@ A binary version doesn't need python and the other dependencies to run, it's the
 
 To build it, run the following command from the src folder:
 
-    python setup.py build
+    `python setup.py build`
 
 	You will find the binaries in the dist directory.
 

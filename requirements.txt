@@ -1,4 +1,5 @@
-wxpython==4.0.3
+wxpython
+wheel
 six
 configobj
 markdown
@@ -15,8 +16,10 @@ futures
 winpaths
 PySocks
 win_inet_pton
-yandex.translate
-idna
+# Install the latest RC of this lib
+# see https://github.com/ssut/py-googletrans/issues/234
+googletrans==4.0.0-rc1
+idna<3,>=2.5
 chardet
 urllib3
 youtube-dl
@@ -25,8 +28,10 @@ pypiwin32
 certifi
 backports.functools_lru_cache
 cx_freeze
-git+https://github.com/manuelcortez/twython
-git+https://github.com/manuelcortez/libloader
-git+https://github.com/manuelcortez/platform_utils
-git+https://github.com/manuelcortez/accessible_output2
-git+https://github.com/jmdaweb/sound_lib
+tweepy
+twitter-text-parser
+pyenchant
+git+https://github.com/accessibleapps/libloader
+git+https://github.com/accessibleapps/platform_utils
+git+https://github.com/accessibleapps/accessible_output2
+git+https://github.com/accessibleapps/sound_lib

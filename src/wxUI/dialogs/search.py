@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
 import widgetUtils
 from . import baseDialog
 import wx
@@ -14,6 +12,7 @@ class searchDialog(baseDialog.BaseWXDialog):
   self.SetTitle(_(u"Search on Twitter"))
   label = wx.StaticText(panel, -1, _(u"&Search"))
   self.term = wx.TextCtrl(panel, -1, value)
+  self.term.SetFocus()
   dc = wx.WindowDC(self.term)
   dc.SetFont(self.term.GetFont())
   self.term.SetSize(dc.GetTextExtent("0"*40))

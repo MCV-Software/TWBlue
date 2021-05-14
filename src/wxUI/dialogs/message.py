@@ -221,7 +221,7 @@ class dm(textLimited):
 
  def __init__(self, title, message,  users, *args, **kwargs):
   super(dm, self).__init__()
-  self.createControls(message, title, users)
+  self.createControls(title, message, users)
 #  self.onTimer(wx.EVT_CHAR_HOOK)
 #  self.SetClientSize(self.mainBox.CalcMin())
 

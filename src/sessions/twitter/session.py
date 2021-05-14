@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 """ This is the main session needed to access all Twitter Features."""
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from builtins import range
 import os
 import time
 import logging
@@ -12,7 +9,9 @@ import config
 import output
 import application
 from pubsub import pub
-from twython import Twython, TwythonError, TwythonRateLimitError, TwythonAuthError
+import tweepy
+from tweepy.error import TweepError
+from tweepy.models import User as UserModel
 from mysc.thread_utils import call_threaded
 from keys import keyring
 from sessions import base
@@ -31,6 +30,8 @@ class Session(base.baseSession):
   data list: A list with tweets.
   ignore_older bool: if set to True, items older than the first element on the list will be ignored.
   returns the number of items that have been added in this execution"""
+  if name == "direct_messages":
+   return self.order_direct_messages(data)
   num = 0
   last_id = None
   if (name in self.db) == False:
@@ -39,43 +40,38 @@ class Session(base.baseSession):
    self.db["users"] = {}
   if ignore_older and len(self.db[name]) > 0:
    if self.settings["general"]["reverse_timelines"] == False:
-    last_id = self.db[name][0]["id"]
+    last_id = self.db[name][0].id
    else:
-    last_id = self.db[name][-1]["id"]
+    last_id = self.db[name][-1].id
   for i in data:
    if ignore_older and last_id != None:
-    if i["id"] < last_id:
-     log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i["id"]))
+    if i.id < last_id:
+     log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i.id))
      continue
-   if utils.find_item(i["id"], self.db[name]) == None and     utils.is_allowed(i, self.settings, name) == True:
+   if utils.find_item(i.id, self.db[name]) == None and     utils.is_allowed(i, self.settings, name) == True:
     i = self.check_quoted_status(i)
     i = self.check_long_tweet(i)
     if i == False: continue
     if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
     else: self.db[name].insert(0, i)
     num = num+1
-    if ("user" in i) == True:
-     if (i["user"]["id"] in self.db["users"]) == False:
-      self.db["users"][i["user"]["id"]] = i["user"]
+    if hasattr(i, "user"):
+     if (i.user.id in self.db["users"]) == False:
+      self.db["users"][i.user.id] = i.user
   return num
 
- def order_cursored_buffer(self, name, data):
+ def order_people(self, name, data):
   """ Put new items on the local database. Useful for cursored buffers (followers, friends, users of a list and searches)
   name str: The name for the buffer stored in the dictionary.
   data list: A list with items and some information about cursors.
   returns the number of items that have been added in this execution"""
-  # Direct messages should be added to db in other function.
-  # Because they will be populating two buffers with one endpoint.
-  if name == "direct_messages":
-   return self.order_direct_messages(data)
   num = 0
   if (name in self.db) == False:
-   self.db[name] = {}
-   self.db[name]["items"] = []
+   self.db[name] = []
   for i in data:
-   if utils.find_item(i["id"], self.db[name]["items"]) == None:
-    if self.settings["general"]["reverse_timelines"] == False: self.db[name]["items"].append(i)
-    else: self.db[name]["items"].insert(0, i)
+   if utils.find_item(i.id, self.db[name]) == None:
+    if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
+    else: self.db[name].insert(0, i)
     num = num+1
   return num
 
@@ -86,24 +82,27 @@ class Session(base.baseSession):
   incoming = 0
   sent = 0
   if ("direct_messages" in self.db) == False:
-   self.db["direct_messages"] = {}
-   self.db["direct_messages"]["items"] = []
+   self.db["direct_messages"] = []
   for i in data:
-   if i["message_create"]["sender_id"] == self.db["user_id"]:
-    if "sent_direct_messages" in self.db and utils.find_item(i["id"], self.db["sent_direct_messages"]["items"]) == None:
-     if self.settings["general"]["reverse_timelines"] == False: self.db["sent_direct_messages"]["items"].append(i)
-     else: self.db["sent_direct_messages"]["items"].insert(0, i)
+   # Twitter returns sender_id as str, which must be converted to int in order to match to our user_id object.
+   if int(i.message_create["sender_id"]) == self.db["user_id"]:
+    if "sent_direct_messages" in self.db and utils.find_item(i.id, self.db["sent_direct_messages"]) == None:
+     if self.settings["general"]["reverse_timelines"] == False: self.db["sent_direct_messages"].append(i)
+     else: self.db["sent_direct_messages"].insert(0, i)
      sent = sent+1
    else:
-    if utils.find_item(i["id"], self.db["direct_messages"]["items"]) == None:
-     if self.settings["general"]["reverse_timelines"] == False: self.db["direct_messages"]["items"].append(i)
-     else: self.db["direct_messages"]["items"].insert(0, i)
+    if utils.find_item(i.id, self.db["direct_messages"]) == None:
+     if self.settings["general"]["reverse_timelines"] == False: self.db["direct_messages"].append(i)
+     else: self.db["direct_messages"].insert(0, i)
      incoming = incoming+1
   pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
   return incoming
 
  def __init__(self, *args, **kwargs):
   super(Session, self).__init__(*args, **kwargs)
+  # Adds here the optional cursors objects.
+  cursors = dict(direct_messages=-1)
+  self.db["cursors"] = cursors
   self.reconnection_function_active = False
   self.counter = 0
   self.lists = []
@@ -115,7 +114,9 @@ class Session(base.baseSession):
   if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
    try:
     log.debug("Logging in to twitter...")
-    self.twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
+    self.auth = tweepy.OAuthHandler(keyring.get("api_key"), keyring.get("api_secret"))
+    self.auth.set_access_token(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
+    self.twitter = tweepy.API(self.auth)
     if verify_credentials == True:
      self.credentials = self.twitter.verify_credentials()
     self.logged = True
@@ -134,19 +135,18 @@ class Session(base.baseSession):
   if self.logged == True:
    raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
   else:
-   twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"))
-   self.auth = twitter.get_authentication_tokens(callback_url="oob")
-   webbrowser.open_new_tab(self.auth['auth_url'])
+   self.auth = tweepy.OAuthHandler(keyring.get("api_key"), keyring.get("api_secret"))
+   redirect_url = self.auth.get_authorization_url()
+   webbrowser.open_new_tab(redirect_url)
    self.authorisation_dialog = authorisationDialog()
    self.authorisation_dialog.cancel.Bind(wx.EVT_BUTTON, self.authorisation_cancelled)
    self.authorisation_dialog.ok.Bind(wx.EVT_BUTTON, self.authorisation_accepted)
    self.authorisation_dialog.ShowModal()
 
  def verify_authorisation(self, pincode):
-  twitter = Twython(keyring.get("api_key"), keyring.get("api_secret"), self.auth['oauth_token'], self.auth['oauth_token_secret'])
-  final = twitter.get_authorized_tokens(pincode)
-  self.settings["twitter"]["user_key"] = final["oauth_token"]
-  self.settings["twitter"]["user_secret"] = final["oauth_token_secret"]
+  self.auth.get_access_token(pincode)
+  self.settings["twitter"]["user_key"] = self.auth.access_token
+  self.settings["twitter"]["user_secret"] = self.auth.access_token_secret
   self.settings.write()
   del self.auth
 
@@ -207,14 +207,14 @@ class Session(base.baseSession):
    try:
     val = getattr(self.twitter, call_name)(*args, **kwargs)
     finished = True
-   except TwythonError as e:
-    output.speak(e.msg)
+   except TweepError as e:
+    output.speak(e.reason)
     val = None
     if e.error_code != 403 and e.error_code != 404:
      tries = tries+1
      time.sleep(5)
-    elif report_failure and hasattr(e, 'message'):
-     output.speak(_("%s failed.  Reason: %s") % (action, e.msg))
+    elif report_failure and hasattr(e, 'reason'):
+     output.speak(_("%s failed.  Reason: %s") % (action, e.reason))
     finished = True
 #   except:
 #    tries = tries + 1
@@ -227,15 +227,15 @@ class Session(base.baseSession):
  def search(self, name, *args, **kwargs):
   """ Search in twitter, passing args and kwargs as arguments to the Twython function."""
   tl = self.twitter.search(*args, **kwargs)
-  tl["statuses"].reverse()
-  return tl["statuses"]
+  tl.reverse()
+  return tl
 
 # @_require_login
  def get_favourites_timeline(self, name, *args, **kwargs):
   """ Gets favourites for the authenticated user or a friend or follower.
   name str: Name for storage in the database.
   args and kwargs are passed directly to the Twython function."""
-  tl = self.call_paged("get_favorites", *args, **kwargs)
+  tl = self.call_paged("favorites", *args, **kwargs)
   return self.order_buffer(name, tl)
 
  def call_paged(self, update_function, *args, **kwargs):
@@ -249,8 +249,8 @@ class Session(base.baseSession):
   data = getattr(self.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
   results.extend(data)
   for i in range(0, max):
-   if i == 0: max_id = results[-1]["id"]
-   else: max_id = results[0]["id"]
+   if i == 0: max_id = results[-1].id
+   else: max_id = results[0].id
    data = getattr(self.twitter, update_function)(max_id=max_id, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
    results.extend(data)
   results.reverse()
@@ -259,11 +259,11 @@ class Session(base.baseSession):
 # @_require_login
  def get_user_info(self):
   """ Retrieves some information required by TWBlue for setup."""
-  f = self.twitter.get_account_settings()
+  f = self.twitter.get_settings()
   sn = f["screen_name"]
   self.settings["twitter"]["user_name"] = sn
   self.db["user_name"] = sn
-  self.db["user_id"] = self.twitter.show_user(screen_name=sn)["id_str"]
+  self.db["user_id"] = self.twitter.get_user(screen_name=sn).id
   try:
    self.db["utc_offset"] = f["time_zone"]["utc_offset"]
   except KeyError:
@@ -271,7 +271,7 @@ class Session(base.baseSession):
   # Get twitter's supported languages and save them in a global variable
   #so we won't call to this method once per session.
   if len(application.supported_languages) == 0:
-   application.supported_languages = self.twitter.get_supported_languages()
+   application.supported_languages = self.twitter.supported_languages()
   self.get_lists()
   self.get_muted_users()
   self.settings.write()
@@ -279,12 +279,12 @@ class Session(base.baseSession):
 # @_require_login
  def get_lists(self):
   """ Gets the lists that the user is subscribed to and stores them in the database. Returns None."""
-  self.db["lists"] = self.twitter.show_lists(reverse=True)
+  self.db["lists"] = self.twitter.lists_all(reverse=True)
 
 # @_require_login
  def get_muted_users(self):
   """ Gets muted users (oh really?)."""
-  self.db["muted_users"] = self.twitter.list_mute_ids()["ids"]
+  self.db["muted_users"] = self.twitter.mutes_ids()
 
 # @_require_login
  def get_stream(self, name, function, *args, **kwargs):
@@ -353,34 +353,27 @@ class Session(base.baseSession):
   return tweet
 
  def get_quoted_tweet(self, tweet):
-  """ Process a tweet and extract all information related to the quote."""
+  """ Process a tweet and extract all information related to the quote. """
   quoted_tweet = tweet
-  if "full_text" in tweet:
+  if hasattr(tweet, "full_text"):
    value = "full_text"
   else:
    value = "text"
-  urls = utils.find_urls_in_text(quoted_tweet[value])
-  for url in range(0, len(urls)):
-   try:  quoted_tweet[value] = quoted_tweet[value].replace(urls[url], quoted_tweet["entities"]["urls"][url]["expanded_url"])
-   except IndexError: pass
-  if "quoted_status" in quoted_tweet:
-   original_tweet = quoted_tweet["quoted_status"]
-  elif "retweeted_status" in quoted_tweet and "quoted_status" in quoted_tweet["retweeted_status"]:
-   original_tweet = quoted_tweet["retweeted_status"]["quoted_status"]
+  setattr(quoted_tweet, value, utils.expand_urls(getattr(quoted_tweet, value), quoted_tweet.entities))
+  if quoted_tweet.is_quote_status == True and hasattr(quoted_tweet, "quoted_status"):
+   original_tweet = quoted_tweet.quoted_status
+  elif hasattr(quoted_tweet, "retweeted_status") and quoted_tweet.retweeted_status.is_quote_status == True and hasattr(quoted_tweet.retweeted_status, "quoted_status"):
+   original_tweet = quoted_tweet.retweeted_status.quoted_status
   else:
    return quoted_tweet
   original_tweet = self.check_long_tweet(original_tweet)
-
-  if "full_text" in original_tweet:
+  if hasattr(original_tweet, "full_text"):
    value = "full_text"
-  elif "message" in original_tweet:
+  elif hasattr(original_tweet, "message"):
    value = "message"
   else:
    value = "text"
-  urls = utils.find_urls_in_text(original_tweet[value])
-  for url in range(0, len(urls)):
-   try:  original_tweet[value] = original_tweet[value].replace(urls[url], original_tweet["entities"]["urls"][url]["expanded_url"])
-   except IndexError: pass
+  setattr(original_tweet, value, utils.expand_urls(getattr(original_tweet, value), original_tweet.entities))
   return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
 
  def check_long_tweet(self, tweet):
@@ -390,36 +383,39 @@ class Session(base.baseSession):
   long = twishort.is_long(tweet)
   if long != False and config.app["app-settings"]["handle_longtweets"]:
    message = twishort.get_full_text(long)
-   if "quoted_status" in tweet:
-    tweet["quoted_status"]["message"] = message
-    if tweet["quoted_status"]["message"] == False: return False
-    tweet["quoted_status"]["twishort"] = True
-    for i in tweet["quoted_status"]["entities"]["user_mentions"]:
-     if "@%s" % (i["screen_name"]) not in tweet["quoted_status"]["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
-      if "retweeted_status" in tweet["quoted_status"] and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+   if hasattr(tweet, "quoted_status"):
+    tweet.quoted_status.message = message
+    if tweet.quoted_status.message == False: return False
+    tweet.quoted_status.twishort = True
+    for i in tweet.quoted_status.entities["user_mentions"]:
+     if "@%s" % (i["screen_name"]) not in tweet.quoted_status.message and i["screen_name"] != tweet.user.screen_name:
+      if hasattr(tweet.quoted_status, "retweeted_status")  and tweet.retweeted_status.user.screen_name == i["screen_name"]:
        continue
-     tweet["quoted_status"]["message"] = u"@%s %s" % (i["screen_name"], tweet["message"])
+     tweet.quoted_status.message = u"@%s %s" % (i["screen_name"], tweet.message)
    else:
-    tweet["message"] = message
-    if tweet["message"] == False: return False
-    tweet["twishort"] = True
-    for i in tweet["entities"]["user_mentions"]:
-     if "@%s" % (i["screen_name"]) not in tweet["message"] and i["screen_name"] != tweet["user"]["screen_name"]:
-      if "retweeted_status" in tweet and tweet["retweeted_status"]["user"]["screen_name"] == i["screen_name"]:
+    tweet.message = message
+    if tweet.message == False: return False
+    tweet.twishort = True
+    for i in tweet.entities["user_mentions"]:
+     if "@%s" % (i["screen_name"]) not in tweet.message and i["screen_name"] != tweet.user.screen_name:
+      if hasattr(tweet, "retweeted_status") and tweet.retweeted_status.user.screen_name == i["screen_name"]:
        continue
   return tweet
 
  def get_user(self, id):
   """ Returns an user object associated with an ID.
   id str: User identifier, provided by Twitter.
-  returns an user dict."""
+  returns a tweepy user object."""
   if ("users" in self.db) == False or (id in self.db["users"]) == False:
    try:
-    user = self.twitter.show_user(id=id)
-   except TwythonError:
-    user = dict(screen_name="deleted_account", name="Deleted account")
-    return user
-   self.db["users"][user["id_str"]] = user
+    user = self.twitter.get_user(id=id)
+   except TweepError as err:
+    user = UserModel(None)
+    user.screen_name = "deleted_user"
+    user.id = id
+    user.name = _("Deleted account")
+    user.id_str = id
+   self.db["users"][user.id_str] = user
    return user
   else:
    return self.db["users"][id]
@@ -434,8 +430,24 @@ class Session(base.baseSession):
    return user["id_str"]
   else:
    for i in list(self.db["users"].keys()):
-    if self.db["users"][i]["screen_name"] == screen_name:
-     return self.db["users"][i]["id_str"]
+    if self.db["users"][i].screen_name == screen_name:
+     return self.db["users"][i].id_str
    user = utils.if_user_exists(self.twitter, screen_name)
-   self.db["users"][user["id_str"]] = user
-   return user["id_str"]
+   self.db["users"][user.id_str] = user
+   return user.id_str
+
+ def save_users(self, user_ids):
+  """ Adds all new users to the users database. """
+  if len(user_ids) == 0:
+   return
+  log.debug("Received %d user IDS to be added in the database." % (len(user_ids)))
+  users_to_retrieve = [user_id for user_id in user_ids if user_id not in self.db["users"]]
+  # Remove duplicates
+  users_to_retrieve = list(dict.fromkeys(users_to_retrieve))
+  if len(users_to_retrieve) == 0:
+   return
+  log.debug("TWBlue will get %d new users from Twitter." % (len(users_to_retrieve)))
+  users = self.twitter.lookup_users(user_ids=users_to_retrieve, tweet_mode="extended")
+  for user in users:
+   self.db["users"][user.id_str] = user
+  log.debug("Added %d new users" % (len(users)))

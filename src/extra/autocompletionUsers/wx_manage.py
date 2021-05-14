@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import wx
 import widgetUtils
 from multiplatform_widgets import widgets
 import application
+
 class autocompletionManageDialog(widgetUtils.BaseDialog):
  def __init__(self):
   super(autocompletionManageDialog, self).__init__(parent=None, id=-1, title=_(u"Manage Autocompletion database"))

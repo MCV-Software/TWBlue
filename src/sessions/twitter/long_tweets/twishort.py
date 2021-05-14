@@ -40,21 +40,21 @@ def is_long(tweet):
  """ Check if the passed tweet is made with Twishort.
   returns True if is a long tweet, False otherwise."""
  long = False
- for url in range(0, len(tweet["entities"]["urls"])):
+ for url in range(0, len(tweet.entities["urls"])):
   try:
-   if tweet["entities"]["urls"][url] != None and "twishort.com" in tweet["entities"]["urls"][url]["expanded_url"]:
-    long = get_twishort_uri(tweet["entities"]["urls"][url]["expanded_url"])
+   if tweet.entities["urls"][url] != None and "twishort.com" in tweet.entities["urls"][url]["expanded_url"]:
+    long = get_twishort_uri(tweet.entities["urls"][url]["expanded_url"])
   except IndexError:
    pass
   # sometimes Twitter returns URL's with None objects, so let's take it.
   # see https://github.com/manuelcortez/TWBlue/issues/103
   except TypeError:
    pass
- if long == False and "retweeted_status" in tweet:
-  for url in range(0, len(tweet["retweeted_status"]["entities"]["urls"])):
+ if long == False and hasattr(tweet, "retweeted_status"):
+  for url in range(0, len(tweet.retweeted_status.entities["urls"])):
    try:
-    if tweet["retweeted_status"]["entities"]["urls"][url] != None and "twishort.com" in tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"]:
-     long = get_twishort_uri(tweet["retweeted_status"]["entities"]["urls"][url]["expanded_url"])
+    if tweet.retweeted_status.entities["urls"][url] != None and "twishort.com" in tweet.retweeted_status.entities["urls"][url]["expanded_url"]:
+     long = get_twishort_uri(tweet.retweeted_status.entities["urls"][url]["expanded_url"])
    except IndexError:
     pass
    except TypeError:

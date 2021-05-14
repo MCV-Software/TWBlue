@@ -94,10 +94,10 @@ class editListDialog(createListDialog):
 
  def __init__(self, list, *args, **kwargs):
   super(editListDialog, self).__init__(*args, **kwargs)
-  self.SetTitle(_(u"Editing the list %s") % (list["name"]))
-  self.name.ChangeValue(list["name"])
-  self.description.ChangeValue(list["description"])
-  if list["mode"] == "public":
+  self.SetTitle(_(u"Editing the list %s") % (list.name))
+  self.name.ChangeValue(list.name)
+  self.description.ChangeValue(list.description)
+  if list.mode == "public":
    self.public.SetValue(True)
   else:
    self.private.SetValue(True)
