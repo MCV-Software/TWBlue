@@ -77,8 +77,6 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=No
  return [user+", ", text, ts+", ", source]
 
 def compose_direct_message(item, db, relative_times, show_screen_names=False, session=None):
- # for a while this function will be together with compose_dm.
- # this one composes direct messages based on events (new API Endpoints).
  if system == "Windows":
    # Let's remove the last 3 digits in the timestamp string.
    # Twitter sends their "epoch" timestamp with 3 digits for milliseconds and arrow doesn't like it.

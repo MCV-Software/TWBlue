@@ -11,6 +11,7 @@ import application
 from pubsub import pub
 import tweepy
 from tweepy.error import TweepError
+from tweepy.models import User as UserModel
 from mysc.thread_utils import call_threaded
 from keys import keyring
 from sessions import base
@@ -404,13 +405,16 @@ class Session(base.baseSession):
  def get_user(self, id):
   """ Returns an user object associated with an ID.
   id str: User identifier, provided by Twitter.
-  returns an user dict."""
+  returns a tweepy user object."""
   if ("users" in self.db) == False or (id in self.db["users"]) == False:
    try:
     user = self.twitter.get_user(id=id)
    except TweepError as err:
-    user = dict(screen_name="deleted_account", name="Deleted account")
-    return user
+    user = UserModel(None)
+    user.screen_name = "deleted_user"
+    user.id = id
+    user.name = _("Deleted account")
+    user.id_str = id
    self.db["users"][user.id_str] = user
    return user
   else:
