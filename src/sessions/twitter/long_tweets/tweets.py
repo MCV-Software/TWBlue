@@ -20,33 +20,33 @@ from __future__ import unicode_literals
 from sessions.twitter import utils
 
 def is_long(tweet):
- """ Check if the passed tweet contains a quote in its metadata.
-  tweet dict: a tweet dictionary.
-  returns True if a quote is detected, False otherwise."""
- if hasattr(tweet, "quoted_status_id") and hasattr(tweet, "quoted_status"):
-  return tweet.quoted_status_id
- elif hasattr(tweet, "retweeted_status")  and hasattr(tweet.retweeted_status, "quoted_status_id") and hasattr(tweet.retweeted_status, "quoted_status"):
-  return tweet.retweeted_status.quoted_status_id
- return False
+    """ Check if the passed tweet contains a quote in its metadata.
+     tweet dict: a tweet dictionary.
+     returns True if a quote is detected, False otherwise."""
+    if hasattr(tweet, "quoted_status_id") and hasattr(tweet, "quoted_status"):
+        return tweet.quoted_status_id
+    elif hasattr(tweet, "retweeted_status")  and hasattr(tweet.retweeted_status, "quoted_status_id") and hasattr(tweet.retweeted_status, "quoted_status"):
+        return tweet.retweeted_status.quoted_status_id
+    return False
 
 def clear_url(tweet):
- """ Reads data from a quoted tweet and removes the link to the Status from the tweet's text.
-  tweet dict: a tweet dictionary.
-  returns a tweet dictionary without the URL to the status ID in its text to display."""
- if hasattr(tweet, "retweeted_status"):
-  if hasattr(tweet.retweeted_status, "full_text"):
-   value = "full_text"
-  else:
-   value = "text"
-  urls = utils.find_urls_in_text(getattr(tweet.retweeted_status, value))
-  try: tweet.message = tweet.message.replace(urls[-1], "")
-  except IndexError: pass
- else:
-  if hasattr(tweet, "full_text"):
-   value = "full_text"
-  else:
-   value = "text"
-  urls = utils.find_urls_in_text(getattr(tweet, value))
-  try: tweet.message = tweet.message.replace(urls[-1], "")
-  except IndexError: pass
- return tweet
+    """ Reads data from a quoted tweet and removes the link to the Status from the tweet's text.
+     tweet dict: a tweet dictionary.
+     returns a tweet dictionary without the URL to the status ID in its text to display."""
+    if hasattr(tweet, "retweeted_status"):
+        if hasattr(tweet.retweeted_status, "full_text"):
+            value = "full_text"
+        else:
+            value = "text"
+        urls = utils.find_urls_in_text(getattr(tweet.retweeted_status, value))
+        try: tweet.message = tweet.message.replace(urls[-1], "")
+        except IndexError: pass
+    else:
+        if hasattr(tweet, "full_text"):
+            value = "full_text"
+        else:
+            value = "text"
+        urls = utils.find_urls_in_text(getattr(tweet, value))
+        try: tweet.message = tweet.message.replace(urls[-1], "")
+        except IndexError: pass
+    return tweet

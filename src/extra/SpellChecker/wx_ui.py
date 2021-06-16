@@ -21,63 +21,63 @@ import wx
 import application
 
 class spellCheckerDialog(wx.Dialog):
- def __init__(self):
-  super(spellCheckerDialog, self).__init__(None, 1)
-  panel = wx.Panel(self)
-  sizer = wx.BoxSizer(wx.VERTICAL)
-  word = wx.StaticText(panel, -1, _(u"Misspelled word"))
-  self.word = wx.TextCtrl(panel, -1)
-  wordBox = wx.BoxSizer(wx.HORIZONTAL)
-  wordBox.Add(word, 0, wx.ALL, 5)
-  wordBox.Add(self.word, 0, wx.ALL, 5)
-  context = wx.StaticText(panel, -1, _(u"Context"))
-  self.context = wx.TextCtrl(panel, -1)
-  contextBox = wx.BoxSizer(wx.HORIZONTAL)
-  contextBox.Add(context, 0, wx.ALL, 5)
-  contextBox.Add(self.context, 0, wx.ALL, 5)
-  suggest = wx.StaticText(panel, -1, _(u"Suggestions"))
-  self.suggestions = wx.ListBox(panel, -1, choices=[], style=wx.LB_SINGLE)
-  suggestionsBox = wx.BoxSizer(wx.HORIZONTAL)
-  suggestionsBox.Add(suggest, 0, wx.ALL, 5)
-  suggestionsBox.Add(self.suggestions, 0, wx.ALL, 5)
-  self.ignore = wx.Button(panel, -1, _(u"&Ignore"))
-  self.ignoreAll = wx.Button(panel, -1, _(u"I&gnore all"))
-  self.replace = wx.Button(panel, -1, _(u"&Replace"))
-  self.replaceAll = wx.Button(panel, -1, _(u"R&eplace all"))
-  self.add = wx.Button(panel, -1, _(u"&Add to personal dictionary"))
-  close = wx.Button(panel, wx.ID_CANCEL)
-  btnBox = wx.BoxSizer(wx.HORIZONTAL)
-  btnBox.Add(self.ignore, 0, wx.ALL, 5)
-  btnBox.Add(self.ignoreAll, 0, wx.ALL, 5)
-  btnBox.Add(self.replace, 0, wx.ALL, 5)
-  btnBox.Add(self.replaceAll, 0, wx.ALL, 5)
-  btnBox.Add(self.add, 0, wx.ALL, 5)
-  btnBox.Add(close, 0, wx.ALL, 5)
-  sizer.Add(wordBox, 0, wx.ALL, 5)
-  sizer.Add(contextBox, 0, wx.ALL, 5)
-  sizer.Add(suggestionsBox, 0, wx.ALL, 5)
-  sizer.Add(btnBox, 0, wx.ALL, 5)
-  panel.SetSizer(sizer)
-  self.SetClientSize(sizer.CalcMin())
+    def __init__(self):
+        super(spellCheckerDialog, self).__init__(None, 1)
+        panel = wx.Panel(self)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        word = wx.StaticText(panel, -1, _(u"Misspelled word"))
+        self.word = wx.TextCtrl(panel, -1)
+        wordBox = wx.BoxSizer(wx.HORIZONTAL)
+        wordBox.Add(word, 0, wx.ALL, 5)
+        wordBox.Add(self.word, 0, wx.ALL, 5)
+        context = wx.StaticText(panel, -1, _(u"Context"))
+        self.context = wx.TextCtrl(panel, -1)
+        contextBox = wx.BoxSizer(wx.HORIZONTAL)
+        contextBox.Add(context, 0, wx.ALL, 5)
+        contextBox.Add(self.context, 0, wx.ALL, 5)
+        suggest = wx.StaticText(panel, -1, _(u"Suggestions"))
+        self.suggestions = wx.ListBox(panel, -1, choices=[], style=wx.LB_SINGLE)
+        suggestionsBox = wx.BoxSizer(wx.HORIZONTAL)
+        suggestionsBox.Add(suggest, 0, wx.ALL, 5)
+        suggestionsBox.Add(self.suggestions, 0, wx.ALL, 5)
+        self.ignore = wx.Button(panel, -1, _(u"&Ignore"))
+        self.ignoreAll = wx.Button(panel, -1, _(u"I&gnore all"))
+        self.replace = wx.Button(panel, -1, _(u"&Replace"))
+        self.replaceAll = wx.Button(panel, -1, _(u"R&eplace all"))
+        self.add = wx.Button(panel, -1, _(u"&Add to personal dictionary"))
+        close = wx.Button(panel, wx.ID_CANCEL)
+        btnBox = wx.BoxSizer(wx.HORIZONTAL)
+        btnBox.Add(self.ignore, 0, wx.ALL, 5)
+        btnBox.Add(self.ignoreAll, 0, wx.ALL, 5)
+        btnBox.Add(self.replace, 0, wx.ALL, 5)
+        btnBox.Add(self.replaceAll, 0, wx.ALL, 5)
+        btnBox.Add(self.add, 0, wx.ALL, 5)
+        btnBox.Add(close, 0, wx.ALL, 5)
+        sizer.Add(wordBox, 0, wx.ALL, 5)
+        sizer.Add(contextBox, 0, wx.ALL, 5)
+        sizer.Add(suggestionsBox, 0, wx.ALL, 5)
+        sizer.Add(btnBox, 0, wx.ALL, 5)
+        panel.SetSizer(sizer)
+        self.SetClientSize(sizer.CalcMin())
 
 
- def get_response(self):
-  return self.ShowModal()
+    def get_response(self):
+        return self.ShowModal()
 
- def set_title(self, title):
-  return self.SetTitle(title)
+    def set_title(self, title):
+        return self.SetTitle(title)
 
- def set_word_and_suggestions(self, word, context, suggestions):
-  self.word.SetValue(word)
-  self.context.ChangeValue(context)
-  self.suggestions.Set(suggestions)
-  self.suggestions.SetFocus()
+    def set_word_and_suggestions(self, word, context, suggestions):
+        self.word.SetValue(word)
+        self.context.ChangeValue(context)
+        self.suggestions.Set(suggestions)
+        self.suggestions.SetFocus()
 
- def get_selected_suggestion(self):
-  return self.suggestions.GetStringSelection()
+    def get_selected_suggestion(self):
+        return self.suggestions.GetStringSelection()
 
 def dict_not_found_error():
- wx.MessageDialog(None, _(u"An error has occurred. There are no dictionaries available for the selected language in {0}").format(application.name,), _(u"Error"), wx.ICON_ERROR).ShowModal()
+    wx.MessageDialog(None, _(u"An error has occurred. There are no dictionaries available for the selected language in {0}").format(application.name,), _(u"Error"), wx.ICON_ERROR).ShowModal()
 
 def finished():
- wx.MessageDialog(None, _(u"Spell check complete."), application.name, style=wx.OK).ShowModal()
+    wx.MessageDialog(None, _(u"Spell check complete."), application.name, style=wx.OK).ShowModal()

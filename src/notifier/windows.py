@@ -5,5 +5,5 @@ import wx
 
 class notification(object):
 
- def notify(self, title, text):
-  wx.NotificationMessage(title, text).Show()
+    def notify(self, title, text):
+        wx.NotificationMessage(title, text).Show()

@@ -21,25 +21,25 @@ import wx
 from wxUI.dialogs import baseDialog
 
 class translateDialog(baseDialog.BaseWXDialog):
- def __init__(self):
-  languages = []
-  language_dict = translator.available_languages()
-  for k in language_dict:
-   languages.append(language_dict[k])
-  super(translateDialog, self).__init__(None, -1, title=_(u"Translate message"))
-  panel = wx.Panel(self)
-  sizer = wx.BoxSizer(wx.VERTICAL)
-  staticDest = wx.StaticText(panel, -1, _(u"Target language"))
-  self.dest_lang = wx.ComboBox(panel, -1, choices=languages, style = wx.CB_READONLY)
-  self.dest_lang.SetFocus()
-  self.dest_lang.SetSelection(0)
-  listSizer = wx.BoxSizer(wx.HORIZONTAL)
-  listSizer.Add(staticDest)
-  listSizer.Add(self.dest_lang)
-  ok = wx.Button(panel, wx.ID_OK)
-  ok.SetDefault()
-  cancel = wx.Button(panel, wx.ID_CANCEL)
-  self.SetEscapeId(wx.ID_CANCEL)
+    def __init__(self):
+        languages = []
+        language_dict = translator.available_languages()
+        for k in language_dict:
+            languages.append(language_dict[k])
+        super(translateDialog, self).__init__(None, -1, title=_(u"Translate message"))
+        panel = wx.Panel(self)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        staticDest = wx.StaticText(panel, -1, _(u"Target language"))
+        self.dest_lang = wx.ComboBox(panel, -1, choices=languages, style = wx.CB_READONLY)
+        self.dest_lang.SetFocus()
+        self.dest_lang.SetSelection(0)
+        listSizer = wx.BoxSizer(wx.HORIZONTAL)
+        listSizer.Add(staticDest)
+        listSizer.Add(self.dest_lang)
+        ok = wx.Button(panel, wx.ID_OK)
+        ok.SetDefault()
+        cancel = wx.Button(panel, wx.ID_CANCEL)
+        self.SetEscapeId(wx.ID_CANCEL)
 
- def get(self, control):
-  return getattr(self, control).GetSelection()
+    def get(self, control):
+        return getattr(self, control).GetSelection()

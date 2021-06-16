@@ -27,23 +27,23 @@ import os
 
 class SysTrayIcon(wx.adv.TaskBarIcon):
 
-	def __init__(self):
-		super(SysTrayIcon, self).__init__()
-		icon=wx.Icon(os.path.join(paths.app_path(), "icon.ico"), wx.BITMAP_TYPE_ICO)
-		self.SetIcon(icon, application.name)
-		self.menu=wx.Menu()
-		self.tweet = self.menu.Append(wx.ID_ANY, _(u"Tweet"))
-		self.global_settings = self.menu.Append(wx.ID_ANY, _(u"&Global settings"))
-		self.account_settings = self.menu.Append(wx.ID_ANY, _(u"Account se&ttings"))
-		self.update_profile = self.menu.Append(wx.ID_ANY, _(u"Update &profile"))
-		self.show_hide = self.menu.Append(wx.ID_ANY, _(u"&Show / hide"))
-		self.doc = self.menu.Append(wx.ID_ANY, _(u"&Documentation"))
-		self.check_for_updates = self.menu.Append(wx.ID_ANY, _(u"Check for &updates"))
-		self.exit = self.menu.Append(wx.ID_ANY, _(u"&Exit"))
+    def __init__(self):
+        super(SysTrayIcon, self).__init__()
+        icon=wx.Icon(os.path.join(paths.app_path(), "icon.ico"), wx.BITMAP_TYPE_ICO)
+        self.SetIcon(icon, application.name)
+        self.menu=wx.Menu()
+        self.tweet = self.menu.Append(wx.ID_ANY, _(u"Tweet"))
+        self.global_settings = self.menu.Append(wx.ID_ANY, _(u"&Global settings"))
+        self.account_settings = self.menu.Append(wx.ID_ANY, _(u"Account se&ttings"))
+        self.update_profile = self.menu.Append(wx.ID_ANY, _(u"Update &profile"))
+        self.show_hide = self.menu.Append(wx.ID_ANY, _(u"&Show / hide"))
+        self.doc = self.menu.Append(wx.ID_ANY, _(u"&Documentation"))
+        self.check_for_updates = self.menu.Append(wx.ID_ANY, _(u"Check for &updates"))
+        self.exit = self.menu.Append(wx.ID_ANY, _(u"&Exit"))
 
-	def show_menu(self):
-		self.PopupMenu(self.menu)
+    def show_menu(self):
+        self.PopupMenu(self.menu)
 
-	def Destroy(self):
-		self.menu.Destroy()
-		super(SysTrayIcon, self).Destroy()
+    def Destroy(self):
+        self.menu.Destroy()
+        super(SysTrayIcon, self).Destroy()

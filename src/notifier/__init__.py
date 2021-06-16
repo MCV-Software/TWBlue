@@ -8,16 +8,16 @@ import platform
 notify = None
 
 def setup():
- global notify
- if platform.system() == "Windows":
-  from . import windows
-  notify = windows.notification()
- elif platform.system() == "Linux":
-  from . import linux
-  notify = linux.notification()
+    global notify
+    if platform.system() == "Windows":
+        from . import windows
+        notify = windows.notification()
+    elif platform.system() == "Linux":
+        from . import linux
+        notify = linux.notification()
 
 def send(title, text):
- global notify
- if not notify or notify is None:
-  setup()
- notify.notify(title, text)
+    global notify
+    if not notify or notify is None:
+        setup()
+    notify.notify(title, text)

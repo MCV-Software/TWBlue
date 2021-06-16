@@ -9,11 +9,11 @@ from . import fix_urllib3_warnings # Avoiding some SSL warnings related to Twyth
 from . import fix_win32com
 #from . import fix_requests #fix cacert.pem location for TWBlue binary copies
 def setup():
-	fix_arrow.fix()
-	if hasattr(sys, "frozen"):
-		fix_libloader.fix()
-		fix_win32com.fix()
+    fix_arrow.fix()
+    if hasattr(sys, "frozen"):
+        fix_libloader.fix()
+        fix_win32com.fix()
 #		fix_requests.fix()
 #	else:
 #		fix_requests.fix(False)
-	fix_urllib3_warnings.fix()
+    fix_urllib3_warnings.fix()

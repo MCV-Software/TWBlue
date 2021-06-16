@@ -37,9 +37,9 @@ error_handler.setLevel(logging.ERROR)
 logger.addHandler(error_handler)
 
 def handle_exception(exc_type, exc_value, exc_traceback):
- if issubclass(exc_type, KeyboardInterrupt):
-  sys.__excepthook__(exc_type, exc_value, exc_traceback)
-  return
- logger.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+    if issubclass(exc_type, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+    logger.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
 
 sys.excepthook = handle_exception

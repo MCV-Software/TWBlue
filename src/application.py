@@ -5,13 +5,13 @@ name = 'TWBlue'
 short_name='twblue'
 snapshot = True
 if snapshot == False:
- version = "0.95"
- update_url = 'https://twblue.es/updates/stable.php'
- mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/stable.json'
+    version = "0.95"
+    update_url = 'https://twblue.es/updates/stable.php'
+    mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/stable.json'
 else:
- version = "5"
- update_url = 'https://twblue.es/updates/snapshot.php'
- mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/snapshots.json'
+    version = "5"
+    update_url = 'https://twblue.es/updates/snapshot.php'
+    mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/snapshots.json'
 authors = ["Manuel Cortéz", "José Manuel Delicado"]
 authorEmail = "manuel@manuelcortez.net"
 copyright = "Copyright (C) 2013-2021, Manuel cortéz."
