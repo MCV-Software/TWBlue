@@ -38,6 +38,7 @@ class Session(base.baseSession):
             self.db[name] = []
         if ("users" in self.db) == False:
             self.db["users"] = {}
+        objects = self.db[name]
         if ignore_older and len(self.db[name]) > 0:
             if self.settings["general"]["reverse_timelines"] == False:
                 last_id = self.db[name][0].id
@@ -52,12 +53,13 @@ class Session(base.baseSession):
                 i = self.check_quoted_status(i)
                 i = self.check_long_tweet(i)
                 if i == False: continue
-                if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
-                else: self.db[name].insert(0, i)
+                if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
+                else: objects.insert(0, i)
                 num = num+1
                 if hasattr(i, "user"):
                     if (i.user.id in self.db["users"]) == False:
                         self.db["users"][i.user.id] = i.user
+        self.db[name] = objects
         return num
 
     def order_people(self, name, data):
@@ -68,11 +70,13 @@ class Session(base.baseSession):
         num = 0
         if (name in self.db) == False:
             self.db[name] = []
+        objects = self.db[name]
         for i in data:
             if utils.find_item(i.id, self.db[name]) == None:
-                if self.settings["general"]["reverse_timelines"] == False: self.db[name].append(i)
-                else: self.db[name].insert(0, i)
+                if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
+                else: objects.insert(0, i)
                 num = num+1
+        self.db[name] = objects
         return num
 
     def order_direct_messages(self, data):
@@ -83,19 +87,25 @@ class Session(base.baseSession):
         sent = 0
         if ("direct_messages" in self.db) == False:
             self.db["direct_messages"] = []
+        if ("sent_direct_messages" in self.db) == False:
+            self.db["sent_direct_messages"] = []
+        objects = self.db["direct_messages"]
+        sent_objects = self.db["sent_direct_messages"]
         for i in data:
             # Twitter returns sender_id as str, which must be converted to int in order to match to our user_id object.
             if int(i.message_create["sender_id"]) == self.db["user_id"]:
                 if "sent_direct_messages" in self.db and utils.find_item(i.id, self.db["sent_direct_messages"]) == None:
-                    if self.settings["general"]["reverse_timelines"] == False: self.db["sent_direct_messages"].append(i)
-                    else: self.db["sent_direct_messages"].insert(0, i)
+                    if self.settings["general"]["reverse_timelines"] == False: sent_objects.append(i)
+                    else: sent_objects.insert(0, i)
                     sent = sent+1
             else:
                 if utils.find_item(i.id, self.db["direct_messages"]) == None:
-                    if self.settings["general"]["reverse_timelines"] == False: self.db["direct_messages"].append(i)
-                    else: self.db["direct_messages"].insert(0, i)
+                    if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
+                    else: objects.insert(0, i)
                     incoming = incoming+1
         pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
+        self.db["direct_messages"] = objects
+        self.db["sent_direct_messages"] = sent_objects
         return incoming
 
     def __init__(self, *args, **kwargs):

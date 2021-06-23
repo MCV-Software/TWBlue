@@ -254,8 +254,8 @@ class Controller(object):
         # Connection checker executed each minute.
         self.checker_function = RepeatingTimer(60, self.check_connection)
 #  self.checker_function.start()
-        self.save_db = RepeatingTimer(300, self.save_data_in_db)
-        self.save_db.start()
+#        self.save_db = RepeatingTimer(300, self.save_data_in_db)
+#        self.save_db.start()
         log.debug("Setting updates to buffers every %d seconds..." % (60*config.app["app-settings"]["update_period"],))
         self.update_buffers_function = RepeatingTimer(60*config.app["app-settings"]["update_period"], self.update_buffers)
         self.update_buffers_function.start()

@@ -11,11 +11,12 @@ import time
 import sound
 import logging
 import config_utils
-import shelve
+import sqlitedict
 import application
 import os
 from . import session_exceptions as Exceptions
 log = logging.getLogger("sessionmanager.session")
+
 
 class baseSession(object):
     """ toDo: Decorators does not seem to be working when using them in an inherited class."""
@@ -81,18 +82,19 @@ class baseSession(object):
                 os.remove(shelfname+".dat")
             return
         try:
-            if not os.path.exists(shelfname+".dat"):
-                output.speak("Generating database, this might take a while.",True)
-            shelf=shelve.open(os.path.join(paths.config_path(), shelfname),'c')
-            for key, value in list(self.db.items()):
-                if type(key) != str and type(key) != str:
-                    output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
-                    log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
-                if type(value) == list and self.settings["general"]["persist_size"] != -1 and len(value) > self.settings["general"]["persist_size"]:
-                    shelf[key]=value[self.settings["general"]["persist_size"]:]
-                else:
-                    shelf[key]=value
-            shelf.close()
+            self.db.commit()
+#            if not os.path.exists(shelfname+".dat"):
+#                output.speak("Generating database, this might take a while.",True)
+#            shelf=shelve.open(os.path.join(paths.config_path(), shelfname),'c')
+#            for key, value in list(self.db.items()):
+#                if type(key) != str and type(key) != str:
+#                    output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
+#                    log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
+#                if type(value) == list and self.settings["general"]["persist_size"] != -1 and len(value) > self.settings["general"]["persist_size"]:
+#                    shelf[key]=value[self.settings["general"]["persist_size"]:]
+#                else:
+#                    shelf[key]=value
+#            shelf.close()
         except:
             output.speak("An exception occurred while shelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
             log.exception("Exception while shelving" + shelfname)
@@ -106,10 +108,13 @@ class baseSession(object):
                 os.remove(shelfname+".dat")
             return
         try:
-            shelf=shelve.open(os.path.join(paths.config_path(), shelfname),'c')
-            for key,value in list(shelf.items()):
-                self.db[key]=value
-            shelf.close()
+            self.db=sqlitedict.SqliteDict(os.path.join(paths.config_path(), shelfname), 'c')
+            if self.db.get("cursors") == None:
+                cursors = dict(direct_messages=-1)
+                self.db["cursors"] = cursors
+#            for key,value in list(shelf.items()):
+#                self.db[key]=value
+#            shelf.close()
         except:
             output.speak("An exception occurred while deshelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
             log.exception("Exception while deshelving" + shelfname)
