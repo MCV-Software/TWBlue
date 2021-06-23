@@ -17,26 +17,33 @@ def get_locale(name):
 
 class GalicianLocale(object):
     names = ['gl', 'gl_es', 'gl_gl']
-    past = 'Fai {0}'
+    past = 'Hai {0}'
     future = 'En {0}'
+    and_word = "e"
 
     timeframes = {
-        'now': 'Agora mesmo',
-        'seconds': 'segundos',
+        'now': 'Agora',
+        "second": "un segundo",
+        'seconds': '{0} segundos',
         'minute': 'un minuto',
         'minutes': '{0} minutos',
-        'hour': 'una hora',
+        'hour': 'unha hora',
         'hours': '{0} horas',
         'day': 'un día',
         'days': '{0} días',
+        "week": "unha semana",
+        "weeks": "{0} semanas",
         'month': 'un mes',
         'months': '{0} meses',
         'year': 'un ano',
         'years': '{0} anos',
     }
 
-    month_names = ['', 'Xaneiro', 'Febreiro', 'Marzo', 'Abril', 'Maio', 'Xuño', 'Xullo', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Decembro']
-    month_abbreviations = ['', 'Xan', 'Feb', 'Mar', 'Abr', 'Mai', 'Xun', 'Xul', 'Ago', 'Set', 'Out', 'Nov', 'Dec']
-    day_names = ['', 'Luns', 'Martes', 'Mércores', 'Xoves', 'Venres', 'Sábado', 'Domingo']
-    day_abbreviations = ['', 'Lun', 'Mar', 'Mer', 'xov', 'Ven' 'Sab', 'Dom']
+    meridians = {"am": "am", "pm": "pm", "AM": "AM", "PM": "PM"}
+
+    month_names = ['', 'xaneiro', 'febreiro', 'marzo', 'abril', 'maio', 'xuño', 'xullo', 'agosto', 'setembro', 'outubro', 'novembro', 'decembro']
+    month_abbreviations = ['', 'xan', 'feb', 'mar', 'abr', 'mai', 'xun', 'xul', 'ago', 'set', 'out', 'nov', 'dec']
+    day_names = ['', 'luns', 'martes', 'mércores', 'xoves', 'venres', 'sábado', 'domingo']
+    day_abbreviations = ['', 'lun', 'mar', 'mer', 'xov', 'ven', 'sab', 'dom']
+    ordinal_day_re = r"((?P<value>[1-3]?[0-9](?=[ºª]))[ºª])"
 
