@@ -1274,10 +1274,12 @@ class Controller(object):
         data = buffer.session.check_long_tweet(data)
         if data == False: # Long tweet deleted from twishort.
             return 
+        items = buffer.session.db[buffer.name]
         if buffer.session.settings["general"]["reverse_timelines"] == False:
-            buffer.session.db[buffer.name].append(data)
+            items.append(data)
         else:
-            buffer.session.db[buffer.name].insert(0, data)
+            items.insert(0, data)
+        buffer.session.db[buffer.name] = items
         buffer.add_new_item(data)
 
     def manage_friend(self, data, user):

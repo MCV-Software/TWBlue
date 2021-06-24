@@ -171,35 +171,6 @@ class Session(base.baseSession):
         self.verify_authorisation(pincode)
         self.authorisation_dialog.Destroy()
 
-    def get_more_items(self, update_function, users=False, dm=False, name=None, *args, **kwargs):
-        """ Get more items for twitter objects.
-        update_function str: function to call for getting more items. Must be member of self.twitter.
-        users, dm bool: If any of these is set to True, the function will treat items as users or dm (they need different handling).
-        name str: name of the database item to put new element in."""
-        results = []
-        if "cursor" in kwargs and kwargs["cursor"] == 0:
-            output.speak(_(u"There are no more items to retrieve in this buffer."))
-            return
-        data = getattr(self.twitter, update_function)(*args, **kwargs)
-        if users == True:
-            if type(data) == dict and "next_cursor" in data:
-                if "next_cursor" in data: # There are more objects to retrieve.
-                    self.db[name]["cursor"] = data["next_cursor"]
-                else: # Set cursor to 0, wich means no more items available.
-                    self.db[name]["cursor"] = 0
-                for i in data["users"]: results.append(i)
-            elif type(data) == list:
-                results.extend(data[1:])
-        elif dm == True:
-            if "next_cursor" in data: # There are more objects to retrieve.
-                self.db[name]["cursor"] = data["next_cursor"]
-            else: # Set cursor to 0, wich means no more items available.
-                self.db[name]["cursor"] = 0
-            for i in data["events"]: results.append(i)
-        else:
-            results.extend(data[1:])
-        return results
-
     def api_call(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
         """ Make a call to the Twitter API. If there is a connectionError or another exception not related to Twitter, It will call the method again at least 25 times, waiting a while between calls. Useful for  post methods.
         If twitter returns an error, it will not call the method anymore.
@@ -425,7 +396,9 @@ class Session(base.baseSession):
                 user.id = id
                 user.name = _("Deleted account")
                 user.id_str = id
-            self.db["users"][user.id_str] = user
+            users = self.db["users"]
+            users[user.id_str] = user
+            self.db["users"] = users
             return user
         else:
             return self.db["users"][id]
@@ -436,14 +409,18 @@ class Session(base.baseSession):
         returns an user ID."""
         if ("users" in self.db) == False:
             user = utils.if_user_exists(self.twitter, screen_name)
-            self.db["users"][user["id_str"]] = user
+            users = self.db["users"]
+            users[user["id_str"]] = user
+            self.db["users"] = users
             return user["id_str"]
         else:
             for i in list(self.db["users"].keys()):
                 if self.db["users"][i].screen_name == screen_name:
                     return self.db["users"][i].id_str
             user = utils.if_user_exists(self.twitter, screen_name)
-            self.db["users"][user.id_str] = user
+            users = self.db["users"]
+            users[user.id_str] = user
+            self.db["users"] = users
             return user.id_str
 
     def save_users(self, user_ids):
@@ -458,6 +435,8 @@ class Session(base.baseSession):
             return
         log.debug("TWBlue will get %d new users from Twitter." % (len(users_to_retrieve)))
         users = self.twitter.lookup_users(user_ids=users_to_retrieve, tweet_mode="extended")
+        users_db = self.db["users"]
         for user in users:
-            self.db["users"][user.id_str] = user
+            users_db[user.id_str] = user
         log.debug("Added %d new users" % (len(users)))
+        self.db["users"] = users_db
