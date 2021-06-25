@@ -418,7 +418,7 @@ class baseBufferController(baseBuffers.buffer):
         id = tweet.id
         twishort_enabled = hasattr(tweet, "twishort")
         users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
-        ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
+        ids = utils.get_all_mentioned(tweet, self.session.db, field="id")
         # Build the window title
         if len(users) < 1:
             title=_("Reply to {arg0}").format(arg0=screen_name)

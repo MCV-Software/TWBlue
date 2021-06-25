@@ -17,6 +17,7 @@ from keys import keyring
 from sessions import base
 from sessions.twitter import utils, compose
 from sessions.twitter.long_tweets import tweets, twishort
+from . import reduce
 from .wxUI import authorisationDialog
 
 log = logging.getLogger("sessions.twitterSession")
@@ -44,21 +45,20 @@ class Session(base.baseSession):
                 last_id = self.db[name][0].id
             else:
                 last_id = self.db[name][-1].id
+        self.add_users_from_results(data)
         for i in data:
             if ignore_older and last_id != None:
                 if i.id < last_id:
                     log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i.id))
                     continue
             if utils.find_item(i.id, self.db[name]) == None and     utils.is_allowed(i, self.settings, name) == True:
-                i = self.check_quoted_status(i)
-                i = self.check_long_tweet(i)
                 if i == False: continue
-                if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
-                else: objects.insert(0, i)
+                reduced_object = reduce.reduce_tweet(i)
+                reduced_object = self.check_quoted_status(reduced_object)
+                reduced_object = self.check_long_tweet(reduced_object)
+                if self.settings["general"]["reverse_timelines"] == False: objects.append(reduced_object)
+                else: objects.insert(0, reduced_object)
                 num = num+1
-                if hasattr(i, "user"):
-                    if (i.user.id in self.db["users"]) == False:
-                        self.db["users"][i.user.id] = i.user
         self.db[name] = objects
         return num
 
@@ -338,10 +338,11 @@ class Session(base.baseSession):
             value = "full_text"
         else:
             value = "text"
-        setattr(quoted_tweet, value, utils.expand_urls(getattr(quoted_tweet, value), quoted_tweet.entities))
-        if quoted_tweet.is_quote_status == True and hasattr(quoted_tweet, "quoted_status"):
+        if hasattr(quoted_tweet, "entities"):
+            setattr(quoted_tweet, value, utils.expand_urls(getattr(quoted_tweet, value), quoted_tweet.entities))
+        if hasattr(quoted_tweet, "is_quote_status") == True and hasattr(quoted_tweet, "quoted_status"):
             original_tweet = quoted_tweet.quoted_status
-        elif hasattr(quoted_tweet, "retweeted_status") and quoted_tweet.retweeted_status.is_quote_status == True and hasattr(quoted_tweet.retweeted_status, "quoted_status"):
+        elif hasattr(quoted_tweet, "retweeted_status") and hasattr(quoted_tweet.retweeted_status, "is_quote_status") == True and hasattr(quoted_tweet.retweeted_status, "quoted_status"):
             original_tweet = quoted_tweet.retweeted_status.quoted_status
         else:
             return quoted_tweet
@@ -352,33 +353,40 @@ class Session(base.baseSession):
             value = "message"
         else:
             value = "text"
-        setattr(original_tweet, value, utils.expand_urls(getattr(original_tweet, value), original_tweet.entities))
-        return compose.compose_quoted_tweet(quoted_tweet, original_tweet)
+        if hasattr(original_tweet, "entities"):
+            setattr(original_tweet, value, utils.expand_urls(getattr(original_tweet, value), original_tweet.entities))
+        # ToDo: Shall we check whether we should add show_screen_names here?
+        return compose.compose_quoted_tweet(quoted_tweet, original_tweet, session=self)
 
     def check_long_tweet(self, tweet):
         """ Process a tweet and add extra info if it's a long tweet made with Twyshort.
         tweet dict: a tweet object.
         returns a tweet with a new argument message, or original tweet if it's not a long tweet."""
-        long = twishort.is_long(tweet)
+        long = False
+        if hasattr(tweet, "entities") and tweet.entities.get("urls"):
+            long = twishort.is_long(tweet)
         if long != False and config.app["app-settings"]["handle_longtweets"]:
             message = twishort.get_full_text(long)
             if hasattr(tweet, "quoted_status"):
                 tweet.quoted_status.message = message
                 if tweet.quoted_status.message == False: return False
                 tweet.quoted_status.twishort = True
-                for i in tweet.quoted_status.entities["user_mentions"]:
-                    if "@%s" % (i["screen_name"]) not in tweet.quoted_status.message and i["screen_name"] != tweet.user.screen_name:
-                        if hasattr(tweet.quoted_status, "retweeted_status")  and tweet.retweeted_status.user.screen_name == i["screen_name"]:
-                            continue
-                    tweet.quoted_status.message = u"@%s %s" % (i["screen_name"], tweet.message)
+                if hasattr(tweet.quoted_status, "entities") and tweet.quoted_status.entities.get("user_mentions"):
+                    for i in tweet.quoted_status.entities["user_mentions"]:
+                        if "@%s" % (i["screen_name"]) not in tweet.quoted_status.message and i["screen_name"] != self.get_user(tweet.user).screen_name:
+                            if hasattr(tweet.quoted_status, "retweeted_status")  and self.get_user(tweet.retweeted_status.user).screen_name == i["screen_name"]:
+                                continue
+                        tweet.quoted_status.message = u"@%s %s" % (i["screen_name"], tweet.message)
             else:
                 tweet.message = message
                 if tweet.message == False: return False
                 tweet.twishort = True
-                for i in tweet.entities["user_mentions"]:
-                    if "@%s" % (i["screen_name"]) not in tweet.message and i["screen_name"] != tweet.user.screen_name:
-                        if hasattr(tweet, "retweeted_status") and tweet.retweeted_status.user.screen_name == i["screen_name"]:
-                            continue
+                if hasattr(tweet, "entities") and tweet.entities.get("user_mentions"):
+                    for i in tweet.entities["user_mentions"]:
+                        if "@%s" % (i["screen_name"]) not in tweet.message and i["screen_name"] != self.get_user(tweet.user).screen_name:
+                            if hasattr(tweet, "retweeted_status") and self.get_user(tweet.retweeted_status.user).screen_name == i["screen_name"]:
+                                continue
+                            tweet.message = u"@%s %s" % (i["screen_name"], tweet.message)
         return tweet
 
     def get_user(self, id):
@@ -386,20 +394,21 @@ class Session(base.baseSession):
         id str: User identifier, provided by Twitter.
         returns a tweepy user object."""
         if ("users" in self.db) == False or (str(id) in self.db["users"]) == False:
+            log.debug("Requesting user id {} as it is not present in the users database.".format(id))
             try:
                 user = self.twitter.get_user(id=id)
-            except TweepError as err:
+            except ValueError as err:
                 user = UserModel(None)
                 user.screen_name = "deleted_user"
                 user.id = id
                 user.name = _("Deleted account")
                 return user
             users = self.db["users"]
-            users[user.id] = user
+            users[user.id_str] = user
             self.db["users"] = users
             return user
         else:
-            return self.db["users"][id]
+            return self.db["users"][str(id)]
 
     def get_user_by_screen_name(self, screen_name):
         """ Returns an user identifier associated with a screen_name.
@@ -438,3 +447,19 @@ class Session(base.baseSession):
             users_db[user.id_str] = user
         log.debug("Added %d new users" % (len(users)))
         self.db["users"] = users_db
+
+    def add_users_from_results(self, data):
+        users = self.db["users"]
+        for i in data:
+            if hasattr(i, "user"):
+                if isinstance(i.user, str):
+                    log.warning("A String was passed to be added as an user. This is normal only if TWBlue tried to load a conversation.")
+                    continue
+                if (i.user.id_str in self.db["users"]) == False:
+                    users[i.user.id_str] = i.user
+                if hasattr(i, "quoted_status") and (i.quoted_status.user.id_str in self.db["users"]) == False:
+                    users[i.quoted_status.user.id_str] = i.quoted_status.user
+
+                if hasattr(i, "retweeted_status") and (i.retweeted_status.user.id_str in self.db["users"]) == False:
+                    users[i.retweeted_status.user.id_str] = i.retweeted_status.user
+        self.db["users"] = users
