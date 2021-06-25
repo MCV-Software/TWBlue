@@ -15,7 +15,11 @@ def reduce_tweet(tweet):
             entities[key] = tweet._json["entities"][key]
     status_dict["entities"] = entities
     # Quotes and retweets are different objects.
-    status = Status().parse(api=tweet._api, json=status_dict)
+    if hasattr(tweet, "_api"):
+        api = tweet._api
+    else:
+        api = None
+    status = Status().parse(api=api, json=status_dict)
     if tweet._json.get("quoted_status"):
         quoted_tweet = reduce_tweet(tweet.quoted_status)
 #        print(quoted_tweet)
