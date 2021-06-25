@@ -5,16 +5,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TwBlue 0.80\n"
-"POT-Creation-Date: 2019-03-17 13:34+Hora estndar romance\n"
-"PO-Revision-Date: 2018-08-07 13:46-0500\n"
-"Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
+"POT-Creation-Date: 2019-03-17 13:34+Hora estándar romance\n"
+"PO-Revision-Date: 2021-06-25 18:32+0100\n"
+"Last-Translator: Nikola Jović <wwenikola123@gmail.com>\n"
 "Language-Team: Aleksandar Đurić <agasoft@gmail.com>\n"
 "Language: sr_RS@latin\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-Bookmarks: -1,442,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -82,26 +82,24 @@ msgid "Muted users"
 msgstr "Utišani korisnici"
 
 #: ../src\controller\buffers\twitterBuffers.py:75
-#, fuzzy
 msgid "{username}'s timeline"
-msgstr "Otvori korisničku vremensku crtu"
+msgstr "Vremenska linija korisnika {username}"
 
 #: ../src\controller\buffers\twitterBuffers.py:77
 msgid "{username}'s likes"
-msgstr ""
+msgstr "Sviđanja korisnika {username}"
 
 #: ../src\controller\buffers\twitterBuffers.py:79
 msgid "{username}'s followers"
-msgstr ""
+msgstr "Pratioci korisnika {username}"
 
 #: ../src\controller\buffers\twitterBuffers.py:81
 msgid "{username}'s friends"
-msgstr ""
+msgstr "Prijatelji korisnika {username}"
 
 #: ../src\controller\buffers\twitterBuffers.py:83
-#, fuzzy
 msgid "Unknown buffer"
-msgstr "Nepoznato"
+msgstr "Nepoznat kanal"
 
 #: ../src\controller\buffers\twitterBuffers.py:86
 #: ../src\controller\buffers\twitterBuffers.py:1242
@@ -117,14 +115,12 @@ msgid "Write the tweet here"
 msgstr "Otkucajte tvit ovde:"
 
 #: ../src\controller\buffers\twitterBuffers.py:194
-#, fuzzy
 msgid "New tweet in {0}"
-msgstr "Novi tvit"
+msgstr "Novi tvit u kanalu {0}"
 
 #: ../src\controller\buffers\twitterBuffers.py:197
-#, fuzzy
 msgid "{0} new tweets in {1}."
-msgstr "@{0} citira vaš tvit: {1}"
+msgstr "{0} novih tvitova u kanalu {1}."
 
 #: ../src\controller\buffers\twitterBuffers.py:232
 #: ../src\controller\buffers\twitterBuffers.py:676
@@ -180,7 +176,7 @@ msgstr "Podaci o korisniku"
 #: ../src\controller\buffers\twitterBuffers.py:634
 #: ../src\controller\buffers\twitterBuffers.py:987
 msgid "Opening item in web browser..."
-msgstr ""
+msgstr "Otvaram stavku u Web pretraživaču..."
 
 #: ../src\controller\buffers\twitterBuffers.py:688
 #: ../src\controller\buffers\twitterBuffers.py:855
@@ -194,30 +190,28 @@ msgid "Mention"
 msgstr "Spomeni"
 
 #: ../src\controller\buffers\twitterBuffers.py:728
-#, fuzzy
 msgid "{0} new direct messages."
-msgstr "Nova direktna poruka"
+msgstr "{0} novih direktnih poruka."
 
 #: ../src\controller\buffers\twitterBuffers.py:731
-#, fuzzy
 msgid "This action is not supported in the buffer yet."
-msgstr "Ova radnja nije podržana na ovom kanalu"
+msgstr "Ova radnja još uvek nije podržana na ovom kanalu."
 
 #: ../src\controller\buffers\twitterBuffers.py:741
 msgid ""
 "Getting more items cannot be done in this buffer. Use the direct messages "
 "buffer instead."
 msgstr ""
+"Nemoguće preuzeti dodatne stavke za ovaj kanal. Umesto toga, koristite kanal "
+"direktne poruke."
 
 #: ../src\controller\buffers\twitterBuffers.py:983
-#, fuzzy
 msgid "{0} new followers."
-msgstr "Novi pratilac."
+msgstr "{0} novih pratilaca."
 
 #: ../src\controller\buffers\twitterBuffers.py:1266
-#, fuzzy
 msgid "This action is not supported in the buffer, yet."
-msgstr "Ova radnja nije podržana na ovom kanalu"
+msgstr "Ova radnja još uvek nije podržana na ovom kanalu"
 
 #: ../src\controller\mainController.py:273
 msgid "Ready"
@@ -308,9 +302,8 @@ msgid "{0} not found."
 msgstr "{0} nije pronađen."
 
 #: ../src\controller\mainController.py:482
-#, fuzzy
 msgid "Filters cannot be applied on this buffer"
-msgstr "Ova radnja nije podržana na ovom kanalu"
+msgstr "Filteri se ne mogu primeniti na ovaj kanal"
 
 #: ../src\controller\mainController.py:535
 #: ../src\controller\mainController.py:552
@@ -319,9 +312,8 @@ msgid "Select the user"
 msgstr "Izaberite korisnika"
 
 #: ../src\controller\mainController.py:809 ../src\controller\messages.py:236
-#, fuzzy
 msgid "MMM D, YYYY. H:m"
-msgstr "dddd, MMMM D, YYYY H:m:s"
+msgstr "MMM D, YYYY. H:m"
 
 #: ../src\controller\mainController.py:934
 msgid "Conversation with {0}"
@@ -379,12 +371,11 @@ msgstr "Ova lista je već otvorena"
 
 #: ../src\controller\mainController.py:1423
 #: ../src\controller\mainController.py:1439
-#, fuzzy
 msgid ""
 "An error happened while trying to connect to the server. Please try later."
 msgstr ""
-"Dogodilo se nešto neočekivano prilikom prijavljivanja greške. Molimo vas da "
-"pokušate kasnije."
+"Došlo je do greške pri pokušaju povezivanja na server. Molimo pokušajte "
+"kasnije."
 
 #: ../src\controller\mainController.py:1475
 msgid "The auto-reading of new tweets is enabled for this buffer"
@@ -475,9 +466,8 @@ msgid "%s - %s characters"
 msgstr "%s - %s znakova"
 
 #: ../src\controller\messages.py:262
-#, fuzzy
 msgid "View item"
-msgstr "Vidi liste"
+msgstr "Prikaži stavku"
 
 #: ../src\controller\settings.py:75
 msgid "Direct connection"
@@ -533,7 +523,8 @@ msgstr "Korisnik je suspendovan."
 msgid "Information for %s"
 msgstr "Informacija za %s"
 
-#: ../src\controller\user.py:66 ../src\extra\AudioUploader\audioUploader.py:124
+#: ../src\controller\user.py:66
+#: ../src\extra\AudioUploader\audioUploader.py:124
 msgid "Discarded"
 msgstr "Odbačeno"
 
@@ -658,9 +649,8 @@ msgstr "Snimam zvučni zapis..."
 
 #: ../src\extra\AudioUploader\transfer.py:78
 #: ../src\extra\AudioUploader\transfer.py:84
-#, fuzzy
 msgid "Error in file upload: {0}"
-msgstr "Kod greške {0}"
+msgstr "Greška u otpremanju datoteke: {0}"
 
 #: ../src\extra\AudioUploader\utils.py:27 ../src\update\utils.py:27
 msgid "%d day, "
@@ -871,28 +861,24 @@ msgid "Suggestions"
 msgstr "Predlozi"
 
 #: ../src\extra\SpellChecker\wx_ui.py:42
-#, fuzzy
 msgid "&Ignore"
-msgstr "Zamenari."
+msgstr "&Zanemari"
 
 #: ../src\extra\SpellChecker\wx_ui.py:43
-#, fuzzy
 msgid "I&gnore all"
-msgstr "Zanemari sve"
+msgstr "Z&anemai sve"
 
 #: ../src\extra\SpellChecker\wx_ui.py:44
-#, fuzzy
 msgid "&Replace"
-msgstr "Zameni"
+msgstr "&Zameni"
 
 #: ../src\extra\SpellChecker\wx_ui.py:45
-#, fuzzy
 msgid "R&eplace all"
-msgstr "Zameni sve"
+msgstr "Zam&eni sve"
 
 #: ../src\extra\SpellChecker\wx_ui.py:46
 msgid "&Add to personal dictionary"
-msgstr ""
+msgstr "&Dodaj u lični rečnik"
 
 #: ../src\extra\SpellChecker\wx_ui.py:79
 msgid ""
@@ -1553,9 +1539,8 @@ msgid "Like a tweet"
 msgstr "Označi tvit sa sviđa mi se"
 
 #: ../src\keystrokeEditor\constants.py:15
-#, fuzzy
 msgid "Like/unlike a tweet"
-msgstr "Označi tvit sa ne sviđa mi se"
+msgstr "Označi da ti se tvit sviđa / ne sviđa"
 
 #: ../src\keystrokeEditor\constants.py:16
 msgid "Unlike a tweet"
@@ -1594,9 +1579,8 @@ msgid "Open URL"
 msgstr "Otvori vezu"
 
 #: ../src\keystrokeEditor\constants.py:25
-#, fuzzy
 msgid "View in Twitter"
-msgstr "Pretraži ttwitter"
+msgstr "Prikaži na Twitteru"
 
 #: ../src\keystrokeEditor\constants.py:26
 msgid "Increase volume by 5%"
@@ -1715,9 +1699,8 @@ msgid "Opens the global settings dialogue"
 msgstr "Otvara dijalog globalnih podešavanja"
 
 #: ../src\keystrokeEditor\constants.py:54
-#, fuzzy
 msgid "Opens the list manager"
-msgstr "Upravljanje listama"
+msgstr "Otvara upravljanje listama"
 
 #: ../src\keystrokeEditor\constants.py:55
 msgid "Opens the account settings dialogue"
@@ -1821,6 +1804,10 @@ msgid ""
 "If you're sure that {0} isn't running, try deleting the file at {1}. If "
 "you're unsure of how to do this, contact the {0} developers."
 msgstr ""
+"{0} je  već pokrenut. Zatvorite druge pokrenute prozore aplikacije pre "
+"pokretanja ovog. Ako ste sigurni da {0} nije pokrenut, pokušajte da obrišete "
+"datoteku koja se nalazi na {1}. Ako niste sigurni kako ovo da uradite, "
+"kontaktirajte {0} programere."
 
 #: ../src\sessionmanager\wxUI.py:8
 msgid "Session manager"
@@ -1926,9 +1913,8 @@ msgid "public"
 msgstr "Javno"
 
 #: ../src\sessions\twitter\session.py:169
-#, fuzzy
 msgid "There are no more items to retrieve in this buffer."
-msgstr "Nema koordinata u ovom tvitu."
+msgstr "Nema više stavki koje se mogu preuzeti u ovom kanalu."
 
 #: ../src\sessions\twitter\session.py:215
 msgid "%s failed.  Reason: %s"
@@ -1951,13 +1937,12 @@ msgid "Error code {0}"
 msgstr "Kod greške {0}"
 
 #: ../src\sessions\twitter\wxUI.py:6
-#, fuzzy
 msgid "Authorising account..."
-msgstr "Autorizovan nalog %d"
+msgstr "Autorizacija naloga..."
 
 #: ../src\sessions\twitter\wxUI.py:9
 msgid "Enter your PIN code here"
-msgstr ""
+msgstr "Ovde upišite vaš PIN kod"
 
 #: ../src\sound.py:159
 msgid "Stopped."
@@ -2266,19 +2251,20 @@ msgstr ""
 "suspendovan sa tvitera."
 
 #: ../src\wxUI\commonMessageDialogs.py:85
-#, fuzzy
 msgid "Do you really want to delete this filter?"
-msgstr "Želite li zaista da izbrišete ovu listu?"
+msgstr "Da li zaista želite da izbrišete ovaj filter?"
 
 #: ../src\wxUI\commonMessageDialogs.py:88
 msgid "This filter already exists. Please use a different title"
-msgstr ""
+msgstr "Ovaj filter već postoji. Molimo koristite drugi naziv"
 
 #: ../src\wxUI\commonMessageDialogs.py:94
 msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
 msgstr ""
+"{0} je neočekivano zatvoren pri poslednjem pokretanju. Ako se problem "
+"nastavi, molimo prijavite ga{0} programerima."
 
 #: ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
@@ -2343,11 +2329,11 @@ msgstr "Pitaj pre zatvaranja {0}"
 
 #: ../src\wxUI\dialogs\configuration.py:27
 msgid "Disable Streaming functions"
-msgstr ""
+msgstr "Onemogući streaming funkcije"
 
 #: ../src\wxUI\dialogs\configuration.py:30
 msgid "Buffer update interval, in minutes"
-msgstr ""
+msgstr "Interval ažuriranja kanala, u minutima"
 
 #: ../src\wxUI\dialogs\configuration.py:36
 msgid "Play a sound when {0} launches"
@@ -2378,7 +2364,7 @@ msgstr ""
 
 #: ../src\wxUI\dialogs\configuration.py:48
 msgid "Remember state for mention all and long tweet"
-msgstr ""
+msgstr "Pamti stanje opcija spomeni sve i dug tvit"
 
 #: ../src\wxUI\dialogs\configuration.py:51
 msgid "Keymap"
@@ -2446,11 +2432,11 @@ msgstr ""
 
 #: ../src\wxUI\dialogs\configuration.py:134
 msgid "Enable automatic speech feedback"
-msgstr ""
+msgstr "Omogući automatske govorne povratne informacije"
 
 #: ../src\wxUI\dialogs\configuration.py:136
 msgid "Enable automatic Braille feedback"
-msgstr ""
+msgstr "Omogući automatske povratne informacije na brajevom redu"
 
 #: ../src\wxUI\dialogs\configuration.py:144
 msgid "Status"
@@ -2564,7 +2550,7 @@ msgstr "Proksi"
 
 #: ../src\wxUI\dialogs\configuration.py:373
 msgid "Feedback"
-msgstr ""
+msgstr "Povratne informacije"
 
 #: ../src\wxUI\dialogs\configuration.py:377
 msgid "Buffers"
@@ -2583,81 +2569,74 @@ msgid "Save"
 msgstr "Sačuvaj"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:15
-#, fuzzy
 msgid "Create a filter  for this buffer"
-msgstr "Stvori kanal trenutnih tema u trendu"
+msgstr "Napravi filter za ovaj kanal"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:16
 msgid "Filter title"
-msgstr ""
+msgstr "Naziv filtera"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:25
 #: ../src\wxUI\dialogs\filterDialogs.py:125
 msgid "Filter by word"
-msgstr ""
+msgstr "Filtriraj na osnovu reči"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:26
 msgid "Ignore tweets wich contain the following word"
-msgstr ""
+msgstr "Zanemari tvitove koji sadrže sledeću reč"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:27
-#, fuzzy
 msgid "Ignore tweets without the following word"
-msgstr "Zanemari tvitove iz ovog klijenta"
+msgstr "Zanemari tvitove bez sledeće reči"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:32
 msgid "word"
-msgstr ""
+msgstr "Reč"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:37
-#, fuzzy
 msgid "Allow retweets"
-msgstr "Prikaži tvit"
+msgstr "Dozvoli retvitove"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:38
 msgid "Allow quoted tweets"
-msgstr ""
+msgstr "Dozvoli citirane tvitove"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:39
-#, fuzzy
 msgid "Allow replies"
-msgstr "Vremenska linija pratilaca"
+msgstr "Dozvoli odgovore"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:47
 msgid "Use this term as a regular expression"
-msgstr ""
+msgstr "Koristi ovaj termin kao regulara nizraz"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:49
 #: ../src\wxUI\dialogs\filterDialogs.py:125
-#, fuzzy
 msgid "Filter by language"
-msgstr "Izvorni jezik"
+msgstr "Filtriraj na osnovu jezika"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:50
 msgid "Load tweets in the following languages"
-msgstr ""
+msgstr "Učitaj tvitove na sledećim jezicima"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:51
 msgid "Ignore tweets in the following languages"
-msgstr ""
+msgstr "Zanemari tvitove na sledećim jezicima"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:52
 msgid "Don't filter by language"
-msgstr ""
+msgstr "Ne filtriraj na osnovu jezika"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:63
-#, fuzzy
 msgid "Supported languages"
-msgstr "Izvorni jezik"
+msgstr "Podržani jezici"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:68
 msgid "Add selected language to filter"
-msgstr ""
+msgstr "Dodaj izabrani jezik u filter"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:72
-#, fuzzy
 msgid "Selected languages"
-msgstr "Izvorni jezik"
+msgstr "Izabrani jezici"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:74
 #: ../src\wxUI\dialogs\filterDialogs.py:132 ../src\wxUI\dialogs\lists.py:20
@@ -2666,17 +2645,16 @@ msgid "Remove"
 msgstr "Ukloni"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:122
-#, fuzzy
 msgid "Manage filters"
-msgstr "Upravljaj nalozima"
+msgstr "Upravljanje filterima"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:124
 msgid "Filters"
-msgstr ""
+msgstr "Filteri"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:125
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: ../src\wxUI\dialogs\find.py:12
 msgid "Find in current buffer"
@@ -2844,9 +2822,8 @@ msgid "Source: "
 msgstr "Izvor:"
 
 #: ../src\wxUI\dialogs\message.py:342 ../src\wxUI\dialogs\message.py:420
-#, fuzzy
 msgid "Date: "
-msgstr "Datum"
+msgstr "Datum:"
 
 #: ../src\wxUI\dialogs\message.py:405
 msgid "View"
@@ -2942,9 +2919,8 @@ msgid "Update your profile"
 msgstr "Ažurirajte vaš profil"
 
 #: ../src\wxUI\dialogs\update_profile.py:11
-#, fuzzy
 msgid "&Name (50 characters maximum)"
-msgstr "Ime, najviše 20 znakova"
+msgstr "&Ime(najviše 50 znakova)"
 
 #: ../src\wxUI\dialogs\update_profile.py:22
 msgid "&Website"
@@ -3060,9 +3036,8 @@ msgid "&Open URL"
 msgstr "otvori vezu"
 
 #: ../src\wxUI\menus.py:17 ../src\wxUI\menus.py:53 ../src\wxUI\menus.py:86
-#, fuzzy
 msgid "&Open in Twitter"
-msgstr "Pretraži ttwitter"
+msgstr "&Otvori na Twitteru"
 
 #: ../src\wxUI\menus.py:19 ../src\wxUI\menus.py:37 ../src\wxUI\menus.py:55
 msgid "&Play audio"
@@ -3215,14 +3190,12 @@ msgid "New &trending topics buffer..."
 msgstr "Novi kanal sa temama u trendu"
 
 #: ../src\wxUI\view.py:54
-#, fuzzy
 msgid "Create a &filter"
-msgstr "Stvori novu listu"
+msgstr "Napravi &filter"
 
 #: ../src\wxUI\view.py:55
-#, fuzzy
 msgid "&Manage filters"
-msgstr "Upravljaj nalozima"
+msgstr "&Upravljanje filterima"
 
 #: ../src\wxUI\view.py:56
 msgid "Find a string in the currently focused buffer..."
@@ -3274,7 +3247,7 @@ msgstr "{0} &website"
 
 #: ../src\wxUI\view.py:77
 msgid "Get soundpacks for TWBlue"
-msgstr ""
+msgstr "Nabavi zvučne pakete za TW Blue"
 
 #: ../src\wxUI\view.py:78
 msgid "About &{0}"
