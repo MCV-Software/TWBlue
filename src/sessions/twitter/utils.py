@@ -27,22 +27,16 @@ def find_urls (tweet):
     if hasattr(tweet, "message_create"):
         entities = tweet.message_create["message_data"]["entities"]
     else:
-        entities = tweet.entities
-    for i in entities["urls"]:
-        if i["expanded_url"] not in urls:
-            urls.append(i["expanded_url"])
+        if hasattr(tweet, "entities") == True:
+            entities = tweet.entities
+    if entities.get("urls") != None:
+        for i in entities["urls"]:
+            if i["expanded_url"] not in urls:
+                urls.append(i["expanded_url"])
     if hasattr(tweet, "quoted_status"):
-        for i in tweet.quoted_status.entities["urls"]:
-            if i["expanded_url"] not in urls:
-                urls.append(i["expanded_url"])
+        urls.extend(find_urls(tweet.quoted_status))
     if hasattr(tweet, "retweeted_status"):
-        for i in tweet.retweeted_status.entities["urls"]:
-            if i["expanded_url"] not in urls:
-                urls.append(i["expanded_url"])
-        if hasattr(tweet["retweeted_status"], "quoted_status"):
-            for i in tweet.retweeted_status.quoted_status.entities["urls"]:
-                if i["expanded_url"] not in urls:
-                    urls.append(i["expanded_url"])
+        urls.extend(find_urls(tweet.retweeted_status))
     if hasattr(tweet, "message"):
         i = "message"
     elif hasattr(tweet, "full_text"):
@@ -109,22 +103,22 @@ def get_all_mentioned(tweet, conf, field="screen_name"):
                 results.append(i.get(field))
     return results
 
-def get_all_users(tweet, conf):
+def get_all_users(tweet, session):
     string = []
+    user = session.get_user(tweet.user)
     if hasattr(tweet, "retweeted_status"):
-        string.append(tweet.user.screen_name)
+        string.append(user.screen_name)
         tweet = tweet.retweeted_status
-    if hasattr(tweet, "sender"):
-        string.append(tweet.sender.screen_name)
     else:
-        if tweet.user.screen_name != conf["user_name"]:
-            string.append(tweet.user.screen_name)
-        for i in tweet.entities["user_mentions"]:
-            if i["screen_name"] != conf["user_name"] and i["screen_name"] != tweet.user.screen_name:
-                if i["screen_name"] not in string:
-                    string.append(i["screen_name"])
+        if user.screen_name != session.db["user_name"]:
+            string.append(user.screen_name)
+        if tweet.get("entities") != None and tweet["entities"].get("user_mentions") != None:
+            for i in tweet.entities["user_mentions"]:
+                if i["screen_name"] != session.db["user_name"] and i["screen_name"] != user.screen_name:
+                    if i["screen_name"] not in string:
+                        string.append(i["screen_name"])
     if len(string) == 0:
-        string.append(tweet.user.screen_name)
+        string.append(user.screen_name)
     return string
 
 def if_user_exists(twitter, user):
