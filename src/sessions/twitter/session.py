@@ -104,8 +104,6 @@ class Session(base.baseSession):
                     else: objects.insert(0, i)
                     incoming = incoming+1
         pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
-        self.db["direct_messages"] = objects
-        self.db["sent_direct_messages"] = sent_objects
         return incoming
 
     def __init__(self, *args, **kwargs):
@@ -387,7 +385,7 @@ class Session(base.baseSession):
         """ Returns an user object associated with an ID.
         id str: User identifier, provided by Twitter.
         returns a tweepy user object."""
-        if ("users" in self.db) == False or (id in self.db["users"]) == False:
+        if ("users" in self.db) == False or (str(id) in self.db["users"]) == False:
             try:
                 user = self.twitter.get_user(id=id)
             except TweepError as err:
@@ -395,9 +393,9 @@ class Session(base.baseSession):
                 user.screen_name = "deleted_user"
                 user.id = id
                 user.name = _("Deleted account")
-                user.id_str = id
+                return user
             users = self.db["users"]
-            users[user.id_str] = user
+            users[user.id] = user
             self.db["users"] = users
             return user
         else:
@@ -410,18 +408,18 @@ class Session(base.baseSession):
         if ("users" in self.db) == False:
             user = utils.if_user_exists(self.twitter, screen_name)
             users = self.db["users"]
-            users[user["id_str"]] = user
+            users[user["id"]] = user
             self.db["users"] = users
-            return user["id_str"]
+            return user["id"]
         else:
             for i in list(self.db["users"].keys()):
                 if self.db["users"][i].screen_name == screen_name:
-                    return self.db["users"][i].id_str
+                    return self.db["users"][i].id
             user = utils.if_user_exists(self.twitter, screen_name)
             users = self.db["users"]
-            users[user.id_str] = user
+            users[user.id] = user
             self.db["users"] = users
-            return user.id_str
+            return user.id
 
     def save_users(self, user_ids):
         """ Adds all new users to the users database. """
