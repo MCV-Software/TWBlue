@@ -103,7 +103,12 @@ class Session(base.baseSession):
                     if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
                     else: objects.insert(0, i)
                     incoming = incoming+1
+        self.db["direct_messages"] = objects
+
+        self.db["sent_direct_messages"] = sent_objects
         pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
+
+
         return incoming
 
     def __init__(self, *args, **kwargs):
