@@ -413,7 +413,8 @@ class baseBufferController(baseBuffers.buffer):
     @_tweets_exist
     def reply(self, *args, **kwargs):
         tweet = self.get_right_tweet()
-        screen_name = tweet.user.screen_name
+        user = self.session.get_user(tweet.user)
+        screen_name = user.screen_name
         id = tweet.id
         twishort_enabled = hasattr(tweet, "twishort")
         users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
@@ -466,8 +467,8 @@ class baseBufferController(baseBuffers.buffer):
             screen_name = tweet.screen_name
             users = [screen_name]
         else:
-            screen_name = tweet.user.screen_name
-            users = utils.get_all_users(tweet, self.session.db)
+            screen_name = self.session.get_user(tweet.user).screen_name
+            users = utils.get_all_users(tweet, self.session)
         dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
         if dm.message.get_response() == widgetUtils.OK:
             screen_name = dm.message.get("cb")
@@ -508,12 +509,12 @@ class baseBufferController(baseBuffers.buffer):
             comments = tweet.full_text
         else:
             comments = tweet.text
-        retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet.user.screen_name, comments), max=256, messageType="retweet")
+        retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (self.session.get_user(tweet.user).screen_name, comments), max=256, messageType="retweet")
         if comment != '':
             retweet.message.set_text(comment)
         if retweet.message.get_response() == widgetUtils.OK:
             text = retweet.message.get_text()
-            text = text+" https://twitter.com/{0}/status/{1}".format(tweet.user.screen_name, id)
+            text = text+" https://twitter.com/{0}/status/{1}".format(self.session.get_user(tweet.user).screen_name, id)
             if retweet.image == None:
                 item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id, tweet_mode="extended")
                 if item != None:
@@ -616,7 +617,7 @@ class baseBufferController(baseBuffers.buffer):
         elif self.type == "people":
             users = [tweet.screen_name]
         else:
-            users = utils.get_all_users(tweet, self.session.db)
+            users = utils.get_all_users(tweet, self.session)
         dlg = dialogs.utils.selectUserDialog(title=_(u"User details"), users=users)
         if dlg.get_response() == widgetUtils.OK:
             user.profileController(session=self.session, user=dlg.get_user())
@@ -634,7 +635,7 @@ class baseBufferController(baseBuffers.buffer):
     def open_in_browser(self, *args, **kwargs):
         tweet = self.get_tweet()
         output.speak(_(u"Opening item in web browser..."))
-        url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=tweet.user.screen_name, tweet_id=tweet.id)
+        url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=self.session.get_user(tweet.user).screen_name, tweet_id=tweet.id)
         webbrowser.open(url)
 
 class directMessagesController(baseBufferController):
