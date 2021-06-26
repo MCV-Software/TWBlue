@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-""" Strips unneeded tweet information in order to store tweet objects by using less memory. """
+""" Strips unneeded tweet information in order to store tweet objects by using less memory. This is especially useful when buffers start to contain more than a certain amount of items. """
 from tweepy.models import Status
 
 def reduce_tweet(tweet):
+    """ generates a new Tweet model with the fields we currently need, excluding everything else  including null values and empty collections. """
     allowed_values = ["created_at", "id", "full_text", "text", "message", "in_reply_to_status_id", "in_reply_to_user_id", "is_quote_status", "lang", "source", "coordinates", "quoted_status_id", ]
     allowed_entities = ["hashtags", "media", "urls", "user_mentions", "polls"]
     status_dict = {}
@@ -14,15 +15,15 @@ def reduce_tweet(tweet):
         if tweet._json["entities"].get(key) and tweet._json["entities"].get(key) != None:
             entities[key] = tweet._json["entities"][key]
     status_dict["entities"] = entities
-    # Quotes and retweets are different objects.
+    # If tweet comes from the cached database, it does not include an API,  so we can pass None here as we do not use that reference to tweepy's API.
     if hasattr(tweet, "_api"):
         api = tweet._api
     else:
         api = None
     status = Status().parse(api=api, json=status_dict)
+    # Quotes and retweets are different objects. So we parse a new tweet when we have a quoted or retweeted status here.
     if tweet._json.get("quoted_status"):
         quoted_tweet = reduce_tweet(tweet.quoted_status)
-#        print(quoted_tweet)
         status.quoted_status = quoted_tweet
     if tweet._json.get("retweeted_status"):
         retweeted_tweet = reduce_tweet(tweet.retweeted_status)
