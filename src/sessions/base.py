@@ -82,12 +82,19 @@ class baseSession(object):
             if os.path.exists(dbname):
                 os.remove(dbname)
             return
-        try:
-            self.db.commit()
-        except:
-            output.speak(_("An exception occurred while saving the {app} database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the {app} developers.").format(app=application.name),True)
-            log.exception("Exception while saving {}".format(dbname))
-            os.remove(dbname)
+        # Let's check if we need to create a new SqliteDict object or we just need to call to commit in self.db.
+        if self.settings["general"]["load_cache_in_memory"]:
+            db=sqlitedict.SqliteDict(dbname, 'c')
+            for k in self.db.keys():
+                db[k] = self.db[k]
+            db.close()
+        else:
+            try:
+                self.db.commit()
+            except:
+                output.speak(_("An exception occurred while saving the {app} database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the {app} developers.").format(app=application.name),True)
+                log.exception("Exception while saving {}".format(dbname))
+                os.remove(dbname)
 
     def load_persistent_data(self):
         """Import data from a database file from user config."""
@@ -100,7 +107,16 @@ class baseSession(object):
             return
         # try to load the db file.
         try:
-            self.db=sqlitedict.SqliteDict(os.path.join(paths.config_path(), dbname), 'c')
+            db=sqlitedict.SqliteDict(os.path.join(paths.config_path(), dbname), 'c')
+            # If load_cache_in_memory is set to true, we will load the whole database into memory for faster access.
+            # This is going to be faster when retrieving specific objects, at the cost of more memory.
+            # Setting this to False will read the objects from database as they are needed, which might be slower for bigger datasets.
+            if self.settings["general"]["load_cache_in_memory"]:
+                for k in db.keys():
+                    self.db[k] = db[k]
+                db.close()
+            else:
+                self.db = db
             if self.db.get("cursors") == None:
                 cursors = dict(direct_messages=-1)
                 self.db["cursors"] = cursors

@@ -151,6 +151,7 @@ class accountSettingsController(globalSettingsController):
         else:
             self.dialog.set_value("general", "retweet_mode", _(u"Retweet with comments"))
         self.dialog.set_value("general", "persist_size", str(self.config["general"]["persist_size"]))
+        self.dialog.set_value("general", "load_cache_in_memory", self.config["general"]["load_cache_in_memory"])
         self.dialog.create_reporting()
         self.dialog.set_value("reporting", "speech_reporting", self.config["reporting"]["speech_reporting"])
         self.dialog.set_value("reporting", "braille_reporting", self.config["reporting"]["braille_reporting"])
@@ -193,6 +194,7 @@ class accountSettingsController(globalSettingsController):
             self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
         self.config["general"]["show_screen_names"] = self.dialog.get_value("general", "show_screen_names")
         self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
+        self.config["general"]["load_cache_in_memory"] = self.dialog.get_value("general", "load_cache_in_memory")
         if self.config["general"]["persist_size"] != self.dialog.get_value("general", "persist_size"):
             if self.dialog.get_value("general", "persist_size") == '':
                 self.config["general"]["persist_size"] =-1
