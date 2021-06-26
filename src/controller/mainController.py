@@ -651,8 +651,8 @@ class Controller(object):
             if sessions.sessions[item].logged == False: continue
             log.debug("Disconnecting streams for %s session" % (sessions.sessions[item].session_id,))
             sessions.sessions[item].sound.cleaner.cancel()
-            log.debug("Shelving database for " +    sessions.sessions[item].session_id)
-            sessions.sessions[item].shelve()
+            log.debug("Saving database for " +    sessions.sessions[item].session_id)
+            sessions.sessions[item].save_persistent_data()
         if system == "Windows":
             self.systrayIcon.RemoveIcon()
             pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
@@ -1625,4 +1625,4 @@ class Controller(object):
 
     def save_data_in_db(self):
         for i in sessions.sessions:
-            sessions.sessions[i].shelve()
+            sessions.sessions[i].save_persistent_data()

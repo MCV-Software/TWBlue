@@ -60,7 +60,7 @@ class baseSession(object):
         log.debug("Creating config file %s" % (file_,))
         self.settings = config_utils.load_config(os.path.join(paths.config_path(), file_), os.path.join(paths.app_path(), "Conf.defaults"))
         self.init_sound()
-        self.deshelve()
+        self.load_persistent_data()
 
     def init_sound(self):
         try: self.sound = sound.soundSystem(self.settings["sound"])
@@ -74,52 +74,41 @@ class baseSession(object):
     def authorise(self):
         pass
 
-    def shelve(self):
-        """Shelve the database to allow for persistance."""
-        shelfname=os.path.join(paths.config_path(), str(self.session_id), "cache")
+    def save_persistent_data(self):
+        """ Save the data to a persistant sqlite backed file. ."""
+        dbname=os.path.join(paths.config_path(), str(self.session_id), "cache.db")
+        # persist_size set to 0 means not saving data actually.
         if self.settings["general"]["persist_size"] == 0:
-            if os.path.exists(shelfname+".dat"):
-                os.remove(shelfname+".dat")
+            if os.path.exists(dbname):
+                os.remove(dbname)
             return
         try:
             self.db.commit()
-#            if not os.path.exists(shelfname+".dat"):
-#                output.speak("Generating database, this might take a while.",True)
-#            shelf=shelve.open(os.path.join(paths.config_path(), shelfname),'c')
-#            for key, value in list(self.db.items()):
-#                if type(key) != str and type(key) != str:
-#                    output.speak("Uh oh, while shelving the database, a key of type " + str(type(key)) + " has been found. It will be converted to type str, but this will cause all sorts of problems on deshelve. Please bring this to the attention of the " + application.name + " developers immediately. More information about the error will be written to the error log.",True)
-#                    log.error("Uh oh, " + str(key) + " is of type " + str(type(key)) + "!")
-#                if type(value) == list and self.settings["general"]["persist_size"] != -1 and len(value) > self.settings["general"]["persist_size"]:
-#                    shelf[key]=value[self.settings["general"]["persist_size"]:]
-#                else:
-#                    shelf[key]=value
-#            shelf.close()
         except:
-            output.speak("An exception occurred while shelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
-            log.exception("Exception while shelving" + shelfname)
-            os.remove(shelfname)
+            output.speak(_("An exception occurred while saving the {app} database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the {app} developers.").format(app=application.name),True)
+            log.exception("Exception while saving {}".format(dbname))
+            os.remove(dbname)
 
-    def deshelve(self):
-        """Import a shelved database."""
-        shelfname=os.path.join(paths.config_path(), str(self.session_id)+"/cache")
+    def load_persistent_data(self):
+        """Import data from a database file from user config."""
+        dbname=os.path.join(paths.config_path(), str(self.session_id), "cache.db")
+        # If persist_size is set to 0, we should remove the db file as we are no longer going to save anything.
         if self.settings["general"]["persist_size"] == 0:
-            if os.path.exists(shelfname+".dat"):
-                os.remove(shelfname+".dat")
+            if os.path.exists(dbname):
+                os.remove(dbname)
+            # Let's return from here, as we are not loading anything.
             return
+        # try to load the db file.
         try:
-            self.db=sqlitedict.SqliteDict(os.path.join(paths.config_path(), shelfname), 'c')
+            self.db=sqlitedict.SqliteDict(os.path.join(paths.config_path(), dbname), 'c')
             if self.db.get("cursors") == None:
                 cursors = dict(direct_messages=-1)
                 self.db["cursors"] = cursors
-#            for key,value in list(shelf.items()):
-#                self.db[key]=value
-#            shelf.close()
         except:
-            output.speak("An exception occurred while deshelving the " + application.name + " database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the " + application.name + " developers.",True)
-            log.exception("Exception while deshelving" + shelfname)
+            output.speak(_("An exception occurred while loading the {app} database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the {app} developers.").format(app=application.name), True)
+            log.exception("Exception while loading {}".format(dbname))
             try: 
-                os.remove(shelfname)
+                os.remove(dbname)
             except:
                 pass
 
