@@ -101,7 +101,7 @@ def get_all_mentioned(tweet, conf, field="screen_name"):
     """ Gets all users that have been mentioned."""
     results = []
     for i in tweet.entities["user_mentions"]:
-        if i["screen_name"] != conf["user_name"] and i["screen_name"] != tweet.user.screen_name:
+        if i["screen_name"] != conf["user_name"] and i["id_str"] != tweet.user:
             if i.get(field) not in results:
                 results.append(i.get(field))
     return results
