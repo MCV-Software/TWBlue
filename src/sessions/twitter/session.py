@@ -119,6 +119,12 @@ class Session(base.baseSession):
         self.reconnection_function_active = False
         self.counter = 0
         self.lists = []
+        # As users are cached for accessing them with not too many twitter calls,
+        # there could be a weird situation where a deleted user who sent direct messages to the current account will not be able to be retrieved at twitter.
+        # So we need to store an "user deleted" object in the cache, but have the ID of the deleted user in a local reference.
+        # This will be especially useful because if the user reactivates their account later, TWblue will try to retrieve such user again at startup.
+        # If we wouldn't implement this approach, TWBlue would save permanently the "deleted user" object.
+        self.deleted_users = {}
 
 # @_require_configuration
     def login(self, verify_credentials=True):
@@ -401,16 +407,25 @@ class Session(base.baseSession):
         if hasattr(id, "id_str"):
             log.error("Called get_user function by passing a full user id as a parameter.")
             id = id.id_str
+        # Check if the user has been added to the list of deleted users previously.
+        if id in self.deleted_users:
+            log.debug("Returning user {} from the list of deleted users.".format(id))
+            return self.deleted_users[id]
         if ("users" in self.db) == False or (str(id) in self.db["users"]) == False:
             log.debug("Requesting user id {} as it is not present in the users database.".format(id))
             try:
                 user = self.twitter.get_user(id=id)
-            except ValueError as err:
+            except TweepError as err:
                 user = UserModel(None)
                 user.screen_name = "deleted_user"
                 user.id = id
                 user.name = _("Deleted account")
-                return user
+                if hasattr(err, "api_code") and err.api_code == 50:
+                    self.deleted_users[id] = user
+                    return user
+                else:
+                    log.exception("Error when attempting to retrieve an user from Twitter.")
+                    return user
             users = self.db["users"]
             users[user.id_str] = user
             self.db["users"] = users
@@ -443,18 +458,33 @@ class Session(base.baseSession):
         if len(user_ids) == 0:
             return
         log.debug("Received %d user IDS to be added in the database." % (len(user_ids)))
-        users_to_retrieve = [user_id for user_id in user_ids if user_id not in self.db["users"]]
+        users_to_retrieve = [user_id for user_id in user_ids if (user_id not in self.db["users"] and user_id not in self.deleted_users)]
         # Remove duplicates
         users_to_retrieve = list(dict.fromkeys(users_to_retrieve))
         if len(users_to_retrieve) == 0:
             return
         log.debug("TWBlue will get %d new users from Twitter." % (len(users_to_retrieve)))
-        users = self.twitter.lookup_users(user_ids=users_to_retrieve, tweet_mode="extended")
-        users_db = self.db["users"]
-        for user in users:
-            users_db[user.id_str] = user
-        log.debug("Added %d new users" % (len(users)))
-        self.db["users"] = users_db
+        try:
+            users = self.twitter.lookup_users(user_ids=users_to_retrieve, tweet_mode="extended")
+            users_db = self.db["users"]
+            for user in users:
+                users_db[user.id_str] = user
+            log.debug("Added %d new users" % (len(users)))
+            self.db["users"] = users_db
+        except TweepError as err:
+            if hasattr(err, "api_code") and err.api_code == 17: # Users not found.
+                log.error("The specified users {} were not found in twitter.".format(user_ids))
+                # Creates a deleted user object for every user_id not found here.
+                # This will make TWBlue to not waste Twitter API calls when attempting to retrieve those users again.
+                # As deleted_users is not saved across restarts, when restarting TWBlue, it will retrieve the correct users if they enabled their accounts.
+                for id in users_to_retrieve:
+                    user = UserModel(None)
+                    user.screen_name = "deleted_user"
+                    user.id = id
+                    user.name = _("Deleted account")
+                    self.deleted_users[id] = user
+            else:
+                log.exception("An exception happened while attempting to retrieve a list of users from direct messages in Twitter.")
 
     def add_users_from_results(self, data):
         users = self.db["users"]
