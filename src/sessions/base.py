@@ -72,10 +72,10 @@ class baseSession(object):
         """ Returns a list with the amount of items specified by size."""
         if isinstance(buffer, list) and size != -1 and len(buffer) > size:
             log.debug("Requesting {} items from a list of {} items. Reversed mode: {}".format(size, len(buffer), reversed))
-            if reversed == False:
-                return buffer[size:]
-            else:
+            if reversed == True:
                 return buffer[:size]
+            else:
+                return buffer[len(buffer)-size:]
         else:
             return buffer
 
@@ -91,17 +91,20 @@ class baseSession(object):
         # Let's check if we need to create a new SqliteDict object (when loading db in memory) or we just need to call to commit in self (if reading from disk).db.
         # If we read from disk, we cannot modify the buffer size here as we could damage the app's integrity.
         # We will modify buffer's size (managed by persist_size) upon loading the db into memory in app startup.
-        if self.settings["general"]["load_cache_in_memory"]:
+        if self.settings["general"]["load_cache_in_memory"] and isinstance(self.db, dict):
             log.debug("Opening database to dump memory contents...")
             db=sqlitedict.SqliteDict(dbname, 'c')
             for k in self.db.keys():
-                db[k] = self.get_sized_buffer(self.db[k], self.settings["general"]["persist_size"], self.settings["general"]["reverse_timelines"])
+                sized_buff = self.get_sized_buffer(self.db[k], self.settings["general"]["persist_size"], self.settings["general"]["reverse_timelines"])
+                db[k] = sized_buff
+            db.commit(blocking=True)
             db.close()
             log.debug("Data has been saved in the database.")
         else:
             try:
                 log.debug("Syncing new data to disk...")
-                self.db.commit()
+                if hasattr(self.db, "commit"):
+                    self.db.commit()
             except:
                 output.speak(_("An exception occurred while saving the {app} database. It will be deleted and rebuilt automatically. If this error persists, send the error log to the {app} developers.").format(app=application.name),True)
                 log.exception("Exception while saving {}".format(dbname))
@@ -128,6 +131,7 @@ class baseSession(object):
                 log.debug("Loading database contents into memory...")
                 for k in db.keys():
                     self.db[k] = db[k]
+                db.commit(blocking=True)
                 db.close()
                 log.debug("Contents were loaded successfully.")
             else:
@@ -136,7 +140,8 @@ class baseSession(object):
                 # We must make sure we won't load more than the amount of buffer specified.
                 log.debug("Checking if we will load all content...")
                 for k in self.db.keys():
-                    self.db[k] = self.get_sized_buffer(self.db[k], self.settings["general"]["persist_size"], self.settings["general"]["reverse_timelines"])
+                    sized_buffer = self.get_sized_buffer(self.db[k], self.settings["general"]["persist_size"], self.settings["general"]["reverse_timelines"])
+                    self.db[k] = sized_buffer
             if self.db.get("cursors") == None:
                 cursors = dict(direct_messages=-1)
                 self.db["cursors"] = cursors
