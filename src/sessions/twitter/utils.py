@@ -100,10 +100,11 @@ def is_media(tweet):
 def get_all_mentioned(tweet, conf, field="screen_name"):
     """ Gets all users that have been mentioned."""
     results = []
-    for i in tweet.entities["user_mentions"]:
-        if i["screen_name"] != conf["user_name"] and i["id_str"] != tweet.user:
-            if i.get(field) not in results:
-                results.append(i.get(field))
+    if hasattr(tweet, "entities") and tweet.entities.get("user_mentions"):
+        for i in tweet.entities["user_mentions"]:
+            if i["screen_name"] != conf["user_name"] and i["id_str"] != tweet.user:
+                if i.get(field) not in results:
+                    results.append(i.get(field))
     return results
 
 def get_all_users(tweet, session):
