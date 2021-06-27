@@ -19,7 +19,7 @@ import languageHandler
 import logging
 from audio_services import youtube_utils
 from controller.buffers import baseBuffers
-from sessions.twitter import compose, utils
+from sessions.twitter import compose, utils, reduce
 from mysc.thread_utils import call_threaded
 from tweepy.error import TweepError
 from tweepy.cursor import Cursor
@@ -231,8 +231,10 @@ class baseBufferController(baseBuffers.buffer):
         if items == None:
             return
         items_db = self.session.db[self.name]
+        self.session.add_users_from_results(items)
         for i in items:
             if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i.id, self.session.db[self.name]) == None:
+                i = reduce.reduce_tweet(i)
                 i = self.session.check_quoted_status(i)
                 i = self.session.check_long_tweet(i)
                 elements.append(i)
