@@ -398,6 +398,9 @@ class Session(base.baseSession):
         """ Returns an user object associated with an ID.
         id str: User identifier, provided by Twitter.
         returns a tweepy user object."""
+        if hasattr(id, "id_str"):
+            log.error("Called get_user function by passing a full user id as a parameter.")
+            id = id.id_str
         if ("users" in self.db) == False or (str(id) in self.db["users"]) == False:
             log.debug("Requesting user id {} as it is not present in the users database.".format(id))
             try:
