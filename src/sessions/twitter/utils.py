@@ -41,9 +41,9 @@ def find_urls (tweet, twitter_media=False):
             if i["expanded_url"] not in urls:
                 urls.append(i["expanded_url"])
     if hasattr(tweet, "quoted_status"):
-        urls.extend(find_urls(tweet.quoted_status))
+        urls.extend(find_urls(tweet.quoted_status, twitter_media))
     if hasattr(tweet, "retweeted_status"):
-        urls.extend(find_urls(tweet.retweeted_status))
+        urls.extend(find_urls(tweet.retweeted_status, twitter_media))
     if hasattr(tweet, "message"):
         i = "message"
     elif hasattr(tweet, "full_text"):
@@ -70,6 +70,14 @@ def find_list(name, lists):
         if lists[i].name == name:  return lists[i].id
 
 def is_audio(tweet):
+    if hasattr(tweet, "quoted_status") and hasattr(tweet.quoted_status, "extended_entities"):
+        result = is_audio(tweet.quoted_status)
+        if result != None:
+            return result
+    if hasattr(tweet, "retweeted_status") and hasattr(tweet.retweeted_status, "extended_entities"):
+        result = is_audio(tweet.retweeted_status)
+        if result == True:
+            return result
     # Checks firstly for Twitter videos and audios.
     if hasattr(tweet, "extended_entities"):
         for mediaItem in tweet.extended_entities["media"]:
