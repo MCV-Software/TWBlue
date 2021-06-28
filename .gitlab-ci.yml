@@ -113,6 +113,6 @@ upload:
     - cd artifacts
     - python ../scripts/upload.py
   only:
-    - master
+    - next-gen
     - tags
     - schedules
