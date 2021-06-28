@@ -8,10 +8,11 @@ import shutil
 from codecs import open as _open
 from importlib import reload
 
-def change_language(name, language):
- global _
- os.environ["lang"] = language
- _ = gettext.install(name, os.path.join(paths.app_path(), "locales"))
+def get_translation_function(name, language):
+ if language == "en":
+  return gettext.NullTranslations()
+ translation_function = gettext.translation(name, os.path.join(paths.app_path(), "locales"), languages=[language])
+ return translation_function
 
 # the list of supported language codes of TW Blue
 languages = ["en", "es", "fr", "de", "it", "gl", "ja", "ru", "ro", "eu", "ca", "da"]
@@ -19,17 +20,15 @@ languages = ["en", "es", "fr", "de", "it", "gl", "ja", "ru", "ro", "eu", "ca", "
 def generate_document(language, document_type="documentation"):
  if document_type == "documentation":
   translation_file = "twblue-documentation"
-  change_language(translation_file, language)
-  reload(strings)
-  markdown_file = markdown.markdown("\n".join(strings.documentation[1:]), extensions=["markdown.extensions.toc"])
-  title = strings.documentation[0]
+  translation_function = get_translation_function(translation_file, language)
+  markdown_file = markdown.markdown("\n".join([translation_function.gettext(s[:-1]) if s != "\n" else s for s in strings.documentation[1:]]), extensions=["markdown.extensions.toc"])
+  title = translation_function.gettext(strings.documentation[0][:-1])
   filename = "manual.html"
  elif document_type == "changelog":
   translation_file = "twblue-changelog"
-  change_language(translation_file, language)
-  reload(changelog)
-  markdown_file = markdown.markdown("\n".join(changelog.documentation[1:]), extensions=["markdown.extensions.toc"])
-  title = changelog.documentation[0]
+  translation_function = get_translation_function(translation_file, language)
+  markdown_file = markdown.markdown("\n".join([translation_function.gettext(s[:-1]) if s != "\n" else s for s in changelog.documentation[1:]]), extensions=["markdown.extensions.toc"])
+  title = translation_function.gettext(changelog.documentation[0][:-1])
   filename = "changelog.html"
  first_html_block = """<!doctype html>
  <html lang="%s">
@@ -56,11 +55,13 @@ def create_documentation():
   shutil.copy(os.path.join("..", "license.txt"), os.path.join("documentation", "license.txt"))
  for i in languages:
   print("Creating documentation for: %s" % (i,))
-  generate_document(i)
-  generate_document(i, "changelog")
+  try:
+   generate_document(i)
+   generate_document(i, "changelog")
+  except:
+   continue
  print("Done")
 
-change_language("twblue-documentation", "en")
 import strings
 import changelog
 create_documentation()

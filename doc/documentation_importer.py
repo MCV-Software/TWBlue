@@ -16,9 +16,9 @@ def prepare_documentation_in_file(fileSource, fileDest):
 		if "\n" == i:
 			newvar = "\"\","
 		elif "\n" == i[-1]:
-			newvar = "_(u\"\"\"%s\"\"\"),\n" % (i[:-1])
+			newvar = "\"\"\"%s\"\"\",\n" % (i[:-1])
 		else:
-			newvar = "_(u\"\"\"%s\"\"\"),\n" % (i)
+			newvar = "\"\"\"%s\"\"\",\n" % (i)
 		f2.write(newvar)
 	f1.close()
 	f2.write("]")
