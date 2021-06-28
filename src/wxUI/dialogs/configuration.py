@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from builtins import range
 import logging as original_logger
 import wx
 import application
@@ -127,6 +124,7 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
         self.persist_size = wx.TextCtrl(self, -1)
         sizer.Add(PersistSizeLabel, 0, wx.ALL, 5)
         sizer.Add(self.persist_size, 0, wx.ALL, 5)
+        self.load_cache_in_memory = wx.CheckBox(self, wx.NewId(), _("Load cache for tweets in memory (much faster in big datasets but requires more RAM)"))
         self.SetSizer(sizer)
 
 class reporting(wx.Panel, baseDialog.BaseWXDialog):

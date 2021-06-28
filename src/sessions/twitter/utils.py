@@ -27,22 +27,16 @@ def find_urls (tweet):
     if hasattr(tweet, "message_create"):
         entities = tweet.message_create["message_data"]["entities"]
     else:
-        entities = tweet.entities
-    for i in entities["urls"]:
-        if i["expanded_url"] not in urls:
-            urls.append(i["expanded_url"])
+        if hasattr(tweet, "entities") == True:
+            entities = tweet.entities
+    if entities.get("urls") != None:
+        for i in entities["urls"]:
+            if i["expanded_url"] not in urls:
+                urls.append(i["expanded_url"])
     if hasattr(tweet, "quoted_status"):
-        for i in tweet.quoted_status.entities["urls"]:
-            if i["expanded_url"] not in urls:
-                urls.append(i["expanded_url"])
+        urls.extend(find_urls(tweet.quoted_status))
     if hasattr(tweet, "retweeted_status"):
-        for i in tweet.retweeted_status.entities["urls"]:
-            if i["expanded_url"] not in urls:
-                urls.append(i["expanded_url"])
-        if hasattr(tweet["retweeted_status"], "quoted_status"):
-            for i in tweet.retweeted_status.quoted_status.entities["urls"]:
-                if i["expanded_url"] not in urls:
-                    urls.append(i["expanded_url"])
+        urls.extend(find_urls(tweet.retweeted_status))
     if hasattr(tweet, "message"):
         i = "message"
     elif hasattr(tweet, "full_text"):
@@ -75,13 +69,14 @@ def is_audio(tweet):
         if hasattr(tweet, "message_create"):
             entities = tweet.message_create["message_data"]["entities"]
         else:
+            if hasattr(tweet, "entities") == False or tweet.entities.get("hashtags") == None:
+                return False
             entities = tweet.entities
         if len(entities["hashtags"]) > 0:
             for i in entities["hashtags"]:
                 if i["text"] == "audio":
                     return True
     except IndexError:
-        print(tweet.entities["hashtags"])
         log.exception("Exception while executing is_audio hashtag algorithm")
 
 def is_geocoded(tweet):
@@ -92,6 +87,8 @@ def is_media(tweet):
     if hasattr(tweet, "message_create"):
         entities = tweet.message_create["message_data"]["entities"]
     else:
+        if hasattr(tweet, "entities") == False or tweet.entities.get("hashtags") == None:
+            return False
         entities = tweet.entities
     if entities.get("media") == None:
         return False
@@ -103,28 +100,29 @@ def is_media(tweet):
 def get_all_mentioned(tweet, conf, field="screen_name"):
     """ Gets all users that have been mentioned."""
     results = []
-    for i in tweet.entities["user_mentions"]:
-        if i["screen_name"] != conf["user_name"] and i["screen_name"] != tweet.user.screen_name:
-            if i.get(field) not in results:
-                results.append(i.get(field))
+    if hasattr(tweet, "entities") and tweet.entities.get("user_mentions"):
+        for i in tweet.entities["user_mentions"]:
+            if i["screen_name"] != conf["user_name"] and i["id_str"] != tweet.user:
+                if i.get(field) not in results:
+                    results.append(i.get(field))
     return results
 
-def get_all_users(tweet, conf):
+def get_all_users(tweet, session):
     string = []
+    user = session.get_user(tweet.user)
     if hasattr(tweet, "retweeted_status"):
-        string.append(tweet.user.screen_name)
+        string.append(user.screen_name)
         tweet = tweet.retweeted_status
-    if hasattr(tweet, "sender"):
-        string.append(tweet.sender.screen_name)
     else:
-        if tweet.user.screen_name != conf["user_name"]:
-            string.append(tweet.user.screen_name)
-        for i in tweet.entities["user_mentions"]:
-            if i["screen_name"] != conf["user_name"] and i["screen_name"] != tweet.user.screen_name:
-                if i["screen_name"] not in string:
-                    string.append(i["screen_name"])
+        if user.screen_name != session.db["user_name"]:
+            string.append(user.screen_name)
+        if hasattr(tweet, "entities") and tweet.entities.get("user_mentions"):
+            for i in tweet.entities["user_mentions"]:
+                if i["screen_name"] != session.db["user_name"] and i["screen_name"] != user.screen_name:
+                    if i["screen_name"] not in string:
+                        string.append(i["screen_name"])
     if len(string) == 0:
-        string.append(tweet.user.screen_name)
+        string.append(user.screen_name)
     return string
 
 def if_user_exists(twitter, user):
@@ -144,7 +142,7 @@ def is_allowed(tweet, settings, buffer_name):
     tweet_data = {}
     if hasattr(tweet, "retweeted_status"):
         tweet_data["retweet"] = True
-    if tweet.in_reply_to_status_id_str != None:
+    if tweet.in_reply_to_status_id != None:
         tweet_data["reply"] = True
     if hasattr(tweet, "quoted_status"):
         tweet_data["quote"] = True
@@ -209,6 +207,8 @@ def twitter_error(error):
 
 def expand_urls(text, entities):
     """ Expand all URLS present in text with information found in entities"""
+    if entities.get("urls") == None:
+        return text
     urls = find_urls_in_text(text)
     for url in entities["urls"]:
         if url["url"] in text:

@@ -2,6 +2,11 @@
 
 ## changes in this version
 
+* We just implemented some changes in the way TWBlue handles tweets in order to reduce its RAM memory usage [#380](https://github.com/manuelcortez/TWBlue/pull/380):
+    * We reduced the tweets size by storing only the tweet fields we currently use. This should reduce tweet's size in memory for every object up to 75%.
+    * When using the cache database to store your tweets, there is a new setting present in the account settings dialog, in the general tab. This setting allows you to control whether TWBlue will load the whole database into memory (which is the current behaviour) or not.
+        * Loading the whole database into memory has the advantage of being extremely fast to access any element (for example when moving through tweets in a buffer), but it requires more memory as the tweet buffers grow up. This should, however, use less memory than before thanks to the optimizations performed in tweet objects. If you have a machine with enough memory, this should be a good option for your case.
+        * If you uncheck this setting, TWBlue will read the whole database from disk. This is significantly slower, but the advantage of this setting is that it will consume almost no extra memory, no matter how big is the tweets dataset. Be ware, though, that TWBlue might start to feel slower when accessing elements (for example when reading tweets) as the buffers grow up. This setting is suggested for computers with low memory or for those people not wanting to keep a really big amount of tweets stored.
 * Changed the label in the direct message's text control so it will indicate that the user needs to write the text there, without referring to any username in particular. ([#366,](https://github.com/manuelcortez/TWBlue/issues/366))
 * TWBlue will take Shift+F10 again as the contextual menu key in the list of items in a buffer. This stopped working after we have migrated to WX 4.1. ([#353,](https://github.com/manuelcortez/TWBlue/issues/353))
 * TWBlue should render correctly retweets of quoted tweets. ([#365,](https://github.com/manuelcortez/TWBlue/issues/365))

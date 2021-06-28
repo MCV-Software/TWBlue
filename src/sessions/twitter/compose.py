@@ -49,23 +49,24 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=No
     else:
         text = StripChars(getattr(tweet, value))
     if show_screen_names:
-        user = tweet.user.screen_name
+        user = session.get_user(tweet.user).screen_name
     else:
-        user = tweet.user.name
+        user = session.get_user(tweet.user).name
     source = re.sub(r"(?s)<.*?>", "", tweet.source)
     if hasattr(tweet, "retweeted_status"):
-        if (hasattr(tweet, "message")) == False and tweet.retweeted_status.is_quote_status == False:
-            text = "RT @%s: %s" % (tweet.retweeted_status.user.screen_name, text)
-        elif tweet.retweeted_status.is_quote_status:
+        if hasattr(tweet, "message") == False and hasattr(tweet.retweeted_status, "is_quote_status") == False:
+            text = "RT @%s: %s" % (session.get_user(tweet.retweeted_status.user).screen_name, text)
+        elif hasattr(tweet.retweeted_status, "is_quote_status"):
             text = "%s" % (text)
         else:
-            text = "RT @%s: %s" % (tweet.retweeted_status.user.screen_name, text)
+            text = "RT @%s: %s" % (session.get_user(tweet.retweeted_status.user).screen_name, text)
     if not hasattr(tweet, "message"):
-
         if hasattr(tweet, "retweeted_status"):
-            text = utils.expand_urls(text, tweet.retweeted_status.entities)
+            if hasattr(tweet.retweeted_status, "entities"):
+                text = utils.expand_urls(text, tweet.retweeted_status.entities)
         else:
-            text = utils.expand_urls(text, tweet.entities)
+            if hasattr(tweet, "entities"):
+                text = utils.expand_urls(text, tweet.entities)
         if config.app['app-settings']['handle_longtweets']: pass
     return [user+", ", text, ts+", ", source]
 
@@ -112,14 +113,14 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, 
             value = "text"
         text = StripChars(getattr(quoted_tweet, value))
     if show_screen_names:
-        quoting_user = quoted_tweet.user.screen_name
+        quoting_user = session.get_user(quoted_tweet.user).screen_name
     else:
-        quoting_user = quoted_tweet.user.name
+        quoting_user = session.get_user(quoted_tweet.user).name
     source = quoted_tweet.source
     if hasattr(quoted_tweet, "retweeted_status"):
-        text = "rt @%s: %s" % (quoted_tweet.retweeted_status.user.screen_name, text)
+        text = "rt @%s: %s" % (session.get_user(quoted_tweet.retweeted_status.user).screen_name, text)
     if text[-1] in chars: text=text+"."
-    original_user = original_tweet.user.screen_name
+    original_user = session.get_user(original_tweet.user).screen_name
     if hasattr(original_tweet, "message"):
         original_text = original_tweet.message
     elif hasattr(original_tweet, "full_text"):
@@ -128,7 +129,12 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, 
         original_text = StripChars(original_tweet.text)
     quoted_tweet.message = _(u"{0}. Quoted  tweet from @{1}: {2}").format( text, original_user, original_text)
     quoted_tweet = tweets.clear_url(quoted_tweet)
-    quoted_tweet.entities["urls"].extend(original_tweet.entities["urls"])
+    if hasattr(original_tweet, "entities") and original_tweet.entities.get("urls"):
+        if hasattr(quoted_tweet, "entities") == False:
+            quoted_tweet.entities = {}
+        if quoted_tweet.entities.get("urls") == None:
+            quoted_tweet.entities["urls"] = []
+        quoted_tweet.entities["urls"].extend(original_tweet.entities["urls"])
     return quoted_tweet
 
 def compose_followers_list(tweet, db, relative_times=True, show_screen_names=False, session=None):

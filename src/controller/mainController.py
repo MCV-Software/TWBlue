@@ -254,8 +254,8 @@ class Controller(object):
         # Connection checker executed each minute.
         self.checker_function = RepeatingTimer(60, self.check_connection)
 #  self.checker_function.start()
-        self.save_db = RepeatingTimer(300, self.save_data_in_db)
-        self.save_db.start()
+#        self.save_db = RepeatingTimer(300, self.save_data_in_db)
+#        self.save_db.start()
         log.debug("Setting updates to buffers every %d seconds..." % (60*config.app["app-settings"]["update_period"],))
         self.update_buffers_function = RepeatingTimer(60*config.app["app-settings"]["update_period"], self.update_buffers)
         self.update_buffers_function.start()
@@ -530,7 +530,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
         if dlg.get_response() == widgetUtils.OK:
             user = dlg.get_user()
@@ -547,7 +547,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
         if dlg.get_response() == widgetUtils.OK:
             user = dlg.get_user()
@@ -575,7 +575,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
         if dlg.get_response() == widgetUtils.OK:
             user = dlg.get_user()
@@ -617,6 +617,7 @@ class Controller(object):
             if d.needs_restart == True:
                 commonMessageDialogs.needs_restart()
                 buff.session.settings.write()
+                buff.session.save_persistent_data()
                 restart.restart_program()
 
     def report_error(self, *args, **kwargs):
@@ -651,8 +652,8 @@ class Controller(object):
             if sessions.sessions[item].logged == False: continue
             log.debug("Disconnecting streams for %s session" % (sessions.sessions[item].session_id,))
             sessions.sessions[item].sound.cleaner.cancel()
-            log.debug("Shelving database for " +    sessions.sessions[item].session_id)
-            sessions.sessions[item].shelve()
+            log.debug("Saving database for " +    sessions.sessions[item].session_id)
+            sessions.sessions[item].save_persistent_data()
         if system == "Windows":
             self.systrayIcon.RemoveIcon()
             pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
@@ -669,7 +670,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         u = userActionsController.userActionsController(buff, users)
 
     def unfollow(self, *args, **kwargs):
@@ -681,7 +682,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         u = userActionsController.userActionsController(buff, users, "unfollow")
 
     def mute(self, *args, **kwargs):
@@ -693,7 +694,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         u = userActionsController.userActionsController(buff, users, "mute")
 
     def unmute(self, *args, **kwargs):
@@ -705,7 +706,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         u = userActionsController.userActionsController(buff, users, "unmute")
 
     def block(self, *args, **kwargs):
@@ -717,7 +718,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         u = userActionsController.userActionsController(buff, users, "block")
 
     def unblock(self, *args, **kwargs):
@@ -729,7 +730,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         u = userActionsController.userActionsController(buff, users, "unblock")
 
     def report(self, *args, **kwargs):
@@ -741,7 +742,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         u = userActionsController.userActionsController(buff, users, "report")
 
     def post_tweet(self, event=None):
@@ -828,7 +829,7 @@ class Controller(object):
         elif buff.type == "dm":
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
-            users = utils.get_all_users(tweet, buff.session.db)
+            users = utils.get_all_users(tweet, buff.session)
         dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
         if dlg.get_response() == widgetUtils.OK:
             usr = utils.if_user_exists(buff.session.twitter, dlg.get_user())
@@ -923,8 +924,8 @@ class Controller(object):
 
     def open_conversation(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        id = buffer.get_right_tweet().id_str
-        user = buffer.get_right_tweet().user.screen_name
+        id = buffer.get_right_tweet().id
+        user = buffer.session.get_user(buffer.get_right_tweet().user).screen_name
         search = twitterBuffers.conversationBufferController(self.view.nb, "search", "%s-searchterm" % (id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=id, q="@{0}".format(user,))
         search.tweet = buffer.get_right_tweet()
         search.start_stream(start=True)
@@ -1274,10 +1275,12 @@ class Controller(object):
         data = buffer.session.check_long_tweet(data)
         if data == False: # Long tweet deleted from twishort.
             return 
+        items = buffer.session.db[buffer.name]
         if buffer.session.settings["general"]["reverse_timelines"] == False:
-            buffer.session.db[buffer.name].append(data)
+            items.append(data)
         else:
-            buffer.session.db[buffer.name].insert(0, data)
+            items.insert(0, data)
+        buffer.session.db[buffer.name] = items
         buffer.add_new_item(data)
 
     def manage_friend(self, data, user):
@@ -1623,4 +1626,4 @@ class Controller(object):
 
     def save_data_in_db(self):
         for i in sessions.sessions:
-            sessions.sessions[i].shelve()
+            sessions.sessions[i].save_persistent_data()

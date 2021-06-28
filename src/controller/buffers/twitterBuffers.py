@@ -19,7 +19,7 @@ import languageHandler
 import logging
 from audio_services import youtube_utils
 from controller.buffers import baseBuffers
-from sessions.twitter import compose, utils
+from sessions.twitter import compose, utils, reduce
 from mysc.thread_utils import call_threaded
 from tweepy.error import TweepError
 from tweepy.cursor import Cursor
@@ -178,7 +178,9 @@ class baseBufferController(baseBuffers.buffer):
                         val, cursor = val
                         if type(cursor) == tuple:
                             cursor = cursor[1]
-                        self.session.db["cursors"][self.name] = cursor
+                        cursors = self.session.db["cursors"]
+                        cursors[self.name] = cursor
+                        self.session.db["cursors"] = cursors
                     results = [i for i in val]
                     val = results
                     val.reverse()
@@ -190,7 +192,6 @@ class baseBufferController(baseBuffers.buffer):
                     return
             number_of_items = self.session.order_buffer(self.name, val)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
-
             self.put_items_on_list(number_of_items)
             if hasattr(self, "finished_timeline") and self.finished_timeline == False:
                 if "-timeline" in self.name:
@@ -229,15 +230,19 @@ class baseBufferController(baseBuffers.buffer):
             return
         if items == None:
             return
+        items_db = self.session.db[self.name]
+        self.session.add_users_from_results(items)
         for i in items:
             if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i.id, self.session.db[self.name]) == None:
+                i = reduce.reduce_tweet(i)
                 i = self.session.check_quoted_status(i)
                 i = self.session.check_long_tweet(i)
                 elements.append(i)
                 if self.session.settings["general"]["reverse_timelines"] == False:
-                    self.session.db[self.name].insert(0, i)
+                    items_db.insert(0, i)
                 else:
-                    self.session.db[self.name].append(i)
+                    items_db.append(i)
+        self.session.db[self.name] = items_db
         selection = self.buffer.list.get_selected()
         log.debug("Retrieved %d items from cursored search in function %s." % (len(elements), self.function))
         if self.session.settings["general"]["reverse_timelines"] == False:
@@ -286,10 +291,12 @@ class baseBufferController(baseBuffers.buffer):
 
     def remove_tweet(self, id):
         if type(self.session.db[self.name]) == dict: return
-        for i in range(0, len(self.session.db[self.name])):
-            if self.session.db[self.name][i].id == id:
-                self.session.db[self.name].pop(i)
+        items = self.session.db[self.name]
+        for i in range(0, len(items)):
+            if items[i].id == id:
+                items.pop(i)
                 self.remove_item(i)
+        self.session.db[self.name] = items
 
     def put_items_on_list(self, number_of_items):
         list_to_use = self.session.db[self.name]
@@ -408,11 +415,12 @@ class baseBufferController(baseBuffers.buffer):
     @_tweets_exist
     def reply(self, *args, **kwargs):
         tweet = self.get_right_tweet()
-        screen_name = tweet.user.screen_name
+        user = self.session.get_user(tweet.user)
+        screen_name = user.screen_name
         id = tweet.id
         twishort_enabled = hasattr(tweet, "twishort")
         users = utils.get_all_mentioned(tweet, self.session.db, field="screen_name")
-        ids = utils.get_all_mentioned(tweet, self.session.db, field="id_str")
+        ids = utils.get_all_mentioned(tweet, self.session.db, field="id")
         # Build the window title
         if len(users) < 1:
             title=_("Reply to {arg0}").format(arg0=screen_name)
@@ -461,8 +469,8 @@ class baseBufferController(baseBuffers.buffer):
             screen_name = tweet.screen_name
             users = [screen_name]
         else:
-            screen_name = tweet.user.screen_name
-            users = utils.get_all_users(tweet, self.session.db)
+            screen_name = self.session.get_user(tweet.user).screen_name
+            users = utils.get_all_users(tweet, self.session)
         dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
         if dm.message.get_response() == widgetUtils.OK:
             screen_name = dm.message.get("cb")
@@ -471,10 +479,12 @@ class baseBufferController(baseBuffers.buffer):
             text = dm.message.get_text()
             val = self.session.api_call(call_name="send_direct_message", recipient_id=recipient_id, text=text)
             if val != None:
+                sent_dms = self.session.db["sent_direct_messages"]
                 if self.session.settings["general"]["reverse_timelines"] == False:
-                    self.session.db["sent_direct_messages"].append(val)
+                    sent_dms.append(val)
                 else:
-                    self.session.db["sent_direct_messages"].insert(0, val)
+                    sent_dms.insert(0, val)
+                self.session.db["sent_direct_messages"] = sent_dms
                 pub.sendMessage("sent-dm", data=val, user=self.session.db["user_name"])
         if hasattr(dm.message, "destroy"): dm.message.destroy()
 
@@ -501,12 +511,12 @@ class baseBufferController(baseBuffers.buffer):
             comments = tweet.full_text
         else:
             comments = tweet.text
-        retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (tweet.user.screen_name, comments), max=256, messageType="retweet")
+        retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (self.session.get_user(tweet.user).screen_name, comments), max=256, messageType="retweet")
         if comment != '':
             retweet.message.set_text(comment)
         if retweet.message.get_response() == widgetUtils.OK:
             text = retweet.message.get_text()
-            text = text+" https://twitter.com/{0}/status/{1}".format(tweet.user.screen_name, id)
+            text = text+" https://twitter.com/{0}/status/{1}".format(self.session.get_user(tweet.user).screen_name, id)
             if retweet.image == None:
                 item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id, tweet_mode="extended")
                 if item != None:
@@ -588,16 +598,18 @@ class baseBufferController(baseBuffers.buffer):
         if self.type == "events" or self.type == "people" or self.type == "empty" or self.type == "account": return
         answer = commonMessageDialogs.delete_tweet_dialog(None)
         if answer == widgetUtils.YES:
+            items = self.session.db[self.name]
             try:
                 if self.name == "direct_messages" or self.name == "sent_direct_messages":
                     self.session.twitter.destroy_direct_message(id=self.get_right_tweet().id)
-                    self.session.db[self.name].pop(index)
+                    items.pop(index)
                 else:
                     self.session.twitter.destroy_status(id=self.get_right_tweet().id)
-                    self.session.db[self.name].pop(index)
+                    items.pop(index)
                 self.buffer.list.remove_item(index)
             except TweepError:
                 self.session.sound.play("error.ogg")
+            self.session.db[self.name] = items
 
     @_tweets_exist
     def user_details(self):
@@ -607,7 +619,7 @@ class baseBufferController(baseBuffers.buffer):
         elif self.type == "people":
             users = [tweet.screen_name]
         else:
-            users = utils.get_all_users(tweet, self.session.db)
+            users = utils.get_all_users(tweet, self.session)
         dlg = dialogs.utils.selectUserDialog(title=_(u"User details"), users=users)
         if dlg.get_response() == widgetUtils.OK:
             user.profileController(session=self.session, user=dlg.get_user())
@@ -625,7 +637,7 @@ class baseBufferController(baseBuffers.buffer):
     def open_in_browser(self, *args, **kwargs):
         tweet = self.get_tweet()
         output.speak(_(u"Opening item in web browser..."))
-        url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=tweet.user.screen_name, tweet_id=tweet.id)
+        url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=self.session.get_user(tweet.user).screen_name, tweet_id=tweet.id)
         webbrowser.open(url)
 
 class directMessagesController(baseBufferController):
@@ -646,7 +658,9 @@ class directMessagesController(baseBufferController):
                 items, cursor = items
                 if type(cursor) == tuple:
                     cursor = cursor[1]
-                self.session.db["cursors"][self.name] = cursor
+                cursors = self.session.db["cursors"]
+                cursors[self.name] = cursor
+                self.session.db["cursors"] = cursors
             results = [i for i in items]
             items = results
             log.debug("Retrieved %d items for cursored search in function %s" % (len(items), self.function))
@@ -657,22 +671,26 @@ class directMessagesController(baseBufferController):
             return
         sent = []
         received = []
+        sent_dms = self.session.db["sent_direct_messages"]
+        received_dms = self.session.db["direct_messages"]
         for i in items:
             if int(i.message_create["sender_id"]) == self.session.db["user_id"]:
                 if self.session.settings["general"]["reverse_timelines"] == False:
-                    self.session.db["sent_direct_messages"].insert(0, i)
+                    sent_dms.insert(0, i)
                     sent.append(i)
                 else:
-                    self.session.db["sent_direct_messages"].append(i)
+                    sent_dms.append(i)
                     sent.insert(0, i)
             else:
                 if self.session.settings["general"]["reverse_timelines"] == False:
-                    self.session.db[self.name].insert(0, i)
+                    received_dms.insert(0, i)
                     received.append(i)
                 else:
-                    self.session.db[self.name].append(i)
+                    received_dms.append(i)
                     received.insert(0, i)
             total = total+1
+        self.session.db["direct_messages"] = received_dms
+        self.session.db["sent_direct_messages"] = sent_dms
         user_ids = [item.message_create["sender_id"] for item in items]
         self.session.save_users(user_ids)
         pub.sendMessage("more-sent-dms", data=sent, account=self.session.db["user_name"])
@@ -885,7 +903,9 @@ class peopleBufferController(baseBufferController):
                     val, cursor = val
                     if type(cursor) == tuple:
                         cursor = cursor[1]
-                    self.session.db["cursors"][self.name] = cursor
+                    cursors = self.session.db["cursors"]
+                    cursors[self.name] = cursor
+                    self.session.db["cursors"] = cursors
                 results = [i for i in val]
                 val = results
                 val.reverse()
@@ -914,7 +934,9 @@ class peopleBufferController(baseBufferController):
                 items, cursor = items
                 if type(cursor) == tuple:
                     cursor = cursor[1]
-                self.session.db["cursors"][self.name] = cursor
+                cursors = self.session.db["cursors"]
+                cursors[self.name] = cursor
+                self.session.db["cursors"] = cursors
             results = [i for i in items]
             items = results
             log.debug("Retrieved %d items from cursored search in function %s" % (len(items), self.function))
@@ -923,11 +945,13 @@ class peopleBufferController(baseBufferController):
             return
         if items == None:
             return
+        items_db = self.session.db[self.name]
         for i in items:
             if self.session.settings["general"]["reverse_timelines"] == False:
-                self.session.db[self.name].insert(0, i)
+                items_db.insert(0, i)
             else:
-                self.session.db[self.name].append(i)
+                items_db.append(i)
+        self.session.db[self.name] = items_db
         selected = self.buffer.list.get_selected()
         if self.session.settings["general"]["reverse_timelines"] == True:
             for i in items:
