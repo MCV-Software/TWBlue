@@ -33,7 +33,7 @@ snapshot32:
     - mkdir artifacts
     - mv src/dist artifacts/TWBlue
   only:
-    - master
+    - next-gen
   artifacts:
     paths:
       - artifacts
@@ -65,7 +65,7 @@ snapshot64:
     - mkdir artifacts
     - mv src/dist artifacts/TWBlue64
   only:
-    - master
+    - next-gen
   artifacts:
     paths:
       - artifacts
