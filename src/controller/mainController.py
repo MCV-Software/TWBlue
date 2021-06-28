@@ -126,6 +126,7 @@ class Controller(object):
         pub.subscribe(self.update_sent_dms, "sent-dms-updated")
         pub.subscribe(self.more_dms, "more-sent-dms")
         pub.subscribe(self.manage_sent_tweets, "sent-tweet")
+        pub.subscribe(self.manage_tweet_in_home, "tweet-in-home")
         pub.subscribe(self.manage_friend, "friend")
         pub.subscribe(self.manage_unfollowing, "unfollowing")
         pub.subscribe(self.manage_favourite, "favourite")
@@ -266,6 +267,7 @@ class Controller(object):
             if sessions.sessions[i].is_logged == False: continue
             self.start_buffers(sessions.sessions[i])
             self.set_buffer_positions(sessions.sessions[i])
+            sessions.sessions[i].start_streaming()
         if config.app["app-settings"]["play_ready_sound"] == True:
             sessions.sessions[list(sessions.sessions.keys())[0]].sound.play("ready.ogg")
         if config.app["app-settings"]["speak_ready_msg"] == True:
@@ -1269,8 +1271,6 @@ class Controller(object):
     def manage_sent_tweets(self, data, user):
         buffer = self.search_buffer("sent_tweets", user)
         if buffer == None: return
-#  if "sent_tweets" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-#   self.notify(buffer.session, play_sound=play_sound)
         data = buffer.session.check_quoted_status(data)
         data = buffer.session.check_long_tweet(data)
         if data == False: # Long tweet deleted from twishort.
@@ -1627,3 +1627,10 @@ class Controller(object):
     def save_data_in_db(self):
         for i in sessions.sessions:
             sessions.sessions[i].save_persistent_data()
+
+    def manage_tweet_in_home(self, data, user):
+        buffer = self.search_buffer("home_timeline", user)
+        if buffer == None or buffer.session.db["user_name"] != user: return
+        buffer.add_new_item(data)
+        if "home_timeline" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+            self.notify(buffer.session, "tweet_received.ogg")

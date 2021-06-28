@@ -17,7 +17,7 @@ from keys import keyring
 from sessions import base
 from sessions.twitter import utils, compose
 from sessions.twitter.long_tweets import tweets, twishort
-from . import reduce
+from . import reduce, streaming
 from .wxUI import authorisationDialog
 
 log = logging.getLogger("sessions.twitterSession")
@@ -125,6 +125,7 @@ class Session(base.baseSession):
         # This will be especially useful because if the user reactivates their account later, TWblue will try to retrieve such user again at startup.
         # If we wouldn't implement this approach, TWBlue would save permanently the "deleted user" object.
         self.deleted_users = {}
+        pub.subscribe(self.handle_new_status, "newStatus")
 
 # @_require_configuration
     def login(self, verify_credentials=True):
@@ -501,3 +502,22 @@ class Session(base.baseSession):
                 if hasattr(i, "retweeted_status") and (i.retweeted_status.user.id_str in self.db["users"]) == False:
                     users[i.retweeted_status.user.id_str] = i.retweeted_status.user
         self.db["users"] = users
+
+    def start_streaming(self):
+        self.stream_listener = streaming.StreamListener(twitter_api=self.twitter, user=self.db["user_name"])
+        self.stream = tweepy.Stream(auth = self.auth, listener=self.stream_listener)
+        call_threaded(self.stream.filter, follow=self.stream_listener.users)
+
+    def handle_new_status(self, status, user):
+        if self.db["user_name"] != user:
+            return
+        if hasattr(status, "retweeted_status") and status.retweeted_status.truncated:
+            status.retweeted_status._json["full_text"] = status.retweeted_status.extended_tweet["full_text"]
+        if hasattr(status, "quoted_status") and status.quoted_status.truncated:
+            status.quoted_status._json["full_text"] = status.quoted_status.extended_tweet["full_text"]
+        if status.truncated:
+            status._json["full_text"] = status.extended_tweet["full_text"]
+        num = self.order_buffer("home_timeline", [status])
+        if num == 1:
+            status = reduce.reduce_tweet(status)
+            pub.sendMessage("tweet-in-home", data=status, user=self.db["user_name"])
