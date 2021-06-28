@@ -6,19 +6,19 @@ CRCCheck on
 ManifestSupportedOS all
 XPStyle on
 Name "TWBlue"
-OutFile "TWBlue_setup.exe"
+OutFile "TWBlue_snapshot_setup.exe"
 InstallDir "$PROGRAMFILES\twblue"
 InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "InstallLocation"
 RequestExecutionLevel admin
 SetCompress auto
 SetCompressor /solid lzma
 SetDatablockOptimize on
-VIAddVersionKey ProductName "TWBlue"
+VIAddVersionKey ProductName "TWBlue Snapshot version"
 VIAddVersionKey LegalCopyright "Copyright 2014-2021 Manuel Cortéz."
-VIAddVersionKey ProductVersion "0.95"
-VIAddVersionKey FileVersion "0.95"
-VIProductVersion "0.95.0.0"
-VIFileVersion "0.95.0.0"
+VIAddVersionKey ProductVersion "6"
+VIAddVersionKey FileVersion "6"
+VIProductVersion "6.0.0"
+VIFileVersion "6.0.0"
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_RADIOBUTTONS
 !insertmacro MUI_PAGE_LICENSE "license.txt"

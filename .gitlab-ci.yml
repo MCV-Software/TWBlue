@@ -39,7 +39,7 @@ snapshot32:
     - mv src/dist artifacts/TWBlue
     - move src/twblue.zip artifacts/twblue_snapshot_x86.zip
   only:
-    - next-gen
+    - tags
   artifacts:
     paths:
       - artifacts
@@ -75,7 +75,7 @@ snapshot64:
     - mv src/dist artifacts/TWBlue64
     - move src/twblue.zip artifacts/twblue_snapshot_x64.zip
   only:
-    - next-gen
+    - tags
   artifacts:
     paths:
       - artifacts
@@ -96,8 +96,8 @@ generate_versions:
     - move artifacts/TWBlue scripts/
     - move artifacts/TWBlue64 scripts/
     - cd scripts
-    - '&$env:NSIS twblue.nsi'
-    - move twblue_setup.exe ../artifacts
+    - '&$env:NSIS twblue_snapshot.nsi'
+    - move twblue_snapshot_setup.exe ../artifacts
   artifacts:
     paths:
       - artifacts
