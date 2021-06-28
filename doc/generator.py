@@ -15,7 +15,7 @@ def get_translation_function(name, language):
  return translation_function
 
 # the list of supported language codes of TW Blue
-languages = ["en", "es", "fr", "de", "it", "gl", "ja", "ru", "ro", "eu", "ca", "da"]
+languages = ["en", "es", "fr", "de", "it", "gl", "ja", "ru", "ro", "eu", "ca", "da", "sr"]
 
 def generate_document(language, document_type="documentation"):
  if document_type == "documentation":
