@@ -1230,6 +1230,8 @@ class conversationBufferController(searchBufferController):
                 self.statuses.append(self.tweet)
                 self.ids.append(self.tweet.id)
                 tweet = self.tweet
+                if not hasattr(tweet, "in_reply_to_status_id"):
+                    tweet.in_reply_to_status_id = None
                 while tweet.in_reply_to_status_id != None:
                     try:
                         tweet = self.session.twitter.get_status(id=tweet.in_reply_to_status_id, tweet_mode="extended")
