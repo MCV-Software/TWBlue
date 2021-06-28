@@ -21,8 +21,15 @@ bad_chars = '\'\\\n.,[](){}:;"'
 def find_urls_in_text(text):
     return  url_re2.findall(text)
 
-def find_urls (tweet):
+def find_urls (tweet, twitter_media=False):
     urls = []
+    if twitter_media and hasattr(tweet, "extended_entities"):
+        for mediaItem in tweet.extended_entities["media"]:
+            if mediaItem["type"] == "video":
+                for variant in mediaItem["video_info"]["variants"]:
+                    if variant["content_type"] == "video/mp4":
+                        urls.append(variant["url"])
+                        break
     # Let's add URLS from tweet entities.
     if hasattr(tweet, "message_create"):
         entities = tweet.message_create["message_data"]["entities"]
@@ -63,6 +70,11 @@ def find_list(name, lists):
         if lists[i].name == name:  return lists[i].id
 
 def is_audio(tweet):
+    # Checks firstly for Twitter videos and audios.
+    if hasattr(tweet, "extended_entities"):
+        for mediaItem in tweet.extended_entities["media"]:
+            if mediaItem["type"] == "video":
+                return True
     try:
         if len(find_urls(tweet)) < 1:
             return False
