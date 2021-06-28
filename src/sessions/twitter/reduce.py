@@ -4,7 +4,7 @@ from tweepy.models import Status
 
 def reduce_tweet(tweet):
     """ generates a new Tweet model with the fields we currently need, excluding everything else  including null values and empty collections. """
-    allowed_values = ["created_at", "id", "full_text", "text", "message", "in_reply_to_status_id", "in_reply_to_user_id", "is_quote_status", "lang", "source", "coordinates", "quoted_status_id", ]
+    allowed_values = ["created_at", "id", "full_text", "text", "message", "in_reply_to_status_id", "in_reply_to_user_id", "is_quote_status", "lang", "source", "coordinates", "quoted_status_id", "extended_entities"]
     allowed_entities = ["hashtags", "media", "urls", "user_mentions", "polls"]
     status_dict = {}
     for key in allowed_values:

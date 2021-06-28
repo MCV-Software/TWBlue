@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* Added support for Twitter audio and videos: Tweets which contains audio or videos will be detected as audio items, and you can playback those with the regular command to play audios. ([#384,](https://github.com/manuelcortez/TWBlue/pull/384))
 * We just implemented some changes in the way TWBlue handles tweets in order to reduce its RAM memory usage [#380](https://github.com/manuelcortez/TWBlue/pull/380):
     * We reduced the tweets size by storing only the tweet fields we currently use. This should reduce tweet's size in memory for every object up to 75%.
     * When using the cache database to store your tweets, there is a new setting present in the account settings dialog, in the general tab. This setting allows you to control whether TWBlue will load the whole database into memory (which is the current behaviour) or not.
