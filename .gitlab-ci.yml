@@ -102,3 +102,17 @@ generate_versions:
     paths:
       - artifacts
     expire_in: 1 day
+
+upload:
+  stage: upload
+  tags:
+    - linux
+  image: python
+  interruptible: true
+  script:
+    - cd artifacts
+    - python ../scripts/upload.py
+  only:
+    - master
+    - tags
+    - schedules
