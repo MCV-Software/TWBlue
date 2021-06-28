@@ -5,6 +5,7 @@ variables:
 
 stages:
   - build
+  - make_installer
   - upload
 
 snapshot32:
@@ -32,7 +33,11 @@ snapshot32:
     - '&$env:PYTHON setup.py build'
     - cd ..
     - mkdir artifacts
+    - cd scripts
+    - '&$env:PYTHON make_archive.py'
+    - cd ..
     - mv src/dist artifacts/TWBlue
+    - move src/twblue.zip artifacts/twblue_snapshot_x86.zip
   only:
     - next-gen
   artifacts:
@@ -64,9 +69,33 @@ snapshot64:
     - '&$env:PYTHON setup.py build'
     - cd ..
     - mkdir artifacts
+    - cd scripts
+    - '&$env:PYTHON make_archive.py'
+    - cd ..
     - mv src/dist artifacts/TWBlue64
+    - move src/twblue.zip artifacts/twblue_snapshot_x64.zip
   only:
     - next-gen
+  artifacts:
+    paths:
+      - artifacts
+    expire_in: 1 day
+
+generate_versions:
+  tags:
+    - shared-windows
+    - windows
+    - windows-1809
+  before_script:
+    - Set-Variable -Name "time" -Value (date -Format "%H:%m")
+    - echo ${time}
+    - echo "started by ${GITLAB_USER_NAME}"
+    - choco install nsis -y -ForceX86
+  script:
+    - move artifacts/TWBlue scripts/
+    - move artifacts/TWBlue64 scripts/
+    - '&$env:NSIS twblue.nsi'
+    - move twblue_setup.exe ../artifacts
   artifacts:
     paths:
       - artifacts
