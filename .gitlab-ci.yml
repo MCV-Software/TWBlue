@@ -82,6 +82,7 @@ snapshot64:
     expire_in: 1 day
 
 generate_versions:
+  stage: make_installer
   tags:
     - shared-windows
     - windows
