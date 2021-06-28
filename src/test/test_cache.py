@@ -48,7 +48,6 @@ class cacheTestCase(unittest.TestCase):
         self.assertEquals(len(self.session.db.get("mentions_timeline")), 20000)
         self.session.db.close()
 
-
     def test_cache_in_disk_limited_dataset(self):
         """ Tests wether the cache stores only the amount of items we ask it to store. """
         dataset = self.generate_dataset()
@@ -62,6 +61,7 @@ class cacheTestCase(unittest.TestCase):
         # Might cause an out of sync error between the GUI lists and the database.
         # So we perform the changes to buffer size when loading data during app startup if the DB is read from disk.
         self.session.save_persistent_data()
+        self.session.db = dict()
         self.session.load_persistent_data()
         self.assertIsInstance(self.session.db, sqlitedict.SqliteDict)
         self.assertTrue(self.session.db.get("home_timeline") != None)
@@ -83,6 +83,7 @@ class cacheTestCase(unittest.TestCase):
         # Might cause an out of sync error between the GUI lists and the database.
         # So we perform the changes to buffer size when loading data during app startup if the DB is read from disk.
         self.session.save_persistent_data()
+        self.session.db = dict()
         self.session.load_persistent_data()
         self.assertIsInstance(self.session.db, sqlitedict.SqliteDict)
         self.assertTrue(self.session.db.get("home_timeline") != None)
@@ -107,6 +108,7 @@ class cacheTestCase(unittest.TestCase):
         # Might cause an out of sync error between the GUI lists and the database.
         # So we perform the changes to buffer size when loading data during app startup if the DB is read from disk.
         self.session.save_persistent_data()
+        self.session.db = dict()
         self.session.load_persistent_data()
         self.assertIsInstance(self.session.db, sqlitedict.SqliteDict)
         self.assertTrue(self.session.db.get("home_timeline") != None)
@@ -129,6 +131,7 @@ class cacheTestCase(unittest.TestCase):
         self.session.db["home_timeline"] = dataset["home_timeline"]
         self.session.db["mentions_timeline"] = dataset["mentions_timeline"]
         self.session.save_persistent_data()
+        self.session.db = dict()
         self.session.load_persistent_data()
         self.assertIsInstance(self.session.db, dict)
         self.assertTrue(self.session.db.get("home_timeline") != None)
@@ -145,6 +148,7 @@ class cacheTestCase(unittest.TestCase):
         self.session.db["home_timeline"] = dataset["home_timeline"]
         self.session.db["mentions_timeline"] = dataset["mentions_timeline"]
         self.session.save_persistent_data()
+        self.session.db = dict()
         self.session.load_persistent_data()
         self.assertIsInstance(self.session.db, dict)
         self.assertTrue(self.session.db.get("home_timeline") != None)
@@ -162,6 +166,7 @@ class cacheTestCase(unittest.TestCase):
         self.session.db["home_timeline"] = dataset["home_timeline"]
         self.session.db["mentions_timeline"] = dataset["mentions_timeline"]
         self.session.save_persistent_data()
+        self.session.db = dict()
         self.session.load_persistent_data()
         self.assertIsInstance(self.session.db, dict)
         self.assertTrue(self.session.db.get("home_timeline") != None)
@@ -181,6 +186,7 @@ class cacheTestCase(unittest.TestCase):
         self.session.db["home_timeline"] = dataset["home_timeline"]
         self.session.db["mentions_timeline"] = dataset["mentions_timeline"]
         self.session.save_persistent_data()
+        self.session.db = dict()
         self.session.load_persistent_data()
         self.assertIsInstance(self.session.db, dict)
         self.assertTrue(self.session.db.get("home_timeline") != None)
