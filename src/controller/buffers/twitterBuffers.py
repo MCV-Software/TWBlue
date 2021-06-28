@@ -553,7 +553,7 @@ class baseBufferController(baseBuffers.buffer):
             return sound.URLPlayer.stop_audio()
         tweet = self.get_tweet()
         if tweet == None: return
-        urls = utils.find_urls(tweet)
+        urls = utils.find_urls(tweet, twitter_media=True)
         if len(urls) == 1:
             url=urls[0]
         elif len(urls) > 1:
