@@ -617,6 +617,7 @@ class Controller(object):
             if d.needs_restart == True:
                 commonMessageDialogs.needs_restart()
                 buff.session.settings.write()
+                buff.session.save_persistent_data()
                 restart.restart_program()
 
     def report_error(self, *args, **kwargs):
