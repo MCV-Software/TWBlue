@@ -95,6 +95,7 @@ generate_versions:
   script:
     - move artifacts/TWBlue scripts/
     - move artifacts/TWBlue64 scripts/
+    - cd scripts
     - '&$env:NSIS twblue.nsi'
     - move twblue_setup.exe ../artifacts
   artifacts:
