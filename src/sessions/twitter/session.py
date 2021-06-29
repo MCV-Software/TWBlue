@@ -526,14 +526,28 @@ class Session(base.baseSession):
         if status.truncated:
             status._json = {**status._json, **status._json["extended_tweet"]}
         # Sends status to database, where it will be reduced and changed according to our needs.
-        num = self.order_buffer("home_timeline", [status])
-        if num == 1:
-            # However, we have to do the "reduce and change" process here because the status we sent to the db is going to be a different object that the one sent to database.
-            status = reduce.reduce_tweet(status)
-            status = self.check_quoted_status(status)
-            status = self.check_long_tweet(status)
-            # Send it to the main controller object.
-            pub.sendMessage("tweet-in-home", data=status, user=self.db["user_name"])
+        buffers_to_send = []
+        if status.user.id_str in self.stream_listener.users:
+            buffers_to_send.append("home_timeline")
+        if status.user.id == self.db["user_id"]:
+            buffers_to_send.append("sent_tweets")
+        for user in status.entities["user_mentions"]:
+            if user["id"] == self.db["user_id"]:
+                buffers_to_send.append("mentions_timeline")
+        users_with_timeline = [user.split("-")[0] for user in self.db.keys() if user.endswith("-timeline")]
+        for user in users_with_timeline:
+            if status.user.id_str == user:
+                buffers_to_send.append("{}-timeline".format(user))
+        for buffer in buffers_to_send[::]:
+            num = self.order_buffer(buffer, [status])
+            if num == 0:
+                buffers_to_send.remove(buffer)
+        # However, we have to do the "reduce and change" process here because the status we sent to the db is going to be a different object that the one sent to database.
+        reduced_status = reduce.reduce_tweet(status)
+        status = self.check_quoted_status(status)
+        status = self.check_long_tweet(status)
+        # Send it to the main controller object.
+        pub.sendMessage("newTweet", data=status, user=self.db["user_name"], _buffers=buffers_to_send)
 
     def check_streams(self):
         log.debug("Status of running stream for user {}: {}".format(self.db["user_name"], self.stream.running))

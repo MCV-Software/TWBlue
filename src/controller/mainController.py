@@ -126,7 +126,7 @@ class Controller(object):
         pub.subscribe(self.update_sent_dms, "sent-dms-updated")
         pub.subscribe(self.more_dms, "more-sent-dms")
         pub.subscribe(self.manage_sent_tweets, "sent-tweet")
-        pub.subscribe(self.manage_tweet_in_home, "tweet-in-home")
+        pub.subscribe(self.manage_new_tweet, "newTweet")
         pub.subscribe(self.manage_friend, "friend")
         pub.subscribe(self.manage_unfollowing, "unfollowing")
         pub.subscribe(self.manage_favourite, "favourite")
@@ -1631,12 +1631,19 @@ class Controller(object):
         for i in sessions.sessions:
             sessions.sessions[i].save_persistent_data()
 
-    def manage_tweet_in_home(self, data, user):
-        buffer = self.search_buffer("home_timeline", user)
-        if buffer == None or buffer.session.db["user_name"] != user: return
-        buffer.add_new_item(data)
-        if "home_timeline" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-            self.notify(buffer.session, "tweet_received.ogg")
+    def manage_new_tweet(self, data, user, _buffers):
+        sound_to_play = None
+        for buff in _buffers:
+            buffer = self.search_buffer(buff, user)
+            if buffer == None or buffer.session.db["user_name"] != user: return
+            buffer.add_new_item(data)
+            if buff == "home_timeline": sound_to_play = "tweet_received.ogg"
+            elif buff == "mentions_timeline": sound_to_play = "mention_received.ogg"
+            elif buff == "sent_tweets": sound_to_play = "tweet_send.ogg"
+            elif "timeline" in buff: sound_to_play = "tweet_timeline.ogg"
+            else: sound_to_play = None
+            if sound_to_play != None and buff not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+                self.notify(buffer.session, sound_to_play)
 
     def check_streams(self):
         if self.started == False:
