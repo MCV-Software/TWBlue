@@ -126,6 +126,7 @@ class Session(base.baseSession):
         # If we wouldn't implement this approach, TWBlue would save permanently the "deleted user" object.
         self.deleted_users = {}
         pub.subscribe(self.handle_new_status, "newStatus")
+        pub.subscribe(self.handle_connected, "streamConnected")
 
 # @_require_configuration
     def login(self, verify_credentials=True):
@@ -504,9 +505,9 @@ class Session(base.baseSession):
         self.db["users"] = users
 
     def start_streaming(self):
-        self.stream_listener = streaming.StreamListener(twitter_api=self.twitter, user=self.db["user_name"])
+        self.stream_listener = streaming.StreamListener(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"])
         self.stream = tweepy.Stream(auth = self.auth, listener=self.stream_listener)
-        call_threaded(self.stream.filter, follow=self.stream_listener.users)
+        self.stream_thread = self.stream.filter(follow=self.stream_listener.users, is_async=True)
 
     def handle_new_status(self, status, user):
         """ Handles a new status present in the Streaming API. """
@@ -533,3 +534,12 @@ class Session(base.baseSession):
             status = self.check_long_tweet(status)
             # Send it to the main controller object.
             pub.sendMessage("tweet-in-home", data=status, user=self.db["user_name"])
+
+    def check_streams(self):
+        log.debug("Status of running stream for user {}: {}".format(self.db["user_name"], self.stream.running))
+        if self.stream.running == False:
+            self.start_streaming()
+
+    def handle_connected(self, user):
+        if user != self.db["user_name"]:
+            log.debug("Connected streaming endpoint on account {}".format(user))

@@ -273,6 +273,9 @@ class Controller(object):
         if config.app["app-settings"]["speak_ready_msg"] == True:
             output.speak(_(u"Ready"))
         self.started = True
+        self.streams_checker_function = RepeatingTimer(60, self.check_streams)
+        self.streams_checker_function.start()
+
 
     def create_ignored_session_buffer(self, session):
         self.accounts.append(session.settings["twitter"]["user_name"])
@@ -1634,3 +1637,13 @@ class Controller(object):
         buffer.add_new_item(data)
         if "home_timeline" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
             self.notify(buffer.session, "tweet_received.ogg")
+
+    def check_streams(self):
+        if self.started == False:
+            return
+        for i in sessions.sessions:
+            try:
+                if sessions.sessions[i].is_logged == False: continue
+                sessions.sessions[i].check_streams()
+            except TweepError: # We shouldn't allow this function to die.
+                pass
