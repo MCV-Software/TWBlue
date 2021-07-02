@@ -538,7 +538,7 @@ class Session(base.baseSession):
             buffers_to_send.append("sent_tweets")
         for user in status.entities["user_mentions"]:
             if user["id"] == self.db["user_id"]:
-                buffers_to_send.append("mentions_timeline")
+                buffers_to_send.append("mentions")
         users_with_timeline = [user.split("-")[0] for user in self.db.keys() if user.endswith("-timeline")]
         for user in users_with_timeline:
             if status.user.id_str == user:

@@ -1640,7 +1640,7 @@ class Controller(object):
             if buffer == None or buffer.session.db["user_name"] != user: return
             buffer.add_new_item(data)
             if buff == "home_timeline": sound_to_play = "tweet_received.ogg"
-            elif buff == "mentions_timeline": sound_to_play = "mention_received.ogg"
+            elif buff == "mentions": sound_to_play = "mention_received.ogg"
             elif buff == "sent_tweets": sound_to_play = "tweet_send.ogg"
             elif "timeline" in buff: sound_to_play = "tweet_timeline.ogg"
             else: sound_to_play = None
