@@ -1,26 +1,14 @@
 # -*- coding: utf-8 -*-
 """ Common logic to all buffers in TWBlue."""
-from __future__ import unicode_literals
-from builtins import object
 import logging
 import wx
 import output
-import config
 import sound
 import widgetUtils
-from pubsub import pub
-from wxUI import buffers
 
-log = logging.getLogger("controller.buffers.baseBuffers")
+log = logging.getLogger("controller.buffers.base.base")
 
-def _items_exist(function):
-    """ A decorator to execute a function only if the selected buffer contains at least one item."""
-    def function_(self, *args, **kwargs):
-        if self.buffer.list.get_count() > 0:
-            function(self, *args, **kwargs)
-    return function_
-
-class buffer(object):
+class Buffer(object):
     """ A basic buffer object. This should be the base class for all other derived buffers."""
 
     def __init__(self, parent=None, function=None, session=None, *args, **kwargs):
@@ -29,11 +17,11 @@ class buffer(object):
           @ function str or None: function to be called periodically and update items on this buffer.
           @ session sessionmanager.session object or None: Session handler for settings, database and data access.
         """
-        super(buffer, self).__init__()
+        super(Buffer, self).__init__()
         self.function = function
         # Compose_function will be used to render an object on this buffer. Normally, signature is as follows:
         # compose_function(item, db, relative_times, show_screen_names=False, session=None)
-        # Read more about compose functions in twitter/compose.py.
+        # Read more about compose functions in sessions/twitter/compose.py.
         self.compose_function = None
         self.args = args
         self.kwargs = kwargs
@@ -148,62 +136,3 @@ class buffer(object):
             self.session.db[self.name+"_pos"]=self.buffer.list.get_selected()
         except AttributeError:
             pass
-
-class accountPanel(buffer):
-    def __init__(self, parent, name, account, account_id):
-        super(accountPanel, self).__init__(parent, None, name)
-        log.debug("Initializing buffer %s, account %s" % (name, account,))
-        self.buffer = buffers.accountPanel(parent, name)
-        self.type = self.buffer.type
-        self.compose_function = None
-        self.session = None
-        self.needs_init = False
-        self.account = account
-        self.buffer.account = account
-        self.name = name
-        self.account_id = account_id
-
-    def setup_account(self):
-        widgetUtils.connect_event(self.buffer, widgetUtils.CHECKBOX, self.autostart, menuitem=self.buffer.autostart_account)
-        if self.account_id in config.app["sessions"]["ignored_sessions"]:
-            self.buffer.change_autostart(False)
-        else:
-            self.buffer.change_autostart(True)
-        if not hasattr(self, "logged"):
-            self.buffer.change_login(login=False)
-            widgetUtils.connect_event(self.buffer.login, widgetUtils.BUTTON_PRESSED, self.logout)
-        else:
-            self.buffer.change_login(login=True)
-            widgetUtils.connect_event(self.buffer.login, widgetUtils.BUTTON_PRESSED, self.login)
-
-    def login(self, *args, **kwargs):
-        del self.logged
-        self.setup_account()
-        pub.sendMessage("login", session_id=self.account_id)
-
-    def logout(self, *args, **kwargs):
-        self.logged = False
-        self.setup_account()
-        pub.sendMessage("logout", session_id=self.account_id)
-
-    def autostart(self, *args, **kwargs):
-        if self.account_id in config.app["sessions"]["ignored_sessions"]:
-            self.buffer.change_autostart(True)
-            config.app["sessions"]["ignored_sessions"].remove(self.account_id)
-        else:
-            self.buffer.change_autostart(False)
-            config.app["sessions"]["ignored_sessions"].append(self.account_id)
-        config.app.write()
-
-class emptyPanel(buffer):
-    def __init__(self, parent, name, account):
-        super(emptyPanel, self).__init__(parent=parent)
-        log.debug("Initializing buffer %s, account %s" % (name, account,))
-        self.buffer = buffers.emptyPanel(parent, name)
-        self.type = self.buffer.type
-        self.compose_function = None
-        self.account = account
-        self.buffer.account = account
-        self.name = name
-        self.session = None
-        self.needs_init = True
