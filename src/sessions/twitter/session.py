@@ -510,9 +510,8 @@ class Session(base.baseSession):
         self.stream_thread = call_threaded(self.stream.filter, follow=self.stream_listener.users, stall_warnings=True)
 
     def stop_streaming(self):
-        if hasattr(self, "stream_thread"):
-            self.stream_thread.join()
-        log.debug("Stopping Streaming Endpoint...")
+        self.stream.running = False
+        log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
 
     def handle_new_status(self, status, user):
         """ Handles a new status present in the Streaming API. """

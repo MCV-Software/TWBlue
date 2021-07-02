@@ -655,17 +655,20 @@ class Controller(object):
         log.debug("Saving global configuration...")
         for item in sessions.sessions:
             if sessions.sessions[item].logged == False: continue
+            log.debug("Disconnecting streaming endpoint for session" +    sessions.sessions[item].session_id)
+            sessions.sessions[item].stop_streaming()
             log.debug("Disconnecting streams for %s session" % (sessions.sessions[item].session_id,))
             sessions.sessions[item].sound.cleaner.cancel()
             log.debug("Saving database for " +    sessions.sessions[item].session_id)
             sessions.sessions[item].save_persistent_data()
-            log.debug("Disconnecting streaming endpoint for session" +    sessions.sessions[item].session_id)
-            sessions.sessions[item].stop_streaming()
         if system == "Windows":
             self.systrayIcon.RemoveIcon()
             pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
             if os.path.exists(pidpath):
                 os.remove(pidpath)
+        if hasattr(self, "streams_checker_function"):
+            log.debug("Stopping stream checker...")
+            self.streams_checker_function.cancel()
         widgetUtils.exit_application()
 
     def follow(self, *args, **kwargs):
