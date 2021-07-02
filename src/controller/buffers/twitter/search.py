@@ -1,4 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
+import time
 import platform
 if platform.system() == "Windows":
     from wxUI import  commonMessageDialogs
