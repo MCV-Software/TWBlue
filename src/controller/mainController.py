@@ -659,6 +659,8 @@ class Controller(object):
             sessions.sessions[item].sound.cleaner.cancel()
             log.debug("Saving database for " +    sessions.sessions[item].session_id)
             sessions.sessions[item].save_persistent_data()
+            log.debug("Disconnecting streaming endpoint for session" +    sessions.sessions[item].session_id)
+            sessions.sessions[item].stop_streaming()
         if system == "Windows":
             self.systrayIcon.RemoveIcon()
             pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))

@@ -506,8 +506,13 @@ class Session(base.baseSession):
 
     def start_streaming(self):
         self.stream_listener = streaming.StreamListener(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"])
-        self.stream = tweepy.Stream(auth = self.auth, listener=self.stream_listener)
-        self.stream_thread = self.stream.filter(follow=self.stream_listener.users, is_async=True)
+        self.stream = streaming.Stream(auth = self.auth, listener=self.stream_listener, chunk_size=1025)
+        self.stream_thread = call_threaded(self.stream.filter, follow=self.stream_listener.users, stall_warnings=True)
+
+    def stop_streaming(self):
+        if hasattr(self, "stream_thread"):
+            self.stream_thread.join()
+        log.debug("Stopping Streaming Endpoint...")
 
     def handle_new_status(self, status, user):
         """ Handles a new status present in the Streaming API. """
