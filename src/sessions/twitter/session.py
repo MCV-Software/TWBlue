@@ -17,7 +17,7 @@ from keys import keyring
 from sessions import base
 from sessions.twitter import utils, compose
 from sessions.twitter.long_tweets import tweets, twishort
-from . import reduce
+from . import reduce, streaming
 from .wxUI import authorisationDialog
 
 log = logging.getLogger("sessions.twitterSession")
@@ -125,6 +125,8 @@ class Session(base.baseSession):
         # This will be especially useful because if the user reactivates their account later, TWblue will try to retrieve such user again at startup.
         # If we wouldn't implement this approach, TWBlue would save permanently the "deleted user" object.
         self.deleted_users = {}
+        pub.subscribe(self.handle_new_status, "newStatus")
+        pub.subscribe(self.handle_connected, "streamConnected")
 
 # @_require_configuration
     def login(self, verify_credentials=True):
@@ -501,3 +503,61 @@ class Session(base.baseSession):
                 if hasattr(i, "retweeted_status") and (i.retweeted_status.user.id_str in self.db["users"]) == False:
                     users[i.retweeted_status.user.id_str] = i.retweeted_status.user
         self.db["users"] = users
+
+    def start_streaming(self):
+        self.stream_listener = streaming.StreamListener(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"])
+        self.stream = streaming.Stream(auth = self.auth, listener=self.stream_listener, chunk_size=1025)
+        self.stream_thread = call_threaded(self.stream.filter, follow=self.stream_listener.users, stall_warnings=True)
+
+    def stop_streaming(self):
+        self.stream.running = False
+        log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
+
+    def handle_new_status(self, status, user):
+        """ Handles a new status present in the Streaming API. """
+        # Discard processing the status if the streaming sends a tweet for another account.
+        if self.db["user_name"] != user:
+            return
+        # the Streaming API sends non-extended tweets with an optional parameter "extended_tweets" which contains full_text and other data.
+        # so we have to make sure we check it before processing the normal status.
+        # As usual, we handle also quotes and retweets at first.
+        if hasattr(status, "retweeted_status") and hasattr(status.retweeted_status, "extended_tweet"):
+            status.retweeted_status._json = {**status.retweeted_status._json, **status.retweeted_status._json["extended_tweet"]}
+            # compose.compose_tweet requires the parent tweet to have a full_text field, so we have to add it to retweets here.
+            status._json["full_text"] = status._json["text"]
+        if hasattr(status, "quoted_status") and hasattr(status.quoted_status, "extended_tweet"):
+            status.quoted_status._json = {**status.quoted_status._json, **status.quoted_status._json["extended_tweet"]}
+        if status.truncated:
+            status._json = {**status._json, **status._json["extended_tweet"]}
+        # Sends status to database, where it will be reduced and changed according to our needs.
+        buffers_to_send = []
+        if status.user.id_str in self.stream_listener.users:
+            buffers_to_send.append("home_timeline")
+        if status.user.id == self.db["user_id"]:
+            buffers_to_send.append("sent_tweets")
+        for user in status.entities["user_mentions"]:
+            if user["id"] == self.db["user_id"]:
+                buffers_to_send.append("mentions")
+        users_with_timeline = [user.split("-")[0] for user in self.db.keys() if user.endswith("-timeline")]
+        for user in users_with_timeline:
+            if status.user.id_str == user:
+                buffers_to_send.append("{}-timeline".format(user))
+        for buffer in buffers_to_send[::]:
+            num = self.order_buffer(buffer, [status])
+            if num == 0:
+                buffers_to_send.remove(buffer)
+        # However, we have to do the "reduce and change" process here because the status we sent to the db is going to be a different object that the one sent to database.
+        reduced_status = reduce.reduce_tweet(status)
+        status = self.check_quoted_status(status)
+        status = self.check_long_tweet(status)
+        # Send it to the main controller object.
+        pub.sendMessage("newTweet", data=status, user=self.db["user_name"], _buffers=buffers_to_send)
+
+    def check_streams(self):
+        log.debug("Status of running stream for user {}: {}".format(self.db["user_name"], self.stream.running))
+        if self.stream.running == False:
+            self.start_streaming()
+
+    def handle_connected(self, user):
+        if user != self.db["user_name"]:
+            log.debug("Connected streaming endpoint on account {}".format(user))

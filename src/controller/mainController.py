@@ -125,6 +125,7 @@ class Controller(object):
         pub.subscribe(self.update_sent_dms, "sent-dms-updated")
         pub.subscribe(self.more_dms, "more-sent-dms")
         pub.subscribe(self.manage_sent_tweets, "sent-tweet")
+        pub.subscribe(self.manage_new_tweet, "newTweet")
         pub.subscribe(self.manage_friend, "friend")
         pub.subscribe(self.manage_unfollowing, "unfollowing")
         pub.subscribe(self.manage_favourite, "favourite")
@@ -265,11 +266,15 @@ class Controller(object):
             if sessions.sessions[i].is_logged == False: continue
             self.start_buffers(sessions.sessions[i])
             self.set_buffer_positions(sessions.sessions[i])
+            sessions.sessions[i].start_streaming()
         if config.app["app-settings"]["play_ready_sound"] == True:
             sessions.sessions[list(sessions.sessions.keys())[0]].sound.play("ready.ogg")
         if config.app["app-settings"]["speak_ready_msg"] == True:
             output.speak(_(u"Ready"))
         self.started = True
+        self.streams_checker_function = RepeatingTimer(60, self.check_streams)
+        self.streams_checker_function.start()
+
 
     def create_ignored_session_buffer(self, session):
         self.accounts.append(session.settings["twitter"]["user_name"])
@@ -649,6 +654,8 @@ class Controller(object):
         log.debug("Saving global configuration...")
         for item in sessions.sessions:
             if sessions.sessions[item].logged == False: continue
+            log.debug("Disconnecting streaming endpoint for session" +    sessions.sessions[item].session_id)
+            sessions.sessions[item].stop_streaming()
             log.debug("Disconnecting streams for %s session" % (sessions.sessions[item].session_id,))
             sessions.sessions[item].sound.cleaner.cancel()
             log.debug("Saving database for " +    sessions.sessions[item].session_id)
@@ -658,6 +665,9 @@ class Controller(object):
             pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
             if os.path.exists(pidpath):
                 os.remove(pidpath)
+        if hasattr(self, "streams_checker_function"):
+            log.debug("Stopping stream checker...")
+            self.streams_checker_function.cancel()
         widgetUtils.exit_application()
 
     def follow(self, *args, **kwargs):
@@ -1268,8 +1278,6 @@ class Controller(object):
     def manage_sent_tweets(self, data, user):
         buffer = self.search_buffer("sent_tweets", user)
         if buffer == None: return
-#  if "sent_tweets" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-#   self.notify(buffer.session, play_sound=play_sound)
         data = buffer.session.check_quoted_status(data)
         data = buffer.session.check_long_tweet(data)
         if data == False: # Long tweet deleted from twishort.
@@ -1622,3 +1630,27 @@ class Controller(object):
     def save_data_in_db(self):
         for i in sessions.sessions:
             sessions.sessions[i].save_persistent_data()
+
+    def manage_new_tweet(self, data, user, _buffers):
+        sound_to_play = None
+        for buff in _buffers:
+            buffer = self.search_buffer(buff, user)
+            if buffer == None or buffer.session.db["user_name"] != user: return
+            buffer.add_new_item(data)
+            if buff == "home_timeline": sound_to_play = "tweet_received.ogg"
+            elif buff == "mentions": sound_to_play = "mention_received.ogg"
+            elif buff == "sent_tweets": sound_to_play = "tweet_send.ogg"
+            elif "timeline" in buff: sound_to_play = "tweet_timeline.ogg"
+            else: sound_to_play = None
+            if sound_to_play != None and buff not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+                self.notify(buffer.session, sound_to_play)
+
+    def check_streams(self):
+        if self.started == False:
+            return
+        for i in sessions.sessions:
+            try:
+                if sessions.sessions[i].is_logged == False: continue
+                sessions.sessions[i].check_streams()
+            except TweepError: # We shouldn't allow this function to die.
+                pass
