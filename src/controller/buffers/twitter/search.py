@@ -6,6 +6,7 @@ if platform.system() == "Windows":
 elif platform.system() == "Linux":
     from gi.repository import Gtk
     from gtkUI import commonMessageDialogs
+import widgetUtils
 import logging
 from . import base, people
 
