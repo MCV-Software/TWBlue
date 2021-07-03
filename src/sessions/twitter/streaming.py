@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """ Streaming support for TWBlue. """
 import time
+import sys
 import six
 import requests
 import urllib3
@@ -30,9 +31,12 @@ class StreamListener(tweepy.StreamListener):
 
     def on_status(self, status):
         """ Checks data arriving as a tweet. """
+        # Hide replies to users not followed by current account.
+        if status.in_reply_to_user_id_str != None and status.in_reply_to_user_id_str not in self.users:
+            return
         if status.user.id_str in self.users:
             pub.sendMessage("newStatus", status=status, user=self.user)
-#            print(status.text)
+
 
 
 class Stream(tweepy.Stream):
