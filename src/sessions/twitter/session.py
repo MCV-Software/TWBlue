@@ -108,7 +108,6 @@ class Session(base.baseSession):
         self.db["sent_direct_messages"] = sent_objects
         pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
 
-
         return incoming
 
     def __init__(self, *args, **kwargs):
@@ -515,6 +514,8 @@ class Session(base.baseSession):
 
     def handle_new_status(self, status, user):
         """ Handles a new status present in the Streaming API. """
+        if self.logged == False:
+            return
         # Discard processing the status if the streaming sends a tweet for another account.
         if self.db["user_name"] != user:
             return
@@ -559,5 +560,7 @@ class Session(base.baseSession):
             self.start_streaming()
 
     def handle_connected(self, user):
+        if self.logged == False:
+            return
         if user != self.db["user_name"]:
             log.debug("Connected streaming endpoint on account {}".format(user))
