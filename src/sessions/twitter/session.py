@@ -405,9 +405,9 @@ class Session(base.baseSession):
         """ Returns an user object associated with an ID.
         id str: User identifier, provided by Twitter.
         returns a tweepy user object."""
-#        if hasattr(id, "id_str"):
-#            log.error("Called get_user function by passing a full user id as a parameter.")
-#            id = id.id_str
+        if hasattr(id, "id_str"):
+            log.error("Called get_user function by passing a full user id as a parameter.")
+            id = id.id_str
         # Check if the user has been added to the list of deleted users previously.
         if id in self.deleted_users:
             log.debug("Returning user {} from the list of deleted users.".format(id))
