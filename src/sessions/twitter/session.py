@@ -405,9 +405,9 @@ class Session(base.baseSession):
         """ Returns an user object associated with an ID.
         id str: User identifier, provided by Twitter.
         returns a tweepy user object."""
-        if hasattr(id, "id_str"):
-            log.error("Called get_user function by passing a full user id as a parameter.")
-            id = id.id_str
+#        if hasattr(id, "id_str"):
+#            log.error("Called get_user function by passing a full user id as a parameter.")
+#            id = id.id_str
         # Check if the user has been added to the list of deleted users previously.
         if id in self.deleted_users:
             log.debug("Returning user {} from the list of deleted users.".format(id))
@@ -548,7 +548,7 @@ class Session(base.baseSession):
             if num == 0:
                 buffers_to_send.remove(buffer)
         # However, we have to do the "reduce and change" process here because the status we sent to the db is going to be a different object that the one sent to database.
-        reduced_status = reduce.reduce_tweet(status)
+        status = reduce.reduce_tweet(status)
         status = self.check_quoted_status(status)
         status = self.check_long_tweet(status)
         # Send it to the main controller object.
