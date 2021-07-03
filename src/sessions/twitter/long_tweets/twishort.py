@@ -39,8 +39,8 @@ def get_twishort_uri(url):
 def is_long(tweet):
     """ Check if the passed tweet is made with Twishort.
      returns True if is a long tweet, False otherwise."""
+    long = False
     if hasattr(tweet, "entities") and tweet.entities.get("urls"):
-        long = False
         for url in range(0, len(tweet.entities["urls"])):
             try:
                 if tweet.entities["urls"][url] != None and "twishort.com" in tweet.entities["urls"][url]["expanded_url"]:
