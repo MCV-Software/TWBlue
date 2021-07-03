@@ -27,7 +27,7 @@ class profileController(object):
             except TweepError as err:
                 if err.api_code == 50:
                     wx.MessageDialog(None, _(u"That user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
-                if err.api_code == 403:
+                if err.api_code == 63:
                     wx.MessageDialog(None, _(u"User has been suspended"), _(u"Error"), wx.ICON_ERROR).ShowModal()
                 log.error("error %d: %s" % (err.api_code, err.reason))
                 return
