@@ -98,6 +98,8 @@ generate_versions:
     - cd scripts
     - '&$env:NSIS twblue_snapshot.nsi'
     - move twblue_snapshot_setup.exe ../artifacts
+  only:
+    - tags
   artifacts:
     paths:
       - artifacts
@@ -113,6 +115,5 @@ upload:
     - cd artifacts
     - python ../scripts/upload.py
   only:
-    - next-gen
     - tags
     - schedules
