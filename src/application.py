@@ -9,7 +9,7 @@ if snapshot == False:
     update_url = 'https://twblue.es/updates/stable.php'
     mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/stable.json'
 else:
-    version = "7"
+    version = "8"
     update_url = 'https://twblue.es/updates/snapshot.php'
     mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/snapshots.json'
 authors = ["Manuel Cortéz", "José Manuel Delicado"]
