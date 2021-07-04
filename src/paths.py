@@ -39,7 +39,7 @@ def logs_path():
         os.mkdir(path)
     return path
 
-def data_path(app_name='socializer'):
+def data_path(app_name='TW Blue'):
     if platform.system() == "Windows":
         data_path = os.path.join(os.getenv("AppData"), app_name)
     else:
