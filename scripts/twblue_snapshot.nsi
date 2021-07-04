@@ -15,10 +15,10 @@ SetCompressor /solid lzma
 SetDatablockOptimize on
 VIAddVersionKey ProductName "TWBlue Snapshot version"
 VIAddVersionKey LegalCopyright "Copyright 2014-2021 Manuel Cortéz."
-VIAddVersionKey ProductVersion "6"
-VIAddVersionKey FileVersion "6"
-VIProductVersion "6.0.0"
-VIFileVersion "6.0.0"
+VIAddVersionKey ProductVersion "7"
+VIAddVersionKey FileVersion "7"
+VIProductVersion "7.0.0"
+VIFileVersion "7.0.0"
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_RADIOBUTTONS
 !insertmacro MUI_PAGE_LICENSE "license.txt"
@@ -72,10 +72,10 @@ WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "D
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "UninstallString" '"$INSTDIR\uninstall.exe"'
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall" "InstallLocation" $INSTDIR
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall" "Publisher" "Manuel Cortéz"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "DisplayVersion" "0.95"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "DisplayVersion" "7"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "URLInfoAbout" "http://twblue.es"
 WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "VersionMajor" 0
-WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "VersionMinor" 95
+WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "VersionMinor" 0
 WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "NoModify" 1
 WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "NoRepair" 1
 SectionEnd
