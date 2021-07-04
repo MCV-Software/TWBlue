@@ -17,8 +17,8 @@ VIAddVersionKey ProductName "TWBlue Snapshot version"
 VIAddVersionKey LegalCopyright "Copyright 2014-2021 Manuel Cortéz."
 VIAddVersionKey ProductVersion "7"
 VIAddVersionKey FileVersion "7"
-VIProductVersion "7.0.0"
-VIFileVersion "7.0.0"
+VIProductVersion "7.0.0.0"
+VIFileVersion "7.0.0.0"
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_RADIOBUTTONS
 !insertmacro MUI_PAGE_LICENSE "license.txt"
