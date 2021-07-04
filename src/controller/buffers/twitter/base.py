@@ -102,8 +102,10 @@ class BaseBuffer(base.Buffer):
                 item = self.session.api_call(call_name="update_status", status=text, _sound="tweet_send.ogg", tweet_mode="extended")
             else:
                 call_threaded(self.post_with_media, text=text, attachments=tweet.attachments)
-            if item != None:
-                pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
+            # We will no longer will reuse the sent item from here as Streaming API should give us the new and correct item.
+            # but in case we'd need it, just uncomment the following couple of lines and make sure we reduce the item correctly.
+#            if item != None:
+#                pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
         if hasattr(tweet.message, "destroy"): tweet.message.destroy()
         self.session.settings.write()
 
@@ -114,8 +116,10 @@ class BaseBuffer(base.Buffer):
             self.session.twitter.create_media_metadata(media_id=img.media_id, alt_text=i["description"])
             media_ids.append(img.media_id)
         item = self.session.twitter.update_status(status=text, media_ids=media_ids)
-        if item != None:
-            pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
+        # We will no longer will reuse the sent item from here as Streaming API should give us the new and correct item.
+        # but in case we'd need it, just uncomment the following couple of lines and make sure we reduce the item correctly.
+#        if item != None:
+#            pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
 
     def get_formatted_message(self):
         if self.type == "dm" or self.name == "direct_messages":
@@ -454,8 +458,10 @@ class BaseBuffer(base.Buffer):
                 params["call_name"] = "update_status_with_media"
                 params["media"] = message.file
             item = self.session.api_call(**params)
-            if item != None:
-                pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
+            # We will no longer will reuse the sent item from here as Streaming API should give us the new and correct item.
+            # but in case we'd need it, just uncomment the following couple of lines and make sure we reduce the item correctly.
+#            if item != None:
+#                pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
         if hasattr(message.message, "destroy"): message.message.destroy()
         self.session.settings.write()
 
@@ -518,21 +524,25 @@ class BaseBuffer(base.Buffer):
             text = retweet.message.get_text()
             text = text+" https://twitter.com/{0}/status/{1}".format(self.session.get_user(tweet.user).screen_name, id)
             if retweet.image == None:
+                # We will no longer will reuse the sent item from here as Streaming API should give us the new and correct item.
+                # but in case we'd need it, just uncomment the following couple of lines and make sure we reduce the item correctly.
                 item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id, tweet_mode="extended")
-                if item != None:
-                    new_item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
-                    pub.sendMessage("sent-tweet", data=new_item, user=self.session.db["user_name"])
+#                if item != None:
+#                    new_item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
+#                    pub.sendMessage("sent-tweet", data=new_item, user=self.session.db["user_name"])
             else:
                 call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, media=retweet.image)
         if hasattr(retweet.message, "destroy"): retweet.message.destroy()
 
     def _direct_retweet(self, id):
         item = self.session.api_call(call_name="retweet", _sound="retweet_send.ogg", id=id)
-        if item != None:
+        # We will no longer will reuse the sent item from here as Streaming API should give us the new and correct item.
+        # but in case we'd need it, just uncomment the following couple of lines and make sure we reduce the item correctly.
+#        if item != None:
             # Retweets are returned as non-extended tweets, so let's get the object as extended
             # just before sending the event message. See https://github.com/manuelcortez/TWBlue/issues/253
-            item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
-            pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
+#            item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
+#            pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
 
     def onFocus(self, *args, **kwargs):
         tweet = self.get_tweet()
