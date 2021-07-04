@@ -17,7 +17,7 @@ snapshot32:
     - Set-Variable -Name "time" -Value (date -Format "%H:%m")
     - echo ${time}
     - echo "started by ${GITLAB_USER_NAME}"
-    - choco install python --version 3.8.7 -y -ForceX86
+    - choco install python --version 3.8.10 -y -ForceX86
     - '&$env:PYTHON -V'
     - '&$env:PYTHON -m pip install --upgrade pip'
     - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
@@ -54,7 +54,7 @@ snapshot64:
     - Set-Variable -Name "time" -Value (date -Format "%H:%m")
     - echo ${time}
     - echo "started by ${GITLAB_USER_NAME}"
-    - choco install python --version 3.8.7 -y
+    - choco install python --version 3.8.10 -y
     - '&$env:PYTHON -V'
     - '&$env:PYTHON -m pip install --upgrade pip'
     - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
