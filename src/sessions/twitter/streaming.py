@@ -32,7 +32,7 @@ class StreamListener(tweepy.StreamListener):
     def on_status(self, status):
         """ Checks data arriving as a tweet. """
         # Hide replies to users not followed by current account.
-        if status.in_reply_to_user_id_str != None and status.in_reply_to_user_id_str not in self.users:
+        if status.in_reply_to_user_id_str != None and status.in_reply_to_user_id_str not in self.users and status.user.screen_name != self.user:
             return
         if status.user.id_str in self.users:
             pub.sendMessage("newStatus", status=status, user=self.user)
