@@ -120,6 +120,10 @@ def is_media(tweet):
 def get_all_mentioned(tweet, conf, field="screen_name"):
     """ Gets all users that have been mentioned."""
     results = []
+    if hasattr(tweet, "retweeted_status"):
+        results.extend(get_all_mentionned(tweet.retweeted_status, conf, field))
+    if hasattr(tweet, "quoted_status"):
+        results.extend(tweet.quoted_status, conf, field)
     if hasattr(tweet, "entities") and tweet.entities.get("user_mentions"):
         for i in tweet.entities["user_mentions"]:
             if i["screen_name"] != conf["user_name"] and i["id_str"] != tweet.user:
@@ -130,17 +134,19 @@ def get_all_mentioned(tweet, conf, field="screen_name"):
 def get_all_users(tweet, session):
     string = []
     user = session.get_user(tweet.user)
-    if hasattr(tweet, "retweeted_status"):
+    if user.screen_name != session.db["user_name"]:
         string.append(user.screen_name)
-        tweet = tweet.retweeted_status
-    else:
-        if user.screen_name != session.db["user_name"]:
-            string.append(user.screen_name)
-        if hasattr(tweet, "entities") and tweet.entities.get("user_mentions"):
-            for i in tweet.entities["user_mentions"]:
-                if i["screen_name"] != session.db["user_name"] and i["screen_name"] != user.screen_name:
-                    if i["screen_name"] not in string:
-                        string.append(i["screen_name"])
+    if hasattr(tweet, "retweeted_status"):
+        string.extend(get_all_users(tweet.retweeted_status, session))
+    if hasattr(tweet, "quoted_status"):
+        string.extend(get_all_users(tweet.quoted_status, session))
+    if hasattr(tweet, "entities") and tweet.entities.get("user_mentions"):
+        for i in tweet.entities["user_mentions"]:
+            if i["screen_name"] != session.db["user_name"] and i["screen_name"] != user.screen_name:
+                if i["screen_name"] not in string:
+                    string.append(i["screen_name"])
+    # Attempt to remove duplicates, tipically caused by nested tweets.
+    string = list(dict.fromkeys(string))
     if len(string) == 0:
         string.append(user.screen_name)
     return string
