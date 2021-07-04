@@ -14,14 +14,23 @@ log = logging.getLogger("sessions.twitter.streaming")
 
 class StreamListener(tweepy.StreamListener):
 
-    def __init__(self, twitter_api, user, user_id, *args, **kwargs):
+    def __init__(self, twitter_api, user, user_id, muted_users=[], *args, **kwargs):
         super(StreamListener, self).__init__(*args, **kwargs)
+        log.debug("Starting streaming listener for account {}".format(user))
+        self.started = False
+        self.users = []
         self.api = twitter_api
         self.user = user
         self.user_id = user_id
-        self.users = [str(id) for id in self.api.friends_ids()]
+        friends = self.api.friends_ids()
+        log.debug("Retrieved {} friends to add to the streaming listener.".format(len(friends)))
         self.users.append(str(self.user_id))
-        log.debug("Started streaming object for user {}".format(self.user))
+        log.debug("Got {} muted users.".format(len(muted_users)))
+        for user in friends:
+            if user not in muted_users:
+                self.users.append(str(user))
+        self.started = True
+        log.debug("Streaming listener started with {} users to follow.".format(len(self.users)))
 
     def on_connect(self):
         pub.sendMessage("streamConnected", user=self.user)

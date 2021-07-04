@@ -504,7 +504,7 @@ class Session(base.baseSession):
         self.db["users"] = users
 
     def start_streaming(self):
-        self.stream_listener = streaming.StreamListener(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"])
+        self.stream_listener = streaming.StreamListener(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"], muted_users=self.db["muted_users"])
         self.stream = streaming.Stream(auth = self.auth, listener=self.stream_listener, chunk_size=1025)
         self.stream_thread = call_threaded(self.stream.filter, follow=self.stream_listener.users, stall_warnings=True)
 
