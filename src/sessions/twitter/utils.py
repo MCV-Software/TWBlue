@@ -121,9 +121,9 @@ def get_all_mentioned(tweet, conf, field="screen_name"):
     """ Gets all users that have been mentioned."""
     results = []
     if hasattr(tweet, "retweeted_status"):
-        results.extend(get_all_mentionned(tweet.retweeted_status, conf, field))
+        results.extend(get_all_mentioned(tweet.retweeted_status, conf, field))
     if hasattr(tweet, "quoted_status"):
-        results.extend(tweet.quoted_status, conf, field)
+        results.extend(get_all_mentioned(tweet.quoted_status, conf, field))
     if hasattr(tweet, "entities") and tweet.entities.get("user_mentions"):
         for i in tweet.entities["user_mentions"]:
             if i["screen_name"] != conf["user_name"] and i["id_str"] != tweet.user:
