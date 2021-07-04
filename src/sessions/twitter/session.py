@@ -504,13 +504,18 @@ class Session(base.baseSession):
         self.db["users"] = users
 
     def start_streaming(self):
+        if config.app["app-settings"]["no_streaming"]:
+            return
         self.stream_listener = streaming.StreamListener(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"], muted_users=self.db["muted_users"])
         self.stream = streaming.Stream(auth = self.auth, listener=self.stream_listener, chunk_size=1025)
         self.stream_thread = call_threaded(self.stream.filter, follow=self.stream_listener.users, stall_warnings=True)
 
     def stop_streaming(self):
-        self.stream.running = False
-        log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
+        if config.app["app-settings"]["no_streaming"]:
+            return
+        if hasattr(self, "stream"):
+            self.stream.running = False
+            log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
 
     def handle_new_status(self, status, user):
         """ Handles a new status present in the Streaming API. """
@@ -555,6 +560,10 @@ class Session(base.baseSession):
         pub.sendMessage("newTweet", data=status, user=self.db["user_name"], _buffers=buffers_to_send)
 
     def check_streams(self):
+        if config.app["app-settings"]["no_streaming"]:
+            return
+        if not hasattr(self, "stream"):
+            return
         log.debug("Status of running stream for user {}: {}".format(self.db["user_name"], self.stream.running))
         if self.stream.running == False:
             self.start_streaming()
