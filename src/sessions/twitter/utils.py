@@ -168,7 +168,7 @@ def is_allowed(tweet, settings, buffer_name):
     tweet_data = {}
     if hasattr(tweet, "retweeted_status"):
         tweet_data["retweet"] = True
-    if tweet.in_reply_to_status_id != None:
+    if hasattr(tweet, "in_reply_to_status_id"):
         tweet_data["reply"] = True
     if hasattr(tweet, "quoted_status"):
         tweet_data["quote"] = True
