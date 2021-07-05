@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.85\n"
 "POT-Creation-Date: 2019-03-17 13:34+Hora estndar romance\n"
-"PO-Revision-Date: 2020-10-23 14:30+0300\n"
+"PO-Revision-Date: 2021-07-05 16:03+0200\n"
 "Last-Translator: Artem Plaksin <admin@maniyax.ru>\n"
 "Language-Team: Alexander Jaszyn <a.jaszyn@ya.ru>\n"
 "Language: ru\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -208,14 +208,12 @@ msgstr ""
 "личных сообщений вместо этого."
 
 #: ../src\controller\buffers\twitterBuffers.py:983
-#, fuzzy
 msgid "{0} new followers."
-msgstr "Новый читатель."
+msgstr "{0} новых читателей."
 
 #: ../src\controller\buffers\twitterBuffers.py:1266
-#, fuzzy
 msgid "This action is not supported in the buffer, yet."
-msgstr "Это действие не поддерживается в данном буфере"
+msgstr "Это действие пока не поддерживается в буфере."
 
 #: ../src\controller\mainController.py:273
 msgid "Ready"
@@ -314,9 +312,8 @@ msgid "Select the user"
 msgstr "Выберите пользователя"
 
 #: ../src\controller\mainController.py:809 ../src\controller\messages.py:236
-#, fuzzy
 msgid "MMM D, YYYY. H:m"
-msgstr "dddd, MMMM D, YYYY H:m:s"
+msgstr "MMM D, YYYY. H:m"
 
 #: ../src\controller\mainController.py:934
 msgid "Conversation with {0}"
@@ -1702,9 +1699,8 @@ msgid "Opens the global settings dialogue"
 msgstr "Открыть основные настройки"
 
 #: ../src\keystrokeEditor\constants.py:54
-#, fuzzy
 msgid "Opens the list manager"
-msgstr "Менеджер Списков"
+msgstr "Открывает менеджер списков"
 
 #: ../src\keystrokeEditor\constants.py:55
 msgid "Opens the account settings dialogue"
