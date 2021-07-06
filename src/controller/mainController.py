@@ -185,6 +185,7 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_documentation, self.view.doc)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_changelog, self.view.changelog)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_alias, self.view.addAlias)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_list, self.view.addToList)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_list, self.view.removeFromList)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_buffer, self.view.update_buffer)
@@ -753,6 +754,26 @@ class Controller(object):
         else:
             users = utils.get_all_users(tweet, buff.session)
         u = userActionsController.userActionsController(buff, users, "report")
+
+    def add_alias(self, *args, **kwargs):
+        buff = self.get_best_buffer()
+        if not hasattr(buff, "get_right_tweet"): return
+        tweet = buff.get_right_tweet()
+        if buff.type == "people":
+            users = [tweet.screen_name]
+        elif buff.type == "dm":
+            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
+        else:
+            users = utils.get_all_users(tweet, buff.session)
+        dlg = dialogs.utils.addAliasDialog(_("Add an user alias"), users)
+        if dlg.get_response() == widgetUtils.OK:
+            user, alias = dlg.get_user()
+            if user == "" or alias == "":
+                return
+            user_id = buff.session.get_user_by_screen_name(user)
+            buff.session.settings["user-aliases"][str(user_id)] = alias
+            buff.session.settings.write()
+            output.speak(_("Alias has been set correctly for {}.").format(user))
 
     def post_tweet(self, event=None):
         buffer = self.get_best_buffer()

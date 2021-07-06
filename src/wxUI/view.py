@@ -43,6 +43,7 @@ class mainFrame(wx.Frame):
         self.follow = user.Append(wx.ID_ANY, _(u"&Actions..."))
         self.timeline = user.Append(wx.ID_ANY, _(u"&View timeline..."))
         self.dm = user.Append(wx.ID_ANY, _(u"Direct me&ssage"))
+        self.addAlias = user.Append(wx.ID_ANY, _("Add a&lias"))
         self.addToList = user.Append(wx.ID_ANY, _(u"&Add to list"))
         self.removeFromList = user.Append(wx.ID_ANY, _(u"R&emove from list"))
         self.viewLists = user.Append(wx.ID_ANY, _(u"&View lists"))
