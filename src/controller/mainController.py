@@ -1265,7 +1265,8 @@ class Controller(object):
         keymap = {}
         for i in config.keymap["keymap"]:
             if hasattr(self, i):
-                keymap[config.keymap["keymap"][i]] = getattr(self, i)
+                if config.keymap["keymap"][i] != "":
+                    keymap[config.keymap["keymap"][i]] = getattr(self, i)
         return keymap
 
     def register_invisible_keyboard_shorcuts(self, keymap):
