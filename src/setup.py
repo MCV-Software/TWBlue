@@ -3,7 +3,7 @@ import sys
 import application
 import platform
 import os
-from cx_Freeze import setup, Executable
+from cx_Freeze import setup, Executable, winmsvcr
 from requests import certs
 
 def get_architecture_files():
@@ -40,7 +40,7 @@ build_exe_options = dict(
     build_exe="dist",
     optimize=1,
     includes=["enchant.tokenize.en"], # This is not handled automatically by cx_freeze.
-    include_msvcr=True,
+    include_msvcr=False,
     replace_paths = [("*", "")],
     include_files=["icon.ico", "conf.defaults", "app-configuration.defaults", "keymaps", "locales", "sounds", "documentation", ("keys/lib", "keys/lib"), find_sound_lib_datafiles(), find_accessible_output2_datafiles()]+get_architecture_files(),
     packages=["wxUI"],
@@ -50,6 +50,8 @@ executables = [
     Executable('main.py', base=base, targetName="twblue")
 ]
 
+winmsvcr.FILES = ()
+winmsvcr.FILES_TO_DUPLICATE = ()
 setup(name=application.name,
       version=application.version,
       description=application.description,
