@@ -430,9 +430,25 @@ class Session(base.baseSession):
             users = self.db["users"]
             users[user.id_str] = user
             self.db["users"] = users
+            user.name = self.get_user_alias(user)
             return user
         else:
-            return self.db["users"][str(id)]
+            user = self.db["users"][str(id)]
+            user.name = self.get_user_alias(user)
+            return user
+
+    def get_user_alias(self, user):
+        """ Retrieves an alias for the passed user model, if exists.
+        @ user Tweepy.models.user: An user object.
+        """
+        aliases = self.settings.get("user-aliases")
+        if aliases == None:
+            log.error("Aliases are not defined for this config spec.")
+            return user.name
+        user_alias = aliases.get(user.id_str)
+        if user_alias != None:
+            return user_alias
+        return user.name
 
     def get_user_by_screen_name(self, screen_name):
         """ Returns an user identifier associated with a screen_name.
