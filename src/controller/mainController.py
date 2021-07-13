@@ -1272,8 +1272,10 @@ class Controller(object):
     def register_invisible_keyboard_shorcuts(self, keymap):
         if config.changed_keymap:
             commonMessageDialogs.changed_keymap()
+        # Make sure we pass a keymap without undefined keystrokes.
+        new_keymap = {key: keymap[key] for key in keymap.keys() if keymap[key] != ""}
         self.keyboard_handler = WXKeyboardHandler(self.view)
-        self.keyboard_handler.register_keys(keymap)
+        self.keyboard_handler.register_keys(new_keymap)
 
     def unregister_invisible_keyboard_shorcuts(self, keymap):
         try:
