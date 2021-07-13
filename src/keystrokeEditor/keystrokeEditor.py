@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from builtins import object
 import widgetUtils
 import config
 from . import wx_ui
@@ -18,6 +15,7 @@ class KeystrokeEditor(object):
         self.hold_map = self.map.copy()
         self.dialog.put_keystrokes(constants.actions, self.map)
         widgetUtils.connect_event(self.dialog.edit, widgetUtils.BUTTON_PRESSED, self.edit_keystroke)
+        widgetUtils.connect_event(self.dialog.undefine, widgetUtils.BUTTON_PRESSED, self.undefine_keystroke)
         widgetUtils.connect_event(self.dialog.execute, widgetUtils.BUTTON_PRESSED, self.execute_action)
         self.dialog.get_response()
 
@@ -32,6 +30,17 @@ class KeystrokeEditor(object):
                 self.changed = True
                 self.map[action] = new_keystroke
                 self.dialog.put_keystrokes(constants.actions, self.map)
+
+    def undefine_keystroke(self, *args, **kwargs):
+        action = self.dialog.actions[self.dialog.get_action()]
+        keystroke = self.map.get(action)
+        if keystroke == None:
+            return
+        answer = self.dialog.undefine_keystroke_confirmation()
+        if answer == widgetUtils.YES:
+            self.map[action] = ""
+            self.changed = True
+            self.dialog.put_keystrokes(constants.actions, self.map)
 
     def set_keystroke(self, keystroke, dialog):
         for i in keystroke.split("+"):

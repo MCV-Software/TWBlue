@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import wx
 from multiplatform_widgets import widgets
 from wxUI.dialogs import baseDialog
@@ -18,6 +17,7 @@ class keystrokeEditorDialog(baseDialog.BaseWXDialog):
         firstSizer.Add(self.keys.list, 0, wx.ALL, 5)
         self.edit = wx.Button(panel, -1, _(u"Edit"))
         self.edit.SetDefault()
+        self.undefine = wx.Button(panel, -1, _("Undefine keystroke"))
         self.execute = wx.Button(panel, -1, _(u"Execute action"))
         close = wx.Button(panel, wx.ID_CANCEL, _(u"Close"))
         secondSizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -37,12 +37,17 @@ class keystrokeEditorDialog(baseDialog.BaseWXDialog):
                 continue
             action = actions[i]
             self.actions.append(i)
-            keystroke = keystrokes[i]
+            keystroke = keystrokes.get(i)
+            if keystroke == "":
+                keystroke = _("Undefined")
             self.keys.insert_item(False, *[action, keystroke])
         self.keys.select_item(selection)
 
     def get_action(self):
         return self.keys.get_selected()
+
+    def undefine_keystroke_confirmation(self):
+        return wx.MessageDialog(self, _("Are you sure you want to undefine this keystroke?"), _("Undefine keystroke"), wx.YES_NO|wx.CANCEL|wx.ICON_QUESTION).ShowModal()
 
 class editKeystrokeDialog(baseDialog.BaseWXDialog):
     def __init__(self):
