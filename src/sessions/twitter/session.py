@@ -51,7 +51,7 @@ class Session(base.baseSession):
                 if i.id < last_id:
                     log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i.id))
                     continue
-            if utils.find_item(i.id, self.db[name]) == None and     utils.is_allowed(i, self.settings, name) == True:
+            if utils.find_item(i, self.db[name]) == None and     utils.is_allowed(i, self.settings, name) == True:
                 if i == False: continue
                 reduced_object = reduce.reduce_tweet(i)
                 reduced_object = self.check_quoted_status(reduced_object)
@@ -72,7 +72,7 @@ class Session(base.baseSession):
             self.db[name] = []
         objects = self.db[name]
         for i in data:
-            if utils.find_item(i.id, self.db[name]) == None:
+            if utils.find_item(i, self.db[name]) == None:
                 if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
                 else: objects.insert(0, i)
                 num = num+1
@@ -94,12 +94,12 @@ class Session(base.baseSession):
         for i in data:
             # Twitter returns sender_id as str, which must be converted to int in order to match to our user_id object.
             if int(i.message_create["sender_id"]) == self.db["user_id"]:
-                if "sent_direct_messages" in self.db and utils.find_item(i.id, self.db["sent_direct_messages"]) == None:
+                if "sent_direct_messages" in self.db and utils.find_item(i, self.db["sent_direct_messages"]) == None:
                     if self.settings["general"]["reverse_timelines"] == False: sent_objects.append(i)
                     else: sent_objects.insert(0, i)
                     sent = sent+1
             else:
-                if utils.find_item(i.id, self.db["direct_messages"]) == None:
+                if utils.find_item(i, self.db["direct_messages"]) == None:
                     if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
                     else: objects.insert(0, i)
                     incoming = incoming+1
