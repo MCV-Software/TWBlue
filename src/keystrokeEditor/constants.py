@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 actions = {
     "up": _(u"Go up in the current buffer"),
     "down": _(u"Go down in the current buffer"),
@@ -57,4 +56,6 @@ actions = {
     "audio": _(u"Try to play an audio file"),
     "update_buffer": _(u"Updates the buffer and retrieves possible lost items there."),
     "ocr_image": _(u"Extracts the text from a picture and displays the result in a dialog."),
+    "add_alias": _("Adds an alias to an user"),
 }
+ 

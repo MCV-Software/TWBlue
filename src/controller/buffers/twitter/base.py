@@ -237,7 +237,7 @@ class BaseBuffer(base.Buffer):
         items_db = self.session.db[self.name]
         self.session.add_users_from_results(items)
         for i in items:
-            if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i.id, self.session.db[self.name]) == None:
+            if utils.is_allowed(i, self.session.settings, self.name) == True and utils.find_item(i, self.session.db[self.name]) == None:
                 i = reduce.reduce_tweet(i)
                 i = self.session.check_quoted_status(i)
                 i = self.session.check_long_tweet(i)

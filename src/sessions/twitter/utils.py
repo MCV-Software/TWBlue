@@ -60,9 +60,13 @@ def find_urls (tweet, twitter_media=False):
             urls.append(i)
     return urls
 
-def find_item(id, listItem):
-    for i in range(0, len(listItem)):
-        if listItem[i].id == id: return i
+def find_item(item, listItems):
+    for i in range(0, len(listItems)):
+        if listItems[i].id == item.id:
+            return i
+        # Check also retweets.
+        if hasattr(item, "retweeted_status") and item.retweeted_status.id == listItems[i].id:
+            return i
     return None
 
 def find_list(name, lists):

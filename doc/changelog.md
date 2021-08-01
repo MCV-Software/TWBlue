@@ -2,9 +2,10 @@
 
 ## changes in this version
 
-* Added user aliases to TWBlue. This feature allows you to rename user's display names on Twitter, so the next time you'll read an user it will be announced as you configured. For adding an alias to an user, select the "add alias" option in the user menu, located in the menu bar. This feature works only if you have set display screen names unchecked. ([#389](https://github.com/manuelcortez/TWBlue/pull/389))
+* Added user aliases to TWBlue. This feature allows you to rename user's display names on Twitter, so the next time you'll read an user it will be announced as you configured. For adding an alias to an user, select the "add alias" option in the user menu, located in the menu bar. This feature works only if you have set display screen names unchecked. Users are displayed with their display name in people buffers only. This action is supported in all keymaps, although it is undefined by default. ([#389](https://github.com/manuelcortez/TWBlue/pull/389))
 * There are some changes to the autocomplete users feature:
     * Now users can search for twitter screen names or display names in the database.
+* It is possible to undefine keystrokes in the current keymap in TWBlue. This allows you, for example, to redefine keystrokes completely.
 * Added a limited version of the Twitter's Streaming API: The Streaming API will work only for tweets, and will receive tweets only by people you follow. Protected users are not possible to be streamed. It is possible that during high tweet traffic, the Stream might get disconnected at times, but TWBlue should be capable of detecting this problem and reconnecting the stream again. ([#385](https://github.com/manuelcortez/TWBlue/pull/385))
 * Fixed an issue that made TWBlue to not show a dialog when attempting to show a profile for a suspended user. ([#387](https://github.com/manuelcortez/TWBlue/issues/387))
 * Added support for Twitter audio and videos: Tweets which contains audio or videos will be detected as audio items, and you can playback those with the regular command to play audios. ([#384,](https://github.com/manuelcortez/TWBlue/pull/384))
