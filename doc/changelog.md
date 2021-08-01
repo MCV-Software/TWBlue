@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* Added a keymap capable to work under Windows 11. ([#391](https://github.com/manuelcortez/TWBlue/pull/391))
 * Added user aliases to TWBlue. This feature allows you to rename user's display names on Twitter, so the next time you'll read an user it will be announced as you configured. For adding an alias to an user, select the "add alias" option in the user menu, located in the menu bar. This feature works only if you have set display screen names unchecked. Users are displayed with their display name in people buffers only. This action is supported in all keymaps, although it is undefined by default. ([#389](https://github.com/manuelcortez/TWBlue/pull/389))
 * There are some changes to the autocomplete users feature:
     * Now users can search for twitter screen names or display names in the database.
