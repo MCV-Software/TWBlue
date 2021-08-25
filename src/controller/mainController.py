@@ -831,7 +831,7 @@ class Controller(object):
             return
         elif buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
             tweet, tweetsList = buffer.get_full_tweet()
-            msg = messages.viewTweet(tweet, tweetsList, utc_offset=buffer.session.db["utc_offset"])
+            msg = messages.viewTweet(tweet, tweetsList, utc_offset=buffer.session.db["utc_offset"], item_url=buffer.get_item_url())
         elif buffer.type == "dm":
             non_tweet = buffer.get_formatted_message()
             item = buffer.get_right_tweet()
@@ -839,8 +839,11 @@ class Controller(object):
             date = original_date.shift(seconds=buffer.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
             msg = messages.viewTweet(non_tweet, [], False, date=date)
         else:
+            item_url = ""
+            if hasattr(buffer, "get_item_url"):
+                item_url = buffer.get_item_url()
             non_tweet = buffer.get_formatted_message()
-            msg = messages.viewTweet(non_tweet, [], False)
+            msg = messages.viewTweet(non_tweet, [], False, item_url=item_url)
 
     def open_in_browser(self, *args, **kwargs):
         buffer = self.get_current_buffer()

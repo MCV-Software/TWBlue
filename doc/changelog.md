@@ -3,6 +3,7 @@
 ## changes in this version
 
 * When reading a tweet, if the tweet contains more than 2 consecutive mentions, TWBlue will announce how many more users the tweet includes, as opposed to read every user in the conversation. You still can display the tweet to read all users.
+* In the tweet displayer, It is possible to copy a link to the current tweet or person by pressing a button called "copy link to clipboard".
 * Added a keymap capable to work under Windows 11. ([#391](https://github.com/manuelcortez/TWBlue/pull/391))
 * Added user aliases to TWBlue. This feature allows you to rename user's display names on Twitter, so the next time you'll read an user it will be announced as you configured. For adding an alias to an user, select the "add alias" option in the user menu, located in the menu bar. This feature works only if you have set display screen names unchecked. Users are displayed with their display name in people buffers only. This action is supported in all keymaps, although it is undefined by default. ([#389](https://github.com/manuelcortez/TWBlue/pull/389))
 * There are some changes to the autocomplete users feature:
