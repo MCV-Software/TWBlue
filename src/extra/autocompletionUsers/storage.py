@@ -21,7 +21,7 @@ class storage(object):
         return self.cursor.fetchall()
 
     def get_users(self, term):
-        self.cursor.execute("""SELECT * FROM users WHERE user LIKE ?""", ('{}%'.format(term),))
+        self.cursor.execute("""SELECT * FROM users WHERE UPPER(user) LIKE :term OR UPPER(name) LIKE :term""", {"term": "%{}%".format(term.upper())})
         return self.cursor.fetchall()
 
     def set_user(self, screen_name, user_name, from_a_buffer):
