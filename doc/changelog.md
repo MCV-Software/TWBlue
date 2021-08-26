@@ -9,6 +9,7 @@
 * There are some changes to the autocomplete users feature:
     * Now users can search for twitter screen names or display names in the database.
 * It is possible to undefine keystrokes in the current keymap in TWBlue. This allows you, for example, to redefine keystrokes completely.
+* We have changed our Geocoding service to the Nominatim API from OpenStreetMap. Addresses present in tweets are going to be determined by this service, as the Google Maps API now requires an API key. ([#390](https://github.com/manuelcortez/TWBlue/issues/390))
 * Added a limited version of the Twitter's Streaming API: The Streaming API will work only for tweets, and will receive tweets only by people you follow. Protected users are not possible to be streamed. It is possible that during high tweet traffic, the Stream might get disconnected at times, but TWBlue should be capable of detecting this problem and reconnecting the stream again. ([#385](https://github.com/manuelcortez/TWBlue/pull/385))
 * Fixed an issue that made TWBlue to not show a dialog when attempting to show a profile for a suspended user. ([#387](https://github.com/manuelcortez/TWBlue/issues/387))
 * Added support for Twitter audio and videos: Tweets which contains audio or videos will be detected as audio items, and you can playback those with the regular command to play audios. ([#384,](https://github.com/manuelcortez/TWBlue/pull/384))

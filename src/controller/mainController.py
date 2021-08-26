@@ -35,17 +35,16 @@ from mysc.repeating_timer import RepeatingTimer
 from mysc import restart
 import config
 import widgetUtils
-import pygeocoder
-from pygeolib import GeocoderError
 import logging
 import webbrowser
+from geopy.geocoders import Nominatim
 from mysc import localization
 import os
 import languageHandler
 
 log = logging.getLogger("mainController")
 
-geocoder = pygeocoder.Geocoder()
+geocoder = Nominatim(user_agent="TWBlue")
 
 class Controller(object):
 
@@ -1001,19 +1000,17 @@ class Controller(object):
             if tweet.coordinates != None:
                 x = tweet.coordinates["coordinates"][0]
                 y = tweet.coordinates["coordinates"][1]
-                address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
-                if event == None: output.speak(address[0].__str__())
-                else: self.view.show_address(address[0].__str__())
+                address = geocoder.reverse("{}, {}".format(y, x), language = languageHandler.curLang)
+                if event == None: output.speak(address.address)
+                else: self.view.show_address(address.address)
             else:
                 output.speak(_(u"There are no coordinates in this tweet"))
-        except GeocoderError:
-            output.speak(_(u"There are no results for the coordinates in this tweet"))
         except ValueError:
             output.speak(_(u"Error decoding coordinates. Try again later."))
-        except KeyError:
-            pass
+#        except KeyError:
+#            pass
         except AttributeError:
-            pass
+            output.speak(_("Unable to find address in OpenStreetMap."))
 
     def view_reverse_geocode(self, event=None):
         try:
