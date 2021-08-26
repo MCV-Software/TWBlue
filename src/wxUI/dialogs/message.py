@@ -467,5 +467,5 @@ class viewNonTweet(widgetUtils.BaseDialog):
         self.text.SetFocus()
 
     def enable_button(self, buttonName):
-        if getattr(self, buttonName):
+        if hasattr(self, buttonName):
             return getattr(self, buttonName).Enable()

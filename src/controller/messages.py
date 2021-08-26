@@ -102,7 +102,7 @@ class basicTweet(object):
         else:
             self.message.disable_button("shortenButton")
             self.message.disable_button("unshortenButton")
-        if self.message.get("long_tweet") == False:
+        if self.message.get("long_tweet") == False and hasattr(self, "max"):
             text = self.message.get_text()
             results = parse_tweet(text)
             self.message.set_title(_(u"%s - %s of %d characters") % (self.title, results.weightedLength, self.max))
