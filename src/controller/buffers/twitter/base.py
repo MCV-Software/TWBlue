@@ -644,8 +644,12 @@ class BaseBuffer(base.Buffer):
         original_tweet.text = utils.find_urls_in_text(original_tweet.text, original_tweet.entities)
         return compose.compose_quoted_tweet(quoted_tweet, original_tweet, self.session.db, self.session.settings["general"]["relative_times"])
 
-    def open_in_browser(self, *args, **kwargs):
+    def get_item_url(self):
         tweet = self.get_tweet()
-        output.speak(_(u"Opening item in web browser..."))
         url = "https://twitter.com/{screen_name}/status/{tweet_id}".format(screen_name=self.session.get_user(tweet.user).screen_name, tweet_id=tweet.id)
+        return url
+
+    def open_in_browser(self, *args, **kwargs):
+        url = self.get_item_url()
+        output.speak(_(u"Opening item in web browser..."))
         webbrowser.open(url)

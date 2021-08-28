@@ -35,17 +35,16 @@ from mysc.repeating_timer import RepeatingTimer
 from mysc import restart
 import config
 import widgetUtils
-import pygeocoder
-from pygeolib import GeocoderError
 import logging
 import webbrowser
+from geopy.geocoders import Nominatim
 from mysc import localization
 import os
 import languageHandler
 
 log = logging.getLogger("mainController")
 
-geocoder = pygeocoder.Geocoder()
+geocoder = Nominatim(user_agent="TWBlue")
 
 class Controller(object):
 
@@ -831,7 +830,7 @@ class Controller(object):
             return
         elif buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
             tweet, tweetsList = buffer.get_full_tweet()
-            msg = messages.viewTweet(tweet, tweetsList, utc_offset=buffer.session.db["utc_offset"])
+            msg = messages.viewTweet(tweet, tweetsList, utc_offset=buffer.session.db["utc_offset"], item_url=buffer.get_item_url())
         elif buffer.type == "dm":
             non_tweet = buffer.get_formatted_message()
             item = buffer.get_right_tweet()
@@ -839,8 +838,11 @@ class Controller(object):
             date = original_date.shift(seconds=buffer.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
             msg = messages.viewTweet(non_tweet, [], False, date=date)
         else:
+            item_url = ""
+            if hasattr(buffer, "get_item_url"):
+                item_url = buffer.get_item_url()
             non_tweet = buffer.get_formatted_message()
-            msg = messages.viewTweet(non_tweet, [], False)
+            msg = messages.viewTweet(non_tweet, [], False, item_url=item_url)
 
     def open_in_browser(self, *args, **kwargs):
         buffer = self.get_current_buffer()
@@ -998,19 +1000,17 @@ class Controller(object):
             if tweet.coordinates != None:
                 x = tweet.coordinates["coordinates"][0]
                 y = tweet.coordinates["coordinates"][1]
-                address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
-                if event == None: output.speak(address[0].__str__())
-                else: self.view.show_address(address[0].__str__())
+                address = geocoder.reverse("{}, {}".format(y, x), language = languageHandler.curLang)
+                if event == None: output.speak(address.address)
+                else: self.view.show_address(address.address)
             else:
                 output.speak(_(u"There are no coordinates in this tweet"))
-        except GeocoderError:
-            output.speak(_(u"There are no results for the coordinates in this tweet"))
         except ValueError:
             output.speak(_(u"Error decoding coordinates. Try again later."))
-        except KeyError:
-            pass
+#        except KeyError:
+#            pass
         except AttributeError:
-            pass
+            output.speak(_("Unable to find address in OpenStreetMap."))
 
     def view_reverse_geocode(self, event=None):
         try:

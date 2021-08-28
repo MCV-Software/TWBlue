@@ -102,7 +102,7 @@ class basicTweet(object):
         else:
             self.message.disable_button("shortenButton")
             self.message.disable_button("unshortenButton")
-        if self.message.get("long_tweet") == False:
+        if self.message.get("long_tweet") == False and hasattr(self, "max"):
             text = self.message.get_text()
             results = parse_tweet(text)
             self.message.set_title(_(u"%s - %s of %d characters") % (self.title, results.weightedLength, self.max))
@@ -205,7 +205,7 @@ class dm(basicTweet):
         c.show_menu("dm")
 
 class viewTweet(basicTweet):
-    def __init__(self, tweet, tweetList, is_tweet=True, utc_offset=0, date=""):
+    def __init__(self, tweet, tweetList, is_tweet=True, utc_offset=0, date="", item_url=""):
         """ This represents a tweet displayer. However it could be used for showing something wich is not a tweet, like a direct message or an event.
          param tweet: A dictionary that represents a full tweet or a string for non-tweets.
          param tweetList: If is_tweet is set to True, this could be a list of quoted tweets.
@@ -273,6 +273,10 @@ class viewTweet(basicTweet):
             text = tweet
             self.message = message.viewNonTweet(text, date)
         widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
+        if item_url != "":
+            self.message.enable_button("share")
+            widgetUtils.connect_event(self.message.share, widgetUtils.BUTTON_PRESSED, self.share)
+            self.item_url = item_url
         widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
         if self.contain_urls() == True:
             self.message.enable_button("unshortenButton")
@@ -290,3 +294,8 @@ class viewTweet(basicTweet):
             if "https://twitter.com/" in i:
                 text = text.replace(i, "\n")
         return text
+
+    def share(self, *args, **kwargs):
+        if hasattr(self, "item_url"):
+            output.copy(self.item_url)
+            output.speak(_("Link copied to clipboard."))

@@ -45,9 +45,9 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=No
     else:
         value = "text"
     if hasattr(tweet, "retweeted_status") and value != "message":
-        text = StripChars(getattr(tweet.retweeted_status, value))
+        text = utils.clean_mentions(StripChars(getattr(tweet.retweeted_status, value)))
     else:
-        text = StripChars(getattr(tweet, value))
+        text = utils.clean_mentions(StripChars(getattr(tweet, value)))
     if show_screen_names:
         user = session.get_user(tweet.user).screen_name
     else:
@@ -111,7 +111,7 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, 
             value = "full_text"
         else:
             value = "text"
-        text = StripChars(getattr(quoted_tweet, value))
+        text = utils.clean_mentions(StripChars(getattr(quoted_tweet, value)))
     if show_screen_names:
         quoting_user = session.get_user(quoted_tweet.user).screen_name
     else:
@@ -124,9 +124,9 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, 
     if hasattr(original_tweet, "message"):
         original_text = original_tweet.message
     elif hasattr(original_tweet, "full_text"):
-        original_text = StripChars(original_tweet.full_text)
+        original_text = utils.clean_mentions(StripChars(original_tweet.full_text))
     else:
-        original_text = StripChars(original_tweet.text)
+        original_text = utils.clean_mentions(StripChars(original_tweet.text))
     quoted_tweet.message = _(u"{0}. Quoted  tweet from @{1}: {2}").format( text, original_user, original_text)
     quoted_tweet = tweets.clear_url(quoted_tweet)
     if hasattr(original_tweet, "entities") and original_tweet.entities.get("urls"):

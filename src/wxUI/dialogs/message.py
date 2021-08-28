@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from builtins import str
 import wx
 import widgetUtils
 
@@ -356,6 +354,8 @@ class viewTweet(widgetUtils.BaseDialog):
         infoBox.Add(sourceBox, 0, wx.ALL, 5)
         mainBox.Add(infoBox, 0, wx.ALL, 5)
         mainBox.Add(dateBox, 0, wx.ALL, 5)
+        self.share = wx.Button(panel, wx.ID_ANY, _("Copy link to clipboard"))
+        self.share.Enable(False)
         self.spellcheck = wx.Button(panel, -1, _("Check &spelling..."), size=wx.DefaultSize)
         self.unshortenButton = wx.Button(panel, -1, _(u"&Expand URL"), size=wx.DefaultSize)
         self.unshortenButton.Disable()
@@ -363,6 +363,7 @@ class viewTweet(widgetUtils.BaseDialog):
         cancelButton = wx.Button(panel, wx.ID_CANCEL, _(u"C&lose"), size=wx.DefaultSize)
         cancelButton.SetDefault()
         buttonsBox = wx.BoxSizer(wx.HORIZONTAL)
+        buttonsBox.Add(self.share, 0, wx.ALL, 5)
         buttonsBox.Add(self.spellcheck, 0, wx.ALL, 5)
         buttonsBox.Add(self.unshortenButton, 0, wx.ALL, 5)
         buttonsBox.Add(self.translateButton, 0, wx.ALL, 5)
@@ -429,6 +430,8 @@ class viewNonTweet(widgetUtils.BaseDialog):
             dateBox.Add(dateLabel, 0, wx.ALL, 5)
             dateBox.Add(date, 0, wx.ALL, 5)
             mainBox.Add(dateBox, 0, wx.ALL, 5)
+        self.share = wx.Button(panel, wx.ID_ANY, _("Copy link to clipboard"))
+        self.share.Enable(False)
         self.spellcheck = wx.Button(panel, -1, _("Check &spelling..."), size=wx.DefaultSize)
         self.unshortenButton = wx.Button(panel, -1, _(u"&Expand URL"), size=wx.DefaultSize)
         self.unshortenButton.Disable()
@@ -436,6 +439,7 @@ class viewNonTweet(widgetUtils.BaseDialog):
         cancelButton = wx.Button(panel, wx.ID_CANCEL, _(u"C&lose"), size=wx.DefaultSize)
         cancelButton.SetDefault()
         buttonsBox = wx.BoxSizer(wx.HORIZONTAL)
+        buttonsBox.Add(self.share, 0, wx.ALL, 5)
         buttonsBox.Add(self.spellcheck, 0, wx.ALL, 5)
         buttonsBox.Add(self.unshortenButton, 0, wx.ALL, 5)
         buttonsBox.Add(self.translateButton, 0, wx.ALL, 5)
@@ -463,5 +467,5 @@ class viewNonTweet(widgetUtils.BaseDialog):
         self.text.SetFocus()
 
     def enable_button(self, buttonName):
-        if getattr(self, buttonName):
+        if hasattr(self, buttonName):
             return getattr(self, buttonName).Enable()

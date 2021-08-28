@@ -43,6 +43,8 @@ class baseSession(object):
         self.logged = False
         self.settings = None
         self.db={}
+        # Config specification file.
+        self.config_spec = "conf.defaults"
 
     @property
     def is_logged(self):
@@ -52,7 +54,7 @@ class baseSession(object):
         """ Get settings for a session."""
         file_ = "%s/session.conf" % (self.session_id,)
         log.debug("Creating config file %s" % (file_,))
-        self.settings = config_utils.load_config(os.path.join(paths.config_path(), file_), os.path.join(paths.app_path(), "Conf.defaults"))
+        self.settings = config_utils.load_config(os.path.join(paths.config_path(), file_), os.path.join(paths.app_path(), self.config_spec))
         self.init_sound()
         self.load_persistent_data()
 

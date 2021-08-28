@@ -252,8 +252,7 @@ class PeopleBuffer(base.BaseBuffer):
         elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
             output.speak(_(u"{0} new followers.").format(number_of_items))
 
-    def open_in_browser(self, *args, **kwargs):
+    def get_item_url(self, *args, **kwargs):
         tweet = self.get_tweet()
-        output.speak(_(u"Opening item in web browser..."))
         url = "https://twitter.com/{screen_name}".format(screen_name=tweet.screen_name)
-        webbrowser.open(url)
+        return url
