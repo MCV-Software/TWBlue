@@ -309,7 +309,7 @@ class Controller(object):
             self.view.insert_buffer(buffer.buffer, buffer_title, parent_tab)
             log.debug("Inserting buffer {0} into control {1}".format(buffer, parent_tab))
         if start:
-            call_threaded(buffer.get_items)
+            call_threaded(buffer.start_stream)
 
     def create_buffers(self, session, createAccounts=True):
         """ Generates buffer objects for an user account.
