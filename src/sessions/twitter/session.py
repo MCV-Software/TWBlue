@@ -124,6 +124,7 @@ class Session(base.baseSession):
         # This will be especially useful because if the user reactivates their account later, TWblue will try to retrieve such user again at startup.
         # If we wouldn't implement this approach, TWBlue would save permanently the "deleted user" object.
         self.deleted_users = {}
+        self.type = "twitter"
         pub.subscribe(self.handle_new_status, "newStatus")
         pub.subscribe(self.handle_connected, "streamConnected")
 
