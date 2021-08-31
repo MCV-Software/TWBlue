@@ -301,6 +301,15 @@ class Controller(object):
         if not hasattr(available_buffers, buffer_type):
             raise AttributeError("Specified buffer type does not exist: %s" % (buffer_type,))
         buffer = getattr(available_buffers, buffer_type)(**kwargs)
+        if start:
+            if kwargs.get("function") == "user_timeline":
+                try:
+                    buffer.start_stream(play_sound=False)
+                except ValueError:
+                    commonMessageDialogs.unauthorized()
+                    return
+            else:
+                call_threaded(buffer.start_stream)
         self.buffers.append(buffer)
         if parent_tab == None:
             log.debug("Appending buffer {}...".format(buffer,))
@@ -308,8 +317,6 @@ class Controller(object):
         else:
             self.view.insert_buffer(buffer.buffer, buffer_title, parent_tab)
             log.debug("Inserting buffer {0} into control {1}".format(buffer, parent_tab))
-        if start:
-            call_threaded(buffer.start_stream)
 
     def create_buffers(self, session, createAccounts=True):
         """ Generates buffer objects for an user account.
