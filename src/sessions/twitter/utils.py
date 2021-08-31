@@ -254,10 +254,10 @@ def clean_mentions(text):
     total_users = 0
     for user in mentionned_people:
         if abs(user.start()-end) < 3:
-            new_text = new_text.replace(user.group(0), "")
+            new_text = new_text.replace(user.group(0), "", 1)
             total_users = total_users+1
             end = user.end()
-    if total_users < 1:
+    if total_users-2 < 1:
         return text
     new_text = _("{user_1}, {user_2} and {all_users} more: {text}").format(user_1=mentionned_people[0].group(0), user_2=mentionned_people[1].group(0), all_users=total_users-2, text=new_text)
     return new_text
