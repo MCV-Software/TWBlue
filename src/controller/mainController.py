@@ -420,7 +420,7 @@ class Controller(object):
                     buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
                     buffer.session.settings.write()
                     args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
-                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search", name="%s-searchterm" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=term, tweet_mode="extended"))
+                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search", name="%s-searchterm" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=term, tweet_mode="extended", **args))
                 else:
                     log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
                     return
