@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* After a lot of time, TWBlue now uses a new default Soundpack, called FreakyBlue. This soundpack will be set by default in all new sessions created in the application. Thanks to [Andre Louis](https://twitter.com/FreakyFwoof) for the pack. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))
 * When reading a tweet, if the tweet contains more than 2 consecutive mentions, TWBlue will announce how many more users the tweet includes, as opposed to read every user in the conversation. You still can display the tweet to read all users.
 * In the tweet displayer, It is possible to copy a link to the current tweet or person by pressing a button called "copy link to clipboard".
 * Added a keymap capable to work under Windows 11. ([#391](https://github.com/manuelcortez/TWBlue/pull/391))
