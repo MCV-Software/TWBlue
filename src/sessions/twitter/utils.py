@@ -6,7 +6,7 @@ import logging
 import requests
 import time
 import sound
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException
 log = logging.getLogger("twitter.utils")
 """ Some utilities for the twitter interface."""
 
@@ -159,7 +159,7 @@ def if_user_exists(twitter, user):
     try:
         data = twitter.get_user(screen_name=user)
         return data
-    except TweepError as err:
+    except TweepyException as err:
         if err.api_code == 50:
             return None
         else:

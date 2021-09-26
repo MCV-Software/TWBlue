@@ -6,7 +6,7 @@ import output
 from wxUI.dialogs import update_profile, show_user
 import logging
 log = logging.getLogger("controller.user")
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException
 from sessions.twitter import utils
 
 class profileController(object):
@@ -24,7 +24,7 @@ class profileController(object):
         else:
             try:
                 self.get_data(screen_name=self.user)
-            except TweepError as err:
+            except TweepyException as err:
                 if err.api_code == 50:
                     wx.MessageDialog(None, _(u"That user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
                 if err.api_code == 63:
@@ -44,7 +44,7 @@ class profileController(object):
     def get_data(self, screen_name):
         self.data = self.session.twitter.get_user(screen_name=screen_name)
         if screen_name != self.session.db["user_name"]:
-            self.friendship_status = self.session.twitter.show_friendship(source_screen_name=self.session.db["user_name"], target_screen_name=screen_name)
+            self.friendship_status = self.session.twitter.get_friendship(source_screen_name=self.session.db["user_name"], target_screen_name=screen_name)
 
     def fill_profile_fields(self):
         self.dialog.set_name(self.data.name)
@@ -83,11 +83,11 @@ class profileController(object):
         if self.file != None:
             try:
                 self.session.twitter.update_profile_image(image=self.file)
-            except TweepError as e:
+            except TweepyException as e:
                 output.speak(u"Error %s. %s" % (e.api_code, e.reason))
         try:
             self.session.twitter.update_profile(name=name, description=description, location=location, url=url)
-        except TweepError as e:
+        except TweepyException as e:
             output.speak(u"Error %s. %s" % (e.api_code, e.reason))
 
     def get_user_info(self):

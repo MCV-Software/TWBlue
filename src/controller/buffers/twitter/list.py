@@ -24,7 +24,7 @@ class ListBuffer(base.BaseBuffer):
         super(ListBuffer, self).start_stream(mandatory, play_sound, avoid_autoreading)
 
     def get_user_ids(self):
-        for i in Cursor(self.session.twitter.list_members, list_id=self.list_id, include_entities=False, skip_status=True, count=5000).items():
+        for i in Cursor(self.session.twitter.get_list_members, list_id=self.list_id, include_entities=False, skip_status=True, count=5000).items():
             if i.id not in self.users:
                 self.users.append(i.id)
 

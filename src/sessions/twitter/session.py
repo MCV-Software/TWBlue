@@ -10,7 +10,7 @@ import output
 import application
 from pubsub import pub
 import tweepy
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException
 from tweepy.models import User as UserModel
 from mysc.thread_utils import call_threaded
 from keys import keyring
@@ -199,7 +199,7 @@ class Session(base.baseSession):
             try:
                 val = getattr(self.twitter, call_name)(*args, **kwargs)
                 finished = True
-            except TweepError as e:
+            except TweepyException as e:
                 output.speak(e.reason)
                 val = None
                 if e.error_code != 403 and e.error_code != 404:
@@ -218,7 +218,7 @@ class Session(base.baseSession):
 
     def search(self, name, *args, **kwargs):
         """ Search in twitter, passing args and kwargs as arguments to the Twython function."""
-        tl = self.twitter.search(*args, **kwargs)
+        tl = self.twitter.search_tweets(*args, **kwargs)
         tl.reverse()
         return tl
 
@@ -271,12 +271,12 @@ class Session(base.baseSession):
 # @_require_login
     def get_lists(self):
         """ Gets the lists that the user is subscribed to and stores them in the database. Returns None."""
-        self.db["lists"] = self.twitter.lists_all(reverse=True)
+        self.db["lists"] = self.twitter.get_lists(reverse=True)
 
 # @_require_login
     def get_muted_users(self):
         """ Gets muted users (oh really?)."""
-        self.db["muted_users"] = self.twitter.mutes_ids()
+        self.db["muted_users"] = self.twitter.get_muted_ids()
 
 # @_require_login
     def get_stream(self, name, function, *args, **kwargs):
@@ -417,7 +417,7 @@ class Session(base.baseSession):
             log.debug("Requesting user id {} as it is not present in the users database.".format(id))
             try:
                 user = self.twitter.get_user(id=id)
-            except TweepError as err:
+            except TweepyException as err:
                 user = UserModel(None)
                 user.screen_name = "deleted_user"
                 user.id = id
@@ -483,13 +483,13 @@ class Session(base.baseSession):
             return
         log.debug("TWBlue will get %d new users from Twitter." % (len(users_to_retrieve)))
         try:
-            users = self.twitter.lookup_users(user_ids=users_to_retrieve, tweet_mode="extended")
+            users = self.twitter.lookup_users(user_id=users_to_retrieve, tweet_mode="extended")
             users_db = self.db["users"]
             for user in users:
                 users_db[user.id_str] = user
             log.debug("Added %d new users" % (len(users)))
             self.db["users"] = users_db
-        except TweepError as err:
+        except TweepyException as err:
             if hasattr(err, "api_code") and err.api_code == 17: # Users not found.
                 log.error("The specified users {} were not found in twitter.".format(user_ids))
                 # Creates a deleted user object for every user_id not found here.
@@ -523,9 +523,8 @@ class Session(base.baseSession):
     def start_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
             return
-        self.stream_listener = streaming.StreamListener(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"], muted_users=self.db["muted_users"])
-        self.stream = streaming.Stream(auth = self.auth, listener=self.stream_listener, chunk_size=1025)
-        self.stream_thread = call_threaded(self.stream.filter, follow=self.stream_listener.users, stall_warnings=True)
+        self.stream = streaming.Stream(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"], muted_users=self.db["muted_users"], consumer_key=keyring.get("api_key"), consumer_secret=keyring.get("api_secret"), access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"], chunk_size=1025)
+        self.stream_thread = call_threaded(self.stream.filter, follow=self.stream.users, stall_warnings=True)
 
     def stop_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
@@ -554,7 +553,7 @@ class Session(base.baseSession):
             status._json = {**status._json, **status._json["extended_tweet"]}
         # Sends status to database, where it will be reduced and changed according to our needs.
         buffers_to_send = []
-        if status.user.id_str in self.stream_listener.users:
+        if status.user.id_str in self.stream.users:
             buffers_to_send.append("home_timeline")
         if status.user.id == self.db["user_id"]:
             buffers_to_send.append("sent_tweets")

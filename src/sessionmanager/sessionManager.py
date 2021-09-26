@@ -17,7 +17,7 @@ from sessions.twitter import session
 from . import manager
 import config_utils
 import config
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException
 log = logging.getLogger("sessionmanager.sessionManager")
 
 class sessionManagerController(object):
@@ -83,7 +83,7 @@ class sessionManagerController(object):
             if i not in config.app["sessions"]["ignored_sessions"]:
                 try:
                     s.login()
-                except TweepError:
+                except TweepyException:
                     self.show_auth_error(s.settings["twitter"]["user_name"])
                     continue
             sessions.sessions[i] = s

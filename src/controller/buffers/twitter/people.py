@@ -14,7 +14,7 @@ import output
 import config
 import logging
 from mysc.thread_utils import call_threaded
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException
 from pubsub import pub
 from sessions.twitter import compose
 from . import base
@@ -125,7 +125,7 @@ class PeopleBuffer(base.BaseBuffer):
                 val = results
                 val.reverse()
                 log.debug("Retrieved %d items from cursored search in function %s" % (len(val), self.function))
-            except TweepError as e:
+            except TweepyException as e:
                 log.error("Error %s: %s" % (e.api_code, e.reason))
                 return
             number_of_items = self.session.order_people(self.name, val)
@@ -155,7 +155,7 @@ class PeopleBuffer(base.BaseBuffer):
             results = [i for i in items]
             items = results
             log.debug("Retrieved %d items from cursored search in function %s" % (len(items), self.function))
-        except TweepError as e:
+        except TweepyException as e:
             log.error("Error %s: %s" % (e.api_code, e.reason))
             return
         if items == None:

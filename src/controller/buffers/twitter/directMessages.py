@@ -10,7 +10,7 @@ import logging
 from controller import messages
 from sessions.twitter import compose, utils
 from mysc.thread_utils import call_threaded
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException
 from pubsub import pub
 from . import base
 
@@ -40,7 +40,7 @@ class DirectMessagesBuffer(base.BaseBuffer):
             results = [i for i in items]
             items = results
             log.debug("Retrieved %d items for cursored search in function %s" % (len(items), self.function))
-        except TweepError as e:
+        except TweepyException as e:
             log.error("Error %s: %s" % (e.api_code, e.reason))
             return
         if items == None:
