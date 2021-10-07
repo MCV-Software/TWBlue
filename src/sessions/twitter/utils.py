@@ -6,7 +6,7 @@ import logging
 import requests
 import time
 import sound
-from tweepy.errors import TweepyException
+from tweepy.errors import TweepyException, NotFound, Forbidden
 log = logging.getLogger("twitter.utils")
 """ Some utilities for the twitter interface."""
 
@@ -160,7 +160,7 @@ def if_user_exists(twitter, user):
         data = twitter.get_user(screen_name=user)
         return data
     except TweepyException as err:
-        if err.api_code == 50:
+        if type(err) == NotFound:
             return None
         else:
             return user
@@ -227,12 +227,12 @@ def filter_tweet(tweet, tweet_data, settings, buffer_name):
     return True
 
 def twitter_error(error):
-    if error.api_code == 179:
+    if type(error) == Forbidden:
         msg = _(u"Sorry, you are not authorised to see this status.")
-    elif error.api_code == 144:
+    elif type(error) == NotFound:
         msg = _(u"No status found with that ID")
     else:
-        msg = _(u"Error code {0}").format(error.api_code,)
+        msg = _(u"Error {0}").format(str(error),)
     output.speak(msg)
 
 def expand_urls(text, entities):

@@ -6,7 +6,7 @@ import output
 from wxUI.dialogs import update_profile, show_user
 import logging
 log = logging.getLogger("controller.user")
-from tweepy.errors import TweepyException
+from tweepy.errors import TweepyException, Forbidden, NotFound
 from sessions.twitter import utils
 
 class profileController(object):
@@ -25,11 +25,11 @@ class profileController(object):
             try:
                 self.get_data(screen_name=self.user)
             except TweepyException as err:
-                if err.api_code == 50:
+                if type(err) == NotFound:
                     wx.MessageDialog(None, _(u"That user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
-                if err.api_code == 63:
+                if type(err) == Forbidden:
                     wx.MessageDialog(None, _(u"User has been suspended"), _(u"Error"), wx.ICON_ERROR).ShowModal()
-                log.error("error %d: %s" % (err.api_code, err.reason))
+                log.error("error %s" % (str(err)))
                 return
             self.dialog = show_user.showUserProfile()
             string = self.get_user_info()
@@ -84,11 +84,11 @@ class profileController(object):
             try:
                 self.session.twitter.update_profile_image(image=self.file)
             except TweepyException as e:
-                output.speak(u"Error %s. %s" % (e.api_code, e.reason))
+                output.speak(u"Error %s" % (str(e)))
         try:
             self.session.twitter.update_profile(name=name, description=description, location=location, url=url)
         except TweepyException as e:
-            output.speak(u"Error %s. %s" % (e.api_code, e.reason))
+            output.speak(u"Error %s." % (str(e)))
 
     def get_user_info(self):
         string = u""

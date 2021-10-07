@@ -41,7 +41,7 @@ class DirectMessagesBuffer(base.BaseBuffer):
             items = results
             log.debug("Retrieved %d items for cursored search in function %s" % (len(items), self.function))
         except TweepyException as e:
-            log.error("Error %s: %s" % (e.api_code, e.reason))
+            log.exception("Error %s" % (str(e)))
             return
         if items == None:
             return

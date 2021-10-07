@@ -192,7 +192,7 @@ class BaseBuffer(base.Buffer):
                     user_ids = [item.message_create["sender_id"] for item in val]
                     self.session.save_users(user_ids)
                 except TweepyException as e:
-                    log.error("Error %s: %s" % (e.api_code, e.reason))
+                    log.exception("Error %s" % (str(e)))
                     return
             number_of_items = self.session.order_buffer(self.name, val)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
@@ -230,7 +230,7 @@ class BaseBuffer(base.Buffer):
         try:
             items = getattr(self.session.twitter, self.function)(max_id=last_id, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
         except TweepyException as e:
-            log.error("Error %s: %s" % (e.api_code, e.reason))
+            log.exception("Error %s" % (str(e)))
             return
         if items == None:
             return

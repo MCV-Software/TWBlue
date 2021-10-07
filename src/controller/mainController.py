@@ -29,7 +29,7 @@ from sessions.twitter  import session as session_
 from pubsub import pub
 import sound
 import output
-from tweepy.errors import TweepyException
+from tweepy.errors import TweepyException, Forbidden
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 from mysc import restart
@@ -549,7 +549,8 @@ class Controller(object):
                 buff.session.db["lists"].pop(older_list)
                 buff.session.db["lists"].append(list)
             except TweepyException as e:
-                output.speak("error %s: %s" % (e.api_code, e.reason))
+                log.exception("error %s" % (str(e)))
+                output.speak("error %s" % (str(e)))
 
     def remove_from_list(self, *args, **kwargs):
         buff = self.get_best_buffer()
@@ -577,7 +578,8 @@ class Controller(object):
                 buff.session.db["lists"].pop(older_list)
                 buff.session.db["lists"].append(list)
             except TweepyException as e:
-                output.speak("error %s: %s" % (e.api_code, e.reason))
+                output.speak("error %s" % (str(e)))
+                log.exception("error %s" % (str(e)))
 
     def list_manager(self, *args, **kwargs):
         s = self.get_best_buffer().session
@@ -1342,10 +1344,9 @@ class Controller(object):
                     else:
                         i.start_stream(play_sound=False)
                 except TweepyException as err:
-                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r due to the following reason: %s" % (err.api_code, i.name, i.account, i.args, i.kwargs, err.reason))
+                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
                     # Determine if this error was caused by a block applied to the current user (IE permission errors).
-                    errors_allowed = [130]
-                    if (err.api_code != None and err.api_code not in errors_allowed) or (err.api_code == None and 'Not authorized' in err.reason): # A twitter error, so safely try to remove the buffer.
+                    if type(err) == Forbidden:
                         buff = self.view.search(i.name, i.account)
                         i.remove_buffer(force=True)
                         commonMessageDialogs.blocked_timeline()
@@ -1548,10 +1549,9 @@ class Controller(object):
                 try:
                     i.start_stream(mandatory=True)
                 except TweepyException as err:
-                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r due to the following reason: %s" % (err.api_code, i.name, i.account, i.args, i.kwargs, err.reason))
+                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
                     # Determine if this error was caused by a block applied to the current user (IE permission errors).
-                    errors_allowed = [130]
-                    if (err.api_code != None and err.api_code not in errors_allowed) or (err.api_code == None and 'Not authorized' in err.reason): # A twitter error, so safely try to remove the buffer.
+                    if type(err) == Forbidden:
                         buff = self.view.search(i.name, i.account)
                         i.remove_buffer(force=True)
                         commonMessageDialogs.blocked_timeline()

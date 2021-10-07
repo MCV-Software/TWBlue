@@ -30,43 +30,43 @@ class userActionsController(object):
         try:
             self.session.twitter.create_friendship(screen_name=user )
         except TweepyException  as err:
-            output.speak("Error %s: %s" % (err.api_code, err.reason), True)
+            output.speak("Error %s" % (str(err)), True)
 
     def unfollow(self, user):
         try:
             id = self.session.twitter.destroy_friendship(screen_name=user )
         except TweepyException as err:
-            output.speak("Error %s: %s" % (err.api_code, err.reason), True)
+            output.speak("Error %s" % (str(err)), True)
 
     def mute(self, user):
         try:
             id = self.session.twitter.create_mute(screen_name=user )
         except TweepyException as err:
-            output.speak("Error %s: %s" % (err.api_code, err.reason), True)
+            output.speak("Error %s" % (str(err)), True)
 
     def unmute(self, user):
         try:
             id = self.session.twitter.destroy_mute(screen_name=user )
         except TweepyException as err:
-            output.speak("Error %s: %s" % (err.api_code, err.reason), True)
+            output.speak("Error %s" % (str(err)), True)
 
     def report(self, user):
         try:
             id = self.session.twitter.report_spam(screen_name=user )
         except TweepyException as err:
-            output.speak("Error %s: %s" % (err.api_code, err.reason), True)
+            output.speak("Error %s" % (str(err)), True)
 
     def block(self, user):
         try:
             id = self.session.twitter.create_block(screen_name=user )
         except TweepyException as err:
-            output.speak("Error %s: %s" % (err.api_code, err.reason), True)
+            output.speak("Error %s" % (str(err)), True)
 
     def unblock(self, user):
         try:
             id = self.session.twitter.destroy_block(screen_name=user )
         except TweepyException as err:
-            output.speak("Error %s: %s" % (err.api_code, err.reason), True)
+            output.speak("Error %s" % (str(err)), True)
 
     def ignore_client(self, user):
         tweet = self.buffer.get_right_tweet()

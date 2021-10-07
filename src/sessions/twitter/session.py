@@ -10,7 +10,7 @@ import output
 import application
 from pubsub import pub
 import tweepy
-from tweepy.errors import TweepyException
+from tweepy.errors import TweepyException, Forbidden, NotFound
 from tweepy.models import User as UserModel
 from mysc.thread_utils import call_threaded
 from keys import keyring
@@ -200,13 +200,13 @@ class Session(base.baseSession):
                 val = getattr(self.twitter, call_name)(*args, **kwargs)
                 finished = True
             except TweepyException as e:
-                output.speak(e.reason)
+                output.speak(str(e))
                 val = None
-                if e.error_code != 403 and e.error_code != 404:
+                if type(e) != NotFound and type(e) != Forvidden:
                     tries = tries+1
                     time.sleep(5)
-                elif report_failure and hasattr(e, 'reason'):
-                    output.speak(_("%s failed.  Reason: %s") % (action, e.reason))
+                elif report_failure:
+                    output.speak(_("%s failed.  Reason: %s") % (action, str(e)))
                 finished = True
 #   except:
 #    tries = tries + 1
@@ -422,7 +422,7 @@ class Session(base.baseSession):
                 user.screen_name = "deleted_user"
                 user.id = id
                 user.name = _("Deleted account")
-                if hasattr(err, "api_code") and err.api_code == 50:
+                if type(err) == NotFound:
                     self.deleted_users[id] = user
                     return user
                 else:
@@ -490,7 +490,7 @@ class Session(base.baseSession):
             log.debug("Added %d new users" % (len(users)))
             self.db["users"] = users_db
         except TweepyException as err:
-            if hasattr(err, "api_code") and err.api_code == 17: # Users not found.
+            if type(err) == NotFound: # User not found.
                 log.error("The specified users {} were not found in twitter.".format(user_ids))
                 # Creates a deleted user object for every user_id not found here.
                 # This will make TWBlue to not waste Twitter API calls when attempting to retrieve those users again.

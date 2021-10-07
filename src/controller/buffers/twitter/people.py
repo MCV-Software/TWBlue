@@ -126,7 +126,7 @@ class PeopleBuffer(base.BaseBuffer):
                 val.reverse()
                 log.debug("Retrieved %d items from cursored search in function %s" % (len(val), self.function))
             except TweepyException as e:
-                log.error("Error %s: %s" % (e.api_code, e.reason))
+                log.exception("Error %s" % (str(e)))
                 return
             number_of_items = self.session.order_people(self.name, val)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
@@ -156,7 +156,7 @@ class PeopleBuffer(base.BaseBuffer):
             items = results
             log.debug("Retrieved %d items from cursored search in function %s" % (len(items), self.function))
         except TweepyException as e:
-            log.error("Error %s: %s" % (e.api_code, e.reason))
+            log.exception("Error %s" % (str(e)))
             return
         if items == None:
             return

@@ -46,7 +46,7 @@ class TrendsBuffer(base.Buffer):
             try:
                 data = self.session.twitter.get_place_trends(id=self.trendsFor)
             except TweepyException as err:
-                log.error("Error %s: %s" % (err.api_code, err.reason))
+                log.exception("Error %s" % (str(err)))
             if not hasattr(self, "name_"):
                 self.name_ = data[0]["locations"][0]["name"]
             self.trends = data[0]["trends"]
