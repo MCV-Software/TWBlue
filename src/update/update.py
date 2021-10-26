@@ -41,10 +41,10 @@ def perform_update(endpoint, current_version, app_name='', password=None, update
     downloaded = download_update(update_url, download_path, requests_session=requests_session, progress_callback=progress_callback)
     extracted = extract_update(downloaded, update_path, password=password)
     bootstrap_path = move_bootstrap(extracted)
-    execute_bootstrap(bootstrap_path, extracted)
-    logger.info("Update prepared for installation.")
     if callable(update_complete_callback):
         update_complete_callback()
+    execute_bootstrap(bootstrap_path, extracted)
+    logger.info("Update prepared for installation.")
 
 def create_requests_session(app_name=None, version=None):
     user_agent = ''
