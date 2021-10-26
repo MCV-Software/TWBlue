@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
-"POT-Creation-Date: 2021-08-28 08:34+Paris, Madrid (heure dété)\n"
-"PO-Revision-Date: 2021-08-28 08:37+0200\n"
-"Last-Translator: Corentin BACQUÉ-CAZENAVE <corentin@progaccess33.net>\n"
+"POT-Creation-Date: 2021-10-21 16:55+Paris, Madrid (heure dété)\n"
+"PO-Revision-Date: 2021-10-21 17:01+0200\n"
+"Last-Translator: Oreonan <corentin@progaccess.net>\n"
 "Language-Team: Oreonan <corentin@progaccess.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -25,59 +25,58 @@ msgid "This action is not supported for this buffer"
 msgstr "Cette action n'est pas supportée pour ce tampon"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:309 ../src\controller\settings.py:286
+#: ../src\controller\mainController.py:334 ../src\controller\settings.py:286
 msgid "Home"
 msgstr "Accueil"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:313 ../src\controller\settings.py:287
+#: ../src\controller\mainController.py:336 ../src\controller\settings.py:287
 msgid "Mentions"
 msgstr "Mentions"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:317
+#: ../src\controller\mainController.py:338
 msgid "Direct messages"
 msgstr "Messages privés"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:321 ../src\controller\settings.py:289
+#: ../src\controller\mainController.py:340 ../src\controller\settings.py:289
 msgid "Sent direct messages"
 msgstr "Messages privés envoyés"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:325 ../src\controller\settings.py:290
+#: ../src\controller\mainController.py:342 ../src\controller\settings.py:290
 msgid "Sent tweets"
 msgstr "Tweets envoyés"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:329
-#: ../src\controller\mainController.py:1400 ../src\controller\settings.py:291
+#: ../src\controller\mainController.py:344
+#: ../src\controller\mainController.py:1382 ../src\controller\settings.py:291
 msgid "Likes"
 msgstr "Favoris"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:333
-#: ../src\controller\mainController.py:1405 ../src\controller\settings.py:292
+#: ../src\controller\mainController.py:346
+#: ../src\controller\mainController.py:1387 ../src\controller\settings.py:292
 msgid "Followers"
 msgstr "Abonnés"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:337
-#: ../src\controller\mainController.py:1410 ../src\controller\settings.py:293
-msgid "Friends"
-msgstr "Abonnements"
-
-#: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:341
-#: ../src\controller\mainController.py:1415 ../src\controller\settings.py:294
+#: ../src\controller\mainController.py:350
+#: ../src\controller\mainController.py:1397 ../src\controller\settings.py:294
 msgid "Blocked users"
 msgstr "Utilisateurs bloqués"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:345
-#: ../src\controller\mainController.py:1420 ../src\controller\settings.py:295
+#: ../src\controller\mainController.py:352
+#: ../src\controller\mainController.py:1402 ../src\controller\settings.py:295
 msgid "Muted users"
 msgstr "Utilisateurs masqués"
+
+#: ../src\controller\buffers\twitter\base.py:70
+#: ../src\controller\mainController.py:1392 ../src\controller\settings.py:293
+msgid "Friends"
+msgstr "Abonnements"
 
 #: ../src\controller\buffers\twitter\base.py:76
 msgid "{username}'s timeline"
@@ -209,79 +208,84 @@ msgstr "{0} nouvel abonné"
 msgid "This action is not supported in the buffer, yet."
 msgstr "Cette action n'est pas supportée pour le tampon actuel"
 
-#: ../src\controller\mainController.py:273
+#: ../src\controller\mainController.py:274
 msgid "Ready"
 msgstr "Prêt"
 
 #: ../src\controller\mainController.py:348
+msgid "Following"
+msgstr "Suivi"
+
+#: ../src\controller\mainController.py:353
 msgid "Timelines"
 msgstr "Chronologies"
 
-#: ../src\controller\mainController.py:352
-#: ../src\controller\mainController.py:892
-#: ../src\controller\mainController.py:1596
+#: ../src\controller\mainController.py:356
+#: ../src\controller\mainController.py:875
+#: ../src\controller\mainController.py:1577
 msgid "Timeline for {}"
 msgstr "Chronologie de {}"
 
-#: ../src\controller\mainController.py:355
+#: ../src\controller\mainController.py:357
 msgid "Likes timelines"
 msgstr "Chronologies des favoris"
 
-#: ../src\controller\mainController.py:359
-#: ../src\controller\mainController.py:911
-#: ../src\controller\mainController.py:1598
+#: ../src\controller\mainController.py:360
+#: ../src\controller\mainController.py:894
+#: ../src\controller\mainController.py:1579
 msgid "Likes for {}"
 msgstr "Favoris de {}"
 
-#: ../src\controller\mainController.py:362
-msgid "Followers' Timelines"
+#: ../src\controller\mainController.py:361
+msgid "Followers timelines"
 msgstr "Chronologies des abonnés"
 
-#: ../src\controller\mainController.py:366
-#: ../src\controller\mainController.py:930
-#: ../src\controller\mainController.py:1600
+#: ../src\controller\mainController.py:364
+#: ../src\controller\mainController.py:913
+#: ../src\controller\mainController.py:1581
 msgid "Followers for {}"
 msgstr "Abonnés de {}"
 
-#: ../src\controller\mainController.py:369
-msgid "Friends' Timelines"
+#: ../src\controller\mainController.py:365
+msgid "Following timelines"
 msgstr "Chronologies des abonnements"
 
-#: ../src\controller\mainController.py:373
-#: ../src\controller\mainController.py:949
-#: ../src\controller\mainController.py:1602
+#: ../src\controller\mainController.py:368
+#: ../src\controller\mainController.py:932
+#: ../src\controller\mainController.py:1583
 msgid "Friends for {}"
 msgstr "Abonnements de {}"
 
-#: ../src\controller\mainController.py:376 ../src\wxUI\dialogs\lists.py:13
+#: ../src\controller\mainController.py:369 ../src\wxUI\dialogs\lists.py:13
 msgid "Lists"
 msgstr "Listes"
 
-#: ../src\controller\mainController.py:381
-#: ../src\controller\mainController.py:1432
+#: ../src\controller\mainController.py:372
+#: ../src\controller\mainController.py:1414
 msgid "List for {}"
 msgstr "Liste {}"
 
-#: ../src\controller\mainController.py:384
+#: ../src\controller\mainController.py:373
 msgid "Searches"
 msgstr "Recherches"
 
-#: ../src\controller\mainController.py:388
-#: ../src\controller\mainController.py:447
+#: ../src\controller\mainController.py:376
+#: ../src\controller\mainController.py:423
+#: ../src\controller\mainController.py:428
 msgid "Search for {}"
 msgstr "Recherche de {}"
 
-#: ../src\controller\mainController.py:394
-#: ../src\controller\mainController.py:991
+#: ../src\controller\mainController.py:378
+#: ../src\controller\mainController.py:974
 msgid "Trending topics for %s"
 msgstr "Tendances pour %s"
 
-#: ../src\controller\mainController.py:464
-#: ../src\controller\mainController.py:480
-#: ../src\controller\mainController.py:1089
-#: ../src\controller\mainController.py:1108
-#: ../src\controller\mainController.py:1127
-#: ../src\controller\mainController.py:1146
+#: ../src\controller\mainController.py:445
+#: ../src\controller\mainController.py:461
+#: ../src\controller\mainController.py:1072
+#: ../src\controller\mainController.py:1091
+#: ../src\controller\mainController.py:1110
+#: ../src\controller\mainController.py:1129
 msgid ""
 "No session is currently in focus. Focus a session with the next or previous "
 "session shortcut."
@@ -289,152 +293,152 @@ msgstr ""
 "Aucune session n'a actuellement le focus. Sélectionnez-en une avec le "
 "raccourci pour la session précédente ou suivante."
 
-#: ../src\controller\mainController.py:468
+#: ../src\controller\mainController.py:449
 msgid "Empty buffer."
 msgstr "Tampon vide."
 
-#: ../src\controller\mainController.py:475
+#: ../src\controller\mainController.py:456
 msgid "{0} not found."
 msgstr "{0} introuvable."
 
-#: ../src\controller\mainController.py:485
+#: ../src\controller\mainController.py:466
 msgid "Filters cannot be applied on this buffer"
 msgstr "Les filtres ne peuvent pas s'appliquer à ce tampon"
 
-#: ../src\controller\mainController.py:538
-#: ../src\controller\mainController.py:555
-#: ../src\controller\mainController.py:583
+#: ../src\controller\mainController.py:519
+#: ../src\controller\mainController.py:536
+#: ../src\controller\mainController.py:565
 msgid "Select the user"
 msgstr "Sélectionnez l'utilisateur"
 
-#: ../src\controller\mainController.py:767
+#: ../src\controller\mainController.py:750
 msgid "Add an user alias"
 msgstr "Ajoute un alis pour l'utilisateur"
 
-#: ../src\controller\mainController.py:775
+#: ../src\controller\mainController.py:758
 msgid "Alias has been set correctly for {}."
 msgstr "L'alias pour {} a correctement été définie"
 
-#: ../src\controller\mainController.py:838 ../src\controller\messages.py:245
+#: ../src\controller\mainController.py:821 ../src\controller\messages.py:245
 msgid "MMM D, YYYY. H:m"
 msgstr "D MMM YYYY à H:m"
 
-#: ../src\controller\mainController.py:966
+#: ../src\controller\mainController.py:949
 msgid "Conversation with {0}"
 msgstr "Conversation avec {0}"
 
+#: ../src\controller\mainController.py:990
 #: ../src\controller\mainController.py:1007
-#: ../src\controller\mainController.py:1024
 msgid "There are no coordinates in this tweet"
 msgstr "Il n'y a aucune coordonnée dans ce tweet"
 
-#: ../src\controller\mainController.py:1009
-#: ../src\controller\mainController.py:1028
+#: ../src\controller\mainController.py:992
+#: ../src\controller\mainController.py:1011
 msgid "Error decoding coordinates. Try again later."
 msgstr "Erreur pendant le décodage des coordonnées. Réessayez plus tard."
 
-#: ../src\controller\mainController.py:1013
+#: ../src\controller\mainController.py:996
 msgid "Unable to find address in OpenStreetMap."
 msgstr "Impossible de trouver l'adresse dans OpenStreetMap"
 
-#: ../src\controller\mainController.py:1026
+#: ../src\controller\mainController.py:1009
 msgid "There are no results for the coordinates in this tweet"
 msgstr "Il n'y a aucun résultat pour les coordonnées dans ce tweet"
 
-#: ../src\controller\mainController.py:1137
-#: ../src\controller\mainController.py:1156
+#: ../src\controller\mainController.py:1120
+#: ../src\controller\mainController.py:1139
 msgid "%s, %s of %s"
 msgstr "%s, %s de %s"
 
-#: ../src\controller\mainController.py:1139
-#: ../src\controller\mainController.py:1158
-#: ../src\controller\mainController.py:1183
-#: ../src\controller\mainController.py:1208
+#: ../src\controller\mainController.py:1122
+#: ../src\controller\mainController.py:1141
+#: ../src\controller\mainController.py:1166
+#: ../src\controller\mainController.py:1191
 msgid "%s. Empty"
 msgstr "%s. Vide"
 
-#: ../src\controller\mainController.py:1171
-#: ../src\controller\mainController.py:1175
-#: ../src\controller\mainController.py:1196
+#: ../src\controller\mainController.py:1154
+#: ../src\controller\mainController.py:1158
+#: ../src\controller\mainController.py:1179
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: Ce compte n'est pas connecté à twitter."
 
-#: ../src\controller\mainController.py:1181
-#: ../src\controller\mainController.py:1206
+#: ../src\controller\mainController.py:1164
+#: ../src\controller\mainController.py:1189
 msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s de %s"
 
-#: ../src\controller\mainController.py:1200
+#: ../src\controller\mainController.py:1183
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}:  Ce compte n'est pas connecté à twitter."
 
-#: ../src\controller\mainController.py:1426
+#: ../src\controller\mainController.py:1408
 msgid "This list is already opened"
 msgstr "Cette liste est déjà ouverte"
 
-#: ../src\controller\mainController.py:1456
-#: ../src\controller\mainController.py:1472
+#: ../src\controller\mainController.py:1438
+#: ../src\controller\mainController.py:1454
 msgid ""
 "An error happened while trying to connect to the server. Please try later."
 msgstr ""
 "Une erreur s'est produite en essayant de se connecter au serveur. Veuillez "
 "réessayer plus tard."
 
-#: ../src\controller\mainController.py:1508
+#: ../src\controller\mainController.py:1490
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "La lecture automatique des nouveaux tweets est activée pour ce tampon"
 
-#: ../src\controller\mainController.py:1511
+#: ../src\controller\mainController.py:1493
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr ""
 "La lecture automatique des nouveaux tweets est désactivée pour ce tampon"
 
-#: ../src\controller\mainController.py:1518
+#: ../src\controller\mainController.py:1500
 msgid "Session mute on"
 msgstr "Session muet"
 
-#: ../src\controller\mainController.py:1521
+#: ../src\controller\mainController.py:1503
 msgid "Session mute off"
 msgstr "Session non muet"
 
-#: ../src\controller\mainController.py:1529
+#: ../src\controller\mainController.py:1511
 msgid "Buffer mute on"
 msgstr "Tampon muet"
 
-#: ../src\controller\mainController.py:1532
+#: ../src\controller\mainController.py:1514
 msgid "Buffer mute off"
 msgstr "Tampon non muet"
 
-#: ../src\controller\mainController.py:1555
+#: ../src\controller\mainController.py:1537
 msgid "Copied"
 msgstr "Copié"
 
-#: ../src\controller\mainController.py:1586
+#: ../src\controller\mainController.py:1567
 msgid "Unable to update this buffer."
 msgstr "Impossible de mettre à jour ce tampon."
 
-#: ../src\controller\mainController.py:1589
+#: ../src\controller\mainController.py:1570
 msgid "Updating buffer..."
 msgstr "Actualisation..."
 
-#: ../src\controller\mainController.py:1592
+#: ../src\controller\mainController.py:1573
 msgid "{0} items retrieved"
 msgstr "{0} éléments récupérés"
 
-#: ../src\controller\mainController.py:1609
-#: ../src\controller\mainController.py:1629
+#: ../src\controller\mainController.py:1590
+#: ../src\controller\mainController.py:1610
 msgid "Invalid buffer"
 msgstr "Tampon invalide"
 
-#: ../src\controller\mainController.py:1620
+#: ../src\controller\mainController.py:1601
 msgid "Picture {0}"
 msgstr "Photo {0}"
 
-#: ../src\controller\mainController.py:1621
+#: ../src\controller\mainController.py:1602
 msgid "Select the picture"
 msgstr "Sélectionner la photo"
 
-#: ../src\controller\mainController.py:1640
+#: ../src\controller\mainController.py:1621
 msgid "Unable to extract text"
 msgstr "Impossible d'extraire le texte"
 
@@ -657,7 +661,7 @@ msgstr "Arrêté"
 msgid "&Record"
 msgstr "&Enregistrer"
 
-#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:146
+#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:148
 msgid "Playing..."
 msgstr "Lecture..."
 
@@ -1786,7 +1790,7 @@ msgid "Execute action"
 msgstr "Exécuter une action"
 
 #: ../src\keystrokeEditor\wx_ui.py:22 ../src\wxUI\dialogs\configuration.py:396
-#: ../src\wxUI\dialogs\utils.py:39 ../src\wxUI\dialogs\utils.py:71
+#: ../src\wxUI\dialogs\userAliasDialogs.py:24 ../src\wxUI\dialogs\utils.py:39
 msgid "Close"
 msgstr "Fermer"
 
@@ -1823,8 +1827,8 @@ msgid "Key"
 msgstr "Touche"
 
 #: ../src\keystrokeEditor\wx_ui.py:71 ../src\wxUI\dialogs\filterDialogs.py:82
-#: ../src\wxUI\dialogs\find.py:21 ../src\wxUI\dialogs\utils.py:36
-#: ../src\wxUI\dialogs\utils.py:68
+#: ../src\wxUI\dialogs\find.py:21 ../src\wxUI\dialogs\userAliasDialogs.py:22
+#: ../src\wxUI\dialogs\utils.py:36
 msgid "OK"
 msgstr "OK"
 
@@ -1940,7 +1944,7 @@ msgstr ""
 "ou après la réactivation d'un compte. Veuillez supprimer manuellement ce "
 "compte depuis votre session Twitter pour ne plus voir ce message."
 
-#: ../src\sessions\base.py:111
+#: ../src\sessions\base.py:113
 msgid ""
 "An exception occurred while saving the {app} database. It will be deleted "
 "and rebuilt automatically. If this error persists, send the error log to the "
@@ -1950,7 +1954,7 @@ msgstr ""
 "{app}, elle va être détruite et recréée automatiquement. Si ce problème "
 "perciste, veuillez envoyer le journal d'erreur aux développeurs de {app}."
 
-#: ../src\sessions\base.py:151
+#: ../src\sessions\base.py:153
 msgid ""
 "An exception occurred while loading the {app} database. It will be deleted "
 "and rebuilt automatically. If this error persists, send the error log to the "
@@ -1999,16 +2003,16 @@ msgstr "privé"
 msgid "public"
 msgstr "public"
 
-#: ../src\sessions\twitter\session.py:208
+#: ../src\sessions\twitter\session.py:209
 msgid "%s failed.  Reason: %s"
 msgstr "%s erreur.  Raison: %s"
 
-#: ../src\sessions\twitter\session.py:214
+#: ../src\sessions\twitter\session.py:215
 msgid "%s succeeded."
 msgstr "%s réussi."
 
-#: ../src\sessions\twitter\session.py:423
-#: ../src\sessions\twitter\session.py:501
+#: ../src\sessions\twitter\session.py:424
+#: ../src\sessions\twitter\session.py:502
 msgid "Deleted account"
 msgstr "Compte supprimé"
 
@@ -2021,8 +2025,8 @@ msgid "No status found with that ID"
 msgstr "Aucun Tweet trouvée avec cet ID"
 
 #: ../src\sessions\twitter\utils.py:235
-msgid "Error code {0}"
-msgstr "Code d'erreur {0}"
+msgid "Error {0}"
+msgstr "Erreur {0}"
 
 #: ../src\sessions\twitter\utils.py:262
 msgid "{user_1}, {user_2} and {all_users} more: {text}"
@@ -2036,7 +2040,7 @@ msgstr "Compte en cours d'autorisation..."
 msgid "Enter your PIN code here"
 msgstr "Entrer votre code PIN ici"
 
-#: ../src\sound.py:159
+#: ../src\sound.py:161
 msgid "Stopped."
 msgstr "Arrêté."
 
@@ -2100,8 +2104,8 @@ msgstr "Date"
 
 #: ../src\wxUI\buffers\base.py:12 ../src\wxUI\buffers\people.py:12
 #: ../src\wxUI\buffers\user_searches.py:11
+#: ../src\wxUI\dialogs\userAliasDialogs.py:13
 #: ../src\wxUI\dialogs\userSelection.py:11 ../src\wxUI\dialogs\utils.py:32
-#: ../src\wxUI\dialogs\utils.py:59
 msgid "User"
 msgstr "Utilisateur"
 
@@ -3069,8 +3073,8 @@ msgid "&User"
 msgstr "&Utilisateur"
 
 #: ../src\wxUI\dialogs\userActions.py:14
+#: ../src\wxUI\dialogs\userAliasDialogs.py:12
 #: ../src\wxUI\dialogs\userSelection.py:14 ../src\wxUI\dialogs\utils.py:31
-#: ../src\wxUI\dialogs\utils.py:58
 msgid "&Autocomplete users"
 msgstr "&Saisie automatique utilisateurs"
 
@@ -3106,6 +3110,10 @@ msgstr "&Signaler comme spam"
 msgid "&Ignore tweets from this client"
 msgstr "&Ignorer les tweets de ce client"
 
+#: ../src\wxUI\dialogs\userAliasDialogs.py:17
+msgid "Alias"
+msgstr "Alias"
+
 #: ../src\wxUI\dialogs\userSelection.py:10
 msgid "Timeline for %s"
 msgstr "Chronologie pour %s"
@@ -3129,10 +3137,6 @@ msgstr "&Abonnés"
 #: ../src\wxUI\dialogs\userSelection.py:23
 msgid "F&riends"
 msgstr "A&bonnements"
-
-#: ../src\wxUI\dialogs\utils.py:63
-msgid "Alias"
-msgstr "Alias"
 
 #: ../src\wxUI\menus.py:8 ../src\wxUI\view.py:32
 msgid "&Retweet"
@@ -3403,6 +3407,9 @@ msgstr "Mise à jour"
 #: ../src\wxUI\view.py:206
 msgid "Your {0} version is up to date"
 msgstr "Votre version de {0} est à jour"
+
+#~ msgid "Friends' Timelines"
+#~ msgstr "Chronologies des abonnements"
 
 #~ msgid "Events"
 #~ msgstr "Événements"
