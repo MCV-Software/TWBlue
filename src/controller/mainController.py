@@ -2,6 +2,7 @@
 import platform
 system = platform.system()
 import application
+import wx
 import requests
 from audio_services import youtube_utils
 import arrow
@@ -24,6 +25,7 @@ from sessions.twitter import utils, compose
 from sessionmanager import manager, sessionManager
 from controller import buffers
 from . import messages
+from . import userAliasController
 import sessions
 from sessions.twitter  import session as session_
 from pubsub import pub
@@ -189,6 +191,7 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_list, self.view.addToList)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_list, self.view.removeFromList)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_buffer, self.view.update_buffer)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_aliases, self.view.manageAliases)
 
     def set_systray_icon(self):
         self.systrayIcon = sysTrayIcon.SysTrayIcon()
@@ -756,6 +759,11 @@ class Controller(object):
             buff.session.settings["user-aliases"][str(user_id)] = alias
             buff.session.settings.write()
             output.speak(_("Alias has been set correctly for {}.").format(user))
+            pub.sendMessage("alias-added")
+
+    def manage_aliases(self, *args, **kwargs):
+        buff = self.get_best_buffer()
+        alias_controller = userAliasController.userAliasController(buff.session.settings)
 
     def post_tweet(self, event=None):
         buffer = self.get_best_buffer()
