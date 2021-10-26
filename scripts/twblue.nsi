@@ -15,9 +15,9 @@ SetCompressor /solid lzma
 SetDatablockOptimize on
 VIAddVersionKey ProductName "TWBlue"
 VIAddVersionKey LegalCopyright "Copyright 2014-2021 Manuel Cortéz."
-VIAddVersionKey ProductVersion "0.95"
-VIAddVersionKey FileVersion "0.95"
-VIProductVersion "0.95"
+VIAddVersionKey ProductVersion "0.95.0"
+VIAddVersionKey FileVersion "0.95.0"
+VIProductVersion "0.95.0"
 VIFileVersion "0.95.0"
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_RADIOBUTTONS
