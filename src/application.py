@@ -3,7 +3,6 @@ import datetime
 
 name = 'TWBlue'
 short_name='twblue'
-version = "11"
 update_url = 'https://twblue.es/updates/updates.php'
 mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/updates.json'
 authors = ["Manuel Cortéz", "José Manuel Delicado"]
@@ -14,3 +13,4 @@ translators = ["Manuel Cortéz (English)", "Mohammed Al Shara, Hatoun Felemban (
 url = u"https://twblue.es"
 report_bugs_url = "https://github.com/manuelcortez/twblue/issues"
 supported_languages = []
+version = "11"
