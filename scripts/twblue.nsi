@@ -18,7 +18,7 @@ VIAddVersionKey LegalCopyright "Copyright 2014-2021 Manuel Cortéz."
 VIAddVersionKey ProductVersion "0.95"
 VIAddVersionKey FileVersion "0.95"
 VIProductVersion "0.95"
-VIFileVersion "0.95"
+VIFileVersion "0.95.0"
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_RADIOBUTTONS
 !insertmacro MUI_PAGE_LICENSE "license.txt"
@@ -32,7 +32,7 @@ var StartMenuFolder
 !insertmacro MUI_PAGE_FINISH
 !insertmacro MUI_UNPAGE_CONFIRM
 !insertmacro MUI_UNPAGE_INSTFILES
-  !insertmacro MUI_LANGUAGE "English"
+!insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "French"
 !insertmacro MUI_LANGUAGE "Spanish"
 !insertmacro MUI_LANGUAGE "Italian"
