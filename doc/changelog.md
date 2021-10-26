@@ -2,6 +2,7 @@
 
 ## changes in this version
 
+* Added an user alias manager, located in the application menu in the menu bar. From this dialog, it is possible to review, add, edit or remove user aliases for the current account. ([#401](https://github.com/manuelcortez/TWBlue/issues/401))
 * TWBlue now closes the VLC player window automatically when a video reaches its end. ([#399](https://github.com/manuelcortez/TWBlue/issues/399))
 * After a lot of time, TWBlue now uses a new default Soundpack, called FreakyBlue. This soundpack will be set by default in all new sessions created in the application. Thanks to [Andre Louis](https://twitter.com/FreakyFwoof) for the pack. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))
 * When reading a tweet, if the tweet contains more than 2 consecutive mentions, TWBlue will announce how many more users the tweet includes, as opposed to read every user in the conversation. You still can display the tweet to read all users.
