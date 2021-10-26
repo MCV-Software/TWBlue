@@ -29,6 +29,7 @@ twblue32:
     - '&$env:PYTHON documentation_importer.py'
     - cd ..\src
     - '&$env:PYTHON ..\doc\generator.py'
+    - '&$env:PYTHON write_version_data.py'
     - '&$env:PYTHON setup.py build'
     - cd ..
     - mkdir artifacts
@@ -65,6 +66,7 @@ twblue64:
     - '&$env:PYTHON documentation_importer.py'
     - cd ..\src
     - '&$env:PYTHON ..\doc\generator.py'
+    - '&$env:PYTHON write_version_data.py'
     - '&$env:PYTHON setup.py build'
     - cd ..
     - mkdir artifacts
