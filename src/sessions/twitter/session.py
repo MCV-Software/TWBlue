@@ -8,6 +8,7 @@ import wx
 import config
 import output
 import application
+import appkeys
 from pubsub import pub
 import tweepy
 from tweepy.errors import TweepyException, Forbidden, NotFound
@@ -135,9 +136,10 @@ class Session(base.baseSession):
         if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
             try:
                 log.debug("Logging in to twitter...")
-                self.auth = tweepy.OAuthHandler(keyring.get("api_key"), keyring.get("api_secret"))
+                self.auth = tweepy.OAuthHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
                 self.auth.set_access_token(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
                 self.twitter = tweepy.API(self.auth)
+                self.twitter_v2 = tweepy.Client(consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"])
                 if verify_credentials == True:
                     self.credentials = self.twitter.verify_credentials()
                 self.logged = True
@@ -156,7 +158,7 @@ class Session(base.baseSession):
         if self.logged == True:
             raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
         else:
-            self.auth = tweepy.OAuthHandler(keyring.get("api_key"), keyring.get("api_secret"))
+            self.auth = tweepy.OAuthHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
             redirect_url = self.auth.get_authorization_url()
             webbrowser.open_new_tab(redirect_url)
             self.authorisation_dialog = authorisationDialog()
@@ -523,7 +525,7 @@ class Session(base.baseSession):
     def start_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
             return
-        self.stream = streaming.Stream(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"], muted_users=self.db["muted_users"], consumer_key=keyring.get("api_key"), consumer_secret=keyring.get("api_secret"), access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"], chunk_size=1025)
+        self.stream = streaming.Stream(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"], muted_users=self.db["muted_users"], consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"], chunk_size=1025)
         self.stream_thread = call_threaded(self.stream.filter, follow=self.stream.users, stall_warnings=True)
 
     def stop_streaming(self):
