@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import widgetUtils
+from tweepy.errors import TweepyException
 from . import storage, wx_manage
 from wxUI import commonMessageDialogs
 
@@ -27,8 +28,9 @@ class autocompletionManage(object):
         if usr == False:
             return
         try:
-            data = self.session.twitter.twitter.get_user(screen_name=usr)
-        except:
+            data = self.session.twitter.get_user(screen_name=usr)
+        except TweepyException as e:
+            log.exception("Exception raised when attempting to add an user to the autocomplete database manually.")
             self.dialog.show_invalid_user_error()
             return
         self.database.set_user(data.screen_name, data.name, 0)
