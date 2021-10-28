@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from logging import getLogger
 logger = getLogger('update')
 
@@ -24,8 +23,8 @@ def perform_update(endpoint, current_version, app_name='', password=None, update
     if not available_update:
         logger.debug("No update available")
         return False
-    available_version = float(available_update['current_version'])
-    if not float(available_version) > float(current_version) or platform.system()+platform.architecture()[0][:2] not in available_update['downloads']:
+    available_version = available_update['current_version']
+    if available_version == current_version or platform.system()+platform.architecture()[0][:2] not in available_update['downloads']:
         logger.debug("No update for this architecture")
         return False
     available_description = available_update.get('description', None)
@@ -42,10 +41,10 @@ def perform_update(endpoint, current_version, app_name='', password=None, update
     downloaded = download_update(update_url, download_path, requests_session=requests_session, progress_callback=progress_callback)
     extracted = extract_update(downloaded, update_path, password=password)
     bootstrap_path = move_bootstrap(extracted)
-    execute_bootstrap(bootstrap_path, extracted)
-    logger.info("Update prepared for installation.")
     if callable(update_complete_callback):
         update_complete_callback()
+    execute_bootstrap(bootstrap_path, extracted)
+    logger.info("Update prepared for installation.")
 
 def create_requests_session(app_name=None, version=None):
     user_agent = ''
