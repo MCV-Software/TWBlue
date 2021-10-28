@@ -38,6 +38,8 @@ twblue32:
     - cd ..
     - mv src/dist artifacts/TWBlue
     - move src/twblue.zip artifacts/twblue_x86.zip
+    # Move the generated script nsis file to artifacts, so we won't need python when generating the installer.
+    - move scripts/twblue.nsi artifacts/twblue.nsi
   only:
     - tags
   artifacts:
@@ -96,8 +98,9 @@ generate_versions:
   script:
     - move artifacts/TWBlue scripts/
     - move artifacts/TWBlue64 scripts/
+    - move artifacts/twblue.nsi scripts/installer.nsi
     - cd scripts
-    - '&$env:NSIS twblue.nsi'
+    - '&$env:NSIS installer.nsi'
     - move twblue_setup.exe ../artifacts
   only:
     - tags

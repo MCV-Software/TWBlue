@@ -1,6 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 import time
 import platform
+import locale
 if platform.system() == "Windows":
     from wxUI import  commonMessageDialogs
 elif platform.system() == "Linux":
@@ -8,6 +9,7 @@ elif platform.system() == "Linux":
     from gtkUI import commonMessageDialogs
 import widgetUtils
 import logging
+from tweepy.errors import TweepyException
 from . import base, people
 
 log = logging.getLogger("controller.buffers.twitter.searchBuffer")
@@ -64,35 +66,11 @@ class SearchPeopleBuffer(people.PeopleBuffer):
 class ConversationBuffer(SearchBuffer):
 
     def start_stream(self, start=False, mandatory=False, play_sound=True, avoid_autoreading=False):
-        # starts stream every 3 minutes.
         current_time = time.time()
         if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
             self.execution_time = current_time
-            if start == True:
-                self.statuses = []
-                self.ids = []
-                self.statuses.append(self.tweet)
-                self.ids.append(self.tweet.id)
-                tweet = self.tweet
-                if not hasattr(tweet, "in_reply_to_status_id"):
-                    tweet.in_reply_to_status_id = None
-                while tweet.in_reply_to_status_id != None:
-                    try:
-                        tweet = self.session.twitter.get_status(id=tweet.in_reply_to_status_id, tweet_mode="extended")
-                    except TweepError as err:
-                        break
-                    self.statuses.insert(0, tweet)
-                    self.ids.append(tweet.id)
-                if tweet.in_reply_to_status_id == None:
-                    self.kwargs["since_id"] = tweet.id
-                    self.ids.append(tweet.id)
-            val2 = self.session.search(self.name, tweet_mode="extended", *self.args, **self.kwargs)
-            for i in val2:
-                if i.in_reply_to_status_id in self.ids:
-                    self.statuses.append(i)
-                    self.ids.append(i.id)
-                    tweet = i
-            number_of_items = self.session.order_buffer(self.name, self.statuses)
+            results = self.get_replies(self.tweet)
+            number_of_items = self.session.order_buffer(self.name, results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
             self.put_items_on_list(number_of_items)
             if number_of_items > 0 and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
@@ -113,3 +91,33 @@ class ConversationBuffer(SearchBuffer):
             return True
         elif dlg == widgetUtils.NO:
             return False
+
+    def get_replies(self, tweet):
+        """ Try to retrieve the whole conversation for the passed object by using a mix between calls to API V1.1 and V2 """
+        results = []
+        # If the tweet that starts the conversation is a reply to something else, let's try to get the parent tweet first.
+        if hasattr(self, "in_reply_to_status_id") and self.tweet.in_reply_to_status_id != None:
+            try:
+                tweet2 = self.session.twitter_v2.get_tweet(id=self.tweet.in_reply_to_status_id, user_auth=True, tweet_fields=["conversation_id"])
+                results.append(tweet2)
+            except TweepyException as e:
+                log.exception("There was an error attempting to retrieve a parent tweet for the conversation for {}".format(self.name))
+        # Now, try to fetch the tweet initiating the conversation in V2 so we can get conversation_id
+        try:
+            tweet = self.session.twitter_v2.get_tweet(id=self.tweet.id, user_auth=True, tweet_fields=["conversation_id"])
+            results.append(tweet.data)
+            term = "conversation_id:{}".format(tweet.data.conversation_id)
+            tweets = self.session.twitter_v2.search_recent_tweets(term, user_auth=True, max_results=98)
+            if tweets.data != None:
+                results.extend(tweets.data)
+        except TweepyException as e:
+            log.exception("There was an error when attempting to retrieve the whole conversation for buffer {}".format(self.buffer.name))
+        new_results = []
+        ids = [tweet.id for tweet in results]
+        try:
+            results = self.session.twitter.lookup_statuses(ids, include_ext_alt_text=True, tweet_mode="extended")
+            results.sort(key=lambda x: x.id)
+        except TweepyException as e:
+            log.exception("There was an error attempting to retrieve tweets for Twitter API V1.1, in conversation buffer {}".format(self.name))
+            return []
+        return results

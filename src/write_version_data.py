@@ -1,6 +1,7 @@
 #! /usr/bin/env python# -*- coding: iso-8859-1 -*-
 """ Write version info (taken from the last commit) to application.py. This method has been implemented this way for running updates.
 This file is not intended to be called by the user. It will be used only by the Gitlab CI runner."""
+import os
 import requests
 from codecs import open
 
@@ -27,3 +28,9 @@ file2 = open("..\\scripts\\twblue.nsi", "w", encoding="utf-8")
 file2.write(contents)
 file2.close()
 print("done")
+file3 = open("appkeys.py", "w")
+keys = """twitter_api_key = {}
+twitter_api_secret = {}
+""".format(os.environ.get("TWITTER_API_KEY"), os.environ.get("TWITTER_API_SECRET"))
+file3.write(keys)
+file3.close()
