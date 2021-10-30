@@ -1,6 +1,6 @@
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
-  PYTHON: "C:\\python38\\python.exe"
+  PYTHON: "C:\\python37\\python.exe"
   NSIS: "C:\\program files (x86)\\nsis\\makensis.exe"
 
 stages:
@@ -17,7 +17,7 @@ twblue32:
     - Set-Variable -Name "time" -Value (date -Format "%H:%m")
     - echo ${time}
     - echo "started by ${GITLAB_USER_NAME}"
-    - choco install python --version 3.8.10 -y -ForceX86
+    - choco install python --version 3.7.13 -y -ForceX86
     - '&$env:PYTHON -V'
     - '&$env:PYTHON -m pip install --upgrade pip'
     - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
@@ -56,7 +56,7 @@ twblue64:
     - Set-Variable -Name "time" -Value (date -Format "%H:%m")
     - echo ${time}
     - echo "started by ${GITLAB_USER_NAME}"
-    - choco install python --version 3.8.10 -y
+    - choco install python --version 3.7.13 -y
     - '&$env:PYTHON -V'
     - '&$env:PYTHON -m pip install --upgrade pip'
     - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
