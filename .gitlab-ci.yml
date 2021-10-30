@@ -17,7 +17,7 @@ twblue32:
     - Set-Variable -Name "time" -Value (date -Format "%H:%m")
     - echo ${time}
     - echo "started by ${GITLAB_USER_NAME}"
-    - choco install python --version 3.7.13 -y -ForceX86
+    - choco install python --version 3.7.9 -y -ForceX86
     - '&$env:PYTHON -V'
     - '&$env:PYTHON -m pip install --upgrade pip'
     - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
@@ -56,7 +56,7 @@ twblue64:
     - Set-Variable -Name "time" -Value (date -Format "%H:%m")
     - echo ${time}
     - echo "started by ${GITLAB_USER_NAME}"
-    - choco install python --version 3.7.13 -y
+    - choco install python --version 3.7.9 -y
     - '&$env:PYTHON -V'
     - '&$env:PYTHON -m pip install --upgrade pip'
     - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
