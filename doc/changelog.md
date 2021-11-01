@@ -2,6 +2,18 @@
 
 ## changes in this version
 
+## changes in this version
+
+* fixed a bug when clearing the direct messages buffer. ([#418](https://github.com/manuelcortez/TWBlue/issues/418))
+
+## Changes in Version 2021.10.30
+
+* Fixed many errors in the way we compile TWBlue, so users of 64 bits systems and particularly windows 7 users would be able to install TWBlue again. In case of issues with versions prior to 2021.10.30, please remove everything related to TWBlue (except configs) and reinstall the version 2021.10.30 to fix any possible error. This step won't be needed again in 23 months. ([#416,](https://github.com/manuelcortez/TWBlue/issues/416), [#415,](https://github.com/manuelcortez/TWBlue/issues/415))
+* fixed an issue that was making impossible to manually add an user to the autocomplete users database.
+* Started to improve support to conversations by searching for conversation_id.
+
+## changes in version 2021.10.27
+
 * Added an user alias manager, located in the application menu in the menu bar. From this dialog, it is possible to review, add, edit or remove user aliases for the current account. ([#401](https://github.com/manuelcortez/TWBlue/issues/401))
 * TWBlue now closes the VLC player window automatically when a video reaches its end. ([#399](https://github.com/manuelcortez/TWBlue/issues/399))
 * After a lot of time, TWBlue now uses a new default Soundpack, called FreakyBlue. This soundpack will be set by default in all new sessions created in the application. Thanks to [Andre Louis](https://twitter.com/FreakyFwoof) for the pack. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))

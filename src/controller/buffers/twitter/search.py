@@ -95,19 +95,13 @@ class ConversationBuffer(SearchBuffer):
     def get_replies(self, tweet):
         """ Try to retrieve the whole conversation for the passed object by using a mix between calls to API V1.1 and V2 """
         results = []
-        # If the tweet that starts the conversation is a reply to something else, let's try to get the parent tweet first.
-        if hasattr(self, "in_reply_to_status_id") and self.tweet.in_reply_to_status_id != None:
-            try:
-                tweet2 = self.session.twitter_v2.get_tweet(id=self.tweet.in_reply_to_status_id, user_auth=True, tweet_fields=["conversation_id"])
-                results.append(tweet2)
-            except TweepyException as e:
-                log.exception("There was an error attempting to retrieve a parent tweet for the conversation for {}".format(self.name))
-        # Now, try to fetch the tweet initiating the conversation in V2 so we can get conversation_id
         try:
             tweet = self.session.twitter_v2.get_tweet(id=self.tweet.id, user_auth=True, tweet_fields=["conversation_id"])
             results.append(tweet.data)
+            original_tweet = self.session.twitter_v2.get_tweet(id=tweet.data.conversation_id, user_auth=True, tweet_fields=["conversation_id"])
+            results.insert(0, original_tweet.data)
             term = "conversation_id:{}".format(tweet.data.conversation_id)
-            tweets = self.session.twitter_v2.search_recent_tweets(term, user_auth=True, max_results=98)
+            tweets = self.session.twitter_v2.search_recent_tweets(term, user_auth=True, max_results=98, tweet_fields=["in_reply_to_user_id", "author_id", "conversation_id"])
             if tweets.data != None:
                 results.extend(tweets.data)
         except TweepyException as e:
