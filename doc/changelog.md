@@ -1,4 +1,4 @@
-﻿TWBlue Changelog
+TWBlue Changelog
 
 ## changes in this version
 
