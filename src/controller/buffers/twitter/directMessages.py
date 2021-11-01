@@ -12,6 +12,7 @@ from sessions.twitter import compose, utils
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
+from wxUI import commonMessageDialogs
 from . import base
 
 log = logging.getLogger("controller.buffers.twitter.dmBuffer")
