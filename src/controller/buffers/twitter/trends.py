@@ -49,6 +49,7 @@ class TrendsBuffer(base.Buffer):
                 log.exception("Error %s" % (str(err)))
             if not hasattr(self, "name_"):
                 self.name_ = data[0]["locations"][0]["name"]
+                pub.sendMessage("buffer-title-changed", buffer=self)
             self.trends = data[0]["trends"]
             self.put_items_on_the_list()
             if self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:

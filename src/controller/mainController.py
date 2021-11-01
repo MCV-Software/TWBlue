@@ -1581,14 +1581,16 @@ class Controller(object):
                 output.speak(_(u"{0} items retrieved").format(n,))
 
     def buffer_title_changed(self, buffer):
-        if "-timeline" in buffer.name:
+        if buffer.name.endswith("-timeline"):
             title = _(u"Timeline for {}").format(buffer.username,)
-        elif "-favorite" in buffer.name:
+        elif buffer.name.endswith("-favorite"):
             title = _(u"Likes for {}").format(buffer.username,)
-        elif "-followers" in buffer.name:
+        elif buffer.name.endswith("-followers"):
             title = _(u"Followers for {}").format(buffer.username,)
-        elif "-friends" in buffer.name:
+        elif buffer.name.endswith("-friends"):
             title = _(u"Friends for {}").format(buffer.username,)
+        elif buffer.name.endswith("_tt"):
+            title = _("Trending topics for %s") % (buffer.name_)
         buffer_index = self.view.search(buffer.name, buffer.account)
         self.view.set_page_title(buffer_index, title)
 
