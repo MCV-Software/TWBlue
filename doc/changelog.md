@@ -253,4 +253,4 @@ TWBlue Changelog
 * New followers and friends buffer for user timelines.
 
 ---
-Copyright © 2014-2017, Manuel Cortez.
+Copyright © 2014-2021, Manuel Cortez.
