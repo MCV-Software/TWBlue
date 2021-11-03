@@ -179,6 +179,8 @@ Visually, Towards the top of the main application window, can be found a menu ba
 * What's new in this version?: opens up a document with the list of changes from the current version to the earliest.
 * Check for updates: every time you open the program it automatically checks for new versions. If an update is available, it will ask you if you want to download the update. If you accept, the updating process will commence. When complete, TWBlue will be restarted. This item checks for new updates without having to restart the application.
 * TWBlue's website: visit our [home page](http://twblue.es) where you can find all relevant information and downloads for TWBlue and become a part of the community.
+* Get soundpacks for TWBlue: 
+* Make a Donation: Opens a website from which you can donate to the TWBlue project. Donations are made through paypal and you don't need an account to donate.
 * About TWBlue: shows the credits of the program.
 
 ### The invisible user interface
