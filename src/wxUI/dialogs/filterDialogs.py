@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-# -*- coding: utf-8 -*-
-from . import baseDialog
 import wx
 import widgetUtils
+from . import baseDialog
 from multiplatform_widgets import widgets
 
 class filterDialog(baseDialog.BaseWXDialog):
@@ -19,6 +16,7 @@ class filterDialog(baseDialog.BaseWXDialog):
         dc = wx.WindowDC(self.title)
         dc.SetFont(self.title.GetFont())
         self.title.SetSize(dc.GetTextExtent("0"*40))
+        self.title.SetFocus()
         tsizer = wx.BoxSizer(wx.HORIZONTAL)
         tsizer.Add(label, 0, wx.ALL, 5)
         tsizer.Add(self.title, 0, wx.ALL, 5)
@@ -81,6 +79,7 @@ class filterDialog(baseDialog.BaseWXDialog):
         sizer.Add(selectionSizer, 0, wx.ALL, 5)
         ok = wx.Button(panel, wx.ID_OK, _(u"OK"))
         ok.SetDefault()
+        ok.Bind(wx.EVT_BUTTON, self.validate_title)
         cancel = wx.Button(panel, wx.ID_CANCEL, _(u"Cancel"))
         btnsizer = wx.BoxSizer()
         btnsizer.Add(ok, 0, wx.ALL, 5)
@@ -115,6 +114,11 @@ class filterDialog(baseDialog.BaseWXDialog):
     def show_language_options(self, *args, **kwargs):
         for i in [self.cb, self.add, self.langs, self.remove]:
             i.Show()
+
+    def validate_title(self, *args, **kwargs):
+        if self.title.GetValue() == "" or self.title.GetValue() == None:
+            return wx.MessageDialog(self, _("You must define a name for the filter before creating it."), _("Missing filter name"), wx.ICON_ERROR).ShowModal()
+        self.EndModal(wx.ID_OK)
 
 class filterManagerDialog(widgetUtils.BaseDialog):
 
