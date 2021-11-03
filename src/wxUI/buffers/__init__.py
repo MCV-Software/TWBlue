@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-from . import twitter
+from . import twitter, mastodon
 from .panels import accountPanel, emptyPanel
