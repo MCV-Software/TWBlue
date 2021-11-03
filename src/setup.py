@@ -44,10 +44,11 @@ build_exe_options = dict(
     replace_paths = [("*", "")],
     include_files=["icon.ico", "conf.defaults", "app-configuration.defaults", "keymaps", "locales", "sounds", "documentation", ("keys/lib", "keys/lib"), find_sound_lib_datafiles(), find_accessible_output2_datafiles()]+get_architecture_files(),
     packages=["wxUI"],
+    bin_path_excludes=["C:\\Program Files", "C:\Program Files (x86)"],
 )
 
 executables = [
-    Executable('main.py', base=base, targetName="twblue")
+    Executable('main.py', base=base, target_name="twblue")
 ]
 
 winmsvcr.FILES = ()

@@ -3,15 +3,8 @@ import datetime
 
 name = 'TWBlue'
 short_name='twblue'
-snapshot = True
-if snapshot == False:
-    version = "0.95"
-    update_url = 'https://twblue.es/updates/stable.php'
-    mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/stable.json'
-else:
-    version = "10"
-    update_url = 'https://twblue.es/updates/snapshot.php'
-    mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/snapshots.json'
+update_url = 'https://twblue.es/updates/updates.php'
+mirror_update_url = 'https://raw.githubusercontent.com/manuelcortez/TWBlue/next-gen/updates/updates.json'
 authors = ["Manuel Cortéz", "José Manuel Delicado"]
 authorEmail = "manuel@manuelcortez.net"
 copyright = "Copyright (C) 2013-2021, Manuel cortéz."
@@ -20,3 +13,4 @@ translators = ["Manuel Cortéz (English)", "Mohammed Al Shara, Hatoun Felemban (
 url = u"https://twblue.es"
 report_bugs_url = "https://github.com/manuelcortez/twblue/issues"
 supported_languages = []
+version = "11"

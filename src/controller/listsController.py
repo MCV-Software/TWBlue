@@ -3,7 +3,7 @@ import widgetUtils
 import output
 import logging
 from wxUI.dialogs import lists
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException
 from sessions.twitter import compose, utils
 from pubsub import pub
 
@@ -49,9 +49,9 @@ class listsController(object):
                 new_list = self.session.twitter.create_list(name=name, description=description, mode=mode)
                 self.session.db["lists"].append(new_list)
                 self.dialog.lista.insert_item(False, *compose.compose_list(new_list))
-            except TweepError as e:
-                output.speak("error %s: %s" % (e.api_code, e.reason))
-                log.exception("error %s: %s" % (e.api_code, e.reason))
+            except TweepyException as e:
+                output.speak("error %s" % (str(e)))
+                log.exception("error %s" % (str(e)))
         dialog.destroy()
 
     def edit_list(self, *args, **kwargs):
@@ -70,8 +70,9 @@ class listsController(object):
                 self.session.twitter.update_list(list_id=list.id, name=name, description=description, mode=mode)
                 self.session.get_lists()
                 self.dialog.populate_list(self.get_all_lists(), True)
-            except TweepError as e:
-                output.speak("error %s: %s" % (e.api_code, e.reason))
+            except TweepyException as e:
+                output.speak("error %s" % (str(e)))
+                log.exception("error %s" % (str(e)))
         dialog.destroy()
 
     def remove_list(self, *args, **kwargs):
@@ -82,8 +83,9 @@ class listsController(object):
                 self.session.twitter.destroy_list(list_id=list)
                 self.session.db["lists"].pop(self.dialog.get_item())
                 self.dialog.lista.remove_item(self.dialog.get_item())
-            except TweepError as e:
-                output.speak("error %s: %s" % (e.api_code, e.reason))
+            except TweepyException as e:
+                output.speak("error %s" % (str(e)))
+                log.exception("error %s" % (str(e)))
 
     def open_list_as_buffer(self, *args, **kwargs):
         if self.dialog.lista.get_count() == 0: return
@@ -97,8 +99,9 @@ class listsController(object):
             list = self.session.twitter.subscribe_list(list_id=list_id)
             item = utils.find_item(list.id, self.session.db["lists"])
             self.session.db["lists"].append(list)
-        except TweepError as e:
-            output.speak("error %s: %s" % (e.api_code, e.reason))
+        except TweepyException as e:
+            output.speak("error %s" % (str(e)))
+            log.exception("error %s" % (str(e)))
 
     def unsubscribe(self, *args, **kwargs):
         if self.dialog.lista.get_count() == 0: return
@@ -106,5 +109,6 @@ class listsController(object):
         try:
             list = self.session.twitter.unsubscribe_list(list_id=list_id)
             self.session.db["lists"].remove(list)
-        except TweepError as e:
-            output.speak("error %s: %s" % (e.api_code, e.reason))
+        except TweepyException as e:
+            output.speak("error %s" % (str(e)))
+            log.exception("error %s" % (str(e)))

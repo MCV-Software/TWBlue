@@ -13,17 +13,17 @@ import widgetUtils
 import output
 import logging
 from mysc.thread_utils import call_threaded
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException
 from pubsub import pub
 from controller.buffers import base
 
 log = logging.getLogger("controller.buffers.twitter.trends")
 
 class TrendsBuffer(base.Buffer):
-    def __init__(self, parent, name, session, account, trendsFor, *args, **kwargs):
-        super(TrendsBuffer, self).__init__(parent=parent, session=session)
+    def __init__(self, parent, name, sessionObject, account, trendsFor, *args, **kwargs):
+        super(TrendsBuffer, self).__init__(parent=parent, sessionObject=sessionObject)
         self.trendsFor = trendsFor
-        self.session = session
+        self.session = sessionObject
         self.account = account
         self.invisible = True
         self.buffer = buffers.trendsPanel(parent, name)
@@ -44,11 +44,12 @@ class TrendsBuffer(base.Buffer):
         if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
             self.execution_time = current_time
             try:
-                data = self.session.twitter.trends_place(id=self.trendsFor)
-            except TweepError as err:
-                log.error("Error %s: %s" % (err.api_code, err.reason))
+                data = self.session.twitter.get_place_trends(id=self.trendsFor)
+            except TweepyException as err:
+                log.exception("Error %s" % (str(err)))
             if not hasattr(self, "name_"):
                 self.name_ = data[0]["locations"][0]["name"]
+                pub.sendMessage("buffer-title-changed", buffer=self)
             self.trends = data[0]["trends"]
             self.put_items_on_the_list()
             if self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:

@@ -45,6 +45,8 @@ class baseSession(object):
         self.db={}
         # Config specification file.
         self.config_spec = "conf.defaults"
+        # Session type.
+        self.type = "base"
 
     @property
     def is_logged(self):

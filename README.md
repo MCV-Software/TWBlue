@@ -31,7 +31,7 @@ Although most dependencies can be found in the windows-dependencies directory, w
 
 #### Dependencies packaged in windows installers
 
-* [Python,](https://python.org) version 3.8.7  
+* [Python,](https://python.org) version 3.7.9  
 If you want to build both x86 and x64 binaries, you can install python x86 to C:\python38 and python x64 to C:\python38x64, for example.
 
 #### Dependencies that must be installed using pip

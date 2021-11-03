@@ -6,7 +6,7 @@ import logging
 import requests
 import time
 import sound
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException, NotFound, Forbidden
 log = logging.getLogger("twitter.utils")
 """ Some utilities for the twitter interface."""
 
@@ -159,8 +159,8 @@ def if_user_exists(twitter, user):
     try:
         data = twitter.get_user(screen_name=user)
         return data
-    except TweepError as err:
-        if err.api_code == 50:
+    except TweepyException as err:
+        if type(err) == NotFound:
             return None
         else:
             return user
@@ -227,12 +227,12 @@ def filter_tweet(tweet, tweet_data, settings, buffer_name):
     return True
 
 def twitter_error(error):
-    if error.api_code == 179:
+    if type(error) == Forbidden:
         msg = _(u"Sorry, you are not authorised to see this status.")
-    elif error.api_code == 144:
+    elif type(error) == NotFound:
         msg = _(u"No status found with that ID")
     else:
-        msg = _(u"Error code {0}").format(error.api_code,)
+        msg = _(u"Error {0}").format(str(error),)
     output.speak(msg)
 
 def expand_urls(text, entities):
@@ -254,10 +254,10 @@ def clean_mentions(text):
     total_users = 0
     for user in mentionned_people:
         if abs(user.start()-end) < 3:
-            new_text = new_text.replace(user.group(0), "")
+            new_text = new_text.replace(user.group(0), "", 1)
             total_users = total_users+1
             end = user.end()
-    if total_users < 1:
+    if total_users-2 < 1:
         return text
     new_text = _("{user_1}, {user_2} and {all_users} more: {text}").format(user_1=mentionned_people[0].group(0), user_2=mentionned_people[1].group(0), all_users=total_users-2, text=new_text)
     return new_text

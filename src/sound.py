@@ -114,6 +114,8 @@ class URLStream(object):
         # LibVLC controls.
         self.instance = vlc.Instance()
         self.player = self.instance.media_player_new()
+        self.event_manager = self.player.event_manager()
+        self.event_manager.event_attach(vlc.EventType.MediaPlayerEndReached, self.end_callback)
 
     def prepare(self, url):
         """ Takes an URL and prepares it to be streamed. This function will try to unshorten the passed URL and, if needed, to transform it into a valid URL."""
@@ -158,3 +160,9 @@ class URLStream(object):
     def stop_audio(self):
         output.speak(_(u"Stopped."), True)
         self.player.stop()
+
+    def end_callback(self, event, *args, **kwargs):
+        call_threaded(self.player.stop)
+
+    def __del__(self):
+        self.event_manager.event_detach(vlc.EventType.MediaPlayerEndReached)

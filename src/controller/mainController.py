@@ -2,6 +2,7 @@
 import platform
 system = platform.system()
 import application
+import wx
 import requests
 from audio_services import youtube_utils
 import arrow
@@ -24,12 +25,13 @@ from sessions.twitter import utils, compose
 from sessionmanager import manager, sessionManager
 from controller import buffers
 from . import messages
+from . import userAliasController
 import sessions
 from sessions.twitter  import session as session_
 from pubsub import pub
 import sound
 import output
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException, Forbidden
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 from mysc import restart
@@ -131,6 +133,7 @@ class Controller(object):
         pub.subscribe(self.manage_unfavourite, "unfavourite")
         pub.subscribe(self.manage_blocked_user, "blocked-user")
         pub.subscribe(self.manage_unblocked_user, "unblocked-user")
+        pub.subscribe(self.create_buffer, "createBuffer")
         if system == "Windows":
             pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
             widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -188,6 +191,7 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_list, self.view.addToList)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_list, self.view.removeFromList)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_buffer, self.view.update_buffer)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_aliases, self.view.manageAliases)
 
     def set_systray_icon(self):
         self.systrayIcon = sysTrayIcon.SysTrayIcon()
@@ -292,6 +296,31 @@ class Controller(object):
         self.create_buffers(session, False)
         self.start_buffers(session)
 
+    def create_buffer(self, buffer_type="baseBuffer", session_type="twitter", buffer_title="", parent_tab=None, start=False, kwargs={}):
+        log.debug("Creating buffer of type {0} with parent_tab of {2} arguments {1}".format(buffer_type, kwargs, parent_tab))
+        if not hasattr(buffers, session_type):
+            raise AttributeError("Session type %s does not exist yet." % (session_type))
+        available_buffers = getattr(buffers, session_type)
+        if not hasattr(available_buffers, buffer_type):
+            raise AttributeError("Specified buffer type does not exist: %s" % (buffer_type,))
+        buffer = getattr(available_buffers, buffer_type)(**kwargs)
+        if start:
+            if kwargs.get("function") == "user_timeline":
+                try:
+                    buffer.start_stream(play_sound=False)
+                except ValueError:
+                    commonMessageDialogs.unauthorized()
+                    return
+            else:
+                call_threaded(buffer.start_stream)
+        self.buffers.append(buffer)
+        if parent_tab == None:
+            log.debug("Appending buffer {}...".format(buffer,))
+            self.view.add_buffer(buffer.buffer, buffer_title)
+        else:
+            self.view.insert_buffer(buffer.buffer, buffer_title, parent_tab)
+            log.debug("Inserting buffer {0} into control {1}".format(buffer, parent_tab))
+
     def create_buffers(self, session, createAccounts=True):
         """ Generates buffer objects for an user account.
         session SessionObject: a sessionmanager.session.Session Object"""
@@ -302,96 +331,54 @@ class Controller(object):
             account.setup_account()
             self.buffers.append(account)
             self.view.add_buffer(account.buffer , name=session.db["user_name"])
+        root_position =self.view.search(session.db["user_name"], session.db["user_name"])
         for i in session.settings['general']['buffer_order']:
             if i == 'home':
-                home = buffers.twitter.BaseBuffer(self.view.nb, "home_timeline", "home_timeline", session, session.db["user_name"], sound="tweet_received.ogg", tweet_mode="extended")
-                self.buffers.append(home)
-                self.view.insert_buffer(home.buffer, name=_(u"Home"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Home"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="home_timeline", name="home_timeline", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg", tweet_mode="extended"))
             elif i == 'mentions':
-                mentions = buffers.twitter.BaseBuffer(self.view.nb, "mentions_timeline", "mentions", session, session.db["user_name"], sound="mention_received.ogg", tweet_mode="extended")
-                self.buffers.append(mentions)
-                self.view.insert_buffer(mentions.buffer, name=_(u"Mentions"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Mentions"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="mentions_timeline", name="mentions", sessionObject=session, account=session.db["user_name"], sound="mention_received.ogg", tweet_mode="extended"))
             elif i == 'dm':
-                dm = buffers.twitter.DirectMessagesBuffer(self.view.nb, "list_direct_messages", "direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message", sound="dm_received.ogg")
-                self.buffers.append(dm)
-                self.view.insert_buffer(dm.buffer, name=_(u"Direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="DirectMessagesBuffer", session_type=session.type, buffer_title=_("Direct messages"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_direct_messages", name="direct_messages", sessionObject=session, account=session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message", sound="dm_received.ogg"))
             elif i == 'sent_dm':
-                sent_dm = buffers.twitter.SentDirectMessagesBuffer(self.view.nb, "", "sent_direct_messages", session, session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message")
-                self.buffers.append(sent_dm)
-                self.view.insert_buffer(sent_dm.buffer, name=_(u"Sent direct messages"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="SentDirectMessagesBuffer", session_type=session.type, buffer_title=_("Sent direct messages"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function=None, name="sent_direct_messages", sessionObject=session, account=session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message"))
             elif i == 'sent_tweets':
-                sent_tweets = buffers.twitter.BaseBuffer(self.view.nb, "user_timeline", "sent_tweets", session, session.db["user_name"], screen_name=session.db["user_name"], tweet_mode="extended")
-                self.buffers.append(sent_tweets)
-                self.view.insert_buffer(sent_tweets.buffer, name=_(u"Sent tweets"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Sent tweets"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="user_timeline", name="sent_tweets", sessionObject=session, account=session.db["user_name"], screen_name=session.db["user_name"], tweet_mode="extended"))
             elif i == 'favorites':
-                favourites = buffers.twitter.BaseBuffer(self.view.nb, "favorites", "favourites", session, session.db["user_name"], sound="favourite.ogg", tweet_mode="extended")
-                self.buffers.append(favourites)
-                self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Likes"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_favorites", name="favourites", sessionObject=session, account=session.db["user_name"], sound="favourite.ogg", tweet_mode="extended"))
             elif i == 'followers':
-                followers = buffers.twitter.PeopleBuffer(self.view.nb, "followers", "followers", session, session.db["user_name"], sound="update_followers.ogg", screen_name=session.db["user_name"])
-                self.buffers.append(followers)
-                self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Followers"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_followers", name="followers", sessionObject=session, account=session.db["user_name"], sound="update_followers.ogg", screen_name=session.db["user_name"]))
             elif i == 'friends':
-                friends = buffers.twitter.PeopleBuffer(self.view.nb, "friends", "friends", session, session.db["user_name"], screen_name=session.db["user_name"])
-                self.buffers.append(friends)
-                self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Following"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_friends", name="friends", sessionObject=session, account=session.db["user_name"], screen_name=session.db["user_name"]))
             elif i == 'blocks':
-                blocks = buffers.twitter.PeopleBuffer(self.view.nb, "blocks", "blocked", session, session.db["user_name"])
-                self.buffers.append(blocks)
-                self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Blocked users"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_blocks", name="blocked", sessionObject=session, account=session.db["user_name"]))
             elif i == 'muted':
-                muted = buffers.twitter.PeopleBuffer(self.view.nb, "mutes", "muted", session, session.db["user_name"])
-                self.buffers.append(muted)
-                self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
-        timelines = buffers.base.EmptyBuffer(self.view.nb, "timelines", session.db["user_name"])
-        self.buffers.append(timelines)
-        self.view.insert_buffer(timelines.buffer , name=_(u"Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+                pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Muted users"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_mutes", name="muted", sessionObject=session, account=session.db["user_name"]))
+        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="timelines", account=session.db["user_name"]))
+        timelines_position =self.view.search("timelines", session.db["user_name"])
         for i in session.settings["other_buffers"]["timelines"]:
-            tl = buffers.twitter.BaseBuffer(self.view.nb, "user_timeline", "%s-timeline" % (i,), session, session.db["user_name"], sound="tweet_timeline.ogg", bufferType=None, user_id=i, tweet_mode="extended")
-            self.buffers.append(tl)
-            self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(i,), pos=self.view.search("timelines", session.db["user_name"]))
-        favs_timelines = buffers.base.EmptyBuffer(self.view.nb, "favs_timelines", session.db["user_name"])
-        self.buffers.append(favs_timelines)
-        self.view.insert_buffer(favs_timelines.buffer , name=_(u"Likes timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_(u"Timeline for {}").format(i,), parent_tab=timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="user_timeline", name="%s-timeline" % (i,), sessionObject=session, account=session.db["user_name"], sound="tweet_timeline.ogg", bufferType=None, user_id=i, tweet_mode="extended"))
+        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Likes timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="favs_timelines", account=session.db["user_name"]))
+        favs_timelines_position =self.view.search("favs_timelines", session.db["user_name"])
         for i in session.settings["other_buffers"]["favourites_timelines"]:
-            tl = buffers.twitter.BaseBuffer(self.view.nb, "favorites", "%s-favorite" % (i,), session, session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=i, tweet_mode="extended")
-            self.buffers.append(tl)
-            self.view.insert_buffer(tl.buffer, name=_(u"Likes for {}").format(i,), pos=self.view.search("favs_timelines", session.db["user_name"]))
-        followers_timelines = buffers.base.EmptyBuffer(self.view.nb, "followers_timelines", session.db["user_name"])
-        self.buffers.append(followers_timelines)
-        self.view.insert_buffer(followers_timelines.buffer , name=_(u"Followers' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Likes for {}").format(i,), parent_tab=favs_timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="get_favorites", name="%s-favorite" % (i,), sessionObject=session, account=session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=i, tweet_mode="extended"))
+        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Followers timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="followers_timelines", account=session.db["user_name"]))
+        followers_timelines_position =self.view.search("followers_timelines", session.db["user_name"])
         for i in session.settings["other_buffers"]["followers_timelines"]:
-            tl = buffers.twitter.PeopleBuffer(self.view.nb, "followers", "%s-followers" % (i,), session, session.db["user_name"], sound="new_event.ogg", user_id=i)
-            self.buffers.append(tl)
-            self.view.insert_buffer(tl.buffer, name=_(u"Followers for {}").format(i,), pos=self.view.search("followers_timelines", session.db["user_name"]))
-        friends_timelines = buffers.base.EmptyBuffer(self.view.nb, "friends_timelines", session.db["user_name"])
-        self.buffers.append(friends_timelines)
-        self.view.insert_buffer(friends_timelines.buffer , name=_(u"Friends' Timelines"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+            pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Followers for {}").format(i,), parent_tab=followers_timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="get_followers", name="%s-followers" % (i,), sessionObject=session, account=session.db["user_name"], sound="new_event.ogg", user_id=i))
+        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Following timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="friends_timelines", account=session.db["user_name"]))
+        friends_timelines_position =self.view.search("friends_timelines", session.db["user_name"])
         for i in session.settings["other_buffers"]["friends_timelines"]:
-            tl = buffers.twitter.PeopleBuffer(self.view.nb, "friends", "%s-friends" % (i,), session, session.db["user_name"], sound="new_event.ogg", user_id=i)
-            self.buffers.append(tl)
-            self.view.insert_buffer(tl.buffer, name=_(u"Friends for {}").format(i,), pos=self.view.search("friends_timelines", session.db["user_name"]))
-        lists = buffers.base.EmptyBuffer(self.view.nb, "lists", session.db["user_name"])
-        self.buffers.append(lists)
-        self.view.insert_buffer(lists.buffer , name=_(u"Lists"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+            pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_(u"Friends for {}").format(i,), parent_tab=friends_timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="get_friends", name="%s-friends" % (i,), sessionObject=session, account=session.db["user_name"], sound="new_event.ogg", user_id=i))
+        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Lists"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="lists", account=session.db["user_name"]))
+        lists_position =self.view.search("lists", session.db["user_name"])
         for i in session.settings["other_buffers"]["lists"]:
-            tl = buffers.twitter.ListBuffer(self.view.nb, "list_timeline", "%s-list" % (i,), session, session.db["user_name"], bufferType=None, sound="list_tweet.ogg", list_id=utils.find_list(i, session.db["lists"]), tweet_mode="extended")
-            session.lists.append(tl)
-            self.buffers.append(tl)
-            self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(i), pos=self.view.search("lists", session.db["user_name"]))
-        searches = buffers.base.EmptyBuffer(self.view.nb, "searches", session.db["user_name"])
-        self.buffers.append(searches)
-        self.view.insert_buffer(searches.buffer , name=_(u"Searches"), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+            pub.sendMessage("createBuffer", buffer_type="ListBuffer", session_type=session.type, buffer_title=_(u"List for {}").format(i), parent_tab=lists_position, start=False, kwargs=dict(parent=self.view.nb, function="list_timeline", name="%s-list" % (i,), sessionObject=session, account=session.db["user_name"], bufferType=None, sound="list_tweet.ogg", list_id=utils.find_list(i, session.db["lists"]), tweet_mode="extended"))
+        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Searches"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="searches", account=session.db["user_name"]))
+        searches_position =self.view.search("searches", session.db["user_name"])
         for i in session.settings["other_buffers"]["tweet_searches"]:
-            tl = buffers.twitter.SearchBuffer(self.view.nb, "search", "%s-searchterm" % (i,), session, session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=i, tweet_mode="extended")
-            self.buffers.append(tl)
-            self.view.insert_buffer(tl.buffer, name=_(u"Search for {}").format(i), pos=self.view.search("searches", session.db["user_name"]))
+            pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_(u"Search for {}").format(i), parent_tab=searches_position, start=False, kwargs=dict(parent=self.view.nb, function="search_tweets", name="%s-searchterm" % (i,), sessionObject=session, account=session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=i, tweet_mode="extended"))
         for i in session.settings["other_buffers"]["trending_topic_buffers"]:
-            buffer = buffers.twitter.TrendsBuffer(self.view.nb, "%s_tt" % (i,), session, session.db["user_name"], i, sound="trends_updated.ogg")
-            buffer.start_stream(play_sound=False)
-            buffer.searchfunction = self.search
-            self.buffers.append(buffer)
-            self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (buffer.name_), pos=self.view.search(session.db["user_name"], session.db["user_name"]))
+            pub.sendMessage("createBuffer", buffer_type="TrendsBuffer", session_type=session.type, buffer_title=_("Trending topics for %s") % (i), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="%s_tt" % (i,), sessionObject=session, account=session.db["user_name"], trendsFor=i, sound="trends_updated.ogg"))
 
     def set_buffer_positions(self, session):
         "Sets positions for buffers if values exist in the database."
@@ -430,21 +417,18 @@ class Controller(object):
         if dlg.get_response() == widgetUtils.OK and dlg.get("term") != "":
             term = dlg.get("term")
             buffer = self.get_best_buffer()
+            searches_position =self.view.search("searches", buffer.session.db["user_name"])
             if dlg.get("tweets") == True:
                 if term not in buffer.session.settings["other_buffers"]["tweet_searches"]:
                     buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
                     buffer.session.settings.write()
                     args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
-                    search = buffers.twitter.SearchBuffer(self.view.nb, "search", "%s-searchterm" % (term,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=term, tweet_mode="extended", **args)
+                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search_tweets", name="%s-searchterm" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=term, tweet_mode="extended", **args))
                 else:
                     log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
                     return
             elif dlg.get("users") == True:
-                search = buffers.twitter.SearchPeopleBuffer(self.view.nb, "search_users", "%s-searchUser" % (term,), buffer.session, buffer.session.db["user_name"], bufferType=None, sound="search_updated.ogg", q=term)
-            search.start_stream(mandatory=True)
-            pos=self.view.search("searches", buffer.session.db["user_name"])
-            self.insert_buffer(search, pos)
-            self.view.insert_buffer(search.buffer, name=_(u"Search for {}").format(term), pos=pos)
+                pub.sendMessage("createBuffer", buffer_type="SearchPeopleBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search_users", name="%s-searchUser" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType=None, sound="search_updated.ogg", q=term))
         dlg.Destroy()
 
     def find(self, *args, **kwargs):
@@ -567,8 +551,9 @@ class Controller(object):
                 if listBuffer != None: listBuffer.get_user_ids()
                 buff.session.db["lists"].pop(older_list)
                 buff.session.db["lists"].append(list)
-            except TweepError as e:
-                output.speak("error %s: %s" % (e.api_code, e.reason))
+            except TweepyException as e:
+                log.exception("error %s" % (str(e)))
+                output.speak("error %s" % (str(e)))
 
     def remove_from_list(self, *args, **kwargs):
         buff = self.get_best_buffer()
@@ -595,8 +580,9 @@ class Controller(object):
                 if listBuffer != None: listBuffer.get_user_ids()
                 buff.session.db["lists"].pop(older_list)
                 buff.session.db["lists"].append(list)
-            except TweepError as e:
-                output.speak("error %s: %s" % (e.api_code, e.reason))
+            except TweepyException as e:
+                output.speak("error %s" % (str(e)))
+                log.exception("error %s" % (str(e)))
 
     def list_manager(self, *args, **kwargs):
         s = self.get_best_buffer().session
@@ -764,7 +750,7 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        dlg = dialogs.utils.addAliasDialog(_("Add an user alias"), users)
+        dlg = dialogs.userAliasDialogs.addAliasDialog(_("Add an user alias"), users)
         if dlg.get_response() == widgetUtils.OK:
             user, alias = dlg.get_user()
             if user == "" or alias == "":
@@ -773,6 +759,11 @@ class Controller(object):
             buff.session.settings["user-aliases"][str(user_id)] = alias
             buff.session.settings.write()
             output.speak(_("Alias has been set correctly for {}.").format(user))
+            pub.sendMessage("alias-added")
+
+    def manage_aliases(self, *args, **kwargs):
+        buff = self.get_best_buffer()
+        alias_controller = userAliasController.userAliasController(buff.session.settings)
 
     def post_tweet(self, event=None):
         buffer = self.get_best_buffer()
@@ -900,7 +891,7 @@ class Controller(object):
                     if usr.id_str in buff.session.settings["other_buffers"]["favourites_timelines"]:
                         commonMessageDialogs.timeline_exist()
                         return
-                    tl = buffers.twitter.BaseBuffer(self.view.nb, "favorites", "%s-favorite" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr.id_str, tweet_mode="extended")
+                    tl = buffers.twitter.BaseBuffer(self.view.nb, "get_favorites", "%s-favorite" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr.id_str, tweet_mode="extended")
                     try:
                         tl.start_stream(play_sound=False)
                     except ValueError:
@@ -919,7 +910,7 @@ class Controller(object):
                     if usr.id_str in buff.session.settings["other_buffers"]["followers_timelines"]:
                         commonMessageDialogs.timeline_exist()
                         return
-                    tl = buffers.twitter.PeopleBuffer(self.view.nb, "followers", "%s-followers" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
+                    tl = buffers.twitter.PeopleBuffer(self.view.nb, "get_followers", "%s-followers" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
                     try:
                         tl.start_stream(play_sound=False)
                     except ValueError:
@@ -938,7 +929,7 @@ class Controller(object):
                     if usr.id_str in buff.session.settings["other_buffers"]["friends_timelines"]:
                         commonMessageDialogs.timeline_exist()
                         return
-                    tl = buffers.twitter.PeopleBuffer(self.view.nb, "friends", "%s-friends" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
+                    tl = buffers.twitter.PeopleBuffer(self.view.nb, "get_friends", "%s-friends" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
                     try:
                         tl.start_stream(play_sound=False)
                     except ValueError:
@@ -958,7 +949,7 @@ class Controller(object):
         buffer = self.get_current_buffer()
         id = buffer.get_right_tweet().id
         user = buffer.session.get_user(buffer.get_right_tweet().user).screen_name
-        search = buffers.twitter.ConversationBuffer(self.view.nb, "search", "%s-searchterm" % (id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=id, q="@{0}".format(user,))
+        search = buffers.twitter.ConversationBuffer(self.view.nb, "search_tweets", "%s-searchterm" % (id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=id, q="@{0}".format(user,))
         search.tweet = buffer.get_right_tweet()
         search.start_stream(start=True)
         pos=self.view.search("searches", buffer.session.db["user_name"])
@@ -1360,11 +1351,10 @@ class Controller(object):
                         i.start_stream()
                     else:
                         i.start_stream(play_sound=False)
-                except TweepError as err:
-                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r due to the following reason: %s" % (err.api_code, i.name, i.account, i.args, i.kwargs, err.reason))
+                except TweepyException as err:
+                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
                     # Determine if this error was caused by a block applied to the current user (IE permission errors).
-                    errors_allowed = [130]
-                    if (err.api_code != None and err.api_code not in errors_allowed) or (err.api_code == None and 'Not authorized' in err.reason): # A twitter error, so safely try to remove the buffer.
+                    if type(err) == Forbidden:
                         buff = self.view.search(i.name, i.account)
                         i.remove_buffer(force=True)
                         commonMessageDialogs.blocked_timeline()
@@ -1388,34 +1378,34 @@ class Controller(object):
             try:
                 if sessions.sessions[i].is_logged == False: continue
                 sessions.sessions[i].check_connection()
-            except TweepError: # We shouldn't allow this function to die.
+            except TweepyException: # We shouldn't allow this function to die.
                 pass
 
     def create_new_buffer(self, buffer, account, create):
         buff = self.search_buffer("home_timeline", account)
         if create == True:
             if buffer == "favourites":
-                favourites = buffers.twitter.BaseBuffer(self.view.nb, "favorites", "favourites", buff.session, buff.session.db["user_name"], tweet_mode="extended")
+                favourites = buffers.twitter.BaseBuffer(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"], tweet_mode="extended")
                 self.buffers.append(favourites)
                 self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
                 favourites.start_stream(play_sound=False)
             if buffer == "followers":
-                followers = buffers.twitter.PeopleBuffer(self.view.nb, "followers", "followers", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
+                followers = buffers.twitter.PeopleBuffer(self.view.nb, "get_followers", "followers", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
                 self.buffers.append(followers)
                 self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
                 followers.start_stream(play_sound=False)
             elif buffer == "friends":
-                friends = buffers.twitter.PeopleBuffer(self.view.nb, "friends", "friends", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
+                friends = buffers.twitter.PeopleBuffer(self.view.nb, "get_friends", "friends", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
                 self.buffers.append(friends)
                 self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
                 friends.start_stream(play_sound=False)
             elif buffer == "blocked":
-                blocks = buffers.twitter.PeopleBuffer(self.view.nb, "blocks", "blocked", buff.session, buff.session.db["user_name"])
+                blocks = buffers.twitter.PeopleBuffer(self.view.nb, "get_blocks", "blocked", buff.session, buff.session.db["user_name"])
                 self.buffers.append(blocks)
                 self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
                 blocks.start_stream(play_sound=False)
             elif buffer == "muted":
-                muted = buffers.twitter.PeopleBuffer(self.view.nb, "mutes", "muted", buff.session, buff.session.db["user_name"])
+                muted = buffers.twitter.PeopleBuffer(self.view.nb, "get_mutes", "muted", buff.session, buff.session.db["user_name"])
                 self.buffers.append(muted)
                 self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
                 muted.start_stream(play_sound=False)
@@ -1539,13 +1529,10 @@ class Controller(object):
         os.chdir("../../")
 
     def view_changelog(self, *args, **kwargs):
-        if application.snapshot == True:
-            webbrowser.open("https://github.com/manuelcortez/twblue/blob/next-gen/doc/changelog.md")
-        else:
-            lang = localization.get("documentation")
-            os.chdir("documentation/%s" % (lang,))
-            webbrowser.open("changelog.html")
-            os.chdir("../../")
+        lang = localization.get("documentation")
+        os.chdir("documentation/%s" % (lang,))
+        webbrowser.open("changelog.html")
+        os.chdir("../../")
 
     def insert_buffer(self, buffer, position):
         self.buffers.insert(position, buffer)
@@ -1566,11 +1553,10 @@ class Controller(object):
             if i.session != None and i.session.is_logged == True:
                 try:
                     i.start_stream(mandatory=True)
-                except TweepError as err:
-                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r due to the following reason: %s" % (err.api_code, i.name, i.account, i.args, i.kwargs, err.reason))
+                except TweepyException as err:
+                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
                     # Determine if this error was caused by a block applied to the current user (IE permission errors).
-                    errors_allowed = [130]
-                    if (err.api_code != None and err.api_code not in errors_allowed) or (err.api_code == None and 'Not authorized' in err.reason): # A twitter error, so safely try to remove the buffer.
+                    if type(err) == Forbidden:
                         buff = self.view.search(i.name, i.account)
                         i.remove_buffer(force=True)
                         commonMessageDialogs.blocked_timeline()
@@ -1592,14 +1578,16 @@ class Controller(object):
                 output.speak(_(u"{0} items retrieved").format(n,))
 
     def buffer_title_changed(self, buffer):
-        if "-timeline" in buffer.name:
+        if buffer.name.endswith("-timeline"):
             title = _(u"Timeline for {}").format(buffer.username,)
-        elif "-favorite" in buffer.name:
+        elif buffer.name.endswith("-favorite"):
             title = _(u"Likes for {}").format(buffer.username,)
-        elif "-followers" in buffer.name:
+        elif buffer.name.endswith("-followers"):
             title = _(u"Followers for {}").format(buffer.username,)
-        elif "-friends" in buffer.name:
+        elif buffer.name.endswith("-friends"):
             title = _(u"Friends for {}").format(buffer.username,)
+        elif buffer.name.endswith("_tt"):
+            title = _("Trending topics for %s") % (buffer.name_)
         buffer_index = self.view.search(buffer.name, buffer.account)
         self.view.set_page_title(buffer_index, title)
 
@@ -1676,5 +1664,5 @@ class Controller(object):
             try:
                 if sessions.sessions[i].is_logged == False: continue
                 sessions.sessions[i].check_streams()
-            except TweepError: # We shouldn't allow this function to die.
+            except TweepyException: # We shouldn't allow this function to die.
                 pass

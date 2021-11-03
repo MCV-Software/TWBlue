@@ -6,7 +6,7 @@ import output
 from wxUI.dialogs import update_profile, show_user
 import logging
 log = logging.getLogger("controller.user")
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException, Forbidden, NotFound
 from sessions.twitter import utils
 
 class profileController(object):
@@ -24,12 +24,12 @@ class profileController(object):
         else:
             try:
                 self.get_data(screen_name=self.user)
-            except TweepError as err:
-                if err.api_code == 50:
+            except TweepyException as err:
+                if type(err) == NotFound:
                     wx.MessageDialog(None, _(u"That user does not exist"), _(u"Error"), wx.ICON_ERROR).ShowModal()
-                if err.api_code == 63:
+                if type(err) == Forbidden:
                     wx.MessageDialog(None, _(u"User has been suspended"), _(u"Error"), wx.ICON_ERROR).ShowModal()
-                log.error("error %d: %s" % (err.api_code, err.reason))
+                log.error("error %s" % (str(err)))
                 return
             self.dialog = show_user.showUserProfile()
             string = self.get_user_info()
@@ -44,7 +44,7 @@ class profileController(object):
     def get_data(self, screen_name):
         self.data = self.session.twitter.get_user(screen_name=screen_name)
         if screen_name != self.session.db["user_name"]:
-            self.friendship_status = self.session.twitter.show_friendship(source_screen_name=self.session.db["user_name"], target_screen_name=screen_name)
+            self.friendship_status = self.session.twitter.get_friendship(source_screen_name=self.session.db["user_name"], target_screen_name=screen_name)
 
     def fill_profile_fields(self):
         self.dialog.set_name(self.data.name)
@@ -83,12 +83,12 @@ class profileController(object):
         if self.file != None:
             try:
                 self.session.twitter.update_profile_image(image=self.file)
-            except TweepError as e:
-                output.speak(u"Error %s. %s" % (e.api_code, e.reason))
+            except TweepyException as e:
+                output.speak(u"Error %s" % (str(e)))
         try:
             self.session.twitter.update_profile(name=name, description=description, location=location, url=url)
-        except TweepError as e:
-            output.speak(u"Error %s. %s" % (e.api_code, e.reason))
+        except TweepyException as e:
+            output.speak(u"Error %s." % (str(e)))
 
     def get_user_info(self):
         string = u""

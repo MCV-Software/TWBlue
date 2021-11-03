@@ -21,7 +21,7 @@ from audio_services import youtube_utils
 from controller.buffers.base import base
 from sessions.twitter import compose, utils, reduce
 from mysc.thread_utils import call_threaded
-from tweepy.error import TweepError
+from tweepy.errors import TweepyException
 from tweepy.cursor import Cursor
 from pubsub import pub
 from sessions.twitter.long_tweets import twishort, tweets
@@ -140,7 +140,7 @@ class BaseBuffer(base.Buffer):
         try:
             tweet = self.session.twitter.get_status(id=tweet_id, include_ext_alt_text=True, tweet_mode="extended")
             tweet.full_text = utils.expand_urls(tweet.full_text, tweet.entities)
-        except TweepError as e:
+        except TweepyException as e:
             utils.twitter_error(e)
             return
         if message != None:
@@ -151,7 +151,7 @@ class BaseBuffer(base.Buffer):
             try:
                 tweet = self.session.twitter.get_status(id=l, include_ext_alt_text=True, tweet_mode="extended")
                 tweet.full_text = utils.expand_urls(tweet.full_text, tweet.entities)
-            except TweepError as e:
+            except TweepyException as e:
                 utils.twitter_error(e)
                 return
             l = tweets.is_long(tweet)
@@ -191,8 +191,8 @@ class BaseBuffer(base.Buffer):
                     log.debug("Retrieved %d items from the cursored search on function %s." %(len(val), self.function))
                     user_ids = [item.message_create["sender_id"] for item in val]
                     self.session.save_users(user_ids)
-                except TweepError as e:
-                    log.error("Error %s: %s" % (e.api_code, e.reason))
+                except TweepyException as e:
+                    log.exception("Error %s" % (str(e)))
                     return
             number_of_items = self.session.order_buffer(self.name, val)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
@@ -229,8 +229,8 @@ class BaseBuffer(base.Buffer):
             last_id = self.session.db[self.name][-1].id
         try:
             items = getattr(self.session.twitter, self.function)(max_id=last_id, count=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
-        except TweepError as e:
-            log.error("Error %s: %s" % (e.api_code, e.reason))
+        except TweepyException as e:
+            log.exception("Error %s" % (str(e)))
             return
         if items == None:
             return
@@ -611,13 +611,13 @@ class BaseBuffer(base.Buffer):
             items = self.session.db[self.name]
             try:
                 if self.name == "direct_messages" or self.name == "sent_direct_messages":
-                    self.session.twitter.destroy_direct_message(id=self.get_right_tweet().id)
+                    self.session.twitter.delete_direct_message(id=self.get_right_tweet().id)
                     items.pop(index)
                 else:
                     self.session.twitter.destroy_status(id=self.get_right_tweet().id)
                     items.pop(index)
                 self.buffer.list.remove_item(index)
-            except TweepError:
+            except TweepyException:
                 self.session.sound.play("error.ogg")
             self.session.db[self.name] = items
 

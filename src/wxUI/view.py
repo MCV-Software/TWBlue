@@ -20,6 +20,7 @@ class mainFrame(wx.Frame):
         self.show_hide = app.Append(wx.ID_ANY, _(u"&Hide window"))
         self.menuitem_search = app.Append(wx.ID_ANY, _(u"&Search"))
         self.lists = app.Append(wx.ID_ANY, _(u"&Lists manager"))
+        self.manageAliases = app.Append(wx.ID_ANY, _("Manage user aliases"))
         self.keystroke_editor = app.Append(wx.ID_ANY, _(u"&Edit keystrokes"))
         self.account_settings = app.Append(wx.ID_ANY, _(u"Account se&ttings"))
         self.prefs = app.Append(wx.ID_PREFERENCES, _(u"&Global settings"))

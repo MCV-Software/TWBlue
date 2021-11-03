@@ -1,6 +1,6 @@
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
-  PYTHON: "C:\\python38\\python.exe"
+  PYTHON: "C:\\python37\\python.exe"
   NSIS: "C:\\program files (x86)\\nsis\\makensis.exe"
 
 stages:
@@ -8,7 +8,7 @@ stages:
   - make_installer
   - upload
 
-snapshot32:
+twblue32:
   tags:
     - shared-windows
     - windows
@@ -17,11 +17,10 @@ snapshot32:
     - Set-Variable -Name "time" -Value (date -Format "%H:%m")
     - echo ${time}
     - echo "started by ${GITLAB_USER_NAME}"
-    - choco install python --version 3.8.10 -y -ForceX86
+    - choco install python --version 3.7.9 -y -ForceX86
     - '&$env:PYTHON -V'
     - '&$env:PYTHON -m pip install --upgrade pip'
     - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
-    - '&$env:PYTHON -m pip uninstall enum34 -y'
   stage: build
   interruptible: true
   script:
@@ -30,6 +29,7 @@ snapshot32:
     - '&$env:PYTHON documentation_importer.py'
     - cd ..\src
     - '&$env:PYTHON ..\doc\generator.py'
+    - '&$env:PYTHON write_version_data.py'
     - '&$env:PYTHON setup.py build'
     - cd ..
     - mkdir artifacts
@@ -37,7 +37,9 @@ snapshot32:
     - '&$env:PYTHON make_archive.py'
     - cd ..
     - mv src/dist artifacts/TWBlue
-    - move src/twblue.zip artifacts/twblue_snapshot_x86.zip
+    - move src/twblue.zip artifacts/twblue_x86.zip
+    # Move the generated script nsis file to artifacts, so we won't need python when generating the installer.
+    - move scripts/twblue.nsi artifacts/twblue.nsi
   only:
     - tags
   artifacts:
@@ -45,7 +47,7 @@ snapshot32:
       - artifacts
     expire_in: 1 day
 
-snapshot64:
+twblue64:
   tags:
     - shared-windows
     - windows
@@ -54,7 +56,7 @@ snapshot64:
     - Set-Variable -Name "time" -Value (date -Format "%H:%m")
     - echo ${time}
     - echo "started by ${GITLAB_USER_NAME}"
-    - choco install python --version 3.8.10 -y
+    - choco install python --version 3.7.9 -y
     - '&$env:PYTHON -V'
     - '&$env:PYTHON -m pip install --upgrade pip'
     - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
@@ -66,6 +68,7 @@ snapshot64:
     - '&$env:PYTHON documentation_importer.py'
     - cd ..\src
     - '&$env:PYTHON ..\doc\generator.py'
+    - '&$env:PYTHON write_version_data.py'
     - '&$env:PYTHON setup.py build'
     - cd ..
     - mkdir artifacts
@@ -73,7 +76,7 @@ snapshot64:
     - '&$env:PYTHON make_archive.py'
     - cd ..
     - mv src/dist artifacts/TWBlue64
-    - move src/twblue.zip artifacts/twblue_snapshot_x64.zip
+    - move src/twblue.zip artifacts/twblue_x64.zip
   only:
     - tags
   artifacts:
@@ -95,9 +98,10 @@ generate_versions:
   script:
     - move artifacts/TWBlue scripts/
     - move artifacts/TWBlue64 scripts/
+    - move artifacts/twblue.nsi scripts/installer.nsi
     - cd scripts
-    - '&$env:NSIS twblue_snapshot.nsi'
-    - move twblue_snapshot_setup.exe ../artifacts
+    - '&$env:NSIS installer.nsi'
+    - move twblue_setup.exe ../artifacts
   only:
     - tags
   artifacts:

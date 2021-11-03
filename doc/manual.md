@@ -1,4 +1,4 @@
-Documentation for TWBlue - 0.88
+Documentation for TWBlue
 
 ## Table of contents
 
@@ -42,7 +42,7 @@ You can log into several Twitter accounts simultaneously. The program refers to 
 
 Your default browser will open on the Twitter page to request authorisation. Enter your username and password into the appropriate edit fields if you're not already logged in, select the authorise button, and press it.
 
-Once you've authorised your twitter account, the website will redirect you to a page which will notify you that TWBlue has been authorised successfully. Now you are able to close the page by pressing ALT+F4 which will return you to the Session Manager. On the session list, you will see a new item temporarily called "Authorised account x" -where x is a number. The session name will change once you open that session.
+Once you've authorised your twitter account, the website will redirect you to a page which will notify you that TWBlue has been authorised successfully. On this page, you will be shown a code composed of several numbers that you must paste in the TWBlue authorization dialogue in order to allow the application to access your account. Once you have pasted the code in the corresponding text field, press enter to finish the account setup and go back to the session manager. On the session list, you will see a new item temporarily called "Authorised account x" -where x is a number. The session name will change once you open that session.
 
 To start running TWBlue, press the Ok button in the Session Manager dialogue. By default, the program starts all the configured sessions automatically, however, you can change this behavior.
 
@@ -56,7 +56,7 @@ Before starting to describe TWBlue's usage, we'll explain some concepts that wil
 
 ### Buffer
 
-A buffer is a list of items to manage the data which arrives from Twitter, after being processed by the application. When you configure a new session on TWBlue and start it, many buffers are created. Each of them may contain some of the items which this program works with: Tweets, direct messages, users, trends or events. According to the buffer you are focusing, you will be able to do different actions with these items.
+A buffer is a list of items to manage the data which arrives from Twitter, after being processed by the application. When you configure a new session on TWBlue and start it, many buffers are created. Each of them may contain some of the items which this program works with: Tweets, direct messages, users, trends or. According to the buffer you are focusing, you will be able to do different actions with these items.
 
 The following is a description for every one of TWBlue's buffers and the kind of items they work with.
 
@@ -69,17 +69,17 @@ The following is a description for every one of TWBlue's buffers and the kind of
 * Followers: when users follow you, you'll be able to see them on this buffer, with some of their account details.
 * Friends: the same as the previous buffer, but these are the users you follow.
 * User timelines: these are buffers you may create. They contain only the tweets by a specific user. They're used so you can see the tweets by a single person and you don't want to look all over your timeline. You may create as many as you like.
-* Events: An event is anything that happens on Twitter, such as when someone follows you, when someone adds or removes one of your tweets from their likes list, or when you subscribe to a list. There are many more, but the program shows the most common ones in the events buffer so that you can easily keep track of what is happening on your account.
 * Lists: A list is similar to a user timeline, except that you can configure it to contain tweets from multiple users.
 * Search: A search buffer contains the results of a search operation.
 * User likes: You can have the program create a buffer containing tweets liked by a particular user.
+* Followers or following timeline: You can have TWBlue create a buffer containing all users who follow, or are followed by a specific user.
 * Trending Topics: a trend buffer shows the top ten most used terms in a geographical region. This region may be a country or a city. Trends are updated every five minutes.
 
-If a tweet contains a URL, you can press enter in the GUI or Control + Windows + Enter in the invisible interface to open it. If it contains audio, you can press Control + Enter or Control + Windows + Alt + Enter to play it, respectively. TWBlue will play a sound if the tweet contains the \#audio hashtag, but there may be tweets which contain audio without this. Finally, if a tweet contains geographical information, you can press Control + Windows + G in the invisible interface to retrieve it.
+If a tweet contains a URL, you can press enter in the GUI or Control + Windows + Enter in the invisible interface to open it. If it contains video or audio, including live stream content, you can press Control + Enter or Control + Windows + Alt + Enter to play it, respectively. TWBlue will play a sound if the tweet contains video metadata or the \#audio hashtag, but there may be tweets which contain media without this. Finally, if a tweet contains geographical information, you can press Control + Windows + G in the invisible interface to retrieve it.
 
 ### Username fields
 
-These fields accept a Twitter username (without the at sign) as the input. They are present in the send direct message and the user actions dialogue boxes. Those dialogues will be discussed later. The initial value of these fields depends on where they were opened from. They are prepopulated with the username of the sender of the focused tweet (if they were opened from the home and sent timelines, from users' timelines or from lists), the sender of the focused direct message (if from the received or sent direct message buffers) or in the focused user (if from the followers' or friends' buffer). If one of those dialogue boxes is opened from a tweet, and if there are more users mentioned in it, you can use the arrow keys to switch between them. Alternatively, you can also type a username.
+These fields accept a Twitter username (without the at sign) as the input. They are present in the send direct message, the user actions dialogue and the user alias dialogue boxes, to name a few examples. Those dialogues will be discussed later. The initial value of these fields depends on where they were opened from. They are prepopulated with the username of the sender of the focused tweet (if they were opened from the home and sent timelines, from users' timelines or from lists), the sender of the focused direct message (if from the received or sent direct message buffers) or in the focused user (if from the followers' or friends' buffer). If one of those dialogue boxes is opened from a tweet, and if there are more users mentioned in it, you can use the arrow keys to switch between them. Alternatively, you can also type a username.
 
 ## The program's interfaces
 
@@ -98,9 +98,9 @@ In summary, the GUI contains two core components. These are the controls you wil
 
 #### Buttons in the application
 
-* Tweet: this button opens up a dialogue box to write your tweet. Normal tweets must not exceed 280 characters. However you can press the long tweet checkbox and your tweet will be posted throught Twishort, wich will allow you to write longer tweets (10000 characters). If you write past this limit, a sound will play to warn you. Note that the character count is displayed in the title bar. You may use the shorten and expand URL buttons to comply with the character limit. You can upload a picture, check spelling, attach audio or translate your message by selecting one of the available buttons in the dialogue box. In addition, you can autocomplete the entering of users by pressing Alt + C or the button for that purpose if you have the database of users configured. Press enter to send the tweet. If all goes well, you'll hear a sound confirming it. Otherwise, the screen reader will speak an error message in English describing the problem.
+* Tweet: this button opens up a dialogue box to write your tweet. Normal tweets must not exceed 280 characters. However you can press the long tweet checkbox and your tweet will be posted throught Twishort, wich will allow you to write longer tweets (10000 characters). If you write past this limit, a sound will play to warn you. Note that the character count is displayed in the title bar. You can upload a picture, check spelling, attach audio or translate your message by selecting one of the available buttons in the dialogue box. In addition, you can autocomplete the entering of users by pressing Alt + C or the button for that purpose if you have the database of users configured. Press enter to send the tweet. If all goes well, you'll hear a sound confirming it. Otherwise, the screen reader will speak an error message in English describing the problem.
 * Retweet: this button retweets the message you're reading. After you press it, if you haven't configured the application not to do so, you'll be asked if you want to add a comment or simply send it as written. If you choose to add a comment,  it will post a quoted tweet, that is,  the comment with a  link to the originating tweet.
-* Reply: when you're viewing a tweet, you can reply to the user who sent it by pressing this button. A dialogue will open up similar to the one for tweeting. If there are more users referred to in the tweet, you can press tab and activate the mention to all checkbox, or enabling checkbox for the users you want to mention separately. When you're on the friends or followers lists, the button will be called mention instead.
+* Reply: when you're viewing a tweet, you can reply to the user who sent it by pressing this button. A dialogue will open up similar to the one for tweeting. If there are more users referred to in the tweet, you can press tab and activate the mention to all checkbox, or enabling checkbox for the users you want to mention separately. Note, however, that sometimes -especially when replying to a retweet or quoted tweet, the user who made the retweet or quote may also be mentioned. This is done by Twitter automatically. When you're on the friends or followers lists, the button will be called mention instead.
 * Direct message: exactly like sending a tweet, but it's a private message which can only be read by the user you send it to. Press shift-tab twice to see the recipient. If there were other users mentioned in the tweet you were reading, you can arrow up or down to choose which one to send it to, or write the username yourself without the at sign. In addition, you can autocomplete the entering of users by pressing Alt + C or the button for that purpose if you have the database of users configured.
 
 Bear in mind that buttons will appear according to which actions are possible on the list you are browsing. For example, on the home timeline, mentions, sent, likes and user timelines you will see the four buttons, while on the direct messages list you'll only get the direct message and tweet buttons, and on friends and followers lists the direct message, tweet, and mention buttons will be available.
@@ -116,6 +116,7 @@ Visually, Towards the top of the main application window, can be found a menu ba
 * Hide window: turns off the Graphical User Interface. Read the section on the invisible interface for further details.
 * Search: shows a dialogue box where you can search for tweets or users on Twitter.
 * Lists Manager: This dialogue box allows you to manage your Twitter lists. In order to use them, you must first create them. Here, you can view, edit, create, delete or, optionally, open them in buffers similar to user timelines.
+* Manage user aliases: Opens up a dialogue where you can manage user aliases for the active session. In this dialog you can add new aliases, as well as edit and delete existing ones.
 * Edit keystrokes: this opens a dialogue where you can see and edit the shortcuts used in the invisible interface.
 * Account settings: Opens a dialogue box which lets you customize settings for the current account.
 * Global settings: Opens a dialogue which lets you configure settings for the entire application.
@@ -145,6 +146,7 @@ Visually, Towards the top of the main application window, can be found a menu ba
  * Ignore tweets from this client: Adds the client from which the focused tweet was sent to the ignored clients list.
 * View timeline: Lets you open a user's timeline by choosing the user in a dialog box. It is created when you press enter. If you invoke this option relative to a user that has no tweets, the operation will fail. If you try creating an existing timeline the program will warn you and will not create it again.
 * Direct message: same action as the button.
+* Add Alias: An user alias allows you to rename user's display names on Twitter, so the next time you'll read an user it will be announced as you configured. This feature works only if you have set display screen names unchecked, in account settings.
 * Add to List: In order to see someone's tweets in one or more of your lists, you must add them first. In the dialogue box that opens after selecting the user, you will be asked to select the list you wish to add the user to. Thereafter, the list will contain a new member and their tweets will be displayed there.
 * Remove from list: lets you remove a user from a list.
 * View lists: Shows the lists created by a specified user.
@@ -153,8 +155,12 @@ Visually, Towards the top of the main application window, can be found a menu ba
 
 ##### Buffer menu
 
+* Update buffer: Retrieves the newest items for the focused buffer. Normally, every buffer gets updated every couple of minutes, however you can force a specific buffer to be updated inmediately. Take into account, however, that the usage of this option repeatedly might exceed your allowed Twitter's API usage, in which case you would have to wait until it gets reset, tipycally within the next 15 minutes.
 * New trending topics buffer: This opens a buffer to get the worlwide trending topics or those of a country or a city. You'll be able to select from a dialogue box if you wish to retrieve countries' trends, cities' trends or worldwide trends (this option is in the cities' list) and choose one from the selected list. The trending topics buffer will be created once the "OK" button has been activated within the dialogue box. Remember this kind of buffer will be updated every five minutes.
 * Load previous items: This allows more items to be loaded for the specified buffer.
+* Create filter: Creates a filter in the current buffer. Filters allow loading or ignoring tweets that meet certain conditions into a buffer. You can, for example, set a filter in the "home" buffer that loads tweets that are in English language only. By default, the filter creation dialog will place the focus on the field to name the filter. Currently, you can filter by word, by language, or both. In the filter by word, you can make TWBlue allow or ignore tweets with the desired word. In the filter by language, you can make the program load tweets in the languages you want, or ignore tweets written in certain languages. Once created, every filter will be saved in the session config and will be kept across application restarts.
+* Manage filters: Opens up a dialogue which allows you to delete filters for the current session.
+* Find a string in the currently focused buffer: Opens a dialogue where you can search for items in the current buffer.
 * Mute: Mutes notifications of a particular buffer so you will not hear when new tweets arrive.
 * autoread: When enabled, the screen reader or SAPI 5 Text to Speech voice (if enabled) will read the text of incoming tweets. Please note that this could get rather chatty if there are a lot of incoming tweets.
 * Clear buffer: Deletes all items from the buffer.
@@ -173,6 +179,8 @@ Visually, Towards the top of the main application window, can be found a menu ba
 * What's new in this version?: opens up a document with the list of changes from the current version to the earliest.
 * Check for updates: every time you open the program it automatically checks for new versions. If an update is available, it will ask you if you want to download the update. If you accept, the updating process will commence. When complete, TWBlue will be restarted. This item checks for new updates without having to restart the application.
 * TWBlue's website: visit our [home page](http://twblue.es) where you can find all relevant information and downloads for TWBlue and become a part of the community.
+* Get soundpacks for TWBlue: 
+* Make a Donation: Opens a website from which you can donate to the TWBlue project. Donations are made through paypal and you don't need an account to donate.
 * About TWBlue: shows the credits of the program.
 
 ### The invisible user interface
@@ -350,4 +358,4 @@ Many thanks also to the people who worked on the documentation. Initially, [Manu
 
 ------------------------------------------------------------------------
 
-Copyright © 2013-2017. Manuel Cortéz
+Copyright © 2013-2021. Manuel Cortéz
