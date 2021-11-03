@@ -1529,13 +1529,10 @@ class Controller(object):
         os.chdir("../../")
 
     def view_changelog(self, *args, **kwargs):
-        if application.snapshot == True:
-            webbrowser.open("https://github.com/manuelcortez/twblue/blob/next-gen/doc/changelog.md")
-        else:
-            lang = localization.get("documentation")
-            os.chdir("documentation/%s" % (lang,))
-            webbrowser.open("changelog.html")
-            os.chdir("../../")
+        lang = localization.get("documentation")
+        os.chdir("documentation/%s" % (lang,))
+        webbrowser.open("changelog.html")
+        os.chdir("../../")
 
     def insert_buffer(self, buffer, position):
         self.buffers.insert(position, buffer)
