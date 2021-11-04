@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
 "POT-Creation-Date: 2021-11-03 18:55+0100\n"
-"PO-Revision-Date: 2021-11-03 18:57+0100\n"
+"PO-Revision-Date: 2021-11-04 17:00+0100\n"
 "Last-Translator: Oreonan <corentin@progaccess.net>\n"
 "Language-Team: Oreonan <corentin@progaccess.net>\n"
 "Language: fr\n"
@@ -37,12 +37,12 @@ msgstr "Mentions"
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:341
 msgid "Direct messages"
-msgstr "Messages privés"
+msgstr "Messages"
 
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:343 ../src\controller\settings.py:289
 msgid "Sent direct messages"
-msgstr "Messages privés envoyés"
+msgstr "Messages envoyés"
 
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:345 ../src\controller\settings.py:290
@@ -146,12 +146,12 @@ msgstr "Répondre à %s"
 #: ../src\controller\buffers\twitter\base.py:480
 #: ../src\controller\buffers\twitter\directMessages.py:130
 msgid "New direct message"
-msgstr "Nouveau message privé"
+msgstr "Nouveau message"
 
 #: ../src\controller\buffers\twitter\base.py:480
 #: ../src\controller\messages.py:200
 msgid "Direct message to %s"
-msgstr "Message privé à %s"
+msgstr "Message à %s"
 
 #: ../src\controller\buffers\twitter\base.py:520
 msgid "Add your comment to the tweet"
@@ -186,7 +186,7 @@ msgstr "Mention"
 
 #: ../src\controller\buffers\twitter\directMessages.py:133
 msgid "{0} new direct messages."
-msgstr "{0} nouveau message privé"
+msgstr "{0} nouveau message"
 
 #: ../src\controller\buffers\twitter\directMessages.py:136
 msgid "This action is not supported in the buffer yet."
@@ -198,7 +198,7 @@ msgid ""
 "buffer instead."
 msgstr ""
 "Récupérer plus d'élément est impossible dans ce tampon, utilisez le tampon "
-"des messages privés à la place."
+"des messages à la place."
 
 #: ../src\controller\buffers\twitter\people.py:253
 msgid "{0} new followers."
@@ -523,7 +523,7 @@ msgstr "Paramètres du compte de %s"
 
 #: ../src\controller\settings.py:288
 msgid "Direct Messages"
-msgstr "Messages privés"
+msgstr "Messages"
 
 #: ../src\controller\user.py:29 ../src\controller\user.py:31
 #: ../src\extra\SpellChecker\wx_ui.py:80 ../src\issueReporter\wx_ui.py:84
@@ -619,7 +619,7 @@ msgstr "Favoris: %s"
 
 #: ../src\controller\userActionsController.py:74
 msgid "You can't ignore direct messages"
-msgstr "Vous ne pouvez pas ignorer les messages privés"
+msgstr "Vous ne pouvez pas ignorer les messages"
 
 #: ../src\controller\userAliasController.py:32
 msgid "Edit alias for {}"
@@ -783,11 +783,11 @@ msgstr "Tampon détruit."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
 msgid "Direct message received."
-msgstr "Message privé reçu."
+msgstr "Message reçu."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "Direct message sent."
-msgstr "Message privé envoyé."
+msgstr "Message envoyé."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
 msgid "Error."
@@ -1569,7 +1569,7 @@ msgstr "Retweet"
 
 #: ../src\keystrokeEditor\constants.py:13
 msgid "Send direct message"
-msgstr "Envoyer un message privé"
+msgstr "Envoyer un message"
 
 #: ../src\keystrokeEditor\constants.py:14
 msgid "Like a tweet"
@@ -1649,7 +1649,7 @@ msgstr "Modifier le profil"
 
 #: ../src\keystrokeEditor\constants.py:33
 msgid "Delete a tweet or direct message"
-msgstr "Supprimer un tweet ou un message privé"
+msgstr "Supprimer un tweet ou un message"
 
 #: ../src\keystrokeEditor\constants.py:34
 msgid "Empty the current buffer"
@@ -2116,7 +2116,7 @@ msgstr "Utilisateur"
 
 #: ../src\wxUI\buffers\base.py:28
 msgid "Direct message"
-msgstr "Message privé"
+msgstr "Message"
 
 #: ../src\wxUI\buffers\events.py:14
 msgid "Event"
@@ -3235,7 +3235,7 @@ msgstr "&Actions de l'utilisateur..."
 
 #: ../src\wxUI\menus.py:40
 msgid "&Show direct message"
-msgstr "&Afficher le message privé"
+msgstr "&Afficher le message"
 
 #: ../src\wxUI\menus.py:68
 msgid "&Show event"
@@ -3243,7 +3243,7 @@ msgstr "&Afficher l'événement"
 
 #: ../src\wxUI\menus.py:78
 msgid "Direct &message"
-msgstr "&Message privé"
+msgstr "&Message"
 
 #: ../src\wxUI\menus.py:80 ../src\wxUI\view.py:50
 msgid "&View lists"
@@ -3343,7 +3343,7 @@ msgstr "Voir &chronologie..."
 
 #: ../src\wxUI\view.py:46
 msgid "Direct me&ssage"
-msgstr "&Message privé"
+msgstr "&Message"
 
 #: ../src\wxUI\view.py:47
 msgid "Add a&lias"
