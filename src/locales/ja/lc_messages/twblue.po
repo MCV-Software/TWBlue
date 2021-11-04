@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-11-01 11:40+0900\n"
+"PO-Revision-Date: 2021-11-05 07:15+0900\n"
 "Last-Translator: 陸 <support@riku22.net>\n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -101,7 +101,7 @@ msgid "Unknown buffer"
 msgstr "不明なバッファ"
 
 #: ../src\controller\buffers\twitter\base.py:88
-#: ../src\controller\buffers\twitter\trends.py:121
+#: ../src\controller\buffers\twitter\trends.py:122
 #: ../src\controller\messages.py:214 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\buffers\events.py:15 ../src\wxUI\buffers\trends.py:18
 #: ../src\wxUI\dialogs\message.py:304 ../src\wxUI\sysTrayIcon.py:35
@@ -109,7 +109,7 @@ msgid "Tweet"
 msgstr "ツイート"
 
 #: ../src\controller\buffers\twitter\base.py:89
-#: ../src\controller\buffers\twitter\trends.py:122
+#: ../src\controller\buffers\twitter\trends.py:123
 msgid "Write the tweet here"
 msgstr "ツイートを入力"
 
@@ -122,7 +122,7 @@ msgid "{0} new tweets in {1}."
 msgstr "「{1}」への{0}個の新規ツイート。"
 
 #: ../src\controller\buffers\twitter\base.py:261
-#: ../src\controller\buffers\twitter\directMessages.py:87
+#: ../src\controller\buffers\twitter\directMessages.py:88
 #: ../src\controller\buffers\twitter\people.py:180
 msgid "%s items retrieved"
 msgstr "%s個のアイテムを取得しました"
@@ -146,7 +146,7 @@ msgid "Reply to %s"
 msgstr "「%s」への返信"
 
 #: ../src\controller\buffers\twitter\base.py:480
-#: ../src\controller\buffers\twitter\directMessages.py:129
+#: ../src\controller\buffers\twitter\directMessages.py:130
 msgid "New direct message"
 msgstr "新しいダイレクトメッセージ"
 
@@ -175,26 +175,26 @@ msgstr "ユーザーの詳細"
 msgid "Opening item in web browser..."
 msgstr "ブラウザでアイテムを開いています…"
 
-#: ../src\controller\buffers\twitter\directMessages.py:92
+#: ../src\controller\buffers\twitter\directMessages.py:93
 #: ../src\controller\buffers\twitter\people.py:95
 msgid "Mention to %s"
 msgstr "%sへのメンション"
 
-#: ../src\controller\buffers\twitter\directMessages.py:92
+#: ../src\controller\buffers\twitter\directMessages.py:93
 #: ../src\controller\buffers\twitter\people.py:95
 #: ../src\wxUI\buffers\people.py:17
 msgid "Mention"
 msgstr "メンション"
 
-#: ../src\controller\buffers\twitter\directMessages.py:132
+#: ../src\controller\buffers\twitter\directMessages.py:133
 msgid "{0} new direct messages."
 msgstr "{0}件の新しいダイレクトメッセージ。"
 
-#: ../src\controller\buffers\twitter\directMessages.py:135
+#: ../src\controller\buffers\twitter\directMessages.py:136
 msgid "This action is not supported in the buffer yet."
 msgstr "この動作は、現在のバッファではサポートされていません。"
 
-#: ../src\controller\buffers\twitter\directMessages.py:145
+#: ../src\controller\buffers\twitter\directMessages.py:146
 msgid ""
 "Getting more items cannot be done in this buffer. Use the direct messages "
 "buffer instead."
@@ -206,7 +206,7 @@ msgstr ""
 msgid "{0} new followers."
 msgstr "{0}人の新しいフォロワー。"
 
-#: ../src\controller\buffers\twitter\trends.py:145
+#: ../src\controller\buffers\twitter\trends.py:146
 msgid "This action is not supported in the buffer, yet."
 msgstr "この動作は、現在のバッファではサポートされていません。"
 
@@ -279,6 +279,7 @@ msgstr "「{}」の検索結果"
 
 #: ../src\controller\mainController.py:381
 #: ../src\controller\mainController.py:982
+#: ../src\controller\mainController.py:1593
 msgid "Trending topics for %s"
 msgstr "%s のトレンド"
 
@@ -426,20 +427,20 @@ msgstr "バッファを更新中…"
 msgid "{0} items retrieved"
 msgstr "{0}個のアイテムを取得しました"
 
-#: ../src\controller\mainController.py:1598
-#: ../src\controller\mainController.py:1618
+#: ../src\controller\mainController.py:1600
+#: ../src\controller\mainController.py:1620
 msgid "Invalid buffer"
 msgstr "無効なバッファ"
 
-#: ../src\controller\mainController.py:1609
+#: ../src\controller\mainController.py:1611
 msgid "Picture {0}"
 msgstr "画像{0}"
 
-#: ../src\controller\mainController.py:1610
+#: ../src\controller\mainController.py:1612
 msgid "Select the picture"
 msgstr "画像を選択"
 
-#: ../src\controller\mainController.py:1629
+#: ../src\controller\mainController.py:1631
 msgid "Unable to extract text"
 msgstr "テキストを抽出できません"
 
@@ -1483,7 +1484,7 @@ msgstr ""
 msgid "Send report"
 msgstr "レポートを送信"
 
-#: ../src\issueReporter\wx_ui.py:75 ../src\wxUI\dialogs\filterDialogs.py:84
+#: ../src\issueReporter\wx_ui.py:75 ../src\wxUI\dialogs\filterDialogs.py:83
 #: ../src\wxUI\dialogs\find.py:23
 msgid "Cancel"
 msgstr "キャンセル"
@@ -1769,7 +1770,7 @@ msgstr "キーストローク"
 msgid "Action"
 msgstr "操作"
 
-#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\filterDialogs.py:131
+#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\filterDialogs.py:135
 #: ../src\wxUI\dialogs\lists.py:20 ../src\wxUI\dialogs\userAliasDialogs.py:53
 msgid "Edit"
 msgstr "編集"
@@ -1819,7 +1820,7 @@ msgstr "ウィンドウズ"
 msgid "Key"
 msgstr "キー名"
 
-#: ../src\keystrokeEditor\wx_ui.py:71 ../src\wxUI\dialogs\filterDialogs.py:82
+#: ../src\keystrokeEditor\wx_ui.py:71 ../src\wxUI\dialogs\filterDialogs.py:80
 #: ../src\wxUI\dialogs\find.py:21 ../src\wxUI\dialogs\userAliasDialogs.py:23
 #: ../src\wxUI\dialogs\utils.py:36
 msgid "OK"
@@ -1994,16 +1995,16 @@ msgstr "プライベート"
 msgid "public"
 msgstr "公式"
 
-#: ../src\sessions\twitter\session.py:209
+#: ../src\sessions\twitter\session.py:211
 msgid "%s failed.  Reason: %s"
 msgstr "%s が失敗しました。理由: %s"
 
-#: ../src\sessions\twitter\session.py:215
+#: ../src\sessions\twitter\session.py:217
 msgid "%s succeeded."
 msgstr "%sに成功しました。"
 
-#: ../src\sessions\twitter\session.py:424
-#: ../src\sessions\twitter\session.py:502
+#: ../src\sessions\twitter\session.py:426
+#: ../src\sessions\twitter\session.py:504
 msgid "Deleted account"
 msgstr "削除されたアカウント"
 
@@ -2541,7 +2542,7 @@ msgid "Status"
 msgstr "ステータス"
 
 #: ../src\wxUI\dialogs\configuration.py:144
-#: ../src\wxUI\dialogs\filterDialogs.py:126
+#: ../src\wxUI\dialogs\filterDialogs.py:130
 msgid "Buffer"
 msgstr "バッファ"
 
@@ -2666,91 +2667,99 @@ msgstr "その他"
 msgid "Save"
 msgstr "保存"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:16
+#: ../src\wxUI\dialogs\filterDialogs.py:13
 msgid "Create a filter  for this buffer"
 msgstr "このバッファのフィルタを作成"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:17
+#: ../src\wxUI\dialogs\filterDialogs.py:14
 msgid "Filter title"
 msgstr "フィルター名"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:26
-#: ../src\wxUI\dialogs\filterDialogs.py:126
+#: ../src\wxUI\dialogs\filterDialogs.py:24
+#: ../src\wxUI\dialogs\filterDialogs.py:130
 msgid "Filter by word"
 msgstr "単語でフィルター"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:27
+#: ../src\wxUI\dialogs\filterDialogs.py:25
 msgid "Ignore tweets wich contain the following word"
 msgstr "次の単語が含まれるツイートを無視する"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:28
+#: ../src\wxUI\dialogs\filterDialogs.py:26
 msgid "Ignore tweets without the following word"
 msgstr "次の単語が含まれないツイートを無視する"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:33
+#: ../src\wxUI\dialogs\filterDialogs.py:31
 msgid "word"
 msgstr "単語"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:38
+#: ../src\wxUI\dialogs\filterDialogs.py:36
 msgid "Allow retweets"
 msgstr "リツイートを許可する"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:39
+#: ../src\wxUI\dialogs\filterDialogs.py:37
 msgid "Allow quoted tweets"
 msgstr "引用ツイートを許可する"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:40
+#: ../src\wxUI\dialogs\filterDialogs.py:38
 msgid "Allow replies"
 msgstr "リプライを許可するフォロワー一覧"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:48
+#: ../src\wxUI\dialogs\filterDialogs.py:46
 msgid "Use this term as a regular expression"
 msgstr "正規表現を利用"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:50
-#: ../src\wxUI\dialogs\filterDialogs.py:126
+#: ../src\wxUI\dialogs\filterDialogs.py:48
+#: ../src\wxUI\dialogs\filterDialogs.py:130
 msgid "Filter by language"
 msgstr "言語でフィルター"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:51
+#: ../src\wxUI\dialogs\filterDialogs.py:49
 msgid "Load tweets in the following languages"
 msgstr "下記の言語のツイートを表示"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:52
+#: ../src\wxUI\dialogs\filterDialogs.py:50
 msgid "Ignore tweets in the following languages"
 msgstr "下記の言語のツイートを無視する"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:53
+#: ../src\wxUI\dialogs\filterDialogs.py:51
 msgid "Don't filter by language"
 msgstr "言語でフィルタしない"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:64
+#: ../src\wxUI\dialogs\filterDialogs.py:62
 msgid "Supported languages"
 msgstr "サポートしている言語"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:69
+#: ../src\wxUI\dialogs\filterDialogs.py:67
 msgid "Add selected language to filter"
 msgstr "選択した言語をフィルターに追加"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:73
+#: ../src\wxUI\dialogs\filterDialogs.py:71
 msgid "Selected languages"
 msgstr "選択した言語"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:75
-#: ../src\wxUI\dialogs\filterDialogs.py:133 ../src\wxUI\dialogs\lists.py:21
+#: ../src\wxUI\dialogs\filterDialogs.py:73
+#: ../src\wxUI\dialogs\filterDialogs.py:137 ../src\wxUI\dialogs\lists.py:21
 #: ../src\wxUI\dialogs\lists.py:132 ../src\wxUI\dialogs\userAliasDialogs.py:57
 msgid "Remove"
 msgstr "削除"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:123
+#: ../src\wxUI\dialogs\filterDialogs.py:120
+msgid "Missing filter name"
+msgstr "フィルター名がありません"
+
+#: ../src\wxUI\dialogs\filterDialogs.py:120
+msgid "You must define a name for the filter before creating it."
+msgstr "フィルターを作成する前に、フィルターの名前を定義する必要があります。"
+
+#: ../src\wxUI\dialogs\filterDialogs.py:127
 msgid "Manage filters"
 msgstr "フィルターの管理"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:125
+#: ../src\wxUI\dialogs\filterDialogs.py:129
 msgid "Filters"
 msgstr "フィルター"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:126
+#: ../src\wxUI\dialogs\filterDialogs.py:130
 msgid "Filter"
 msgstr "フィルター"
 
