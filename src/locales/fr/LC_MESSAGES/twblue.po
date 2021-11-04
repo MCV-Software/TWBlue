@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
-"POT-Creation-Date: 2021-10-28 12:29+Paris, Madrid (heure dété)\n"
-"PO-Revision-Date: 2021-10-28 18:29+0200\n"
+"POT-Creation-Date: 2021-11-03 18:55+0100\n"
+"PO-Revision-Date: 2021-11-04 17:00+0100\n"
 "Last-Translator: Oreonan <corentin@progaccess.net>\n"
 "Language-Team: Oreonan <corentin@progaccess.net>\n"
 "Language: fr\n"
@@ -37,12 +37,12 @@ msgstr "Mentions"
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:341
 msgid "Direct messages"
-msgstr "Messages privés"
+msgstr "Messages"
 
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:343 ../src\controller\settings.py:289
 msgid "Sent direct messages"
-msgstr "Messages privés envoyés"
+msgstr "Messages envoyés"
 
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:345 ../src\controller\settings.py:290
@@ -99,7 +99,7 @@ msgid "Unknown buffer"
 msgstr "Tampon inconnu"
 
 #: ../src\controller\buffers\twitter\base.py:88
-#: ../src\controller\buffers\twitter\trends.py:121
+#: ../src\controller\buffers\twitter\trends.py:122
 #: ../src\controller\messages.py:214 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\buffers\events.py:15 ../src\wxUI\buffers\trends.py:18
 #: ../src\wxUI\dialogs\message.py:304 ../src\wxUI\sysTrayIcon.py:35
@@ -107,7 +107,7 @@ msgid "Tweet"
 msgstr "Tweet"
 
 #: ../src\controller\buffers\twitter\base.py:89
-#: ../src\controller\buffers\twitter\trends.py:122
+#: ../src\controller\buffers\twitter\trends.py:123
 msgid "Write the tweet here"
 msgstr "Écrivez le tweet ici"
 
@@ -120,7 +120,7 @@ msgid "{0} new tweets in {1}."
 msgstr "{0} nouveau tweet dans {1}"
 
 #: ../src\controller\buffers\twitter\base.py:261
-#: ../src\controller\buffers\twitter\directMessages.py:87
+#: ../src\controller\buffers\twitter\directMessages.py:88
 #: ../src\controller\buffers\twitter\people.py:180
 msgid "%s items retrieved"
 msgstr "%s éléments récupérés"
@@ -144,14 +144,14 @@ msgid "Reply to %s"
 msgstr "Répondre à %s"
 
 #: ../src\controller\buffers\twitter\base.py:480
-#: ../src\controller\buffers\twitter\directMessages.py:129
+#: ../src\controller\buffers\twitter\directMessages.py:130
 msgid "New direct message"
-msgstr "Nouveau message privé"
+msgstr "Nouveau message"
 
 #: ../src\controller\buffers\twitter\base.py:480
 #: ../src\controller\messages.py:200
 msgid "Direct message to %s"
-msgstr "Message privé à %s"
+msgstr "Message à %s"
 
 #: ../src\controller\buffers\twitter\base.py:520
 msgid "Add your comment to the tweet"
@@ -173,38 +173,38 @@ msgstr "Détails de l'utilisateur"
 msgid "Opening item in web browser..."
 msgstr "Ouverture de l'élément dans le navigateur Web..."
 
-#: ../src\controller\buffers\twitter\directMessages.py:92
+#: ../src\controller\buffers\twitter\directMessages.py:93
 #: ../src\controller\buffers\twitter\people.py:95
 msgid "Mention to %s"
 msgstr "Mention pour %s"
 
-#: ../src\controller\buffers\twitter\directMessages.py:92
+#: ../src\controller\buffers\twitter\directMessages.py:93
 #: ../src\controller\buffers\twitter\people.py:95
 #: ../src\wxUI\buffers\people.py:17
 msgid "Mention"
 msgstr "Mention"
 
-#: ../src\controller\buffers\twitter\directMessages.py:132
+#: ../src\controller\buffers\twitter\directMessages.py:133
 msgid "{0} new direct messages."
-msgstr "{0} nouveau message privé"
+msgstr "{0} nouveau message"
 
-#: ../src\controller\buffers\twitter\directMessages.py:135
+#: ../src\controller\buffers\twitter\directMessages.py:136
 msgid "This action is not supported in the buffer yet."
 msgstr "Cette action n'est pas supportée dans le tampon actuel"
 
-#: ../src\controller\buffers\twitter\directMessages.py:145
+#: ../src\controller\buffers\twitter\directMessages.py:146
 msgid ""
 "Getting more items cannot be done in this buffer. Use the direct messages "
 "buffer instead."
 msgstr ""
 "Récupérer plus d'élément est impossible dans ce tampon, utilisez le tampon "
-"des messages privés à la place."
+"des messages à la place."
 
 #: ../src\controller\buffers\twitter\people.py:253
 msgid "{0} new followers."
 msgstr "{0} nouvel abonné"
 
-#: ../src\controller\buffers\twitter\trends.py:145
+#: ../src\controller\buffers\twitter\trends.py:146
 msgid "This action is not supported in the buffer, yet."
 msgstr "Cette action n'est pas supportée pour le tampon actuel"
 
@@ -277,6 +277,7 @@ msgstr "Recherche de {}"
 
 #: ../src\controller\mainController.py:381
 #: ../src\controller\mainController.py:982
+#: ../src\controller\mainController.py:1593
 msgid "Trending topics for %s"
 msgstr "Tendances pour %s"
 
@@ -425,20 +426,20 @@ msgstr "Actualisation..."
 msgid "{0} items retrieved"
 msgstr "{0} éléments récupérés"
 
-#: ../src\controller\mainController.py:1598
-#: ../src\controller\mainController.py:1618
+#: ../src\controller\mainController.py:1600
+#: ../src\controller\mainController.py:1620
 msgid "Invalid buffer"
 msgstr "Tampon invalide"
 
-#: ../src\controller\mainController.py:1609
+#: ../src\controller\mainController.py:1611
 msgid "Picture {0}"
 msgstr "Photo {0}"
 
-#: ../src\controller\mainController.py:1610
+#: ../src\controller\mainController.py:1612
 msgid "Select the picture"
 msgstr "Sélectionner la photo"
 
-#: ../src\controller\mainController.py:1629
+#: ../src\controller\mainController.py:1631
 msgid "Unable to extract text"
 msgstr "Impossible d'extraire le texte"
 
@@ -522,7 +523,7 @@ msgstr "Paramètres du compte de %s"
 
 #: ../src\controller\settings.py:288
 msgid "Direct Messages"
-msgstr "Messages privés"
+msgstr "Messages"
 
 #: ../src\controller\user.py:29 ../src\controller\user.py:31
 #: ../src\extra\SpellChecker\wx_ui.py:80 ../src\issueReporter\wx_ui.py:84
@@ -618,7 +619,7 @@ msgstr "Favoris: %s"
 
 #: ../src\controller\userActionsController.py:74
 msgid "You can't ignore direct messages"
-msgstr "Vous ne pouvez pas ignorer les messages privés"
+msgstr "Vous ne pouvez pas ignorer les messages"
 
 #: ../src\controller\userAliasController.py:32
 msgid "Edit alias for {}"
@@ -782,11 +783,11 @@ msgstr "Tampon détruit."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:10
 msgid "Direct message received."
-msgstr "Message privé reçu."
+msgstr "Message reçu."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:11
 msgid "Direct message sent."
-msgstr "Message privé envoyé."
+msgstr "Message envoyé."
 
 #: ../src\extra\SoundsTutorial\soundsTutorial_constants.py:12
 msgid "Error."
@@ -1487,7 +1488,7 @@ msgstr ""
 msgid "Send report"
 msgstr "Envoyer le rapport"
 
-#: ../src\issueReporter\wx_ui.py:75 ../src\wxUI\dialogs\filterDialogs.py:84
+#: ../src\issueReporter\wx_ui.py:75 ../src\wxUI\dialogs\filterDialogs.py:83
 #: ../src\wxUI\dialogs\find.py:23
 msgid "Cancel"
 msgstr "Annuler"
@@ -1568,7 +1569,7 @@ msgstr "Retweet"
 
 #: ../src\keystrokeEditor\constants.py:13
 msgid "Send direct message"
-msgstr "Envoyer un message privé"
+msgstr "Envoyer un message"
 
 #: ../src\keystrokeEditor\constants.py:14
 msgid "Like a tweet"
@@ -1648,7 +1649,7 @@ msgstr "Modifier le profil"
 
 #: ../src\keystrokeEditor\constants.py:33
 msgid "Delete a tweet or direct message"
-msgstr "Supprimer un tweet ou un message privé"
+msgstr "Supprimer un tweet ou un message"
 
 #: ../src\keystrokeEditor\constants.py:34
 msgid "Empty the current buffer"
@@ -1780,7 +1781,7 @@ msgstr "Raccourci"
 msgid "Action"
 msgstr "Action"
 
-#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\filterDialogs.py:131
+#: ../src\keystrokeEditor\wx_ui.py:18 ../src\wxUI\dialogs\filterDialogs.py:135
 #: ../src\wxUI\dialogs\lists.py:20 ../src\wxUI\dialogs\userAliasDialogs.py:53
 msgid "Edit"
 msgstr "Modifier"
@@ -1830,7 +1831,7 @@ msgstr "Windows"
 msgid "Key"
 msgstr "Touche"
 
-#: ../src\keystrokeEditor\wx_ui.py:71 ../src\wxUI\dialogs\filterDialogs.py:82
+#: ../src\keystrokeEditor\wx_ui.py:71 ../src\wxUI\dialogs\filterDialogs.py:80
 #: ../src\wxUI\dialogs\find.py:21 ../src\wxUI\dialogs\userAliasDialogs.py:23
 #: ../src\wxUI\dialogs\utils.py:36
 msgid "OK"
@@ -2007,16 +2008,16 @@ msgstr "privé"
 msgid "public"
 msgstr "public"
 
-#: ../src\sessions\twitter\session.py:209
+#: ../src\sessions\twitter\session.py:211
 msgid "%s failed.  Reason: %s"
 msgstr "%s erreur.  Raison: %s"
 
-#: ../src\sessions\twitter\session.py:215
+#: ../src\sessions\twitter\session.py:217
 msgid "%s succeeded."
 msgstr "%s réussi."
 
-#: ../src\sessions\twitter\session.py:424
-#: ../src\sessions\twitter\session.py:502
+#: ../src\sessions\twitter\session.py:426
+#: ../src\sessions\twitter\session.py:504
 msgid "Deleted account"
 msgstr "Compte supprimé"
 
@@ -2115,7 +2116,7 @@ msgstr "Utilisateur"
 
 #: ../src\wxUI\buffers\base.py:28
 msgid "Direct message"
-msgstr "Message privé"
+msgstr "Message"
 
 #: ../src\wxUI\buffers\events.py:14
 msgid "Event"
@@ -2561,7 +2562,7 @@ msgid "Status"
 msgstr "Statut"
 
 #: ../src\wxUI\dialogs\configuration.py:144
-#: ../src\wxUI\dialogs\filterDialogs.py:126
+#: ../src\wxUI\dialogs\filterDialogs.py:130
 msgid "Buffer"
 msgstr "Tampon"
 
@@ -2686,91 +2687,99 @@ msgstr "Supplémentaires"
 msgid "Save"
 msgstr "Enregistrer"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:16
+#: ../src\wxUI\dialogs\filterDialogs.py:13
 msgid "Create a filter  for this buffer"
 msgstr "Créer un filtre pour ce tampon"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:17
+#: ../src\wxUI\dialogs\filterDialogs.py:14
 msgid "Filter title"
 msgstr "Titre du filtre"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:26
-#: ../src\wxUI\dialogs\filterDialogs.py:126
+#: ../src\wxUI\dialogs\filterDialogs.py:24
+#: ../src\wxUI\dialogs\filterDialogs.py:130
 msgid "Filter by word"
 msgstr "Filtrer par mot"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:27
+#: ../src\wxUI\dialogs\filterDialogs.py:25
 msgid "Ignore tweets wich contain the following word"
 msgstr "Ignorer les tweets contenant le mot suivant"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:28
+#: ../src\wxUI\dialogs\filterDialogs.py:26
 msgid "Ignore tweets without the following word"
 msgstr "Ignorer les tweets ne contenant pas le mot suivant"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:33
+#: ../src\wxUI\dialogs\filterDialogs.py:31
 msgid "word"
 msgstr "Mot"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:38
+#: ../src\wxUI\dialogs\filterDialogs.py:36
 msgid "Allow retweets"
 msgstr "Permettre les retweets"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:39
+#: ../src\wxUI\dialogs\filterDialogs.py:37
 msgid "Allow quoted tweets"
 msgstr "Permettre les tweets cités"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:40
+#: ../src\wxUI\dialogs\filterDialogs.py:38
 msgid "Allow replies"
 msgstr "Permettre les réponses"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:48
+#: ../src\wxUI\dialogs\filterDialogs.py:46
 msgid "Use this term as a regular expression"
 msgstr "Utiliser ce terme comme une expression régulière"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:50
-#: ../src\wxUI\dialogs\filterDialogs.py:126
+#: ../src\wxUI\dialogs\filterDialogs.py:48
+#: ../src\wxUI\dialogs\filterDialogs.py:130
 msgid "Filter by language"
 msgstr "Filtrer par langue"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:51
+#: ../src\wxUI\dialogs\filterDialogs.py:49
 msgid "Load tweets in the following languages"
 msgstr "Charger tweets dans les suivantes langues"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:52
+#: ../src\wxUI\dialogs\filterDialogs.py:50
 msgid "Ignore tweets in the following languages"
 msgstr "Ignorer tweets dans les suivantes langues"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:53
+#: ../src\wxUI\dialogs\filterDialogs.py:51
 msgid "Don't filter by language"
 msgstr "Ne pas filtrer par langue"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:64
+#: ../src\wxUI\dialogs\filterDialogs.py:62
 msgid "Supported languages"
 msgstr "Langues supportées"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:69
+#: ../src\wxUI\dialogs\filterDialogs.py:67
 msgid "Add selected language to filter"
 msgstr "Ajouter la langue sélectionnée au filtre"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:73
+#: ../src\wxUI\dialogs\filterDialogs.py:71
 msgid "Selected languages"
 msgstr "Langue sélectionnée"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:75
-#: ../src\wxUI\dialogs\filterDialogs.py:133 ../src\wxUI\dialogs\lists.py:21
+#: ../src\wxUI\dialogs\filterDialogs.py:73
+#: ../src\wxUI\dialogs\filterDialogs.py:137 ../src\wxUI\dialogs\lists.py:21
 #: ../src\wxUI\dialogs\lists.py:132 ../src\wxUI\dialogs\userAliasDialogs.py:57
 msgid "Remove"
 msgstr "Effacer"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:123
+#: ../src\wxUI\dialogs\filterDialogs.py:120
+msgid "Missing filter name"
+msgstr "Nom de filtre manquant"
+
+#: ../src\wxUI\dialogs\filterDialogs.py:120
+msgid "You must define a name for the filter before creating it."
+msgstr "Vous devez définir un nom pour le filtre avant de le créer."
+
+#: ../src\wxUI\dialogs\filterDialogs.py:127
 msgid "Manage filters"
 msgstr "Gérer les filtres"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:125
+#: ../src\wxUI\dialogs\filterDialogs.py:129
 msgid "Filters"
 msgstr "Filtres"
 
-#: ../src\wxUI\dialogs\filterDialogs.py:126
+#: ../src\wxUI\dialogs\filterDialogs.py:130
 msgid "Filter"
 msgstr "Filtre"
 
@@ -3226,7 +3235,7 @@ msgstr "&Actions de l'utilisateur..."
 
 #: ../src\wxUI\menus.py:40
 msgid "&Show direct message"
-msgstr "&Afficher le message privé"
+msgstr "&Afficher le message"
 
 #: ../src\wxUI\menus.py:68
 msgid "&Show event"
@@ -3234,7 +3243,7 @@ msgstr "&Afficher l'événement"
 
 #: ../src\wxUI\menus.py:78
 msgid "Direct &message"
-msgstr "&Message privé"
+msgstr "&Message"
 
 #: ../src\wxUI\menus.py:80 ../src\wxUI\view.py:50
 msgid "&View lists"
@@ -3334,7 +3343,7 @@ msgstr "Voir &chronologie..."
 
 #: ../src\wxUI\view.py:46
 msgid "Direct me&ssage"
-msgstr "&Message privé"
+msgstr "&Message"
 
 #: ../src\wxUI\view.py:47
 msgid "Add a&lias"
