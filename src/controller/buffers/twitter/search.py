@@ -69,7 +69,7 @@ class ConversationBuffer(SearchBuffer):
         current_time = time.time()
         if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
             self.execution_time = current_time
-            results = self.get_replies(self.tweet)
+            results = self.get_replies_v1(self.tweet)
             number_of_items = self.session.order_buffer(self.name, results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
             self.put_items_on_list(number_of_items)
@@ -147,4 +147,35 @@ class ConversationBuffer(SearchBuffer):
                 results.extend(reply_results)
             except TweepyException as e:
                 log.exception("There was an error attempting to retrieve tweets for Twitter API V1.1, in conversation buffer {}".format(self.name))
+        return results
+
+    def get_replies_v1(self, tweet):
+        try:
+            tweet = self.session.twitter.get_status(id=tweet.id, tweet_mode="extended")
+        except:
+            log.exception("Error getting tweet for making a conversation buffer.")
+            return []
+        results = []
+        results.append(tweet)
+        if hasattr(tweet, "in_reply_to_status_id") and tweet.in_reply_to_status_id != None:
+            while tweet.in_reply_to_status_id != None:
+                original_tweet = self.session.twitter.get_status(id=tweet.in_reply_to_status_id, tweet_mode="extended")
+                results.insert(0, original_tweet)
+                tweet = original_tweet
+        try:
+            term = "from:{} to:{}".format(tweet.user.screen_name, tweet.user.screen_name)
+            thread_tweets = self.session.twitter.search_tweets(term, count=100, since_id=tweet.id, tweet_mode="extended")
+            results.extend(thread_tweets)
+        except TweepyException as e:
+            log.exception("There was an error when attempting to retrieve the whole conversation for buffer {}".format(self.buffer.name))
+
+        try:
+            term = "to:{}".format(tweet.user.screen_name)
+            reply_tweets = self.session.twitter.search_tweets(term, count=100, since_id=tweet.id, tweet_mode="extended")
+            ids = [t.id for t in results]
+            reply_tweets = [t for t in reply_tweets if hasattr(t, "in_reply_to_status_id") and t.in_reply_to_status_id in ids]
+            results.extend(reply_tweets)
+        except TweepyException as e:
+            log.exception("There was an error when attempting to retrieve the whole conversation for buffer {}".format(self.buffer.name))
+        results.sort(key=lambda x: x.id)
         return results
