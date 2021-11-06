@@ -3,10 +3,11 @@ TWBlue Changelog
 ## changes in this version
 
 * TWBlue should retrieve tweets from threads and conversations in a more reliable way. Tweets in the same thread (made by the same author) will be sorted correctly, although replies to the thread (made by different people) may not be ordered in the same way they are displayed in Twitter apps. ([#417](https://github.com/manuelcortez/TWBlue/issues/417))
-* fixed a bug when clearing the direct messages buffer. ([#418](https://github.com/manuelcortez/TWBlue/issues/418))
-* fixed an issue that was making TWBlue to show incorrectly titles for trending topic buffers upon startup. ([#421](https://github.com/manuelcortez/TWBlue/issues/421))
 * When creating a filter, TWBlue will show an error if user has not provided a name for the filter. Before, unnamed filters were a cause of config breaks in the application.
 * It is again possible to read the changelog for TWBlue from the help menu in the menu bar.
+* fixed a bug when clearing the direct messages buffer. ([#418](https://github.com/manuelcortez/TWBlue/issues/418))
+* fixed an issue that was making TWBlue to show incorrectly titles for trending topic buffers upon startup. ([#421](https://github.com/manuelcortez/TWBlue/issues/421))
+* fixed an issue that was making users of the graphical user interface to delete a buffer if a trends buffer was opened in the same session.
 * Updated Spanish, Japanese and french translations.
 
 ## Changes in Version 2021.10.30
