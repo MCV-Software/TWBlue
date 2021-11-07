@@ -591,3 +591,30 @@ class Session(base.baseSession):
             return
         if user != self.db["user_name"]:
             log.debug("Connected streaming endpoint on account {}".format(user))
+
+    def send_tweet(self, *tweets):
+        """ Convenience function to send a thread. """
+        in_reply_to_status_id = None
+        for obj in tweets:
+            if len(obj["attachments"]) == 0:
+                item = self.api_call(call_name="update_status", status=obj["text"], _sound="tweet_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id)
+                in_reply_to_status_id = item.id
+            else:
+                media_ids = []
+                for i in obj["attachments"]:
+                    img = self.api_call("media_upload", filename=i["file"])
+                    self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
+                    media_ids.append(img.media_id)
+                item = self.api_call(call_name="update_status", status=obj["text"], _sound="tweet_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id, media_ids=media_ids)
+                in_reply_to_status_id = item.id
+
+    def reply(self, text="", in_reply_to_status_id=None, attachments=[], *args, **kwargs):
+        if len(attachments) == 0:
+            item = self.api_call(call_name="update_status", status=text, _sound="reply_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id, *args, **kwargs)
+        else:
+            media_ids = []
+            for i in attachments:
+                img = self.api_call("media_upload", filename=i["file"])
+                self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
+                media_ids.append(img.media_id)
+            item = self.api_call(call_name="update_status", status=text, _sound="reply_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id, media_ids=media_ids, *args, **kwargs)
