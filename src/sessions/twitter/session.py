@@ -204,7 +204,7 @@ class Session(base.baseSession):
             except TweepyException as e:
                 output.speak(str(e))
                 val = None
-                if type(e) != NotFound and type(e) != Forvidden:
+                if type(e) != NotFound and type(e) != Forbidden:
                     tries = tries+1
                     time.sleep(5)
                 elif report_failure:
@@ -603,7 +603,8 @@ class Session(base.baseSession):
                 media_ids = []
                 for i in obj["attachments"]:
                     img = self.api_call("media_upload", filename=i["file"])
-                    self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
+                    if i["type"] == "photo":
+                        self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
                     media_ids.append(img.media_id)
                 item = self.api_call(call_name="update_status", status=obj["text"], _sound="tweet_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id, media_ids=media_ids)
                 in_reply_to_status_id = item.id
@@ -615,6 +616,7 @@ class Session(base.baseSession):
             media_ids = []
             for i in attachments:
                 img = self.api_call("media_upload", filename=i["file"])
-                self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
+                if i["type"] == "photo":
+                    self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
                 media_ids.append(img.media_id)
             item = self.api_call(call_name="update_status", status=text, _sound="reply_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id, media_ids=media_ids, *args, **kwargs)
