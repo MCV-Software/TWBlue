@@ -92,18 +92,12 @@ class PeopleBuffer(base.BaseBuffer):
     def reply(self, *args, **kwargs):
         tweet = self.get_right_tweet()
         screen_name = tweet.screen_name
-        message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
-        if message.message.get_response() == widgetUtils.OK:
-            if config.app["app-settings"]["remember_mention_and_longtweet"]:
-                config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
-                config.app.write()
-            if message.image == None:
-                item = self.session.api_call(call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text(), tweet_mode="extended")
-                if item != None:
-                    pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
-            else:
-                call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
-        if hasattr(message.message, "destroy"): message.message.destroy()
+        message = messages.tweet(session=self.session, title=_("Mention"), caption=_("Mention to %s") % (screen_name,), text="@%s " % (screen_name,), thread_mode=False)
+        if message.message.ShowModal() == widgetUtils.OK:
+            tweet_data = dict(text=message.message.text.GetValue(), attachments=message.attachments)
+            call_threaded(self.session.send_tweet, *[tweet_data])
+        if hasattr(message.message, "destroy"):
+            message.message.destroy()
 
     def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
         # starts stream every 3 minutes.

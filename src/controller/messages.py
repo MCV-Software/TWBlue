@@ -24,6 +24,8 @@ class basicTweet(object):
         self.title = title
         self.session = session
         self.message = getattr(twitterDialogs, messageType)(title=title, caption=caption, message=text, *args, **kwargs)
+        self.message.text.SetValue(text)
+        self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
         widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
         widgetUtils.connect_event(self.message.add_audio, widgetUtils.BUTTON_PRESSED, self.attach)
         widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
@@ -42,6 +44,7 @@ class basicTweet(object):
                     dst = k
             msg = translator.translator.translate(text=text_to_translate, target=dst)
             self.message.text.ChangeValue(msg)
+            self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
             self.text_processor()
             self.message.text.SetFocus()
             output.speak(_(u"Translated"))
