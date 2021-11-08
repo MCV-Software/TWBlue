@@ -1,123 +1,67 @@
 # -*- coding: utf-8 -*-
-import re
-import platform
+import os
 import arrow
 import languageHandler
-system = platform.system()
+import wx
 import widgetUtils
 import output
-import url_shortener
 import sound
 import config
 from pubsub import pub
 from twitter_text import parse_tweet
-if system == "Windows":
-    from wxUI.dialogs import message, urlList
-    from wxUI import commonMessageDialogs
-    from extra import translator, SpellChecker, autocompletionUsers
-    from extra.AudioUploader import audioUploader
-elif system == "Linux":
-    from gtkUI.dialogs import message
+from wxUI.dialogs import twitterDialogs, urlList
+#from wxUI.dialogs import twitterDialogs
+from wxUI import commonMessageDialogs
+from extra import translator, SpellChecker, autocompletionUsers
+from extra.AudioUploader import audioUploader
 from sessions.twitter import utils
-from . import attach
 
 class basicTweet(object):
     """ This class handles the tweet main features. Other classes should derive from this class."""
-    def __init__(self, session, title, caption, text, messageType="tweet", max=280, *args, **kwargs):
+    def __init__(self, session, title, caption, text="", messageType="tweet", max=280, *args, **kwargs):
         super(basicTweet, self).__init__()
         self.max = max
         self.title = title
         self.session = session
-        self.message = getattr(message, messageType)(title, caption, text, *args, **kwargs)
+        self.message = getattr(twitterDialogs, messageType)(title=title, caption=caption, message=text, *args, **kwargs)
         widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
-        widgetUtils.connect_event(self.message.attach, widgetUtils.BUTTON_PRESSED, self.attach)
+        widgetUtils.connect_event(self.message.add_audio, widgetUtils.BUTTON_PRESSED, self.attach)
         widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
-        widgetUtils.connect_event(self.message.shortenButton, widgetUtils.BUTTON_PRESSED, self.shorten)
-        widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
-        widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
-        if hasattr(self.message, "long_tweet"):
-            widgetUtils.connect_event(self.message.long_tweet, widgetUtils.CHECKBOX, self.text_processor)
-            if config.app["app-settings"]["remember_mention_and_longtweet"]:
-                self.message.long_tweet.SetValue(config.app["app-settings"]["longtweet"])
+        widgetUtils.connect_event(self.message.translate, widgetUtils.BUTTON_PRESSED, self.translate)
+        if hasattr(self.message, "add"):
+            widgetUtils.connect_event(self.message.add, widgetUtils.BUTTON_PRESSED, self.on_attach)
         self.attachments = []
 
     def translate(self, event=None):
         dlg = translator.gui.translateDialog()
         if dlg.get_response() == widgetUtils.OK:
-            text_to_translate = self.message.get_text()
+            text_to_translate = self.message.text.GetValue()
             language_dict = translator.translator.available_languages()
             for k in language_dict:
                 if language_dict[k] == dlg.dest_lang.GetStringSelection():
                     dst = k
             msg = translator.translator.translate(text=text_to_translate, target=dst)
-            self.message.set_text(msg)
+            self.message.text.ChangeValue(msg)
             self.text_processor()
-            self.message.text_focus()
+            self.message.text.SetFocus()
             output.speak(_(u"Translated"))
         else:
             return
 
-    def shorten(self, event=None):
-        urls = utils.find_urls_in_text(self.message.get_text())
-        if len(urls) == 0:
-            output.speak(_(u"There's no URL to be shortened"))
-            self.message.text_focus()
-        elif len(urls) == 1:
-            self.message.set_text(self.message.get_text().replace(urls[0], url_shortener.shorten(urls[0])))
-            output.speak(_(u"URL shortened"))
-            self.text_processor()
-            self.message.text_focus()
-        elif len(urls) > 1:
-            list_urls = urlList.urlList()
-            list_urls.populate_list(urls)
-            if list_urls.get_response() == widgetUtils.OK:
-                self.message.set_text(self.message.get_text().replace(urls[list_urls.get_item()], url_shortener.shorten(list_urls.get_string())))
-                output.speak(_(u"URL shortened"))
-                self.text_processor()
-                self.message.text_focus()
-
-    def unshorten(self, event=None):
-        urls = utils.find_urls_in_text(self.message.get_text())
-        if len(urls) == 0:
-            output.speak(_(u"There's no URL to be expanded"))
-            self.message.text_focus()
-        elif len(urls) == 1:
-            self.message.set_text(self.message.get_text().replace(urls[0], url_shortener.unshorten(urls[0])))
-            output.speak(_(u"URL expanded"))
-            self.text_processor()
-            self.message.text_focus()
-        elif len(urls) > 1:
-            list_urls = urlList.urlList()
-            list_urls.populate_list(urls)
-            if list_urls.get_response() == widgetUtils.OK:
-                self.message.set_text(self.message.get_text().replace(urls[list_urls.get_item()], url_shortener.unshorten(list_urls.get_string())))
-                output.speak(_(u"URL expanded"))
-                self.text_processor()
-                self.message.text_focus()
-
     def text_processor(self, *args, **kwargs):
-        if len(self.message.get_text()) > 1:
-            self.message.enable_button("shortenButton")
-            self.message.enable_button("unshortenButton")
-        else:
-            self.message.disable_button("shortenButton")
-            self.message.disable_button("unshortenButton")
-        if self.message.get("long_tweet") == False and hasattr(self, "max"):
-            text = self.message.get_text()
-            results = parse_tweet(text)
-            self.message.set_title(_(u"%s - %s of %d characters") % (self.title, results.weightedLength, self.max))
-            if results.weightedLength > self.max:
-                self.session.sound.play("max_length.ogg")
-        else:
-            self.message.set_title(_(u"%s - %s characters") % (self.title, len(self.message.get_text())))
+        text = self.message.text.GetValue()
+        results = parse_tweet(text)
+        self.message.SetTitle(_("%s - %s of %d characters") % (self.title, results.weightedLength, self.max))
+        if results.weightedLength > self.max:
+            self.session.sound.play("max_length.ogg")
 
     def spellcheck(self, event=None):
-        text = self.message.get_text()
+        text = self.message.text.GetValue()
         checker = SpellChecker.spellchecker.spellChecker(text, "")
         if hasattr(checker, "fixed_text"):
-            self.message.set_text(checker.fixed_text)
+            self.message.text.ChangeValue(checker.fixed_text)
             self.text_processor()
-            self.message.text_focus()
+            self.message.text.SetFocus()
 
     def attach(self, *args, **kwargs):
         def completed_callback(dlg):
@@ -125,31 +69,119 @@ class basicTweet(object):
             pub.unsubscribe(dlg.uploaderDialog.update, "uploading")
             dlg.uploaderDialog.destroy()
             if "sndup.net/" in url:
-                self.message.set_text(self.message.get_text()+url+" #audio")
+                self.message.text.ChangeValue(self.message.text.GetValue()+url+" #audio")
                 self.text_processor()
             else:
                 commonMessageDialogs.common_error(url)
-
             dlg.cleanup()
         dlg = audioUploader.audioUploader(self.session.settings, completed_callback)
-        self.message.text_focus()
+        self.message.text.SetFocus()
+
+    def can_attach(self):
+        if len(self.attachments) == 0:
+            return True
+        elif len(self.attachments) == 1 and (self.attachments[0]["type"] == "video" or self.attachments[0]["type"] == "gif"):
+            return False
+        elif len(self.attachments) < 4:
+            return True
+            return False
+
+    def on_attach(self, *args, **kwargs):
+        can_attach = self.can_attach()
+        menu = self.message.attach_menu(can_attach)
+        self.message.Bind(wx.EVT_MENU, self.on_attach_image, self.message.add_image)
+        self.message.Bind(wx.EVT_MENU, self.on_attach_video, self.message.add_video)
+        self.message.Bind(wx.EVT_MENU, self.on_attach_poll, self.message.add_poll)
+        self.message.PopupMenu(menu, self.message.add.GetPosition())
+
+    def on_attach_image(self, *args, **kwargs):
+        image, description  = self.message.get_image()
+        if image != None:
+            if image.endswith("gif"):
+                image_type = "gif"
+            else:
+                image_type = "photo"
+            imageInfo = {"type": image_type, "file": image, "description": description}
+            if len(self.attachments) > 0 and image_type == "gif":
+                return self.message.unable_to_attach_file()
+            self.attachments.append(imageInfo)
+            self.message.add_item(item=[os.path.basename(imageInfo["file"]), imageInfo["type"], imageInfo["description"]])
+            self.text_processor()
+
+    def on_attach_video(self, *args, **kwargs):
+        video = self.message.get_video()
+        if video != None:
+            videoInfo = {"type": "video", "file": video, "description": ""}
+            if len(self.attachments) > 0:
+                return self.message.unable_to_attach_file()
+            self.attachments.append(videoInfo)
+            self.message.add_item(item=[os.path.basename(videoInfo["file"]), videoInfo["type"], videoInfo["description"]])
+            self.text_processor()
+
+    def on_attach_poll(self, *args, **kwargs):
+        pass
 
 class tweet(basicTweet):
     def __init__(self, session, title, caption, text, max=280, messageType="tweet", *args, **kwargs):
+        self.thread = []
         super(tweet, self).__init__(session, title, caption, text, messageType, max, *args, **kwargs)
         self.image = None
-        widgetUtils.connect_event(self.message.upload_image, widgetUtils.BUTTON_PRESSED, self.upload_image)
-        widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
+        widgetUtils.connect_event(self.message.autocomplete_users, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
+        if hasattr(self.message, "add_tweet"):
+            widgetUtils.connect_event(self.message.add_tweet, widgetUtils.BUTTON_PRESSED, self.add_tweet)
+            widgetUtils.connect_event(self.message.remove_tweet, widgetUtils.BUTTON_PRESSED, self.remove_tweet)
+        widgetUtils.connect_event(self.message.remove_attachment, widgetUtils.BUTTON_PRESSED, self.remove_attachment)
         self.text_processor()
-
-    def upload_image(self, *args, **kwargs):
-        a = attach.attach()
-        if len(a.attachments) != 0:
-            self.attachments = a.attachments
 
     def autocomplete_users(self, *args, **kwargs):
         c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
         c.show_menu()
+
+    def add_tweet(self, event, update_gui=True, *args, **kwargs):
+        text = self.message.text.GetValue()
+        attachments = self.attachments[::]
+        tweetdata = dict(text=text, attachments=attachments)
+        self.thread.append(tweetdata)
+        if update_gui:
+            self.message.reset_controls()
+            self.message.add_item(item=[text, len(attachments)], list_type="tweet")
+            self.message.text.SetFocus()
+            self.text_processor()
+
+    def get_tweet_data(self):
+        self.add_tweet(event=None, update_gui=False)
+        return self.thread
+
+    def text_processor(self, *args, **kwargs):
+        super(tweet, self).text_processor(*args, **kwargs)
+        if len(self.thread) > 0:
+            self.message.tweets.Enable(True)
+            self.message.remove_tweet.Enable(True)
+        else:
+            self.message.tweets.Enable(False)
+            self.message.remove_tweet.Enable(False)
+        if len(self.attachments) > 0:
+            self.message.attachments.Enable(True)
+            self.message.remove_attachment.Enable(True)
+        else:
+            self.message.attachments.Enable(False)
+            self.message.remove_attachment.Enable(False)
+
+    def remove_tweet(self, *args, **kwargs):
+        tweet = self.message.tweets.GetFocusedItem()
+        if tweet > -1 and len(self.thread) > tweet:
+            self.thread.pop(tweet)
+            self.message.remove_item(list_type="tweet")
+            self.text_processor()
+            self.message.text.SetFocus()
+
+    def remove_attachment(self, *args, **kwargs):
+        attachment = self.message.attachments.GetFocusedItem()
+        if attachment > -1 and len(self.attachments) > attachment:
+            self.attachments.pop(attachment)
+            self.message.remove_item(list_type="attachment")
+            self.text_processor()
+            self.message.text.SetFocus()
 
 class reply(tweet):
     def __init__(self, session, title, caption, text, users=[], ids=[]):
@@ -157,16 +189,25 @@ class reply(tweet):
         self.ids = ids
         self.users = users
         if len(users) > 0:
-            widgetUtils.connect_event(self.message.mentionAll, widgetUtils.CHECKBOX, self.mention_all)
-            self.message.enable_button("mentionAll")
+            widgetUtils.connect_event(self.message.mention_all, widgetUtils.CHECKBOX, self.mention_all)
+            self.message.mention_all.Enable(True)
             if config.app["app-settings"]["remember_mention_and_longtweet"]:
-                self.message.mentionAll.SetValue(config.app["app-settings"]["mention_all"])
+                self.message.mention_all.SetValue(config.app["app-settings"]["mention_all"])
             self.mention_all()
-        self.message.set_cursor_at_end()
+        self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
         self.text_processor()
 
+    def text_processor(self, *args, **kwargs):
+        super(tweet, self).text_processor(*args, **kwargs)
+        if len(self.attachments) > 0:
+            self.message.attachments.Enable(True)
+            self.message.remove_attachment.Enable(True)
+        else:
+            self.message.attachments.Enable(False)
+            self.message.remove_attachment.Enable(False)
+
     def mention_all(self, *args, **kwargs):
-        if self.message.mentionAll.GetValue() == True:
+        if self.message.mention_all.GetValue() == True:
             for i in self.message.checkboxes:
                 i.SetValue(True)
                 i.Hide()
@@ -190,14 +231,14 @@ class reply(tweet):
         return people
 
 class dm(basicTweet):
-    def __init__(self, session, title, caption, text):
-        super(dm, self).__init__(session, title, caption, text, messageType="dm", max=10000)
-        widgetUtils.connect_event(self.message.autocompletionButton, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
+    def __init__(self, session, title, caption, users):
+        super(dm, self).__init__(session, title, caption, messageType="dm", max=10000, users=users)
+        widgetUtils.connect_event(self.message.autocomplete_users, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
         self.text_processor()
         widgetUtils.connect_event(self.message.cb, widgetUtils.ENTERED_TEXT, self.user_changed)
 
     def user_changed(self, *args, **kwargs):
-        self.title = _("Direct message to %s") % (self.message.get_user())
+        self.title = _("Direct message to %s") % (self.message.cb.GetValue())
         self.text_processor()
 
     def autocomplete_users(self, *args, **kwargs):
@@ -264,29 +305,21 @@ class viewTweet(basicTweet):
                 for z in tweet.retweeted_status.extended_entities["media"]:
                     if "ext_alt_text" in z and z["ext_alt_text"] != None:
                         image_description.append(z["ext_alt_text"])
-            self.message = message.viewTweet(text, rt_count, favs_count, source, date)
+            self.message = twitterDialogs.viewTweet(text, rt_count, favs_count, source, date)
             results = parse_tweet(text)
             self.message.set_title(results.weightedLength)
             [self.message.set_image_description(i) for i in image_description]
         else:
             self.title = _(u"View item")
             text = tweet
-            self.message = message.viewNonTweet(text, date)
+            self.message = twitterDialogs.viewNonTweet(text, date)
         widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
         if item_url != "":
             self.message.enable_button("share")
             widgetUtils.connect_event(self.message.share, widgetUtils.BUTTON_PRESSED, self.share)
             self.item_url = item_url
         widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
-        if self.contain_urls() == True:
-            self.message.enable_button("unshortenButton")
-            widgetUtils.connect_event(self.message.unshortenButton, widgetUtils.BUTTON_PRESSED, self.unshorten)
-        self.message.get_response()
-
-    def contain_urls(self):
-        if len(utils.find_urls_in_text(self.message.get_text())) > 0:
-            return True
-        return False
+        self.message.ShowModal()
 
     def clear_text(self, text):
         urls = utils.find_urls_in_text(text)
