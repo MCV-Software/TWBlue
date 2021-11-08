@@ -122,10 +122,9 @@ class basicTweet(object):
         pass
 
 class tweet(basicTweet):
-    def __init__(self, session, title, caption, text, max=280, messageType="tweet", *args, **kwargs):
+    def __init__(self, session, title, caption, text="", max=280, messageType="tweet", *args, **kwargs):
         self.thread = []
         super(tweet, self).__init__(session, title, caption, text, messageType, max, *args, **kwargs)
-        self.image = None
         widgetUtils.connect_event(self.message.autocomplete_users, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
         if hasattr(self.message, "add_tweet"):
             widgetUtils.connect_event(self.message.add_tweet, widgetUtils.BUTTON_PRESSED, self.add_tweet)

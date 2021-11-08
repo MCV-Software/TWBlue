@@ -458,40 +458,21 @@ class BaseBuffer(base.Buffer):
         else:
             self._retweet_with_comment(tweet, id)
 
-    def _retweet_with_comment(self, tweet, id, comment=''):
-        # If quoting a retweet, let's quote the original tweet instead the retweet.
+    def _retweet_with_comment(self, tweet, id):
         if hasattr(tweet, "retweeted_status"):
             tweet = tweet.retweeted_status
-        if hasattr(tweet, "full_text"):
-            comments = tweet.full_text
-        else:
-            comments = tweet.text
-        retweet = messages.tweet(self.session, _(u"Quote"), _(u"Add your comment to the tweet"), u"“@%s: %s ”" % (self.session.get_user(tweet.user).screen_name, comments), max=256, messageType="retweet")
-        if comment != '':
-            retweet.message.set_text(comment)
-        if retweet.message.get_response() == widgetUtils.OK:
-            text = retweet.message.get_text()
+        retweet = messages.tweet(session=self.session, title=_("Quote"), caption=_("Add your comment to the tweet"), max=256, thread_mode=False)
+        retweet = messages.tweet(session=self.session, title=_("Quote"), caption=_("Add your comment to the tweet"), max=256, thread_mode=False)
+        if retweet.message.ShowModal() == widgetUtils.OK:
+            text = retweet.message.text.GetValue()
             text = text+" https://twitter.com/{0}/status/{1}".format(self.session.get_user(tweet.user).screen_name, id)
-            if retweet.image == None:
-                # We will no longer will reuse the sent item from here as Streaming API should give us the new and correct item.
-                # but in case we'd need it, just uncomment the following couple of lines and make sure we reduce the item correctly.
-                item = self.session.api_call(call_name="update_status", _sound="retweet_send.ogg", status=text, in_reply_to_status_id=id, tweet_mode="extended")
-#                if item != None:
-#                    new_item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
-#                    pub.sendMessage("sent-tweet", data=new_item, user=self.session.db["user_name"])
-            else:
-                call_threaded(self.session.api_call, call_name="update_status", _sound="retweet_send.ogg", status=text, media=retweet.image)
-        if hasattr(retweet.message, "destroy"): retweet.message.destroy()
+            tweet_data = dict(text=text, attachments=retweet.attachments)
+            call_threaded(self.session.send_tweet, *[tweet_data])
+        if hasattr(retweet.message, "destroy"):
+            retweet.message.destroy()
 
     def _direct_retweet(self, id):
         item = self.session.api_call(call_name="retweet", _sound="retweet_send.ogg", id=id)
-        # We will no longer will reuse the sent item from here as Streaming API should give us the new and correct item.
-        # but in case we'd need it, just uncomment the following couple of lines and make sure we reduce the item correctly.
-#        if item != None:
-            # Retweets are returned as non-extended tweets, so let's get the object as extended
-            # just before sending the event message. See https://github.com/manuelcortez/TWBlue/issues/253
-#            item = self.session.twitter.get_status(id=item.id, include_ext_alt_text=True, tweet_mode="extended")
-#            pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
 
     def onFocus(self, *args, **kwargs):
         tweet = self.get_tweet()
