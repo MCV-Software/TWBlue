@@ -4,7 +4,7 @@ import platform
 if platform.system() == "Windows":
     import wx
     from wxUI import buffers, commonMessageDialogs, menus
-    from controller import user
+    from controller import user, messages
 elif platform.system() == "Linux":
     from gi.repository import Gtk
     from gtkUI import buffers, commonMessageDialogs
@@ -37,6 +37,18 @@ class TrendsBuffer(base.Buffer):
         self.compose_function = self.compose_function_
         self.get_formatted_message = self.get_message
         self.reply = self.search_topic
+
+
+    def post_status(self, *args, **kwargs):
+        title = _("Tweet")
+        caption = _("Write the tweet here")
+        tweet = messages.tweet(self.session, title, caption, "")
+        response = tweet.message.ShowModal()
+        if response == wx.ID_OK:
+            tweet_data = tweet.get_tweet_data()
+            call_threaded(self.session.send_tweet, *tweet_data)
+        if hasattr(tweet.message, "destroy"):
+            tweet.message.destroy()
 
     def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
         # starts stream every 3 minutes.

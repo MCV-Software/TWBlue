@@ -84,7 +84,6 @@ class BaseBuffer(base.Buffer):
         return _(u"Unknown buffer")
 
     def post_status(self, *args, **kwargs):
-        item = None
         title = _("Tweet")
         caption = _("Write the tweet here")
         tweet = messages.tweet(self.session, title, caption, "")
