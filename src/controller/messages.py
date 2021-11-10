@@ -133,6 +133,14 @@ class basicTweet(object):
     def on_attach_poll(self, *args, **kwargs):
         pass
 
+    def remove_attachment(self, *args, **kwargs):
+        attachment = self.message.attachments.GetFocusedItem()
+        if attachment > -1 and len(self.attachments) > attachment:
+            self.attachments.pop(attachment)
+            self.message.remove_item(list_type="attachment")
+            self.text_processor()
+            self.message.text.SetFocus()
+
 class tweet(basicTweet):
     def __init__(self, session, title, caption, text="", max=280, messageType="tweet", *args, **kwargs):
         self.thread = []
@@ -186,13 +194,6 @@ class tweet(basicTweet):
             self.text_processor()
             self.message.text.SetFocus()
 
-    def remove_attachment(self, *args, **kwargs):
-        attachment = self.message.attachments.GetFocusedItem()
-        if attachment > -1 and len(self.attachments) > attachment:
-            self.attachments.pop(attachment)
-            self.message.remove_item(list_type="attachment")
-            self.text_processor()
-            self.message.text.SetFocus()
 
 class reply(tweet):
     def __init__(self, session, title, caption, text, users=[], ids=[]):
@@ -255,6 +256,18 @@ class dm(basicTweet):
     def autocomplete_users(self, *args, **kwargs):
         c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
         c.show_menu("dm")
+
+    def text_processor(self, *args, **kwargs):
+        super(dm, self).text_processor(*args, **kwargs)
+        if len(self.attachments) > 0:
+            self.message.attachments.Enable(True)
+            self.message.remove_attachment.Enable(True)
+        else:
+            self.message.attachments.Enable(False)
+            self.message.remove_attachment.Enable(False)
+
+    def get_data(self):
+        return dict(text=self.message.text.GetValue(), attachments=self.attachments)
 
 class viewTweet(basicTweet):
     def __init__(self, tweet, tweetList, is_tweet=True, utc_offset=0, date="", item_url=""):
