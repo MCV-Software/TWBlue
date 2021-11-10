@@ -2,6 +2,15 @@ TWBlue Changelog
 
 ## changes in this version
 
+* Now it is possible to create a tweet from a trending topics buffer again.
+* TWBlue now includes a completely new set of dialogs to handle tweeting, replying and sending direct messages that takes advantage of more Twitter features.
+    * It is possible to add videos in tweets and direct messages by using the new "add" button, located in every dialog where  media can be added. Twitter suggests to add videos from 5 seconds up to 2 minutes lenght, in mp4 format (video Codec H.264 and audio codec AAC). Currently, TWBlue does not check if the uploaded video complies with Twitter media requirements. You can add only a video in a tweet or direct message. No other kind of media can be added after a video is in a tweet. If the video was unable to be uploaded successfully, the tweet or direct message won't be created.
+    * Now you can add a poll to tweets. Polls can have up to 4 different options and allow voting up to 7 days after being created. Take into account, though, that currently TWBlue does not support reading polls in tweets.
+    * TWBlue now support threads while creating a new tweet. There is a new button, called add tweet which will add the current tweet to the thread and will allow you to write another tweet in the thread. Every tweet might include media (up to 4 photos, or one GIF image or a video) or up to one poll.
+    * Some functionality was removed from tweet dialogs within TWBlue. Particularly, URL shorteners and long tweets via Twishort. You still can read long tweets posted via Twishort, though.
+
+## Changes in version 2021.11.07
+
 * TWBlue should retrieve tweets from threads and conversations in a more reliable way. Tweets in the same thread (made by the same author) will be sorted correctly, although replies to the thread (made by different people) may not be ordered in the same way they are displayed in Twitter apps. ([#417](https://github.com/manuelcortez/TWBlue/issues/417))
 * When creating a filter, TWBlue will show an error if user has not provided a name for the filter. Before, unnamed filters were a cause of config breaks in the application.
 * It is again possible to read the changelog for TWBlue from the help menu in the menu bar.
