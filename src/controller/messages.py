@@ -161,6 +161,7 @@ class tweet(basicTweet):
         attachments = self.attachments[::]
         tweetdata = dict(text=text, attachments=attachments)
         self.thread.append(tweetdata)
+        self.attachments = []
         if update_gui:
             self.message.reset_controls()
             self.message.add_item(item=[text, len(attachments)], list_type="tweet")
@@ -185,6 +186,11 @@ class tweet(basicTweet):
         else:
             self.message.attachments.Enable(False)
             self.message.remove_attachment.Enable(False)
+        if hasattr(self.message, "add_tweet"):
+            if len(self.message.text.GetValue()) > 0 or len(self.attachments) > 0:
+                self.message.add_tweet.Enable(True)
+            else:
+                self.message.add_tweet.Enable(False)
 
     def remove_tweet(self, *args, **kwargs):
         tweet = self.message.tweets.GetFocusedItem()
@@ -265,9 +271,6 @@ class dm(basicTweet):
         else:
             self.message.attachments.Enable(False)
             self.message.remove_attachment.Enable(False)
-
-    def get_data(self):
-        return dict(text=self.message.text.GetValue(), attachments=self.attachments)
 
     def can_attach(self):
         if len(self.attachments) == 0:
