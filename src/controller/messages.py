@@ -131,7 +131,11 @@ class basicTweet(object):
             self.text_processor()
 
     def on_attach_poll(self, *args, **kwargs):
-        pass
+        dlg = twitterDialogs.poll()
+        if dlg.ShowModal() == wx.ID_OK:
+            self.poll_options = dlg.get_options()
+            self.poll_period = 60*24*dlg.period.GetValue()
+        dlg.Destroy()
 
     def remove_attachment(self, *args, **kwargs):
         attachment = self.message.attachments.GetFocusedItem()
@@ -144,6 +148,8 @@ class basicTweet(object):
 class tweet(basicTweet):
     def __init__(self, session, title, caption, text="", max=280, messageType="tweet", *args, **kwargs):
         self.thread = []
+        self.poll_options = None
+        self.poll_period = None
         super(tweet, self).__init__(session, title, caption, text, messageType, max, *args, **kwargs)
         widgetUtils.connect_event(self.message.autocomplete_users, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
         if hasattr(self.message, "add_tweet"):
@@ -159,9 +165,11 @@ class tweet(basicTweet):
     def add_tweet(self, event, update_gui=True, *args, **kwargs):
         text = self.message.text.GetValue()
         attachments = self.attachments[::]
-        tweetdata = dict(text=text, attachments=attachments)
+        tweetdata = dict(text=text, attachments=attachments, poll_options=self.poll_options, poll_period=self.poll_period)
         self.thread.append(tweetdata)
         self.attachments = []
+        self.poll_options = None
+        self.poll_period = None
         if update_gui:
             self.message.reset_controls()
             self.message.add_item(item=[text, len(attachments)], list_type="tweet")

@@ -457,11 +457,10 @@ class BaseBuffer(base.Buffer):
         if hasattr(tweet, "retweeted_status"):
             tweet = tweet.retweeted_status
         retweet = messages.tweet(session=self.session, title=_("Quote"), caption=_("Add your comment to the tweet"), max=256, thread_mode=False)
-        retweet = messages.tweet(session=self.session, title=_("Quote"), caption=_("Add your comment to the tweet"), max=256, thread_mode=False)
         if retweet.message.ShowModal() == widgetUtils.OK:
             text = retweet.message.text.GetValue()
             text = text+" https://twitter.com/{0}/status/{1}".format(self.session.get_user(tweet.user).screen_name, id)
-            tweet_data = dict(text=text, attachments=retweet.attachments)
+            tweet_data = dict(text=text, attachments=retweet.attachments, poll_period=retweet.poll_period, poll_options=retweet.poll_options)
             call_threaded(self.session.send_tweet, *[tweet_data])
         if hasattr(retweet.message, "destroy"):
             retweet.message.destroy()

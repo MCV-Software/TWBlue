@@ -218,6 +218,30 @@ class Session(base.baseSession):
         if _sound != None: self.sound.play(_sound)
         return val
 
+    def api_call_v2(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
+        finished = False
+        tries = 0
+        if preexec_message:
+            output.speak(preexec_message, True)
+        while finished==False and tries < 25:
+            try:
+                val = getattr(self.twitter_v2, call_name)(*args, **kwargs)
+                finished = True
+            except TweepyException as e:
+                log.exception("Error sending the tweet.")
+                output.speak(str(e))
+                val = None
+                if type(e) != NotFound and type(e) != Forbidden:
+                    tries = tries+1
+                    time.sleep(5)
+                elif report_failure:
+                    output.speak(_("%s failed.  Reason: %s") % (action, str(e)))
+                finished = True
+        if report_success:
+            output.speak(_("%s succeeded.") % action)
+        if _sound != None: self.sound.play(_sound)
+        return val
+
     def search(self, name, *args, **kwargs):
         """ Search in twitter, passing args and kwargs as arguments to the Twython function."""
         tl = self.twitter.search_tweets(*args, **kwargs)
@@ -597,8 +621,9 @@ class Session(base.baseSession):
         in_reply_to_status_id = None
         for obj in tweets:
             if len(obj["attachments"]) == 0:
-                item = self.api_call(call_name="update_status", status=obj["text"], _sound="tweet_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id)
-                in_reply_to_status_id = item.id
+                item = self.api_call_v2(call_name="create_tweet", text=obj["text"], _sound="tweet_send.ogg",  in_reply_to_tweet_id=in_reply_to_status_id, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"])
+                print(item)
+                in_reply_to_status_id = item.data.id
             else:
                 media_ids = []
                 for i in obj["attachments"]:
@@ -606,8 +631,8 @@ class Session(base.baseSession):
                     if i["type"] == "photo":
                         self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
                     media_ids.append(img.media_id)
-                item = self.api_call(call_name="update_status", status=obj["text"], _sound="tweet_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id, media_ids=media_ids)
-                in_reply_to_status_id = item.id
+                item = self.api_call_v2(call_name="create_tweet", status=obj["text"], _sound="tweet_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, media_ids=media_ids, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"])
+                in_reply_to_status_id = item.data.id
 
     def reply(self, text="", in_reply_to_status_id=None, attachments=[], *args, **kwargs):
         if len(attachments) == 0:

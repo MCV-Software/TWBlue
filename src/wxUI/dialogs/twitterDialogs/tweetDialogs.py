@@ -469,3 +469,68 @@ class viewNonTweet(wx.Dialog):
     def enable_button(self, buttonName):
         if hasattr(self, buttonName):
             return getattr(self, buttonName).Enable()
+
+class poll(wx.Dialog):
+    def __init__(self, *args, **kwds):
+        super(poll, self).__init__(parent=None, id=wx.NewId(), title=_("Add a poll"))
+        sizer_1 = wx.BoxSizer(wx.VERTICAL)
+        period_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_1.Add(period_sizer, 1, wx.EXPAND, 0)
+        label_period = wx.StaticText(self, wx.ID_ANY, _("Participation time (in days)"))
+        period_sizer.Add(label_period, 0, 0, 0)
+        self.period = wx.SpinCtrl(self, wx.ID_ANY)
+        self.period.SetFocus()
+        self.period.SetRange(1, 7)
+        self.period.SetValue(7)
+        period_sizer.Add(self.period, 0, 0, 0)
+        sizer_2 = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, _("Choices")), wx.VERTICAL)
+        sizer_1.Add(sizer_2, 1, wx.EXPAND, 0)
+        option1_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(option1_sizer, 1, wx.EXPAND, 0)
+        label_2 = wx.StaticText(self, wx.ID_ANY, _("Option 1"))
+        option1_sizer.Add(label_2, 0, 0, 0)
+        self.option1 = wx.TextCtrl(self, wx.ID_ANY, "")
+        option1_sizer.Add(self.option1, 0, 0, 0)
+        option2_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(option2_sizer, 1, wx.EXPAND, 0)
+        label_3 = wx.StaticText(self, wx.ID_ANY, _("Option 2"))
+        option2_sizer.Add(label_3, 0, 0, 0)
+        self.option2 = wx.TextCtrl(self, wx.ID_ANY, "")
+        option2_sizer.Add(self.option2, 0, 0, 0)
+        option3_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(option3_sizer, 1, wx.EXPAND, 0)
+        label_4 = wx.StaticText(self, wx.ID_ANY, _("Option 3"))
+        option3_sizer.Add(label_4, 0, 0, 0)
+        self.option3 = wx.TextCtrl(self, wx.ID_ANY, "")
+        option3_sizer.Add(self.option3, 0, 0, 0)
+        option4_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(option4_sizer, 1, wx.EXPAND, 0)
+        label_5 = wx.StaticText(self, wx.ID_ANY, _("Option 4"))
+        option4_sizer.Add(label_5, 0, 0, 0)
+        self.option4 = wx.TextCtrl(self, wx.ID_ANY, "")
+        option4_sizer.Add(self.option4, 0, 0, 0)
+        btn_sizer = wx.StdDialogButtonSizer()
+        sizer_1.Add(btn_sizer, 0, wx.ALIGN_RIGHT | wx.ALL, 4)
+        self.button_OK = wx.Button(self, wx.ID_OK)
+        self.button_OK.SetDefault()
+        self.button_OK.Bind(wx.EVT_BUTTON, self.validate_data)
+        btn_sizer.AddButton(self.button_OK)
+        self.button_CANCEL = wx.Button(self, wx.ID_CANCEL, "")
+        btn_sizer.AddButton(self.button_CANCEL)
+        btn_sizer.Realize()
+        self.SetSizer(sizer_1)
+        sizer_1.Fit(self)
+        self.SetAffirmativeId(self.button_OK.GetId())
+        self.SetEscapeId(self.button_CANCEL.GetId())
+        self.Layout()
+
+    def get_options(self):
+        controls = [self.option1, self.option2, self.option3, self.option4]
+        options = [option.GetValue() for option in controls if option.GetValue() != ""]
+        return options
+
+    def validate_data(self, *args, **kwargs):
+        options = self.get_options()
+        if len(options) < 2:
+            return wx.MessageDialog(self, _("Please make sure you have provided at least two options for the poll."), _("Not enough information"), wx.ICON_ERROR).ShowModal()
+        self.EndModal(wx.ID_OK)
