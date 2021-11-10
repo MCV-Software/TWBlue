@@ -269,6 +269,11 @@ class dm(basicTweet):
     def get_data(self):
         return dict(text=self.message.text.GetValue(), attachments=self.attachments)
 
+    def can_attach(self):
+        if len(self.attachments) == 0:
+            return True
+        return False
+
 class viewTweet(basicTweet):
     def __init__(self, tweet, tweetList, is_tweet=True, utc_offset=0, date="", item_url=""):
         """ This represents a tweet displayer. However it could be used for showing something wich is not a tweet, like a direct message or an event.

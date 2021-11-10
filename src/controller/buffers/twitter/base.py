@@ -425,21 +425,17 @@ class BaseBuffer(base.Buffer):
         else:
             screen_name = self.session.get_user(tweet.user).screen_name
             users = utils.get_all_users(tweet, self.session)
-        dm = messages.dm(self.session, _(u"Direct message to %s") % (screen_name,), _(u"New direct message"), users)
+        dm = messages.dm(self.session, _("Direct message to %s") % (screen_name,), _("New direct message"), users)
         if dm.message.ShowModal() == widgetUtils.OK:
             screen_name = dm.message.cb.GetValue()
             user = self.session.get_user_by_screen_name(screen_name)
             recipient_id =  user
             text = dm.message.text.GetValue()
-            val = self.session.api_call(call_name="send_direct_message", recipient_id=recipient_id, text=text)
-            if val != None:
-                sent_dms = self.session.db["sent_direct_messages"]
-                if self.session.settings["general"]["reverse_timelines"] == False:
-                    sent_dms.append(val)
-                else:
-                    sent_dms.insert(0, val)
-                self.session.db["sent_direct_messages"] = sent_dms
-                pub.sendMessage("sent-dm", data=val, user=self.session.db["user_name"])
+            if len(dm.attachments) > 0:
+                attachment = dm.attachments[0]
+            else:
+                attachment = None
+            call_threaded(self.session.direct_message, text=text, recipient=recipient_id, attachment=attachment)
         if hasattr(dm.message, "destroy"): dm.message.destroy()
 
     @_tweets_exist

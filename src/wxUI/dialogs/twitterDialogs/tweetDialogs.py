@@ -283,6 +283,20 @@ class dm(tweet):
         self.SetEscapeId(self.cancel.GetId())
         self.Layout()
 
+    def get_image(self):
+        openFileDialog = wx.FileDialog(self, _(u"Select the picture to be uploaded"), "", "", _("Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        if openFileDialog.ShowModal() == wx.ID_CANCEL:
+            return (None, None)
+        return (openFileDialog.GetPath(), "")
+
+    def attach_menu(self, event=None, enabled=True, *args, **kwargs):
+        menu = wx.Menu()
+        self.add_image = menu.Append(wx.ID_ANY, _("Image"))
+        self.add_image.Enable(enabled)
+        self.add_video = menu.Append(wx.ID_ANY, _("Video"))
+        self.add_video.Enable(enabled)
+        return menu
+
 class viewTweet(wx.Dialog):
     def set_title(self, lenght):
         self.SetTitle(_(u"Tweet - %i characters ") % (lenght,))

@@ -620,3 +620,24 @@ class Session(base.baseSession):
                     self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
                 media_ids.append(img.media_id)
             item = self.api_call(call_name="update_status", status=text, _sound="reply_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id, media_ids=media_ids, *args, **kwargs)
+
+    def direct_message(self, text, recipient, attachment=None, *args, **kwargs):
+        if attachment == None:
+            item = self.api_call(call_name="send_direct_message", recipient_id=recipient, text=text)
+        else:
+            if attachment["type"] == "photo":
+                media_category = "DmImage"
+            elif attachment["type"] == "gif":
+                media_category = "DmGif"
+            elif attachment["type"] == "video":
+                media_category = "DmVideo"
+            media = self.api_call("media_upload", filename=attachment["file"], media_category=media_category)
+            item = self.api_call(call_name="send_direct_message", recipient_id=recipient, text=text, attachment_type="media", attachment_media_id=media.media_id)
+        if item != None:
+            sent_dms = self.db["sent_direct_messages"]
+            if self.settings["general"]["reverse_timelines"] == False:
+                sent_dms.append(item)
+            else:
+                sent_dms.insert(0, item)
+            self.db["sent_direct_messages"] = sent_dms
+            pub.sendMessage("sent-dm", data=item, user=self.db["user_name"])
