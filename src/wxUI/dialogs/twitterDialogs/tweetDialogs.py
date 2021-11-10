@@ -57,7 +57,7 @@ class tweet(wx.Dialog):
         mainBox.Add(btn_sizer_1, 1, wx.EXPAND, 0)
         self.add = wx.Button(panel, wx.ID_ANY, _("A&dd..."))
         btn_sizer_1.Add(self.add, 0, 0, 0)
-        self.add_tweet = wx.Button(panel, wx.ID_ANY, _("Add tweet"))
+        self.add_tweet = wx.Button(panel, wx.ID_ANY, _("Add t&weet"))
         self.add_tweet.Enable(thread_mode)
         btn_sizer_1.Add(self.add_tweet, 0, 0, 0)
         self.add_audio = wx.Button(panel, wx.ID_ANY, _("&Attach audio..."))
