@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import url_shortener, re
+import re
 import output
 import config
 import logging
