@@ -145,7 +145,7 @@ class tweet(wx.Dialog):
         return openFileDialog.GetPath()
 
     def unable_to_attach_file(self, *args, **kwargs):
-        return wx.MessageDialog(self, _("You need to delete other attachments first, as Videos and GIF's cannot be added with other attachments."), _("Error adding attachment"), wx.ICON_ERROR).ShowModal()
+        return wx.MessageDialog(self, _("It is not possible to add more attachments. Please make sure your tweet complies with Twitter'S attachment rules. You can add only one video or GIF in every tweet, and a maximum of 4 photos."), _("Error adding attachment"), wx.ICON_ERROR).ShowModal()
 
 class reply(tweet):
 

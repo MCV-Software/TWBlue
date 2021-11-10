@@ -10,7 +10,6 @@ import config
 from pubsub import pub
 from twitter_text import parse_tweet
 from wxUI.dialogs import twitterDialogs, urlList
-#from wxUI.dialogs import twitterDialogs
 from wxUI import commonMessageDialogs
 from extra import translator, SpellChecker, autocompletionUsers
 from extra.AudioUploader import audioUploader
@@ -87,7 +86,7 @@ class basicTweet(object):
             return False
         elif len(self.attachments) < 4:
             return True
-            return False
+        return False
 
     def on_attach(self, *args, **kwargs):
         can_attach = self.can_attach()
@@ -98,6 +97,14 @@ class basicTweet(object):
         self.message.PopupMenu(menu, self.message.add.GetPosition())
 
     def on_attach_image(self, *args, **kwargs):
+        can_attach = self.can_attach()
+        video_or_gif_present = False
+        for a in self.attachments:
+            if a["type"] == "video" or a["type"] == "gif":
+                video_or_gif = True
+                break
+        if can_attach == False or video_or_gif_present == True:
+            return self.message.unable_to_attach_file()
         image, description  = self.message.get_image()
         if image != None:
             if image.endswith("gif"):
@@ -112,6 +119,8 @@ class basicTweet(object):
             self.text_processor()
 
     def on_attach_video(self, *args, **kwargs):
+        if len(self.attachments) > 0:
+            return self.message.unable_to_attach_file()
         video = self.message.get_video()
         if video != None:
             videoInfo = {"type": "video", "file": video, "description": ""}
