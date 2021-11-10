@@ -217,6 +217,14 @@ class reply(tweet):
         self.SetEscapeId(self.cancel.GetId())
         self.Layout()
 
+    def attach_menu(self, event=None, enabled=True, *args, **kwargs):
+        menu = wx.Menu()
+        self.add_image = menu.Append(wx.ID_ANY, _("Image"))
+        self.add_image.Enable(enabled)
+        self.add_video = menu.Append(wx.ID_ANY, _("Video"))
+        self.add_video.Enable(enabled)
+        return menu
+
 class dm(tweet):
 
     def __init__(self, users: List[str] = [], *args, **kwargs) -> None:

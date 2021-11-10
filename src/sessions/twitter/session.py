@@ -636,7 +636,7 @@ class Session(base.baseSession):
 
     def reply(self, text="", in_reply_to_status_id=None, attachments=[], *args, **kwargs):
         if len(attachments) == 0:
-            item = self.api_call(call_name="update_status", status=text, _sound="reply_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id, *args, **kwargs)
+            item = self.api_call_v2(call_name="create_tweet", text=text, _sound="reply_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, *args, **kwargs)
         else:
             media_ids = []
             for i in attachments:

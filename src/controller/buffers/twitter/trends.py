@@ -131,21 +131,13 @@ class TrendsBuffer(base.Buffer):
 
     def tweet_about_this_trend(self, *args, **kwargs):
         if self.buffer.list.get_count() == 0: return
-        title = _(u"Tweet")
-        caption = _(u"Write the tweet here")
-        tweet = messages.tweet(self.session, title, caption, self.get_message()+ " ")
-        tweet.message.set_cursor_at_end()
-        if tweet.message.get_response() == widgetUtils.OK:
-            text = tweet.message.get_text()
-            if len(text) > 280 and tweet.message.get("long_tweet") == True:
-                if tweet.image == None:
-                    text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text)
-                else:
-                    text = twishort.create_tweet(self.session.settings["twitter"]["user_key"], self.session.settings["twitter"]["user_secret"], text, 1)
-            if tweet.image == None:
-                call_threaded(self.session.api_call, call_name="update_status", status=text)
-            else:
-                call_threaded(self.session.api_call, call_name="update_status_with_media", status=text, media=tweet.image)
+        title = _("Tweet")
+        caption = _("Write the tweet here")
+        tweet = messages.tweet(session=self.session, title=title, caption=caption, text=self.get_message()+ " ")
+        tweet.message.SetInsertionPoint(len(tweet.message.GetValue()))
+        if tweet.message.ShowModal() == widgetUtils.OK:
+            tweet_data = tweet.get_tweet_data()
+            call_threaded(self.session.send_tweet, *tweet_data)
         if hasattr(tweet.message, "destroy"): tweet.message.destroy()
 
     def show_menu_by_key(self, ev):

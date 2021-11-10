@@ -408,8 +408,8 @@ class BaseBuffer(base.Buffer):
                 if len(users) > 0:
                     config.app["app-settings"]["mention_all"] = message.message.mention_all.GetValue()
                 config.app.write()
-            tweet_data = dict(text=message.message.text.GetValue(), attachments=message.attachments)
-            call_threaded(self.session.reply, in_reply_to_status_id=id, text=message.message.text.GetValue(), attachments=message.attachments, exclude_reply_user_ids=message.get_ids(), auto_populate_reply_metadata=True)
+            tweet_data = dict(text=message.message.text.GetValue(), attachments=message.attachments, poll_options=message.poll_options, poll_period=message.poll_period)
+            call_threaded(self.session.reply, in_reply_to_status_id=id, text=message.message.text.GetValue(), attachments=message.attachments, exclude_reply_user_ids=message.get_ids())
         if hasattr(message.message, "destroy"): message.message.destroy()
         self.session.settings.write()
 

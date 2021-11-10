@@ -93,7 +93,8 @@ class basicTweet(object):
         menu = self.message.attach_menu(can_attach)
         self.message.Bind(wx.EVT_MENU, self.on_attach_image, self.message.add_image)
         self.message.Bind(wx.EVT_MENU, self.on_attach_video, self.message.add_video)
-        self.message.Bind(wx.EVT_MENU, self.on_attach_poll, self.message.add_poll)
+        if hasattr(self.message, "add_poll"):
+            self.message.Bind(wx.EVT_MENU, self.on_attach_poll, self.message.add_poll)
         self.message.PopupMenu(menu, self.message.add.GetPosition())
 
     def on_attach_image(self, *args, **kwargs):
@@ -243,10 +244,10 @@ class reply(tweet):
                 i.Show()
 
     def get_ids(self):
-        excluded_ids  = ""
+        excluded_ids  = []
         for i in range(0, len(self.message.checkboxes)):
             if self.message.checkboxes[i].GetValue() == False:
-                excluded_ids = excluded_ids + "{0},".format(self.ids[i],)
+                excluded_ids.append(self.ids[i])
         return excluded_ids
 
     def get_people(self):
