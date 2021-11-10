@@ -332,6 +332,10 @@ class viewTweet(basicTweet):
         widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)
         self.message.ShowModal()
 
+    # We won't need text_processor in this dialog, so let's avoid it.
+    def text_processor(self):
+        pass
+
     def clear_text(self, text):
         urls = utils.find_urls_in_text(text)
         for i in urls:
