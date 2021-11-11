@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
-"POT-Creation-Date: 2021-11-03 18:55+0100\n"
-"PO-Revision-Date: 2021-11-04 17:00+0100\n"
+"POT-Creation-Date: 2021-11-11 01:00+0100\n"
+"PO-Revision-Date: 2021-11-11 01:08+0100\n"
 "Last-Translator: Oreonan <corentin@progaccess.net>\n"
 "Language-Team: Oreonan <corentin@progaccess.net>\n"
 "Language: fr\n"
@@ -15,10 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,384,-1,-1,-1,-1\n"
-
-#: ../src\controller\attach.py:25
-msgid "Photo"
-msgstr "Photo"
 
 #: ../src\controller\buffers\base\base.py:91
 msgid "This action is not supported for this buffer"
@@ -98,78 +94,81 @@ msgstr "Abonnements de {username}"
 msgid "Unknown buffer"
 msgstr "Tampon inconnu"
 
-#: ../src\controller\buffers\twitter\base.py:88
-#: ../src\controller\buffers\twitter\trends.py:122
-#: ../src\controller\messages.py:214 ../src\wxUI\buffers\base.py:25
+#: ../src\controller\buffers\twitter\base.py:87
+#: ../src\controller\buffers\twitter\trends.py:43
+#: ../src\controller\buffers\twitter\trends.py:134
+#: ../src\controller\messages.py:296 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\buffers\events.py:15 ../src\wxUI\buffers\trends.py:18
-#: ../src\wxUI\dialogs\message.py:304 ../src\wxUI\sysTrayIcon.py:35
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:312
+#: ../src\wxUI\sysTrayIcon.py:35
 msgid "Tweet"
 msgstr "Tweet"
 
-#: ../src\controller\buffers\twitter\base.py:89
-#: ../src\controller\buffers\twitter\trends.py:123
+#: ../src\controller\buffers\twitter\base.py:88
+#: ../src\controller\buffers\twitter\trends.py:44
+#: ../src\controller\buffers\twitter\trends.py:135
 msgid "Write the tweet here"
 msgstr "Écrivez le tweet ici"
 
-#: ../src\controller\buffers\twitter\base.py:219
+#: ../src\controller\buffers\twitter\base.py:192
 msgid "New tweet in {0}"
 msgstr "Nouveau tweet dans {0}"
 
-#: ../src\controller\buffers\twitter\base.py:222
+#: ../src\controller\buffers\twitter\base.py:195
 msgid "{0} new tweets in {1}."
 msgstr "{0} nouveau tweet dans {1}"
 
-#: ../src\controller\buffers\twitter\base.py:261
+#: ../src\controller\buffers\twitter\base.py:234
 #: ../src\controller\buffers\twitter\directMessages.py:88
-#: ../src\controller\buffers\twitter\people.py:180
+#: ../src\controller\buffers\twitter\people.py:174
 msgid "%s items retrieved"
 msgstr "%s éléments récupérés"
 
-#: ../src\controller\buffers\twitter\base.py:293
+#: ../src\controller\buffers\twitter\base.py:266
 #: ../src\controller\buffers\twitter\people.py:80
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Ce tampon n'est pas une chronologie ; Impossible de le supprimé."
 
-#: ../src\controller\buffers\twitter\base.py:430
+#: ../src\controller\buffers\twitter\base.py:402
 msgid "Reply to {arg0}"
 msgstr "Répondre à {arg0}"
 
-#: ../src\controller\buffers\twitter\base.py:432
+#: ../src\controller\buffers\twitter\base.py:404
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:27
 msgid "Reply"
 msgstr "Répondre"
 
-#: ../src\controller\buffers\twitter\base.py:433
+#: ../src\controller\buffers\twitter\base.py:405
 msgid "Reply to %s"
 msgstr "Répondre à %s"
 
-#: ../src\controller\buffers\twitter\base.py:480
-#: ../src\controller\buffers\twitter\directMessages.py:130
+#: ../src\controller\buffers\twitter\base.py:428
+#: ../src\controller\buffers\twitter\directMessages.py:124
 msgid "New direct message"
 msgstr "Nouveau message"
 
-#: ../src\controller\buffers\twitter\base.py:480
-#: ../src\controller\messages.py:200
+#: ../src\controller\buffers\twitter\base.py:428
+#: ../src\controller\messages.py:268
 msgid "Direct message to %s"
 msgstr "Message à %s"
 
-#: ../src\controller\buffers\twitter\base.py:520
+#: ../src\controller\buffers\twitter\base.py:459
 msgid "Add your comment to the tweet"
 msgstr "Ajoutez votre commentaire pour le tweet"
 
-#: ../src\controller\buffers\twitter\base.py:520
+#: ../src\controller\buffers\twitter\base.py:459
 msgid "Quote"
 msgstr "Citer"
 
-#: ../src\controller\buffers\twitter\base.py:596
+#: ../src\controller\buffers\twitter\base.py:520
 msgid "Opening URL..."
 msgstr "Ouverture de l'URL..."
 
-#: ../src\controller\buffers\twitter\base.py:633
+#: ../src\controller\buffers\twitter\base.py:557
 msgid "User details"
 msgstr "Détails de l'utilisateur"
 
-#: ../src\controller\buffers\twitter\base.py:654
+#: ../src\controller\buffers\twitter\base.py:578
 msgid "Opening item in web browser..."
 msgstr "Ouverture de l'élément dans le navigateur Web..."
 
@@ -184,15 +183,15 @@ msgstr "Mention pour %s"
 msgid "Mention"
 msgstr "Mention"
 
-#: ../src\controller\buffers\twitter\directMessages.py:133
+#: ../src\controller\buffers\twitter\directMessages.py:127
 msgid "{0} new direct messages."
 msgstr "{0} nouveau message"
 
-#: ../src\controller\buffers\twitter\directMessages.py:136
+#: ../src\controller\buffers\twitter\directMessages.py:130
 msgid "This action is not supported in the buffer yet."
 msgstr "Cette action n'est pas supportée dans le tampon actuel"
 
-#: ../src\controller\buffers\twitter\directMessages.py:146
+#: ../src\controller\buffers\twitter\directMessages.py:140
 msgid ""
 "Getting more items cannot be done in this buffer. Use the direct messages "
 "buffer instead."
@@ -200,11 +199,11 @@ msgstr ""
 "Récupérer plus d'élément est impossible dans ce tampon, utilisez le tampon "
 "des messages à la place."
 
-#: ../src\controller\buffers\twitter\people.py:253
+#: ../src\controller\buffers\twitter\people.py:247
 msgid "{0} new followers."
 msgstr "{0} nouvel abonné"
 
-#: ../src\controller\buffers\twitter\trends.py:146
+#: ../src\controller\buffers\twitter\trends.py:150
 msgid "This action is not supported in the buffer, yet."
 msgstr "Cette action n'est pas supportée pour le tampon actuel"
 
@@ -222,7 +221,7 @@ msgstr "Chronologies"
 
 #: ../src\controller\mainController.py:359
 #: ../src\controller\mainController.py:883
-#: ../src\controller\mainController.py:1585
+#: ../src\controller\mainController.py:1582
 msgid "Timeline for {}"
 msgstr "Chronologie de {}"
 
@@ -232,7 +231,7 @@ msgstr "Chronologies des favoris"
 
 #: ../src\controller\mainController.py:363
 #: ../src\controller\mainController.py:902
-#: ../src\controller\mainController.py:1587
+#: ../src\controller\mainController.py:1584
 msgid "Likes for {}"
 msgstr "Favoris de {}"
 
@@ -242,7 +241,7 @@ msgstr "Chronologies des abonnés"
 
 #: ../src\controller\mainController.py:367
 #: ../src\controller\mainController.py:921
-#: ../src\controller\mainController.py:1589
+#: ../src\controller\mainController.py:1586
 msgid "Followers for {}"
 msgstr "Abonnés de {}"
 
@@ -252,7 +251,7 @@ msgstr "Chronologies des abonnements"
 
 #: ../src\controller\mainController.py:371
 #: ../src\controller\mainController.py:940
-#: ../src\controller\mainController.py:1591
+#: ../src\controller\mainController.py:1588
 msgid "Friends for {}"
 msgstr "Abonnements de {}"
 
@@ -277,7 +276,7 @@ msgstr "Recherche de {}"
 
 #: ../src\controller\mainController.py:381
 #: ../src\controller\mainController.py:982
-#: ../src\controller\mainController.py:1593
+#: ../src\controller\mainController.py:1590
 msgid "Trending topics for %s"
 msgstr "Tendances pour %s"
 
@@ -320,7 +319,7 @@ msgstr "Ajoute un alias pour l'utilisateur"
 msgid "Alias has been set correctly for {}."
 msgstr "L'alias pour {} a correctement été définie"
 
-#: ../src\controller\mainController.py:829 ../src\controller\messages.py:245
+#: ../src\controller\mainController.py:829 ../src\controller\messages.py:327
 msgid "MMM D, YYYY. H:m"
 msgstr "D MMM YYYY à H:m"
 
@@ -410,72 +409,52 @@ msgstr "Tampon muet"
 msgid "Buffer mute off"
 msgstr "Tampon non muet"
 
-#: ../src\controller\mainController.py:1545
+#: ../src\controller\mainController.py:1542
 msgid "Copied"
 msgstr "Copié"
 
-#: ../src\controller\mainController.py:1575
+#: ../src\controller\mainController.py:1572
 msgid "Unable to update this buffer."
 msgstr "Impossible de mettre à jour ce tampon."
 
-#: ../src\controller\mainController.py:1578
+#: ../src\controller\mainController.py:1575
 msgid "Updating buffer..."
 msgstr "Actualisation..."
 
-#: ../src\controller\mainController.py:1581
+#: ../src\controller\mainController.py:1578
 msgid "{0} items retrieved"
 msgstr "{0} éléments récupérés"
 
-#: ../src\controller\mainController.py:1600
-#: ../src\controller\mainController.py:1620
+#: ../src\controller\mainController.py:1597
+#: ../src\controller\mainController.py:1617
 msgid "Invalid buffer"
 msgstr "Tampon invalide"
 
-#: ../src\controller\mainController.py:1611
+#: ../src\controller\mainController.py:1608
 msgid "Picture {0}"
 msgstr "Photo {0}"
 
-#: ../src\controller\mainController.py:1612
+#: ../src\controller\mainController.py:1609
 msgid "Select the picture"
 msgstr "Sélectionner la photo"
 
-#: ../src\controller\mainController.py:1631
+#: ../src\controller\mainController.py:1628
 msgid "Unable to extract text"
 msgstr "Impossible d'extraire le texte"
 
-#: ../src\controller\messages.py:56
+#: ../src\controller\messages.py:49
 msgid "Translated"
 msgstr "Traduit"
 
-#: ../src\controller\messages.py:63
-msgid "There's no URL to be shortened"
-msgstr "Aucune URL à réduire"
-
-#: ../src\controller\messages.py:67 ../src\controller\messages.py:75
-msgid "URL shortened"
-msgstr "URL réduite"
-
-#: ../src\controller\messages.py:82
-msgid "There's no URL to be expanded"
-msgstr "Aucune URL à élargir"
-
-#: ../src\controller\messages.py:86 ../src\controller\messages.py:94
-msgid "URL expanded"
-msgstr "URL élargi"
-
-#: ../src\controller\messages.py:108
+#: ../src\controller\messages.py:56
 msgid "%s - %s of %d characters"
 msgstr "%s - %s/%d caractères"
 
-#: ../src\controller\messages.py:112
-msgid "%s - %s characters"
-msgstr "%s - %s caractères"
-
-#: ../src\controller\messages.py:272
+#: ../src\controller\messages.py:354
 msgid "View item"
 msgstr "Voir l'élément"
 
-#: ../src\controller\messages.py:301
+#: ../src\controller\messages.py:379
 msgid "Link copied to clipboard."
 msgstr "Lien copié dans le Presse-papiers"
 
@@ -666,7 +645,7 @@ msgstr "Arrêté"
 msgid "&Record"
 msgstr "&Enregistrer"
 
-#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:148
+#: ../src\extra\AudioUploader\audioUploader.py:136 ../src\sound.py:147
 msgid "Playing..."
 msgstr "Lecture..."
 
@@ -718,6 +697,9 @@ msgid "%s seconds"
 msgstr "%s secondes"
 
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:15
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:36
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:173
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:258
 msgid "File"
 msgstr "Fichier"
 
@@ -1563,7 +1545,7 @@ msgid "New tweet"
 msgstr "Nouveau tweet"
 
 #: ../src\keystrokeEditor\constants.py:12 ../src\wxUI\buffers\base.py:26
-#: ../src\wxUI\commonMessageDialogs.py:10 ../src\wxUI\dialogs\message.py:126
+#: ../src\wxUI\commonMessageDialogs.py:10
 msgid "Retweet"
 msgstr "Retweet"
 
@@ -2009,15 +1991,17 @@ msgid "public"
 msgstr "public"
 
 #: ../src\sessions\twitter\session.py:211
+#: ../src\sessions\twitter\session.py:238
 msgid "%s failed.  Reason: %s"
 msgstr "%s erreur.  Raison: %s"
 
 #: ../src\sessions\twitter\session.py:217
+#: ../src\sessions\twitter\session.py:241
 msgid "%s succeeded."
 msgstr "%s réussi."
 
-#: ../src\sessions\twitter\session.py:426
-#: ../src\sessions\twitter\session.py:504
+#: ../src\sessions\twitter\session.py:450
+#: ../src\sessions\twitter\session.py:528
 msgid "Deleted account"
 msgstr "Compte supprimé"
 
@@ -2045,7 +2029,7 @@ msgstr "Compte en cours d'autorisation..."
 msgid "Enter your PIN code here"
 msgstr "Entrer votre code PIN ici"
 
-#: ../src\sound.py:161
+#: ../src\sound.py:160
 msgid "Stopped."
 msgstr "Arrêté."
 
@@ -2099,10 +2083,6 @@ msgstr ""
 msgid "Client"
 msgstr "Client"
 
-#: ../src\wxUI\buffers\base.py:12
-msgid "Text"
-msgstr "Texte"
-
 #: ../src\wxUI\buffers\base.py:12 ../src\wxUI\buffers\events.py:14
 msgid "Date"
 msgstr "Date"
@@ -2113,6 +2093,11 @@ msgstr "Date"
 #: ../src\wxUI\dialogs\userSelection.py:11 ../src\wxUI\dialogs\utils.py:32
 msgid "User"
 msgstr "Utilisateur"
+
+#: ../src\wxUI\buffers\base.py:12
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:48
+msgid "Text"
+msgstr "Texte"
 
 #: ../src\wxUI\buffers\base.py:28
 msgid "Direct message"
@@ -2374,55 +2359,6 @@ msgid ""
 msgstr ""
 "{0} a été quitté inopinément lors de sa dernière exécution. Si ce problème "
 "perciste, veuillez le signaler aux développeurs de {0}."
-
-#: ../src\wxUI\dialogs\attach.py:10
-msgid "Add an attachment"
-msgstr "Ajouter un fichier"
-
-#: ../src\wxUI\dialogs\attach.py:13
-msgid "Attachments"
-msgstr "Fichiers joints"
-
-#: ../src\wxUI\dialogs\attach.py:14
-msgid "Title"
-msgstr "Titre"
-
-#: ../src\wxUI\dialogs\attach.py:14
-msgid "Type"
-msgstr "Type"
-
-#: ../src\wxUI\dialogs\attach.py:19
-msgid "Add attachments"
-msgstr "Joindre des fichiers"
-
-#: ../src\wxUI\dialogs\attach.py:20
-msgid "&Photo"
-msgstr "&Image"
-
-#: ../src\wxUI\dialogs\attach.py:21
-msgid "Remove attachment"
-msgstr "Supprimer le fichier joint"
-
-#: ../src\wxUI\dialogs\attach.py:37 ../src\wxUI\dialogs\message.py:116
-#: ../src\wxUI\dialogs\message.py:175 ../src\wxUI\dialogs\message.py:235
-#: ../src\wxUI\dialogs\update_profile.py:82
-msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
-msgstr "Fichiers image (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
-
-#: ../src\wxUI\dialogs\attach.py:37 ../src\wxUI\dialogs\message.py:116
-#: ../src\wxUI\dialogs\message.py:175 ../src\wxUI\dialogs\message.py:235
-#: ../src\wxUI\dialogs\update_profile.py:82
-msgid "Select the picture to be uploaded"
-msgstr "Sélectionnez la photo à charger"
-
-#: ../src\wxUI\dialogs\attach.py:44
-msgid "please provide a description"
-msgstr "Veuillez fournir une description"
-
-#: ../src\wxUI\dialogs\attach.py:44 ../src\wxUI\dialogs\lists.py:14
-#: ../src\wxUI\dialogs\lists.py:70
-msgid "Description"
-msgstr "Description"
 
 #: ../src\wxUI\dialogs\configuration.py:15
 msgid "Language"
@@ -2811,6 +2747,14 @@ msgstr "Propriétaire"
 msgid "mode"
 msgstr "mode"
 
+#: ../src\wxUI\dialogs\lists.py:14 ../src\wxUI\dialogs\lists.py:70
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:38
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:127
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:175
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:260
+msgid "Description"
+msgstr "Description"
+
 #: ../src\wxUI\dialogs\lists.py:19 ../src\wxUI\dialogs\lists.py:62
 msgid "Create a new list"
 msgstr "Créer une nouvelle liste"
@@ -2866,103 +2810,6 @@ msgstr "Sélectionnez une liste pour supprimer l'utilisateur"
 #: ../src\wxUI\dialogs\lists.py:149
 msgid "Do you really want to delete this list?"
 msgstr "Voulez-vous vraiment supprimer cette liste ?"
-
-#: ../src\wxUI\dialogs\message.py:73 ../src\wxUI\dialogs\message.py:254
-msgid "&Long tweet"
-msgstr "&Tweet long"
-
-#: ../src\wxUI\dialogs\message.py:74 ../src\wxUI\dialogs\message.py:133
-#: ../src\wxUI\dialogs\message.py:255
-msgid "&Upload image..."
-msgstr "&Joindre une image..."
-
-#: ../src\wxUI\dialogs\message.py:75 ../src\wxUI\dialogs\message.py:134
-#: ../src\wxUI\dialogs\message.py:194 ../src\wxUI\dialogs\message.py:256
-#: ../src\wxUI\dialogs\message.py:359 ../src\wxUI\dialogs\message.py:435
-msgid "Check &spelling..."
-msgstr "Correction &orthographique..."
-
-#: ../src\wxUI\dialogs\message.py:76 ../src\wxUI\dialogs\message.py:135
-#: ../src\wxUI\dialogs\message.py:195 ../src\wxUI\dialogs\message.py:257
-msgid "&Attach audio..."
-msgstr "&Joindre un audio..."
-
-#: ../src\wxUI\dialogs\message.py:77 ../src\wxUI\dialogs\message.py:136
-#: ../src\wxUI\dialogs\message.py:196 ../src\wxUI\dialogs\message.py:258
-msgid "Sh&orten URL"
-msgstr "&Réduire URL"
-
-#: ../src\wxUI\dialogs\message.py:78 ../src\wxUI\dialogs\message.py:137
-#: ../src\wxUI\dialogs\message.py:197 ../src\wxUI\dialogs\message.py:259
-#: ../src\wxUI\dialogs\message.py:360 ../src\wxUI\dialogs\message.py:436
-msgid "&Expand URL"
-msgstr "&Élargir URL"
-
-#: ../src\wxUI\dialogs\message.py:81 ../src\wxUI\dialogs\message.py:140
-#: ../src\wxUI\dialogs\message.py:200 ../src\wxUI\dialogs\message.py:262
-#: ../src\wxUI\dialogs\message.py:362 ../src\wxUI\dialogs\message.py:438
-msgid "&Translate..."
-msgstr "&Traduire..."
-
-#: ../src\wxUI\dialogs\message.py:82 ../src\wxUI\dialogs\message.py:141
-#: ../src\wxUI\dialogs\message.py:186 ../src\wxUI\dialogs\message.py:263
-msgid "Auto&complete users"
-msgstr "Sai&sie automatique utilisateurs"
-
-#: ../src\wxUI\dialogs\message.py:83 ../src\wxUI\dialogs\message.py:142
-#: ../src\wxUI\dialogs\message.py:201 ../src\wxUI\dialogs\message.py:264
-msgid "Sen&d"
-msgstr "Envoye&r"
-
-#: ../src\wxUI\dialogs\message.py:85 ../src\wxUI\dialogs\message.py:144
-#: ../src\wxUI\dialogs\message.py:203 ../src\wxUI\dialogs\message.py:266
-#: ../src\wxUI\dialogs\message.py:363 ../src\wxUI\dialogs\message.py:439
-msgid "C&lose"
-msgstr "F&ermer"
-
-#: ../src\wxUI\dialogs\message.py:184
-msgid "&Recipient"
-msgstr "&Destinataire"
-
-#: ../src\wxUI\dialogs\message.py:245
-msgid "&Mention to all"
-msgstr "&Répondre à tout le monde"
-
-#: ../src\wxUI\dialogs\message.py:299
-msgid "Tweet - %i characters "
-msgstr "Tweet - %i caractères "
-
-#: ../src\wxUI\dialogs\message.py:316
-msgid "Image description"
-msgstr "Description de l'image"
-
-#: ../src\wxUI\dialogs\message.py:327
-msgid "Retweets: "
-msgstr "Retweets: "
-
-#: ../src\wxUI\dialogs\message.py:332
-msgid "Likes: "
-msgstr "Favoris: "
-
-#: ../src\wxUI\dialogs\message.py:337
-msgid "Source: "
-msgstr "Source: "
-
-#: ../src\wxUI\dialogs\message.py:342 ../src\wxUI\dialogs\message.py:423
-msgid "Date: "
-msgstr "Date: "
-
-#: ../src\wxUI\dialogs\message.py:357 ../src\wxUI\dialogs\message.py:433
-msgid "Copy link to clipboard"
-msgstr "Copier le lien dans le Presse-papiers"
-
-#: ../src\wxUI\dialogs\message.py:408
-msgid "View"
-msgstr "Voir"
-
-#: ../src\wxUI\dialogs\message.py:410
-msgid "Item"
-msgstr "Élément"
 
 #: ../src\wxUI\dialogs\search.py:12
 msgid "Search on Twitter"
@@ -3044,6 +2891,225 @@ msgstr "Ville"
 #: ../src\wxUI\dialogs\trends.py:19 ../src\wxUI\dialogs\update_profile.py:18
 msgid "&Location"
 msgstr "&Localisation"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:33
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:49
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:170
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:255
+msgid "Attachments"
+msgstr "Fichiers joints"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:37
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:174
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:259
+msgid "Type"
+msgstr "Type"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:40
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:177
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:262
+msgid "Delete attachment"
+msgstr "Supprimer la pièce jointe"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:45
+msgid "Added Tweets"
+msgstr "Tweets ajoutés"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:52
+msgid "Delete tweet"
+msgstr "Supprimer le tweet"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:57
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:192
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:267
+msgid "A&dd..."
+msgstr "&Ajouter"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:59
+msgid "Add t&weet"
+msgstr "A&jouter un tweet"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:62
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:194
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:269
+msgid "&Attach audio..."
+msgstr "&Joindre un audio..."
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:66
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:198
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:237
+msgid "Auto&complete users"
+msgstr "Sai&sie automatique utilisateurs"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:68
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:200
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:273
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:367
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:440
+msgid "Check &spelling..."
+msgstr "Correction &orthographique..."
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:70
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:202
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:275
+msgid "&Translate"
+msgstr "&Traduire"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:74
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:206
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:279
+msgid "Sen&d"
+msgstr "Envoye&r"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:118
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:220
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:299
+msgid "Image"
+msgstr "Image"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:120
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:222
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:301
+msgid "Video"
+msgstr "Vidéo"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:122
+msgid "Poll"
+msgstr "Sondage"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:127
+msgid "please provide a description"
+msgstr "Veuillez fournir une description"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:134
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:292
+#: ../src\wxUI\dialogs\update_profile.py:82
+msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+msgstr "Fichiers image (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:134
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:292
+#: ../src\wxUI\dialogs\update_profile.py:82
+msgid "Select the picture to be uploaded"
+msgstr "Sélectionnez la photo à charger"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:141
+msgid "Select the video to be uploaded"
+msgstr "Sélectionnez la vidéo à téléverser"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:141
+msgid "Video files (*.mp4)|*.mp4"
+msgstr "Fichiers vidéo (*.mp4)|*.mp4"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:147
+msgid "Error adding attachment"
+msgstr "Erreur à l'ajout de la pièce jointe"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:147
+msgid ""
+"It is not possible to add more attachments. Please make sure your tweet "
+"complies with Twitter'S attachment rules. You can add only one video or GIF "
+"in every tweet, and a maximum of 4 photos."
+msgstr ""
+"Il est impossible de joindre plus de contenu. Assurez-vous que votre tweet "
+"respecte les règles d'attachement de Twitter. Vous pouvez seulement inclure "
+"une vidéo ou un GIF par tweet, et 4 photos au maximum."
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:182
+msgid "&Mention to all"
+msgstr "&Répondre à tout le monde"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:235
+msgid "&Recipient"
+msgstr "&Destinataire"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:307
+msgid "Tweet - %i characters "
+msgstr "Tweet - %i caractères "
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:324
+msgid "Image description"
+msgstr "Description de l'image"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:335
+msgid "Retweets: "
+msgstr "Retweets: "
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:340
+msgid "Likes: "
+msgstr "Favoris: "
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:345
+msgid "Source: "
+msgstr "Source: "
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:350
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:428
+msgid "Date: "
+msgstr "Date: "
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:365
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:438
+msgid "Copy link to clipboard"
+msgstr "Copier le lien dans le Presse-papiers"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:368
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:443
+msgid "&Translate..."
+msgstr "&Traduire..."
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:369
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:444
+msgid "C&lose"
+msgstr "F&ermer"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:413
+msgid "View"
+msgstr "Voir"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:415
+msgid "Item"
+msgstr "Élément"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:441
+msgid "&Expand URL"
+msgstr "&Élargir URL"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:480
+msgid "Add a poll"
+msgstr "Ajouter un sondage"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:484
+msgid "Participation time (in days)"
+msgstr "Temps de participation (en jours)"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:491
+msgid "Choices"
+msgstr "Choix"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:495
+msgid "Option 1"
+msgstr "Option 1"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:501
+msgid "Option 2"
+msgstr "Option 2"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:507
+msgid "Option 3"
+msgstr "Option 3"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:513
+msgid "Option 4"
+msgstr "Option 4"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:540
+msgid "Not enough information"
+msgstr "Pas assez d'informations"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:540
+msgid "Please make sure you have provided at least two options for the poll."
+msgstr "Assurez-vous d'avoir spécifier au moins 2 options pour le sondage."
 
 #: ../src\wxUI\dialogs\update_profile.py:10
 msgid "Update your profile"
