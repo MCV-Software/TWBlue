@@ -6,7 +6,6 @@ import subprocess
 import platform
 import tempfile
 import glob
-import url_shortener
 import audio_services
 import paths
 import sound_lib
@@ -121,7 +120,7 @@ class URLStream(object):
         """ Takes an URL and prepares it to be streamed. This function will try to unshorten the passed URL and, if needed, to transform it into a valid URL."""
         log.debug("Preparing URL: %s" % (url,))
         self.prepared = False
-        self.url = url_shortener.unshorten(url)
+        self.url = url
         if self.url == None:
             self.url = url
             log.debug("Expanded URL: %s" % (self.url,))

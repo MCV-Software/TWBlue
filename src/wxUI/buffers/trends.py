@@ -32,3 +32,5 @@ class trendsPanel(wx.Panel):
         else:
             self.list.select_item(0)
 
+    def set_focus_in_list(self):
+        self.list.list.SetFocus()
