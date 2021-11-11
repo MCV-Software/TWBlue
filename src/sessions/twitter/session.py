@@ -622,8 +622,7 @@ class Session(base.baseSession):
         for obj in tweets:
             if len(obj["attachments"]) == 0:
                 item = self.api_call_v2(call_name="create_tweet", text=obj["text"], _sound="tweet_send.ogg",  in_reply_to_tweet_id=in_reply_to_status_id, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"])
-                print(item)
-                in_reply_to_status_id = item.data.id
+                in_reply_to_status_id = item.data["id"]
             else:
                 media_ids = []
                 for i in obj["attachments"]:
@@ -632,7 +631,7 @@ class Session(base.baseSession):
                         self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
                     media_ids.append(img.media_id)
                 item = self.api_call_v2(call_name="create_tweet", status=obj["text"], _sound="tweet_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, media_ids=media_ids, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"])
-                in_reply_to_status_id = item.data.id
+                in_reply_to_status_id = item.data["id"]
 
     def reply(self, text="", in_reply_to_status_id=None, attachments=[], *args, **kwargs):
         if len(attachments) == 0:
