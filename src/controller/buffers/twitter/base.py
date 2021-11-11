@@ -459,11 +459,11 @@ class BaseBuffer(base.Buffer):
         retweet = messages.tweet(session=self.session, title=_("Quote"), caption=_("Add your comment to the tweet"), max=256, thread_mode=False)
         if retweet.message.ShowModal() == widgetUtils.OK:
             text = retweet.message.text.GetValue()
-            text = text+" https://twitter.com/{0}/status/{1}".format(self.session.get_user(tweet.user).screen_name, id)
             tweet_data = dict(text=text, attachments=retweet.attachments, poll_period=retweet.poll_period, poll_options=retweet.poll_options)
+            tweet_data.update(quote_tweet_id=id)
             call_threaded(self.session.send_tweet, *[tweet_data])
         if hasattr(retweet.message, "destroy"):
-            retweet.message.destroy()
+            retweet.message.Destroy()
 
     def _direct_retweet(self, id):
         item = self.session.api_call(call_name="retweet", _sound="retweet_send.ogg", id=id)

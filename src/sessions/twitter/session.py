@@ -620,8 +620,9 @@ class Session(base.baseSession):
         """ Convenience function to send a thread. """
         in_reply_to_status_id = None
         for obj in tweets:
+            # When quoting a tweet, the tweet_data dict might contain a parameter called quote_tweet_id. Let's add it, or None, so quotes will be posted successfully.
             if len(obj["attachments"]) == 0:
-                item = self.api_call_v2(call_name="create_tweet", text=obj["text"], _sound="tweet_send.ogg",  in_reply_to_tweet_id=in_reply_to_status_id, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"])
+                item = self.api_call_v2(call_name="create_tweet", text=obj["text"], _sound="tweet_send.ogg",  in_reply_to_tweet_id=in_reply_to_status_id, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"], quote_tweet_id=obj.get("quote_tweet_id"))
                 in_reply_to_status_id = item.data["id"]
             else:
                 media_ids = []
@@ -630,7 +631,7 @@ class Session(base.baseSession):
                     if i["type"] == "photo":
                         self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
                     media_ids.append(img.media_id)
-                item = self.api_call_v2(call_name="create_tweet", status=obj["text"], _sound="tweet_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, media_ids=media_ids, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"])
+                item = self.api_call_v2(call_name="create_tweet", status=obj["text"], _sound="tweet_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, media_ids=media_ids, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"], quote_tweet_id=obj.get("quote_tweet_id"))
                 in_reply_to_status_id = item.data["id"]
 
     def reply(self, text="", in_reply_to_status_id=None, attachments=[], *args, **kwargs):
