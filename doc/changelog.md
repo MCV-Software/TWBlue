@@ -2,6 +2,7 @@ TWBlue Changelog
 
 ## changes in this version
 
+* In the Windows 11 Keymap, the default shortcut to open the keystrokes editor is now CTRL plus Alt plus Windows plus K to avoid conflicts with the new global mute microphone shortcut.
 * Now it is possible to create a tweet from a trending topics buffer again.
 * TWBlue now includes a completely new set of dialogs to handle tweeting, replying and sending direct messages that takes advantage of more Twitter features.
     * It is possible to add videos in tweets and direct messages by using the new "add" button, located in every dialog where  media can be added. Twitter suggests to add videos from 5 seconds up to 2 minutes lenght, in mp4 format (video Codec H.264 and audio codec AAC). Currently, TWBlue does not check if the uploaded video complies with Twitter media requirements. You can add only a video in a tweet or direct message. No other kind of media can be added after a video is in a tweet. If the video was unable to be uploaded successfully, the tweet or direct message won't be created.
