@@ -631,7 +631,7 @@ class Session(base.baseSession):
                     if i["type"] == "photo":
                         self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
                     media_ids.append(img.media_id)
-                item = self.api_call_v2(call_name="create_tweet", status=obj["text"], _sound="tweet_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, media_ids=media_ids, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"], quote_tweet_id=obj.get("quote_tweet_id"))
+                item = self.api_call_v2(call_name="create_tweet", text=obj["text"], _sound="tweet_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, media_ids=media_ids, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"], quote_tweet_id=obj.get("quote_tweet_id"))
                 in_reply_to_status_id = item.data["id"]
 
     def reply(self, text="", in_reply_to_status_id=None, attachments=[], *args, **kwargs):
@@ -644,7 +644,7 @@ class Session(base.baseSession):
                 if i["type"] == "photo":
                     self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
                 media_ids.append(img.media_id)
-            item = self.api_call(call_name="update_status", status=text, _sound="reply_send.ogg", tweet_mode="extended", in_reply_to_status_id=in_reply_to_status_id, media_ids=media_ids, *args, **kwargs)
+            item = self.api_call_v2(call_name="create_tweet", text=text, _sound="reply_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, media_ids=media_ids, *args, **kwargs)
 
     def direct_message(self, text, recipient, attachment=None, *args, **kwargs):
         if attachment == None:
