@@ -2,6 +2,11 @@ TWBlue Changelog
 
 ## changes in this version
 
+* We have restored conversation and threads support powered by Twitter API V2 thanks to a set of improvements we have done in the application, as well as more generous limits to Tweet monthly cap by Twitter.
+* Fixed issue when uploading attachments (images, videos or gif files) while sending tweets or replies.
+
+## Changes in version 2021.11.12
+
 * Now it is possible to create a tweet from a trending topics buffer again.
 * TWBlue now includes a completely new set of dialogs to handle tweeting, replying and sending direct messages that takes advantage of more Twitter features.
     * It is possible to add videos in tweets and direct messages by using the new "add" button, located in every dialog where  media can be added. Twitter suggests to add videos from 5 seconds up to 2 minutes lenght, in mp4 format (video Codec H.264 and audio codec AAC). Currently, TWBlue does not check if the uploaded video complies with Twitter media requirements. You can add only a video in a tweet or direct message. No other kind of media can be added after a video is in a tweet. If the video was unable to be uploaded successfully, the tweet or direct message won't be created.
