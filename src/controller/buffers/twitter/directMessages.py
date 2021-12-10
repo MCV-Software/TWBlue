@@ -8,7 +8,7 @@ import config
 import languageHandler
 import logging
 from controller import messages
-from sessions.twitter import compose, utils
+from sessions.twitter import compose, utils, templates
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
@@ -129,6 +129,12 @@ class DirectMessagesBuffer(base.BaseBuffer):
     def open_in_browser(self, *args, **kwargs):
         output.speak(_(u"This action is not supported in the buffer yet."))
 
+    def get_message(self):
+        template = self.session.settings["templates"]["dm"]
+        dm = self.get_right_tweet()
+        t = templates.render_dm(dm, template, self.session, relative_times=self.session.settings["general"]["relative_times"], offset_seconds=self.session.db["utc_offset"])
+        return t
+
 class SentDirectMessagesBuffer(DirectMessagesBuffer):
 
     def __init__(self, *args, **kwargs):
@@ -151,3 +157,9 @@ class SentDirectMessagesBuffer(DirectMessagesBuffer):
             for i in items:
                 tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
                 self.buffer.list.insert_item(False, *tweet)
+
+    def get_message(self):
+        template = self.session.settings["templates"]["dm_sent"]
+        dm = self.get_right_tweet()
+        t = templates.render_dm(dm, template, self.session, relative_times=self.session.settings["general"]["relative_times"], offset_seconds=self.session.db["utc_offset"])
+        return t

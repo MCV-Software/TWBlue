@@ -50,6 +50,8 @@ speech_reporting = boolean(default=True)
 
 [templates]
 tweet = string(default="$display_name, $text $image_descriptions $date. $source")
+dm = string(default="$sender_display_name, $text $date")
+dm_sent = string(default=">$recipient_display_name, $text $date")
 
 [filters]
 

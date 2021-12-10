@@ -14,10 +14,10 @@ def process_date(field, relative_times=True, offset_seconds=0):
     return ts
 
 def process_text(tweet):
-    if hasattr(tweet, "text"):
-        text = tweet.text
-    elif hasattr(tweet, "full_text"):
+    if hasattr(tweet, "full_text"):
         text = tweet.full_text
+    elif hasattr(tweet, "text"):
+        text = tweet.text
     # Cleanup mentions, so we'll remove more than 2 mentions to make the tweet easier to read.
     text = utils.clean_mentions(text)
     # Replace URLS for extended version of those.
@@ -75,6 +75,33 @@ def render_tweet(tweet, template, session, relative_times=False, offset_seconds=
         image_descriptions = process_image_descriptions(tweet.extended_entities)
     if image_descriptions != "":
         available_data.update(image_descriptions=image_descriptions)
+    result = Template(template).safe_substitute(**available_data)
+    result = re.sub(r"\$\w+", "", result)
+    return result
+
+def render_dm(dm, template, session, relative_times=False, offset_seconds=0):
+    """ Renders direct messages by using the provided template.
+    Available data will be stored in the following variables:
+    $date: Creation date.
+    $sender_display_name: User profile name for user who sent the dm.
+    $sender_screen_name: User screen name for user sending the dm, this is the same name used to reference the user in Twitter.
+    $recipient_display_name: User profile name for user who received the dm.
+    $recipient_screen_name: User screen name for user receiving the dm, this is the same name used to reference the user in Twitter.
+    $text: Text of the direct message.
+    """
+    available_data = dict()
+    available_data.update(text=utils.expand_urls(dm.message_create["message_data"]["text"], dm.message_create["message_data"]["entities"]))
+    # Let's remove the last 3 digits in the timestamp string.
+    # Twitter sends their "epoch" timestamp with 3 digits for milliseconds and arrow doesn't like it.
+    original_date = arrow.get(int(dm.created_timestamp))
+    if relative_times == True:
+        ts = original_date.humanize(locale=languageHandler.curLang[:2])
+    else:
+        ts = original_date.shift(seconds=offset_seconds)
+    available_data.update(date=ts)
+    sender = session.get_user(dm.message_create["sender_id"])
+    recipient = session.get_user(dm.message_create["target"]["recipient_id"])
+    available_data.update(sender_display_name=sender.name, sender_screen_name=sender.screen_name, recipient_display_name=recipient.name, recipient_screen_name=recipient.screen_name)
     result = Template(template).safe_substitute(**available_data)
     result = re.sub(r"\$\w+", "", result)
     return result
