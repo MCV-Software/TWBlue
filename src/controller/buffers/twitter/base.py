@@ -19,7 +19,7 @@ import languageHandler
 import logging
 from audio_services import youtube_utils
 from controller.buffers.base import base
-from sessions.twitter import compose, utils, reduce
+from sessions.twitter import compose, utils, reduce, templates
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from tweepy.cursor import Cursor
@@ -100,8 +100,10 @@ class BaseBuffer(base.Buffer):
         return self.get_message()
 
     def get_message(self):
+        template = self.session.settings["templates"]["tweet"]
         tweet = self.get_right_tweet()
-        return " ".join(self.compose_function(tweet, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session))
+        t = templates.render_tweet(tweet, template, self.session, relative_times=self.session.settings["general"]["relative_times"], offset_seconds=self.session.db["utc_offset"])
+        return t
 
     def get_full_tweet(self):
         tweet = self.get_right_tweet()
