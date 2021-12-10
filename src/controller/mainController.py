@@ -334,17 +334,17 @@ class Controller(object):
         root_position =self.view.search(session.db["user_name"], session.db["user_name"])
         for i in session.settings['general']['buffer_order']:
             if i == 'home':
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Home"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="home_timeline", name="home_timeline", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg", tweet_mode="extended"))
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Home"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="home_timeline", name="home_timeline", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg", include_ext_alt_text=True, tweet_mode="extended"))
             elif i == 'mentions':
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Mentions"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="mentions_timeline", name="mentions", sessionObject=session, account=session.db["user_name"], sound="mention_received.ogg", tweet_mode="extended"))
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Mentions"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="mentions_timeline", name="mentions", sessionObject=session, account=session.db["user_name"], sound="mention_received.ogg", include_ext_alt_text=True, tweet_mode="extended"))
             elif i == 'dm':
                 pub.sendMessage("createBuffer", buffer_type="DirectMessagesBuffer", session_type=session.type, buffer_title=_("Direct messages"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_direct_messages", name="direct_messages", sessionObject=session, account=session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message", sound="dm_received.ogg"))
             elif i == 'sent_dm':
                 pub.sendMessage("createBuffer", buffer_type="SentDirectMessagesBuffer", session_type=session.type, buffer_title=_("Sent direct messages"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function=None, name="sent_direct_messages", sessionObject=session, account=session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message"))
             elif i == 'sent_tweets':
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Sent tweets"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="user_timeline", name="sent_tweets", sessionObject=session, account=session.db["user_name"], screen_name=session.db["user_name"], tweet_mode="extended"))
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Sent tweets"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="user_timeline", name="sent_tweets", sessionObject=session, account=session.db["user_name"], screen_name=session.db["user_name"], include_ext_alt_text=True, tweet_mode="extended"))
             elif i == 'favorites':
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Likes"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_favorites", name="favourites", sessionObject=session, account=session.db["user_name"], sound="favourite.ogg", tweet_mode="extended"))
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Likes"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_favorites", name="favourites", sessionObject=session, account=session.db["user_name"], sound="favourite.ogg", include_ext_alt_text=True, tweet_mode="extended"))
             elif i == 'followers':
                 pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Followers"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_followers", name="followers", sessionObject=session, account=session.db["user_name"], sound="update_followers.ogg", screen_name=session.db["user_name"]))
             elif i == 'friends':
@@ -356,11 +356,11 @@ class Controller(object):
         pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="timelines", account=session.db["user_name"]))
         timelines_position =self.view.search("timelines", session.db["user_name"])
         for i in session.settings["other_buffers"]["timelines"]:
-            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_(u"Timeline for {}").format(i,), parent_tab=timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="user_timeline", name="%s-timeline" % (i,), sessionObject=session, account=session.db["user_name"], sound="tweet_timeline.ogg", bufferType=None, user_id=i, tweet_mode="extended"))
+            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_(u"Timeline for {}").format(i,), parent_tab=timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="user_timeline", name="%s-timeline" % (i,), sessionObject=session, account=session.db["user_name"], sound="tweet_timeline.ogg", bufferType=None, user_id=i, include_ext_alt_text=True, tweet_mode="extended"))
         pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Likes timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="favs_timelines", account=session.db["user_name"]))
         favs_timelines_position =self.view.search("favs_timelines", session.db["user_name"])
         for i in session.settings["other_buffers"]["favourites_timelines"]:
-            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Likes for {}").format(i,), parent_tab=favs_timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="get_favorites", name="%s-favorite" % (i,), sessionObject=session, account=session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=i, tweet_mode="extended"))
+            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Likes for {}").format(i,), parent_tab=favs_timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="get_favorites", name="%s-favorite" % (i,), sessionObject=session, account=session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=i, include_ext_alt_text=True, tweet_mode="extended"))
         pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Followers timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="followers_timelines", account=session.db["user_name"]))
         followers_timelines_position =self.view.search("followers_timelines", session.db["user_name"])
         for i in session.settings["other_buffers"]["followers_timelines"]:
@@ -372,11 +372,11 @@ class Controller(object):
         pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Lists"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="lists", account=session.db["user_name"]))
         lists_position =self.view.search("lists", session.db["user_name"])
         for i in session.settings["other_buffers"]["lists"]:
-            pub.sendMessage("createBuffer", buffer_type="ListBuffer", session_type=session.type, buffer_title=_(u"List for {}").format(i), parent_tab=lists_position, start=False, kwargs=dict(parent=self.view.nb, function="list_timeline", name="%s-list" % (i,), sessionObject=session, account=session.db["user_name"], bufferType=None, sound="list_tweet.ogg", list_id=utils.find_list(i, session.db["lists"]), tweet_mode="extended"))
+            pub.sendMessage("createBuffer", buffer_type="ListBuffer", session_type=session.type, buffer_title=_(u"List for {}").format(i), parent_tab=lists_position, start=False, kwargs=dict(parent=self.view.nb, function="list_timeline", name="%s-list" % (i,), sessionObject=session, account=session.db["user_name"], bufferType=None, sound="list_tweet.ogg", list_id=utils.find_list(i, session.db["lists"]), include_ext_alt_text=True, tweet_mode="extended"))
         pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Searches"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="searches", account=session.db["user_name"]))
         searches_position =self.view.search("searches", session.db["user_name"])
         for i in session.settings["other_buffers"]["tweet_searches"]:
-            pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_(u"Search for {}").format(i), parent_tab=searches_position, start=False, kwargs=dict(parent=self.view.nb, function="search_tweets", name="%s-searchterm" % (i,), sessionObject=session, account=session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=i, tweet_mode="extended"))
+            pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_(u"Search for {}").format(i), parent_tab=searches_position, start=False, kwargs=dict(parent=self.view.nb, function="search_tweets", name="%s-searchterm" % (i,), sessionObject=session, account=session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=i, include_ext_alt_text=True, tweet_mode="extended"))
         for i in session.settings["other_buffers"]["trending_topic_buffers"]:
             pub.sendMessage("createBuffer", buffer_type="TrendsBuffer", session_type=session.type, buffer_title=_("Trending topics for %s") % (i), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="%s_tt" % (i,), sessionObject=session, account=session.db["user_name"], trendsFor=i, sound="trends_updated.ogg"))
 
@@ -423,7 +423,7 @@ class Controller(object):
                     buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
                     buffer.session.settings.write()
                     args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
-                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search_tweets", name="%s-searchterm" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=term, tweet_mode="extended", **args))
+                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search_tweets", name="%s-searchterm" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=term, include_ext_alt_text=True, tweet_mode="extended", **args))
                 else:
                     log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
                     return
@@ -872,7 +872,7 @@ class Controller(object):
                     if usr.id_str in buff.session.settings["other_buffers"]["timelines"]:
                         commonMessageDialogs.timeline_exist()
                         return
-                    tl = buffers.twitter.BaseBuffer(self.view.nb, "user_timeline", "%s-timeline" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="tweet_timeline.ogg", user_id=usr.id_str, tweet_mode="extended")
+                    tl = buffers.twitter.BaseBuffer(self.view.nb, "user_timeline", "%s-timeline" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="tweet_timeline.ogg", user_id=usr.id_str, include_ext_alt_text=True, tweet_mode="extended")
                     try:
                         tl.start_stream(play_sound=False)
                     except ValueError:
@@ -891,7 +891,7 @@ class Controller(object):
                     if usr.id_str in buff.session.settings["other_buffers"]["favourites_timelines"]:
                         commonMessageDialogs.timeline_exist()
                         return
-                    tl = buffers.twitter.BaseBuffer(self.view.nb, "get_favorites", "%s-favorite" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr.id_str, tweet_mode="extended")
+                    tl = buffers.twitter.BaseBuffer(self.view.nb, "get_favorites", "%s-favorite" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr.id_str, include_ext_alt_text=True, tweet_mode="extended")
                     try:
                         tl.start_stream(play_sound=False)
                     except ValueError:
@@ -1088,10 +1088,10 @@ class Controller(object):
         if position == page.buffer.list.get_selected():
             page.session.sound.play("limit.ogg")
 
-        try:
-            output.speak(page.get_message(), True)
-        except:
-            pass
+#        try:
+        output.speak(page.get_message(), True)
+#        except:
+#            pass
 
     def down(self, *args, **kwargs):
         page = self.get_current_buffer()
@@ -1100,16 +1100,16 @@ class Controller(object):
             return
         position = page.buffer.list.get_selected()
         index = position+1
-        try:
-            page.buffer.list.select_item(index)
-        except:
-            pass
+#        try:
+        page.buffer.list.select_item(index)
+#        except:
+#            pass
         if position == page.buffer.list.get_selected():
             page.session.sound.play("limit.ogg")
-        try:
-            output.speak(page.get_message(), True)
-        except:
-            pass
+#        try:
+        output.speak(page.get_message(), True)
+#        except:
+#            pass
 
     def left(self, *args, **kwargs):
         buff = self.view.get_current_buffer_pos()
@@ -1202,18 +1202,18 @@ class Controller(object):
     def go_home(self):
         buffer = self.get_current_buffer()
         buffer.buffer.list.select_item(0)
-        try:
-            output.speak(buffer.get_message(), True)
-        except:
-            pass
+#        try:
+        output.speak(buffer.get_message(), True)
+#        except:
+#            pass
 
     def go_end(self):
         buffer = self.get_current_buffer()
         buffer.buffer.list.select_item(buffer.buffer.list.get_count()-1)
-        try:
-            output.speak(buffer.get_message(), True)
-        except:
-            pass
+#        try:
+        output.speak(buffer.get_message(), True)
+#        except:
+#            pass
 
     def go_page_up(self):
         buffer = self.get_current_buffer()
@@ -1222,10 +1222,10 @@ class Controller(object):
         else:
             index = buffer.buffer.list.get_selected() - 20
         buffer.buffer.list.select_item(index)
-        try:
-            output.speak(buffer.get_message(), True)
-        except:
-            pass
+#        try:
+        output.speak(buffer.get_message(), True)
+#        except:
+#            pass
 
     def go_page_down(self):
         buffer = self.get_current_buffer()
@@ -1234,10 +1234,10 @@ class Controller(object):
         else:
             index = buffer.buffer.list.get_selected() + 20
         buffer.buffer.list.select_item(index)
-        try:
-            output.speak(buffer.get_message(), True)
-        except:
-            pass
+#        try:
+        output.speak(buffer.get_message(), True)
+#        except:
+#            pass
 
     def url(self, *args, **kwargs):
         buffer = self.get_current_buffer()
@@ -1385,7 +1385,7 @@ class Controller(object):
         buff = self.search_buffer("home_timeline", account)
         if create == True:
             if buffer == "favourites":
-                favourites = buffers.twitter.BaseBuffer(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"], tweet_mode="extended")
+                favourites = buffers.twitter.BaseBuffer(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"], include_ext_alt_text=True, tweet_mode="extended")
                 self.buffers.append(favourites)
                 self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
                 favourites.start_stream(play_sound=False)
@@ -1415,7 +1415,7 @@ class Controller(object):
             if create in buff.session.settings["other_buffers"]["lists"]:
                 output.speak(_(u"This list is already opened"), True)
                 return
-            tl = buffers.twitter.ListBuffer(self.view.nb, "list_timeline", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]), tweet_mode="extended")
+            tl = buffers.twitter.ListBuffer(self.view.nb, "list_timeline", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]), include_ext_alt_text=True, tweet_mode="extended")
             buff.session.lists.append(tl)
             pos=self.view.search("lists", buff.session.db["user_name"])
             self.insert_buffer(tl, pos)
