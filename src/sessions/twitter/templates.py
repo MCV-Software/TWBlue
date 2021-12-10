@@ -37,7 +37,7 @@ def process_image_descriptions(entities):
         idescriptions += "Image description: {}.".format(image)
     return idescriptions
 
-def render_tweet(tweet, template, relative_times=False, offset_seconds=0):
+def render_tweet(tweet, template, session, relative_times=False, offset_seconds=0):
     """ Renders any given Tweet according to the passed template.
     Available data for tweets will be stored in the following variables:
     $date: Creation date.
@@ -52,16 +52,16 @@ def render_tweet(tweet, template, relative_times=False, offset_seconds=0):
     created_at = process_date(tweet.created_at, relative_times, offset_seconds)
     available_data.update(date=created_at)
     # user.
-    available_data.update(display_name=tweet.user.name, screen_name=tweet.user.screen_name)
+    available_data.update(display_name=session.get_user(tweet.user).name, screen_name=session.get_user(tweet.user).screen_name)
     # Source client from where tweet was originated.
     available_data.update(source=tweet.source)
     if hasattr(tweet, "retweeted_status"):
         if hasattr(tweet.retweeted_status, "quoted_status"):
-            text = "RT @{}: {} Quote from @{}: {}".format(tweet.retweeted_status.user.screen_name, process_text(tweet.retweeted_status), tweet.retweeted_status.quoted_status.user.screen_name, process_text(tweet.retweeted_status.quoted_status))
+            text = "RT @{}: {} Quote from @{}: {}".format(session.get_user(tweet.retweeted_status.user).screen_name, process_text(tweet.retweeted_status), session.get_user(tweet.retweeted_status.quoted_status.user).screen_name, process_text(tweet.retweeted_status.quoted_status))
         else:
-            text = "RT @{}: {}".format(tweet.retweeted_status.user.screen_name, process_text(tweet.retweeted_status))
+            text = "RT @{}: {}".format(session.get_user(tweet.retweeted_status.user).screen_name, process_text(tweet.retweeted_status))
     elif hasattr(tweet, "quoted_status"):
-        text = "{} Quote from @{}: {}".format(process_text(tweet), tweet.quoted_status.user.screen_name, process_text(tweet.quoted_status))
+        text = "{} Quote from @{}: {}".format(process_text(tweet), session.get_user(tweet.quoted_status.user).screen_name, process_text(tweet.quoted_status))
     else:
         text = process_text(tweet)
     available_data.update(lang=tweet.lang, text=text)
@@ -69,8 +69,10 @@ def render_tweet(tweet, template, relative_times=False, offset_seconds=0):
     image_descriptions = ""
     if hasattr(tweet, "quoted_status") and hasattr(tweet.quoted_status, "extended_entities"):
         image_descriptions = process_image_descriptions(tweet.quoted_status.extended_entities)
-    elif hasattr(tweet.retweeted_status, "quoted_status") and hasattr(tweet.retweeted_status.quoted_status, "extended_entities"):
+    elif hasattr(tweet, "retweeted_status") and hasattr(tweet.retweeted_status, "quoted_status") and hasattr(tweet.retweeted_status.quoted_status, "extended_entities"):
         image_descriptions = process_image_descriptions(tweet.retweeted_status.quoted_status.extended_entities)
+    elif hasattr(tweet, "extended_entities"):
+        image_descriptions = process_image_descriptions(tweet.extended_entities)
     if image_descriptions != "":
         available_data.update(image_descriptions=image_descriptions)
     result = Template(template).safe_substitute(**available_data)
