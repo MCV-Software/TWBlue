@@ -48,6 +48,9 @@ ocr_language = string(default="")
 braille_reporting = boolean(default=True)
 speech_reporting = boolean(default=True)
 
+[templates]
+tweet = string(default="$display_name, $text $image_descriptions $date. $source")
+
 [filters]
 
 [user-aliases]
