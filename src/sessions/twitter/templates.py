@@ -105,3 +105,30 @@ def render_dm(dm, template, session, relative_times=False, offset_seconds=0):
     result = Template(template).safe_substitute(**available_data)
     result = re.sub(r"\$\w+", "", result)
     return result
+
+# Sesion object is not used in this function but we keep compatibility across all rendering functions.
+def render_person(user, template, session=None, relative_times=True, offset_seconds=0):
+    """ Renders persons (any Twitter user) by using the provided template.
+    Available data will be stored in the following variables:
+    $display_name: The name of the user, as they’ve defined it. Not necessarily a person’s name. Typically capped at 50 characters, but subject to change.
+    $screen_name: The screen name, handle, or alias that this user identifies themselves with.
+    $location: The user-defined location for this account’s profile. Not necessarily a location, nor machine-parseable.
+    $description: The user-defined UTF-8 string describing their account.
+    $followers: The number of followers this account currently has. This value might be inaccurate.
+    $following: The number of users this account is following (AKA their “followings”). This value might be inaccurate.
+    $listed: The number of public lists that this user is a member of. This value might be inaccurate.
+    $likes: The number of Tweets this user has liked in the account’s lifetime. This value might be inaccurate.
+    $tweets: The number of Tweets (including retweets) issued by the user. This value might be inaccurate.
+    $created_at: The date and time that the user account was created on Twitter.
+    """
+    available_data = dict(display_name=user.name, screen_name=user.screen_name, followers=user.followers_count, following=user.friends_count, likes=user.favourites_count, listed=user.listed_count, tweets=user.statuses_count)
+    # Nullable values.
+    nullables = ["location", "description"]
+    for nullable in nullables:
+        if hasattr(user, nullable) and getattr(user, nullable) != None:
+            available_data[nullable] = getattr(user, nullable)
+    created_at = process_date(user.created_at, relative_times=relative_times, offset_seconds=offset_seconds)
+    available_data.update(created_at=created_at)
+    result = Template(template).safe_substitute(**available_data)
+    result = re.sub(r"\$\w+", "", result)
+    return result
