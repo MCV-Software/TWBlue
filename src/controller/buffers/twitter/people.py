@@ -16,7 +16,7 @@ import logging
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
-from sessions.twitter import compose
+from sessions.twitter import compose, templates
 from . import base
 
 log = logging.getLogger("controller.buffers.twitter.peopleBuffer")
@@ -84,7 +84,10 @@ class PeopleBuffer(base.BaseBuffer):
         pass
 
     def get_message(self):
-        return " ".join(self.compose_function(self.get_tweet(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session))
+        template = self.session.settings["templates"]["person"]
+        user = self.get_right_tweet()
+        t = templates.render_person(user, template, self.session, relative_times=True, offset_seconds=self.session.db["utc_offset"])
+        return t
 
     def delete_item(self): pass
 
