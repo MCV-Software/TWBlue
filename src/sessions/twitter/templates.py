@@ -5,6 +5,13 @@ import languageHandler
 from string import Template
 from . import utils
 
+# Define variables that would be available for all template objects.
+# This will be used for the edit template dialog.
+# Available variables for tweet objects.
+tweet_variables = ["date", "display_name", "screen_name", "source", "lang", "text", "image_descriptions"]
+dm_variables = ["date", "sender_display_name", "sender_screen_name", "recipient_display_name", "recipient_display_name", "text"]
+person_variables = ["display_name", "screen_name", "location", "description", "followers", "following", "listed", "likes", "tweets", "created_at"]
+
 def process_date(field, relative_times=True, offset_seconds=0):
     original_date = arrow.get(field, locale="en")
     if relative_times == True:
