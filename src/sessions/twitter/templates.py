@@ -12,6 +12,12 @@ tweet_variables = ["date", "display_name", "screen_name", "source", "lang", "tex
 dm_variables = ["date", "sender_display_name", "sender_screen_name", "recipient_display_name", "recipient_display_name", "text"]
 person_variables = ["display_name", "screen_name", "location", "description", "followers", "following", "listed", "likes", "tweets", "created_at"]
 
+# Default, translatable templates.
+tweet_default_template = _("$display_name, $text $image_descriptions $date. $source")
+dm_default_template = _("$sender_display_name, $text $date")
+dm_sent_default_template = _("Dm to $recipient_display_name, $text $date")
+person_default_template = _("$display_name (@$screen_name). $followers followers, $following following, $tweets tweets. Joined Twitter $created_at.")
+
 def process_date(field, relative_times=True, offset_seconds=0):
     original_date = arrow.get(field, locale="en")
     if relative_times == True:
@@ -82,7 +88,7 @@ def render_tweet(tweet, template, session, relative_times=False, offset_seconds=
         image_descriptions = process_image_descriptions(tweet.extended_entities)
     if image_descriptions != "":
         available_data.update(image_descriptions=image_descriptions)
-    result = Template(template).safe_substitute(**available_data)
+    result = Template(_(template)).safe_substitute(**available_data)
     result = re.sub(r"\$\w+", "", result)
     return result
 
@@ -109,7 +115,7 @@ def render_dm(dm, template, session, relative_times=False, offset_seconds=0):
     sender = session.get_user(dm.message_create["sender_id"])
     recipient = session.get_user(dm.message_create["target"]["recipient_id"])
     available_data.update(sender_display_name=sender.name, sender_screen_name=sender.screen_name, recipient_display_name=recipient.name, recipient_screen_name=recipient.screen_name)
-    result = Template(template).safe_substitute(**available_data)
+    result = Template(_(template)).safe_substitute(**available_data)
     result = re.sub(r"\$\w+", "", result)
     return result
 
@@ -136,6 +142,6 @@ def render_person(user, template, session=None, relative_times=True, offset_seco
             available_data[nullable] = getattr(user, nullable)
     created_at = process_date(user.created_at, relative_times=relative_times, offset_seconds=offset_seconds)
     available_data.update(created_at=created_at)
-    result = Template(template).safe_substitute(**available_data)
+    result = Template(_(template)).safe_substitute(**available_data)
     result = re.sub(r"\$\w+", "", result)
     return result
