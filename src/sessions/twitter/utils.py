@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 import re
 import output
-import config
 import logging
 import requests
 import time
-import sound
 from tweepy.errors import TweepyException, NotFound, Forbidden
 log = logging.getLogger("twitter.utils")
 """ Some utilities for the twitter interface."""

@@ -64,12 +64,16 @@ class SearchPeopleBuffer(people.PeopleBuffer):
             return False
 
 class ConversationBuffer(SearchBuffer):
+    last_thread_id = None
+    last_reply_id = None
 
     def start_stream(self, start=False, mandatory=False, play_sound=True, avoid_autoreading=False):
         current_time = time.time()
         if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:
             self.execution_time = current_time
-            results = self.get_replies_v1(self.tweet)
+            log.debug("Retrieving conversation. Last thread ID is {}, last reply ID is {}".format(self.last_thread_id, self.last_reply_id))
+            results = self.get_replies(self.tweet)
+            log.debug("Retrieved {} items before filters.".format(len(results)))
             number_of_items = self.session.order_buffer(self.name, results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
             self.put_items_on_list(number_of_items)
@@ -117,12 +121,12 @@ class ConversationBuffer(SearchBuffer):
         # find all tweets replying to the original thread only. Those tweets are sent by the same author who originally posted the first tweet.
         try:
             term = "conversation_id:{} from:{} to:{}".format(conversation_id, original_tweet.data.author_id, original_tweet.data.author_id)
-            thread_tweets = self.session.twitter_v2.search_recent_tweets(term, user_auth=True, max_results=98, tweet_fields=["in_reply_to_user_id", "author_id", "conversation_id"])
+            thread_tweets = self.session.twitter_v2.search_recent_tweets(term, user_auth=True, max_results=98, since_id=self.last_thread_id, tweet_fields=["in_reply_to_user_id", "author_id", "conversation_id"])
             if thread_tweets.data != None:
                 thread_results.extend(thread_tweets.data)
             # Search only replies to conversation_id.
             term = "conversation_id:{}".format(conversation_id, original_tweet.data.author_id)
-            reply_tweets = self.session.twitter_v2.search_recent_tweets(term, user_auth=True, max_results=50, tweet_fields=["in_reply_to_user_id", "author_id", "conversation_id"])
+            reply_tweets = self.session.twitter_v2.search_recent_tweets(term, user_auth=True, max_results=50, since_id=self.last_reply_id, tweet_fields=["in_reply_to_user_id", "author_id", "conversation_id"])
             if reply_tweets.data != None:
                 reply_results.extend(reply_tweets.data)
         except TweepyException as e:
@@ -135,6 +139,7 @@ class ConversationBuffer(SearchBuffer):
             try:
                 thread_results = self.session.twitter.lookup_statuses(ids, include_ext_alt_text=True, tweet_mode="extended")
                 thread_results.sort(key=lambda x: x.id)
+                self.last_thread_id = thread_results[-1].id
                 results.extend(thread_results)
             except TweepyException as e:
                 log.exception("There was an error attempting to retrieve tweets for Twitter API V1.1, in conversation buffer {}".format(self.name))
@@ -144,6 +149,7 @@ class ConversationBuffer(SearchBuffer):
             try:
                 reply_results = self.session.twitter.lookup_statuses(ids, include_ext_alt_text=True, tweet_mode="extended")
                 reply_results.sort(key=lambda x: x.id)
+                self.last_reply_id = reply_results[-1].id
                 results.extend(reply_results)
             except TweepyException as e:
                 log.exception("There was an error attempting to retrieve tweets for Twitter API V1.1, in conversation buffer {}".format(self.name))
