@@ -1,7 +1,61 @@
-﻿TWBlue Changelog
+TWBlue Changelog
 
 ## changes in this version
 
+* We have restored conversation and threads support powered by Twitter API V2 thanks to a set of improvements we have done in the application, as well as more generous limits to Tweet monthly cap by Twitter.
+* Fixed issue when uploading attachments (images, videos or gif files) while sending tweets or replies.
+
+## Changes in version 2021.11.12
+
+* Now it is possible to create a tweet from a trending topics buffer again.
+* TWBlue now includes a completely new set of dialogs to handle tweeting, replying and sending direct messages that takes advantage of more Twitter features.
+    * It is possible to add videos in tweets and direct messages by using the new "add" button, located in every dialog where  media can be added. Twitter suggests to add videos from 5 seconds up to 2 minutes lenght, in mp4 format (video Codec H.264 and audio codec AAC). Currently, TWBlue does not check if the uploaded video complies with Twitter media requirements. You can add only a video in a tweet or direct message. No other kind of media can be added after a video is in a tweet. If the video was unable to be uploaded successfully, the tweet or direct message won't be created.
+    * Now you can add a poll to tweets. Polls can have up to 4 different options and allow voting up to 7 days after being created. Take into account, though, that currently TWBlue does not support reading polls in tweets.
+    * TWBlue now support threads while creating a new tweet. There is a new button, called add tweet which will add the current tweet to the thread and will allow you to write another tweet in the thread. Every tweet might include media (up to 4 photos, or one GIF image or a video) or up to one poll.
+    * Some functionality was removed from tweet dialogs within TWBlue. Particularly, URL shorteners and long tweets via Twishort. You still can read long tweets posted via Twishort, though.
+
+## Changes in version 2021.11.07
+
+* TWBlue should retrieve tweets from threads and conversations in a more reliable way. Tweets in the same thread (made by the same author) will be sorted correctly, although replies to the thread (made by different people) may not be ordered in the same way they are displayed in Twitter apps. ([#417](https://github.com/manuelcortez/TWBlue/issues/417))
+* When creating a filter, TWBlue will show an error if user has not provided a name for the filter. Before, unnamed filters were a cause of config breaks in the application.
+* It is again possible to read the changelog for TWBlue from the help menu in the menu bar.
+* fixed a bug when clearing the direct messages buffer. ([#418](https://github.com/manuelcortez/TWBlue/issues/418))
+* fixed an issue that was making TWBlue to show incorrectly titles for trending topic buffers upon startup. ([#421](https://github.com/manuelcortez/TWBlue/issues/421))
+* fixed an issue that was making users of the graphical user interface to delete a buffer if a trends buffer was opened in the same session.
+* Updated Spanish, Japanese and french translations.
+
+## Changes in Version 2021.10.30
+
+* Fixed many errors in the way we compile TWBlue, so users of 64 bits systems and particularly windows 7 users would be able to install TWBlue again. In case of issues with versions prior to 2021.10.30, please remove everything related to TWBlue (except configs) and reinstall the version 2021.10.30 to fix any possible error. This step won't be needed again in 23 months. ([#416,](https://github.com/manuelcortez/TWBlue/issues/416), [#415,](https://github.com/manuelcortez/TWBlue/issues/415))
+* fixed an issue that was making impossible to manually add an user to the autocomplete users database.
+* Started to improve support to conversations by searching for conversation_id.
+
+## changes in version 2021.10.27
+
+* Added an user alias manager, located in the application menu in the menu bar. From this dialog, it is possible to review, add, edit or remove user aliases for the current account. ([#401](https://github.com/manuelcortez/TWBlue/issues/401))
+* TWBlue now closes the VLC player window automatically when a video reaches its end. ([#399](https://github.com/manuelcortez/TWBlue/issues/399))
+* After a lot of time, TWBlue now uses a new default Soundpack, called FreakyBlue. This soundpack will be set by default in all new sessions created in the application. Thanks to [Andre Louis](https://twitter.com/FreakyFwoof) for the pack. ([#247](https://github.com/manuelcortez/TWBlue/issues/247))
+* When reading a tweet, if the tweet contains more than 2 consecutive mentions, TWBlue will announce how many more users the tweet includes, as opposed to read every user in the conversation. You still can display the tweet to read all users.
+* In the tweet displayer, It is possible to copy a link to the current tweet or person by pressing a button called "copy link to clipboard".
+* Added a keymap capable to work under Windows 11. ([#391](https://github.com/manuelcortez/TWBlue/pull/391))
+* Added user aliases to TWBlue. This feature allows you to rename user's display names on Twitter, so the next time you'll read an user it will be announced as you configured. For adding an alias to an user, select the "add alias" option in the user menu, located in the menu bar. This feature works only if you have set display screen names unchecked. Users are displayed with their display name in people buffers only. This action is supported in all keymaps, although it is undefined by default. ([#389](https://github.com/manuelcortez/TWBlue/pull/389))
+* There are some changes to the autocomplete users feature:
+    * Now users can search for twitter screen names or display names in the database.
+* It is possible to undefine keystrokes in the current keymap in TWBlue. This allows you, for example, to redefine keystrokes completely.
+* We have changed our Geocoding service to the Nominatim API from OpenStreetMap. Addresses present in tweets are going to be determined by this service, as the Google Maps API now requires an API key. ([#390](https://github.com/manuelcortez/TWBlue/issues/390))
+* Added a limited version of the Twitter's Streaming API: The Streaming API will work only for tweets, and will receive tweets only by people you follow. Protected users are not possible to be streamed. It is possible that during high tweet traffic, the Stream might get disconnected at times, but TWBlue should be capable of detecting this problem and reconnecting the stream again. ([#385](https://github.com/manuelcortez/TWBlue/pull/385))
+* Fixed an issue that made TWBlue to not show a dialog when attempting to show a profile for a suspended user. ([#387](https://github.com/manuelcortez/TWBlue/issues/387))
+* Added support for Twitter audio and videos: Tweets which contains audio or videos will be detected as audio items, and you can playback those with the regular command to play audios. ([#384,](https://github.com/manuelcortez/TWBlue/pull/384))
+* We just implemented some changes in the way TWBlue handles tweets in order to reduce its RAM memory usage [#380](https://github.com/manuelcortez/TWBlue/pull/380):
+    * We reduced the tweets size by storing only the tweet fields we currently use. This should reduce tweet's size in memory for every object up to 75%.
+    * When using the cache database to store your tweets, there is a new setting present in the account settings dialog, in the general tab. This setting allows you to control whether TWBlue will load the whole database into memory (which is the current behaviour) or not.
+        * Loading the whole database into memory has the advantage of being extremely fast to access any element (for example when moving through tweets in a buffer), but it requires more memory as the tweet buffers grow up. This should, however, use less memory than before thanks to the optimizations performed in tweet objects. If you have a machine with enough memory, this should be a good option for your case.
+        * If you uncheck this setting, TWBlue will read the whole database from disk. This is significantly slower, but the advantage of this setting is that it will consume almost no extra memory, no matter how big is the tweets dataset. Be ware, though, that TWBlue might start to feel slower when accessing elements (for example when reading tweets) as the buffers grow up. This setting is suggested for computers with low memory or for those people not wanting to keep a really big amount of tweets stored.
+* Changed the label in the direct message's text control so it will indicate that the user needs to write the text there, without referring to any username in particular. ([#366,](https://github.com/manuelcortez/TWBlue/issues/366))
+* TWBlue will take Shift+F10 again as the contextual menu key in the list of items in a buffer. This stopped working after we have migrated to WX 4.1. ([#353,](https://github.com/manuelcortez/TWBlue/issues/353))
+* TWBlue should render correctly retweets of quoted tweets. ([#365,](https://github.com/manuelcortez/TWBlue/issues/365))
+* Fixed an error that was causing TWBlue to be unable to output to screen readers at times. ([#369,](https://github.com/manuelcortez/TWBlue/issues/369))
+* Fixed autocomplete users feature. ([#367,](https://github.com/manuelcortez/TWBlue/issues/367))
 * Fixed error when displaying an URL at the end of a line, when the tweet or direct message contained multiple lines. Now the URL should be displayed correctly. ([#305,](https://github.com/manuelcortez/TWBlue/issues/305) [#272,](https://github.com/manuelcortez/TWBlue/issues/272))
 * TWBlue has been migrated completely to Python 3 (currently, the software builds with Python 3.8).
 * TWBlue should be restarted gracefully. Before, the application was alerting users of not being closed properly every time the application restarted by itself.
@@ -12,6 +66,8 @@
 * TWBlue can upload images in Tweets and replies again. ([#240,](https://github.com/manuelcortez/TWBlue/issues/240))
 * Fixed the way we use to count characters in Twitter. The new methods in TWBlue take into account special characters and URLS as documented in Twitter. ([#199,](https://github.com/manuelcortez/TWBlue/issues/199) [#315](https://github.com/manuelcortez/TWBlue/issues/315))
 * Proxy support now works as expected.
+* Changed translation service from yandex.translate to Google Translator. ([#355,](https://github.com/manuelcortez/TWBlue/issues/355))
+* Improved method to load direct messages in the buffers. Now it should be faster due to less calls to Twitter API performed from the client.
 * And more. ([#352,](https://github.com/manuelcortez/TWBlue/issues/352))
 
 ## Changes in version 0.95
@@ -213,4 +269,4 @@
 * New followers and friends buffer for user timelines.
 
 ---
-Copyright © 2014-2017, Manuel Cortez.
+Copyright © 2014-2021, Manuel Cortez.

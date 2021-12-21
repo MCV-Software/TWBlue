@@ -15,14 +15,14 @@ keymap=None
 changed_keymap = False
 
 def setup ():
- global app
- log.debug("Loading global app settings...")
- app = config_utils.load_config(os.path.join(paths.config_path(), MAINFILE), os.path.join(paths.app_path(), MAINSPEC))
- log.debug("Loading keymap...")
- global keymap
- if float(platform.version()[:2]) >= 10 and app["app-settings"]["load_keymap"] == "default.keymap":
-  app["app-settings"]["load_keymap"] = "Windows 10.keymap"
-  app.write()
-  global changed_keymap
-  changed_keymap = True
- keymap = config_utils.load_config(os.path.join(paths.config_path(), "keymap.keymap"), os.path.join(paths.app_path(), "keymaps/"+app['app-settings']['load_keymap']), copy=False)
+    global app
+    log.debug("Loading global app settings...")
+    app = config_utils.load_config(os.path.join(paths.config_path(), MAINFILE), os.path.join(paths.app_path(), MAINSPEC))
+    log.debug("Loading keymap...")
+    global keymap
+    if float(platform.version()[:2]) >= 10 and app["app-settings"]["load_keymap"] == "default.keymap":
+        app["app-settings"]["load_keymap"] = "Windows 10.keymap"
+        app.write()
+        global changed_keymap
+        changed_keymap = True
+    keymap = config_utils.load_config(os.path.join(paths.config_path(), "keymap.keymap"), os.path.join(paths.app_path(), "keymaps/"+app['app-settings']['load_keymap']), copy=False)

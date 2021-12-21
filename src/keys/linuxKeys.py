@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 def get_api_key():
- return "8pDLbyOW3saYnvSZ4uLFg\0"
+    return "8pDLbyOW3saYnvSZ4uLFg\0"
 
 def get_api_secret():
- return "YsgdrzY9B4yyYvYsyee78rKI3GshjHpenVS9LnFJXY\0";
+    return "YsgdrzY9B4yyYvYsyee78rKI3GshjHpenVS9LnFJXY\0";
 
 #char *get_dropbox_api_key(){
 #return "key\0";

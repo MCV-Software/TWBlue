@@ -31,116 +31,116 @@ MENU = "activate"
 CHECKBOX = "toggled"
 
 def exit_application():
- """ Closes the current window cleanly. """
- Gtk.main_quit()
+    """ Closes the current window cleanly. """
+    Gtk.main_quit()
 
 def connect_event(parent, event, func, menuitem=None, *args, **kwargs):
- """ Connects an event to a function.
-  parent Gtk.widget: The widget that will listen for the event.
-  event widgetUtils.event: The event that will be listened for the parent. The event should be one of the widgetUtils events.
-  function func: The function that will be connected to the event."""
- if menuitem == None:
-  return getattr(parent, "connect")(event, func, *args, **kwargs)
- else:
-  return getattr(menuitem, "connect")(event, func, *args, **kwargs)
+    """ Connects an event to a function.
+     parent Gtk.widget: The widget that will listen for the event.
+     event widgetUtils.event: The event that will be listened for the parent. The event should be one of the widgetUtils events.
+     function func: The function that will be connected to the event."""
+    if menuitem == None:
+        return getattr(parent, "connect")(event, func, *args, **kwargs)
+    else:
+        return getattr(menuitem, "connect")(event, func, *args, **kwargs)
 
 class list(object):
- def __init__(self, *columns, **listArguments):
-  self.columns = columns
-  self.list_arguments = listArguments
-  self.create_list()
+    def __init__(self, *columns, **listArguments):
+        self.columns = columns
+        self.list_arguments = listArguments
+        self.create_list()
 
- def create_list(self):
-  columns = []
-  [columns.append(str) for i in self.columns]
-  self.store = Gtk.ListStore(*columns)
-  self.list = Gtk.TreeView(model=self.store)
-  renderer = Gtk.CellRendererText()
-  for i in range(0, len(self.columns)):
-   column = Gtk.TreeViewColumn(self.columns[i], renderer, text=i)
+    def create_list(self):
+        columns = []
+        [columns.append(str) for i in self.columns]
+        self.store = Gtk.ListStore(*columns)
+        self.list = Gtk.TreeView(model=self.store)
+        renderer = Gtk.CellRendererText()
+        for i in range(0, len(self.columns)):
+            column = Gtk.TreeViewColumn(self.columns[i], renderer, text=i)
 #   column.set_sort_column_id(i)        
-   self.list.append_column(column)
+            self.list.append_column(column)
 
- def insert_item(self, reversed=False, *item):
-  if reversed == False:
-   self.store.append(row=item)
-  else:
-   self.store.insert(position=0, row=item)
+    def insert_item(self, reversed=False, *item):
+        if reversed == False:
+            self.store.append(row=item)
+        else:
+            self.store.insert(position=0, row=item)
 
- def get_selected(self):
-  tree_selection = self.list.get_selection()
-  (model, pathlist) = tree_selection.get_selected_rows()
-  return int(pathlist[0].to_string() )
+    def get_selected(self):
+        tree_selection = self.list.get_selection()
+        (model, pathlist) = tree_selection.get_selected_rows()
+        return int(pathlist[0].to_string() )
 
- def select_item(self, item):
-  tree_selection = self.list.get_selection()
-  tree_selection.select_path(item)
+    def select_item(self, item):
+        tree_selection = self.list.get_selection()
+        tree_selection.select_path(item)
 
- def remove_item(self, item):
-  self.store.remove(self.store.get_iter(item))
+    def remove_item(self, item):
+        self.store.remove(self.store.get_iter(item))
 
- def get_count(self):
-  return len(self.store)
+    def get_count(self):
+        return len(self.store)
 
 class baseDialog(Gtk.Dialog):
- def __init__(self, *args, **kwargs):
-  super(baseDialog, self).__init__(*args, **kwargs)
-  self.box = self.get_content_area()
+    def __init__(self, *args, **kwargs):
+        super(baseDialog, self).__init__(*args, **kwargs)
+        self.box = self.get_content_area()
 
- def get_response(self):
-  answer = self.run()
-  return answer
+    def get_response(self):
+        answer = self.run()
+        return answer
 
 class buffer(GObject.GObject):
- name = GObject.property(type=str)
+    name = GObject.property(type=str)
 
- def __init__(self, obj):
-  super(buffer, self).__init__()
-  self.buffer = obj
+    def __init__(self, obj):
+        super(buffer, self).__init__()
+        self.buffer = obj
 
 class notebook(object):
 
- def __init__(self):
-  self.store = Gtk.TreeStore(buffer.__gtype__)
-  self.view = Gtk.TreeView()
-  self.view.set_model(self.store)
+    def __init__(self):
+        self.store = Gtk.TreeStore(buffer.__gtype__)
+        self.view = Gtk.TreeView()
+        self.view.set_model(self.store)
 
-  column = Gtk.TreeViewColumn("Buffer")
-  cell = Gtk.CellRendererText()
-  column.pack_start(cell, True)
-  column.set_cell_data_func(cell, self.get_buffer)
-  self.view.append_column(column)
+        column = Gtk.TreeViewColumn("Buffer")
+        cell = Gtk.CellRendererText()
+        column.pack_start(cell, True)
+        column.set_cell_data_func(cell, self.get_buffer)
+        self.view.append_column(column)
 
- def get_current_page(self):
-  tree_selection = self.view.get_selection()
-  (model, pathlist) = tree_selection.get_selected_rows()
-  iter = pathlist[0]
-  return self.store[iter][0].buffer
+    def get_current_page(self):
+        tree_selection = self.view.get_selection()
+        (model, pathlist) = tree_selection.get_selected_rows()
+        iter = pathlist[0]
+        return self.store[iter][0].buffer
 
- def get_buffer(self, column, cell, model, iter, data):
-  cell.set_property('text', self.store.get_value(iter, 0).name)
+    def get_buffer(self, column, cell, model, iter, data):
+        cell.set_property('text', self.store.get_value(iter, 0).name)
 
- def match_func(self, row, name_, account):
-  name = name_
-  account = account
-  iter = self.store.get_iter(row.path)
-  if self.store[iter][0].buffer.name == name and self.store[iter][0].buffer.account == account:
-   return (row.path, iter)
-  else:
-   return (None, None)
+    def match_func(self, row, name_, account):
+        name = name_
+        account = account
+        iter = self.store.get_iter(row.path)
+        if self.store[iter][0].buffer.name == name and self.store[iter][0].buffer.account == account:
+            return (row.path, iter)
+        else:
+            return (None, None)
 
- def search(self, rows, name_, account):
-  if not rows: return None
-  for row in rows:
-   (path, iter) = self.match_func(row, name_, account)
-   if iter != None:
-    return (path, iter)
-   (result_path, result_iter) = self.search(row.iterchildren(), name_, account)
-   if result_path: return (result_path, result_iter)
-  return (None, None)
+    def search(self, rows, name_, account):
+        if not rows: return None
+        for row in rows:
+            (path, iter) = self.match_func(row, name_, account)
+            if iter != None:
+                return (path, iter)
+            (result_path, result_iter) = self.search(row.iterchildren(), name_, account)
+            if result_path: return (result_path, result_iter)
+        return (None, None)
 
 class mainLoopObject(object):
 
- def run(self):
-  GObject.type_register(buffer)
-  Gtk.main()
+    def run(self):
+        GObject.type_register(buffer)
+        Gtk.main()

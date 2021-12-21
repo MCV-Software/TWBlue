@@ -14,11 +14,11 @@ SetCompress auto
 SetCompressor /solid lzma
 SetDatablockOptimize on
 VIAddVersionKey ProductName "TWBlue"
-VIAddVersionKey LegalCopyright "Copyright 2018 Manuel Cortéz."
-VIAddVersionKey ProductVersion "0.95"
-VIAddVersionKey FileVersion "0.95"
-VIProductVersion "0.95.0.0"
-VIFileVersion "0.95.0.0"
+VIAddVersionKey LegalCopyright "Copyright 2014-2021 Manuel Cortéz."
+VIAddVersionKey ProductVersion "0.95.0"
+VIAddVersionKey FileVersion "0.95.0"
+VIProductVersion "0.95.0"
+VIFileVersion "0.95.0"
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_RADIOBUTTONS
 !insertmacro MUI_PAGE_LICENSE "license.txt"
@@ -27,12 +27,12 @@ var StartMenuFolder
 !insertmacro MUI_PAGE_STARTMENU startmenu $StartMenuFolder
 !insertmacro MUI_PAGE_INSTFILES
 !define MUI_FINISHPAGE_LINK "Visit TWBlue website"
-!define MUI_FINISHPAGE_LINK_LOCATION "http://twblue.es"
+!define MUI_FINISHPAGE_LINK_LOCATION "https://twblue.es"
 !define MUI_FINISHPAGE_RUN "$INSTDIR\TWBlue.exe"
 !insertmacro MUI_PAGE_FINISH
 !insertmacro MUI_UNPAGE_CONFIRM
 !insertmacro MUI_UNPAGE_INSTFILES
-  !insertmacro MUI_LANGUAGE "English"
+!insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "French"
 !insertmacro MUI_LANGUAGE "Spanish"
 !insertmacro MUI_LANGUAGE "Italian"
@@ -73,9 +73,9 @@ WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "U
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall" "InstallLocation" $INSTDIR
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall" "Publisher" "Manuel Cortéz"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "DisplayVersion" "0.95"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "URLInfoAbout" "http://twblue.es"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "URLInfoAbout" "https://twblue.es"
 WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "VersionMajor" 0
-WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "VersionMinor" 95
+WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "VersionMinor" 0
 WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "NoModify" 1
 WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\twblue" "NoRepair" 1
 SectionEnd

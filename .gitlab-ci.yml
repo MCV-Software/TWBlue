@@ -1,0 +1,123 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  PYTHON: "C:\\python37\\python.exe"
+  NSIS: "C:\\program files (x86)\\nsis\\makensis.exe"
+
+stages:
+  - build
+  - make_installer
+  - upload
+
+twblue32:
+  tags:
+    - shared-windows
+    - windows
+    - windows-1809
+  before_script:
+    - Set-Variable -Name "time" -Value (date -Format "%H:%m")
+    - echo ${time}
+    - echo "started by ${GITLAB_USER_NAME}"
+    - choco install python --version 3.7.9 -y -ForceX86
+    - '&$env:PYTHON -V'
+    - '&$env:PYTHON -m pip install --upgrade pip'
+    - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
+  stage: build
+  interruptible: true
+  script:
+    # Create html documentation firstly.
+    - cd doc
+    - '&$env:PYTHON documentation_importer.py'
+    - cd ..\src
+    - '&$env:PYTHON ..\doc\generator.py'
+    - '&$env:PYTHON write_version_data.py'
+    - '&$env:PYTHON setup.py build'
+    - cd ..
+    - mkdir artifacts
+    - cd scripts
+    - '&$env:PYTHON make_archive.py'
+    - cd ..
+    - mv src/dist artifacts/TWBlue
+    - move src/twblue.zip artifacts/twblue_x86.zip
+    # Move the generated script nsis file to artifacts, so we won't need python when generating the installer.
+    - move scripts/twblue.nsi artifacts/twblue.nsi
+  only:
+    - tags
+  artifacts:
+    paths:
+      - artifacts
+    expire_in: 1 day
+
+twblue64:
+  tags:
+    - shared-windows
+    - windows
+    - windows-1809
+  before_script:
+    - Set-Variable -Name "time" -Value (date -Format "%H:%m")
+    - echo ${time}
+    - echo "started by ${GITLAB_USER_NAME}"
+    - choco install python --version 3.7.9 -y
+    - '&$env:PYTHON -V'
+    - '&$env:PYTHON -m pip install --upgrade pip'
+    - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
+  stage: build
+  interruptible: true
+  script:
+    # Create html documentation firstly.
+    - cd doc
+    - '&$env:PYTHON documentation_importer.py'
+    - cd ..\src
+    - '&$env:PYTHON ..\doc\generator.py'
+    - '&$env:PYTHON write_version_data.py'
+    - '&$env:PYTHON setup.py build'
+    - cd ..
+    - mkdir artifacts
+    - cd scripts
+    - '&$env:PYTHON make_archive.py'
+    - cd ..
+    - mv src/dist artifacts/TWBlue64
+    - move src/twblue.zip artifacts/twblue_x64.zip
+  only:
+    - tags
+  artifacts:
+    paths:
+      - artifacts
+    expire_in: 1 day
+
+generate_versions:
+  stage: make_installer
+  tags:
+    - shared-windows
+    - windows
+    - windows-1809
+  before_script:
+    - Set-Variable -Name "time" -Value (date -Format "%H:%m")
+    - echo ${time}
+    - echo "started by ${GITLAB_USER_NAME}"
+    - choco install nsis -y -ForceX86
+  script:
+    - move artifacts/TWBlue scripts/
+    - move artifacts/TWBlue64 scripts/
+    - move artifacts/twblue.nsi scripts/installer.nsi
+    - cd scripts
+    - '&$env:NSIS installer.nsi'
+    - move twblue_setup.exe ../artifacts
+  only:
+    - tags
+  artifacts:
+    paths:
+      - artifacts
+    expire_in: 1 day
+
+upload:
+  stage: upload
+  tags:
+    - linux
+  image: python
+  interruptible: true
+  script:
+    - cd artifacts
+    - python ../scripts/upload.py
+  only:
+    - tags
+    - schedules

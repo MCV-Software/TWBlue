@@ -8,8 +8,8 @@ import six
 import urllib.request, urllib.parse, urllib.error
 
 def fix():
- urllib3.disable_warnings()
- fields.format_header_param=patched_format_header_param
+    urllib3.disable_warnings()
+    fields.format_header_param=patched_format_header_param
 
 def patched_format_header_param(name, value):
     if not any(ch in value for ch in '"\\\r\n'):

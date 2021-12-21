@@ -1,0 +1,1885 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2019-03-17 13:34\n"
+"PO-Revision-Date: 2021-06-27 01:40+0100\n"
+"Last-Translator: Nikola Jović <wwenikola123@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 1.6.10\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: sr\n"
+
+#: ../doc/strings.py:3
+msgid "Documentation for TWBlue - 0.88"
+msgstr "Dokumentacija za TWBlue - 0.88"
+
+#: ../doc/strings.py:4
+msgid "## Table of contents"
+msgstr "## Sadržaj"
+
+#: ../doc/strings.py:5
+msgid "[TOC]"
+msgstr "[TOC]"
+
+#: ../doc/strings.py:6
+msgid "## Warning!"
+msgstr "## Upozorenje!"
+
+#: ../doc/strings.py:7
+msgid ""
+"You are reading documentation produced for a program still in development. "
+"The object of this manual is to explain some details of the operation of the "
+"program. Bear in mind that as the software is in the process of active "
+"development, parts of this user guide may change in the near future, so it "
+"is advisable to keep checking from time to time to avoid missing important "
+"information."
+msgstr ""
+"Čitate dokumentaciju za program koji je još uvek u razvoju. Cilj ove "
+"dokumentacije je da objasni neke detalje funkcionisanja i korišćenja "
+"programa. Imajte na umu da je program još u aktivnoj fazi razvoja, pa se "
+"zato delovi ovog uputstva mogu promeniti u bliskoj budućnosti, pa je s toga "
+"preporučljivo da ga s vremena na vreme proveravate kako bi izbegli "
+"propuštanje bitnih informacija."
+
+#: ../doc/strings.py:8
+msgid ""
+"If you want to see what has changed from the previous version, [read the "
+"list of updates here.](changes.html)"
+msgstr ""
+"Ako želite da proverite šta se promenilo od prethodne verzije, [ovde "
+"pročitajte listu ažuriranja.](changes.html)"
+
+#: ../doc/strings.py:9
+msgid "## Introduction"
+msgstr "## Uvod"
+
+#: ../doc/strings.py:10
+msgid ""
+"TWBlue is an application to make Twitter simple and fast, while using as few "
+"resources as possible. With TWBlue, you can do things like the following:"
+msgstr ""
+"TWBlue je aplikacija koja čini korišćenje Twittera brzim i jednostavnim, a "
+"koristi što je manje  moguće resursa. Uz TWBlue, možete raditi sledeće:"
+
+#: ../doc/strings.py:11
+msgid "* Tweet, reply to, retweet and delete tweets,"
+msgstr "* Twitovanje, odgovaranje na tvitove, retvitovanje i brisanje tvitova,"
+
+#: ../doc/strings.py:12
+msgid "* Like and unlike a tweet,"
+msgstr "* označavanje tvita kao sviđa mi se / ne sviđa mi se,"
+
+#: ../doc/strings.py:13
+msgid "* Send and delete direct messages,"
+msgstr "* slanje i primanje direktnih poruka,"
+
+#: ../doc/strings.py:14
+msgid "* See your friends and followers,"
+msgstr "* Prikazivanje vaših prijatelja i pratilaca,"
+
+#: ../doc/strings.py:15
+msgid "* Follow, unfollow, report and block a user,"
+msgstr ""
+"* Praćenje, prestanak praćenja, prijavljivanje i blokiranje drugih korisnika,"
+
+#: ../doc/strings.py:16
+msgid "* Open a user's timeline to see their tweets separately,"
+msgstr ""
+"* Otvaranje vremenske linije korisnika kako biste gledali njihove tvitove "
+"odvojeno,"
+
+#: ../doc/strings.py:17
+msgid "* Open URLs from a tweet or direct message,"
+msgstr "* Otvaranje adresa iz tvitova ili direktnih poruka,"
+
+#: ../doc/strings.py:18
+msgid "* Play several types of audio files from addresses,"
+msgstr "* reprodukcija različitih vrsta zvučnih datoteka sa adresa,"
+
+#: ../doc/strings.py:19
+msgid "* And more."
+msgstr "* i još toga."
+
+#: ../doc/strings.py:20
+msgid "## Usage"
+msgstr "## Korišćenje"
+
+#: ../doc/strings.py:21
+msgid ""
+"Twitter is a social networking or micro-blogging tool which allows you to "
+"compose short status updates of your activities in 280 characters or less. "
+"Twitter is a way for friends, family and co-workers to communicate and stay "
+"connected through the exchange of quick, frequent messages. You can restrict "
+"delivery of updates to those in your circle of friends or, by default, allow "
+"anyone to access them."
+msgstr ""
+"Twitter je društvena mreža ili alat za mikro blog kojja vam dozvoljava da "
+"pišete statuse do 280 znakova. Twitter je način za prijatelje, porodicu ili "
+"zaposlene da ostanu u komunikaciji kroz brze, česte poruke. Možete "
+"ograničiti ažuriranja na one koji su u vašem krugu prijatelja ili, kako je "
+"podrazumevano, dozvoliti svima da im pristupe."
+
+#: ../doc/strings.py:22
+msgid ""
+"You can monitor the status of updates from your friends, family or co-"
+"workers (known as following), and they in turn can read any updates you "
+"create, (known as followers). The updates are referred to as Tweets. The "
+"Tweets are posted to your Twitter profile or Blog and are searchable using "
+"Twitter Search."
+msgstr ""
+"Možete pratiti ažuriranja statusa vaših prijatelja, porodice ili kolega (što "
+"je poznatije kao praćenje), i oni takođe mogu da čitaju ažuriranja koja vi "
+"pišete, (što znači da su oni vaši pratioci). Ova ažuriranja se zovu tvitovi. "
+"Tvitovi će biti postavljeni na vaš Twitter profil ili blog i mogu se pronaći "
+"u Twitter pretrazi."
+
+#: ../doc/strings.py:23
+msgid ""
+"In order to use TWBlue, you must first have created an account on the "
+"Twitter website. The process for signing up for a Twitter account is very "
+"accessible. During the account registration, you will need to choose a "
+"Twitter username. This serves two purposes. This is the method through which "
+"people will comunicate with you, but most importantly, your username and "
+"password will be required to connect TWBlue to your Twitter account. We "
+"suggest you choose a username which is memorable both to you and the people "
+"you hope will follow you."
+msgstr ""
+"Da biste koristili TWBlue, prvo morate da napravite nalog na Twitter "
+"websajtu. Proces pravljenja naloga je veoma pristupačan. U toku registracije "
+"naloga, morate da izaberete Twitter korisničko ime. Ovo korisničko ime ima "
+"dve svrhe. Ovo je metod koji će ljudi koristiti da bi komunicirali sa vama, "
+"ali naj važnije, vaše korisničko ime i lozinka su neophodni da biste "
+"povezali TWBlue sa vašim nalogom. Predlažemo vam da odaberete korisničko ime "
+"koje se lako pamti, kako za  vas tako i za ljude za koje se nadate da će vas "
+"pratiti."
+
+#: ../doc/strings.py:24
+msgid ""
+"We'll start from the premise that you have a Twitter account with its "
+"corresponding username and password."
+msgstr ""
+"Počećemo uz pretpostavku da već imate Twitter nalog sa odgovarajućim "
+"korisničkim imenom i lozinkom."
+
+#: ../doc/strings.py:25
+msgid "### Authorising the application"
+msgstr "### Autorizacija aplikacije"
+
+#: ../doc/strings.py:26
+msgid ""
+"First of all, it's necessary to authorise the program so it can access your "
+"Twitter account and act on your behalf. The authorisation process is quite "
+"simple, and the program never retains data such as your password. In order "
+"to authorise the application, you just need to run the main executable file, "
+"called TWBlue.exe (on some computers it may appear simply as TWBlue if "
+"Windows Explorer is not set to display file extensions). We suggest you may "
+"like to place a Windows shortcut on your Desktop pointing to this executable "
+"file for quick and easy location."
+msgstr ""
+"Za početak, neophodno je da autorizujete program kako bi mogao da pristupi "
+"vašem nalogu i izvršava radnje u vaše ime. Proces autorizacije je "
+"jednostavan, i program nikada ne čuva podatke kao što je vaša lozinka. Kako "
+"biste autorizovali aplikaciju, morate samo da pokrenete glavnu izvršnu "
+"datoteku, koja se zove TWBlue.exe (na nekim računarima možda će se zvati "
+"samo TWBlue ako Windows explorer nije podešen da prikazuje ekstenzije "
+"datoteka). Predlažemo vam da podesite prečicu na radnoj površini ka ovoj "
+"izvršnoj datoteci radi lakšeg pokretanja."
+
+#: ../doc/strings.py:27
+msgid ""
+"You can log into several Twitter accounts simultaneously. The program refers "
+"to each Twitter account you have configured as a \"Session\". If this is the "
+"first time you have launched TWBlue, and if no Twitter session exists, you "
+"will see the Session Manager. This dialogue box allows you to authorise as "
+"many accounts as you wish. If you press the Tab key to reach the \"new "
+"account\" button and activate it by pressing the Space Bar, a dialogue box "
+"will advise you that your default internet browser will be opened in order "
+"to authorise the application and you will be asked if you would like to "
+"continue. Activate the \"yes\" Button by pressing the letter \"Y\" so the "
+"process may start."
+msgstr ""
+"Možete da se prijavite na više Twitter naloga u isto vreme. Program će zvati "
+"svaki nalog koji podesite kao \"sesija\". Ako je ovo prvi put da pokrećete "
+"TWBlue, i ako ne postoji nijedna Twitter sesija, videćete dijalog za "
+"upravljanje sesijama. Ovaj dijalog će vam dozvoliti da autorizujete onoliko "
+"naloga koliko želite. Ako pritisnete tab dugme da pronađete opciju \"Novi "
+"nalog\" i aktivirate je tasterom razmak, dijalog će vam reći da će vaš "
+"podrazumevani Web pretraživač biti otvoren kako biste autorizovali "
+"aplikaciju i bićete upitani da li želite da nastavite. Aktiviranjem opcije "
+"\"Da\" slovom \"D\" proces će započeti."
+
+#: ../doc/strings.py:28
+msgid ""
+"Your default browser will open on the Twitter page to request authorisation. "
+"Enter your username and password into the appropriate edit fields if you're "
+"not already logged in, select the authorise button, and press it."
+msgstr ""
+"Vaš podrazumevani Web pretraživač će biti otvoren na Twitter stranici kako "
+"bi zahtevao autorizaciju. Upišite vaše korisničko ime i lozinku u "
+"odgovarajuća polja ako već niste prijavljeni, izaberite dugme autorizuj, i "
+"pritisnite ga."
+
+#: ../doc/strings.py:29
+msgid ""
+"Once you've authorised your twitter account, the website will redirect you "
+"to a page which will notify you that TWBlue has been authorised "
+"successfully. Now you are able to close the page by pressing ALT+F4 which "
+"will return you to the Session Manager. On the session list, you will see a "
+"new item temporarily called \"Authorised account x\" -where x is a number. "
+"The session name will change once you open that session."
+msgstr ""
+"Nakon što ste autorizovali vaš Twitter nalog, Websajt će vas preusmeriti na "
+"stranicu koja će vas obavestiti da je TWBlue uspešno autorizovan. Sada "
+"možete da zatvorite ovu stranicu pritiskanjem tastera ALT+F4 što će vas "
+"vratiti na upravljanje sesijama. U listi sesija, videćete novu stavku koja "
+"se privremeno zove \"Autorizovan nalog x\" -gde će x biti zamenjen brojem. "
+"Ime sesije će se promeniti nakon što je otvorite."
+
+#: ../doc/strings.py:30
+msgid ""
+"To start running TWBlue, press the Ok button in the Session Manager "
+"dialogue. By default, the program starts all the configured sessions "
+"automatically, however, you can change this behavior."
+msgstr ""
+"Da biste počeli sa korišćenjem aplikacije TWBlue, u dijalogu upravljanja "
+"sesijama pritisnite dugme u redu. Podrazumevano, program automatski pokreće "
+"sve podešene sesije, ali, ovo se može promeniti."
+
+#: ../doc/strings.py:31
+msgid ""
+"If all went well, the application will start playing sounds, indicating your "
+"data is being updated."
+msgstr ""
+"Ako je sve u redu, aplikacija će početi sa reprodukcijom zvukova, što znači "
+"da se vaši podaci ažuriraju."
+
+#: ../doc/strings.py:32
+msgid ""
+"When the process is finished, by default the program will play another "
+"sound, and the screen reader will say \"ready\" (this behaviour can be "
+"configured)."
+msgstr ""
+"Kada se proces završi, po podrazumevanim podešavanjima program će "
+"reprodukovati još jedan zvuk, i čitač ekrana će izgovoriti\"spreman\" (ovo "
+"se može podesiti )."
+
+#: ../doc/strings.py:33
+msgid "## General concepts"
+msgstr "## Opšti koncepti"
+
+#: ../doc/strings.py:34
+msgid ""
+"Before starting to describe TWBlue's usage, we'll explain some concepts that "
+"will be used extensively throughout this manual."
+msgstr ""
+"Pre nego što počnemo da opisujemo opšte korišćenje programa TWBlue, "
+"opisaćemo neke opšte koncepte koji će se često koristiti u ovom uputstvu."
+
+#: ../doc/strings.py:35
+msgid "### Buffer"
+msgstr "### Kanal"
+
+#: ../doc/strings.py:36
+msgid ""
+"A buffer is a list of items to manage the data which arrives from Twitter, "
+"after being processed by the application. When you configure a new session "
+"on TWBlue and start it, many buffers are created. Each of them may contain "
+"some of the items which this program works with: Tweets, direct messages, "
+"users, trends or events. According to the buffer you are focusing, you will "
+"be able to do different actions with these items."
+msgstr ""
+"Kanal je lista stavki koja upravlja vrstom podataka koji stižu sa Twittera, "
+"nakon što ih aplikacija obradi. Kada podesite novu sesiju u programu TWBlue "
+"i pokrenete je, neki kanali su već napravljeni. Svaki može da sadrži neke "
+"stavke sa kojima program radi: Tvitovi, direktne poruke, korisnici, teme u "
+"trendu ili događaji. U zavisnosti od kanala kojeg fokusirate, možete da "
+"izvršavate različite radnje na njemu."
+
+#: ../doc/strings.py:37
+msgid ""
+"The following is a description for every one of TWBlue's buffers and the "
+"kind of items they work with."
+msgstr "Sledi opis za svaki TWBlue kanal i listu stavki sa kojom on radi."
+
+#: ../doc/strings.py:38
+msgid ""
+"* Home: this shows all the tweets on the main timeline. These are the tweets "
+"by users you follow."
+msgstr ""
+"* Početak: Ovaj kanal prikazuje sve tvitove na glavnoj vremenskoj liniji. "
+"Ovo su tvitovi od strane korisnika koje pratite."
+
+#: ../doc/strings.py:39
+msgid ""
+"* Mentions: if a user, whether you follow them or not, mentions you on "
+"Twitter, you will find it in this list."
+msgstr ""
+"* Spominjanja: Ako vas korisnik, bez obzira da li ih pratite ili ne, spomene "
+"na Twitteru, to ćete pronaći u ovoj listi."
+
+#: ../doc/strings.py:40
+msgid ""
+"* Direct messages: here you will find the private direct messages you "
+"exchange with users who follow you , or with any user, if you allow direct "
+"messages from everyone (this setting is configurable from Twitter). This "
+"list only shows received messages."
+msgstr ""
+"* Direktne poruke: Ovde ćete pronaći privatne poruke koje razmenjujete sa "
+"korisnicima koji vas prate, ili sa bilo kojim korisnikom, ako dozvolite "
+"direktne poruke od svih (ovo podešavanje se menja na Twitteru ). Ova lista "
+"prikazuje samo primljene poruke."
+
+#: ../doc/strings.py:41
+msgid ""
+"* Sent direct messages: this buffer shows all the direct messages sent from "
+"your account."
+msgstr ""
+"* Poslate direktne poruke: Ovaj kanal prikazuje sve direktne poruke poslate "
+"sa vašeg naloga."
+
+#: ../doc/strings.py:42
+msgid "* Sent tweets: this shows all the tweets sent from your account."
+msgstr ""
+"* Poslati tvitovi: Ovaj kanal prikazuje sve tvitove poslate sa vašeg naloga."
+
+#: ../doc/strings.py:43
+msgid "* Likes: here you will see all the tweets you have liked."
+msgstr "* Sviđanja: Ovde ćete videti sve tvitove koje ste označili sviđanjem."
+
+#: ../doc/strings.py:44
+msgid ""
+"* Followers: when users follow you, you'll be able to see them on this "
+"buffer, with some of their account details."
+msgstr ""
+"* Pratioci: Kada vas korisnici prate, možete da ih vidite na ovom kanalu, uz "
+"neke detalje o njihovim nalozima."
+
+#: ../doc/strings.py:45
+msgid ""
+"* Friends: the same as the previous buffer, but these are the users you "
+"follow."
+msgstr ""
+"* Prijatelji: Isto kao i prethodni kanal, ali ovo su korisnici koje vi "
+"pratite."
+
+#: ../doc/strings.py:46
+msgid ""
+"* User timelines: these are buffers you may create. They contain only the "
+"tweets by a specific user. They're used so you can see the tweets by a "
+"single person and you don't want to look all over your timeline. You may "
+"create as many as you like."
+msgstr ""
+"* Korisničke vremenske linije: Ovo su kanali koje vi možete da napravite. "
+"Oni sadrže tvitove samo određenog korisnika. Oni se koriste kako biste mogli "
+"da vidite tvitove samo jedne osobe a ne želite da ih tražite po celoj "
+"vremenskoj liniji. Možete da napravite ovakvih kanala onoliko koliko želite."
+
+#: ../doc/strings.py:47
+msgid ""
+"* Events: An event is anything that happens on Twitter, such as when someone "
+"follows you, when someone adds or removes one of your tweets from their "
+"likes list, or when you subscribe to a list. There are many more, but the "
+"program shows the most common ones in the events buffer so that you can "
+"easily keep track of what is happening on your account."
+msgstr ""
+"* Događaji: Događaj je sve ono što se dogodi na Twitteru, na primer kada vas "
+"neko prati, kada neko doda ili ukloni vaš tvit sa liste sviđanja, ili kada "
+"se prijavite na listu. Ima ih još puno, ali program prikazuje najčešće u "
+"ovom kanalu kako biste mogli da pratite šta se dešava na vašem nalogu."
+
+#: ../doc/strings.py:48
+msgid ""
+"* Lists: A list is similar to a user timeline, except that you can configure "
+"it to contain tweets from multiple users."
+msgstr ""
+"* Liste: Lista je slična korisničkoj vremenskoj liniji, osim što možete da "
+"je podesite tako da sadrži tvitove više različitih korisnika."
+
+#: ../doc/strings.py:49
+msgid "* Search: A search buffer contains the results of a search operation."
+msgstr "* Pretraga: Kanal pretrage sadrži rezultate izvršene pretrage."
+
+#: ../doc/strings.py:50
+msgid ""
+"* User likes: You can have the program create a buffer containing tweets "
+"liked by a particular user."
+msgstr ""
+"* Korisnička sviđanja: Možete da napravite kanal koji sadrži samo tvitove "
+"koji se sviđaju određenom korisniku."
+
+#: ../doc/strings.py:51
+msgid ""
+"* Trending Topics: a trend buffer shows the top ten most used terms in a "
+"geographical region. This region may be a country or a city. Trends are "
+"updated every five minutes."
+msgstr ""
+"* Teme u trendu: Kanal tema u trendu sadrži listu 10 termina koji se "
+"najčešće koriste u određenoj geografskoj regiji. Ova regija može biti država "
+"ili grad. Teme u trendu se ažuriraju na 5 minuta."
+
+#: ../doc/strings.py:52
+msgid ""
+"If a tweet contains a URL, you can press enter in the GUI or Control + "
+"Windows + Enter in the invisible interface to open it. If it contains audio, "
+"you can press Control + Enter or Control + Windows + Alt + Enter to play it, "
+"respectively. TWBlue will play a sound if the tweet contains the \\#audio "
+"hashtag, but there may be tweets which contain audio without this. Finally, "
+"if a tweet contains geographical information, you can press Control + "
+"Windows + G in the invisible interface to retrieve it."
+msgstr ""
+"Ako tvit sadrži adresu, možete pritisnuti enter u grafičkom interfejsu ili "
+"CTRL plus Windows plus enter u nevidljivom interfejsu da je otvorite. Ako "
+"sadrži zvučni zapis, možete pritisnuti ctrl plus enter ili ctrl plus windows "
+"plus alt plus enter da ga reprodukujete. TWBlue će zvukom označiti tvitove "
+"koji sadrže \\#audio hashtag, ali tvitovi mogu imati zvučne zapise i bez "
+"ovoga. Konačno, ako tvit sadrži geografske informacije, možete pritisnuti "
+"ctrl plus windows plus g da ih preuzmete."
+
+#: ../doc/strings.py:53
+msgid "### Username fields"
+msgstr "### Polja korisničkih imena"
+
+#: ../doc/strings.py:54
+msgid ""
+"These fields accept a Twitter username (without the at sign) as the input. "
+"They are present in the send direct message and the user actions dialogue "
+"boxes. Those dialogues will be discussed later. The initial value of these "
+"fields depends on where they were opened from. They are prepopulated with "
+"the username of the sender of the focused tweet (if they were opened from "
+"the home and sent timelines, from users' timelines or from lists), the "
+"sender of the focused direct message (if from the received or sent direct "
+"message buffers) or in the focused user (if from the followers' or friends' "
+"buffer). If one of those dialogue boxes is opened from a tweet, and if there "
+"are more users mentioned in it, you can use the arrow keys to switch between "
+"them. Alternatively, you can also type a username."
+msgstr ""
+"Ova polja prihvataju Twitter korisnička imena (bez et znaka ) kao unos. Ona "
+"se prikazuju u dijalozima za slanje direktnih poruka i za korisničke radnje. "
+"Ovi dijalozi će biti opisani kasnije. Prvobitna vrednost ovih polja zavisi "
+"od toga gde su otvorena. Podrazumevano je upisano korisničko ime pošiljaoca "
+"fokusiranog tvita (ako su otvorena iz početnog kanala ili kanala poslatih "
+"stavki, iz korisničkih vremenskih linija ili iz  liste), pošiljaocem "
+"direktne poruke(ako su otvorena iz kanala primljenih ili poslatih direktnih "
+"poruka) ili fokusiranim korisnikom(ako su otvorena iz kanala pratioca ili "
+"prijatelja). Ako se jedan od ovih dijaloga otvori iz tvita, i ako je više "
+"korisnika spomenuto u njemu, možete koristiti strelice da se prebacujete "
+"između njih. U suprotnom, možete takođe da upišete korisničko ime."
+
+#: ../doc/strings.py:55
+msgid "## The program's interfaces"
+msgstr "## Interfejsi programa"
+
+#: ../doc/strings.py:56
+msgid "### The graphical user interface (GUI)"
+msgstr "### Grafički interfejs(GUI)"
+
+#: ../doc/strings.py:57
+msgid "The graphical user interface of TWBlue consists of a window containing:"
+msgstr "Grafički interfejs aplikacije TWBlue sadrži prozor u kojem se nalazi:"
+
+#: ../doc/strings.py:58
+msgid ""
+"* a menu bar accomodating six  menus (application, tweet, user, buffer, "
+"audio and help);"
+msgstr ""
+"* Traka menija koja sadrži šest menija (Aplikacija, tvit, korisnik, kanal, "
+"audio i pomoć);"
+
+#: ../doc/strings.py:59
+msgid "* One tree view,"
+msgstr "* Jedan prikaz stabla,"
+
+#: ../doc/strings.py:60
+msgid "* One list of items"
+msgstr "* Jedna lista stavki"
+
+#: ../doc/strings.py:61
+msgid ""
+"* Four buttons in most dialogs: Tweet, retweet , reply and direct message."
+msgstr ""
+"* 4 dugmeta u većini dijaloga: Tvit, retvituj, odgovori i direktna poruka."
+
+#: ../doc/strings.py:62
+msgid "The actions that are available for every item will be described later."
+msgstr "Radnje koje su dostupne za svaku stavku će kasnije biti opisane."
+
+#: ../doc/strings.py:63
+msgid ""
+"In summary, the GUI contains two core components. These are the controls you "
+"will find while pressing the Tab key within the program's interface, and the "
+"different elements present on the menu bar."
+msgstr ""
+"Najkraće opisano, grafički interfejs sadrži dve glavne komponente. To su "
+"kontrole koje ćete pronaći kada pritiskate taster Tab u interfejsu programa, "
+"i različiti elementi koji se nalaze na traci menija."
+
+#: ../doc/strings.py:64
+msgid "#### Buttons in the application"
+msgstr "#### Dugmići u aplikaciji"
+
+#: ../doc/strings.py:65
+msgid ""
+"* Tweet: this button opens up a dialogue box to write your tweet. Normal "
+"tweets must not exceed 280 characters. However you can press the long tweet "
+"checkbox and your tweet will be posted throught Twishort, wich will allow "
+"you to write longer tweets (10000 characters). If you write past this limit, "
+"a sound will play to warn you. Note that the character count is displayed in "
+"the title bar. You may use the shorten and expand URL buttons to comply with "
+"the character limit. You can upload a picture, check spelling, attach audio "
+"or translate your message by selecting one of the available buttons in the "
+"dialogue box. In addition, you can autocomplete the entering of users by "
+"pressing Alt + C or the button for that purpose if you have the database of "
+"users configured. Press enter to send the tweet. If all goes well, you'll "
+"hear a sound confirming it. Otherwise, the screen reader will speak an error "
+"message in English describing the problem."
+msgstr ""
+"* Tvit: Ovo dugme otvara dijalog za pisanje vašeg tvita. Standardni tvitovi "
+"ne smeju imati više od 280 znakova. Ali možete označiti izborno polje dug "
+"tvit i vaš tvit će biti objavljen kroz servis Twishort, što vam dozvoljava "
+"da pišete duže tvitove (10000 znakova ). Ako pišete duže od ovog "
+"ograničenja, čućete zvuk koji će vas upozoriti. Napomena da se broj znakova "
+"takođe prikazuje kao naziv prozora. Možete takođe da koristite tastere "
+"skrati vezu i proširi vezu da biste ispoštovali ograničenje znakova. Možete "
+"da otpremite sliku, proverite pravopis, priložite zvučnu datoteku ili "
+"prevedete tekst korišćenjem dostupnih opcija u ovom dijalogu. Takođe, možete "
+"da izvršite automatsko dovršavanje korisničkih imena pritiskanjem prečice "
+"alt plus a ili odgovarajućeg dugmeta ako je baza korisnika za automatsko "
+"dovršavanje podešena. Pritisnite enter da pošaljete tvit. Ako je sve u redu, "
+"čućete zvuk koji ovo potvrđuje. U suprotnom, čitač ekrana će na Engleskom "
+"izgovoriti grešku koja opisuje problem."
+
+#: ../doc/strings.py:66
+msgid ""
+"* Retweet: this button retweets the message you're reading. After you press "
+"it, if you haven't configured the application not to do so, you'll be asked "
+"if you want to add a comment or simply send it as written. If you choose to "
+"add a comment,  it will post a quoted tweet, that is,  the comment with a  "
+"link to the originating tweet."
+msgstr ""
+"* Retvituj: Ovo dugme retvituje poruku koju čitate. Nakon što ga pritisnete, "
+"ako niste podesili aplikaciju da ovo ne radi, pitaće vas da li želite da "
+"dodate komentar ili jednostavno pošaljete retvit onakav kakav je. Ako "
+"izaberete da dodate komentar,  objaviće citiran tvit, to jest,  komentar uz "
+"link ka izvornom tvitu."
+
+#: ../doc/strings.py:67
+msgid ""
+"* Reply: when you're viewing a tweet, you can reply to the user who sent it "
+"by pressing this button. A dialogue will open up similar to the one for "
+"tweeting. If there are more users referred to in the tweet, you can press "
+"tab and activate the mention to all checkbox, or enabling checkbox for the "
+"users you want to mention separately. When you're on the friends or "
+"followers lists, the button will be called mention instead."
+msgstr ""
+"* Odgovori: Kada gledate tvit, možete odgovoriti korisniku koji ga je poslao "
+"aktiviranjem ovog dugmeta. Dijalog će se otvoriti sličan onom za tvitovanje. "
+"Ako je više korisnika spomenuto u tvitu, možete pritisnuti tab i označiti "
+"izborno polje spomeni sve, ili označiti posebno izborno polje za svakog "
+"korisnika kojeg želite da spomenete. Kada ste na listi prijatelja ili "
+"pratilaca, umesto ovoga dugme će se zvati spomeni."
+
+#: ../doc/strings.py:68
+msgid ""
+"* Direct message: exactly like sending a tweet, but it's a private message "
+"which can only be read by the user you send it to. Press shift-tab twice to "
+"see the recipient. If there were other users mentioned in the tweet you were "
+"reading, you can arrow up or down to choose which one to send it to, or "
+"write the username yourself without the at sign. In addition, you can "
+"autocomplete the entering of users by pressing Alt + C or the button for "
+"that purpose if you have the database of users configured."
+msgstr ""
+"* Direktna poruka: Baš kao i slanje tvita, ali ovo je privatna poruka koju "
+"može da pročita samo korisnik kome ste je poslali. Pritisnite dva puta šift "
+"tab da biste videli primaoca. Ako su drugi korisnici spominjani u tvitu "
+"kojeg ste čitali, možete koristiti strelice gore i  dole da izaberete kome "
+"šaljete poruku, ili sami da upišete korisničko ime bez et znaka. Takođe, "
+"možete izvršiti automatsko dovršavanje korisnika prečicom alt plus a ili "
+"odgovarajućim dugmetom ako ste podesili bazu podataka za automatsko "
+"dovršavanje."
+
+#: ../doc/strings.py:69
+msgid ""
+"Bear in mind that buttons will appear according to which actions are "
+"possible on the list you are browsing. For example, on the home timeline, "
+"mentions, sent, likes and user timelines you will see the four buttons, "
+"while on the direct messages list you'll only get the direct message and "
+"tweet buttons, and on friends and followers lists the direct message, tweet, "
+"and mention buttons will be available."
+msgstr ""
+"Imajte na umu da će se dugmići pojavljivati u zavisnosti od toga koje radnje "
+"su dostupne na fokusiranoj listi. Na primer, na početnoj vremenskoj liniji, "
+"spominjanjima, poslatim tvitovima, sviđanjima i korisničkim vremenskim "
+"linijama videćete 4 dugmeta, dok ćete u listama direktnih poruka videti samo "
+"dugmiće za direktnu poruku i tvit, i na listama prijatelja i pratilaca biće "
+"dostupni dugmići za direktnu poruku, tvitovanje, kao i spominjanje."
+
+#: ../doc/strings.py:70
+msgid "#### Menus"
+msgstr "#### Meniji"
+
+#: ../doc/strings.py:71
+msgid ""
+"Visually, Towards the top of the main application window, can be found a "
+"menu bar which contains many of the same functions as listed in the previous "
+"section, together with some additional items. To access the menu bar, press "
+"the alt key. You will find six menus listed: application, tweet, user, "
+"buffer, audio and help. This section describes the items on each one of them."
+msgstr ""
+"Vizuelno, ka vrhu prozora aplikacije, možete pronaći traku sa menijima koja "
+"sadrži dosta funkcija već opisanih iznad, uz neke dodatne stavke. Da biste "
+"pristupili traci menija, pritisnite taster alt. Možete primetiti šest "
+"opisanih menija: Aplikacija, Tvit, Korisnik, kanal, audio i pomoć. Ova "
+"sekcija opisuje stavke svakog od njih."
+
+#: ../doc/strings.py:72
+msgid "##### Application menu"
+msgstr "##### Meni aplikacija"
+
+#: ../doc/strings.py:73
+msgid ""
+"* Manage accounts: Opens a window with all the sessions configured in "
+"TWBlue, where you can add new sessions or delete the ones you've already "
+"created."
+msgstr ""
+"* Upravljaj nalozima: Otvara prozor sa svim podešenim sesijama za TWBlue, "
+"gde možete da dodate nove sesije ili obrišete već kreirane."
+
+#: ../doc/strings.py:74
+msgid ""
+"* Update profile: opens a dialogue where you can update your information on "
+"Twitter: name, location, website and bio. If you have already set this up "
+"the fields will be prefilled with the existing information. Also, you can "
+"upload a photo to your profile."
+msgstr ""
+"* Ažuriraj profil: Otvara dijalog gde možete da ažurirate vaše informacije "
+"na Twitteru: Ime, mesto, Websajt i biografiju. Ako ste ovo već podesili "
+"polja će biti popunjena postojećim informacijama. Takođe, možete otpremiti "
+"vašu fotografiju profila."
+
+#: ../doc/strings.py:75
+msgid ""
+"* Hide window: turns off the Graphical User Interface. Read the section on "
+"the invisible interface for further details."
+msgstr ""
+"* Sakrij prozor: Krije grafički interfejs. Pročitajte sekciju o nevidljivom "
+"interfejsu za dodatne detalje."
+
+#: ../doc/strings.py:76
+msgid ""
+"* Search: shows a dialogue box where you can search for tweets or users on "
+"Twitter."
+msgstr ""
+"* Pretraži: Prikazuje dijalog u kome možete da pretražujete korisnike i "
+"tvitove na Twitteru."
+
+#: ../doc/strings.py:77
+msgid ""
+"* Lists Manager: This dialogue box allows you to manage your Twitter lists. "
+"In order to use them, you must first create them. Here, you can view, edit, "
+"create, delete or, optionally, open them in buffers similar to user "
+"timelines."
+msgstr ""
+"* Upravljanje listama: Ovaj dijalog vam dozvoljava da upravljate vašim "
+"Twitter listama. Da biste ih koristili, prvo morate da ih napravite. Ovde, "
+"možete prikazati, urediti, napraviti, obrisati ili, ako to želite, otvorite "
+"ih u kanalima slično vremenskim linijama korisnika."
+
+#: ../doc/strings.py:78
+msgid ""
+"* Edit keystrokes: this opens a dialogue where you can see and edit the "
+"shortcuts used in the invisible interface."
+msgstr ""
+"* Izmeni tasterske prečice: Ova opcija otvara dijalog u kome možete "
+"pogledati kao i izmeniti prečice koje se koriste u nevidljivom interfejsu."
+
+#: ../doc/strings.py:79
+msgid ""
+"* Account settings: Opens a dialogue box which lets you customize settings "
+"for the current account."
+msgstr ""
+"* Postavke naloga: Otvara dijalog koji vam dozvoljava da podesite "
+"podešavanja za  trenutni nalog."
+
+#: ../doc/strings.py:80
+msgid ""
+"* Global settings: Opens a dialogue which lets you configure settings for "
+"the entire application."
+msgstr ""
+"* Globalna podešavanja: Otvara dijalog koji vam dozvoljava da podesite "
+"podešavanja za celu aplikaciju."
+
+#: ../doc/strings.py:81
+msgid ""
+"* Exit: asks whether you want to exit the program. If the answer is yes, it "
+"closes the application. If you do not want to be asked for confirmation "
+"before exiting, uncheck the checkbox from the global settings dialogue box."
+msgstr ""
+"* Izlaz: Upitaće vas da li želite da izađete iz programa. Ako je odgovor da, "
+"zatvara aplikaciju. Ako ne želite da budete upitani za potvrdu pre izlaza, "
+"Onemogućite ovu opciju u dijalogu globalnih podešavanja."
+
+#: ../doc/strings.py:82
+msgid "##### Tweet menu"
+msgstr "##### Meni tvit"
+
+#: ../doc/strings.py:83
+msgid ""
+"* You will first find the items to tweet, reply and retweet, which are "
+"equivalent to the buttons with the same name."
+msgstr ""
+"* Prvo ćete pronaći stavke da pošaljete tvit, odgovor i retvit, koje imaju "
+"istu funkciju kao i  dugmići sa ovim imenima."
+
+#: ../doc/strings.py:84
+msgid "* Like: Adds the tweet you're viewing to your likes list."
+msgstr "* Sviđa mi se: Dodaje tvit koji čitate u vašu listu sviđanja."
+
+#: ../doc/strings.py:85
+msgid "* Unlike: removes the tweet from your likes, but not from Twitter."
+msgstr "* Ne sviđa mi se: Uklanja tvit iz vaših sviđanja, ali ne sa Twittera."
+
+#: ../doc/strings.py:86
+msgid ""
+"* Show tweet: opens up a dialogue box where you can read the tweet, direct "
+"message, friend or follower which has focus. You can read the text with the "
+"arrow keys. It's a similar dialog box as used for composing tweets, without "
+"the ability to send the tweet, file attachment and autocompleting "
+"capabilities. It does however include a retweets and likes count. If you are "
+"in the followers or the friends list, it will only contain a read-only edit "
+"box with the information in the focused item and a close button."
+msgstr ""
+"* Prikaži tvit: Otvara dijalog gde možete da pročitate tvit, direktnu "
+"poruku, prijatelja ili pratioca koji je fokusiran. Možete pročitati tekst "
+"strelicama. Ovo je sličan dijalog kao onaj koji se koristi za pisanje novog "
+"tvita, bez mogućnosti slanja tvita, prilaganja datoteka i mogućnosti "
+"automatskog dovršavanja. On ipak uključuje broj retvitova i sviđanja. Ako "
+"ste u listi pratilaca ili prijatelja, sadržaće samo polje za čitanje sa "
+"informacijama o fokusiranoj stavci i dugme za zatvaranje."
+
+#: ../doc/strings.py:87
+msgid ""
+"* View address: If the selected tweet has geographical information, TWBlue "
+"may display a dialogue box where you can read the tweet address. This "
+"address is retrieved by sending the geographical coordinates of the tweet to "
+"Google maps."
+msgstr ""
+"* Vidi adresu: Ako odabran tvit ima geografske informacije, TWBlue može "
+"prikazati dijalog u kome možete pročitati adresu. Ova adresa se preuzima "
+"slanje geografskih koordinata u tvitu na Google mape."
+
+#: ../doc/strings.py:88
+msgid ""
+"* View conversation: If you are focusing a tweet with a mention, it opens a "
+"buffer where you can view the whole conversation."
+msgstr ""
+"* Vidi razgovor: Ako ste fokusirani na tvit sa spominjanjem, otvara kanal u "
+"kojem možete da vidite čitav razgovor."
+
+#: ../doc/strings.py:89
+msgid ""
+"* Read text in pictures: Attempt to apply OCR technology to the image "
+"attached to the tweet. The result will be displayed in another dialog."
+msgstr ""
+"* Čitaj tekst u slici: Pokušava da primeni OCR tehnologije na sliku koja je "
+"priložena u tvit. Rezultat će biti prikazan u drugom dijalogu."
+
+#: ../doc/strings.py:90
+msgid ""
+"* Delete: permanently removes the tweet or direct message which has focus "
+"from Twitter and from your lists. Bear in mind that Twitter only allows you "
+"to delete tweets you have posted yourself."
+msgstr ""
+"* Izbriši: Trajno uklanja fokusiran tvit ili direktnu poruku sa Twittera i "
+"iz vaših lista. Imajte na umu da vam Twitter dozvoljava brisanje samo "
+"tvitova koje ste vi poslali."
+
+#: ../doc/strings.py:91
+msgid "##### User menu"
+msgstr "##### Meni korisnik"
+
+#: ../doc/strings.py:92
+msgid ""
+"* Actions: Opens a dialogue where you can interact with a user. This "
+"dialogue box will be populated with the user who sent the tweet or direct "
+"message in focus or the selected user in the friends or followers buffer. "
+"You can edit it or leave it as is and choose one of the following actions:"
+msgstr ""
+"* Radnje: Otvara dijalog u kojem možete da vršite interakciju sa korisnikom. "
+"Ovaj dijalog će imati već upisano ime korisnika koji je poslao tvit ili "
+"direktnu poruku, ili sa imenom fokusiranog korisnika u kanalima prijatelja i "
+"pratilaca. Možete ga izmeniti ili ga ostaviti i izabrati jednu od sledećih "
+"radnji:"
+
+#: ../doc/strings.py:93
+msgid ""
+" * Follow: Follows a user. This means you'll see his/her tweets on your home "
+"timeline, and if he/she also follows you, you'll be able to exchange direct "
+"messages. You may also send / receive direct messages from each other if you "
+"have configured the option to allow direct messages from anyone."
+msgstr ""
+" * Prati: Prati korisnika. Ovo znači da ćete njihove tvitove videti na vašoj "
+"početnoj vremenskoj liniji, i ako vas oni takođe prate, možete da "
+"razmenjujete direktne poruke. Takođe možete da razmenjujete direktne poruke "
+"ako ste dozvolili razmenu direktnih poruka sa svima u Twitter podešavanjima."
+
+#: ../doc/strings.py:94
+msgid ""
+" * Unfollow: Stops following a user, which causes you not being able to see "
+"his/her tweets on your main timeline neither exchanging direct messages, "
+"unless they have enabled receiving direct messages from anyone."
+msgstr ""
+" * Otprati: Prestaje sa praćenjem korisnika, što će onemogućiti praćenje "
+"njihovih tvitova na vašoj vremenskoj liniji kao i razmenu direktnih poruka, "
+"osim ako su omogućili primanje direktnih poruka od svih."
+
+#: ../doc/strings.py:95
+msgid ""
+" * Mute: While muting someone, TWBlue won't show you nor his/her tweets on "
+"your main timeline; neither will you see that person's mentions. But you "
+"both will be able to exchange direct messages. The muted user is not "
+"informed of this action."
+msgstr ""
+" * Utišaj: Kada nekoga utišate, TWBlue vam neće prikazivati njihove tvitove "
+"na vremenskoj liniji; niti ćete videti njihova spominjanja. Možete da "
+"razmenjujete direktne poruke. Utišan korisnik neće dobiti informaciju o ovoj "
+"radnji."
+
+#: ../doc/strings.py:96
+msgid ""
+" * Unmute: this option allows TWBlue to display the user's tweets and "
+"mentions again."
+msgstr ""
+" * Ukloni utišavanje: Ova opcija dozvoljava da TWBlue ponovo prikazuje "
+"tvitove i spominjanja korisnika."
+
+#: ../doc/strings.py:97
+msgid " * Block: Blocks a user. This forces the user to unfollow you ."
+msgstr ""
+" * Blokiraj: Blokira korisnika. Ovo će naterati korisnika da prestane da vas "
+"prati."
+
+#: ../doc/strings.py:98
+msgid " * Unblock: Stops blocking a user."
+msgstr " * Odblokiraj: Prestaje sa blokiranjem korisnika."
+
+#: ../doc/strings.py:99
+msgid ""
+" * Report as spam: this option sends a message to Twitter suggesting the "
+"user is performing prohibited practices on the social network."
+msgstr ""
+" * Prijavi kao neželjeno: Ova opcija šalje poruku Twitteru koja obaveštava "
+"da korisnik izvršava zabranjene radnje."
+
+#: ../doc/strings.py:100
+msgid ""
+" * Ignore tweets from this client: Adds the client from which the focused "
+"tweet was sent to the ignored clients list."
+msgstr ""
+" * Zanemari tvitove iz ovog klijenta: Dodaje klijent iz kog je tvit poslat u "
+"listu klijenata iz kojih se tvitovi zanemaruju."
+
+#: ../doc/strings.py:101
+msgid ""
+"* View timeline: Lets you open a user's timeline by choosing the user in a "
+"dialog box. It is created when you press enter. If you invoke this option "
+"relative to a user that has no tweets, the operation will fail. If you try "
+"creating an existing timeline the program will warn you and will not create "
+"it again."
+msgstr ""
+"* Vidi vremensku liniju: Dozvoljava vam da otvorite vremensku liniju "
+"korisnikaizborom korisnika u dijalogu. Pravi se kada pritisnete enter. Ako "
+"aktivirate ovu opciju za korisnika koji nema tvitove, radnja neće uspeti. "
+"Ako pokušate da napravite vremensku liniju koja već postoji program će vas "
+"upozoriti i ona neće ponovo biti napravljena."
+
+#: ../doc/strings.py:102
+msgid "* Direct message: same action as the button."
+msgstr "* Direktna poruka: Ista radnja kao i već opisano dugme."
+
+#: ../doc/strings.py:103
+msgid ""
+"* Add to List: In order to see someone's tweets in one or more of your "
+"lists, you must add them first. In the dialogue box that opens after "
+"selecting the user, you will be asked to select the list you wish to add the "
+"user to. Thereafter, the list will contain a new member and their tweets "
+"will be displayed there."
+msgstr ""
+"* Dodaj na listu: Kako biste videli nečije tvitove u jednoj ili više lista, "
+"prvo ih morate dodati. U dijalogu koji se otvara nakon što izaberete "
+"korisnika, bićete upitani da izaberete listu na koju će korisnik biti dodat. "
+"Nakon toga, lista će imati novog člana i njihovi tvitovi će biti prikazani u "
+"njoj."
+
+#: ../doc/strings.py:104
+msgid "* Remove from list: lets you remove a user from a list."
+msgstr "* Ukloni sa liste: Dozvoljava vam da uklonite korisnika sa liste."
+
+#: ../doc/strings.py:105
+msgid "* View lists: Shows the lists created by a specified user."
+msgstr "* Vidi liste: Prikazuje liste koje je izabrani korisnik napravio."
+
+#: ../doc/strings.py:106
+msgid ""
+"* Show user profile: opens a dialogue with the profile of the specified user."
+msgstr ""
+"* Prikaži profil korisnika: Otvara dijalog sa profilom izabranog korisnika."
+
+#: ../doc/strings.py:107
+msgid ""
+"* View likes: Opens a buffer where you can see the tweets which have been "
+"liked by a particular user."
+msgstr ""
+"* Vidi sviđanja: Otvara kanal u kojem možete videti tvitove koje je izabrani "
+"korisnik označio sviđanjem."
+
+#: ../doc/strings.py:108
+msgid "##### Buffer menu"
+msgstr "##### Meni kanal"
+
+#: ../doc/strings.py:109
+msgid ""
+"* New trending topics buffer: This opens a buffer to get the worlwide "
+"trending topics or those of a country or a city. You'll be able to select "
+"from a dialogue box if you wish to retrieve countries' trends, cities' "
+"trends or worldwide trends (this option is in the cities' list) and choose "
+"one from the selected list. The trending topics buffer will be created once "
+"the \"OK\" button has been activated within the dialogue box. Remember this "
+"kind of buffer will be updated every five minutes."
+msgstr ""
+"* Novi kanal sa temama u trendu: Ova opcija otvara kanal za preuzimanje tema "
+"u trendu širom sveta, za određenu državu ili za određeni grad. Nakon "
+"aktiviranja opcije možete da izaberete da li želite da vidite teme u trendu "
+"za državu, teme u trendu za grad ili teme u trendu širom sveta (ova opcija "
+"se nalazi u listi gradova) i možete da izaberete jedan iz izabrane liste. "
+"Kanal sa temama u trendu će biti napravljen kada aktivirate dugme \"u redu\" "
+"u dijalogu. Zapamtite da će se ovaj kanal ažurirati na 5 minuta."
+
+#: ../doc/strings.py:110
+msgid ""
+"* Load previous items: This allows more items to be loaded for the specified "
+"buffer."
+msgstr ""
+"* Učitaj prethodne stavke: Ova opcija dozvoljava da učitate dodatne stavke "
+"za izabrani kanal."
+
+#: ../doc/strings.py:111
+msgid ""
+"* Mute: Mutes notifications of a particular buffer so you will not hear when "
+"new tweets arrive."
+msgstr ""
+"* Utišaj: Utišava obaveštenja za trenutni kanal tako da nećete čuti kada "
+"stignu novi tvitovi."
+
+#: ../doc/strings.py:112
+msgid ""
+"* autoread: When enabled, the screen reader or SAPI 5 Text to Speech voice "
+"(if enabled) will read the text of incoming tweets. Please note that this "
+"could get rather chatty if there are a lot of incoming tweets."
+msgstr ""
+"* Automatski čitaj: Kada je ova opcija omogućena, čitač ekrana ili SAPI 5 "
+"glas (ako je omogućen ) pročitaće tekst dolaznih tvitova. Imajte na umu da "
+"bi ovo moglo da bude prilično često ako ima puno novih tvitova."
+
+#: ../doc/strings.py:113
+msgid "* Clear buffer: Deletes all items from the buffer."
+msgstr "* Očisti kanal: Briše sve stavke sa kanala."
+
+#: ../doc/strings.py:114
+msgid "* Destroy: dismisses the list you're on."
+msgstr "* Izbriši: Briše kanal na kojem ste."
+
+#: ../doc/strings.py:115
+msgid "##### Audio menu"
+msgstr "##### Meni audio"
+
+#: ../doc/strings.py:116
+msgid ""
+"* Play/pause: try to play audio for the selected item (if available), or "
+"stop the currently played audio."
+msgstr ""
+"* Reprodukuj / zaustavi: Pokušava da reprodukuje zvučni zapis za izabranu "
+"stavku (ako je dostupan ), ili zaustavlja zapis koji se trenutno reprodukuje."
+
+#: ../doc/strings.py:117
+msgid ""
+"* Seek back 5 seconds: If an audio is being played, seek 5 seconds back in "
+"the playback. This will work only in audio files. This feature cannot be "
+"used in radio stations or other streamed files."
+msgstr ""
+"* Premotaj unazad za 5 sekundi: Ako se zvučni zapis reprodukuje, premotava "
+"reprodukciju nazad 5 sekundi. Ovo će raditi samo u zvučnim datotekama. Ova "
+"opcija se ne može koristiti na radio stanicama ili drugim strimovima."
+
+#: ../doc/strings.py:118
+msgid ""
+"* Seek forward 5 seconds: If an audio is being played, seek 5 seconds "
+"forward  in the playback. This feature cannot be used in radio stations or "
+"other streamed files."
+msgstr ""
+"* Premotaj unapred za 5 sekundi: Ako se zvučni zapis reprodukuje, premotava "
+"reprodukciju za 5 sekundi unapred. Ova opcija se ne može koristiti sa radio "
+"stanicama ili drugim strimovima."
+
+#: ../doc/strings.py:119
+msgid "##### Help menu"
+msgstr "##### Meni pomoć"
+
+#: ../doc/strings.py:120
+msgid ""
+"* Documentation: opens up this file, where you can read some useful program "
+"concepts."
+msgstr ""
+"* Dokumentacija: Otvara ovu datoteku, u kojoj možete pročitati neke korisne "
+"koncepte programa."
+
+#: ../doc/strings.py:121
+msgid ""
+"* Sounds tutorial: Opens a dialog box where you can familiarize yourself "
+"with the different sounds of the program."
+msgstr ""
+"* Zvučna uputstva: Otvara dijalog u kojem se možete upoznati sa različitim "
+"zvukovima programa."
+
+#: ../doc/strings.py:122
+msgid ""
+"* What's new in this version?: opens up a document with the list of changes "
+"from the current version to the earliest."
+msgstr ""
+"* Šta je novo u ovoj verziji?: Otvara dokument sa listom promena od trenutne "
+"verzije do naj starije."
+
+#: ../doc/strings.py:123
+msgid ""
+"* Check for updates: every time you open the program it automatically checks "
+"for new versions. If an update is available, it will ask you if you want to "
+"download the update. If you accept, the updating process will commence. When "
+"complete, TWBlue will be restarted. This item checks for new updates without "
+"having to restart the application."
+msgstr ""
+"* Proveri da li postoje nadogradnje: Svaki put kada otvorite program "
+"automatski će proveriti dostupnost nove verzije. Ako je ažuriranje dostupno, "
+"upitaće vas da li želite da preuzmete ažuriranje. Ako prihvatite, proces "
+"ažuriranja će započeti. Kada se završi, TWBlue će biti ponovo pokrenut. Ova "
+"opcija proverava dostupnost ažuriranja bez potrebe za ponovnim pokretanjem "
+"aplikacije."
+
+#: ../doc/strings.py:124
+msgid ""
+"* TWBlue's website: visit our [home page](http://twblue.es) where you can "
+"find all relevant information and downloads for TWBlue and become a part of "
+"the community."
+msgstr ""
+"* TWBlue's websajt: Posetite našu[početnu stranicu](http://twblue.es) gde "
+"možete pronaći sve bitne TWBlue informacije i preuzimanja za TWBlue kao i "
+"postati deo zajednice."
+
+#: ../doc/strings.py:125
+msgid "* About TWBlue: shows the credits of the program."
+msgstr "* O TWBlue: Prikazuje zahvalnosti i  informacije o programu."
+
+#: ../doc/strings.py:126
+msgid "### The invisible user interface"
+msgstr "### Nevidljivi korisnički interfejs"
+
+#: ../doc/strings.py:127
+msgid ""
+"The invisible interface, as its name suggests, has no graphical window and "
+"works directly with screen readers such as JAWS for Windows, NVDA and System "
+"Access. This interface is disabled by default, but you can enable it by "
+"pressing Control + M. It works similarly to TheQube and Chicken Nugget. Its "
+"shortcuts are similar to those found in these two clients. In addition, the "
+"program has builtin support for the keymaps for these applications, "
+"configurable through the global settings dialogue. By default, you cannot "
+"use this interface's shortcuts in the GUI, but you can configure this in the "
+"global settings dialogue."
+msgstr ""
+"Nevidljivi interfejs, kao što samo ime govori, nema grafičkog prozora i radi "
+"direktno sa čitačima ekrana kao što su JAWS za Windows, NVDA i System "
+"Access. Ovaj interfejs je podrazumevano onemogućen, ali možete ga omogućiti "
+"pritiskanjem prečice Control + M. Radi slično klijentima TheQube i Chicken "
+"Nugget. Njegove prečice su slične onima koje se nalaze u ova dva klijenta. "
+"Takođe, program ima ugrađenu podršku za mape prečica za ove aplikacije, koje "
+"se podešavaju u dijalogu globalnih podešavanja. Po podrazumevanim "
+"podešavanjima, ne možete koristiti prečice ovog interfejsa dok je prikazan "
+"grafički interfejs, ali možete ovo podesiti u dijalogu globalnih podešavanja."
+
+#: ../doc/strings.py:128
+msgid ""
+"The next section contains a list of keyboard shortcuts for both interfaces. "
+"Bear in mind that we will only describe the default keymap."
+msgstr ""
+"Sledeća lista sadrži listu prečica za oba interfejsa. Imajte na umu da  ćemo "
+"opisati samo podrazumevanu mapu prečica."
+
+#: ../doc/strings.py:129
+msgid "## Keyboard shortcuts"
+msgstr "## Tasterske prečice"
+
+#: ../doc/strings.py:130
+msgid "### Shortcuts of the graphical user interface (GUI)"
+msgstr "### prečice grafičkog interfejsa (GUI-a)"
+
+#: ../doc/strings.py:131
+msgid "* Enter: Open URL."
+msgstr "* Enter: Otvara adresu."
+
+#: ../doc/strings.py:132
+msgid "* Control + Enter: Play audio."
+msgstr "* Control + Enter: Reprodukuje zvučni zapis."
+
+#: ../doc/strings.py:133
+msgid "* Control + M: Hide the GUI."
+msgstr "* Control + M: Krije grafički interfejs."
+
+#: ../doc/strings.py:134
+msgid "* Control + N: Compose a new tweet."
+msgstr "* Control + N: Piše novi tvit."
+
+#: ../doc/strings.py:135
+msgid "* Control + R: Reply / mention."
+msgstr "* Control + R: Odgovor / spominjanje."
+
+#: ../doc/strings.py:136
+msgid "* Control + Shift + R: Retweet."
+msgstr "* Control + Shift + R: Retvit."
+
+#: ../doc/strings.py:137
+msgid "* Control + D: Send a direct message."
+msgstr "* Control + D: Šalje direktnu poruku."
+
+#: ../doc/strings.py:138
+msgid "* control + F: Add tweet to likes."
+msgstr "* control + F: Dodavanje tvita u sviđanja."
+
+#: ../doc/strings.py:139
+msgid "* Control + Shift + F: Remove a tweet from likes."
+msgstr "* Control + Shift + F: Uklanja tvit iz sviđanja."
+
+#: ../doc/strings.py:140
+msgid "* Control + S: Open the user actions dialogue."
+msgstr "* Control + S: Otvara dijalog korisničkih radnji."
+
+#: ../doc/strings.py:141
+msgid "* Control + Shift + V: Show tweet."
+msgstr "* Control + Shift + V: Prikazuje tvit."
+
+#: ../doc/strings.py:142
+msgid "* Control + Q: Quit this program."
+msgstr "* Control + Q: Izlazi iz ovog programa."
+
+#: ../doc/strings.py:143
+msgid "* Control + I: Open user timeline."
+msgstr "* Control + I: Otvara vremensku liniju korisnika."
+
+#: ../doc/strings.py:144
+msgid "* Control + Shift + i: Destroy buffer."
+msgstr "* Control + Shift + i: Briše kanal."
+
+#: ../doc/strings.py:145
+msgid "* F5: Increase volume by 5%."
+msgstr "* F5: Pojačava jačinu za 5 %."
+
+#: ../doc/strings.py:146
+msgid "* F6: Decrease volume by 5%."
+msgstr "* F6: Smanjuje jačinu za 5%."
+
+#: ../doc/strings.py:147
+msgid "* Control + P: Edit your profile."
+msgstr "* Control + P: Uređivanje vašeg profila."
+
+#: ../doc/strings.py:148
+msgid "* Control + Delete: Delete a tweet or direct message."
+msgstr "* Control + Delete: Briše tvit ili direktnu poruku."
+
+#: ../doc/strings.py:149
+msgid "* Control + Shift + Delete: Empty the current buffer."
+msgstr "* Control + Shift + Delete: Prazni trenutni kanal."
+
+#: ../doc/strings.py:150
+msgid "### Shortcuts of the invisible interface (default keymap)"
+msgstr "### Prečice nevidljivog interfejsa (podrazumevana mapa prečica )"
+
+#: ../doc/strings.py:151
+msgid ""
+"The invisible interface of TWBlue can be customised by using a keymap. Every "
+"keymap defines a set of keystrokes to be used along with the invisible "
+"interface. You can change the keymap in the global settings dialogue, under "
+"the application menu in the menu bar, and check or edit keystrokes for the "
+"selected keymap in the keystroke editor, also available in the application "
+"menu."
+msgstr ""
+"Nevidljivi interfejs programa TWBlue se može prilagoditi korišćenjem mape "
+"prečica. Svaka mapa prečica definiše listu prečica koje će se koristiti u "
+"nevidljivom interfejsu. Možete promeniti mapu prečica u dijalogu globalnih "
+"podešavanja, u meniju aplikacija u traci sa menijima, kao i da proverite ili "
+"izmenite prečice izabrane mape opcijom izmeni tasterske prečice, koja se "
+"takođe nalazi u meniju aplikacija."
+
+#: ../doc/strings.py:152
+msgid ""
+"* Control + Windows + Up Arrow: moves to the previous item in the buffer."
+msgstr ""
+"* Control + Windows + strelica gore: Prelazi na prethodnu stavku u kanalu."
+
+#: ../doc/strings.py:153
+msgid "* Control + Windows + Down Arrow: moves to the next item in the buffer."
+msgstr ""
+"* Control + Windows + strelica dole: Prelazi na sledeću stavku u kanalu."
+
+#: ../doc/strings.py:154
+msgid "* Control + Windows + Left Arrow: Move to the previous buffer."
+msgstr "* Control + Windows + strelica levo: Prelazi na sledeći kanal."
+
+#: ../doc/strings.py:155
+msgid "* Control + Windows + Right Arrow: Move to the next buffer."
+msgstr "* Control + Windows + strelica desno: Prelazi na sledeći kanal."
+
+#: ../doc/strings.py:156
+msgid "* Control + Windows + Shift + Left: Focus the previous session."
+msgstr ""
+"* Control + Windows + Shift + strelica levo: Fokusiranje prethodne sesije."
+
+#: ../doc/strings.py:157
+msgid "* Control + Windows + Shift + Right: Focus the next session."
+msgstr ""
+"* Control + Windows + Shift + strelica desno: Fokusiranje sledeće sesije."
+
+#: ../doc/strings.py:158
+msgid "* Control + Windows + C: View conversation."
+msgstr "* Control + Windows + C: Prikazuje razgovor."
+
+#: ../doc/strings.py:159
+msgid "* Control + Windows + Enter: Open URL."
+msgstr "* Control + Windows + Enter: Otvara adresu."
+
+#: ../doc/strings.py:160
+msgid "* Control + Windows + ALT + Enter: Play audio."
+msgstr "* Control + Windows + ALT + Enter: Reprodukuje zvučni zapis."
+
+#: ../doc/strings.py:161
+msgid "* Control + Windows + M: Show or hide the GUI."
+msgstr "* Control + Windows + M: Prikazuje ili krije grafički interfejs."
+
+#: ../doc/strings.py:162
+msgid "* Control + Windows + N: New tweet."
+msgstr "* Control + Windows + N: Novi tvit."
+
+#: ../doc/strings.py:163
+msgid "* Control + Windows + R: Reply / Mention."
+msgstr "* Control + Windows + R: Odgovor / spominjanje."
+
+#: ../doc/strings.py:164
+msgid "* Control + Windows + Shift + R: Retweet."
+msgstr "* Control + Windows + Shift + R: Retvit."
+
+#: ../doc/strings.py:165
+msgid "* Control + Windows + D: Send direct message."
+msgstr "* Control + Windows + D: Slanje direktne poruke."
+
+#: ../doc/strings.py:166
+msgid "* Windows+ Alt + F: Like a tweet."
+msgstr "* Windows+ Alt + F: Označite da vam se tvit sviđa."
+
+#: ../doc/strings.py:167
+msgid "* Alt + Windows + Shift + F: Remove from likes."
+msgstr "* Alt + Windows + Shift + F: Uklanjanje iz liste sviđanja."
+
+#: ../doc/strings.py:168
+msgid "* Control + Windows + S: Open the user actions dialogue."
+msgstr "* Control + Windows + S: Otvara dijalog korisničkih radnji."
+
+#: ../doc/strings.py:169
+msgid "* Control + Windows + Alt + N: See user details."
+msgstr "* Control + Windows + Alt + N: Prikazuje korisničke detalje."
+
+#: ../doc/strings.py:170
+msgid "* Control + Windows + V: Show tweet."
+msgstr "* Control + Windows + V: Prikazuje tvit."
+
+#: ../doc/strings.py:171
+msgid "* Control + Windows + F4: Quit TWBlue."
+msgstr "* Control + Windows + F4: Zatvara TWBlue."
+
+#: ../doc/strings.py:172
+msgid "* Control + Windows + I: Open user timeline."
+msgstr "* Control + Windows + I: Otvara vremensku liniju korisnika."
+
+#: ../doc/strings.py:173
+msgid "* Control + Windows + Shift + I: Destroy buffer."
+msgstr "* Control + Windows + Shift + I: Briše kanal."
+
+#: ../doc/strings.py:174
+msgid "* Control + Windows + Alt + Up: Increase volume by 5%."
+msgstr "* Control + Windows + Alt + strelica gore: Pojačava jačinu za 5%."
+
+#: ../doc/strings.py:175
+msgid "* Control + Windows + Alt + Down: Decrease volume by 5%."
+msgstr "* Control + Windows + Alt + strelica dole: smanjuje jačinu za 5%."
+
+#: ../doc/strings.py:176
+msgid ""
+"* Control + Windows + Home: Jump to the first element of the current buffer."
+msgstr ""
+"* Control + Windows + Home: Prebacuje se na prvi element trenutnog kanala."
+
+#: ../doc/strings.py:177
+msgid ""
+"* Control + Windows + End: Jump to the last element of the current buffer."
+msgstr ""
+"* Control + Windows + End: Prebacuje se na poslednji element trenutnog "
+"kanala."
+
+#: ../doc/strings.py:178
+msgid ""
+"* Control + Windows + PageUp: Jump 20 elements up in the current buffer."
+msgstr ""
+"* Control + Windows + PageUp: Skače 20 elemenata gore u trenutnom kanalu."
+
+#: ../doc/strings.py:179
+msgid ""
+"* Control + Windows + PageDown: Jump 20 elements down in the current buffer."
+msgstr ""
+"* Control + Windows + PageDown: Skače 20 elemenata dole u trenutnom kanalu."
+
+#: ../doc/strings.py:180
+msgid "* Windows + Alt + P: Edit profile."
+msgstr "* Windows + Alt + P: Uređivanje profila."
+
+#: ../doc/strings.py:181
+msgid "* Control + Windows + Delete: Delete a tweet or direct message."
+msgstr "* Control + Windows + Delete: Briše tvit ili direktnu poruku."
+
+#: ../doc/strings.py:182
+msgid "* Control + Windows + Shift + Delete: Empty the current buffer."
+msgstr "* Control + Windows + Shift + Delete: Prazni trenutni kanal."
+
+#: ../doc/strings.py:183
+msgid "* Control + Windows + Space: Repeat last item."
+msgstr "* Control + Windows + razmak: Ponavlja poslednju stavku."
+
+#: ../doc/strings.py:184
+msgid "* Control + Windows + Shift + C: Copy to clipboard."
+msgstr "* Control + Windows + Shift + C: Kopira u privremenu memoriju."
+
+#: ../doc/strings.py:185
+msgid "* Control + Windows+ A: Add user to list."
+msgstr "* Control + Windows+ A: Dodaje korisnika na listu."
+
+#: ../doc/strings.py:186
+msgid "* Control + Windows + Shift + A: Remove user from list."
+msgstr "* Control + Windows + Shift + A: Uklanja korisnika sa liste."
+
+#: ../doc/strings.py:187
+msgid "* Control + Windows + Shift + M: Mute / unmute the current buffer."
+msgstr ""
+"* Control + Windows + Shift + M: Utišava ili uklanja utišavanje trenutnog "
+"kanala."
+
+#: ../doc/strings.py:188
+msgid "* Windows + Alt + M: Mute / unmute the current session."
+msgstr "* Windows + Alt + M: Utišava ili uklanja utišavanje trenutne sesije."
+
+#: ../doc/strings.py:189
+msgid ""
+"* Control + Windows + E: Toggle the automatic reading of incoming tweets in "
+"the current buffer."
+msgstr ""
+"* Control + Windows + E: Uključuje ili isključuje automatsko čitanje tvitova "
+"za trenutni kanal."
+
+#: ../doc/strings.py:190
+msgid "* Control + Windows + -: Search on Twitter."
+msgstr "* Control + Windows + -: Pretraga Twittera."
+
+#: ../doc/strings.py:191
+msgid "* Control + Windows + K: Show the keystroke editor."
+msgstr ""
+"* Control + Windows + K: Prikazuje dijalog za menjanje tasterskih prečica."
+
+#: ../doc/strings.py:192
+msgid "* Control + Windows + L: Show lists for a specified user."
+msgstr "* Control + Windows + L: Prikazuje liste za izabranog korisnika."
+
+#: ../doc/strings.py:193
+msgid "* Windows + Alt + PageUp: Load previous items for the current buffer."
+msgstr "* Windows + Alt + PageUp: Učitava prethodne stavke za trenutni kanal."
+
+#: ../doc/strings.py:194
+msgid "* Control + Windows + G: Get geolocation."
+msgstr "* Control + Windows + G: Preuzima geografske podatke."
+
+#: ../doc/strings.py:195
+msgid ""
+"* Control + Windows + Shift + G: Display the tweet's geolocation in a "
+"dialogue."
+msgstr ""
+"* Control + Windows + Shift + G: Prikazuje geografske podatke o lokaciji "
+"tvita u dijalogu."
+
+#: ../doc/strings.py:196
+msgid "* Control + Windows + T: Create a trending topics' buffer."
+msgstr "* Control + Windows + T: Pravi kanal tema u trendu."
+
+#: ../doc/strings.py:197
+msgid "* Control + Windows + {: Find a string in the current buffer."
+msgstr "* Control + Windows + {: Pretraga teksta u trenutnom kanalu."
+
+#: ../doc/strings.py:198
+msgid ""
+"* Alt + Windows + O: Extracts text from the picture and display the result "
+"in a dialog."
+msgstr ""
+"* Alt + Windows + O: Izvlači tekst iz slike i prikazuje rezultat u dijalogu."
+
+#: ../doc/strings.py:199
+msgid "## Configuration"
+msgstr "## Podešavanja"
+
+#: ../doc/strings.py:200
+msgid ""
+"As described above, this application has two configuration dialogues, the "
+"global settings dialogue and the account settings dialogue."
+msgstr ""
+"Kao što je iznad opisano, ova aplikacija ima dva dijaloga podešavanja, "
+"dijalog globalnih podešavanja i dijalog postavki naloga."
+
+#: ../doc/strings.py:201
+msgid "### The account settings dialogue"
+msgstr "### Dijalog podešavanja naloga"
+
+#: ../doc/strings.py:202
+msgid "#### General tab"
+msgstr "#### Kartica opšte"
+
+#: ../doc/strings.py:203
+msgid ""
+"* Autocompletion settings: Allows you to configure the autocompletion "
+"database. You can add users manually or let TWBlue add your followers, "
+"friends or both."
+msgstr ""
+"* Postavke automatskog dovršavanja: Dozvoljava vam da podesite bazu "
+"automatskog dovršavanja. Možete ručno podesiti bazu ili dozvoliti da TWBlue "
+"doda vaše pratioce, prijatelje ili i jedne i druge."
+
+#: ../doc/strings.py:204
+msgid ""
+"* Relative timestamps: Allows you to configure whether the application will "
+"calculate the time the tweet or direct message was sent or received based on "
+"the current time, or simply say the time it was received or sent."
+msgstr ""
+"* Relativne vremenske oznake: Dozvoljava da podesite da li će aplikacija "
+"računati vreme u koje je direktna poruka ili tvit poslat ili primljen u "
+"zavisnosti od trenutnog vremena, ili jednostavno reći vreme kada je stavka "
+"primljena ili poslata."
+
+#: ../doc/strings.py:205
+msgid ""
+"* API calls: Allows you to adjust the number of API calls to be made to "
+"Twitter by this program."
+msgstr ""
+"* API pozivi: Dozvoljava da promenite broj API poziva Twitteru od strane "
+"programa."
+
+#: ../doc/strings.py:206
+msgid ""
+"* Items on each API call: Allows you to specify how many items should be "
+"retrieved from Twitter for each API call (default and maximum is 200)."
+msgstr ""
+"* Stavke po svakom API pozivu: Dozvoljava da odredite koliko stavki treba da "
+"se preuzme sa Twittera za svaki API poziv (podrazumevano i maksimalno je "
+"200)."
+
+#: ../doc/strings.py:207
+msgid ""
+"* Inverted buffers: Allows you to specify whether the buffers should be "
+"inverted, which means that the oldest items will show at the end of them and "
+"the newest at the beginning."
+msgstr ""
+"* Okreni kanal: Dozvoljava da odredite da li će kanali biti obrnuti, što "
+"znači da će se starije stavke prikazivati na dnu a novije na vrhu."
+
+#: ../doc/strings.py:208
+msgid ""
+"* Retweet mode: Allows you to specify the behaviour when posting a retweet: "
+"you can choose between retweeting with a comment, retweeting without comment "
+"or being asked."
+msgstr ""
+"* Način retvitovanja: Dozvoljava vam da odredite ponašanje kada šaljete "
+"retvit: Možete izabrati između opcija retvituj sa komentarima, retvituj bez "
+"komentara ili da vas aplikacija uvek pita."
+
+#: ../doc/strings.py:209
+msgid ""
+"* Number of items per buffer to cache in database: This allows you to "
+"specify how many items TWBlue should cache in a database. You can type any "
+"number, 0 to cache all items, or leave blank to disable caching entirely."
+msgstr ""
+"* Broj stavki po kanalu za čuvanje u bazi: Ova opcija vam dozvoljava da "
+"odredite koliko stavki će TWBlue čuvati u svojoj bazi. Možete upisati bilo "
+"koji broj, 0 da se sve stavke čuvaju, ili ostavite polje praznim da se "
+"čuvanje u potpunosti onemogući."
+
+#: ../doc/strings.py:210
+msgid "#### buffers tab"
+msgstr "#### Kartica kanali"
+
+#: ../doc/strings.py:211
+msgid ""
+"This tab displays a list for each buffer you have available in TWBlue, "
+"except for searches, timelines, likes' timelines and lists. You can show, "
+"hide and move them."
+msgstr ""
+"Ova kartica prikazuje sve kanale koje imate u aplikaciji TWBlue, osim "
+"pretraga, vremenskih linija, vremenskih linija sviđanja i listi. Možete ih "
+"prikazati, sakriti i premeštati."
+
+#: ../doc/strings.py:212
+msgid "#### The ignored clients tab"
+msgstr "#### Kartica zanemareni klijenti"
+
+#: ../doc/strings.py:213
+msgid ""
+"In this tab, you can add and remove clients to be ignored by the program."
+msgstr ""
+"U ovoj kartici, možete dodati i ukloniti klijente koje će program zanemariti."
+
+#: ../doc/strings.py:214
+msgid "#### Sound tab"
+msgstr "#### Kartica zvuk"
+
+#: ../doc/strings.py:215
+msgid ""
+"In this tab, you can adjust the sound volume, select the input and output "
+"device and set the soundpack used by the program."
+msgstr ""
+"U ovoj kartici, možete promeniti jačinu zvuka, izabrati ulazni i izlazni "
+"uređaj kao i zvučni paket koji će program koristiti."
+
+#: ../doc/strings.py:216
+msgid "#### Audio service tab"
+msgstr "#### Kartica audio servis"
+
+#: ../doc/strings.py:217
+msgid ""
+"In this tab, you can enter your SndUp API key (if you have one) to upload "
+"audio to SndUp with your account. Note that if account credentials are not "
+"specified you will upload anonimously."
+msgstr ""
+"U ovoj kartici, možete upisati vaš SndUp API ključ (ako ga imate ) da biste "
+"otpremili zvučne datoteke na servis SndUp vašim nalogom. Napomena da ako ne "
+"odredite podatke naloga otpremaćete datoteke anonimno."
+
+#: ../doc/strings.py:218
+msgid "### Global settings"
+msgstr "### Globalna podešavanja"
+
+#: ../doc/strings.py:219
+msgid ""
+"This dialogue allows you to configure some settings which will affect the "
+"entire application."
+msgstr ""
+"Ovaj dijalog vam dozvoljava da podesite određena podešavanja koja će uticati "
+"na čitavu aplikaciju."
+
+#: ../doc/strings.py:220
+msgid "#### General tab {#general-tab_1}"
+msgstr "#### Kartica opšte {#general-tab_1}"
+
+#: ../doc/strings.py:221
+msgid ""
+"* Language: This allows you to change the language of this program. "
+"Currently supported languages are arabic, Catalan, German, English, Spanish, "
+"Basque, Finnish, French, Galician, Croatian, Hungarian, Italian, Polish, "
+"Portuguese, Russian and Turkish."
+msgstr ""
+"* Jezik: Dozvoljava promenu jezika programa. Trenutno podržani jezici su "
+"Arapski, Katalonski, Nemački, Engleski, Španski, Baskijski, Finski, "
+"Francuski, Galski, Hrvatski, Mađarski, Italijanski, Poljski, Portugalski, "
+"Ruski, Srpski i  Turski."
+
+#: ../doc/strings.py:222
+msgid ""
+"* Ask before exiting TWBlue: This checkbox allows you to control whetherthe "
+"program will ask for confirmation before exiting."
+msgstr ""
+"* Pitaj pre zatvaranja TWBlue: Ovo izborno polje dozvoljava da podesite da "
+"li će program zahtevati potvrdu pre izlaza."
+
+#: ../doc/strings.py:223
+msgid ""
+"* Play a sound when TWBlue launches: This checkbox allows you to configure "
+"whether the application will play a sound when it has finished loading the "
+"buffers."
+msgstr ""
+"* Reprodukuj zvuk kada se TWBlue pokrene: Ovo izborno polje dozvoljava da "
+"odredite da li će aplikacija reprodukovati zvuk nakon što završi učitavanje "
+"kanala."
+
+#: ../doc/strings.py:224
+msgid ""
+"* Speak a message when TWBlue launches: This is the same as the previous "
+"option, but this checkbox configures whether the screen reader will say "
+"\"ready\"."
+msgstr ""
+"* Izgovori poruku kada se TWBlue pokrene: Ova opcija je ista kao i "
+"prethodna, ali ovo izborno polje kontroliše da li će čitač ekrana reći "
+"\"spreman\"."
+
+#: ../doc/strings.py:225
+msgid ""
+"* Use the invisible interface's shortcuts in the GUI: As the invisible "
+"interface and the Graphical User Interface have their own shortcuts, you may "
+"want to use the invisible interface's keystrokes all the time. If this "
+"option is checked, the invisible interface's shortcuts will be usable in the "
+"GUI."
+msgstr ""
+"* Koristi prečice nevidljivog okruženja dok je grafičko okruženje prikazano: "
+"Budući da nevidljivi i grafički interfejs imaju svoje prečice, možda ćete "
+"želeti da uvek koristite prečice nevidljivog interfejsa. Ako je ova opcija "
+"označena, prečice nevidljivog interfejsa se mogu koristiti u grafičkom "
+"interfejsu."
+
+#: ../doc/strings.py:226
+msgid ""
+"* Activate SAPI5 when any other screen reader is not being run: This "
+"checkbox allows to activate SAPI 5 TTS when no other screen reader is being "
+"run."
+msgstr ""
+"* Aktiviraj SAPI5 u slučaju da nijedan čitač ekrana nije pokrenut: Ova "
+"opcija dozvoljava da koristite SAPI 5 glasove kada nijedan čitač ekrana nije "
+"pokrenut."
+
+#: ../doc/strings.py:227
+msgid ""
+"* Hide GUI on launch: This allows you to configure whether TWBlue will start "
+"with the GUI or the invisible interface."
+msgstr ""
+"* Sakrij grafičko okruženje prilikom pokretanja: Ovo izborno polje "
+"dozvoljava da podesite da li će se TWBlue pokrenuti u grafičkom ili "
+"nevidljivom interfejsu."
+
+#: ../doc/strings.py:228
+msgid ""
+"* Keymap: This option allows you to change the keymap used by the program in "
+"the invisible interface. The shipped keymaps are Default, Qwitter, Windows "
+"10 and Chicken Nugget. The keymaps are in the \"keymaps\" folder, and you "
+"can create new ones. Just create a new \".keymap\" file and change the "
+"keystrokes associated with the actions, as it is done in the shipped keymaps."
+msgstr ""
+"* Tasterske prečice: Ovaj izborni okvir vam dozvoljava da promenite mapu "
+"prečica koju koristi program u nevidljivom interfejsu. Podrazumevane mape "
+"prečica su default - podrazumevana, Qwitter, Windows 10 i Chicken Nugget. "
+"Mape prečica su u folderu \"keymaps\", i možete napraviti nove. Samo "
+"napravite novu \".keymap\" datoteku i promenite prečice za radnje, kako je i "
+"urađeno u već postojećim mapama."
+
+#: ../doc/strings.py:229
+msgid "#### Proxi tab"
+msgstr "#### Kartica proksi"
+
+#: ../doc/strings.py:230
+msgid ""
+"In this tab you can configure TWBlue to use a Proxy server by completing the "
+"fields displayed (type, server, port, user and password)."
+msgstr ""
+"U ovoj kartici možete podesiti TWBlue da koristi proksi server popunjavanjem "
+"prikazanih polja (vrsta, server, port, korisnik i lozinka)."
+
+#: ../doc/strings.py:231
+msgid "## License, source code and donations"
+msgstr "## Licenca, izvorni kod i donacije"
+
+#: ../doc/strings.py:232
+msgid ""
+"Tw Blue is free software, licensed under the GNU GPL license, either version "
+"2 or, at your option, any later version. You can view the license in the "
+"file named license.txt, or online at <http://www.gnu.org/licenses/old-"
+"licenses/gpl-2.0.html>."
+msgstr ""
+"Tw Blue je besplatan program, pod GNU GPL licencom, ili verzija 2 ili, u "
+"zavisnosti od vaših mogućnosti, bilo koja novija verzija. Možete videti "
+"licencu u datoteci license.txt, ili onlajn na lokaciji <http://www.gnu.org/"
+"licenses/old-licenses/gpl-2.0.html>."
+
+#: ../doc/strings.py:233
+msgid ""
+"The source code of the program is available on GitHub at <https://www.github."
+"com/manuelcortez/twblue>."
+msgstr ""
+"Izvorni kod programa je dostupan na Githubu <https://www.github.com/"
+"manuelcortez/twblue>."
+
+#: ../doc/strings.py:234
+msgid ""
+"If you want to donate to the project, you can do so at <https://twblue.es/"
+"donate>. Thank you for your support!"
+msgstr ""
+"Ako želite da donirate za razvoj projekta, to možete uraditi na adresi "
+"<https://twblue.es/donate>. Hvala vam na podršci!"
+
+#: ../doc/strings.py:235
+msgid "## Contact"
+msgstr "## Kontakt"
+
+#: ../doc/strings.py:236
+msgid ""
+"If you still have questions after reading this document, if you wish to "
+"collaborate to the project in some other way, or if you simply want to get "
+"in touch with the application developer, follow the Twitter account [@tw"
+"\\_blue2](https://twitter.com/tw_blue2) or [@manuelcortez00.](https://"
+"twitter.com/manuelcortez00) You can also visit [our website](https://twblue."
+"es)"
+msgstr ""
+"Ako imate još pitanja nakon što ste pročitali ovaj dokument, ako želite da "
+"pomognete projektu na neki drugi način, ili ako jednostavno želite da se "
+"obratite programeru aplikacije, pratite Twitter nalog [@tw\\_blue2](https://"
+"twitter.com/tw_blue2) ili [@manuelcortez00.](https://twitter.com/"
+"manuelcortez00) takođe možete da posetite [naš websajt](https://twblue.es)"
+
+#: ../doc/strings.py:237
+msgid "## Credits"
+msgstr "## Zahvalnost"
+
+#: ../doc/strings.py:238
+msgid ""
+"TWBlue is developed and maintained by [Manuel Cortéz](https://twitter.com/"
+"manuelcortez00) and [José Manuel Delicado](https://twitter.com/jmdaweb)."
+msgstr ""
+"TWBlue programiraju i održavaju [Manuel Cortéz](https://twitter.com/"
+"manuelcortez00) i [José Manuel Delicado](https://twitter.com/jmdaweb)."
+
+#: ../doc/strings.py:239
+msgid ""
+"We would also like to thank the translators of TWBlue, who have allowed the "
+"spreading of the application."
+msgstr ""
+"Takođe bismo želeli da se zahvalimo prevodiocima aplikacije TWBlue, koji su "
+"dozvolili da se aplikacija proširi."
+
+#: ../doc/strings.py:240
+msgid ""
+"* Arabic: [Mohammed Al Shara,](https://twitter.com/mohammed0204) [Hatoun "
+"Felemban](https://twitter.com/HatounFelemban)"
+msgstr ""
+"* Arapski: [Mohammed Al Shara,](https://twitter.com/mohammed0204) [Hatoun "
+"Felemban](https://twitter.com/HatounFelemban)"
+
+#: ../doc/strings.py:241
+msgid "* Basque: [Sukil Etxenike](https://twitter.com/sukil2011)."
+msgstr "* Baskijski: [Sukil Etxenike](https://twitter.com/sukil2011)."
+
+#: ../doc/strings.py:242
+msgid "* Catalan: [Francisco Torres](https://twitter.com/ftgalleg)"
+msgstr "* Katalonski: [Francisco Torres](https://twitter.com/ftgalleg)"
+
+#: ../doc/strings.py:243
+msgid "* Croatian: [Zvonimir Stanečić](https://twitter.com/zvonimirek222)."
+msgstr "* Hrvatski: [Zvonimir Stanečić](https://twitter.com/zvonimirek222)."
+
+#: ../doc/strings.py:244
+msgid "* English: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
+msgstr "* Engleski: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
+
+#: ../doc/strings.py:245
+msgid "* Finnish: [Jani Kinnunen](https://twitter.com/jani_kinnunen)."
+msgstr "* Finski: [Jani Kinnunen](https://twitter.com/jani_kinnunen)."
+
+#: ../doc/strings.py:246
+msgid "* French: [Rémy Ruiz](https://twitter.com/blindhelp38)."
+msgstr "* Francuski: [Rémy Ruiz](https://twitter.com/blindhelp38)."
+
+#: ../doc/strings.py:247
+msgid "* Galician: [Juan Buño](https://twitter.com/Quetzatl_)."
+msgstr "* Galski: [Juan Buño](https://twitter.com/Quetzatl_)."
+
+#: ../doc/strings.py:248
+msgid "* German: [Steffen Schultz](https://twitter.com/schulle4u)."
+msgstr "* Nemački: [Steffen Schultz](https://twitter.com/schulle4u)."
+
+#: ../doc/strings.py:249
+msgid "* Hungarian: Robert Osztolykan."
+msgstr "* Mađarski: Robert Osztolykan."
+
+#: ../doc/strings.py:250
+msgid "* Italian: [Christian Leo Mameli](https://twitter.com/llajta2012)."
+msgstr "* Italijanski: [Christian Leo Mameli](https://twitter.com/llajta2012)."
+
+#: ../doc/strings.py:251
+msgid "* Japanese: [Riku](https://twitter.com/_riku02)"
+msgstr "* Japanski: [Riku](https://twitter.com/_riku02)"
+
+#: ../doc/strings.py:252
+msgid "* Polish: [Pawel Masarczyk.](https://twitter.com/Piciok)"
+msgstr "* Poljski: [Pawel Masarczyk.](https://twitter.com/Piciok)"
+
+#: ../doc/strings.py:253
+msgid "* Portuguese: [Odenilton Júnior Santos.](https://twitter.com/romaleif)"
+msgstr ""
+"* Portugalski: [Odenilton Júnior Santos.](https://twitter.com/romaleif)"
+
+#: ../doc/strings.py:254
+msgid ""
+"* Romanian: [Florian Ionașcu](https://twitter.com/florianionascu7) and "
+"[Nicușor Untilă](https://twitter.com/dj_storm2001)"
+msgstr ""
+"* Rumunski: [Florian Ionașcu](https://twitter.com/florianionascu7) i "
+"[Nicușor Untilă](https://twitter.com/dj_storm2001)"
+
+#: ../doc/strings.py:255
+msgid ""
+"* Russian: [Наталья Хедлунд](https://twitter.com/Lifestar_n) and [Валерия "
+"Кузнецова](https://twitter.com/ValeriaK305)."
+msgstr ""
+"* Ruski: [Наталья Хедлунд](https://twitter.com/Lifestar_n) i [Валерия "
+"Кузнецова](https://twitter.com/ValeriaK305)."
+
+#: ../doc/strings.py:256
+msgid "* Serbian: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)"
+msgstr "* Srpski: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)"
+
+#: ../doc/strings.py:257
+msgid "* Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
+msgstr "* Španski: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
+
+#: ../doc/strings.py:258
+msgid "* Turkish: [Burak Yüksek](https://twitter.com/burakyuksek)."
+msgstr "* Turski: [Burak Yüksek](https://twitter.com/burakyuksek)."
+
+#: ../doc/strings.py:259
+msgid ""
+"Many thanks also to the people who worked on the documentation. Initially, "
+"[Manuel Cortez](https://twitter.com/manuelcortez00) did the documentation in "
+"Spanish, and translated to English by [Bryner Villalobos](https://twitter."
+"com/Bry_StarkCR), [Robert Spangler](https://twitter.com/glasscity1837), "
+"[Sussan Rey](https://twitter.com/sussanrey17), [Anibal Hernandez](https://"
+"twitter.com/AnimalMetal), and [Holly Scott-Gardner](https://twitter.com/"
+"CatchTheseWords). It was updated by [Sukil Etxenike](https://twitter.com/"
+"sukil2011), with some valuable corrections by [Brian Hartgen](https://"
+"twitter.com/brianhartgen) and [Bill Dengler](https://twitter.com/codeofdusk)."
+msgstr ""
+"Velika zahvalnost takođe svima koji su radili na dokumentaciji. Prvobitno, "
+"[Manuel Cortez](https://twitter.com/manuelcortez00) je napisao dokumentaciju "
+"na Španskom, i na Engleski su preveli [Bryner Villalobos](https://twitter."
+"com/Bry_StarkCR), [Robert Spangler](https://twitter.com/glasscity1837), "
+"[Sussan Rey](https://twitter.com/sussanrey17), [Anibal Hernandez](https://"
+"twitter.com/AnimalMetal), i [Holly Scott-Gardner](https://twitter.com/"
+"CatchTheseWords). Ažurirao ju je [Sukil Etxenike](https://twitter.com/"
+"sukil2011), uz neke značajne ispravke od strane [Brian Hartgen](https://"
+"twitter.com/brianhartgen) i [Bill Dengler](https://twitter.com/codeofdusk)."
+
+#: ../doc/strings.py:260
+msgid "------------------------------------------------------------------------"
+msgstr "------------------------------------------------------------------------"
+
+#: ../doc/strings.py:261
+msgid "Copyright © 2013-2017. Manuel Cortéz"
+msgstr "Autorsko pravo © 2013-2017. Manuel Cortéz"

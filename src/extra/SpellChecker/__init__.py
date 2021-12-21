@@ -3,4 +3,4 @@ from __future__ import unicode_literals
 from . import spellchecker
 import platform
 if platform.system() == "Windows":
- from .wx_ui import *
+    from .wx_ui import *
