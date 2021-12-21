@@ -5,9 +5,9 @@ from typing import List
 from sessions.twitter.templates import tweet_variables, dm_variables, person_variables
 from wxUI.dialogs.twitterDialogs import templateDialogs
 
-class editTemplateController(object):
+class EditTemplate(object):
     def __init__(self, template: str, type: str) -> None:
-        super(editTemplateController, self).__init__()
+        super(EditTemplate, self).__init__()
         self.default_template = template
         if type == "tweet":
             self.variables = tweet_variables

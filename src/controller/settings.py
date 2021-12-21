@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import webbrowser
+import logging
 import sound_lib
 import paths
 import widgetUtils
@@ -8,17 +9,18 @@ import config
 import languageHandler
 import output
 import application
+import config_utils
+import keys
+from collections import OrderedDict
+from pubsub import pub
+from mysc import autostart as autostart_windows
 from wxUI.dialogs import configuration
 from wxUI import commonMessageDialogs
 from extra.autocompletionUsers import settings
 from extra.ocr import OCRSpace
-from pubsub import pub
-import logging
-import config_utils
+from .editTemplateController import EditTemplate
+
 log = logging.getLogger("Settings")
-import keys
-from collections import OrderedDict
-from mysc import autostart as autostart_windows
 
 class globalSettingsController(object):
     def __init__(self):
@@ -152,6 +154,15 @@ class accountSettingsController(globalSettingsController):
         self.dialog.create_reporting()
         self.dialog.set_value("reporting", "speech_reporting", self.config["reporting"]["speech_reporting"])
         self.dialog.set_value("reporting", "braille_reporting", self.config["reporting"]["braille_reporting"])
+        tweet_template = self.config["templates"]["tweet"]
+        dm_template = self.config["templates"]["dm"]
+        sent_dm_template = self.config["templates"]["dm_sent"]
+        person_template = self.config["templates"]["person"]
+        self.dialog.create_templates(tweet_template=tweet_template, dm_template=dm_template, sent_dm_template=sent_dm_template, person_template=person_template)
+        widgetUtils.connect_event(self.dialog.templates.tweet, widgetUtils.BUTTON_PRESSED, self.edit_tweet_template)
+        widgetUtils.connect_event(self.dialog.templates.dm, widgetUtils.BUTTON_PRESSED, self.edit_dm_template)
+        widgetUtils.connect_event(self.dialog.templates.sent_dm, widgetUtils.BUTTON_PRESSED, self.edit_sent_dm_template)
+        widgetUtils.connect_event(self.dialog.templates.person, widgetUtils.BUTTON_PRESSED, self.edit_person_template)
         self.dialog.create_other_buffers()
         buffer_values = self.get_buffers_list()
         self.dialog.buffers.insert_buffers(buffer_values)
@@ -159,7 +170,6 @@ class accountSettingsController(globalSettingsController):
         widgetUtils.connect_event(self.dialog.buffers.toggle_state, widgetUtils.BUTTON_PRESSED, self.toggle_state)
         widgetUtils.connect_event(self.dialog.buffers.up, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.move_up)
         widgetUtils.connect_event(self.dialog.buffers.down, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.move_down)
-
 
         self.dialog.create_ignored_clients(self.config["twitter"]["ignored_clients"])
         widgetUtils.connect_event(self.dialog.ignored_clients.add, widgetUtils.BUTTON_PRESSED, self.add_ignored_client)
@@ -184,6 +194,42 @@ class accountSettingsController(globalSettingsController):
         self.dialog.realize()
         self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
         self.response = self.dialog.get_response()
+
+    def edit_tweet_template(self, *args, **kwargs):
+        template = self.config["templates"]["tweet"]
+        control = EditTemplate(template=template, type="tweet")
+        result = control.run_dialog()
+        if result != "": # Template has been saved.
+            self.config["templates"]["tweet"] = result
+            self.config.write()
+            self.dialog.templates.tweet.SetLabel(_("Edit template for tweets. Current template: {}").format(result))
+
+    def edit_dm_template(self, *args, **kwargs):
+        template = self.config["templates"]["dm"]
+        control = EditTemplate(template=template, type="dm")
+        result = control.run_dialog()
+        if result != "": # Template has been saved.
+            self.config["templates"]["dm"] = result
+            self.config.write()
+            self.dialog.templates.dm.SetLabel(_("Edit template for direct messages. Current template: {}").format(result))
+
+    def edit_sent_dm_template(self, *args, **kwargs):
+        template = self.config["templates"]["dm_sent"]
+        control = EditTemplate(template=template, type="dm")
+        result = control.run_dialog()
+        if result != "": # Template has been saved.
+            self.config["templates"]["dm_sent"] = result
+            self.config.write()
+            self.dialog.templates.sent_dm.SetLabel(_("Edit template for sent direct messages. Current template: {}").format(result))
+
+    def edit_person_template(self, *args, **kwargs):
+        template = self.settings["templates"]["person"]
+        control = EditTemplate(template=template, type="person")
+        result = control.run_dialog()
+        if result != "": # Template has been saved.
+            self.config["templates"]["person"] = result
+            self.config.write()
+            self.dialog.templates.person.SetLabel(_("Edit template for persons. Current template: {}").format(result))
 
     def save_configuration(self):
         if self.config["general"]["relative_times"] != self.dialog.get_value("general", "relative_time"):
