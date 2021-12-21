@@ -47,7 +47,7 @@ def process_image_descriptions(entities):
             image_descriptions.append(media.get("ext_alt_text"))
     idescriptions = ""
     for image in image_descriptions:
-        idescriptions += "Image description: {}.".format(image)
+        idescriptions += _("Image description: {}.").format(image)
     return idescriptions
 
 def render_tweet(tweet, template, session, relative_times=False, offset_seconds=0):
