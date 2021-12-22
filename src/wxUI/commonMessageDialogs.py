@@ -91,7 +91,7 @@ def existing_filter():
 def common_error(reason):
     return wx.MessageDialog(None, reason, _(u"Error"), wx.OK).ShowModal()
 
-  def invalid_configuration():
+def invalid_configuration():
     return wx.MessageDialog(None, _("The configuration file is invalid."), _("Error"), wx.ICON_ERROR).ShowModal()
 
 def dead_pid():
