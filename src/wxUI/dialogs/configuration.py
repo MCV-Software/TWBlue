@@ -233,6 +233,20 @@ class other_buffers(wx.Panel):
                 buffers_list.append(self.buffers.get_text_column(i, 0))
         return buffers_list
 
+class templates(wx.Panel, baseDialog.BaseWXDialog):
+    def __init__(self, parent, tweet_template, dm_template, sent_dm_template, person_template):
+        super(templates, self).__init__(parent)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        self.tweet = wx.Button(self, wx.ID_ANY, _("Edit template for tweets. Current template: {}").format(tweet_template))
+        sizer.Add(self.tweet, 0, wx.ALL, 5)
+        self.dm = wx.Button(self, wx.ID_ANY, _("Edit template for direct messages. Current template: {}").format(dm_template))
+        sizer.Add(self.dm, 0, wx.ALL, 5)
+        self.sent_dm = wx.Button(self, wx.ID_ANY, _("Edit template for sent direct messages. Current template: {}").format(sent_dm_template))
+        sizer.Add(self.sent_dm, 0, wx.ALL, 5)
+        self.person = wx.Button(self, wx.ID_ANY, _("Edit template for persons. Current template: {}").format(person_template))
+        sizer.Add(self.person, 0, wx.ALL, 5)
+        self.SetSizer(sizer)
+
 class ignoredClients(wx.Panel):
     def __init__(self, parent, choices):
         super(ignoredClients, self).__init__(parent=parent)
@@ -379,6 +393,10 @@ class configurationDialog(baseDialog.BaseWXDialog):
     def create_ignored_clients(self, ignored_clients_list):
         self.ignored_clients = ignoredClients(self.notebook, ignored_clients_list)
         self.notebook.AddPage(self.ignored_clients, _(u"Ignored clients"))
+
+    def create_templates(self, tweet_template, dm_template, sent_dm_template, person_template):
+        self.templates = templates(self.notebook, tweet_template=tweet_template, dm_template=dm_template, sent_dm_template=sent_dm_template, person_template=person_template)
+        self.notebook.AddPage(self.templates, _("Templates"))
 
     def create_sound(self, output_devices, input_devices, soundpacks):
         self.sound = sound(self.notebook, output_devices, input_devices, soundpacks)
