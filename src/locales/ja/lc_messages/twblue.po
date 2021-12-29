@@ -7,28 +7,28 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-11-12 08:18+0900\n"
+"PO-Revision-Date: 2021-12-29 15:52+0900\n"
 "Last-Translator: 陸 <support@riku22.net>\n"
 "Language-Team: \n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: ../src\controller\buffers\base\base.py:91
 msgid "This action is not supported for this buffer"
 msgstr "この動作は、現在のバッファではサポートされていません"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:337 ../src\controller\settings.py:286
+#: ../src\controller\mainController.py:337 ../src\controller\settings.py:323
 msgid "Home"
 msgstr "ホーム"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:339 ../src\controller\settings.py:287
+#: ../src\controller\mainController.py:339 ../src\controller\settings.py:324
 msgid "Mentions"
 msgstr "メンション"
 
@@ -38,41 +38,41 @@ msgid "Direct messages"
 msgstr "ダイレクトメッセージ"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:343 ../src\controller\settings.py:289
+#: ../src\controller\mainController.py:343 ../src\controller\settings.py:326
 msgid "Sent direct messages"
 msgstr "送信済みのダイレクトメッセージ"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:345 ../src\controller\settings.py:290
+#: ../src\controller\mainController.py:345 ../src\controller\settings.py:327
 msgid "Sent tweets"
 msgstr "送信済みのツイート"
 
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:347
-#: ../src\controller\mainController.py:1390 ../src\controller\settings.py:291
+#: ../src\controller\mainController.py:1390 ../src\controller\settings.py:328
 msgid "Likes"
 msgstr "いいね"
 
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:349
-#: ../src\controller\mainController.py:1395 ../src\controller\settings.py:292
+#: ../src\controller\mainController.py:1395 ../src\controller\settings.py:329
 msgid "Followers"
 msgstr "フォロワー"
 
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:353
-#: ../src\controller\mainController.py:1405 ../src\controller\settings.py:294
+#: ../src\controller\mainController.py:1405 ../src\controller\settings.py:331
 msgid "Blocked users"
 msgstr "ブロックしたユーザー"
 
 #: ../src\controller\buffers\twitter\base.py:70
 #: ../src\controller\mainController.py:355
-#: ../src\controller\mainController.py:1410 ../src\controller\settings.py:295
+#: ../src\controller\mainController.py:1410 ../src\controller\settings.py:332
 msgid "Muted users"
 msgstr "ミューとしたユーザー"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:1400 ../src\controller\settings.py:293
+#: ../src\controller\mainController.py:1400 ../src\controller\settings.py:330
 msgid "Friends"
 msgstr "フォロー"
 
@@ -101,7 +101,7 @@ msgstr "不明なバッファ"
 #: ../src\controller\buffers\twitter\trends.py:134
 #: ../src\controller\messages.py:296 ../src\wxUI\buffers\base.py:25
 #: ../src\wxUI\buffers\events.py:15 ../src\wxUI\buffers\trends.py:18
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:312
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:309
 #: ../src\wxUI\sysTrayIcon.py:35
 msgid "Tweet"
 msgstr "ツイート"
@@ -112,75 +112,75 @@ msgstr "ツイート"
 msgid "Write the tweet here"
 msgstr "ツイートを入力"
 
-#: ../src\controller\buffers\twitter\base.py:192
+#: ../src\controller\buffers\twitter\base.py:194
 msgid "New tweet in {0}"
 msgstr "「{0}」への新規ツイート"
 
-#: ../src\controller\buffers\twitter\base.py:195
+#: ../src\controller\buffers\twitter\base.py:197
 msgid "{0} new tweets in {1}."
 msgstr "「{1}」への{0}個の新規ツイート。"
 
-#: ../src\controller\buffers\twitter\base.py:234
+#: ../src\controller\buffers\twitter\base.py:236
 #: ../src\controller\buffers\twitter\directMessages.py:88
-#: ../src\controller\buffers\twitter\people.py:174
+#: ../src\controller\buffers\twitter\people.py:177
 msgid "%s items retrieved"
 msgstr "%s個のアイテムを取得しました"
 
-#: ../src\controller\buffers\twitter\base.py:266
+#: ../src\controller\buffers\twitter\base.py:268
 #: ../src\controller\buffers\twitter\people.py:80
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "このバッファは、タイムラインではないため、削除できません。"
 
-#: ../src\controller\buffers\twitter\base.py:402
+#: ../src\controller\buffers\twitter\base.py:404
 msgid "Reply to {arg0}"
 msgstr "「{arg0}」への返信:"
 
-#: ../src\controller\buffers\twitter\base.py:404
+#: ../src\controller\buffers\twitter\base.py:406
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:27
 msgid "Reply"
 msgstr "返信"
 
-#: ../src\controller\buffers\twitter\base.py:405
+#: ../src\controller\buffers\twitter\base.py:407
 msgid "Reply to %s"
 msgstr "「%s」への返信"
 
-#: ../src\controller\buffers\twitter\base.py:428
+#: ../src\controller\buffers\twitter\base.py:430
 #: ../src\controller\buffers\twitter\directMessages.py:124
 msgid "New direct message"
 msgstr "新しいダイレクトメッセージ"
 
-#: ../src\controller\buffers\twitter\base.py:428
+#: ../src\controller\buffers\twitter\base.py:430
 #: ../src\controller\messages.py:268
 msgid "Direct message to %s"
 msgstr "「%s」へのダイレクトメッセージ"
 
-#: ../src\controller\buffers\twitter\base.py:459
+#: ../src\controller\buffers\twitter\base.py:461
 msgid "Add your comment to the tweet"
 msgstr "ツイートにコメントを追加"
 
-#: ../src\controller\buffers\twitter\base.py:459
+#: ../src\controller\buffers\twitter\base.py:461
 msgid "Quote"
 msgstr "引用"
 
-#: ../src\controller\buffers\twitter\base.py:520
+#: ../src\controller\buffers\twitter\base.py:522
 msgid "Opening URL..."
 msgstr "URLを開いています…"
 
-#: ../src\controller\buffers\twitter\base.py:557
+#: ../src\controller\buffers\twitter\base.py:559
 msgid "User details"
 msgstr "ユーザーの詳細"
 
-#: ../src\controller\buffers\twitter\base.py:578
+#: ../src\controller\buffers\twitter\base.py:580
 msgid "Opening item in web browser..."
 msgstr "ブラウザでアイテムを開いています…"
 
 #: ../src\controller\buffers\twitter\directMessages.py:93
-#: ../src\controller\buffers\twitter\people.py:95
+#: ../src\controller\buffers\twitter\people.py:98
 msgid "Mention to %s"
 msgstr "%sへのメンション"
 
 #: ../src\controller\buffers\twitter\directMessages.py:93
-#: ../src\controller\buffers\twitter\people.py:95
+#: ../src\controller\buffers\twitter\people.py:98
 #: ../src\wxUI\buffers\people.py:17
 msgid "Mention"
 msgstr "メンション"
@@ -193,7 +193,7 @@ msgstr "{0}件の新しいダイレクトメッセージ。"
 msgid "This action is not supported in the buffer yet."
 msgstr "この動作は、現在のバッファではサポートされていません。"
 
-#: ../src\controller\buffers\twitter\directMessages.py:140
+#: ../src\controller\buffers\twitter\directMessages.py:146
 msgid ""
 "Getting more items cannot be done in this buffer. Use the direct messages "
 "buffer instead."
@@ -201,7 +201,7 @@ msgstr ""
 "このバッファでは、さらにアイテムを取得することはできません。代わりにダイレク"
 "トメッセージバッファを使用してください。"
 
-#: ../src\controller\buffers\twitter\people.py:247
+#: ../src\controller\buffers\twitter\people.py:250
 msgid "{0} new followers."
 msgstr "{0}人の新しいフォロワー。"
 
@@ -459,49 +459,67 @@ msgstr "アイテムを見る"
 msgid "Link copied to clipboard."
 msgstr "リンクをクリップボードへコピーしました。"
 
-#: ../src\controller\settings.py:74
+#: ../src\controller\settings.py:76
 msgid "HTTP"
 msgstr "HTTP"
 
-#: ../src\controller\settings.py:74
+#: ../src\controller\settings.py:76
 msgid "SOCKS v4"
 msgstr "SOCKS v4"
 
-#: ../src\controller\settings.py:74
+#: ../src\controller\settings.py:76
 msgid "SOCKS v4 with DNS support"
 msgstr "DNSをサポートする SOCKS v4"
 
-#: ../src\controller\settings.py:74
+#: ../src\controller\settings.py:76
 msgid "SOCKS v5"
 msgstr "SOCKS v5"
 
-#: ../src\controller\settings.py:74
+#: ../src\controller\settings.py:76
 msgid "SOCKS v5 with DNS support"
 msgstr "DNSをサポートする SOCKS v5"
 
-#: ../src\controller\settings.py:74
+#: ../src\controller\settings.py:76
 msgid "System default"
 msgstr "システムのデフォルト"
 
-#: ../src\controller\settings.py:145 ../src\controller\settings.py:211
+#: ../src\controller\settings.py:152 ../src\controller\settings.py:265
 #: ../src\wxUI\dialogs\configuration.py:116
 msgid "Ask"
 msgstr "その都度、質問する"
 
-#: ../src\controller\settings.py:147 ../src\controller\settings.py:213
+#: ../src\controller\settings.py:154 ../src\controller\settings.py:267
 #: ../src\wxUI\dialogs\configuration.py:116
 msgid "Retweet without comments"
 msgstr "コメントを付けずにリツイート（公式RT）"
 
-#: ../src\controller\settings.py:149 ../src\wxUI\dialogs\configuration.py:116
+#: ../src\controller\settings.py:156 ../src\wxUI\dialogs\configuration.py:116
 msgid "Retweet with comments"
 msgstr "コメントをつけてリツイート（非公式RT）"
 
-#: ../src\controller\settings.py:185
+#: ../src\controller\settings.py:200
 msgid "Account settings for %s"
 msgstr "%sのアカウント設定"
 
-#: ../src\controller\settings.py:288
+#: ../src\controller\settings.py:210 ../src\wxUI\dialogs\configuration.py:240
+msgid "Edit template for tweets. Current template: {}"
+msgstr "ツイートのテンプレートを編集します。現在のテンプレート: {}"
+
+#: ../src\controller\settings.py:219 ../src\wxUI\dialogs\configuration.py:242
+msgid "Edit template for direct messages. Current template: {}"
+msgstr "ダイレクトメッセージのテンプレートを編集します。現在のテンプレート: {}"
+
+#: ../src\controller\settings.py:228 ../src\wxUI\dialogs\configuration.py:244
+msgid "Edit template for sent direct messages. Current template: {}"
+msgstr ""
+"送信済みのダイレクトメッセージのテンプレートを編集します。現在のテンプレー"
+"ト: {}"
+
+#: ../src\controller\settings.py:237 ../src\wxUI\dialogs\configuration.py:246
+msgid "Edit template for persons. Current template: {}"
+msgstr "人のテンプレートを編集します。現在のテンプレート: {}"
+
+#: ../src\controller\settings.py:325
 msgid "Direct Messages"
 msgstr "ダイレクトメッセージ"
 
@@ -518,6 +536,7 @@ msgstr "ダイレクトメッセージ"
 #: ../src\wxUI\commonMessageDialogs.py:83
 #: ../src\wxUI\commonMessageDialogs.py:89
 #: ../src\wxUI\commonMessageDialogs.py:92
+#: ../src\wxUI\commonMessageDialogs.py:95
 msgid "Error"
 msgstr "エラー"
 
@@ -698,9 +717,9 @@ msgid "%s seconds"
 msgstr "%s秒"
 
 #: ../src\extra\AudioUploader\wx_transfer_dialogs.py:15
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:36
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:173
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:258
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:35
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:171
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:255
 msgid "File"
 msgstr "ファイル"
 
@@ -1371,8 +1390,8 @@ msgid "Target language"
 msgstr "翻訳先の言語"
 
 #: ../src\issueReporter\issueReporter.py:32
-#: ../src\wxUI\dialogs\configuration.py:359
-#: ../src\wxUI\dialogs\configuration.py:368
+#: ../src\wxUI\dialogs\configuration.py:373
+#: ../src\wxUI\dialogs\configuration.py:382
 msgid "General"
 msgstr "一般"
 
@@ -1765,7 +1784,7 @@ msgstr "キーストロークの定義を解除"
 msgid "Execute action"
 msgstr "現在の動作を実行"
 
-#: ../src\keystrokeEditor\wx_ui.py:22 ../src\wxUI\dialogs\configuration.py:396
+#: ../src\keystrokeEditor\wx_ui.py:22 ../src\wxUI\dialogs\configuration.py:414
 #: ../src\wxUI\dialogs\userAliasDialogs.py:25 ../src\wxUI\dialogs\utils.py:39
 msgid "Close"
 msgstr "閉じる"
@@ -1941,6 +1960,7 @@ msgstr ""
 #: ../src\sessions\twitter\compose.py:38 ../src\sessions\twitter\compose.py:81
 #: ../src\sessions\twitter\compose.py:146
 #: ../src\sessions\twitter\compose.py:155
+#: ../src\sessions\twitter\templates.py:26
 msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "YYYY年MMMMD日(dddd) H時m分s秒"
 
@@ -1992,19 +2012,43 @@ msgstr "%sに成功しました。"
 msgid "Deleted account"
 msgstr "削除されたアカウント"
 
-#: ../src\sessions\twitter\utils.py:231
+#: ../src\sessions\twitter\templates.py:16
+msgid "$display_name, $text $image_descriptions $date. $source"
+msgstr "$display_name, $text $image_descriptions $date. $source"
+
+#: ../src\sessions\twitter\templates.py:17
+msgid "$sender_display_name, $text $date"
+msgstr "$sender_display_name, $text $date"
+
+#: ../src\sessions\twitter\templates.py:18
+msgid "Dm to $recipient_display_name, $text $date"
+msgstr "$recipient_display_name へのDM, $text $date"
+
+#: ../src\sessions\twitter\templates.py:19
+msgid ""
+"$display_name (@$screen_name). $followers followers, $following following, "
+"$tweets tweets. Joined Twitter $created_at."
+msgstr ""
+"$display_name (@$screen_name)。$followers フォロワー、$following フォロー"
+"中、$tweets 件のツイート。Twitter への参加 $created_at。"
+
+#: ../src\sessions\twitter\templates.py:50
+msgid "Image description: {}."
+msgstr "画像の説明: {}。"
+
+#: ../src\sessions\twitter\utils.py:229
 msgid "Sorry, you are not authorised to see this status."
 msgstr "申し訳ありませんが、あなたはこのステータスを表示する権限がありません。"
 
-#: ../src\sessions\twitter\utils.py:233
+#: ../src\sessions\twitter\utils.py:231
 msgid "No status found with that ID"
 msgstr "そのIDのステータスが見つかりませんでした"
 
-#: ../src\sessions\twitter\utils.py:235
+#: ../src\sessions\twitter\utils.py:233
 msgid "Error {0}"
 msgstr "エラー {0}"
 
-#: ../src\sessions\twitter\utils.py:262
+#: ../src\sessions\twitter\utils.py:260
 msgid "{user_1}, {user_2} and {all_users} more: {text}"
 msgstr "{user_1}、{user_2}、ほか{all_users}ユーザー: {text}"
 
@@ -2082,7 +2126,7 @@ msgid "User"
 msgstr "ユーザー"
 
 #: ../src\wxUI\buffers\base.py:12
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:48
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:47
 msgid "Text"
 msgstr "内容"
 
@@ -2178,7 +2222,7 @@ msgid "Enter the name of the client : "
 msgstr "クライアントの名前: "
 
 #: ../src\wxUI\commonMessageDialogs.py:26
-#: ../src\wxUI\dialogs\configuration.py:246
+#: ../src\wxUI\dialogs\configuration.py:260
 msgid "Add client"
 msgstr "クライアントを追加"
 
@@ -2229,7 +2273,7 @@ msgstr ""
 "リシーにより更新されません。続行しますか？"
 
 #: ../src\wxUI\commonMessageDialogs.py:48
-#: ../src\wxUI\commonMessageDialogs.py:95
+#: ../src\wxUI\commonMessageDialogs.py:98
 msgid "Warning"
 msgstr "警告"
 
@@ -2335,6 +2379,10 @@ msgid "This filter already exists. Please use a different title"
 msgstr "このフィルターはすでに利用されています。別の名前を利用してください"
 
 #: ../src\wxUI\commonMessageDialogs.py:95
+msgid "The configuration file is invalid."
+msgstr "設定ファイルが不正です。"
+
+#: ../src\wxUI\commonMessageDialogs.py:98
 msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
@@ -2526,80 +2574,84 @@ msgstr "既にそのバッファは、リストの先頭です。"
 msgid "The buffer is already at the bottom of the list."
 msgstr "既にそのバッファは、リストの最後です。"
 
-#: ../src\wxUI\dialogs\configuration.py:240
-#: ../src\wxUI\dialogs\configuration.py:381
+#: ../src\wxUI\dialogs\configuration.py:254
+#: ../src\wxUI\dialogs\configuration.py:395
 msgid "Ignored clients"
 msgstr "無視するクライアント"
 
-#: ../src\wxUI\dialogs\configuration.py:247
+#: ../src\wxUI\dialogs\configuration.py:261
 msgid "Remove client"
 msgstr "クライアントを削除"
 
-#: ../src\wxUI\dialogs\configuration.py:271
+#: ../src\wxUI\dialogs\configuration.py:285
 msgid "Volume"
 msgstr "ボリューム"
 
-#: ../src\wxUI\dialogs\configuration.py:282
+#: ../src\wxUI\dialogs\configuration.py:296
 msgid "Session mute"
 msgstr "セッションのミュート"
 
-#: ../src\wxUI\dialogs\configuration.py:284
+#: ../src\wxUI\dialogs\configuration.py:298
 msgid "Output device"
 msgstr "出力先デバイス"
 
-#: ../src\wxUI\dialogs\configuration.py:291
+#: ../src\wxUI\dialogs\configuration.py:305
 msgid "Input device"
 msgstr "入力デバイス"
 
-#: ../src\wxUI\dialogs\configuration.py:299
+#: ../src\wxUI\dialogs\configuration.py:313
 msgid "Sound pack"
 msgstr "サウンドパック"
 
-#: ../src\wxUI\dialogs\configuration.py:305
+#: ../src\wxUI\dialogs\configuration.py:319
 msgid "Indicate audio tweets with sound"
 msgstr "音声付きツイートを音で報告"
 
-#: ../src\wxUI\dialogs\configuration.py:307
+#: ../src\wxUI\dialogs\configuration.py:321
 msgid "Indicate geotweets with sound"
 msgstr "位置情報付きツイートを音で報告"
 
-#: ../src\wxUI\dialogs\configuration.py:309
+#: ../src\wxUI\dialogs\configuration.py:323
 msgid "Indicate tweets containing images with sound"
 msgstr "画像付きツイートを音で報告"
 
-#: ../src\wxUI\dialogs\configuration.py:332
+#: ../src\wxUI\dialogs\configuration.py:346
 msgid "Language for OCR"
 msgstr "OCRの言語"
 
-#: ../src\wxUI\dialogs\configuration.py:338
+#: ../src\wxUI\dialogs\configuration.py:352
 msgid "API Key for SndUp"
 msgstr "SndUpのAPIキー"
 
-#: ../src\wxUI\dialogs\configuration.py:353
+#: ../src\wxUI\dialogs\configuration.py:367
 msgid "{0} preferences"
 msgstr "{0}の設定"
 
-#: ../src\wxUI\dialogs\configuration.py:364
+#: ../src\wxUI\dialogs\configuration.py:378
 msgid "Proxy"
 msgstr "プロキシ"
 
-#: ../src\wxUI\dialogs\configuration.py:373
+#: ../src\wxUI\dialogs\configuration.py:387
 msgid "Feedback"
 msgstr "フィードバック"
 
-#: ../src\wxUI\dialogs\configuration.py:377
+#: ../src\wxUI\dialogs\configuration.py:391
 msgid "Buffers"
 msgstr "バッファ"
 
-#: ../src\wxUI\dialogs\configuration.py:385
+#: ../src\wxUI\dialogs\configuration.py:399
+msgid "Templates"
+msgstr "テンプレート"
+
+#: ../src\wxUI\dialogs\configuration.py:403
 msgid "Sound"
 msgstr "サウンド"
 
-#: ../src\wxUI\dialogs\configuration.py:389
+#: ../src\wxUI\dialogs\configuration.py:407
 msgid "Extras"
 msgstr "その他"
 
-#: ../src\wxUI\dialogs\configuration.py:394
+#: ../src\wxUI\dialogs\configuration.py:412
 msgid "Save"
 msgstr "保存"
 
@@ -2728,10 +2780,10 @@ msgid "mode"
 msgstr "モード"
 
 #: ../src\wxUI\dialogs\lists.py:14 ../src\wxUI\dialogs\lists.py:70
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:38
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:127
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:175
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:260
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:37
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:126
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:173
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:257
 msgid "Description"
 msgstr "説明"
 
@@ -2872,120 +2924,155 @@ msgstr "都市"
 msgid "&Location"
 msgstr "場所(&L)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:33
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:49
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:170
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:255
+#: ../src\wxUI\dialogs\twitterDialogs\templateDialogs.py:8
+msgid "Edit Template"
+msgstr "テンプレートを編集"
+
+#: ../src\wxUI\dialogs\twitterDialogs\templateDialogs.py:13
+msgid "Edit template"
+msgstr "テンプレートを編集"
+
+#: ../src\wxUI\dialogs\twitterDialogs\templateDialogs.py:17
+msgid "Available variables"
+msgstr "使用可能な変数"
+
+#: ../src\wxUI\dialogs\twitterDialogs\templateDialogs.py:29
+msgid "Restore template"
+msgstr "テンプレートを復元"
+
+#: ../src\wxUI\dialogs\twitterDialogs\templateDialogs.py:48
+msgid "Restored template to {}."
+msgstr "テンプレートを {} に復元しました。"
+
+#: ../src\wxUI\dialogs\twitterDialogs\templateDialogs.py:52
+msgid "Invalid template"
+msgstr "無効なテンプレート"
+
+#: ../src\wxUI\dialogs\twitterDialogs\templateDialogs.py:52
+msgid ""
+"the template you have specified include variables that do not exists for the "
+"object. Please fix the template and try again. For your reference, you can "
+"see a list of all available variables in the variables list while editing "
+"your template."
+msgstr ""
+"指定したテンプレートには、オブジェクトに存在しない変数が含まれています。テン"
+"プレートを修正して、再試行してください。参考までに、テンプレートの編集中に、"
+"変数リストで使用可能なすべての変数のリストを確認できます。"
+
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:32
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:48
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:168
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:252
 msgid "Attachments"
 msgstr "添付ファイル"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:37
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:174
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:259
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:36
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:172
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:256
 msgid "Type"
 msgstr "形式"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:40
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:177
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:262
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:39
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:175
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:259
 msgid "Delete attachment"
 msgstr "添付ファイルを削除"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:45
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:44
 msgid "Added Tweets"
 msgstr "ツイートを追加"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:52
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:51
 msgid "Delete tweet"
 msgstr "ツイートを削除"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:57
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:192
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:267
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:56
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:190
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:264
 msgid "A&dd..."
 msgstr "追加(&D)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:59
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:58
 msgid "Add t&weet"
 msgstr "ツイートを追加(&W)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:62
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:194
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:269
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:61
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:192
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:266
 msgid "&Attach audio..."
 msgstr "音声を添付(&A)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:66
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:198
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:237
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:65
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:196
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:235
 msgid "Auto&complete users"
 msgstr "ユーザーを自動保管(&C)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:68
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:200
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:273
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:367
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:440
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:67
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:198
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:270
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:364
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:437
 msgid "Check &spelling..."
 msgstr "スペルチェック(&S)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:70
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:202
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:275
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:69
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:200
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:272
 msgid "&Translate"
 msgstr "翻訳(&T)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:74
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:206
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:279
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:73
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:204
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:276
 msgid "Sen&d"
 msgstr "送信(&D)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:118
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:220
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:299
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:117
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:218
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:296
 msgid "Image"
 msgstr "画像"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:120
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:222
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:301
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:119
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:220
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:298
 msgid "Video"
 msgstr "動画"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:122
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:121
 msgid "Poll"
 msgstr "投票"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:127
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:126
 msgid "please provide a description"
 msgstr "説明を入力"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:134
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:292
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:133
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:289
 #: ../src\wxUI\dialogs\update_profile.py:82
 msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 msgstr "画像ファイル (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:134
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:292
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:133
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:289
 #: ../src\wxUI\dialogs\update_profile.py:82
 msgid "Select the picture to be uploaded"
 msgstr "アップロードする画像を選択"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:141
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:140
 msgid "Select the video to be uploaded"
 msgstr "アップロードする動画を選択"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:141
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:140
 msgid "Video files (*.mp4)|*.mp4"
 msgstr "動画ファイル (*.mp4)|*.mp4"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:147
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:146
 msgid "Error adding attachment"
 msgstr "添付ファイルの追加中にエラーが発生しました"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:147
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:146
 msgid ""
 "It is not possible to add more attachments. Please make sure your tweet "
 "complies with Twitter'S attachment rules. You can add only one video or GIF "
@@ -2995,87 +3082,87 @@ msgstr ""
 "に準拠していることを確認してください。すべてのツイートに追加できるビデオまた"
 "はGIFは1つだけで、最大4枚の写真を追加できます。"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:182
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:180
 msgid "&Mention to all"
 msgstr "全員にリプライ(&M)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:235
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:233
 msgid "&Recipient"
 msgstr "送信先(&R)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:307
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:304
 msgid "Tweet - %i characters "
 msgstr "ツイート - %i文字"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:324
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:321
 msgid "Image description"
 msgstr "画像の説明"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:335
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:332
 msgid "Retweets: "
 msgstr "リツイート: "
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:340
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:337
 msgid "Likes: "
 msgstr "いいね: "
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:345
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:342
 msgid "Source: "
 msgstr "ソース: "
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:350
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:428
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:347
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:425
 msgid "Date: "
 msgstr "日付: "
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:365
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:438
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:362
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:435
 msgid "Copy link to clipboard"
 msgstr "リンクをクリップボードへコピー"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:368
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:443
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:365
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:440
 msgid "&Translate..."
 msgstr "翻訳(&T)..."
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:369
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:444
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:366
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:441
 msgid "C&lose"
 msgstr "閉じる(&C)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:413
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:410
 msgid "View"
 msgstr "ツイート"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:415
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:412
 msgid "Item"
 msgstr "アイテム"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:441
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:438
 msgid "&Expand URL"
 msgstr "URLを元に戻す(&E)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:480
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:477
 msgid "Add a poll"
 msgstr "投票を追加"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:484
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:481
 msgid "Participation time (in days)"
 msgstr "投票期間(日数)"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:491
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:488
 msgid "Choices"
 msgstr "選択肢"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:495
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:492
 msgid "Option 1"
 msgstr "オプション1"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:501
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:499
 msgid "Option 2"
 msgstr "オプション2"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:507
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:506
 msgid "Option 3"
 msgstr "オプション3"
 
@@ -3083,11 +3170,11 @@ msgstr "オプション3"
 msgid "Option 4"
 msgstr "オプション4"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:540
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:541
 msgid "Not enough information"
 msgstr "十分な情報がありません"
 
-#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:540
+#: ../src\wxUI\dialogs\twitterDialogs\tweetDialogs.py:541
 msgid "Please make sure you have provided at least two options for the poll."
 msgstr "投票に少なくとも2つのオプションを提供していることを確認してください。"
 
