@@ -41,3 +41,7 @@ def test_process_date_relative_time():
         assert isinstance(processed_date, str)
         assert "hace" in processed_date and "años" in processed_date
 
+def test_process_text_basic_tweet(basic_tweet):
+    expected_result = "Changes in projects for next year https://manuelcortez.net/blog/changes-in-projects-for-next-year/#.YdMQQU6t1FI.twitter"
+    text = templates.process_text(basic_tweet)
+    assert text == expected_result
