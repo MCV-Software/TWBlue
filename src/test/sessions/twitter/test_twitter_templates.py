@@ -45,3 +45,8 @@ def test_process_text_basic_tweet(basic_tweet):
     expected_result = "Changes in projects for next year https://manuelcortez.net/blog/changes-in-projects-for-next-year/#.YdMQQU6t1FI.twitter"
     text = templates.process_text(basic_tweet)
     assert text == expected_result
+
+def test_process_text_basic_tweet_multiple_mentions(basic_tweet_multiple_mentions):
+    expected_result = "@tamaranatalia9, @Darkstrings and 2 more:     Well done, thanks Tamara"
+    text = templates.process_text(basic_tweet_multiple_mentions)
+    assert text == expected_result
