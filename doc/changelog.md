@@ -7,6 +7,7 @@ TWBlue Changelog
     * TWBlue can display image descriptions within Tweet templates. For that, you can use the $image_description variable in your template.
 * We have restored conversation and threads support powered by Twitter API V2 thanks to a set of improvements we have done in the application, as well as more generous limits to Tweet monthly cap by Twitter.
 * In the Windows 11 Keymap, the default shortcut to open the keystrokes editor is now CTRL+Alt+Windows+K to avoid conflicts with the new global mute microphone shortcut.
+* TWBlue show display properly HTML entities in tweet's text.
 * TWBlue should no longer load old tweets in buffers.
 * Fixed issue when uploading attachments (images, videos or gif files) while sending tweets or replies.
 * Fixed an error that was making TWBlue to ask for a restart after saving account settings, even if such restart was not required. ([#413,](https://github.com/manuelcortez/TWBlue/issues/413))

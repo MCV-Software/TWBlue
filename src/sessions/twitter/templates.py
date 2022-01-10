@@ -32,7 +32,7 @@ def process_text(tweet):
     elif hasattr(tweet, "text"):
         text = tweet.text
     # Cleanup mentions, so we'll remove more than 2 mentions to make the tweet easier to read.
-    text = utils.clean_mentions(text)
+    text = utils.clean_mentions(utils.StripChars(text))
     # Replace URLS for extended version of those.
     if hasattr(tweet, "entities"):
         text = utils.expand_urls(text, tweet.entities)

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+import html.entities
 import output
 import logging
 import requests
@@ -15,6 +16,19 @@ url_re = re.compile(r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4
 
 url_re2 = re.compile("(?:\w+://|www\.)[^ ,.?!#%=+][^ \\n\\t]*")
 bad_chars = '\'\\\n.,[](){}:;"'
+
+def StripChars(s):
+    """Converts any html entities in s to their unicode-decoded equivalents and returns a string."""
+    entity_re = re.compile(r"&(#\d+|\w+);")
+    def matchFunc(match):
+        """Nested function to handle a match object.
+       If we match &blah; and it's not found, &blah; will be returned.
+       if we match #\d+, unichr(digits) will be returned.
+       Else, a unicode string will be returned."""
+        if match.group(1).startswith('#'): return chr(int(match.group(1)[1:]))
+        replacement = html.entities.entitydefs.get(match.group(1), "&%s;" % match.group(1))
+        return replacement
+    return str(entity_re.sub(matchFunc, s))
 
 def find_urls_in_text(text):
     return  url_re2.findall(text)
