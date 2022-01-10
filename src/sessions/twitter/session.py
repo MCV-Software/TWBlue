@@ -256,21 +256,22 @@ class Session(base.baseSession):
         tl = self.call_paged("favorites", *args, **kwargs)
         return self.order_buffer(name, tl)
 
-    def call_paged(self, update_function, *args, **kwargs):
+    def call_paged(self, update_function, name, *args, **kwargs):
         """ Makes a call to the Twitter API methods several times. Useful for get methods.
         this function is needed for retrieving more than 200 items.
         update_function str: The function to call. This function must be child of self.twitter
         args and kwargs are passed to update_function.
         returns a list with all items retrieved."""
-        max = 0
         results = []
-        data = getattr(self.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+        if self.db.get(name) == None or self.db.get(name) == []:
+            last_id = None
+        else:
+            if self.settings["general"]["reverse_timelines"] == False:
+                last_id = self.db[name][0].id
+            else:
+                last_id = self.db[name][-1].id
+        data = getattr(self.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], since_id=last_id, *args, **kwargs)
         results.extend(data)
-        for i in range(0, max):
-            if i == 0: max_id = results[-1].id
-            else: max_id = results[0].id
-            data = getattr(self.twitter, update_function)(max_id=max_id, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
-            results.extend(data)
         results.reverse()
         return results
 
