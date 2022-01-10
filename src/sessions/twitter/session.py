@@ -264,7 +264,7 @@ class Session(base.baseSession):
         returns a list with all items retrieved."""
         results = []
         if self.db.get(name) == None or self.db.get(name) == []:
-            last_id = None
+            since_id = None
         else:
             if self.settings["general"]["reverse_timelines"] == False:
                 since_id = self.db[name][-1].id
