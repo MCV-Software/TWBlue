@@ -14,7 +14,7 @@ SetCompress auto
 SetCompressor /solid lzma
 SetDatablockOptimize on
 VIAddVersionKey ProductName "TWBlue"
-VIAddVersionKey LegalCopyright "Copyright 2014-2021 Manuel Cortéz."
+VIAddVersionKey LegalCopyright "Copyright 2014-2022 MCV Software."
 VIAddVersionKey ProductVersion "0.95.0"
 VIAddVersionKey FileVersion "0.95.0"
 VIProductVersion "0.95.0"
