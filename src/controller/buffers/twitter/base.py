@@ -142,7 +142,7 @@ class BaseBuffer(base.Buffer):
             log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
             if self.name != "direct_messages":
-                val = self.session.call_paged(self.function, *self.args, **self.kwargs)
+                val = self.session.call_paged(self.function, self.name, *self.args, **self.kwargs)
             else:
                 # 50 results are allowed per API call, so let's assume max value can be 50.
                 # reference: https://developer.twitter.com/en/docs/twitter-api/v1/direct-messages/sending-and-receiving/api-reference/list-events
