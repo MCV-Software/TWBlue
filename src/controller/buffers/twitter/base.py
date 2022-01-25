@@ -391,6 +391,12 @@ class BaseBuffer(base.Buffer):
         tweet = self.session.db[self.name][self.buffer.list.get_selected()]
         return tweet
 
+    def can_share(self):
+        tweet = self.get_right_tweet()
+        user = self.session.get_user(tweet.user)
+        is_protected = user.protected
+        return is_protected==False
+
     @_tweets_exist
     def reply(self, *args, **kwargs):
         tweet = self.get_right_tweet()
@@ -442,6 +448,8 @@ class BaseBuffer(base.Buffer):
 
     @_tweets_exist
     def share_item(self, *args, **kwargs):
+        if self.can_share() == False:
+            return output.speak(_("This action is not supported on protected accounts."))
         tweet = self.get_right_tweet()
         id = tweet.id
         if self.session.settings["general"]["retweet_mode"] == "ask":
@@ -483,6 +491,9 @@ class BaseBuffer(base.Buffer):
             self.session.sound.play("geo.ogg")
         if self.session.settings['sound']['indicate_img'] and utils.is_media(tweet):
             self.session.sound.play("image.ogg")
+        can_share = self.can_share()
+        pub.sendMessage("toggleShare", shareable=can_share)
+        self.buffer.retweet.Enable(can_share)
 
     def audio(self, url='', *args, **kwargs):
         if sound.URLPlayer.player.is_playing():

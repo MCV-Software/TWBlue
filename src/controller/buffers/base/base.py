@@ -125,6 +125,9 @@ class Buffer(object):
     def share_item(self):
         pass
 
+    def can_share(self):
+        pass
+
     def destroy_status(self):
         pass
 
