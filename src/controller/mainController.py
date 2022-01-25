@@ -134,6 +134,7 @@ class Controller(object):
         pub.subscribe(self.manage_blocked_user, "blocked-user")
         pub.subscribe(self.manage_unblocked_user, "unblocked-user")
         pub.subscribe(self.create_buffer, "createBuffer")
+        pub.subscribe(self.toggle_share_settings, "toggleShare")
         if system == "Windows":
             pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
             widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -1656,6 +1657,10 @@ class Controller(object):
             else: sound_to_play = None
             if sound_to_play != None and buff not in buffer.session.settings["other_buffers"]["muted_buffers"]:
                 self.notify(buffer.session, sound_to_play)
+
+    def toggle_share_settings(self, shareable=True):
+        self.view.retweet.Enable(shareable)
+
 
     def check_streams(self):
         if self.started == False:
