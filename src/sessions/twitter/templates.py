@@ -54,6 +54,11 @@ def process_image_descriptions(entities):
         idescriptions += _("Image description: {}.").format(image)
     return idescriptions
 
+def remove_unneeded_variables(template, variables):
+    for variable in variables:
+        template = re.sub("\$"+variable, "", template)
+    return template
+
 def render_tweet(tweet, template, session, relative_times=False, offset_seconds=0):
     """ Renders any given Tweet according to the passed template.
     Available data for tweets will be stored in the following variables:
@@ -65,6 +70,7 @@ def render_tweet(tweet, template, session, relative_times=False, offset_seconds=
     $text: Tweet text.
     $image_descriptions: Information regarding image descriptions added by twitter users.
     """
+    global tweet_variables
     available_data = dict()
     created_at = process_date(tweet.created_at, relative_times, offset_seconds)
     available_data.update(date=created_at)
@@ -93,7 +99,7 @@ def render_tweet(tweet, template, session, relative_times=False, offset_seconds=
     if image_descriptions != "":
         available_data.update(image_descriptions=image_descriptions)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = re.sub(r"\$\w+", "", result)
+    result = remove_unneeded_variables(result, tweet_variables)
     return result
 
 def render_dm(dm, template, session, relative_times=False, offset_seconds=0):
@@ -106,6 +112,7 @@ def render_dm(dm, template, session, relative_times=False, offset_seconds=0):
     $recipient_screen_name: User screen name for user receiving the dm, this is the same name used to reference the user in Twitter.
     $text: Text of the direct message.
     """
+    global dm_variables
     available_data = dict()
     available_data.update(text=utils.expand_urls(dm.message_create["message_data"]["text"], dm.message_create["message_data"]["entities"]))
     # Let's remove the last 3 digits in the timestamp string.
@@ -120,7 +127,7 @@ def render_dm(dm, template, session, relative_times=False, offset_seconds=0):
     recipient = session.get_user(dm.message_create["target"]["recipient_id"])
     available_data.update(sender_display_name=sender.name, sender_screen_name=sender.screen_name, recipient_display_name=recipient.name, recipient_screen_name=recipient.screen_name)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = re.sub(r"\$\w+", "", result)
+    result = remove_unneeded_variables(result, dm_variables)
     return result
 
 # Sesion object is not used in this function but we keep compatibility across all rendering functions.
@@ -138,6 +145,7 @@ def render_person(user, template, session=None, relative_times=True, offset_seco
     $tweets: The number of Tweets (including retweets) issued by the user. This value might be inaccurate.
     $created_at: The date and time that the user account was created on Twitter.
     """
+    global person_variables
     available_data = dict(display_name=user.name, screen_name=user.screen_name, followers=user.followers_count, following=user.friends_count, likes=user.favourites_count, listed=user.listed_count, tweets=user.statuses_count)
     # Nullable values.
     nullables = ["location", "description"]
@@ -147,5 +155,5 @@ def render_person(user, template, session=None, relative_times=True, offset_seco
     created_at = process_date(user.created_at, relative_times=relative_times, offset_seconds=offset_seconds)
     available_data.update(created_at=created_at)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = re.sub(r"\$\w+", "", result)
+    result = remove_unneeded_variables(result, person_variables)
     return result
