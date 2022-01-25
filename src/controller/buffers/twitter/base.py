@@ -174,9 +174,9 @@ class BaseBuffer(base.Buffer):
             self.put_items_on_list(number_of_items)
             if hasattr(self, "finished_timeline") and self.finished_timeline == False:
                 if "-timeline" in self.name:
-                    self.username = val[0].user.screen_name
+                    self.username = self.session.get_user(self.kwargs.get("user_id")).screen_name
                 elif "-favorite" in self.name:
-                    self.username = self.session.api_call("get_user", **self.kwargs).screen_name
+                    self.username = self.session.get_user(self.kwargs.get("user_id")).screen_name
                 self.finished_timeline = True
             if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
                 self.session.sound.play(self.sound)
