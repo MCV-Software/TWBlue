@@ -45,6 +45,10 @@ def process_image_descriptions(entities):
     for media in entities["media"]:
         if media.get("ext_alt_text") != None:
             image_descriptions.append(media.get("ext_alt_text"))
+        # Tweets retrieved via the Streaming API have a description field in media photos with image description available.
+        elif media.get("description") != None:
+            image_descriptions.append(media.get("description"))
+
     idescriptions = ""
     for image in image_descriptions:
         idescriptions += _("Image description: {}.").format(image)
