@@ -367,6 +367,7 @@ class viewTweet(basicTweet):
         pass
 
     def clear_text(self, text):
+        text = utils.StripChars(text)
         urls = utils.find_urls_in_text(text)
         for i in urls:
             if "https://twitter.com/" in i:

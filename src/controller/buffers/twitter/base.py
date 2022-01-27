@@ -174,9 +174,9 @@ class BaseBuffer(base.Buffer):
             self.put_items_on_list(number_of_items)
             if hasattr(self, "finished_timeline") and self.finished_timeline == False:
                 if "-timeline" in self.name:
-                    self.username = val[0].user.screen_name
+                    self.username = self.session.get_user(self.kwargs.get("user_id")).screen_name
                 elif "-favorite" in self.name:
-                    self.username = self.session.api_call("get_user", **self.kwargs).screen_name
+                    self.username = self.session.get_user(self.kwargs.get("user_id")).screen_name
                 self.finished_timeline = True
             if number_of_items > 0 and self.name != "sent_tweets" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
                 self.session.sound.play(self.sound)
@@ -391,6 +391,12 @@ class BaseBuffer(base.Buffer):
         tweet = self.session.db[self.name][self.buffer.list.get_selected()]
         return tweet
 
+    def can_share(self):
+        tweet = self.get_right_tweet()
+        user = self.session.get_user(tweet.user)
+        is_protected = user.protected
+        return is_protected==False
+
     @_tweets_exist
     def reply(self, *args, **kwargs):
         tweet = self.get_right_tweet()
@@ -442,6 +448,8 @@ class BaseBuffer(base.Buffer):
 
     @_tweets_exist
     def share_item(self, *args, **kwargs):
+        if self.can_share() == False:
+            return output.speak(_("This action is not supported on protected accounts."))
         tweet = self.get_right_tweet()
         id = tweet.id
         if self.session.settings["general"]["retweet_mode"] == "ask":
@@ -483,6 +491,9 @@ class BaseBuffer(base.Buffer):
             self.session.sound.play("geo.ogg")
         if self.session.settings['sound']['indicate_img'] and utils.is_media(tweet):
             self.session.sound.play("image.ogg")
+        can_share = self.can_share()
+        pub.sendMessage("toggleShare", shareable=can_share)
+        self.buffer.retweet.Enable(can_share)
 
     def audio(self, url='', *args, **kwargs):
         if sound.URLPlayer.player.is_playing():

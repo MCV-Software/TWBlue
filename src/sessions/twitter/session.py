@@ -36,9 +36,9 @@ class Session(base.baseSession):
             return self.order_direct_messages(data)
         num = 0
         last_id = None
-        if (name in self.db) == False:
+        if self.db.get(name) == None:
             self.db[name] = []
-        if ("users" in self.db) == False:
+        if self.db.get("users") == None:
             self.db["users"] = {}
         objects = self.db[name]
         if ignore_older and len(self.db[name]) > 0:
@@ -264,13 +264,13 @@ class Session(base.baseSession):
         returns a list with all items retrieved."""
         results = []
         if self.db.get(name) == None or self.db.get(name) == []:
-            last_id = None
+            since_id = None
         else:
             if self.settings["general"]["reverse_timelines"] == False:
-                last_id = self.db[name][0].id
+                since_id = self.db[name][-1].id
             else:
-                last_id = self.db[name][-1].id
-        data = getattr(self.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], since_id=last_id, *args, **kwargs)
+                since_id = self.db[name][0].id
+        data = getattr(self.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], since_id=since_id, *args, **kwargs)
         results.extend(data)
         results.reverse()
         return results
