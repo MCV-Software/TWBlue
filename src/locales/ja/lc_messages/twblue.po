@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-12-29 15:52+0900\n"
+"PO-Revision-Date: 2022-02-16 08:01+0900\n"
 "Last-Translator: 陸 <support@riku22.net>\n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -23,56 +23,56 @@ msgid "This action is not supported for this buffer"
 msgstr "この動作は、現在のバッファではサポートされていません"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:337 ../src\controller\settings.py:323
+#: ../src\controller\mainController.py:338 ../src\controller\settings.py:323
 msgid "Home"
 msgstr "ホーム"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:339 ../src\controller\settings.py:324
+#: ../src\controller\mainController.py:340 ../src\controller\settings.py:324
 msgid "Mentions"
 msgstr "メンション"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:341
+#: ../src\controller\mainController.py:342
 msgid "Direct messages"
 msgstr "ダイレクトメッセージ"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:343 ../src\controller\settings.py:326
+#: ../src\controller\mainController.py:344 ../src\controller\settings.py:326
 msgid "Sent direct messages"
 msgstr "送信済みのダイレクトメッセージ"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:345 ../src\controller\settings.py:327
+#: ../src\controller\mainController.py:346 ../src\controller\settings.py:327
 msgid "Sent tweets"
 msgstr "送信済みのツイート"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:347
-#: ../src\controller\mainController.py:1390 ../src\controller\settings.py:328
+#: ../src\controller\mainController.py:348
+#: ../src\controller\mainController.py:1391 ../src\controller\settings.py:328
 msgid "Likes"
 msgstr "いいね"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:349
-#: ../src\controller\mainController.py:1395 ../src\controller\settings.py:329
+#: ../src\controller\mainController.py:350
+#: ../src\controller\mainController.py:1396 ../src\controller\settings.py:329
 msgid "Followers"
 msgstr "フォロワー"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:353
-#: ../src\controller\mainController.py:1405 ../src\controller\settings.py:331
+#: ../src\controller\mainController.py:354
+#: ../src\controller\mainController.py:1406 ../src\controller\settings.py:331
 msgid "Blocked users"
 msgstr "ブロックしたユーザー"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:355
-#: ../src\controller\mainController.py:1410 ../src\controller\settings.py:332
+#: ../src\controller\mainController.py:356
+#: ../src\controller\mainController.py:1411 ../src\controller\settings.py:332
 msgid "Muted users"
 msgstr "ミューとしたユーザー"
 
 #: ../src\controller\buffers\twitter\base.py:70
-#: ../src\controller\mainController.py:1400 ../src\controller\settings.py:330
+#: ../src\controller\mainController.py:1401 ../src\controller\settings.py:330
 msgid "Friends"
 msgstr "フォロー"
 
@@ -131,46 +131,50 @@ msgstr "%s個のアイテムを取得しました"
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "このバッファは、タイムラインではないため、削除できません。"
 
-#: ../src\controller\buffers\twitter\base.py:404
+#: ../src\controller\buffers\twitter\base.py:410
 msgid "Reply to {arg0}"
 msgstr "「{arg0}」への返信:"
 
-#: ../src\controller\buffers\twitter\base.py:406
+#: ../src\controller\buffers\twitter\base.py:412
 #: ../src\keystrokeEditor\constants.py:11 ../src\wxUI\buffers\base.py:27
 msgid "Reply"
 msgstr "返信"
 
-#: ../src\controller\buffers\twitter\base.py:407
+#: ../src\controller\buffers\twitter\base.py:413
 msgid "Reply to %s"
 msgstr "「%s」への返信"
 
-#: ../src\controller\buffers\twitter\base.py:430
+#: ../src\controller\buffers\twitter\base.py:436
 #: ../src\controller\buffers\twitter\directMessages.py:124
 msgid "New direct message"
 msgstr "新しいダイレクトメッセージ"
 
-#: ../src\controller\buffers\twitter\base.py:430
+#: ../src\controller\buffers\twitter\base.py:436
 #: ../src\controller\messages.py:268
 msgid "Direct message to %s"
 msgstr "「%s」へのダイレクトメッセージ"
 
-#: ../src\controller\buffers\twitter\base.py:461
+#: ../src\controller\buffers\twitter\base.py:452
+msgid "This action is not supported on protected accounts."
+msgstr "この動作は、保護されたアカウントではサポートされていません。"
+
+#: ../src\controller\buffers\twitter\base.py:469
 msgid "Add your comment to the tweet"
 msgstr "ツイートにコメントを追加"
 
-#: ../src\controller\buffers\twitter\base.py:461
+#: ../src\controller\buffers\twitter\base.py:469
 msgid "Quote"
 msgstr "引用"
 
-#: ../src\controller\buffers\twitter\base.py:522
+#: ../src\controller\buffers\twitter\base.py:533
 msgid "Opening URL..."
 msgstr "URLを開いています…"
 
-#: ../src\controller\buffers\twitter\base.py:559
+#: ../src\controller\buffers\twitter\base.py:570
 msgid "User details"
 msgstr "ユーザーの詳細"
 
-#: ../src\controller\buffers\twitter\base.py:580
+#: ../src\controller\buffers\twitter\base.py:591
 msgid "Opening item in web browser..."
 msgstr "ブラウザでアイテムを開いています…"
 
@@ -209,85 +213,85 @@ msgstr "{0}人の新しいフォロワー。"
 msgid "This action is not supported in the buffer, yet."
 msgstr "この動作は、現在のバッファではサポートされていません。"
 
-#: ../src\controller\mainController.py:277
+#: ../src\controller\mainController.py:278
 msgid "Ready"
 msgstr "準備完了"
 
-#: ../src\controller\mainController.py:351
+#: ../src\controller\mainController.py:352
 msgid "Following"
 msgstr "フォロー中"
 
-#: ../src\controller\mainController.py:356
+#: ../src\controller\mainController.py:357
 msgid "Timelines"
 msgstr "タイムライン"
 
-#: ../src\controller\mainController.py:359
-#: ../src\controller\mainController.py:883
-#: ../src\controller\mainController.py:1582
+#: ../src\controller\mainController.py:360
+#: ../src\controller\mainController.py:884
+#: ../src\controller\mainController.py:1583
 msgid "Timeline for {}"
 msgstr "「{}」のタイムライン"
 
-#: ../src\controller\mainController.py:360
+#: ../src\controller\mainController.py:361
 msgid "Likes timelines"
 msgstr "ほかのユーザーのいいね一覧"
 
-#: ../src\controller\mainController.py:363
-#: ../src\controller\mainController.py:902
-#: ../src\controller\mainController.py:1584
+#: ../src\controller\mainController.py:364
+#: ../src\controller\mainController.py:903
+#: ../src\controller\mainController.py:1585
 msgid "Likes for {}"
 msgstr "{}のいいね一覧"
 
-#: ../src\controller\mainController.py:364
+#: ../src\controller\mainController.py:365
 msgid "Followers timelines"
 msgstr "フォロワー一覧"
 
-#: ../src\controller\mainController.py:367
-#: ../src\controller\mainController.py:921
-#: ../src\controller\mainController.py:1586
+#: ../src\controller\mainController.py:368
+#: ../src\controller\mainController.py:922
+#: ../src\controller\mainController.py:1587
 msgid "Followers for {}"
 msgstr "{}をフォローしているユーザー"
 
-#: ../src\controller\mainController.py:368
+#: ../src\controller\mainController.py:369
 msgid "Following timelines"
 msgstr "フォロー一覧"
 
-#: ../src\controller\mainController.py:371
-#: ../src\controller\mainController.py:940
-#: ../src\controller\mainController.py:1588
+#: ../src\controller\mainController.py:372
+#: ../src\controller\mainController.py:941
+#: ../src\controller\mainController.py:1589
 msgid "Friends for {}"
 msgstr "{}がフォローしているユーザー"
 
-#: ../src\controller\mainController.py:372 ../src\wxUI\dialogs\lists.py:13
+#: ../src\controller\mainController.py:373 ../src\wxUI\dialogs\lists.py:13
 msgid "Lists"
 msgstr "リスト"
 
-#: ../src\controller\mainController.py:375
-#: ../src\controller\mainController.py:1422
+#: ../src\controller\mainController.py:376
+#: ../src\controller\mainController.py:1423
 msgid "List for {}"
 msgstr "{}のリスト"
 
-#: ../src\controller\mainController.py:376
+#: ../src\controller\mainController.py:377
 msgid "Searches"
 msgstr "検索"
 
-#: ../src\controller\mainController.py:379
-#: ../src\controller\mainController.py:426
-#: ../src\controller\mainController.py:431
+#: ../src\controller\mainController.py:380
+#: ../src\controller\mainController.py:427
+#: ../src\controller\mainController.py:432
 msgid "Search for {}"
 msgstr "「{}」の検索結果"
 
-#: ../src\controller\mainController.py:381
-#: ../src\controller\mainController.py:982
-#: ../src\controller\mainController.py:1590
+#: ../src\controller\mainController.py:382
+#: ../src\controller\mainController.py:983
+#: ../src\controller\mainController.py:1591
 msgid "Trending topics for %s"
 msgstr "%s のトレンド"
 
-#: ../src\controller\mainController.py:448
-#: ../src\controller\mainController.py:464
-#: ../src\controller\mainController.py:1080
-#: ../src\controller\mainController.py:1099
-#: ../src\controller\mainController.py:1118
-#: ../src\controller\mainController.py:1137
+#: ../src\controller\mainController.py:449
+#: ../src\controller\mainController.py:465
+#: ../src\controller\mainController.py:1081
+#: ../src\controller\mainController.py:1100
+#: ../src\controller\mainController.py:1119
+#: ../src\controller\mainController.py:1138
 msgid ""
 "No session is currently in focus. Focus a session with the next or previous "
 "session shortcut."
@@ -295,151 +299,151 @@ msgstr ""
 "セッションが選択されていません。「次のセッション」または「前のセッション」の"
 "ショートカットを利用して、セッションを選択してください。"
 
-#: ../src\controller\mainController.py:452
+#: ../src\controller\mainController.py:453
 msgid "Empty buffer."
 msgstr "からのバッファ。"
 
-#: ../src\controller\mainController.py:459
+#: ../src\controller\mainController.py:460
 msgid "{0} not found."
 msgstr "{0}が見つかりませんでした。"
 
-#: ../src\controller\mainController.py:469
+#: ../src\controller\mainController.py:470
 msgid "Filters cannot be applied on this buffer"
 msgstr "このバッファにはフィルターを適応できません"
 
-#: ../src\controller\mainController.py:522
-#: ../src\controller\mainController.py:539
-#: ../src\controller\mainController.py:568
+#: ../src\controller\mainController.py:523
+#: ../src\controller\mainController.py:540
+#: ../src\controller\mainController.py:569
 msgid "Select the user"
 msgstr "ユーザーを選択"
 
-#: ../src\controller\mainController.py:753
+#: ../src\controller\mainController.py:754
 msgid "Add an user alias"
 msgstr "ユーザーエイリアスを追加"
 
-#: ../src\controller\mainController.py:761
+#: ../src\controller\mainController.py:762
 msgid "Alias has been set correctly for {}."
 msgstr "{}のエイリアスが正しく設定されています。"
 
-#: ../src\controller\mainController.py:829 ../src\controller\messages.py:327
+#: ../src\controller\mainController.py:830 ../src\controller\messages.py:327
 msgid "MMM D, YYYY. H:m"
 msgstr "YYYY年MMMMD日 H時m分"
 
-#: ../src\controller\mainController.py:957
+#: ../src\controller\mainController.py:958
 msgid "Conversation with {0}"
 msgstr "{0}との会話"
 
-#: ../src\controller\mainController.py:998
-#: ../src\controller\mainController.py:1015
+#: ../src\controller\mainController.py:999
+#: ../src\controller\mainController.py:1016
 msgid "There are no coordinates in this tweet"
 msgstr "このツイートに位置情報は存在しません"
 
-#: ../src\controller\mainController.py:1000
-#: ../src\controller\mainController.py:1019
+#: ../src\controller\mainController.py:1001
+#: ../src\controller\mainController.py:1020
 msgid "Error decoding coordinates. Try again later."
 msgstr "位置情報の取得に失敗しました。あとで再試行してください。"
 
-#: ../src\controller\mainController.py:1004
+#: ../src\controller\mainController.py:1005
 msgid "Unable to find address in OpenStreetMap."
 msgstr "OpenStreetMapでアドレスが見つかりません。"
 
-#: ../src\controller\mainController.py:1017
+#: ../src\controller\mainController.py:1018
 msgid "There are no results for the coordinates in this tweet"
 msgstr "このツイートの位置情報には、なにも含まれていません"
 
-#: ../src\controller\mainController.py:1128
-#: ../src\controller\mainController.py:1147
+#: ../src\controller\mainController.py:1129
+#: ../src\controller\mainController.py:1148
 msgid "%s, %s of %s"
 msgstr "%s %s/%s"
 
-#: ../src\controller\mainController.py:1130
-#: ../src\controller\mainController.py:1149
-#: ../src\controller\mainController.py:1174
-#: ../src\controller\mainController.py:1199
+#: ../src\controller\mainController.py:1131
+#: ../src\controller\mainController.py:1150
+#: ../src\controller\mainController.py:1175
+#: ../src\controller\mainController.py:1200
 msgid "%s. Empty"
 msgstr "%sは、からです"
 
-#: ../src\controller\mainController.py:1162
-#: ../src\controller\mainController.py:1166
-#: ../src\controller\mainController.py:1187
+#: ../src\controller\mainController.py:1163
+#: ../src\controller\mainController.py:1167
+#: ../src\controller\mainController.py:1188
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: このアカウントは、まだTwitterにログインしていません。"
 
-#: ../src\controller\mainController.py:1172
-#: ../src\controller\mainController.py:1197
+#: ../src\controller\mainController.py:1173
+#: ../src\controller\mainController.py:1198
 msgid "%s. %s, %s of %s"
 msgstr "セッション:%s %s %s/%s"
 
-#: ../src\controller\mainController.py:1191
+#: ../src\controller\mainController.py:1192
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: このアカウントは、まだTwitterにログインしていません。"
 
-#: ../src\controller\mainController.py:1416
+#: ../src\controller\mainController.py:1417
 msgid "This list is already opened"
 msgstr "既に開かれています"
 
-#: ../src\controller\mainController.py:1446
-#: ../src\controller\mainController.py:1462
+#: ../src\controller\mainController.py:1447
+#: ../src\controller\mainController.py:1463
 msgid ""
 "An error happened while trying to connect to the server. Please try later."
 msgstr ""
 "サーバーへの接続中に、予期しないエラーが発生しました。あとで再試行してくださ"
 "い。"
 
-#: ../src\controller\mainController.py:1498
+#: ../src\controller\mainController.py:1499
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "自動読み上げ 有効"
 
-#: ../src\controller\mainController.py:1501
+#: ../src\controller\mainController.py:1502
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "自動読み上げ 無効"
 
-#: ../src\controller\mainController.py:1508
+#: ../src\controller\mainController.py:1509
 msgid "Session mute on"
 msgstr "このセッションのミュートを設定"
 
-#: ../src\controller\mainController.py:1511
+#: ../src\controller\mainController.py:1512
 msgid "Session mute off"
 msgstr "このセッションのミュートを解除"
 
-#: ../src\controller\mainController.py:1519
+#: ../src\controller\mainController.py:1520
 msgid "Buffer mute on"
 msgstr "このバッファのミュートを設定"
 
-#: ../src\controller\mainController.py:1522
+#: ../src\controller\mainController.py:1523
 msgid "Buffer mute off"
 msgstr "このバッファのミュートを解除"
 
-#: ../src\controller\mainController.py:1542
+#: ../src\controller\mainController.py:1543
 msgid "Copied"
 msgstr "コピーしました"
 
-#: ../src\controller\mainController.py:1572
+#: ../src\controller\mainController.py:1573
 msgid "Unable to update this buffer."
 msgstr "このバッファを更新できません。"
 
-#: ../src\controller\mainController.py:1575
+#: ../src\controller\mainController.py:1576
 msgid "Updating buffer..."
 msgstr "バッファを更新中…"
 
-#: ../src\controller\mainController.py:1578
+#: ../src\controller\mainController.py:1579
 msgid "{0} items retrieved"
 msgstr "{0}個のアイテムを取得しました"
 
-#: ../src\controller\mainController.py:1597
-#: ../src\controller\mainController.py:1617
+#: ../src\controller\mainController.py:1598
+#: ../src\controller\mainController.py:1618
 msgid "Invalid buffer"
 msgstr "無効なバッファ"
 
-#: ../src\controller\mainController.py:1608
+#: ../src\controller\mainController.py:1609
 msgid "Picture {0}"
 msgstr "画像{0}"
 
-#: ../src\controller\mainController.py:1609
+#: ../src\controller\mainController.py:1610
 msgid "Select the picture"
 msgstr "画像を選択"
 
-#: ../src\controller\mainController.py:1628
+#: ../src\controller\mainController.py:1629
 msgid "Unable to extract text"
 msgstr "テキストを抽出できません"
 
@@ -455,7 +459,7 @@ msgstr "%s - %s/%d"
 msgid "View item"
 msgstr "アイテムを見る"
 
-#: ../src\controller\messages.py:379
+#: ../src\controller\messages.py:380
 msgid "Link copied to clipboard."
 msgstr "リンクをクリップボードへコピーしました。"
 
@@ -1957,27 +1961,27 @@ msgstr ""
 "されます。このエラーが続く場合は、エラーログを {app} 開発者に送信してくださ"
 "い。"
 
-#: ../src\sessions\twitter\compose.py:38 ../src\sessions\twitter\compose.py:81
-#: ../src\sessions\twitter\compose.py:146
-#: ../src\sessions\twitter\compose.py:155
+#: ../src\sessions\twitter\compose.py:25 ../src\sessions\twitter\compose.py:68
+#: ../src\sessions\twitter\compose.py:133
+#: ../src\sessions\twitter\compose.py:142
 #: ../src\sessions\twitter\templates.py:26
 msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "YYYY年MMMMD日(dddd) H時m分s秒"
 
-#: ../src\sessions\twitter\compose.py:89 ../src\sessions\twitter\compose.py:91
+#: ../src\sessions\twitter\compose.py:76 ../src\sessions\twitter\compose.py:78
 msgid "Dm to %s "
 msgstr "「%s」へのDM "
 
-#: ../src\sessions\twitter\compose.py:130
+#: ../src\sessions\twitter\compose.py:117
 msgid "{0}. Quoted  tweet from @{1}: {2}"
 msgstr "{0} 引用:@{1}:{2}"
 
-#: ../src\sessions\twitter\compose.py:157
-#: ../src\sessions\twitter\compose.py:159
+#: ../src\sessions\twitter\compose.py:144
+#: ../src\sessions\twitter\compose.py:146
 msgid "Unavailable"
 msgstr "無効"
 
-#: ../src\sessions\twitter\compose.py:160
+#: ../src\sessions\twitter\compose.py:147
 msgid ""
 "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
 "Twitter %s"
@@ -1985,15 +1989,15 @@ msgstr ""
 "%s: @%s フォロワー: %s フォロー: %s ツイート数: %s 最後のツイート: %s ツイッ"
 "ターへの参加: %s"
 
-#: ../src\sessions\twitter\compose.py:164
+#: ../src\sessions\twitter\compose.py:151
 msgid "No description available"
 msgstr "説明はありません"
 
-#: ../src\sessions\twitter\compose.py:168
+#: ../src\sessions\twitter\compose.py:155
 msgid "private"
 msgstr "プライベート"
 
-#: ../src\sessions\twitter\compose.py:169
+#: ../src\sessions\twitter\compose.py:156
 msgid "public"
 msgstr "公式"
 
@@ -2007,8 +2011,8 @@ msgstr "%s が失敗しました。理由: %s"
 msgid "%s succeeded."
 msgstr "%sに成功しました。"
 
-#: ../src\sessions\twitter\session.py:450
-#: ../src\sessions\twitter\session.py:528
+#: ../src\sessions\twitter\session.py:451
+#: ../src\sessions\twitter\session.py:529
 msgid "Deleted account"
 msgstr "削除されたアカウント"
 
@@ -2032,23 +2036,23 @@ msgstr ""
 "$display_name (@$screen_name)。$followers フォロワー、$following フォロー"
 "中、$tweets 件のツイート。Twitter への参加 $created_at。"
 
-#: ../src\sessions\twitter\templates.py:50
+#: ../src\sessions\twitter\templates.py:54
 msgid "Image description: {}."
 msgstr "画像の説明: {}。"
 
-#: ../src\sessions\twitter\utils.py:229
+#: ../src\sessions\twitter\utils.py:243
 msgid "Sorry, you are not authorised to see this status."
 msgstr "申し訳ありませんが、あなたはこのステータスを表示する権限がありません。"
 
-#: ../src\sessions\twitter\utils.py:231
+#: ../src\sessions\twitter\utils.py:245
 msgid "No status found with that ID"
 msgstr "そのIDのステータスが見つかりませんでした"
 
-#: ../src\sessions\twitter\utils.py:233
+#: ../src\sessions\twitter\utils.py:247
 msgid "Error {0}"
 msgstr "エラー {0}"
 
-#: ../src\sessions\twitter\utils.py:260
+#: ../src\sessions\twitter\utils.py:274
 msgid "{user_1}, {user_2} and {all_users} more: {text}"
 msgstr "{user_1}、{user_2}、ほか{all_users}ユーザー: {text}"
 
