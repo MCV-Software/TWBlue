@@ -22,6 +22,7 @@ class Session(base.baseSession):
         super(Session, self).__init__(*args, **kwargs)
         self.config_spec = "mastodon.defaults"
         self.supported_languages = []
+        self.type = "mastodon"
 
     def login(self, verify_credentials=True):
         if self.settings["mastodon"]["access_token"] != None and self.settings["mastodon"]["instance"] != None:
