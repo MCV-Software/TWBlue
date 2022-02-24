@@ -10,9 +10,9 @@ class autocompletionUsers(object):
         self.db = storage.storage(session_id)
 
     def show_menu(self, mode="tweet"):
-        position = self.window.get_position()
+        position = self.window.text.GetInsertionPoint()
         if mode == "tweet":
-            text = self.window.get_text()
+            text = self.window.text.GetValue()
             text = text[:position]
             try:
                 pattern = text.split()[-1]
@@ -24,14 +24,14 @@ class autocompletionUsers(object):
                 users = self.db.get_users(pattern[1:])
                 if len(users) > 0:
                     menu.append_options(users)
-                    self.window.popup_menu(menu)
+                    self.window.PopupMenu(menu, self.window.text.GetPosition())
                     menu.destroy()
                 else:
                     output.speak(_(u"There are no results in your users database"))
             else:
                 output.speak(_(u"Autocompletion only works for users."))
         elif mode == "dm":
-            text = self.window.get_user()
+            text = self.window.cb.GetValue()
             try:
                 pattern = text.split()[-1]
             except IndexError:
@@ -41,7 +41,7 @@ class autocompletionUsers(object):
             users = self.db.get_users(pattern)
             if len(users) > 0:
                 menu.append_options(users)
-                self.window.popup_menu(menu)
+                self.window.PopupMenu(menu, self.window.text.GetPosition())
                 menu.destroy()
             else:
                 output.speak(_(u"There are no results in your users database"))

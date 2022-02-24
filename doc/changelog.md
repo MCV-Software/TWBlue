@@ -1,12 +1,34 @@
 TWBlue Changelog
-
 ## changes in this version
 
+* We have added Experimental support for templates in the invisible interface. The GUI will remain unchanged for now:
+    * Each object (tweet, received direct message, sent direct message and people) has its own template in the settings. You can edit those templates from the account settings dialog, in the new "templates" tab.
+    * Every template is composed of the group of variables you want to display for each object. Each variable will start with a dollar sign ($) and cannot contain spaces or special characters. Templates can include arbitrary text that will not be processed. When editing the example templates, you can get an idea of the variables that are available for each object by using the template editing dialog. When you press enter on a variable from the list of available variables, it will be added to the template automatically. When you try to save a template, TWBlue will warn you if the template is incorrectly formatted or if it includes variables that do not exist in the information provided by objects. It is also possible to return to default values from the same dialog when editing a template.
+    * TWBlue can display image descriptions within Tweet templates. For that, you can use the $image_description variable in your template.
+* We have restored conversation and threads support powered by Twitter API V2 thanks to a set of improvements we have done in the application, as well as more generous limits to Tweet monthly cap by Twitter.
+* In the Windows 11 Keymap, the default shortcut to open the keystrokes editor is now CTRL+Alt+Windows+K to avoid conflicts with the new global mute microphone shortcut.
+* TWBlue show display properly HTML entities in tweet's text.
+* TWBlue should no longer load old tweets in buffers.
+* Fixed issue when uploading attachments (images, videos or gif files) while sending tweets or replies.
+* Fixed an error that was making TWBlue to ask for a restart after saving account settings, even if such restart was not required. ([#413,](https://github.com/manuelcortez/TWBlue/issues/413))
+
+## Changes in version 2021.11.12
+
+* Now it is possible to create a tweet from a trending topics buffer again.
+* TWBlue now includes a completely new set of dialogs to handle tweeting, replying and sending direct messages that takes advantage of more Twitter features.
+    * It is possible to add videos in tweets and direct messages by using the new "add" button, located in every dialog where  media can be added. Twitter suggests to add videos from 5 seconds up to 2 minutes lenght, in mp4 format (video Codec H.264 and audio codec AAC). Currently, TWBlue does not check if the uploaded video complies with Twitter media requirements. You can add only a video in a tweet or direct message. No other kind of media can be added after a video is in a tweet. If the video was unable to be uploaded successfully, the tweet or direct message won't be created.
+    * Now you can add a poll to tweets. Polls can have up to 4 different options and allow voting up to 7 days after being created. Take into account, though, that currently TWBlue does not support reading polls in tweets.
+    * TWBlue now support threads while creating a new tweet. There is a new button, called add tweet which will add the current tweet to the thread and will allow you to write another tweet in the thread. Every tweet might include media (up to 4 photos, or one GIF image or a video) or up to one poll.
+    * Some functionality was removed from tweet dialogs within TWBlue. Particularly, URL shorteners and long tweets via Twishort. You still can read long tweets posted via Twishort, though.
+
+## Changes in version 2021.11.07
+
 * TWBlue should retrieve tweets from threads and conversations in a more reliable way. Tweets in the same thread (made by the same author) will be sorted correctly, although replies to the thread (made by different people) may not be ordered in the same way they are displayed in Twitter apps. ([#417](https://github.com/manuelcortez/TWBlue/issues/417))
-* fixed a bug when clearing the direct messages buffer. ([#418](https://github.com/manuelcortez/TWBlue/issues/418))
-* fixed an issue that was making TWBlue to show incorrectly titles for trending topic buffers upon startup. ([#421](https://github.com/manuelcortez/TWBlue/issues/421))
 * When creating a filter, TWBlue will show an error if user has not provided a name for the filter. Before, unnamed filters were a cause of config breaks in the application.
 * It is again possible to read the changelog for TWBlue from the help menu in the menu bar.
+* fixed a bug when clearing the direct messages buffer. ([#418](https://github.com/manuelcortez/TWBlue/issues/418))
+* fixed an issue that was making TWBlue to show incorrectly titles for trending topic buffers upon startup. ([#421](https://github.com/manuelcortez/TWBlue/issues/421))
+* fixed an issue that was making users of the graphical user interface to delete a buffer if a trends buffer was opened in the same session.
 * Updated Spanish, Japanese and french translations.
 
 ## Changes in Version 2021.10.30

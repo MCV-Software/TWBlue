@@ -16,7 +16,7 @@ import logging
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
-from sessions.twitter import compose
+from sessions.twitter import compose, templates
 from . import base
 
 log = logging.getLogger("controller.buffers.twitter.peopleBuffer")
@@ -84,7 +84,10 @@ class PeopleBuffer(base.BaseBuffer):
         pass
 
     def get_message(self):
-        return " ".join(self.compose_function(self.get_tweet(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session))
+        template = self.session.settings["templates"]["person"]
+        user = self.get_right_tweet()
+        t = templates.render_person(user, template, self.session, relative_times=True, offset_seconds=self.session.db["utc_offset"])
+        return t
 
     def delete_item(self): pass
 
@@ -92,18 +95,12 @@ class PeopleBuffer(base.BaseBuffer):
     def reply(self, *args, **kwargs):
         tweet = self.get_right_tweet()
         screen_name = tweet.screen_name
-        message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
-        if message.message.get_response() == widgetUtils.OK:
-            if config.app["app-settings"]["remember_mention_and_longtweet"]:
-                config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
-                config.app.write()
-            if message.image == None:
-                item = self.session.api_call(call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text(), tweet_mode="extended")
-                if item != None:
-                    pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
-            else:
-                call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
-        if hasattr(message.message, "destroy"): message.message.destroy()
+        message = messages.tweet(session=self.session, title=_("Mention"), caption=_("Mention to %s") % (screen_name,), text="@%s " % (screen_name,), thread_mode=False)
+        if message.message.ShowModal() == widgetUtils.OK:
+            tweet_data = message.get_tweet_data()
+            call_threaded(self.session.send_tweet, tweet_data)
+        if hasattr(message.message, "destroy"):
+            message.message.destroy()
 
     def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
         # starts stream every 3 minutes.

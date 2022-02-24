@@ -28,11 +28,3 @@ file2 = open("..\\scripts\\twblue.nsi", "w", encoding="utf-8")
 file2.write(contents)
 file2.close()
 print("done")
-print("Writing keys to module...")
-file3 = open("appkeys.py", "w")
-keys = """twitter_api_key = "{}"
-twitter_api_secret = "{}"
-""".format(os.environ.get("TWITTER_API_KEY"), os.environ.get("TWITTER_API_SECRET"))
-file3.write(keys)
-file3.close()
-print("Wrote set of keys for consumer of {}".format(os.environ.get("TWITTER_API_KEY")))

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import webbrowser
+import logging
 import sound_lib
 import paths
 import widgetUtils
@@ -8,17 +9,18 @@ import config
 import languageHandler
 import output
 import application
+import config_utils
+import keys
+from collections import OrderedDict
+from pubsub import pub
+from mysc import autostart as autostart_windows
 from wxUI.dialogs import configuration
 from wxUI import commonMessageDialogs
 from extra.autocompletionUsers import settings
 from extra.ocr import OCRSpace
-from pubsub import pub
-import logging
-import config_utils
+from .editTemplateController import EditTemplate
+
 log = logging.getLogger("Settings")
-import keys
-from collections import OrderedDict
-from mysc import autostart as autostart_windows
 
 class globalSettingsController(object):
     def __init__(self):
@@ -90,10 +92,12 @@ class globalSettingsController(object):
             config.app["app-settings"]["language"] = self.codes[self.dialog.general.language.GetSelection()]
             languageHandler.setLanguage(config.app["app-settings"]["language"])
             self.needs_restart = True
+            log.debug("Triggered app restart due to interface language changes.")
         if self.kmnames[self.dialog.general.km.GetSelection()] != config.app["app-settings"]["load_keymap"]:
             config.app["app-settings"]["load_keymap"] =self.kmnames[self.dialog.general.km.GetSelection()]
             kmFile = open(os.path.join(paths.config_path(), "keymap.keymap"), "w")
             kmFile.close()
+            log.debug("Triggered app restart due to a keymap change.")
             self.needs_restart = True
         if config.app["app-settings"]["autostart"] != self.dialog.get_value("general", "autostart") and paths.mode == "installed":
             config.app["app-settings"]["autostart"] = self.dialog.get_value("general", "autostart")
@@ -104,9 +108,11 @@ class globalSettingsController(object):
         if config.app["app-settings"]["no_streaming"] != self.dialog.get_value("general", "no_streaming"):
             config.app["app-settings"]["no_streaming"] = self.dialog.get_value("general", "no_streaming")
             self.needs_restart = True
+            log.debug("Triggered app restart due to change in streaming availability.")
         if config.app["app-settings"]["update_period"] != self.dialog.get_value("general", "update_period"):
             config.app["app-settings"]["update_period"] = self.dialog.get_value("general", "update_period")
             self.needs_restart = True
+            log.debug("Triggered app restart due to changes in update period.")
         config.app["app-settings"]["voice_enabled"] = self.dialog.get_value("general", "disable_sapi5")
         config.app["app-settings"]["hide_gui"] = self.dialog.get_value("general", "hide_gui")
         config.app["app-settings"]["ask_at_exit"] = self.dialog.get_value("general", "ask_at_exit")
@@ -118,6 +124,7 @@ class globalSettingsController(object):
         if config.app["proxy"]["type"]!=self.dialog.get_value("proxy", "type") or config.app["proxy"]["server"] != self.dialog.get_value("proxy", "server") or config.app["proxy"]["port"] != self.dialog.get_value("proxy", "port") or config.app["proxy"]["user"] != self.dialog.get_value("proxy", "user") or config.app["proxy"]["password"] != self.dialog.get_value("proxy", "password"):
             if self.is_started == True:
                 self.needs_restart = True
+                log.debug("Triggered app restart due to change in proxy settings.")
             config.app["proxy"]["type"] = self.dialog.proxy.type.Selection
             config.app["proxy"]["server"] = self.dialog.get_value("proxy", "server")
             config.app["proxy"]["port"] = self.dialog.get_value("proxy", "port")
@@ -152,6 +159,15 @@ class accountSettingsController(globalSettingsController):
         self.dialog.create_reporting()
         self.dialog.set_value("reporting", "speech_reporting", self.config["reporting"]["speech_reporting"])
         self.dialog.set_value("reporting", "braille_reporting", self.config["reporting"]["braille_reporting"])
+        tweet_template = self.config["templates"]["tweet"]
+        dm_template = self.config["templates"]["dm"]
+        sent_dm_template = self.config["templates"]["dm_sent"]
+        person_template = self.config["templates"]["person"]
+        self.dialog.create_templates(tweet_template=tweet_template, dm_template=dm_template, sent_dm_template=sent_dm_template, person_template=person_template)
+        widgetUtils.connect_event(self.dialog.templates.tweet, widgetUtils.BUTTON_PRESSED, self.edit_tweet_template)
+        widgetUtils.connect_event(self.dialog.templates.dm, widgetUtils.BUTTON_PRESSED, self.edit_dm_template)
+        widgetUtils.connect_event(self.dialog.templates.sent_dm, widgetUtils.BUTTON_PRESSED, self.edit_sent_dm_template)
+        widgetUtils.connect_event(self.dialog.templates.person, widgetUtils.BUTTON_PRESSED, self.edit_person_template)
         self.dialog.create_other_buffers()
         buffer_values = self.get_buffers_list()
         self.dialog.buffers.insert_buffers(buffer_values)
@@ -159,7 +175,6 @@ class accountSettingsController(globalSettingsController):
         widgetUtils.connect_event(self.dialog.buffers.toggle_state, widgetUtils.BUTTON_PRESSED, self.toggle_state)
         widgetUtils.connect_event(self.dialog.buffers.up, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.move_up)
         widgetUtils.connect_event(self.dialog.buffers.down, widgetUtils.BUTTON_PRESSED, self.dialog.buffers.move_down)
-
 
         self.dialog.create_ignored_clients(self.config["twitter"]["ignored_clients"])
         widgetUtils.connect_event(self.dialog.ignored_clients.add, widgetUtils.BUTTON_PRESSED, self.add_ignored_client)
@@ -185,15 +200,53 @@ class accountSettingsController(globalSettingsController):
         self.dialog.set_title(_(u"Account settings for %s") % (self.user,))
         self.response = self.dialog.get_response()
 
+    def edit_tweet_template(self, *args, **kwargs):
+        template = self.config["templates"]["tweet"]
+        control = EditTemplate(template=template, type="tweet")
+        result = control.run_dialog()
+        if result != "": # Template has been saved.
+            self.config["templates"]["tweet"] = result
+            self.config.write()
+            self.dialog.templates.tweet.SetLabel(_("Edit template for tweets. Current template: {}").format(result))
+
+    def edit_dm_template(self, *args, **kwargs):
+        template = self.config["templates"]["dm"]
+        control = EditTemplate(template=template, type="dm")
+        result = control.run_dialog()
+        if result != "": # Template has been saved.
+            self.config["templates"]["dm"] = result
+            self.config.write()
+            self.dialog.templates.dm.SetLabel(_("Edit template for direct messages. Current template: {}").format(result))
+
+    def edit_sent_dm_template(self, *args, **kwargs):
+        template = self.config["templates"]["dm_sent"]
+        control = EditTemplate(template=template, type="dm")
+        result = control.run_dialog()
+        if result != "": # Template has been saved.
+            self.config["templates"]["dm_sent"] = result
+            self.config.write()
+            self.dialog.templates.sent_dm.SetLabel(_("Edit template for sent direct messages. Current template: {}").format(result))
+
+    def edit_person_template(self, *args, **kwargs):
+        template = self.settings["templates"]["person"]
+        control = EditTemplate(template=template, type="person")
+        result = control.run_dialog()
+        if result != "": # Template has been saved.
+            self.config["templates"]["person"] = result
+            self.config.write()
+            self.dialog.templates.person.SetLabel(_("Edit template for persons. Current template: {}").format(result))
+
     def save_configuration(self):
         if self.config["general"]["relative_times"] != self.dialog.get_value("general", "relative_time"):
             self.needs_restart = True
+            log.debug("Triggered app restart due to change in relative times.")
             self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
         self.config["general"]["show_screen_names"] = self.dialog.get_value("general", "show_screen_names")
         self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
         if self.config["general"]["load_cache_in_memory"] != self.dialog.get_value("general", "load_cache_in_memory"):
             self.config["general"]["load_cache_in_memory"] = self.dialog.get_value("general", "load_cache_in_memory")
             self.needs_restart = True
+            log.debug("Triggered app restart due to change in database strategy management.")
         if self.config["general"]["persist_size"] != self.dialog.get_value("general", "persist_size"):
             if self.dialog.get_value("general", "persist_size") == '':
                 self.config["general"]["persist_size"] =-1
@@ -206,6 +259,7 @@ class accountSettingsController(globalSettingsController):
 
         if self.config["general"]["reverse_timelines"] != self.dialog.get_value("general", "reverse_timelines"):
             self.needs_restart = True
+            log.debug("Triggered app restart due to change in timeline order.")
             self.config["general"]["reverse_timelines"] = self.dialog.get_value("general", "reverse_timelines")
         rt = self.dialog.get_value("general", "retweet_mode")
         if rt == _(u"Ask"):
@@ -217,28 +271,11 @@ class accountSettingsController(globalSettingsController):
         buffers_list = self.dialog.buffers.get_list()
         if buffers_list != self.config["general"]["buffer_order"]:
             self.needs_restart = True
+            log.debug("Triggered app restart due to change in buffer ordering.")
             self.config["general"]["buffer_order"] = buffers_list
         self.config["reporting"]["speech_reporting"] = self.dialog.get_value("reporting", "speech_reporting")
         self.config["reporting"]["braille_reporting"] = self.dialog.get_value("reporting", "braille_reporting")
         self.config["mysc"]["ocr_language"] = OCRSpace.OcrLangs[self.dialog.extras.ocr_lang.GetSelection()]
-#  if self.config["other_buffers"]["show_followers"] != self.dialog.get_value("buffers", "followers"):
-#   self.config["other_buffers"]["show_followers"] = self.dialog.get_value("buffers", "followers")
-#   pub.sendMessage("create-new-buffer", buffer="followers", account=self.user, create=self.config["other_buffers"]["show_followers"])
-#  if self.config["other_buffers"]["show_friends"] != self.dialog.get_value("buffers", "friends"):
-#   self.config["other_buffers"]["show_friends"] = self.dialog.get_value("buffers", "friends")
-#   pub.sendMessage("create-new-buffer", buffer="friends", account=self.user, create=self.config["other_buffers"]["show_friends"])
-#  if self.config["other_buffers"]["show_favourites"] != self.dialog.get_value("buffers", "favs"):
-#   self.config["other_buffers"]["show_favourites"] = self.dialog.get_value("buffers", "favs")
-#   pub.sendMessage("create-new-buffer", buffer="favourites", account=self.user, create=self.config["other_buffers"]["show_favourites"])
-#  if self.config["other_buffers"]["show_blocks"] != self.dialog.get_value("buffers", "blocks"):
-#   self.config["other_buffers"]["show_blocks"] = self.dialog.get_value("buffers", "blocks")
-#   pub.sendMessage("create-new-buffer", buffer="blocked", account=self.user, create=self.config["other_buffers"]["show_blocks"])
-#  if self.config["other_buffers"]["show_muted_users"] != self.dialog.get_value("buffers", "mutes"):
-#   self.config["other_buffers"]["show_muted_users"] = self.dialog.get_value("buffers", "mutes")
-#   pub.sendMessage("create-new-buffer", buffer="muted", account=self.user, create=self.config["other_buffers"]["show_muted_users"])
-#  if self.config["other_buffers"]["show_events"] != self.dialog.get_value("buffers", "events"):
-#   self.config["other_buffers"]["show_events"] = self.dialog.get_value("buffers", "events")
-#   pub.sendMessage("create-new-buffer", buffer="events", account=self.user, create=self.config["other_buffers"]["show_events"])
         if self.config["sound"]["input_device"] != self.dialog.sound.get("input"):
             self.config["sound"]["input_device"] = self.dialog.sound.get("input")
             try:

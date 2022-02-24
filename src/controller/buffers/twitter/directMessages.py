@@ -8,7 +8,7 @@ import config
 import languageHandler
 import logging
 from controller import messages
-from sessions.twitter import compose, utils
+from sessions.twitter import compose, utils, templates
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
@@ -90,18 +90,12 @@ class DirectMessagesBuffer(base.BaseBuffer):
     def reply(self, *args, **kwargs):
         tweet = self.get_right_tweet()
         screen_name = self.session.get_user(tweet.message_create["sender_id"]).screen_name
-        message = messages.reply(self.session, _(u"Mention"), _(u"Mention to %s") % (screen_name,), "@%s " % (screen_name,), [screen_name,])
-        if message.message.get_response() == widgetUtils.OK:
-            if config.app["app-settings"]["remember_mention_and_longtweet"]:
-                config.app["app-settings"]["longtweet"] = message.message.long_tweet.GetValue()
-                config.app.write()
-            if message.image == None:
-                item = self.session.api_call(call_name="update_status", _sound="reply_send.ogg", status=message.message.get_text(), tweet_mode="extended")
-                if item != None:
-                    pub.sendMessage("sent-tweet", data=item, user=self.session.db["user_name"])
-            else:
-                call_threaded(self.session.api_call, call_name="update_status_with_media", _sound="reply_send.ogg", status=message.message.get_text(), media=message.file)
-        if hasattr(message.message, "destroy"): message.message.destroy()
+        message = messages.reply(session=self.session, title=_("Mention"), caption=_("Mention to %s") % (screen_name,), text="@%s " % (screen_name,), thread_mode=False, users=[screen_name,])
+        if message.message.ShowModal() == widgetUtils.OK:
+            tweet_data = message.get_tweet_data()
+            call_threaded(self.session.send_tweet, tweet_data)
+        if hasattr(message.message, "destroy"):
+            message.message.destroy()
 
     def onFocus(self, *args, **kwargs):
         tweet = self.get_tweet()
@@ -135,6 +129,12 @@ class DirectMessagesBuffer(base.BaseBuffer):
     def open_in_browser(self, *args, **kwargs):
         output.speak(_(u"This action is not supported in the buffer yet."))
 
+    def get_message(self):
+        template = self.session.settings["templates"]["dm"]
+        dm = self.get_right_tweet()
+        t = templates.render_dm(dm, template, self.session, relative_times=self.session.settings["general"]["relative_times"], offset_seconds=self.session.db["utc_offset"])
+        return t
+
 class SentDirectMessagesBuffer(DirectMessagesBuffer):
 
     def __init__(self, *args, **kwargs):
@@ -157,3 +157,9 @@ class SentDirectMessagesBuffer(DirectMessagesBuffer):
             for i in items:
                 tweet = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], self.session)
                 self.buffer.list.insert_item(False, *tweet)
+
+    def get_message(self):
+        template = self.session.settings["templates"]["dm_sent"]
+        dm = self.get_right_tweet()
+        t = templates.render_dm(dm, template, self.session, relative_times=self.session.settings["general"]["relative_times"], offset_seconds=self.session.db["utc_offset"])
+        return t

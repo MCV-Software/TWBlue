@@ -36,9 +36,9 @@ class Session(base.baseSession):
             return self.order_direct_messages(data)
         num = 0
         last_id = None
-        if (name in self.db) == False:
+        if self.db.get(name) == None:
             self.db[name] = []
-        if ("users" in self.db) == False:
+        if self.db.get("users") == None:
             self.db["users"] = {}
         objects = self.db[name]
         if ignore_older and len(self.db[name]) > 0:
@@ -136,7 +136,7 @@ class Session(base.baseSession):
         if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
             try:
                 log.debug("Logging in to twitter...")
-                self.auth = tweepy.OAuthHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
+                self.auth = tweepy.OAuth1UserHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
                 self.auth.set_access_token(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
                 self.twitter = tweepy.API(self.auth)
                 self.twitter_v2 = tweepy.Client(consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"])
@@ -158,7 +158,7 @@ class Session(base.baseSession):
         if self.logged == True:
             raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
         else:
-            self.auth = tweepy.OAuthHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
+            self.auth = tweepy.OAuth1UserHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
             redirect_url = self.auth.get_authorization_url()
             webbrowser.open_new_tab(redirect_url)
             self.authorisation_dialog = authorisationDialog()
@@ -204,7 +204,7 @@ class Session(base.baseSession):
             except TweepyException as e:
                 output.speak(str(e))
                 val = None
-                if type(e) != NotFound and type(e) != Forvidden:
+                if type(e) != NotFound and type(e) != Forbidden:
                     tries = tries+1
                     time.sleep(5)
                 elif report_failure:
@@ -213,6 +213,30 @@ class Session(base.baseSession):
 #   except:
 #    tries = tries + 1
 #    time.sleep(5)
+        if report_success:
+            output.speak(_("%s succeeded.") % action)
+        if _sound != None: self.sound.play(_sound)
+        return val
+
+    def api_call_v2(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
+        finished = False
+        tries = 0
+        if preexec_message:
+            output.speak(preexec_message, True)
+        while finished==False and tries < 25:
+            try:
+                val = getattr(self.twitter_v2, call_name)(*args, **kwargs)
+                finished = True
+            except TweepyException as e:
+                log.exception("Error sending the tweet.")
+                output.speak(str(e))
+                val = None
+                if type(e) != NotFound and type(e) != Forbidden:
+                    tries = tries+1
+                    time.sleep(5)
+                elif report_failure:
+                    output.speak(_("%s failed.  Reason: %s") % (action, str(e)))
+                finished = True
         if report_success:
             output.speak(_("%s succeeded.") % action)
         if _sound != None: self.sound.play(_sound)
@@ -232,21 +256,22 @@ class Session(base.baseSession):
         tl = self.call_paged("favorites", *args, **kwargs)
         return self.order_buffer(name, tl)
 
-    def call_paged(self, update_function, *args, **kwargs):
+    def call_paged(self, update_function, name, *args, **kwargs):
         """ Makes a call to the Twitter API methods several times. Useful for get methods.
         this function is needed for retrieving more than 200 items.
         update_function str: The function to call. This function must be child of self.twitter
         args and kwargs are passed to update_function.
         returns a list with all items retrieved."""
-        max = 0
         results = []
-        data = getattr(self.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
+        if self.db.get(name) == None or self.db.get(name) == []:
+            since_id = None
+        else:
+            if self.settings["general"]["reverse_timelines"] == False:
+                since_id = self.db[name][-1].id
+            else:
+                since_id = self.db[name][0].id
+        data = getattr(self.twitter, update_function)(count=self.settings["general"]["max_tweets_per_call"], since_id=since_id, *args, **kwargs)
         results.extend(data)
-        for i in range(0, max):
-            if i == 0: max_id = results[-1].id
-            else: max_id = results[0].id
-            data = getattr(self.twitter, update_function)(max_id=max_id, count=self.settings["general"]["max_tweets_per_call"], *args, **kwargs)
-            results.extend(data)
         results.reverse()
         return results
 
@@ -591,3 +616,54 @@ class Session(base.baseSession):
             return
         if user != self.db["user_name"]:
             log.debug("Connected streaming endpoint on account {}".format(user))
+
+    def send_tweet(self, *tweets):
+        """ Convenience function to send a thread. """
+        in_reply_to_status_id = None
+        for obj in tweets:
+            # When quoting a tweet, the tweet_data dict might contain a parameter called quote_tweet_id. Let's add it, or None, so quotes will be posted successfully.
+            if len(obj["attachments"]) == 0:
+                item = self.api_call_v2(call_name="create_tweet", text=obj["text"], _sound="tweet_send.ogg",  in_reply_to_tweet_id=in_reply_to_status_id, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"], quote_tweet_id=obj.get("quote_tweet_id"))
+                in_reply_to_status_id = item.data["id"]
+            else:
+                media_ids = []
+                for i in obj["attachments"]:
+                    img = self.api_call("media_upload", filename=i["file"])
+                    if i["type"] == "photo":
+                        self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
+                    media_ids.append(img.media_id)
+                item = self.api_call_v2(call_name="create_tweet", text=obj["text"], _sound="tweet_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, media_ids=media_ids, poll_duration_minutes=obj["poll_period"], poll_options=obj["poll_options"], quote_tweet_id=obj.get("quote_tweet_id"))
+                in_reply_to_status_id = item.data["id"]
+
+    def reply(self, text="", in_reply_to_status_id=None, attachments=[], *args, **kwargs):
+        if len(attachments) == 0:
+            item = self.api_call_v2(call_name="create_tweet", text=text, _sound="reply_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, *args, **kwargs)
+        else:
+            media_ids = []
+            for i in attachments:
+                img = self.api_call("media_upload", filename=i["file"])
+                if i["type"] == "photo":
+                    self.api_call(call_name="create_media_metadata", media_id=img.media_id, alt_text=i["description"])
+                media_ids.append(img.media_id)
+            item = self.api_call_v2(call_name="create_tweet", text=text, _sound="reply_send.ogg", in_reply_to_tweet_id=in_reply_to_status_id, media_ids=media_ids, *args, **kwargs)
+
+    def direct_message(self, text, recipient, attachment=None, *args, **kwargs):
+        if attachment == None:
+            item = self.api_call(call_name="send_direct_message", recipient_id=recipient, text=text)
+        else:
+            if attachment["type"] == "photo":
+                media_category = "DmImage"
+            elif attachment["type"] == "gif":
+                media_category = "DmGif"
+            elif attachment["type"] == "video":
+                media_category = "DmVideo"
+            media = self.api_call("media_upload", filename=attachment["file"], media_category=media_category)
+            item = self.api_call(call_name="send_direct_message", recipient_id=recipient, text=text, attachment_type="media", attachment_media_id=media.media_id)
+        if item != None:
+            sent_dms = self.db["sent_direct_messages"]
+            if self.settings["general"]["reverse_timelines"] == False:
+                sent_dms.append(item)
+            else:
+                sent_dms.insert(0, item)
+            self.db["sent_direct_messages"] = sent_dms
+            pub.sendMessage("sent-dm", data=item, user=self.db["user_name"])

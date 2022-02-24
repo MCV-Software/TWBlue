@@ -4,6 +4,7 @@ from validate import Validator, ValidateError
 import os
 import string
 from logging import getLogger
+from wxUI import commonMessageDialogs
 log = getLogger("config_utils")
 
 class ConfigLoadError(Exception): pass
@@ -21,6 +22,7 @@ def load_config(config_path, configspec_path=None, copy=True, *args, **kwargs):
         return config
     else:
         log.exception("Error in config file: {0}".format(validated,))
+        commonMessageDialogs.invalid_configuration()
 
 def is_blank(arg):
     "Check if a line is blank."
