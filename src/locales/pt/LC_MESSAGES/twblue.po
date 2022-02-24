@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TWBlue 0.80\n"
 "POT-Creation-Date: 2019-03-17 13:34+Hora estndar romance\n"
-"PO-Revision-Date: 2018-08-07 13:43-0500\n"
+"PO-Revision-Date: 2022-02-24 16:04-0300\n"
 "Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
 "Language-Team: Odenilton Júnior Santos <odeniltonjunior@gmail.com>\n"
 "Language: pt_BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -82,24 +82,22 @@ msgid "Muted users"
 msgstr "Usuários silenciados"
 
 #: ../src\controller\buffers\twitterBuffers.py:75
-#, fuzzy
 msgid "{username}'s timeline"
 msgstr "Abrir linha do tempo do usuário"
 
 #: ../src\controller\buffers\twitterBuffers.py:77
 msgid "{username}'s likes"
-msgstr ""
+msgstr "Curtidas dos {username}'s "
 
 #: ../src\controller\buffers\twitterBuffers.py:79
 msgid "{username}'s followers"
-msgstr ""
+msgstr "{username}'s seguidores"
 
 #: ../src\controller\buffers\twitterBuffers.py:81
 msgid "{username}'s friends"
-msgstr ""
+msgstr "{nome de usuário dos amigos}"
 
 #: ../src\controller\buffers\twitterBuffers.py:83
-#, fuzzy
 msgid "Unknown buffer"
 msgstr "Desconhecido"
 
@@ -117,14 +115,12 @@ msgid "Write the tweet here"
 msgstr "Digite aqui o tweet"
 
 #: ../src\controller\buffers\twitterBuffers.py:194
-#, fuzzy
 msgid "New tweet in {0}"
-msgstr "Novo tweet"
+msgstr "Novo tweet em {0}"
 
 #: ../src\controller\buffers\twitterBuffers.py:197
-#, fuzzy
 msgid "{0} new tweets in {1}."
-msgstr "@{0} mencionou seu tweet: {1}"
+msgstr "@{0} novos tweets em  : {1}"
 
 #: ../src\controller\buffers\twitterBuffers.py:232
 #: ../src\controller\buffers\twitterBuffers.py:676
@@ -140,7 +136,6 @@ msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Este exibidor não é uma linha do tempo que pode ser excluído."
 
 #: ../src\controller\buffers\twitterBuffers.py:402
-#, fuzzy
 msgid "Reply to {arg0}"
 msgstr "Responder a %s"
 
@@ -181,7 +176,7 @@ msgstr "Detalhes do usuário"
 #: ../src\controller\buffers\twitterBuffers.py:634
 #: ../src\controller\buffers\twitterBuffers.py:987
 msgid "Opening item in web browser..."
-msgstr ""
+msgstr "Abrindo item no navegador da Web..."
 
 #: ../src\controller\buffers\twitterBuffers.py:688
 #: ../src\controller\buffers\twitterBuffers.py:855
@@ -195,12 +190,10 @@ msgid "Mention"
 msgstr "Menção"
 
 #: ../src\controller\buffers\twitterBuffers.py:728
-#, fuzzy
 msgid "{0} new direct messages."
-msgstr "Nova mensagem"
+msgstr "{0} Nova mensagem"
 
 #: ../src\controller\buffers\twitterBuffers.py:731
-#, fuzzy
 msgid "This action is not supported in the buffer yet."
 msgstr "Esta ação não é suportada neste exibidor"
 
@@ -209,14 +202,14 @@ msgid ""
 "Getting more items cannot be done in this buffer. Use the direct messages "
 "buffer instead."
 msgstr ""
+"Obter mais itens não pode ser feito neste buffer. Use o buffer de mensagens "
+"diretas em vez disso."
 
 #: ../src\controller\buffers\twitterBuffers.py:983
-#, fuzzy
 msgid "{0} new followers."
-msgstr "Novo seguidor."
+msgstr "{0} Novos seguidores."
 
 #: ../src\controller\buffers\twitterBuffers.py:1266
-#, fuzzy
 msgid "This action is not supported in the buffer, yet."
 msgstr "Esta ação não é suportada neste exibidor"
 
@@ -309,9 +302,8 @@ msgid "{0} not found."
 msgstr "{0} não foi encontrado."
 
 #: ../src\controller\mainController.py:482
-#, fuzzy
 msgid "Filters cannot be applied on this buffer"
-msgstr "Esta ação não é suportada neste exibidor"
+msgstr "Filtros não são suportados neste exibidor"
 
 #: ../src\controller\mainController.py:535
 #: ../src\controller\mainController.py:552
@@ -320,7 +312,6 @@ msgid "Select the user"
 msgstr "Selecione o usuário"
 
 #: ../src\controller\mainController.py:809 ../src\controller\messages.py:236
-#, fuzzy
 msgid "MMM D, YYYY. H:m"
 msgstr "dddd, D MMMM, YYYY. H:m:s"
 
@@ -380,7 +371,6 @@ msgstr "Esta lista já está aberta"
 
 #: ../src\controller\mainController.py:1423
 #: ../src\controller\mainController.py:1439
-#, fuzzy
 msgid ""
 "An error happened while trying to connect to the server. Please try later."
 msgstr ""
@@ -476,9 +466,8 @@ msgid "%s - %s characters"
 msgstr "%s - %s caracteres"
 
 #: ../src\controller\messages.py:262
-#, fuzzy
 msgid "View item"
-msgstr "Mostrar &listas"
+msgstr "Ver item"
 
 #: ../src\controller\settings.py:75
 msgid "Direct connection"
@@ -527,9 +516,8 @@ msgid "That user does not exist"
 msgstr "Esse usuário não existe"
 
 #: ../src\controller\user.py:30
-#, fuzzy
 msgid "User has been suspended"
-msgstr "A busca foi atualizada"
+msgstr "O usuário foi suspenso do Twitter"
 
 #: ../src\controller\user.py:36
 msgid "Information for %s"
@@ -660,9 +648,8 @@ msgstr "Gravando áudio..."
 
 #: ../src\extra\AudioUploader\transfer.py:78
 #: ../src\extra\AudioUploader\transfer.py:84
-#, fuzzy
 msgid "Error in file upload: {0}"
-msgstr "Erro código {0}"
+msgstr "Erro ao enviar o arquivo  código {0}"
 
 #: ../src\extra\AudioUploader\utils.py:27 ../src\update\utils.py:27
 msgid "%d day, "
@@ -873,28 +860,24 @@ msgid "Suggestions"
 msgstr "Sugestões"
 
 #: ../src\extra\SpellChecker\wx_ui.py:42
-#, fuzzy
 msgid "&Ignore"
-msgstr "Ignorar"
+msgstr "&Ignorar"
 
 #: ../src\extra\SpellChecker\wx_ui.py:43
-#, fuzzy
 msgid "I&gnore all"
 msgstr "Ignorar todas"
 
 #: ../src\extra\SpellChecker\wx_ui.py:44
-#, fuzzy
 msgid "&Replace"
 msgstr "Alterar"
 
 #: ../src\extra\SpellChecker\wx_ui.py:45
-#, fuzzy
 msgid "R&eplace all"
 msgstr "Alterar todas"
 
 #: ../src\extra\SpellChecker\wx_ui.py:46
 msgid "&Add to personal dictionary"
-msgstr ""
+msgstr "&Adicionar ao dicionário pessoal"
 
 #: ../src\extra\SpellChecker\wx_ui.py:79
 msgid ""
@@ -997,9 +980,8 @@ msgid "{0}'s database of users has been updated."
 msgstr "O banco de dados de usuários do {0} foi atualizado."
 
 #: ../src\extra\ocr\OCRSpace.py:5
-#, fuzzy
 msgid "Detect automatically"
-msgstr "Conectar automaticamente."
+msgstr "Detectar automaticamente"
 
 #: ../src\extra\ocr\OCRSpace.py:5 ../src\extra\translator\translator.py:31
 msgid "Danish"
@@ -1559,9 +1541,8 @@ msgid "Like a tweet"
 msgstr "Curtir um tweet"
 
 #: ../src\keystrokeEditor\constants.py:15
-#, fuzzy
 msgid "Like/unlike a tweet"
-msgstr "Descurtir um tweet"
+msgstr "Curtir ou Descurtir um tweet"
 
 #: ../src\keystrokeEditor\constants.py:16
 msgid "Unlike a tweet"
@@ -1600,7 +1581,6 @@ msgid "Open URL"
 msgstr "Abrir URL"
 
 #: ../src\keystrokeEditor\constants.py:25
-#, fuzzy
 msgid "View in Twitter"
 msgstr "Buscar no Twitter"
 
@@ -1721,9 +1701,8 @@ msgid "Opens the global settings dialogue"
 msgstr "Abrir o diálogo de configurações globais"
 
 #: ../src\keystrokeEditor\constants.py:54
-#, fuzzy
 msgid "Opens the list manager"
-msgstr "Gerenciador de listas"
+msgstr "Abrir o Gerenciador de listas"
 
 #: ../src\keystrokeEditor\constants.py:55
 msgid "Opens the account settings dialogue"
@@ -1820,7 +1799,7 @@ msgstr "Padrão do usuário"
 
 #: ../src\main.py:105
 msgid "https://twblue.es/donate"
-msgstr ""
+msgstr "https://twblue.es/donate"
 
 #: ../src\main.py:122
 msgid ""
@@ -1828,6 +1807,10 @@ msgid ""
 "If you're sure that {0} isn't running, try deleting the file at {1}. If "
 "you're unsure of how to do this, contact the {0} developers."
 msgstr ""
+"{0} já está  em execução. Feche a outra instância antes de iniciar esta. Se "
+"você tem certeza de que {0} não está sendo executado, tente excluir o "
+"arquivo em {1}. Se você não tem certeza de como fazer isso, entre em contato "
+"com os desenvolvedores {0}."
 
 #: ../src\sessionmanager\wxUI.py:8
 msgid "Session manager"
@@ -1933,9 +1916,8 @@ msgid "public"
 msgstr "Público"
 
 #: ../src\sessions\twitter\session.py:169
-#, fuzzy
 msgid "There are no more items to retrieve in this buffer."
-msgstr "Não há coordenadas neste tweet"
+msgstr "Não há mais resultados para mostrar neste exibidor"
 
 #: ../src\sessions\twitter\session.py:215
 msgid "%s failed.  Reason: %s"
@@ -1958,12 +1940,10 @@ msgid "Error code {0}"
 msgstr "Erro código {0}"
 
 #: ../src\sessions\twitter\wxUI.py:6
-#, fuzzy
 msgid "Authorising account..."
-msgstr "Conta %d autorizada"
+msgstr "Autorizando Conta %d "
 
 #: ../src\sessions\twitter\wxUI.py:9
-#, fuzzy
 msgid "Enter your PIN code here"
 msgstr "Insira o código aqui."
 
@@ -2253,34 +2233,39 @@ msgstr ""
 
 #: ../src\wxUI\commonMessageDialogs.py:76
 msgid "You have been blocked from viewing  this content"
-msgstr ""
+msgstr "Você foi impedido de visualizar este conteúdo"
 
 #: ../src\wxUI\commonMessageDialogs.py:79
 msgid ""
 "You have been blocked from viewing  someone's content. In order to avoid "
 "conflicts with the full session, TWBlue will remove the affected timeline."
 msgstr ""
+"Você foi impedido de ver o conteúdo de alguém. Para evitar conflitos com a "
+"sessão completa, a TWBlue removerá o cronograma afetado."
 
 #: ../src\wxUI\commonMessageDialogs.py:82
 msgid ""
 "TWBlue cannot load this timeline because the user has been suspended from "
 "Twitter."
 msgstr ""
+"O TWBlue não pode carregar esta linha do tempo porque o usuário foi suspenso "
+"do Twitter."
 
 #: ../src\wxUI\commonMessageDialogs.py:85
-#, fuzzy
 msgid "Do you really want to delete this filter?"
 msgstr "Você tem certeza que deseja excluir esta lista?"
 
 #: ../src\wxUI\commonMessageDialogs.py:88
 msgid "This filter already exists. Please use a different title"
-msgstr ""
+msgstr "Este filtro já existe. Por favor, use um título diferente"
 
 #: ../src\wxUI\commonMessageDialogs.py:94
 msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
 msgstr ""
+"{0}  Foi enserrado inesperadamente da última vez que foi executado. Se o "
+"problema persistir, contate os desenvolvedores do {0}."
 
 #: ../src\wxUI\dialogs\attach.py:9
 msgid "Add an attachment"
@@ -2345,11 +2330,11 @@ msgstr "Perguntar antes de sair do {0}"
 
 #: ../src\wxUI\dialogs\configuration.py:27
 msgid "Disable Streaming functions"
-msgstr ""
+msgstr "Desativar funções de streaming"
 
 #: ../src\wxUI\dialogs\configuration.py:30
 msgid "Buffer update interval, in minutes"
-msgstr ""
+msgstr "Intervalo de atualização de buffer, em minutos"
 
 #: ../src\wxUI\dialogs\configuration.py:36
 msgid "Play a sound when {0} launches"
@@ -2379,7 +2364,7 @@ msgstr ""
 
 #: ../src\wxUI\dialogs\configuration.py:48
 msgid "Remember state for mention all and long tweet"
-msgstr ""
+msgstr "Lembrar do  estado para mencionar tudo e tweet longo"
 
 #: ../src\wxUI\dialogs\configuration.py:51
 msgid "Keymap"
@@ -2447,11 +2432,11 @@ msgstr ""
 
 #: ../src\wxUI\dialogs\configuration.py:134
 msgid "Enable automatic speech feedback"
-msgstr ""
+msgstr "Habilite o feedback automático da fala"
 
 #: ../src\wxUI\dialogs\configuration.py:136
 msgid "Enable automatic Braille feedback"
-msgstr ""
+msgstr "Habilite o feedback automático em Braille"
 
 #: ../src\wxUI\dialogs\configuration.py:144
 msgid "Status"
@@ -2548,13 +2533,12 @@ msgid "Indicate tweets containing images with sound"
 msgstr "Indicar com som tweets com imagens"
 
 #: ../src\wxUI\dialogs\configuration.py:332
-#, fuzzy
 msgid "Language for OCR"
-msgstr "&Idioma dos resultados:"
+msgstr "&Idioma do OCR"
 
 #: ../src\wxUI\dialogs\configuration.py:338
 msgid "API Key for SndUp"
-msgstr ""
+msgstr "Chave API para SndUp"
 
 #: ../src\wxUI\dialogs\configuration.py:353
 msgid "{0} preferences"
@@ -2566,7 +2550,7 @@ msgstr "Proxy"
 
 #: ../src\wxUI\dialogs\configuration.py:373
 msgid "Feedback"
-msgstr ""
+msgstr "Feedback"
 
 #: ../src\wxUI\dialogs\configuration.py:377
 msgid "Buffers"
@@ -2578,7 +2562,7 @@ msgstr "Som"
 
 #: ../src\wxUI\dialogs\configuration.py:389
 msgid "Extras"
-msgstr ""
+msgstr "Extras"
 
 #: ../src\wxUI\dialogs\configuration.py:394
 msgid "Save"
@@ -2590,40 +2574,36 @@ msgstr "Criar um filtro para esse exibidor"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:16
 msgid "Filter title"
-msgstr ""
+msgstr "Título do filtro"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:25
 #: ../src\wxUI\dialogs\filterDialogs.py:125
 msgid "Filter by word"
-msgstr ""
+msgstr "Filtrar por palavra"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:26
-#, fuzzy
 msgid "Ignore tweets wich contain the following word"
-msgstr "Ignorar tweets nos seguintes idiomas"
+msgstr "Ignorar tweets com as seguintes palavras"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:27
-#, fuzzy
 msgid "Ignore tweets without the following word"
-msgstr "Ignorar tweets nos seguintes idiomas"
+msgstr "Ignorar tweets sem as seguintes palavras:"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:32
 msgid "word"
 msgstr "palavra"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:37
-#, fuzzy
 msgid "Allow retweets"
-msgstr "Mostrar tweet"
+msgstr "Permitir Retweets"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:38
 msgid "Allow quoted tweets"
-msgstr ""
+msgstr "Permitir tweets citados"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:39
-#, fuzzy
 msgid "Allow replies"
-msgstr "Linhas do tempo de Seguidores"
+msgstr "Permitir respostas"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:47
 msgid "Use this term as a regular expression"
@@ -2631,9 +2611,8 @@ msgstr "Usar este termo como uma expressão regular"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:49
 #: ../src\wxUI\dialogs\filterDialogs.py:125
-#, fuzzy
 msgid "Filter by language"
-msgstr "Não filtrar por idioma"
+msgstr "Filtrar por Idioma"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:50
 msgid "Load tweets in the following languages"
@@ -2648,18 +2627,16 @@ msgid "Don't filter by language"
 msgstr "Não filtrar por idioma"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:63
-#, fuzzy
 msgid "Supported languages"
-msgstr "Idioma de origem"
+msgstr "Idiomas suportados"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:68
 msgid "Add selected language to filter"
-msgstr ""
+msgstr "Adicionar idioma selecionado para filtrar"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:72
-#, fuzzy
 msgid "Selected languages"
-msgstr "Idioma de origem"
+msgstr "Idiomas selecionados"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:74
 #: ../src\wxUI\dialogs\filterDialogs.py:132 ../src\wxUI\dialogs\lists.py:20
@@ -2668,17 +2645,16 @@ msgid "Remove"
 msgstr "Excluir"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:122
-#, fuzzy
 msgid "Manage filters"
-msgstr "Gerenciar contas"
+msgstr "Gerenciar filtros"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:124
 msgid "Filters"
-msgstr ""
+msgstr "Filtros"
 
 #: ../src\wxUI\dialogs\filterDialogs.py:125
 msgid "Filter"
-msgstr ""
+msgstr "Filtro"
 
 #: ../src\wxUI\dialogs\find.py:12
 msgid "Find in current buffer"
@@ -2846,9 +2822,8 @@ msgid "Source: "
 msgstr "Origem: "
 
 #: ../src\wxUI\dialogs\message.py:342 ../src\wxUI\dialogs\message.py:420
-#, fuzzy
 msgid "Date: "
-msgstr "Data"
+msgstr "Data: "
 
 #: ../src\wxUI\dialogs\message.py:405
 msgid "View"
@@ -2944,9 +2919,8 @@ msgid "Update your profile"
 msgstr "Atualizar meu perfil"
 
 #: ../src\wxUI\dialogs\update_profile.py:11
-#, fuzzy
 msgid "&Name (50 characters maximum)"
-msgstr "&Nome (20 caracteres no máximo)"
+msgstr "&Nome (50 caracteres no máximo)"
 
 #: ../src\wxUI\dialogs\update_profile.py:22
 msgid "&Website"
@@ -3062,9 +3036,8 @@ msgid "&Open URL"
 msgstr "Abrir &URL"
 
 #: ../src\wxUI\menus.py:17 ../src\wxUI\menus.py:53 ../src\wxUI\menus.py:86
-#, fuzzy
 msgid "&Open in Twitter"
-msgstr "Buscar no Twitter"
+msgstr "Abrir no Twitter"
 
 #: ../src\wxUI\menus.py:19 ../src\wxUI\menus.py:37 ../src\wxUI\menus.py:55
 msgid "&Play audio"
@@ -3181,7 +3154,6 @@ msgid "View conversa&tion"
 msgstr "M&ostrar conversa"
 
 #: ../src\wxUI\view.py:36
-#, fuzzy
 msgid "Read text in picture"
 msgstr "Ler texto da imagem"
 
@@ -3218,14 +3190,12 @@ msgid "New &trending topics buffer..."
 msgstr "Novo exibidor Assuntos do momento..."
 
 #: ../src\wxUI\view.py:54
-#, fuzzy
 msgid "Create a &filter"
-msgstr "Criar nova lista"
+msgstr "Criar novo &filtro"
 
 #: ../src\wxUI\view.py:55
-#, fuzzy
 msgid "&Manage filters"
-msgstr "&Gerenciar contas"
+msgstr "&Gerenciar Filtros"
 
 #: ../src\wxUI\view.py:56
 msgid "Find a string in the currently focused buffer..."
@@ -3277,7 +3247,7 @@ msgstr "&Website do {0}"
 
 #: ../src\wxUI\view.py:77
 msgid "Get soundpacks for TWBlue"
-msgstr ""
+msgstr "Obtenha pacotes de som para TWBlue"
 
 #: ../src\wxUI\view.py:78
 msgid "About &{0}"
