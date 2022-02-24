@@ -4,12 +4,12 @@ import paths
 import time
 import logging
 import wx
+import mastodon
 import config
 import config_utils
 import output
 import application
 from pubsub import pub
-import mastodon
 from mysc.thread_utils import call_threaded
 from sessions import base
 from .wxUI import authorisationDialog
