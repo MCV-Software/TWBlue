@@ -69,12 +69,12 @@ class sessionManagerController(object):
                     name = _("{account_name} (Twitter)").format(account_name=config_test["twitter"]["user_name"])
                     if config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
                         sessionsList.append(name)
-                        self.sessions.append(i)
+                        self.sessions.append(dict(type="twitter", id=i))
                 elif config_test.get("mastodon") != None:
                     name = _("{account_name} (Mastodon)").format(account_name=config_test["mastodon"]["user_name"])
                     if config_test["mastodon"]["instance"] != "" and config_test["mastodon"]["access_token"] != "":
                         sessionsList.append(name)
-                        self.sessions.append(i)
+                        self.sessions.append(dict(type="mastodon", id=i))
                 else:
                     try:
                         log.debug("Deleting session %s" % (i,))
@@ -94,17 +94,23 @@ class sessionManagerController(object):
     def do_ok(self):
         log.debug("Starting sessions...")
         for i in self.sessions:
-            if (i in sessions.sessions) == True: continue
-            s = session.Session(i)
+            # Skip already created sessions. Useful when session manager controller is not created during startup.
+            if sessions.sessions.get(i.get("id")) != None:
+                continue
+            # Create the session object based in session type.
+            if i.get("type") == "twitter":
+                s = TwitterSession.Session(i.get("id"))
+            elif i.get("type") == "mastodon":
+                s = MastodonSession.Session(i.get("id"))
             s.get_configuration()
-            if i not in config.app["sessions"]["ignored_sessions"]:
+            if i.get("id") not in config.app["sessions"]["ignored_sessions"]:
                 try:
                     s.login()
                 except TweepyException:
                     self.show_auth_error(s.settings["twitter"]["user_name"])
                     continue
-            sessions.sessions[i] = s
-            self.new_sessions[i] = s
+            sessions.sessions[i.get("id")] = s
+            self.new_sessions[i.get("id")] = s
 #  self.view.destroy()
 
     def show_auth_error(self, user_name):
@@ -121,16 +127,16 @@ class sessionManagerController(object):
         manager.manager.add_session(location)
         s.get_configuration()
         s.authorise()
-        self.sessions.append(location)
+        self.sessions.append(dict(id=location, type=type))
         self.view.add_new_session_to_list()
         s.settings.write()
 
     def remove_account(self, index):
         selected_account = self.sessions[index]
         self.view.remove_session(index)
-        self.removed_sessions.append(selected_account)
+        self.removed_sessions.append(selected_account.get("id"))
         self.sessions.remove(selected_account)
-        shutil.rmtree(path=os.path.join(paths.config_path(), selected_account), ignore_errors=True)
+        shutil.rmtree(path=os.path.join(paths.config_path(), selected_account.get("id")), ignore_errors=True)
 
     def configuration(self):
         """ Opens the global settings dialogue."""
