@@ -129,18 +129,17 @@ class Controller(object):
         pub.subscribe(self.manage_unblocked_user, "unblocked-user")
         pub.subscribe(self.create_buffer, "createBuffer")
         pub.subscribe(self.toggle_share_settings, "toggleShare")
-        if system == "Windows":
-            pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.filter, menuitem=self.view.filter)
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_filters, menuitem=self.view.manage_filters)
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.find, menuitem=self.view.find)
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
-            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.ocr_image, menuitem=self.view.ocr)
+        pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.filter, menuitem=self.view.filter)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_filters, menuitem=self.view.manage_filters)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.find, menuitem=self.view.find)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.ocr_image, menuitem=self.view.ocr)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.learn_sounds, menuitem=self.view.sounds_tutorial)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.exit, menuitem=self.view.close)
         widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit)
@@ -229,7 +228,6 @@ class Controller(object):
 
     def check_invisible_at_startup(self):
         # Visibility check. It does only work for windows.
-        if system != "Windows": return
         if config.app["app-settings"]["hide_gui"] == True:
             self.show_hide()
             self.view.Show()
