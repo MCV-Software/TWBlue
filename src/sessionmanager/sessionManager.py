@@ -32,6 +32,7 @@ class sessionManagerController(object):
         super(sessionManagerController, self).__init__()
         log.debug("Setting up the session manager.")
         self.started = started
+        # Initialize the manager, responsible for storing session objects.
         manager.setup()
         self.view = view.sessionManagerWindow()
         pub.subscribe(self.manage_new_account, "sessionmanager.new_account")
@@ -84,6 +85,7 @@ class sessionManagerController(object):
         self.view.fill_list(sessionsList)
 
     def show(self):
+        """ Displays the session manager dialog. """
         if self.view.get_response() == widgetUtils.OK:
             self.do_ok()
 #  else:
