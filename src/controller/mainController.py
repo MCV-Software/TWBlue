@@ -1,48 +1,42 @@
 # -*- coding: utf-8 -*-
-import platform
-system = platform.system()
-import application
+import os
+import logging
+import webbrowser
 import wx
 import requests
-from audio_services import youtube_utils
 import arrow
-if system == "Windows":
-    from update import updater
-    from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
-    from . import settings
-    from extra import SoundsTutorial, ocr
-    import keystrokeEditor
-    from keyboard_handler.wx_handler import WXKeyboardHandler
-    from . import userActionsController
-    from . import trendingTopics
-    from . import user
-    from . import listsController
-    from . import filterController
-# from issueReporter import issueReporter
-elif system == "Linux":
-    from gtkUI import (view, commonMessageDialogs)
+import keystrokeEditor
+import sessions
+import widgetUtils
+import config
+import languageHandler
+import application
+import sound
+import output
+from pubsub import pub
+from tweepy.errors import TweepyException, Forbidden
+from geopy.geocoders import Nominatim
+from update import updater
+from audio_services import youtube_utils
+from extra import SoundsTutorial, ocr
+from wxUI import view, dialogs, commonMessageDialogs, sysTrayIcon
+from . import settings
+from keyboard_handler.wx_handler import WXKeyboardHandler
+from . import userActionsController
+from . import trendingTopics
+from . import user
+from . import listsController
+from . import filterController
 from sessions.twitter import utils, compose
 from sessionmanager import manager, sessionManager
 from controller import buffers
 from . import messages
 from . import userAliasController
-import sessions
 from sessions.twitter  import session as session_
-from pubsub import pub
-import sound
-import output
-from tweepy.errors import TweepyException, Forbidden
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 from mysc import restart
-import config
-import widgetUtils
-import logging
-import webbrowser
-from geopy.geocoders import Nominatim
 from mysc import localization
-import os
-import languageHandler
 
 log = logging.getLogger("mainController")
 
