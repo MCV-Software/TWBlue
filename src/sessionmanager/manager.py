@@ -1,7 +1,4 @@
 # -*- coding: cp1252 -*-
-#from config_utils import Configuration, ConfigurationResetException
-from __future__ import unicode_literals
-from builtins import object
 import config
 import paths
 import os
@@ -16,13 +13,6 @@ def setup():
         manager = sessionManager()
 
 class sessionManager(object):
-    # def __init__(self):
-    #  FILE = "sessions.conf"
-    #  SPEC = "app-configuration.defaults"
-    #  try:
-    #   self.main = Configuration(paths.config_path(FILE), paths.app_path(SPEC))
-    #  except ConfigurationResetException:
-    #   pass
 
     def get_current_session(self):
         if self.is_valid(config.app["sessions"]["current_session"]):

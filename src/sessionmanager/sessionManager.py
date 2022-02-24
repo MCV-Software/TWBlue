@@ -1,42 +1,51 @@
 # -*- coding: utf-8 -*-
+""" Module to perform session actions such as adddition, removal or display of the global settings dialogue. """
 import shutil
-import widgetUtils
-import platform
-import output
-if platform.system() == "Windows":
-    from . import wxUI as view
-    from controller import settings
-elif platform.system() == "Linux":
-    from . import gtkUI as view
-import paths
 import time
 import os
 import logging
+import widgetUtils
 import sessions
-from sessions.twitter import session
-from . import manager
+import output
+import paths
 import config_utils
 import config
+from pubsub import pub
 from tweepy.errors import TweepyException
+from controller import settings
+from sessions.twitter import session as TwitterSession
+from sessions.mastodon import session as MastodonSession
+from . import manager
+from . import wxUI as view
+
 log = logging.getLogger("sessionmanager.sessionManager")
 
 class sessionManagerController(object):
-    def __init__(self, started=False):
+    def __init__(self, started: bool = False):
+        """ Class constructor.
+
+        Creates the SessionManager class controller, responsible for the accounts within TWBlue. From this dialog, users can add/Remove accounts, or load the global settings dialog.
+
+        :param started: Indicates whether this object is being created during application startup (when no other controller has been instantiated) or not. It is important for us to know this, as we won't show the button to open global settings dialog if the application has been started. Users must choose the corresponding option in the menu bar.
+        :type started: bool
+        """
         super(sessionManagerController, self).__init__()
         log.debug("Setting up the session manager.")
         self.started = started
         manager.setup()
         self.view = view.sessionManagerWindow()
-        widgetUtils.connect_event(self.view.new, widgetUtils.BUTTON_PRESSED, self.manage_new_account)
-        widgetUtils.connect_event(self.view.remove, widgetUtils.BUTTON_PRESSED, self.remove)
+        pub.subscribe(self.manage_new_account, "sessionmanager.new_account")
+        pub.subscribe(self.remove_account, "sessionmanager.remove_account")
         if self.started == False:
-            widgetUtils.connect_event(self.view.configuration, widgetUtils.BUTTON_PRESSED, self.configuration)
+            pub.subscribe(self.configuration, "sessionmanager.configuration")
         else:
             self.view.hide_configuration()
+        # Store a temporary copy of new and removed sessions, so we will perform actions on them during call to on_ok.
         self.new_sessions = {}
         self.removed_sessions = []
 
     def fill_list(self):
+        """ Fills the session list with all valid sessions that could be found in config path. """
         sessionsList = []
         reserved_dirs = ["dicts"]
         log.debug("Filling the sessions list.")
@@ -55,10 +64,16 @@ class sessionManagerController(object):
                         output.speak("An exception was raised while attempting to clean malformed session data. See the error log for details. If this message persists, contact the developers.",True)
                         os.exception("Exception thrown while removing malformed session")
                         continue
-                name = config_test["twitter"]["user_name"]
-                if config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
-                    sessionsList.append(name)
-                    self.sessions.append(i)
+                if config_test.get("twitter") != None:
+                    name = _("{account_name} (Twitter)").format(account_name=config_test["twitter"]["user_name"])
+                    if config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
+                        sessionsList.append(name)
+                        self.sessions.append(i)
+                elif config_test.get("mastodon") != None:
+                    name = _("{account_name} (Mastodon)").format(account_name=config_test["mastodon"]["user_name"])
+                    if config_test["mastodon"]["instance"] != "" and config_test["mastodon"]["access_token"] != "":
+                        sessionsList.append(name)
+                        self.sessions.append(i)
                 else:
                     try:
                         log.debug("Deleting session %s" % (i,))
@@ -93,33 +108,29 @@ class sessionManagerController(object):
     def show_auth_error(self, user_name):
         error = view.auth_error(user_name)
 
-    def manage_new_account(self, *args, **kwargs):
-        if self.view.new_account_dialog() == widgetUtils.YES:
-            location = (str(time.time())[-6:])
-            log.debug("Creating session in the %s path" % (location,))
-            s = session.Session(location)
-            manager.manager.add_session(location)
-            s.get_configuration()
-#   try:
-            s.authorise()
-            self.sessions.append(location)
-            self.view.add_new_session_to_list()
-            s.settings.write()
-#   except:
-#    log.exception("Error authorising the session")
-#    self.view.show_unauthorised_error()
-#    return
+    def manage_new_account(self, type):
+        # Generic settings for all account types.
+        location = (str(time.time())[-6:])
+        log.debug("Creating %s session in the %s path" % (type, location))
+        if type == "twitter":
+            s = TwitterSession.Session(location)
+        elif type == "mastodon":
+            s = MastodonSession.Session(location)
+        manager.manager.add_session(location)
+        s.get_configuration()
+        s.authorise()
+        self.sessions.append(location)
+        self.view.add_new_session_to_list()
+        s.settings.write()
 
-    def remove(self, *args, **kwargs):
-        if self.view.remove_account_dialog() == widgetUtils.YES:
-            selected_account = self.sessions[self.view.get_selected()]
-            self.view.remove_session(self.view.get_selected())
-            self.removed_sessions.append(selected_account)
-            self.sessions.remove(selected_account)
-            shutil.rmtree(path=os.path.join(paths.config_path(), selected_account), ignore_errors=True)
+    def remove_account(self, index):
+        selected_account = self.sessions[index]
+        self.view.remove_session(index)
+        self.removed_sessions.append(selected_account)
+        self.sessions.remove(selected_account)
+        shutil.rmtree(path=os.path.join(paths.config_path(), selected_account), ignore_errors=True)
 
-
-    def configuration(self, *args, **kwargs):
+    def configuration(self):
         """ Opens the global settings dialogue."""
         d = settings.globalSettingsController()
         if d.response == widgetUtils.OK:
