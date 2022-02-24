@@ -225,8 +225,7 @@ class Controller(object):
         self.current_account = ""
         self.view.prepare()
         self.bind_other_events()
-        if system == "Windows":
-            self.set_systray_icon()
+        self.set_systray_icon()
 
     def check_invisible_at_startup(self):
         # Visibility check. It does only work for windows.
@@ -641,11 +640,10 @@ class Controller(object):
             sessions.sessions[item].sound.cleaner.cancel()
             log.debug("Saving database for " +    sessions.sessions[item].session_id)
             sessions.sessions[item].save_persistent_data()
-        if system == "Windows":
-            self.systrayIcon.RemoveIcon()
-            pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
-            if os.path.exists(pidpath):
-                os.remove(pidpath)
+        self.systrayIcon.RemoveIcon()
+        pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
+        if os.path.exists(pidpath):
+            os.remove(pidpath)
         if hasattr(self, "streams_checker_function"):
             log.debug("Stopping stream checker...")
             self.streams_checker_function.cancel()
