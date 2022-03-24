@@ -1,13 +1,15 @@
 # -*- coding: cp1252 -*-
-import config
-import paths
+""" Lightweigth module that saves session position across global config and performs validation of config files. """
 import os
 import logging
+import config
+import paths
 log = logging.getLogger("sessionmanager.manager")
 from sessions import session_exceptions
 
 manager = None
 def setup():
+    """ Creates the singleton instance used within TWBlue to access this object. """
     global manager
     if not manager:
         manager = sessionManager()
@@ -15,12 +17,16 @@ def setup():
 class sessionManager(object):
 
     def get_current_session(self):
+        """ Returns the currently focused session, if valid. """
         if self.is_valid(config.app["sessions"]["current_session"]):
             return config.app["sessions"]["current_session"]
-        else:
-            return False
 
     def add_session(self, id):
+        """ Adds a new session to the global config, so it will be taken into account for all operations.
+
+        :param id: Session identified.
+        :param id: str.
+        """
         log.debug("Adding a new session: %s" % (id,))
         path = os.path.join(paths.config_path(), id)
         if not os.path.exists(path):

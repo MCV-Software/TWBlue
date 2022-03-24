@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" Module to perform session actions such as adddition, removal or display of the global settings dialogue. """
+""" Module to perform session actions such as addition, removal or display of the global settings dialogue. """
 import shutil
 import time
 import os
