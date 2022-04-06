@@ -570,11 +570,13 @@ class Session(base.baseSession):
         # the Streaming API sends non-extended tweets with an optional parameter "extended_tweets" which contains full_text and other data.
         # so we have to make sure we check it before processing the normal status.
         # As usual, we handle also quotes and retweets at first.
+        if hasattr(status, "retweeted_status") and hasattr(status.retweeted_status, "quoted_status") and status.retweeted_status.quoted_status.truncated:
+            status.retweeted_status.quoted_status._json = {**status.retweeted_status.quoted_status._json, **status.retweeted_status.quoted_status._json["extended_tweet"]}
         if hasattr(status, "retweeted_status") and hasattr(status.retweeted_status, "extended_tweet"):
             status.retweeted_status._json = {**status.retweeted_status._json, **status.retweeted_status._json["extended_tweet"]}
             # compose.compose_tweet requires the parent tweet to have a full_text field, so we have to add it to retweets here.
             status._json["full_text"] = status._json["text"]
-        if hasattr(status, "quoted_status") and hasattr(status.quoted_status, "extended_tweet"):
+        elif hasattr(status, "quoted_status") and hasattr(status.quoted_status, "extended_tweet"):
             status.quoted_status._json = {**status.quoted_status._json, **status.quoted_status._json["extended_tweet"]}
         if status.truncated:
             status._json = {**status._json, **status._json["extended_tweet"]}
@@ -595,7 +597,7 @@ class Session(base.baseSession):
             num = self.order_buffer(buffer, [status])
             if num == 0:
                 buffers_to_send.remove(buffer)
-        # However, we have to do the "reduce and change" process here because the status we sent to the db is going to be a different object that the one sent to database.
+        # However, we have to do the "reduce and change" process here because the status we sent to the db is going to be a different object that the one sent to controller.
         status = reduce.reduce_tweet(status)
         status = self.check_quoted_status(status)
         status = self.check_long_tweet(status)
