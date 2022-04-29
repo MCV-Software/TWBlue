@@ -228,7 +228,7 @@ class accountSettingsController(globalSettingsController):
             self.dialog.templates.sent_dm.SetLabel(_("Edit template for sent direct messages. Current template: {}").format(result))
 
     def edit_person_template(self, *args, **kwargs):
-        template = self.settings["templates"]["person"]
+        template = self.config["templates"]["person"]
         control = EditTemplate(template=template, type="person")
         result = control.run_dialog()
         if result != "": # Template has been saved.
