@@ -3,6 +3,7 @@ TWBlue Changelog
 
 * Fixed an issue that was making TWBlue to display incorrectly some retweets of quoted tweets.
 * Implemented a new setting, available in the account settings dialog, that allows to hide emojis in twitter usernames.
+* Fixed error when loading other user lists. ([#465](https://github.com/MCV-Software/TWBlue/issues/465))
 
 ## changes in version 22.2.23
 
