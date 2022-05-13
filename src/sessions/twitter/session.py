@@ -5,6 +5,7 @@ import time
 import logging
 import webbrowser
 import wx
+import demoji
 import config
 import output
 import application
@@ -472,11 +473,16 @@ class Session(base.baseSession):
         aliases = self.settings.get("user-aliases")
         if aliases == None:
             log.error("Aliases are not defined for this config spec.")
-            return user.name
+            return self.demoji_user(user.name)
         user_alias = aliases.get(user.id_str)
         if user_alias != None:
             return user_alias
-        return user.name
+        return self.demoji_user(user.name)
+
+    def demoji_user(self, name):
+        if self.settings["general"]["hide_emojis"] == True:
+            return demoji.replace(name, "")
+        return name
 
     def get_user_by_screen_name(self, screen_name):
         """ Returns an user identifier associated with a screen_name.
