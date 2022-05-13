@@ -18,7 +18,6 @@ if system == "Windows":
     from . import user
     from . import listsController
     from . import filterController
-# from issueReporter import issueReporter
 elif system == "Linux":
     from gtkUI import (view, commonMessageDialogs)
 from sessions.twitter import utils, compose
@@ -185,7 +184,6 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.seekRight, menuitem=self.view.seekRight)
         if widgetUtils.toolkit == "wx":
             widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_documentation, self.view.doc)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_changelog, self.view.changelog)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_alias, self.view.addAlias)
@@ -610,9 +608,6 @@ class Controller(object):
                 buff.session.settings.write()
                 buff.session.save_persistent_data()
                 restart.restart_program()
-
-    def report_error(self, *args, **kwargs):
-        r = issueReporter.reportBug(self.get_best_buffer().session.db["user_name"])
 
     def check_for_updates(self, *args, **kwargs):
         update = updater.do_update()
