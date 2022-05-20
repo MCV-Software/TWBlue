@@ -114,7 +114,7 @@ def render_dm(dm, template, session, relative_times=False, offset_seconds=0):
     """
     global dm_variables
     available_data = dict()
-    available_data.update(text=utils.expand_urls(dm.message_create["message_data"]["text"], dm.message_create["message_data"]["entities"]))
+    available_data.update(text=utils.expand_urls(utils.StripChars(dm.message_create["message_data"]["text"]), dm.message_create["message_data"]["entities"]))
     # Let's remove the last 3 digits in the timestamp string.
     # Twitter sends their "epoch" timestamp with 3 digits for milliseconds and arrow doesn't like it.
     original_date = arrow.get(int(dm.created_timestamp))
