@@ -145,6 +145,7 @@ class accountSettingsController(globalSettingsController):
         widgetUtils.connect_event(self.dialog.general.au, widgetUtils.BUTTON_PRESSED, self.manage_autocomplete)
         self.dialog.set_value("general", "relative_time", self.config["general"]["relative_times"])
         self.dialog.set_value("general", "show_screen_names", self.config["general"]["show_screen_names"])
+        self.dialog.set_value("general", "hide_emojis", self.config["general"]["hide_emojis"])
         self.dialog.set_value("general", "itemsPerApiCall", self.config["general"]["max_tweets_per_call"])
         self.dialog.set_value("general", "reverse_timelines", self.config["general"]["reverse_timelines"])
         rt = self.config["general"]["retweet_mode"]
@@ -242,6 +243,7 @@ class accountSettingsController(globalSettingsController):
             log.debug("Triggered app restart due to change in relative times.")
             self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
         self.config["general"]["show_screen_names"] = self.dialog.get_value("general", "show_screen_names")
+        self.config["general"]["hide_emojis"] = self.dialog.get_value("general", "hide_emojis")
         self.config["general"]["max_tweets_per_call"] = self.dialog.get_value("general", "itemsPerApiCall")
         if self.config["general"]["load_cache_in_memory"] != self.dialog.get_value("general", "load_cache_in_memory"):
             self.config["general"]["load_cache_in_memory"] = self.dialog.get_value("general", "load_cache_in_memory")

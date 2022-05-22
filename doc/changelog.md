@@ -1,6 +1,12 @@
 TWBlue Changelog
 ## changes in this version
 
+* Fixed an issue that was making TWBlue to display incorrectly some retweets of quoted tweets.
+* Implemented a new setting, available in the account settings dialog, that allows to hide emojis in twitter usernames.
+* Fixed error when loading other user lists. ([#465](https://github.com/MCV-Software/TWBlue/issues/465))
+
+## changes in version 22.2.23
+
 * We have added Experimental support for templates in the invisible interface. The GUI will remain unchanged for now:
     * Each object (tweet, received direct message, sent direct message and people) has its own template in the settings. You can edit those templates from the account settings dialog, in the new "templates" tab.
     * Every template is composed of the group of variables you want to display for each object. Each variable will start with a dollar sign ($) and cannot contain spaces or special characters. Templates can include arbitrary text that will not be processed. When editing the example templates, you can get an idea of the variables that are available for each object by using the template editing dialog. When you press enter on a variable from the list of available variables, it will be added to the template automatically. When you try to save a template, TWBlue will warn you if the template is incorrectly formatted or if it includes variables that do not exist in the information provided by objects. It is also possible to return to default values from the same dialog when editing a template.

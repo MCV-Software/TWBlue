@@ -32,7 +32,7 @@ class listsController(object):
         return [compose.compose_list(item) for item in self.session.db["lists"]]
 
     def get_user_lists(self, user):
-        self.lists = self.session.twitter.lists_all(reverse=True, screen_name=user)
+        self.lists = self.session.twitter.get_lists(reverse=True, screen_name=user)
         return [compose.compose_list(item) for item in self.lists]
 
     def create_list(self, *args, **kwargs):
