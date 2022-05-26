@@ -98,7 +98,7 @@ class PeopleBuffer(base.BaseBuffer):
         message = messages.tweet(session=self.session, title=_("Mention"), caption=_("Mention to %s") % (screen_name,), text="@%s " % (screen_name,), thread_mode=False)
         if message.message.ShowModal() == widgetUtils.OK:
             tweet_data = message.get_tweet_data()
-            call_threaded(self.session.send_tweet, tweet_data)
+            call_threaded(self.session.send_tweet, *tweet_data)
         if hasattr(message.message, "destroy"):
             message.message.destroy()
 

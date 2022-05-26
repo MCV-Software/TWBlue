@@ -1,9 +1,10 @@
 TWBlue Changelog
 ## changes in this version
 
-* Fixed an issue that was making TWBlue to display incorrectly some retweets of quoted tweets.
 * Implemented a new setting, available in the account settings dialog, that allows to hide emojis in twitter usernames.
+* Fixed error when attempting to mention an user by using the "mention" button in any people buffer. Now tweets should be posted normally.
 * Fixed error when loading other user lists. ([#465](https://github.com/MCV-Software/TWBlue/issues/465))
+* Fixed an issue that was making TWBlue to display incorrectly some retweets of quoted tweets.
 
 ## changes in version 22.2.23
 
