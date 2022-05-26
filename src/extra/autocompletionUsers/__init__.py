@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
 # -*- coding: utf-8 -*-
+""" Autocompletion users feature for TWBlue. This package contains all needed code to support this feature, including automatic addition of users, management and code to show the autocompletion menu when an user is composing a tweet. """
 from . import completion, settings
