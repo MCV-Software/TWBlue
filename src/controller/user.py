@@ -107,7 +107,7 @@ class profileController(object):
         string = string+ _(u"Protected: %s\n") % (protected)
         if hasattr(self, "friendship_status"):
             relation = False
-            friendship = "Relationship: "
+            friendship = _(u"Relationship: ")
             if self.friendship_status[0].following:
                 friendship += _(u"You follow {0}. ").format(self.data.name,)
                 relation = True
