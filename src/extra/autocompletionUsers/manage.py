@@ -1,15 +1,25 @@
 # -*- coding: utf-8 -*-
+""" Management of users in the local database for autocompletion. """
+import time
 import widgetUtils
+from tweepy.cursor import Cursor
 from tweepy.errors import TweepyException
 from . import storage, wx_manage
 from wxUI import commonMessageDialogs
 
-class autocompletionManage(object):
+class autocompletionManager(object):
     def __init__(self, session):
-        super(autocompletionManage, self).__init__()
+        """ class constructor. Manages everything related to user autocompletion.
+
+        :param session: Sessiom where the autocompletion management has been requested.
+        :type session: sessions.base.Session.
+        """
+        super(autocompletionManager, self).__init__()
         self.session = session
-        self.dialog = wx_manage.autocompletionManageDialog()
         self.database = storage.storage(self.session.session_id)
+
+    def show_settings(self):
+        self.dialog = wx_manage.autocompletionManageDialog()
         self.users = self.database.get_all_users()
         self.dialog.put_users(self.users)
         widgetUtils.connect_event(self.dialog.add, widgetUtils.BUTTON_PRESSED, self.add_user)

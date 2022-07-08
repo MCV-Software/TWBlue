@@ -16,7 +16,7 @@ from pubsub import pub
 from mysc import autostart as autostart_windows
 from wxUI.dialogs import configuration
 from wxUI import commonMessageDialogs
-from extra.autocompletionUsers import settings
+from extra.autocompletionUsers import scan, manage
 from extra.ocr import OCRSpace
 from .editTemplateController import EditTemplate
 
@@ -142,7 +142,7 @@ class accountSettingsController(globalSettingsController):
 
     def create_config(self):
         self.dialog.create_general_account()
-        widgetUtils.connect_event(self.dialog.general.au, widgetUtils.BUTTON_PRESSED, self.manage_autocomplete)
+        widgetUtils.connect_event(self.dialog.general.userAutocompletionStart, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_start)
         self.dialog.set_value("general", "relative_time", self.config["general"]["relative_times"])
         self.dialog.set_value("general", "show_screen_names", self.config["general"]["show_screen_names"])
         self.dialog.set_value("general", "hide_emojis", self.config["general"]["hide_emojis"])
@@ -304,8 +304,8 @@ class accountSettingsController(globalSettingsController):
     def toggle_state(self,*args,**kwargs):
         return self.dialog.buffers.change_selected_item()
 
-    def manage_autocomplete(self, *args, **kwargs):
-        configuration = settings.autocompletionSettings(self.buffer.session.settings, self.buffer, self.window)
+    def on_autocompletion_start(self, *args, **kwargs):
+        configuration = scan.autocompletionScan(self.buffer.session.settings, self.buffer, self.window)
 
     def add_ignored_client(self, *args, **kwargs):
         client = commonMessageDialogs.get_ignored_client()
