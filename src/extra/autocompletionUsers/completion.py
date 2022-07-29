@@ -8,7 +8,7 @@ class autocompletionUsers(object):
     def __init__(self, window, session_id):
         """ Class constructor. Displays a menu with users matching the specified pattern for autocompletion.
 
-        :param window: A wx control where the menu should be displayed.
+        :param window: A wx control where the menu should be displayed. Normally this is going to be the wx.TextCtrl indicating the tweet's text or direct message recipient.
         :type window: wx.Dialog
         :param session_id: Session ID which calls this class. We will load the users database from this session.
         :type session_id: str.
