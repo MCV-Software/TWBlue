@@ -31,6 +31,5 @@ def get_progress_dialog(parent=None):
     return wx.ProgressDialog(_("Retrieving Twitter users from account..."), _("working..."),  parent=parent, maximum=100, style=wx.PD_APP_MODAL)
 
 def show_error():
-    dlg = wx.MessageDialog(None, _("Error adding users from Twitter. Please try again in about 15 minutes."), _("Error"), style=wx.ICON_ERROR)
-    dlg.ShowModal()
-    dlg.Destroy()
+    with wx.MessageDialog(None, _("Error adding users from Twitter. Please try again in about 15 minutes."), _("Error"), style=wx.ICON_ERROR) as dlg:
+        dlg.ShowModal()

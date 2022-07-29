@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """ Scanning code for autocompletion feature on TWBlue. This module can retrieve user objects from the selected Twitter account automatically. """
 import time
+import threading
 import wx
 import widgetUtils
 import output
 from tweepy.cursor import Cursor
 from tweepy.errors import TweepyException
 from pubsub import pub
-from mysc.thread_utils import call_threaded
 from . import wx_scan
 from . import manage
 from . import storage
@@ -36,7 +36,8 @@ class autocompletionScan(object):
                 self.progress_dialog = wx_scan.get_progress_dialog(parent=self.dialog)
                 # connect method to update progress dialog
                 pub.subscribe(self.on_update_progress, "on-update-progress")
-                scanner = call_threaded(self.scan)
+                scanner = threading.Thread(target=self.scan)
+                scanner.start()
 
     def on_update_progress(self, percent):
         if percent > 100:
@@ -64,7 +65,7 @@ class autocompletionScan(object):
                         ids.append(str(i))
             except TweepyException:
                 wx.CallAfter(wx_scan.show_error)
-                self.done()
+                return self.done()
         # As next step requires batches of 100s users, let's split our user Ids so we won't break the param rules.
         split_users = [ids[i:i + 100] for i in range(0, len(ids), 100)]
         # store returned users in this list.
@@ -74,9 +75,10 @@ class autocompletionScan(object):
                 continue
             try:
                 results = selff.buffer.session.twitter.lookup_users(user_id=z)
-            except TweepyException:
+            except NameError:
                 wx.CallAfter(wx_scan.show_error)
-                self.done()
+                wx.CallAfter(self.dialog.SetFocus)
+                return self.done()
             users.extend(results)
             time.sleep(1)
             percent = percent + (100/len(split_users))
