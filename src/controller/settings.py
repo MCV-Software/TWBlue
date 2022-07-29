@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import webbrowser
+import threading
 import logging
 import sound_lib
 import paths
@@ -307,6 +308,13 @@ class accountSettingsController(globalSettingsController):
 
     def on_autocompletion_scan(self, *args, **kwargs):
         configuration = scan.autocompletionScan(self.buffer.session.settings, self.buffer, self.window)
+        to_scan = configuration.show_dialog()
+        if to_scan == True:
+            configuration.prepare_progress_dialog()
+            t = threading.Thread(target=configuration.scan)
+            t.start()
+
+
 
     def on_autocompletion_manage(self, *args, **kwargs):
         configuration = manage.autocompletionManage(self.buffer.session)

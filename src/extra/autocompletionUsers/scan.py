@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """ Scanning code for autocompletion feature on TWBlue. This module can retrieve user objects from the selected Twitter account automatically. """
 import time
-import threading
 import wx
 import widgetUtils
 import output
@@ -27,17 +26,19 @@ class autocompletionScan(object):
         self.config = config
         self.buffer = buffer
         self.window = window
+
+    def show_dialog(self):
         self.dialog = wx_scan.autocompletionScanDialog()
         self.dialog.set("friends", self.config["mysc"]["save_friends_in_autocompletion_db"])
         self.dialog.set("followers", self.config["mysc"]["save_followers_in_autocompletion_db"])
         if self.dialog.get_response() == widgetUtils.OK:
             confirmation = wx_scan.confirm()
-            if confirmation == True:
-                self.progress_dialog = wx_scan.get_progress_dialog(parent=self.dialog)
-                # connect method to update progress dialog
-                pub.subscribe(self.on_update_progress, "on-update-progress")
-                scanner = threading.Thread(target=self.scan)
-                scanner.start()
+            return confirmation
+
+    def prepare_progress_dialog(self):
+        self.progress_dialog = wx_scan.get_progress_dialog(parent=self.dialog)
+        # connect method to update progress dialog
+        pub.subscribe(self.on_update_progress, "on-update-progress")
 
     def on_update_progress(self, percent):
         if percent > 100:
@@ -77,7 +78,6 @@ class autocompletionScan(object):
                 results = selff.buffer.session.twitter.lookup_users(user_id=z)
             except NameError:
                 wx.CallAfter(wx_scan.show_error)
-                wx.CallAfter(self.dialog.SetFocus)
                 return self.done()
             users.extend(results)
             time.sleep(1)
