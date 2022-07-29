@@ -21,15 +21,11 @@ class autocompletionScanDialog(widgetUtils.BaseDialog):
         panel.SetSizer(sizer)
         self.SetClientSize(sizer.CalcMin())
 
-def show_success_dialog():
-    with wx.MessageDialog(None, _("{0}'s database of users has been updated.").format(application.name,), _(u"Done"), wx.OK)as dlg:
-        dlg.ShowModal()
-
 def confirm():
-    with wx.MessageDialog(None, _("This process will retrieve the users you selected from Twitter, and add them to the user autocomplete database. Please note that if there are many users or you have tried to perform this action less than 15 minutes ago, TWBlue may reach a limit in Twitter API calls when trying to load the users into the database. If this happens, we will show you an error, in which case you will have to try this process again in a few minutes. Do you want to continue?"), _("Attention"), style=wx.ICON_QUESTION|wx.YES_NO) as result:
+    with wx.MessageDialog(None, _("This process will retrieve the users you selected from Twitter, and add them to the user autocomplete database. Please note that if there are many users or you have tried to perform this action less than 15 minutes ago, TWBlue may reach a limit in Twitter API calls when trying to load the users into the database. If this happens, we will show you an error, in which case you will have to try this process again in a few minutes. If this process finish with no error, you will be redirected back to the account settings dialog. Do you want to continue?"), _("Attention"), style=wx.ICON_QUESTION|wx.YES_NO) as result:
         if result.ShowModal() == wx.ID_YES:
             return True
         return False
 
-def get_progress_dialog():
-    return wx.ProgressDialog(_("Retrieving Twitter users from account..."), _("working..."),  parent=None, maximum=100)
+def get_progress_dialog(parent=None):
+    return wx.ProgressDialog(_("Retrieving Twitter users from account..."), _("working..."),  parent=parent, maximum=100, style=wx.PD_APP_MODAL)
