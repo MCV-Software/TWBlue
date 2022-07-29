@@ -142,7 +142,8 @@ class accountSettingsController(globalSettingsController):
 
     def create_config(self):
         self.dialog.create_general_account()
-        widgetUtils.connect_event(self.dialog.general.userAutocompletionStart, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_start)
+        widgetUtils.connect_event(self.dialog.general.userAutocompletionScan, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_scan)
+        widgetUtils.connect_event(self.dialog.general.userAutocompletionManage, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_manage)
         self.dialog.set_value("general", "relative_time", self.config["general"]["relative_times"])
         self.dialog.set_value("general", "show_screen_names", self.config["general"]["show_screen_names"])
         self.dialog.set_value("general", "hide_emojis", self.config["general"]["hide_emojis"])
@@ -304,8 +305,12 @@ class accountSettingsController(globalSettingsController):
     def toggle_state(self,*args,**kwargs):
         return self.dialog.buffers.change_selected_item()
 
-    def on_autocompletion_start(self, *args, **kwargs):
+    def on_autocompletion_scan(self, *args, **kwargs):
         configuration = scan.autocompletionScan(self.buffer.session.settings, self.buffer, self.window)
+
+    def on_autocompletion_manage(self, *args, **kwargs):
+        configuration = manage.autocompletionManage(self.buffer.session)
+        configuration.show_settings()
 
     def add_ignored_client(self, *args, **kwargs):
         client = commonMessageDialogs.get_ignored_client()

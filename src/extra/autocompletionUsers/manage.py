@@ -7,14 +7,14 @@ from tweepy.errors import TweepyException
 from wxUI import commonMessageDialogs
 from . import storage, wx_manage
 
-class autocompletionManager(object):
+class autocompletionManage(object):
     def __init__(self, session):
         """ class constructor. Manages everything related to user autocompletion.
 
         :param session: Sessiom where the autocompletion management has been requested.
         :type session: sessions.base.Session.
         """
-        super(autocompletionManager, self).__init__()
+        super(autocompletionManage, self).__init__()
         self.session = session
         # Instantiate database so we can perform modifications on it.
         self.database = storage.storage(self.session.session_id)
