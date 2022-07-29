@@ -39,7 +39,6 @@ class autocompletionScan(object):
                 scanner = call_threaded(self.scan)
 
     def on_update_progress(self, percent):
-        print(percent)
         if percent > 100:
             percent = 100
         wx.CallAfter(self.progress_dialog.Update, percent)
@@ -59,25 +58,34 @@ class autocompletionScan(object):
                     ids.append(str(i))
         # same step, but for followers.
         if self.dialog.get("followers") == True:
-            for i in Cursor(self.buffer.session.twitter.get_follower_ids, count=5000).items():
-                if str(i) not in ids:
-                    ids.append(str(i))
+            try:
+                for i in Cursor(self.buffer.session.twitter.get_follower_ids, count=5000).items():
+                    if str(i) not in ids:
+                        ids.append(str(i))
+            except TweepyException:
+                wx.CallAfter(wx_scan.show_error)
+                self.done()
         # As next step requires batches of 100s users, let's split our user Ids so we won't break the param rules.
         split_users = [ids[i:i + 100] for i in range(0, len(ids), 100)]
         # store returned users in this list.
         users = []
         for z in split_users:
             if len(z) == 0:
-                print("Invalid user count")
                 continue
-            print(len(z))
-            results = self.buffer.session.twitter.lookup_users(user_id=z)
+            try:
+                results = selff.buffer.session.twitter.lookup_users(user_id=z)
+            except TweepyException:
+                wx.CallAfter(wx_scan.show_error)
+                self.done()
             users.extend(results)
             time.sleep(1)
             percent = percent + (100/len(split_users))
             pub.sendMessage("on-update-progress", percent=percent)
         for user in users:
             database.set_user(user.screen_name, user.name, 1)
+        self.done()
+
+    def done(self):
         wx.CallAfter(self.progress_dialog.Destroy)
         wx.CallAfter(self.dialog.Destroy)
         pub.unsubscribe(self.on_update_progress, "on-update-progress")
