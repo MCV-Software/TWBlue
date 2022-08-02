@@ -39,6 +39,7 @@ class autocompletionScan(object):
         self.progress_dialog = wx_scan.get_progress_dialog(parent=self.dialog)
         # connect method to update progress dialog
         pub.subscribe(self.on_update_progress, "on-update-progress")
+        self.progress_dialog.Show()
 
     def on_update_progress(self, percent):
         if percent > 100:
