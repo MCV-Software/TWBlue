@@ -18,6 +18,7 @@ if system == "Windows":
     from . import user
     from . import listsController
     from . import filterController
+    from . import userSelector
 elif system == "Linux":
     from gtkUI import (view, commonMessageDialogs)
 from sessions.twitter import utils, compose
@@ -518,10 +519,9 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
-        if dlg.get_response() == widgetUtils.OK:
-            user = dlg.get_user()
-        else:
+        selector = userSelector.userSelector(users=users, session_id=buff.session.session_id)
+        user = selector.get_user()
+        if user == None:
             return
         l = listsController.listsController(buff.session, user=user)
 
@@ -535,10 +535,9 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
-        if dlg.get_response() == widgetUtils.OK:
-            user = dlg.get_user()
-        else:
+        selector = userSelector.userSelector(users=users, session_id=buff.session.session_id)
+        user = selector.get_user()
+        if user == None:
             return
         dlg = dialogs.lists.addUserListDialog()
         dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
@@ -564,10 +563,9 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        dlg = dialogs.utils.selectUserDialog(_(u"Select the user"), users)
-        if dlg.get_response() == widgetUtils.OK:
-            user = dlg.get_user()
-        else:
+        selector = userSelector.userSelector(users=users, session_id=buff.session.session_id)
+        user = selector.get_user()
+        if user == None:
             return
         dlg = dialogs.lists.removeUserListDialog()
         dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
