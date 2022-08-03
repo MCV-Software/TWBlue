@@ -11,7 +11,7 @@ class menu(wx.Menu):
     def append_options(self, options):
         for i in options:
             item = wx.MenuItem(self, wx.ID_ANY, "%s (@%s)" % (i[1], i[0]))
-            self.AppendItem(item)
+            self.Append(item)
             self.Bind(wx.EVT_MENU, lambda evt, temp=i[0]: self.select_text(evt, temp), item)
 
     def select_text(self, ev, text):
