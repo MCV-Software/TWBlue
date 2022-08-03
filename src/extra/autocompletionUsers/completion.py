@@ -8,7 +8,7 @@ class autocompletionUsers(object):
     def __init__(self, window, session_id):
         """ Class constructor. Displays a menu with users matching the specified pattern for autocompletion.
 
-        :param window: A wx control where the menu should be displayed.
+        :param window: A wx control where the menu should be displayed. Normally this is going to be the wx.TextCtrl indicating the tweet's text or direct message recipient.
         :type window: wx.Dialog
         :param session_id: Session ID which calls this class. We will load the users database from this session.
         :type session_id: str.
@@ -29,8 +29,8 @@ class autocompletionUsers(object):
         :param mode: this controls how the dialog will behave. Possible values are 'tweet' and 'dm'. In tweet mode, the matching pattern will be @user (@ is required), while in 'dm' mode the matching pattern will be anything written in the text control.
         :type mode: str
         """
-        position = self.window.text.GetInsertionPoint()
         if mode == "tweet":
+            position = self.window.text.GetInsertionPoint()
             text = self.window.text.GetValue()
             text = text[:position]
             try:
@@ -60,7 +60,7 @@ class autocompletionUsers(object):
             users = self.db.get_users(pattern)
             if len(users) > 0:
                 menu.append_options(users)
-                self.window.PopupMenu(menu, self.window.text.GetPosition())
+                self.window.PopupMenu(menu, self.window.cb.GetPosition())
                 menu.destroy()
             else:
                 output.speak(_(u"There are no results in your users database"))

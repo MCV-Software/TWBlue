@@ -2,7 +2,6 @@
 import widgetUtils
 from pubsub import pub
 from wxUI.dialogs import userAliasDialogs
-from extra import autocompletionUsers
 
 class userAliasController(object):
     def __init__(self, settings):

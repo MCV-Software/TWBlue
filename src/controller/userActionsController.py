@@ -4,7 +4,7 @@ import output
 from wxUI.dialogs import userActions
 from pubsub import pub
 from tweepy.errors  import TweepyException
-from extra import autocompletionUsers
+from extra.autocompletionUsers import completion
 
 class userActionsController(object):
     def __init__(self, buffer, users=[], default="follow"):
@@ -17,7 +17,7 @@ class userActionsController(object):
             self.process_action()
 
     def autocomplete_users(self, *args, **kwargs):
-        c = autocompletionUsers.completion.autocompletionUsers(self.dialog, self.session.session_id)
+        c = completion.autocompletionUsers(self.dialog, self.session.session_id)
         c.show_menu("dm")
 
     def process_action(self):

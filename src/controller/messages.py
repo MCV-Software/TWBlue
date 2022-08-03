@@ -11,8 +11,9 @@ from pubsub import pub
 from twitter_text import parse_tweet
 from wxUI.dialogs import twitterDialogs, urlList
 from wxUI import commonMessageDialogs
-from extra import translator, SpellChecker, autocompletionUsers
+from extra import translator, SpellChecker
 from extra.AudioUploader import audioUploader
+from extra.autocompletionUsers import completion
 from sessions.twitter import utils
 
 class basicTweet(object):
@@ -160,7 +161,7 @@ class tweet(basicTweet):
         self.text_processor()
 
     def autocomplete_users(self, *args, **kwargs):
-        c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
+        c = completion.autocompletionUsers(self.message, self.session.session_id)
         c.show_menu()
 
     def add_tweet(self, event, update_gui=True, *args, **kwargs):
@@ -269,7 +270,7 @@ class dm(basicTweet):
         self.text_processor()
 
     def autocomplete_users(self, *args, **kwargs):
-        c = autocompletionUsers.completion.autocompletionUsers(self.message, self.session.session_id)
+        c = completion.autocompletionUsers(self.message, self.session.session_id)
         c.show_menu("dm")
 
     def text_processor(self, *args, **kwargs):
