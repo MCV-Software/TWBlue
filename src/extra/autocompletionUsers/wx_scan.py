@@ -8,7 +8,7 @@ class autocompletionScanDialog(widgetUtils.BaseDialog):
         super(autocompletionScanDialog, self).__init__(parent=None, id=-1, title=_(u"Autocomplete users' settings"))
         panel = wx.Panel(self)
         sizer = wx.BoxSizer(wx.VERTICAL)
-        self.followers = wx.CheckBox(panel, -1, _("Add followers to the database"))
+        self.followers = wx.CheckBox(panel, -1, _("Add followers to database"))
         self.friends = wx.CheckBox(panel, -1, _("Add  friends to database"))
         sizer.Add(self.followers, 0, wx.ALL, 5)
         sizer.Add(self.friends, 0, wx.ALL, 5)
@@ -21,14 +21,27 @@ class autocompletionScanDialog(widgetUtils.BaseDialog):
         panel.SetSizer(sizer)
         self.SetClientSize(sizer.CalcMin())
 
+class autocompletionScanProgressDialog(widgetUtils.BaseDialog):
+    def __init__(self, *args, **kwargs):
+        super(autocompletionScanProgressDialog, self).__init__(parent=None, id=wx.ID_ANY, title=_("Updating autocompletion database"), *args, **kwargs)
+        panel = wx.Panel(self)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        self.progress_bar = wx.Gauge(parent=panel)
+        sizer.Add(self.progress_bar)
+        panel.SetSizerAndFit(sizer)
+
+    def update(self, percent):
+        self.progress_bar.SetValue(percent)
+
 def confirm():
     with wx.MessageDialog(None, _("This process will retrieve the users you selected from Twitter, and add them to the user autocomplete database. Please note that if there are many users or you have tried to perform this action less than 15 minutes ago, TWBlue may reach a limit in Twitter API calls when trying to load the users into the database. If this happens, we will show you an error, in which case you will have to try this process again in a few minutes. If this process ends with no error, you will be redirected back to the account settings dialog. Do you want to continue?"), _("Attention"), style=wx.ICON_QUESTION|wx.YES_NO) as result:
         if result.ShowModal() == wx.ID_YES:
             return True
         return False
 
-def get_progress_dialog(parent=None):
-    return wx.ProgressDialog(_("Retrieving Twitter users from account..."), _("working..."),  parent=parent, maximum=100, style=wx.PD_APP_MODAL)
+def show_success():
+    with wx.MessageDialog(None, _("TWBlue has imported {} users successfully."), _("Done")) as dlg:
+        dlg.ShowModal()
 
 def show_error():
     with wx.MessageDialog(None, _("Error adding users from Twitter. Please try again in about 15 minutes."), _("Error"), style=wx.ICON_ERROR) as dlg:
