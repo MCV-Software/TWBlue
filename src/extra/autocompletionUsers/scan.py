@@ -36,7 +36,7 @@ class autocompletionScan(object):
             return confirmation
 
     def prepare_progress_dialog(self):
-        self.progress_dialog = wx_scan.get_progress_dialog(parent=self.dialog)
+        self.progress_dialog = wx_scan.autocompletionScanProgressDialog()
         # connect method to update progress dialog
         pub.subscribe(self.on_update_progress, "on-update-progress")
         self.progress_dialog.Show()
@@ -44,7 +44,7 @@ class autocompletionScan(object):
     def on_update_progress(self, percent):
         if percent > 100:
             percent = 100
-        wx.CallAfter(self.progress_dialog.Update, percent)
+        wx.CallAfter(self.progress_dialog.update, percent)
 
     def scan(self):
         """ Attempts to add all users selected by current user to the autocomplete database. """
@@ -76,8 +76,8 @@ class autocompletionScan(object):
             if len(z) == 0:
                 continue
             try:
-                results = selff.buffer.session.twitter.lookup_users(user_id=z)
-            except NameError:
+                results = self.buffer.session.twitter.lookup_users(user_id=z)
+            except TweepyException:
                 wx.CallAfter(wx_scan.show_error)
                 return self.done()
             users.extend(results)
@@ -86,6 +86,7 @@ class autocompletionScan(object):
             pub.sendMessage("on-update-progress", percent=percent)
         for user in users:
             database.set_user(user.screen_name, user.name, 1)
+        wx.CallAfter(wx_scan.show_success, len(users))
         self.done()
 
     def done(self):

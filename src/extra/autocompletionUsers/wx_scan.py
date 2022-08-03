@@ -39,8 +39,8 @@ def confirm():
             return True
         return False
 
-def show_success():
-    with wx.MessageDialog(None, _("TWBlue has imported {} users successfully."), _("Done")) as dlg:
+def show_success(users):
+    with wx.MessageDialog(None, _("TWBlue has imported {} users successfully.").format(users), _("Done")) as dlg:
         dlg.ShowModal()
 
 def show_error():
