@@ -869,7 +869,7 @@ class Controller(object):
                     tl = buffers.twitter.BaseBuffer(self.view.nb, "user_timeline", "%s-timeline" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="tweet_timeline.ogg", user_id=usr.id_str, include_ext_alt_text=True, tweet_mode="extended")
                     try:
                         tl.start_stream(play_sound=False)
-                    except ValueError:
+                    except TweepyException:
                         commonMessageDialogs.unauthorized()
                         return
                     pos=self.view.search("timelines", buff.session.db["user_name"])

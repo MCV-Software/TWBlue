@@ -9,6 +9,7 @@ TWBlue Changelog
 * Fixed error when attempting to mention an user by using the "mention" button in any people buffer. Now tweets should be posted normally.
 * Fixed error when loading other user lists. ([#465](https://github.com/MCV-Software/TWBlue/issues/465))
 * Fixed an issue that was making TWBlue to display incorrectly some retweets of quoted tweets.
+* If TWBlue is unable to open a timeline for someone who has blocked you, this will be reported in a dialog. ([#485,](https://github.com/mcv-software/twblue/issues/485))
 * Added "find a string in the currently focused buffer" action into Windows 10 and windows 11 keymap. ([#476](https://github.com/MCV-Software/TWBlue/pull/476))
 
 ## changes in version 22.2.23
