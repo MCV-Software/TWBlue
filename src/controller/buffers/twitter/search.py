@@ -153,6 +153,7 @@ class ConversationBuffer(SearchBuffer):
                 results.extend(reply_results)
             except TweepyException as e:
                 log.exception("There was an error attempting to retrieve tweets for Twitter API V1.1, in conversation buffer {}".format(self.name))
+        results.sort(key=lambda x: x.id)
         return results
 
     def get_replies_v1(self, tweet):
