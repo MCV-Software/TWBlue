@@ -941,10 +941,12 @@ class Controller(object):
 
     def open_conversation(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        id = buffer.get_right_tweet().id
-        user = buffer.session.get_user(buffer.get_right_tweet().user).screen_name
-        search = buffers.twitter.ConversationBuffer(self.view.nb, "search_tweets", "%s-searchterm" % (id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=id, q="@{0}".format(user,))
-        search.tweet = buffer.get_right_tweet()
+        tweet = buffer.get_right_tweet()
+        if hasattr(tweet, "retweeted_status") and tweet.retweeted_status != None:
+            tweet = tweet.retweeted_status
+        user = buffer.session.get_user(tweet.user).screen_name
+        search = buffers.twitter.ConversationBuffer(self.view.nb, "search_tweets", "%s-searchterm" % (tweet.id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=tweet.id, q="@{0}".format(user,))
+        search.tweet = tweet
         search.start_stream(start=True)
         pos=self.view.search("searches", buffer.session.db["user_name"])
         self.insert_buffer(search, pos)
