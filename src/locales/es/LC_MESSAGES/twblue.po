@@ -1,16 +1,19 @@
+# Manuel Cortez <manuel@manuelcortez.net>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.84\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-08-16 17:50-0500\n"
-"PO-Revision-Date: 2021-11-12 13:29-0600\n"
+"PO-Revision-Date: 2022-08-20 17:33+0000\n"
 "Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
-"Language-Team: Manuel Cortez <info@twblue.com.mx>\n"
+"Language-Team: Spanish <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: languageHandler.py:61
@@ -451,19 +454,19 @@ msgstr "Opciones de la cuenta de %s"
 
 #: controller/settings.py:213 wxUI/dialogs/configuration.py:247
 msgid "Edit template for tweets. Current template: {}"
-msgstr ""
+msgstr "Editar plantilla para Tweets. Plantilla actual: {}"
 
 #: controller/settings.py:222 wxUI/dialogs/configuration.py:249
 msgid "Edit template for direct messages. Current template: {}"
-msgstr ""
+msgstr "Editar plantilla para mensajes directos. Plantilla actual: {}"
 
 #: controller/settings.py:231 wxUI/dialogs/configuration.py:251
 msgid "Edit template for sent direct messages. Current template: {}"
-msgstr ""
+msgstr "Editar plantilla para mensajes directos enviados. Plantilla actual: {}"
 
 #: controller/settings.py:240 wxUI/dialogs/configuration.py:253
 msgid "Edit template for persons. Current template: {}"
-msgstr ""
+msgstr "Editar plantilla para usuarios. Plantilla actual: {}"
 
 #: controller/settings.py:340
 msgid "Direct Messages"
@@ -537,7 +540,7 @@ msgstr "Protegido: %s\n"
 
 #: controller/user.py:110
 msgid "Relationship: "
-msgstr ""
+msgstr "Relación: "
 
 #: controller/user.py:112
 msgid "You follow {0}. "
@@ -580,7 +583,6 @@ msgid "Edit alias for {}"
 msgstr "Editar alias para {}"
 
 #: controller/userSelector.py:10
-#, fuzzy
 msgid "Select user"
 msgstr "Selecciona un usuario"
 
@@ -654,9 +656,8 @@ msgid "New direct message"
 msgstr "Nuevo mensaje directo"
 
 #: controller/buffers/twitter/base.py:452
-#, fuzzy
 msgid "This action is not supported on protected accounts."
-msgstr "Esta acción todavía no se soporta en este buffer."
+msgstr "Esta acción no está permitida sobre cuentas protegidas."
 
 #: controller/buffers/twitter/base.py:469
 msgid "Quote"
@@ -1084,19 +1085,16 @@ msgid "Autocomplete users' settings"
 msgstr "Opciones de autocompletado de usuarios"
 
 #: extra/autocompletionUsers/wx_scan.py:11
-#, fuzzy
 msgid "Add followers to database"
-msgstr "Añadir usuario a la base de datos"
+msgstr "Añadir seguidores a la base de datos"
 
 #: extra/autocompletionUsers/wx_scan.py:12
-#, fuzzy
 msgid "Add  friends to database"
-msgstr "Añadir usuario a la base de datos"
+msgstr "Añadir \"siguiendo\" a la base de datos"
 
 #: extra/autocompletionUsers/wx_scan.py:26
-#, fuzzy
 msgid "Updating autocompletion database"
-msgstr "Gestionar la base de datos del autocompletado de usuarios"
+msgstr "Actualizando base de datos de autocompletado"
 
 #: extra/autocompletionUsers/wx_scan.py:37
 msgid ""
@@ -1109,6 +1107,15 @@ msgid ""
 "with no error, you will be redirected back to the account settings dialog. "
 "Do you want to continue?"
 msgstr ""
+"Este proceso recuperará los usuarios que hayas seleccionado de Twitter y los "
+"añadirá a la base de datos de autocompletado de usuarios. Ten en cuenta que "
+"si hay muchos usuarios o has intentado realizar esta acción hace menos de 15 "
+"minutos, TWBlue puede llegar a un límite en las llamadas a la API de Twitter "
+"al intentar cargar los usuarios en la base de datos. Si esto ocurre, te "
+"mostraremos un error, en cuyo caso tendrás que volver a intentar este "
+"proceso en unos minutos. Si este proceso finaliza sin ningún error, serás "
+"redirigido de nuevo al diálogo de configuración de la cuenta. ¿Deseas "
+"continuar?"
 
 #: extra/autocompletionUsers/wx_scan.py:37 wxUI/commonMessageDialogs.py:36
 #: wxUI/commonMessageDialogs.py:86
@@ -1117,7 +1124,7 @@ msgstr "Atención"
 
 #: extra/autocompletionUsers/wx_scan.py:43
 msgid "TWBlue has imported {} users successfully."
-msgstr ""
+msgstr "TWBlue ha importado {} usuarios correctamente."
 
 #: extra/autocompletionUsers/wx_scan.py:43
 msgid "Done"
@@ -1126,6 +1133,8 @@ msgstr "¡Hecho"
 #: extra/autocompletionUsers/wx_scan.py:47
 msgid "Error adding users from Twitter. Please try again in about 15 minutes."
 msgstr ""
+"Error añadiendo usuarios desde Twitter. Por favor, inténtalo nuevamente en "
+"15 minutos."
 
 #: extra/ocr/OCRSpace.py:7
 msgid "Detect automatically"
@@ -1975,27 +1984,30 @@ msgid "Deleted account"
 msgstr "Cuenta eliminada"
 
 #: sessions/twitter/templates.py:16
+#, fuzzy
 msgid "$display_name, $text $image_descriptions $date. $source"
-msgstr ""
+msgstr "$display_name, $text $image_descriptions $date. $source"
 
 #: sessions/twitter/templates.py:17
+#, fuzzy
 msgid "$sender_display_name, $text $date"
-msgstr ""
+msgstr "$sender_display_name, $text $date"
 
 #: sessions/twitter/templates.py:18
 msgid "Dm to $recipient_display_name, $text $date"
-msgstr ""
+msgstr "DM para $recipient_display_name, $text $date"
 
 #: sessions/twitter/templates.py:19
 msgid ""
 "$display_name (@$screen_name). $followers followers, $following following, "
 "$tweets tweets. Joined Twitter $created_at."
 msgstr ""
+"$display_name (@$screen_name). $followers seguidores, $following siguiendo, $"
+"tweets tweets. Se unió a Twitter $created_at."
 
 #: sessions/twitter/templates.py:54
-#, fuzzy
 msgid "Image description: {}."
-msgstr "Descripción de la imagen"
+msgstr "Descripción de la imagen: {}."
 
 #: sessions/twitter/utils.py:243
 msgid "Sorry, you are not authorised to see this status."
@@ -2273,7 +2285,7 @@ msgstr "Este filtro ya existe, por favor utiliza un título diferente"
 
 #: wxUI/commonMessageDialogs.py:95
 msgid "The configuration file is invalid."
-msgstr ""
+msgstr "El fichero de configuración es incorrecto."
 
 #: wxUI/commonMessageDialogs.py:98
 msgid ""
@@ -2706,20 +2718,20 @@ msgid "Password: "
 msgstr "Contraseña: "
 
 #: wxUI/dialogs/configuration.py:102
-#, fuzzy
 msgid "User autocompletion settings"
-msgstr "Opciones de autocompletado de usuarios..."
+msgstr "Opciones de autocompletado de usuarios"
 
 #: wxUI/dialogs/configuration.py:103
 msgid ""
 "Scan account and add friends and followers to the user autocompletion "
 "database"
 msgstr ""
+"Escanear cuenta y añadir usuarios a la base de datos de autocompletado de "
+"usuarios"
 
 #: wxUI/dialogs/configuration.py:104
-#, fuzzy
 msgid "Manage autocompletion database"
-msgstr "Gestionar la base de datos del autocompletado de usuarios"
+msgstr "Gestionar base de datos del autocompletado de usuarios"
 
 #: wxUI/dialogs/configuration.py:109
 msgid "Relative timestamps"
@@ -2747,7 +2759,7 @@ msgstr "Mostrar nombres de pantalla en lugar de nombres completos"
 
 #: wxUI/dialogs/configuration.py:128
 msgid "hide emojis in usernames"
-msgstr ""
+msgstr "Esconder emojis en nombres de usuario"
 
 #: wxUI/dialogs/configuration.py:130
 msgid ""
@@ -2890,7 +2902,7 @@ msgstr "Buffers"
 
 #: wxUI/dialogs/configuration.py:406
 msgid "Templates"
-msgstr ""
+msgstr "Plantillas"
 
 #: wxUI/dialogs/configuration.py:410
 msgid "Sound"
@@ -3315,24 +3327,23 @@ msgstr "&Amigos"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:8
 msgid "Edit Template"
-msgstr ""
+msgstr "Editar plantilla"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:13
 msgid "Edit template"
-msgstr ""
+msgstr "Editar plantilla"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:17
-#, fuzzy
 msgid "Available variables"
-msgstr "No disponible"
+msgstr "Variables disponibles"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:29
 msgid "Restore template"
-msgstr ""
+msgstr "Restablecer plantilla"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:48
 msgid "Restored template to {}."
-msgstr ""
+msgstr "Plantilla restablecida a {}."
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
 msgid ""
@@ -3341,11 +3352,14 @@ msgid ""
 "see a list of all available variables in the variables list while editing "
 "your template."
 msgstr ""
+"La plantilla que has indicado contiene variables que no existen para el tipo "
+"de objeto seleccionado. Por favor, corrige estos errores e inténtalo de "
+"nuevo. A modo de referencia, puedes ver una lista de variables disponibles "
+"mientras editas tu plantilla."
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
-#, fuzzy
 msgid "Invalid template"
-msgstr "Combinación de teclado inválida"
+msgstr "Plantilla inválida"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:32
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:48
