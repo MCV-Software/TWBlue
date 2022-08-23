@@ -36,7 +36,7 @@ def process_text(tweet):
     # Replace URLS for extended version of those.
     if hasattr(tweet, "entities"):
         text = utils.expand_urls(text, tweet.entities)
-    text = re.sub(r"https://twitter.com/\w+/status/\d+", "", text)
+    text = re.sub(r"https://twitter.com/\w+/status/\S+", "", text)
     return text
 
 def process_image_descriptions(entities):
