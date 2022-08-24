@@ -29,36 +29,42 @@ class userActionsController(object):
     def follow(self, user):
         try:
             self.session.twitter.create_friendship(screen_name=user )
+            pub.sendMessage("restartStreaming", session=self.session.session_id)
         except TweepyException  as err:
             output.speak("Error %s" % (str(err)), True)
 
     def unfollow(self, user):
         try:
             id = self.session.twitter.destroy_friendship(screen_name=user )
+            pub.sendMessage("restartStreaming", session=self.session.session_id)
         except TweepyException as err:
             output.speak("Error %s" % (str(err)), True)
 
     def mute(self, user):
         try:
             id = self.session.twitter.create_mute(screen_name=user )
+            pub.sendMessage("restartStreaming", session=self.session.session_id)
         except TweepyException as err:
             output.speak("Error %s" % (str(err)), True)
 
     def unmute(self, user):
         try:
             id = self.session.twitter.destroy_mute(screen_name=user )
+            pub.sendMessage("restartStreaming", session=self.session.session_id)
         except TweepyException as err:
             output.speak("Error %s" % (str(err)), True)
 
     def report(self, user):
         try:
             id = self.session.twitter.report_spam(screen_name=user )
+            pub.sendMessage("restartStreaming", session=self.session.session_id)
         except TweepyException as err:
             output.speak("Error %s" % (str(err)), True)
 
     def block(self, user):
         try:
             id = self.session.twitter.create_block(screen_name=user )
+            pub.sendMessage("restartStreaming", session=self.session.session_id)
         except TweepyException as err:
             output.speak("Error %s" % (str(err)), True)
 

@@ -8,6 +8,7 @@ TWBlue Changelog
 * Implemented a new setting, available in the account settings dialog, that allows to hide emojis in twitter usernames.
 * TWBlue should be able to sort conversations in a more logical way. This should make it easier to follow a long thread in Twitter.
 * When opening a thread, TWBlue should be able to load the right conversation if the original tweet from where the thread was loaded was a retweet.
+* TWBlue will restart the Streaming subsystem every time there are changes to followed, muted or blocked users within the application.
 * Fixed error when attempting to mention an user by using the "mention" button in any people buffer. Now tweets should be posted normally.
 * Fixed error when loading other user lists. ([#465](https://github.com/MCV-Software/TWBlue/issues/465))
 * Fixed an issue that was making TWBlue to display incorrectly some retweets of quoted tweets.

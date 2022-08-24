@@ -135,6 +135,7 @@ class Controller(object):
         pub.subscribe(self.manage_unblocked_user, "unblocked-user")
         pub.subscribe(self.create_buffer, "createBuffer")
         pub.subscribe(self.toggle_share_settings, "toggleShare")
+        pub.subscribe(self.restart_streaming, "restartStreaming")
         if system == "Windows":
             pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
             widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -1656,7 +1657,6 @@ class Controller(object):
     def toggle_share_settings(self, shareable=True):
         self.view.retweet.Enable(shareable)
 
-
     def check_streams(self):
         if self.started == False:
             return
@@ -1666,3 +1666,10 @@ class Controller(object):
                 sessions.sessions[i].check_streams()
             except TweepyException: # We shouldn't allow this function to die.
                 pass
+
+    def restart_streaming(self, session):
+        for s in sessions.sessions:
+            if sessions.sessions[s].session_id == session:
+                log.debug("Restarting stream in session %s" % (session))
+                sessions.sessions[s].stop_streaming()
+                sessions.sessions[s].start_streaming()
