@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-08-24 11:30-0500\n"
-"PO-Revision-Date: 2022-08-23 22:44+0000\n"
+"PO-Revision-Date: 2022-08-25 17:03+0000\n"
 "Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
 "Language-Team: Spanish <https://weblate.mcvsoftware.com/projects/twblue/"
 "changelog/es/>\n"
@@ -32,6 +32,9 @@ msgid ""
 "* the user autocompletion feature has been completely rewritten to be easier "
 "to use, particularly for people with many followers/following users:"
 msgstr ""
+"* La característica de autocompletado de usuarios ha sido reescrita para ser "
+"más fácil de utilizar, especialmente para usuarios con cuentas seguidas / "
+"siguiendo a muchas personas:"
 
 #: changelog.py:8
 msgid ""
@@ -46,6 +49,16 @@ msgid ""
 "will be prompted to try again in 15 minutes, once your API calls have "
 "refreshed."
 msgstr ""
+"    * En el diálogo de configuración de la cuenta, hay un botón que abre un "
+"nuevo diálogo que te permite \"escanear\" tu cuenta para añadir todos los "
+"usuarios de tu lista de seguidores/siguiendo. Este proceso leerá tus datos "
+"directamente desde Twitter y, dependiendo de la cantidad de personas que "
+"tengas en tu cuenta, podría llevar demasiadas llamadas a la API. Utilízalo "
+"con precaución. Puedes, por ejemplo, hacer el proceso por separado para tus "
+"seguidores/siguiendo para que sea más fácil de manejar, en caso de que "
+"tengas una cantidad masiva de personas. Si TWBlue no puede completar el "
+"escaneo, verás un error y se te pedirá que lo intentes de nuevo en 15 "
+"minutos, una vez que tus llamadas a la API se hayan refrescado."
 
 #: changelog.py:9
 msgid ""
@@ -53,18 +66,25 @@ msgid ""
 "where you can select an user, for example when adding or removing someone "
 "from a list, or displaying lists for someone."
 msgstr ""
+"    * Ahora es posible utilizar el autocompletado de usuario en más "
+"secciones de la aplicación donde se requiere ingresar un usuario, como al "
+"momento de añadir, eliminar o ver las listas para un usuario."
 
 #: changelog.py:10
 msgid ""
 "* Implemented a new setting, available in the account settings dialog, that "
 "allows to hide emojis in twitter usernames."
 msgstr ""
+"* Se ha agregado una opción dentro del diálogo de opciones de cuenta, que "
+"permite ocultar los emojis en los nombres de pantalla de los usuarios."
 
 #: changelog.py:11
 msgid ""
 "* TWBlue should be able to sort conversations in a more logical way. This "
 "should make it easier to follow a long thread in Twitter."
 msgstr ""
+"* TWBlue debería ordenar los tweets de un hilo de formas más lógicas. Esto "
+"debería hacer mucho mejor la lectura de conversaciones en Twitter."
 
 #: changelog.py:12
 msgid ""
@@ -72,30 +92,41 @@ msgid ""
 "conversation if the original tweet from where the thread was loaded was a "
 "retweet."
 msgstr ""
+"* Al abrir un hilo, TWBlue debería mostrar el hilo correctamente si el hilo "
+"se abre desde un Retweet."
 
 #: changelog.py:13
 msgid ""
 "* TWBlue will restart the Streaming subsystem every time there are changes "
 "to followed, muted or blocked users within the application."
 msgstr ""
+"* TWBlue reiniciará el subsistema de Streaming cada vez que haya cambios en "
+"los usuarios seguidos, silenciados o bloqueados en las sesiones."
 
 #: changelog.py:14
 msgid ""
 "* Fixed error when attempting to mention an user by using the \"mention\" "
 "button in any people buffer. Now tweets should be posted normally."
 msgstr ""
+"* Se ha corregido un error que ocurría al intentar mencionar un usuario "
+"desde cualquier Buffer de personas (por ejemplo los buffers de seguidores y "
+"siguiendo)."
 
 #: changelog.py:15
 msgid ""
 "* Fixed error when loading other user lists. ([#465](https://github.com/MCV-"
 "Software/TWBlue/issues/465))"
 msgstr ""
+"* Corregido un error al cargar listas de otros usuarios. "
+"([#465](https://github.com/MCV-Software/TWBlue/issues/465))"
 
 #: changelog.py:16
 msgid ""
 "* Fixed an issue that was making TWBlue to display incorrectly some retweets "
 "of quoted tweets."
 msgstr ""
+"* Se ha corregido un error que causaba que TWBlue no pudiera mostrar "
+"correctamente algunos Tweets citados que formaban parte de un Retweet."
 
 #: changelog.py:17
 msgid ""
@@ -103,6 +134,9 @@ msgid ""
 "this will be reported in a dialog. ([#485,](https://github.com/mcv-software/"
 "twblue/issues/485))"
 msgstr ""
+"* Si TWBlue es incapaz de abrir una línea temporal para un usuario que te ha "
+"bloqueado, verás un diálogo informando de esta situación. "
+"([#485,](https://github.com/mcv-software/twblue/issues/485))"
 
 #: changelog.py:18
 msgid ""
@@ -110,16 +144,21 @@ msgid ""
 "Windows 10 and windows 11 keymap. ([#476](https://github.com/MCV-Software/"
 "TWBlue/pull/476))"
 msgstr ""
+"* Añadido atajo para encontrar término en el buffer actual a los mapas de "
+"teclado para Windows 10 y 11. ([#476](https://github.com/MCV-Software/TWBlue/"
+"pull/476))"
 
 #: changelog.py:20
 msgid "## changes in version 22.2.23"
-msgstr ""
+msgstr "## Cambios en versión 22.2.23"
 
 #: changelog.py:22
 msgid ""
 "* We have added Experimental support for templates in the invisible "
 "interface. The GUI will remain unchanged for now:"
 msgstr ""
+"* Se ha añadido soporte experimental para plantillas en la interfaz "
+"invisible. La interfaz gráfica continuará sin cambios por ahora:"
 
 #: changelog.py:23
 msgid ""
@@ -127,6 +166,10 @@ msgid ""
 "people) has its own template in the settings. You can edit those templates "
 "from the account settings dialog, in the new \"templates\" tab."
 msgstr ""
+"    * Cada objeto (tweet, mensaje directo recibido, mensaje directo enviado "
+"y personas) posee su propia plantilla en la configuración. Se pueden editar "
+"dichas plantillas desde el diálogo de opciones de cuenta, en la nueva "
+"pestaña \"plantillas\"."
 
 #: changelog.py:24
 msgid ""
@@ -142,12 +185,27 @@ msgid ""
 "information provided by objects. It is also possible to return to default "
 "values from the same dialog when editing a template."
 msgstr ""
+"    * Cada plantilla es una cadena de caracteres compuesta por el grupo de "
+"variables que se desea mostrar de cada objeto. Cada variable iniciará con el "
+"símbolo de dólar ($) y no puede llevar espacios ni caracteres especiales. "
+"Las plantillas pueden incluir texto arbitrario que no será procesado. Al "
+"editar las plantillas de ejemplo, puedes darte una idea de las variables que "
+"hay disponibles para cada objeto mediante el diálogo de edición de "
+"plantillas. Al pulsar intro sobre alguna variable de la lista de variables "
+"disponibles, esta será añadida a la plantilla automáticamente. Al intentar "
+"guardar una plantilla, TWBlue te avisará si la plantilla presenta un formato "
+"incorrecto o si incluye variables que no existen en la información que los "
+"objetos ofrecen. También es posible regresar a los valores predeterminados "
+"desde el mismo diálogo al editar una plantilla."
 
 #: changelog.py:25
 msgid ""
 "    * TWBlue can display image descriptions within Tweet templates. For "
 "that, you can use the $image_description variable in your template."
 msgstr ""
+"    * TWBlue puede mostrar descripciones de imágenes dentro de las "
+"plantillas para Tweets. Para eso, puedes utilizar la variable $"
+"image_description en tu plantilla."
 
 #: changelog.py:26
 msgid ""
@@ -155,6 +213,9 @@ msgid ""
 "V2 thanks to a set of improvements we have done in the application, as well "
 "as more generous limits to Tweet monthly cap by Twitter."
 msgstr ""
+"* Se han restablecido los hilos y conversaciones completos, usando la nueva "
+"API V2 de Twitter. Ahora las limitaciones anteriores no deberían influir en "
+"el rendimiento de la aplicación."
 
 #: changelog.py:27
 msgid ""
@@ -162,20 +223,26 @@ msgid ""
 "editor is now CTRL+Alt+Windows+K to avoid conflicts with the new global mute "
 "microphone shortcut."
 msgstr ""
+"* En el mapa de teclado para Windows 11, el atajo para abrir el editor de "
+"combinaciones de teclas es Control+Windows+Alt+K, para evitar entrar en "
+"conflicto con el atajo para silenciar el micrófono disponible en Windows 11."
 
 #: changelog.py:28
 msgid "* TWBlue show display properly HTML entities in tweet's text."
 msgstr ""
+"* TWBlue debería mostrar correctamente el HTML que se agrega a un Tweet."
 
 #: changelog.py:29
 msgid "* TWBlue should no longer load old tweets in buffers."
-msgstr ""
+msgstr "* Ahora ya no deberían cargarse elementos más antiguos en buffers."
 
 #: changelog.py:30
 msgid ""
 "* Fixed issue when uploading attachments (images, videos or gif files) while "
 "sending tweets or replies."
 msgstr ""
+"* Ahora vuelve a ser posible adjuntar imágenes y videos en Tweets y "
+"respuestas."
 
 #: changelog.py:31
 msgid ""
@@ -183,10 +250,14 @@ msgid ""
 "account settings, even if such restart was not required. ([#413,](https://"
 "github.com/manuelcortez/TWBlue/issues/413))"
 msgstr ""
+"* Se ha corregido un error que causaba que al editar la configuración, "
+"TWBlue solicitara un reinicio, aún y cuando no se había cambiado ningúna "
+"opción que lo requiera. ([#413,](https://github.com/manuelcortez/TWBlue/"
+"issues/413))"
 
 #: changelog.py:33
 msgid "## Changes in version 2021.11.12"
-msgstr ""
+msgstr "## Cambios en versión 2021.11.12"
 
 #: changelog.py:35
 msgid ""

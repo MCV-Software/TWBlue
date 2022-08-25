@@ -1,97 +1,86 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2019 ORGANIZATION
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
-#
+# zvonimir stanecic <zvonimirek222@yandex.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: TWBlue 0.80\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-08-16 17:50-0500\n"
-"PO-Revision-Date: 2019-05-05 10:53+0100\n"
-"Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
-"Language-Team: Zvonimir Stanečić\n"
+"PO-Revision-Date: 2022-08-25 18:09+0000\n"
+"Last-Translator: zvonimir stanecic <zvonimirek222@yandex.com>\n"
+"Language-Team: Croatian <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: languageHandler.py:61
-#, fuzzy
 msgctxt "languageName"
 msgid "Amharic"
 msgstr "Amharski"
 
 #: languageHandler.py:62
-#, fuzzy
 msgctxt "languageName"
 msgid "Aragonese"
 msgstr "Japanski"
 
 #: languageHandler.py:63
-#, fuzzy
 msgctxt "languageName"
 msgid "Spanish"
 msgstr "Španjolski"
 
 #: languageHandler.py:64
-#, fuzzy
 msgctxt "languageName"
 msgid "Portuguese"
 msgstr "Portugalski"
 
 #: languageHandler.py:65
-#, fuzzy
 msgctxt "languageName"
 msgid "Russian"
 msgstr "Ruski"
 
 #: languageHandler.py:66
-#, fuzzy
 msgctxt "languageName"
 msgid "italian"
 msgstr "Talijanski"
 
 #: languageHandler.py:67
-#, fuzzy
 msgctxt "languageName"
 msgid "Turkey"
-msgstr "značajka"
+msgstr "Turska"
 
 #: languageHandler.py:68
-#, fuzzy
 msgctxt "languageName"
 msgid "Galician"
 msgstr "Galicijski"
 
 #: languageHandler.py:69
-#, fuzzy
 msgctxt "languageName"
 msgid "Catala"
 msgstr "Katalonski"
 
 #: languageHandler.py:70
-#, fuzzy
 msgctxt "languageName"
 msgid "Vasque"
 msgstr "Baskijski"
 
 #: languageHandler.py:71
-#, fuzzy
 msgctxt "languageName"
 msgid "polish"
-msgstr "Poljski"
+msgstr "poljski"
 
 #: languageHandler.py:72
-#, fuzzy
 msgctxt "languageName"
 msgid "Arabic"
 msgstr "Arapski"
 
 #: languageHandler.py:73
-#, fuzzy
 msgctxt "languageName"
 msgid "Nepali"
 msgstr "Nepalski"
@@ -99,10 +88,9 @@ msgstr "Nepalski"
 #: languageHandler.py:74
 msgctxt "languageName"
 msgid "Serbian (Latin)"
-msgstr ""
+msgstr "Srpski (Latinica)"
 
 #: languageHandler.py:75
-#, fuzzy
 msgctxt "languageName"
 msgid "Japanese"
 msgstr "Japanski"
@@ -173,9 +161,8 @@ msgid "Followers"
 msgstr "Pratitelji"
 
 #: controller/mainController.py:351
-#, fuzzy
 msgid "Following"
-msgstr "Prestani prati&ti"
+msgstr "Praćeni"
 
 #: controller/buffers/twitter/base.py:70 controller/mainController.py:353
 #: controller/mainController.py:1399 controller/settings.py:346
@@ -206,9 +193,8 @@ msgid "Likes for {}"
 msgstr "lajkovi za {}"
 
 #: controller/mainController.py:364
-#, fuzzy
 msgid "Followers timelines"
-msgstr "osi pratitelja"
+msgstr "Osi pratitelja"
 
 #: controller/mainController.py:367 controller/mainController.py:915
 #: controller/mainController.py:1580
@@ -216,9 +202,8 @@ msgid "Followers for {}"
 msgstr "pratitelji za {}"
 
 #: controller/mainController.py:368
-#, fuzzy
 msgid "Following timelines"
-msgstr "osi pratitelja"
+msgstr "Osi praćenih"
 
 #: controller/mainController.py:371 controller/mainController.py:934
 #: controller/mainController.py:1582
@@ -272,11 +257,11 @@ msgstr "Filtri ne mogu biti primjenjeni na ovaj spremnik"
 
 #: controller/mainController.py:747
 msgid "Add an user alias"
-msgstr ""
+msgstr "Dodaj korisnički alias"
 
 #: controller/mainController.py:755
 msgid "Alias has been set correctly for {}."
-msgstr ""
+msgstr "Alias je ispravno dobavljen za {}."
 
 #: controller/mainController.py:823 controller/messages.py:328
 msgid "MMM D, YYYY. H:m"
@@ -296,7 +281,7 @@ msgstr "Greška pri dekodiranju koordinata. pokušajte ponovo kasnije."
 
 #: controller/mainController.py:998
 msgid "Unable to find address in OpenStreetMap."
-msgstr ""
+msgstr "Nije moguće pronaći adresu u OpenStreetMap."
 
 #: controller/mainController.py:1011
 msgid "There are no results for the coordinates in this tweet"
@@ -426,34 +411,35 @@ msgid "View item"
 msgstr "Pogledaj popis"
 
 #: controller/messages.py:381
-#, fuzzy
 msgid "Link copied to clipboard."
-msgstr "Kopiraj u međuspremnik"
+msgstr "Link je kopiran u međuspremnik."
+
+#: controller/settings.py:77
+msgid "System default"
+msgstr "Korisnićki zadan"
 
 #: controller/settings.py:77
 #, fuzzy
-msgid "System default"
-msgstr "Korisnički zadano"
-
-#: controller/settings.py:77
 msgid "HTTP"
-msgstr ""
+msgstr "HTTP"
 
 #: controller/settings.py:77
+#, fuzzy
 msgid "SOCKS v4"
-msgstr ""
+msgstr "SOCKS v4"
 
 #: controller/settings.py:77
 msgid "SOCKS v4 with DNS support"
-msgstr ""
+msgstr "SOCKS v4 sa DNS podrškom"
 
 #: controller/settings.py:77
+#, fuzzy
 msgid "SOCKS v5"
-msgstr ""
+msgstr "SOCKS v5"
 
 #: controller/settings.py:77
 msgid "SOCKS v5 with DNS support"
-msgstr ""
+msgstr "SOCKS v5 sa DNS podrškom"
 
 #: controller/settings.py:155 controller/settings.py:269
 #: wxUI/dialogs/configuration.py:121
@@ -476,19 +462,19 @@ msgstr "postavke naloga za %s"
 
 #: controller/settings.py:213 wxUI/dialogs/configuration.py:247
 msgid "Edit template for tweets. Current template: {}"
-msgstr ""
+msgstr "Uredi predložak za tweetove. trenutan predložak: {}"
 
 #: controller/settings.py:222 wxUI/dialogs/configuration.py:249
 msgid "Edit template for direct messages. Current template: {}"
-msgstr ""
+msgstr "Uredi predložak za privatne poruke. trenutan predložak: {}"
 
 #: controller/settings.py:231 wxUI/dialogs/configuration.py:251
 msgid "Edit template for sent direct messages. Current template: {}"
-msgstr ""
+msgstr "Uredi predložak za poslane privatne poruke. trenutan predložak: {}"
 
 #: controller/settings.py:240 wxUI/dialogs/configuration.py:253
 msgid "Edit template for persons. Current template: {}"
-msgstr ""
+msgstr "Uredi predložak za osobe. Trenutan predložak: {}"
 
 #: controller/settings.py:340
 msgid "Direct Messages"
@@ -562,7 +548,7 @@ msgstr "Zaštićeno: %s\n"
 
 #: controller/user.py:110
 msgid "Relationship: "
-msgstr ""
+msgstr "povezanost: "
 
 #: controller/user.py:112
 msgid "You follow {0}. "
@@ -601,14 +587,12 @@ msgid "You can't ignore direct messages"
 msgstr "Ne možete zanemarivati izravne poruke"
 
 #: controller/userAliasController.py:31
-#, fuzzy
 msgid "Edit alias for {}"
-msgstr "Popis za %s"
+msgstr "uredi alias za {}"
 
 #: controller/userSelector.py:10
-#, fuzzy
 msgid "Select user"
-msgstr "Označi korisnika"
+msgstr "Odaberi korisnika"
 
 #: controller/buffers/base/base.py:91 controller/buffers/mastodon/base.py:91
 msgid "This action is not supported for this buffer"
@@ -680,9 +664,8 @@ msgid "New direct message"
 msgstr "Nova izravna poruka"
 
 #: controller/buffers/twitter/base.py:452
-#, fuzzy
 msgid "This action is not supported on protected accounts."
-msgstr "Ova akcija još uvjek nije podržana u spremniku."
+msgstr "Ova akcija nije podržana na zaštićenim računima."
 
 #: controller/buffers/twitter/base.py:469
 msgid "Quote"
@@ -1108,19 +1091,16 @@ msgid "Autocomplete users' settings"
 msgstr "Postavke korisnika koji se samodovršuju"
 
 #: extra/autocompletionUsers/wx_scan.py:11
-#, fuzzy
 msgid "Add followers to database"
-msgstr "Dodaj korisnika u bazu podataka"
+msgstr "Dodaj pratitelje u bazu podataka"
 
 #: extra/autocompletionUsers/wx_scan.py:12
-#, fuzzy
 msgid "Add  friends to database"
-msgstr "Dodaj korisnika u bazu podataka"
+msgstr "Dodaj prijatelje u bazu podataka"
 
 #: extra/autocompletionUsers/wx_scan.py:26
-#, fuzzy
 msgid "Updating autocompletion database"
-msgstr "upravljaj bazom podataka korisnika koji se samodovršavaju"
+msgstr "Ažuriram bazu podataka samodovršavanja"
 
 #: extra/autocompletionUsers/wx_scan.py:37
 msgid ""
@@ -1133,6 +1113,14 @@ msgid ""
 "with no error, you will be redirected back to the account settings dialog. "
 "Do you want to continue?"
 msgstr ""
+"Ovaj će proces dohvatiti označene korisnike sa Twittera, i dodati ih u bazu "
+"podataka samodovršavanja. Imajte na umu da ako ima puno korisnika ili ste "
+"pokušali izvesti ovu akciju prije petnaest minuta, TWBlue će doseći "
+"ogranićenje Twitter api poziva prilikom pokušaja učitavanja korisnika u bazu "
+"podataka. Ako se to dogodi, pokazat ćemo vam pogrešku, poslije koje ćete "
+"trebati pokušati kasnije za nekoliko minuta. Ako ovaj proces završi bez "
+"pogreške, biti ćete preusmjereni nazad u postavke računa. Želite li "
+"nastaviti?"
 
 #: extra/autocompletionUsers/wx_scan.py:37 wxUI/commonMessageDialogs.py:36
 #: wxUI/commonMessageDialogs.py:86
@@ -1141,7 +1129,7 @@ msgstr "Pažnja"
 
 #: extra/autocompletionUsers/wx_scan.py:43
 msgid "TWBlue has imported {} users successfully."
-msgstr ""
+msgstr "TWBlue je uspješno uvezao korisnike."
 
 #: extra/autocompletionUsers/wx_scan.py:43
 msgid "Done"
@@ -1150,6 +1138,8 @@ msgstr "Gotovo"
 #: extra/autocompletionUsers/wx_scan.py:47
 msgid "Error adding users from Twitter. Please try again in about 15 minutes."
 msgstr ""
+"Pogreška prilikom dodavanja korisnika sa Twittera. Molimo pokušajte ponovno "
+"od prilike za 15 minuta."
 
 #: extra/ocr/OCRSpace.py:7
 msgid "Detect automatically"
@@ -1755,9 +1745,8 @@ msgid "Extracts the text from a picture and displays the result in a dialog."
 msgstr "izvlači tekst iz slike i pokazuje ga u zasebnom dijaloškom okviru."
 
 #: keystrokeEditor/constants.py:59
-#, fuzzy
 msgid "Adds an alias to an user"
-msgstr "Označite popis Kako biste dodali korisnika"
+msgstr "Dodaje alias korisniku"
 
 #: keystrokeEditor/wx_ui.py:8
 msgid "Keystroke editor"
@@ -1782,9 +1771,8 @@ msgid "Edit"
 msgstr "Uredi"
 
 #: keystrokeEditor/wx_ui.py:20 keystrokeEditor/wx_ui.py:50
-#, fuzzy
 msgid "Undefine keystroke"
-msgstr "uređujete prečac"
+msgstr "Nedodijeljen prečac"
 
 #: keystrokeEditor/wx_ui.py:21
 msgid "Execute action"
@@ -1797,12 +1785,11 @@ msgstr "Zatvori"
 
 #: keystrokeEditor/wx_ui.py:42
 msgid "Undefined"
-msgstr ""
+msgstr "Nedefinirano"
 
 #: keystrokeEditor/wx_ui.py:50
-#, fuzzy
 msgid "Are you sure you want to undefine this keystroke?"
-msgstr "Želite li doista obrisati ovaj popis?"
+msgstr "Želite li doista izbrisati ovaj prečac?"
 
 #: keystrokeEditor/wx_ui.py:54
 msgid "Editing keystroke"
@@ -1918,10 +1905,14 @@ msgid ""
 "after an account reactivation. Please remove the account manually from your "
 "Twitter sessions in order to stop seeing this message."
 msgstr ""
+"TWBlue nije bio u mogućnosti autorizirati račun za {} na Twitteru. Ovo može "
+"biti zbog isteklog ili neispravnog tokena, opozvanog pristupa u aplikaciju, "
+"ili poslije reaktivacije računa. Molimo ručno uklonite račun iz vaših "
+"twitter sesija kako biste prestali vidjeti ovu poruku."
 
 #: sessionmanager/wxUI.py:81
 msgid "Authentication error for session {}"
-msgstr ""
+msgstr "Greška autentifikacije za sesiju {}"
 
 #: sessions/base.py:113
 msgid ""
@@ -1929,6 +1920,9 @@ msgid ""
 "and rebuilt automatically. If this error persists, send the error log to the "
 "{app} developers."
 msgstr ""
+"Dogodila se neočekivana pogreška prilikom izgradnje baze podataka {app}. "
+"Ista će biti izbrisana i ponovno izgrađena. Ako se ova greška još uvijek "
+"pojavljuje, pošaljite zapisnik pogreške {app} programerima."
 
 #: sessions/base.py:153
 msgid ""
