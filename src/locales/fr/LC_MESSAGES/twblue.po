@@ -1,107 +1,92 @@
+# Corentin Bacqué-Cazenave <corentin@progaccess.net>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-08-16 17:50-0500\n"
-"PO-Revision-Date: 2022-08-18 15:32+0200\n"
+"PO-Revision-Date: 2022-08-29 17:03+0000\n"
 "Last-Translator: Corentin Bacqué-Cazenave <corentin@progaccess.net>\n"
-"Language-Team: Corentin Bacqué-Cazenave <corentin@progaccess.net>\n"
+"Language-Team: French <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.10.3\n"
-"X-Generator: Poedit 3.1.1\n"
 
 #: languageHandler.py:61
-#, fuzzy
 msgctxt "languageName"
 msgid "Amharic"
 msgstr "Amharique"
 
 #: languageHandler.py:62
-#, fuzzy
 msgctxt "languageName"
 msgid "Aragonese"
 msgstr "Japonais"
 
 #: languageHandler.py:63
-#, fuzzy
 msgctxt "languageName"
 msgid "Spanish"
 msgstr "Espagnol"
 
 #: languageHandler.py:64
-#, fuzzy
 msgctxt "languageName"
 msgid "Portuguese"
 msgstr "Portugais"
 
 #: languageHandler.py:65
-#, fuzzy
 msgctxt "languageName"
 msgid "Russian"
 msgstr "Russe"
 
 #: languageHandler.py:66
-#, fuzzy
 msgctxt "languageName"
 msgid "italian"
 msgstr "Italien"
 
 #: languageHandler.py:67
-#, fuzzy
-#| msgid "Turkish"
 msgctxt "languageName"
 msgid "Turkey"
 msgstr "Turc"
 
 #: languageHandler.py:68
-#, fuzzy
 msgctxt "languageName"
 msgid "Galician"
 msgstr "Galicien"
 
 #: languageHandler.py:69
-#, fuzzy
 msgctxt "languageName"
 msgid "Catala"
 msgstr "Catalan"
 
 #: languageHandler.py:70
-#, fuzzy
 msgctxt "languageName"
 msgid "Vasque"
 msgstr "Basque"
 
 #: languageHandler.py:71
-#, fuzzy
 msgctxt "languageName"
 msgid "polish"
 msgstr "Polonais"
 
 #: languageHandler.py:72
-#, fuzzy
 msgctxt "languageName"
 msgid "Arabic"
 msgstr "Arabe"
 
 #: languageHandler.py:73
-#, fuzzy
 msgctxt "languageName"
 msgid "Nepali"
-msgstr "Népali"
+msgstr "Népalais"
 
 #: languageHandler.py:74
-#, fuzzy
-#| msgid "Serbian"
 msgctxt "languageName"
 msgid "Serbian (Latin)"
 msgstr "Serbe"
 
 #: languageHandler.py:75
-#, fuzzy
 msgctxt "languageName"
 msgid "Japanese"
 msgstr "Japonais"
@@ -205,7 +190,6 @@ msgstr "Favoris de {}"
 
 # | msgid "Followers timelines"
 #: controller/mainController.py:364
-#, fuzzy
 msgid "Followers timelines"
 msgstr "Chronologies des abonnés"
 
@@ -602,7 +586,6 @@ msgid "Edit alias for {}"
 msgstr "Éditer l'alias pour {}"
 
 #: controller/userSelector.py:10
-#, fuzzy
 msgid "Select user"
 msgstr "Sélectionnez l'utilisateur"
 
@@ -1106,19 +1089,16 @@ msgid "Autocomplete users' settings"
 msgstr "Paramètres pour la saisie automatique des utilisateurs"
 
 #: extra/autocompletionUsers/wx_scan.py:11
-#, fuzzy
 msgid "Add followers to database"
 msgstr "Ajouter l'utilisateur à la base de données"
 
 #: extra/autocompletionUsers/wx_scan.py:12
-#, fuzzy
 msgid "Add  friends to database"
-msgstr "Ajouter l'utilisateur à la base de données"
+msgstr "Ajouter les abonnements à la base de données"
 
 #: extra/autocompletionUsers/wx_scan.py:26
-#, fuzzy
 msgid "Updating autocompletion database"
-msgstr "Gérer la base de données pour la saisie automatique"
+msgstr "Mise à jour de la base de données d'autocomplétion"
 
 #: extra/autocompletionUsers/wx_scan.py:37
 msgid ""
@@ -2044,7 +2024,6 @@ msgstr "Aucun Tweet trouvée avec cet ID"
 
 # | msgid "Error {0}"
 #: sessions/twitter/utils.py:247
-#, fuzzy
 msgid "Error {0}"
 msgstr "Erreur {0}"
 
@@ -2757,9 +2736,8 @@ msgid "Password: "
 msgstr "Mot de passe: "
 
 #: wxUI/dialogs/configuration.py:102
-#, fuzzy
 msgid "User autocompletion settings"
-msgstr "Paramètres pour la saisie automatique..."
+msgstr "Paramètres d'autocomplétion utilisateur"
 
 #: wxUI/dialogs/configuration.py:103
 msgid ""
@@ -2770,9 +2748,8 @@ msgstr ""
 "données d'autocomplétion des utilisateurs."
 
 #: wxUI/dialogs/configuration.py:104
-#, fuzzy
 msgid "Manage autocompletion database"
-msgstr "Gérer la base de données pour la saisie automatique"
+msgstr "Gérer la base de données d'autocomplétion"
 
 #: wxUI/dialogs/configuration.py:109
 msgid "Relative timestamps"
@@ -2799,7 +2776,6 @@ msgid "Show screen names instead of full names"
 msgstr "Afficher les noms d'écran au lieu des noms complets"
 
 #: wxUI/dialogs/configuration.py:128
-#, fuzzy
 msgid "hide emojis in usernames"
 msgstr "Masquer les emojis dans les noms d'utilisateur"
 
@@ -3419,7 +3395,6 @@ msgstr "Type"
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:39
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:175
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:259
-#, fuzzy
 msgid "Delete attachment"
 msgstr "Supprimer la pièce jointe"
 
