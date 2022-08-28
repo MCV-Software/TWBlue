@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: TWBlue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-08-16 17:50-0500\n"
-"PO-Revision-Date: 2022-08-25 18:09+0000\n"
+"PO-Revision-Date: 2022-08-29 17:03+0000\n"
 "Last-Translator: zvonimir stanecic <zvonimirek222@yandex.com>\n"
 "Language-Team: Croatian <https://weblate.mcvsoftware.com/projects/twblue/"
 "twblue/hr/>\n"
@@ -419,12 +419,10 @@ msgid "System default"
 msgstr "Korisnićki zadan"
 
 #: controller/settings.py:77
-#, fuzzy
 msgid "HTTP"
 msgstr "HTTP"
 
 #: controller/settings.py:77
-#, fuzzy
 msgid "SOCKS v4"
 msgstr "SOCKS v4"
 
@@ -433,7 +431,6 @@ msgid "SOCKS v4 with DNS support"
 msgstr "SOCKS v4 sa DNS podrškom"
 
 #: controller/settings.py:77
-#, fuzzy
 msgid "SOCKS v5"
 msgstr "SOCKS v5"
 
@@ -1930,6 +1927,9 @@ msgid ""
 "and rebuilt automatically. If this error persists, send the error log to the "
 "{app} developers."
 msgstr ""
+"Dogogila se pogreška prilikom izgradnje {app} baze podataka. Ista će biti "
+"izbrisana i ponovno izgrađena. Ako se ova pogreška ponavlja, pošaljite "
+"zapisnik o pogrešci {app} programerima."
 
 #: sessions/twitter/compose.py:25 sessions/twitter/compose.py:68
 #: sessions/twitter/compose.py:133 sessions/twitter/compose.py:142
@@ -1982,32 +1982,34 @@ msgid "%s succeeded."
 msgstr "%s uspjelo."
 
 #: sessions/twitter/session.py:452 sessions/twitter/session.py:535
-#, fuzzy
 msgid "Deleted account"
-msgstr "Novi nalog"
+msgstr "Izbrisani račun"
 
 #: sessions/twitter/templates.py:16
+#, fuzzy
 msgid "$display_name, $text $image_descriptions $date. $source"
-msgstr ""
+msgstr "$display_name, $text $image_descriptions $date. $source"
 
 #: sessions/twitter/templates.py:17
+#, fuzzy
 msgid "$sender_display_name, $text $date"
-msgstr ""
+msgstr "$sender_display_name, $text $date"
 
 #: sessions/twitter/templates.py:18
 msgid "Dm to $recipient_display_name, $text $date"
-msgstr ""
+msgstr "Dm do $recipient_display_name, $text $date"
 
 #: sessions/twitter/templates.py:19
 msgid ""
 "$display_name (@$screen_name). $followers followers, $following following, "
 "$tweets tweets. Joined Twitter $created_at."
 msgstr ""
+"$display_name (@$screen_name). $followers pratitelja, $following praćenih, $"
+"tweets tweetova. Pridružio se twitteru $created_at."
 
 #: sessions/twitter/templates.py:54
-#, fuzzy
 msgid "Image description: {}."
-msgstr "opis slike"
+msgstr "Opis slike: {}."
 
 #: sessions/twitter/utils.py:243
 msgid "Sorry, you are not authorised to see this status."
@@ -2018,13 +2020,12 @@ msgid "No status found with that ID"
 msgstr "Nema pronađenog statusa sa tim identifikatorom"
 
 #: sessions/twitter/utils.py:247
-#, fuzzy
 msgid "Error {0}"
-msgstr "Kod pogreške {0}"
+msgstr "pogreška {0}"
 
 #: sessions/twitter/utils.py:274
 msgid "{user_1}, {user_2} and {all_users} more: {text}"
-msgstr ""
+msgstr "{user_1}, {user_2} i {all_users} više: {text}"
 
 #: sessions/twitter/wxUI.py:7
 msgid "Authorising account..."
@@ -2280,7 +2281,7 @@ msgstr "Ovaj filter već postoji. Koristite drugi naslov"
 
 #: wxUI/commonMessageDialogs.py:95
 msgid "The configuration file is invalid."
-msgstr ""
+msgstr "Konfiguracijska datoteka je neispravna."
 
 #: wxUI/commonMessageDialogs.py:98
 msgid ""
@@ -2422,7 +2423,7 @@ msgstr "&Upravitelj listi"
 
 #: wxUI/view.py:23
 msgid "Manage user aliases"
-msgstr ""
+msgstr "Upravljanje korisničkim aliasima"
 
 #: wxUI/view.py:24
 msgid "&Edit keystrokes"
@@ -2462,7 +2463,7 @@ msgstr "Izravna po&ruka"
 
 #: wxUI/view.py:47
 msgid "Add a&lias"
-msgstr ""
+msgstr "dodaj a&lias"
 
 #: wxUI/view.py:48
 msgid "&Add to list"
@@ -2711,20 +2712,20 @@ msgid "Password: "
 msgstr "Lozinka"
 
 #: wxUI/dialogs/configuration.py:102
-#, fuzzy
 msgid "User autocompletion settings"
-msgstr "Postavke korisnika koji se samodovršuju"
+msgstr "Postavke korisnika koji se samodovršavaju"
 
 #: wxUI/dialogs/configuration.py:103
 msgid ""
 "Scan account and add friends and followers to the user autocompletion "
 "database"
 msgstr ""
+"Skeniraj račun i dodaj prijatelje i pratitelje u bazu podataka "
+"samodovršavanja"
 
 #: wxUI/dialogs/configuration.py:104
-#, fuzzy
 msgid "Manage autocompletion database"
-msgstr "upravljaj bazom podataka korisnika koji se samodovršavaju"
+msgstr "Upravljaj bazom podataka samodovršavanja"
 
 #: wxUI/dialogs/configuration.py:109
 msgid "Relative timestamps"
@@ -2752,7 +2753,7 @@ msgstr "Prikazuj prikazana imena umjesto punih"
 
 #: wxUI/dialogs/configuration.py:128
 msgid "hide emojis in usernames"
-msgstr ""
+msgstr "Skrivaj emojie u korisničkim imenima"
 
 #: wxUI/dialogs/configuration.py:130
 msgid ""
@@ -2767,6 +2768,8 @@ msgid ""
 "Load cache for tweets in memory (much faster in big datasets but requires "
 "more RAM)"
 msgstr ""
+"Učitaj predmemoriju tweetowa u memoriju (brže u velikim setovima podataka "
+"ali zahtjeva više radne memorije)"
 
 #: wxUI/dialogs/configuration.py:141
 msgid "Enable automatic speech feedback"
@@ -2892,7 +2895,7 @@ msgstr "&Spremnik"
 
 #: wxUI/dialogs/configuration.py:406
 msgid "Templates"
-msgstr ""
+msgstr "Predlošci"
 
 #: wxUI/dialogs/configuration.py:410
 msgid "Sound"
@@ -2986,11 +2989,11 @@ msgstr "Odustani"
 
 #: wxUI/dialogs/filterDialogs.py:120
 msgid "You must define a name for the filter before creating it."
-msgstr ""
+msgstr "Prije stvaranja filtra, morate definirati njegov naziv."
 
 #: wxUI/dialogs/filterDialogs.py:120
 msgid "Missing filter name"
-msgstr ""
+msgstr "Naziv filtra koji nedostaje"
 
 #: wxUI/dialogs/filterDialogs.py:127
 msgid "Manage filters"
@@ -3251,38 +3254,32 @@ msgid "&Ignore tweets from this client"
 msgstr "&Zanemari tweetove od ovog klijenta"
 
 #: wxUI/dialogs/userAliasDialogs.py:18
-#, fuzzy
 msgid "Alias"
-msgstr "uvijek"
+msgstr "Alias"
 
 #: wxUI/dialogs/userAliasDialogs.py:41
-#, fuzzy
 msgid "Edit user aliases"
-msgstr "Uređujem {0} bazu podataka korisnika"
+msgstr "Uredi aliase korisnika"
 
 #: wxUI/dialogs/userAliasDialogs.py:48
-#, fuzzy
 msgid "Actions"
-msgstr "Akcija"
+msgstr "Radnje"
 
 #: wxUI/dialogs/userAliasDialogs.py:50
-#, fuzzy
 msgid "Add alias"
-msgstr "Dodaj u popis"
+msgstr "Dodaj alias"
 
 #: wxUI/dialogs/userAliasDialogs.py:51
 msgid "Adds a new user alias"
-msgstr ""
+msgstr "Dodaje novi korisnički alias"
 
 #: wxUI/dialogs/userAliasDialogs.py:54
-#, fuzzy
 msgid "Edit the currently focused user Alias."
-msgstr "Uđi u interakciju sa trenutnim tweetom"
+msgstr "Uredi trenutno fokusiran korisnički alias."
 
 #: wxUI/dialogs/userAliasDialogs.py:58
-#, fuzzy
 msgid "Remove the currently focused user alias."
-msgstr "Potraži niz znakova u trenutno fokusiranom spremniku..."
+msgstr "Ukloni trenutno fokusiran korisnički alias."
 
 #: wxUI/dialogs/userAliasDialogs.py:82
 #, fuzzy
