@@ -1,90 +1,80 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2022 ORGANIZATION
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
-#
+# Jonas S. Marques <jonasivle@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: TWBlue 0.80\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-08-16 17:50-0500\n"
-"PO-Revision-Date: 2022-02-25 07:19-0300\n"
-"Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
-"Language-Team: Odenilton Júnior Santos <odeniltonjunior@gmail.com>\n"
-"Language: pt_BR\n"
+"PO-Revision-Date: 2022-09-04 00:02+0000\n"
+"Last-Translator: Jonas S. Marques <jonasivle@gmail.com>\n"
+"Language-Team: Portuguese <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: languageHandler.py:61
-#, fuzzy
 msgctxt "languageName"
 msgid "Amharic"
 msgstr "Dari"
 
 #: languageHandler.py:62
-#, fuzzy
 msgctxt "languageName"
 msgid "Aragonese"
 msgstr "Japonês"
 
 #: languageHandler.py:63
-#, fuzzy
 msgctxt "languageName"
 msgid "Spanish"
 msgstr "Espanhol"
 
 #: languageHandler.py:64
-#, fuzzy
 msgctxt "languageName"
 msgid "Portuguese"
 msgstr "Português"
 
 #: languageHandler.py:65
-#, fuzzy
 msgctxt "languageName"
 msgid "Russian"
 msgstr "Russo"
 
 #: languageHandler.py:66
-#, fuzzy
 msgctxt "languageName"
 msgid "italian"
 msgstr "Italiano"
 
 #: languageHandler.py:67
-#, fuzzy
 msgctxt "languageName"
 msgid "Turkey"
-msgstr "recurso"
+msgstr "turco"
 
 #: languageHandler.py:68
-#, fuzzy
 msgctxt "languageName"
 msgid "Galician"
 msgstr "Galego"
 
 #: languageHandler.py:69
-#, fuzzy
 msgctxt "languageName"
 msgid "Catala"
 msgstr "Catalão"
 
 #: languageHandler.py:70
-#, fuzzy
 msgctxt "languageName"
 msgid "Vasque"
 msgstr "Basco"
 
 #: languageHandler.py:71
-#, fuzzy
 msgctxt "languageName"
 msgid "polish"
 msgstr "Polonês"
 
 #: languageHandler.py:72
-#, fuzzy
 msgctxt "languageName"
 msgid "Arabic"
 msgstr "Árabe"
@@ -93,15 +83,14 @@ msgstr "Árabe"
 #, fuzzy
 msgctxt "languageName"
 msgid "Nepali"
-msgstr "Nepali"
+msgstr "Nepalês"
 
 #: languageHandler.py:74
 msgctxt "languageName"
 msgid "Serbian (Latin)"
-msgstr ""
+msgstr "Sérvio (Latin)"
 
 #: languageHandler.py:75
-#, fuzzy
 msgctxt "languageName"
 msgid "Japanese"
 msgstr "Japonês"
@@ -172,9 +161,8 @@ msgid "Followers"
 msgstr "Seguidores"
 
 #: controller/mainController.py:351
-#, fuzzy
 msgid "Following"
-msgstr "&Deixar de seguir"
+msgstr "Seguindo"
 
 #: controller/buffers/twitter/base.py:70 controller/mainController.py:353
 #: controller/mainController.py:1399 controller/settings.py:346
@@ -205,7 +193,6 @@ msgid "Likes for {}"
 msgstr "Curtidas de {}"
 
 #: controller/mainController.py:364
-#, fuzzy
 msgid "Followers timelines"
 msgstr "Linhas do tempo de Seguidores"
 
@@ -215,14 +202,13 @@ msgid "Followers for {}"
 msgstr "Seguidores de {}"
 
 #: controller/mainController.py:368
-#, fuzzy
 msgid "Following timelines"
-msgstr "Linhas do tempo de Seguidores"
+msgstr "Linhas do tempo de  amigos"
 
 #: controller/mainController.py:371 controller/mainController.py:934
 #: controller/mainController.py:1582
 msgid "Friends for {}"
-msgstr "Seguidos por {}"
+msgstr "Pessoas que  {} segue"
 
 #: controller/mainController.py:372 wxUI/dialogs/lists.py:13
 msgid "Lists"
@@ -271,15 +257,15 @@ msgstr "Filtros não são suportados neste exibidor"
 
 #: controller/mainController.py:747
 msgid "Add an user alias"
-msgstr ""
+msgstr "Adicionar um atalho de usuário"
 
 #: controller/mainController.py:755
 msgid "Alias has been set correctly for {}."
-msgstr ""
+msgstr "Sucesso ao definir um atalho para {}"
 
 #: controller/mainController.py:823 controller/messages.py:328
 msgid "MMM D, YYYY. H:m"
-msgstr "dddd, D MMMM, YYYY. H:m:s"
+msgstr "MMM D, YYYY. H:m"
 
 #: controller/mainController.py:951
 msgid "Conversation with {0}"
@@ -295,7 +281,7 @@ msgstr "Erro ao decodificar coordenadas. Tente novamente mais tarde."
 
 #: controller/mainController.py:998
 msgid "Unable to find address in OpenStreetMap."
-msgstr ""
+msgstr "Não foi possível encontrar este endereço nos mapas do  OpenStreet."
 
 #: controller/mainController.py:1011
 msgid "There are no results for the coordinates in this tweet"
@@ -422,37 +408,35 @@ msgstr "Tweet"
 
 #: controller/messages.py:355
 msgid "View item"
-msgstr "Ver item"
+msgstr "Visualizar item"
 
 #: controller/messages.py:381
-#, fuzzy
 msgid "Link copied to clipboard."
 msgstr "Copiar para área de transferência"
 
 #: controller/settings.py:77
-#, fuzzy
 msgid "System default"
-msgstr "Padrão do usuário"
+msgstr "Padrão do sistema"
 
 #: controller/settings.py:77
 msgid "HTTP"
-msgstr ""
+msgstr "http"
 
 #: controller/settings.py:77
 msgid "SOCKS v4"
-msgstr ""
+msgstr "SOCKS v4"
 
 #: controller/settings.py:77
 msgid "SOCKS v4 with DNS support"
-msgstr ""
+msgstr "SOCKS v4 Com suporte à dns)"
 
 #: controller/settings.py:77
 msgid "SOCKS v5"
-msgstr ""
+msgstr "SOCKS v5"
 
 #: controller/settings.py:77
 msgid "SOCKS v5 with DNS support"
-msgstr ""
+msgstr "SOCKS v5 (Com suporte à dns)"
 
 #: controller/settings.py:155 controller/settings.py:269
 #: wxUI/dialogs/configuration.py:121
@@ -475,19 +459,19 @@ msgstr "Configurações de conta para %s"
 
 #: controller/settings.py:213 wxUI/dialogs/configuration.py:247
 msgid "Edit template for tweets. Current template: {}"
-msgstr ""
+msgstr "Editar modelo de tweets: Modelo atual {}"
 
 #: controller/settings.py:222 wxUI/dialogs/configuration.py:249
 msgid "Edit template for direct messages. Current template: {}"
-msgstr ""
+msgstr "Editar modelo de mensagens diretas. Modelo atual {}"
 
 #: controller/settings.py:231 wxUI/dialogs/configuration.py:251
 msgid "Edit template for sent direct messages. Current template: {}"
-msgstr ""
+msgstr "Editar modelo para mensagens diretas enviadas. Modelo atual {}"
 
 #: controller/settings.py:240 wxUI/dialogs/configuration.py:253
 msgid "Edit template for persons. Current template: {}"
-msgstr ""
+msgstr "Editar modelos para pessoas. Modelo atual {}"
 
 #: controller/settings.py:340
 msgid "Direct Messages"
@@ -561,7 +545,7 @@ msgstr "Protegido: %s\n"
 
 #: controller/user.py:110
 msgid "Relationship: "
-msgstr ""
+msgstr "Relação entre vocês:· "
 
 #: controller/user.py:112
 msgid "You follow {0}. "
@@ -600,12 +584,10 @@ msgid "You can't ignore direct messages"
 msgstr "Você não pode ignorar mensagens diretas"
 
 #: controller/userAliasController.py:31
-#, fuzzy
 msgid "Edit alias for {}"
-msgstr "Lista de {}"
+msgstr "Editar atalho de {}"
 
 #: controller/userSelector.py:10
-#, fuzzy
 msgid "Select user"
 msgstr "Selecione o usuário"
 
@@ -615,11 +597,11 @@ msgstr "Esta ação não é suportada neste exibidor"
 
 #: controller/buffers/twitter/base.py:76
 msgid "{username}'s timeline"
-msgstr "Abrir linha do tempo do usuário"
+msgstr "Linha do tempo de {username}'s"
 
 #: controller/buffers/twitter/base.py:78
 msgid "{username}'s likes"
-msgstr "Curtidas dos {username}'s "
+msgstr "curtidas de {username}'s"
 
 #: controller/buffers/twitter/base.py:80
 msgid "{username}'s followers"
@@ -627,7 +609,7 @@ msgstr "{username}'s seguidores"
 
 #: controller/buffers/twitter/base.py:82
 msgid "{username}'s friends"
-msgstr "{nome de usuário dos amigos}"
+msgstr "Amigos de {username}'s"
 
 #: controller/buffers/twitter/base.py:84
 msgid "Unknown buffer"
