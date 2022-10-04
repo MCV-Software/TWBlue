@@ -1,92 +1,82 @@
+# Steffen Schultz <steffenschultz@mailbox.org>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-08-16 17:50-0500\n"
-"PO-Revision-Date: 2019-03-17 15:50+0100\n"
+"PO-Revision-Date: 2022-10-05 13:23+0000\n"
 "Last-Translator: Steffen Schultz <steffenschultz@mailbox.org>\n"
-"Language-Team: Steffen Schultz <schulle3o@yahoo.de>\n"
+"Language-Team: German <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: languageHandler.py:61
-#, fuzzy
 msgctxt "languageName"
 msgid "Amharic"
 msgstr "Amharisch"
 
 #: languageHandler.py:62
-#, fuzzy
 msgctxt "languageName"
 msgid "Aragonese"
-msgstr "Japanisch"
+msgstr "Aragonesisch"
 
 #: languageHandler.py:63
-#, fuzzy
 msgctxt "languageName"
 msgid "Spanish"
 msgstr "Spanisch"
 
 #: languageHandler.py:64
-#, fuzzy
 msgctxt "languageName"
 msgid "Portuguese"
 msgstr "Portugiesisch"
 
 #: languageHandler.py:65
-#, fuzzy
 msgctxt "languageName"
 msgid "Russian"
 msgstr "Russisch"
 
 #: languageHandler.py:66
-#, fuzzy
 msgctxt "languageName"
 msgid "italian"
 msgstr "Italienisch"
 
 #: languageHandler.py:67
-#, fuzzy
 msgctxt "languageName"
 msgid "Turkey"
-msgstr "Funktion"
+msgstr "Türkisch"
 
 #: languageHandler.py:68
-#, fuzzy
 msgctxt "languageName"
 msgid "Galician"
 msgstr "Galizisch"
 
 #: languageHandler.py:69
-#, fuzzy
 msgctxt "languageName"
 msgid "Catala"
 msgstr "Katalanisch"
 
 #: languageHandler.py:70
-#, fuzzy
 msgctxt "languageName"
 msgid "Vasque"
 msgstr "Baskisch"
 
 #: languageHandler.py:71
-#, fuzzy
 msgctxt "languageName"
 msgid "polish"
 msgstr "Polnisch"
 
 #: languageHandler.py:72
-#, fuzzy
 msgctxt "languageName"
 msgid "Arabic"
 msgstr "Arabisch"
 
 #: languageHandler.py:73
-#, fuzzy
 msgctxt "languageName"
 msgid "Nepali"
 msgstr "Nepalesisch"
@@ -94,10 +84,9 @@ msgstr "Nepalesisch"
 #: languageHandler.py:74
 msgctxt "languageName"
 msgid "Serbian (Latin)"
-msgstr ""
+msgstr "Serbisch (Latein)"
 
 #: languageHandler.py:75
-#, fuzzy
 msgctxt "languageName"
 msgid "Japanese"
 msgstr "Japanisch"
@@ -168,9 +157,8 @@ msgid "Followers"
 msgstr "Folger"
 
 #: controller/mainController.py:351
-#, fuzzy
 msgid "Following"
-msgstr "E&ntfolgen"
+msgstr "Folge ich"
 
 #: controller/buffers/twitter/base.py:70 controller/mainController.py:353
 #: controller/mainController.py:1399 controller/settings.py:346
@@ -201,7 +189,6 @@ msgid "Likes for {}"
 msgstr "Likes für {}"
 
 #: controller/mainController.py:364
-#, fuzzy
 msgid "Followers timelines"
 msgstr "Folger-Zeitleisten"
 
@@ -211,9 +198,8 @@ msgid "Followers for {}"
 msgstr "Folger von {}"
 
 #: controller/mainController.py:368
-#, fuzzy
 msgid "Following timelines"
-msgstr "Folger-Zeitleisten"
+msgstr "Freunde-Zeitleisten"
 
 #: controller/mainController.py:371 controller/mainController.py:934
 #: controller/mainController.py:1582
@@ -267,11 +253,11 @@ msgstr "Filter können für diese Ansicht nicht angewendet werden"
 
 #: controller/mainController.py:747
 msgid "Add an user alias"
-msgstr ""
+msgstr "Benutzer-Alias hinzufügen"
 
 #: controller/mainController.py:755
 msgid "Alias has been set correctly for {}."
-msgstr ""
+msgstr "Alias korrekt festgelegt für {}."
 
 #: controller/mainController.py:823 controller/messages.py:328
 msgid "MMM D, YYYY. H:m"
@@ -292,7 +278,7 @@ msgstr ""
 
 #: controller/mainController.py:998
 msgid "Unable to find address in OpenStreetMap."
-msgstr ""
+msgstr "Adresse kann nicht in OpenStreetMap gefunden werden."
 
 #: controller/mainController.py:1011
 msgid "There are no results for the coordinates in this tweet"
@@ -423,34 +409,32 @@ msgid "View item"
 msgstr "Eintrag ansehen"
 
 #: controller/messages.py:381
-#, fuzzy
 msgid "Link copied to clipboard."
-msgstr "In Zwischenablage kopieren"
+msgstr "Link in Zwischenablage kopiert."
 
 #: controller/settings.py:77
-#, fuzzy
 msgid "System default"
-msgstr "Benutzerstandard"
+msgstr "Systemstandard"
 
 #: controller/settings.py:77
 msgid "HTTP"
-msgstr ""
+msgstr "HTTP"
 
 #: controller/settings.py:77
 msgid "SOCKS v4"
-msgstr ""
+msgstr "SOCKS v4"
 
 #: controller/settings.py:77
 msgid "SOCKS v4 with DNS support"
-msgstr ""
+msgstr "SOCKS v4 mit DNS-Unterstützung"
 
 #: controller/settings.py:77
 msgid "SOCKS v5"
-msgstr ""
+msgstr "SOCKS v5"
 
 #: controller/settings.py:77
 msgid "SOCKS v5 with DNS support"
-msgstr ""
+msgstr "SOCKS v5 mit DNS-Unterstützung"
 
 #: controller/settings.py:155 controller/settings.py:269
 #: wxUI/dialogs/configuration.py:121
@@ -473,19 +457,20 @@ msgstr "Account-Einstellungen für %s"
 
 #: controller/settings.py:213 wxUI/dialogs/configuration.py:247
 msgid "Edit template for tweets. Current template: {}"
-msgstr ""
+msgstr "Tweet-Vorlage bearbeiten. Aktuelle Vorlage: {}"
 
 #: controller/settings.py:222 wxUI/dialogs/configuration.py:249
 msgid "Edit template for direct messages. Current template: {}"
-msgstr ""
+msgstr "Direktnachrichten-Vorlage bearbeiten. Aktuelle Vorlage: {}"
 
 #: controller/settings.py:231 wxUI/dialogs/configuration.py:251
 msgid "Edit template for sent direct messages. Current template: {}"
 msgstr ""
+"Vorlage für gesendete Direktnachrichten bearbeiten. Aktuelle Vorlage: {}"
 
 #: controller/settings.py:240 wxUI/dialogs/configuration.py:253
 msgid "Edit template for persons. Current template: {}"
-msgstr ""
+msgstr "Vorlage für Personen bearbeiten. Aktuelle Vorlage: {}"
 
 #: controller/settings.py:340
 msgid "Direct Messages"
@@ -559,7 +544,7 @@ msgstr "Geschützt: %s\n"
 
 #: controller/user.py:110
 msgid "Relationship: "
-msgstr ""
+msgstr "Beziehung "
 
 #: controller/user.py:112
 msgid "You follow {0}. "
@@ -598,14 +583,12 @@ msgid "You can't ignore direct messages"
 msgstr "Du kannst keine Direktnachrichten ignorieren."
 
 #: controller/userAliasController.py:31
-#, fuzzy
 msgid "Edit alias for {}"
-msgstr "Liste für {}"
+msgstr "Alias für {} bearbeiten"
 
 #: controller/userSelector.py:10
-#, fuzzy
 msgid "Select user"
-msgstr "Wähle den Benutzer"
+msgstr "Benutzer wählen"
 
 #: controller/buffers/base/base.py:91 controller/buffers/mastodon/base.py:91
 msgid "This action is not supported for this buffer"
@@ -677,9 +660,8 @@ msgid "New direct message"
 msgstr "Neue Direktnachricht"
 
 #: controller/buffers/twitter/base.py:452
-#, fuzzy
 msgid "This action is not supported on protected accounts."
-msgstr "Diese Aktion ist in der Ansicht noch nicht verfügbar."
+msgstr "Diese Aktion wird für geschützte Accounts nicht unterstützt."
 
 #: controller/buffers/twitter/base.py:469
 msgid "Quote"
@@ -1107,19 +1089,16 @@ msgid "Autocomplete users' settings"
 msgstr "Auto-Vervollständigungs-Einstellungen"
 
 #: extra/autocompletionUsers/wx_scan.py:11
-#, fuzzy
 msgid "Add followers to database"
-msgstr "Benutzer zur Datenbank hinzufügen"
+msgstr "Folger zur Datenbank hinzufügen"
 
 #: extra/autocompletionUsers/wx_scan.py:12
-#, fuzzy
 msgid "Add  friends to database"
-msgstr "Benutzer zur Datenbank hinzufügen"
+msgstr "Freunde zur Datenbank hinzufügen"
 
 #: extra/autocompletionUsers/wx_scan.py:26
-#, fuzzy
 msgid "Updating autocompletion database"
-msgstr "Auto-Vervollständigungsdatenbank verwalten"
+msgstr "Auto-Vervollständigungsdatenbank aktualisieren"
 
 #: extra/autocompletionUsers/wx_scan.py:37
 msgid ""
@@ -1132,6 +1111,14 @@ msgid ""
 "with no error, you will be redirected back to the account settings dialog. "
 "Do you want to continue?"
 msgstr ""
+"Dieser Vorgang wird die von dir gewählten Benutzer auf Twitter abrufen und "
+"sie in die Autovervollständigungs-Datenbank aufnehmen. Bitte beachte, dass "
+"es hierbei zur Überschreitung von Twitters API-Begrenzungen kommen kann, "
+"etwa bei sehr vielen Nutzern oder wenn dieser Vorgang innerhalb der letzten "
+"15 Minuten bereits ausgeführt wurde. In diesem Fall wird eine Fehlermeldung "
+"angezeigt und du kannst es in einigen Minuten erneut versuchen. Bei "
+"erfolgreichem Abschluss wirst du in die Account-Einstellungen "
+"weitergeleitet. Möchtest du fortfahren?"
 
 #: extra/autocompletionUsers/wx_scan.py:37 wxUI/commonMessageDialogs.py:36
 #: wxUI/commonMessageDialogs.py:86
@@ -1140,7 +1127,7 @@ msgstr "Achtung"
 
 #: extra/autocompletionUsers/wx_scan.py:43
 msgid "TWBlue has imported {} users successfully."
-msgstr ""
+msgstr "TWBlue hat die Benutzer erfolgreich importiert."
 
 #: extra/autocompletionUsers/wx_scan.py:43
 msgid "Done"
@@ -1149,6 +1136,8 @@ msgstr "Fertig"
 #: extra/autocompletionUsers/wx_scan.py:47
 msgid "Error adding users from Twitter. Please try again in about 15 minutes."
 msgstr ""
+"Fehler beim Hinzufügen der Twitter-Benutzer. Bitte warte 15 Minuten und "
+"versuche es erneut."
 
 #: extra/ocr/OCRSpace.py:7
 msgid "Detect automatically"
@@ -1755,9 +1744,8 @@ msgid "Extracts the text from a picture and displays the result in a dialog."
 msgstr "Extrahiert Text aus einem Bild und zeigt ihn in einem Dialog an."
 
 #: keystrokeEditor/constants.py:59
-#, fuzzy
 msgid "Adds an alias to an user"
-msgstr "Wähle eine Liste zum Hinzufügen des Benutzers."
+msgstr "Erstellt einen Alias für einen Benutzer"
 
 #: keystrokeEditor/wx_ui.py:8
 msgid "Keystroke editor"
@@ -1782,9 +1770,8 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #: keystrokeEditor/wx_ui.py:20 keystrokeEditor/wx_ui.py:50
-#, fuzzy
 msgid "Undefine keystroke"
-msgstr "Bearbeite Tastenkombination"
+msgstr "Tastenkombination entfernen"
 
 #: keystrokeEditor/wx_ui.py:21
 msgid "Execute action"
@@ -1797,12 +1784,11 @@ msgstr "Schließen"
 
 #: keystrokeEditor/wx_ui.py:42
 msgid "Undefined"
-msgstr ""
+msgstr "Nicht definiert"
 
 #: keystrokeEditor/wx_ui.py:50
-#, fuzzy
 msgid "Are you sure you want to undefine this keystroke?"
-msgstr "Möchtest du diese Liste wirklich löschen?"
+msgstr "Möchtest du diese Tastenkombination wirklich entfernen?"
 
 #: keystrokeEditor/wx_ui.py:54
 msgid "Editing keystroke"
@@ -1918,10 +1904,15 @@ msgid ""
 "after an account reactivation. Please remove the account manually from your "
 "Twitter sessions in order to stop seeing this message."
 msgstr ""
+"TWBlue kann den Account für {} nicht in Twitter authentisieren. Dies kann "
+"durch einen ungültigen oder veralteten Token ausgelöst werden, widerrufener "
+"App-Zugriff oder nach einer Account-Reaktivierung. Bitte entferne den "
+"Account manuell aus der Sitzungsverwaltung, um diesen Fehler nicht mehr "
+"anzuzeigen."
 
 #: sessionmanager/wxUI.py:81
 msgid "Authentication error for session {}"
-msgstr ""
+msgstr "Authentisierungsfehler für Sitzung {}"
 
 #: sessions/base.py:113
 msgid ""
@@ -1929,6 +1920,9 @@ msgid ""
 "and rebuilt automatically. If this error persists, send the error log to the "
 "{app} developers."
 msgstr ""
+"Beim Speichern der {app}-Datenbank ist ein Ausnahmefehler aufgetreten. Sie "
+"wird daher gelöscht und neu erstellt. Sollte das Problem weiterhin bestehen, "
+"sende das Fehlerprotokoll an die {app}-Entwickler."
 
 #: sessions/base.py:153
 msgid ""
@@ -1936,6 +1930,9 @@ msgid ""
 "and rebuilt automatically. If this error persists, send the error log to the "
 "{app} developers."
 msgstr ""
+"Beim Laden der {app}-Datenbank ist ein Ausnahmefehler aufgetreten. Sie wird "
+"daher gelöscht und neu erstellt. Sollte das Problem weiterhin bestehen, "
+"sende das Fehlerprotokoll an die {app}-Entwickler."
 
 #: sessions/twitter/compose.py:25 sessions/twitter/compose.py:68
 #: sessions/twitter/compose.py:133 sessions/twitter/compose.py:142
@@ -1988,30 +1985,30 @@ msgid "%s succeeded."
 msgstr "%s erfolgreich."
 
 #: sessions/twitter/session.py:452 sessions/twitter/session.py:535
-#, fuzzy
 msgid "Deleted account"
-msgstr "Neuer Account"
+msgstr "Gelöschter Account"
 
 #: sessions/twitter/templates.py:16
 msgid "$display_name, $text $image_descriptions $date. $source"
-msgstr ""
+msgstr "$display_name, $text $image_descriptions $date. $source"
 
 #: sessions/twitter/templates.py:17
 msgid "$sender_display_name, $text $date"
-msgstr ""
+msgstr "$sender_display_name, $text $date"
 
 #: sessions/twitter/templates.py:18
 msgid "Dm to $recipient_display_name, $text $date"
-msgstr ""
+msgstr "Direktnachricht an $recipient_display_name, $text $date"
 
 #: sessions/twitter/templates.py:19
 msgid ""
 "$display_name (@$screen_name). $followers followers, $following following, "
 "$tweets tweets. Joined Twitter $created_at."
 msgstr ""
+"$display_name (@$screen_name). $followers Folger, folgt $following, $tweets "
+"Tweets. Trat Twitter $created_at bei."
 
 #: sessions/twitter/templates.py:54
-#, fuzzy
 msgid "Image description: {}."
 msgstr "Bildbeschreibung"
 
@@ -2024,13 +2021,12 @@ msgid "No status found with that ID"
 msgstr "Kein Status mit dieser ID gefunden."
 
 #: sessions/twitter/utils.py:247
-#, fuzzy
 msgid "Error {0}"
-msgstr "Fehlercode {0}"
+msgstr "Fehler {0}"
 
 #: sessions/twitter/utils.py:274
 msgid "{user_1}, {user_2} and {all_users} more: {text}"
-msgstr ""
+msgstr "{user_1}, {user_2} und {all_users} weitere: {text}"
 
 #: sessions/twitter/wxUI.py:7
 msgid "Authorising account..."
@@ -2296,7 +2292,7 @@ msgstr ""
 
 #: wxUI/commonMessageDialogs.py:95
 msgid "The configuration file is invalid."
-msgstr ""
+msgstr "Die Konfigurationsdatei ist ungültig."
 
 #: wxUI/commonMessageDialogs.py:98
 msgid ""
@@ -2438,7 +2434,7 @@ msgstr "&Listen verwalten"
 
 #: wxUI/view.py:23
 msgid "Manage user aliases"
-msgstr ""
+msgstr "Benutzer-Aliase verwalten"
 
 #: wxUI/view.py:24
 msgid "&Edit keystrokes"
@@ -2478,7 +2474,7 @@ msgstr "&Direktnachricht"
 
 #: wxUI/view.py:47
 msgid "Add a&lias"
-msgstr ""
+msgstr "A&lias hinzufügen"
 
 #: wxUI/view.py:48
 msgid "&Add to list"
@@ -2510,7 +2506,7 @@ msgstr "Filter &verwalten"
 
 #: wxUI/view.py:60
 msgid "Find a string in the currently focused buffer..."
-msgstr "Eine Zeichenkette im der momentan fokussierten Ansicht suchen..."
+msgstr "Eine Zeichenkette in der momentan fokussierten Ansicht suchen..."
 
 #: wxUI/view.py:61
 msgid "&Load previous items"
@@ -2729,18 +2725,18 @@ msgid "Password: "
 msgstr "Passwort: "
 
 #: wxUI/dialogs/configuration.py:102
-#, fuzzy
 msgid "User autocompletion settings"
-msgstr "Auto-Vervollständigungs-Einstellungen..."
+msgstr "Auto-Vervollständigungs-Einstellungen"
 
 #: wxUI/dialogs/configuration.py:103
 msgid ""
 "Scan account and add friends and followers to the user autocompletion "
 "database"
 msgstr ""
+"Account scannen und Freunde und Folger zur Autovervollständigungs-Datenbank "
+"hinzufügen"
 
 #: wxUI/dialogs/configuration.py:104
-#, fuzzy
 msgid "Manage autocompletion database"
 msgstr "Auto-Vervollständigungsdatenbank verwalten"
 
@@ -2770,7 +2766,7 @@ msgstr "Zeige Benutzernamen statt der vollständigen Namen"
 
 #: wxUI/dialogs/configuration.py:128
 msgid "hide emojis in usernames"
-msgstr ""
+msgstr "Emojis in Benutzernamen ausblenden"
 
 #: wxUI/dialogs/configuration.py:130
 msgid ""
@@ -2785,6 +2781,8 @@ msgid ""
 "Load cache for tweets in memory (much faster in big datasets but requires "
 "more RAM)"
 msgstr ""
+"Tweets im Speicher zwischenlagern (sorgt für verbesserte Geschwindigkeit bei "
+"großen Datenmengen, erhöht jedoch die RAM-Nutzung)"
 
 #: wxUI/dialogs/configuration.py:141
 msgid "Enable automatic speech feedback"
@@ -2910,7 +2908,7 @@ msgstr "Ansichten"
 
 #: wxUI/dialogs/configuration.py:406
 msgid "Templates"
-msgstr ""
+msgstr "Vorlagen"
 
 #: wxUI/dialogs/configuration.py:410
 msgid "Sound"
@@ -3004,11 +3002,11 @@ msgstr "Abbrechen"
 
 #: wxUI/dialogs/filterDialogs.py:120
 msgid "You must define a name for the filter before creating it."
-msgstr ""
+msgstr "Du musst vor dem Erstellen eines Filters einen namen festlegen."
 
 #: wxUI/dialogs/filterDialogs.py:120
 msgid "Missing filter name"
-msgstr ""
+msgstr "Fehlender Filtername"
 
 #: wxUI/dialogs/filterDialogs.py:127
 msgid "Manage filters"
@@ -3269,53 +3267,44 @@ msgid "&Ignore tweets from this client"
 msgstr "Tweets dieses Clients &ignorieren"
 
 #: wxUI/dialogs/userAliasDialogs.py:18
-#, fuzzy
 msgid "Alias"
-msgstr "immer"
+msgstr "Alias"
 
 #: wxUI/dialogs/userAliasDialogs.py:41
-#, fuzzy
 msgid "Edit user aliases"
-msgstr "Bearbeiten der {0} Benutzerdatenbank"
+msgstr "Benutzer-Aliase bearbeiten"
 
 #: wxUI/dialogs/userAliasDialogs.py:48
-#, fuzzy
 msgid "Actions"
-msgstr "Aktion"
+msgstr "Aktionen"
 
 #: wxUI/dialogs/userAliasDialogs.py:50
-#, fuzzy
 msgid "Add alias"
-msgstr "Zur Liste hinzufügen"
+msgstr "Alias hinzufügen"
 
 #: wxUI/dialogs/userAliasDialogs.py:51
 msgid "Adds a new user alias"
-msgstr ""
+msgstr "Fügt einen neuen Benutzer-Alias hinzu"
 
 #: wxUI/dialogs/userAliasDialogs.py:54
-#, fuzzy
 msgid "Edit the currently focused user Alias."
-msgstr "Interagiert mit dem momentan fokussierten Tweet."
+msgstr "Den momentan fokussierten Benutzer-Alias bearbeiten."
 
 #: wxUI/dialogs/userAliasDialogs.py:58
-#, fuzzy
 msgid "Remove the currently focused user alias."
-msgstr "Eine Zeichenkette im der momentan fokussierten Ansicht suchen..."
+msgstr "Den momentan gewählten Benutzer-Alias entfernen."
 
 #: wxUI/dialogs/userAliasDialogs.py:82
-#, fuzzy
 msgid "Are you sure you want to delete this user alias?"
-msgstr "Möchtest du diese Liste wirklich löschen?"
+msgstr "Möchtest du diesen Benutzer-Alias wirklich löschen?"
 
 #: wxUI/dialogs/userAliasDialogs.py:82
-#, fuzzy
 msgid "Remove user alias"
-msgstr "Benutzer entfernen"
+msgstr "Benutzer-Alias entfernen"
 
 #: wxUI/dialogs/userAliasDialogs.py:93
-#, fuzzy
 msgid "User alias"
-msgstr "Benutzerdetails"
+msgstr "Benutzer-Alias"
 
 #: wxUI/dialogs/userSelection.py:10
 #, python-format
@@ -3344,24 +3333,23 @@ msgstr "F&reunde"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:8
 msgid "Edit Template"
-msgstr ""
+msgstr "Vorlage bearbeiten"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:13
 msgid "Edit template"
-msgstr ""
+msgstr "Vorlage bearbeiten"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:17
-#, fuzzy
 msgid "Available variables"
-msgstr "Nicht verfügbar"
+msgstr "Verfügbare Variablen"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:29
 msgid "Restore template"
-msgstr ""
+msgstr "Vorlage wiederherstellen"
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:48
 msgid "Restored template to {}."
-msgstr ""
+msgstr "Vorlage zu {} wiederhergestellt."
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
 msgid ""
@@ -3370,11 +3358,14 @@ msgid ""
 "see a list of all available variables in the variables list while editing "
 "your template."
 msgstr ""
+"Die von dir spezifizierte Vorlage enthält Variablen, die für dieses Objekt "
+"nicht verfügbar sind. Bitte korrigiere die Vorlage und versuche es erneut. "
+"Eine Liste der verfügbaren Variablen wird im Bearbeitungsdialog für die "
+"Vorlage angezeigt."
 
 #: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
-#, fuzzy
 msgid "Invalid template"
-msgstr "Ungültige Tastenkombination"
+msgstr "Ungültige Vorlage"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:32
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:48
@@ -3392,30 +3383,26 @@ msgstr "Typ"
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:39
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:175
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:259
-#, fuzzy
 msgid "Delete attachment"
-msgstr "Anhang entfernen"
+msgstr "Anhang löschen"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:44
-#, fuzzy
 msgid "Added Tweets"
-msgstr "Gesendete Tweets"
+msgstr "Hinzugefügte Tweets"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:51
-#, fuzzy
 msgid "Delete tweet"
-msgstr "Gesendete Tweets"
+msgstr "Tweet löschen"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:56
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:190
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:264
 msgid "A&dd..."
-msgstr ""
+msgstr "Hin&zufügen..."
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:58
-#, fuzzy
 msgid "Add t&weet"
-msgstr "Für einen Tweet \"gefällt mir\" abgeben"
+msgstr "T&weet hinzufügen"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:61
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:192
@@ -3440,9 +3427,8 @@ msgstr "Rechtschreib&prüfung..."
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:69
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:200
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:272
-#, fuzzy
 msgid "&Translate"
-msgstr "Übersetzt"
+msgstr "Überse&tzen"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:73
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:204
@@ -3454,31 +3440,29 @@ msgstr "Sen&den"
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:218
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:296
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:119
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:220
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:298
-#, fuzzy
 msgid "Video"
-msgstr "Verbergen"
+msgstr "Video"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:121
 msgid "Poll"
-msgstr ""
+msgstr "Umfrage"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:126
 msgid "please provide a description"
 msgstr "Bitte gib eine Beschreibung ein"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
-#, fuzzy
 msgid "Select the video to be uploaded"
-msgstr "Wähle das hochzuladende Bild aus."
+msgstr "Wähle das hochzuladende Video aus."
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
 msgid "Video files (*.mp4)|*.mp4"
-msgstr ""
+msgstr "Videodateien (*.mp4)|*.mp4"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
 msgid ""
@@ -3486,11 +3470,13 @@ msgid ""
 "complies with Twitter'S attachment rules. You can add only one video or GIF "
 "in every tweet, and a maximum of 4 photos."
 msgstr ""
+"Weitere Anhänge können nicht hinzugefügt werden. Bitte stelle sicher, dass "
+"dein Tweet den Twitter-Regeln für Anhänge entspricht. Du kannst nur ein "
+"Video oder Gif pro Tweet senden, und maximal 4 Fotos."
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
-#, fuzzy
 msgid "Error adding attachment"
-msgstr "Einen Anhang hinzufügen"
+msgstr "Fehler beim Hinzufügen des Anhangs"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:180
 msgid "&Mention to all"
@@ -3528,9 +3514,8 @@ msgstr "Datum"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:362
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:435
-#, fuzzy
 msgid "Copy link to clipboard"
-msgstr "In Zwischenablage kopieren"
+msgstr "Link in Zwischenablage kopieren"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:365
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:440
@@ -3556,37 +3541,38 @@ msgstr "URL &expandieren"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:477
 msgid "Add a poll"
-msgstr ""
+msgstr "Füge eine Umfrage hinzu"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:481
 msgid "Participation time (in days)"
-msgstr ""
+msgstr "Teilnahmezeitraum (in Tagen)"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:488
 msgid "Choices"
-msgstr ""
+msgstr "Wahlmöglichkeiten"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:492
 msgid "Option 1"
-msgstr ""
+msgstr "Option 1"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:499
 msgid "Option 2"
-msgstr ""
+msgstr "Option 2"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:506
 msgid "Option 3"
-msgstr ""
+msgstr "Option 3"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:513
 msgid "Option 4"
-msgstr ""
+msgstr "Option 4"
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
 msgid "Please make sure you have provided at least two options for the poll."
 msgstr ""
+"Bitte stelle sicher, dass mindestens zwei Optionen für die Umfrage angegeben "
+"wurden."
 
 #: wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
-#, fuzzy
 msgid "Not enough information"
-msgstr "Information"
+msgstr "Nicht genügend Informationen"
