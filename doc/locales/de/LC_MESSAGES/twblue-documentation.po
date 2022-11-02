@@ -1,0 +1,2015 @@
+# Translations template for TWBlue.
+# Copyright (C) 2022 Manuel Cortez
+# This file is distributed under the same license as the TWBlue project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TWBlue 2022.8.x\n"
+"Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
+"POT-Creation-Date: 2022-08-22 16:08-0500\n"
+"PO-Revision-Date: 2022-10-05 13:23+0000\n"
+"Last-Translator: Steffen Schultz <steffenschultz@mailbox.org>\n"
+"Language-Team: German <https://weblate.mcvsoftware.com/projects/twblue/"
+"documentation/de/>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: strings.py:3
+msgid "Documentation for TWBlue"
+msgstr "Dokumentation für TWBlue"
+
+#: strings.py:5
+msgid "## Table of contents"
+msgstr "## Inhaltsverzeichnis"
+
+#: strings.py:7
+msgid "[TOC]"
+msgstr "[TOC]"
+
+#: strings.py:9
+msgid "## Warning!"
+msgstr "## Warnung!"
+
+#: strings.py:11
+msgid ""
+"You are reading documentation produced for a program still in "
+"development. The object of this manual is to explain some details of the "
+"operation of the program. Bear in mind that as the software is in the "
+"process of active development, parts of this user guide may change in the"
+" near future, so it is advisable to keep checking from time to time to "
+"avoid missing important information."
+msgstr ""
+"Dies ist die Dokumentation für eine Software, die sich noch immer in der "
+"Entwicklung befindet. Sinn und Zweck dieser Anleitung ist es, einige der "
+"Funktionen des Programms näher zu erläutern. Im Verlauf der Entwicklung "
+"können sich manche Funktionen jedoch ändern oder neue hinzukommen. Daher ist "
+"es ratsam, diese Dokumentation von Zeit zu Zeit erneut zu lesen, um keine "
+"Änderung zu verpassen."
+
+#: strings.py:13
+msgid ""
+"If you want to see what has changed from the previous version, [read the "
+"list of updates here.](changes.html)"
+msgstr "Die Liste der Änderungen [kann hier nachgelesen werden.](changes.html)"
+
+#: strings.py:15
+msgid "## Introduction"
+msgstr "## Einleitung"
+
+#: strings.py:17
+msgid ""
+"TWBlue is an application to make Twitter simple and fast, while using as "
+"few resources as possible. With TWBlue, you can do things like the "
+"following:"
+msgstr ""
+"TWBlue ist eine Anwendung, um den Kurznachrichtendienst Twitter einfach und "
+"schnell benutzen zu können, dabei sollen so wenig Systemressourcen wie "
+"möglich verbraucht werden. TWBlue bietet unter anderem folgende Funktionen:"
+
+#: strings.py:19
+msgid "* Tweet, reply to, retweet and delete tweets,"
+msgstr "* Tweets verfassen, beantworten, retweeten und löschen,"
+
+#: strings.py:20
+msgid "* Like and unlike a tweet,"
+msgstr "* Tweets den Likes hinzufügen und wieder entfernen,"
+
+#: strings.py:21
+msgid "* Send and delete direct messages,"
+msgstr "* Direktnachrichten senden und löschen,"
+
+#: strings.py:22
+msgid "* See your friends and followers,"
+msgstr "* Freunde und Folger anzeigen,"
+
+#: strings.py:23
+msgid "* Follow, unfollow, report and block a user,"
+msgstr "* Benutzern folgen, entfolgen, als Spam melden und blockieren,"
+
+#: strings.py:24
+msgid "* Open a user's timeline to see their tweets separately,"
+msgstr "* Separate Benutzerzeitleisten erstellen,"
+
+#: strings.py:25
+msgid "* Open URLs from a tweet or direct message,"
+msgstr "* URLs aus Tweets und Direktnachrichten öffnen,"
+
+#: strings.py:26
+msgid "* Play several types of audio files from addresses,"
+msgstr "* Direktes Abspielen verlinkter Audiodateien,"
+
+#: strings.py:27
+msgid "* And more."
+msgstr "* Und mehr."
+
+#: strings.py:29
+msgid "## Usage"
+msgstr "## Verwendung"
+
+#: strings.py:31
+msgid ""
+"Twitter is a social networking or micro-blogging tool which allows you to"
+" compose short status updates of your activities in 280 characters or "
+"less. Twitter is a way for friends, family and co-workers to communicate "
+"and stay connected through the exchange of quick, frequent messages. You "
+"can restrict delivery of updates to those in your circle of friends or, "
+"by default, allow anyone to access them."
+msgstr ""
+"Twitter ist ein soziales Netzwerk oder Micro-Blog, welches das Verfassen von "
+"Status-Nachrichten von bis zu 280 Zeichen Länge erlaubt. Dieser Dienst ist "
+"perfekt für Freunde, Familien und Mitarbeiter, um schnell und regelmäßig "
+"Kurznachrichten auszutauschen. Die Nachrichten können dabei allen zugänglich "
+"gemacht oder nur auf den Freundeskreis beschränkt werden."
+
+#: strings.py:33
+msgid ""
+"You can monitor the status of updates from your friends, family or co-"
+"workers (known as following), and they in turn can read any updates you "
+"create, (known as followers). The updates are referred to as Tweets. The "
+"Tweets are posted to your Twitter profile or Blog and are searchable "
+"using Twitter Search."
+msgstr ""
+"Es ist möglich, die Updates von Freunden, Familie und Mitarbeitern zu "
+"überwachen (auch verfolgen genannt), im Gegenzug können diese die "
+"Statusnachrichten des Verfassers lesen (hierbei spricht man von Followern, "
+"zu Deutsch Folgern). Die Statusnachrichten werden als Tweets bezeichnet. "
+"Tweets erscheinen im Twitter-Benutzerprofil und können über die Twitter-"
+"Suche gefunden werden."
+
+#: strings.py:35
+msgid ""
+"In order to use TWBlue, you must first have created an account on the "
+"Twitter website. The process for signing up for a Twitter account is very"
+" accessible. During the account registration, you will need to choose a "
+"Twitter username. This serves two purposes. This is the method through "
+"which people will comunicate with you, but most importantly, your "
+"username and password will be required to connect TWBlue to your Twitter "
+"account. We suggest you choose a username which is memorable both to you "
+"and the people you hope will follow you."
+msgstr ""
+"Zur Verwendung von TWBlue muss zuerst ein Account auf der Twitter-Webseite "
+"erstellt werden. Während der Registrierung wird ein Benutzername vergeben, "
+"der zum einen der Kontaktname ist, den Freunde und Folger zur Kommunikation "
+"verwenden, und zum anderen zum Einloggen und Verbinden mit TWBlue benötigt "
+"wird. Es sollte ein gut zu merkender Benutzername gewählt werden, der auch "
+"für die zukünftigen Folger einprägsam ist."
+
+#: strings.py:37
+msgid ""
+"We'll start from the premise that you have a Twitter account with its "
+"corresponding username and password."
+msgstr ""
+"Diese Anleitung geht von der Annahme aus, dass bereits ein Twitter-Account "
+"vorhanden ist."
+
+#: strings.py:39
+msgid "### Authorising the application"
+msgstr "### Anwendung autorisieren"
+
+#: strings.py:41
+msgid ""
+"First of all, it's necessary to authorise the program so it can access "
+"your Twitter account and act on your behalf. The authorisation process is"
+" quite simple, and the program never retains data such as your password. "
+"In order to authorise the application, you just need to run the main "
+"executable file, called TWBlue.exe (on some computers it may appear "
+"simply as TWBlue if Windows Explorer is not set to display file "
+"extensions). We suggest you may like to place a Windows shortcut on your "
+"Desktop pointing to this executable file for quick and easy location."
+msgstr ""
+"Zuerst ist es notwendig, das Programm für einen Twitter-Account zu "
+"autorisieren. Der Autorisierungsvorgang ist sehr einfach und überträgt "
+"niemals persönliche Daten wie etwa das Passwort. Um die Autorisierung zu "
+"starten, muss einfach nur die Datei TWBlue.exe im Programmverzeichnis "
+"geöffnet werden (auf manchen Computern erscheint sie nur als TWBlue, wenn "
+"die Dateierweiterungen in den Ordneroptionen ausgeblendet sind). Der "
+"Einfachheit halber empfiehlt sich das Anlegen einer Desktopverknüpfung."
+
+#: strings.py:43
+msgid ""
+"You can log into several Twitter accounts simultaneously. The program "
+"refers to each Twitter account you have configured as a \"Session\". If "
+"this is the first time you have launched TWBlue, and if no Twitter "
+"session exists, you will see the Session Manager. This dialogue box "
+"allows you to authorise as many accounts as you wish. If you press the "
+"Tab key to reach the \"new account\" button and activate it by pressing "
+"the Space Bar, a dialogue box will advise you that your default internet "
+"browser will be opened in order to authorise the application and you will"
+" be asked if you would like to continue. Activate the \"yes\" Button by "
+"pressing the letter \"Y\" so the process may start."
+msgstr ""
+"Es können mehrere Twitter-Accounts gleichzeitig verwaltet werden. TWBlue "
+"bezeichnet jeden dieser Accounts als \"Sitzung\". Beim ersten Starten von "
+"TWBlue ist in der Regel noch kein Account verknüpft und die "
+"Sitzungsverwaltung wird geöffnet. Hier können beliebig viele Accounts "
+"eingerichtet werden. Mit Aktivieren der Schaltfläche \"Neuer Account\" "
+"öffnet sich nach einer Rückfrage, die mit der Schaltfläche \"Ja\" "
+"beantwortet werden muss, die Autorisierungsanfrage im Browser und der "
+"Vorgang beginnt."
+
+#: strings.py:45
+msgid ""
+"Your default browser will open on the Twitter page to request "
+"authorisation. Enter your username and password into the appropriate edit"
+" fields if you're not already logged in, select the authorise button, and"
+" press it."
+msgstr ""
+"Der Standard-Browser öffnet die Twitter-Autorisierungsseite für neue "
+"Anwendungen. Nach Eingabe von Benutzername und Passwort (sofern noch nicht "
+"eingeloggt) in die dafür vorgesehenen Eingabefelder schließt das Betätigen "
+"der Schaltfläche \"Autorisieren\" den Vorgang ab."
+
+#: strings.py:47
+msgid ""
+"Once you've authorised your twitter account, the website will redirect "
+"you to a page which will notify you that TWBlue has been authorised "
+"successfully. On this page, you will be shown a code composed of several "
+"numbers that you must paste in the TWBlue authorization dialogue in order"
+" to allow the application to access your account. Once you have pasted "
+"the code in the corresponding text field, press enter to finish the "
+"account setup and go back to the session manager. On the session list, "
+"you will see a new item temporarily called \"Authorised account x\" "
+"-where x is a number. The session name will change once you open that "
+"session."
+msgstr ""
+"Sobald der Twitter-Account autorisiert wurde, leitet die Webseite zu einer "
+"Nachricht weiter, die den erfolgreichen Abschluss des Vorgangs mitteilt. Auf "
+"dieser Seite wird ein aus mehreren Ziffern bestehender Code angezeigt, "
+"welchen du in den TWBlue-Authentisierungsdialog  einfügen musst, damit die "
+"Anwendung auf deinen Account zugreifen kann. Drücke danach Enter, um zur "
+"Sitzungsverwaltung zurückzukehren. Nun erscheint ein neuer Account mit dem "
+"temporären Namen \"Autorisierter Account x\", wobei X eine Nummer ist. "
+"Dieser Name ändert sich, sobald die Sitzung aktiviert wird."
+
+#: strings.py:49
+msgid ""
+"To start running TWBlue, press the Ok button in the Session Manager "
+"dialogue. By default, the program starts all the configured sessions "
+"automatically, however, you can change this behavior."
+msgstr ""
+"Die Schaltfläche \"OK\" in der Sitzungsverwaltung startet TWBlue. "
+"Standardmäßig startet das Programm alle konfigurierten Sitzungen, dieses "
+"Verhalten kann jedoch geändert werden."
+
+#: strings.py:51
+msgid ""
+"If all went well, the application will start playing sounds, indicating "
+"your data is being updated."
+msgstr ""
+"Falls alles korrekt konfiguriert wurde, sollte TWBlue nun verschiedene "
+"Klänge abspielen, die das Aktualisieren der Twitter-Daten kennzeichnen."
+
+#: strings.py:53
+msgid ""
+"When the process is finished, by default the program will play another "
+"sound, and the screen reader will say \"ready\" (this behaviour can be "
+"configured)."
+msgstr ""
+"Sobald der Vorgang abgeschlossen ist, spielt TWBlue einen weiteren Klang ab "
+"und der Screen-Reader gibt die Meldung \"Bereit\" aus. Auch dieses Verhalten "
+"kann konfiguriert werden."
+
+#: strings.py:55
+msgid "## General concepts"
+msgstr "## Allgemeine Begriffe"
+
+#: strings.py:57
+msgid ""
+"Before starting to describe TWBlue's usage, we'll explain some concepts "
+"that will be used extensively throughout this manual."
+msgstr ""
+"Bevor TWBlue näher beschrieben wird, erklärt diese Anleitung zunächst einige "
+"Begrifflichkeiten, die im Verlauf der Beschreibungen immer wieder auftauchen "
+"werden."
+
+#: strings.py:59
+msgid "### Buffer"
+msgstr "### Ansicht"
+
+#: strings.py:61
+msgid ""
+"A buffer is a list of items to manage the data which arrives from "
+"Twitter, after being processed by the application. When you configure a "
+"new session on TWBlue and start it, many buffers are created. Each of "
+"them may contain some of the items which this program works with: Tweets,"
+" direct messages, users, trends or. According to the buffer you are "
+"focusing, you will be able to do different actions with these items."
+msgstr ""
+"Eine Ansicht bezeichnet eine Liste, die Einträge aus Twitter-Daten verwaltet "
+"und nach der Verarbeitung durch die Anwendung darstellt. Beim ersten Start "
+"einer neuen Sitzung werden sehr viele Ansichten erstellt, die einige der "
+"Dinge enthalten, mit denen TWBlue arbeitet: Tweets, Direktnachrichten, "
+"Benutzer, Trends oder Ereignisse. Je nachdem, welche Ansicht fokussiert ist, "
+"können verschiedene Aktionen ausgeführt werden."
+
+#: strings.py:63
+msgid ""
+"The following is a description for every one of TWBlue's buffers and the "
+"kind of items they work with."
+msgstr ""
+"Nachfolgend wird jede TWBlue-Ansicht beschrieben und die Art von Einträgen, "
+"die damit angezeigt werden."
+
+#: strings.py:65
+msgid ""
+"* Home: this shows all the tweets on the main timeline. These are the "
+"tweets by users you follow."
+msgstr ""
+"* Start: Zeigt alle Tweets der Hauptzeitleiste an. Hier erscheinen alle "
+"Tweets von Nutzern aus der Freundesliste."
+
+#: strings.py:66
+msgid ""
+"* Mentions: if a user, whether you follow them or not, mentions you on "
+"Twitter, you will find it in this list."
+msgstr ""
+"* Erwähnungen: Falls ein Nutzer, egal ob Freund oder nicht, den betreffenden "
+"Account auf Twitter erwähnt, erscheinen diese Nachrichten in dieser "
+"Zeitleiste."
+
+#: strings.py:67
+msgid ""
+"* Direct messages: here you will find the private direct messages you "
+"exchange with users who follow you , or with any user, if you allow "
+"direct messages from everyone (this setting is configurable from "
+"Twitter). This list only shows received messages."
+msgstr ""
+"* Direktnachrichten: Hier erscheinen die privaten Nachrichten von Freunden "
+"oder von anderen Twitter-Nutzern (der Empfang von jedermann muss direkt in "
+"den Twitter-Einstellungen konfiguriert werden). Diese Liste zeigt nur die "
+"empfangenen Direktnachrichten an."
+
+#: strings.py:68
+msgid ""
+"* Sent direct messages: this buffer shows all the direct messages sent "
+"from your account."
+msgstr ""
+"* Gesendete Direktnachrichten: Diese Ansicht zeigt alle gesendeten "
+"Privatnachrichten eines Accounts an."
+
+#: strings.py:69
+msgid "* Sent tweets: this shows all the tweets sent from your account."
+msgstr "* Gesendete Tweets: Zeigt die von einem Account gesendeten Tweets an."
+
+#: strings.py:70
+msgid "* Likes: here you will see all the tweets you have liked."
+msgstr "* Likes: Beinhaltet alle Tweets, die als Like markiert wurden."
+
+#: strings.py:71
+msgid ""
+"* Followers: when users follow you, you'll be able to see them on this "
+"buffer, with some of their account details."
+msgstr ""
+"* Folger: Sofern Benutzer einem Account folgen, werden diese mit einigen "
+"Profildetails hier angezeigt."
+
+#: strings.py:72
+msgid ""
+"* Friends: the same as the previous buffer, but these are the users you "
+"follow."
+msgstr ""
+"* Freunde: Ähnlich wie die vorherige Ansicht, jedoch erscheinen hier jene "
+"Benutzer, denen man selbst folgt."
+
+#: strings.py:73
+msgid ""
+"* User timelines: these are buffers you may create. They contain only the"
+" tweets by a specific user. They're used so you can see the tweets by a "
+"single person and you don't want to look all over your timeline. You may "
+"create as many as you like."
+msgstr ""
+"* Benutzerzeitleisten: Diese Ansichten können individuell für jeden Benutzer "
+"erstellt werden und beinhalten ausschließlich dessen Tweets, falls man nicht "
+"in der Hauptzeitleiste danach suchen möchte. Es können so viele Zeitleisten "
+"wie nötig erstellt werden."
+
+#: strings.py:74
+msgid ""
+"* Lists: A list is similar to a user timeline, except that you can "
+"configure it to contain tweets from multiple users."
+msgstr ""
+"* Listen: Eine Liste ist ähnlich wie eine Benutzerzeitleiste, jedoch mit dem "
+"Unterschied, dass hier die Tweets mehrerer Benutzer erscheinen können."
+
+#: strings.py:75
+msgid "* Search: A search buffer contains the results of a search operation."
+msgstr "* Suche: Diese Ansicht enthält die Ergebnisse eines Suchvorgangs."
+
+#: strings.py:76
+msgid ""
+"* User likes: You can have the program create a buffer containing tweets "
+"liked by a particular user."
+msgstr ""
+"* Benutzer-Likes: Erlaubt es, eine Ansicht mit den Likes eines bestimmten "
+"Benutzers zu erstellen."
+
+#: strings.py:77
+msgid ""
+"* Followers or following timeline: You can have TWBlue create a buffer "
+"containing all users who follow, or are followed by a specific user."
+msgstr ""
+"* Folger- und Freunde-Zeitleiste: TWBlue kann eine Ansicht erstellen, die "
+"alle Folger oder Freunde eines Benutzers enthält."
+
+#: strings.py:78
+msgid ""
+"* Trending Topics: a trend buffer shows the top ten most used terms in a "
+"geographical region. This region may be a country or a city. Trends are "
+"updated every five minutes."
+msgstr ""
+"* Trends: Diese Ansicht zeigt die Top10-Trends einer geografischen Region "
+"an. Hierbei kann es sich um ein Land oder eine Stadt handeln. Trends werden "
+"alle 5 Minuten aktualisiert."
+
+#: strings.py:80
+msgid ""
+"If a tweet contains a URL, you can press enter in the GUI or Control + "
+"Windows + Enter in the invisible interface to open it. If it contains "
+"video or audio, including live stream content, you can press Control + "
+"Enter or Control + Windows + Alt + Enter to play it, respectively. TWBlue"
+" will play a sound if the tweet contains video metadata or the \\#audio "
+"hashtag, but there may be tweets which contain media without this. "
+"Finally, if a tweet contains geographical information, you can press "
+"Control + Windows + G in the invisible interface to retrieve it."
+msgstr ""
+"Enthält ein Tweet eine URL, kann diese durch Drücken der Entertaste im "
+"grafischen Interface oder STRG + Windows + Enter im unsichtbaren Interface "
+"geöffnet werden. Sind Audioinhalte verfügbar, können diese mittels STRG + "
+"Enter bzw. STRG + Windows + Alt + Enter abgespielt werden. TWBlue spielt bei "
+"Tweets mit dem Hashtag \\#audio einen Klang ab, doch das Abspielen von URLs "
+"ohne diese Kennzeichnung ist ebenfalls möglich. Des Weiteren wird mit der "
+"Tastenkombination STRG + Windows + G das Abrufen geografischer Informationen "
+"eines Tweets unterstützt, sofern diese verfügbar sind."
+
+#: strings.py:82
+msgid "### Username fields"
+msgstr "### Benutzernamensfelder"
+
+#: strings.py:84
+msgid ""
+"These fields accept a Twitter username (without the at sign) as the "
+"input. They are present in the send direct message, the user actions "
+"dialogue and the user alias dialogue boxes, to name a few examples. Those"
+" dialogues will be discussed later. The initial value of these fields "
+"depends on where they were opened from. They are prepopulated with the "
+"username of the sender of the focused tweet (if they were opened from the"
+" home and sent timelines, from users' timelines or from lists), the "
+"sender of the focused direct message (if from the received or sent direct"
+" message buffers) or in the focused user (if from the followers' or "
+"friends' buffer). If one of those dialogue boxes is opened from a tweet, "
+"and if there are more users mentioned in it, you can use the arrow keys "
+"to switch between them. Alternatively, you can also type a username."
+msgstr ""
+"Diese Eingabefelder akzeptieren einen Twitter-Benutzernamen (ohne das "
+"@-Zeichen). Sie erscheinen im Dialog zum Senden einer Direktnachricht sowie "
+"bei der Auswahl einer Benutzeraktion, was später in dieser Anleitung noch "
+"näher beschrieben wird. Die Werte dieser Felder hängen davon ab, von wo aus "
+"sie geöffnet werden. So sind sie z. B. mit dem Namen eines Absenders "
+"ausgefüllt, wenn ein Tweet oder eine Direktnachricht beantwortet wird. "
+"Werden in einem Tweet mehrere Benutzer erwähnt, wählt das Drücken der "
+"Cursortasten den richtigen Benutzer aus. Alternativ kann der Benutzername "
+"auch einfach eingegeben werden."
+
+#: strings.py:86
+msgid "## The program's interfaces"
+msgstr "## Die Programm-Interfaces"
+
+#: strings.py:88
+msgid "### The graphical user interface (GUI)"
+msgstr "### Das grafische Benutzer-Interface (GUI)"
+
+#: strings.py:90
+msgid "The graphical user interface of TWBlue consists of a window containing:"
+msgstr ""
+"Das grafische Interface besteht aus einem Fenster, welches folgende Elemente "
+"enthält:"
+
+#: strings.py:92
+msgid ""
+"* a menu bar accomodating six  menus (application, tweet, user, buffer, "
+"audio and help);"
+msgstr ""
+"* Eine Menüleiste mit 6 Menüs: Anwendung, Tweet, Benutzer, Ansicht, Audio "
+"und Hilfe,"
+
+#: strings.py:93
+msgid "* One tree view,"
+msgstr "* Eine Baumansicht,"
+
+#: strings.py:94
+msgid "* One list of items"
+msgstr "* Eine Liste mit Einträgen,"
+
+#: strings.py:95
+msgid "* Four buttons in most dialogs: Tweet, retweet , reply and direct message."
+msgstr ""
+"* Vier Schaltflächen in den meisten Dialogen: Tweet, Retweet, Antwort und "
+"Direktnachricht."
+
+#: strings.py:97
+msgid "The actions that are available for every item will be described later."
+msgstr "Die für jeden Eintrag verfügbaren Aktionen werden später beschrieben."
+
+#: strings.py:99
+msgid ""
+"In summary, the GUI contains two core components. These are the controls "
+"you will find while pressing the Tab key within the program's interface, "
+"and the different elements present on the menu bar."
+msgstr ""
+"Zusammengefasst enthält das GUI zwei Kernkomponenten. Zum einen die "
+"Elemente, die mit der Tab-Taste erreichbar sind sowie die verschiedenen "
+"Einträge in der Menüleiste."
+
+#: strings.py:101
+msgid "#### Buttons in the application"
+msgstr "#### Schaltflächen der Anwendung"
+
+#: strings.py:103
+msgid ""
+"* Tweet: this button opens up a dialogue box to write your tweet. Normal "
+"tweets must not exceed 280 characters. However you can press the long "
+"tweet checkbox and your tweet will be posted throught Twishort, wich will"
+" allow you to write longer tweets (10000 characters). If you write past "
+"this limit, a sound will play to warn you. Note that the character count "
+"is displayed in the title bar. You can upload a picture, check spelling, "
+"attach audio or translate your message by selecting one of the available "
+"buttons in the dialogue box. In addition, you can autocomplete the "
+"entering of users by pressing Alt + C or the button for that purpose if "
+"you have the database of users configured. Press enter to send the tweet."
+" If all goes well, you'll hear a sound confirming it. Otherwise, the "
+"screen reader will speak an error message in English describing the "
+"problem."
+msgstr ""
+"* Tweet: Diese Schaltfläche öffnet einen Dialog zum Verfassen eines neuen "
+"Tweets. Die Nachricht darf normalerweise 280 Zeichen nicht überschreiten, "
+"kann jedoch durch aktivieren der Checkbox \"Langer Tweet\" über den Twishort-"
+"Dienst gesendet werden (maximal 10000 Zeichen). Geht eine Nachricht darüber "
+"hinaus, kennzeichnet TWBlue dies durch einen Warnklang. Die Anzahl der "
+"bereits eingegebenen Zeichen wird in der Titelleiste des Dialogfelds "
+"angezeigt. Enthält der Tweet eine URL, kann diese mit der Schaltfläche \"URL "
+"verkürzen\" bearbeitet werden, sodass die Zeichenanzahl wieder im Limit ist. "
+"Des Weiteren ist es möglich, ein Bild hochzuladen, Audio anzuhängen oder die "
+"Rechtschreibung zu überprüfen. Durch Drücken von Alt + V oder Aktivieren der "
+"entsprechenden Schaltfläche kann die Eingabe von Benutzernamen automatisch "
+"vervollständigt werden, sofern dies konfiguriert ist. Mit Enter wird die "
+"fertige Nachricht abgeschickt. Hat alles geklappt, erfolgt ein "
+"Bestätigungsklang, anderenfalls wird eine Fehlernachricht in englischer "
+"Sprache vorgelesen."
+
+#: strings.py:104
+msgid ""
+"* Retweet: this button retweets the message you're reading. After you "
+"press it, if you haven't configured the application not to do so, you'll "
+"be asked if you want to add a comment or simply send it as written. If "
+"you choose to add a comment,  it will post a quoted tweet, that is,  the "
+"comment with a  link to the originating tweet."
+msgstr ""
+"* Retweet: Diese Schaltfläche retweetet die gerade fokussierte Nachricht, d. "
+"h. leitet sie an alle Folger weiter. Sofern nicht anders konfiguriert, "
+"erfolgt hierbei eine Abfrage, ob der Tweet unverändert weitergeleitet oder "
+"mit einem Kommentar versehen werden soll. Bei einem Kommentar wird ein "
+"zitierter Tweet mit dem Kommentar und einem Link zum Original-Tweet erstellt."
+
+#: strings.py:105
+msgid ""
+"* Reply: when you're viewing a tweet, you can reply to the user who sent "
+"it by pressing this button. A dialogue will open up similar to the one "
+"for tweeting. If there are more users referred to in the tweet, you can "
+"press tab and activate the mention to all checkbox, or enabling checkbox "
+"for the users you want to mention separately. Note, however, that "
+"sometimes -especially when replying to a retweet or quoted tweet, the "
+"user who made the retweet or quote may also be mentioned. This is done by"
+" Twitter automatically. When you're on the friends or followers lists, "
+"the button will be called mention instead."
+msgstr ""
+"* Antwort: Öffnet einen Dialog, um dem Verfasser des gerade gelesenen Tweets "
+"zu antworten. Der Dialog ist ähnlich aufgebaut wie der zum Verfassen eines "
+"neuen Tweets. Werden in einem Tweet mehrere Benutzer erwähnt und sollen "
+"diese beim Beantworten ebenfalls Erwähnung finden, können deren "
+"Benutzernamen durch drücken von Tab und aktivieren der Checkbox \"Alle "
+"erwähnen\" der Nachricht hinzugefügt werden. Beachte, das insbesondere beim "
+"Antworten auf Retweets und zitierte Retweets manchmal auch der Autor des "
+"Retweets erwähnt werden kann. In der Freundes- und Folgerliste ist die "
+"Antwort-Schaltfläche als Erwähnung beschriftet."
+
+#: strings.py:106
+msgid ""
+"* Direct message: exactly like sending a tweet, but it's a private "
+"message which can only be read by the user you send it to. Press shift-"
+"tab twice to see the recipient. If there were other users mentioned in "
+"the tweet you were reading, you can arrow up or down to choose which one "
+"to send it to, or write the username yourself without the at sign. In "
+"addition, you can autocomplete the entering of users by pressing Alt + C "
+"or the button for that purpose if you have the database of users "
+"configured."
+msgstr ""
+"* Direktnachricht: Exakt wie das Verfassen eines neuen Tweets, jedoch ist "
+"dies eine private Nachricht, die nur vom Empfänger gelesen werden kann. "
+"Durch zweimaliges Drücken von Umschalt + Tab gelangt man in das "
+"Empfängerfeld und kann den richtigen Empfänger mit den Cursortasten "
+"auswählen, sofern in einem Tweet mehrere Benutzer erwähnt wurden. Alternativ "
+"kann der Benutzername von Hand eingetragen werden."
+
+#: strings.py:108
+msgid ""
+"Bear in mind that buttons will appear according to which actions are "
+"possible on the list you are browsing. For example, on the home timeline,"
+" mentions, sent, likes and user timelines you will see the four buttons, "
+"while on the direct messages list you'll only get the direct message and "
+"tweet buttons, and on friends and followers lists the direct message, "
+"tweet, and mention buttons will be available."
+msgstr ""
+"Die Schaltflächen erscheinen je nachdem, welche Aktionen in der gerade "
+"angezeigten Liste verfügbar sind. Z. B. sind in der Hauptzeitleiste, den "
+"Erwähnungen, gesendeten Nachrichten, Likes und Benutzerzeitleisten alle vier "
+"Schaltflächen verfügbar, während in den Direktnachrichten nur die "
+"Schaltflächen Direktnachricht und Tweet, und in Freundes- und Folgerlisten "
+"die Schaltflächen Direktnachricht, Erwähnung und Tweet verfügbar sind."
+
+#: strings.py:110
+msgid "#### Menus"
+msgstr "#### Menüs"
+
+#: strings.py:112
+msgid ""
+"Visually, Towards the top of the main application window, can be found a "
+"menu bar which contains many of the same functions as listed in the "
+"previous section, together with some additional items. To access the menu"
+" bar, press the alt key. You will find six menus listed: application, "
+"tweet, user, buffer, audio and help. This section describes the items on "
+"each one of them."
+msgstr ""
+"Am oberen Rand der Anwendung befindet sich eine Menüleiste, welche viele der "
+"bereits beschriebenen Aktionen beinhaltet und einige weitere Funktionen "
+"bietet. Die Menüleiste kann mit der Alt-Taste aktiviert werden. Hierin "
+"finden sich 5 Menüs: Anwendung, Tweet, Benutzer, Ansicht, Audio und Hilfe. "
+"Dieser Abschnitt beschreibt die Einträge in jedem der Menüs."
+
+#: strings.py:114
+msgid "##### Application menu"
+msgstr "##### Anwendungsmenü"
+
+#: strings.py:116
+msgid ""
+"* Manage accounts: Opens a window with all the sessions configured in "
+"TWBlue, where you can add new sessions or delete the ones you've already "
+"created."
+msgstr ""
+"* Accounts verwalten: Öffnet die Sitzungsverwaltung, in welcher sich "
+"bestehende Twitter-Accounts löschen oder neue Accounts hinzufügen lassen."
+
+#: strings.py:117
+msgid ""
+"* Update profile: opens a dialogue where you can update your information "
+"on Twitter: name, location, website and bio. If you have already set this"
+" up the fields will be prefilled with the existing information. Also, you"
+" can upload a photo to your profile."
+msgstr ""
+"* Profil aktualisieren: Öffnet einen Dialog zum Aktualisieren der "
+"Profilinformationen auf Twitter: Name, Ort, Webseite und Bio. Wurden diese "
+"Informationen bereits eingetragen, erscheinen sie als Vorgabewerte in den "
+"Feldern. Hier kann auch ein Profilfoto hochgeladen werden."
+
+#: strings.py:118
+msgid ""
+"* Hide window: turns off the Graphical User Interface. Read the section "
+"on the invisible interface for further details."
+msgstr ""
+"* Fenster verbergen: Schaltet das grafische Interface aus. Weiteres zum "
+"unsichtbaren Interface ist im entsprechenden Kapitel beschrieben."
+
+#: strings.py:119
+msgid ""
+"* Search: shows a dialogue box where you can search for tweets or users "
+"on Twitter."
+msgstr "* Suche: Ermöglicht das Suchen nach Tweets und Benutzern auf Twitter."
+
+#: strings.py:120
+msgid ""
+"* Lists Manager: This dialogue box allows you to manage your Twitter "
+"lists. In order to use them, you must first create them. Here, you can "
+"view, edit, create, delete or, optionally, open them in buffers similar "
+"to user timelines."
+msgstr ""
+"* Listen verwalten: Dieser Dialog erlaubt das Anlegen, bearbeiten und "
+"Löschen von Twitter-Listen. Des Weiteren können individuelle Zeitleisten für "
+"Listen erstellt werden."
+
+#: strings.py:121
+msgid ""
+"* Manage user aliases: Opens up a dialogue where you can manage user "
+"aliases for the active session. In this dialog you can add new aliases, "
+"as well as edit and delete existing ones."
+msgstr ""
+"* Benutzer-Aliase verwalten: Öffnet einen Dialog zum Verwalten von Benutzer-"
+"Aliasen für die aktuelle Sitzung. Aliase können hier angelegt, bearbeitet "
+"und gelöscht werden."
+
+#: strings.py:122
+msgid ""
+"* Edit keystrokes: this opens a dialogue where you can see and edit the "
+"shortcuts used in the invisible interface."
+msgstr ""
+"* Tastenkombinationen bearbeiten: Erlaubt das Anzeigen und Bearbeiten der "
+"Tastenkombinationen des unsichtbaren Interfaces."
+
+#: strings.py:123
+msgid ""
+"* Account settings: Opens a dialogue box which lets you customize "
+"settings for the current account."
+msgstr ""
+"* Account-Einstellungen: Öffnet einen Dialog zum Festlegen der Einstellungen "
+"der aktuellen Sitzung."
+
+#: strings.py:124
+msgid ""
+"* Global settings: Opens a dialogue which lets you configure settings for"
+" the entire application."
+msgstr "* Globale Einstellungen: Konfiguriert programmweite Einstellungen."
+
+#: strings.py:125
+msgid ""
+"* Exit: asks whether you want to exit the program. If the answer is yes, "
+"it closes the application. If you do not want to be asked for "
+"confirmation before exiting, uncheck the checkbox from the global "
+"settings dialogue box."
+msgstr ""
+"* Beenden: Fragt nach, ob das Programm geschlossen werden soll, sofern nicht "
+"anders in den globalen Einstellungen konfiguriert."
+
+#: strings.py:127
+msgid "##### Tweet menu"
+msgstr "##### Tweet-Menü"
+
+#: strings.py:129
+msgid ""
+"* You will first find the items to tweet, reply and retweet, which are "
+"equivalent to the buttons with the same name."
+msgstr ""
+"* Zuerst erscheinen die Einträge Tweet, Retweet und Antwort, die mit den "
+"bereits beschriebenen Schaltflächen übereinstimmen."
+
+#: strings.py:130
+msgid "* Like: Adds the tweet you're viewing to your likes list."
+msgstr "* Gefällt mir: Fügt einen Tweet den Likes hinzu."
+
+#: strings.py:131
+msgid "* Unlike: removes the tweet from your likes, but not from Twitter."
+msgstr ""
+"* \"Gefällt mir\" entfernen: Löscht den Tweet aus der Likes-Liste, jedoch "
+"nicht aus Twitter."
+
+#: strings.py:132
+msgid ""
+"* Show tweet: opens up a dialogue box where you can read the tweet, "
+"direct message, friend or follower which has focus. You can read the text"
+" with the arrow keys. It's a similar dialog box as used for composing "
+"tweets, without the ability to send the tweet, file attachment and "
+"autocompleting capabilities. It does however include a retweets and likes"
+" count. If you are in the followers or the friends list, it will only "
+"contain a read-only edit box with the information in the focused item and"
+" a close button."
+msgstr ""
+"* Tweet ansehen: Öffnet einen Dialog zum Betrachten des Tweets, der "
+"Direktnachricht, des Freunds oder Folgers. Die Nachricht kann mit den "
+"Cursortasten gelesen werden. Dieser Dialog enthält die gleichen Elemente wie "
+"zum Verfassen eines neuen Tweets, jedoch ohne die Möglichkeit zum Senden der "
+"Nachricht oder Anhängen von Dateien. Der Dialog enthält jedoch die Anzahl "
+"der Retweets und Likes eines Tweets. In den Freundes- und Folgerlisten "
+"enthält dieser Dialog lediglich ein Textfeld mit den Informationen sowie "
+"eine Schließen-Schaltfläche."
+
+#: strings.py:133
+msgid ""
+"* View address: If the selected tweet has geographical information, "
+"TWBlue may display a dialogue box where you can read the tweet address. "
+"This address is retrieved by sending the geographical coordinates of the "
+"tweet to Google maps."
+msgstr ""
+"* Adresse abrufen: Sofern ein Tweet geografische Informationen beinhaltet, "
+"kann TWBlue die dazugehörige Adresse abrufen und in einem Dialog anzeigen. "
+"Hierfür werden die Koordinaten des Tweets an Google Maps übermittelt."
+
+#: strings.py:134
+msgid ""
+"* View conversation: If you are focusing a tweet with a mention, it opens"
+" a buffer where you can view the whole conversation."
+msgstr ""
+"* Konversation anzeigen: Enthält der gerade fokussierte Tweet eine "
+"Erwähnung, öffnet diese Funktion eine Zeitleiste mit der vollständigen "
+"Unterhaltung."
+
+#: strings.py:135
+msgid ""
+"* Read text in pictures: Attempt to apply OCR technology to the image "
+"attached to the tweet. The result will be displayed in another dialog."
+msgstr ""
+"* Text in Bildern lesen: Versucht, mittels OCR-Technologie vorhandenen Text "
+"aus Bildern eines Tweets zu extrahieren. Das Ergebnis wird in einem weiteren "
+"Dialog dargestellt."
+
+#: strings.py:136
+msgid ""
+"* Delete: permanently removes the tweet or direct message which has focus"
+" from Twitter and from your lists. Bear in mind that Twitter only allows "
+"you to delete tweets you have posted yourself."
+msgstr ""
+"* Löschen: Entfernt permanent den gewählten Tweet oder die Direktnachricht "
+"aus dem Twitter-Profil. Natürlich können nur die eigenen Nachrichten auf "
+"diese Weise gelöscht werden."
+
+#: strings.py:138
+msgid "##### User menu"
+msgstr "##### Benutzermenü"
+
+#: strings.py:140
+msgid ""
+"* Actions: Opens a dialogue where you can interact with a user. This "
+"dialogue box will be populated with the user who sent the tweet or direct"
+" message in focus or the selected user in the friends or followers "
+"buffer. You can edit it or leave it as is and choose one of the following"
+" actions:"
+msgstr ""
+"* Aktionen: Öffnet einen Dialog zum Interagieren mit einem Benutzer. Dieser "
+"Dialog wird mit dem Benutzernamen des gewählten Eintrags (Tweet, "
+"Direktnachricht etc) vorausgefüllt und kann mit jedem beliebigen Namen "
+"überschrieben werden. Folgende Aktionen sind verfügbar:"
+
+#: strings.py:141
+msgid ""
+" * Follow: Follows a user. This means you'll see his/her tweets on your "
+"home timeline, and if he/she also follows you, you'll be able to exchange"
+" direct messages. You may also send / receive direct messages from each "
+"other if you have configured the option to allow direct messages from "
+"anyone."
+msgstr ""
+" * Folgen: Fügt einen Benutzer zur Freundesliste hinzu. Dies bedeutet, dass "
+"die Tweets des Benutzers in der Hauptzeitleiste erscheinen. Folgt der "
+"Benutzer zurück, ist auch der Austausch von Direktnachrichten möglich. "
+"Direktnachrichten können auch empfangen oder gesendet werden, hierfür muss "
+"jedoch in den Twitter-Einstellungen die Option zum Empfang von "
+"Direktnachrichten von jedem eingeschaltet sein."
+
+#: strings.py:142
+msgid ""
+" * Unfollow: Stops following a user, which causes you not being able to "
+"see his/her tweets on your main timeline neither exchanging direct "
+"messages, unless they have enabled receiving direct messages from anyone."
+msgstr ""
+" * Entfolgen: Entfernt den Benutzer aus der Freundesliste, sodass dessen "
+"Tweets nicht mehr in der Hauptzeitleiste erscheinen. Der Austausch von "
+"Direktnachrichten ist nur dann noch möglich, wenn in den Twitter-"
+"Einstellungen der Empfang von jedermann erlaubt wurde."
+
+#: strings.py:143
+msgid ""
+" * Mute: While muting someone, TWBlue won't show you nor his/her tweets "
+"on your main timeline; neither will you see that person's mentions. But "
+"you both will be able to exchange direct messages. The muted user is not "
+"informed of this action."
+msgstr ""
+" * Stummschalten: Wird diese Option ausgewählt, erscheinen Tweets und "
+"Erwähnungen dieses Benutzers nicht mehr in den jeweiligen Ansichten. Der "
+"Austausch von Direktnachrichten ist jedoch weiterhin möglich. Von einer "
+"Stummschaltung wird der betreffende Benutzer nicht benachrichtigt."
+
+#: strings.py:144
+msgid ""
+" * Unmute: this option allows TWBlue to display the user's tweets and "
+"mentions again."
+msgstr ""
+" * Stummschaltung aufheben: Zeigt die Tweets und Erwähnungen eines Benutzers "
+"wieder an."
+
+#: strings.py:145
+msgid " * Block: Blocks a user. This forces the user to unfollow you ."
+msgstr ""
+" * Blockieren: Blockiert einen Nutzer und entfernt ihn aus der Folgerliste."
+
+#: strings.py:146
+msgid " * Unblock: Stops blocking a user."
+msgstr " * Blockierung aufheben: Hebt die Blockade wieder auf."
+
+#: strings.py:147
+msgid ""
+" * Report as spam: this option sends a message to Twitter suggesting the "
+"user is performing prohibited practices on the social network."
+msgstr ""
+" * Als Spam melden: Benachrichtigt Twitter darüber, dass dieser Nutzer "
+"möglicherweise gegen die Nutzungsbedingungen verstößt."
+
+#: strings.py:148
+msgid ""
+" * Ignore tweets from this client: Adds the client from which the focused"
+" tweet was sent to the ignored clients list."
+msgstr ""
+" * Tweets dieses Clients ignorieren: Fügt den Client, von welchem der Tweet "
+"abgesendet wurde, der Liste der zu ignorierenden Clients in den Account-"
+"Einstellungen hinzu."
+
+#: strings.py:149
+msgid ""
+"* View timeline: Lets you open a user's timeline by choosing the user in "
+"a dialog box. It is created when you press enter. If you invoke this "
+"option relative to a user that has no tweets, the operation will fail. If"
+" you try creating an existing timeline the program will warn you and will"
+" not create it again."
+msgstr ""
+"* Zeitleiste ansehen: Öffnet eine individuelle Zeitleiste für einen "
+"Benutzer. Der Benutzername wird in einem Dialogfeld eingetragen und die "
+"Zeitleiste nach Drücken von Enter erstellt. Sind keine Tweets des Benutzers "
+"verfügbar, schlägt der Vorgang fehl. Gleiches gilt dann, wenn bereits eine "
+"Zeitleiste für diesen Benutzer besteht."
+
+#: strings.py:150
+msgid "* Direct message: same action as the button."
+msgstr ""
+"* Direktnachricht: Öffnet den Dialog zum Senden einer privaten Nachricht."
+
+#: strings.py:151
+msgid ""
+"* Add Alias: An user alias allows you to rename user's display names on "
+"Twitter, so the next time you'll read an user it will be announced as you"
+" configured. This feature works only if you have set display screen names"
+" unchecked, in account settings."
+msgstr ""
+"* Alias hinzufügen: Ein Alias erlaubt es, den Anzeigenamen eines Benutzers "
+"umzubenennen, sodass beim nächsten Lesen ein eigener Name statt des vom "
+"Benutzer gewählten verwendet wird. Für diese Funktion muss die Option "
+"zurAnzeige der Benutzernamen statt des Anzeigenamens in den Account-"
+"Einstellungen ausgeschaltet sein."
+
+#: strings.py:152
+msgid ""
+"* Add to List: In order to see someone's tweets in one or more of your "
+"lists, you must add them first. In the dialogue box that opens after "
+"selecting the user, you will be asked to select the list you wish to add "
+"the user to. Thereafter, the list will contain a new member and their "
+"tweets will be displayed there."
+msgstr ""
+"* Zur Liste hinzufügen: Um Tweets eines Benutzers in einer oder mehreren "
+"Listen anzuzeigen, muss dieser hier zunächst hinzugefügt werden. Im sich "
+"öffnenden Dialog wird nach der Liste gefragt, in welcher die Tweets des "
+"Benutzers erscheinen sollen."
+
+#: strings.py:153
+msgid "* Remove from list: lets you remove a user from a list."
+msgstr "* Aus Liste entfernen: Löscht einen Benutzer aus einer Liste."
+
+#: strings.py:154
+msgid "* View lists: Shows the lists created by a specified user."
+msgstr "* Listen ansehen: Erlaubt es, die Listen eines Benutzers anzuzeigen."
+
+#: strings.py:155
+msgid ""
+"* Show user profile: opens a dialogue with the profile of the specified "
+"user."
+msgstr ""
+"* Benutzerprofil ansehen: Öffnet einen Dialog mit Profilinformationen des "
+"angegebenen Benutzers."
+
+#: strings.py:156
+msgid ""
+"* View likes: Opens a buffer where you can see the tweets which have been"
+" liked by a particular user."
+msgstr ""
+"* Likes ansehen: Erstellt eine Ansicht mit den als \"gefällt mir\" "
+"markierten Tweets eines Benutzers."
+
+#: strings.py:158
+msgid "##### Buffer menu"
+msgstr "##### Ansichtsmenü"
+
+#: strings.py:160
+msgid ""
+"* Update buffer: Retrieves the newest items for the focused buffer. "
+"Normally, every buffer gets updated every couple of minutes, however you "
+"can force a specific buffer to be updated inmediately. Take into account,"
+" however, that the usage of this option repeatedly might exceed your "
+"allowed Twitter's API usage, in which case you would have to wait until "
+"it gets reset, tipycally within the next 15 minutes."
+msgstr ""
+"* Ansicht aktualisieren: Holt die neuesten Einträge für die fokussierte "
+"Ansicht. Normalerweise geschieht dies alle paar Minuten automatisch, jedoch "
+"kann mit dieser Funktion eine Aktualisierung erzwungen werden. Bitte denke "
+"daran, dass wiederholtes Auslösen die Begrenzungen der Twitter-API "
+"überschreiten könnte. In diesem Fall musst du etwas für den nächsten Versuch "
+"warten, üblicherweise 15 Minuten."
+
+#: strings.py:161
+msgid ""
+"* New trending topics buffer: This opens a buffer to get the worlwide "
+"trending topics or those of a country or a city. You'll be able to select"
+" from a dialogue box if you wish to retrieve countries' trends, cities' "
+"trends or worldwide trends (this option is in the cities' list) and "
+"choose one from the selected list. The trending topics buffer will be "
+"created once the \"OK\" button has been activated within the dialogue "
+"box. Remember this kind of buffer will be updated every five minutes."
+msgstr ""
+"* Neue Trends-Ansicht: Erstellt eine Ansicht mit angesagten Themen auf "
+"Twitter (sog. trending Topics). Der Dialog erlaubt dabei die Auswahl eines "
+"Landes, einer Stadt oder die weltweiten Trends (diese Option wird als "
+"\"Worldwide\" in der Städte-Liste angezeigt). Die so erstellte Ansicht wird "
+"alle fünf Minuten aktualisiert."
+
+#: strings.py:162
+msgid ""
+"* Load previous items: This allows more items to be loaded for the "
+"specified buffer."
+msgstr ""
+"* Vorherige Einträge laden: Erlaubt es, weitere Einträge für eine Ansicht "
+"abzurufen."
+
+#: strings.py:163
+msgid ""
+"* Create filter: Creates a filter in the current buffer. Filters allow "
+"loading or ignoring tweets that meet certain conditions into a buffer. "
+"You can, for example, set a filter in the \"home\" buffer that loads "
+"tweets that are in English language only. By default, the filter creation"
+" dialog will place the focus on the field to name the filter. Currently, "
+"you can filter by word, by language, or both. In the filter by word, you "
+"can make TWBlue allow or ignore tweets with the desired word. In the "
+"filter by language, you can make the program load tweets in the languages"
+" you want, or ignore tweets written in certain languages. Once created, "
+"every filter will be saved in the session config and will be kept across "
+"application restarts."
+msgstr ""
+"* Filter erstellen: Wendet einen Filter auf die momentane Ansicht an. Filter "
+"erlauben das Laden oder Ignorieren von Tweets, die einem bestimmten "
+"Kriterium entsprechen. So könntest du beispielsweise in der Startzeitleiste "
+"einen Filter erstellen, der nur Tweets in deutscher Sprache anzeigt. "
+"Momentan lassen sich Filter nach Wort, Sprache oder beides erstellen. Mit "
+"einem Wortfilter kann TWBlue Tweets mit dem gewählten Wort anzeigen oder "
+"ignorieren. Ein Sprachfilter erlaubt das Anzeigen oder Verstecken von Tweets "
+"in einer bestimmten Sprache. Einmal erstellt, werden die Filter in der "
+"Sitzungskonfiguration abgelegt und bleiben auch nach einem Programmneustart "
+"erhalten."
+
+#: strings.py:164
+msgid ""
+"* Manage filters: Opens up a dialogue which allows you to delete filters "
+"for the current session."
+msgstr ""
+"* Filter verwalten: Öffnet einen Dialog zum Löschen von Filtern für die "
+"aktuelle Sitzung."
+
+#: strings.py:165
+msgid ""
+"* Find a string in the currently focused buffer: Opens a dialogue where "
+"you can search for items in the current buffer."
+msgstr ""
+"* Eine Zeichenkette in der momentan fokussierten Ansicht suchen: Öffnet "
+"einen Dialog, der das Suchen von Einträgen in der momentanen Ansicht erlaubt."
+
+#: strings.py:166
+msgid ""
+"* Mute: Mutes notifications of a particular buffer so you will not hear "
+"when new tweets arrive."
+msgstr ""
+"* Stummschalten: Schaltet die Benachrichtigungen über neue Einträge in einer "
+"Ansicht aus."
+
+#: strings.py:167
+msgid ""
+"* autoread: When enabled, the screen reader or SAPI 5 Text to Speech "
+"voice (if enabled) will read the text of incoming tweets. Please note "
+"that this could get rather chatty if there are a lot of incoming tweets."
+msgstr ""
+"* Automatisch vorlesen: Wenn eingeschaltet, wird der Screen-Reader oder die "
+"SAPI-Stimme den Text eingehender Tweets automatisch vorlesen. Bei einem "
+"hohen Nachrichtenaufkommen sollte das Aktivieren dieser Option gut überlegt "
+"sein."
+
+#: strings.py:168
+msgid "* Clear buffer: Deletes all items from the buffer."
+msgstr "* Ansicht leeren: Löscht alle Einträge einer Ansicht."
+
+#: strings.py:169
+msgid "* Destroy: dismisses the list you're on."
+msgstr "* Löschen: Entfernt die Ansicht."
+
+#: strings.py:171
+msgid "##### Audio menu"
+msgstr "##### Audiomenü"
+
+#: strings.py:173
+msgid ""
+"* Play/pause: try to play audio for the selected item (if available), or "
+"stop the currently played audio."
+msgstr ""
+"* Abspielen/Pause: Versucht, Audio-Inhalte des gewählten Eintrags "
+"abzuspielen bzw. zu pausieren, sofern verfügbar."
+
+#: strings.py:174
+msgid ""
+"* Seek back 5 seconds: If an audio is being played, seek 5 seconds back "
+"in the playback. This will work only in audio files. This feature cannot "
+"be used in radio stations or other streamed files."
+msgstr ""
+"* 5 Sekunden zurückspulen: Wird eine Audiodatei abgespielt, kann damit 5 "
+"Sekunden in der Wiedergabe zurückgespult werden. Dies funktioniert nur in "
+"Audiodateien, jedoch nicht bei Radio-Streams oder anderen Streaming-Inhalten."
+
+#: strings.py:175
+msgid ""
+"* Seek forward 5 seconds: If an audio is being played, seek 5 seconds "
+"forward  in the playback. This feature cannot be used in radio stations "
+"or other streamed files."
+msgstr ""
+"* 5 Sekunden vorspulen: Wird eine Audiodatei abgespielt, kann damit 5 "
+"Sekunden in der Wiedergabe vorwärts gespult werden. Dies funktioniert nur in "
+"Audiodateien, jedoch nicht bei Radio-Streams oder anderen Streaming-Inhalten."
+
+#: strings.py:177
+msgid "##### Help menu"
+msgstr "##### Hilfemenü"
+
+#: strings.py:179
+msgid ""
+"* Documentation: opens up this file, where you can read some useful "
+"program concepts."
+msgstr "* Dokumentation: Öffnet diese Hilfedatei."
+
+#: strings.py:180
+msgid ""
+"* Sounds tutorial: Opens a dialog box where you can familiarize yourself "
+"with the different sounds of the program."
+msgstr ""
+"* Sounds erlernen: In diesem Dialog können die verschiedenen Klänge für "
+"Programmereignisse angehört werden."
+
+#: strings.py:181
+msgid ""
+"* What's new in this version?: opens up a document with the list of "
+"changes from the current version to the earliest."
+msgstr ""
+"* Was ist neu in dieser Version: Öffnet ein Dokument mit den Änderungen in "
+"den Programmversionen von der aktuellsten bis zur allerersten Version."
+
+#: strings.py:182
+msgid ""
+"* Check for updates: every time you open the program it automatically "
+"checks for new versions. If an update is available, it will ask you if "
+"you want to download the update. If you accept, the updating process will"
+" commence. When complete, TWBlue will be restarted. This item checks for "
+"new updates without having to restart the application."
+msgstr ""
+"* Nach Updates suchen: Bei jedem Programmstart wird die Verfügbarkeit neuer "
+"Versionen geprüft. Ist eine neuere Version als die momentan installierte "
+"verfügbar, kann diese heruntergeladen und installiert werden. Mit dieser "
+"Funktion wird die Suche nach Updates manuell ausgelöst."
+
+#: strings.py:183
+msgid ""
+"* TWBlue's website: visit our [home page](http://twblue.es) where you can"
+" find all relevant information and downloads for TWBlue and become a part"
+" of the community."
+msgstr ""
+"* TWBlue-Webseite: Öffnet [die Homepage](http://twblue.es) des Projekts, auf "
+"der alle relevanten Informationen und Downloadmöglichkeiten für TWBlue zu "
+"finden sind."
+
+#: strings.py:184
+msgid "* Get soundpacks for TWBlue: "
+msgstr "* Soundpacks für TWBlue bekommen: "
+
+#: strings.py:185
+msgid ""
+"* Make a Donation: Opens a website from which you can donate to the "
+"TWBlue project. Donations are made through paypal and you don't need an "
+"account to donate."
+msgstr ""
+"* Eine Spende tätigen: Öffnet eine Webseite, auf der du für das TWBlue-"
+"Projekt spenden kannst. Die Spenden werden mittels Paypal abgewickelt, und "
+"du brauchst dafür keinen Account."
+
+#: strings.py:186
+msgid "* About TWBlue: shows the credits of the program."
+msgstr "* Über TWBlue: Zeigt Autoreninformationen zum Programm an."
+
+#: strings.py:188
+msgid "### The invisible user interface"
+msgstr "### Das unsichtbare Benutzer-Interface"
+
+#: strings.py:190
+msgid ""
+"The invisible interface, as its name suggests, has no graphical window "
+"and works directly with screen readers such as JAWS for Windows, NVDA and"
+" System Access. This interface is disabled by default, but you can enable"
+" it by pressing Control + M. It works similarly to TheQube and Chicken "
+"Nugget. Its shortcuts are similar to those found in these two clients. In"
+" addition, the program has builtin support for the keymaps for these "
+"applications, configurable through the global settings dialogue. By "
+"default, you cannot use this interface's shortcuts in the GUI, but you "
+"can configure this in the global settings dialogue."
+msgstr ""
+"* Das unsichtbare Interface hat, wie schon der Name verrät, kein grafisches "
+"Programmfenster und kommuniziert direkt mit Screen-Readern (JAWS für "
+"Windows, NVDA, System Access etc). Dieses Interface ist standardmäßig "
+"ausgeschaltet, kann jedoch mit der Tastenkombination STRG+M aktiviert "
+"werden. Wer bereits Erfahrungen mit Clients wie TheQube und Chicken Nugget "
+"besitzt, findet hier eine ähnliche Bedienungsweise vor, da die "
+"Tastenkombinationen ähnlich sind. Es ist sogar möglich, in den globalen "
+"Programmeinstellungen die Tastenbelegung dieser Clients auszuwählen. Des "
+"Weiteren kann hier festgelegt werden, dass die Tastenkombinationen des "
+"unsichtbaren Interfaces auch in der grafischen Oberfläche verwendet werden "
+"sollen."
+
+#: strings.py:192
+msgid ""
+"The next section contains a list of keyboard shortcuts for both "
+"interfaces. Bear in mind that we will only describe the default keymap."
+msgstr ""
+"Der folgende Abschnitt enthält eine Liste der Tastenkombinationen für beide "
+"Interfaces. Es wird jedoch nur die Standardbelegung beschrieben."
+
+#: strings.py:194
+msgid "## Keyboard shortcuts"
+msgstr "## Tastenkombinationen"
+
+#: strings.py:196
+msgid "### Shortcuts of the graphical user interface (GUI)"
+msgstr "### Tastenkombinationen des grafischen Benutzer-Interfaces (GUI)"
+
+#: strings.py:198
+msgid "* Enter: Open URL."
+msgstr "* Enter: Öffnet eine URL."
+
+#: strings.py:199
+msgid "* Control + Enter: Play audio."
+msgstr "* STRG + Enter: Spielt Audioinhalte ab."
+
+#: strings.py:200
+msgid "* Control + M: Hide the GUI."
+msgstr "* STRG + M: Verbirgt das grafische Interface."
+
+#: strings.py:201
+msgid "* Control + N: Compose a new tweet."
+msgstr "* STRG + N: Erstellt einen neuen Tweet."
+
+#: strings.py:202
+msgid "* Control + R: Reply / mention."
+msgstr "* STRG + R: Antwort/Erwähnung."
+
+#: strings.py:203
+msgid "* Control + Shift + R: Retweet."
+msgstr "* STRG + Umschalt + R: Retweet."
+
+#: strings.py:204
+msgid "* Control + D: Send a direct message."
+msgstr "* STRG + D: Sendet eine Direktnachricht."
+
+#: strings.py:205
+msgid "* control + F: Add tweet to likes."
+msgstr "* STRG + F: Fügt einen Tweet den Likes hinzu."
+
+#: strings.py:206
+msgid "* Control + Shift + F: Remove a tweet from likes."
+msgstr "* STRG + Umschalt + F: Entfernt einen Tweet aus den Likes."
+
+#: strings.py:207
+msgid "* Control + S: Open the user actions dialogue."
+msgstr "* STRG + S: Öffnet den Benutzeraktionen-Dialog."
+
+#: strings.py:208
+msgid "* Control + Shift + V: Show tweet."
+msgstr "* STRG + Umschalt + V: Tweet ansehen."
+
+#: strings.py:209
+msgid "* Control + Q: Quit this program."
+msgstr "* STRG + Q: Programm beenden."
+
+#: strings.py:210
+msgid "* Control + I: Open user timeline."
+msgstr "* STRG + I: Öffnet eine Benutzerzeitleiste."
+
+#: strings.py:211
+msgid "* Control + Shift + i: Destroy buffer."
+msgstr "* STRG + Umschalt + I: Löscht eine Ansicht."
+
+#: strings.py:212
+msgid "* F5: Increase volume by 5%."
+msgstr "* F5: Erhöht die Lautstärke um 5 Prozent."
+
+#: strings.py:213
+msgid "* F6: Decrease volume by 5%."
+msgstr "* F6: Verringert die Lautstärke um 5 Prozent."
+
+#: strings.py:214
+msgid "* Control + P: Edit your profile."
+msgstr "* STRG + P: Profil bearbeiten."
+
+#: strings.py:215
+msgid "* Control + Delete: Delete a tweet or direct message."
+msgstr "* STRG + Entfernen: Löscht einen Tweet oder eine Direktnachricht."
+
+#: strings.py:216
+msgid "* Control + Shift + Delete: Empty the current buffer."
+msgstr "* STRG + Umschalt + Entfernen: Leert die gewählte Ansicht."
+
+#: strings.py:218
+msgid "### Shortcuts of the invisible interface (default keymap)"
+msgstr "### Tastenkombinationen des unsichtbaren Interfaces (Standardbelegung)"
+
+#: strings.py:220
+msgid ""
+"The invisible interface of TWBlue can be customised by using a keymap. "
+"Every keymap defines a set of keystrokes to be used along with the "
+"invisible interface. You can change the keymap in the global settings "
+"dialogue, under the application menu in the menu bar, and check or edit "
+"keystrokes for the selected keymap in the keystroke editor, also "
+"available in the application menu."
+msgstr ""
+"Das unsichtbare TWBlue-Interface kann mittels eines Satzes von "
+"Tastenbelegungen angepasst werden. Ein Tastensatz definiert verschiedene "
+"Tastenkombinationen, welche im unsichtbaren Interface verfügbar sind. Um die "
+"gewünschte Tastaturbelegung auszuwählen, öffne im Menü Anwendung die "
+"globalen Einstellungen. Um die Tastenkombinationen einer Tastaturbelegung "
+"anzupassen, öffne den Tastenkombinations-Editor, ebenfalls zu finden im Menü "
+"Anwendung."
+
+#: strings.py:222
+msgid "* Control + Windows + Up Arrow: moves to the previous item in the buffer."
+msgstr ""
+"* STRG + Windows + Pfeiltaste nach oben: Wechselt zum vorhergehenden Eintrag "
+"in der Ansicht."
+
+#: strings.py:223
+msgid "* Control + Windows + Down Arrow: moves to the next item in the buffer."
+msgstr ""
+"* STRG + Windows + Pfeiltaste nach unten: Wechselt zum nächsten Eintrag in "
+"der Ansicht."
+
+#: strings.py:224
+msgid "* Control + Windows + Left Arrow: Move to the previous buffer."
+msgstr ""
+"* STRG + Windows + Pfeiltaste nach links: Wechselt zur vorhergehenden "
+"Ansicht."
+
+#: strings.py:225
+msgid "* Control + Windows + Right Arrow: Move to the next buffer."
+msgstr ""
+"* STRG + Windows + Pfeiltaste nach rechts: Wechselt zur nächsten Ansicht."
+
+#: strings.py:226
+msgid "* Control + Windows + Shift + Left: Focus the previous session."
+msgstr ""
+"* STRG + Windows + Umschalt + Pfeiltaste nach links: Fokussiert die "
+"vorhergehende Sitzung."
+
+#: strings.py:227
+msgid "* Control + Windows + Shift + Right: Focus the next session."
+msgstr ""
+"* STRG + Windows + Umschalt + Pfeiltaste nach rechts: Fokussiert die nächste "
+"Sitzung."
+
+#: strings.py:228
+msgid "* Control + Windows + C: View conversation."
+msgstr "* STRG + Windows + C: Unterhaltung anzeigen."
+
+#: strings.py:229
+msgid "* Control + Windows + Enter: Open URL."
+msgstr "* STRG + Windows + Enter: Öffnet eine URL."
+
+#: strings.py:230
+msgid "* Control + Windows + ALT + Enter: Play audio."
+msgstr "* STRG + Windows + Alt + Enter: Spielt Audioinhalte ab."
+
+#: strings.py:231
+msgid "* Control + Windows + M: Show or hide the GUI."
+msgstr "* STRG + Windows + M: Wechselt zwischen den beiden Interfaces."
+
+#: strings.py:232
+msgid "* Control + Windows + N: New tweet."
+msgstr "* STRG + Windows + N: Neuer Tweet."
+
+#: strings.py:233
+msgid "* Control + Windows + R: Reply / Mention."
+msgstr "* STRG + Windows + R: Antwort/Erwähnung."
+
+#: strings.py:234
+msgid "* Control + Windows + Shift + R: Retweet."
+msgstr "* STRG + Windows + Umschalt + R: Retweet."
+
+#: strings.py:235
+msgid "* Control + Windows + D: Send direct message."
+msgstr "* STRG + Windows + D: Sendet eine Direktnachricht."
+
+#: strings.py:236
+msgid "* Windows+ Alt + F: Like a tweet."
+msgstr "* Windows + Alt + F: Tweet als \"gefällt mir\" markieren (liken)."
+
+#: strings.py:237
+msgid "* Alt + Windows + Shift + F: Remove from likes."
+msgstr "* Alt + Windows + Umschalt + F: Tweet aus den Likes entfernen."
+
+#: strings.py:238
+msgid "* Control + Windows + S: Open the user actions dialogue."
+msgstr "* STRG + Windows + S: Öffnet den Benutzeraktionen-Dialog."
+
+#: strings.py:239
+msgid "* Control + Windows + Alt + N: See user details."
+msgstr "* STRG + Windows + Alt + N: Benutzerdetails ansehen."
+
+#: strings.py:240
+msgid "* Control + Windows + V: Show tweet."
+msgstr "* STRG + Windows + V: Tweet ansehen."
+
+#: strings.py:241
+msgid "* Control + Windows + F4: Quit TWBlue."
+msgstr "* STRG + Windows + F4: TWBlue beenden."
+
+#: strings.py:242
+msgid "* Control + Windows + I: Open user timeline."
+msgstr "* STRG + Windows + I: Öffnet eine Benutzerzeitleiste."
+
+#: strings.py:243
+msgid "* Control + Windows + Shift + I: Destroy buffer."
+msgstr "* STRG + Windows + Umschalt + I: Löscht eine Ansicht."
+
+#: strings.py:244
+msgid "* Control + Windows + Alt + Up: Increase volume by 5%."
+msgstr ""
+"* STRG + Windows + Alt + Pfeiltaste nach oben: Lautstärke um 5 Prozent "
+"erhöhen."
+
+#: strings.py:245
+msgid "* Control + Windows + Alt + Down: Decrease volume by 5%."
+msgstr ""
+"* STRG + Windows + Alt + Pfeiltaste nach unten: Lautstärke um 5 Prozent "
+"verringern."
+
+#: strings.py:246
+msgid ""
+"* Control + Windows + Home: Jump to the first element of the current "
+"buffer."
+msgstr "* STRG + Windows + Home: Springt zum ersten Eintrag in einer Ansicht."
+
+#: strings.py:247
+msgid "* Control + Windows + End: Jump to the last element of the current buffer."
+msgstr "* STRG + Windows + Ende: Springt zum letzten Eintrag einer Ansicht."
+
+#: strings.py:248
+msgid "* Control + Windows + PageUp: Jump 20 elements up in the current buffer."
+msgstr ""
+"* STRG + Windows + Seite aufwärts: Überspringt 20 Einträge in einer Ansicht "
+"nach oben."
+
+#: strings.py:249
+msgid ""
+"* Control + Windows + PageDown: Jump 20 elements down in the current "
+"buffer."
+msgstr ""
+"* STRG + Windows + Seite abwärts: Überspringt 20 Elemente in einer Ansicht "
+"nach unten."
+
+#: strings.py:250
+msgid "* Windows + Alt + P: Edit profile."
+msgstr "* Windows + Alt + P: Profil bearbeiten."
+
+#: strings.py:251
+msgid "* Control + Windows + Delete: Delete a tweet or direct message."
+msgstr "* STRG + Windows + Entfernen: Tweet oder Direktnachricht löschen."
+
+#: strings.py:252
+msgid "* Control + Windows + Shift + Delete: Empty the current buffer."
+msgstr "* STRG + Windows + Umschalt + Entfernen: Gewählte Ansicht leeren."
+
+#: strings.py:253
+msgid "* Control + Windows + Space: Repeat last item."
+msgstr "* STRG + Windows + Leertaste: Letzten Eintrag wiederholen."
+
+#: strings.py:254
+msgid "* Control + Windows + Shift + C: Copy to clipboard."
+msgstr "* STRG + Windows + Umschalt + C: Eintrag in Zwischenablage kopieren."
+
+#: strings.py:255
+msgid "* Control + Windows+ A: Add user to list."
+msgstr "* STRG + Windows + A: Benutzer zu einer Liste hinzufügen."
+
+#: strings.py:256
+msgid "* Control + Windows + Shift + A: Remove user from list."
+msgstr ""
+"* STRG + Windows + Umschalt + A: Einen Benutzer aus einer Liste löschen."
+
+#: strings.py:257
+msgid "* Control + Windows + Shift + M: Mute / unmute the current buffer."
+msgstr ""
+"* STRG + Windows + Umschalt + M: Gewählte Ansicht stummschalten bzw. "
+"Stummschaltung aufheben."
+
+#: strings.py:258
+msgid "* Windows + Alt + M: Mute / unmute the current session."
+msgstr ""
+"* Windows + Alt + M: Gewählte Sitzung stummschalten bzw. Stummschaltung "
+"aufheben."
+
+#: strings.py:259
+msgid ""
+"* Control + Windows + E: Toggle the automatic reading of incoming tweets "
+"in the current buffer."
+msgstr ""
+"* STRG + Windows + E: Schaltet das automatische Vorlesen neuer Tweets in der "
+"aktuellen Ansicht um."
+
+#: strings.py:260
+msgid "* Control + Windows + -: Search on Twitter."
+msgstr "* STRG + Windows + -: Auf Twitter suchen."
+
+#: strings.py:261
+msgid "* Control + Windows + K: Show the keystroke editor."
+msgstr "* STRG + Windows + K: Öffnet den Tastenkombinations-Editor."
+
+#: strings.py:262
+msgid "* Control + Windows + L: Show lists for a specified user."
+msgstr "* STRG + Windows + L: Zeigt Listen eines bestimmten Benutzers an."
+
+#: strings.py:263
+msgid "* Windows + Alt + PageUp: Load previous items for the current buffer."
+msgstr ""
+"* Windows + Alt + Seite aufwärts: Lädt weitere Einträge in einer Ansicht."
+
+#: strings.py:264
+msgid "* Control + Windows + G: Get geolocation."
+msgstr "* STRG + Windows + G: Ortsangaben abrufen."
+
+#: strings.py:265
+msgid ""
+"* Control + Windows + Shift + G: Display the tweet's geolocation in a "
+"dialogue."
+msgstr ""
+"* STRG + Windows + Umschalt + G: Zeigt die Ortsangaben eines Tweets als "
+"Dialog an."
+
+#: strings.py:266
+msgid "* Control + Windows + T: Create a trending topics' buffer."
+msgstr "* STRG + Windows + T: Erstellt eine Trends-Ansicht."
+
+#: strings.py:267
+msgid "* Control + Windows + {: Find a string in the current buffer."
+msgstr ""
+"* STRG + Windows + {: Findet eine Zeichenkette in der aktuellen Ansicht."
+
+#: strings.py:268
+msgid ""
+"* Alt + Windows + O: Extracts text from the picture and display the "
+"result in a dialog."
+msgstr ""
+"* Alt + Windows + O: Extrahiert Text aus einem Bild und zeigt das Ergebnis "
+"in einem Dialog an."
+
+#: strings.py:270
+msgid "## Configuration"
+msgstr "## Konfiguration"
+
+#: strings.py:272
+msgid ""
+"As described above, this application has two configuration dialogues, the"
+" global settings dialogue and the account settings dialogue."
+msgstr ""
+"Wie bereits beschrieben hat diese Anwendung zwei Einstellungsdialoge: Die "
+"globalen Einstellungen und die Account-Einstellungen."
+
+#: strings.py:274
+msgid "### The account settings dialogue"
+msgstr "### Die Account-Einstellungen"
+
+#: strings.py:276
+msgid "#### General tab"
+msgstr "#### Allgemein"
+
+#: strings.py:278
+msgid ""
+"* Autocompletion settings: Allows you to configure the autocompletion "
+"database. You can add users manually or let TWBlue add your followers, "
+"friends or both."
+msgstr ""
+"* Autovervollständigungseinstellungen: Ermöglicht das Konfigurieren der "
+"Autovervollständigungsdatenbank. Benutzer können von Hand eingetragen werden "
+"oder TWBlue kann automatisch Freunde, Folger oder beides importieren."
+
+#: strings.py:279
+msgid ""
+"* Relative timestamps: Allows you to configure whether the application "
+"will calculate the time the tweet or direct message was sent or received "
+"based on the current time, or simply say the time it was received or "
+"sent."
+msgstr ""
+"* Relative Zeitangaben: Gibt an, ob TWBlue die Zeitangabe eines Tweets "
+"anhand der aktuellen Zeit messen soll (z. B. gesendet vor einer Stunde) oder "
+"nur Datum und Zeit des Tweets angezeigt werden sollen."
+
+#: strings.py:280
+msgid ""
+"* API calls: Allows you to adjust the number of API calls to be made to "
+"Twitter by this program."
+msgstr ""
+"* API-Aufrufe: Legt die Anzahl der vom Programm zu benutzenden Anfragen an "
+"die Twitter-API fest."
+
+#: strings.py:281
+msgid ""
+"* Items on each API call: Allows you to specify how many items should be "
+"retrieved from Twitter for each API call (default and maximum is 200)."
+msgstr ""
+"* Einträge pro API-Aufruf: Legt fest, wie viele Tweets pro API-Aufruf "
+"abgerufen werden sollen (Standard und Maximum sind 200 Tweets pro Aufruf)."
+
+#: strings.py:282
+msgid ""
+"* Inverted buffers: Allows you to specify whether the buffers should be "
+"inverted, which means that the oldest items will show at the end of them "
+"and the newest at the beginning."
+msgstr ""
+"* Umgekehrte Ansichten: Zeigt die neuesten Einträge einer Ansicht am Anfang "
+"und nicht wie sonst üblich am Ende an."
+
+#: strings.py:283
+msgid ""
+"* Retweet mode: Allows you to specify the behaviour when posting a "
+"retweet: you can choose between retweeting with a comment, retweeting "
+"without comment or being asked."
+msgstr ""
+"* Retweet-Modus: Legt das Verhalten beim Senden eines Retweets fest. Es kann "
+"zwischen Retweet mit Kommentar, Retweet ohne Kommentar oder einer Abfrage "
+"gewählt werden."
+
+#: strings.py:284
+msgid ""
+"* Number of items per buffer to cache in database: This allows you to "
+"specify how many items TWBlue should cache in a database. You can type "
+"any number, 0 to cache all items, or leave blank to disable caching "
+"entirely."
+msgstr ""
+"* Anzahl zu speichernder Einträge pro Ansicht in Datenbank: Legt fest, wie "
+"viele Einträge TWBlue in einer Datenbank zwischenspeichern soll. Hier kann "
+"eine beliebige Zahl eingetragen werden, wobei 0 für unbegrenztes Speichern "
+"steht, ein leeres Feld schaltet diese Funktion aus."
+
+#: strings.py:286
+msgid "#### buffers tab"
+msgstr "#### Ansichten"
+
+#: strings.py:288
+msgid ""
+"This tab displays a list for each buffer you have available in TWBlue, "
+"except for searches, timelines, likes' timelines and lists. You can show,"
+" hide and move them."
+msgstr ""
+"Diese Registerkarte enthält eine Liste aller in TWBlue verfügbaren "
+"Ansichten, ausgenommen Suchvorgänge, Benutzer- und Likes-Zeitleisten sowie "
+"Listen. Mit den Schaltflächen können die Ansichten ein- und ausgeblendet "
+"oder verschoben werden."
+
+#: strings.py:290
+msgid "#### The ignored clients tab"
+msgstr "#### Ignorierte Clients"
+
+#: strings.py:292
+msgid "In this tab, you can add and remove clients to be ignored by the program."
+msgstr ""
+"In dieser Registerkarte können Clients eingetragen werden, deren Tweets vom "
+"Programm ignoriert werden sollen."
+
+#: strings.py:294
+msgid "#### Sound tab"
+msgstr "#### Sound"
+
+#: strings.py:296
+msgid ""
+"In this tab, you can adjust the sound volume, select the input and output"
+" device and set the soundpack used by the program."
+msgstr ""
+"Diese Registerkarte enthält Einstellungen für die Programmlautstärke, "
+"Aufnahme- und Wiedergabegeräte sowie die Auswahl des zu verwendenden "
+"Soundpacks."
+
+#: strings.py:298
+msgid "#### Audio service tab"
+msgstr "#### Dienste"
+
+#: strings.py:300
+msgid ""
+"In this tab, you can enter your SndUp API key (if you have one) to upload"
+" audio to SndUp with your account. Note that if account credentials are "
+"not specified you will upload anonimously."
+msgstr ""
+"Hier kann (falls vorhanden) der API-Schlüssel für den Dienst SndUp "
+"eingetragen werden, um hochgeladene Audios automatisch mit einem Account zu "
+"verknüpfen. Ohne API-Schlüssel werden Audiodateien anonym hochgeladen."
+
+#: strings.py:302
+msgid "### Global settings"
+msgstr "### Globale Einstellungen"
+
+#: strings.py:304
+msgid ""
+"This dialogue allows you to configure some settings which will affect the"
+" entire application."
+msgstr ""
+"In diesem Dialog können einige Einstellungen vorgenommen werden, die "
+"programmweit gelten."
+
+#: strings.py:306
+msgid "#### General tab {#general-tab_1}"
+msgstr "#### Allgemein {#general-tab_1}"
+
+#: strings.py:308
+msgid ""
+"* Language: This allows you to change the language of this program. "
+"Currently supported languages are arabic, Catalan, German, English, "
+"Spanish, Basque, Finnish, French, Galician, Croatian, Hungarian, Italian,"
+" Polish, Portuguese, Russian and Turkish."
+msgstr ""
+"* Sprache: Erlaubt das Ändern der Programmsprache. Momentan werden folgende "
+"Sprachen unterstützt: arabisch, Katalanisch, Deutsch, Englisch, Spanisch, "
+"Baskisch, Finnisch, Französisch, Galizisch, Kroatisch, Ungarisch, "
+"Italienisch, Polnisch, Portugiesisch, Russisch und Türkisch."
+
+#: strings.py:309
+msgid ""
+"* Ask before exiting TWBlue: This checkbox allows you to control "
+"whetherthe program will ask for confirmation before exiting."
+msgstr ""
+"* Vor dem Beenden von TWBlue fragen: Legt fest, ob TWBlue vor dem Beenden "
+"eine Bestätigung anzeigen soll."
+
+#: strings.py:310
+msgid ""
+"* Play a sound when TWBlue launches: This checkbox allows you to "
+"configure whether the application will play a sound when it has finished "
+"loading the buffers."
+msgstr ""
+"* Beim Starten von TWBlue einen Klang abspielen: Gibt an, ob TWBlue einen "
+"Klang abspielen soll, sobald alle Ansichten geladen und aktualisiert wurden."
+
+#: strings.py:311
+msgid ""
+"* Speak a message when TWBlue launches: This is the same as the previous "
+"option, but this checkbox configures whether the screen reader will say "
+"\"ready\"."
+msgstr ""
+"* Beim Starten von TWBlue eine Bereitschaftsnachricht sprechen: Gibt an, ob "
+"TWBlue nach dem Starten die Meldung \"Bereit\" sprechen soll."
+
+#: strings.py:312
+msgid ""
+"* Use the invisible interface's shortcuts in the GUI: As the invisible "
+"interface and the Graphical User Interface have their own shortcuts, you "
+"may want to use the invisible interface's keystrokes all the time. If "
+"this option is checked, the invisible interface's shortcuts will be "
+"usable in the GUI."
+msgstr ""
+"* Tastenkombinationen des unsichtbaren Interfaces im GUI verwenden: "
+"Normalerweise haben beide Interfaces unterschiedliche Tastenkombinationen. "
+"Diese Option legt fest, dass die Tastenbelegung des unsichtbaren Interfaces "
+"auch in der grafischen Oberfläche genutzt werden kann."
+
+#: strings.py:313
+msgid ""
+"* Activate SAPI5 when any other screen reader is not being run: This "
+"checkbox allows to activate SAPI 5 TTS when no other screen reader is "
+"being run."
+msgstr ""
+"* Verwende SAPI5 wenn kein anderer Screen-Reader aktiv ist: Gibt die "
+"Meldungen via SAPI-Sprachausgabe wieder, sofern kein anderer Screen-Reader "
+"aktiv ist."
+
+#: strings.py:314
+msgid ""
+"* Hide GUI on launch: This allows you to configure whether TWBlue will "
+"start with the GUI or the invisible interface."
+msgstr ""
+"* GUI beim Start verbergen: Lässt TWBlue sofort im unsichtbaren Interface "
+"starten."
+
+#: strings.py:315
+msgid ""
+"* Keymap: This option allows you to change the keymap used by the program"
+" in the invisible interface. The shipped keymaps are Default, Qwitter, "
+"Windows 10 and Chicken Nugget. The keymaps are in the \"keymaps\" folder,"
+" and you can create new ones. Just create a new \".keymap\" file and "
+"change the keystrokes associated with the actions, as it is done in the "
+"shipped keymaps."
+msgstr ""
+"* Tastenbelegung: Erlaubt das Ändern der in TWBlue verwendeten "
+"Tastenkombinationsvorlage. Derzeit sind folgende Belegungen verfügbar: "
+"Default, Qwitter,  Windows 10 und Chicken Nugget. Die Vorlagen befinden sich "
+"im Unterordner \"keymaps\" des TWBlue-Programmverzeichnisses und es können "
+"auch eigene Vorlagen erstellt werden. Hierzu kann eine der bereits "
+"bestehenden \".keymap\" als Vorlage verwendet und unter einem neuen "
+"Dateinamen abgespeichert werden."
+
+#: strings.py:317
+msgid "#### Proxi tab"
+msgstr "#### Proxi^"
+
+#: strings.py:319
+msgid ""
+"In this tab you can configure TWBlue to use a Proxy server by completing "
+"the fields displayed (type, server, port, user and password)."
+msgstr ""
+"Auf dieser Registerkarte kann TWBlue für die Verwendung mit einem Proxy "
+"konfiguriert werden (Typ, Server, Port, Benutzer und Passwort)."
+
+#: strings.py:321
+msgid "## License, source code and donations"
+msgstr "## Lizenz, Quellcode und Spenden"
+
+#: strings.py:323
+msgid ""
+"Tw Blue is free software, licensed under the GNU GPL license, either "
+"version 2 or, at your option, any later version. You can view the license"
+" in the file named license.txt, or online at <http://www.gnu.org/licenses"
+"/old-licenses/gpl-2.0.html>."
+msgstr ""
+"TWBlue ist freie Software, lizenziert unter der GNU GPL Version 2 oder jeder "
+"späteren Version. Die genauen Lizenzbedingungen sind in der Datei "
+"license.txt notiert oder online auf <http://www.gnu.org/licenses/"
+"old-licenses/gpl-2.0.html> nachzulesen."
+
+#: strings.py:325
+msgid ""
+"The source code of the program is available on GitHub at "
+"<https://www.github.com/manuelcortez/twblue>."
+msgstr ""
+"Der Programm-Quellcode ist auf GitHub unter der Adresse <https://www.github."
+"com/manuelcortez/twblue> verfügbar."
+
+#: strings.py:327
+msgid ""
+"If you want to donate to the project, you can do so at "
+"<https://twblue.es/donate>. Thank you for your support!"
+msgstr ""
+"Möchtest du für das Projekt spenden, besuche die Adresse <http://twblue.es/"
+"donate>. Vielen Dank für die Unterstützung!"
+
+#: strings.py:329
+msgid "## Contact"
+msgstr "## Kontakt"
+
+#: strings.py:331
+msgid ""
+"If you still have questions after reading this document, if you wish to "
+"collaborate to the project in some other way, or if you simply want to "
+"get in touch with the application developer, follow the Twitter account "
+"[@tw\\_blue2](https://twitter.com/tw_blue2) or "
+"[@manuelcortez00.](https://twitter.com/manuelcortez00) You can also visit"
+" [our website](https://twblue.es)"
+msgstr ""
+"Bestehen nach Lesen dieses Dokuments noch weitere Fragen, z. B. zu "
+"Möglichkeiten für eine Mitarbeit am Projekt, bieten die Twitter-Accounts [@"
+"tw\\_blue2](https://twitter.com/tw_blue2) oder "
+"[@manuelcortez00.](https://twitter.com/manuelcortez00) die Möglichkeit zur "
+"Kontaktaufnahme. Des Weiteren ist [unsere Webseite](http://twblue.es) "
+"verfügbar."
+
+#: strings.py:333
+msgid "## Credits"
+msgstr "## Autoren"
+
+#: strings.py:335
+msgid ""
+"TWBlue is developed and maintained by [Manuel "
+"Cortéz](https://twitter.com/manuelcortez00) and [José Manuel "
+"Delicado](https://twitter.com/jmdaweb)."
+msgstr ""
+"TWBlue wird entwickelt und gewartet von [Manuel Cortéz](https://twitter.com/"
+"manuelcortez00) und [José Manuel Delicado](https://twitter.com/jmdaweb)."
+
+#: strings.py:337
+msgid ""
+"We would also like to thank the translators of TWBlue, who have allowed "
+"the spreading of the application."
+msgstr ""
+"Wir möchten ebenfalls den Übersetzern danken, die bei der Verbreitung von "
+"TWBlue geholfen haben."
+
+#: strings.py:339
+msgid ""
+"* Arabic: [Mohammed Al Shara,](https://twitter.com/mohammed0204) [Hatoun "
+"Felemban](https://twitter.com/HatounFelemban)"
+msgstr ""
+"* Arabisch: [Mohammed Al Shara](https://twitter.com/mohammed0204) und ["
+"Hatoun Felemban](https://twitter.com/HatounFelemban)."
+
+#: strings.py:340
+msgid "* Basque: [Sukil Etxenike](https://twitter.com/sukil2011)."
+msgstr "* Baskisch: [Sukil Etxenike](https://twitter.com/sukil2011)."
+
+#: strings.py:341
+msgid "* Catalan: [Francisco Torres](https://twitter.com/ftgalleg)"
+msgstr "* Katalanisch: [Francisco Torres](https://twitter.com/ftgalleg)"
+
+#: strings.py:342
+msgid "* Croatian: [Zvonimir Stanečić](https://twitter.com/zvonimirek222)."
+msgstr "* Kroatisch: [Zvonimir Stanečić](https://twitter.com/zvonimirek222)."
+
+#: strings.py:343
+msgid "* English: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
+msgstr "* Englisch: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
+
+#: strings.py:344
+msgid "* Finnish: [Jani Kinnunen](https://twitter.com/jani_kinnunen)."
+msgstr "* Finnisch: [Jani Kinnunen](https://twitter.com/jani_kinnunen)."
+
+#: strings.py:345
+msgid "* French: [Rémy Ruiz](https://twitter.com/blindhelp38)."
+msgstr "* Französisch: [Rémi Ruiz](https://twitter.com/blindhelp38)."
+
+#: strings.py:346
+msgid "* Galician: [Juan Buño](https://twitter.com/Quetzatl_)."
+msgstr "* Galizisch: [Juan Buño](https://twitter.com/Quetzatl_)."
+
+#: strings.py:347
+msgid "* German: [Steffen Schultz](https://twitter.com/schulle4u)."
+msgstr "* Deutsch: [Steffen Schultz](https://twitter.com/schulle4u)."
+
+#: strings.py:348
+msgid "* Hungarian: Robert Osztolykan."
+msgstr "* Ungarisch: Robert Osztolykan."
+
+#: strings.py:349
+msgid "* Italian: [Christian Leo Mameli](https://twitter.com/llajta2012)."
+msgstr "* Italienisch: [Christian Leo Mameli](https://twitter.com/llajta2012)."
+
+#: strings.py:350
+msgid "* Japanese: [Riku](https://twitter.com/_riku02)"
+msgstr "* Japanisch: [Riku](https://twitter.com/_riku02)"
+
+#: strings.py:351
+msgid "* Polish: [Pawel Masarczyk.](https://twitter.com/Piciok)"
+msgstr "* Polnisch: [Pawel Masarczyk.](https://twitter.com/Piciok)"
+
+#: strings.py:352
+msgid "* Portuguese: [Odenilton Júnior Santos.](https://twitter.com/romaleif)"
+msgstr ""
+"* Portugisisch: [Odenilton Júnior Santos.](https://twitter.com/romaleif)"
+
+#: strings.py:353
+msgid ""
+"* Romanian: [Florian Ionașcu](https://twitter.com/florianionascu7) and "
+"[Nicușor Untilă](https://twitter.com/dj_storm2001)"
+msgstr ""
+"* Rumänisch: [Florian Ionașcu](https://twitter.com/florianionascu7) und ["
+"Nicușor Untilă](https://twitter.com/dj_storm2001)"
+
+#: strings.py:354
+msgid ""
+"* Russian: [Наталья Хедлунд](https://twitter.com/Lifestar_n) and [Валерия"
+" Кузнецова](https://twitter.com/ValeriaK305)."
+msgstr ""
+"* Russisch: [Наталья Хедлунд](https://twitter.com/Lifestar_n) und [Валерия "
+"Кузнецова](https://twitter.com/ValeriaK305)."
+
+#: strings.py:355
+msgid "* Serbian: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)"
+msgstr "* Serbisch: [Aleksandar Đurić](https://twitter.com/sokodtreshnje)"
+
+#: strings.py:356
+msgid "* Spanish: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
+msgstr "* Spanisch: [Manuel Cortéz](https://twitter.com/manuelcortez00)."
+
+#: strings.py:357
+msgid "* Turkish: [Burak Yüksek](https://twitter.com/burakyuksek)."
+msgstr "* Türkisch: [Burak Yüksek](https://twitter.com/burakyuksek)."
+
+#: strings.py:359
+msgid ""
+"Many thanks also to the people who worked on the documentation. "
+"Initially, [Manuel Cortez](https://twitter.com/manuelcortez00) did the "
+"documentation in Spanish, and translated to English by [Bryner "
+"Villalobos](https://twitter.com/Bry_StarkCR), [Robert "
+"Spangler](https://twitter.com/glasscity1837), [Sussan "
+"Rey](https://twitter.com/sussanrey17), [Anibal "
+"Hernandez](https://twitter.com/AnimalMetal), and [Holly Scott-"
+"Gardner](https://twitter.com/CatchTheseWords). It was updated by [Sukil "
+"Etxenike](https://twitter.com/sukil2011), with some valuable corrections "
+"by [Brian Hartgen](https://twitter.com/brianhartgen) and [Bill "
+"Dengler](https://twitter.com/codeofdusk)."
+msgstr ""
+"Großer Dank gilt auch den Mitarbeitenden an der Dokumentation. Sie wurde "
+"zunächst von [Manuel Cortez](https://twitter.com/manuelcortez00) auf "
+"Spanisch verfasst, und anschließend von [Bryner Villalobos](https://twitter."
+"com/Bry_StarkCR), [Robert Spangler](https://twitter.com/glasscity1837), ["
+"Sussan Rey](https://twitter.com/sussanrey17), [Anibal "
+"Hernandez](https://twitter.com/AnimalMetal), und [Holly Scott-"
+"Gardner](https://twitter.com/CatchTheseWords) ins Englische übersetzt. Sie "
+"wurde von [Sukil Etxenike](https://twitter.com/sukil2011) aktualisiert und "
+"mit nützlichen Korrekturen durch [Brian Hartgen](https://twitter.com/"
+"brianhartgen) und [Bill Dengler](https://twitter.com/codeofdusk) ergänzt."
+
+#: strings.py:361
+msgid "------------------------------------------------------------------------"
+msgstr ""
+"------------------------------------------------------------------------"
+
+#: strings.py:363
+msgid "Copyright © 2013-2021. Manuel Cortéz"
+msgstr "Copyright © 2013-2021. Manuel Cortéz"
