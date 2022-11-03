@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 import shutil
 import widgetUtils
-import platform
 import output
-if platform.system() == "Windows":
-    from . import wxUI as view
-    from controller import settings
-elif platform.system() == "Linux":
-    from . import gtkUI as view
+from . import wxUI as view
+from controller import settings
 import paths
 import time
 import os

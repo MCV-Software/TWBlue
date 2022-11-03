@@ -7,4 +7,3 @@ Contents of this package:
 	manager: Handles multiple sessions, setting the configuration files and check if the session is valid. Part of the model.
 	session: Creates a twitter session for an user. The other part of the model.
 """
-from __future__ import unicode_literals

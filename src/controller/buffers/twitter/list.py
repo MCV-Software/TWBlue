@@ -1,10 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
-import platform
-if platform.system() == "Windows":
-    from wxUI import dialogs, commonMessageDialogs
-elif platform.system() == "Linux":
-    from gi.repository import Gtk
-    from gtkUI import dialogs, commonMessageDialogs
+from wxUI import dialogs, commonMessageDialogs
 import widgetUtils
 import logging
 from tweepy.cursor import Cursor

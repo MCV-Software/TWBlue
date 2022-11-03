@@ -1,5 +1,4 @@
 ﻿# -*- coding: utf-8 -*-
-import platform
 import widgetUtils
 import arrow
 import webbrowser
@@ -99,7 +98,7 @@ class DirectMessagesBuffer(base.BaseBuffer):
 
     def onFocus(self, *args, **kwargs):
         tweet = self.get_tweet()
-        if platform.system() == "Windows" and self.session.settings["general"]["relative_times"] == True:
+        if self.session.settings["general"]["relative_times"] == True:
             # fix this:
             original_date = arrow.get(int(tweet.created_timestamp))
             ts = original_date.humanize(locale=languageHandler.getLanguage())

@@ -1,7 +1,4 @@
 #-*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-#-*- coding: utf-8 -*-
 from . import reverse_sort
 import application
 actions = reverse_sort.reverse_sort([  ("audio", _(u"Audio tweet.")),

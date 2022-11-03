@@ -1,12 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 import time
-import platform
-if platform.system() == "Windows":
-    from wxUI import commonMessageDialogs, menus
-    from controller import user
-elif platform.system() == "Linux":
-    from gi.repository import Gtk
-    from gtkUI import dialogs, commonMessageDialogs
+from wxUI import commonMessageDialogs, menus
+from controller import user
 from controller import messages
 import widgetUtils
 import webbrowser

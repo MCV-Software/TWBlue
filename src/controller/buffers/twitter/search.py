@@ -1,12 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 import time
-import platform
 import locale
-if platform.system() == "Windows":
-    from wxUI import  commonMessageDialogs
-elif platform.system() == "Linux":
-    from gi.repository import Gtk
-    from gtkUI import commonMessageDialogs
+from wxUI import  commonMessageDialogs
 import widgetUtils
 import logging
 from tweepy.errors import TweepyException
