@@ -21,6 +21,15 @@ See [TWBlue's webpage](http://twblue.es) for more details.
 
 This document describes how to run tw blue from source and how to build a binary version which doesn't need Python and the other dependencies to run.
 
+### Generating application keys
+
+In order to communicate with Twitter, you will need to generate a set of API keys in their [developer portal](https://developer.twitter.com/en/portal/dashboard) (If you haven't signed up, [visit this site to register as a developer](https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api)) and create a module called appkeys.py, within the src directory, with the following content, replacing the example values with your set of API keys:
+
+```
+twitter_api_key='xxxxxxxxxx'
+twitter_api_secret='xxxxxxxxxx'
+```
+
 ### Required dependencies.
 
 Although most dependencies can be found in the windows-dependencies directory, we provide links to their official websites. If you are cloning with git, don't forget to initialize and update the submodules to get the windows-dependencies folder. You can use these two commands to perform this task from git bash:  
@@ -31,17 +40,21 @@ Although most dependencies can be found in the windows-dependencies directory, w
 
 #### Dependencies packaged in windows installers
 
-* [Python,](https://python.org) version 3.7.9  
-If you want to build both x86 and x64 binaries, you can install python x86 to C:\python38 and python x64 to C:\python38x64, for example.
+* [Python,](https://python.org) version 3.10.8  
+If you want to build both x86 and x64 binaries, you can install python x64 to C:\python310 and python x86 to C:\python310-32, for example.
 
 #### Dependencies that must be installed using pip
 
 Python installs a tool called Pip that allows to install packages in a simple way. You can find it in the python scripts directory. To install packages using Pip, you have to navigate to the scripts directory using a command prompt, for example:
 
-    `cd C:\python37x64\scripts`
+    `cd C:\python310\scripts`
 
 	You can also add the scripts folder to your path environment variable or choose the corresponding option when installing Python.  
 	Note: pip and setuptools are included in the Python installer since version 2.7.9.
+
+Note: If you are using Python for 32-bit systems, you will need to install WXPython for 32-bits before running the command for installing everything else. You can do so by running the following command:
+
+    `pip install --upgrade https://github.com/josephsl/wxpy32whl/blob/main/wxPython-4.2.0-cp310-cp310-win32.whl?raw=true`
 
 Pip is able to install packages listed in a special text file, called the requirements file. To install all remaining dependencies, perform the following command:
 
