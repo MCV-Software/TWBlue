@@ -2,6 +2,11 @@ TWBlue Changelog
 
 ## changes in this version
 
+* TWBlue now builds with Python 3.10.8. ([#493](https://github.com/MCV-Software/TWBlue/issues/493))
+    * This change also drops support for Windows 7.
+
+## Changes in version 2022.8.28
+
 * the user autocompletion feature has been completely rewritten to be easier to use, particularly for people with many followers/following users:
     * In the account settings dialog, there's a button that opens up a new dialog that allows you to "scan" your account in order to add all users from your followers/following list. This process will read your data directly from Twitter and depending in the amount of people you have in your account it might take too many API calls. Please use it with caution. You can, for example, do the process separately for your followers/following people so it will be easier to handle, in case you have a massive amount of people. If TWBlue is unable to complete the scan, you will see an error and will be prompted to try again in 15 minutes, once your API calls have refreshed.
     * It is possible to use the user autocompletion functionality in dialogs where you can select an user, for example when adding or removing someone from a list, or displaying lists for someone.
