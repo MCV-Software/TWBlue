@@ -4,7 +4,6 @@ import logging
 import webbrowser
 import wx
 import requests
-import arrow
 import keystrokeEditor
 import sessions
 import widgetUtils
@@ -16,26 +15,19 @@ import output
 from pubsub import pub
 from tweepy.errors import TweepyException, Forbidden
 from geopy.geocoders import Nominatim
-from update import updater
-from audio_services import youtube_utils
 from extra import SoundsTutorial
+from update import updater
 from wxUI import view, dialogs, commonMessageDialogs, sysTrayIcon
-from . import settings
 from keyboard_handler.wx_handler import WXKeyboardHandler
-# Import specific Twitter controllers.
-# ToDo: this must be delegated to handlers later.
-from .twitter import userActions, trendingTopics, user, lists, filters, messages
-from sessions.twitter import utils, compose
 from sessionmanager import manager, sessionManager
 from controller import buffers
-from . import userAlias
-from sessions.twitter  import session as session_
-from mysc.thread_utils import call_threaded
-from mysc.repeating_timer import RepeatingTimer
 from mysc import restart
 from mysc import localization
+from mysc.thread_utils import call_threaded
+from mysc.repeating_timer import RepeatingTimer
 from controller.twitter import handler as TwitterHandler
 from controller.mastodon import handler as MastodonHandler
+from . import settings, userAlias
 
 log = logging.getLogger("mainController")
 
