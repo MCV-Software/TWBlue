@@ -162,3 +162,10 @@ class SentDirectMessagesBuffer(DirectMessagesBuffer):
         dm = self.get_right_tweet()
         t = templates.render_dm(dm, template, self.session, relative_times=self.session.settings["general"]["relative_times"], offset_seconds=self.session.db["utc_offset"])
         return t
+
+    def view_item(self):
+        non_tweet = self.get_formatted_message()
+        item = self.get_right_tweet()
+        original_date = arrow.get(int(item.created_timestamp))
+        date = original_date.shift(seconds=self.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
+        msg = messages.viewTweet(non_tweet, [], False, date=date)

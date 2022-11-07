@@ -580,3 +580,30 @@ class BaseBuffer(base.Buffer):
         url = self.get_item_url()
         output.speak(_(u"Opening item in web browser..."))
         webbrowser.open(url)
+
+    def add_to_favorites(self):
+        id = self.get_tweet().id
+        call_threaded(self.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
+
+    def remove_from_favorites(self):
+        id = self.get_tweet().id
+        call_threaded(self.session.api_call, call_name="destroy_favorite", id=id)
+
+    def toggle_favorite(self):
+        id = self.get_tweet().id
+        tweet = self.session.twitter.get_status(id=id, include_ext_alt_text=True, tweet_mode="extended")
+        if tweet.favorited == False:
+            call_threaded(self.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
+        else:
+            call_threaded(self.session.api_call, call_name="destroy_favorite", id=id)
+
+    def view_item(self):
+        if self.type == "dm" or self.name == "direct_messages":
+            non_tweet = self.get_formatted_message()
+            item = self.get_right_tweet()
+            original_date = arrow.get(int(item.created_timestamp))
+            date = original_date.shift(seconds=self.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
+            msg = messages.viewTweet(non_tweet, [], False, date=date)
+        else:
+            tweet, tweetsList = self.get_full_tweet()
+            msg = messages.viewTweet(tweet, tweetsList, utc_offset=self.session.db["utc_offset"], item_url=self.get_item_url())

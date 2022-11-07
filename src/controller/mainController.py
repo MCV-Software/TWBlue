@@ -573,73 +573,43 @@ class Controller(object):
 
     def post_tweet(self, event=None):
         buffer = self.get_best_buffer()
-        buffer.post_status()
+        if hasattr(buffer, "post_status"):
+            buffer.post_status()
 
     def post_reply(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.name == "direct_messages":
-            buffer.send_message()
-        else:
-            buffer.reply()
+        if hasattr(buffer, "reply"):
+            return buffer.reply()
 
     def send_dm(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        buffer.send_message()
+        if hasattr(buffer, "send_message"):
+            buffer.send_message()
 
     def post_retweet(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
-            return
-        else:
-            buffer.share_item()
+        if hasattr(buffer, "share_item"):
+            return buffer.share_item()
 
     def add_to_favourites(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
-            return
-        else:
-            id = buffer.get_tweet().id
-            call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
+        if hasattr(buffer, "add_to_favorites"):
+            return buffer.add_to_favorites()
 
     def remove_from_favourites(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
-            return
-        else:
-            id = buffer.get_tweet().id
-            call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
+        if hasattr(buffer, "remove_from_favorites"):
+            return buffer.remove_from_favorites()
 
     def toggle_like(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
-            return
-        else:
-            id = buffer.get_tweet().id
-            tweet = buffer.session.twitter.get_status(id=id, include_ext_alt_text=True, tweet_mode="extended")
-            if tweet.favorited == False:
-                call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
-            else:
-                call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
+        if hasattr(buffer, "toggle_favorite"):
+            return buffer.toggle_favorite()
 
     def view_item(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "account" or buffer.type == "empty":
-            return
-        elif buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
-            tweet, tweetsList = buffer.get_full_tweet()
-            msg = messages.viewTweet(tweet, tweetsList, utc_offset=buffer.session.db["utc_offset"], item_url=buffer.get_item_url())
-        elif buffer.type == "dm":
-            non_tweet = buffer.get_formatted_message()
-            item = buffer.get_right_tweet()
-            original_date = arrow.get(int(item.created_timestamp))
-            date = original_date.shift(seconds=buffer.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
-            msg = messages.viewTweet(non_tweet, [], False, date=date)
-        else:
-            item_url = ""
-            if hasattr(buffer, "get_item_url"):
-                item_url = buffer.get_item_url()
-            non_tweet = buffer.get_formatted_message()
-            msg = messages.viewTweet(non_tweet, [], False, item_url=item_url)
+        if hasattr(buffer, "view_item"):
+            return buffer.view_item()
 
     def open_in_browser(self, *args, **kwargs):
         buffer = self.get_current_buffer()
