@@ -199,3 +199,84 @@ class Handler(object):
             buffer.session.settings.write()
             output.speak(_("Alias has been set correctly for {}.").format(user))
             pub.sendMessage("alias-added")
+
+    # ToDo: explore how to play sound & save config differently.
+    # currently, TWBlue will play the sound and save the config for the timeline even if the buffer did not load or something else.
+    def open_timeline(self, controller, buffer, default="tweets"):
+        if not hasattr(buffer, "get_right_tweet"):
+            return
+        tweet = buffer.get_right_tweet()
+        if buffer.type == "people":
+            users = [tweet.screen_name]
+        elif buffer.type == "dm":
+            users = [buffer.session.get_user(tweet.message_create["sender_id"]).screen_name]
+        else:
+            users = utils.get_all_users(tweet, buffer.session)
+        dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
+        if dlg.get_response() == widgetUtils.OK:
+            usr = utils.if_user_exists(buffer.session.twitter, dlg.get_user())
+            if usr != None:
+                if usr == dlg.get_user():
+                    commonMessageDialogs.suspended_user()
+                    return
+                if usr.protected == True:
+                    if usr.following == False:
+                        commonMessageDialogs.no_following()
+                        return
+                tl_type = dlg.get_action()
+                if tl_type  == "tweets":
+                    if usr.statuses_count == 0:
+                        commonMessageDialogs.no_tweets()
+                        return
+                    if usr.id_str in buffer.session.settings["other_buffers"]["timelines"]:
+                        commonMessageDialogs.timeline_exist()
+                        return
+                    timelines_position =controller.view.search("timelines", buffer.session.db["user_name"])
+                    pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=buffer.session.type, buffer_title=_("Timeline for {}").format(usr.screen_name,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, function="user_timeline", name="%s-timeline" % (usr.id_str,), sessionObject=buffer.session, account=buffer.session.db["user_name"], sound="tweet_timeline.ogg", bufferType=None, user_id=usr.id_str, include_ext_alt_text=True, tweet_mode="extended"))
+                    buffer.session.settings["other_buffers"]["timelines"].append(usr.id_str)
+                    buffer.session.sound.play("create_timeline.ogg")
+                elif tl_type == "favourites":
+                    if usr.favourites_count == 0:
+                        commonMessageDialogs.no_favs()
+                        return
+                    if usr.id_str in buffer.session.settings["other_buffers"]["favourites_timelines"]:
+                        commonMessageDialogs.timeline_exist()
+                        return
+                    favs_timelines_position =controller.view.search("favs_timelines", buffer.session.db["user_name"])
+                    pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=buffer.session.type, buffer_title=_("Likes for {}").format(usr.screen_name,), parent_tab=favs_timelines_position, start=True, kwargs=dict(parent=controller.view.nb, function="get_favorites", name="%s-favorite" % (usr.id_str,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr.id_str, include_ext_alt_text=True, tweet_mode="extended"))
+                    buffer.session.settings["other_buffers"]["favourites_timelines"].append(usr.id_str)
+                    buffer.session.sound.play("create_timeline.ogg")
+                elif tl_type == "followers":
+                    if usr.followers_count == 0:
+                        commonMessageDialogs.no_followers()
+                        return
+                    if usr.id_str in buffer.session.settings["other_buffers"]["followers_timelines"]:
+                        commonMessageDialogs.timeline_exist()
+                        return
+                    followers_timelines_position =controller.view.search("followers_timelines", buffer.session.db["user_name"])
+                    pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=buffer.session.type, buffer_title=_("Followers for {}").format(usr.screen_name,), parent_tab=followers_timelines_position, start=True, kwargs=dict(parent=controller.view.nb, function="get_followers", name="%s-followers" % (usr.id_str,), sessionObject=buffer.session, account=buffer.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str))
+                    buffer.session.settings["other_buffers"]["followers_timelines"].append(usr.id_str)
+                    buffer.session.sound.play("create_timeline.ogg")
+                elif tl_type == "friends":
+                    if usr.friends_count == 0:
+                        commonMessageDialogs.no_friends()
+                        return
+                    if usr.id_str in buffer.session.settings["other_buffers"]["friends_timelines"]:
+                        commonMessageDialogs.timeline_exist()
+                        return
+                    friends_timelines_position =controller.view.search("friends_timelines", buffer.session.db["user_name"])
+                    pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=buffer.session.type, buffer_title=_("Friends for {}").format(usr.screen_name,), parent_tab=friends_timelines_position, start=True, kwargs=dict(parent=controller.view.nb, function="get_friends", name="%s-friends" % (usr.id_str,), sessionObject=buffer.session, account=buffer.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str))
+                    buffer.session.settings["other_buffers"]["friends_timelines"].append(usr.id_str)
+                    buffer.session.sound.play("create_timeline.ogg")
+            else:
+                commonMessageDialogs.user_not_exist()
+        buffer.session.settings.write()
+
+    def open_conversation(self, controller, buffer):
+        tweet = buffer.get_right_tweet()
+        if hasattr(tweet, "retweeted_status") and tweet.retweeted_status != None:
+            tweet = tweet.retweeted_status
+        user = buffer.session.get_user(tweet.user).screen_name
+        searches_position =controller.view.search("searches", buffer.session.db["user_name"])
+        pub.sendMessage("createBuffer", buffer_type="ConversationBuffer", session_type=buffer.session.type, buffer_title=_(u"Conversation with {0}").format(user), parent_tab=searches_position, start=True, kwargs=dict(tweet=tweet, parent=controller.view.nb, function="search_tweets", name="%s-searchterm" % (tweet.id,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=tweet.id, q="@{0}".format(user)))
+        

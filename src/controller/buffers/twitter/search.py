@@ -62,6 +62,10 @@ class ConversationBuffer(SearchBuffer):
     last_thread_id = None
     last_reply_id = None
 
+    def __init__(self, tweet, *args, **kwargs):
+        self.tweet = tweet
+        super(ConversationBuffer, self).__init__(*args, **kwargs)
+
     def start_stream(self, start=False, mandatory=False, play_sound=True, avoid_autoreading=False):
         current_time = time.time()
         if self.execution_time == 0 or current_time-self.execution_time >= 180 or mandatory == True:

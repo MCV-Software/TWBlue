@@ -617,122 +617,23 @@ class Controller(object):
             buffer.open_in_browser()
 
     def open_favs_timeline(self, *args, **kwargs):
-        self.open_timeline(default="favourites")
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "open_timeline"):
+            return handler.open_timeline(controller=self, buffer=buffer, default="favorites")
 
-    def open_timeline(self, default="tweets", *args, **kwargs):
-        buff = self.get_best_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
-        if dlg.get_response() == widgetUtils.OK:
-            usr = utils.if_user_exists(buff.session.twitter, dlg.get_user())
-            if usr != None:
-                if usr == dlg.get_user():
-                    commonMessageDialogs.suspended_user()
-                    return
-                if usr.protected == True:
-                    if usr.following == False:
-                        commonMessageDialogs.no_following()
-                        return
-                tl_type = dlg.get_action()
-                if tl_type  == "tweets":
-                    if usr.statuses_count == 0:
-                        commonMessageDialogs.no_tweets()
-                        return
-                    if usr.id_str in buff.session.settings["other_buffers"]["timelines"]:
-                        commonMessageDialogs.timeline_exist()
-                        return
-                    tl = buffers.twitter.BaseBuffer(self.view.nb, "user_timeline", "%s-timeline" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="tweet_timeline.ogg", user_id=usr.id_str, include_ext_alt_text=True, tweet_mode="extended")
-                    try:
-                        tl.start_stream(play_sound=False)
-                    except TweepyException:
-                        commonMessageDialogs.unauthorized()
-                        return
-                    pos=self.view.search("timelines", buff.session.db["user_name"])
-                    self.insert_buffer(tl, pos+1)
-                    self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
-                    buff.session.settings["other_buffers"]["timelines"].append(usr.id_str)
-                    pub.sendMessage("buffer-title-changed", buffer=tl)
-                    buff.session.sound.play("create_timeline.ogg")
-                elif tl_type == "favourites":
-                    if usr.favourites_count == 0:
-                        commonMessageDialogs.no_favs()
-                        return
-                    if usr.id_str in buff.session.settings["other_buffers"]["favourites_timelines"]:
-                        commonMessageDialogs.timeline_exist()
-                        return
-                    tl = buffers.twitter.BaseBuffer(self.view.nb, "get_favorites", "%s-favorite" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr.id_str, include_ext_alt_text=True, tweet_mode="extended")
-                    try:
-                        tl.start_stream(play_sound=False)
-                    except ValueError:
-                        commonMessageDialogs.unauthorized()
-                        return
-                    pos=self.view.search("favs_timelines", buff.session.db["user_name"])
-                    self.insert_buffer(tl, pos+1)
-                    self.view.insert_buffer(buffer=tl.buffer, name=_(u"Likes for {}").format(dlg.get_user()), pos=pos)
-                    buff.session.settings["other_buffers"]["favourites_timelines"].append(usr.id_str)
-                    pub.sendMessage("buffer-title-changed", buffer=buff)
-                    buff.session.sound.play("create_timeline.ogg")
-                elif tl_type == "followers":
-                    if usr.followers_count == 0:
-                        commonMessageDialogs.no_followers()
-                        return
-                    if usr.id_str in buff.session.settings["other_buffers"]["followers_timelines"]:
-                        commonMessageDialogs.timeline_exist()
-                        return
-                    tl = buffers.twitter.PeopleBuffer(self.view.nb, "get_followers", "%s-followers" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
-                    try:
-                        tl.start_stream(play_sound=False)
-                    except ValueError:
-                        commonMessageDialogs.unauthorized()
-                        return
-                    pos=self.view.search("followers_timelines", buff.session.db["user_name"])
-                    self.insert_buffer(tl, pos+1)
-                    self.view.insert_buffer(buffer=tl.buffer, name=_(u"Followers for {}").format(dlg.get_user()), pos=pos)
-                    buff.session.settings["other_buffers"]["followers_timelines"].append(usr.id_str)
-                    buff.session.sound.play("create_timeline.ogg")
-                    pub.sendMessage("buffer-title-changed", buffer=i)
-                elif tl_type == "friends":
-                    if usr.friends_count == 0:
-                        commonMessageDialogs.no_friends()
-                        return
-                    if usr.id_str in buff.session.settings["other_buffers"]["friends_timelines"]:
-                        commonMessageDialogs.timeline_exist()
-                        return
-                    tl = buffers.twitter.PeopleBuffer(self.view.nb, "get_friends", "%s-friends" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
-                    try:
-                        tl.start_stream(play_sound=False)
-                    except ValueError:
-                        commonMessageDialogs.unauthorized()
-                        return
-                    pos=self.view.search("friends_timelines", buff.session.db["user_name"])
-                    self.insert_buffer(tl, pos+1)
-                    self.view.insert_buffer(buffer=tl.buffer, name=_(u"Friends for {}").format(dlg.get_user()), pos=pos)
-                    buff.session.settings["other_buffers"]["friends_timelines"].append(usr.id_str)
-                    buff.session.sound.play("create_timeline.ogg")
-                    pub.sendMessage("buffer-title-changed", buffer=i)
-            else:
-                commonMessageDialogs.user_not_exist()
-        buff.session.settings.write()
+
+    def open_timeline(self, *args, **kwargs):
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "open_timeline"):
+            return handler.open_timeline(controller=self, buffer=buffer)
 
     def open_conversation(self, *args, **kwargs):
-        buffer = self.get_current_buffer()
-        tweet = buffer.get_right_tweet()
-        if hasattr(tweet, "retweeted_status") and tweet.retweeted_status != None:
-            tweet = tweet.retweeted_status
-        user = buffer.session.get_user(tweet.user).screen_name
-        search = buffers.twitter.ConversationBuffer(self.view.nb, "search_tweets", "%s-searchterm" % (tweet.id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=tweet.id, q="@{0}".format(user,))
-        search.tweet = tweet
-        search.start_stream(start=True)
-        pos=self.view.search("searches", buffer.session.db["user_name"])
-        self.insert_buffer(search, pos)
-        self.view.insert_buffer(search.buffer, name=_(u"Conversation with {0}").format(user), pos=pos)
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "open_conversation"):
+            return handler.open_conversation(controller=self, buffer=buffer)
 
     def show_hide(self, *args, **kwargs):
         km = self.create_invisible_keyboard_shorcuts()
