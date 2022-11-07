@@ -373,25 +373,10 @@ class Controller(object):
         self.search(value=term)
 
     def search(self, event=None, value="", *args, **kwargs):
-        """ Searches words or users in twitter. This creates a new buffer containing the search results."""
-        log.debug("Creating a new search...")
-        dlg = dialogs.search.searchDialog(value)
-        if dlg.get_response() == widgetUtils.OK and dlg.get("term") != "":
-            term = dlg.get("term")
-            buffer = self.get_best_buffer()
-            searches_position =self.view.search("searches", buffer.session.db["user_name"])
-            if dlg.get("tweets") == True:
-                if term not in buffer.session.settings["other_buffers"]["tweet_searches"]:
-                    buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
-                    buffer.session.settings.write()
-                    args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
-                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search_tweets", name="%s-searchterm" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=term, include_ext_alt_text=True, tweet_mode="extended", **args))
-                else:
-                    log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
-                    return
-            elif dlg.get("users") == True:
-                pub.sendMessage("createBuffer", buffer_type="SearchPeopleBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search_users", name="%s-searchUser" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType=None, sound="search_updated.ogg", q=term))
-        dlg.Destroy()
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "search"):
+            return handler.search(controller=self, session=buffer.session, value=value)
 
     def find(self, *args, **kwargs):
         if 'string' in kwargs:

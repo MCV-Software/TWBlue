@@ -318,3 +318,22 @@ class Handler(object):
 
     def update_profile(self, session):
         r = user.profileController(session)
+
+    def search(self, controller, session, value):
+        log.debug("Creating a new search...")
+        dlg = dialogs.search.searchDialog(value)
+        if dlg.get_response() == widgetUtils.OK and dlg.get("term") != "":
+            term = dlg.get("term")
+            searches_position =controller.view.search("searches", session.db["user_name"])
+            if dlg.get("tweets") == True:
+                if term not in session.settings["other_buffers"]["tweet_searches"]:
+                    session.settings["other_buffers"]["tweet_searches"].append(term)
+                    session.settings.write()
+                    args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
+                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=controller.view.nb, function="search_tweets", name="%s-searchterm" % (term,), sessionObject=session, account=session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=term, include_ext_alt_text=True, tweet_mode="extended"))
+                else:
+                    log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
+                    return
+            elif dlg.get("users") == True:
+                pub.sendMessage("createBuffer", buffer_type="SearchPeopleBuffer", session_type=session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=controller.view.nb, function="search_users", name="%s-searchUser" % (term,), sessionObject=session, account=session.db["user_name"], bufferType=None, sound="search_updated.ogg", q=term))
+        dlg.Destroy()
