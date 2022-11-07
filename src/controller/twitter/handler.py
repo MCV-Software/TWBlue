@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from pubsub import pub
 from sessions.twitter import utils
-from controller import buffers
 
 class Handler(object):
 
