@@ -87,3 +87,6 @@ class Session(base.baseSession):
         if user_alias != None:
             return user_alias
         return user.name
+
+    def check_streams(self):
+        pass
