@@ -231,7 +231,7 @@ def filter_tweet(tweet, tweet_data, settings, buffer_name):
                 if word not in getattr(tweet, value):
                     return False
             if settings["filters"][i]["in_lang"] == "True":
-                if getattr(tweet, lang) not in settings["filters"][i]["languages"]:
+                if getattr(tweet, "lang") not in settings["filters"][i]["languages"]:
                     return False
             elif settings["filters"][i]["in_lang"] == "False":
                 if tweet.lang in settings["filters"][i]["languages"]:
