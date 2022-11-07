@@ -8,7 +8,7 @@ from mysc import restart
 from sessions.twitter import utils, compose
 from controller import userSelector
 from wxUI import dialogs, commonMessageDialogs
-from . import filters, lists, settings, userActions
+from . import filters, lists, settings, userActions, trendingTopics, user
 
 log = logging.getLogger("controller.twitter.handler")
 
@@ -279,4 +279,42 @@ class Handler(object):
         user = buffer.session.get_user(tweet.user).screen_name
         searches_position =controller.view.search("searches", buffer.session.db["user_name"])
         pub.sendMessage("createBuffer", buffer_type="ConversationBuffer", session_type=buffer.session.type, buffer_title=_(u"Conversation with {0}").format(user), parent_tab=searches_position, start=True, kwargs=dict(tweet=tweet, parent=controller.view.nb, function="search_tweets", name="%s-searchterm" % (tweet.id,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=tweet.id, q="@{0}".format(user)))
-        
+
+    def get_trending_topics(self, controller, session):
+        trends = trendingTopics.trendingTopicsController(session)
+        if trends.dialog.get_response() == widgetUtils.OK:
+            woeid = trends.get_woeid()
+            if woeid in session.settings["other_buffers"]["trending_topic_buffers"]:
+                return
+            root_position =controller.view.search(session.db["user_name"], session.db["user_name"])
+            pub.sendMessage("createBuffer", buffer_type="TrendsBuffer", session_type=session.type, buffer_title=_("Trending topics for %s") % (trends.get_string()), parent_tab=root_position, start=True, kwargs=dict(parent=controller.view.nb, name="%s_tt" % (woeid,), sessionObject=session, account=session.db["user_name"], trendsFor=woeid, sound="trends_updated.ogg"))
+            session.settings["other_buffers"]["trending_topic_buffers"].append(woeid)
+            session.settings.write()
+
+    def start_buffer(self, controller, buffer):
+        if hasattr(buffer, "finished_timeline") and buffer.finished_timeline == False:
+            change_title = True
+        else:
+            change_title = False
+        try:
+            if "mentions" in buffer.name or "direct_messages" in buffer.name:
+                buffer.start_stream()
+            else:
+                buffer.start_stream(play_sound=False)
+        except TweepyException as err:
+            log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), buffer.name, buffer.account, buffer.args, buffer.kwargs))
+            # Determine if this error was caused by a block applied to the current user (IE permission errors).
+            if type(err) == Forbidden:
+                buff = controller.view.search(buffer.name, buffer.account)
+                buffer.remove_buffer(force=True)
+                commonMessageDialogs.blocked_timeline()
+                if controller.get_current_buffer() == buffer:
+                    controller.right()
+                controller.view.delete_buffer(buff)
+                controller.buffers.remove(buffer)
+                del buffer
+        if change_title:
+            pub.sendMessage("buffer-title-changed", buffer=buffer)
+
+    def update_profile(self, session):
+        r = user.profileController(session)

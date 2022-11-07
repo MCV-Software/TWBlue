@@ -16,6 +16,7 @@ from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from tweepy.cursor import Cursor
 from pubsub import pub
+from extra import ocr
 from sessions.twitter.long_tweets import twishort, tweets
 from wxUI import buffers, dialogs, commonMessageDialogs, menus
 from controller.twitter import user, messages
@@ -607,3 +608,56 @@ class BaseBuffer(base.Buffer):
         else:
             tweet, tweetsList = self.get_full_tweet()
             msg = messages.viewTweet(tweet, tweetsList, utc_offset=self.session.db["utc_offset"], item_url=self.get_item_url())
+
+    def reverse_geocode(self, geocoder):
+        try:
+            tweet = self.get_tweet()
+            if tweet.coordinates != None:
+                x = tweet.coordinates["coordinates"][0]
+                y = tweet.coordinates["coordinates"][1]
+                address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
+                return address
+            else:
+                output.speak(_("There are no coordinates in this tweet"))
+#        except GeocoderError:
+#            output.speak(_(u"There are no results for the coordinates in this tweet"))
+        except ValueError:
+            output.speak(_(u"Error decoding coordinates. Try again later."))
+        except KeyError:
+            pass
+        except AttributeError:
+            pass
+
+    def ocr_image(self):
+        tweet = self.get_tweet()
+        media_list = []
+        if hasattr(tweet, "entities") and tweet.entities.get("media") != None:
+            [media_list.append(i) for i in tweet.entities["media"] if i not in media_list]
+        elif hasattr(tweet, "retweeted_status") and tweet.retweeted_status.get("media") != None:
+            [media_list.append(i) for i in tweet.retweeted_status.entities["media"] if i not in media_list]
+        elif hasattr(tweet, "quoted_status") and tweet.quoted_status.entities.get("media") != None:
+            [media_list.append(i) for i in tweet.quoted_status.entities["media"] if i not in media_list]
+        if len(media_list) > 1:
+            image_list = [_(u"Picture {0}").format(i,) for i in range(0, len(media_list))]
+            dialog = dialogs.urlList.urlList(title=_(u"Select the picture"))
+            if dialog.get_response() == widgetUtils.OK:
+                img = media_list[dialog.get_item()]
+            else:
+                return
+        elif len(media_list) == 1:
+            img = media_list[0]
+        else:
+            output.speak(_(u"Invalid buffer"))
+            return
+        if self.session.settings["mysc"]["ocr_language"] != "":
+            ocr_lang = self.session.settings["mysc"]["ocr_language"]
+        else:
+            ocr_lang = ocr.OCRSpace.short_langs.index(tweet.lang)
+            ocr_lang = ocr.OCRSpace.OcrLangs[ocr_lang]
+        api = ocr.OCRSpace.OCRSpaceAPI()
+        try:
+            text = api.OCR_URL(img["media_url"], lang=ocr_lang)
+        except ocr.OCRSpace.APIError as er:
+            output.speak(_(u"Unable to extract text"))
+            return
+        msg = messages.viewTweet(text["ParsedText"], [], False)
