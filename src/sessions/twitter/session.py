@@ -137,8 +137,7 @@ class Session(base.baseSession):
         if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
             try:
                 log.debug("Logging in to twitter...")
-                self.auth = tweepy.OAuth1UserHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
-                self.auth.set_access_token(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
+                self.auth = tweepy.OAuth1UserHandler(consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"])
                 self.twitter = tweepy.API(self.auth)
                 self.twitter_v2 = tweepy.Client(consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"])
                 if verify_credentials == True:

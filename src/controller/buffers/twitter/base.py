@@ -40,9 +40,9 @@ class BaseBuffer(base.Buffer):
         super(BaseBuffer, self).__init__(parent, function, *args, **kwargs)
         log.debug("Initializing buffer %s, account %s" % (name, account,))
         if bufferType != None:
-            self.buffer = getattr(buffers, bufferType)(parent, name)
+            self.buffer = getattr(buffers.twitter, bufferType)(parent, name)
         else:
-            self.buffer = buffers.basePanel(parent, name)
+            self.buffer = buffers.twitter.basePanel(parent, name)
         self.invisible = True
         self.name = name
         self.type = self.buffer.type

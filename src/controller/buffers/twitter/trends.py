@@ -26,7 +26,7 @@ class TrendsBuffer(base.Buffer):
         self.session = sessionObject
         self.account = account
         self.invisible = True
-        self.buffer = buffers.trendsPanel(parent, name)
+        self.buffer = buffers.twitter.trendsPanel(parent, name)
         self.buffer.account = account
         self.type = self.buffer.type
         self.bind_events()
