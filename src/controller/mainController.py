@@ -38,6 +38,7 @@ from mysc.repeating_timer import RepeatingTimer
 from mysc import restart
 from mysc import localization
 from controller.twitter import handler as TwitterHandler
+from controller.mastodon import handler as MastodonHandler
 
 log = logging.getLogger("mainController")
 
@@ -216,6 +217,8 @@ class Controller(object):
         if handler == None:
             if type == "twitter":
                 handler = TwitterHandler.Handler()
+            elif type == "mastodon":
+                handler = MastodonHandler.Handler()
             self.handlers[type]=handler
         return handler
 
@@ -257,8 +260,11 @@ class Controller(object):
             if sessions.sessions[i].is_logged == False:
                 self.create_ignored_session_buffer(sessions.sessions[i])
                 continue
-            if sessions.sessions[i].type == "twitter":
-                handler = self.get_handler(type="twitter")
+            # Valid types currently are twitter and mastodon (Work in progress)
+            # More can be added later.
+            valid_session_types = ["twitter", "mastodon"]
+            if sessions.sessions[i].type in valid_session_types:
+                handler = self.get_handler(type=sessions.sessions[i].type)
                 handler.create_buffers(sessions.sessions[i], controller=self)
         log.debug("Setting updates to buffers every %d seconds..." % (60*config.app["app-settings"]["update_period"],))
         self.update_buffers_function = RepeatingTimer(60*config.app["app-settings"]["update_period"], self.update_buffers)
