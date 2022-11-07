@@ -1,6 +1,16 @@
 # -*- coding: utf-8 -*-
+import logging
+import widgetUtils
+import output
 from pubsub import pub
-from sessions.twitter import utils
+from tweepy.errors import TweepyException, Forbidden
+from mysc import restart
+from sessions.twitter import utils, compose
+from controller import userSelector
+from wxUI import dialogs, commonMessageDialogs
+from . import filters, lists, settings, userActions
+
+log = logging.getLogger("controller.twitter.handler")
 
 class Handler(object):
 
@@ -59,3 +69,133 @@ class Handler(object):
             pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_(u"Search for {}").format(i), parent_tab=searches_position, start=False, kwargs=dict(parent=controller.view.nb, function="search_tweets", name="%s-searchterm" % (i,), sessionObject=session, account=session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=i, include_ext_alt_text=True, tweet_mode="extended"))
         for i in session.settings["other_buffers"]["trending_topic_buffers"]:
             pub.sendMessage("createBuffer", buffer_type="TrendsBuffer", session_type=session.type, buffer_title=_("Trending topics for %s") % (i), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="%s_tt" % (i,), sessionObject=session, account=session.db["user_name"], trendsFor=i, sound="trends_updated.ogg"))
+
+    def filter(self, buffer):
+        # Let's prevent filtering of some buffers (people buffers, direct messages, events and sent items).
+        if (buffer.name == "direct_messages" or buffer.name == "sent_tweets") or buffer.type == "people":
+            output.speak(_("Filters cannot be applied on this buffer"))
+            return
+        new_filter = filters.filter(buffer)
+
+    def manage_filters(self, session):
+        manage_filters = filters.filterManager(session)
+
+    def view_user_lists(self, buffer):
+        if not hasattr(buffer, "get_right_tweet"):
+            return
+        tweet = buffer.get_right_tweet()
+        if buffer.type == "people":
+            users = [tweet.screen_name]
+        elif buffer.type == "dm":
+            users = [buffer.session.get_user(tweet.message_create["sender_id"]).screen_name]
+        else:
+            users = utils.get_all_users(tweet, buffer.session)
+        selector = userSelector.userSelector(users=users, session_id=buffer.session.session_id)
+        user = selector.get_user()
+        if user == None:
+            return
+        l = lists.listsController(buffer.session, user=user)
+
+    def add_to_list(self, controller, buffer):
+        if not hasattr(buffer, "get_right_tweet"):
+            return
+        tweet = buffer.get_right_tweet()
+        if buffer.type == "people":
+            users = [tweet.screen_name]
+        elif buffer.type == "dm":
+            users = [buffer.session.get_user(tweet.message_create["sender_id"]).screen_name]
+        else:
+            users = utils.get_all_users(tweet, buffer.session)
+        selector = userSelector.userSelector(users=users, session_id=buffer.session.session_id)
+        user = selector.get_user()
+        if user == None:
+            return
+        dlg = dialogs.lists.addUserListDialog()
+        dlg.populate_list([compose.compose_list(item) for item in buffer.session.db["lists"]])
+        if dlg.get_response() == widgetUtils.OK:
+            try:
+                list = buffer.session.twitter.add_list_member(list_id=buffer.session.db["lists"][dlg.get_item()].id, screen_name=user)
+                older_list = utils.find_item(buffer.session.db["lists"][dlg.get_item()].id, buffer.session.db["lists"])
+                listBuffer = controller.search_buffer("%s-list" % (buffer.session.db["lists"][dlg.get_item()].name.lower()), buff.session.db["user_name"])
+                if listBuffer != None:
+                    listBuffer.get_user_ids()
+                buffer.session.db["lists"].pop(older_list)
+                buffer.session.db["lists"].append(list)
+            except TweepyException as e:
+                log.exception("error %s" % (str(e)))
+                output.speak("error %s" % (str(e)))
+
+    def remove_from_list(self, controller, buffer):
+        if not hasattr(buffer, "get_right_tweet"):
+            return
+        tweet = buffer.get_right_tweet()
+        if buffer.type == "people":
+            users = [tweet.screen_name]
+        elif buffer.type == "dm":
+            users = [buffer.session.get_user(tweet.message_create["sender_id"]).screen_name]
+        else:
+            users = utils.get_all_users(tweet, buffer.session)
+        selector = userSelector.userSelector(users=users, session_id=buffer.session.session_id)
+        user = selector.get_user()
+        if user == None:
+            return
+        dlg = dialogs.lists.removeUserListDialog()
+        dlg.populate_list([compose.compose_list(item) for item in buffer.session.db["lists"]])
+        if dlg.get_response() == widgetUtils.OK:
+            try:
+                list = buffer.session.twitter.remove_list_member(list_id=buffer.session.db["lists"][dlg.get_item()].id, screen_name=user)
+                older_list = utils.find_item(buffer.session.db["lists"][dlg.get_item()].id, buffer.session.db["lists"])
+                listBuffer = controller.search_buffer("%s-list" % (buffer.session.db["lists"][dlg.get_item()].name.lower()), buffer.session.db["user_name"])
+                if listBuffer != None:
+                    listBuffer.get_user_ids()
+                buffer.session.db["lists"].pop(older_list)
+                buffer.session.db["lists"].append(list)
+            except TweepyException as e:
+                output.speak("error %s" % (str(e)))
+                log.exception("error %s" % (str(e)))
+
+    def list_manager(self, session):
+        return lists.listsController(session=session)
+
+    def account_settings(self, buffer, controller):
+        d = settings.accountSettingsController(buffer, controller)
+        if d.response == widgetUtils.OK:
+            d.save_configuration()
+            if d.needs_restart == True:
+                commonMessageDialogs.needs_restart()
+                buffer.session.settings.write()
+                buffer.session.save_persistent_data()
+                restart.restart_program()
+
+    def follow(self, buffer):
+        if not hasattr(buffer, "get_right_tweet"):
+            return
+        tweet = buffer.get_right_tweet()
+        if buffer.type == "people":
+            users = [tweet.screen_name]
+        elif buffer.type == "dm":
+            users = [buffer.session.get_user(tweet.message_create["sender_id"]).screen_name]
+        else:
+            users = utils.get_all_users(tweet, buffer.session)
+        u = userActions.userActionsController(buffer, users)
+
+    def add_alias(self, buffer):
+        if not hasattr(buffer, "get_right_tweet"):
+            return
+        tweet = buffer.get_right_tweet()
+        if buffer.type == "people":
+            users = [tweet.screen_name]
+        elif buffer.type == "dm":
+            users = [buffer.session.get_user(tweet.message_create["sender_id"]).screen_name]
+        else:
+            users = utils.get_all_users(tweet, buffer.session)
+        dlg = dialogs.userAliasDialogs.addAliasDialog(_("Add an user alias"), users)
+        if dlg.get_response() == widgetUtils.OK:
+            user, alias = dlg.get_user()
+            if user == "" or alias == "":
+                return
+            user_id = buffer.session.get_user_by_screen_name(user)
+            buffer.session.settings["user-aliases"][str(user_id)] = alias
+            buffer.session.settings.write()
+            output.speak(_("Alias has been set correctly for {}.").format(user))
+            pub.sendMessage("alias-added")
