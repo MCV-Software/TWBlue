@@ -1,13 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
 import time
-import platform
-if platform.system() == "Windows":
-    from wxUI import commonMessageDialogs, menus
-    from controller import user
-elif platform.system() == "Linux":
-    from gi.repository import Gtk
-    from gtkUI import dialogs, commonMessageDialogs
-from controller import messages
 import widgetUtils
 import webbrowser
 import output
@@ -16,7 +8,9 @@ import logging
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
+from controller.twitter import user, messages
 from sessions.twitter import compose, templates
+from wxUI import commonMessageDialogs, menus
 from . import base
 
 log = logging.getLogger("controller.buffers.twitter.peopleBuffer")

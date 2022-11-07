@@ -1,14 +1,6 @@
 ﻿# -*- coding: utf-8 -*-
 import time
-import platform
-if platform.system() == "Windows":
-    import wx
-    from wxUI import buffers, dialogs, commonMessageDialogs, menus
-    from controller import user
-elif platform.system() == "Linux":
-    from gi.repository import Gtk
-    from gtkUI import buffers, dialogs, commonMessageDialogs
-from controller import messages
+import wx
 import widgetUtils
 import arrow
 import webbrowser
@@ -25,6 +17,8 @@ from tweepy.errors import TweepyException
 from tweepy.cursor import Cursor
 from pubsub import pub
 from sessions.twitter.long_tweets import twishort, tweets
+from wxUI import buffers, dialogs, commonMessageDialogs, menus
+from controller.twitter import user, messages
 
 log = logging.getLogger("controller.buffers")
 
@@ -309,9 +303,6 @@ class BaseBuffer(base.Buffer):
             self.buffer.list.insert_item(True, *tweet)
         if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
             output.speak(" ".join(tweet[:2]), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
-        #Improve performance on Windows
-#  if platform.system() == "Windows":
-#   call_threaded(utils.is_audio,item)
 
     def bind_events(self):
         log.debug("Binding events...")
@@ -322,7 +313,6 @@ class BaseBuffer(base.Buffer):
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.share_item, self.buffer.retweet)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.send_message, self.buffer.dm)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
-        # Replace for the correct way in other platforms.
         widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
         widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
 
@@ -480,7 +470,7 @@ class BaseBuffer(base.Buffer):
 
     def onFocus(self, *args, **kwargs):
         tweet = self.get_tweet()
-        if platform.system() == "Windows" and self.session.settings["general"]["relative_times"] == True:
+        if self.session.settings["general"]["relative_times"] == True:
             # fix this:
             original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()].created_at, locale="en")
             ts = original_date.humanize(locale=languageHandler.getLanguage())

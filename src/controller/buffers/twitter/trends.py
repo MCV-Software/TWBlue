@@ -1,20 +1,15 @@
 ﻿# -*- coding: utf-8 -*-
 import time
 import platform
-if platform.system() == "Windows":
-    import wx
-    from wxUI import buffers, commonMessageDialogs, menus
-    from controller import user, messages
-elif platform.system() == "Linux":
-    from gi.repository import Gtk
-    from gtkUI import buffers, commonMessageDialogs
-from controller import messages
+import wx
 import widgetUtils
 import output
 import logging
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
+from wxUI import buffers, commonMessageDialogs, menus
+from controller.twitter import user, messages
 from controller.buffers import base
 
 log = logging.getLogger("controller.buffers.twitter.trends")

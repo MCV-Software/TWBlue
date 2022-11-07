@@ -22,16 +22,13 @@ from extra import SoundsTutorial, ocr
 from wxUI import view, dialogs, commonMessageDialogs, sysTrayIcon
 from . import settings
 from keyboard_handler.wx_handler import WXKeyboardHandler
-from . import userActionsController
-from . import trendingTopics
-from . import user
-from . import listsController
-from . import filterController
+# Import specific Twitter controllers.
+# ToDo: this must be delegated to handlers later.
+from .twitter import userActions, trendingTopics, user, lists, filters, messages
 from sessions.twitter import utils, compose
 from sessionmanager import manager, sessionManager
 from controller import buffers
-from . import messages
-from . import userAliasController
+from . import userAlias
 from sessions.twitter  import session as session_
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
@@ -435,11 +432,11 @@ class Controller(object):
         if (page.name == "direct_messages" or page.name == "sent_tweets" or page.name == "events") or page.type == "people":
             output.speak(_(u"Filters cannot be applied on this buffer"))
             return
-        new_filter = filterController.filter(page)
+        new_filter = filters.filter(page)
 
     def manage_filters(self, *args, **kwargs):
         page = self.get_best_buffer()
-        manage_filters = filterController.filterManager(page.session)
+        manage_filters = filters.filterManager(page.session)
 
     def seekLeft(self, *args, **kwargs):
         try:
@@ -490,7 +487,7 @@ class Controller(object):
         user = selector.get_user()
         if user == None:
             return
-        l = listsController.listsController(buff.session, user=user)
+        l = lists.listsController(buff.session, user=user)
 
     def add_to_list(self, *args, **kwargs):
         buff = self.get_best_buffer()
@@ -550,7 +547,7 @@ class Controller(object):
 
     def list_manager(self, *args, **kwargs):
         s = self.get_best_buffer().session
-        l = listsController.listsController(s)
+        l = lists.listsController(s)
 
     def configuration(self, *args, **kwargs):
         """ Opens the global settings dialogue."""
@@ -627,7 +624,7 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users)
+        u = userActions.userActionsController(buff, users)
 
     def unfollow(self, *args, **kwargs):
         buff = self.get_current_buffer()
@@ -639,7 +636,7 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "unfollow")
+        u = userActions.userActionsController(buff, users, "unfollow")
 
     def mute(self, *args, **kwargs):
         buff = self.get_current_buffer()
@@ -651,7 +648,7 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "mute")
+        u = userActions.userActionsController(buff, users, "mute")
 
     def unmute(self, *args, **kwargs):
         buff = self.get_current_buffer()
@@ -663,7 +660,7 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "unmute")
+        u = userActions.userActionsController(buff, users, "unmute")
 
     def block(self, *args, **kwargs):
         buff = self.get_current_buffer()
@@ -675,7 +672,7 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "block")
+        u = userActions.userActionsController(buff, users, "block")
 
     def unblock(self, *args, **kwargs):
         buff = self.get_current_buffer()
@@ -687,7 +684,7 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "unblock")
+        u = userActions.userActionsController(buff, users, "unblock")
 
     def report(self, *args, **kwargs):
         buff = self.get_current_buffer()
@@ -699,7 +696,7 @@ class Controller(object):
             users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
         else:
             users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "report")
+        u = userActions.userActionsController(buff, users, "report")
 
     def add_alias(self, *args, **kwargs):
         buff = self.get_best_buffer()

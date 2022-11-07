@@ -19,7 +19,7 @@ from wxUI.dialogs import configuration
 from wxUI import commonMessageDialogs
 from extra.autocompletionUsers import scan, manage
 from extra.ocr import OCRSpace
-from .editTemplateController import EditTemplate
+from .twitter.templateEditor import EditTemplate
 
 log = logging.getLogger("Settings")
 

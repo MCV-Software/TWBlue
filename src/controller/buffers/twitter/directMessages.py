@@ -1,5 +1,4 @@
 ﻿# -*- coding: utf-8 -*-
-import platform
 import widgetUtils
 import arrow
 import webbrowser
@@ -7,12 +6,12 @@ import output
 import config
 import languageHandler
 import logging
-from controller import messages
 from sessions.twitter import compose, utils, templates
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
 from wxUI import commonMessageDialogs
+from controller.twitter import messages
 from . import base
 
 log = logging.getLogger("controller.buffers.twitter.dmBuffer")
@@ -99,7 +98,7 @@ class DirectMessagesBuffer(base.BaseBuffer):
 
     def onFocus(self, *args, **kwargs):
         tweet = self.get_tweet()
-        if platform.system() == "Windows" and self.session.settings["general"]["relative_times"] == True:
+        if self.session.settings["general"]["relative_times"] == True:
             # fix this:
             original_date = arrow.get(int(tweet.created_timestamp))
             ts = original_date.humanize(locale=languageHandler.getLanguage())
