@@ -11,6 +11,7 @@ reverse_timelines = boolean(default=False)
 persist_size = integer(default=0)
 load_cache_in_memory=boolean(default=True)
 show_screen_names = boolean(default=False)
+buffer_order = list(default=list('home', 'local', 'federated', 'mentions', 'dm', 'sent_dm', 'sent_tweets','favorites','followers','friends','blocks','muted'))
 
 [sound]
 volume = float(default=1.0)
@@ -39,6 +40,10 @@ ocr_language = string(default="")
 [reporting]
 braille_reporting = boolean(default=True)
 speech_reporting = boolean(default=True)
+
+[templates]
+toot = string(default="$display_name, $text $image_descriptions $date. $source")
+person = string(default="$display_name (@$screen_name). $followers followers, $following following, $toots toots. Joined $created_at.")
 
 [filters]
 
