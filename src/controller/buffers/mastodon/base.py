@@ -247,7 +247,7 @@ class BaseBuffer(base.Buffer):
 
     def get_item(self):
         index = self.buffer.list.get_selected()
-        if index > 0 and self.session.db.get(self.name) != None:
+        if index > -1 and self.session.db.get(self.name) != None:
             return self.session.db[self.name][index]
 
     def can_share(self):
