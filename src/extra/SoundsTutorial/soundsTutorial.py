@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from builtins import object
 import platform
 import widgetUtils
 import os
@@ -9,10 +6,7 @@ import paths
 import logging
 log = logging.getLogger("extra.SoundsTutorial.soundsTutorial")
 from . import soundsTutorial_constants
-if platform.system() == "Windows":
-    from . import wx_ui as UI
-elif platform.system() == "Linux":
-    from . import gtk_ui as UI
+from . import wx_ui as UI
 
 class soundsTutorial(object):
     def __init__(self, sessionObject):

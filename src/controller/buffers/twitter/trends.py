@@ -1,7 +1,9 @@
 ﻿# -*- coding: utf-8 -*-
 import time
-import platform
 import wx
+from wxUI import buffers, commonMessageDialogs, menus
+from controller import user, messages
+from controller import messages
 import widgetUtils
 import output
 import logging

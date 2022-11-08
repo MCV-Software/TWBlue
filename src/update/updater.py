@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import application
 from . import update
-import platform
 import logging
 import output
 from requests.exceptions import ConnectionError

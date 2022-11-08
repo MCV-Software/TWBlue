@@ -230,7 +230,7 @@ class Controller(object):
         self.set_systray_icon()
 
     def check_invisible_at_startup(self):
-        # Visibility check. It does only work for windows.
+        # Visibility check.
         if config.app["app-settings"]["hide_gui"] == True:
             self.show_hide()
             self.view.Show()

@@ -471,11 +471,18 @@ class BaseBuffer(base.Buffer):
 
     def onFocus(self, *args, **kwargs):
         tweet = self.get_tweet()
+<<<<<<< HEAD
         if self.session.settings["general"]["relative_times"] == True:
             # fix this:
             original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()].created_at, locale="en")
             ts = original_date.humanize(locale=languageHandler.getLanguage())
             self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
+=======
+        # fix this:
+        original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()].created_at, locale="en")
+        ts = original_date.humanize(locale=languageHandler.getLanguage())
+        self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
+>>>>>>> next-gen
         if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
             self.session.sound.play("audio.ogg")
         if self.session.settings['sound']['indicate_geo'] and utils.is_geocoded(tweet):

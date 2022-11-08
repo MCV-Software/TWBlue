@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import platform
-system = platform.system()
 from . import utils
 import re
 import time
@@ -17,14 +15,11 @@ chars = "abcdefghijklmnopqrstuvwxyz"
 
 def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=None):
     """ It receives a tweet and returns a list with the user, text for the tweet or message, date and the client where user is."""
-    if system == "Windows":
-        original_date = arrow.get(tweet.created_at, locale="en")
-        if relative_times == True:
-            ts = original_date.humanize(locale=languageHandler.curLang[:2])
-        else:
-            ts = original_date.shift(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
+    original_date = arrow.get(tweet.created_at, locale="en")
+    if relative_times == True:
+        ts = original_date.humanize(locale=languageHandler.curLang[:2])
     else:
-        ts = tweet.created_at
+        ts = original_date.shift(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
     if hasattr(tweet, "message"):
         value = "message"
     elif hasattr(tweet, "full_text"):
@@ -58,16 +53,13 @@ def compose_tweet(tweet, db, relative_times, show_screen_names=False, session=No
     return [user+", ", text, ts+", ", source]
 
 def compose_direct_message(item, db, relative_times, show_screen_names=False, session=None):
-    if system == "Windows":
-        # Let's remove the last 3 digits in the timestamp string.
-        # Twitter sends their "epoch" timestamp with 3 digits for milliseconds and arrow doesn't like it.
-        original_date = arrow.get(int(item.created_timestamp))
-        if relative_times == True:
-            ts = original_date.humanize(locale=languageHandler.curLang[:2])
-        else:
-            ts = original_date.shift(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
+    # Let's remove the last 3 digits in the timestamp string.
+    # Twitter sends their "epoch" timestamp with 3 digits for milliseconds and arrow doesn't like it.
+    original_date = arrow.get(int(item.created_timestamp))
+    if relative_times == True:
+        ts = original_date.humanize(locale=languageHandler.curLang[:2])
     else:
-        ts = item.created_timestamp
+        ts = original_date.shift(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
     text = StripChars(item.message_create["message_data"]["text"])
     source = "DM"
     sender = session.get_user(item.message_create["sender_id"])
@@ -125,23 +117,17 @@ def compose_quoted_tweet(quoted_tweet, original_tweet, show_screen_names=False, 
     return quoted_tweet
 
 def compose_followers_list(tweet, db, relative_times=True, show_screen_names=False, session=None):
-    if system == "Windows":
-        original_date = arrow.get(tweet.created_at, locale="en")
-        if relative_times == True:
-            ts = original_date.humanize(locale=languageHandler.curLang[:2])
-        else:
-            ts = original_date.shift(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
+    original_date = arrow.get(tweet.created_at, locale="en")
+    if relative_times == True:
+        ts = original_date.humanize(locale=languageHandler.curLang[:2])
     else:
-        ts = tweet.created_at
+        ts = original_date.shift(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
     if hasattr(tweet, "status"):
-        if system == "Windows":
-            original_date2 = arrow.get(tweet.status.created_at, locale="en")
-            if relative_times:
-                ts2 = original_date2.humanize(locale=languageHandler.curLang[:2])
-            else:
-                ts2 = original_date2.shift(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
+        original_date2 = arrow.get(tweet.status.created_at, locale="en")
+        if relative_times:
+            ts2 = original_date2.humanize(locale=languageHandler.curLang[:2])
         else:
-            ts2 = _("Unavailable")
+            ts2 = original_date2.shift(seconds=db["utc_offset"]).format(_(u"dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
     else:
         ts2 = _("Unavailable")
     return [_(u"%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined Twitter %s") % (tweet.name, tweet.screen_name, tweet.followers_count, tweet.friends_count,  tweet.statuses_count, ts2, ts)]
