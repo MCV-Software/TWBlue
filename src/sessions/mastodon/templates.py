@@ -49,7 +49,10 @@ def render_toot(toot, template, relative_times=False, offset_hours=0):
     created_at = process_date(toot.created_at, relative_times, offset_hours)
     available_data.update(date=created_at)
     # user.
-    available_data.update(display_name=toot.account.display_name, screen_name=toot.account.acct)
+    display_name = toot.account.display_name
+    if display_name == "":
+        display_name = toot.account.username
+    available_data.update(display_name=display_name, screen_name=toot.account.acct)
     # Source client from where tweet was originated.
     source = ""
     if hasattr(toot, "application") and toot.application != None:
@@ -87,7 +90,10 @@ def render_person(user, template, relative_times=True, offset_hours=0):
     $created_at: The date and time that the user account was created on Twitter.
     """
     global person_variables
-    available_data = dict(display_name=user.display_name, screen_name=user.acct, followers=user.followers_count, following=user.following_count, favorites=user.favourites_count, toots=user.statuses_count)
+    display_name = user.display_name
+    if display_name == "":
+        display_name = user.username
+    available_data = dict(display_name=display_name, screen_name=user.acct, followers=user.followers_count, following=user.following_count, favorites=user.favourites_count, toots=user.statuses_count)
     # Nullable values.
     nullables = ["description"]
     for nullable in nullables:
