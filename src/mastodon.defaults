@@ -11,7 +11,7 @@ reverse_timelines = boolean(default=False)
 persist_size = integer(default=0)
 load_cache_in_memory=boolean(default=True)
 show_screen_names = boolean(default=False)
-buffer_order = list(default=list('home', 'local', 'federated', 'mentions', 'dm', 'sent_dm', 'sent_tweets','favorites','followers','friends','blocks','muted'))
+buffer_order = list(default=list('home', 'local', 'federated', 'mentions', 'dm', 'sent_dm', 'sent','favorites','followers','friends','blocks','muted'))
 boost_mode = string(default="ask")
 
 [sound]
