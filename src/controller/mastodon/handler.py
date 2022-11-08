@@ -69,6 +69,6 @@ class Handler(object):
 
     def start_buffer(self, controller, buffer):
         try:
-            buffer.start_stream()
+            buffer.start_stream(play_sound=False)
         except Exception as err:
             log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), buffer.name, buffer.account, buffer.args, buffer.kwargs))
