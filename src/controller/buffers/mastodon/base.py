@@ -11,6 +11,7 @@ import languageHandler
 import logging
 from audio_services import youtube_utils
 from controller.buffers.base import base
+from controller.mastodon import messages
 from sessions.mastodon import compose, utils, templates
 from mysc.thread_utils import call_threaded
 from pubsub import pub
@@ -39,7 +40,7 @@ class BaseBuffer(base.Buffer):
     def get_buffer_name(self):
         """ Get buffer name from a set of different techniques."""
         # firstly let's take the easier buffers.
-        basic_buffers = dict(home_timeline=_("Home"), local_timeline=_("Local"), federated_timeline=_("Federated"), mentions=_(u"Mentions"), direct_messages=_(u"Direct messages"), sent_direct_messages=_(u"Sent direct messages"), sent_tweets=_(u"Sent tweets"), favourites=_(u"Likes"), followers=_(u"Followers"), friends=_(u"Friends"), blocked=_(u"Blocked users"), muted=_(u"Muted users"))
+        basic_buffers = dict(home_timeline=_("Home"), local_timeline=_("Local"), federated_timeline=_("Federated"), mentions=_("Mentions"), direct_messages=_("Direct messages"), sent_direct_messages=_(u"Sent direct messages"), sent_toots=_("Sent toots"), favourites=_("Favorites"), followers=_("Followers"), following=_("Following"), blocked=_(u"Blocked users"), muted=_(u"Muted users"))
         if self.name in list(basic_buffers.keys()):
             return basic_buffers[self.name]
         # Check user timelines
@@ -57,8 +58,14 @@ class BaseBuffer(base.Buffer):
 
     def post_status(self, *args, **kwargs):
         title = _("Toot")
-        caption = _("Write your message here")
-        pass
+        caption = _("Write your toot here")
+        toot = messages.toot(session=self.session, title=title, caption=caption)
+        response = toot.message.ShowModal()
+        if response == wx.ID_OK:
+            toot_data = toot.get_tweet_data()
+            call_threaded(self.session.send_toot, *toot_data)
+        if hasattr(toot.message, "destroy"):
+            toot.message.destroy()
 
     def get_formatted_message(self):
         return self.compose_function(self.get_item(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
@@ -255,8 +262,21 @@ class BaseBuffer(base.Buffer):
         return True
 
     def reply(self, *args, **kwargs):
-        toot = self.get_item()
-        pass
+        item = self.get_item()
+        title = _("Reply to {}").format(item.account.username)
+        caption = _("Write your reply here")
+        users = [user.acct for user in item.mentions if user.id != self.session.db["user_id"]]
+        toot = messages.reply(session=self.session, title=title, caption=caption, users=users)
+        response = toot.message.ShowModal()
+        if response == wx.ID_OK:
+            toot_data = toot.get_tweet_data()
+            users = toot.get_people()
+            if users == "" and item.account.id != self.session.db["user_id"]:
+                users = users +"@{}".format(item.account.acct)
+            call_threaded(self.session.send_toot, item.id, users, *toot_data)
+        if hasattr(toot.message, "destroy"):
+            toot.message.destroy()
+
 
     def send_message(self, *args, **kwargs):
         toot = self.get_item()
@@ -341,6 +361,7 @@ class BaseBuffer(base.Buffer):
 
     def view_item(self):
         toot = self.get_item()
+        print(toot)
         pass
 
     def ocr_image(self):
