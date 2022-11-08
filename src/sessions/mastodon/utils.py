@@ -9,3 +9,12 @@ def html_filter(data):
     f = HTMLFilter()
     f.feed(data)
     return f.text
+
+def find_item(item, listItems):
+    for i in range(0, len(listItems)):
+        if listItems[i].id == item.id:
+            return i
+        # Check also retweets.
+        if item.reblog != None and item.reblog.id == listItems[i].id:
+            return i
+    return None
