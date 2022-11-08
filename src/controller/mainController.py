@@ -286,8 +286,9 @@ class Controller(object):
         for i in sessions.sessions:
             if sessions.sessions[i].session_id == session_id: session = sessions.sessions[i]
         session.login()
-        session.db = dict()
-        self.create_buffers(session, False)
+        handler = self.get_handler(type=session.type)
+        if handler != None and hasattr(handler, "create_buffers"):
+            handler.create_buffers(session=session, controller=self, createAccounts=False)
         self.start_buffers(session)
 
     def create_account_buffer(self, name, session_id):
@@ -1036,7 +1037,9 @@ class Controller(object):
         sm.fill_list()
         sm.show()
         for i in sm.new_sessions:
-            self.create_buffers(sessions.sessions[i])
+            handler = self.get_handler(type=sessions.sessions[i].type)
+            if handler != None and hasattr(handler, "create-buffers"):
+                handler.create_buffers(controller=self, session=sessions.sessions[i])
             call_threaded(self.start_buffers, sessions.sessions[i])
         for i in sm.removed_sessions:
             if sessions.sessions[i].logged == True:
