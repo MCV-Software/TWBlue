@@ -23,3 +23,11 @@ def compose_toot(toot, db, relative_times, show_screen_names):
     else:
         source = ""
     return [user+", ", text, ts+", ", source]
+
+def compose_user(user, db, relative_times=True):
+    original_date = arrow.get(user.created_at)
+    if relative_times:
+        ts = original_date.humanize(locale="es")
+    else:
+        ts = original_date.shift(hours=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m:s"), locale="es")
+    return [_("%s (@%s). %s followers, %s following, %s toots. Joined %s") % (user.display_name, user.acct, user.followers_count, user.following_count,  user.statuses_count, ts)]
