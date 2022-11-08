@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+import logging
 from pubsub import pub
 from sessions.twitter import utils
+
+log = logging.getLogger("controller.mastodon.handler")
 
 class Handler(object):
 
@@ -12,9 +15,13 @@ class Handler(object):
         if createAccounts == True:
             pub.sendMessage("core.create_account", name=session.db["user_name"], session_id=session.session_id)
         root_position =controller.view.search(session.db["user_name"], session.db["user_name"])
-#        for i in session.settings['general']['buffer_order']:
-#            if i == 'home':
-#                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Home"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, function="home_timeline", name="home_timeline", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg", include_ext_alt_text=True, tweet_mode="extended"))
+        for i in session.settings['general']['buffer_order']:
+            if i == 'home':
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Home"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, function="timeline_home", name="home_timeline", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg"))
+            elif i == 'local':
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Local"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, function="timeline_local", name="local_timeline", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg"))
+            elif i == 'federated':
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Federated"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, function="timeline_public", name="federated_timeline", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg"))
 #            elif i == 'mentions':
 #                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Mentions"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, function="mentions_timeline", name="mentions", sessionObject=session, account=session.db["user_name"], sound="mention_received.ogg", include_ext_alt_text=True, tweet_mode="extended"))
 #            elif i == 'dm':
@@ -59,3 +66,9 @@ class Handler(object):
 #            pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_(u"Search for {}").format(i), parent_tab=searches_position, start=False, kwargs=dict(parent=controller.view.nb, function="search_tweets", name="%s-searchterm" % (i,), sessionObject=session, account=session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=i, include_ext_alt_text=True, tweet_mode="extended"))
 #        for i in session.settings["other_buffers"]["trending_topic_buffers"]:
 #            pub.sendMessage("createBuffer", buffer_type="TrendsBuffer", session_type=session.type, buffer_title=_("Trending topics for %s") % (i), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="%s_tt" % (i,), sessionObject=session, account=session.db["user_name"], trendsFor=i, sound="trends_updated.ogg"))
+
+    def start_buffer(self, controller, buffer):
+        try:
+            buffer.start_stream()
+        except Exception as err:
+            log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), buffer.name, buffer.account, buffer.args, buffer.kwargs))
