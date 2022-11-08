@@ -12,6 +12,7 @@ import application
 from pubsub import pub
 from mysc.thread_utils import call_threaded
 from sessions import base
+from sessions.mastodon import utils
 from .wxUI import authorisationDialog
 
 log = logging.getLogger("sessions.mastodonSession")
@@ -90,3 +91,26 @@ class Session(base.baseSession):
 
     def check_streams(self):
         pass
+
+    def order_buffer(self, name, data, ignore_older=True):
+        num = 0
+        last_id = None
+        if self.db.get(name) == None:
+            self.db[name] = []
+        objects = self.db[name]
+        if ignore_older and len(self.db[name]) > 0:
+            if self.settings["general"]["reverse_timelines"] == False:
+                last_id = self.db[name][0].id
+            else:
+                last_id = self.db[name][-1].id
+        for i in data:
+            if ignore_older and last_id != None:
+                if i.id < last_id:
+                    log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i.id))
+                    continue
+            if utils.find_item(i, self.db[name]) == None:
+                if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
+                else: objects.insert(0, i)
+                num = num+1
+        self.db[name] = objects
+        return num
