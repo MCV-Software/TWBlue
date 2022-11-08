@@ -16,6 +16,7 @@ from mysc.thread_utils import call_threaded
 from pubsub import pub
 from extra import ocr
 from wxUI import buffers, dialogs, commonMessageDialogs, menus
+from wxUI.dialogs.mastodon import dialogs as dialogs
 
 log = logging.getLogger("controller.buffers.mastodon.base")
 
@@ -264,13 +265,17 @@ class BaseBuffer(base.Buffer):
     def share_item(self, *args, **kwargs):
         if self.can_share() == False:
             return output.speak(_("This action is not supported on protected accounts."))
-        toot = self.get_right_tweet()
+        toot = self.get_item()
         id = toot.id
-        pass
+        if self.session.settings["general"]["boost_mode"] == "ask":
+            answer = dialogs.boost_question()
+            if answer == True:
+                self._direct_boost(id)
+        else:
+            self._direct_boost(id)
 
-    def _direct_retweet(self, id):
-        item = self.session.api_call(call_name="retweet", _sound="retweet_send.ogg", id=id)
-        pass
+    def _direct_boost(self, id):
+        item = self.session.api_call(call_name="status_reblog", _sound="retweet_send.ogg", id=id)
 
     def onFocus(self, *args, **kwargs):
         toot = self.get_item()

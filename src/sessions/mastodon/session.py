@@ -9,6 +9,7 @@ import config
 import config_utils
 import output
 import application
+from mastodon import MastodonError, MastodonNotFoundError, MastodonUnauthorizedError
 from pubsub import pub
 from mysc.thread_utils import call_threaded
 from sessions import base
@@ -114,3 +115,29 @@ class Session(base.baseSession):
                 num = num+1
         self.db[name] = objects
         return num
+
+    def api_call(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
+        finished = False
+        tries = 0
+        if preexec_message:
+            output.speak(preexec_message, True)
+        while finished==False and tries < 25:
+            try:
+                val = getattr(self.api, call_name)(*args, **kwargs)
+                finished = True
+            except MastodonError as e:
+                output.speak(str(e))
+                val = None
+                if type(e) != MastodonNotFoundError  and type(e) != MastodonUnauthorizedError :
+                    tries = tries+1
+                    time.sleep(5)
+                elif report_failure:
+                    output.speak(_("%s failed.  Reason: %s") % (action, str(e)))
+                finished = True
+#   except:
+#    tries = tries + 1
+#    time.sleep(5)
+        if report_success:
+            output.speak(_("%s succeeded.") % action)
+        if _sound != None: self.sound.play(_sound)
+        return val
