@@ -1038,7 +1038,7 @@ class Controller(object):
         sm.show()
         for i in sm.new_sessions:
             handler = self.get_handler(type=sessions.sessions[i].type)
-            if handler != None and hasattr(handler, "create-buffers"):
+            if handler != None and hasattr(handler, "create_buffers"):
                 handler.create_buffers(controller=self, session=sessions.sessions[i])
             call_threaded(self.start_buffers, sessions.sessions[i])
         for i in sm.removed_sessions:
