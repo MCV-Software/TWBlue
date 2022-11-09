@@ -260,6 +260,9 @@ class BaseBuffer(base.Buffer):
             return self.session.db[self.name][index]
 
     def can_share(self):
+        toot = self.get_item()
+        if toot.visibility == "direct":
+            return False
         return True
 
     def reply(self, *args):
@@ -297,7 +300,7 @@ class BaseBuffer(base.Buffer):
 
     def share_item(self, *args, **kwargs):
         if self.can_share() == False:
-            return output.speak(_("This action is not supported on protected accounts."))
+            return output.speak(_("This action is not supported on conversation toots."))
         toot = self.get_item()
         id = toot.id
         if self.session.settings["general"]["boost_mode"] == "ask":
@@ -320,9 +323,9 @@ class BaseBuffer(base.Buffer):
             self.session.sound.play("audio.ogg")
         if self.session.settings['sound']['indicate_img'] and utils.is_image(toot):
             self.session.sound.play("image.ogg")
-#        can_share = self.can_share()
-#        pub.sendMessage("toggleShare", shareable=can_share)
-#        self.buffer.boost.Enable(can_share)
+        can_share = self.can_share()
+        pub.sendMessage("toggleShare", shareable=can_share)
+        self.buffer.boost.Enable(can_share)
 
     def audio(self, url='', *args, **kwargs):
         if sound.URLPlayer.player.is_playing():
