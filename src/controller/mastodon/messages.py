@@ -5,7 +5,7 @@ from controller.twitter import messages
 
 class toot(messages.tweet):
     def __init__(self, max=500, *args, **kwargs):
-        super(toot, self).__init__(*args, **kwargs)
+        super(toot, self).__init__(max=max, *args, **kwargs)
         if hasattr(self.message, "add_tweet"):
             self.message.add_tweet.SetLabel(_("Add toot"))
 
