@@ -84,8 +84,9 @@ class BaseBuffer(base.Buffer):
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
             count = self.session.settings["general"]["max_toots_per_call"]
             min_id = None
+            # toDo: Implement reverse timelines properly here.
             if self.name in self.session.db and len(self.session.db[self.name]) > 0:
-                min_id = self.session.db[self.name][0].id
+                min_id = self.session.db[self.name][-1].id
             try:
                 results = getattr(self.session.api, self.function)(min_id=min_id, limit=count, *self.args, **self.kwargs)
                 results.reverse()
@@ -120,7 +121,7 @@ class BaseBuffer(base.Buffer):
         else:
             max_id = self.session.db[self.name][-1].id
         try:
-            items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_tweets_per_call"], *self.args, **self.kwargs)
+            items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_toots_per_call"], *self.args, **self.kwargs)
         except Exception as e:
             log.exception("Error %s" % (str(e)))
             return
@@ -216,10 +217,10 @@ class BaseBuffer(base.Buffer):
         log.debug("Binding events...")
         self.buffer.set_focus_function(self.onFocus)
         widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
-#        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.toot)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.toot)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.share_item, self.buffer.boost)
 #        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.send_message, self.buffer.dm)
-#        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
 #        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
 #        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
 
