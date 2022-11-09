@@ -16,8 +16,8 @@ from sessions.mastodon import compose, utils, templates
 from mysc.thread_utils import call_threaded
 from pubsub import pub
 from extra import ocr
-from wxUI import buffers, dialogs, commonMessageDialogs, menus
-from wxUI.dialogs.mastodon import dialogs as dialogs
+from wxUI import buffers, dialogs, commonMessageDialogs
+from wxUI.dialogs.mastodon import dialogs, menus
 
 log = logging.getLogger("controller.buffers.mastodon.base")
 
@@ -71,8 +71,11 @@ class BaseBuffer(base.Buffer):
         return self.compose_function(self.get_item(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
 
     def get_message(self):
-        template = self.session.settings["templates"]["toot"]
         toot = self.get_item()
+        if toot == None:
+            return
+        template = self.session.settings["templates"]["toot"]
+
         t = templates.render_toot(toot, template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
         return t
 
@@ -225,7 +228,25 @@ class BaseBuffer(base.Buffer):
 #        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
 
     def show_menu(self, ev, pos=0, *args, **kwargs):
-        pass
+        if self.buffer.list.get_count() == 0:
+            return
+        menu = menus.base()
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.reply, menuitem=menu.reply)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.boost)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.fav, menuitem=menu.fav)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.unfav, menuitem=menu.unfav)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.url_, menuitem=menu.openUrl)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.audio, menuitem=menu.play)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.destroy_status, menuitem=menu.remove)
+        if hasattr(menu, "openInBrowser"):
+            widgetUtils.connect_event(menu, widgetUtils.MENU, self.open_in_browser, menuitem=menu.openInBrowser)
+        if pos != 0:
+            self.buffer.PopupMenu(menu, pos)
+        else:
+            self.buffer.PopupMenu(menu, ev.GetPosition())
 
     def view(self, *args, **kwargs):
         pub.sendMessage("execute-action", action="view_item")
@@ -356,7 +377,22 @@ class BaseBuffer(base.Buffer):
     def url(self, url='', announce=True, *args, **kwargs):
         if url == '':
             toot = self.get_item()
-            pass
+            if toot.reblog != None:
+                urls = utils.find_urls(toot.reblog.content)
+            else:
+                urls = utils.find_urls(toot.reblog.content)
+            if len(urls) == 1:
+                url=urls[0]
+            elif len(urls) > 1:
+                urls_list = dialogs.urlList.urlList()
+                urls_list.populate_list(urls)
+                if urls_list.get_response() == widgetUtils.OK:
+                    url=urls_list.get_string()
+                if hasattr(urls_list, "destroy"): urls_list.destroy()
+            if url != '':
+                if announce:
+                    output.speak(_(u"Opening URL..."), True)
+                webbrowser.open_new_tab(url)
 
     def clear_list(self):
         dlg = commonMessageDialogs.clear_list()
@@ -374,11 +410,13 @@ class BaseBuffer(base.Buffer):
 
     def get_item_url(self):
         toot = self.get_item()
+        if toot.reblog != None:
+            return toot.reblog.url
         return toot.url
 
     def open_in_browser(self, *args, **kwargs):
         url = self.get_item_url()
-        output.speak(_(u"Opening item in web browser..."))
+        output.speak(_("Opening item in web browser..."))
         webbrowser.open(url)
 
     def add_to_favorites(self):
