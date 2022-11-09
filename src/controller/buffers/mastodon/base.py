@@ -63,7 +63,7 @@ class BaseBuffer(base.Buffer):
         response = toot.message.ShowModal()
         if response == wx.ID_OK:
             toot_data = toot.get_tweet_data()
-            call_threaded(self.session.send_toot, toots=toot_data)
+            call_threaded(self.session.send_toot, toots=toot_data, **kwargs)
         if hasattr(toot.message, "destroy"):
             toot.message.destroy()
 
@@ -262,7 +262,7 @@ class BaseBuffer(base.Buffer):
     def can_share(self):
         return True
 
-    def reply(self, *args, **kwargs):
+    def reply(self, *args):
         item = self.get_item()
         title = _("Reply to {}").format(item.account.username)
         caption = _("Write your reply here")
@@ -278,10 +278,22 @@ class BaseBuffer(base.Buffer):
         if hasattr(toot.message, "destroy"):
             toot.message.destroy()
 
-
+    # conversations are replies with different wording and privacy settings.
     def send_message(self, *args, **kwargs):
-        toot = self.get_item()
-        pass
+        item = self.get_item()
+        title = _("Conversation with {}").format(item.account.username)
+        caption = _("Write your message here")
+        users = [user.acct for user in item.mentions if user.id != self.session.db["user_id"]]
+        toot = messages.reply(session=self.session, title=title, caption=caption, users=users)
+        response = toot.message.ShowModal()
+        if response == wx.ID_OK:
+            toot_data = toot.get_tweet_data()
+            users = toot.get_people()
+            if item.account.acct not in users and item.account.id != self.session.db["user_id"]:
+                users = "@{} {}".format(item.account.acct, users)
+            call_threaded(self.session.send_toot, users=users, toots=toot_data, visibility="direct")
+        if hasattr(toot.message, "destroy"):
+            toot.message.destroy()
 
     def share_item(self, *args, **kwargs):
         if self.can_share() == False:
