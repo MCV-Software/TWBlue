@@ -28,6 +28,17 @@ def process_text(toot):
 #    text = utils.clean_mentions(utils.StripChars(text))
         return utils.html_filter(toot.content)
 
+def process_image_descriptions(media_attachments):
+    """ Attempt to extract information for image descriptions. """
+    image_descriptions = []
+    for media in media_attachments:
+        if media.get("description") != None:
+            image_descriptions.append(media.get("description"))
+    idescriptions = ""
+    for image in image_descriptions:
+        idescriptions += _("Image description: {}").format(image)
+    return idescriptions
+
 def remove_unneeded_variables(template, variables):
     for variable in variables:
         template = re.sub("\$"+variable, "", template)
@@ -64,14 +75,12 @@ def render_toot(toot, template, relative_times=False, offset_hours=0):
     available_data.update(lang=toot.language, text=text)
     # process image descriptions
     image_descriptions = ""
-#    if hasattr(tweet, "quoted_status") and hasattr(tweet.quoted_status, "extended_entities"):
-#        image_descriptions = process_image_descriptions(tweet.quoted_status.extended_entities)
-#    elif hasattr(tweet, "retweeted_status") and hasattr(tweet.retweeted_status, "quoted_status") and hasattr(tweet.retweeted_status.quoted_status, "extended_entities"):
-#        image_descriptions = process_image_descriptions(tweet.retweeted_status.quoted_status.extended_entities)
-#    elif hasattr(tweet, "extended_entities"):
-#        image_descriptions = process_image_descriptions(tweet.extended_entities)
-#    if image_descriptions != "":
-#        available_data.update(image_descriptions=image_descriptions)
+    if toot.reblog != None:
+        image_descriptions = process_image_descriptions(toot.reblog.media_attachments)
+    else:
+        image_descriptions = process_image_descriptions(toot.media_attachments)
+    if image_descriptions != "":
+        available_data.update(image_descriptions=image_descriptions)
     result = Template(_(template)).safe_substitute(**available_data)
     result = remove_unneeded_variables(result, toot_variables)
     return result
