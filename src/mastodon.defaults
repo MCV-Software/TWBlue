@@ -20,6 +20,8 @@ input_device = string(default="Default")
 output_device = string(default="Default")
 session_mute = boolean(default=False)
 current_soundpack = string(default="default")
+indicate_audio = boolean(default=True)
+indicate_img = boolean(default=True)
 
 [other_buffers]
 timelines = list(default=list())

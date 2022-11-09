@@ -304,13 +304,13 @@ class BaseBuffer(base.Buffer):
             original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()].created_at)
             ts = original_date.humanize(locale=languageHandler.getLanguage())
             self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
-#        if self.session.settings['sound']['indicate_audio'] and utils.is_audio(toot):
-#            self.session.sound.play("audio.ogg")
-#        if self.session.settings['sound']['indicate_img'] and utils.is_media(toot):
-#            self.session.sound.play("image.ogg")
+        if self.session.settings['sound']['indicate_audio'] and utils.is_audio_or_video(toot):
+            self.session.sound.play("audio.ogg")
+        if self.session.settings['sound']['indicate_img'] and utils.is_image(toot):
+            self.session.sound.play("image.ogg")
 #        can_share = self.can_share()
 #        pub.sendMessage("toggleShare", shareable=can_share)
-#        self.buffer.retweet.Enable(can_share)
+#        self.buffer.boost.Enable(can_share)
 
     def audio(self, url='', *args, **kwargs):
         if sound.URLPlayer.player.is_playing():

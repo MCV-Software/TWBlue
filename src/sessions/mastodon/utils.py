@@ -18,3 +18,19 @@ def find_item(item, listItems):
         if item.reblog != None and item.reblog.id == listItems[i].id:
             return i
     return None
+
+def is_audio_or_video(toot):
+    if toot.reblog != None:
+        return is_audio_or_video(toot.reblog)
+    # Checks firstly for Mastodon native videos and audios.
+    for media in toot.media_attachments:
+        if media["type"] == "video" or media["type"] == "audio":
+            return True
+
+def is_image(toot):
+    if toot.reblog != None:
+        return is_audio_or_video(toot.reblog)
+    # Checks firstly for Mastodon native videos and audios.
+    for media in toot.media_attachments:
+        if media["type"] == "gifv" or media["type"] == "image":
+            return True
