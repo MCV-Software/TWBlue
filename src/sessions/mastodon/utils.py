@@ -34,3 +34,10 @@ def is_image(toot):
     for media in toot.media_attachments:
         if media["type"] == "gifv" or media["type"] == "image":
             return True
+
+def get_media_urls(toot):
+    urls = []
+    for media in toot.media_attachments:
+        if media.get("type") == "audio" or media.get("type") == "video":
+            urls.append(media.get("url"))
+    return urls

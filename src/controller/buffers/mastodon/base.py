@@ -335,10 +335,23 @@ class BaseBuffer(base.Buffer):
     def audio(self, url='', *args, **kwargs):
         if sound.URLPlayer.player.is_playing():
             return sound.URLPlayer.stop_audio()
-        toot = self.get_item()
-        if toot == None:
+        item = self.get_item()
+        if item == None:
             return
-        pass
+        urls = utils.get_media_urls(item)
+        if len(urls) == 1:
+            url=urls[0]
+        elif len(urls) > 1:
+            urls_list = dialogs.urlList.urlList()
+            urls_list.populate_list(urls)
+            if urls_list.get_response() == widgetUtils.OK:
+                url=urls_list.get_string()
+            if hasattr(urls_list, "destroy"): urls_list.destroy()
+        if url != '':
+            #   try:
+            sound.URLPlayer.play(url, self.session.settings["sound"]["volume"])
+#   except:
+#    log.error("Exception while executing audio method.")
 
     def url(self, url='', announce=True, *args, **kwargs):
         if url == '':
