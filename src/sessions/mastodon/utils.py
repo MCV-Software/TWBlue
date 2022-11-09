@@ -1,4 +1,7 @@
+import re
 from html.parser import HTMLParser
+
+url_re = re.compile("(?:\w+://|www\.)[^ ,.?!#%=+][^ \\n\\t]*")
 
 class HTMLFilter(HTMLParser):
     text = ""
@@ -41,3 +44,6 @@ def get_media_urls(toot):
         if media.get("type") == "audio" or media.get("type") == "video":
             urls.append(media.get("url"))
     return urls
+
+def find_urls(text):
+    return  url_re.findall(html_filter(text))

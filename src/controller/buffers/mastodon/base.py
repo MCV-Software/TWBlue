@@ -222,10 +222,10 @@ class BaseBuffer(base.Buffer):
         widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.toot)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.share_item, self.buffer.boost)
-#        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.send_message, self.buffer.dm)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.send_message, self.buffer.dm)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
-#        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
-#        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
+        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
+        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
 
     def show_menu(self, ev, pos=0, *args, **kwargs):
         if self.buffer.list.get_count() == 0:
@@ -246,7 +246,7 @@ class BaseBuffer(base.Buffer):
         if pos != 0:
             self.buffer.PopupMenu(menu, pos)
         else:
-            self.buffer.PopupMenu(menu, ev.GetPosition())
+            self.buffer.PopupMenu(menu, self.buffer.list.list.GetPosition())
 
     def view(self, *args, **kwargs):
         pub.sendMessage("execute-action", action="view_item")
@@ -402,7 +402,20 @@ class BaseBuffer(base.Buffer):
 
     def destroy_status(self, *args, **kwargs):
         index = self.buffer.list.get_selected()
-        pass
+        item = self.session.db[self.name][index]
+        if item.account.id != self.session.db["user_id"] or item.reblog != None:
+            output.speak(_("You can delete only your own toots."))
+            return
+        answer = dialogs.delete_toot_dialog()
+        if answer == True:
+            items = self.session.db[self.name]
+            try:
+                self.session.api.status_delete(id=item.id)
+                items.pop(index)
+                self.buffer.list.remove_item(index)
+            except Exception as e:
+                self.session.sound.play("error.ogg")
+            self.session.db[self.name] = items
 
     def user_details(self):
         item = self.get_item()
