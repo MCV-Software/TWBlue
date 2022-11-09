@@ -267,8 +267,13 @@ class BaseBuffer(base.Buffer):
 
     def reply(self, *args):
         item = self.get_item()
-        title = _("Reply to {}").format(item.account.username)
-        caption = _("Write your reply here")
+        visibility = item.visibility
+        if visibility == "direct":
+            title = _("Conversation with {}").format(item.account.username)
+            caption = _("Write your message here")
+        else:
+            title = _("Reply to {}").format(item.account.username)
+            caption = _("Write your reply here")
         users = [user.acct for user in item.mentions if user.id != self.session.db["user_id"]]
         toot = messages.reply(session=self.session, title=title, caption=caption, users=users)
         response = toot.message.ShowModal()
@@ -277,7 +282,7 @@ class BaseBuffer(base.Buffer):
             users = toot.get_people()
             if item.account.acct not in users and item.account.id != self.session.db["user_id"]:
                 users = "@{} {}".format(item.account.acct, users)
-            call_threaded(self.session.send_toot, reply_to=item.id, users=users, toots=toot_data)
+            call_threaded(self.session.send_toot, reply_to=item.id, users=users, toots=toot_data, visibility=visibility)
         if hasattr(toot.message, "destroy"):
             toot.message.destroy()
 
