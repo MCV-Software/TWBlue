@@ -93,7 +93,7 @@ class Session(base.baseSession):
     def check_streams(self):
         pass
 
-    def order_buffer(self, name, data, ignore_older=True):
+    def order_buffer(self, name, data, ignore_older=False):
         num = 0
         last_id = None
         if self.db.get(name) == None:

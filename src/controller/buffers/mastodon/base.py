@@ -88,7 +88,7 @@ class BaseBuffer(base.Buffer):
             count = self.session.settings["general"]["max_toots_per_call"]
             min_id = None
             # toDo: Implement reverse timelines properly here.
-            if self.name in self.session.db and len(self.session.db[self.name]) > 0:
+            if self.name != "favorites" and self.name in self.session.db and len(self.session.db[self.name]) > 0:
                 min_id = self.session.db[self.name][-1].id
             try:
                 results = getattr(self.session.api, self.function)(min_id=min_id, limit=count, *self.args, **self.kwargs)
@@ -433,16 +433,26 @@ class BaseBuffer(base.Buffer):
         webbrowser.open(url)
 
     def add_to_favorites(self):
-        id = self.get_item().id
-        pass
+        item = self.get_item()
+        if item.reblog != None:
+            item = item.reblog
+        call_threaded(self.session.api_call, call_name="status_favourite", preexec_message=_("Adding to favorites..."), _sound="favourite.ogg", id=item.id)
 
     def remove_from_favorites(self):
-        id = self.get_item().id
-        pass
+        item = self.get_item()
+        if item.reblog != None:
+            item = item.reblog
+        call_threaded(self.session.api_call, call_name="status_unfavourite", preexec_message=_("Removing from favorites..."), _sound="favourite.ogg", id=item.id)
 
     def toggle_favorite(self):
-        id = self.get_toot().id
-        pass
+        item = self.get_item()
+        if item.reblog != None:
+            item = item.reblog
+        item = self.session.api.status(item.id)
+        if item.favourited == False:
+            call_threaded(self.session.api_call, call_name="status_favourite", preexec_message=_("Adding to favorites..."), _sound="favourite.ogg", id=item.id)
+        else:
+            call_threaded(self.session.api_call, call_name="status_unfavourite", preexec_message=_("Removing from favorites..."), _sound="favourite.ogg", id=item.id)
 
     def view_item(self):
         toot = self.get_item()
