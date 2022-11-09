@@ -63,7 +63,7 @@ class BaseBuffer(base.Buffer):
         response = toot.message.ShowModal()
         if response == wx.ID_OK:
             toot_data = toot.get_tweet_data()
-            call_threaded(self.session.send_toot, *toot_data)
+            call_threaded(self.session.send_toot, toots=toot_data)
         if hasattr(toot.message, "destroy"):
             toot.message.destroy()
 
@@ -272,9 +272,9 @@ class BaseBuffer(base.Buffer):
         if response == wx.ID_OK:
             toot_data = toot.get_tweet_data()
             users = toot.get_people()
-            if users == "" and item.account.id != self.session.db["user_id"]:
-                users = users +"@{}".format(item.account.acct)
-            call_threaded(self.session.send_toot, item.id, users, *toot_data)
+            if item.account.acct not in users and item.account.id != self.session.db["user_id"]:
+                users = "@{} {}".format(item.account.acct, users)
+            call_threaded(self.session.send_toot, reply_to=item.id, users=users, toots=toot_data)
         if hasattr(toot.message, "destroy"):
             toot.message.destroy()
 
