@@ -458,7 +458,7 @@ class BaseBuffer(base.Buffer):
     def view_item(self):
         toot = self.get_item()
         print(toot)
-        pass
+        msg = messages.viewToot(toot, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url())
 
     def ocr_image(self):
         toot = self.get_item()
