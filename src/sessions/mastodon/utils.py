@@ -1,12 +1,18 @@
 import re
 from html.parser import HTMLParser
 
-url_re = re.compile("(?:\w+://|www\.)[^ ,.?!#%=+][^ \\n\\t]*")
+url_re = re.compile('<a\s*href=[\'|"](.*?)[\'"].*?>')
 
 class HTMLFilter(HTMLParser):
     text = ""
     def handle_data(self, data):
         self.text += data
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "br":
+            self.text = self.text+"\n"
+        elif tag == "p":
+            self.text = self.text+"\n\n"
 
 def html_filter(data):
     f = HTMLFilter()
@@ -45,5 +51,11 @@ def get_media_urls(toot):
             urls.append(media.get("url"))
     return urls
 
-def find_urls(text):
-    return  url_re.findall(html_filter(text))
+def find_urls(toot, include_tags=False):
+    urls = url_re.findall(toot.content)
+    if include_tags == False:
+        for tag in toot.tags:
+            for url in urls[::]:
+                if url.lower().endswith("/tags/"+tag["name"]):
+                    urls.remove(url)
+    return urls

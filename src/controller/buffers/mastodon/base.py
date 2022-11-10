@@ -17,7 +17,8 @@ from mysc.thread_utils import call_threaded
 from pubsub import pub
 from extra import ocr
 from wxUI import buffers, dialogs, commonMessageDialogs
-from wxUI.dialogs.mastodon import dialogs, menus
+from wxUI.dialogs.mastodon import menus
+from wxUI.dialogs.mastodon import dialogs as mastodon_dialogs
 
 log = logging.getLogger("controller.buffers.mastodon.base")
 
@@ -330,7 +331,7 @@ class BaseBuffer(base.Buffer):
         toot = self.get_item()
         id = toot.id
         if self.session.settings["general"]["boost_mode"] == "ask":
-            answer = dialogs.boost_question()
+            answer = mastodon_dialogs.boost_question()
             if answer == True:
                 self._direct_boost(id)
         else:
@@ -378,9 +379,9 @@ class BaseBuffer(base.Buffer):
         if url == '':
             toot = self.get_item()
             if toot.reblog != None:
-                urls = utils.find_urls(toot.reblog.content)
+                urls = utils.find_urls(toot.REBLOG)
             else:
-                urls = utils.find_urls(toot.reblog.content)
+                urls = utils.find_urls(toot)
             if len(urls) == 1:
                 url=urls[0]
             elif len(urls) > 1:
@@ -406,7 +407,7 @@ class BaseBuffer(base.Buffer):
         if item.account.id != self.session.db["user_id"] or item.reblog != None:
             output.speak(_("You can delete only your own toots."))
             return
-        answer = dialogs.delete_toot_dialog()
+        answer = mastodon_dialogs.delete_toot_dialog()
         if answer == True:
             items = self.session.db[self.name]
             try:
