@@ -379,7 +379,7 @@ class BaseBuffer(base.Buffer):
         if url == '':
             toot = self.get_item()
             if toot.reblog != None:
-                urls = utils.find_urls(toot.REBLOG)
+                urls = utils.find_urls(toot.reblog)
             else:
                 urls = utils.find_urls(toot)
             if len(urls) == 1:

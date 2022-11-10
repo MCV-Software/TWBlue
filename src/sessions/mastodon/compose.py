@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import arrow
-from .  import utils
+from .  import utils, templates
 
 def compose_toot(toot, db, relative_times, show_screen_names):
     if show_screen_names == False:
@@ -15,9 +15,9 @@ def compose_toot(toot, db, relative_times, show_screen_names):
     else:
         ts = original_date.shift(hours=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m:s"), locale="es")
     if toot.reblog != None:
-        text = _("Boosted from @{}: {}").format(toot.reblog.account.acct, utils.html_filter(toot.reblog.content))
+        text = _("Boosted from @{}: {}").format(toot.reblog.account.acct, templates.process_text(toot.reblog))
     else:
-        text = utils.html_filter(toot.content)
+        text = templates.process_text(toot)
     source = toot.get("application", "")
     # "" means remote user, None for legacy apps so we should cover both sides.
     if source != None and source != "":

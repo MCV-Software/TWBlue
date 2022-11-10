@@ -44,7 +44,7 @@ braille_reporting = boolean(default=True)
 speech_reporting = boolean(default=True)
 
 [templates]
-toot = string(default="$display_name, $text $image_descriptions $date. $source")
+toot = string(default="$display_name, $safe_text $image_descriptions $date. $source")
 person = string(default="$display_name (@$screen_name). $followers followers, $following following, $toots toots. Joined $created_at.")
 
 [filters]

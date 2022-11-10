@@ -8,7 +8,8 @@ from . import utils
 # Define variables that would be available for all template objects.
 # This will be used for the edit template dialog.
 # Available variables for toot objects.
-toot_variables = ["date", "display_name", "screen_name", "source", "lang", "text", "image_descriptions"]
+# safe_text will be the content warning in case a toot contains one, text will always be the full text, no matter if has a content warning or not.
+toot_variables = ["date", "display_name", "screen_name", "source", "lang", "safe_text", "text", "image_descriptions"]
 person_variables = ["display_name", "screen_name", "description", "followers", "following", "favorites", "toots", "created_at"]
 
 # Default, translatable templates.
@@ -24,9 +25,11 @@ def process_date(field, relative_times=True, offset_hours=0):
         ts = original_date.shift(hours=offset_hours).format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
     return ts
 
-def process_text(toot):
+def process_text(toot, safe=True):
 #    text = utils.clean_mentions(utils.StripChars(text))
-        return utils.html_filter(toot.content)
+    if safe == True and toot.sensitive == True and toot.spoiler_text != "":
+        return _("Content warning: {}").format(toot.spoiler_text)
+    return utils.html_filter(toot.content)
 
 def process_image_descriptions(media_attachments):
     """ Attempt to extract information for image descriptions. """
@@ -52,7 +55,8 @@ def render_toot(toot, template, relative_times=False, offset_hours=0):
     $screen_name: User screen name, this is the same name used to reference the user in Twitter.
     $ source: Source client from where the current tweet was sent.
     $lang: Two letter code for the automatically detected language for the tweet. This detection is performed by Twitter.
-    $text: Tweet text.
+    $safe_text: Safe text to display. If a content warning is applied in toots, display those instead of the whole toot.
+    $text: Toot text. This always displays the full text, even if there is a content warning present.
     $image_descriptions: Information regarding image descriptions added by twitter users.
     """
     global toot_variables
@@ -69,10 +73,12 @@ def render_toot(toot, template, relative_times=False, offset_hours=0):
     if hasattr(toot, "application") and toot.application != None:
         available_data.update(source=toot.application.get("name"))
     if toot.reblog != None:
-        text = _("Boosted from @{}: {}").format(toot.reblog.account.acct, process_text(toot.reblog), )
+        text = _("Boosted from @{}: {}").format(toot.reblog.account.acct, process_text(toot.reblog, safe=False), )
+        safe_text = _("Boosted from @{}: {}").format(toot.reblog.account.acct, process_text(toot.reblog), )
     else:
-        text = process_text(toot)
-    available_data.update(lang=toot.language, text=text)
+        text = process_text(toot, safe=False)
+        safe_text = process_text(toot)
+    available_data.update(lang=toot.language, text=text, safe_text=safe_text)
     # process image descriptions
     image_descriptions = ""
     if toot.reblog != None:
