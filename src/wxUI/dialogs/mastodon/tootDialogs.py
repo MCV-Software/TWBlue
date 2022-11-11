@@ -9,6 +9,7 @@ class Toot(wx.Dialog):
         toot_label = wx.StaticText(self, wx.ID_ANY, caption)
         toot_sizer.Add(toot_label, 0, 0, 0)
         self.text = wx.TextCtrl(self, wx.ID_ANY, text, style=wx.TE_MULTILINE)
+        self.Bind(wx.EVT_CHAR_HOOK, self.handle_keys, self.text)
         self.text.SetMinSize((350, -1))
         toot_sizer.Add(self.text, 0, 0, 0)
         lists_sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -82,6 +83,14 @@ class Toot(wx.Dialog):
         main_sizer.Fit(self)
         self.SetEscapeId(self.close.GetId())
         self.Layout()
+
+    def handle_keys(self, event: wx.Event, *args, **kwargs) -> None:
+        """ Allows to react to certain keyboard events from the text control. """
+        shift=event.ShiftDown()
+        if event.GetKeyCode() == wx.WXK_RETURN and shift==False and hasattr(self,'send'):
+            self.EndModal(wx.ID_OK)
+        else:
+            event.Skip()
 
     def on_sensitivity_changed(self, *args, **kwargs):
         self.spoiler.Enable(self.sensitive.GetValue())
