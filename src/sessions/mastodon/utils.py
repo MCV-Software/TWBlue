@@ -11,8 +11,6 @@ class HTMLFilter(HTMLParser):
     def handle_starttag(self, tag, attrs):
         if tag == "br":
             self.text = self.text+"\n"
-        elif tag == "p":
-            self.text = self.text+"\n\n"
 
 def html_filter(data):
     f = HTMLFilter()
