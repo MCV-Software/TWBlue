@@ -41,7 +41,7 @@ class BaseBuffer(base.Buffer):
     def get_buffer_name(self):
         """ Get buffer name from a set of different techniques."""
         # firstly let's take the easier buffers.
-        basic_buffers = dict(home_timeline=_("Home"), local_timeline=_("Local"), federated_timeline=_("Federated"), mentions=_("Mentions"), direct_messages=_("Direct messages"), sent_direct_messages=_(u"Sent direct messages"), sent_toots=_("Sent toots"), favourites=_("Favorites"), followers=_("Followers"), following=_("Following"), blocked=_(u"Blocked users"), muted=_(u"Muted users"))
+        basic_buffers = dict(home_timeline=_("Home"), local_timeline=_("Local"), federated_timeline=_("Federated"), mentions=_("Mentions"), bookmarks=_("Bookmarks"), conversations=_("Conversations"),  sent_toots=_("Sent toots"), favourites=_("Favorites"), followers=_("Followers"), following=_("Following"), blocked=_(u"Blocked users"), muted=_(u"Muted users"))
         if self.name in list(basic_buffers.keys()):
             return basic_buffers[self.name]
         # Check user timelines
@@ -89,7 +89,7 @@ class BaseBuffer(base.Buffer):
             count = self.session.settings["general"]["max_toots_per_call"]
             min_id = None
             # toDo: Implement reverse timelines properly here.
-            if self.name != "favorites" and self.name in self.session.db and len(self.session.db[self.name]) > 0:
+            if (self.name != "favorites" and self.name != "bookmarks") and self.name in self.session.db and len(self.session.db[self.name]) > 0:
                 min_id = self.session.db[self.name][-1].id
             try:
                 results = getattr(self.session.api, self.function)(min_id=min_id, limit=count, *self.args, **self.kwargs)
