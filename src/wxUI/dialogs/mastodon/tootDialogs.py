@@ -48,6 +48,17 @@ class Toot(wx.Dialog):
         self.visibility.SetSelection(0)
         visibility_sizer.Add(self.visibility, 0, 0, 0)
         self.add = wx.Button(self, wx.ID_ANY, _("A&dd"))
+        self.sensitive = wx.CheckBox(self, wx.ID_ANY, _("Sensitive content"))
+        self.sensitive.SetValue(False)
+        self.sensitive.Bind(wx.EVT_CHECKBOX, self.on_sensitivity_changed)
+        main_sizer.Add(self.sensitive, 0, wx.ALL, 5)
+        spoiler_box = wx.BoxSizer(wx.HORIZONTAL)
+        spoiler_label = wx.StaticText(self, wx.ID_ANY, _("Content warning"))
+        self.spoiler = wx.TextCtrl(self, wx.ID_ANY)
+        self.spoiler.Enable(False)
+        spoiler_box.Add(spoiler_label, 0, wx.ALL, 5)
+        spoiler_box.Add(self.spoiler, 0, wx.ALL, 10)
+        main_sizer.Add(spoiler_box, 0, wx.ALL, 5)
         toot_actions_sizer.Add(self.add, 0, 0, 0)
         self.add_toot = wx.Button(self, wx.ID_ANY, _("Add t&oot"))
         toot_actions_sizer.Add(self.add_toot, 0, 0, 0)
@@ -71,6 +82,9 @@ class Toot(wx.Dialog):
         main_sizer.Fit(self)
         self.SetEscapeId(self.close.GetId())
         self.Layout()
+
+    def on_sensitivity_changed(self, *args, **kwargs):
+        self.spoiler.Enable(self.sensitive.GetValue())
 
     def set_title(self, chars):
         self.SetTitle(_("Toot - {} characters").format(chars))

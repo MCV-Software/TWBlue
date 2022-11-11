@@ -32,7 +32,9 @@ class toot(messages.basicTweet):
     def add_toot(self, event, update_gui=True, *args, **kwargs):
         text = self.message.text.GetValue()
         attachments = self.attachments[::]
-        tootdata = dict(text=text, attachments=attachments)
+        tootdata = dict(text=text, attachments=attachments, sensitive=self.message.sensitive.GetValue(), spoiler_text=None)
+        if tootdata.get("sensitive") == True:
+            tootdata.update(spoiler_text=self.message.spoiler.GetValue())
         self.thread.append(tootdata)
         self.attachments = []
         if update_gui:

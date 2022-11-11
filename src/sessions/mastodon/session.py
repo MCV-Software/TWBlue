@@ -148,7 +148,7 @@ class Session(base.baseSession):
         for obj in toots:
             text = obj.get("text")
             if len(obj["attachments"]) == 0:
-                item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility)
+                item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
                 if item != None:
                     in_reply_to_id = item["id"]
             else:
@@ -160,6 +160,6 @@ class Session(base.baseSession):
                     for i in obj["attachments"]:
                         img = self.api_call("media_post", media_file=i["file"], description=i["description"])
                         media_ids.append(img.id)
-                item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll)
+                item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
                 if item != None:
                     in_reply_to_id = item["id"]
