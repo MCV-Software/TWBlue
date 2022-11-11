@@ -35,11 +35,11 @@ def process_image_descriptions(media_attachments):
     """ Attempt to extract information for image descriptions. """
     image_descriptions = []
     for media in media_attachments:
-        if media.get("description") != None:
+        if media.get("description", "") != "":
             image_descriptions.append(media.get("description"))
     idescriptions = ""
     for image in image_descriptions:
-        idescriptions += _("Image description: {}").format(image)
+        idescriptions = idescriptions + _("Image description: {}").format(image) + " "
     return idescriptions
 
 def remove_unneeded_variables(template, variables):
