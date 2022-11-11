@@ -146,17 +146,20 @@ class Session(base.baseSession):
         """ Convenience function to send a thread. """
         in_reply_to_id = reply_to
         for obj in toots:
-            if users != None:
-                text = users+obj.get("text")
-            else:
-                text = obj.get("text")
+            text = obj.get("text")
             if len(obj["attachments"]) == 0:
                 item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility)
-                in_reply_to_id = item["id"]
+                if item != None:
+                    in_reply_to_id = item["id"]
             else:
                 media_ids = []
-                for i in obj["attachments"]:
-                    img = self.api_call("media_post", media_file=i["file"], description=i["description"])
-                    media_ids.append(img.id)
-                item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility)
-                in_reply_to_id = item["id"]
+                poll = None
+                if len(obj["attachments"]) == 1 and obj["attachments"][0]["type"] == "poll":
+                    poll = self.api.make_poll(options=obj["attachments"][0]["options"], expires_in=obj["attachments"][0]["expires_in"], multiple=obj["attachments"][0]["multiple"], hide_totals=obj["attachments"][0]["hide_totals"])
+                else:
+                    for i in obj["attachments"]:
+                        img = self.api_call("media_post", media_file=i["file"], description=i["description"])
+                        media_ids.append(img.id)
+                item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll)
+                if item != None:
+                    in_reply_to_id = item["id"]

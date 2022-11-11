@@ -1,5 +1,143 @@
-""" GUI dialogs for tweet writing and displaying. """
 import wx
+
+class Toot(wx.Dialog):
+    def __init__(self, caption=_("toot"), text="", *args, **kwds):
+        super(Toot, self).__init__(parent=None, id=wx.ID_ANY, *args, **kwds)
+        main_sizer = wx.BoxSizer(wx.VERTICAL)
+        toot_sizer = wx.WrapSizer(wx.VERTICAL)
+        main_sizer.Add(toot_sizer, 1, wx.EXPAND, 0)
+        toot_label = wx.StaticText(self, wx.ID_ANY, caption)
+        toot_sizer.Add(toot_label, 0, 0, 0)
+        self.text = wx.TextCtrl(self, wx.ID_ANY, text, style=wx.TE_MULTILINE)
+        self.text.SetMinSize((350, -1))
+        toot_sizer.Add(self.text, 0, 0, 0)
+        lists_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        main_sizer.Add(lists_sizer, 1, wx.EXPAND, 0)
+        attachments_sizer = wx.WrapSizer(wx.VERTICAL)
+        lists_sizer.Add(attachments_sizer, 1, wx.EXPAND, 0)
+        attachments_label = wx.StaticText(self, wx.ID_ANY, _("Attachments"))
+        attachments_sizer.Add(attachments_label, 0, 0, 0)
+        self.attachments = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_HRULES | wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_VRULES)
+        self.attachments.Enable(False)
+        self.attachments.AppendColumn(_("File"), format=wx.LIST_FORMAT_LEFT, width=-1)
+        self.attachments.AppendColumn(_("Type"), format=wx.LIST_FORMAT_LEFT, width=-1)
+        self.attachments.AppendColumn(_("Description"), format=wx.LIST_FORMAT_LEFT, width=-1)
+        attachments_sizer.Add(self.attachments, 1, wx.EXPAND, 0)
+        self.remove_attachment = wx.Button(self, wx.ID_ANY, _("Remove Attachment"))
+        self.remove_attachment.Enable(False)
+        attachments_sizer.Add(self.remove_attachment, 0, 0, 0)
+        toots_sizer = wx.WrapSizer(wx.VERTICAL)
+        lists_sizer.Add(toots_sizer, 1, wx.EXPAND, 0)
+        toots_label = wx.StaticText(self, wx.ID_ANY, _("Toots in the thread"))
+        toots_sizer.Add(toots_label, 0, 0, 0)
+        self.toots = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_HRULES | wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_VRULES)
+        self.toots.Enable(False)
+        self.toots.AppendColumn(_("Text"), format=wx.LIST_FORMAT_LEFT, width=-1)
+        self.toots.AppendColumn(_("Attachments"), format=wx.LIST_FORMAT_LEFT, width=-1)
+        toots_sizer.Add(self.toots, 1, wx.EXPAND, 0)
+        self.remove_toot = wx.Button(self, wx.ID_ANY, _("Remove toot"))
+        self.remove_toot.Enable(False)
+        toots_sizer.Add(self.remove_toot, 0, 0, 0)
+        toot_actions_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        main_sizer.Add(toot_actions_sizer, 1, wx.EXPAND, 0)
+        visibility_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        toot_actions_sizer.Add(visibility_sizer, 1, wx.EXPAND, 0)
+        label_1 = wx.StaticText(self, wx.ID_ANY, _("Visibility"))
+        visibility_sizer.Add(label_1, 0, 0, 0)
+        self.visibility = wx.ComboBox(self, wx.ID_ANY, choices=[_("Public"), _("Not listed"), _("Followers only"), _("Mentionned accounts")], style=wx.CB_DROPDOWN | wx.CB_READONLY | wx.CB_SIMPLE)
+        self.visibility.SetSelection(0)
+        visibility_sizer.Add(self.visibility, 0, 0, 0)
+        self.add = wx.Button(self, wx.ID_ANY, _("A&dd"))
+        toot_actions_sizer.Add(self.add, 0, 0, 0)
+        self.add_toot = wx.Button(self, wx.ID_ANY, _("Add t&oot"))
+        toot_actions_sizer.Add(self.add_toot, 0, 0, 0)
+        text_actions_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        main_sizer.Add(text_actions_sizer, 1, wx.EXPAND, 0)
+        self.autocomplete_users = wx.Button(self, wx.ID_ANY, _("Auto&complete users"))
+        text_actions_sizer.Add(self.autocomplete_users, 0, 0, 0)
+        self.spellcheck = wx.Button(self, wx.ID_ANY, _("Check &spelling"))
+        text_actions_sizer.Add(self.spellcheck, 0, 0, 0)
+        self.translate = wx.Button(self, wx.ID_ANY, _("&Translate"))
+        text_actions_sizer.Add(self.translate, 0, 0, 0)
+        btn_sizer = wx.StdDialogButtonSizer()
+        main_sizer.Add(btn_sizer, 0, wx.ALIGN_RIGHT | wx.ALL, 4)
+        self.send = wx.Button(self, wx.ID_OK, "")
+        self.send.SetDefault()
+        btn_sizer.AddButton(self.send)
+        self.close = wx.Button(self, wx.ID_CLOSE, "")
+        btn_sizer.AddButton(self.close)
+        btn_sizer.Realize()
+        self.SetSizer(main_sizer)
+        main_sizer.Fit(self)
+        self.SetEscapeId(self.close.GetId())
+        self.Layout()
+
+    def set_title(self, chars):
+        self.SetTitle(_("Toot - {} characters").format(chars))
+
+    def reset_controls(self):
+        self.text.ChangeValue("")
+        self.attachments.DeleteAllItems()
+
+    def add_item(self, list_type="attachment", item=[]):
+        if list_type == "attachment":
+            self.attachments.Append(item)
+        else:
+            self.toots.Append(item)
+
+    def remove_item(self, list_type="attachment"):
+        if list_type == "attachment":
+            item = self.attachments.GetFocusedItem()
+            if item > -1:
+                self.attachments.DeleteItem(item)
+        else:
+            item = self.toots.GetFocusedItem()
+            if item > -1:
+                self.toots.DeleteItem(item)
+
+    def attach_menu(self, event=None, enabled=True, *args, **kwargs):
+        menu = wx.Menu()
+        self.add_image = menu.Append(wx.ID_ANY, _("Image"))
+        self.add_image.Enable(enabled)
+        self.add_video = menu.Append(wx.ID_ANY, _("Video"))
+        self.add_video.Enable(enabled)
+        self.add_audio = menu.Append(wx.ID_ANY, _("Audio"))
+        self.add_audio.Enable(enabled)
+        self.add_poll = menu.Append(wx.ID_ANY, _("Poll"))
+        self.add_poll.Enable(enabled)
+        return menu
+
+    def ask_description(self):
+        dlg = wx.TextEntryDialog(self, _(u"please provide a description"), _(u"Description"))
+        dlg.ShowModal()
+        result = dlg.GetValue()
+        dlg.Destroy()
+        return result
+
+    def get_image(self):
+        openFileDialog = wx.FileDialog(self, _(u"Select the picture to be uploaded"), "", "", _("Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        if openFileDialog.ShowModal() == wx.ID_CANCEL:
+            return (None, None)
+        dsc = self.ask_description()
+        return (openFileDialog.GetPath(), dsc)
+
+    def get_video(self):
+        openFileDialog = wx.FileDialog(self, _("Select the video to be uploaded"), "", "", _("Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        if openFileDialog.ShowModal() == wx.ID_CANCEL:
+            return None
+        return openFileDialog.GetPath()
+
+    def get_audio(self):
+        openFileDialog = wx.FileDialog(self, _("Select the audio file to be uploaded"), "", "", _("Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*.mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        if openFileDialog.ShowModal() == wx.ID_CANCEL:
+            return None
+        return openFileDialog.GetPath()
+
+    def unable_to_attach_file(self, *args, **kwargs):
+        return wx.MessageDialog(self, _("It is not possible to add more attachments. Please take into account that You can add only a maximum of 4 images, or one audio, video or poll  per toot. Please remove other attachments before continuing."), _("Error adding attachment"), wx.ICON_ERROR).ShowModal()
+
+    def unable_to_attach_poll(self, *args, **kwargs):
+        return wx.MessageDialog(self, _("You can add a poll or media files. In order to add your poll, please remove other attachments first."), _("Error adding poll"), wx.ICON_ERROR).ShowModal()
 
 class viewToot(wx.Dialog):
     def set_title(self, lenght):
@@ -91,3 +229,77 @@ class viewToot(wx.Dialog):
     def enable_button(self, buttonName):
         if hasattr(self, buttonName):
             return getattr(self, buttonName).Enable()
+
+class poll(wx.Dialog):
+    def __init__(self, *args, **kwds):
+        super(poll, self).__init__(parent=None, id=wx.NewId(), title=_("Add a poll"))
+        sizer_1 = wx.BoxSizer(wx.VERTICAL)
+        period_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_1.Add(period_sizer, 1, wx.EXPAND, 0)
+        label_period = wx.StaticText(self, wx.ID_ANY, _("Participation time"))
+        period_sizer.Add(label_period, 0, 0, 0)
+        self.period = wx.ComboBox(self, wx.ID_ANY, choices=[_("5 minutes"), _("30 minutes"), _("1 hour"), _("6 hours"), _("1 day"), _("2 days"), _("3 days"), _("4 days"), _("5 days"), _("6 days"), _("7 days")], style=wx.CB_DROPDOWN | wx.CB_READONLY | wx.CB_SIMPLE)
+        self.period.SetFocus()
+        self.period.SetSelection(0)
+        period_sizer.Add(self.period, 0, 0, 0)
+        sizer_2 = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, _("Choices")), wx.VERTICAL)
+        sizer_1.Add(sizer_2, 1, wx.EXPAND, 0)
+        option1_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(option1_sizer, 1, wx.EXPAND, 0)
+        label_2 = wx.StaticText(self, wx.ID_ANY, _("Option 1"))
+        option1_sizer.Add(label_2, 0, 0, 0)
+        self.option1 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.option1.SetMaxLength(25)
+        option1_sizer.Add(self.option1, 0, 0, 0)
+        option2_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(option2_sizer, 1, wx.EXPAND, 0)
+        label_3 = wx.StaticText(self, wx.ID_ANY, _("Option 2"))
+        option2_sizer.Add(label_3, 0, 0, 0)
+        self.option2 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.option2.SetMaxLength(25)
+        option2_sizer.Add(self.option2, 0, 0, 0)
+        option3_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(option3_sizer, 1, wx.EXPAND, 0)
+        label_4 = wx.StaticText(self, wx.ID_ANY, _("Option 3"))
+        option3_sizer.Add(label_4, 0, 0, 0)
+        self.option3 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.option3.SetMaxLength(25)
+        option3_sizer.Add(self.option3, 0, 0, 0)
+        option4_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(option4_sizer, 1, wx.EXPAND, 0)
+        label_5 = wx.StaticText(self, wx.ID_ANY, _("Option 4"))
+        option4_sizer.Add(label_5, 0, 0, 0)
+        self.option4 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.option4.SetMaxLength(25)
+        option4_sizer.Add(self.option4, 0, 0, 0)
+        self.multiple = wx.CheckBox(self, wx.ID_ANY, _("Allow multiple votes per user"))
+        self.multiple.SetValue(False)
+        sizer_1.Add(self.multiple, 0, wx.ALL, 5)
+        self.hide_votes = wx.CheckBox(self, wx.ID_ANY, _("Hide votes count until the poll expires"))
+        self.hide_votes.SetValue(False)
+        sizer_1.Add(self.hide_votes, 0, wx.ALL, 5)
+        btn_sizer = wx.StdDialogButtonSizer()
+        sizer_1.Add(btn_sizer, 0, wx.ALIGN_RIGHT | wx.ALL, 4)
+        self.button_OK = wx.Button(self, wx.ID_OK)
+        self.button_OK.SetDefault()
+        self.button_OK.Bind(wx.EVT_BUTTON, self.validate_data)
+        btn_sizer.AddButton(self.button_OK)
+        self.button_CANCEL = wx.Button(self, wx.ID_CANCEL, "")
+        btn_sizer.AddButton(self.button_CANCEL)
+        btn_sizer.Realize()
+        self.SetSizer(sizer_1)
+        sizer_1.Fit(self)
+        self.SetAffirmativeId(self.button_OK.GetId())
+        self.SetEscapeId(self.button_CANCEL.GetId())
+        self.Layout()
+
+    def get_options(self):
+        controls = [self.option1, self.option2, self.option3, self.option4]
+        options = [option.GetValue() for option in controls if option.GetValue() != ""]
+        return options
+
+    def validate_data(self, *args, **kwargs):
+        options = self.get_options()
+        if len(options) < 2:
+            return wx.MessageDialog(self, _("Please make sure you have provided at least two options for the poll."), _("Not enough information"), wx.ICON_ERROR).ShowModal()
+        self.EndModal(wx.ID_OK)

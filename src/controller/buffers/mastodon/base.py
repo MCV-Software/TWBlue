@@ -63,8 +63,8 @@ class BaseBuffer(base.Buffer):
         toot = messages.toot(session=self.session, title=title, caption=caption)
         response = toot.message.ShowModal()
         if response == wx.ID_OK:
-            toot_data = toot.get_tweet_data()
-            call_threaded(self.session.send_toot, toots=toot_data, **kwargs)
+            toot_data = toot.get_data()
+            call_threaded(self.session.send_toot, toots=toot_data, visibility=toot.get_visibility(), **kwargs)
         if hasattr(toot.message, "destroy"):
             toot.message.destroy()
 
@@ -296,32 +296,41 @@ class BaseBuffer(base.Buffer):
         else:
             title = _("Reply to {}").format(item.account.username)
             caption = _("Write your reply here")
-        users = [user.acct for user in item.mentions if user.id != self.session.db["user_id"]]
-        toot = messages.reply(session=self.session, title=title, caption=caption, users=users)
+        if item.reblog != None:
+            users = ["@{}".format(user.acct) for user in item.reblog.mentions if user.id != self.session.db["user_id"]]
+            if item.reblog.account.acct != item.account.acct and "@{} ".format(item.reblog.account.acct) not in users:
+                users.append("@{} ".format(item.reblog.account.acct))
+        else:
+            users = ["@{}".format(user.acct) for user in item.mentions if user.id != self.session.db["user_id"]]
+        if "@{} ".format(item.account.acct) not in users and item.account.id != self.session.db["user_id"]:
+            users.insert(0, "@{} ".format(item.account.acct))
+        users_str = "".join(users)
+        toot = messages.toot(session=self.session, title=title, caption=caption, text=users_str)
         response = toot.message.ShowModal()
         if response == wx.ID_OK:
-            toot_data = toot.get_tweet_data()
-            users = toot.get_people()
-            if item.account.acct not in users and item.account.id != self.session.db["user_id"]:
-                users = "@{} {}".format(item.account.acct, users)
-            call_threaded(self.session.send_toot, reply_to=item.id, users=users, toots=toot_data, visibility=visibility)
+            toot_data = toot.get_data()
+            call_threaded(self.session.send_toot, reply_to=item.id, toots=toot_data, visibility=visibility)
         if hasattr(toot.message, "destroy"):
             toot.message.destroy()
 
-    # conversations are replies with different wording and privacy settings.
     def send_message(self, *args, **kwargs):
         item = self.get_item()
         title = _("Conversation with {}").format(item.account.username)
         caption = _("Write your message here")
-        users = [user.acct for user in item.mentions if user.id != self.session.db["user_id"]]
-        toot = messages.reply(session=self.session, title=title, caption=caption, users=users)
+        if item.reblog != None:
+            users = ["@{}".format(user.acct) for user in item.reblog.mentions if user.id != self.session.db["user_id"]]
+            if item.reblog.account.acct != item.account.acct and "@{} ".format(item.reblog.account.acct) not in users:
+                users.append("@{} ".format(item.reblog.account.acct))
+        else:
+            users = ["@{}".format(user.acct) for user in item.mentions if user.id != self.session.db["user_id"]]
+        if item.account.acct not in users and item.account.id != self.session.db["user_id"]:
+            users.insert(0, "@{} ".format(item.account.acct))
+        users_str = "".join(users)
+        toot = messages.toot(session=self.session, title=title, caption=caption, text=users_str)
         response = toot.message.ShowModal()
         if response == wx.ID_OK:
             toot_data = toot.get_tweet_data()
-            users = toot.get_people()
-            if item.account.acct not in users and item.account.id != self.session.db["user_id"]:
-                users = "@{} {}".format(item.account.acct, users)
-            call_threaded(self.session.send_toot, users=users, toots=toot_data, visibility="direct")
+            call_threaded(self.session.send_toot, toots=toot_data, visibility="direct")
         if hasattr(toot.message, "destroy"):
             toot.message.destroy()
 
