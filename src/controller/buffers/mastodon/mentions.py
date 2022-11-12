@@ -17,8 +17,8 @@ class MentionsBuffer(BaseBuffer):
             count = self.session.settings["general"]["max_toots_per_call"]
             min_id = None
             # toDo: Implement reverse timelines properly here.
-            if self.name != "favorites" and self.name in self.session.db and len(self.session.db[self.name]) > 0:
-                min_id = self.session.db[self.name][-1].id
+#            if self.name != "favorites" and self.name in self.session.db and len(self.session.db[self.name]) > 0:
+#                min_id = self.session.db[self.name][-1].id
             try:
                 items = getattr(self.session.api, self.function)(min_id=min_id, limit=count, exclude_types=["follow", "favourite", "reblog", "poll", "follow_request"], *self.args, **self.kwargs)
                 items.reverse()
