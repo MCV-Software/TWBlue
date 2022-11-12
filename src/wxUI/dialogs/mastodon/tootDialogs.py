@@ -45,7 +45,7 @@ class Toot(wx.Dialog):
         toot_actions_sizer.Add(visibility_sizer, 1, wx.EXPAND, 0)
         label_1 = wx.StaticText(self, wx.ID_ANY, _("Visibility"))
         visibility_sizer.Add(label_1, 0, 0, 0)
-        self.visibility = wx.ComboBox(self, wx.ID_ANY, choices=[_("Public"), _("Not listed"), _("Followers only"), _("Mentionned accounts")], style=wx.CB_DROPDOWN | wx.CB_READONLY | wx.CB_SIMPLE)
+        self.visibility = wx.ComboBox(self, wx.ID_ANY, choices=[_("Public"), _("Not listed"), _("Followers only"), _("Direct")], style=wx.CB_DROPDOWN | wx.CB_READONLY | wx.CB_SIMPLE)
         self.visibility.SetSelection(0)
         visibility_sizer.Add(self.visibility, 0, 0, 0)
         self.add = wx.Button(self, wx.ID_ANY, _("A&dd"))

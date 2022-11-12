@@ -193,7 +193,7 @@ class viewToot(toot):
         image_description = templates.process_image_descriptions(toot.media_attachments)
         text = templates.process_text(toot, safe=False)
         date = templates.process_date(toot.created_at, relative_times=False, offset_hours=offset_hours)
-        privacy_settings = dict(public=_("Public"), unlisted=_("Not listed"), private=_("followers only"), direct=_("Mentioned people"))
+        privacy_settings = dict(public=_("Public"), unlisted=_("Not listed"), private=_("followers only"), direct=_("Direct"))
         privacy = privacy_settings.get(toot.visibility)
         boost_count = str(toot.reblogs_count)
         favs_count = str(toot.favourites_count)
