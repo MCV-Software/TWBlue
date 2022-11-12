@@ -300,11 +300,11 @@ class BaseBuffer(base.Buffer):
             title = _("Reply to {}").format(item.account.username)
             caption = _("Write your reply here")
         if item.reblog != None:
-            users = ["@{}".format(user.acct) for user in item.reblog.mentions if user.id != self.session.db["user_id"]]
+            users = ["@{} ".format(user.acct) for user in item.reblog.mentions if user.id != self.session.db["user_id"]]
             if item.reblog.account.acct != item.account.acct and "@{} ".format(item.reblog.account.acct) not in users:
                 users.append("@{} ".format(item.reblog.account.acct))
         else:
-            users = ["@{}".format(user.acct) for user in item.mentions if user.id != self.session.db["user_id"]]
+            users = ["@{} ".format(user.acct) for user in item.mentions if user.id != self.session.db["user_id"]]
         if "@{} ".format(item.account.acct) not in users and item.account.id != self.session.db["user_id"]:
             users.insert(0, "@{} ".format(item.account.acct))
         users_str = "".join(users)
@@ -321,11 +321,11 @@ class BaseBuffer(base.Buffer):
         title = _("Conversation with {}").format(item.account.username)
         caption = _("Write your message here")
         if item.reblog != None:
-            users = ["@{}".format(user.acct) for user in item.reblog.mentions if user.id != self.session.db["user_id"]]
+            users = ["@{} ".format(user.acct) for user in item.reblog.mentions if user.id != self.session.db["user_id"]]
             if item.reblog.account.acct != item.account.acct and "@{} ".format(item.reblog.account.acct) not in users:
                 users.append("@{} ".format(item.reblog.account.acct))
         else:
-            users = ["@{}".format(user.acct) for user in item.mentions if user.id != self.session.db["user_id"]]
+            users = ["@{} ".format(user.acct) for user in item.mentions if user.id != self.session.db["user_id"]]
         if item.account.acct not in users and item.account.id != self.session.db["user_id"]:
             users.insert(0, "@{} ".format(item.account.acct))
         users_str = "".join(users)
@@ -469,6 +469,8 @@ class BaseBuffer(base.Buffer):
 
     def view_item(self):
         toot = self.get_item()
+        # Update object so we can retrieve newer stats
+        toot = self.session.api.status(id=toot.id)
         print(toot)
         msg = messages.viewToot(toot, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url())
 
