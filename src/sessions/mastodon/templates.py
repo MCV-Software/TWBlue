@@ -9,7 +9,7 @@ from . import utils, compose
 # This will be used for the edit template dialog.
 # Available variables for toot objects.
 # safe_text will be the content warning in case a toot contains one, text will always be the full text, no matter if has a content warning or not.
-toot_variables = ["date", "display_name", "screen_name", "source", "lang", "safe_text", "text", "image_descriptions"]
+toot_variables = ["date", "display_name", "screen_name", "source", "lang", "safe_text", "text", "image_descriptions", "visibility"]
 person_variables = ["display_name", "screen_name", "description", "followers", "following", "favorites", "toots", "created_at"]
 conversation_variables = ["users", "last_toot"]
 
@@ -59,6 +59,7 @@ def render_toot(toot, template, relative_times=False, offset_hours=0):
     $safe_text: Safe text to display. If a content warning is applied in toots, display those instead of the whole toot.
     $text: Toot text. This always displays the full text, even if there is a content warning present.
     $image_descriptions: Information regarding image descriptions added by twitter users.
+    $visibility: toot's visibility: public, not listed, followers only or direct.
     """
     global toot_variables
     available_data = dict()
@@ -79,7 +80,9 @@ def render_toot(toot, template, relative_times=False, offset_hours=0):
     else:
         text = process_text(toot, safe=False)
         safe_text = process_text(toot)
-    available_data.update(lang=toot.language, text=text, safe_text=safe_text)
+    visibility_settings = dict(public=_("Public"), unlisted=_("Not listed"), private=_("Followers only"), direct=_("Direct"))
+    visibility = visibility_settings.get(toot.visibility)
+    available_data.update(lang=toot.language, text=text, safe_text=safe_text, visibility=visibility)
     # process image descriptions
     image_descriptions = ""
     if toot.reblog != None:
