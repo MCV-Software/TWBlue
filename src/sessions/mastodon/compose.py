@@ -36,3 +36,15 @@ def compose_user(user, db, relative_times=True):
     if name == "":
         name = user.get("username")
     return [_("%s (@%s). %s followers, %s following, %s toots. Joined %s") % (name, user.acct, user.followers_count, user.following_count,  user.statuses_count, ts)]
+
+def compose_conversation(conversation, db, relative_times, show_screen_names):
+    users = []
+    for account in conversation.accounts:
+        if account.display_name != "":
+            users.append(account.display_name)
+        else:
+            users.append(account.username)
+    users = ", ".join(users)
+    last_toot = compose_toot(conversation.last_status, db, relative_times, show_screen_names)
+    text = _("Last message from {}: {}").format(last_toot[0], last_toot[1])
+    return [users, text, last_toot[-1], ""]

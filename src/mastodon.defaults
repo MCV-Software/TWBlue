@@ -11,7 +11,7 @@ reverse_timelines = boolean(default=False)
 persist_size = integer(default=0)
 load_cache_in_memory=boolean(default=True)
 show_screen_names = boolean(default=False)
-buffer_order = list(default=list('home', 'local', 'federated', 'mentions', 'conversations', 'sent', 'favorites', 'bookmarks', 'followers', 'friends', 'blocks', 'muted', 'notifications'))
+buffer_order = list(default=list('home', 'local', 'federated', 'mentions', 'direct_messages', 'sent', 'favorites', 'bookmarks', 'followers', 'friends', 'blocks', 'muted', 'notifications'))
 boost_mode = string(default="ask")
 
 [sound]
@@ -46,6 +46,7 @@ speech_reporting = boolean(default=True)
 [templates]
 toot = string(default="$display_name, $safe_text $image_descriptions $date. $source")
 person = string(default="$display_name (@$screen_name). $followers followers, $following following, $toots toots. Joined $created_at.")
+conversation = string(default="Conversation with $users. Last message: $last_toot")
 
 [filters]
 

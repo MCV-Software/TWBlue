@@ -26,7 +26,7 @@ class BaseBuffer(base.Buffer):
     def __init__(self, parent, function, name, sessionObject, account, sound=None, compose_func="compose_toot", *args, **kwargs):
         super(BaseBuffer, self).__init__(parent, function, *args, **kwargs)
         log.debug("Initializing buffer %s, account %s" % (name, account,))
-        self.buffer = buffers.mastodon.basePanel(parent, name)
+        self.create_buffer(parent, name)
         self.invisible = True
         self.name = name
         self.type = self.buffer.type
@@ -37,6 +37,9 @@ class BaseBuffer(base.Buffer):
         self.buffer.account = account
         self.bind_events()
         self.sound = sound
+
+    def create_buffer(self, parent, name):
+        self.buffer = buffers.mastodon.basePanel(parent, name)
 
     def get_buffer_name(self):
         """ Get buffer name from a set of different techniques."""

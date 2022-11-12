@@ -3,7 +3,7 @@ import re
 import arrow
 import languageHandler
 from string import Template
-from . import utils
+from . import utils, compose
 
 # Define variables that would be available for all template objects.
 # This will be used for the edit template dialog.
@@ -11,6 +11,7 @@ from . import utils
 # safe_text will be the content warning in case a toot contains one, text will always be the full text, no matter if has a content warning or not.
 toot_variables = ["date", "display_name", "screen_name", "source", "lang", "safe_text", "text", "image_descriptions"]
 person_variables = ["display_name", "screen_name", "description", "followers", "following", "favorites", "toots", "created_at"]
+conversation_variables = ["users", "last_toot"]
 
 # Default, translatable templates.
 toot_default_template = _("$display_name, $text $image_descriptions $date. $source")
@@ -118,4 +119,18 @@ def render_person(user, template, relative_times=True, offset_hours=0):
     available_data.update(created_at=created_at)
     result = Template(_(template)).safe_substitute(**available_data)
     result = remove_unneeded_variables(result, person_variables)
+    return result
+
+def render_conversation(conversation, template, toot_template, relative_times=False, offset_hours=0):
+    users = []
+    for account in conversation.accounts:
+        if account.display_name != "":
+            users.append(account.display_name)
+        else:
+            users.append(account.username)
+    users = ", ".join(users)
+    last_toot = render_toot(conversation.last_status, toot_template, relative_times=relative_times, offset_hours=offset_hours)
+    available_data = dict(users=users, last_toot=last_toot)
+    result = Template(_(template)).safe_substitute(**available_data)
+    result = remove_unneeded_variables(result, conversation_variables)
     return result

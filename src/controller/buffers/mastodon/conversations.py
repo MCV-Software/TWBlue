@@ -1,11 +1,70 @@
 ﻿# -*- coding: utf-8 -*-
 import time
 import logging
+import wx
 import widgetUtils
 from controller.buffers.mastodon.base import BaseBuffer
-from sessions.mastodon import utils
-from wxUI import commonMessageDialogs
+from sessions.mastodon import utils, templates
+from wxUI import buffers, commonMessageDialogs
 log = logging.getLogger("controller.buffers.mastodon.conversations")
+
+class ConversationListBuffer(BaseBuffer):
+
+    def create_buffer(self, parent, name):
+        self.buffer = buffers.mastodon.conversationListPanel(parent, name)
+
+    def get_item(self):
+        index = self.buffer.list.get_selected()
+        if index > -1 and self.session.db.get(self.name) != None:
+            return self.session.db[self.name][index]["last_status"]
+
+    def get_formatted_message(self):
+        return self.compose_function(self.get_conversation(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
+
+    def get_conversation(self):
+        index = self.buffer.list.get_selected()
+        if index > -1 and self.session.db.get(self.name) != None:
+            return self.session.db[self.name][index]
+
+    def get_message(self):
+        conversation = self.get_conversation()
+        if conversation == None:
+            return
+        template = self.session.settings["templates"]["conversation"]
+        toot_template = self.session.settings["templates"]["toot"]
+        t = templates.render_conversation(conversation=conversation, template=template, toot_template=toot_template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
+        return t
+
+    def bind_events(self):
+        log.debug("Binding events...")
+        self.buffer.set_focus_function(self.onFocus)
+        widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.toot)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
+        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
+        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
+
+    def fav(self):
+        pass
+
+    def unfav(self):
+        pass
+
+    def can_share(self):
+        return False
+
+    def send_message(self):
+        return self.reply()
+
+    def onFocus(self, *args, **kwargs):
+        toot = self.get_item()
+        if self.session.settings['sound']['indicate_audio'] and utils.is_audio_or_video(toot):
+            self.session.sound.play("audio.ogg")
+        if self.session.settings['sound']['indicate_img'] and utils.is_image(toot):
+            self.session.sound.play("image.ogg")
+
+    def destroy_status(self):
+        pass
 
 class ConversationBuffer(BaseBuffer):
 
@@ -41,38 +100,7 @@ class ConversationBuffer(BaseBuffer):
             return number_of_items
 
     def get_more_items(self):
-        elements = []
-        if self.session.settings["general"]["reverse_timelines"] == False:
-            max_id = self.session.db[self.name][0].id
-        else:
-            max_id = self.session.db[self.name][-1].id
-        try:
-            items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_toots_per_call"], exclude_types=["follow", "favourite", "reblog", "poll", "follow_request"], *self.args, **self.kwargs)
-            items = [item.status for item in items if item.get("status") and item.type == "mention"]
-        except Exception as e:
-            log.exception("Error %s" % (str(e)))
-            return
-        items_db = self.session.db[self.name]
-        for i in items:
-            if utils.find_item(i, self.session.db[self.name]) == None:
-                elements.append(i)
-                if self.session.settings["general"]["reverse_timelines"] == False:
-                    items_db.insert(0, i)
-                else:
-                    items_db.append(i)
-        self.session.db[self.name] = items_db
-        selection = self.buffer.list.get_selected()
-        log.debug("Retrieved %d items from cursored search in function %s." % (len(elements), self.function))
-        if self.session.settings["general"]["reverse_timelines"] == False:
-            for i in elements:
-                toot = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
-                self.buffer.list.insert_item(True, *toot)
-        else:
-            for i in items:
-                toot = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
-                self.buffer.list.insert_item(False, *toot)
-            self.buffer.list.select_item(selection)
-        output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
+        output.speak(_(u"This action is not supported for this buffer"), True)
 
     def remove_buffer(self, force=False):
         if force == False:

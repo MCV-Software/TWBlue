@@ -24,6 +24,8 @@ class Handler(object):
                 pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Federated"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, function="timeline_public", name="federated_timeline", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg"))
             elif i == 'mentions':
                 pub.sendMessage("createBuffer", buffer_type="MentionsBuffer", session_type=session.type, buffer_title=_("Mentions"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, function="notifications", name="mentions", sessionObject=session, account=session.db["user_name"], sound="mention_received.ogg"))
+            elif i == 'direct_messages':
+                pub.sendMessage("createBuffer", buffer_type="ConversationListBuffer", session_type=session.type, buffer_title=_("Direct messages"), parent_tab=root_position, start=False, kwargs=dict(compose_func="compose_conversation", parent=controller.view.nb, function="conversations", name="direct_messages", sessionObject=session, account=session.db["user_name"], sound="dm_received.ogg"))
             elif i == 'sent':
                 pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Sent"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, function="account_statuses", name="sent", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg", id=session.db["user_id"]))
 #            elif i == 'dm':
@@ -76,3 +78,10 @@ class Handler(object):
             buffer.start_stream(play_sound=False)
         except Exception as err:
             log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), buffer.name, buffer.account, buffer.args, buffer.kwargs))
+
+    def open_conversation(self, controller, buffer):
+        toot = buffer.get_item()
+        if toot.reblog != None:
+            toot = toot.reblog
+        conversations_position =controller.view.search("direct_messages", buffer.session.db["user_name"])
+        pub.sendMessage("createBuffer", buffer_type="ConversationBuffer", session_type=buffer.session.type, buffer_title=_("Conversation with {0}").format(toot.account.acct), parent_tab=conversations_position, start=True, kwargs=dict(parent=controller.view.nb, function="status_context", name="%s-conversation" % (toot.id,), sessionObject=buffer.session, account=buffer.session.db["user_name"], sound="search_updated.ogg", toot=toot, id=toot.id))
