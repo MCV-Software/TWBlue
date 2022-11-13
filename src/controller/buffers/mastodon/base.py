@@ -309,6 +309,8 @@ class BaseBuffer(base.Buffer):
             users.insert(0, "@{} ".format(item.account.acct))
         users_str = "".join(users)
         toot = messages.toot(session=self.session, title=title, caption=caption, text=users_str)
+        visibility_settings = dict(public=0, unlisted=1, private=2, direct=3)
+        toot.message.visibility.SetSelection(visibility_settings.get(visibility))
         response = toot.message.ShowModal()
         if response == wx.ID_OK:
             toot_data = toot.get_data()
@@ -330,6 +332,7 @@ class BaseBuffer(base.Buffer):
             users.insert(0, "@{} ".format(item.account.acct))
         users_str = "".join(users)
         toot = messages.toot(session=self.session, title=title, caption=caption, text=users_str)
+        toot.message.visibility.SetSelection(3)
         response = toot.message.ShowModal()
         if response == wx.ID_OK:
             toot_data = toot.get_tweet_data()
