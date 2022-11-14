@@ -12,7 +12,7 @@ class userPanel(wx.Panel):
     def __init__(self, parent, name):
         super(userPanel, self).__init__(parent)
         self.name = name
-        self.type = "baseBuffer"
+        self.type = "user"
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.create_list()
         self.toot = wx.Button(self, -1, _("Toot"))

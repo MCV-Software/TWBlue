@@ -2,6 +2,7 @@
 import logging
 from pubsub import pub
 from sessions.twitter import utils
+from . import userActions
 
 log = logging.getLogger("controller.mastodon.handler")
 
@@ -79,3 +80,20 @@ class Handler(object):
             toot = toot.reblog
         conversations_position =controller.view.search("direct_messages", buffer.session.db["user_name"])
         pub.sendMessage("createBuffer", buffer_type="ConversationBuffer", session_type=buffer.session.type, buffer_title=_("Conversation with {0}").format(toot.account.acct), parent_tab=conversations_position, start=True, kwargs=dict(parent=controller.view.nb, function="status_context", name="%s-conversation" % (toot.id,), sessionObject=buffer.session, account=buffer.session.db["user_name"], sound="search_updated.ogg", toot=toot, id=toot.id))
+
+    def follow(self, buffer):
+        if not hasattr(buffer, "get_item"):
+            return
+        item = buffer.get_item()
+        if buffer.type == "user":
+            users = [item.acct]
+        elif buffer.type == "baseBuffer":
+            if item.reblog != None:
+                users = [user.acct for user in item.reblog.mentions if user.id != buffer.session.db["user_id"]]
+                if item.reblog.account.acct not in users and item.account.id != buffer.session.db["user_id"]:
+                    users.insert(0, item.reblog.account.acct)
+            else:
+                users = [user.acct for user in item.mentions if user.id != buffer.session.db["user_id"]]
+            if item.account.acct not in users and item.account.id != buffer.session.db["user_id"]:
+                users.insert(0, item.account.acct)
+        u = userActions.userActionsController(buffer.session, users)
