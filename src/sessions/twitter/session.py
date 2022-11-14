@@ -555,7 +555,7 @@ class Session(base.baseSession):
     def start_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
             return
-        self.stream = streaming.Stream(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"], muted_users=self.db["muted_users"], consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"], chunk_size=1025)
+        self.stream = streaming.Stream(twitter_api=self.twitter, user=self.get_name(), user_id=self.db["user_id"], muted_users=self.db["muted_users"], consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"], chunk_size=1025)
         self.stream_thread = call_threaded(self.stream.filter, follow=self.stream.users, stall_warnings=True)
 
     def stop_streaming(self):
@@ -570,7 +570,7 @@ class Session(base.baseSession):
         if self.logged == False:
             return
         # Discard processing the status if the streaming sends a tweet for another account.
-        if self.db["user_name"] != user:
+        if self.get_name() != user:
             return
         # the Streaming API sends non-extended tweets with an optional parameter "extended_tweets" which contains full_text and other data.
         # so we have to make sure we check it before processing the normal status.
@@ -607,7 +607,7 @@ class Session(base.baseSession):
         status = self.check_quoted_status(status)
         status = self.check_long_tweet(status)
         # Send it to the main controller object.
-        pub.sendMessage("newTweet", data=status, user=self.db["user_name"], _buffers=buffers_to_send)
+        pub.sendMessage("newTweet", data=status, user=self.get_name(), _buffers=buffers_to_send)
 
     def check_streams(self):
         if config.app["app-settings"]["no_streaming"]:
@@ -621,7 +621,7 @@ class Session(base.baseSession):
     def handle_connected(self, user):
         if self.logged == False:
             return
-        if user != self.db["user_name"]:
+        if user != self.get_name():
             log.debug("Connected streaming endpoint on account {}".format(user))
 
     def send_tweet(self, *tweets):
@@ -674,3 +674,6 @@ class Session(base.baseSession):
                 sent_dms.insert(0, item)
             self.db["sent_direct_messages"] = sent_dms
             pub.sendMessage("sent-dm", data=item, user=self.db["user_name"])
+
+    def get_name(self):
+        return "{} ({})".format(self.db["user_name"], "Twitter")

@@ -60,6 +60,10 @@ class baseSession(object):
         self.init_sound()
         self.load_persistent_data()
 
+    def get_name(self):
+        pass
+
+
     def init_sound(self):
         try: self.sound = sound.soundSystem(self.settings["sound"])
         except: pass

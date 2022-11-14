@@ -164,3 +164,9 @@ class Session(base.baseSession):
                 item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
                 if item != None:
                     in_reply_to_id = item["id"]
+
+    def get_name(self):
+        instance = self.settings["mastodon"]["instance"]
+        instance = instance.replace("https://", "")
+        user = self.db["user_name"]
+        return "{}@{} (mastodon)".format(user, instance)

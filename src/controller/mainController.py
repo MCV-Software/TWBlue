@@ -323,31 +323,19 @@ class Controller(object):
             self.view.insert_buffer(buffer.buffer, buffer_title, parent_tab)
             log.debug("Inserting buffer {0} into control {1}".format(buffer, parent_tab))
 
-    def create_mastodon_buffers(self, session, createAccounts=True):
-        """ Generates buffer objects for an user account.
-        session SessionObject: a sessionmanager.session.Session Object"""
-        session.get_user_info()
-        if createAccounts == True:
-            self.accounts.append(session.db["user_name"])
-            account = buffers.base.AccountBuffer(self.view.nb, session.db["user_name"], session.db["user_name"], session.session_id)
-            account.setup_account()
-            self.buffers.append(account)
-            self.view.add_buffer(account.buffer , name=session.db["user_name"])
-        root_position =self.view.search(session.db["user_name"], session.db["user_name"])
-
     def set_buffer_positions(self, session):
         "Sets positions for buffers if values exist in the database."
         for i in self.buffers:
-            if i.account == session.db["user_name"] and i.name+"_pos" in session.db and hasattr(i.buffer,'list'):
+            if i.account == session.get_name() and i.name+"_pos" in session.db and hasattr(i.buffer,'list'):
                 i.buffer.list.select_item(session.db[str(i.name+"_pos")])
 
     def logout_account(self, session_id):
         for i in sessions.sessions:
             if sessions.sessions[i].session_id == session_id: session = sessions.sessions[i]
-        user = session.db["user_name"]
+        name =session.get_name()
         delete_buffers = []
         for i in self.buffers:
-            if i.account == user and i.name != user:
+            if i.account == name and i.name != name:
                 delete_buffers.append(i.name)
         for i in delete_buffers:
             self.destroy_buffer(i, user)
@@ -691,7 +679,7 @@ class Controller(object):
                 if buffer != None:
                     break
         else:
-            buffer = self.view.search("home_timeline", buf.session.db["user_name"])
+            buffer = self.view.search("home_timeline", buf.session.get_name())
         if buffer!=None:
             self.view.change_buffer(buffer)
 
@@ -1177,11 +1165,12 @@ class Controller(object):
         for i in sessions.sessions:
             sessions.sessions[i].save_persistent_data()
 
-    def manage_new_tweet(self, data, user, _buffers):
+    def manage_new_tweet(self, data, name, _buffers):
         sound_to_play = None
         for buff in _buffers:
-            buffer = self.search_buffer(buff, user)
-            if buffer == None or buffer.session.db["user_name"] != user: return
+            buffer = self.search_buffer(buff, name)
+            if buffer == None or buffer.session.get_name() != name:
+                return
             buffer.add_new_item(data)
             if buff == "home_timeline": sound_to_play = "tweet_received.ogg"
             elif buff == "mentions": sound_to_play = "mention_received.ogg"
