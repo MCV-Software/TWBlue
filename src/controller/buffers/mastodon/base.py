@@ -335,7 +335,7 @@ class BaseBuffer(base.Buffer):
         toot.message.visibility.SetSelection(3)
         response = toot.message.ShowModal()
         if response == wx.ID_OK:
-            toot_data = toot.get_tweet_data()
+            toot_data = toot.get_data()
             call_threaded(self.session.send_toot, toots=toot_data, visibility="direct")
         if hasattr(toot.message, "destroy"):
             toot.message.destroy()

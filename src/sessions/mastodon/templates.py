@@ -95,24 +95,22 @@ def render_toot(toot, template, relative_times=False, offset_hours=0):
     result = remove_unneeded_variables(result, toot_variables)
     return result
 
-def render_person(user, template, relative_times=True, offset_hours=0):
+def render_user(user, template, relative_times=True, offset_hours=0):
     """ Renders persons by using the provided template.
     Available data will be stored in the following variables:
     $display_name: The name of the user, as they’ve defined it. Not necessarily a person’s name. Typically capped at 50 characters, but subject to change.
     $screen_name: The screen name, handle, or alias that this user identifies themselves with.
-    $location: The user-defined location for this account’s profile. Not necessarily a location, nor machine-parseable.
     $description: The user-defined UTF-8 string describing their account.
     $followers: The number of followers this account currently has. This value might be inaccurate.
     $following: The number of users this account is following (AKA their “followings”). This value might be inaccurate.
-    $favorites: The number of Tweets this user has liked in the account’s lifetime. This value might be inaccurate.
-    $tweets: The number of Tweets (including retweets) issued by the user. This value might be inaccurate.
+    $toots: The number of Tweets (including retweets) issued by the user. This value might be inaccurate.
     $created_at: The date and time that the user account was created on Twitter.
     """
     global person_variables
     display_name = user.display_name
     if display_name == "":
         display_name = user.username
-    available_data = dict(display_name=display_name, screen_name=user.acct, followers=user.followers_count, following=user.following_count, favorites=user.favourites_count, toots=user.statuses_count)
+    available_data = dict(display_name=display_name, screen_name=user.acct, followers=user.followers_count, following=user.following_count, toots=user.statuses_count)
     # Nullable values.
     nullables = ["description"]
     for nullable in nullables:

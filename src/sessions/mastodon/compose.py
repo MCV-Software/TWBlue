@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import arrow
+import languageHandler
 from .  import utils, templates
 
 def compose_toot(toot, db, relative_times, show_screen_names):
@@ -11,9 +12,9 @@ def compose_toot(toot, db, relative_times, show_screen_names):
         user = toot.account.get("acct")
     original_date = arrow.get(toot.created_at)
     if relative_times:
-        ts = original_date.humanize(locale="es")
+        ts = original_date.humanize(locale=languageHandler.curLang[:2])
     else:
-        ts = original_date.shift(hours=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m:s"), locale="es")
+        ts = original_date.shift(hours=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m"), locale=languageHandler.curLang[:2])
     if toot.reblog != None:
         text = _("Boosted from @{}: {}").format(toot.reblog.account.acct, templates.process_text(toot.reblog))
     else:
@@ -26,12 +27,12 @@ def compose_toot(toot, db, relative_times, show_screen_names):
         source = ""
     return [user+", ", text, ts+", ", source]
 
-def compose_user(user, db, relative_times=True):
+def compose_user(user, db, relative_times=True, show_screen_names=False):
     original_date = arrow.get(user.created_at)
     if relative_times:
-        ts = original_date.humanize(locale="es")
+        ts = original_date.humanize(locale=languageHandler.curLang[:2])
     else:
-        ts = original_date.shift(hours=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m:s"), locale="es")
+        ts = original_date.shift(hours=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
     name = user.display_name
     if name == "":
         name = user.get("username")

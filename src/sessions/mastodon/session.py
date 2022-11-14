@@ -25,6 +25,7 @@ class Session(base.baseSession):
         self.config_spec = "mastodon.defaults"
         self.supported_languages = []
         self.type = "mastodon"
+        self.db["pagination_info"] = dict()
 
     def login(self, verify_credentials=True):
         if self.settings["mastodon"]["access_token"] != None and self.settings["mastodon"]["instance"] != None:
