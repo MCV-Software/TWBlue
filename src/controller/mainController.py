@@ -340,14 +340,16 @@ class Controller(object):
             if i.account == name and i.name != name:
                 delete_buffers.append(i.name)
         for i in delete_buffers:
-            self.destroy_buffer(i, user)
+            self.destroy_buffer(i, name)
         session.db = None
 
-    def destroy_buffer(self, buffer_name, account):
-        buffer = self.search_buffer(buffer_name, account)
-        if buffer == None: return
-        buff = self.view.search(buffer.name, buffer.account)
-        if buff == None: return
+    def destroy_buffer(self, buffer_name, session_name):
+        buffer = self.search_buffer(buffer_name, session_name)
+        if buffer == None:
+            return
+        buff = self.view.search(buffer.name, session_name)
+        if buff == None:
+            return
         self.view.delete_buffer(buff)
         self.buffers.remove(buffer)
         del buffer
