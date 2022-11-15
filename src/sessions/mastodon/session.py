@@ -18,6 +18,8 @@ from .wxUI import authorisationDialog
 
 log = logging.getLogger("sessions.mastodonSession")
 
+MASTODON_VERSION = "4.0.1"
+
 class Session(base.baseSession):
 
     def __init__(self, *args, **kwargs):
@@ -31,7 +33,7 @@ class Session(base.baseSession):
         if self.settings["mastodon"]["access_token"] != None and self.settings["mastodon"]["instance"] != None:
             try:
                 log.debug("Logging in to Mastodon instance {}...".format(self.settings["mastodon"]["instance"]))
-                self.api = mastodon.Mastodon(access_token=self.settings["mastodon"]["access_token"], api_base_url=self.settings["mastodon"]["instance"])
+                self.api = mastodon.Mastodon(access_token=self.settings["mastodon"]["access_token"], api_base_url=self.settings["mastodon"]["instance"], mastodon_version=MASTODON_VERSION)
                 if verify_credentials == True:
                     credentials = self.api.account_verify_credentials()
                     self.db["user_name"] = credentials["username"]
@@ -55,7 +57,7 @@ class Session(base.baseSession):
             answer = self.authorisation_dialog.ShowModal()
             if answer == wx.ID_OK:
                 client_id, client_secret = mastodon.Mastodon.create_app("TWBlue", api_base_url=self.authorisation_dialog.instance.GetValue(), website="https://twblue.es")
-                temporary_api = mastodon.Mastodon(client_id=client_id, client_secret=client_secret, api_base_url=self.authorisation_dialog.instance.GetValue())
+                temporary_api = mastodon.Mastodon(client_id=client_id, client_secret=client_secret, api_base_url=self.authorisation_dialog.instance.GetValue(), mastodon_version=MASTODON_VERSION)
                 access_token = temporary_api.log_in(self.authorisation_dialog.email.GetValue(), self.authorisation_dialog.password.GetValue())
                 self.settings["mastodon"]["access_token"] = access_token
                 self.settings["mastodon"]["instance"] = self.authorisation_dialog.instance.GetValue()
