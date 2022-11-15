@@ -155,8 +155,8 @@ class Handler(object):
                 output.speak("error %s" % (str(e)))
                 log.exception("error %s" % (str(e)))
 
-    def list_manager(self, session):
-        return lists.listsController(session=session)
+    def list_manager(self, session, lists_buffer_position):
+        return lists.listsController(session=session, lists_buffer_position=lists_buffer_position)
 
     def account_settings(self, buffer, controller):
         d = settings.accountSettingsController(buffer, controller)

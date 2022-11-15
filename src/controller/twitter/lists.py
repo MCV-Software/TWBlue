@@ -10,9 +10,10 @@ from pubsub import pub
 log = logging.getLogger("controller.listsController")
 
 class listsController(object):
-    def __init__(self, session, user=None):
+    def __init__(self, session, user=None, lists_buffer_position=0):
         super(listsController, self).__init__()
         self.session = session
+        self.lists_buffer_position = lists_buffer_position
         if user == None:
             self.dialog = lists.listViewer()
             self.dialog.populate_list(self.get_all_lists())
@@ -90,7 +91,7 @@ class listsController(object):
     def open_list_as_buffer(self, *args, **kwargs):
         if self.dialog.lista.get_count() == 0: return
         list = self.session.db["lists"][self.dialog.get_item()]
-        pub.sendMessage("create-new-buffer", buffer="list", account=self.session.db["user_name"], create=list.name)
+        pub.sendMessage("createBuffer", buffer_type="ListBuffer", session_type=self.session.type, buffer_title=_("List for {}").format(list.name), parent_tab=self.lists_buffer_position, start=True, kwargs=dict(function="list_timeline", name="%s-list" % (list.name,), sessionObject=self.session, account=self.session.get_name(), bufferType=None, sound="list_tweet.ogg", list_id=list.id, include_ext_alt_text=True, tweet_mode="extended"))
 
     def subscribe(self, *args, **kwargs):
         if self.dialog.lista.get_count() == 0: return

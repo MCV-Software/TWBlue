@@ -300,6 +300,8 @@ class Controller(object):
 
     def create_buffer(self, buffer_type="baseBuffer", session_type="twitter", buffer_title="", parent_tab=None, start=False, kwargs={}):
         log.debug("Creating buffer of type {0} with parent_tab of {2} arguments {1}".format(buffer_type, kwargs, parent_tab))
+        if kwargs.get("parent") == None:
+            kwargs["parent"] = self.view.nb
         if not hasattr(buffers, session_type):
             raise AttributeError("Session type %s does not exist yet." % (session_type))
         available_buffers = getattr(buffers, session_type)
@@ -458,7 +460,8 @@ class Controller(object):
         buffer = self.get_best_buffer()
         handler = self.get_handler(type=buffer.session.type)
         if handler != None and hasattr(handler, "list_manager"):
-            return handler.list_manager(session=buffer.session)
+            lists_buffer_position = self.view.search("lists", buffer.session.get_name())
+            return handler.list_manager(session=buffer.session, lists_buffer_position=lists_buffer_position)
 
     def configuration(self, *args, **kwargs):
         """ Opens the global settings dialogue."""
