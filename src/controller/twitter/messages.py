@@ -8,7 +8,7 @@ import output
 import sound
 import config
 from pubsub import pub
-from twitter_text import parse_tweet
+from twitter_text.parse_tweet import parse_tweet
 from wxUI.dialogs import twitterDialogs, urlList
 from wxUI import commonMessageDialogs
 from extra import translator, SpellChecker
