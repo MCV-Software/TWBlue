@@ -106,10 +106,8 @@ class Session(base.baseSession):
                     else: objects.insert(0, i)
                     incoming = incoming+1
         self.db["direct_messages"] = objects
-
         self.db["sent_direct_messages"] = sent_objects
-        pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
-
+        pub.sendMessage("sent-dms-updated", total=sent, session_name=self.get_name())
         return incoming
 
     def __init__(self, *args, **kwargs):
@@ -555,7 +553,7 @@ class Session(base.baseSession):
     def start_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
             return
-        self.stream = streaming.Stream(twitter_api=self.twitter, user=self.get_name(), user_id=self.db["user_id"], muted_users=self.db["muted_users"], consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"], chunk_size=1025)
+        self.stream = streaming.Stream(twitter_api=self.twitter, session_name=self.get_name(), user_id=self.db["user_id"], muted_users=self.db["muted_users"], consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"], chunk_size=1025)
         self.stream_thread = call_threaded(self.stream.filter, follow=self.stream.users, stall_warnings=True)
 
     def stop_streaming(self):
@@ -565,12 +563,12 @@ class Session(base.baseSession):
             self.stream.running = False
             log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
 
-    def handle_new_status(self, status, user):
+    def handle_new_status(self, status, session_name):
         """ Handles a new status present in the Streaming API. """
         if self.logged == False:
             return
         # Discard processing the status if the streaming sends a tweet for another account.
-        if self.get_name() != user:
+        if self.get_name() != session_name:
             return
         # the Streaming API sends non-extended tweets with an optional parameter "extended_tweets" which contains full_text and other data.
         # so we have to make sure we check it before processing the normal status.
@@ -607,7 +605,7 @@ class Session(base.baseSession):
         status = self.check_quoted_status(status)
         status = self.check_long_tweet(status)
         # Send it to the main controller object.
-        pub.sendMessage("newTweet", data=status, user=self.get_name(), _buffers=buffers_to_send)
+        pub.sendMessage("newTweet", data=status, session_name=self.get_name(), _buffers=buffers_to_send)
 
     def check_streams(self):
         if config.app["app-settings"]["no_streaming"]:
@@ -618,11 +616,11 @@ class Session(base.baseSession):
         if self.stream.running == False:
             self.start_streaming()
 
-    def handle_connected(self, user):
+    def handle_connected(self, session_name):
         if self.logged == False:
             return
-        if user != self.get_name():
-            log.debug("Connected streaming endpoint on account {}".format(user))
+        if session_name != self.get_name():
+            log.debug("Connected streaming endpoint on session {}".format(session_name))
 
     def send_tweet(self, *tweets):
         """ Convenience function to send a thread. """
@@ -673,7 +671,7 @@ class Session(base.baseSession):
             else:
                 sent_dms.insert(0, item)
             self.db["sent_direct_messages"] = sent_dms
-            pub.sendMessage("sent-dm", data=item, user=self.db["user_name"])
+            pub.sendMessage("sent-dm", data=item, session_name=self.get_name())
 
     def get_name(self):
-        return "{} ({})".format(self.db["user_name"], "Twitter")
+        return "Twitter: {}".format(self.db["user_name"])

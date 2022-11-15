@@ -899,17 +899,19 @@ class Controller(object):
         if message != None:
             output.speak(message, speech=session.settings["reporting"]["speech_reporting"], braille=session.settings["reporting"]["braille_reporting"])
 
-    def manage_sent_dm(self, data, user):
-        buffer = self.search_buffer("sent_direct_messages", user)
-        if buffer == None: return
+    def manage_sent_dm(self, data, session_name):
+        buffer = self.search_buffer("sent_direct_messages", session_name)
+        if buffer == None:
+            return
         play_sound = "dm_sent.ogg"
         if "sent_direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
             self.notify(buffer.session, play_sound=play_sound)
         buffer.add_new_item(data)
 
-    def manage_sent_tweets(self, data, user):
-        buffer = self.search_buffer("sent_tweets", user)
-        if buffer == None: return
+    def manage_sent_tweets(self, data, session_name):
+        buffer = self.search_buffer("sent_tweets", session_name)
+        if buffer == None:
+            return
         data = buffer.session.check_quoted_status(data)
         data = buffer.session.check_long_tweet(data)
         if data == False: # Long tweet deleted from twishort.
@@ -922,37 +924,43 @@ class Controller(object):
         buffer.session.db[buffer.name] = items
         buffer.add_new_item(data)
 
-    def manage_friend(self, data, user):
-        buffer = self.search_buffer("friends", user)
-        if buffer == None: return
+    def manage_friend(self, data, session_name):
+        buffer = self.search_buffer("friends", session_name)
+        if buffer == None:
+            return
         buffer.add_new_item(data)
 
-    def manage_unfollowing(self, item, user):
-        buffer = self.search_buffer("friends", user)
-        if buffer == None: return
+    def manage_unfollowing(self, item, session_name):
+        buffer = self.search_buffer("friends", session_name)
+        if buffer == None:
+            return
         buffer.remove_item(item)
 
-    def manage_favourite(self, data, user):
-        buffer = self.search_buffer("favourites", user)
-        if buffer == None: return
+    def manage_favourite(self, data, session_name):
+        buffer = self.search_buffer("favourites", session_name)
+        if buffer == None:
+            return
         play_sound = "favourite.ogg"
         if "favourites" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
             self.notify(buffer.session, play_sound=play_sound)
         buffer.add_new_item(data)
 
-    def manage_unfavourite(self, item, user):
-        buffer = self.search_buffer("favourites", user)
-        if buffer == None: return
+    def manage_unfavourite(self, item, session_name):
+        buffer = self.search_buffer("favourites", session_name)
+        if buffer == None:
+            return
         buffer.remove_item(item)
 
-    def manage_blocked_user(self, data, user):
-        buffer = self.search_buffer("blocked", user)
-        if buffer == None: return
+    def manage_blocked_user(self, data, session_name):
+        buffer = self.search_buffer("blocked", session_name)
+        if buffer == None:
+            return
         buffer.add_new_item(data)
 
-    def manage_unblocked_user(self, item, user):
-        buffer = self.search_buffer("blocked", user)
-        if buffer == None: return
+    def manage_unblocked_user(self, item, session_name):
+        buffer = self.search_buffer("blocked", session_name)
+        if buffer == None:
+            return
         buffer.remove_item(item)
 
     def start_buffers(self, session):
@@ -1151,8 +1159,8 @@ class Controller(object):
         if hasattr(buffer, "ocr_image"):
             return buffer.ocr_image()
 
-    def update_sent_dms(self, total, account):
-        sent_dms = self.search_buffer("sent_direct_messages", account)
+    def update_sent_dms(self, total, session_name):
+        sent_dms = self.search_buffer("sent_direct_messages", session_name)
         if sent_dms != None:
             sent_dms.put_items_on_list(total)
 
@@ -1165,11 +1173,11 @@ class Controller(object):
         for i in sessions.sessions:
             sessions.sessions[i].save_persistent_data()
 
-    def manage_new_tweet(self, data, name, _buffers):
+    def manage_new_tweet(self, data, session_name, _buffers):
         sound_to_play = None
         for buff in _buffers:
-            buffer = self.search_buffer(buff, name)
-            if buffer == None or buffer.session.get_name() != name:
+            buffer = self.search_buffer(buff, session_name)
+            if buffer == None or buffer.session.get_name() != session_name:
                 return
             buffer.add_new_item(data)
             if buff == "home_timeline": sound_to_play = "tweet_received.ogg"

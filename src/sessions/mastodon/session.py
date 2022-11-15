@@ -169,4 +169,4 @@ class Session(base.baseSession):
         instance = self.settings["mastodon"]["instance"]
         instance = instance.replace("https://", "")
         user = self.db["user_name"]
-        return "{}@{} (mastodon)".format(user, instance)
+        return "Mastodon: {}@{}".format(user, instance)
