@@ -40,7 +40,7 @@ def process_image_descriptions(media_attachments):
             image_descriptions.append(media.get("description"))
     idescriptions = ""
     for image in image_descriptions:
-        idescriptions = idescriptions + _("Image description: {}").format(image) + " "
+        idescriptions = idescriptions + _("Image description: {}").format(image) + "\n"
     return idescriptions
 
 def remove_unneeded_variables(template, variables):
