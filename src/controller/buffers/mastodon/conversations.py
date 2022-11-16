@@ -4,7 +4,9 @@ import logging
 import wx
 import widgetUtils
 import output
+from controller.mastodon import messages
 from controller.buffers.mastodon.base import BaseBuffer
+from mysc.thread_utils import call_threaded
 from sessions.mastodon import utils, templates
 from wxUI import buffers, commonMessageDialogs
 log = logging.getLogger("controller.buffers.mastodon.conversations")
@@ -19,13 +21,13 @@ class ConversationListBuffer(BaseBuffer):
         if index > -1 and self.session.db.get(self.name) != None and len(self.session.db[self.name]) > index:
             return self.session.db[self.name][index]["last_status"]
 
-    def get_formatted_message(self):
-        return self.compose_function(self.get_conversation(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
-
     def get_conversation(self):
         index = self.buffer.list.get_selected()
         if index > -1 and self.session.db.get(self.name) != None:
             return self.session.db[self.name][index]
+
+    def get_formatted_message(self):
+        return self.compose_function(self.get_conversation(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
 
     def get_message(self):
         conversation = self.get_conversation()
@@ -166,6 +168,24 @@ class ConversationListBuffer(BaseBuffer):
 
     def destroy_status(self):
         pass
+
+    def reply(self, *args):
+        item = self.get_item()
+        conversation = self.get_conversation()
+        visibility = item.visibility
+        title = _("Conversation with {}").format(conversation.accounts[0].username)
+        caption = _("Write your message here")
+        users = ["@{} ".format(user.acct) for user in conversation.accounts]
+        users_str = "".join(users)
+        toot = messages.toot(session=self.session, title=title, caption=caption, text=users_str)
+        visibility_settings = dict(public=0, unlisted=1, private=2, direct=3)
+        toot.message.visibility.SetSelection(visibility_settings.get(visibility))
+        response = toot.message.ShowModal()
+        if response == wx.ID_OK:
+            toot_data = toot.get_data()
+            call_threaded(self.session.send_toot, reply_to=item.id, toots=toot_data, visibility=visibility)
+        if hasattr(toot.message, "destroy"):
+            toot.message.destroy()
 
 class ConversationBuffer(BaseBuffer):
 
