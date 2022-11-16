@@ -505,7 +505,8 @@ class Controller(object):
         log.debug("Exiting...")
         log.debug("Saving global configuration...")
         for item in sessions.sessions:
-            if sessions.sessions[item].logged == False: continue
+            if sessions.sessions[item].logged == False:
+                continue
             if hasattr(sessions.sessions[item], "stop_streaming"):
                 log.debug("Disconnecting streaming endpoint for session" +    sessions.sessions[item].session_id)
                 sessions.sessions[item].stop_streaming()

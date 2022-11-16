@@ -92,7 +92,7 @@ class listsController(object):
         if self.dialog.lista.get_count() == 0: return
         list = self.session.db["lists"][self.dialog.get_item()]
         pub.sendMessage("createBuffer", buffer_type="ListBuffer", session_type=self.session.type, buffer_title=_("List for {}").format(list.name), parent_tab=self.lists_buffer_position, start=True, kwargs=dict(function="list_timeline", name="%s-list" % (list.name,), sessionObject=self.session, account=self.session.get_name(), bufferType=None, sound="list_tweet.ogg", list_id=list.id, include_ext_alt_text=True, tweet_mode="extended"))
-        self.session.db["other_buffers"]["lists"].append(list.id)
+        self.session.settings["other_buffers"]["lists"].append(list.name)
         self.session.settings.write()
 
     def subscribe(self, *args, **kwargs):
