@@ -3,6 +3,7 @@ import os
 import paths
 import time
 import logging
+import webbrowser
 import wx
 import mastodon
 import config
@@ -53,16 +54,27 @@ class Session(base.baseSession):
     def authorise(self):
         if self.logged == True:
             raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
-        else:
-            self.authorisation_dialog = authorisationDialog()
-            answer = self.authorisation_dialog.ShowModal()
-            if answer == wx.ID_OK:
-                client_id, client_secret = mastodon.Mastodon.create_app("TWBlue", api_base_url=self.authorisation_dialog.instance.GetValue(), website="https://twblue.es")
-                temporary_api = mastodon.Mastodon(client_id=client_id, client_secret=client_secret, api_base_url=self.authorisation_dialog.instance.GetValue(), mastodon_version=MASTODON_VERSION)
-                access_token = temporary_api.log_in(self.authorisation_dialog.email.GetValue(), self.authorisation_dialog.password.GetValue())
-                self.settings["mastodon"]["access_token"] = access_token
-                self.settings["mastodon"]["instance"] = self.authorisation_dialog.instance.GetValue()
-                self.settings.write()
+        authorisation_dialog = wx.TextEntryDialog(None, _("Please enter your instance URL."), _("Mastodon instance"))
+        answer = authorisation_dialog.ShowModal()
+        instance = authorisation_dialog.GetValue()
+        authorisation_dialog.Destroy()
+        if answer != wx.ID_OK:
+            return
+        client_id, client_secret = mastodon.Mastodon.create_app("TWBlue", api_base_url=authorisation_dialog.GetValue(), website="https://twblue.es")
+        temporary_api = mastodon.Mastodon(client_id=client_id, client_secret=client_secret, api_base_url=instance, mastodon_version=MASTODON_VERSION)
+        authorisation_dialog.Destroy()
+        auth_url = temporary_api.auth_request_url()
+        webbrowser.open_new_tab(auth_url)
+        verification_dialog = wx.TextEntryDialog(None, _("Enter the verification code"), _("PIN code authorization"))
+        answer = verification_dialog.ShowModal()
+        code = verification_dialog.GetValue()
+        verification_dialog.Destroy()
+        if answer != wx.ID_OK:
+            return
+        access_token = temporary_api.log_in(code=verification_dialog.GetValue())
+        self.settings["mastodon"]["access_token"] = access_token
+        self.settings["mastodon"]["instance"] = instance
+        self.settings.write()
 
     def get_user_info(self):
         """ Retrieves some information required by TWBlue for setup."""
