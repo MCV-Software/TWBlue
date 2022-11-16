@@ -28,6 +28,7 @@ class Session(base.baseSession):
         self.supported_languages = []
         self.type = "mastodon"
         self.db["pagination_info"] = dict()
+        self.char_limit = 500
 
     def login(self, verify_credentials=True):
         if self.settings["mastodon"]["access_token"] != None and self.settings["mastodon"]["instance"] != None:
@@ -73,6 +74,10 @@ class Session(base.baseSession):
             self.supported_languages = self.api.instance().languages
         self.get_lists()
         self.get_muted_users()
+        # determine instance custom characters limit.
+        instance = self.api.instance()
+        if hasattr(instance, "max_toot_chars"):
+            self.char_limit = instance.max_toot_chars
         self.settings.write()
 
     def get_lists(self):

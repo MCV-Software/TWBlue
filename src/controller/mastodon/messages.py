@@ -9,8 +9,9 @@ from sessions.mastodon import templates
 from wxUI.dialogs.mastodon import tootDialogs
 
 class toot(messages.basicTweet):
-    def __init__(self, session, title, caption, text="", max=500, *args, **kwargs):
-        self.max = max
+    def __init__(self, session, title, caption, text="", *args, **kwargs):
+        # take max character limit from session as this might be different for some instances.
+        self.max = session.char_limit
         self.title = title
         self.session = session
         self.message = tootDialogs.Toot(caption=caption, text=text, *args, **kwargs)
