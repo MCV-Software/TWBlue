@@ -76,11 +76,11 @@ class Handler(object):
             log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), buffer.name, buffer.account, buffer.args, buffer.kwargs))
 
     def open_conversation(self, controller, buffer):
-        toot = buffer.get_item()
-        if toot.reblog != None:
-            toot = toot.reblog
+        post = buffer.get_item()
+        if post.reblog != None:
+            post = post.reblog
         conversations_position =controller.view.search("direct_messages", buffer.session.get_name())
-        pub.sendMessage("createBuffer", buffer_type="ConversationBuffer", session_type=buffer.session.type, buffer_title=_("Conversation with {0}").format(toot.account.acct), parent_tab=conversations_position, start=True, kwargs=dict(parent=controller.view.nb, function="status_context", name="%s-conversation" % (toot.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="search_updated.ogg", toot=toot, id=toot.id))
+        pub.sendMessage("createBuffer", buffer_type="ConversationBuffer", session_type=buffer.session.type, buffer_title=_("Conversation with {0}").format(post.account.acct), parent_tab=conversations_position, start=True, kwargs=dict(parent=controller.view.nb, function="status_context", name="%s-conversation" % (post.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="search_updated.ogg", post=post, id=post.id))
 
     def follow(self, buffer):
         if not hasattr(buffer, "get_item"):

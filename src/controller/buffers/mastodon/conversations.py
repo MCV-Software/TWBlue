@@ -34,8 +34,8 @@ class ConversationListBuffer(BaseBuffer):
         if conversation == None:
             return
         template = self.session.settings["templates"]["conversation"]
-        toot_template = self.session.settings["templates"]["toot"]
-        t = templates.render_conversation(conversation=conversation, template=template, toot_template=toot_template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
+        post_template = self.session.settings["templates"]["post"]
+        t = templates.render_conversation(conversation=conversation, template=template, post_template=post_template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
         return t
 
     def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
@@ -44,7 +44,7 @@ class ConversationListBuffer(BaseBuffer):
             self.execution_time = current_time
             log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-            count = self.session.settings["general"]["max_toots_per_call"]
+            count = self.session.settings["general"]["max_posts_per_call"]
             min_id = None
             # toDo: Implement reverse timelines properly here.
 #            if (self.name != "favorites" and self.name != "bookmarks") and self.name in self.session.db and len(self.session.db[self.name]) > 0:
@@ -60,7 +60,7 @@ class ConversationListBuffer(BaseBuffer):
             self.put_items_on_list(number_of_items)
             if new_position > -1:
                 self.buffer.list.select_item(new_position)
-            if number_of_items > 0 and  self.name != "sent_toots" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
+            if number_of_items > 0 and  self.name != "sent_posts" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
                 self.session.sound.play(self.sound)
             # Autoread settings
             if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
@@ -74,7 +74,7 @@ class ConversationListBuffer(BaseBuffer):
         else:
             max_id = self.session.db[self.name][-1].last_status.id
         try:
-            items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_toots_per_call"], *self.args, **self.kwargs)
+            items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_posts_per_call"], *self.args, **self.kwargs)
         except Exception as e:
             log.exception("Error %s" % (str(e)))
             return
@@ -142,7 +142,7 @@ class ConversationListBuffer(BaseBuffer):
         log.debug("Binding events...")
         self.buffer.set_focus_function(self.onFocus)
         widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
-        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.toot)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.post)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
         widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
         widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
@@ -160,10 +160,10 @@ class ConversationListBuffer(BaseBuffer):
         return self.reply()
 
     def onFocus(self, *args, **kwargs):
-        toot = self.get_item()
-        if self.session.settings['sound']['indicate_audio'] and utils.is_audio_or_video(toot):
+        post = self.get_item()
+        if self.session.settings['sound']['indicate_audio'] and utils.is_audio_or_video(post):
             self.session.sound.play("audio.ogg")
-        if self.session.settings['sound']['indicate_img'] and utils.is_image(toot):
+        if self.session.settings['sound']['indicate_img'] and utils.is_image(post):
             self.session.sound.play("image.ogg")
 
     def destroy_status(self):
@@ -177,20 +177,20 @@ class ConversationListBuffer(BaseBuffer):
         caption = _("Write your message here")
         users = ["@{} ".format(user.acct) for user in conversation.accounts]
         users_str = "".join(users)
-        toot = messages.toot(session=self.session, title=title, caption=caption, text=users_str)
+        post = messages.post(session=self.session, title=title, caption=caption, text=users_str)
         visibility_settings = dict(public=0, unlisted=1, private=2, direct=3)
-        toot.message.visibility.SetSelection(visibility_settings.get(visibility))
-        response = toot.message.ShowModal()
+        post.message.visibility.SetSelection(visibility_settings.get(visibility))
+        response = post.message.ShowModal()
         if response == wx.ID_OK:
-            toot_data = toot.get_data()
-            call_threaded(self.session.send_toot, reply_to=item.id, toots=toot_data, visibility=visibility)
-        if hasattr(toot.message, "destroy"):
-            toot.message.destroy()
+            post_data = post.get_data()
+            call_threaded(self.session.send_post, reply_to=item.id, posts=post_data, visibility=visibility)
+        if hasattr(post.message, "destroy"):
+            post.message.destroy()
 
 class ConversationBuffer(BaseBuffer):
 
-    def __init__(self, toot, *args, **kwargs):
-        self.toot = toot
+    def __init__(self, post, *args, **kwargs):
+        self.post = post
         super(ConversationBuffer, self).__init__(*args, **kwargs)
 
     def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
@@ -199,13 +199,13 @@ class ConversationBuffer(BaseBuffer):
             self.execution_time = current_time
             log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-            self.toot = self.session.api.status(id=self.toot.id)
+            self.post = self.session.api.status(id=self.post.id)
             # toDo: Implement reverse timelines properly here.
             try:
                 results = []
                 items = getattr(self.session.api, self.function)(*self.args, **self.kwargs)
                 [results.append(item) for item in items.ancestors]
-                results.append(self.toot)
+                results.append(self.post)
                 [results.append(item) for item in items.descendants]
             except Exception as e:
                 log.exception("Error %s" % (str(e)))
@@ -213,7 +213,7 @@ class ConversationBuffer(BaseBuffer):
             number_of_items = self.session.order_buffer(self.name, results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
             self.put_items_on_list(number_of_items)
-            if number_of_items > 0 and  self.name != "sent_toots" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
+            if number_of_items > 0 and  self.name != "sent_posts" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
                 self.session.sound.play(self.sound)
             # Autoread settings
             if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:

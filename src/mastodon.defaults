@@ -6,7 +6,7 @@ ignored_clients = list(default=list())
 
 [general]
 relative_times = boolean(default=True)
-max_toots_per_call = integer(default=40)
+max_posts_per_call = integer(default=40)
 reverse_timelines = boolean(default=False)
 persist_size = integer(default=0)
 load_cache_in_memory=boolean(default=True)
@@ -44,9 +44,9 @@ braille_reporting = boolean(default=True)
 speech_reporting = boolean(default=True)
 
 [templates]
-toot = string(default="$display_name, $safe_text $image_descriptions $date. $visibility. $source")
+post = string(default="$display_name, $safe_text $image_descriptions $date. $visibility. $source")
 person = string(default="$display_name (@$screen_name). $followers followers, $following following, $toots toots. Joined $created_at.")
-conversation = string(default="Conversation with $users. Last message: $last_toot")
+conversation = string(default="Conversation with $users. Last message: $last_post")
 
 [filters]
 

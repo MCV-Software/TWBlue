@@ -7,16 +7,16 @@ from . import utils, compose
 
 # Define variables that would be available for all template objects.
 # This will be used for the edit template dialog.
-# Available variables for toot objects.
-# safe_text will be the content warning in case a toot contains one, text will always be the full text, no matter if has a content warning or not.
-toot_variables = ["date", "display_name", "screen_name", "source", "lang", "safe_text", "text", "image_descriptions", "visibility"]
-person_variables = ["display_name", "screen_name", "description", "followers", "following", "favorites", "toots", "created_at"]
-conversation_variables = ["users", "last_toot"]
+# Available variables for post objects.
+# safe_text will be the content warning in case a post contains one, text will always be the full text, no matter if has a content warning or not.
+post_variables = ["date", "display_name", "screen_name", "source", "lang", "safe_text", "text", "image_descriptions", "visibility"]
+person_variables = ["display_name", "screen_name", "description", "followers", "following", "favorites", "posts", "created_at"]
+conversation_variables = ["users", "last_post"]
 
 # Default, translatable templates.
-toot_default_template = _("$display_name, $text $image_descriptions $date. $source")
+post_default_template = _("$display_name, $text $image_descriptions $date. $source")
 dm_sent_default_template = _("Dm to $recipient_display_name, $text $date")
-person_default_template = _("$display_name (@$screen_name). $followers followers, $following following, $toots toots. Joined $created_at.")
+person_default_template = _("$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
 
 def process_date(field, relative_times=True, offset_hours=0):
     original_date = arrow.get(field)
@@ -26,11 +26,11 @@ def process_date(field, relative_times=True, offset_hours=0):
         ts = original_date.shift(hours=offset_hours).format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
     return ts
 
-def process_text(toot, safe=True):
+def process_text(post, safe=True):
 #    text = utils.clean_mentions(utils.StripChars(text))
-    if safe == True and toot.sensitive == True and toot.spoiler_text != "":
-        return _("Content warning: {}").format(toot.spoiler_text)
-    return utils.html_filter(toot.content)
+    if safe == True and post.sensitive == True and post.spoiler_text != "":
+        return _("Content warning: {}").format(post.spoiler_text)
+    return utils.html_filter(post.content)
 
 def process_image_descriptions(media_attachments):
     """ Attempt to extract information for image descriptions. """
@@ -48,51 +48,51 @@ def remove_unneeded_variables(template, variables):
         template = re.sub("\$"+variable, "", template)
     return template
 
-def render_toot(toot, template, relative_times=False, offset_hours=0):
-    """ Renders any given toot according to the passed template.
-    Available data for toots will be stored in the following variables:
+def render_post(post, template, relative_times=False, offset_hours=0):
+    """ Renders any given post according to the passed template.
+    Available data for posts will be stored in the following variables:
     $date: Creation date.
     $display_name: User profile name.
     $screen_name: User screen name, this is the same name used to reference the user in Twitter.
     $ source: Source client from where the current tweet was sent.
     $lang: Two letter code for the automatically detected language for the tweet. This detection is performed by Twitter.
-    $safe_text: Safe text to display. If a content warning is applied in toots, display those instead of the whole toot.
+    $safe_text: Safe text to display. If a content warning is applied in posts, display those instead of the whole post.
     $text: Toot text. This always displays the full text, even if there is a content warning present.
     $image_descriptions: Information regarding image descriptions added by twitter users.
-    $visibility: toot's visibility: public, not listed, followers only or direct.
+    $visibility: post's visibility: public, not listed, followers only or direct.
     """
-    global toot_variables
+    global post_variables
     available_data = dict()
-    created_at = process_date(toot.created_at, relative_times, offset_hours)
+    created_at = process_date(post.created_at, relative_times, offset_hours)
     available_data.update(date=created_at)
     # user.
-    display_name = toot.account.display_name
+    display_name = post.account.display_name
     if display_name == "":
-        display_name = toot.account.username
-    available_data.update(display_name=display_name, screen_name=toot.account.acct)
+        display_name = post.account.username
+    available_data.update(display_name=display_name, screen_name=post.account.acct)
     # Source client from where tweet was originated.
     source = ""
-    if hasattr(toot, "application") and toot.application != None:
-        available_data.update(source=toot.application.get("name"))
-    if toot.reblog != None:
-        text = _("Boosted from @{}: {}").format(toot.reblog.account.acct, process_text(toot.reblog, safe=False), )
-        safe_text = _("Boosted from @{}: {}").format(toot.reblog.account.acct, process_text(toot.reblog), )
+    if hasattr(post, "application") and post.application != None:
+        available_data.update(source=post.application.get("name"))
+    if post.reblog != None:
+        text = _("Boosted from @{}: {}").format(post.reblog.account.acct, process_text(post.reblog, safe=False), )
+        safe_text = _("Boosted from @{}: {}").format(post.reblog.account.acct, process_text(post.reblog), )
     else:
-        text = process_text(toot, safe=False)
-        safe_text = process_text(toot)
+        text = process_text(post, safe=False)
+        safe_text = process_text(post)
     visibility_settings = dict(public=_("Public"), unlisted=_("Not listed"), private=_("Followers only"), direct=_("Direct"))
-    visibility = visibility_settings.get(toot.visibility)
-    available_data.update(lang=toot.language, text=text, safe_text=safe_text, visibility=visibility)
+    visibility = visibility_settings.get(post.visibility)
+    available_data.update(lang=post.language, text=text, safe_text=safe_text, visibility=visibility)
     # process image descriptions
     image_descriptions = ""
-    if toot.reblog != None:
-        image_descriptions = process_image_descriptions(toot.reblog.media_attachments)
+    if post.reblog != None:
+        image_descriptions = process_image_descriptions(post.reblog.media_attachments)
     else:
-        image_descriptions = process_image_descriptions(toot.media_attachments)
+        image_descriptions = process_image_descriptions(post.media_attachments)
     if image_descriptions != "":
         available_data.update(image_descriptions=image_descriptions)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = remove_unneeded_variables(result, toot_variables)
+    result = remove_unneeded_variables(result, post_variables)
     return result
 
 def render_user(user, template, relative_times=True, offset_hours=0):
@@ -103,14 +103,14 @@ def render_user(user, template, relative_times=True, offset_hours=0):
     $description: The user-defined UTF-8 string describing their account.
     $followers: The number of followers this account currently has. This value might be inaccurate.
     $following: The number of users this account is following (AKA their “followings”). This value might be inaccurate.
-    $toots: The number of Tweets (including retweets) issued by the user. This value might be inaccurate.
+    $posts: The number of Tweets (including retweets) issued by the user. This value might be inaccurate.
     $created_at: The date and time that the user account was created on Twitter.
     """
     global person_variables
     display_name = user.display_name
     if display_name == "":
         display_name = user.username
-    available_data = dict(display_name=display_name, screen_name=user.acct, followers=user.followers_count, following=user.following_count, toots=user.statuses_count)
+    available_data = dict(display_name=display_name, screen_name=user.acct, followers=user.followers_count, following=user.following_count, posts=user.statuses_count)
     # Nullable values.
     nullables = ["description"]
     for nullable in nullables:
@@ -122,7 +122,7 @@ def render_user(user, template, relative_times=True, offset_hours=0):
     result = remove_unneeded_variables(result, person_variables)
     return result
 
-def render_conversation(conversation, template, toot_template, relative_times=False, offset_hours=0):
+def render_conversation(conversation, template, post_template, relative_times=False, offset_hours=0):
     users = []
     for account in conversation.accounts:
         if account.display_name != "":
@@ -130,8 +130,8 @@ def render_conversation(conversation, template, toot_template, relative_times=Fa
         else:
             users.append(account.username)
     users = ", ".join(users)
-    last_toot = render_toot(conversation.last_status, toot_template, relative_times=relative_times, offset_hours=offset_hours)
-    available_data = dict(users=users, last_toot=last_toot)
+    last_post = render_post(conversation.last_status, post_template, relative_times=relative_times, offset_hours=offset_hours)
+    available_data = dict(users=users, last_post=last_post)
     result = Template(_(template)).safe_substitute(**available_data)
     result = remove_unneeded_variables(result, conversation_variables)
     return result

@@ -1,17 +1,17 @@
 import wx
 
-class Toot(wx.Dialog):
-    def __init__(self, caption=_("toot"), text="", *args, **kwds):
-        super(Toot, self).__init__(parent=None, id=wx.ID_ANY, *args, **kwds)
+class Post(wx.Dialog):
+    def __init__(self, caption=_("Post"), text="", *args, **kwds):
+        super(Post, self).__init__(parent=None, id=wx.ID_ANY, *args, **kwds)
         main_sizer = wx.BoxSizer(wx.VERTICAL)
-        toot_sizer = wx.WrapSizer(wx.VERTICAL)
-        main_sizer.Add(toot_sizer, 1, wx.EXPAND, 0)
-        toot_label = wx.StaticText(self, wx.ID_ANY, caption)
-        toot_sizer.Add(toot_label, 0, 0, 0)
+        post_sizer = wx.WrapSizer(wx.VERTICAL)
+        main_sizer.Add(post_sizer, 1, wx.EXPAND, 0)
+        post_label = wx.StaticText(self, wx.ID_ANY, caption)
+        post_sizer.Add(post_label, 0, 0, 0)
         self.text = wx.TextCtrl(self, wx.ID_ANY, text, style=wx.TE_MULTILINE)
         self.Bind(wx.EVT_CHAR_HOOK, self.handle_keys, self.text)
         self.text.SetMinSize((350, -1))
-        toot_sizer.Add(self.text, 0, 0, 0)
+        post_sizer.Add(self.text, 0, 0, 0)
         lists_sizer = wx.BoxSizer(wx.HORIZONTAL)
         main_sizer.Add(lists_sizer, 1, wx.EXPAND, 0)
         attachments_sizer = wx.WrapSizer(wx.VERTICAL)
@@ -27,22 +27,22 @@ class Toot(wx.Dialog):
         self.remove_attachment = wx.Button(self, wx.ID_ANY, _("Remove Attachment"))
         self.remove_attachment.Enable(False)
         attachments_sizer.Add(self.remove_attachment, 0, 0, 0)
-        toots_sizer = wx.WrapSizer(wx.VERTICAL)
-        lists_sizer.Add(toots_sizer, 1, wx.EXPAND, 0)
-        toots_label = wx.StaticText(self, wx.ID_ANY, _("Toots in the thread"))
-        toots_sizer.Add(toots_label, 0, 0, 0)
-        self.toots = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_HRULES | wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_VRULES)
-        self.toots.Enable(False)
-        self.toots.AppendColumn(_("Text"), format=wx.LIST_FORMAT_LEFT, width=-1)
-        self.toots.AppendColumn(_("Attachments"), format=wx.LIST_FORMAT_LEFT, width=-1)
-        toots_sizer.Add(self.toots, 1, wx.EXPAND, 0)
-        self.remove_toot = wx.Button(self, wx.ID_ANY, _("Remove toot"))
-        self.remove_toot.Enable(False)
-        toots_sizer.Add(self.remove_toot, 0, 0, 0)
-        toot_actions_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        main_sizer.Add(toot_actions_sizer, 1, wx.EXPAND, 0)
+        posts_sizer = wx.WrapSizer(wx.VERTICAL)
+        lists_sizer.Add(posts_sizer, 1, wx.EXPAND, 0)
+        posts_label = wx.StaticText(self, wx.ID_ANY, _("Post in the thread"))
+        posts_sizer.Add(posts_label, 0, 0, 0)
+        self.posts = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_HRULES | wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_VRULES)
+        self.posts.Enable(False)
+        self.posts.AppendColumn(_("Text"), format=wx.LIST_FORMAT_LEFT, width=-1)
+        self.posts.AppendColumn(_("Attachments"), format=wx.LIST_FORMAT_LEFT, width=-1)
+        posts_sizer.Add(self.posts, 1, wx.EXPAND, 0)
+        self.remove_post = wx.Button(self, wx.ID_ANY, _("Remove post"))
+        self.remove_post.Enable(False)
+        posts_sizer.Add(self.remove_post, 0, 0, 0)
+        post_actions_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        main_sizer.Add(post_actions_sizer, 1, wx.EXPAND, 0)
         visibility_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        toot_actions_sizer.Add(visibility_sizer, 1, wx.EXPAND, 0)
+        post_actions_sizer.Add(visibility_sizer, 1, wx.EXPAND, 0)
         label_1 = wx.StaticText(self, wx.ID_ANY, _("Visibility"))
         visibility_sizer.Add(label_1, 0, 0, 0)
         self.visibility = wx.ComboBox(self, wx.ID_ANY, choices=[_("Public"), _("Not listed"), _("Followers only"), _("Direct")], style=wx.CB_DROPDOWN | wx.CB_READONLY | wx.CB_SIMPLE)
@@ -60,9 +60,9 @@ class Toot(wx.Dialog):
         spoiler_box.Add(spoiler_label, 0, wx.ALL, 5)
         spoiler_box.Add(self.spoiler, 0, wx.ALL, 10)
         main_sizer.Add(spoiler_box, 0, wx.ALL, 5)
-        toot_actions_sizer.Add(self.add, 0, 0, 0)
-        self.add_toot = wx.Button(self, wx.ID_ANY, _("Add t&oot"))
-        toot_actions_sizer.Add(self.add_toot, 0, 0, 0)
+        post_actions_sizer.Add(self.add, 0, 0, 0)
+        self.add_post = wx.Button(self, wx.ID_ANY, _("Add p&ost"))
+        post_actions_sizer.Add(self.add_post, 0, 0, 0)
         text_actions_sizer = wx.BoxSizer(wx.HORIZONTAL)
         main_sizer.Add(text_actions_sizer, 1, wx.EXPAND, 0)
         self.autocomplete_users = wx.Button(self, wx.ID_ANY, _("Auto&complete users"))
@@ -96,7 +96,7 @@ class Toot(wx.Dialog):
         self.spoiler.Enable(self.sensitive.GetValue())
 
     def set_title(self, chars):
-        self.SetTitle(_("Toot - {} characters").format(chars))
+        self.SetTitle(_("Post - {} characters").format(chars))
 
     def reset_controls(self):
         self.text.ChangeValue("")
@@ -106,7 +106,7 @@ class Toot(wx.Dialog):
         if list_type == "attachment":
             self.attachments.Append(item)
         else:
-            self.toots.Append(item)
+            self.posts.Append(item)
 
     def remove_item(self, list_type="attachment"):
         if list_type == "attachment":
@@ -114,9 +114,9 @@ class Toot(wx.Dialog):
             if item > -1:
                 self.attachments.DeleteItem(item)
         else:
-            item = self.toots.GetFocusedItem()
+            item = self.posts.GetFocusedItem()
             if item > -1:
-                self.toots.DeleteItem(item)
+                self.posts.DeleteItem(item)
 
     def attach_menu(self, event=None, enabled=True, *args, **kwargs):
         menu = wx.Menu()
@@ -157,19 +157,19 @@ class Toot(wx.Dialog):
         return openFileDialog.GetPath()
 
     def unable_to_attach_file(self, *args, **kwargs):
-        return wx.MessageDialog(self, _("It is not possible to add more attachments. Please take into account that You can add only a maximum of 4 images, or one audio, video or poll  per toot. Please remove other attachments before continuing."), _("Error adding attachment"), wx.ICON_ERROR).ShowModal()
+        return wx.MessageDialog(self, _("It is not possible to add more attachments. Please take into account that You can add only a maximum of 4 images, or one audio, video or poll  per post. Please remove other attachments before continuing."), _("Error adding attachment"), wx.ICON_ERROR).ShowModal()
 
     def unable_to_attach_poll(self, *args, **kwargs):
         return wx.MessageDialog(self, _("You can add a poll or media files. In order to add your poll, please remove other attachments first."), _("Error adding poll"), wx.ICON_ERROR).ShowModal()
 
-class viewToot(wx.Dialog):
+class viewPost(wx.Dialog):
     def set_title(self, lenght):
-        self.SetTitle(_("Toot - %i characters ") % (lenght,))
+        self.SetTitle(_("Post - %i characters ") % (lenght,))
 
     def __init__(self, text="", boosts_count=0, favs_count=0, source="", date="", privacy="", *args, **kwargs):
-        super(viewToot, self).__init__(parent=None, id=wx.ID_ANY, size=(850,850))
+        super(viewPost, self).__init__(parent=None, id=wx.ID_ANY, size=(850,850))
         panel = wx.Panel(self)
-        label = wx.StaticText(panel, -1, _("Toot"))
+        label = wx.StaticText(panel, -1, _("Post"))
         self.text = wx.TextCtrl(panel, -1, text, style=wx.TE_READONLY|wx.TE_MULTILINE, size=(250, 180))
         self.text.SetFocus()
         textBox = wx.BoxSizer(wx.HORIZONTAL)

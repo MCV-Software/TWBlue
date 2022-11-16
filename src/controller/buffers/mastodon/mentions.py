@@ -14,7 +14,7 @@ class MentionsBuffer(BaseBuffer):
             self.execution_time = current_time
             log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-            count = self.session.settings["general"]["max_toots_per_call"]
+            count = self.session.settings["general"]["max_posts_per_call"]
             min_id = None
             # toDo: Implement reverse timelines properly here.
 #            if self.name != "favorites" and self.name in self.session.db and len(self.session.db[self.name]) > 0:
@@ -29,7 +29,7 @@ class MentionsBuffer(BaseBuffer):
             number_of_items = self.session.order_buffer(self.name, results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
             self.put_items_on_list(number_of_items)
-            if number_of_items > 0 and  self.name != "sent_toots" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
+            if number_of_items > 0 and  self.name != "sent_posts" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
                 self.session.sound.play(self.sound)
             # Autoread settings
             if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
@@ -43,7 +43,7 @@ class MentionsBuffer(BaseBuffer):
         else:
             max_id = self.session.db[self.name][-1].id
         try:
-            items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_toots_per_call"], exclude_types=["follow", "favourite", "reblog", "poll", "follow_request"], *self.args, **self.kwargs)
+            items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_posts_per_call"], exclude_types=["follow", "favourite", "reblog", "poll", "follow_request"], *self.args, **self.kwargs)
             items = [item.status for item in items if item.get("status") and item.type == "mention"]
         except Exception as e:
             log.exception("Error %s" % (str(e)))
@@ -61,11 +61,11 @@ class MentionsBuffer(BaseBuffer):
         log.debug("Retrieved %d items from cursored search in function %s." % (len(elements), self.function))
         if self.session.settings["general"]["reverse_timelines"] == False:
             for i in elements:
-                toot = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
-                self.buffer.list.insert_item(True, *toot)
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                self.buffer.list.insert_item(True, *post)
         else:
             for i in items:
-                toot = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
-                self.buffer.list.insert_item(False, *toot)
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)
         output.speak(_(u"%s items retrieved") % (str(len(elements))), True)

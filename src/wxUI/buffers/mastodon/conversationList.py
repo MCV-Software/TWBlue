@@ -21,10 +21,10 @@ class conversationListPanel(wx.Panel):
         self.type = "baseBuffer"
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.create_list()
-        self.toot = wx.Button(self, -1, _("Toot"))
+        self.post = wx.Button(self, -1, _("Post"))
         self.reply = wx.Button(self, -1, _(u"Reply"))
         btnSizer = wx.BoxSizer(wx.HORIZONTAL)
-        btnSizer.Add(self.toot, 0, wx.ALL, 5)
+        btnSizer.Add(self.post, 0, wx.ALL, 5)
         btnSizer.Add(self.reply, 0, wx.ALL, 5)
         self.sizer.Add(btnSizer, 0, wx.ALL, 5)
         self.sizer.Add(self.list.list, 0, wx.ALL|wx.EXPAND, 5)

@@ -25,33 +25,33 @@ def find_item(item, listItems):
             return i
     return None
 
-def is_audio_or_video(toot):
-    if toot.reblog != None:
-        return is_audio_or_video(toot.reblog)
+def is_audio_or_video(post):
+    if post.reblog != None:
+        return is_audio_or_video(post.reblog)
     # Checks firstly for Mastodon native videos and audios.
-    for media in toot.media_attachments:
+    for media in post.media_attachments:
         if media["type"] == "video" or media["type"] == "audio":
             return True
 
-def is_image(toot):
-    if toot.reblog != None:
-        return is_audio_or_video(toot.reblog)
+def is_image(post):
+    if post.reblog != None:
+        return is_audio_or_video(post.reblog)
     # Checks firstly for Mastodon native videos and audios.
-    for media in toot.media_attachments:
+    for media in post.media_attachments:
         if media["type"] == "gifv" or media["type"] == "image":
             return True
 
-def get_media_urls(toot):
+def get_media_urls(post):
     urls = []
-    for media in toot.media_attachments:
+    for media in post.media_attachments:
         if media.get("type") == "audio" or media.get("type") == "video":
             urls.append(media.get("url"))
     return urls
 
-def find_urls(toot, include_tags=False):
-    urls = url_re.findall(toot.content)
+def find_urls(post, include_tags=False):
+    urls = url_re.findall(post.content)
     if include_tags == False:
-        for tag in toot.tags:
+        for tag in post.tags:
             for url in urls[::]:
                 if url.lower().endswith("/tags/"+tag["name"]):
                     urls.remove(url)

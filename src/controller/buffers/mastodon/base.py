@@ -23,7 +23,7 @@ from wxUI.dialogs.mastodon import dialogs as mastodon_dialogs
 log = logging.getLogger("controller.buffers.mastodon.base")
 
 class BaseBuffer(base.Buffer):
-    def __init__(self, parent, function, name, sessionObject, account, sound=None, compose_func="compose_toot", *args, **kwargs):
+    def __init__(self, parent, function, name, sessionObject, account, sound=None, compose_func="compose_post", *args, **kwargs):
         super(BaseBuffer, self).__init__(parent, function, *args, **kwargs)
         log.debug("Initializing buffer %s, account %s" % (name, account,))
         self.create_buffer(parent, name)
@@ -61,26 +61,26 @@ class BaseBuffer(base.Buffer):
         return _(u"Unknown buffer")
 
     def post_status(self, *args, **kwargs):
-        title = _("Toot")
-        caption = _("Write your toot here")
-        toot = messages.toot(session=self.session, title=title, caption=caption)
-        response = toot.message.ShowModal()
+        title = _("Post")
+        caption = _("Write your post here")
+        post = messages.post(session=self.session, title=title, caption=caption)
+        response = post.message.ShowModal()
         if response == wx.ID_OK:
-            toot_data = toot.get_data()
-            call_threaded(self.session.send_toot, toots=toot_data, visibility=toot.get_visibility(), **kwargs)
-        if hasattr(toot.message, "destroy"):
-            toot.message.destroy()
+            post_data = post.get_data()
+            call_threaded(self.session.send_post, posts=post_data, visibility=post.get_visibility(), **kwargs)
+        if hasattr(post.message, "destroy"):
+            post.message.destroy()
 
     def get_formatted_message(self):
         return self.compose_function(self.get_item(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
 
     def get_message(self):
-        toot = self.get_item()
-        if toot == None:
+        post = self.get_item()
+        if post == None:
             return
-        template = self.session.settings["templates"]["toot"]
+        template = self.session.settings["templates"]["post"]
 
-        t = templates.render_toot(toot, template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
+        t = templates.render_post(post, template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
         return t
 
     def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
@@ -89,7 +89,7 @@ class BaseBuffer(base.Buffer):
             self.execution_time = current_time
             log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-            count = self.session.settings["general"]["max_toots_per_call"]
+            count = self.session.settings["general"]["max_posts_per_call"]
             min_id = None
             # toDo: Implement reverse timelines properly here.
             if (self.name != "favorites" and self.name != "bookmarks") and self.name in self.session.db and len(self.session.db[self.name]) > 0:
@@ -103,7 +103,7 @@ class BaseBuffer(base.Buffer):
             number_of_items = self.session.order_buffer(self.name, results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
             self.put_items_on_list(number_of_items)
-            if number_of_items > 0 and  self.name != "sent_toots" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
+            if number_of_items > 0 and  self.name != "sent_posts" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
                 self.session.sound.play(self.sound)
             # Autoread settings
             if avoid_autoreading == False and mandatory == True and number_of_items > 0 and self.name in self.session.settings["other_buffers"]["autoread_buffers"]:
@@ -113,13 +113,13 @@ class BaseBuffer(base.Buffer):
     def auto_read(self, number_of_items):
         if number_of_items == 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
             if self.session.settings["general"]["reverse_timelines"] == False:
-                toot = self.session.db[self.name][-1]
+                post = self.session.db[self.name][-1]
             else:
-                toot = self.session.db[self.name][0]
-            output.speak(_("New toot in {0}").format(self.get_buffer_name()))
-            output.speak(" ".join(self.compose_function(toot, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])))
+                post = self.session.db[self.name][0]
+            output.speak(_("New post in {0}").format(self.get_buffer_name()))
+            output.speak(" ".join(self.compose_function(post, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])))
         elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
-            output.speak(_("{0} new toots in {1}.").format(number_of_items, self.get_buffer_name()))
+            output.speak(_("{0} new posts in {1}.").format(number_of_items, self.get_buffer_name()))
 
     def get_more_items(self):
         elements = []
@@ -128,7 +128,7 @@ class BaseBuffer(base.Buffer):
         else:
             max_id = self.session.db[self.name][-1].id
         try:
-            items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_toots_per_call"], *self.args, **self.kwargs)
+            items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_posts_per_call"], *self.args, **self.kwargs)
         except Exception as e:
             log.exception("Error %s" % (str(e)))
             return
@@ -145,12 +145,12 @@ class BaseBuffer(base.Buffer):
         log.debug("Retrieved %d items from cursored search in function %s." % (len(elements), self.function))
         if self.session.settings["general"]["reverse_timelines"] == False:
             for i in elements:
-                toot = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
-                self.buffer.list.insert_item(True, *toot)
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                self.buffer.list.insert_item(True, *post)
         else:
             for i in items:
-                toot = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
-                self.buffer.list.insert_item(False, *toot)
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)
         output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
 
@@ -194,37 +194,37 @@ class BaseBuffer(base.Buffer):
         log.debug("Putting %d items on the list" % (number_of_items,))
         if self.buffer.list.get_count() == 0:
             for i in list_to_use:
-                toot = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
-                self.buffer.list.insert_item(False, *toot)
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                self.buffer.list.insert_item(False, *post)
             self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
         elif self.buffer.list.get_count() > 0 and number_of_items > 0:
             if self.session.settings["general"]["reverse_timelines"] == False:
                 items = list_to_use[len(list_to_use)-number_of_items:]
                 for i in items:
-                    toot = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
-                    self.buffer.list.insert_item(False, *toot)
+                    post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                    self.buffer.list.insert_item(False, *post)
             else:
                 items = list_to_use[0:number_of_items]
                 items.reverse()
                 for i in items:
-                    toot = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
-                    self.buffer.list.insert_item(True, *toot)
+                    post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                    self.buffer.list.insert_item(True, *post)
         log.debug("Now the list contains %d items " % (self.buffer.list.get_count(),))
 
     def add_new_item(self, item):
-        toot = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+        post = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
         if self.session.settings["general"]["reverse_timelines"] == False:
-            self.buffer.list.insert_item(False, *toot)
+            self.buffer.list.insert_item(False, *post)
         else:
-            self.buffer.list.insert_item(True, *toot)
+            self.buffer.list.insert_item(True, *post)
         if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
-            output.speak(" ".join(toot[:2]), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
+            output.speak(" ".join(post[:2]), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
 
     def bind_events(self):
         log.debug("Binding events...")
         self.buffer.set_focus_function(self.onFocus)
         widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
-        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.toot)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.post)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.share_item, self.buffer.boost)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.send_message, self.buffer.dm)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
@@ -285,8 +285,8 @@ class BaseBuffer(base.Buffer):
             return self.session.db[self.name][index]
 
     def can_share(self):
-        toot = self.get_item()
-        if toot.visibility == "direct":
+        post = self.get_item()
+        if post.visibility == "direct":
             return False
         return True
 
@@ -308,15 +308,15 @@ class BaseBuffer(base.Buffer):
         if "@{} ".format(item.account.acct) not in users and item.account.id != self.session.db["user_id"]:
             users.insert(0, "@{} ".format(item.account.acct))
         users_str = "".join(users)
-        toot = messages.toot(session=self.session, title=title, caption=caption, text=users_str)
+        post = messages.post(session=self.session, title=title, caption=caption, text=users_str)
         visibility_settings = dict(public=0, unlisted=1, private=2, direct=3)
-        toot.message.visibility.SetSelection(visibility_settings.get(visibility))
-        response = toot.message.ShowModal()
+        post.message.visibility.SetSelection(visibility_settings.get(visibility))
+        response = post.message.ShowModal()
         if response == wx.ID_OK:
-            toot_data = toot.get_data()
-            call_threaded(self.session.send_toot, reply_to=item.id, toots=toot_data, visibility=visibility)
-        if hasattr(toot.message, "destroy"):
-            toot.message.destroy()
+            post_data = post.get_data()
+            call_threaded(self.session.send_post, reply_to=item.id, posts=post_data, visibility=visibility)
+        if hasattr(post.message, "destroy"):
+            post.message.destroy()
 
     def send_message(self, *args, **kwargs):
         item = self.get_item()
@@ -331,20 +331,20 @@ class BaseBuffer(base.Buffer):
         if item.account.acct not in users and item.account.id != self.session.db["user_id"]:
             users.insert(0, "@{} ".format(item.account.acct))
         users_str = "".join(users)
-        toot = messages.toot(session=self.session, title=title, caption=caption, text=users_str)
-        toot.message.visibility.SetSelection(3)
-        response = toot.message.ShowModal()
+        post = messages.post(session=self.session, title=title, caption=caption, text=users_str)
+        post.message.visibility.SetSelection(3)
+        response = post.message.ShowModal()
         if response == wx.ID_OK:
-            toot_data = toot.get_data()
-            call_threaded(self.session.send_toot, toots=toot_data, visibility="direct")
-        if hasattr(toot.message, "destroy"):
-            toot.message.destroy()
+            post_data = post.get_data()
+            call_threaded(self.session.send_post, posts=post_data, visibility="direct")
+        if hasattr(post.message, "destroy"):
+            post.message.destroy()
 
     def share_item(self, *args, **kwargs):
         if self.can_share() == False:
-            return output.speak(_("This action is not supported on conversation toots."))
-        toot = self.get_item()
-        id = toot.id
+            return output.speak(_("This action is not supported on conversation posts."))
+        post = self.get_item()
+        id = post.id
         if self.session.settings["general"]["boost_mode"] == "ask":
             answer = mastodon_dialogs.boost_question()
             if answer == True:
@@ -356,14 +356,14 @@ class BaseBuffer(base.Buffer):
         item = self.session.api_call(call_name="status_reblog", _sound="retweet_send.ogg", id=id)
 
     def onFocus(self, *args, **kwargs):
-        toot = self.get_item()
+        post = self.get_item()
         if self.session.settings["general"]["relative_times"] == True:
             original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()].created_at)
             ts = original_date.humanize(locale=languageHandler.getLanguage())
             self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
-        if self.session.settings['sound']['indicate_audio'] and utils.is_audio_or_video(toot):
+        if self.session.settings['sound']['indicate_audio'] and utils.is_audio_or_video(post):
             self.session.sound.play("audio.ogg")
-        if self.session.settings['sound']['indicate_img'] and utils.is_image(toot):
+        if self.session.settings['sound']['indicate_img'] and utils.is_image(post):
             self.session.sound.play("image.ogg")
         can_share = self.can_share()
         pub.sendMessage("toggleShare", shareable=can_share)
@@ -392,11 +392,11 @@ class BaseBuffer(base.Buffer):
 
     def url(self, url='', announce=True, *args, **kwargs):
         if url == '':
-            toot = self.get_item()
-            if toot.reblog != None:
-                urls = utils.find_urls(toot.reblog)
+            post = self.get_item()
+            if post.reblog != None:
+                urls = utils.find_urls(post.reblog)
             else:
-                urls = utils.find_urls(toot)
+                urls = utils.find_urls(post)
             if len(urls) == 1:
                 url=urls[0]
             elif len(urls) > 1:
@@ -420,9 +420,9 @@ class BaseBuffer(base.Buffer):
         index = self.buffer.list.get_selected()
         item = self.session.db[self.name][index]
         if item.account.id != self.session.db["user_id"] or item.reblog != None:
-            output.speak(_("You can delete only your own toots."))
+            output.speak(_("You can delete only your own posts."))
             return
-        answer = mastodon_dialogs.delete_toot_dialog()
+        answer = mastodon_dialogs.delete_post_dialog()
         if answer == True:
             items = self.session.db[self.name]
             try:
@@ -438,10 +438,10 @@ class BaseBuffer(base.Buffer):
         pass
 
     def get_item_url(self):
-        toot = self.get_item()
-        if toot.reblog != None:
-            return toot.reblog.url
-        return toot.url
+        post = self.get_item()
+        if post.reblog != None:
+            return post.reblog.url
+        return post.url
 
     def open_in_browser(self, *args, **kwargs):
         url = self.get_item_url()
@@ -471,13 +471,13 @@ class BaseBuffer(base.Buffer):
             call_threaded(self.session.api_call, call_name="status_unfavourite", preexec_message=_("Removing from favorites..."), _sound="favourite.ogg", id=item.id)
 
     def view_item(self):
-        toot = self.get_item()
+        post = self.get_item()
         # Update object so we can retrieve newer stats
-        toot = self.session.api.status(id=toot.id)
-        print(toot)
-        msg = messages.viewToot(toot, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url())
+        post = self.session.api.status(id=post.id)
+        print(post)
+        msg = messages.viewPost(post, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url())
 
     def ocr_image(self):
-        toot = self.get_item()
+        post = self.get_item()
         media_list = []
         pass

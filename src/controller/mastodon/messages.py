@@ -6,15 +6,15 @@ import config
 import output
 from controller.twitter import messages
 from sessions.mastodon import templates
-from wxUI.dialogs.mastodon import tootDialogs
+from wxUI.dialogs.mastodon import postDialogs
 
-class toot(messages.basicTweet):
+class post(messages.basicTweet):
     def __init__(self, session, title, caption, text="", *args, **kwargs):
         # take max character limit from session as this might be different for some instances.
         self.max = session.char_limit
         self.title = title
         self.session = session
-        self.message = tootDialogs.Toot(caption=caption, text=text, *args, **kwargs)
+        self.message = postDialogs.Post(caption=caption, text=text, *args, **kwargs)
         self.message.SetTitle(title)
         self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
         widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
@@ -24,39 +24,39 @@ class toot(messages.basicTweet):
         widgetUtils.connect_event(self.message.remove_attachment, widgetUtils.BUTTON_PRESSED, self.remove_attachment)
         # ToDo: Add autocomplete feature to mastodon and uncomment this.
         # widgetUtils.connect_event(self.message.autocomplete_users, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
-        widgetUtils.connect_event(self.message.add_toot, widgetUtils.BUTTON_PRESSED, self.add_toot)
-        widgetUtils.connect_event(self.message.remove_toot, widgetUtils.BUTTON_PRESSED, self.remove_toot)
+        widgetUtils.connect_event(self.message.add_post, widgetUtils.BUTTON_PRESSED, self.add_post)
+        widgetUtils.connect_event(self.message.remove_post, widgetUtils.BUTTON_PRESSED, self.remove_post)
         self.attachments = []
         self.thread = []
         self.text_processor()
 
-    def add_toot(self, event, update_gui=True, *args, **kwargs):
+    def add_post(self, event, update_gui=True, *args, **kwargs):
         text = self.message.text.GetValue()
         attachments = self.attachments[::]
-        tootdata = dict(text=text, attachments=attachments, sensitive=self.message.sensitive.GetValue(), spoiler_text=None)
-        if tootdata.get("sensitive") == True:
-            tootdata.update(spoiler_text=self.message.spoiler.GetValue())
-        self.thread.append(tootdata)
+        postdata = dict(text=text, attachments=attachments, sensitive=self.message.sensitive.GetValue(), spoiler_text=None)
+        if postdata.get("sensitive") == True:
+            postdata.update(spoiler_text=self.message.spoiler.GetValue())
+        self.thread.append(postdata)
         self.attachments = []
         if update_gui:
             self.message.reset_controls()
-            self.message.add_item(item=[text, len(attachments)], list_type="toot")
+            self.message.add_item(item=[text, len(attachments)], list_type="post")
             self.message.text.SetFocus()
             self.text_processor()
 
-    def get_toot_data(self):
-        self.add_toot(event=None, update_gui=False)
+    def get_post_data(self):
+        self.add_post(event=None, update_gui=False)
         return self.thread
 
     def text_processor(self, *args, **kwargs):
-        super(toot, self).text_processor(*args, **kwargs)
+        super(post, self).text_processor(*args, **kwargs)
         if len(self.thread) > 0:
-            if hasattr(self.message, "toots"):
-                self.message.toots.Enable(True)
-                self.message.remove_toot.Enable(True)
+            if hasattr(self.message, "posts"):
+                self.message.posts.Enable(True)
+                self.message.remove_post.Enable(True)
             else:
-                self.message.toots.Enable(False)
-                self.message.remove_toot.Enable(False)
+                self.message.posts.Enable(False)
+                self.message.remove_post.Enable(False)
         if len(self.attachments) > 0:
             self.message.attachments.Enable(True)
             self.message.remove_attachment.Enable(True)
@@ -64,15 +64,15 @@ class toot(messages.basicTweet):
             self.message.attachments.Enable(False)
             self.message.remove_attachment.Enable(False)
         if len(self.message.text.GetValue()) > 0 or len(self.attachments) > 0:
-            self.message.add_toot.Enable(True)
+            self.message.add_post.Enable(True)
         else:
-            self.message.add_toot.Enable(False)
+            self.message.add_post.Enable(False)
 
-    def remove_toot(self, *args, **kwargs):
-        toot = self.message.toots.GetFocusedItem()
-        if toot > -1 and len(self.thread) > toot:
-            self.thread.pop(toot)
-            self.message.remove_item(list_type="toot")
+    def remove_post(self, *args, **kwargs):
+        post = self.message.posts.GetFocusedItem()
+        if post > -1 and len(self.thread) > post:
+            self.thread.pop(post)
+            self.message.remove_item(list_type="post")
             self.text_processor()
             self.message.text.SetFocus()
 
@@ -163,7 +163,7 @@ class toot(messages.basicTweet):
                 break
         if can_attach == False or big_media_present == True:
             return self.message.unable_to_attach_file()
-        dlg = tootDialogs.poll()
+        dlg = postDialogs.poll()
         if dlg.ShowModal() == wx.ID_OK:
             day = 86400
             periods = [300, 1800, 3600, 21600, day, day*2, day*3, day*4, day*5, day*6, day*7]
@@ -178,33 +178,33 @@ class toot(messages.basicTweet):
         dlg.Destroy()
 
     def get_data(self):
-        self.add_toot(event=None, update_gui=False)
+        self.add_post(event=None, update_gui=False)
         return self.thread
 
     def get_visibility(self):
         visibility_settings = ["public", "unlisted", "private", "direct"]
         return visibility_settings[self.message.visibility.GetSelection()]
 
-class viewToot(toot):
-    def __init__(self, toot, offset_hours=0, date="", item_url=""):
-        if toot.reblog != None:
-            toot = toot.reblog
-        author = toot.account.display_name if toot.account.display_name != "" else toot.account.username
-        title = _(u"Toot from {}").format(author)
-        image_description = templates.process_image_descriptions(toot.media_attachments)
-        text = templates.process_text(toot, safe=False)
-        date = templates.process_date(toot.created_at, relative_times=False, offset_hours=offset_hours)
+class viewPost(post):
+    def __init__(self, post, offset_hours=0, date="", item_url=""):
+        if post.reblog != None:
+            post = post.reblog
+        author = post.account.display_name if post.account.display_name != "" else post.account.username
+        title = _(u"Post from {}").format(author)
+        image_description = templates.process_image_descriptions(post.media_attachments)
+        text = templates.process_text(post, safe=False)
+        date = templates.process_date(post.created_at, relative_times=False, offset_hours=offset_hours)
         privacy_settings = dict(public=_("Public"), unlisted=_("Not listed"), private=_("followers only"), direct=_("Direct"))
-        privacy = privacy_settings.get(toot.visibility)
-        boost_count = str(toot.reblogs_count)
-        favs_count = str(toot.favourites_count)
-        # Gets the client from where this toot was made.
-        source_obj = toot.get("application")
+        privacy = privacy_settings.get(post.visibility)
+        boost_count = str(post.reblogs_count)
+        favs_count = str(post.favourites_count)
+        # Gets the client from where this post was made.
+        source_obj = post.get("application")
         if source_obj == None:
             source = _("Remote instance")
         else:
             source = source_obj.get("name")
-        self.message = tootDialogs.viewToot(text=text, boosts_count=boost_count, favs_count=favs_count, source=source, date=date, privacy=privacy)
+        self.message = postDialogs.viewPost(text=text, boosts_count=boost_count, favs_count=favs_count, source=source, date=date, privacy=privacy)
         self.message.SetTitle(title)
         if image_description != "":
             self.message.image_description.Enable(True)

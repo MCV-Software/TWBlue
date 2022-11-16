@@ -76,8 +76,8 @@ class Session(base.baseSession):
         self.get_muted_users()
         # determine instance custom characters limit.
         instance = self.api.instance()
-        if hasattr(instance, "max_toot_chars"):
-            self.char_limit = instance.max_toot_chars
+        if hasattr(instance, "max_post_chars"):
+            self.char_limit = instance.max_post_chars
         self.settings.write()
 
     def get_lists(self):
@@ -150,10 +150,10 @@ class Session(base.baseSession):
         if _sound != None: self.sound.play(_sound)
         return val
 
-    def send_toot(self, reply_to=None, users=None, visibility=None, toots=[]):
+    def send_post(self, reply_to=None, users=None, visibility=None, posts=[]):
         """ Convenience function to send a thread. """
         in_reply_to_id = reply_to
-        for obj in toots:
+        for obj in posts:
             text = obj.get("text")
             if len(obj["attachments"]) == 0:
                 item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])

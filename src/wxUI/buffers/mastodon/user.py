@@ -15,11 +15,11 @@ class userPanel(wx.Panel):
         self.type = "user"
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.create_list()
-        self.toot = wx.Button(self, -1, _("Toot"))
+        self.post = wx.Button(self, -1, _("Post"))
         self.actions = wx.Button(self, -1, _("Actions"))
         self.message = wx.Button(self, -1, _("Message"))
         btnSizer = wx.BoxSizer(wx.HORIZONTAL)
-        btnSizer.Add(self.toot, 0, wx.ALL, 5)
+        btnSizer.Add(self.post, 0, wx.ALL, 5)
         btnSizer.Add(self.actions, 0, wx.ALL, 5)
         btnSizer.Add(self.message, 0, wx.ALL, 5)
         self.sizer.Add(btnSizer, 0, wx.ALL, 5)
