@@ -44,7 +44,7 @@ class BaseBuffer(base.Buffer):
     def get_buffer_name(self):
         """ Get buffer name from a set of different techniques."""
         # firstly let's take the easier buffers.
-        basic_buffers = dict(home_timeline=_("Home"), local_timeline=_("Local"), federated_timeline=_("Federated"), mentions=_("Mentions"), bookmarks=_("Bookmarks"), conversations=_("Conversations"),  sent_toots=_("Sent toots"), favourites=_("Favorites"), followers=_("Followers"), following=_("Following"), blocked=_(u"Blocked users"), muted=_(u"Muted users"))
+        basic_buffers = dict(home_timeline=_("Home"), local_timeline=_("Local"), federated_timeline=_("Federated"), mentions=_("Mentions"), bookmarks=_("Bookmarks"), direct_messages=_("Direct messages"),  sent=_("Sent"), favorites=_("Favorites"), followers=_("Followers"), following=_("Following"), blocked=_("Blocked users"), muted=_("Muted users"), notifications=_("Notifications"))
         if self.name in list(basic_buffers.keys()):
             return basic_buffers[self.name]
         # Check user timelines
