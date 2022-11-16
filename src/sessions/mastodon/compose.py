@@ -48,4 +48,4 @@ def compose_conversation(conversation, db, relative_times, show_screen_names):
     users = ", ".join(users)
     last_toot = compose_toot(conversation.last_status, db, relative_times, show_screen_names)
     text = _("Last message from {}: {}").format(last_toot[0], last_toot[1])
-    return [users, text, last_toot[-1], ""]
+    return [users, text, last_toot[-2], last_toot[-1]]
