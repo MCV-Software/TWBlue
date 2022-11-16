@@ -275,12 +275,7 @@ class Controller(object):
         self.streams_checker_function.start()
 
     def create_ignored_session_buffer(self, session):
-        self.accounts.append(session.settings["twitter"]["user_name"])
-        account = buffers.base.AccountBuffer(self.view.nb, session.settings["twitter"]["user_name"], session.settings["twitter"]["user_name"], session.session_id)
-        account.logged = False
-        account.setup_account()
-        self.buffers.append(account)
-        self.view.add_buffer(account.buffer , name=session.settings["twitter"]["user_name"])
+        pub.sendMessage("core.create_account", name=session.get_name(), session_id=session.session_id)
 
     def login_account(self, session_id):
         for i in sessions.sessions:
@@ -291,9 +286,11 @@ class Controller(object):
             handler.create_buffers(session=session, controller=self, createAccounts=False)
         self.start_buffers(session)
 
-    def create_account_buffer(self, name, session_id):
+    def create_account_buffer(self, name, session_id, logged=False):
         self.accounts.append(name)
         account = buffers.base.AccountBuffer(self.view.nb, name, name, session_id)
+        if logged == False:
+            account.logged = logged
         account.setup_account()
         self.buffers.append(account)
         self.view.add_buffer(account.buffer , name=name)

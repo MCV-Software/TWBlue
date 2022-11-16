@@ -175,5 +175,5 @@ class Session(base.baseSession):
     def get_name(self):
         instance = self.settings["mastodon"]["instance"]
         instance = instance.replace("https://", "")
-        user = self.db["user_name"]
+        user = self.settings["mastodon"]["user_name"]
         return "Mastodon: {}@{}".format(user, instance)

@@ -674,4 +674,7 @@ class Session(base.baseSession):
             pub.sendMessage("sent-dm", data=item, session_name=self.get_name())
 
     def get_name(self):
-        return "Twitter: {}".format(self.db["user_name"])
+        if self.logged:
+            return "Twitter: {}".format(self.db["user_name"])
+        else:
+            return "Twitter: {}".format(self.settings["twitter"]["user_name"])
