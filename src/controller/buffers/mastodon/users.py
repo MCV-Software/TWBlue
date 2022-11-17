@@ -29,6 +29,7 @@ class UserBuffer(BaseBuffer):
         widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.post)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.send_message, self.buffer.message)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.user_actions, self.buffer.actions)
         widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
         widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
 
