@@ -6,10 +6,12 @@ import output
 import time
 import sound
 import logging
+import config
 import config_utils
 import sqlitedict
 import application
 from . import session_exceptions as Exceptions
+
 log = logging.getLogger("sessionmanager.session")
 
 class baseSession(object):
@@ -52,6 +54,13 @@ class baseSession(object):
     def is_logged(self):
         return self.logged
 
+    def create_session_folder(self):
+        path = os.path.join(paths.config_path(), self.session_id)
+        if not os.path.exists(path):
+            log.debug("Creating %s path" % (os.path.join(paths.config_path(), path),))
+            os.mkdir(path)
+            config.app["sessions"]["sessions"].append(id)
+
     def get_configuration(self):
         """ Get settings for a session."""
         file_ = "%s/session.conf" % (self.session_id,)
@@ -62,7 +71,6 @@ class baseSession(object):
 
     def get_name(self):
         pass
-
 
     def init_sound(self):
         try: self.sound = sound.soundSystem(self.settings["sound"])
