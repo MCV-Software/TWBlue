@@ -6,27 +6,26 @@ from wxUI.dialogs import baseDialog
 class keystrokeEditorDialog(baseDialog.BaseWXDialog):
     def __init__(self):
         super(keystrokeEditorDialog, self).__init__(parent=None, id=-1, title=_(u"Keystroke editor"))
-        panel = wx.Panel(self)
         self.actions = []
         sizer = wx.BoxSizer(wx.VERTICAL)
-        keysText = wx.StaticText(panel, -1, _(u"Select a keystroke to edit"))
+        keysText = wx.StaticText(self, -1, _(u"Select a keystroke to edit"))
         self.keys = widgets.list(self, _(u"Action"), _(u"Keystroke"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL, size=(400, 450))
         self.keys.list.SetFocus()
         firstSizer = wx.BoxSizer(wx.HORIZONTAL)
         firstSizer.Add(keysText, 0, wx.ALL, 5)
         firstSizer.Add(self.keys.list, 0, wx.ALL, 5)
-        self.edit = wx.Button(panel, -1, _(u"Edit"))
+        self.edit = wx.Button(self, -1, _(u"Edit"))
         self.edit.SetDefault()
-        self.undefine = wx.Button(panel, -1, _("Undefine keystroke"))
-        self.execute = wx.Button(panel, -1, _(u"Execute action"))
-        close = wx.Button(panel, wx.ID_CANCEL, _(u"Close"))
+        self.undefine = wx.Button(self, -1, _("Undefine keystroke"))
+        self.execute = wx.Button(self, -1, _(u"Execute action"))
+        close = wx.Button(self, wx.ID_CANCEL, _(u"Close"))
         secondSizer = wx.BoxSizer(wx.HORIZONTAL)
         secondSizer.Add(self.edit, 0, wx.ALL, 5)
         secondSizer.Add(self.execute, 0, wx.ALL, 5)
         secondSizer.Add(close, 0, wx.ALL, 5)
         sizer.Add(firstSizer, 0, wx.ALL, 5)
         sizer.Add(secondSizer, 0, wx.ALL, 5)
-        panel.SetSizer(sizer)
+        self.SetSizer(sizer)
         self.SetClientSize(sizer.CalcMin())
 
     def put_keystrokes(self, actions, keystrokes):
