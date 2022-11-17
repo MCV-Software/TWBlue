@@ -228,6 +228,8 @@ class BaseBuffer(base.Buffer):
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.share_item, self.buffer.boost)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.send_message, self.buffer.dm)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.toggle_favorite, self.buffer.fav)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.toggle_bookmark, self.buffer.bookmark)
         widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
         widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
 
@@ -460,7 +462,7 @@ class BaseBuffer(base.Buffer):
             item = item.reblog
         call_threaded(self.session.api_call, call_name="status_unfavourite", preexec_message=_("Removing from favorites..."), _sound="favourite.ogg", id=item.id)
 
-    def toggle_favorite(self):
+    def toggle_favorite(self, *args, **kwargs):
         item = self.get_item()
         if item.reblog != None:
             item = item.reblog
@@ -469,6 +471,16 @@ class BaseBuffer(base.Buffer):
             call_threaded(self.session.api_call, call_name="status_favourite", preexec_message=_("Adding to favorites..."), _sound="favourite.ogg", id=item.id)
         else:
             call_threaded(self.session.api_call, call_name="status_unfavourite", preexec_message=_("Removing from favorites..."), _sound="favourite.ogg", id=item.id)
+
+    def toggle_bookmark(self, *args, **kwargs):
+        item = self.get_item()
+        if item.reblog != None:
+            item = item.reblog
+        item = self.session.api.status(item.id)
+        if item.bookmarked == False:
+            call_threaded(self.session.api_call, call_name="status_bookmark", preexec_message=_("Adding to bookmarks..."), _sound="favourite.ogg", id=item.id)
+        else:
+            call_threaded(self.session.api_call, call_name="status_unbookmark", preexec_message=_("Removing from bookmarks..."), _sound="favourite.ogg", id=item.id)
 
     def view_item(self):
         post = self.get_item()
