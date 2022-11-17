@@ -289,7 +289,7 @@ class Handler(object):
                 return
             root_position =controller.view.search(session.get_name(), session.get_name())
             pub.sendMessage("createBuffer", buffer_type="TrendsBuffer", session_type=session.type, buffer_title=_("Trending topics for %s") % (trends.get_string()), parent_tab=root_position, start=True, kwargs=dict(parent=controller.view.nb, name="%s_tt" % (woeid,), sessionObject=session, account=session.get_name(), trendsFor=woeid, sound="trends_updated.ogg"))
-            session.settings["other_buffers"]["trending_topic_buffers"].append(woeid)
+            session.settings["other_buffers"]["trending_topic_buffers"].append(str(woeid))
             session.settings.write()
 
     def start_buffer(self, controller, buffer):
