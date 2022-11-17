@@ -88,8 +88,8 @@ class Session(base.baseSession):
         self.get_muted_users()
         # determine instance custom characters limit.
         instance = self.api.instance()
-        if hasattr(instance, "max_post_chars"):
-            self.char_limit = instance.max_post_chars
+        if hasattr(instance, "max_toot_chars"):
+            self.char_limit = instance.max_toot_chars
         self.settings.write()
 
     def get_lists(self):
