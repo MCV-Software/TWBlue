@@ -123,12 +123,10 @@ class sessionManagerController(object):
             s = TwitterSession.Session(location)
         elif type == "mastodon":
             s = MastodonSession.Session(location)
-        manager.manager.add_session(location)
-        s.get_configuration()
-        s.authorise()
-        self.sessions.append(dict(id=location, type=type))
-        self.view.add_new_session_to_list()
-        s.settings.write()
+        result = s.authorise()
+        if result == True:
+            self.sessions.append(dict(id=location, type=type))
+            self.view.add_new_session_to_list()
 
     def remove_account(self, index):
         selected_account = self.sessions[index]

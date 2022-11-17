@@ -21,19 +21,6 @@ class sessionManager(object):
         if self.is_valid(config.app["sessions"]["current_session"]):
             return config.app["sessions"]["current_session"]
 
-    def add_session(self, id):
-        """ Adds a new session to the global config, so it will be taken into account for all operations.
-
-        :param id: Session identified.
-        :param id: str.
-        """
-        log.debug("Adding a new session: %s" % (id,))
-        path = os.path.join(paths.config_path(), id)
-        if not os.path.exists(path):
-            log.debug("Creating %s path" % (os.path.join(paths.config_path(), path),))
-            os.mkdir(path)
-            config.app["sessions"]["sessions"].append(id)
-
     def set_current_session(self, sessionID):
         config.app["sessions"]["current_session"] = sessionID
         config.app.write()
