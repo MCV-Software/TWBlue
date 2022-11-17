@@ -60,10 +60,15 @@ class Session(base.baseSession):
         authorisation_dialog.Destroy()
         if answer != wx.ID_OK:
             return
-        client_id, client_secret = mastodon.Mastodon.create_app("TWBlue", api_base_url=authorisation_dialog.GetValue(), website="https://twblue.es")
-        temporary_api = mastodon.Mastodon(client_id=client_id, client_secret=client_secret, api_base_url=instance, mastodon_version=MASTODON_VERSION)
-        authorisation_dialog.Destroy()
-        auth_url = temporary_api.auth_request_url()
+        try:
+            client_id, client_secret = mastodon.Mastodon.create_app("TWBlue", api_base_url=authorisation_dialog.GetValue(), website="https://twblue.es")
+            temporary_api = mastodon.Mastodon(client_id=client_id, client_secret=client_secret, api_base_url=instance, mastodon_version=MASTODON_VERSION)
+            auth_url = temporary_api.auth_request_url()
+        except MastodonError:
+            dlg = wx.MessageDialog(None, _("We could not connect to your mastodon instance. Please verify that the domain exists and the instance is accessible via a web browser."), _("Instance error"), wx.ICON_ERROR)
+            dlg.ShowModal()
+            dlg.Destroy()
+            return
         webbrowser.open_new_tab(auth_url)
         verification_dialog = wx.TextEntryDialog(None, _("Enter the verification code"), _("PIN code authorization"))
         answer = verification_dialog.ShowModal()
@@ -71,10 +76,19 @@ class Session(base.baseSession):
         verification_dialog.Destroy()
         if answer != wx.ID_OK:
             return
-        access_token = temporary_api.log_in(code=verification_dialog.GetValue())
+        try:
+            access_token = temporary_api.log_in(code=verification_dialog.GetValue())
+        except MastodonError:
+            dlg = wx.MessageDialog(None, _("We could not authorice your mastodon account to be used in TWBlue. This might be caused due to an incorrect verification code. Please try to add the session again."), _("Authorization error"), wx.ICON_ERROR)
+            dlg.ShowModal()
+            dlg.Destroy()
+            return
+        self.create_session_folder()
+        self.get_configuration()
         self.settings["mastodon"]["access_token"] = access_token
         self.settings["mastodon"]["instance"] = instance
         self.settings.write()
+        return True
 
     def get_user_info(self):
         """ Retrieves some information required by TWBlue for setup."""

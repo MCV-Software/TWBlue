@@ -5,13 +5,13 @@ import time
 import logging
 import webbrowser
 import wx
+import tweepy
 import demoji
 import config
 import output
 import application
 import appkeys
 from pubsub import pub
-import tweepy
 from tweepy.errors import TweepyException, Forbidden, NotFound
 from tweepy.models import User as UserModel
 from mysc.thread_utils import call_threaded
@@ -150,37 +150,32 @@ class Session(base.baseSession):
             self.logged = False
             raise Exceptions.RequireCredentialsSessionError
 
-# @_require_configuration
     def authorise(self):
         """ Authorises a Twitter account. This function needs to be called for each new session, after self.get_configuration() and before self.login()"""
         if self.logged == True:
             raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
-        else:
-            self.auth = tweepy.OAuth1UserHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
-            redirect_url = self.auth.get_authorization_url()
-            webbrowser.open_new_tab(redirect_url)
-            self.authorisation_dialog = authorisationDialog()
-            self.authorisation_dialog.cancel.Bind(wx.EVT_BUTTON, self.authorisation_cancelled)
-            self.authorisation_dialog.ok.Bind(wx.EVT_BUTTON, self.authorisation_accepted)
-            self.authorisation_dialog.ShowModal()
-
-    def verify_authorisation(self, pincode):
-        self.auth.get_access_token(pincode)
-        self.settings["twitter"]["user_key"] = self.auth.access_token
-        self.settings["twitter"]["user_secret"] = self.auth.access_token_secret
+        auth = tweepy.OAuth1UserHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
+        redirect_url = auth.get_authorization_url()
+        webbrowser.open_new_tab(redirect_url)
+        verification_dialog = wx.TextEntryDialog(None, _("Enter your PIN code here"), _("Authorising account..."))
+        answer = verification_dialog.ShowModal()
+        code = verification_dialog.GetValue()
+        verification_dialog.Destroy()
+        if answer != wx.ID_OK:
+            return
+        try:
+            auth.get_access_token(code)
+        except TweepyException:
+            dlg = wx.MessageDialog(None, _("We could not authorice your Twitter account to be used in TWBlue. This might be caused due to an incorrect verification code. Please try to add the session again."), _("Authorization error"), wx.ICON_ERROR)
+            dlg.ShowModal()
+            dlg.Destroy()
+            return False
+        self.create_session_folder()
+        self.get_configuration()
+        self.settings["twitter"]["user_key"] = auth.access_token
+        self.settings["twitter"]["user_secret"] = auth.access_token_secret
         self.settings.write()
-        del self.auth
-
-    def authorisation_cancelled(self, *args, **kwargs):
-        """ Destroy the authorization dialog. """
-        self.authorisation_dialog.Destroy()
-        del self.authorisation_dialog 
-
-    def authorisation_accepted(self, *args, **kwargs):
-        """ Gets the PIN code entered by user and validate it through Twitter."""
-        pincode = self.authorisation_dialog.text.GetValue()
-        self.verify_authorisation(pincode)
-        self.authorisation_dialog.Destroy()
+        return True
 
     def api_call(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
         """ Make a call to the Twitter API. If there is a connectionError or another exception not related to Twitter, It will call the method again at least 25 times, waiting a while between calls. Useful for  post methods.
