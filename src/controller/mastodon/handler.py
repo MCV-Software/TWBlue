@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import wx
 import logging
 from pubsub import pub
+from wxUI.dialogs.mastodon import search as search_dialogs
 from sessions.twitter import utils
 from . import userActions
 
@@ -62,7 +64,7 @@ class Handler(object):
 #        lists_position =controller.view.search("lists", session.db["user_name"])
 #        for i in session.settings["other_buffers"]["lists"]:
 #            pub.sendMessage("createBuffer", buffer_type="ListBuffer", session_type=session.type, buffer_title=_(u"List for {}").format(i), parent_tab=lists_position, start=False, kwargs=dict(parent=controller.view.nb, function="list_timeline", name="%s-list" % (i,), sessionObject=session, name, bufferType=None, sound="list_tweet.ogg", list_id=utils.find_list(i, session.db["lists"]), include_ext_alt_text=True, tweet_mode="extended"))
-#        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Searches"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="searches", name))
+        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Searches"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="searches", account=name))
 #        searches_position =controller.view.search("searches", session.db["user_name"])
 #        for i in session.settings["other_buffers"]["tweet_searches"]:
 #            pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_(u"Search for {}").format(i), parent_tab=searches_position, start=False, kwargs=dict(parent=controller.view.nb, function="search_tweets", name="%s-searchterm" % (i,), sessionObject=session, name, bufferType="searchPanel", sound="search_updated.ogg", q=i, include_ext_alt_text=True, tweet_mode="extended"))
@@ -98,3 +100,21 @@ class Handler(object):
             if item.account.acct not in users and item.account.id != buffer.session.db["user_id"]:
                 users.insert(0, item.account.acct)
         u = userActions.userActionsController(buffer.session, users)
+
+    def search(self, controller, session, value):
+        log.debug("Creating a new search...")
+        dlg = search_dialogs.searchDialog(value)
+        if dlg.ShowModal() == wx.ID_OK and dlg.term.GetValue() != "":
+            term = dlg.term.GetValue()
+            searches_position =controller.view.search("searches", session.get_name())
+            if dlg.posts.GetValue() == True:
+                if term not in session.settings["other_buffers"]["post_searches"]:
+                    session.settings["other_buffers"]["post_searches"].append(term)
+                    session.settings.write()
+#                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=controller.view.nb, function="search_tweets", name="%s-searchterm" % (term,), sessionObject=session, account=session.get_name(), bufferType="searchPanel", sound="search_updated.ogg", q=term, include_ext_alt_text=True, tweet_mode="extended"))
+                else:
+                    log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
+                    return
+            elif dlg.users.GetValue() == True:
+                pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_search", name="%s-searchUser" % (term,), sessionObject=session, account=session.get_name(), sound="search_updated.ogg", q=term))
+        dlg.Destroy()

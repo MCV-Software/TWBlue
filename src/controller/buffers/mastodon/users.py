@@ -8,7 +8,7 @@ from mysc.thread_utils import call_threaded
 from controller.buffers.mastodon.base import BaseBuffer
 from controller.mastodon import messages
 from sessions.mastodon import templates, utils
-from wxUI import buffers
+from wxUI import buffers, commonMessageDialogs
 
 log = logging.getLogger("controller.buffers.mastodon.conversations")
 
@@ -153,3 +153,18 @@ class UserBuffer(BaseBuffer):
     def ocr_image(self):
         pass
 
+    def remove_buffer(self, force=False):
+        if "-searchUser" in self.name:
+            if force == False:
+                dlg = commonMessageDialogs.remove_buffer()
+            else:
+                dlg = widgetUtils.YES
+            if dlg == widgetUtils.YES:
+                if self.name in self.session.db:
+                    self.session.db.pop(self.name)
+                    return True
+            elif dlg == widgetUtils.NO:
+                return False
+        else:
+            output.speak(_(u"This buffer is not a timeline; it can't be deleted."), True)
+            return False

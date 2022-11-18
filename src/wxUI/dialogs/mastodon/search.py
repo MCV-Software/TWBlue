@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+import wx
+
+class searchDialog(wx.Dialog):
+    def __init__(self, value=""):
+        super(searchDialog, self).__init__(parent=None, id=wx.ID_ANY)
+        panel = wx.Panel(self)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        self.SetTitle(_("Search"))
+        label = wx.StaticText(panel, wx.ID_ANY, _("&Search"))
+        self.term = wx.TextCtrl(panel, wx.ID_ANY, value)
+        self.term.SetFocus()
+        dc = wx.WindowDC(self.term)
+        dc.SetFont(self.term.GetFont())
+        self.term.SetSize(dc.GetTextExtent("0"*40))
+        sizer.Add(label, 0, wx.ALL, 5)
+        sizer.Add(self.term, 0, wx.ALL, 5)
+        self.posts = wx.RadioButton(panel, wx.ID_ANY, _("Posts"), style=wx.RB_GROUP)
+        self.users = wx.RadioButton(panel, wx.ID_ANY, _("Users"))
+        radioSizer = wx.BoxSizer(wx.HORIZONTAL)
+        radioSizer.Add(self.posts, 0, wx.ALL, 5)
+        radioSizer.Add(self.users, 0, wx.ALL, 5)
+        sizer.Add(radioSizer, 0, wx.ALL, 5)
+        ok = wx.Button(panel, wx.ID_OK, _(u"&OK"))
+        ok.SetDefault()
+        cancel = wx.Button(panel, wx.ID_CANCEL, _("&Close"))
+        self.SetEscapeId(cancel.GetId())
+        btnsizer = wx.BoxSizer()
+        btnsizer.Add(ok, 0, wx.ALL, 5)
+        btnsizer.Add(cancel, 0, wx.ALL, 5)
+        sizer.Add(btnsizer, 0, wx.ALL, 5)
+        panel.SetSizer(sizer)
+        self.SetClientSize(sizer.CalcMin())
