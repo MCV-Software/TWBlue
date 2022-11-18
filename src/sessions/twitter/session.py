@@ -107,7 +107,7 @@ class Session(base.baseSession):
                     incoming = incoming+1
         self.db["direct_messages"] = objects
         self.db["sent_direct_messages"] = sent_objects
-        pub.sendMessage("sent-dms-updated", total=sent, session_name=self.get_name())
+        pub.sendMessage("twitter.sent_dms_updated", total=sent, session_name=self.get_name())
         return incoming
 
     def __init__(self, *args, **kwargs):
@@ -125,8 +125,8 @@ class Session(base.baseSession):
         # If we wouldn't implement this approach, TWBlue would save permanently the "deleted user" object.
         self.deleted_users = {}
         self.type = "twitter"
-        pub.subscribe(self.handle_new_status, "newStatus")
-        pub.subscribe(self.handle_connected, "streamConnected")
+        pub.subscribe(self.handle_new_status, "twitter.new_status")
+        pub.subscribe(self.handle_connected, "twitter.stream_connected")
 
 # @_require_configuration
     def login(self, verify_credentials=True):
@@ -600,7 +600,7 @@ class Session(base.baseSession):
         status = self.check_quoted_status(status)
         status = self.check_long_tweet(status)
         # Send it to the main controller object.
-        pub.sendMessage("newTweet", data=status, session_name=self.get_name(), _buffers=buffers_to_send)
+        pub.sendMessage("twitter.new_tweet", data=status, session_name=self.get_name(), _buffers=buffers_to_send)
 
     def check_streams(self):
         if config.app["app-settings"]["no_streaming"]:
@@ -666,7 +666,7 @@ class Session(base.baseSession):
             else:
                 sent_dms.insert(0, item)
             self.db["sent_direct_messages"] = sent_dms
-            pub.sendMessage("sent-dm", data=item, session_name=self.get_name())
+            pub.sendMessage("twitter.sent_dm", data=item, session_name=self.get_name())
 
     def get_name(self):
         if self.logged:

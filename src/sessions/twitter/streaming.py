@@ -33,7 +33,7 @@ class Stream(tweepy.Stream):
         log.debug("Streaming listener started with {} users to follow.".format(len(self.users)))
 
     def on_connect(self):
-        pub.sendMessage("streamConnected", session_name=self.session_name)
+        pub.sendMessage("twitter.stream_connected", session_name=self.session_name)
 
     def on_exception(self, ex):
         log.exception("Exception received on streaming endpoint for session {}".format(self.session_name))
@@ -44,4 +44,4 @@ class Stream(tweepy.Stream):
         if status.in_reply_to_user_id_str != None and status.in_reply_to_user_id_str not in self.users and status.user.id != self.user_id:
             return
         if status.user.id_str in self.users:
-            pub.sendMessage("newStatus", status=status, session_name=self.session_name)
+            pub.sendMessage("twitter.new_status", status=status, session_name=self.session_name)

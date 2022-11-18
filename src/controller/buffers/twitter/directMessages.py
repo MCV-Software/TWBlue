@@ -69,7 +69,7 @@ class DirectMessagesBuffer(base.BaseBuffer):
         self.session.db["sent_direct_messages"] = sent_dms
         user_ids = [item.message_create["sender_id"] for item in items]
         self.session.save_users(user_ids)
-        pub.sendMessage("more-sent-dms", data=sent, account=self.session.db["user_name"])
+        pub.sendMessage("twitter.more_sent_dms", data=sent, account=self.session.db["user_name"])
         selected = self.buffer.list.get_selected()
         if self.session.settings["general"]["reverse_timelines"] == True:
             for i in received:
