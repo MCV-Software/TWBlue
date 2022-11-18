@@ -100,13 +100,20 @@ class Controller(object):
     def bind_other_events(self):
         """ Binds the local application events with their functions."""
         log.debug("Binding other application events...")
-        pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
-        pub.subscribe(self.manage_sent_dm, "twitter.sent_dm")
-        widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
+
+        # Core application pubsub events.
         pub.subscribe(self.logout_account, "logout")
         pub.subscribe(self.login_account, "login")
         pub.subscribe(self.execute_action, "execute-action")
         pub.subscribe(self.search_topic, "search")
+        pub.subscribe(self.create_buffer, "createBuffer")
+        pub.subscribe(self.toggle_share_settings, "toggleShare")
+        pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
+        pub.subscribe(self.create_account_buffer, "core.create_account")
+
+        # Twitter specific events.
+        pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
+        pub.subscribe(self.manage_sent_dm, "twitter.sent_dm")
         pub.subscribe(self.update_sent_dms, "twitter.sent_dms_updated")
         pub.subscribe(self.more_dms, "twitter.more_sent_dms")
         pub.subscribe(self.manage_sent_tweets, "twitter.sent_tweet")
@@ -117,11 +124,13 @@ class Controller(object):
         pub.subscribe(self.manage_unfavourite, "twitter.unfavourite")
         pub.subscribe(self.manage_blocked_user, "twitter.blocked_user")
         pub.subscribe(self.manage_unblocked_user, "twitter.unblocked_user")
-        pub.subscribe(self.create_buffer, "createBuffer")
-        pub.subscribe(self.toggle_share_settings, "toggleShare")
         pub.subscribe(self.restart_streaming, "twitter.restart_streaming")
-        pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
-        pub.subscribe(self.create_account_buffer, "core.create_account")
+
+        # Mastodon specific events.
+        pub.subscribe(self.mastodon_new_item, "mastodon.new_item")
+
+        # connect application events to GUI
+        widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
@@ -1212,3 +1221,19 @@ class Controller(object):
                 log.debug("Restarting stream in session %s" % (session))
                 sessions.sessions[s].stop_streaming()
                 sessions.sessions[s].start_streaming()
+
+    def mastodon_new_item(self, item, session_name, _buffers):
+        sound_to_play = None
+        for buff in _buffers:
+            buffer = self.search_buffer(buff, session_name)
+            if buffer == None or buffer.session.get_name() != session_name:
+                return
+            buffer.add_new_item(item)
+            if buff == "home_timeline": sound_to_play = "tweet_received.ogg"
+            elif buff == "mentions": sound_to_play = "mention_received.ogg"
+            elif buff == "direct_messages": sound_to_play = "dm_received.ogg"
+            elif buff == "sent": sound_to_play = "tweet_send.ogg"
+            elif "timeline" in buff: sound_to_play = "tweet_timeline.ogg"
+            else: sound_to_play = None
+            if sound_to_play != None and buff not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+                self.notify(buffer.session, sound_to_play)

@@ -173,7 +173,7 @@ class ConversationListBuffer(BaseBuffer):
         item = self.get_item()
         conversation = self.get_conversation()
         visibility = item.visibility
-        title = _("Conversation with {}").format(conversation.accounts[0].username)
+        title = _("Reply to conversation with {}").format(conversation.accounts[0].username)
         caption = _("Write your message here")
         users = ["@{} ".format(user.acct) for user in conversation.accounts]
         users_str = "".join(users)

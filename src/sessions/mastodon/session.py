@@ -14,7 +14,7 @@ from mastodon import MastodonError, MastodonNotFoundError, MastodonUnauthorizedE
 from pubsub import pub
 from mysc.thread_utils import call_threaded
 from sessions import base
-from sessions.mastodon import utils
+from sessions.mastodon import utils, streaming
 from .wxUI import authorisationDialog
 
 log = logging.getLogger("sessions.mastodonSession")
@@ -30,6 +30,7 @@ class Session(base.baseSession):
         self.type = "mastodon"
         self.db["pagination_info"] = dict()
         self.char_limit = 500
+        pub.subscribe(self.on_status, "mastodon.new_status")
 
     def login(self, verify_credentials=True):
         if self.settings["mastodon"]["access_token"] != None and self.settings["mastodon"]["instance"] != None:
@@ -203,3 +204,46 @@ class Session(base.baseSession):
         instance = instance.replace("https://", "")
         user = self.settings["mastodon"]["user_name"]
         return "Mastodon: {}@{}".format(user, instance)
+
+    def start_streaming(self):
+        if config.app["app-settings"]["no_streaming"]:
+            return
+        listener = streaming.StreamListener(session_name=self.get_name(), user_id=self.db["user_id"])
+        self.stream = self.api.stream_user(listener, run_async=True, reconnect_async=True)
+
+    def stop_streaming(self):
+        if config.app["app-settings"]["no_streaming"]:
+            return
+        if hasattr(self, "stream"):
+            self.stream.close()
+            log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
+
+    def check_streams(self):
+        if config.app["app-settings"]["no_streaming"]:
+            return
+        if not hasattr(self, "stream"):
+            return
+        log.debug("Status of running stream for user {}: {}".format(self.db["user_name"], self.stream.running))
+        if self.stream.is_alive() == False or self.stream.is_receiving() == False:
+            self.start_streaming()
+
+    def check_buffers(self, status):
+        buffers = []
+        buffers.append("home_timeline")
+        if status.account.id == self.db["user_id"]:
+            buffers.append("sent")
+        mentions = [user.id for user in status.mentions]
+        if self.db["user_id"] in mentions:
+            buffers.append("mentions")
+        return buffers
+
+    def on_status(self, status, session_name):
+        # Discard processing the status if the streaming sends a tweet for another account.
+        if self.get_name() != session_name:
+            return
+        buffers = self.check_buffers(status)
+        for b in buffers[::]:
+            num = self.order_buffer(b, [status])
+            if num == 0:
+                buffers.remove(b)
+        pub.sendMessage("mastodon.new_item", session_name=self.get_name(), item=status, _buffers=buffers)
