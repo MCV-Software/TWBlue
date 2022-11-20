@@ -128,6 +128,7 @@ class Controller(object):
 
         # Mastodon specific events.
         pub.subscribe(self.mastodon_new_item, "mastodon.new_item")
+        pub.subscribe(self.mastodon_new_conversation, "mastodon.conversation_received")
 
         # connect application events to GUI
         widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
@@ -1233,7 +1234,24 @@ class Controller(object):
             elif buff == "mentions": sound_to_play = "mention_received.ogg"
             elif buff == "direct_messages": sound_to_play = "dm_received.ogg"
             elif buff == "sent": sound_to_play = "tweet_send.ogg"
+            elif buff == "followers" or buff == "following": sound_to_play = "update_followers.ogg"
             elif "timeline" in buff: sound_to_play = "tweet_timeline.ogg"
             else: sound_to_play = None
             if sound_to_play != None and buff not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+                self.notify(buffer.session, sound_to_play)
+
+    # Normally, we'd define this function on mastodon's session, but we need to access conversationListBuffer and here is the best place to do so.
+    def mastodon_new_conversation(self, conversation, session_name):
+        buffer = self.search_buffer("direct_messages", session_name)
+        if buffer == None:
+            print("Buffer not found.")
+            return # Direct messages buffer is hidden
+        new_position, number_of_items = buffer.order_buffer([conversation])
+        print(new_position, number_of_items)
+        buffer.put_items_on_list(number_of_items)
+        if new_position > -1:
+            buffer.buffer.list.select_item(new_position)
+        if number_of_items > 0:
+            sound_to_play = "dm_received.ogg"
+            if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
                 self.notify(buffer.session, sound_to_play)

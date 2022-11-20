@@ -30,7 +30,8 @@ class Session(base.baseSession):
         self.type = "mastodon"
         self.db["pagination_info"] = dict()
         self.char_limit = 500
-        pub.subscribe(self.on_status, "mastodon.new_status")
+        pub.subscribe(self.on_status, "mastodon.status_received")
+        pub.subscribe(self.on_notification, "mastodon.notification_received")
 
     def login(self, verify_credentials=True):
         if self.settings["mastodon"]["access_token"] != None and self.settings["mastodon"]["instance"] != None:
@@ -125,9 +126,6 @@ class Session(base.baseSession):
             return user_alias
         return user.name
 
-    def check_streams(self):
-        pass
-
     def order_buffer(self, name, data, ignore_older=False):
         num = 0
         last_id = None
@@ -209,22 +207,25 @@ class Session(base.baseSession):
         if config.app["app-settings"]["no_streaming"]:
             return
         listener = streaming.StreamListener(session_name=self.get_name(), user_id=self.db["user_id"])
-        self.stream = self.api.stream_user(listener, run_async=True, reconnect_async=True)
+        self.user_stream = self.api.stream_user(listener, run_async=True)
+        self.direct_stream = self.api.stream_direct(listener, run_async=True)
 
     def stop_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
             return
-        if hasattr(self, "stream"):
-            self.stream.close()
-            log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
+#        if hasattr(self, "user_stream"):
+#            self.user_stream.close()
+#            log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
+#        if hasattr(self, "direct_stream"):
+#            self.direct_stream.close()
+#            log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
 
     def check_streams(self):
         if config.app["app-settings"]["no_streaming"]:
             return
-        if not hasattr(self, "stream"):
+        if not hasattr(self, "user_stream"):
             return
-        log.debug("Status of running stream for user {}: {}".format(self.db["user_name"], self.stream.running))
-        if self.stream.is_alive() == False or self.stream.is_receiving() == False:
+        if self.user_stream.is_alive() == False or self.user_stream.is_receiving() == False or self.direct_stream.is_alive() == False or self.direct_stream.is_receiving() == False:
             self.start_streaming()
 
     def check_buffers(self, status):
@@ -232,9 +233,6 @@ class Session(base.baseSession):
         buffers.append("home_timeline")
         if status.account.id == self.db["user_id"]:
             buffers.append("sent")
-        mentions = [user.id for user in status.mentions]
-        if self.db["user_id"] in mentions:
-            buffers.append("mentions")
         return buffers
 
     def on_status(self, status, session_name):
@@ -247,3 +245,21 @@ class Session(base.baseSession):
             if num == 0:
                 buffers.remove(b)
         pub.sendMessage("mastodon.new_item", session_name=self.get_name(), item=status, _buffers=buffers)
+
+    def on_notification(self, notification, session_name):
+        # Discard processing the notification if the streaming sends a tweet for another account.
+        if self.get_name() != session_name:
+            return
+        buffers = []
+        obj = None
+        if notification.type == "mention":
+            buffers = ["mentions"]
+            obj = notification.status
+        elif notification.type == "follow":
+            buffers = ["followers"]
+            obj = notification.account
+        for b in buffers[::]:
+            num = self.order_buffer(b, [obj])
+            if num == 0:
+                buffers.remove(b)
+        pub.sendMessage("mastodon.new_item", session_name=self.get_name(), item=obj, _buffers=buffers)

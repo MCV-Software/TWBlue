@@ -10,4 +10,14 @@ class StreamListener(mastodon.StreamListener):
         super(StreamListener, self).__init__()
 
     def on_update(self, status):
-        pub.sendMessage("mastodon.new_status", status=status, session_name=self.session_name)
+        pub.sendMessage("mastodon.status_received", status=status, session_name=self.session_name)
+
+    def on_conversation(self, conversation):
+        print("New conversation: {}".format(conversation))
+        pub.sendMessage("mastodon.conversation_received", conversation=conversation, session_name=self.session_name)
+
+    def on_notification(self, notification):
+        pub.sendMessage("mastodon.notification_received", notification=notification, session_name=self.session_name)
+
+    def on_unknown_event(self, event):
+        log.error("Unknown event: {}".format(event))
