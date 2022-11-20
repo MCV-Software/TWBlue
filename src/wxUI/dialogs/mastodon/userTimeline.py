@@ -18,7 +18,7 @@ class UserTimeline(wx.Dialog):
         label2 = wx.StaticText(panel, -1, _(u"Buffer type"))
         self.posts = wx.RadioButton(panel, -1, _(u"&Posts"), style=wx.RB_GROUP)
         self.followers = wx.RadioButton(panel, -1, _(u"&Followers"))
-        self.following = wx.RadioButton(panel, -1, _(u"F&ollowing"))
+        self.following = wx.RadioButton(panel, -1, _("Fo&llowing"))
         self.setup_default(default)
         hSizer = wx.BoxSizer(wx.HORIZONTAL)
         hSizer.Add(label2, 0, wx.ALL, 5)
