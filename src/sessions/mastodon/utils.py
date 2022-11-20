@@ -35,13 +35,15 @@ def is_audio_or_video(post):
 
 def is_image(post):
     if post.reblog != None:
-        return is_audio_or_video(post.reblog)
+        return is_image(post.reblog)
     # Checks firstly for Mastodon native videos and audios.
     for media in post.media_attachments:
         if media["type"] == "gifv" or media["type"] == "image":
             return True
 
 def get_media_urls(post):
+    if hasattr(post, "reblog") and post.reblog != None:
+            return get_media_urls(post.reblog)
     urls = []
     for media in post.media_attachments:
         if media.get("type") == "audio" or media.get("type") == "video":

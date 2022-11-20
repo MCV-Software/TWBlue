@@ -1247,10 +1247,9 @@ class Controller(object):
     def mastodon_new_conversation(self, conversation, session_name):
         buffer = self.search_buffer("direct_messages", session_name)
         if buffer == None:
-            print("Buffer not found.")
+            log.error("Buffer not found: direct_messages on {}".format(session_name))
             return # Direct messages buffer is hidden
         new_position, number_of_items = buffer.order_buffer([conversation])
-        print(new_position, number_of_items)
         buffer.put_items_on_list(number_of_items)
         if new_position > -1:
             buffer.buffer.list.select_item(new_position)

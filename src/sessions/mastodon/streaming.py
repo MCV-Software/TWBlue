@@ -13,7 +13,6 @@ class StreamListener(mastodon.StreamListener):
         pub.sendMessage("mastodon.status_received", status=status, session_name=self.session_name)
 
     def on_conversation(self, conversation):
-        print("New conversation: {}".format(conversation))
         pub.sendMessage("mastodon.conversation_received", conversation=conversation, session_name=self.session_name)
 
     def on_notification(self, notification):
