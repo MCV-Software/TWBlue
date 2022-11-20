@@ -37,6 +37,8 @@ class BaseBuffer(base.Buffer):
         self.buffer.account = account
         self.bind_events()
         self.sound = sound
+        if "-timeline" in self.name or "-followers" in self.name or "-following" in self.name:
+            self.finished_timeline = False
 
     def create_buffer(self, parent, name):
         self.buffer = buffers.mastodon.basePanel(parent, name)
@@ -51,12 +53,10 @@ class BaseBuffer(base.Buffer):
         elif hasattr(self, "username"):
             if "-timeline" in self.name:
                 return _(u"{username}'s timeline").format(username=self.username,)
-            elif "-favorite" in self.name:
-                return _(u"{username}'s likes").format(username=self.username,)
             elif "-followers" in self.name:
                 return _(u"{username}'s followers").format(username=self.username,)
-            elif "-friends" in self.name:
-                return _(u"{username}'s friends").format(username=self.username,)
+            elif "-following" in self.name:
+                return _(u"{username}'s following").format(username=self.username,)
         log.error("Error getting name for buffer %s" % (self.name,))
         return _(u"Unknown buffer")
 
@@ -102,6 +102,10 @@ class BaseBuffer(base.Buffer):
                 return
             number_of_items = self.session.order_buffer(self.name, results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
+            if hasattr(self, "finished_timeline") and self.finished_timeline == False:
+                if "-timeline" in self.name:
+                    self.username = self.session.db[self.name][0]["account"].username
+                self.finished_timeline = True
             self.put_items_on_list(number_of_items)
             if number_of_items > 0 and  self.name != "sent_posts" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
                 self.session.sound.play(self.sound)
@@ -161,25 +165,11 @@ class BaseBuffer(base.Buffer):
             else:
                 dlg = widgetUtils.YES
             if dlg == widgetUtils.YES:
-                if self.name[:-9] in self.session.settings["other_buffers"]["timelines"]:
-                    self.session.settings["other_buffers"]["timelines"].remove(self.name[:-9])
+                if self.kwargs.get("id") in self.session.settings["other_buffers"]["timelines"]:
+                    self.session.settings["other_buffers"]["timelines"].remove(self.kwargs.get("id"))
                     self.session.settings.write()
                     if self.name in self.session.db:
                         self.session.db.pop(self.name)
-                    return True
-            elif dlg == widgetUtils.NO:
-                return False
-        elif "favorite" in self.name:
-            if force == False:
-                dlg = commonMessageDialogs.remove_buffer()
-            else:
-                dlg = widgetUtils.YES
-            if dlg == widgetUtils.YES:
-                if self.name[:-9] in self.session.settings["other_buffers"]["favourites_timelines"]:
-                    self.session.settings["other_buffers"]["favourites_timelines"].remove(self.name[:-9])
-                    if self.name in self.session.db:
-                        self.session.db.pop(self.name)
-                    self.session.settings.write()
                     return True
             elif dlg == widgetUtils.NO:
                 return False

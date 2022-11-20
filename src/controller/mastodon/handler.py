@@ -2,7 +2,10 @@
 import wx
 import logging
 from pubsub import pub
+from wxUI.dialogs.mastodon import dialogs
 from wxUI.dialogs.mastodon import search as search_dialogs
+from wxUI.dialogs.mastodon import dialogs
+from wxUI import commonMessageDialogs
 from sessions.twitter import utils
 from . import userActions
 
@@ -44,22 +47,14 @@ class Handler(object):
                 pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=session.type, buffer_title=_("Muted users"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="mutes", name="muted", sessionObject=session, account=name))
             elif i == 'blocked':
                 pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=session.type, buffer_title=_("Blocked users"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="blocks", name="blocked", sessionObject=session, account=name))
-#        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="timelines", name))
-#        timelines_position =controller.view.search("timelines", session.db["user_name"])
-#        for i in session.settings["other_buffers"]["timelines"]:
-#            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_(u"Timeline for {}").format(i,), parent_tab=timelines_position, start=False, kwargs=dict(parent=controller.view.nb, function="user_timeline", name="%s-timeline" % (i,), sessionObject=session, name, sound="tweet_timeline.ogg", bufferType=None, user_id=i, include_ext_alt_text=True, tweet_mode="extended"))
-#        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Likes timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="favs_timelines", name))
-#        favs_timelines_position =controller.view.search("favs_timelines", session.db["user_name"])
-#        for i in session.settings["other_buffers"]["favourites_timelines"]:
-#            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Likes for {}").format(i,), parent_tab=favs_timelines_position, start=False, kwargs=dict(parent=controller.view.nb, function="get_favorites", name="%s-favorite" % (i,), sessionObject=session, name, bufferType=None, sound="favourites_timeline_updated.ogg", user_id=i, include_ext_alt_text=True, tweet_mode="extended"))
-#        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Followers timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="followers_timelines", name))
-#        followers_timelines_position =controller.view.search("followers_timelines", session.db["user_name"])
-#        for i in session.settings["other_buffers"]["followers_timelines"]:
-#            pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Followers for {}").format(i,), parent_tab=followers_timelines_position, start=False, kwargs=dict(parent=controller.view.nb, function="get_followers", name="%s-followers" % (i,), sessionObject=session, name, sound="new_event.ogg", user_id=i))
-#        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Following timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="friends_timelines", name))
-#        friends_timelines_position =controller.view.search("friends_timelines", session.db["user_name"])
-#        for i in session.settings["other_buffers"]["friends_timelines"]:
-#            pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_(u"Friends for {}").format(i,), parent_tab=friends_timelines_position, start=False, kwargs=dict(parent=controller.view.nb, function="get_friends", name="%s-friends" % (i,), sessionObject=session, name, sound="new_event.ogg", user_id=i))
+        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="timelines", account=name))
+        timelines_position =controller.view.search("timelines", name)
+        for i in session.settings["other_buffers"]["timelines"]:
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=i, parent_tab=timelines_position, start=False, kwargs=dict(parent=controller.view.nb, function="account_statuses", name="%s-timeline".format(i), sessionObject=session, account=name, sound="tweet_timeline.ogg", id=i))
+        for i in session.settings["other_buffers"]["followers_timelines"]:
+            pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=session.type, buffer_title=_("Followers for {}").format(i), parent_tab=timelines_position, start=False, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_followers", name="%s-followers" % (i,), sessionObject=session, account=name, sound="new_event.ogg", id=i))
+        for i in session.settings["other_buffers"]["following_timelines"]:
+            pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=session.type, buffer_title=_("Following for {}").format(i), parent_tab=timelines_position, start=False, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_following", name="%s-following" % (i,), sessionObject=session, account=name, sound="new_event.ogg", id=i))
 #        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Lists"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="lists", name))
 #        lists_position =controller.view.search("lists", session.db["user_name"])
 #        for i in session.settings["other_buffers"]["lists"]:
@@ -72,10 +67,16 @@ class Handler(object):
 #            pub.sendMessage("createBuffer", buffer_type="TrendsBuffer", session_type=session.type, buffer_title=_("Trending topics for %s") % (i), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="%s_tt" % (i,), sessionObject=session, name, trendsFor=i, sound="trends_updated.ogg"))
 
     def start_buffer(self, controller, buffer):
+        if hasattr(buffer, "finished_timeline") and buffer.finished_timeline == False:
+            change_title = True
+        else:
+            change_title = False
         try:
             buffer.start_stream(play_sound=False)
         except Exception as err:
             log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), buffer.name, buffer.account, buffer.args, buffer.kwargs))
+        if change_title:
+            pub.sendMessage("buffer-title-changed", buffer=buffer)
 
     def open_conversation(self, controller, buffer):
         post = buffer.get_item()
@@ -99,7 +100,7 @@ class Handler(object):
                 users = [user.acct for user in item.mentions if user.id != buffer.session.db["user_id"]]
             if item.account.acct not in users and item.account.id != buffer.session.db["user_id"]:
                 users.insert(0, item.account.acct)
-        u = userActions.userActionsController(buffer.session, users)
+        u = userActions.userActions(buffer.session, users)
 
     def search(self, controller, session, value):
         log.debug("Creating a new search...")
@@ -118,3 +119,61 @@ class Handler(object):
             elif dlg.users.GetValue() == True:
                 pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_search", name="%s-searchUser" % (term,), sessionObject=session, account=session.get_name(), sound="search_updated.ogg", q=term))
         dlg.Destroy()
+
+    # ToDo: explore how to play sound & save config differently.
+    # currently, TWBlue will play the sound and save the config for the timeline even if the buffer did not load or something else.
+    def open_timeline(self, controller, buffer):
+        if not hasattr(buffer, "get_item"):
+            return
+        item = buffer.get_item()
+        if buffer.type == "user":
+            users = [item.acct]
+        elif buffer.type == "baseBuffer":
+            if item.reblog != None:
+                users = [user.acct for user in item.reblog.mentions if user.id != buffer.session.db["user_id"]]
+                if item.reblog.account.acct not in users and item.account.id != buffer.session.db["user_id"]:
+                    users.insert(0, item.reblog.account.acct)
+            else:
+                users = [user.acct for user in item.mentions if user.id != buffer.session.db["user_id"]]
+            if item.account.acct not in users and item.account.id != buffer.session.db["user_id"]:
+                users.insert(0, item.account.acct)
+                u = userActions.UserTimeline(buffer.session, users)
+                if u.dialog.ShowModal() == wx.ID_OK:
+                    action = u.process_action()
+                    if action == None:
+                        return
+                    user = u.user
+                    if action == "posts":
+                        if user.statuses_count == 0:
+                            dialogs.no_posts()
+                            return
+                        if user.id in buffer.session.settings["other_buffers"]["timelines"]:
+                            commonMessageDialogs.timeline_exist()
+                            return
+                        timelines_position =controller.view.search("timelines", buffer.session.get_name())
+                        pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=buffer.session.type, buffer_title=_("Timeline for {}").format(user.username,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, function="account_statuses", name="%s-timeline" % (user.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="tweet_timeline.ogg", id=user.id))
+                        buffer.session.settings["other_buffers"]["timelines"].append(user.id)
+                        buffer.session.sound.play("create_timeline.ogg")
+                    elif action == "followers":
+                        if user.followers_count == 0:
+                            dialogs.no_followers()
+                            return
+                        if user.id in buffer.session.settings["other_buffers"]["followers_timelines"]:
+                            commonMessageDialogs.timeline_exist()
+                            return
+                        timelines_position =controller.view.search("timelines", buffer.session.get_name())
+                        pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=buffer.session.type, buffer_title=_("Followers for {}").format(user.username,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_followers", name="%s-followers" % (user.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="new_event.ogg", id=user.id))
+                        buffer.session.settings["other_buffers"]["followers_timelines"].append(user.id)
+                        buffer.session.sound.play("create_timeline.ogg")
+                    elif action == "following":
+                        if user.following_count == 0:
+                            dialogs.no_following()
+                            return
+                        if user.id in buffer.session.settings["other_buffers"]["following_timelines"]:
+                            commonMessageDialogs.timeline_exist()
+                            return
+                        timelines_position =controller.view.search("timelines", buffer.session.get_name())
+                        pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=buffer.session.type, buffer_title=_("Following for {}").format(user.username,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_following", name="%s-followers" % (user.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="new_event.ogg", id=user.id))
+                        buffer.session.settings["other_buffers"]["following_timelines"].append(user.id)
+                        buffer.session.sound.play("create_timeline.ogg")
+        buffer.session.settings.write()

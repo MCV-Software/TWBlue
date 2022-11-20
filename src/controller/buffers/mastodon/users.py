@@ -86,6 +86,10 @@ class UserBuffer(BaseBuffer):
                 return
             number_of_items = self.session.order_buffer(self.name, results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
+            if hasattr(self, "finished_timeline") and self.finished_timeline == False:
+                if "-followers" in self.name or "-following" in self.name:
+                    self.username = self.session.api.account(id=self.kwargs.get("id")).username
+                self.finished_timeline = True
             self.put_items_on_list(number_of_items)
             if number_of_items > 0 and  self.name != "sent_posts" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
                 self.session.sound.play(self.sound)
@@ -154,14 +158,31 @@ class UserBuffer(BaseBuffer):
         pass
 
     def remove_buffer(self, force=False):
-        if "-searchUser" in self.name:
+        if "-followers" in self.name:
             if force == False:
                 dlg = commonMessageDialogs.remove_buffer()
             else:
                 dlg = widgetUtils.YES
             if dlg == widgetUtils.YES:
-                if self.name in self.session.db:
-                    self.session.db.pop(self.name)
+                if self.kwargs.get("id") in self.session.settings["other_buffers"]["followers_timelines"]:
+                    self.session.settings["other_buffers"]["followers_timelines"].remove(self.kwargs.get("id"))
+                    self.session.settings.write()
+                    if self.name in self.session.db:
+                        self.session.db.pop(self.name)
+                    return True
+            elif dlg == widgetUtils.NO:
+                return False
+        if "-following" in self.name:
+            if force == False:
+                dlg = commonMessageDialogs.remove_buffer()
+            else:
+                dlg = widgetUtils.YES
+            if dlg == widgetUtils.YES:
+                if self.kwargs.get("id") in self.session.settings["other_buffers"]["following_timelines"]:
+                    self.session.settings["other_buffers"]["following_timelines"].remove(self.kwargs.get("id"))
+                    self.session.settings.write()
+                    if self.name in self.session.db:
+                        self.session.db.pop(self.name)
                     return True
             elif dlg == widgetUtils.NO:
                 return False

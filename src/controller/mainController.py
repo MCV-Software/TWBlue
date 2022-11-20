@@ -351,6 +351,7 @@ class Controller(object):
         for i in delete_buffers:
             self.destroy_buffer(i, name)
         session.db = None
+        session.logged = False
 
     def destroy_buffer(self, buffer_name, session_name):
         buffer = self.search_buffer(buffer_name, session_name)
@@ -1164,6 +1165,8 @@ class Controller(object):
             title = _(u"Followers for {}").format(buffer.username,)
         elif buffer.name.endswith("-friends"):
             title = _(u"Friends for {}").format(buffer.username,)
+        elif buffer.name.endswith("-following"):
+            title = _(u"Following for {}").format(buffer.username,)
         elif buffer.name.endswith("_tt"):
             title = _("Trending topics for %s") % (buffer.name_)
         buffer_index = self.view.search(buffer.name, buffer.account)
