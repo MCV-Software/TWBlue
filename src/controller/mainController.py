@@ -1253,7 +1253,7 @@ class Controller(object):
         buffer.put_items_on_list(number_of_items)
         if new_position > -1:
             buffer.buffer.list.select_item(new_position)
-        if number_of_items > 0:
-            sound_to_play = "dm_received.ogg"
-            if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-                self.notify(buffer.session, sound_to_play)
+#        if number_of_items > 0:
+#            sound_to_play = "dm_received.ogg"
+#            if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+#                self.notify(buffer.session, sound_to_play)
