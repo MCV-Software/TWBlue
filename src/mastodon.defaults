@@ -11,7 +11,7 @@ reverse_timelines = boolean(default=False)
 persist_size = integer(default=0)
 load_cache_in_memory=boolean(default=True)
 show_screen_names = boolean(default=False)
-buffer_order = list(default=list('home', 'local', 'federated', 'mentions', 'direct_messages', 'sent', 'favorites', 'bookmarks', 'followers', 'following', 'blocked', 'muted', 'notifications'))
+buffer_order = list(default=list('home', 'local', 'mentions', 'direct_messages', 'sent', 'favorites', 'bookmarks', 'followers', 'following', 'blocked', 'muted', 'notifications'))
 boost_mode = string(default="ask")
 
 [sound]
@@ -19,7 +19,7 @@ volume = float(default=1.0)
 input_device = string(default="Default")
 output_device = string(default="Default")
 session_mute = boolean(default=False)
-current_soundpack = string(default="default")
+current_soundpack = string(default="FreakyBlue")
 indicate_audio = boolean(default=True)
 indicate_img = boolean(default=True)
 
