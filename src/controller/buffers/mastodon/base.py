@@ -168,8 +168,8 @@ class BaseBuffer(base.Buffer):
                 if self.kwargs.get("id") in self.session.settings["other_buffers"]["timelines"]:
                     self.session.settings["other_buffers"]["timelines"].remove(self.kwargs.get("id"))
                     self.session.settings.write()
-                    if self.name in self.session.db:
-                        self.session.db.pop(self.name)
+                if self.name in self.session.db:
+                    self.session.db.pop(self.name)
                     return True
             elif dlg == widgetUtils.NO:
                 return False

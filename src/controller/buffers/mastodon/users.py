@@ -172,7 +172,7 @@ class UserBuffer(BaseBuffer):
                     return True
             elif dlg == widgetUtils.NO:
                 return False
-        if "-following" in self.name:
+        elif "-following" in self.name:
             if force == False:
                 dlg = commonMessageDialogs.remove_buffer()
             else:
@@ -183,6 +183,17 @@ class UserBuffer(BaseBuffer):
                     self.session.settings.write()
                     if self.name in self.session.db:
                         self.session.db.pop(self.name)
+                    return True
+            elif dlg == widgetUtils.NO:
+                return False
+        elif "-searchUser" in self.name:
+            if force == False:
+                dlg = commonMessageDialogs.remove_buffer()
+            else:
+                dlg = widgetUtils.YES
+            if dlg == widgetUtils.YES:
+                if self.name in self.session.db:
+                    self.session.db.pop(self.name)
                     return True
             elif dlg == widgetUtils.NO:
                 return False
