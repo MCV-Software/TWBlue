@@ -303,6 +303,11 @@ class BaseBuffer(base.Buffer):
         post = messages.post(session=self.session, title=title, caption=caption, text=users_str)
         visibility_settings = dict(public=0, unlisted=1, private=2, direct=3)
         post.message.visibility.SetSelection(visibility_settings.get(visibility))
+        # Respect content warning settings.
+        if item.sensitive:
+            post.message.sensitive.SetValue(item.sensitive)
+            post.message.spoiler.ChangeValue(item.spoiler_text)
+            post.message.on_sensitivity_changed()
         response = post.message.ShowModal()
         if response == wx.ID_OK:
             post_data = post.get_data()
@@ -325,6 +330,10 @@ class BaseBuffer(base.Buffer):
         users_str = "".join(users)
         post = messages.post(session=self.session, title=title, caption=caption, text=users_str)
         post.message.visibility.SetSelection(3)
+        if item.sensitive:
+            post.message.sensitive.SetValue(item.sensitive)
+            post.message.spoiler.ChangeValue(item.spoiler_text)
+            post.message.on_sensitivity_changed()
         response = post.message.ShowModal()
         if response == wx.ID_OK:
             post_data = post.get_data()
