@@ -337,7 +337,7 @@ class BaseBuffer(base.Buffer):
         response = post.message.ShowModal()
         if response == wx.ID_OK:
             post_data = post.get_data()
-            call_threaded(self.session.send_post, posts=post_data, visibility="direct")
+            call_threaded(self.session.send_post, posts=post_data, visibility="direct", reply_to=item.id)
         if hasattr(post.message, "destroy"):
             post.message.destroy()
 
