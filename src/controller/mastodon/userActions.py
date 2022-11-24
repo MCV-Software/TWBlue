@@ -25,9 +25,8 @@ class BasicUserSelector(object):
 
     def search_user(self, user):
         try:
-            users = self.session.api.account_search(user)
-            if len(users) > 0:
-                return users[0]
+            user = self.session.api.account_lookup(user)
+            return user
         except MastodonError:
             log.exception("Error searching for user %s.".format(user))
 

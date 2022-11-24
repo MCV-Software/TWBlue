@@ -98,7 +98,7 @@ class Handler(object):
                     users.insert(0, item.reblog.account.acct)
             else:
                 users = [user.acct for user in item.mentions if user.id != buffer.session.db["user_id"]]
-            if item.account.acct not in users and item.account.id != buffer.session.db["user_id"]:
+            if item.account.acct not in users:
                 users.insert(0, item.account.acct)
         u = userActions.userActions(buffer.session, users)
 

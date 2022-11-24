@@ -18,5 +18,5 @@ class StreamListener(mastodon.StreamListener):
     def on_notification(self, notification):
         pub.sendMessage("mastodon.notification_received", notification=notification, session_name=self.session_name)
 
-    def on_unknown_event(self, event):
-        log.error("Unknown event: {}".format(event))
+    def on_unknown_event(self, event, payload):
+        log.error("Unknown event: {} with payload as {}".format(event, payload))
