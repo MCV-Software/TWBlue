@@ -650,7 +650,7 @@ class Controller(object):
 
     def clear_buffer(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "clear"):
+        if hasattr(buffer, "clear_list"):
             return buffer.clear_list()
 
     def remove_buffer(self, *args, **kwargs):
