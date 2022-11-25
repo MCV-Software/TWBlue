@@ -128,6 +128,7 @@ class Controller(object):
 
         # Mastodon specific events.
         pub.subscribe(self.mastodon_new_item, "mastodon.new_item")
+        pub.subscribe(self.mastodon_updated_item, "mastodon.updated_item")
         pub.subscribe(self.mastodon_new_conversation, "mastodon.conversation_received")
 
         # connect application events to GUI
@@ -1242,6 +1243,14 @@ class Controller(object):
             else: sound_to_play = None
             if sound_to_play != None and buff not in buffer.session.settings["other_buffers"]["muted_buffers"]:
                 self.notify(buffer.session, sound_to_play)
+
+    def mastodon_updated_item(self, item, session_name, _buffers):
+        sound_to_play = None
+        for buff in _buffers.keys():
+            buffer = self.search_buffer(buff, session_name)
+            if buffer == None or buffer.session.get_name() != session_name:
+                return
+            buffer.update_item(item, _buffers[buff])
 
     # Normally, we'd define this function on mastodon's session, but we need to access conversationListBuffer and here is the best place to do so.
     def mastodon_new_conversation(self, conversation, session_name):

@@ -210,6 +210,10 @@ class BaseBuffer(base.Buffer):
         if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
             output.speak(" ".join(post[:2]), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
 
+    def update_item(self, item, position):
+        post = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+        self.buffer.list.list.SetItem(position, 1, post[1])
+
     def bind_events(self):
         log.debug("Binding events...")
         self.buffer.set_focus_function(self.onFocus)

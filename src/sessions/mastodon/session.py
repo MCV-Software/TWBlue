@@ -160,7 +160,7 @@ class Session(base.baseSession):
         item_position = next((x for x in range(len(items)) if items[x].id == item.id), None)
         if item_position != None:
             self.db[name][item_position] = item
-            return True
+            return item_position
         return False
 
     def api_call(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
@@ -264,11 +264,11 @@ class Session(base.baseSession):
         # Discard processing the status if the streaming sends a tweet for another account.
         if self.get_name() != session_name:
             return
-        buffers = []
+        buffers = {}
         for b in list(self.db.keys()):
             updated = self.update_item(b, status)
-            if updated:
-                buffers.append(b)
+            if updated != False:
+                buffers[b] = updated
         pub.sendMessage("mastodon.updated_item", session_name=self.get_name(), item=status, _buffers=buffers)
 
     def on_notification(self, notification, session_name):
