@@ -1,42 +1,25 @@
 # -*- coding: cp1252 -*-
-#from config_utils import Configuration, ConfigurationResetException
-from __future__ import unicode_literals
-from builtins import object
-import config
-import paths
+""" Lightweigth module that saves session position across global config and performs validation of config files. """
 import os
 import logging
+import config
+import paths
 log = logging.getLogger("sessionmanager.manager")
 from sessions import session_exceptions
 
 manager = None
 def setup():
+    """ Creates the singleton instance used within TWBlue to access this object. """
     global manager
     if not manager:
         manager = sessionManager()
 
 class sessionManager(object):
-    # def __init__(self):
-    #  FILE = "sessions.conf"
-    #  SPEC = "app-configuration.defaults"
-    #  try:
-    #   self.main = Configuration(paths.config_path(FILE), paths.app_path(SPEC))
-    #  except ConfigurationResetException:
-    #   pass
 
     def get_current_session(self):
+        """ Returns the currently focused session, if valid. """
         if self.is_valid(config.app["sessions"]["current_session"]):
             return config.app["sessions"]["current_session"]
-        else:
-            return False
-
-    def add_session(self, id):
-        log.debug("Adding a new session: %s" % (id,))
-        path = os.path.join(paths.config_path(), id)
-        if not os.path.exists(path):
-            log.debug("Creating %s path" % (os.path.join(paths.config_path(), path),))
-            os.mkdir(path)
-            config.app["sessions"]["sessions"].append(id)
 
     def set_current_session(self, sessionID):
         config.app["sessions"]["current_session"] = sessionID

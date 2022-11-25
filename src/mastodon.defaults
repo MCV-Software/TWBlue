@@ -1,0 +1,53 @@
+[mastodon]
+access_token = string(default="")
+instance = string(default="")
+user_name = string(default="")
+ignored_clients = list(default=list())
+
+[general]
+relative_times = boolean(default=True)
+max_posts_per_call = integer(default=40)
+reverse_timelines = boolean(default=False)
+persist_size = integer(default=0)
+load_cache_in_memory=boolean(default=True)
+show_screen_names = boolean(default=False)
+buffer_order = list(default=list('home', 'local', 'mentions', 'direct_messages', 'sent', 'favorites', 'bookmarks', 'followers', 'following', 'blocked', 'muted', 'notifications'))
+boost_mode = string(default="ask")
+
+[sound]
+volume = float(default=1.0)
+input_device = string(default="Default")
+output_device = string(default="Default")
+session_mute = boolean(default=False)
+current_soundpack = string(default="FreakyBlue")
+indicate_audio = boolean(default=True)
+indicate_img = boolean(default=True)
+
+[other_buffers]
+timelines = list(default=list())
+searches = list(default=list())
+lists = list(default=list())
+followers_timelines = list(default=list())
+following_timelines =  list(default=list())
+trending_topic_buffers = list(default=list())
+muted_buffers = list(default=list())
+autoread_buffers = list(default=list(mentions, direct_messages, events))
+
+[mysc]
+spelling_language = string(default="")
+save_followers_in_autocompletion_db = boolean(default=False)
+save_friends_in_autocompletion_db = boolean(default=False)
+ocr_language = string(default="")
+
+[reporting]
+braille_reporting = boolean(default=True)
+speech_reporting = boolean(default=True)
+
+[templates]
+post = string(default="$display_name, $safe_text $image_descriptions $date. $visibility. $source")
+person = string(default="$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
+conversation = string(default="Conversation with $users. Last message: $last_post")
+
+[filters]
+
+[user-aliases]

@@ -139,3 +139,6 @@ class Buffer(object):
             self.session.db[self.name+"_pos"]=self.buffer.list.get_selected()
         except AttributeError:
             pass
+
+    def view_item(self):
+        pass

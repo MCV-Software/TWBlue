@@ -5,13 +5,13 @@ import time
 import logging
 import webbrowser
 import wx
+import tweepy
 import demoji
 import config
 import output
 import application
 import appkeys
 from pubsub import pub
-import tweepy
 from tweepy.errors import TweepyException, Forbidden, NotFound
 from tweepy.models import User as UserModel
 from mysc.thread_utils import call_threaded
@@ -106,10 +106,8 @@ class Session(base.baseSession):
                     else: objects.insert(0, i)
                     incoming = incoming+1
         self.db["direct_messages"] = objects
-
         self.db["sent_direct_messages"] = sent_objects
-        pub.sendMessage("sent-dms-updated", total=sent, account=self.db["user_name"])
-
+        pub.sendMessage("twitter.sent_dms_updated", total=sent, session_name=self.get_name())
         return incoming
 
     def __init__(self, *args, **kwargs):
@@ -127,8 +125,8 @@ class Session(base.baseSession):
         # If we wouldn't implement this approach, TWBlue would save permanently the "deleted user" object.
         self.deleted_users = {}
         self.type = "twitter"
-        pub.subscribe(self.handle_new_status, "newStatus")
-        pub.subscribe(self.handle_connected, "streamConnected")
+        pub.subscribe(self.handle_new_status, "twitter.new_status")
+        pub.subscribe(self.handle_connected, "twitter.stream_connected")
 
 # @_require_configuration
     def login(self, verify_credentials=True):
@@ -137,8 +135,7 @@ class Session(base.baseSession):
         if self.settings["twitter"]["user_key"] != None and self.settings["twitter"]["user_secret"] != None:
             try:
                 log.debug("Logging in to twitter...")
-                self.auth = tweepy.OAuth1UserHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
-                self.auth.set_access_token(self.settings["twitter"]["user_key"], self.settings["twitter"]["user_secret"])
+                self.auth = tweepy.OAuth1UserHandler(consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"])
                 self.twitter = tweepy.API(self.auth)
                 self.twitter_v2 = tweepy.Client(consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"])
                 if verify_credentials == True:
@@ -153,37 +150,32 @@ class Session(base.baseSession):
             self.logged = False
             raise Exceptions.RequireCredentialsSessionError
 
-# @_require_configuration
     def authorise(self):
         """ Authorises a Twitter account. This function needs to be called for each new session, after self.get_configuration() and before self.login()"""
         if self.logged == True:
             raise Exceptions.AlreadyAuthorisedError("The authorisation process is not needed at this time.")
-        else:
-            self.auth = tweepy.OAuth1UserHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
-            redirect_url = self.auth.get_authorization_url()
-            webbrowser.open_new_tab(redirect_url)
-            self.authorisation_dialog = authorisationDialog()
-            self.authorisation_dialog.cancel.Bind(wx.EVT_BUTTON, self.authorisation_cancelled)
-            self.authorisation_dialog.ok.Bind(wx.EVT_BUTTON, self.authorisation_accepted)
-            self.authorisation_dialog.ShowModal()
-
-    def verify_authorisation(self, pincode):
-        self.auth.get_access_token(pincode)
-        self.settings["twitter"]["user_key"] = self.auth.access_token
-        self.settings["twitter"]["user_secret"] = self.auth.access_token_secret
+        auth = tweepy.OAuth1UserHandler(appkeys.twitter_api_key, appkeys.twitter_api_secret)
+        redirect_url = auth.get_authorization_url()
+        webbrowser.open_new_tab(redirect_url)
+        verification_dialog = wx.TextEntryDialog(None, _("Enter your PIN code here"), _("Authorising account..."))
+        answer = verification_dialog.ShowModal()
+        code = verification_dialog.GetValue()
+        verification_dialog.Destroy()
+        if answer != wx.ID_OK:
+            return
+        try:
+            auth.get_access_token(code)
+        except TweepyException:
+            dlg = wx.MessageDialog(None, _("We could not authorice your Twitter account to be used in TWBlue. This might be caused due to an incorrect verification code. Please try to add the session again."), _("Authorization error"), wx.ICON_ERROR)
+            dlg.ShowModal()
+            dlg.Destroy()
+            return False
+        self.create_session_folder()
+        self.get_configuration()
+        self.settings["twitter"]["user_key"] = auth.access_token
+        self.settings["twitter"]["user_secret"] = auth.access_token_secret
         self.settings.write()
-        del self.auth
-
-    def authorisation_cancelled(self, *args, **kwargs):
-        """ Destroy the authorization dialog. """
-        self.authorisation_dialog.Destroy()
-        del self.authorisation_dialog 
-
-    def authorisation_accepted(self, *args, **kwargs):
-        """ Gets the PIN code entered by user and validate it through Twitter."""
-        pincode = self.authorisation_dialog.text.GetValue()
-        self.verify_authorisation(pincode)
-        self.authorisation_dialog.Destroy()
+        return True
 
     def api_call(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
         """ Make a call to the Twitter API. If there is a connectionError or another exception not related to Twitter, It will call the method again at least 25 times, waiting a while between calls. Useful for  post methods.
@@ -556,7 +548,7 @@ class Session(base.baseSession):
     def start_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
             return
-        self.stream = streaming.Stream(twitter_api=self.twitter, user=self.db["user_name"], user_id=self.db["user_id"], muted_users=self.db["muted_users"], consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"], chunk_size=1025)
+        self.stream = streaming.Stream(twitter_api=self.twitter, session_name=self.get_name(), user_id=self.db["user_id"], muted_users=self.db["muted_users"], consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"], chunk_size=1025)
         self.stream_thread = call_threaded(self.stream.filter, follow=self.stream.users, stall_warnings=True)
 
     def stop_streaming(self):
@@ -566,12 +558,12 @@ class Session(base.baseSession):
             self.stream.running = False
             log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
 
-    def handle_new_status(self, status, user):
+    def handle_new_status(self, status, session_name):
         """ Handles a new status present in the Streaming API. """
         if self.logged == False:
             return
         # Discard processing the status if the streaming sends a tweet for another account.
-        if self.db["user_name"] != user:
+        if self.get_name() != session_name:
             return
         # the Streaming API sends non-extended tweets with an optional parameter "extended_tweets" which contains full_text and other data.
         # so we have to make sure we check it before processing the normal status.
@@ -608,7 +600,7 @@ class Session(base.baseSession):
         status = self.check_quoted_status(status)
         status = self.check_long_tweet(status)
         # Send it to the main controller object.
-        pub.sendMessage("newTweet", data=status, user=self.db["user_name"], _buffers=buffers_to_send)
+        pub.sendMessage("twitter.new_tweet", data=status, session_name=self.get_name(), _buffers=buffers_to_send)
 
     def check_streams(self):
         if config.app["app-settings"]["no_streaming"]:
@@ -619,11 +611,11 @@ class Session(base.baseSession):
         if self.stream.running == False:
             self.start_streaming()
 
-    def handle_connected(self, user):
+    def handle_connected(self, session_name):
         if self.logged == False:
             return
-        if user != self.db["user_name"]:
-            log.debug("Connected streaming endpoint on account {}".format(user))
+        if session_name != self.get_name():
+            log.debug("Connected streaming endpoint on session {}".format(session_name))
 
     def send_tweet(self, *tweets):
         """ Convenience function to send a thread. """
@@ -674,4 +666,10 @@ class Session(base.baseSession):
             else:
                 sent_dms.insert(0, item)
             self.db["sent_direct_messages"] = sent_dms
-            pub.sendMessage("sent-dm", data=item, user=self.db["user_name"])
+            pub.sendMessage("twitter.sent_dm", data=item, session_name=self.get_name())
+
+    def get_name(self):
+        if self.logged:
+            return "Twitter: {}".format(self.db["user_name"])
+        else:
+            return "Twitter: {}".format(self.settings["twitter"]["user_name"])

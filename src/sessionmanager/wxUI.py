@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+""" Base GUI (Wx) class for the Session manager module."""
 import wx
+from pubsub import pub
 from multiplatform_widgets import widgets
-import application
 
 class sessionManagerWindow(wx.Dialog):
+    """ Dialog that displays all session managing capabilities to users. """
     def __init__(self):
         super(sessionManagerWindow, self).__init__(parent=None, title=_(u"Session manager"), size=wx.DefaultSize)
         panel = wx.Panel(self)
@@ -16,8 +17,11 @@ class sessionManagerWindow(wx.Dialog):
         listSizer.Add(self.list.list, 0, wx.ALL, 5)
         sizer.Add(listSizer, 0, wx.ALL, 5)
         self.new = wx.Button(panel, -1, _(u"New account"), size=wx.DefaultSize)
+        self.new.Bind(wx.EVT_BUTTON, self.on_new_account)
         self.remove = wx.Button(panel, -1, _(u"Remove account"))
+        self.remove.Bind(wx.EVT_BUTTON, self.on_remove)
         self.configuration = wx.Button(panel, -1, _(u"Global Settings"))
+        self.configuration.Bind(wx.EVT_BUTTON, self.on_configuration)
         ok = wx.Button(panel, wx.ID_OK, size=wx.DefaultSize)
         ok.SetDefault()
         cancel = wx.Button(panel, wx.ID_CANCEL, size=wx.DefaultSize)
@@ -42,11 +46,29 @@ class sessionManagerWindow(wx.Dialog):
         if self.list.get_count() == 0:
             wx.MessageDialog(None, _(u"You need to configure an account."), _(u"Account Error"), wx.ICON_ERROR).ShowModal()
             return
-        self.controller.do_ok()
         self.EndModal(wx.ID_OK)
 
-    def new_account_dialog(self):
-        return wx.MessageDialog(self, _(u"The request to authorize your Twitter account will be opened in your browser. You only need to do this once. Would you like to continue?"), _(u"Authorization"), wx.YES_NO).ShowModal()
+    def on_new_account(self, *args, **kwargs):
+        menu = wx.Menu()
+        twitter = menu.Append(wx.ID_ANY, _("Twitter"))
+        mastodon = menu.Append(wx.ID_ANY, _("Mastodon"))
+        menu.Bind(wx.EVT_MENU, self.on_new_twitter_account, twitter)
+        menu.Bind(wx.EVT_MENU, self.on_new_mastodon_account, mastodon)
+        self.PopupMenu(menu, self.new.GetPosition())
+
+    def on_new_mastodon_account(self, *args, **kwargs):
+        dlg =  wx.MessageDialog(self, _("You will be prompted for your Mastodon data (instance URL, email address and password) so we can authorise TWBlue in your instance. Would you like to authorise your account now?"), _(u"Authorization"), wx.YES_NO)
+        response = dlg.ShowModal()
+        dlg.Destroy()
+        if response == wx.ID_YES:
+            pub.sendMessage("sessionmanager.new_account", type="mastodon")
+
+    def on_new_twitter_account(self, *args, **kwargs):
+        dlg = wx.MessageDialog(self, _(u"The request to authorize your Twitter account will be opened in your browser. You only need to do this once. Would you like to continue?"), _(u"Authorization"), wx.YES_NO)
+        response = dlg.ShowModal()
+        dlg.Destroy()
+        if response == wx.ID_YES:
+            pub.sendMessage("sessionmanager.new_account", type="twitter")
 
     def add_new_session_to_list(self):
         total = self.list.get_count()
@@ -61,8 +83,16 @@ class sessionManagerWindow(wx.Dialog):
     def get_response(self):
         return self.ShowModal()
 
-    def remove_account_dialog(self):
-        return wx.MessageDialog(self, _(u"Do you really want to delete this account?"), _(u"Remove account"), wx.YES_NO).ShowModal()
+    def on_remove(self, *args, **kwargs):
+        dlg = wx.MessageDialog(self, _(u"Do you really want to delete this account?"), _(u"Remove account"), wx.YES_NO)
+        response = dlg.ShowModal()
+        dlg.Destroy()
+        if response == wx.ID_YES:
+            selected = self.list.get_selected()
+            pub.sendMessage("sessionmanager.remove_account", index=selected)
+
+    def on_configuration(self, *args, **kwargs):
+        pub.sendMessage("sessionmanager.configuration")
 
     def get_selected(self):
         return self.list.get_selected()

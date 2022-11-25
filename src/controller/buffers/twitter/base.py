@@ -1,9 +1,6 @@
 ﻿# -*- coding: utf-8 -*-
 import time
 import wx
-from wxUI import buffers, dialogs, commonMessageDialogs, menus
-from controller import user
-from controller import messages
 import widgetUtils
 import arrow
 import webbrowser
@@ -19,7 +16,10 @@ from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from tweepy.cursor import Cursor
 from pubsub import pub
+from extra import ocr
 from sessions.twitter.long_tweets import twishort, tweets
+from wxUI import buffers, dialogs, commonMessageDialogs, menus
+from controller.twitter import user, messages
 
 log = logging.getLogger("controller.buffers")
 
@@ -35,9 +35,9 @@ class BaseBuffer(base.Buffer):
         super(BaseBuffer, self).__init__(parent, function, *args, **kwargs)
         log.debug("Initializing buffer %s, account %s" % (name, account,))
         if bufferType != None:
-            self.buffer = getattr(buffers, bufferType)(parent, name)
+            self.buffer = getattr(buffers.twitter, bufferType)(parent, name)
         else:
-            self.buffer = buffers.basePanel(parent, name)
+            self.buffer = buffers.twitter.basePanel(parent, name)
         self.invisible = True
         self.name = name
         self.type = self.buffer.type
@@ -471,10 +471,11 @@ class BaseBuffer(base.Buffer):
 
     def onFocus(self, *args, **kwargs):
         tweet = self.get_tweet()
-        # fix this:
-        original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()].created_at, locale="en")
-        ts = original_date.humanize(locale=languageHandler.getLanguage())
-        self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
+        if self.session.settings["general"]["relative_times"] == True:
+            # fix this:
+            original_date = arrow.get(self.session.db[self.name][self.buffer.list.get_selected()].created_at, locale="en")
+            ts = original_date.humanize(locale=languageHandler.getLanguage())
+            self.buffer.list.list.SetItem(self.buffer.list.get_selected(), 2, ts)
         if self.session.settings['sound']['indicate_audio'] and utils.is_audio(tweet):
             self.session.sound.play("audio.ogg")
         if self.session.settings['sound']['indicate_geo'] and utils.is_geocoded(tweet):
@@ -580,3 +581,83 @@ class BaseBuffer(base.Buffer):
         url = self.get_item_url()
         output.speak(_(u"Opening item in web browser..."))
         webbrowser.open(url)
+
+    def add_to_favorites(self):
+        id = self.get_tweet().id
+        call_threaded(self.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
+
+    def remove_from_favorites(self):
+        id = self.get_tweet().id
+        call_threaded(self.session.api_call, call_name="destroy_favorite", id=id)
+
+    def toggle_favorite(self):
+        id = self.get_tweet().id
+        tweet = self.session.twitter.get_status(id=id, include_ext_alt_text=True, tweet_mode="extended")
+        if tweet.favorited == False:
+            call_threaded(self.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
+        else:
+            call_threaded(self.session.api_call, call_name="destroy_favorite", id=id)
+
+    def view_item(self):
+        if self.type == "dm" or self.name == "direct_messages":
+            non_tweet = self.get_formatted_message()
+            item = self.get_right_tweet()
+            original_date = arrow.get(int(item.created_timestamp))
+            date = original_date.shift(seconds=self.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
+            msg = messages.viewTweet(non_tweet, [], False, date=date)
+        else:
+            tweet, tweetsList = self.get_full_tweet()
+            msg = messages.viewTweet(tweet, tweetsList, utc_offset=self.session.db["utc_offset"], item_url=self.get_item_url())
+
+    def reverse_geocode(self, geocoder):
+        try:
+            tweet = self.get_tweet()
+            if tweet.coordinates != None:
+                x = tweet.coordinates["coordinates"][0]
+                y = tweet.coordinates["coordinates"][1]
+                address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
+                return address
+            else:
+                output.speak(_("There are no coordinates in this tweet"))
+#        except GeocoderError:
+#            output.speak(_(u"There are no results for the coordinates in this tweet"))
+        except ValueError:
+            output.speak(_(u"Error decoding coordinates. Try again later."))
+        except KeyError:
+            pass
+        except AttributeError:
+            pass
+
+    def ocr_image(self):
+        tweet = self.get_tweet()
+        media_list = []
+        if hasattr(tweet, "entities") and tweet.entities.get("media") != None:
+            [media_list.append(i) for i in tweet.entities["media"] if i not in media_list]
+        elif hasattr(tweet, "retweeted_status") and tweet.retweeted_status.get("media") != None:
+            [media_list.append(i) for i in tweet.retweeted_status.entities["media"] if i not in media_list]
+        elif hasattr(tweet, "quoted_status") and tweet.quoted_status.entities.get("media") != None:
+            [media_list.append(i) for i in tweet.quoted_status.entities["media"] if i not in media_list]
+        if len(media_list) > 1:
+            image_list = [_(u"Picture {0}").format(i,) for i in range(0, len(media_list))]
+            dialog = dialogs.urlList.urlList(title=_(u"Select the picture"))
+            if dialog.get_response() == widgetUtils.OK:
+                img = media_list[dialog.get_item()]
+            else:
+                return
+        elif len(media_list) == 1:
+            img = media_list[0]
+        else:
+            output.speak(_(u"Invalid buffer"))
+            return
+        if self.session.settings["mysc"]["ocr_language"] != "":
+            ocr_lang = self.session.settings["mysc"]["ocr_language"]
+        else:
+            ocr_lang = ocr.OCRSpace.short_langs.index(tweet.lang)
+            ocr_lang = ocr.OCRSpace.OcrLangs[ocr_lang]
+        api = ocr.OCRSpace.OCRSpaceAPI()
+        try:
+            text = api.OCR_URL(img["media_url"], lang=ocr_lang)
+        except ocr.OCRSpace.APIError as er:
+            output.speak(_(u"Unable to extract text"))
+            return
+        msg = messages.viewTweet(text["ParsedText"], [], False)

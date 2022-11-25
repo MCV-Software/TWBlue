@@ -1,8 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
 import time
-from wxUI import commonMessageDialogs, menus
-from controller import user
-from controller import messages
 import widgetUtils
 import webbrowser
 import output
@@ -11,7 +8,9 @@ import logging
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
+from controller.twitter import user, messages
 from sessions.twitter import compose, templates
+from wxUI import commonMessageDialogs, menus
 from . import base
 
 log = logging.getLogger("controller.buffers.twitter.peopleBuffer")
@@ -248,3 +247,8 @@ class PeopleBuffer(base.BaseBuffer):
         tweet = self.get_tweet()
         url = "https://twitter.com/{screen_name}".format(screen_name=tweet.screen_name)
         return url
+
+    def view_item(self):
+        item_url = self.get_item_url()
+        non_tweet = self.get_formatted_message()
+        msg = messages.viewTweet(non_tweet, [], False, item_url=item_url)

@@ -6,12 +6,12 @@ import output
 import config
 import languageHandler
 import logging
-from controller import messages
 from sessions.twitter import compose, utils, templates
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
 from wxUI import commonMessageDialogs
+from controller.twitter import messages
 from . import base
 
 log = logging.getLogger("controller.buffers.twitter.dmBuffer")
@@ -69,7 +69,7 @@ class DirectMessagesBuffer(base.BaseBuffer):
         self.session.db["sent_direct_messages"] = sent_dms
         user_ids = [item.message_create["sender_id"] for item in items]
         self.session.save_users(user_ids)
-        pub.sendMessage("more-sent-dms", data=sent, account=self.session.db["user_name"])
+        pub.sendMessage("twitter.more_sent_dms", data=sent, account=self.session.db["user_name"])
         selected = self.buffer.list.get_selected()
         if self.session.settings["general"]["reverse_timelines"] == True:
             for i in received:
@@ -162,3 +162,10 @@ class SentDirectMessagesBuffer(DirectMessagesBuffer):
         dm = self.get_right_tweet()
         t = templates.render_dm(dm, template, self.session, relative_times=self.session.settings["general"]["relative_times"], offset_seconds=self.session.db["utc_offset"])
         return t
+
+    def view_item(self):
+        non_tweet = self.get_formatted_message()
+        item = self.get_right_tweet()
+        original_date = arrow.get(int(item.created_timestamp))
+        date = original_date.shift(seconds=self.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
+        msg = messages.viewTweet(non_tweet, [], False, date=date)

@@ -1,10 +1,10 @@
 ﻿# -*- coding: utf-8 -*-
 import time
 import locale
-from wxUI import  commonMessageDialogs
 import widgetUtils
 import logging
 from tweepy.errors import TweepyException
+from wxUI import  commonMessageDialogs
 from . import base, people
 
 log = logging.getLogger("controller.buffers.twitter.searchBuffer")
@@ -61,6 +61,10 @@ class SearchPeopleBuffer(people.PeopleBuffer):
 class ConversationBuffer(SearchBuffer):
     last_thread_id = None
     last_reply_id = None
+
+    def __init__(self, tweet, *args, **kwargs):
+        self.tweet = tweet
+        super(ConversationBuffer, self).__init__(*args, **kwargs)
 
     def start_stream(self, start=False, mandatory=False, play_sound=True, avoid_autoreading=False):
         current_time = time.time()

@@ -8,7 +8,7 @@ import output
 import sound
 import config
 from pubsub import pub
-from twitter_text import parse_tweet
+from twitter_text.parse_tweet import parse_tweet
 from wxUI.dialogs import twitterDialogs, urlList
 from wxUI import commonMessageDialogs
 from extra import translator, SpellChecker
@@ -23,7 +23,7 @@ class basicTweet(object):
         self.max = max
         self.title = title
         self.session = session
-        self.message = getattr(twitterDialogs, messageType)(title=title, caption=caption, message=text, *args, **kwargs)
+        self.message = getattr(twitterDialogs, messageType)(title=title, caption=caption, message=text, max_length=max, *args, **kwargs)
         self.message.text.SetValue(text)
         self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
         widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
@@ -185,11 +185,12 @@ class tweet(basicTweet):
     def text_processor(self, *args, **kwargs):
         super(tweet, self).text_processor(*args, **kwargs)
         if len(self.thread) > 0:
-            self.message.tweets.Enable(True)
-            self.message.remove_tweet.Enable(True)
-        else:
-            self.message.tweets.Enable(False)
-            self.message.remove_tweet.Enable(False)
+            if hasattr(self.message, "tweets"):
+                self.message.tweets.Enable(True)
+                self.message.remove_tweet.Enable(True)
+            else:
+                self.message.tweets.Enable(False)
+                self.message.remove_tweet.Enable(False)
         if len(self.attachments) > 0:
             self.message.attachments.Enable(True)
             self.message.remove_attachment.Enable(True)

@@ -1,15 +1,14 @@
 ﻿# -*- coding: utf-8 -*-
 import time
 import wx
-from wxUI import buffers, commonMessageDialogs, menus
-from controller import user, messages
-from controller import messages
 import widgetUtils
 import output
 import logging
 from mysc.thread_utils import call_threaded
 from tweepy.errors import TweepyException
 from pubsub import pub
+from wxUI import buffers, commonMessageDialogs, menus
+from controller.twitter import user, messages
 from controller.buffers import base
 
 log = logging.getLogger("controller.buffers.twitter.trends")
@@ -21,7 +20,7 @@ class TrendsBuffer(base.Buffer):
         self.session = sessionObject
         self.account = account
         self.invisible = True
-        self.buffer = buffers.trendsPanel(parent, name)
+        self.buffer = buffers.twitter.trendsPanel(parent, name)
         self.buffer.account = account
         self.type = self.buffer.type
         self.bind_events()

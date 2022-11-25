@@ -1,8 +1,8 @@
 ﻿# -*- coding: utf-8 -*-
-from wxUI import dialogs, commonMessageDialogs
 import widgetUtils
 import logging
 from tweepy.cursor import Cursor
+from wxUI import dialogs, commonMessageDialogs
 from . import base
 
 log = logging.getLogger("controller.buffers.twitter.listBuffer")

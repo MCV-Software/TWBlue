@@ -111,7 +111,8 @@ class URLStream(object):
         self.prepared = False
         log.debug("URL Player initialized")
         # LibVLC controls.
-        self.instance = vlc.Instance()
+        self.instance = vlc.Instance("--quiet")
+        self.instance.log_unset()
         self.player = self.instance.media_player_new()
         self.event_manager = self.player.event_manager()
         self.event_manager.event_attach(vlc.EventType.MediaPlayerEndReached, self.end_callback)

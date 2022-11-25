@@ -1,43 +1,33 @@
 # -*- coding: utf-8 -*-
-import application
-import wx
-import requests
-import arrow
-from audio_services import youtube_utils
-from update import updater
-from wxUI import (view, dialogs, commonMessageDialogs, sysTrayIcon)
-from . import settings
-from extra import SoundsTutorial, ocr
-import keystrokeEditor
-from keyboard_handler.wx_handler import WXKeyboardHandler
-from . import userActionsController
-from . import trendingTopics
-from . import user
-from . import listsController
-from . import filterController
-from . import userSelector
-from sessions.twitter import utils, compose
-from sessionmanager import manager, sessionManager
-from controller import buffers
-from . import messages
-from . import userAliasController
-import sessions
-from sessions.twitter  import session as session_
-from pubsub import pub
-import sound
-import output
-from tweepy.errors import TweepyException, Forbidden
-from mysc.thread_utils import call_threaded
-from mysc.repeating_timer import RepeatingTimer
-from mysc import restart
-import config
-import widgetUtils
+import os
 import logging
 import webbrowser
-from geopy.geocoders import Nominatim
-from mysc import localization
-import os
+import wx
+import requests
+import keystrokeEditor
+import sessions
+import widgetUtils
+import config
 import languageHandler
+import application
+import sound
+import output
+from pubsub import pub
+from tweepy.errors import TweepyException, Forbidden
+from geopy.geocoders import Nominatim
+from extra import SoundsTutorial
+from update import updater
+from wxUI import view, dialogs, commonMessageDialogs, sysTrayIcon
+from keyboard_handler.wx_handler import WXKeyboardHandler
+from sessionmanager import manager, sessionManager
+from controller import buffers
+from mysc import restart
+from mysc import localization
+from mysc.thread_utils import call_threaded
+from mysc.repeating_timer import RepeatingTimer
+from controller.twitter import handler as TwitterHandler
+from controller.mastodon import handler as MastodonHandler
+from . import settings, userAlias
 
 log = logging.getLogger("mainController")
 
@@ -110,28 +100,39 @@ class Controller(object):
     def bind_other_events(self):
         """ Binds the local application events with their functions."""
         log.debug("Binding other application events...")
-        pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
-        pub.subscribe(self.manage_sent_dm, "sent-dm")
-        widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
+
+        # Core application pubsub events.
         pub.subscribe(self.logout_account, "logout")
         pub.subscribe(self.login_account, "login")
-        pub.subscribe(self.create_new_buffer, "create-new-buffer")
         pub.subscribe(self.execute_action, "execute-action")
         pub.subscribe(self.search_topic, "search")
-        pub.subscribe(self.update_sent_dms, "sent-dms-updated")
-        pub.subscribe(self.more_dms, "more-sent-dms")
-        pub.subscribe(self.manage_sent_tweets, "sent-tweet")
-        pub.subscribe(self.manage_new_tweet, "newTweet")
-        pub.subscribe(self.manage_friend, "friend")
-        pub.subscribe(self.manage_unfollowing, "unfollowing")
-        pub.subscribe(self.manage_favourite, "favourite")
-        pub.subscribe(self.manage_unfavourite, "unfavourite")
-        pub.subscribe(self.manage_blocked_user, "blocked-user")
-        pub.subscribe(self.manage_unblocked_user, "unblocked-user")
         pub.subscribe(self.create_buffer, "createBuffer")
         pub.subscribe(self.toggle_share_settings, "toggleShare")
-        pub.subscribe(self.restart_streaming, "restartStreaming")
         pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
+        pub.subscribe(self.create_account_buffer, "core.create_account")
+
+        # Twitter specific events.
+        pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
+        pub.subscribe(self.manage_sent_dm, "twitter.sent_dm")
+        pub.subscribe(self.update_sent_dms, "twitter.sent_dms_updated")
+        pub.subscribe(self.more_dms, "twitter.more_sent_dms")
+        pub.subscribe(self.manage_sent_tweets, "twitter.sent_tweet")
+        pub.subscribe(self.manage_new_tweet, "twitter.new_tweet")
+        pub.subscribe(self.manage_friend, "twitter.friend")
+        pub.subscribe(self.manage_unfollowing, "twitter.unfollowing")
+        pub.subscribe(self.manage_favourite, "twitter.favourite")
+        pub.subscribe(self.manage_unfavourite, "twitter.unfavourite")
+        pub.subscribe(self.manage_blocked_user, "twitter.blocked_user")
+        pub.subscribe(self.manage_unblocked_user, "twitter.unblocked_user")
+        pub.subscribe(self.restart_streaming, "twitter.restart_streaming")
+
+        # Mastodon specific events.
+        pub.subscribe(self.mastodon_new_item, "mastodon.new_item")
+        pub.subscribe(self.mastodon_updated_item, "mastodon.updated_item")
+        pub.subscribe(self.mastodon_new_conversation, "mastodon.conversation_received")
+
+        # connect application events to GUI
+        widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
@@ -155,7 +156,7 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_favourites, self.view.fav)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.unfav)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_item, self.view.view)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.reverse_geocode, menuitem=self.view.view_coordinates)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_reverse_geocode, menuitem=self.view.view_coordinates)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.follow, menuitem=self.view.follow)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
@@ -210,6 +211,16 @@ class Controller(object):
     def taskbar_right_click(self, *args, **kwargs):
         self.systrayIcon.show_menu()
 
+    def get_handler(self, type):
+        handler = self.handlers.get(type)
+        if handler == None:
+            if type == "twitter":
+                handler = TwitterHandler.Handler()
+            elif type == "mastodon":
+                handler = MastodonHandler.Handler()
+            self.handlers[type]=handler
+        return handler
+
     def __init__(self):
         super(Controller, self).__init__()
         # Visibility state.
@@ -223,6 +234,8 @@ class Controller(object):
         self.accounts = []
         # This saves the current account (important in invisible mode)
         self.current_account = ""
+        # Handlers are special objects as they manage the mapping of available features and events in different social networks.
+        self.handlers = dict()
         self.view.prepare()
         self.bind_other_events()
         self.set_systray_icon()
@@ -246,13 +259,12 @@ class Controller(object):
             if sessions.sessions[i].is_logged == False:
                 self.create_ignored_session_buffer(sessions.sessions[i])
                 continue
-            self.create_buffers(sessions.sessions[i])
-
-        # Connection checker executed each minute.
-        self.checker_function = RepeatingTimer(60, self.check_connection)
-#  self.checker_function.start()
-#        self.save_db = RepeatingTimer(300, self.save_data_in_db)
-#        self.save_db.start()
+            # Valid types currently are twitter and mastodon (Work in progress)
+            # More can be added later.
+            valid_session_types = ["twitter", "mastodon"]
+            if sessions.sessions[i].type in valid_session_types:
+                handler = self.get_handler(type=sessions.sessions[i].type)
+                handler.create_buffers(sessions.sessions[i], controller=self)
         log.debug("Setting updates to buffers every %d seconds..." % (60*config.app["app-settings"]["update_period"],))
         self.update_buffers_function = RepeatingTimer(60*config.app["app-settings"]["update_period"], self.update_buffers)
         self.update_buffers_function.start()
@@ -263,7 +275,8 @@ class Controller(object):
             if sessions.sessions[i].is_logged == False: continue
             self.start_buffers(sessions.sessions[i])
             self.set_buffer_positions(sessions.sessions[i])
-            sessions.sessions[i].start_streaming()
+            if hasattr(sessions.sessions[i], "start_streaming"):
+                sessions.sessions[i].start_streaming()
         if config.app["app-settings"]["play_ready_sound"] == True:
             sessions.sessions[list(sessions.sessions.keys())[0]].sound.play("ready.ogg")
         if config.app["app-settings"]["speak_ready_msg"] == True:
@@ -272,25 +285,33 @@ class Controller(object):
         self.streams_checker_function = RepeatingTimer(60, self.check_streams)
         self.streams_checker_function.start()
 
-
     def create_ignored_session_buffer(self, session):
-        self.accounts.append(session.settings["twitter"]["user_name"])
-        account = buffers.base.AccountBuffer(self.view.nb, session.settings["twitter"]["user_name"], session.settings["twitter"]["user_name"], session.session_id)
-        account.logged = False
-        account.setup_account()
-        self.buffers.append(account)
-        self.view.add_buffer(account.buffer , name=session.settings["twitter"]["user_name"])
+        pub.sendMessage("core.create_account", name=session.get_name(), session_id=session.session_id)
 
     def login_account(self, session_id):
         for i in sessions.sessions:
             if sessions.sessions[i].session_id == session_id: session = sessions.sessions[i]
         session.login()
-        session.db = dict()
-        self.create_buffers(session, False)
+        handler = self.get_handler(type=session.type)
+        if handler != None and hasattr(handler, "create_buffers"):
+            handler.create_buffers(session=session, controller=self, createAccounts=False)
         self.start_buffers(session)
+        if hasattr(session, "start_streaming"):
+            session.start_streaming()
+
+    def create_account_buffer(self, name, session_id, logged=False):
+        self.accounts.append(name)
+        account = buffers.base.AccountBuffer(self.view.nb, name, name, session_id)
+        if logged == False:
+            account.logged = logged
+        account.setup_account()
+        self.buffers.append(account)
+        self.view.add_buffer(account.buffer , name=name)
 
     def create_buffer(self, buffer_type="baseBuffer", session_type="twitter", buffer_title="", parent_tab=None, start=False, kwargs={}):
         log.debug("Creating buffer of type {0} with parent_tab of {2} arguments {1}".format(buffer_type, kwargs, parent_tab))
+        if kwargs.get("parent") == None:
+            kwargs["parent"] = self.view.nb
         if not hasattr(buffers, session_type):
             raise AttributeError("Session type %s does not exist yet." % (session_type))
         available_buffers = getattr(buffers, session_type)
@@ -314,88 +335,32 @@ class Controller(object):
             self.view.insert_buffer(buffer.buffer, buffer_title, parent_tab)
             log.debug("Inserting buffer {0} into control {1}".format(buffer, parent_tab))
 
-    def create_buffers(self, session, createAccounts=True):
-        """ Generates buffer objects for an user account.
-        session SessionObject: a sessionmanager.session.Session Object"""
-        session.get_user_info()
-        if createAccounts == True:
-            self.accounts.append(session.db["user_name"])
-            account = buffers.base.AccountBuffer(self.view.nb, session.db["user_name"], session.db["user_name"], session.session_id)
-            account.setup_account()
-            self.buffers.append(account)
-            self.view.add_buffer(account.buffer , name=session.db["user_name"])
-        root_position =self.view.search(session.db["user_name"], session.db["user_name"])
-        for i in session.settings['general']['buffer_order']:
-            if i == 'home':
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Home"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="home_timeline", name="home_timeline", sessionObject=session, account=session.db["user_name"], sound="tweet_received.ogg", include_ext_alt_text=True, tweet_mode="extended"))
-            elif i == 'mentions':
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Mentions"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="mentions_timeline", name="mentions", sessionObject=session, account=session.db["user_name"], sound="mention_received.ogg", include_ext_alt_text=True, tweet_mode="extended"))
-            elif i == 'dm':
-                pub.sendMessage("createBuffer", buffer_type="DirectMessagesBuffer", session_type=session.type, buffer_title=_("Direct messages"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_direct_messages", name="direct_messages", sessionObject=session, account=session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message", sound="dm_received.ogg"))
-            elif i == 'sent_dm':
-                pub.sendMessage("createBuffer", buffer_type="SentDirectMessagesBuffer", session_type=session.type, buffer_title=_("Sent direct messages"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function=None, name="sent_direct_messages", sessionObject=session, account=session.db["user_name"], bufferType="dmPanel", compose_func="compose_direct_message"))
-            elif i == 'sent_tweets':
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Sent tweets"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="user_timeline", name="sent_tweets", sessionObject=session, account=session.db["user_name"], screen_name=session.db["user_name"], include_ext_alt_text=True, tweet_mode="extended"))
-            elif i == 'favorites':
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Likes"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_favorites", name="favourites", sessionObject=session, account=session.db["user_name"], sound="favourite.ogg", include_ext_alt_text=True, tweet_mode="extended"))
-            elif i == 'followers':
-                pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Followers"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_followers", name="followers", sessionObject=session, account=session.db["user_name"], sound="update_followers.ogg", screen_name=session.db["user_name"]))
-            elif i == 'friends':
-                pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Following"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_friends", name="friends", sessionObject=session, account=session.db["user_name"], screen_name=session.db["user_name"]))
-            elif i == 'blocks':
-                pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Blocked users"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_blocks", name="blocked", sessionObject=session, account=session.db["user_name"]))
-            elif i == 'muted':
-                pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Muted users"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, function="get_mutes", name="muted", sessionObject=session, account=session.db["user_name"]))
-        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="timelines", account=session.db["user_name"]))
-        timelines_position =self.view.search("timelines", session.db["user_name"])
-        for i in session.settings["other_buffers"]["timelines"]:
-            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_(u"Timeline for {}").format(i,), parent_tab=timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="user_timeline", name="%s-timeline" % (i,), sessionObject=session, account=session.db["user_name"], sound="tweet_timeline.ogg", bufferType=None, user_id=i, include_ext_alt_text=True, tweet_mode="extended"))
-        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Likes timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="favs_timelines", account=session.db["user_name"]))
-        favs_timelines_position =self.view.search("favs_timelines", session.db["user_name"])
-        for i in session.settings["other_buffers"]["favourites_timelines"]:
-            pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Likes for {}").format(i,), parent_tab=favs_timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="get_favorites", name="%s-favorite" % (i,), sessionObject=session, account=session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=i, include_ext_alt_text=True, tweet_mode="extended"))
-        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Followers timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="followers_timelines", account=session.db["user_name"]))
-        followers_timelines_position =self.view.search("followers_timelines", session.db["user_name"])
-        for i in session.settings["other_buffers"]["followers_timelines"]:
-            pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_("Followers for {}").format(i,), parent_tab=followers_timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="get_followers", name="%s-followers" % (i,), sessionObject=session, account=session.db["user_name"], sound="new_event.ogg", user_id=i))
-        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Following timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="friends_timelines", account=session.db["user_name"]))
-        friends_timelines_position =self.view.search("friends_timelines", session.db["user_name"])
-        for i in session.settings["other_buffers"]["friends_timelines"]:
-            pub.sendMessage("createBuffer", buffer_type="PeopleBuffer", session_type=session.type, buffer_title=_(u"Friends for {}").format(i,), parent_tab=friends_timelines_position, start=False, kwargs=dict(parent=self.view.nb, function="get_friends", name="%s-friends" % (i,), sessionObject=session, account=session.db["user_name"], sound="new_event.ogg", user_id=i))
-        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Lists"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="lists", account=session.db["user_name"]))
-        lists_position =self.view.search("lists", session.db["user_name"])
-        for i in session.settings["other_buffers"]["lists"]:
-            pub.sendMessage("createBuffer", buffer_type="ListBuffer", session_type=session.type, buffer_title=_(u"List for {}").format(i), parent_tab=lists_position, start=False, kwargs=dict(parent=self.view.nb, function="list_timeline", name="%s-list" % (i,), sessionObject=session, account=session.db["user_name"], bufferType=None, sound="list_tweet.ogg", list_id=utils.find_list(i, session.db["lists"]), include_ext_alt_text=True, tweet_mode="extended"))
-        pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Searches"), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="searches", account=session.db["user_name"]))
-        searches_position =self.view.search("searches", session.db["user_name"])
-        for i in session.settings["other_buffers"]["tweet_searches"]:
-            pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_(u"Search for {}").format(i), parent_tab=searches_position, start=False, kwargs=dict(parent=self.view.nb, function="search_tweets", name="%s-searchterm" % (i,), sessionObject=session, account=session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=i, include_ext_alt_text=True, tweet_mode="extended"))
-        for i in session.settings["other_buffers"]["trending_topic_buffers"]:
-            pub.sendMessage("createBuffer", buffer_type="TrendsBuffer", session_type=session.type, buffer_title=_("Trending topics for %s") % (i), parent_tab=root_position, start=False, kwargs=dict(parent=self.view.nb, name="%s_tt" % (i,), sessionObject=session, account=session.db["user_name"], trendsFor=i, sound="trends_updated.ogg"))
-
     def set_buffer_positions(self, session):
         "Sets positions for buffers if values exist in the database."
         for i in self.buffers:
-            if i.account == session.db["user_name"] and i.name+"_pos" in session.db and hasattr(i.buffer,'list'):
+            if i.account == session.get_name() and i.name+"_pos" in session.db and hasattr(i.buffer,'list'):
                 i.buffer.list.select_item(session.db[str(i.name+"_pos")])
 
     def logout_account(self, session_id):
         for i in sessions.sessions:
             if sessions.sessions[i].session_id == session_id: session = sessions.sessions[i]
-        user = session.db["user_name"]
+        name =session.get_name()
         delete_buffers = []
         for i in self.buffers:
-            if i.account == user and i.name != user:
+            if i.account == name and i.name != name:
                 delete_buffers.append(i.name)
         for i in delete_buffers:
-            self.destroy_buffer(i, user)
+            self.destroy_buffer(i, name)
         session.db = None
+        session.logged = False
 
-    def destroy_buffer(self, buffer_name, account):
-        buffer = self.search_buffer(buffer_name, account)
-        if buffer == None: return
-        buff = self.view.search(buffer.name, buffer.account)
-        if buff == None: return
+    def destroy_buffer(self, buffer_name, session_name):
+        buffer = self.search_buffer(buffer_name, session_name)
+        if buffer == None:
+            return
+        buff = self.view.search(buffer.name, session_name)
+        if buff == None:
+            return
         self.view.delete_buffer(buff)
         self.buffers.remove(buffer)
         del buffer
@@ -404,25 +369,10 @@ class Controller(object):
         self.search(value=term)
 
     def search(self, event=None, value="", *args, **kwargs):
-        """ Searches words or users in twitter. This creates a new buffer containing the search results."""
-        log.debug("Creating a new search...")
-        dlg = dialogs.search.searchDialog(value)
-        if dlg.get_response() == widgetUtils.OK and dlg.get("term") != "":
-            term = dlg.get("term")
-            buffer = self.get_best_buffer()
-            searches_position =self.view.search("searches", buffer.session.db["user_name"])
-            if dlg.get("tweets") == True:
-                if term not in buffer.session.settings["other_buffers"]["tweet_searches"]:
-                    buffer.session.settings["other_buffers"]["tweet_searches"].append(term)
-                    buffer.session.settings.write()
-                    args = {"lang": dlg.get_language(), "result_type": dlg.get_result_type()}
-                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search_tweets", name="%s-searchterm" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", q=term, include_ext_alt_text=True, tweet_mode="extended", **args))
-                else:
-                    log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
-                    return
-            elif dlg.get("users") == True:
-                pub.sendMessage("createBuffer", buffer_type="SearchPeopleBuffer", session_type=buffer.session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=self.view.nb, function="search_users", name="%s-searchUser" % (term,), sessionObject=buffer.session, account=buffer.session.db["user_name"], bufferType=None, sound="search_updated.ogg", q=term))
-        dlg.Destroy()
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "search"):
+            return handler.search(controller=self, session=buffer.session, value=value)
 
     def find(self, *args, **kwargs):
         if 'string' in kwargs:
@@ -452,20 +402,19 @@ class Controller(object):
         output.speak(_(u"{0} not found.").format(string,), True)
 
     def filter(self, *args, **kwargs):
-        page = self.get_current_buffer()
-        if not hasattr(page.buffer, "list"):
+        buffer = self.get_current_buffer()
+        if not hasattr(buffer.buffer, "list"):
             output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
             return
-        # Let's prevent filtering of some buffers (people buffers, direct messages, events and sent items).
-        # ToDo: Remove events from here after August 16.
-        if (page.name == "direct_messages" or page.name == "sent_tweets" or page.name == "events") or page.type == "people":
-            output.speak(_(u"Filters cannot be applied on this buffer"))
-            return
-        new_filter = filterController.filter(page)
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "filter"):
+            return handler.filter(buffer=buffer)
 
     def manage_filters(self, *args, **kwargs):
-        page = self.get_best_buffer()
-        manage_filters = filterController.filterManager(page.session)
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "manage_filters"):
+            return handler.manage_filters(session=buffer.session)
 
     def seekLeft(self, *args, **kwargs):
         try:
@@ -503,80 +452,29 @@ class Controller(object):
         SoundsTutorial.soundsTutorial(buffer.session)
 
     def view_user_lists(self, *args, **kwargs):
-        buff = self.get_best_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        selector = userSelector.userSelector(users=users, session_id=buff.session.session_id)
-        user = selector.get_user()
-        if user == None:
-            return
-        l = listsController.listsController(buff.session, user=user)
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "view_user_lists"):
+            return handler.view_user_lists(buffer=buffer)
 
     def add_to_list(self, *args, **kwargs):
-        buff = self.get_best_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        selector = userSelector.userSelector(users=users, session_id=buff.session.session_id)
-        user = selector.get_user()
-        if user == None:
-            return
-        dlg = dialogs.lists.addUserListDialog()
-        dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
-        if dlg.get_response() == widgetUtils.OK:
-            try:
-                list = buff.session.twitter.add_list_member(list_id=buff.session.db["lists"][dlg.get_item()].id, screen_name=user)
-                older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()].id, buff.session.db["lists"])
-                listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()].name.lower()), buff.session.db["user_name"])
-                if listBuffer != None: listBuffer.get_user_ids()
-                buff.session.db["lists"].pop(older_list)
-                buff.session.db["lists"].append(list)
-            except TweepyException as e:
-                log.exception("error %s" % (str(e)))
-                output.speak("error %s" % (str(e)))
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "add_to_list"):
+            return handler.add_to_list(controller=self, buffer=buffer)
 
     def remove_from_list(self, *args, **kwargs):
-        buff = self.get_best_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        selector = userSelector.userSelector(users=users, session_id=buff.session.session_id)
-        user = selector.get_user()
-        if user == None:
-            return
-        dlg = dialogs.lists.removeUserListDialog()
-        dlg.populate_list([compose.compose_list(item) for item in buff.session.db["lists"]])
-        if dlg.get_response() == widgetUtils.OK:
-            try:
-                list = buff.session.twitter.remove_list_member(list_id=buff.session.db["lists"][dlg.get_item()].id, screen_name=user)
-                older_list = utils.find_item(buff.session.db["lists"][dlg.get_item()].id, buff.session.db["lists"])
-                listBuffer = self.search_buffer("%s-list" % (buff.session.db["lists"][dlg.get_item()].name.lower()), buff.session.db["user_name"])
-                if listBuffer != None: listBuffer.get_user_ids()
-                buff.session.db["lists"].pop(older_list)
-                buff.session.db["lists"].append(list)
-            except TweepyException as e:
-                output.speak("error %s" % (str(e)))
-                log.exception("error %s" % (str(e)))
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "remove_from_list"):
+            return handler.remove_from_list(controller=self, buffer=buffer)
 
     def list_manager(self, *args, **kwargs):
-        s = self.get_best_buffer().session
-        l = listsController.listsController(s)
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "list_manager"):
+            lists_buffer_position = self.view.search("lists", buffer.session.get_name())
+            return handler.list_manager(session=buffer.session, lists_buffer_position=lists_buffer_position)
 
     def configuration(self, *args, **kwargs):
         """ Opens the global settings dialogue."""
@@ -589,16 +487,11 @@ class Controller(object):
 
     def accountConfiguration(self, *args, **kwargs):
         """ Opens the account settings dialogue for the current account."""
-        buff = self.get_best_buffer()
-        manager.manager.set_current_session(buff.session.session_id)
-        d = settings.accountSettingsController(buff, self)
-        if d.response == widgetUtils.OK:
-            d.save_configuration()
-            if d.needs_restart == True:
-                commonMessageDialogs.needs_restart()
-                buff.session.settings.write()
-                buff.session.save_persistent_data()
-                restart.restart_program()
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "account_settings"):
+            manager.manager.set_current_session(buffer.session.session_id)
+            return handler.account_settings(buffer=buffer, controller=self)
 
     def check_for_updates(self, *args, **kwargs):
         update = updater.do_update()
@@ -626,10 +519,12 @@ class Controller(object):
         log.debug("Exiting...")
         log.debug("Saving global configuration...")
         for item in sessions.sessions:
-            if sessions.sessions[item].logged == False: continue
-            log.debug("Disconnecting streaming endpoint for session" +    sessions.sessions[item].session_id)
-            sessions.sessions[item].stop_streaming()
-            log.debug("Disconnecting streams for %s session" % (sessions.sessions[item].session_id,))
+            if sessions.sessions[item].logged == False:
+                continue
+            if hasattr(sessions.sessions[item], "stop_streaming"):
+                log.debug("Disconnecting streaming endpoint for session" +    sessions.sessions[item].session_id)
+                sessions.sessions[item].stop_streaming()
+                log.debug("Disconnecting streams for %s session" % (sessions.sessions[item].session_id,))
             sessions.sessions[item].sound.cleaner.cancel()
             log.debug("Saving database for " +    sessions.sessions[item].session_id)
             sessions.sessions[item].save_persistent_data()
@@ -643,183 +538,60 @@ class Controller(object):
         widgetUtils.exit_application()
 
     def follow(self, *args, **kwargs):
-        buff = self.get_current_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users)
-
-    def unfollow(self, *args, **kwargs):
-        buff = self.get_current_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "unfollow")
-
-    def mute(self, *args, **kwargs):
-        buff = self.get_current_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "mute")
-
-    def unmute(self, *args, **kwargs):
-        buff = self.get_current_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "unmute")
-
-    def block(self, *args, **kwargs):
-        buff = self.get_current_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "block")
-
-    def unblock(self, *args, **kwargs):
-        buff = self.get_current_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "unblock")
-
-    def report(self, *args, **kwargs):
-        buff = self.get_current_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        u = userActionsController.userActionsController(buff, users, "report")
+        buffer = self.get_current_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "follow"):
+            return handler.follow(buffer=buffer)
 
     def add_alias(self, *args, **kwargs):
-        buff = self.get_best_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        dlg = dialogs.userAliasDialogs.addAliasDialog(_("Add an user alias"), users)
-        if dlg.get_response() == widgetUtils.OK:
-            user, alias = dlg.get_user()
-            if user == "" or alias == "":
-                return
-            user_id = buff.session.get_user_by_screen_name(user)
-            buff.session.settings["user-aliases"][str(user_id)] = alias
-            buff.session.settings.write()
-            output.speak(_("Alias has been set correctly for {}.").format(user))
-            pub.sendMessage("alias-added")
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "add_alias"):
+            return handler.add_alias(buffer=buffer)
 
     def manage_aliases(self, *args, **kwargs):
-        buff = self.get_best_buffer()
-        alias_controller = userAliasController.userAliasController(buff.session.settings)
+        buffer = self.get_best_buffer()
+        alias_controller = userAlias.userAliasController(buffer.session.settings)
 
     def post_tweet(self, event=None):
         buffer = self.get_best_buffer()
-        buffer.post_status()
+        if hasattr(buffer, "post_status"):
+            buffer.post_status()
 
     def post_reply(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.name == "direct_messages":
-            buffer.send_message()
-        else:
-            buffer.reply()
+        if hasattr(buffer, "reply"):
+            return buffer.reply()
 
     def send_dm(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        buffer.send_message()
+        if hasattr(buffer, "send_message"):
+            buffer.send_message()
 
     def post_retweet(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
-            return
-        else:
-            buffer.share_item()
+        if hasattr(buffer, "share_item"):
+            return buffer.share_item()
 
     def add_to_favourites(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
-            return
-        else:
-            id = buffer.get_tweet().id
-            call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
+        if hasattr(buffer, "add_to_favorites"):
+            return buffer.add_to_favorites()
 
     def remove_from_favourites(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
-            return
-        else:
-            id = buffer.get_tweet().id
-            call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
+        if hasattr(buffer, "remove_from_favorites"):
+            return buffer.remove_from_favorites()
 
     def toggle_like(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "dm" or buffer.type == "people" or buffer.type == "events":
-            return
-        else:
-            id = buffer.get_tweet().id
-            tweet = buffer.session.twitter.get_status(id=id, include_ext_alt_text=True, tweet_mode="extended")
-            if tweet.favorited == False:
-                call_threaded(buffer.session.api_call, call_name="create_favorite", _sound="favourite.ogg", id=id)
-            else:
-                call_threaded(buffer.session.api_call, call_name="destroy_favorite", id=id)
+        if hasattr(buffer, "toggle_favorite"):
+            return buffer.toggle_favorite()
 
     def view_item(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.type == "account" or buffer.type == "empty":
-            return
-        elif buffer.type == "baseBuffer" or buffer.type == "favourites_timeline" or buffer.type == "list" or buffer.type == "search":
-            tweet, tweetsList = buffer.get_full_tweet()
-            msg = messages.viewTweet(tweet, tweetsList, utc_offset=buffer.session.db["utc_offset"], item_url=buffer.get_item_url())
-        elif buffer.type == "dm":
-            non_tweet = buffer.get_formatted_message()
-            item = buffer.get_right_tweet()
-            original_date = arrow.get(int(item.created_timestamp))
-            date = original_date.shift(seconds=buffer.session.db["utc_offset"]).format(_(u"MMM D, YYYY. H:m"), locale=languageHandler.getLanguage())
-            msg = messages.viewTweet(non_tweet, [], False, date=date)
-        else:
-            item_url = ""
-            if hasattr(buffer, "get_item_url"):
-                item_url = buffer.get_item_url()
-            non_tweet = buffer.get_formatted_message()
-            msg = messages.viewTweet(non_tweet, [], False, item_url=item_url)
+        if hasattr(buffer, "view_item"):
+            return buffer.view_item()
 
     def open_in_browser(self, *args, **kwargs):
         buffer = self.get_current_buffer()
@@ -827,122 +599,23 @@ class Controller(object):
             buffer.open_in_browser()
 
     def open_favs_timeline(self, *args, **kwargs):
-        self.open_timeline(default="favourites")
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "open_timeline"):
+            return handler.open_timeline(controller=self, buffer=buffer, default="favorites")
 
-    def open_timeline(self, default="tweets", *args, **kwargs):
-        buff = self.get_best_buffer()
-        if not hasattr(buff, "get_right_tweet"): return
-        tweet = buff.get_right_tweet()
-        if buff.type == "people":
-            users = [tweet.screen_name]
-        elif buff.type == "dm":
-            users = [buff.session.get_user(tweet.message_create["sender_id"]).screen_name]
-        else:
-            users = utils.get_all_users(tweet, buff.session)
-        dlg = dialogs.userSelection.selectUserDialog(users=users, default=default)
-        if dlg.get_response() == widgetUtils.OK:
-            usr = utils.if_user_exists(buff.session.twitter, dlg.get_user())
-            if usr != None:
-                if usr == dlg.get_user():
-                    commonMessageDialogs.suspended_user()
-                    return
-                if usr.protected == True:
-                    if usr.following == False:
-                        commonMessageDialogs.no_following()
-                        return
-                tl_type = dlg.get_action()
-                if tl_type  == "tweets":
-                    if usr.statuses_count == 0:
-                        commonMessageDialogs.no_tweets()
-                        return
-                    if usr.id_str in buff.session.settings["other_buffers"]["timelines"]:
-                        commonMessageDialogs.timeline_exist()
-                        return
-                    tl = buffers.twitter.BaseBuffer(self.view.nb, "user_timeline", "%s-timeline" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="tweet_timeline.ogg", user_id=usr.id_str, include_ext_alt_text=True, tweet_mode="extended")
-                    try:
-                        tl.start_stream(play_sound=False)
-                    except TweepyException:
-                        commonMessageDialogs.unauthorized()
-                        return
-                    pos=self.view.search("timelines", buff.session.db["user_name"])
-                    self.insert_buffer(tl, pos+1)
-                    self.view.insert_buffer(tl.buffer, name=_(u"Timeline for {}").format(dlg.get_user()), pos=pos)
-                    buff.session.settings["other_buffers"]["timelines"].append(usr.id_str)
-                    pub.sendMessage("buffer-title-changed", buffer=tl)
-                    buff.session.sound.play("create_timeline.ogg")
-                elif tl_type == "favourites":
-                    if usr.favourites_count == 0:
-                        commonMessageDialogs.no_favs()
-                        return
-                    if usr.id_str in buff.session.settings["other_buffers"]["favourites_timelines"]:
-                        commonMessageDialogs.timeline_exist()
-                        return
-                    tl = buffers.twitter.BaseBuffer(self.view.nb, "get_favorites", "%s-favorite" % (usr.id_str,), buff.session, buff.session.db["user_name"], bufferType=None, sound="favourites_timeline_updated.ogg", user_id=usr.id_str, include_ext_alt_text=True, tweet_mode="extended")
-                    try:
-                        tl.start_stream(play_sound=False)
-                    except ValueError:
-                        commonMessageDialogs.unauthorized()
-                        return
-                    pos=self.view.search("favs_timelines", buff.session.db["user_name"])
-                    self.insert_buffer(tl, pos+1)
-                    self.view.insert_buffer(buffer=tl.buffer, name=_(u"Likes for {}").format(dlg.get_user()), pos=pos)
-                    buff.session.settings["other_buffers"]["favourites_timelines"].append(usr.id_str)
-                    pub.sendMessage("buffer-title-changed", buffer=buff)
-                    buff.session.sound.play("create_timeline.ogg")
-                elif tl_type == "followers":
-                    if usr.followers_count == 0:
-                        commonMessageDialogs.no_followers()
-                        return
-                    if usr.id_str in buff.session.settings["other_buffers"]["followers_timelines"]:
-                        commonMessageDialogs.timeline_exist()
-                        return
-                    tl = buffers.twitter.PeopleBuffer(self.view.nb, "get_followers", "%s-followers" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
-                    try:
-                        tl.start_stream(play_sound=False)
-                    except ValueError:
-                        commonMessageDialogs.unauthorized()
-                        return
-                    pos=self.view.search("followers_timelines", buff.session.db["user_name"])
-                    self.insert_buffer(tl, pos+1)
-                    self.view.insert_buffer(buffer=tl.buffer, name=_(u"Followers for {}").format(dlg.get_user()), pos=pos)
-                    buff.session.settings["other_buffers"]["followers_timelines"].append(usr.id_str)
-                    buff.session.sound.play("create_timeline.ogg")
-                    pub.sendMessage("buffer-title-changed", buffer=i)
-                elif tl_type == "friends":
-                    if usr.friends_count == 0:
-                        commonMessageDialogs.no_friends()
-                        return
-                    if usr.id_str in buff.session.settings["other_buffers"]["friends_timelines"]:
-                        commonMessageDialogs.timeline_exist()
-                        return
-                    tl = buffers.twitter.PeopleBuffer(self.view.nb, "get_friends", "%s-friends" % (usr.id_str,), buff.session, buff.session.db["user_name"], sound="new_event.ogg", user_id=usr.id_str)
-                    try:
-                        tl.start_stream(play_sound=False)
-                    except ValueError:
-                        commonMessageDialogs.unauthorized()
-                        return
-                    pos=self.view.search("friends_timelines", buff.session.db["user_name"])
-                    self.insert_buffer(tl, pos+1)
-                    self.view.insert_buffer(buffer=tl.buffer, name=_(u"Friends for {}").format(dlg.get_user()), pos=pos)
-                    buff.session.settings["other_buffers"]["friends_timelines"].append(usr.id_str)
-                    buff.session.sound.play("create_timeline.ogg")
-                    pub.sendMessage("buffer-title-changed", buffer=i)
-            else:
-                commonMessageDialogs.user_not_exist()
-        buff.session.settings.write()
+
+    def open_timeline(self, *args, **kwargs):
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "open_timeline"):
+            return handler.open_timeline(controller=self, buffer=buffer)
 
     def open_conversation(self, *args, **kwargs):
-        buffer = self.get_current_buffer()
-        tweet = buffer.get_right_tweet()
-        if hasattr(tweet, "retweeted_status") and tweet.retweeted_status != None:
-            tweet = tweet.retweeted_status
-        user = buffer.session.get_user(tweet.user).screen_name
-        search = buffers.twitter.ConversationBuffer(self.view.nb, "search_tweets", "%s-searchterm" % (tweet.id,), buffer.session, buffer.session.db["user_name"], bufferType="searchPanel", sound="search_updated.ogg", since_id=tweet.id, q="@{0}".format(user,))
-        search.tweet = tweet
-        search.start_stream(start=True)
-        pos=self.view.search("searches", buffer.session.db["user_name"])
-        self.insert_buffer(search, pos)
-        self.view.insert_buffer(search.buffer, name=_(u"Conversation with {0}").format(user), pos=pos)
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "open_conversation"):
+            return handler.open_conversation(controller=self, buffer=buffer)
 
     def show_hide(self, *args, **kwargs):
         km = self.create_invisible_keyboard_shorcuts()
@@ -959,74 +632,37 @@ class Controller(object):
             self.showing = True
 
     def get_trending_topics(self, *args, **kwargs):
-        buff = self.get_best_buffer()
-        trends = trendingTopics.trendingTopicsController(buff.session)
-        if trends.dialog.get_response() == widgetUtils.OK:
-            woeid = trends.get_woeid()
-            if woeid in buff.session.settings["other_buffers"]["trending_topic_buffers"]: return
-            buffer = buffers.twitter.TrendsBuffer(self.view.nb, "%s_tt" % (woeid,), buff.session, buff.account, woeid, sound="trends_updated.ogg")
-            buffer.searchfunction = self.search
-            pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"])
-            self.view.insert_buffer(buffer.buffer, name=_(u"Trending topics for %s") % (trends.get_string()), pos=pos)
-            self.buffers.append(buffer)
-            buffer.start_stream()
-            buffer.session.settings["other_buffers"]["trending_topic_buffers"].append(woeid)
-            buffer.session.settings.write()
-
-    def reverse_geocode(self, event=None):
-        try:
-            tweet = self.get_current_buffer().get_tweet()
-            if tweet.coordinates != None:
-                x = tweet.coordinates["coordinates"][0]
-                y = tweet.coordinates["coordinates"][1]
-                address = geocoder.reverse("{}, {}".format(y, x), language = languageHandler.curLang)
-                if event == None: output.speak(address.address)
-                else: self.view.show_address(address.address)
-            else:
-                output.speak(_(u"There are no coordinates in this tweet"))
-        except ValueError:
-            output.speak(_(u"Error decoding coordinates. Try again later."))
-#        except KeyError:
-#            pass
-        except AttributeError:
-            output.speak(_("Unable to find address in OpenStreetMap."))
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler != None and hasattr(handler, "get_trending_topics"):
+            return handler.get_trending_topics(controller=self, session=buffer.session)
 
     def view_reverse_geocode(self, event=None):
-        try:
-            tweet = self.get_current_buffer().get_right_tweet()
-            if tweet.coordinates != None:
-                x = tweet.coordinates["coordinates"][0]
-                y = tweet.coordinates["coordinates"][1]
-                address = geocoder.reverse_geocode(y, x, language = languageHandler.curLang)
-                dlg = commonMessageDialogs.view_geodata(address[0].__str__())
-            else:
-                output.speak(_(u"There are no coordinates in this tweet"))
-        except GeocoderError:
-            output.speak(_(u"There are no results for the coordinates in this tweet"))
-        except ValueError:
-            output.speak(_(u"Error decoding coordinates. Try again later."))
-        except KeyError:
-            pass
-        except AttributeError:
-            pass
+        buffer = self.get_current_buffer()
+        if hasattr(buffer, "reverse_geocode"):
+            address = buffer.reverse_geocode()
+            if address != None:
+                    dlg = commonMessageDialogs.view_geodata(address[0].__str__())
 
     def get_more_items(self, *args, **kwargs):
-        self.get_current_buffer().get_more_items()
+        buffer = self.get_current_buffer()
+        if hasattr(buffer, "get_more_items"):
+            return buffer.get_more_items()
 
     def clear_buffer(self, *args, **kwargs):
-        self.get_current_buffer().clear_list()
+        buffer = self.get_current_buffer()
+        if hasattr(buffer, "clear_list"):
+            return buffer.clear_list()
 
     def remove_buffer(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if not hasattr(buffer, "account"): return
+        if not hasattr(buffer, "account"):
+            return
         buff = self.view.search(buffer.name, buffer.account)
         answer = buffer.remove_buffer()
-        if answer == False: return
+        if answer == False:
+            return
         log.debug("destroying buffer...")
-        if hasattr(buffer, "timer"):
-            log.debug("Stopping timer...")
-            buffer.timer.cancel()
-            log.debug("Timer cancelled.")
         self.right()
         self.view.delete_buffer(buff)
         buffer.session.sound.play("delete_timeline.ogg")
@@ -1042,7 +678,8 @@ class Controller(object):
         buffer = self.get_current_buffer()
         if buffer.account != self.current_account:
             self.current_account = buffer.account
-        if not hasattr(buffer, "session") or buffer.session == None: return
+        if not hasattr(buffer, "session") or buffer.session == None:
+            return
         muted = autoread = False
         if buffer.name in buffer.session.settings["other_buffers"]["muted_buffers"]:
             muted = True
@@ -1056,9 +693,10 @@ class Controller(object):
         if buf == None:
             for i in self.accounts:
                 buffer = self.view.search("home_timeline", i)
-                if buffer != None: break
+                if buffer != None:
+                    break
         else:
-            buffer = self.view.search("home_timeline", buf.session.db["user_name"])
+            buffer = self.view.search("home_timeline", buf.session.get_name())
         if buffer!=None:
             self.view.change_buffer(buffer)
 
@@ -1229,16 +867,23 @@ class Controller(object):
 
     def url(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        buffer.url()
+        if hasattr(buffer, "url"):
+            buffer.url()
 
     def audio(self, *args, **kwargs):
-        self.get_current_buffer().audio()
+        buffer = self.get_current_buffer()
+        if hasattr(buffer, "audio"):
+            return buffer.audio()
 
     def volume_down(self, *args, **kwargs):
-        self.get_current_buffer().volume_down()
+        buffer = self.get_current_buffer()
+        if hasattr(buffer, "volume_down"):
+            return buffer.volume_down()
 
     def volume_up(self, *args, **kwargs):
-        self.get_current_buffer().volume_up()
+        buffer = self.get_current_buffer()
+        if hasattr(buffer, "volume_up"):
+            return buffer.volume_up()
 
     def create_invisible_keyboard_shorcuts(self):
         keymap = {}
@@ -1264,23 +909,26 @@ class Controller(object):
             pass
 
     def notify(self, session, play_sound=None, message=None, notification=False):
-        if session.settings["sound"]["session_mute"] == True: return
+        if session.settings["sound"]["session_mute"] == True:
+            return
         if play_sound != None:
             session.sound.play(play_sound)
         if message != None:
             output.speak(message, speech=session.settings["reporting"]["speech_reporting"], braille=session.settings["reporting"]["braille_reporting"])
 
-    def manage_sent_dm(self, data, user):
-        buffer = self.search_buffer("sent_direct_messages", user)
-        if buffer == None: return
+    def manage_sent_dm(self, data, session_name):
+        buffer = self.search_buffer("sent_direct_messages", session_name)
+        if buffer == None:
+            return
         play_sound = "dm_sent.ogg"
         if "sent_direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
             self.notify(buffer.session, play_sound=play_sound)
         buffer.add_new_item(data)
 
-    def manage_sent_tweets(self, data, user):
-        buffer = self.search_buffer("sent_tweets", user)
-        if buffer == None: return
+    def manage_sent_tweets(self, data, session_name):
+        buffer = self.search_buffer("sent_tweets", session_name)
+        if buffer == None:
+            return
         data = buffer.session.check_quoted_status(data)
         data = buffer.session.check_long_tweet(data)
         if data == False: # Long tweet deleted from twishort.
@@ -1293,67 +941,51 @@ class Controller(object):
         buffer.session.db[buffer.name] = items
         buffer.add_new_item(data)
 
-    def manage_friend(self, data, user):
-        buffer = self.search_buffer("friends", user)
-        if buffer == None: return
+    def manage_friend(self, data, session_name):
+        buffer = self.search_buffer("friends", session_name)
+        if buffer == None:
+            return
         buffer.add_new_item(data)
 
-    def manage_unfollowing(self, item, user):
-        buffer = self.search_buffer("friends", user)
-        if buffer == None: return
+    def manage_unfollowing(self, item, session_name):
+        buffer = self.search_buffer("friends", session_name)
+        if buffer == None:
+            return
         buffer.remove_item(item)
 
-    def manage_favourite(self, data, user):
-        buffer = self.search_buffer("favourites", user)
-        if buffer == None: return
+    def manage_favourite(self, data, session_name):
+        buffer = self.search_buffer("favourites", session_name)
+        if buffer == None:
+            return
         play_sound = "favourite.ogg"
         if "favourites" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
             self.notify(buffer.session, play_sound=play_sound)
         buffer.add_new_item(data)
 
-    def manage_unfavourite(self, item, user):
-        buffer = self.search_buffer("favourites", user)
-        if buffer == None: return
+    def manage_unfavourite(self, item, session_name):
+        buffer = self.search_buffer("favourites", session_name)
+        if buffer == None:
+            return
         buffer.remove_item(item)
 
-    def manage_blocked_user(self, data, user):
-        buffer = self.search_buffer("blocked", user)
-        if buffer == None: return
+    def manage_blocked_user(self, data, session_name):
+        buffer = self.search_buffer("blocked", session_name)
+        if buffer == None:
+            return
         buffer.add_new_item(data)
 
-    def manage_unblocked_user(self, item, user):
-        buffer = self.search_buffer("blocked", user)
-        if buffer == None: return
+    def manage_unblocked_user(self, item, session_name):
+        buffer = self.search_buffer("blocked", session_name)
+        if buffer == None:
+            return
         buffer.remove_item(item)
 
     def start_buffers(self, session):
         log.debug("starting buffers... Session %s" % (session.session_id,))
+        handler = self.get_handler(type=session.type)
         for i in self.buffers:
             if i.session == session and i.needs_init == True:
-                if hasattr(i, "finished_timeline") and i.finished_timeline == False:
-                    change_title = True
-                else:
-                    change_title = False
-                try:
-                    if "mentions" in i.name or "direct_messages" in i.name:
-                        i.start_stream()
-                    else:
-                        i.start_stream(play_sound=False)
-                except TweepyException as err:
-                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
-                    # Determine if this error was caused by a block applied to the current user (IE permission errors).
-                    if type(err) == Forbidden:
-                        buff = self.view.search(i.name, i.account)
-                        i.remove_buffer(force=True)
-                        commonMessageDialogs.blocked_timeline()
-                        if self.get_current_buffer() == i:
-                            self.right()
-                        self.view.delete_buffer(buff)
-                        self.buffers.remove(i)
-                        del i
-                        continue
-                if change_title:
-                    pub.sendMessage("buffer-title-changed", buffer=i)
+                handler.start_buffer(controller=self, buffer=i)
 
     def set_positions(self):
         for i in sessions.sessions:
@@ -1364,53 +996,11 @@ class Controller(object):
             return
         for i in sessions.sessions:
             try:
-                if sessions.sessions[i].is_logged == False: continue
+                if sessions.sessions[i].is_logged == False:
+                    continue
                 sessions.sessions[i].check_connection()
-            except TweepyException: # We shouldn't allow this function to die.
+            except: # We shouldn't allow this function to die.
                 pass
-
-    def create_new_buffer(self, buffer, account, create):
-        buff = self.search_buffer("home_timeline", account)
-        if create == True:
-            if buffer == "favourites":
-                favourites = buffers.twitter.BaseBuffer(self.view.nb, "get_favorites", "favourites", buff.session, buff.session.db["user_name"], include_ext_alt_text=True, tweet_mode="extended")
-                self.buffers.append(favourites)
-                self.view.insert_buffer(favourites.buffer, name=_(u"Likes"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-                favourites.start_stream(play_sound=False)
-            if buffer == "followers":
-                followers = buffers.twitter.PeopleBuffer(self.view.nb, "get_followers", "followers", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
-                self.buffers.append(followers)
-                self.view.insert_buffer(followers.buffer, name=_(u"Followers"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-                followers.start_stream(play_sound=False)
-            elif buffer == "friends":
-                friends = buffers.twitter.PeopleBuffer(self.view.nb, "get_friends", "friends", buff.session, buff.session.db["user_name"], screen_name=buff.session.db["user_name"])
-                self.buffers.append(friends)
-                self.view.insert_buffer(friends.buffer, name=_(u"Friends"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-                friends.start_stream(play_sound=False)
-            elif buffer == "blocked":
-                blocks = buffers.twitter.PeopleBuffer(self.view.nb, "get_blocks", "blocked", buff.session, buff.session.db["user_name"])
-                self.buffers.append(blocks)
-                self.view.insert_buffer(blocks.buffer, name=_(u"Blocked users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-                blocks.start_stream(play_sound=False)
-            elif buffer == "muted":
-                muted = buffers.twitter.PeopleBuffer(self.view.nb, "get_mutes", "muted", buff.session, buff.session.db["user_name"])
-                self.buffers.append(muted)
-                self.view.insert_buffer(muted.buffer, name=_(u"Muted users"), pos=self.view.search(buff.session.db["user_name"], buff.session.db["user_name"]))
-                muted.start_stream(play_sound=False)
-        elif create == False:
-            self.destroy_buffer(buffer, buff.session.db["user_name"])
-        elif buffer == "list":
-            if create in buff.session.settings["other_buffers"]["lists"]:
-                output.speak(_(u"This list is already opened"), True)
-                return
-            tl = buffers.twitter.ListBuffer(self.view.nb, "list_timeline", create+"-list", buff.session, buff.session.db["user_name"], bufferType=None, list_id=utils.find_list(create, buff.session.db["lists"]), include_ext_alt_text=True, tweet_mode="extended")
-            buff.session.lists.append(tl)
-            pos=self.view.search("lists", buff.session.db["user_name"])
-            self.insert_buffer(tl, pos)
-            self.view.insert_buffer(tl.buffer, name=_(u"List for {}").format(create), pos=self.view.search("lists", buff.session.db["user_name"]))
-            tl.start_stream(play_sound=False)
-            buff.session.settings["other_buffers"]["lists"].append(create)
-            buff.session.settings.write()
 
     def invisible_shorcuts_changed(self, registered):
         if registered == True:
@@ -1460,7 +1050,9 @@ class Controller(object):
         sm.fill_list()
         sm.show()
         for i in sm.new_sessions:
-            self.create_buffers(sessions.sessions[i])
+            handler = self.get_handler(type=sessions.sessions[i].type)
+            if handler != None and hasattr(handler, "create_buffers"):
+                handler.create_buffers(controller=self, session=sessions.sessions[i])
             call_threaded(self.start_buffers, sessions.sessions[i])
         for i in sm.removed_sessions:
             if sessions.sessions[i].logged == True:
@@ -1470,17 +1062,20 @@ class Controller(object):
             sessions.sessions.pop(i)
 
     def update_profile(self, *args, **kwargs):
-        r = user.profileController(self.get_best_buffer().session)
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if hasattr(handler, "update_profile"):
+            return handler.update_profile(session=buffer.session)
 
     def user_details(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if not hasattr(buffer, "session") or buffer.session == None: return
         if hasattr(buffer, "user_details"):
             buffer.user_details()
 
     def toggle_autoread(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "session") and buffer.session == None: return
+        if hasattr(buffer, "session") and buffer.session == None:
+            return
         if buffer.name not in buffer.session.settings["other_buffers"]["autoread_buffers"]:
             buffer.session.settings["other_buffers"]["autoread_buffers"].append(buffer.name)
             output.speak(_(u"The auto-reading of new tweets is enabled for this buffer"), True)
@@ -1501,7 +1096,8 @@ class Controller(object):
 
     def toggle_buffer_mute(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "session") and buffer.session == None: return
+        if hasattr(buffer, "session") and buffer.session == None:
+            return
         if buffer.name not in buffer.session.settings["other_buffers"]["muted_buffers"]:
             buffer.session.settings["other_buffers"]["muted_buffers"].append(buffer.name)
             output.speak(_(u"Buffer mute on"), True)
@@ -1522,9 +1118,6 @@ class Controller(object):
         webbrowser.open("changelog.html")
         os.chdir("../../")
 
-    def insert_buffer(self, buffer, position):
-        self.buffers.insert(position, buffer)
-
     def copy_to_clipboard(self, *args, **kwargs):
         output.copy(self.get_current_buffer().get_message())
         output.speak(_(u"Copied"))
@@ -1541,7 +1134,7 @@ class Controller(object):
             if i.session != None and i.session.is_logged == True:
                 try:
                     i.start_stream(mandatory=True)
-                except TweepyException as err:
+                except Exception as err:
                     log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
                     # Determine if this error was caused by a block applied to the current user (IE permission errors).
                     if type(err) == Forbidden:
@@ -1559,11 +1152,10 @@ class Controller(object):
         if not hasattr(bf, "start_stream"):
             output.speak(_(u"Unable to update this buffer."))
             return
-        else:
-            output.speak(_(u"Updating buffer..."))
-            n = bf.start_stream(mandatory=True, avoid_autoreading=True)
-            if n != None:
-                output.speak(_(u"{0} items retrieved").format(n,))
+        output.speak(_(u"Updating buffer..."))
+        n = bf.start_stream(mandatory=True, avoid_autoreading=True)
+        if n != None:
+            output.speak(_(u"{0} items retrieved").format(n,))
 
     def buffer_title_changed(self, buffer):
         if buffer.name.endswith("-timeline"):
@@ -1574,6 +1166,8 @@ class Controller(object):
             title = _(u"Followers for {}").format(buffer.username,)
         elif buffer.name.endswith("-friends"):
             title = _(u"Friends for {}").format(buffer.username,)
+        elif buffer.name.endswith("-following"):
+            title = _(u"Following for {}").format(buffer.username,)
         elif buffer.name.endswith("_tt"):
             title = _("Trending topics for %s") % (buffer.name_)
         buffer_index = self.view.search(buffer.name, buffer.account)
@@ -1581,44 +1175,11 @@ class Controller(object):
 
     def ocr_image(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "get_right_tweet") == False:
-            output.speak(_(u"Invalid buffer"))
-            return
-        tweet = buffer.get_tweet()
-        media_list = []
-        if hasattr(tweet, "entities") and tweet.entities.get("media") != None:
-            [media_list.append(i) for i in tweet.entities["media"] if i not in media_list]
-        elif hasattr(tweet, "retweeted_status") and tweet.retweeted_status.get("media") != None:
-            [media_list.append(i) for i in tweet.retweeted_status.entities["media"] if i not in media_list]
-        elif hasattr(tweet, "quoted_status") and tweet.quoted_status.entities.get("media") != None:
-            [media_list.append(i) for i in tweet.quoted_status.entities["media"] if i not in media_list]
-        if len(media_list) > 1:
-            image_list = [_(u"Picture {0}").format(i,) for i in range(0, len(media_list))]
-            dialog = dialogs.urlList.urlList(title=_(u"Select the picture"))
-            if dialog.get_response() == widgetUtils.OK:
-                img = media_list[dialog.get_item()]
-            else:
-                return
-        elif len(media_list) == 1:
-            img = media_list[0]
-        else:
-            output.speak(_(u"Invalid buffer"))
-            return
-        if buffer.session.settings["mysc"]["ocr_language"] != "":
-            ocr_lang = buffer.session.settings["mysc"]["ocr_language"]
-        else:
-            ocr_lang = ocr.OCRSpace.short_langs.index(tweet.lang)
-            ocr_lang = ocr.OCRSpace.OcrLangs[ocr_lang]
-        api = ocr.OCRSpace.OCRSpaceAPI()
-        try:
-            text = api.OCR_URL(img["media_url"], lang=ocr_lang)
-        except ocr.OCRSpace.APIError as er:
-            output.speak(_(u"Unable to extract text"))
-            return
-        msg = messages.viewTweet(text["ParsedText"], [], False)
+        if hasattr(buffer, "ocr_image"):
+            return buffer.ocr_image()
 
-    def update_sent_dms(self, total, account):
-        sent_dms = self.search_buffer("sent_direct_messages", account)
+    def update_sent_dms(self, total, session_name):
+        sent_dms = self.search_buffer("sent_direct_messages", session_name)
         if sent_dms != None:
             sent_dms.put_items_on_list(total)
 
@@ -1631,11 +1192,12 @@ class Controller(object):
         for i in sessions.sessions:
             sessions.sessions[i].save_persistent_data()
 
-    def manage_new_tweet(self, data, user, _buffers):
+    def manage_new_tweet(self, data, session_name, _buffers):
         sound_to_play = None
         for buff in _buffers:
-            buffer = self.search_buffer(buff, user)
-            if buffer == None or buffer.session.db["user_name"] != user: return
+            buffer = self.search_buffer(buff, session_name)
+            if buffer == None or buffer.session.get_name() != session_name:
+                return
             buffer.add_new_item(data)
             if buff == "home_timeline": sound_to_play = "tweet_received.ogg"
             elif buff == "mentions": sound_to_play = "mention_received.ogg"
@@ -1664,3 +1226,43 @@ class Controller(object):
                 log.debug("Restarting stream in session %s" % (session))
                 sessions.sessions[s].stop_streaming()
                 sessions.sessions[s].start_streaming()
+
+    def mastodon_new_item(self, item, session_name, _buffers):
+        sound_to_play = None
+        for buff in _buffers:
+            buffer = self.search_buffer(buff, session_name)
+            if buffer == None or buffer.session.get_name() != session_name:
+                return
+            buffer.add_new_item(item)
+            if buff == "home_timeline": sound_to_play = "tweet_received.ogg"
+            elif buff == "mentions": sound_to_play = "mention_received.ogg"
+            elif buff == "direct_messages": sound_to_play = "dm_received.ogg"
+            elif buff == "sent": sound_to_play = "tweet_send.ogg"
+            elif buff == "followers" or buff == "following": sound_to_play = "update_followers.ogg"
+            elif "timeline" in buff: sound_to_play = "tweet_timeline.ogg"
+            else: sound_to_play = None
+            if sound_to_play != None and buff not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+                self.notify(buffer.session, sound_to_play)
+
+    def mastodon_updated_item(self, item, session_name, _buffers):
+        sound_to_play = None
+        for buff in _buffers.keys():
+            buffer = self.search_buffer(buff, session_name)
+            if buffer == None or buffer.session.get_name() != session_name:
+                return
+            buffer.update_item(item, _buffers[buff])
+
+    # Normally, we'd define this function on mastodon's session, but we need to access conversationListBuffer and here is the best place to do so.
+    def mastodon_new_conversation(self, conversation, session_name):
+        buffer = self.search_buffer("direct_messages", session_name)
+        if buffer == None:
+            log.error("Buffer not found: direct_messages on {}".format(session_name))
+            return # Direct messages buffer is hidden
+        new_position, number_of_items = buffer.order_buffer([conversation])
+        buffer.put_items_on_list(number_of_items)
+        if new_position > -1:
+            buffer.buffer.list.select_item(new_position)
+#        if number_of_items > 0:
+#            sound_to_play = "dm_received.ogg"
+#            if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
+#                self.notify(buffer.session, sound_to_play)
