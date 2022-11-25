@@ -31,6 +31,7 @@ class Session(base.baseSession):
         self.db["pagination_info"] = dict()
         self.char_limit = 500
         pub.subscribe(self.on_status, "mastodon.status_received")
+        pub.subscribe(self.on_status_updated, "mastodon.status_updated")
         pub.subscribe(self.on_notification, "mastodon.notification_received")
 
     def login(self, verify_credentials=True):
@@ -149,6 +150,19 @@ class Session(base.baseSession):
         self.db[name] = objects
         return num
 
+    def update_item(self, name, item):
+        if name not in self.db:
+            return False
+        items = self.db[name]
+        if type(items) != list:
+            return False
+        # determine item position in buffer.
+        item_position = next((x for x in range(len(items)) if items[x].id == item.id), None)
+        if item_position != None:
+            self.db[name][item_position] = item
+            return True
+        return False
+
     def api_call(self, call_name, action="", _sound=None, report_success=False, report_failure=True, preexec_message="", *args, **kwargs):
         finished = False
         tries = 0
@@ -245,6 +259,17 @@ class Session(base.baseSession):
             if num == 0:
                 buffers.remove(b)
         pub.sendMessage("mastodon.new_item", session_name=self.get_name(), item=status, _buffers=buffers)
+
+    def on_status_updated(self, status, session_name):
+        # Discard processing the status if the streaming sends a tweet for another account.
+        if self.get_name() != session_name:
+            return
+        buffers = []
+        for b in list(self.db.keys()):
+            updated = self.update_item(b, status)
+            if updated:
+                buffers.append(b)
+        pub.sendMessage("mastodon.updated_item", session_name=self.get_name(), item=status, _buffers=buffers)
 
     def on_notification(self, notification, session_name):
         # Discard processing the notification if the streaming sends a tweet for another account.

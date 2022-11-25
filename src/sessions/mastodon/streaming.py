@@ -12,6 +12,9 @@ class StreamListener(mastodon.StreamListener):
     def on_update(self, status):
         pub.sendMessage("mastodon.status_received", status=status, session_name=self.session_name)
 
+    def on_status_update(self, status):
+        pub.sendMessage("mastodon.status_updated", status=status, session_name=self.session_name)
+
     def on_conversation(self, conversation):
         pub.sendMessage("mastodon.conversation_received", conversation=conversation, session_name=self.session_name)
 
