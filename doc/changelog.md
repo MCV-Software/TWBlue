@@ -4,7 +4,8 @@ TWBlue Changelog
 
 Most of all changes in this release are focused on adding Mastodon support to TWBlue. The features present to handle Twitter should not have been altered in any way. We were not intended to release this version so soon, but unfortunately, Twitter started to present issues in some regions with one particular API endpoint we were using, making impossible for everyone in such regions to use the application. We will release more updates to fix any possible issue regarding Twitter API, but please take into account that this is sometimes an issue happening in Twitter's servers and while we do our best to make TWBlue work despite those problems, you might encounter glitches from time to time.
 
-* TWBlue now builds with Python 3.10.8.
+* TWBlue now builds with Python 3.10.8. ([#493](https://github.com/MCV-Software/TWBlue/issues/493))
+    * This change also drops support for Windows 7.
 * The TWBlue interface has not been translated yet, as we are releasing this update to fix an important Twitter issue for some regions.
 * Twitter sessions should be able to be opened properly again in TWBlue, in regions where it didn't work since last week.
 * It is now possible to log in to instances of mastodon, hometown and similar software (Pleroma should work as well, although it has not been tested at this time). From the session manager, clicking on the “new account” button will bring up a menu from which you can select whether you want to log in to Twitter or Mastodon. For instances that have a different character limit than the one set by Mastodon, TWBlue will detect the new limit and adjust the dialogs to allow you to use it correctly.
@@ -31,11 +32,6 @@ Most of all changes in this release are focused on adding Mastodon support to TW
 * In user buffers, you can send private message to the user, and open user actions dialog, which in turn allows you to follow/unfollow, block/unblock and mute/unmute.
 * When writing posts, it is possible to attach up to 4 images, 4 givs, or even a video, poll, or audio. It is also possible to add the “sensitive content” tag to posts, change privacy and write a content warning text. It is possible to create threads using the “add post” button.
 * When replying to a post, TWBlue will place the username of all participants in the item you reply to. The privacy options will default to those of the original post.
-
-## changes on version 2022.8.28
-
-* TWBlue now builds with Python 3.10.8. ([#493](https://github.com/MCV-Software/TWBlue/issues/493))
-    * This change also drops support for Windows 7.
 
 ## Changes in version 2022.8.28
 
