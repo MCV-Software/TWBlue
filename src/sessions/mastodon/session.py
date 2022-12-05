@@ -105,8 +105,8 @@ class Session(base.baseSession):
         self.get_muted_users()
         # determine instance custom characters limit.
         instance = self.api.instance()
-        if hasattr(instance, "max_toot_chars"):
-            self.char_limit = instance.max_toot_chars
+        if hasattr(instance, "configuration") and hasattr(instance.configuration, "statuses") and hasattr(instance.configuration.statuses, "max_characters"):
+            self.char_limit = instance.configuration.statuses.max_characters
         self.settings.write()
 
     def get_lists(self):
