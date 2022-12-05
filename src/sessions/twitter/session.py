@@ -140,6 +140,9 @@ class Session(base.baseSession):
                 self.twitter_v2 = tweepy.Client(consumer_key=appkeys.twitter_api_key, consumer_secret=appkeys.twitter_api_secret, access_token=self.settings["twitter"]["user_key"], access_token_secret=self.settings["twitter"]["user_secret"])
                 if verify_credentials == True:
                     self.credentials = self.twitter.verify_credentials()
+                    self.settings["twitter"]["user_name"] = self.credentials.screen_name
+                    self.db["user_name"] = self.credentials.screen_name
+                    self.db["user_id"] = self.credentials.id_str
                 self.logged = True
                 log.debug("Logged.")
                 self.counter = 0
@@ -271,15 +274,9 @@ class Session(base.baseSession):
 # @_require_login
     def get_user_info(self):
         """ Retrieves some information required by TWBlue for setup."""
-        f = self.twitter.get_settings()
-        sn = f["screen_name"]
-        self.settings["twitter"]["user_name"] = sn
-        self.db["user_name"] = sn
-        self.db["user_id"] = self.twitter.get_user(screen_name=sn).id
-        try:
-            self.db["utc_offset"] = f["time_zone"]["utc_offset"]
-        except KeyError:
-            self.db["utc_offset"] = -time.timezone
+        offset = time.timezone if (time.localtime().tm_isdst == 0) else time.altzone
+        offset = offset*-1
+        self.db["utc_offset"] = offset
         # Get twitter's supported languages and save them in a global variable
         #so we won't call to this method once per session.
         if len(application.supported_languages) == 0:
