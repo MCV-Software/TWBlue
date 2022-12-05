@@ -2,6 +2,38 @@ TWBlue Changelog
 
 ## changes in this version
 
+Most of all changes in this release are focused on adding Mastodon support to TWBlue. The features present to handle Twitter should not have been altered in any way. We were not intended to release this version so soon, but unfortunately, Twitter started to present issues in some regions with one particular API endpoint we were using, making impossible for everyone in such regions to use the application. We will release more updates to fix any possible issue regarding Twitter API, but please take into account that this is sometimes an issue happening in Twitter's servers and while we do our best to make TWBlue work despite those problems, you might encounter glitches from time to time.
+
+* TWBlue now builds with Python 3.10.8.
+* The TWBlue interface has not been translated yet, as we are releasing this update to fix an important Twitter issue for some regions.
+* Twitter sessions should be able to be opened properly again in TWBlue, in regions where it didn't work since last week.
+* It is now possible to log in to instances of mastodon, hometown and similar software (Pleroma should work as well, although it has not been tested at this time). From the session manager, clicking on the “new account” button will bring up a menu from which you can select whether you want to log in to Twitter or Mastodon. For instances that have a different character limit than the one set by Mastodon, TWBlue will detect the new limit and adjust the dialogs to allow you to use it correctly.
+* Most of the TWBlue GUI has been adapted so that the buffers reflect the change of social network (in mastodon, for example, the buttons to write posts say post instead of tweet). However, the menu bar has not yet been updated. This means that most of the options still refer to Twitter, although they can be used with mastodon accounts. For example, if you select the “tweet” menu in the menu bar, and then select the “Retweet” option, TWBlue will actually do a “boost” if the buffer you are in is a Mastodon account buffer.
+* Keystrokes for the invisible interface also refer to terms used in Twitter, but can be applied to Mastodon as well.
+* There are some features, within TWBlue, that are not yet compatible with mastodon accounts. These are as follows:
+    * User autocompletion.
+    * Currently, it is not possible to update account settings for mastodon sessions. However, if you know how to edit configuration files, you can close TWBlue, change your session file with any text editor and restart the application to update what you want.
+    * The template editor is not yet available for mastodon accounts.
+    * Filters have not yet been implemented in TWBlue mastodon support.
+    * User aliases are not implemented yet.
+    * It is not possible to view a user’s profile, nor edit your own, for now. However, you can use the keystroke to open the item in the browser when focusing a user to access their profile website. This only works in buffers where users are listed.
+    * You cannot manage lists in TWBlue at the moment.
+* Most of the buffers planned for mastodon should just work. Among those currently tested are: home (main timeline for the logged-in user), Local (public posts for the instance), federated (public posts for all federating instances), mentions, direct messages, sent posts, favorites, bookmarks, followers, following, blocked users, muted users, user searches and timelines for users.
+    *  The difference between favorites and bookmarks is that the author of the post can see who has marked his posts as favorites, but bookmarks are completely private. In any buffer containing mastodon posts, except direct messages, the GUI will display an option to add the post to favorites or bookmarks.
+    * Direct messages in mastodon are posts, exactly like normal posts, but with their privacy setting set so that they can only be seen by the accounts that are mentioned. In the direct message buffer, a conversation will appear for each item in the buffer. The conversation represents a thread of messages, but TWBlue can only display the last of the messages sent. This is similar to what happens on platforms like Telegram, where you can only see the list of conversations at the beginning. To see the entire thread of direct messages present in a conversation, you can use the command to open the conversation, or go to the “tweet” menu in the menu bar, and then towards the “view conversation” option. This will create a new conversation buffer that will be located just after the direct messages buffer (for the GUI, the buffer will be located just inside the direct messages buffer in the buffer tree). When a private post appears (whose visibility only allows the mentioned accounts to see it), TWBlue will display that post in the home buffer, in mentions and also will update/create the conversation with that item. This is because Mastodon does not differentiate between a private message and a normal post. You can reply to the post in any buffer to continue the conversation. If you reply to any post, the privacy set in the original post is maintained by default, but can also be changed.
+    * The buffer showing the federated timeline has been disabled from settings. This is because on servers that federate with many instances it can load many posts in a very short time. To enable this buffer, for now, edit the TWBlue configuration while the application is closed, and add the “federated” buffer in the option called “buffer_order”. As soon as buffers can be shown or hidden, this process can be done through the GUI.
+    * There is a Streaming API that allows the elements for the start buffers, mentions, direct messages, sent posts and followers to appear in real time. This feature is implemented by default and should also just work.
+    * Timelines for users only allow to get all posts from users who are in the same instance. For users belonging to other instances, you can get the posts that have been downloaded to your instance since your instance “knows” the remote user.
+    * Timelines for followers and following can be fully retrieved only for users belonging to the same instance. Remote users may yield unclear results.
+    * You can search by users (by opening a search and selecting the “users” radio button). The search can be done by local users, such as twblue, or by remote users, such as @twblue@maaw.social.
+* In all buffers, a maximum of 40 items are retrieved per load, but more can be retrieved by using the option to load more items in the buffer.
+* In post buffers, you can do most of the actions already supported in TWBlue (boost, add/remove from favorites or bookmarks, reply, send message to user, open post URL, play audio or video, open post on web, view conversation, open action dialog for user).
+* In user buffers, you can send private message to the user, and open user actions dialog, which in turn allows you to follow/unfollow, block/unblock and mute/unmute.
+* When writing posts, it is possible to attach up to 4 images, 4 givs, or even a video, poll, or audio. It is also possible to add the “sensitive content” tag to posts, change privacy and write a content warning text. It is possible to create threads using the “add post” button.
+* When replying to a post, TWBlue will place the username of all participants in the item you reply to. The privacy options will default to those of the original post.
+
+## changes on version 2022.8.28
+
 * TWBlue now builds with Python 3.10.8. ([#493](https://github.com/MCV-Software/TWBlue/issues/493))
     * This change also drops support for Windows 7.
 
