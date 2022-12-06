@@ -94,8 +94,7 @@ class Session(base.baseSession):
         objects = self.db["direct_messages"]
         sent_objects = self.db["sent_direct_messages"]
         for i in data:
-            # Twitter returns sender_id as str, which must be converted to int in order to match to our user_id object.
-            if int(i.message_create["sender_id"]) == self.db["user_id"]:
+            if i.message_create["sender_id"] == self.db["user_id"]:
                 if "sent_direct_messages" in self.db and utils.find_item(i, self.db["sent_direct_messages"]) == None:
                     if self.settings["general"]["reverse_timelines"] == False: sent_objects.append(i)
                     else: sent_objects.insert(0, i)
