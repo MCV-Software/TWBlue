@@ -31,6 +31,7 @@ twblue32:
     - cd ..\src
     - '&$env:PYTHON ..\doc\generator.py'
     - '&$env:PYTHON write_version_data.py'
+    - New-Item "appkeys.py" -ItemType File -Value "twitter_api_key='$TWITTER_API_KEY'`ntwitter_api_secret='$TWITTER_API_SECRET'"
     - '&$env:PYTHON setup.py build'
     - cd ..
     - mkdir artifacts
@@ -70,6 +71,7 @@ twblue64:
     - cd ..\src
     - '&$env:PYTHON ..\doc\generator.py'
     - '&$env:PYTHON write_version_data.py'
+    - New-Item "appkeys.py" -ItemType File -Value "twitter_api_key='$TWITTER_API_KEY'`ntwitter_api_secret='$TWITTER_API_SECRET'"
     - '&$env:PYTHON setup.py build'
     - cd ..
     - mkdir artifacts
