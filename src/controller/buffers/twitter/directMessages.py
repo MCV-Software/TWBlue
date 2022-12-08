@@ -87,14 +87,7 @@ class DirectMessagesBuffer(base.BaseBuffer):
         output.speak(_(u"%s items retrieved") % (total), True)
 
     def reply(self, *args, **kwargs):
-        tweet = self.get_right_tweet()
-        screen_name = self.session.get_user(tweet.message_create["sender_id"]).screen_name
-        message = messages.reply(session=self.session, title=_("Mention"), caption=_("Mention to %s") % (screen_name,), text="@%s " % (screen_name,), thread_mode=False, users=[screen_name,])
-        if message.message.ShowModal() == widgetUtils.OK:
-            tweet_data = message.get_tweet_data()
-            call_threaded(self.session.send_tweet, tweet_data)
-        if hasattr(message.message, "destroy"):
-            message.message.destroy()
+        return self.send_message()
 
     def onFocus(self, *args, **kwargs):
         tweet = self.get_tweet()
