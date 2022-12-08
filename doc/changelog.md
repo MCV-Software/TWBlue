@@ -2,6 +2,14 @@ TWBlue Changelog
 
 ## changes in this version
 
+* Twitter:
+    * Fixed a bug that was making sent direct messages to be placed in received direct messages buffer.
+    * When quoting a tweet, you can use all 280 characters to send your quoted tweet, as opposed to the 256 characters TWBlue allowed before.
+* Mastodon:
+    * Added account settings dialog.
+
+## Changes in version 2022.12.6
+
 Most of all changes in this release are focused on adding Mastodon support to TWBlue. The features present to handle Twitter should not have been altered in any way. We were not intended to release this version so soon, but unfortunately, Twitter started to present issues in some regions with one particular API endpoint we were using, making impossible for everyone in such regions to use the application. We will release more updates to fix any possible issue regarding Twitter API, but please take into account that this is sometimes an issue happening in Twitter's servers and while we do our best to make TWBlue work despite those problems, you might encounter glitches from time to time.
 
 * TWBlue now builds with Python 3.10.8. ([#493](https://github.com/MCV-Software/TWBlue/issues/493))
