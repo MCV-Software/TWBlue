@@ -2,12 +2,13 @@
 import wx
 import logging
 from pubsub import pub
+from mysc import restart
 from wxUI.dialogs.mastodon import dialogs
 from wxUI.dialogs.mastodon import search as search_dialogs
 from wxUI.dialogs.mastodon import dialogs
 from wxUI import commonMessageDialogs
 from sessions.twitter import utils
-from . import userActions
+from . import userActions, settings
 
 log = logging.getLogger("controller.mastodon.handler")
 
@@ -177,3 +178,13 @@ class Handler(object):
                         buffer.session.settings["other_buffers"]["following_timelines"].append(user.id)
                         buffer.session.sound.play("create_timeline.ogg")
         buffer.session.settings.write()
+
+    def account_settings(self, buffer, controller):
+        d = settings.accountSettingsController(buffer, controller)
+        if d.response == wx.ID_OK:
+            d.save_configuration()
+            if d.needs_restart == True:
+                commonMessageDialogs.needs_restart()
+                buffer.session.settings.write()
+                buffer.session.save_persistent_data()
+                restart.restart_program()
