@@ -489,7 +489,7 @@ class BaseBuffer(base.Buffer):
         post = self.get_item()
         # Update object so we can retrieve newer stats
         post = self.session.api.status(id=post.id)
-        print(post)
+#        print(post)
         msg = messages.viewPost(post, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url())
 
     def ocr_image(self):

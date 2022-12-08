@@ -457,7 +457,7 @@ class BaseBuffer(base.Buffer):
     def _retweet_with_comment(self, tweet, id):
         if hasattr(tweet, "retweeted_status"):
             tweet = tweet.retweeted_status
-        retweet = messages.tweet(session=self.session, title=_("Quote"), caption=_("Add your comment to the tweet"), max=256, thread_mode=False)
+        retweet = messages.tweet(session=self.session, title=_("Quote"), caption=_("Add your comment to the tweet"), thread_mode=False)
         if retweet.message.ShowModal() == widgetUtils.OK:
             text = retweet.message.text.GetValue()
             tweet_data = dict(text=text, attachments=retweet.attachments, poll_period=retweet.poll_period, poll_options=retweet.poll_options)
