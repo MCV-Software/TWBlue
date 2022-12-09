@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from win32com.client import GetObject
+import httpcore
+httpcore.SyncHTTPTransport = httpcore.AsyncHTTPProxy
 import sys
 import os
 import platform
