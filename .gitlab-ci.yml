@@ -62,7 +62,7 @@ twblueWin7:
     - choco install python --version 3.7.9 -y -ForceX86
     - '&$env:PYTHON37 -V'
     - '&$env:PYTHON37 -m pip install --upgrade pip'
-    - '&$env:PYTHON -m pip install --upgrade https://github.com/josephsl/wxpy32whl/blob/main/wxPython-4.2.0-cp37-cp37m-win32.whl?raw=true'
+    - '&$env:PYTHON37 -m pip install --upgrade https://github.com/josephsl/wxpy32whl/blob/main/wxPython-4.2.0-cp37-cp37m-win32.whl?raw=true'
     - '&$env:PYTHON37 -m pip install --upgrade -r requirements.txt'
   stage: build
   interruptible: true
