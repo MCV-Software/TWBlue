@@ -1,7 +1,7 @@
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
   PYTHON: "C:\\python310\\python.exe"
-  PYTHON37: "C:\\python37\\python.exe"
+  PYTHON37: "C:\\python37\\python.exe" # for Windows 7 support.
   NSIS: "C:\\program files (x86)\\nsis\\makensis.exe"
 
 stages:
@@ -44,7 +44,45 @@ twblue32:
     # Move the generated script nsis file to artifacts, so we won't need python when generating the installer.
     - move scripts/twblue.nsi artifacts/twblue.nsi
   only:
-    - schedules
+    - tags
+  artifacts:
+    paths:
+      - artifacts
+    expire_in: 1 day
+
+twblue64:
+  tags:
+    - shared-windows
+    - windows
+    - windows-1809
+  before_script:
+    - Set-Variable -Name "time" -Value (date -Format "%H:%m")
+    - echo ${time}
+    - echo "started by ${GITLAB_USER_NAME}"
+    - choco install python --version 3.10.8 -y
+    - '&$env:PYTHON -V'
+    - '&$env:PYTHON -m pip install --upgrade pip'
+    - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
+  stage: build
+  interruptible: true
+  script:
+    # Create html documentation firstly.
+    - cd doc
+    - '&$env:PYTHON documentation_importer.py'
+    - cd ..\src
+    - '&$env:PYTHON ..\doc\generator.py'
+    - '&$env:PYTHON write_version_data.py'
+    - New-Item "appkeys.py" -ItemType File -Value "twitter_api_key='$TWITTER_API_KEY'`ntwitter_api_secret='$TWITTER_API_SECRET'"
+    - '&$env:PYTHON setup.py build'
+    - cd ..
+    - mkdir artifacts
+    - cd scripts
+    - '&$env:PYTHON make_archive.py'
+    - cd ..
+    - mv src/dist artifacts/TWBlue64
+    - move src/twblue.zip artifacts/twblue_x64.zip
+  only:
+    - tags
   artifacts:
     paths:
       - artifacts
@@ -88,44 +126,6 @@ twblueWin7:
       - artifacts
     expire_in: 1 day
 
-twblue64:
-  tags:
-    - shared-windows
-    - windows
-    - windows-1809
-  before_script:
-    - Set-Variable -Name "time" -Value (date -Format "%H:%m")
-    - echo ${time}
-    - echo "started by ${GITLAB_USER_NAME}"
-    - choco install python --version 3.10.8 -y
-    - '&$env:PYTHON -V'
-    - '&$env:PYTHON -m pip install --upgrade pip'
-    - '&$env:PYTHON -m pip install --upgrade -r requirements.txt'
-  stage: build
-  interruptible: true
-  script:
-    # Create html documentation firstly.
-    - cd doc
-    - '&$env:PYTHON documentation_importer.py'
-    - cd ..\src
-    - '&$env:PYTHON ..\doc\generator.py'
-    - '&$env:PYTHON write_version_data.py'
-    - New-Item "appkeys.py" -ItemType File -Value "twitter_api_key='$TWITTER_API_KEY'`ntwitter_api_secret='$TWITTER_API_SECRET'"
-    - '&$env:PYTHON setup.py build'
-    - cd ..
-    - mkdir artifacts
-    - cd scripts
-    - '&$env:PYTHON make_archive.py'
-    - cd ..
-    - mv src/dist artifacts/TWBlue64
-    - move src/twblue.zip artifacts/twblue_x64.zip
-  only:
-    - schedules
-  artifacts:
-    paths:
-      - artifacts
-    expire_in: 1 day
-
 generate_versions:
   stage: make_installer
   tags:
@@ -145,7 +145,7 @@ generate_versions:
     - '&$env:NSIS installer.nsi'
     - move twblue_setup.exe ../artifacts
   only:
-    - schedules
+    - tags
   artifacts:
     paths:
       - artifacts
@@ -162,4 +162,4 @@ upload:
     - python ../scripts/upload.py
   only:
     - tags
-#    - schedules
+    - schedules

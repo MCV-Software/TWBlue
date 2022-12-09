@@ -2,11 +2,17 @@ TWBlue Changelog
 
 ## changes in this version
 
+* per popular request, We will generate a 32-bit portable version of TWBlue available for Windows 7 operating systems. This version will not be supported in our automatic updater, so in case using such version, you would need to download it manually every time there is a new update. TWBlue will continue to be available for Windows 7 as long as it is possible to build it using Python 3.7.
+* Fixed a couple of bugs that were making TWBlue unable to be opened in some computers.
 * Twitter:
     * Fixed a bug that was making sent direct messages to be placed in received direct messages buffer.
     * When quoting a tweet, you can use all 280 characters to send your quoted tweet, as opposed to the 256 characters TWBlue allowed before.
+    * Fixed a bug that was making TWBlue unable to reply to direct messages by using the "reply" keystroke.
 * Mastodon:
     * Added account settings dialog.
+    * Added template editing functionality for mastodon accounts.
+    * When a post is edited, TWBlue will update the post object in the buffer to reflect the latest edit.
+    * Fixed a small issue that was preventing TWBlue to display some posts in their corresponding dialog.
 
 ## Changes in version 2022.12.6
 

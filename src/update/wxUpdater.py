@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import unicode_literals
-from builtins import str
-from past.utils import old_div
 import wx
+import sys
 import application
 from . import utils
 
 progress_dialog = None
 
 def available_update_dialog(version, description, date):
-    dialog = wx.MessageDialog(None, _(u"There's a new %s version available, released on %s. Would you like to download it now?\n\n %s version: %s\n\nChanges:\n%s") % (application.name, date, application.name, version, description), _(u"New version for %s") % application.name, style=wx.YES|wx.NO|wx.ICON_WARNING)
+    if "3.7" not in sys.version: # Modern operating systems
+        update_msg = _("There's a new %s version available, released on %s. Would you like to download it now?\n\n %s version: %s\n\nChanges:\n%s") % (application.name, date, application.name, version, description)
+        styles = wx.YES|wx.NO|wx.ICON_WARNING
+    else:
+        update_msg = _("There's a new %s version available, released on %s. Updates are not automatic in Windows 7, so you would need to visit TWBlue's download website to get the latest version.\n\n %s version: %s\n\nChanges:\n%s") % (application.name, date, application.name, version, description)
+        styles = wx.OK|wx.ICON_WARNING
+    dialog = wx.MessageDialog(None, update_msg, _("New version for %s") % application.name, style=styles)
     if dialog.ShowModal() == wx.ID_YES:
         return True
     else:
         return False
-
 
 def create_progress_dialog():
     return wx.ProgressDialog(_(u"Download in Progress"), _(u"Downloading the new version..."),  parent=None, maximum=100)
