@@ -16,9 +16,6 @@ class MentionsBuffer(BaseBuffer):
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
             count = self.session.settings["general"]["max_posts_per_call"]
             min_id = None
-            # toDo: Implement reverse timelines properly here.
-#            if self.name != "favorites" and self.name in self.session.db and len(self.session.db[self.name]) > 0:
-#                min_id = self.session.db[self.name][-1].id
             try:
                 items = getattr(self.session.api, self.function)(min_id=min_id, limit=count, exclude_types=["follow", "favourite", "reblog", "poll", "follow_request"], *self.args, **self.kwargs)
                 items.reverse()
@@ -64,7 +61,7 @@ class MentionsBuffer(BaseBuffer):
                 post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(True, *post)
         else:
-            for i in items:
+            for i in elements:
                 post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)

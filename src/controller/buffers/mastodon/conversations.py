@@ -46,9 +46,6 @@ class ConversationListBuffer(BaseBuffer):
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
             count = self.session.settings["general"]["max_posts_per_call"]
             min_id = None
-            # toDo: Implement reverse timelines properly here.
-#            if (self.name != "favorites" and self.name != "bookmarks") and self.name in self.session.db and len(self.session.db[self.name]) > 0:
-#                min_id = self.session.db[self.name][-1].id
             try:
                 results = getattr(self.session.api, self.function)(min_id=min_id, limit=count, *self.args, **self.kwargs)
                 results.reverse()
@@ -94,7 +91,7 @@ class ConversationListBuffer(BaseBuffer):
                 conversation = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(True, *conversation)
         else:
-            for i in items:
+            for i in elements:
                 conversation = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(False, *conversation)
             self.buffer.list.select_item(selection)

@@ -75,7 +75,6 @@ class UserBuffer(BaseBuffer):
             log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
             count = self.session.settings["general"]["max_posts_per_call"]
-            # toDo: Implement reverse timelines properly here.
             try:
                 results = getattr(self.session.api, self.function)(limit=count, *self.args, **self.kwargs)
                 if hasattr(results, "_pagination_next") and self.name not in self.session.db["pagination_info"]:
@@ -127,7 +126,7 @@ class UserBuffer(BaseBuffer):
                 post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(True, *post)
         else:
-            for i in items:
+            for i in elements:
                 post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)

@@ -93,7 +93,10 @@ class BaseBuffer(base.Buffer):
             min_id = None
             # toDo: Implement reverse timelines properly here.
             if (self.name != "favorites" and self.name != "bookmarks") and self.name in self.session.db and len(self.session.db[self.name]) > 0:
-                min_id = self.session.db[self.name][-1].id
+                if self.session.settings["general"]["reverse_timelines"]:
+                    min_id = self.session.db[self.name][0].id
+                else:
+                    min_id = self.session.db[self.name][-1].id
             try:
                 results = getattr(self.session.api, self.function)(min_id=min_id, limit=count, *self.args, **self.kwargs)
                 results.reverse()
@@ -152,7 +155,7 @@ class BaseBuffer(base.Buffer):
                 post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(True, *post)
         else:
-            for i in items:
+            for i in elements:
                 post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)
