@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from win32com.client import GetObject
 import httpcore
 httpcore.SyncHTTPTransport = httpcore.AsyncHTTPProxy
 import sys
@@ -16,6 +15,7 @@ import paths
 # ToDo: Remove this soon as this is done already when importing the paths module.
 if os.path.exists(os.path.join(paths.app_path(), "Uninstall.exe")):
     paths.mode="installed"
+import psutil
 import commandline
 import config
 import output
@@ -109,21 +109,16 @@ def donation():
         webbrowser.open_new_tab(_("https://twblue.es/donate"))
     config.app["app-settings"]["donation_dialog_displayed"] = True
 
-def is_running(pid):
-    "Check if the process with ID pid is running. Adapted from https://stackoverflow.com/a/568589"
-    WMI = GetObject('winmgmts:')
-    processes = WMI.InstancesOf('Win32_Process')
-    return [process.Properties_('ProcessID').Value for process in processes if process.Properties_('ProcessID').Value == pid]
-
 def check_pid():
-    "Insures that only one copy of the application is running at a time."
+    "Ensures that only one copy of the application is running at a time."
     pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
     if os.path.exists(pidpath):
         with open(pidpath) as fin:
             pid = int(fin.read())
-        if is_running(pid):
+        p = psutil.Process(pid=pid)
+        if p.is_running():
             # Display warning dialog
-            commonMessageDialogs.common_error(_(u"{0} is already running. Close the other instance before starting this one. If you're sure that {0} isn't running, try deleting the file at {1}. If you're unsure of how to do this, contact the {0} developers.").format(application.name, pidpath))
+            commonMessageDialogs.common_error(_("{0} is already running. Close the other instance before starting this one. If you're sure that {0} isn't running, try deleting the file at {1}. If you're unsure of how to do this, contact the {0} developers.").format(application.name, pidpath))
             sys.exit(1)
         else:
             commonMessageDialogs.dead_pid()
