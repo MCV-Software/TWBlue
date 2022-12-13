@@ -115,12 +115,13 @@ def check_pid():
     if os.path.exists(pidpath):
         with open(pidpath) as fin:
             pid = int(fin.read())
-        p = psutil.Process(pid=pid)
-        if p.is_running():
-            # Display warning dialog
-            commonMessageDialogs.common_error(_("{0} is already running. Close the other instance before starting this one. If you're sure that {0} isn't running, try deleting the file at {1}. If you're unsure of how to do this, contact the {0} developers.").format(application.name, pidpath))
-            sys.exit(1)
-        else:
+        try:
+            p = psutil.Process(pid=pid)
+            if p.is_running():
+                # Display warning dialog
+                commonMessageDialogs.common_error(_("{0} is already running. Close the other instance before starting this one. If you're sure that {0} isn't running, try deleting the file at {1}. If you're unsure of how to do this, contact the {0} developers.").format(application.name, pidpath))
+                sys.exit(1)
+        except psutil.NoSuchProcess:
             commonMessageDialogs.dead_pid()
     # Write the new PID
     with open(pidpath,"w") as cam:
