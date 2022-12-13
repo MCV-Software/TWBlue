@@ -120,7 +120,7 @@ twblueWin7:
     - cd ..
     - move src/twblue.zip artifacts/twblue_windows7_x86.zip
   only:
-    - next-gen
+    - tags
   artifacts:
     paths:
       - artifacts
