@@ -48,6 +48,7 @@ speech_reporting = boolean(default=True)
 post = string(default="$display_name, $safe_text $image_descriptions $date. $visibility. $source")
 person = string(default="$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
 conversation = string(default="Conversation with $users. Last message: $last_post")
+notification = string(default="$display_name $text, $date")
 
 [filters]
 

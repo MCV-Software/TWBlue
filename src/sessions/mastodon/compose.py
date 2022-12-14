@@ -49,3 +49,30 @@ def compose_conversation(conversation, db, relative_times, show_screen_names):
     last_post = compose_post(conversation.last_status, db, relative_times, show_screen_names)
     text = _("Last message from {}: {}").format(last_post[0], last_post[1])
     return [users, text, last_post[-2], last_post[-1]]
+
+def compose_notification(notification, db, relative_times, show_screen_names):
+    if show_screen_names == False:
+        user = notification.account.get("display_name")
+        if user == "":
+            user = notification.account.get("username")
+    else:
+        user = notification.account.get("acct")
+    original_date = arrow.get(notification.created_at)
+    if relative_times:
+        ts = original_date.humanize(locale=languageHandler.curLang[:2])
+    else:
+        ts = original_date.shift(hours=db["utc_offset"]).format(_("dddd, MMMM D, YYYY H:m"), locale=languageHandler.curLang[:2])
+    text = "Unknown: %r" % (notification)
+    if notification.type == "mention":
+        text = _("{username} has mentionned you: {status}").format(username=user, status=",".join(compose_post(notification.status, db, relative_times, show_screen_names)))
+    elif notification.type == "reblog":
+        text = _("{username} has boosted: {status}").format(username=user, status=",".join(compose_post(notification.status, db, relative_times, show_screen_names)))
+    elif notification.type == "favourite":
+        text = _("{username} has added to favorites: {status}").format(username=user, status=",".join(compose_post(notification.status, db, relative_times, show_screen_names)))
+    elif notification.type == "follow":
+        text = _("{username} has followed you.").format(username=user)
+    elif notification.type == "poll":
+        text = _("A poll in which you have voted has expired: {status}").format(status=",".join(compose_post(notification.status, db, relative_times, show_screen_names)))
+    elif notification.type == "follow_request":
+        text = _("{username} wants to follow you.").format(username=user)
+    return [user, text, ts]
