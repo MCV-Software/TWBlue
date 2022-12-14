@@ -12,11 +12,13 @@ from . import utils, compose
 post_variables = ["date", "display_name", "screen_name", "source", "lang", "safe_text", "text", "image_descriptions", "visibility"]
 person_variables = ["display_name", "screen_name", "description", "followers", "following", "favorites", "posts", "created_at"]
 conversation_variables = ["users", "last_post"]
+notification_variables = ["display_name", "screen_name", "text", "date"]
 
 # Default, translatable templates.
 post_default_template = _("$display_name, $text $image_descriptions $date. $source")
 dm_sent_default_template = _("Dm to $recipient_display_name, $text $date")
 person_default_template = _("$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
+notification_default_template = _("$display_name $text, $date")
 
 def process_date(field, relative_times=True, offset_hours=0):
     original_date = arrow.get(field)
@@ -134,4 +136,44 @@ def render_conversation(conversation, template, post_template, relative_times=Fa
     available_data = dict(users=users, last_post=last_post)
     result = Template(_(template)).safe_substitute(**available_data)
     result = remove_unneeded_variables(result, conversation_variables)
+    return result
+
+def render_notification(notification, template, post_template, relative_times=False, offset_hours=0):
+    """ Renders any given notification according to the passed template.
+    Available data for notifications will be stored in the following variables:
+    $date: Creation date.
+    $display_name: User profile name.
+    $screen_name: User screen name, this is the same name used to reference the user in Twitter.
+    $text: Notification text, describing the action.
+    """
+    global notification_variables
+    available_data = dict()
+    created_at = process_date(notification.created_at, relative_times, offset_hours)
+    available_data.update(date=created_at)
+    # user.
+    display_name = notification.account.display_name
+    if display_name == "":
+        display_name = notification.account.username
+    available_data.update(display_name=display_name, screen_name=notification.account.acct)
+    text = "Unknown: %r" % (notification)
+    # Remove date from status, so it won't be rendered twice.
+    post_template = post_template.replace("$date", "")
+    if notification.type == "mention":
+        text = _("has mentionned you: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+    elif notification.type == "reblog":
+        text = _("has boosted: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+    elif notification.type == "favourite":
+        text = _("has added to favorites: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+    elif notification.type == "update":
+        text = _("has updated a status: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+    elif notification.type == "follow":
+        text = _("has followed you.")
+    elif notification.type == "poll":
+        text = _("A poll in which you have voted has expired: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+    elif notification.type == "follow_request":
+        text = _("wants to follow you.")
+    available_data.update(text=text)
+    result = Template(_(template)).safe_substitute(**available_data)
+    result = remove_unneeded_variables(result, post_variables)
+    result = result.replace(" . ", "")
     return result
