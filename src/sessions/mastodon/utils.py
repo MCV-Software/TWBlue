@@ -5,12 +5,19 @@ url_re = re.compile('<a\s*href=[\'|"](.*?)[\'"].*?>')
 
 class HTMLFilter(HTMLParser):
     text = ""
+    first_paragraph = True
+
     def handle_data(self, data):
         self.text += data
 
     def handle_starttag(self, tag, attrs):
         if tag == "br":
             self.text = self.text+"\n"
+        elif tag == "p":
+            if self.first_paragraph:
+                self.first_paragraph = False
+            else:
+                self.text = self.text+"\n\n"
 
 def html_filter(data):
     f = HTMLFilter()
