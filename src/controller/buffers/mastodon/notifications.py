@@ -32,6 +32,7 @@ class NotificationsBuffer(BaseBuffer):
     def bind_events(self):
         widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
         widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.post_status, self.buffer.post)
+        widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.destroy_status, self.buffer.dismiss)
 
     def fav(self):
         pass
@@ -41,3 +42,16 @@ class NotificationsBuffer(BaseBuffer):
 
     def can_share(self):
         return False
+
+    def destroy_status(self, *args, **kwargs):
+        index = self.buffer.list.get_selected()
+        item = self.session.db[self.name][index]
+        items = self.session.db[self.name]
+        try:
+            self.session.api.notifications_dismiss(id=item.id)
+            items.pop(index)
+            self.buffer.list.remove_item(index)
+            output.speak(_("Notification dismissed."))
+        except Exception as e:
+            self.session.sound.play("error.ogg")
+        self.session.db[self.name] = items
