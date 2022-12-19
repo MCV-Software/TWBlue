@@ -4,7 +4,9 @@ TWBlue Changelog
 
 * In the invisible interface, TWBlue will skip sessions that have not been started when using the keyboard shortcut to switch between different accounts.
 * Mastodon:
+    * Added basic support to notifications buffer. This buffer shows mastodon notifications in real time. Every notification is attached to a kind of object (posts, users, relationships or polls). At the moment, the only supported action for notification is dismissing, which allows you to remove the notification from the buffer (take into account, though, that mention notifications will remove also the mention in its corresponding buffer, due to the way TWBlue reads mentions from mastodon instances).
     * Fixed an issue that was preventing TWBlue to create more than one user timeline during startup.
+    * TWBlue will display properly new paragraphs in mastodon posts.
 
 ## Changes in version 2022.12.13
 
