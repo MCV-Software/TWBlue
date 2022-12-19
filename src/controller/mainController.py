@@ -1238,6 +1238,7 @@ class Controller(object):
             elif buff == "direct_messages": sound_to_play = "dm_received.ogg"
             elif buff == "sent": sound_to_play = "tweet_send.ogg"
             elif buff == "followers" or buff == "following": sound_to_play = "update_followers.ogg"
+            elif buff == "notifications": sound_to_play = "new_event.ogg"
             elif "timeline" in buff: sound_to_play = "tweet_timeline.ogg"
             else: sound_to_play = None
             if sound_to_play != None and buff not in buffer.session.settings["other_buffers"]["muted_buffers"]:

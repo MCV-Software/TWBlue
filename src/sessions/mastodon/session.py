@@ -288,3 +288,7 @@ class Session(base.baseSession):
             if num == 0:
                 buffers.remove(b)
         pub.sendMessage("mastodon.new_item", session_name=self.get_name(), item=obj, _buffers=buffers)
+        # Now, add notification to its buffer.
+        num = self.order_buffer("notifications", [notification])
+        if num > 0:
+            pub.sendMessage("mastodon.new_item", session_name=self.get_name(), item=notification, _buffers=["notifications"])
