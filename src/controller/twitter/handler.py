@@ -20,6 +20,7 @@ class Handler(object):
     def create_buffers(self, session, createAccounts=True, controller=None):
         session.get_user_info()
         name = session.get_name()
+        controller.accounts.append(name)
         if createAccounts == True:
             pub.sendMessage("core.create_account", name=name, session_id=session.session_id, logged=True)
         root_position =controller.view.search(name, name)

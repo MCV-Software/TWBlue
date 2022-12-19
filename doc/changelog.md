@@ -2,6 +2,7 @@ TWBlue Changelog
 
 ## changes in this version
 
+* In the invisible interface, TWBlue will skip sessions that have not been started when using the keyboard shortcut to switch between different accounts.
 * Mastodon:
     * Fixed an issue that was preventing TWBlue to create more than one user timeline during startup.
 

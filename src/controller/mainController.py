@@ -300,7 +300,6 @@ class Controller(object):
             session.start_streaming()
 
     def create_account_buffer(self, name, session_id, logged=False):
-        self.accounts.append(name)
         account = buffers.base.AccountBuffer(self.view.nb, name, name, session_id)
         if logged == False:
             account.logged = logged
