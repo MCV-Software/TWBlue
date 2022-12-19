@@ -2,9 +2,11 @@
 import time
 import logging
 import widgetUtils
+import output
 from controller.buffers.mastodon.base import BaseBuffer
 from sessions.mastodon import compose, templates
 from wxUI import buffers
+from wxUI.dialogs.mastodon import dialogs as mastodon_dialogs
 
 log = logging.getLogger("controller.buffers.mastodon.notifications")
 
@@ -46,6 +48,9 @@ class NotificationsBuffer(BaseBuffer):
     def destroy_status(self, *args, **kwargs):
         index = self.buffer.list.get_selected()
         item = self.session.db[self.name][index]
+        answer = mastodon_dialogs.delete_notification_dialog()
+        if answer == False:
+            return
         items = self.session.db[self.name]
         try:
             self.session.api.notifications_dismiss(id=item.id)
@@ -54,4 +59,5 @@ class NotificationsBuffer(BaseBuffer):
             output.speak(_("Notification dismissed."))
         except Exception as e:
             self.session.sound.play("error.ogg")
+            log.exception("")
         self.session.db[self.name] = items

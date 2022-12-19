@@ -18,6 +18,14 @@ def delete_post_dialog():
     dlg.Destroy()
     return result
 
+def delete_notification_dialog():
+    result = False
+    dlg = wx.MessageDialog(None, _("Are you sure you want to dismiss this notification? If you dismiss a mention notification, it also disappears from your mentions buffer. The post is not going to be deleted from the instance, though."), _("Dismiss"), wx.ICON_QUESTION|wx.YES_NO)
+    if dlg.ShowModal() == wx.ID_YES:
+        result = True
+    dlg.Destroy()
+    return result
+
 def clear_list():
     result = False
     dlg = wx.MessageDialog(None, _("Do you really want to empty this buffer? It's  items will be removed from the list but not from the instance"), _(u"Empty buffer"), wx.ICON_QUESTION|wx.YES_NO)
