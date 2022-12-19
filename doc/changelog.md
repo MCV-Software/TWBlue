@@ -2,6 +2,11 @@ TWBlue Changelog
 
 ## changes in this version
 
+* Mastodon:
+    * Fixed an issue that was preventing TWBlue to create more than one user timeline during startup.
+
+## Changes in version 2022.12.13
+
 * per popular request, We will generate a 32-bit portable version of TWBlue available for Windows 7 operating systems. This version will not be supported in our automatic updater, so in case of using such version, you would need to download it manually every time there is a new update. TWBlue will continue to be available for Windows 7 as long as it is possible to build it using Python 3.7.
 * Fixed a couple of bugs that were making TWBlue unable to be opened in some computers, related to our translator module and some COM objects handled incorrectly.
 * Fixed an issue that was making TWBlue unable to open in certain computers due to errors related to Win32 API'S.
