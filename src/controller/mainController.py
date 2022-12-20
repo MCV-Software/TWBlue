@@ -433,7 +433,8 @@ class Controller(object):
             output.speak("Unable to seek.",True)
 
     def edit_keystrokes(self, *args, **kwargs):
-        editor = keystrokeEditor.KeystrokeEditor()
+        buffer = self.get_best_buffer()
+        editor = keystrokeEditor.KeystrokeEditor(buffer.session.type)
         if editor.changed == True:
             config.keymap.write()
             register = False
@@ -685,7 +686,7 @@ class Controller(object):
         if new_account != old_account:
             self.current_account = buffer.account
             new_first_buffer = self.get_first_buffer(new_account)
-            if new_first_buffer.session.type != self.menubar_current_handler:
+            if new_first_buffer != None and new_first_buffer.session.type != self.menubar_current_handler:
                 handler = self.get_handler(new_first_buffer.session.type)
                 self.menubar_current_handler = new_first_buffer.session.type
                 self.update_menus(handler)

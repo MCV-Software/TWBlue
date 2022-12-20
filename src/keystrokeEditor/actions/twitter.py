@@ -53,7 +53,7 @@ actions = {
     "configuration": _(u"Opens the global settings dialogue"),
     "list_manager": _(u"Opens the list manager"),
     "accountConfiguration": _(u"Opens the account settings dialogue"),
-    "audio": _(u"Try to play an audio file"),
+    "audio": _(u"Try to play a media file"),
     "update_buffer": _(u"Updates the buffer and retrieves possible lost items there."),
     "ocr_image": _(u"Extracts the text from a picture and displays the result in a dialog."),
     "add_alias": _("Adds an alias to an user"),

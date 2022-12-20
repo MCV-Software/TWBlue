@@ -2,18 +2,19 @@
 import widgetUtils
 import config
 from . import wx_ui
-from . import constants
+from . import actions
 from pubsub import pub
 
 class KeystrokeEditor(object):
-    def __init__(self):
+    def __init__(self, session_type="twitter"):
         super(KeystrokeEditor, self).__init__()
+        self.actions = getattr(actions, session_type).actions
         self.changed = False # Change it if the keyboard shorcuts are reassigned.
         self.dialog = wx_ui.keystrokeEditorDialog()
         self.map = config.keymap["keymap"]
         # we need to  copy the keymap before modify it, for unregistering the old keystrokes if is needed.
         self.hold_map = self.map.copy()
-        self.dialog.put_keystrokes(constants.actions, self.map)
+        self.dialog.put_keystrokes(self.actions, self.map)
         widgetUtils.connect_event(self.dialog.edit, widgetUtils.BUTTON_PRESSED, self.edit_keystroke)
         widgetUtils.connect_event(self.dialog.undefine, widgetUtils.BUTTON_PRESSED, self.undefine_keystroke)
         widgetUtils.connect_event(self.dialog.execute, widgetUtils.BUTTON_PRESSED, self.execute_action)
@@ -29,7 +30,7 @@ class KeystrokeEditor(object):
             if new_keystroke != self.map[action]:
                 self.changed = True
                 self.map[action] = new_keystroke
-                self.dialog.put_keystrokes(constants.actions, self.map)
+                self.dialog.put_keystrokes(self.actions, self.map)
 
     def undefine_keystroke(self, *args, **kwargs):
         action = self.dialog.actions[self.dialog.get_action()]
@@ -40,7 +41,7 @@ class KeystrokeEditor(object):
         if answer == widgetUtils.YES:
             self.map[action] = ""
             self.changed = True
-            self.dialog.put_keystrokes(constants.actions, self.map)
+            self.dialog.put_keystrokes(self.actions, self.map)
 
     def set_keystroke(self, keystroke, dialog):
         for i in keystroke.split("+"):
