@@ -1,22 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2022 ORGANIZATION
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
-#
+# Riku <riku@riku22.net>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-08-16 17:50-0500\n"
-"PO-Revision-Date: 2022-08-20 07:18+0900\n"
-"Last-Translator: 陸 <support@riku22.net>\n"
-"Language-Team: \n"
-"Language: ja_JP\n"
+"PO-Revision-Date: 2022-12-20 22:43+0000\n"
+"Last-Translator: Riku <riku@riku22.net>\n"
+"Language-Team: Japanese <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.10.3\n"
-"X-Generator: Poedit 3.1.1\n"
 
 #: languageHandler.py:61
 msgctxt "languageName"
@@ -237,8 +238,7 @@ msgstr "%s のトレンド"
 msgid ""
 "No session is currently in focus. Focus a session with the next or previous "
 "session shortcut."
-msgstr ""
-"セッションが選択されていません。「次のセッション」または「前のセッション」の"
+msgstr "セッションが選択されていません。「次のセッション」または「前のセッション」の"
 "ショートカットを利用して、セッションを選択してください。"
 
 #: controller/mainController.py:452
@@ -322,8 +322,7 @@ msgstr "既に開かれています"
 #: controller/mainController.py:1440 controller/mainController.py:1456
 msgid ""
 "An error happened while trying to connect to the server. Please try later."
-msgstr ""
-"サーバーへの接続中に、予期しないエラーが発生しました。あとで再試行してくださ"
+msgstr "サーバーへの接続中に、予期しないエラーが発生しました。あとで再試行してくださ"
 "い。"
 
 #: controller/mainController.py:1492
@@ -465,9 +464,8 @@ msgstr "ダイレクトメッセージのテンプレートを編集します。
 
 #: controller/settings.py:231 wxUI/dialogs/configuration.py:251
 msgid "Edit template for sent direct messages. Current template: {}"
-msgstr ""
-"送信済みのダイレクトメッセージのテンプレートを編集します。現在のテンプレー"
-"ト: {}"
+msgstr "送信済みのダイレクトメッセージのテンプレートを編集します。現在のテンプレート:"
+" {}"
 
 #: controller/settings.py:240 wxUI/dialogs/configuration.py:253
 msgid "Edit template for persons. Current template: {}"
@@ -707,8 +705,7 @@ msgstr "この動作は、現在のバッファではサポートされていま
 msgid ""
 "Getting more items cannot be done in this buffer. Use the direct messages "
 "buffer instead."
-msgstr ""
-"このバッファでは、さらにアイテムを取得することはできません。代わりにダイレク"
+msgstr "このバッファでは、さらにアイテムを取得することはできません。代わりにダイレク"
 "トメッセージバッファを使用してください。"
 
 #: controller/buffers/twitter/people.py:250
@@ -1039,8 +1036,7 @@ msgstr "自動補完はユーザーのみで動作します。"
 msgid ""
 "Updating database... You can close this window now. A message will tell you "
 "when the process finishes."
-msgstr ""
-"データベースの更新中… なお、このウィンドウを閉じることができます。処理が終了"
+msgstr "データベースの更新中… なお、このウィンドウを閉じることができます。処理が終了"
 "すると、メッセージが表示されます。"
 
 #: extra/autocompletionUsers/wx_manage.py:9
@@ -1133,8 +1129,7 @@ msgstr "完了"
 
 #: extra/autocompletionUsers/wx_scan.py:47
 msgid "Error adding users from Twitter. Please try again in about 15 minutes."
-msgstr ""
-"Twitterからユーザーを追加するときにエラーが発生しました。約15分後にもう1度お"
+msgstr "Twitterからユーザーを追加するときにエラーが発生しました。約15分後にもう1度お"
 "試しください。"
 
 #: extra/ocr/OCRSpace.py:7
@@ -1710,8 +1705,7 @@ msgstr "アップデートをチェックしてダウンロード"
 msgid ""
 "Opens the list manager, which allows you to create, edit, delete and open "
 "lists in buffers."
-msgstr ""
-"リストを作成したり、編集したり、削除したりするために「リストの管理」を開く。"
+msgstr "リストを作成したり、編集したり、削除したりするために「リストの管理」を開く。"
 
 #: keystrokeEditor/constants.py:53
 msgid "Opens the global settings dialogue"
@@ -1862,8 +1856,7 @@ msgstr "アカウントエラー"
 msgid ""
 "The request to authorize your Twitter account will be opened in your "
 "browser. You only need to do this once. Would you like to continue?"
-msgstr ""
-"アカウントを認証するために、ブラウザを開きます。あなたは、一度だけ、これを実"
+msgstr "アカウントを認証するために、ブラウザを開きます。あなたは、一度だけ、これを実"
 "行する必要があります。続行しますか？"
 
 #: sessionmanager/wxUI.py:49
@@ -1879,8 +1872,7 @@ msgstr "認証したアカウント%d"
 msgid ""
 "Your access token is invalid or the authorization has failed. Please try "
 "again."
-msgstr ""
-"あなたのアクセストークンが無効であるか、または許可が失敗しました。もう一度や"
+msgstr "あなたのアクセストークンが無効であるか、または許可が失敗しました。もう一度や"
 "り直してください。"
 
 #: sessionmanager/wxUI.py:59
@@ -1900,8 +1892,8 @@ msgid ""
 msgstr ""
 "TWBlueはTwitterで {} のアカウントを認証できません。トークンが無効または期限切"
 "れであるか、アプリケーションへのアクセスが取り消されているか、アカウントの再"
-"アクティブ化が原因である可能性があります。このメッセージの表示を停止するに"
-"は、Twitterセッションからアカウントを手動で削除してください。"
+"アクティブ化が原因である可能性があります。このメッセージの表示を停止するには"
+"、Twitterセッションからアカウントを手動で削除してください。"
 
 #: sessionmanager/wxUI.py:81
 msgid "Authentication error for session {}"
@@ -1923,8 +1915,8 @@ msgid ""
 "{app} developers."
 msgstr ""
 "{app} データベースの読み込み中に例外が発生しました。自動的に削除され、再構築"
-"されます。このエラーが続く場合は、エラーログを {app} 開発者に送信してくださ"
-"い。"
+"されます。このエラーが続く場合は、エラーログを {app} "
+"開発者に送信してください。"
 
 #: sessions/twitter/compose.py:25 sessions/twitter/compose.py:68
 #: sessions/twitter/compose.py:133 sessions/twitter/compose.py:142
@@ -1950,9 +1942,8 @@ msgstr "無効"
 msgid ""
 "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
 "Twitter %s"
-msgstr ""
-"%s: @%s フォロワー: %s フォロー: %s ツイート数: %s 最後のツイート: %s ツイッ"
-"ターへの参加: %s"
+msgstr "%s: @%s フォロワー: %s フォロー: %s ツイート数: %s 最後のツイート: %s "
+"ツイッターへの参加: %s"
 
 #: sessions/twitter/compose.py:151
 msgid "No description available"
@@ -1997,8 +1988,8 @@ msgid ""
 "$display_name (@$screen_name). $followers followers, $following following, "
 "$tweets tweets. Joined Twitter $created_at."
 msgstr ""
-"$display_name (@$screen_name)。$followers フォロワー、$following フォロー"
-"中、$tweets 件のツイート。Twitter への参加 $created_at。"
+"$display_name (@$screen_name)。$followers フォロワー、$following "
+"フォロー中、$tweets 件のツイート。Twitter への参加 $created_at。"
 
 #: sessions/twitter/templates.py:54
 msgid "Image description: {}."
@@ -2039,8 +2030,8 @@ msgid ""
 "Changes:\n"
 "%s"
 msgstr ""
-"%sの新しいバージョンが%sにリリースされています。今すぐダウンロードします"
-"か？\n"
+"%sの新しいバージョンが%sにリリースされています。今すぐダウンロードしますか？"
+"\n"
 "\n"
 "%sバージョン: %s\n"
 "\n"
@@ -2069,9 +2060,8 @@ msgstr "アップデート中… %s/%s"
 msgid ""
 "The update has been downloaded and installed successfully. Press OK to "
 "continue."
-msgstr ""
-"アップデートは正常にダウンロードされ、インストールされました。続行する場合"
-"は、「OK」を押してください。"
+msgstr "アップデートは正常にダウンロードされ、インストールされました。続行する場合は"
+"、「OK」を押してください。"
 
 #: update/wxUpdater.py:35
 msgid "Done!"
@@ -2081,8 +2071,7 @@ msgstr "完了！"
 msgid ""
 "This retweet is over 140 characters. Would you like to post it as a mention "
 "to the poster with your comments and a link to the original tweet?"
-msgstr ""
-"このリツイートは、１４０文字を超えています。投稿者へのリプライとコメント、お"
+msgstr "このリツイートは、１４０文字を超えています。投稿者へのリプライとコメント、お"
 "よび元のツイートへのリンクで登校しますか？"
 
 #: wxUI/commonMessageDialogs.py:10
@@ -2093,8 +2082,7 @@ msgstr "このツイートにコメントをつけますか？"
 msgid ""
 "Do you really want to delete this tweet? It will be deleted from Twitter as "
 "well."
-msgstr ""
-"本当にこのツイートを削除しますか？このツイートは、Twitterから削除されます。"
+msgstr "本当にこのツイートを削除しますか？このツイートは、Twitterから削除されます。"
 
 #: wxUI/commonMessageDialogs.py:13 wxUI/dialogs/lists.py:149
 msgid "Delete"
@@ -2120,8 +2108,7 @@ msgstr "「{0}」を再起動"
 msgid ""
 "Are you sure you want to delete this user from the database? This user will "
 "not appear in autocomplete results anymore."
-msgstr ""
-"データベースからこのユーザーを削除してもよろしいですか？このユーザーは、自動"
+msgstr "データベースからこのユーザーを削除してもよろしいですか？このユーザーは、自動"
 "補完結果には表示されません。"
 
 #: wxUI/commonMessageDialogs.py:23
@@ -2140,8 +2127,7 @@ msgstr "クライアントを追加"
 msgid ""
 "Do you really want to empty this buffer? It's  items will be removed from "
 "the list but not from Twitter"
-msgstr ""
-"本当にこのバッファをクリアしますか？これは、Twitterからは削除されません。"
+msgstr "本当にこのバッファをクリアしますか？これは、Twitterからは削除されません。"
 
 #: wxUI/commonMessageDialogs.py:32
 msgid "Empty buffer"
@@ -2153,8 +2139,7 @@ msgstr "本当にこのバッファを削除しますか？"
 
 #: wxUI/commonMessageDialogs.py:42
 msgid "A timeline for this user already exists. You can't open another"
-msgstr ""
-"このユーザーのタイムラインは既に存在します。別のものを開くことはできません"
+msgstr "このユーザーのタイムラインは既に存在します。別のものを開くことはできません"
 
 #: wxUI/commonMessageDialogs.py:42
 msgid "Existing timeline"
@@ -2162,8 +2147,7 @@ msgstr "既存のタイムライン"
 
 #: wxUI/commonMessageDialogs.py:45
 msgid "This user has no tweets, so you can't open a timeline for them."
-msgstr ""
-"このユーザーは、何もツイートしていないため、タイムラインを開くことができませ"
+msgstr "このユーザーは、何もツイートしていないため、タイムラインを開くことができませ"
 "ん。"
 
 #: wxUI/commonMessageDialogs.py:48
@@ -2184,8 +2168,7 @@ msgstr "警告"
 msgid ""
 "This is a protected user account, you need to follow this user to view their "
 "tweets or likes."
-msgstr ""
-"このユーザーは保護されています。このユーザーのツイートやお気に入り一覧を見る"
+msgstr "このユーザーは保護されています。このユーザーのツイートやお気に入り一覧を見る"
 "には、このユーザーをフォローする必要があります。"
 
 #: wxUI/commonMessageDialogs.py:54
@@ -2208,26 +2191,22 @@ msgstr "寄付のお願い"
 
 #: wxUI/commonMessageDialogs.py:58
 msgid "This user has no tweets. {0} can't create a timeline."
-msgstr ""
-"このユーザーにはツイートがないため、「{0}」のタイムラインを作成することはでき"
+msgstr "このユーザーにはツイートがないため、「{0}」のタイムラインを作成することはでき"
 "ません。"
 
 #: wxUI/commonMessageDialogs.py:61
 msgid "This user has no favorited tweets. {0} can't create a timeline."
-msgstr ""
-"このユーザーには、お気に入り登録されたツイートがないため、「{0}」のタイムライ"
+msgstr "このユーザーには、お気に入り登録されたツイートがないため、「{0}」のタイムライ"
 "ンを作成することはできません。"
 
 #: wxUI/commonMessageDialogs.py:64
 msgid "This user has no followers. {0} can't create a timeline."
-msgstr ""
-"このユーザーのフォロワーがいないため、「{0}」でタイムラインを作ることはできま"
+msgstr "このユーザーのフォロワーがいないため、「{0}」でタイムラインを作ることはできま"
 "せん。"
 
 #: wxUI/commonMessageDialogs.py:67
 msgid "This user has no friends. {0} can't create a timeline."
-msgstr ""
-"このユーザーは、誰もフォローしていないため、「{0}」でタイムラインを作ることは"
+msgstr "このユーザーは、誰もフォローしていないため、「{0}」でタイムラインを作ることは"
 "できません。"
 
 #: wxUI/commonMessageDialogs.py:71
@@ -2270,8 +2249,7 @@ msgstr ""
 msgid ""
 "TWBlue cannot load this timeline because the user has been suspended from "
 "Twitter."
-msgstr ""
-"ユーザーがTwitterから凍結されているため、このタイムラインをロードできません。"
+msgstr "ユーザーがTwitterから凍結されているため、このタイムラインをロードできません。"
 
 #: wxUI/commonMessageDialogs.py:86
 msgid "Do you really want to delete this filter?"
@@ -2289,8 +2267,7 @@ msgstr "設定ファイルが不正です。"
 msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
-msgstr ""
-"{0}は、前回の実行時に予期せず終了しました。問題が解決しない場合は、{0}開発者"
+msgstr "{0}は、前回の実行時に予期せず終了しました。問題が解決しない場合は、{0}開発者"
 "に報告してください。"
 
 #: wxUI/menus.py:8 wxUI/view.py:33
@@ -2679,14 +2656,12 @@ msgstr "起動時にGUIを隠す"
 
 #: wxUI/dialogs/configuration.py:45
 msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
-msgstr ""
-"Codeofduskを利用して長いツイートをできるようにする（パフォーマンスが低下する"
+msgstr "Codeofduskを利用して長いツイートをできるようにする（パフォーマンスが低下する"
 "場合があります）"
 
 #: wxUI/dialogs/configuration.py:47
 msgid "Remember state for mention all and long tweet"
-msgstr ""
-"「全員にリプライ」および「ツイートを短縮して投稿」のチェック状態を保持する"
+msgstr "「全員にリプライ」および「ツイートを短縮して投稿」のチェック状態を保持する"
 
 #: wxUI/dialogs/configuration.py:50
 msgid "Keymap"
@@ -2724,8 +2699,7 @@ msgstr "自動保管の設定..."
 msgid ""
 "Scan account and add friends and followers to the user autocompletion "
 "database"
-msgstr ""
-"アカウントをスキャンして、フォロー中のユーザーやフォロワーをユーザーの自動補"
+msgstr "アカウントをスキャンして、フォロー中のユーザーやフォロワーをユーザーの自動補"
 "完のデータベースに追加します"
 
 #: wxUI/dialogs/configuration.py:104
@@ -2744,8 +2718,7 @@ msgstr "各API呼び出しの回数"
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning while the "
 "oldest at the end"
-msgstr ""
-"バッファの並び順を入れ替える（新しいツイートを先頭に、古いツイートを最後に表"
+msgstr "バッファの並び順を入れ替える（新しいツイートを先頭に、古いツイートを最後に表"
 "示）"
 
 #: wxUI/dialogs/configuration.py:120
@@ -2764,16 +2737,14 @@ msgstr "ユーザー名から絵文字を非表示にする"
 msgid ""
 "Number of items per buffer to cache in database (0 to disable caching, blank "
 "for unlimited)"
-msgstr ""
-"バッファごとにデータベースにキャッシュする項目数（0はキャッシュしない、空欄の"
+msgstr "バッファごとにデータベースにキャッシュする項目数（0はキャッシュしない、空欄の"
 "場合は無制限）"
 
 #: wxUI/dialogs/configuration.py:134
 msgid ""
 "Load cache for tweets in memory (much faster in big datasets but requires "
 "more RAM)"
-msgstr ""
-"ツイートのキャッシュをメモリにロードする（大きなデータセットでははるかに高速"
+msgstr "ツイートのキャッシュをメモリにロードする（大きなデータセットでははるかに高速"
 "ですが、より多くのRAMが必要です）"
 
 #: wxUI/dialogs/configuration.py:141
