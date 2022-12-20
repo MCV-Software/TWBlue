@@ -152,7 +152,7 @@ class Controller(object):
             widgetUtils.connect_event(self.view, widgetUtils.MENU, self.edit_keystrokes, menuitem=self.view.keystroke_editor)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_tweet, self.view.compose)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_reply, self.view.reply)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_retweet, self.view.retweet)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.post_retweet, self.view.share)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_favourites, self.view.fav)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.unfav)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_item, self.view.view)
@@ -234,6 +234,8 @@ class Controller(object):
         self.accounts = []
         # This saves the current account (important in invisible mode)
         self.current_account = ""
+        # this saves current menu bar layout.
+        self.menubar_current_handler = ""
         # Handlers are special objects as they manage the mapping of available features and events in different social networks.
         self.handlers = dict()
         self.view.prepare()
@@ -284,6 +286,9 @@ class Controller(object):
         self.started = True
         self.streams_checker_function = RepeatingTimer(60, self.check_streams)
         self.streams_checker_function.start()
+        if len(self.accounts) > 0:
+            b = self.get_first_buffer(self.accounts[0])
+            self.update_menus(handler=self.get_handler(b.session.type))
 
     def create_ignored_session_buffer(self, session):
         pub.sendMessage("core.create_account", name=session.get_name(), session_id=session.session_id)
@@ -675,8 +680,15 @@ class Controller(object):
 
     def buffer_changed(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if buffer.account != self.current_account:
+        old_account = self.current_account
+        new_account = buffer.account
+        if new_account != old_account:
             self.current_account = buffer.account
+            new_first_buffer = self.get_first_buffer(new_account)
+            if new_first_buffer.session.type != self.menubar_current_handler:
+                handler = self.get_handler(new_first_buffer.session.type)
+                self.menubar_current_handler = new_first_buffer.session.type
+                self.update_menus(handler)
         if not hasattr(buffer, "session") or buffer.session == None:
             return
         muted = autoread = False
@@ -686,6 +698,17 @@ class Controller(object):
             autoread = True
         self.view.check_menuitem("mute_buffer", muted)
         self.view.check_menuitem("autoread", autoread)
+
+    def update_menus(self, handler):
+        if hasattr(handler, "menus"):
+            for m in list(handler.menus.keys()):
+                if hasattr(self.view, m):
+                    menu_item = getattr(self.view, m)
+                    if handler.menus[m] == None:
+                        menu_item.Enable(False)
+                    else:
+                        menu_item.Enable(True)
+                        menu_item.SetItemLabel(handler.menus[m])
 
     def fix_wrong_buffer(self):
         buf = self.get_best_buffer()
@@ -1207,7 +1230,7 @@ class Controller(object):
                 self.notify(buffer.session, sound_to_play)
 
     def toggle_share_settings(self, shareable=True):
-        self.view.retweet.Enable(shareable)
+        self.view.share.Enable(shareable)
 
     def check_streams(self):
         if self.started == False:

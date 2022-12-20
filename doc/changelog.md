@@ -2,6 +2,7 @@ TWBlue Changelog
 
 ## changes in this version
 
+* In the graphical interface, TWBlue will update menu items, in the menu bar, depending on whether you are focusing a Twitter or Mastodon session. This makes it possible for TWBlue to display the correct terms in each social network. Take into account that there might be unavailable items for the currently active session.
 * In the invisible interface, TWBlue will skip sessions that have not been started when using the keyboard shortcut to switch between different accounts.
 * Mastodon:
     * Added basic support to notifications buffer. This buffer shows mastodon notifications in real time. Every notification is attached to a kind of object (posts, users, relationships or polls). At the moment, the only supported action for notification is dismissing, which allows you to remove the notification from the buffer (take into account, though, that mention notifications will remove also the mention in its corresponding buffer, due to the way TWBlue reads mentions from mastodon instances).

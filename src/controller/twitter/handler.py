@@ -16,6 +16,40 @@ class Handler(object):
 
     def __init__(self):
         super(Handler, self).__init__()
+        # Structure to hold names for menu bar items.
+        # empty names mean the item will be Disabled.
+        self.menus = dict(
+            # In application menu.
+            updateProfile=_("&Update profile"),
+            menuitem_search=_("&Search"),
+            lists=_("&Lists manager"),
+            manageAliases=_("Manage user aliases"),
+            # In Item Menu.
+            compose=_("&Tweet"),
+            reply=_("Re&ply"),
+            share=_("&Retweet"),
+            fav=_("&Like"),
+            unfav=_("&Unlike"),
+            view=_("&Show tweet"),
+            view_coordinates=_("View &address"),
+            view_conversation=_("View conversa&tion"),
+            ocr=_("Read text in picture"),
+            delete=_("&Delete"),
+            # In user menu.
+            follow=_("&Actions..."),
+            timeline=_("&View timeline..."),
+            dm=_("Direct me&ssage"),
+            addAlias=_("Add a&lias"),
+            addToList=_("&Add to list"),
+            removeFromList=_("R&emove from list"),
+            viewLists=_("&View lists"),
+            details=_("Show user &profile"),
+            favs=_("View likes"),
+            # In buffer menu.
+            trends=_("New &trending topics buffer..."),
+            filter=_("Create a &filter"),
+            manage_filters=_("&Manage filters"),
+        )
 
     def create_buffers(self, session, createAccounts=True, controller=None):
         session.get_user_info()

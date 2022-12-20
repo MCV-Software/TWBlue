@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from builtins import range
 import wx
 import wx.adv
 import application
@@ -11,88 +9,88 @@ class mainFrame(wx.Frame):
     ### MENU
     def makeMenus(self):
         """ Creates, bind and returns the menu bar for the application. Also in this function, the accel table is created."""
-        menuBar = wx.MenuBar()
+        self.menubar = wx.MenuBar()
 
         # Application menu
-        app = wx.Menu()
-        self.manage_accounts = app.Append(wx.ID_ANY, _(u"&Manage accounts"))
-        self.updateProfile = app.Append(wx.ID_ANY, _(u"&Update profile"))
-        self.show_hide = app.Append(wx.ID_ANY, _(u"&Hide window"))
-        self.menuitem_search = app.Append(wx.ID_ANY, _(u"&Search"))
-        self.lists = app.Append(wx.ID_ANY, _(u"&Lists manager"))
-        self.manageAliases = app.Append(wx.ID_ANY, _("Manage user aliases"))
-        self.keystroke_editor = app.Append(wx.ID_ANY, _(u"&Edit keystrokes"))
-        self.account_settings = app.Append(wx.ID_ANY, _(u"Account se&ttings"))
-        self.prefs = app.Append(wx.ID_PREFERENCES, _(u"&Global settings"))
-        self.close = app.Append(wx.ID_EXIT, _(u"E&xit"))
+        self.menubar_application = wx.Menu()
+        self.manage_accounts = self.menubar_application.Append(wx.ID_ANY, _(u"&Manage accounts"))
+        self.updateProfile = self.menubar_application.Append(wx.ID_ANY, _("&Update profile"))
+        self.show_hide = self.menubar_application.Append(wx.ID_ANY, _(u"&Hide window"))
+        self.menuitem_search = self.menubar_application.Append(wx.ID_ANY, _(u"&Search"))
+        self.lists = self.menubar_application.Append(wx.ID_ANY, _(u"&Lists manager"))
+        self.manageAliases = self.menubar_application.Append(wx.ID_ANY, _("Manage user aliases"))
+        self.keystroke_editor = self.menubar_application.Append(wx.ID_ANY, _(u"&Edit keystrokes"))
+        self.account_settings = self.menubar_application.Append(wx.ID_ANY, _(u"Account se&ttings"))
+        self.prefs = self.menubar_application.Append(wx.ID_PREFERENCES, _(u"&Global settings"))
+        self.close = self.menubar_application.Append(wx.ID_EXIT, _(u"E&xit"))
 
         # Tweet menu
-        tweet = wx.Menu()
-        self.compose = tweet.Append(wx.ID_ANY, _(u"&Tweet"))
-        self.reply = tweet.Append(wx.ID_ANY, _(u"Re&ply"))
-        self.retweet = tweet.Append(wx.ID_ANY, _(u"&Retweet"))
-        self.fav = tweet.Append(wx.ID_ANY, _(u"&Like"))
-        self.unfav = tweet.Append(wx.ID_ANY, _(u"&Unlike"))
-        self.view = tweet.Append(wx.ID_ANY, _(u"&Show tweet"))
-        self.view_coordinates = tweet.Append(wx.ID_ANY, _(u"View &address"))
-        self.view_conversation = tweet.Append(wx.ID_ANY, _(u"View conversa&tion"))
-        self.ocr = tweet.Append(wx.ID_ANY, _(u"Read text in picture"))
-        self.delete = tweet.Append(wx.ID_ANY, _(u"&Delete"))
+        self.menubar_item = wx.Menu()
+        self.compose = self.menubar_item.Append(wx.ID_ANY, _(u"&Tweet"))
+        self.reply = self.menubar_item.Append(wx.ID_ANY, _(u"Re&ply"))
+        self.share = self.menubar_item.Append(wx.ID_ANY, _(u"&Retweet"))
+        self.fav = self.menubar_item.Append(wx.ID_ANY, _(u"&Like"))
+        self.unfav = self.menubar_item.Append(wx.ID_ANY, _(u"&Unlike"))
+        self.view = self.menubar_item.Append(wx.ID_ANY, _(u"&Show tweet"))
+        self.view_coordinates = self.menubar_item.Append(wx.ID_ANY, _(u"View &address"))
+        self.view_conversation = self.menubar_item.Append(wx.ID_ANY, _(u"View conversa&tion"))
+        self.ocr = self.menubar_item.Append(wx.ID_ANY, _(u"Read text in picture"))
+        self.delete = self.menubar_item.Append(wx.ID_ANY, _(u"&Delete"))
 
         # User menu
-        user = wx.Menu()
-        self.follow = user.Append(wx.ID_ANY, _(u"&Actions..."))
-        self.timeline = user.Append(wx.ID_ANY, _(u"&View timeline..."))
-        self.dm = user.Append(wx.ID_ANY, _(u"Direct me&ssage"))
-        self.addAlias = user.Append(wx.ID_ANY, _("Add a&lias"))
-        self.addToList = user.Append(wx.ID_ANY, _(u"&Add to list"))
-        self.removeFromList = user.Append(wx.ID_ANY, _(u"R&emove from list"))
-        self.viewLists = user.Append(wx.ID_ANY, _(u"&View lists"))
-        self.details = user.Append(wx.ID_ANY, _(u"Show user &profile"))
-        self.favs = user.Append(wx.ID_ANY, _(u"V&iew likes"))
+        self.menubar_user = wx.Menu()
+        self.follow = self.menubar_user.Append(wx.ID_ANY, _(u"&Actions..."))
+        self.timeline = self.menubar_user.Append(wx.ID_ANY, _(u"&View timeline..."))
+        self.dm = self.menubar_user.Append(wx.ID_ANY, _(u"Direct me&ssage"))
+        self.addAlias = self.menubar_user.Append(wx.ID_ANY, _("Add a&lias"))
+        self.addToList = self.menubar_user.Append(wx.ID_ANY, _(u"&Add to list"))
+        self.removeFromList = self.menubar_user.Append(wx.ID_ANY, _(u"R&emove from list"))
+        self.viewLists = self.menubar_user.Append(wx.ID_ANY, _(u"&View lists"))
+        self.details = self.menubar_user.Append(wx.ID_ANY, _(u"Show user &profile"))
+        self.favs = self.menubar_user.Append(wx.ID_ANY, _(u"V&iew likes"))
 
         # buffer menu
-        buffer = wx.Menu()
-        self.update_buffer = buffer.Append(wx.ID_ANY, _(u"&Update buffer"))
-        self.trends = buffer.Append(wx.ID_ANY, _(u"New &trending topics buffer..."))
-        self.filter = buffer.Append(wx.ID_ANY, _(u"Create a &filter"))
-        self.manage_filters = buffer.Append(wx.ID_ANY, _(u"&Manage filters"))
-        self.find = buffer.Append(wx.ID_ANY, _(u"Find a string in the currently focused buffer..."))
-        self.load_previous_items = buffer.Append(wx.ID_ANY, _(u"&Load previous items"))
-        buffer.AppendSeparator()
-        self.mute_buffer = buffer.AppendCheckItem(wx.ID_ANY, _(u"&Mute"))
-        self.autoread = buffer.AppendCheckItem(wx.ID_ANY, _(u"&Autoread"))
-        self.clear = buffer.Append(wx.ID_ANY, _(u"&Clear buffer"))
-        self.deleteTl = buffer.Append(wx.ID_ANY, _(u"&Destroy"))
+        self.menubar_buffer = wx.Menu()
+        self.update_buffer = self.menubar_buffer.Append(wx.ID_ANY, _(u"&Update buffer"))
+        self.trends = self.menubar_buffer.Append(wx.ID_ANY, _(u"New &trending topics buffer..."))
+        self.filter = self.menubar_buffer.Append(wx.ID_ANY, _(u"Create a &filter"))
+        self.manage_filters = self.menubar_buffer.Append(wx.ID_ANY, _(u"&Manage filters"))
+        self.find = self.menubar_buffer.Append(wx.ID_ANY, _(u"Find a string in the currently focused buffer..."))
+        self.load_previous_items = self.menubar_buffer.Append(wx.ID_ANY, _(u"&Load previous items"))
+        self.menubar_buffer.AppendSeparator()
+        self.mute_buffer = self.menubar_buffer.AppendCheckItem(wx.ID_ANY, _(u"&Mute"))
+        self.autoread = self.menubar_buffer.AppendCheckItem(wx.ID_ANY, _(u"&Autoread"))
+        self.clear = self.menubar_buffer.Append(wx.ID_ANY, _(u"&Clear buffer"))
+        self.deleteTl = self.menubar_buffer.Append(wx.ID_ANY, _(u"&Destroy"))
 
         # audio menu
-        audio = wx.Menu()
-        self.seekLeft = audio.Append(wx.ID_ANY, _(u"&Seek back 5 seconds"))
-        self.seekRight = audio.Append(wx.ID_ANY, _(u"&Seek forward 5 seconds"))
+        self.menubar_audio = wx.Menu()
+        self.seekLeft = self.menubar_audio.Append(wx.ID_ANY, _(u"&Seek back 5 seconds"))
+        self.seekRight = self.menubar_audio.Append(wx.ID_ANY, _(u"&Seek forward 5 seconds"))
 
     # Help Menu
-        help = wx.Menu()
-        self.doc = help.Append(-1, _(u"&Documentation"))
-        self.sounds_tutorial = help.Append(wx.ID_ANY, _(u"Sounds &tutorial"))
-        self.changelog = help.Append(wx.ID_ANY, _(u"&What's new in this version?"))
-        self.check_for_updates = help.Append(wx.ID_ANY, _(u"&Check for updates"))
-        self.reportError = help.Append(wx.ID_ANY, _(u"&Report an error"))
-        self.visit_website = help.Append(-1, _(u"{0}'s &website").format(application.name,))
-        self.get_soundpacks = help.Append(-1, _(u"Get soundpacks for TWBlue"))
-        self.about = help.Append(-1, _(u"About &{0}").format(application.name,))
+        self.menubar_help = wx.Menu()
+        self.doc = self.menubar_help.Append(-1, _(u"&Documentation"))
+        self.sounds_tutorial = self.menubar_help.Append(wx.ID_ANY, _(u"Sounds &tutorial"))
+        self.changelog = self.menubar_help.Append(wx.ID_ANY, _(u"&What's new in this version?"))
+        self.check_for_updates = self.menubar_help.Append(wx.ID_ANY, _(u"&Check for updates"))
+        self.reportError = self.menubar_help.Append(wx.ID_ANY, _(u"&Report an error"))
+        self.visit_website = self.menubar_help.Append(-1, _(u"{0}'s &website").format(application.name,))
+        self.get_soundpacks = self.menubar_help.Append(-1, _(u"Get soundpacks for TWBlue"))
+        self.about = self.menubar_help.Append(-1, _(u"About &{0}").format(application.name,))
 
         # Add all to the menu Bar
-        menuBar.Append(app, _(u"&Application"))
-        menuBar.Append(tweet, _(u"&Tweet"))
-        menuBar.Append(user, _(u"&User"))
-        menuBar.Append(buffer, _(u"&Buffer"))
-        menuBar.Append(audio, _(u"&Audio"))
-        menuBar.Append(help, _(u"&Help"))
+        self.menubar.Append(self.menubar_application, _(u"&Application"))
+        self.menubar.Append(self.menubar_item, _(u"&Item"))
+        self.menubar.Append(self.menubar_user, _(u"&User"))
+        self.menubar.Append(self.menubar_buffer, _(u"&Buffer"))
+        self.menubar.Append(self.menubar_audio, _(u"&Audio"))
+        self.menubar.Append(self.menubar_help, _(u"&Help"))
 
         self.accel_tbl = wx.AcceleratorTable([
             (wx.ACCEL_CTRL, ord('N'), self.compose.GetId()),
             (wx.ACCEL_CTRL, ord('R'), self.reply.GetId()),
-            (wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('R'), self.retweet.GetId()),
+            (wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('R'), self.share.GetId()),
             (wx.ACCEL_CTRL, ord('F'), self.fav.GetId()),
             (wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('F'), self.unfav.GetId()),
             (wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('V'), self.view.GetId()),
@@ -110,7 +108,6 @@ class mainFrame(wx.Frame):
         ])
 
         self.SetAcceleratorTable(self.accel_tbl)
-        return menuBar
 
     ### MAIN
     def __init__(self):
@@ -119,7 +116,8 @@ class mainFrame(wx.Frame):
         self.panel = wx.Panel(self)
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.SetTitle(application.name)
-        self.SetMenuBar(self.makeMenus())
+        self.makeMenus()
+        self.SetMenuBar(self.menubar)
         self.nb = wx.Treebook(self.panel, wx.ID_ANY)
         self.buffers = {}
 
