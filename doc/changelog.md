@@ -5,10 +5,12 @@ TWBlue Changelog
 * In the graphical interface, TWBlue will update menu items, in the menu bar, depending on whether you are focusing a Twitter or Mastodon session. This makes it possible for TWBlue to display the correct terms in each social network. Take into account that there might be unavailable items for the currently active session.
 * in the keystroke editor for the invisible interface, TWBlue displays the available shortcuts for the currently active session. Descriptions of those keystrokes are also different for Twitter and mastodon sessions to use correct terms for both networks.
 * In the invisible interface, TWBlue will skip sessions that have not been started when using the keyboard shortcut to switch between different accounts.
+* Fixed a bug when deleting a session in the session manager dialog. Sessions can now be deleted correctly.
 * Mastodon:
     * Added basic support to notifications buffer. This buffer shows mastodon notifications in real time. Every notification is attached to a kind of object (posts, users, relationships or polls). At the moment, the only supported action for notification is dismissing, which allows you to remove the notification from the buffer (take into account, though, that mention notifications will remove also the mention in its corresponding buffer, due to the way TWBlue reads mentions from mastodon instances).
     * Fixed an issue that was preventing TWBlue to create more than one user timeline during startup.
     * TWBlue will display properly new paragraphs in mastodon posts.
+    * In the session manager, Mastodon sessions are now displayed including the instance to avoid confusion.
 
 ## Changes in version 2022.12.13
 

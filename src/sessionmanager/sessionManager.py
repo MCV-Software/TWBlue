@@ -3,6 +3,7 @@
 import time
 import os
 import logging
+import shutil
 import widgetUtils
 import sessions
 import output
@@ -70,7 +71,7 @@ class sessionManagerController(object):
                         sessionsList.append(name)
                         self.sessions.append(dict(type="twitter", id=i))
                 elif config_test.get("mastodon") != None:
-                    name = _("{account_name} (Mastodon)").format(account_name=config_test["mastodon"]["user_name"])
+                    name = _("{account_name}@{instance} (Mastodon)").format(account_name=config_test["mastodon"]["user_name"], instance=config_test["mastodon"]["instance"].replace("https://", ""))
                     if config_test["mastodon"]["instance"] != "" and config_test["mastodon"]["access_token"] != "":
                         sessionsList.append(name)
                         self.sessions.append(dict(type="mastodon", id=i))
