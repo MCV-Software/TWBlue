@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: TwBlue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-12-20 17:15-0600\n"
-"PO-Revision-Date: 2022-12-21 16:24+0000\n"
+"PO-Revision-Date: 2022-12-21 16:54+0000\n"
 "Last-Translator: Nikola Jović <wwenikola123@gmail.com>\n"
 "Language-Team: Serbian <https://weblate.mcvsoftware.com/projects/twblue/"
 "twblue/sr/>\n"
@@ -2338,11 +2338,11 @@ msgstr "Dodaje nadimak za korisnika"
 
 #: ../src/sessionmanager/sessionManager.py:68
 msgid "{account_name} (Twitter)"
-msgstr ""
+msgstr "{account_name} (Twitter)"
 
 #: ../src/sessionmanager/sessionManager.py:73
 msgid "{account_name} (Mastodon)"
-msgstr ""
+msgstr "{account_name} (Mastodon)"
 
 #: ../src/sessionmanager/wxUI.py:10
 msgid "Session manager"
@@ -2377,14 +2377,12 @@ msgid "Account Error"
 msgstr "Greška naloga"
 
 #: ../src/sessionmanager/wxUI.py:53
-#, fuzzy
-#| msgid "View in Twitter"
 msgid "Twitter"
-msgstr "Prikaži na Twitteru"
+msgstr "Twitter"
 
 #: ../src/sessionmanager/wxUI.py:54
 msgid "Mastodon"
-msgstr ""
+msgstr "Mastodon"
 
 #: ../src/sessionmanager/wxUI.py:60
 msgid ""
@@ -2392,6 +2390,9 @@ msgid ""
 "password) so we can authorise TWBlue in your instance. Would you like to "
 "authorise your account now?"
 msgstr ""
+"Biće vam zatraženi Mastodon podaci (adresa instance, email adresa i lozinka) "
+"kako bismo mogli da autorizujemo TWBlue na vašoj instanci. Da li sada želite "
+"da autorizujete vaš nalog?"
 
 #: ../src/sessionmanager/wxUI.py:60 ../src/sessionmanager/wxUI.py:67
 msgid "Authorization"
@@ -2464,18 +2465,14 @@ msgstr ""
 
 #: ../src/sessions/mastodon/compose.py:17
 #: ../src/sessions/mastodon/compose.py:64
-#, fuzzy
-#| msgid "dddd, MMMM D, YYYY H:m:s"
 msgid "dddd, MMMM D, YYYY H:m"
-msgstr "dddd, MMMM D, YYYY H:m:s"
+msgstr "dddd, MMMM D, YYYY H:m"
 
 #: ../src/sessions/mastodon/compose.py:19
 #: ../src/sessions/mastodon/templates.py:80
 #: ../src/sessions/mastodon/templates.py:81
-#, fuzzy
-#| msgid "{0}. Quoted  tweet from @{1}: {2}"
 msgid "Boosted from @{}: {}"
-msgstr "{0}. citira tvit od @{1}: {2}"
+msgstr "Podeljeno od strane korisnika @{}: {}"
 
 #: ../src/sessions/mastodon/compose.py:35
 #: ../src/sessions/mastodon/templates.py:28
@@ -2487,77 +2484,67 @@ msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "dddd, MMMM D, YYYY H:m:s"
 
 #: ../src/sessions/mastodon/compose.py:39
-#, fuzzy, python-format
-#| msgid ""
-#| "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
-#| "Twitter %s"
+#, python-format
 msgid "%s (@%s). %s followers, %s following, %s posts. Joined %s"
-msgstr ""
-"%s (@%s). %s pratilaca, %s prijatelja, %s tvitova. Poslednji tvit %s. "
-"Pridružio se twitteru  %s"
+msgstr "%s (@%s). %s pratilaca, %s praćenja, %s objava. Pridružio se na %s"
 
 #: ../src/sessions/mastodon/compose.py:50
 msgid "Last message from {}: {}"
-msgstr ""
+msgstr "Poslednja poruka od korisnika {}: {}"
 
 #: ../src/sessions/mastodon/compose.py:67
 msgid "{username} has mentionned you: {status}"
-msgstr ""
+msgstr "{username} vas je spomenuo: {status}"
 
 #: ../src/sessions/mastodon/compose.py:69
 msgid "{username} has boosted: {status}"
-msgstr ""
+msgstr "{username} je podelio: {status}"
 
 #: ../src/sessions/mastodon/compose.py:71
 msgid "{username} has added to favorites: {status}"
-msgstr ""
+msgstr "{username} je dodao u omiljene: {status}"
 
 #: ../src/sessions/mastodon/compose.py:73
-#, fuzzy
-#| msgid "{username}'s followers"
 msgid "{username} has followed you."
-msgstr "Pratioci korisnika {username}"
+msgstr "{username} vas je zapratio."
 
 #: ../src/sessions/mastodon/compose.py:75
 #: ../src/sessions/mastodon/templates.py:172
 msgid "A poll in which you have voted has expired: {status}"
-msgstr ""
+msgstr "Anketa u kojoj ste glasali je završena: {status}"
 
 #: ../src/sessions/mastodon/compose.py:77
-#, fuzzy
-#| msgid "{username}'s followers"
 msgid "{username} wants to follow you."
-msgstr "Pratioci korisnika {username}"
+msgstr "{username} želi da vas zaprati."
 
 #: ../src/sessions/mastodon/session.py:60
 msgid "Please enter your instance URL."
-msgstr ""
+msgstr "Molimo upišite adresu  vaše instance."
 
 #: ../src/sessions/mastodon/session.py:60
 msgid "Mastodon instance"
-msgstr ""
+msgstr "Mastodon instanca"
 
 #: ../src/sessions/mastodon/session.py:71
 msgid ""
 "We could not connect to your mastodon instance. Please verify that the "
 "domain exists and the instance is accessible via a web browser."
 msgstr ""
+"Nije bilo moguće povezati se na vašu Mastodon instancu. Molimo proverite da "
+"li domen postoji i da li se instanci može pristupiti iz vašeg Web "
+"pretraživača."
 
 #: ../src/sessions/mastodon/session.py:71
-#, fuzzy
-#| msgid "&Report an error"
 msgid "Instance error"
-msgstr "Prijavi grešku"
+msgstr "Greška instance"
 
 #: ../src/sessions/mastodon/session.py:76
 msgid "Enter the verification code"
-msgstr ""
+msgstr "Upišite kod za potvrdu"
 
 #: ../src/sessions/mastodon/session.py:76
-#, fuzzy
-#| msgid "Authorization"
 msgid "PIN code authorization"
-msgstr "Autorizacija"
+msgstr "Autorizacija uz PIN kod"
 
 #: ../src/sessions/mastodon/session.py:85
 msgid ""
@@ -2565,13 +2552,13 @@ msgid ""
 "might be caused due to an incorrect verification code. Please try to add the "
 "session again."
 msgstr ""
+"Autorizacija vašeg Mastodon naloga uz TWBlue nije uspela. Možda je kod za "
+"potvrdu neispravan. Molimo  pokušajte ponovo  da dodate sesiju."
 
 #: ../src/sessions/mastodon/session.py:85
 #: ../src/sessions/twitter/session.py:171
-#, fuzzy
-#| msgid "Authorization"
 msgid "Authorization error"
-msgstr "Autorizacija"
+msgstr "Greška pri autorizaciji"
 
 #: ../src/sessions/mastodon/session.py:182
 #: ../src/sessions/twitter/session.py:206
@@ -2598,67 +2585,53 @@ msgid "Dm to $recipient_display_name, $text $date"
 msgstr "Direktna poruka za $recipient_display_name, $text $date"
 
 #: ../src/sessions/mastodon/templates.py:20
-#, fuzzy
-#| msgid ""
-#| "$display_name (@$screen_name). $followers followers, $following "
-#| "following, $tweets tweets. Joined Twitter $created_at."
 msgid ""
 "$display_name (@$screen_name). $followers followers, $following following, "
 "$posts posts. Joined $created_at."
 msgstr ""
-"$display_name (@$screen_name). $followers pratilaca, $following praćenja, "
-"$tweets tvitova. Pridružio se Twitteru $created_at."
+"$display_name (@$screen_name). $followers pratilaca, $following praćenja, $"
+"posts objava. Pridružio se na $created_at."
 
 #: ../src/sessions/mastodon/templates.py:21
-#, fuzzy
-#| msgid "$sender_display_name, $text $date"
 msgid "$display_name $text, $date"
-msgstr "$sender_display_name, $text $date"
+msgstr "$display_name $text, $date"
 
 #: ../src/sessions/mastodon/templates.py:34
 msgid "Content warning: {}"
-msgstr ""
+msgstr "Upozorenje za sadržaj: {}"
 
 #: ../src/sessions/mastodon/templates.py:45
-#, fuzzy
-#| msgid "Image description: {}."
 msgid "Image description: {}"
-msgstr "Opis slike: {}."
+msgstr "Opis slike: {}"
 
 #: ../src/sessions/mastodon/templates.py:85
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
-#, fuzzy
-#| msgid "Followers"
 msgid "Followers only"
-msgstr "Pratioci"
+msgstr "Samo pratioci"
 
 #: ../src/sessions/mastodon/templates.py:162
 msgid "has mentionned you: {status}"
-msgstr ""
+msgstr "vas je spomenuo: {status}"
 
 #: ../src/sessions/mastodon/templates.py:164
 msgid "has boosted: {status}"
-msgstr ""
+msgstr "je podelio: {status}"
 
 #: ../src/sessions/mastodon/templates.py:166
 msgid "has added to favorites: {status}"
-msgstr ""
+msgstr "je dodao u omiljene: {status}"
 
 #: ../src/sessions/mastodon/templates.py:168
 msgid "has updated a status: {status}"
-msgstr ""
+msgstr "je ažurirao status: {status}"
 
 #: ../src/sessions/mastodon/templates.py:170
-#, fuzzy
-#| msgid "{0} is following you."
 msgid "has followed you."
-msgstr "{0} vas prati."
+msgstr "vas je zapratio."
 
 #: ../src/sessions/mastodon/templates.py:174
-#, fuzzy
-#| msgid "{0} is following you."
 msgid "wants to follow you."
-msgstr "{0} vas prati."
+msgstr "želi da vas prati."
 
 #: ../src/sessions/mastodon/wxUI.py:6 ../src/sessions/twitter/session.py:162
 #: ../src/sessions/twitter/wxUI.py:6
@@ -2667,13 +2640,11 @@ msgstr "Autorizacija naloga..."
 
 #: ../src/sessions/mastodon/wxUI.py:9
 msgid "URL of mastodon instance:"
-msgstr ""
+msgstr "Adresa Mastodon instance:"
 
 #: ../src/sessions/mastodon/wxUI.py:15
-#, fuzzy
-#| msgid "View &address"
 msgid "Email address:"
-msgstr "Vidi adresu"
+msgstr "Email adresa:"
 
 #: ../src/sessions/mastodon/wxUI.py:21
 #, fuzzy
@@ -2725,6 +2696,8 @@ msgid ""
 "be caused due to an incorrect verification code. Please try to add the "
 "session again."
 msgstr ""
+"Autorizacija vašeg Twitter naloga uz TWBlue nije uspela. Kod za potvrdu je "
+"možda neispravan. Molimo pokušajte ponovo da dodate sesiju."
 
 #: ../src/sessions/twitter/session.py:440
 #: ../src/sessions/twitter/session.py:523
@@ -2782,15 +2755,7 @@ msgstr ""
 "%s"
 
 #: ../src/update/wxUpdater.py:14
-#, fuzzy, python-format
-#| msgid ""
-#| "There's a new %s version available, released on %s. Would you like to "
-#| "download it now?\n"
-#| "\n"
-#| " %s version: %s\n"
-#| "\n"
-#| "Changes:\n"
-#| "%s"
+#, python-format
 msgid ""
 "There's a new %s version available, released on %s. Updates are not "
 "automatic in Windows 7, so you would need to visit TWBlue's download website "
@@ -2801,7 +2766,9 @@ msgid ""
 "Changes:\n"
 "%s"
 msgstr ""
-"Postoji nova %s verzija, objavljena %s. Želite li da je preuzmete sada?\n"
+"Dostupna je nova %s verzija, objavljena %s. Uz Windows 7, ažuriranja nisu "
+"automatska, pa ćete morati da posetite TWBlue websajt kako biste preuzeli "
+"najnoviju verziju.\n"
 "\n"
 " %s verzija: %s\n"
 "\n"
@@ -3230,10 +3197,8 @@ msgid "&Application"
 msgstr "Aplikacija"
 
 #: ../src/wxUI/view.py:84
-#, fuzzy
-#| msgid "Item"
 msgid "&Item"
-msgstr "Stavka"
+msgstr "&Stavka"
 
 #: ../src/wxUI/dialogs/mastodon/userActions.py:10
 #: ../src/wxUI/dialogs/userActions.py:11 ../src/wxUI/view.py:85
@@ -3313,11 +3278,11 @@ msgstr "Klijent"
 
 #: ../src/wxUI/buffers/mastodon/base.py:27
 msgid "Favorite"
-msgstr ""
+msgstr "Omiljena"
 
 #: ../src/wxUI/buffers/mastodon/base.py:28
 msgid "Bookmark"
-msgstr ""
+msgstr "Marker"
 
 #: ../src/wxUI/buffers/mastodon/base.py:29
 #: ../src/wxUI/buffers/twitter/base.py:28
@@ -3327,7 +3292,7 @@ msgstr "Direktna poruka"
 #: ../src/wxUI/buffers/mastodon/notifications.py:23
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:23
 msgid "Dismiss"
-msgstr ""
+msgstr "Odbaci"
 
 #: ../src/wxUI/buffers/mastodon/user.py:19
 #: ../src/wxUI/dialogs/userAliasDialogs.py:48
@@ -3335,10 +3300,8 @@ msgid "Actions"
 msgstr "Radnje"
 
 #: ../src/wxUI/buffers/mastodon/user.py:20
-#, fuzzy
-#| msgid "Direct Messages"
 msgid "Message"
-msgstr "Direktne poruke "
+msgstr "Poruka"
 
 #: ../src/wxUI/buffers/twitter/events.py:14
 msgid "Event"
@@ -4090,74 +4053,51 @@ msgid "F&riends"
 msgstr "Prijatelji"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:15
-#, fuzzy
-#| msgid ""
-#| "Scan account and add friends and followers to the user autocompletion "
-#| "database"
 msgid ""
 "Scan account and add followers and following users to the user "
 "autocompletion database"
 msgstr ""
-"Skeniraj nalog i dodaj pratioce i prijatelje u bazu korisnika za automatsko "
-"dovršavanje"
+"Skeniraj nalog i dodaj pratioce i korisnike koje pratite u bazu korisnika za "
+"automatsko dovršavanje"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:32
-#, fuzzy
-#| msgid ""
-#| "Inverted buffers: The newest tweets will be shown at the beginning while "
-#| "the oldest at the end"
 msgid ""
 "Inverted buffers: The newest items will be shown at the beginning while the "
 "oldest at the end"
 msgstr ""
-"Okreni kanal: Najnoviji tvitovi će biti prikazani na vrhu a najstariji na "
-"dnu."
+"Okreni kanal: najnovije stavke će biti prikazane na vrhu a najstarije na dnu"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:34
 msgid "Ask confirmation before boosting a post"
-msgstr ""
+msgstr "zahtevaj potvrdu pre deljenja objave"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:44
-#, fuzzy
-#| msgid ""
-#| "Load cache for tweets in memory (much faster in big datasets but requires "
-#| "more RAM)"
 msgid ""
 "Load cache for items in memory (much faster in big datasets but requires "
 "more RAM)"
 msgstr ""
-"Učitavaj keš za Tvitove iz memorije (dosta brže sa većim količinama podataka "
+"Učitavaj keš za stavke iz memorije (dosta brže sa većim količinama podataka "
 "ali zahteva više RAM memorije)"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:97
-#, fuzzy
-#| msgid "Indicate audio tweets with sound"
 msgid "Indicate audio or video in posts with sound"
-msgstr "Označi Audio u tvitovima zvukom"
+msgstr "Označi Audio ili  video u objavama zvukom"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:99
-#, fuzzy
-#| msgid "Indicate tweets containing images with sound"
 msgid "Indicate posts containing images with sound"
-msgstr "Označi tvitove koji sadrže slike zvukom"
+msgstr "Označi objave koje sadrže slike zvukom"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:7
-#, fuzzy
-#| msgid "Would you like to add a comment to this tweet?"
 msgid "Would you like to share this post?"
-msgstr "Želite li da dodate komentar na ovaj tvit?"
+msgstr "Da li želite da podelite ovu objavu?"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:15
-#, fuzzy
-#| msgid ""
-#| "Do you really want to delete this tweet? It will be deleted from Twitter "
-#| "as well."
 msgid ""
 "Do you really want to delete this post? It will be deleted from the instance "
 "as well."
 msgstr ""
-"Želite li zaista da izbrišete ovaj tvit? On će biti izbrisan sa Twitera "
-"takođe."
+"Želite li zaista da izbrišete ovu objavu? Takođe će biti izbrisana sa "
+"instance."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:23
 msgid ""
@@ -4165,32 +4105,26 @@ msgid ""
 "notification, it also disappears from your mentions buffer. The post is not "
 "going to be deleted from the instance, though."
 msgstr ""
+"Da li ste sigurni da  želite da odbacite ovo obaveštenje? Ako odbacite "
+"obaveštenje o spominjanju, takođe će biti uklonjeno iz vašeg kanala "
+"spominjanja. Međutim, objava neće biti obrisana sa instance."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:31
-#, fuzzy
-#| msgid ""
-#| "Do you really want to empty this buffer? It's  items will be removed from "
-#| "the list but not from Twitter"
 msgid ""
 "Do you really want to empty this buffer? It's  items will be removed from "
 "the list but not from the instance"
 msgstr ""
-"Želite li zaista da očistite ovaj kanal? Njegove stavke će biti uklonjene sa "
-"kanala, ali ne i sa twittera."
+"Želite li zaista da očistite ovaj kanal? Njegove stavke će biti uklonjene iz "
+"liste, ali ne i sa instance."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:38
-#, fuzzy
-#| msgid "This user has no tweets. {0} can't create a timeline."
 msgid "This user has no posts. {0} can't create a timeline."
-msgstr "Ovaj korisnik nema tvitove. {0} ne može da napravi vremensku liniju."
+msgstr "Ovaj korisnik nema objave. {0} ne može da napravi vremensku liniju."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:43
-#, fuzzy
-#| msgid "This user has no favorited tweets. {0} can't create a timeline."
 msgid "This user has no favorited posts. {0} can't create a timeline."
 msgstr ""
-"Ovaj korisnik nema omiljenih tvitova. {0} ne može da napravi vremensku "
-"liniju."
+"Ovaj korisnik nema omiljenih objava. {0} ne može da napravi vremensku liniju."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:48
 #, fuzzy
