@@ -6,580 +6,1178 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2022-08-17 10:33-0500\n"
+"POT-Creation-Date: 2022-12-20 17:15-0600\n"
 "PO-Revision-Date: 2022-12-20 22:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic <https://weblate.mcvsoftware.com/projects/twblue/"
 "twblue/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: src/languageHandler.py:61
+#: ../src/languageHandler.py:61
 #, fuzzy
 msgctxt "languageName"
 msgid "Amharic"
 msgstr "الأمهارية"
 
-#: src/languageHandler.py:62
+#: ../src/languageHandler.py:62
 #, fuzzy
 msgctxt "languageName"
 msgid "Aragonese"
 msgstr "اليابانية"
 
-#: src/languageHandler.py:63
+#: ../src/languageHandler.py:63
 #, fuzzy
 msgctxt "languageName"
 msgid "Spanish"
 msgstr "الإسبانية"
 
-#: src/languageHandler.py:64
+#: ../src/languageHandler.py:64
 #, fuzzy
 msgctxt "languageName"
 msgid "Portuguese"
 msgstr "البرتغالية"
 
-#: src/languageHandler.py:65
+#: ../src/languageHandler.py:65
 #, fuzzy
 msgctxt "languageName"
 msgid "Russian"
 msgstr "الروسية"
 
-#: src/languageHandler.py:66
+#: ../src/languageHandler.py:66
 #, fuzzy
 msgctxt "languageName"
 msgid "italian"
 msgstr "الإيطالية"
 
-#: src/languageHandler.py:67
+#: ../src/languageHandler.py:67
 #, fuzzy
 msgctxt "languageName"
 msgid "Turkey"
 msgstr "ميزة"
 
-#: src/languageHandler.py:68
+#: ../src/languageHandler.py:68
 #, fuzzy
 msgctxt "languageName"
 msgid "Galician"
 msgstr "Galician"
 
-#: src/languageHandler.py:69
+#: ../src/languageHandler.py:69
 #, fuzzy
 msgctxt "languageName"
 msgid "Catala"
 msgstr "Catalan"
 
-#: src/languageHandler.py:70
+#: ../src/languageHandler.py:70
 #, fuzzy
 msgctxt "languageName"
 msgid "Vasque"
 msgstr "Basque"
 
-#: src/languageHandler.py:71
+#: ../src/languageHandler.py:71
 #, fuzzy
 msgctxt "languageName"
 msgid "polish"
 msgstr "البولندية"
 
-#: src/languageHandler.py:72
+#: ../src/languageHandler.py:72
 #, fuzzy
 msgctxt "languageName"
 msgid "Arabic"
 msgstr "العربية"
 
-#: src/languageHandler.py:73
+#: ../src/languageHandler.py:73
 #, fuzzy
 msgctxt "languageName"
 msgid "Nepali"
 msgstr "Nepali"
 
-#: src/languageHandler.py:74
+#: ../src/languageHandler.py:74
 msgctxt "languageName"
 msgid "Serbian (Latin)"
 msgstr ""
 
-#: src/languageHandler.py:75
+#: ../src/languageHandler.py:75
 #, fuzzy
 msgctxt "languageName"
 msgid "Japanese"
 msgstr "اليابانية"
 
-#: src/languageHandler.py:99
+#: ../src/languageHandler.py:99
 msgid "User default"
 msgstr "الإفتراضي للمستخدم"
 
-#: src/main.py:120
+#: ../src/build/lib/main.py:109 ../src/main.py:109
 msgid "https://twblue.es/donate"
 msgstr "https://twblue.es/donate"
 
-#: src/main.py:137
+#: ../src/build/lib/main.py:126 ../src/main.py:122
 msgid ""
-"{0} is already running. Close the other instance before starting this "
-"one. If you're sure that {0} isn't running, try deleting the file at {1}."
-" If you're unsure of how to do this, contact the {0} developers."
+"{0} is already running. Close the other instance before starting this one. "
+"If you're sure that {0} isn't running, try deleting the file at {1}. If "
+"you're unsure of how to do this, contact the {0} developers."
 msgstr ""
 
-#: src/extra/AudioUploader/audioUploader.py:136 src/sound.py:147
+#: ../src/extra/AudioUploader/audioUploader.py:136 ../src/sound.py:148
 msgid "Playing..."
 msgstr "جاري التشغيل"
 
-#: src/sound.py:160
+#: ../src/sound.py:161
 msgid "Stopped."
 msgstr "تم الإيقاف."
 
-#: src/controller/mainController.py:277
+#: ../src/controller/mainController.py:285
 msgid "Ready"
 msgstr "جاهز"
 
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:337 src/controller/settings.py:338
-msgid "Home"
-msgstr "الصفحة الرئيسية"
-
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:339 src/controller/settings.py:339
-msgid "Mentions"
-msgstr "الإشارات"
-
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:341
-msgid "Direct messages"
-msgstr "الرسائل الخاصة"
-
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:343 src/controller/settings.py:341
-msgid "Sent direct messages"
-msgstr "الرسائلُ الخاصة المُرسَلة"
-
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:345 src/controller/settings.py:342
-msgid "Sent tweets"
-msgstr "التغريدات"
-
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:347 src/controller/mainController.py:1384
-#: src/controller/settings.py:343
-msgid "Likes"
-msgstr "إعجابات"
-
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:349 src/controller/mainController.py:1389
-#: src/controller/settings.py:344
-msgid "Followers"
-msgstr "المتابِعون"
-
-#: src/controller/mainController.py:351
-#, fuzzy
-msgid "Following"
-msgstr "إل&غاء المتابعة"
-
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:353 src/controller/mainController.py:1399
-#: src/controller/settings.py:346
-msgid "Blocked users"
-msgstr "المستخدمون المحظورون"
-
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:355 src/controller/mainController.py:1404
-#: src/controller/settings.py:347
-msgid "Muted users"
-msgstr "المستخدمون الذين كُتمت تنبيهاتهم"
-
-#: src/controller/mainController.py:356
-msgid "Timelines"
-msgstr "السياقات الزمنية"
-
-#: src/controller/mainController.py:359 src/controller/mainController.py:877
-#: src/controller/mainController.py:1576
-msgid "Timeline for {}"
-msgstr "السياق الزمني ل{}"
-
-#: src/controller/mainController.py:360
-msgid "Likes timelines"
-msgstr "السياقات الزمنية للإعجابات"
-
-#: src/controller/mainController.py:363 src/controller/mainController.py:896
-#: src/controller/mainController.py:1578
-msgid "Likes for {}"
-msgstr "قائمة الإعجابات ل{}"
-
-#: src/controller/mainController.py:364
-#, fuzzy
-msgid "Followers timelines"
-msgstr "السياقات الزمنية للمُتابِعين"
-
-#: src/controller/mainController.py:367 src/controller/mainController.py:915
-#: src/controller/mainController.py:1580
-msgid "Followers for {}"
-msgstr "المتابِعون ل{}"
-
-#: src/controller/mainController.py:368
-#, fuzzy
-msgid "Following timelines"
-msgstr "السياقات الزمنية للمُتابِعين"
-
-#: src/controller/mainController.py:371 src/controller/mainController.py:934
-#: src/controller/mainController.py:1582
-msgid "Friends for {}"
-msgstr "قائمة الأصدقاء ل{}"
-
-#: src/controller/mainController.py:372 src/wxUI/dialogs/lists.py:13
-msgid "Lists"
-msgstr "القوائم"
-
-#: src/controller/mainController.py:375 src/controller/mainController.py:1416
-msgid "List for {}"
-msgstr "قائمة ل{}"
-
-#: src/controller/mainController.py:376
-msgid "Searches"
-msgstr "عمليات البحث"
-
-#: src/controller/mainController.py:379 src/controller/mainController.py:426
-#: src/controller/mainController.py:431
-msgid "Search for {}"
-msgstr "البحث عن {}"
-
-#: src/controller/mainController.py:381 src/controller/mainController.py:976
-#: src/controller/mainController.py:1584
-#, python-format
-msgid "Trending topics for %s"
-msgstr "المواضيع المتداولة ل %s"
-
-#: src/controller/mainController.py:448 src/controller/mainController.py:464
-#: src/controller/mainController.py:1074 src/controller/mainController.py:1093
-#: src/controller/mainController.py:1112 src/controller/mainController.py:1131
+#: ../src/controller/mainController.py:395
+#: ../src/controller/mainController.py:411
+#: ../src/controller/mainController.py:729
+#: ../src/controller/mainController.py:748
+#: ../src/controller/mainController.py:767
+#: ../src/controller/mainController.py:786
 msgid ""
-"No session is currently in focus. Focus a session with the next or "
-"previous session shortcut."
+"No session is currently in focus. Focus a session with the next or previous "
+"session shortcut."
 msgstr ""
 "لا توجد جلسة مختارة. يرجى إستخدام مفاتيح التنقل بين الجلسات لتحديد جلسة."
 
-#: src/controller/mainController.py:452
+#: ../src/controller/mainController.py:399
 msgid "Empty buffer."
 msgstr "سياق زمني فارغ"
 
-#: src/controller/mainController.py:459
+#: ../src/controller/mainController.py:406
 msgid "{0} not found."
 msgstr "{0} لم يتم العثور عليه"
 
-#: src/controller/mainController.py:469
-#, fuzzy
-msgid "Filters cannot be applied on this buffer"
-msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
-
-#: src/controller/mainController.py:747
-msgid "Add an user alias"
-msgstr ""
-
-#: src/controller/mainController.py:755
-msgid "Alias has been set correctly for {}."
-msgstr ""
-
-#: src/controller/mainController.py:823 src/controller/messages.py:328
-#, fuzzy
-msgid "MMM D, YYYY. H:m"
-msgstr "dddd, MMMM D, YYYY H:m:s"
-
-#: src/controller/mainController.py:951
-msgid "Conversation with {0}"
-msgstr "محادثة مع {0}"
-
-#: src/controller/mainController.py:992 src/controller/mainController.py:1009
-msgid "There are no coordinates in this tweet"
-msgstr "لا توجد إحداثيات في هذه التغريدة"
-
-#: src/controller/mainController.py:994 src/controller/mainController.py:1013
-msgid "Error decoding coordinates. Try again later."
-msgstr "حدث خطء في فكة تشفيرة الإحداثيات. يرجى المحاولة مرة أخرى لاحقا."
-
-#: src/controller/mainController.py:998
-msgid "Unable to find address in OpenStreetMap."
-msgstr ""
-
-#: src/controller/mainController.py:1011
-msgid "There are no results for the coordinates in this tweet"
-msgstr "لا توجد نتائج للإحداثيات التي في هذه التغريدة"
-
-#: src/controller/mainController.py:1122 src/controller/mainController.py:1141
+#: ../src/controller/mainController.py:777
+#: ../src/controller/mainController.py:796
 #, python-format
 msgid "%s, %s of %s"
 msgstr "%s, %s من %s"
 
-#: src/controller/mainController.py:1124 src/controller/mainController.py:1143
-#: src/controller/mainController.py:1168 src/controller/mainController.py:1193
+#: ../src/controller/mainController.py:779
+#: ../src/controller/mainController.py:798
+#: ../src/controller/mainController.py:823
+#: ../src/controller/mainController.py:848
 #, python-format
 msgid "%s. Empty"
 msgstr "%s فارغة"
 
-#: src/controller/mainController.py:1156 src/controller/mainController.py:1160
-#: src/controller/mainController.py:1181
+#: ../src/controller/mainController.py:811
+#: ../src/controller/mainController.py:815
+#: ../src/controller/mainController.py:836
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: هذا الحساب لم يقم بتسجيل الدخول لتويتر."
 
-#: src/controller/mainController.py:1166 src/controller/mainController.py:1191
+#: ../src/controller/mainController.py:821
+#: ../src/controller/mainController.py:846
 #, python-format
 msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s الخاصة %s"
 
-#: src/controller/mainController.py:1185
+#: ../src/controller/mainController.py:840
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: هذا الحساب لم يقم بتسجيل الدخول لتويتر."
 
-#: src/controller/buffers/twitter/base.py:70
-#: src/controller/mainController.py:1394 src/controller/settings.py:345
-msgid "Friends"
-msgstr "الأصدقاء"
-
-#: src/controller/mainController.py:1410
-msgid "This list is already opened"
-msgstr "هذه القائمة تم فتحها من قبل"
-
-#: src/controller/mainController.py:1440 src/controller/mainController.py:1456
+#: ../src/controller/mainController.py:1047
+#: ../src/controller/mainController.py:1063
 #, fuzzy
-msgid "An error happened while trying to connect to the server. Please try later."
+msgid ""
+"An error happened while trying to connect to the server. Please try later."
 msgstr ""
 "شيء غير متوقع حدث في أثناء الإبلاغ عن العطل. الرجاء المحاولة ثانيا لاحقا."
 
-#: src/controller/mainController.py:1492
+#: ../src/controller/mainController.py:1104
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "القراءة التلقائية للتغريدات الجديدة مفعلة لهذه الصفحة."
 
-#: src/controller/mainController.py:1495
+#: ../src/controller/mainController.py:1107
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "القراءة التلقائية للتغريدات الجديدة معطلة لهذه الصفحة."
 
-#: src/controller/mainController.py:1502
+#: ../src/controller/mainController.py:1114
 msgid "Session mute on"
 msgstr "تشغيل الوضع الصامت للجلسة"
 
-#: src/controller/mainController.py:1505
+#: ../src/controller/mainController.py:1117
 msgid "Session mute off"
 msgstr "تعطيل الوضع الصامت للجلسة"
 
-#: src/controller/mainController.py:1513
+#: ../src/controller/mainController.py:1126
 msgid "Buffer mute on"
 msgstr "تشغيل الوضع الصامت لهذه الصفحة."
 
-#: src/controller/mainController.py:1516
+#: ../src/controller/mainController.py:1129
 msgid "Buffer mute off"
 msgstr "تعطيل الوضع الصامت لهذه الصفحة."
 
-#: src/controller/mainController.py:1536
+#: ../src/controller/mainController.py:1146
 msgid "Copied"
 msgstr "تم النسخ"
 
-#: src/controller/mainController.py:1566
+#: ../src/controller/mainController.py:1176
 msgid "Unable to update this buffer."
 msgstr "غير قادر على تحديث هذه الصفحة"
 
-#: src/controller/mainController.py:1569
+#: ../src/controller/mainController.py:1178
 msgid "Updating buffer..."
 msgstr "تحديث الصفحة"
 
-#: src/controller/mainController.py:1572
+#: ../src/controller/mainController.py:1181
 msgid "{0} items retrieved"
 msgstr "(0) من العناصر جُلبت"
 
-#: src/controller/mainController.py:1591 src/controller/mainController.py:1611
-msgid "Invalid buffer"
-msgstr "صفحة غير صالحة"
+#: ../src/controller/mainController.py:1185
+#: ../src/controller/mastodon/handler.py:192
+#: ../src/controller/twitter/handler.py:85
+#: ../src/controller/twitter/handler.py:271
+msgid "Timeline for {}"
+msgstr "السياق الزمني ل{}"
 
-#: src/controller/mainController.py:1602
-msgid "Picture {0}"
-msgstr "صورة {0}"
+#: ../src/controller/mainController.py:1187
+#: ../src/controller/twitter/handler.py:89
+#: ../src/controller/twitter/handler.py:282
+msgid "Likes for {}"
+msgstr "قائمة الإعجابات ل{}"
 
-#: src/controller/mainController.py:1603
-msgid "Select the picture"
-msgstr "اختر الصورة"
+#: ../src/controller/mainController.py:1189
+#: ../src/controller/mastodon/handler.py:93
+#: ../src/controller/mastodon/handler.py:203
+#: ../src/controller/twitter/handler.py:93
+#: ../src/controller/twitter/handler.py:293
+msgid "Followers for {}"
+msgstr "المتابِعون ل{}"
 
-#: src/controller/mainController.py:1622
-msgid "Unable to extract text"
-msgstr "غير قادر على إستخلاص أي نص"
+#: ../src/controller/mainController.py:1191
+#: ../src/controller/twitter/handler.py:97
+#: ../src/controller/twitter/handler.py:304
+msgid "Friends for {}"
+msgstr "قائمة الأصدقاء ل{}"
 
-#: src/controller/messages.py:50
-msgid "Translated"
-msgstr "تمت ترجمته"
-
-#: src/controller/messages.py:57
-#, python-format
-msgid "%s - %s of %d characters"
-msgstr "%s - %s من %d characters%s - %s من 140 أحرف"
-
-#: src/controller/buffers/twitter/base.py:436 src/controller/messages.py:269
-#, python-format
-msgid "Direct message to %s"
-msgstr "رسالة خاصة ل%s"
-
-#: src/controller/buffers/twitter/base.py:87
-#: src/controller/buffers/twitter/trends.py:43
-#: src/controller/buffers/twitter/trends.py:134 src/controller/messages.py:297
-#: src/wxUI/buffers/base.py:25 src/wxUI/buffers/events.py:15
-#: src/wxUI/buffers/trends.py:18
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:309
-#: src/wxUI/sysTrayIcon.py:35
-msgid "Tweet"
-msgstr "تغريدة"
-
-#: src/controller/messages.py:355
+#: ../src/controller/mainController.py:1193
+#: ../src/controller/mastodon/handler.py:95
+#: ../src/controller/mastodon/handler.py:214
 #, fuzzy
-msgid "View item"
-msgstr "عرض القوائم"
+#| msgid "Followers for {}"
+msgid "Following for {}"
+msgstr "المتابِعون ل{}"
 
-#: src/controller/messages.py:381
-#, fuzzy
-msgid "Link copied to clipboard."
-msgstr "إنسخ إلى لوحة النسخ"
+#: ../src/controller/mainController.py:1195
+#: ../src/controller/twitter/handler.py:107
+#: ../src/controller/twitter/handler.py:326
+#, python-format
+msgid "Trending topics for %s"
+msgstr "المواضيع المتداولة ل %s"
 
-#: src/controller/settings.py:77
+#: ../src/controller/settings.py:66
 #, fuzzy
 msgid "System default"
 msgstr "الإفتراضي للمستخدم"
 
-#: src/controller/settings.py:77
+#: ../src/controller/settings.py:66
 msgid "HTTP"
 msgstr ""
 
-#: src/controller/settings.py:77
+#: ../src/controller/settings.py:66
 msgid "SOCKS v4"
 msgstr ""
 
-#: src/controller/settings.py:77
+#: ../src/controller/settings.py:66
 msgid "SOCKS v4 with DNS support"
 msgstr ""
 
-#: src/controller/settings.py:77
+#: ../src/controller/settings.py:66
 msgid "SOCKS v5"
 msgstr ""
 
-#: src/controller/settings.py:77
+#: ../src/controller/settings.py:66
 msgid "SOCKS v5 with DNS support"
 msgstr ""
 
-#: src/controller/settings.py:155 src/controller/settings.py:269
-#: src/wxUI/dialogs/configuration.py:121
-msgid "Ask"
-msgstr "اسأال"
+#: ../src/controller/userAlias.py:31
+#, fuzzy
+msgid "Edit alias for {}"
+msgstr "قائمة ل{}"
 
-#: src/controller/settings.py:157 src/controller/settings.py:271
-#: src/wxUI/dialogs/configuration.py:121
-msgid "Retweet without comments"
-msgstr "إعادة  التغريد دون إضافة  تعليق"
+#: ../src/controller/userSelector.py:10
+#, fuzzy
+msgid "Select user"
+msgstr "اختر المستخدم"
 
-#: src/controller/settings.py:159 src/wxUI/dialogs/configuration.py:121
-msgid "Retweet with comments"
-msgstr "إعادة التغريد مع تعليق"
+#: ../src/controller/buffers/base/base.py:91
+#: ../src/controller/buffers/mastodon/conversations.py:226
+msgid "This action is not supported for this buffer"
+msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
 
-#: src/controller/settings.py:203
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/mastodon/handler.py:63
+#: ../src/controller/mastodon/settings.py:186
+#: ../src/controller/twitter/handler.py:63
+#: ../src/controller/twitter/settings.py:220
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/mastodon/handler.py:65
+#: ../src/controller/mastodon/settings.py:187
+msgid "Local"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/mastodon/handler.py:67
+#: ../src/controller/mastodon/settings.py:188
+msgid "Federated"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/mastodon/handler.py:69
+#: ../src/controller/mastodon/settings.py:189
+#: ../src/controller/twitter/handler.py:65
+#: ../src/controller/twitter/settings.py:221
+msgid "Mentions"
+msgstr "الإشارات"
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/mastodon/handler.py:77
+#: ../src/controller/mastodon/settings.py:193
+msgid "Bookmarks"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/mastodon/handler.py:71
+#: ../src/controller/twitter/handler.py:67
+msgid "Direct messages"
+msgstr "الرسائل الخاصة"
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/mastodon/handler.py:73
+#: ../src/controller/mastodon/settings.py:191
+msgid "Sent"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/mastodon/handler.py:75
+#: ../src/controller/mastodon/settings.py:192
+msgid "Favorites"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/mastodon/handler.py:79
+#: ../src/controller/mastodon/settings.py:194
+#: ../src/controller/twitter/handler.py:75
+#: ../src/controller/twitter/settings.py:226
+msgid "Followers"
+msgstr "المتابِعون"
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/mastodon/handler.py:81
+#: ../src/controller/mastodon/settings.py:195
+#: ../src/controller/twitter/handler.py:77
+#, fuzzy
+msgid "Following"
+msgstr "إل&غاء المتابعة"
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/mastodon/handler.py:85
+#: ../src/controller/mastodon/settings.py:196
+#: ../src/controller/twitter/handler.py:79
+#: ../src/controller/twitter/settings.py:228
+msgid "Blocked users"
+msgstr "المستخدمون المحظورون"
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/mastodon/handler.py:83
+#: ../src/controller/mastodon/settings.py:197
+#: ../src/controller/twitter/handler.py:81
+#: ../src/controller/twitter/settings.py:229
+msgid "Muted users"
+msgstr "المستخدمون الذين كُتمت تنبيهاتهم"
+
+#: ../src/controller/buffers/mastodon/base.py:49
+#: ../src/controller/mastodon/handler.py:87
+#: ../src/controller/mastodon/settings.py:198
+#, fuzzy
+#| msgid "&Location"
+msgid "Notifications"
+msgstr "الموقع"
+
+#: ../src/controller/buffers/mastodon/base.py:55
+#: ../src/controller/buffers/twitter/base.py:71
+#, fuzzy
+msgid "{username}'s timeline"
+msgstr "إفتح سياق المستخدم"
+
+#: ../src/controller/buffers/mastodon/base.py:57
+#: ../src/controller/buffers/twitter/base.py:75
+msgid "{username}'s followers"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:59
+#, fuzzy
+msgid "{username}'s following"
+msgstr "إفتح سياق المستخدم"
+
+#: ../src/controller/buffers/mastodon/base.py:61
+#: ../src/controller/buffers/twitter/base.py:79
+#, fuzzy
+msgid "Unknown buffer"
+msgstr "غير معروف"
+
+#: ../src/controller/buffers/mastodon/base.py:64
+#: ../src/wxUI/buffers/mastodon/base.py:24
+#: ../src/wxUI/buffers/mastodon/conversationList.py:24
+#: ../src/wxUI/buffers/mastodon/notifications.py:22
+#: ../src/wxUI/buffers/mastodon/user.py:18
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:4
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:172
+msgid "Post"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:65
+#, fuzzy
+#| msgid "Write the tweet here"
+msgid "Write your post here"
+msgstr "اكتب التغريدة هنا"
+
+#: ../src/controller/buffers/mastodon/base.py:126
+#, fuzzy
+msgid "New post in {0}"
+msgstr "تغريدة جديدة"
+
+#: ../src/controller/buffers/mastodon/base.py:129
+#, fuzzy
+msgid "{0} new posts in {1}."
+msgstr "@{0} إقتبس تغريدتك: {1} "
+
+#: ../src/controller/buffers/mastodon/base.py:162
+#: ../src/controller/buffers/mastodon/conversations.py:98
+#: ../src/controller/buffers/mastodon/mentions.py:68
+#: ../src/controller/buffers/mastodon/users.py:133
+#: ../src/controller/buffers/twitter/base.py:231
+#: ../src/controller/buffers/twitter/directMessages.py:87
+#: ../src/controller/buffers/twitter/people.py:171
+#, python-format
+msgid "%s items retrieved"
+msgstr "تم جلب %s عناصر"
+
+#: ../src/controller/buffers/mastodon/base.py:180
+#: ../src/controller/buffers/mastodon/users.py:200
+#: ../src/controller/buffers/twitter/base.py:263
+#: ../src/controller/buffers/twitter/people.py:74
+msgid "This buffer is not a timeline; it can't be deleted."
+msgstr "هذه الصفحة ليست سياق زمني ولا يمكن حذفها"
+
+#: ../src/controller/buffers/mastodon/base.py:296
+#: ../src/controller/buffers/mastodon/base.py:327
+#, fuzzy
+#| msgid "Conversation with {0}"
+msgid "Conversation with {}"
+msgstr "محادثة مع {0}"
+
+#: ../src/controller/buffers/mastodon/base.py:297
+#: ../src/controller/buffers/mastodon/base.py:328
+#: ../src/controller/buffers/mastodon/conversations.py:174
+#: ../src/controller/buffers/mastodon/users.py:51
+#, fuzzy
+#| msgid "Write the tweet here"
+msgid "Write your message here"
+msgstr "اكتب التغريدة هنا"
+
+#: ../src/controller/buffers/mastodon/base.py:299
+#, fuzzy
+#| msgid "Reply to {arg0}"
+msgid "Reply to {}"
+msgstr "الرد على {arg0}"
+
+#: ../src/controller/buffers/mastodon/base.py:300
+#, fuzzy
+#| msgid "Write the tweet here"
+msgid "Write your reply here"
+msgstr "اكتب التغريدة هنا"
+
+#: ../src/controller/buffers/mastodon/base.py:353
+#, fuzzy
+msgid "This action is not supported on conversation posts."
+msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
+
+#: ../src/controller/buffers/mastodon/base.py:418
+#: ../src/controller/buffers/twitter/base.py:524
+msgid "Opening URL..."
+msgstr "فتح رابط"
+
+#: ../src/controller/buffers/mastodon/base.py:431
+msgid "You can delete only your own posts."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:456
+#: ../src/controller/buffers/twitter/base.py:582
+msgid "Opening item in web browser..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:463
+#: ../src/controller/buffers/mastodon/base.py:477
+msgid "Adding to favorites..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:469
+#: ../src/controller/buffers/mastodon/base.py:479
+#, fuzzy
+#| msgid "Remove from list"
+msgid "Removing from favorites..."
+msgstr "حذف من قائمة"
+
+#: ../src/controller/buffers/mastodon/base.py:487
+msgid "Adding to bookmarks..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:489
+msgid "Removing from bookmarks..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/conversations.py:173
+#, fuzzy
+#| msgid "Conversation with {0}"
+msgid "Reply to conversation with {}"
+msgstr "محادثة مع {0}"
+
+#: ../src/controller/buffers/mastodon/notifications.py:59
+msgid "Notification dismissed."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/users.py:50
+#, fuzzy
+#| msgid "Conversation with {0}"
+msgid "New conversation with {}"
+msgstr "محادثة مع {0}"
+
+#: ../src/controller/buffers/mastodon/users.py:104
+#, fuzzy
+#| msgid "There are no coordinates in this tweet"
+msgid "There are no more items in this buffer."
+msgstr "لا توجد إحداثيات في هذه التغريدة"
+
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/twitter/handler.py:69
+#: ../src/controller/twitter/settings.py:223
+msgid "Sent direct messages"
+msgstr "الرسائلُ الخاصة المُرسَلة"
+
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/twitter/handler.py:71
+#: ../src/controller/twitter/settings.py:224
+msgid "Sent tweets"
+msgstr "التغريدات"
+
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/twitter/handler.py:73
+#: ../src/controller/twitter/settings.py:225
+msgid "Likes"
+msgstr "إعجابات"
+
+#: ../src/controller/buffers/twitter/base.py:65
+#: ../src/controller/twitter/settings.py:227
+msgid "Friends"
+msgstr "الأصدقاء"
+
+#: ../src/controller/buffers/twitter/base.py:73
+msgid "{username}'s likes"
+msgstr ""
+
+#: ../src/controller/buffers/twitter/base.py:77
+msgid "{username}'s friends"
+msgstr ""
+
+#: ../src/controller/buffers/twitter/base.py:82
+#: ../src/controller/buffers/twitter/trends.py:37
+#: ../src/controller/buffers/twitter/trends.py:128
+#: ../src/controller/twitter/messages.py:298
+#: ../src/wxUI/buffers/twitter/base.py:25
+#: ../src/wxUI/buffers/twitter/events.py:15
+#: ../src/wxUI/buffers/twitter/trends.py:18
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:309
+#: ../src/wxUI/sysTrayIcon.py:35
+msgid "Tweet"
+msgstr "تغريدة"
+
+#: ../src/controller/buffers/twitter/base.py:83
+#: ../src/controller/buffers/twitter/trends.py:38
+#: ../src/controller/buffers/twitter/trends.py:129
+msgid "Write the tweet here"
+msgstr "اكتب التغريدة هنا"
+
+#: ../src/controller/buffers/twitter/base.py:189
+#, fuzzy
+msgid "New tweet in {0}"
+msgstr "تغريدة جديدة"
+
+#: ../src/controller/buffers/twitter/base.py:192
+#, fuzzy
+msgid "{0} new tweets in {1}."
+msgstr "@{0} إقتبس تغريدتك: {1} "
+
+#: ../src/controller/buffers/twitter/base.py:401
+msgid "Reply to {arg0}"
+msgstr "الرد على {arg0}"
+
+#: ../src/controller/buffers/twitter/base.py:403
+#: ../src/keystrokeEditor/actions/mastodon.py:11
+#: ../src/keystrokeEditor/actions/twitter.py:11
+#: ../src/wxUI/buffers/mastodon/base.py:26
+#: ../src/wxUI/buffers/mastodon/conversationList.py:25
+#: ../src/wxUI/buffers/twitter/base.py:27
+msgid "Reply"
+msgstr "الرد"
+
+#: ../src/controller/buffers/twitter/base.py:404
+#, python-format
+msgid "Reply to %s"
+msgstr "الرد على %s"
+
+#: ../src/controller/buffers/twitter/base.py:427
+#: ../src/controller/twitter/messages.py:270
+#, python-format
+msgid "Direct message to %s"
+msgstr "رسالة خاصة ل%s"
+
+#: ../src/controller/buffers/twitter/base.py:427
+#: ../src/controller/buffers/twitter/directMessages.py:116
+msgid "New direct message"
+msgstr "رسالة خاصة جديدة"
+
+#: ../src/controller/buffers/twitter/base.py:443
+#, fuzzy
+msgid "This action is not supported on protected accounts."
+msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
+
+#: ../src/controller/buffers/twitter/base.py:460
+msgid "Quote"
+msgstr "اقتباس"
+
+#: ../src/controller/buffers/twitter/base.py:460
+msgid "Add your comment to the tweet"
+msgstr "أَضفْ تعليقك للتغريدة"
+
+#: ../src/controller/buffers/twitter/base.py:561
+msgid "User details"
+msgstr "تفاصيل المستخدم"
+
+#: ../src/controller/buffers/twitter/base.py:606
+#: ../src/controller/buffers/twitter/directMessages.py:163
+#: ../src/controller/twitter/messages.py:329
+#, fuzzy
+msgid "MMM D, YYYY. H:m"
+msgstr "dddd, MMMM D, YYYY H:m:s"
+
+#: ../src/controller/buffers/twitter/base.py:621
+msgid "There are no coordinates in this tweet"
+msgstr "لا توجد إحداثيات في هذه التغريدة"
+
+#: ../src/controller/buffers/twitter/base.py:625
+msgid "Error decoding coordinates. Try again later."
+msgstr "حدث خطء في فكة تشفيرة الإحداثيات. يرجى المحاولة مرة أخرى لاحقا."
+
+#: ../src/controller/buffers/twitter/base.py:641
+msgid "Picture {0}"
+msgstr "صورة {0}"
+
+#: ../src/controller/buffers/twitter/base.py:642
+msgid "Select the picture"
+msgstr "اختر الصورة"
+
+#: ../src/controller/buffers/twitter/base.py:650
+msgid "Invalid buffer"
+msgstr "صفحة غير صالحة"
+
+#: ../src/controller/buffers/twitter/base.py:661
+msgid "Unable to extract text"
+msgstr "غير قادر على إستخلاص أي نص"
+
+#: ../src/controller/buffers/twitter/directMessages.py:119
+#, fuzzy
+msgid "{0} new direct messages."
+msgstr "رسالة خاصة جديدة"
+
+#: ../src/controller/buffers/twitter/directMessages.py:122
+#, fuzzy
+msgid "This action is not supported in the buffer yet."
+msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
+
+#: ../src/controller/buffers/twitter/directMessages.py:138
+msgid ""
+"Getting more items cannot be done in this buffer. Use the direct messages "
+"buffer instead."
+msgstr ""
+
+#: ../src/controller/buffers/twitter/people.py:92
+#: ../src/wxUI/buffers/twitter/people.py:17
+msgid "Mention"
+msgstr "إشارة"
+
+#: ../src/controller/buffers/twitter/people.py:92
+#, python-format
+msgid "Mention to %s"
+msgstr "أَشِرْ ل%s"
+
+#: ../src/controller/buffers/twitter/people.py:244
+#, fuzzy
+msgid "{0} new followers."
+msgstr "متابِع جديد"
+
+#: ../src/controller/buffers/twitter/trends.py:144
+#, fuzzy
+msgid "This action is not supported in the buffer, yet."
+msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
+
+#: ../src/controller/mastodon/handler.py:24
+#: ../src/controller/twitter/handler.py:24
+#: ../src/wxUI/dialogs/mastodon/search.py:10 ../src/wxUI/dialogs/search.py:13
+#: ../src/wxUI/view.py:19
+msgid "&Search"
+msgstr "البحث"
+
+#: ../src/controller/mastodon/handler.py:28
+msgid "&Post"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:29
+#: ../src/controller/twitter/handler.py:29
+#: ../src/wxUI/dialogs/mastodon/menus.py:9 ../src/wxUI/menus.py:10
+#: ../src/wxUI/menus.py:34 ../src/wxUI/view.py:30
+msgid "Re&ply"
+msgstr "الرد"
+
+#: ../src/controller/mastodon/handler.py:30
+#: ../src/wxUI/dialogs/mastodon/menus.py:7
+msgid "&Boost"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:31
+#: ../src/wxUI/dialogs/mastodon/menus.py:11
+#, fuzzy
+#| msgid "&Add to list"
+msgid "&Add to favorites"
+msgstr "الإضافة إلى قائمة"
+
+#: ../src/controller/mastodon/handler.py:32
+#, fuzzy
+#| msgid "Remove from list"
+msgid "Remove from favorites"
+msgstr "حذف من قائمة"
+
+#: ../src/controller/mastodon/handler.py:33
+#, fuzzy
+#| msgid "&Show user"
+msgid "&Show post"
+msgstr "&إظهر المستخدمين"
+
+#: ../src/controller/mastodon/handler.py:35
+#: ../src/controller/twitter/handler.py:35 ../src/wxUI/view.py:36
+msgid "View conversa&tion"
+msgstr "عرض المحادثة"
+
+#: ../src/controller/mastodon/handler.py:37
+#: ../src/controller/twitter/handler.py:37
+#: ../src/wxUI/dialogs/mastodon/menus.py:25 ../src/wxUI/menus.py:26
+#: ../src/wxUI/menus.py:44 ../src/wxUI/menus.py:62 ../src/wxUI/menus.py:72
+#: ../src/wxUI/view.py:38
+msgid "&Delete"
+msgstr "حذف"
+
+#: ../src/controller/mastodon/handler.py:39
+#: ../src/controller/twitter/handler.py:39 ../src/wxUI/view.py:42
+msgid "&Actions..."
+msgstr "إجراءات"
+
+#: ../src/controller/mastodon/handler.py:40
+#: ../src/controller/twitter/handler.py:40 ../src/wxUI/view.py:43
+msgid "&View timeline..."
+msgstr "&اعرِضِ السياق الزمني"
+
+#: ../src/controller/mastodon/handler.py:41
+#: ../src/controller/twitter/handler.py:41 ../src/wxUI/view.py:44
+msgid "Direct me&ssage"
+msgstr "رسالة خاصة"
+
+#: ../src/controller/mastodon/handler.py:88
+#: ../src/controller/twitter/handler.py:82
+msgid "Timelines"
+msgstr "السياقات الزمنية"
+
+#: ../src/controller/mastodon/handler.py:91
+#, fuzzy
+#| msgid "Timeline for {}"
+msgid "Timelines for {}"
+msgstr "السياق الزمني ل{}"
+
+#: ../src/controller/mastodon/handler.py:100
+#: ../src/controller/twitter/handler.py:102
+msgid "Searches"
+msgstr "عمليات البحث"
+
+#: ../src/controller/mastodon/handler.py:124
+#: ../src/controller/twitter/handler.py:317
+msgid "Conversation with {0}"
+msgstr "محادثة مع {0}"
+
+#: ../src/controller/mastodon/handler.py:158
+#: ../src/controller/twitter/handler.py:105
+#: ../src/controller/twitter/handler.py:369
+#: ../src/controller/twitter/handler.py:374
+msgid "Search for {}"
+msgstr "البحث عن {}"
+
+#: ../src/controller/mastodon/messages.py:174
+msgid "Poll with {} options"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:193
+#, fuzzy
+#| msgid "List for {}"
+msgid "Post from {}"
+msgstr "قائمة ل{}"
+
+#: ../src/controller/mastodon/messages.py:197
+#: ../src/sessions/mastodon/templates.py:85 ../src/wxUI/dialogs/lists.py:76
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
+msgid "Public"
+msgstr "عامة"
+
+#: ../src/controller/mastodon/messages.py:197
+#: ../src/sessions/mastodon/templates.py:85
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
+#, fuzzy
+#| msgid "Accounts list"
+msgid "Not listed"
+msgstr "قائمة الحسابات"
+
+#: ../src/controller/mastodon/messages.py:197
+#, fuzzy
+#| msgid "Followers"
+msgid "followers only"
+msgstr "المتابِعون"
+
+#: ../src/controller/mastodon/messages.py:197
+#: ../src/sessions/mastodon/templates.py:85
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
+#, fuzzy
+#| msgid "Direct message"
+msgid "Direct"
+msgstr "رسالة خاصة"
+
+#: ../src/controller/mastodon/messages.py:204
+#, fuzzy
+#| msgid "Remove client"
+msgid "Remote instance"
+msgstr "إحذف تطبيق"
+
+#: ../src/controller/mastodon/messages.py:227
+#: ../src/controller/twitter/messages.py:382
+#, fuzzy
+msgid "Link copied to clipboard."
+msgstr "إنسخ إلى لوحة النسخ"
+
+#: ../src/controller/mastodon/settings.py:79
+#: ../src/controller/twitter/settings.py:85
 #, python-format
 msgid "Account settings for %s"
 msgstr "إعدادات الحساب لب%s"
 
-#: src/controller/settings.py:213 src/wxUI/dialogs/configuration.py:247
-msgid "Edit template for tweets. Current template: {}"
+#: ../src/controller/mastodon/settings.py:89
+#: ../src/wxUI/dialogs/mastodon/configuration.py:51
+msgid "Edit template for posts. Current template: {}"
 msgstr ""
 
-#: src/controller/settings.py:222 src/wxUI/dialogs/configuration.py:249
-msgid "Edit template for direct messages. Current template: {}"
+#: ../src/controller/mastodon/settings.py:98
+#: ../src/wxUI/dialogs/mastodon/configuration.py:53
+msgid "Edit template for conversations. Current template: {}"
 msgstr ""
 
-#: src/controller/settings.py:231 src/wxUI/dialogs/configuration.py:251
-msgid "Edit template for sent direct messages. Current template: {}"
-msgstr ""
-
-#: src/controller/settings.py:240 src/wxUI/dialogs/configuration.py:253
+#: ../src/controller/mastodon/settings.py:107
+#: ../src/controller/twitter/settings.py:122
+#: ../src/wxUI/dialogs/configuration.py:253
+#: ../src/wxUI/dialogs/mastodon/configuration.py:55
 msgid "Edit template for persons. Current template: {}"
 msgstr ""
 
-#: src/controller/settings.py:340
+#: ../src/controller/mastodon/settings.py:190
+#: ../src/controller/twitter/settings.py:222
 msgid "Direct Messages"
 msgstr "رسائل خاصة"
 
-#: src/controller/user.py:29 src/wxUI/commonMessageDialogs.py:39
+#: ../src/controller/twitter/handler.py:23
+#: ../src/wxUI/dialogs/update_profile.py:35 ../src/wxUI/view.py:17
+msgid "&Update profile"
+msgstr "حدّث الملف الشخصي"
+
+#: ../src/controller/twitter/handler.py:25 ../src/wxUI/view.py:20
+msgid "&Lists manager"
+msgstr "مدير القوائم"
+
+#: ../src/controller/twitter/handler.py:26 ../src/wxUI/view.py:21
+msgid "Manage user aliases"
+msgstr ""
+
+#: ../src/controller/twitter/handler.py:28 ../src/wxUI/view.py:29
+msgid "&Tweet"
+msgstr "تغريدة"
+
+#: ../src/controller/twitter/handler.py:30 ../src/wxUI/menus.py:8
+#: ../src/wxUI/view.py:31
+msgid "&Retweet"
+msgstr "إعادة التغريد"
+
+#: ../src/controller/twitter/handler.py:31 ../src/wxUI/menus.py:12
+#: ../src/wxUI/view.py:32
+msgid "&Like"
+msgstr "إ&عجاب"
+
+#: ../src/controller/twitter/handler.py:32 ../src/wxUI/menus.py:14
+#: ../src/wxUI/view.py:33
+msgid "&Unlike"
+msgstr "&عدم الإعجاب"
+
+#: ../src/controller/twitter/handler.py:33
+#: ../src/wxUI/dialogs/mastodon/menus.py:21 ../src/wxUI/menus.py:22
+#: ../src/wxUI/menus.py:58 ../src/wxUI/view.py:34
+msgid "&Show tweet"
+msgstr "إظهار التغريدة"
+
+#: ../src/controller/twitter/handler.py:34 ../src/wxUI/view.py:35
+msgid "View &address"
+msgstr "عرض &العنوان"
+
+#: ../src/controller/twitter/handler.py:36 ../src/wxUI/view.py:37
+msgid "Read text in picture"
+msgstr "اقرء النص الذي في الصورة"
+
+#: ../src/controller/twitter/handler.py:42 ../src/wxUI/view.py:45
+msgid "Add a&lias"
+msgstr ""
+
+#: ../src/controller/twitter/handler.py:43 ../src/wxUI/view.py:46
+msgid "&Add to list"
+msgstr "الإضافة إلى قائمة"
+
+#: ../src/controller/twitter/handler.py:44 ../src/wxUI/view.py:47
+msgid "R&emove from list"
+msgstr "حذف من قائمة"
+
+#: ../src/controller/twitter/handler.py:45 ../src/wxUI/menus.py:80
+#: ../src/wxUI/view.py:48
+msgid "&View lists"
+msgstr "عرض القوائم"
+
+#: ../src/controller/twitter/handler.py:46 ../src/wxUI/menus.py:83
+#: ../src/wxUI/view.py:49
+msgid "Show user &profile"
+msgstr "إظهار الملف الشخصي للمستخدم"
+
+#: ../src/controller/twitter/handler.py:47
+#, fuzzy
+#| msgid "V&iew likes"
+msgid "View likes"
+msgstr "عرض قائمة الإعجابات"
+
+#: ../src/controller/twitter/handler.py:49 ../src/wxUI/view.py:55
+msgid "New &trending topics buffer..."
+msgstr "أظهِرْ صفحة جديدة للموضوعات المتداولة"
+
+#: ../src/controller/twitter/handler.py:50 ../src/wxUI/view.py:56
+#, fuzzy
+msgid "Create a &filter"
+msgstr "إنشء قائمة جديدة"
+
+#: ../src/controller/twitter/handler.py:51 ../src/wxUI/view.py:57
+#, fuzzy
+msgid "&Manage filters"
+msgstr "&إدر الحسابات"
+
+#: ../src/controller/twitter/handler.py:86
+msgid "Likes timelines"
+msgstr "السياقات الزمنية للإعجابات"
+
+#: ../src/controller/twitter/handler.py:90
+#, fuzzy
+msgid "Followers timelines"
+msgstr "السياقات الزمنية للمُتابِعين"
+
+#: ../src/controller/twitter/handler.py:94
+#, fuzzy
+msgid "Following timelines"
+msgstr "السياقات الزمنية للمُتابِعين"
+
+#: ../src/controller/twitter/handler.py:98 ../src/wxUI/dialogs/lists.py:13
+msgid "Lists"
+msgstr "القوائم"
+
+#: ../src/controller/twitter/handler.py:101
+#: ../src/controller/twitter/lists.py:94
+msgid "List for {}"
+msgstr "قائمة ل{}"
+
+#: ../src/controller/twitter/handler.py:112
+#, fuzzy
+msgid "Filters cannot be applied on this buffer"
+msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
+
+#: ../src/controller/twitter/handler.py:228
+msgid "Add an user alias"
+msgstr ""
+
+#: ../src/controller/twitter/handler.py:236
+msgid "Alias has been set correctly for {}."
+msgstr ""
+
+#: ../src/controller/twitter/messages.py:50
+msgid "Translated"
+msgstr "تمت ترجمته"
+
+#: ../src/controller/twitter/messages.py:57
+#, python-format
+msgid "%s - %s of %d characters"
+msgstr "%s - %s من %d characters%s - %s من 140 أحرف"
+
+#: ../src/controller/twitter/messages.py:356
+#, fuzzy
+msgid "View item"
+msgstr "عرض القوائم"
+
+#: ../src/controller/twitter/settings.py:37
+#: ../src/controller/twitter/settings.py:151
+#: ../src/wxUI/dialogs/configuration.py:121
+msgid "Ask"
+msgstr "اسأال"
+
+#: ../src/controller/twitter/settings.py:39
+#: ../src/controller/twitter/settings.py:153
+#: ../src/wxUI/dialogs/configuration.py:121
+msgid "Retweet without comments"
+msgstr "إعادة  التغريد دون إضافة  تعليق"
+
+#: ../src/controller/twitter/settings.py:41
+#: ../src/wxUI/dialogs/configuration.py:121
+msgid "Retweet with comments"
+msgstr "إعادة التغريد مع تعليق"
+
+#: ../src/controller/twitter/settings.py:95
+#: ../src/wxUI/dialogs/configuration.py:247
+msgid "Edit template for tweets. Current template: {}"
+msgstr ""
+
+#: ../src/controller/twitter/settings.py:104
+#: ../src/wxUI/dialogs/configuration.py:249
+msgid "Edit template for direct messages. Current template: {}"
+msgstr ""
+
+#: ../src/controller/twitter/settings.py:113
+#: ../src/wxUI/dialogs/configuration.py:251
+msgid "Edit template for sent direct messages. Current template: {}"
+msgstr ""
+
+#: ../src/controller/twitter/user.py:29 ../src/wxUI/commonMessageDialogs.py:39
 msgid "That user does not exist"
 msgstr "هذا المستخدم غير موجود"
 
-#: src/controller/user.py:29 src/controller/user.py:31
-#: src/extra/SpellChecker/wx_ui.py:80
-#: src/extra/autocompletionUsers/wx_scan.py:47
-#: src/wxUI/commonMessageDialogs.py:39 src/wxUI/commonMessageDialogs.py:51
-#: src/wxUI/commonMessageDialogs.py:58 src/wxUI/commonMessageDialogs.py:61
-#: src/wxUI/commonMessageDialogs.py:64 src/wxUI/commonMessageDialogs.py:67
-#: src/wxUI/commonMessageDialogs.py:77 src/wxUI/commonMessageDialogs.py:80
-#: src/wxUI/commonMessageDialogs.py:83 src/wxUI/commonMessageDialogs.py:89
-#: src/wxUI/commonMessageDialogs.py:92 src/wxUI/commonMessageDialogs.py:95
+#: ../src/controller/twitter/user.py:29 ../src/controller/twitter/user.py:31
+#: ../src/extra/SpellChecker/wx_ui.py:79
+#: ../src/extra/autocompletionUsers/wx_scan.py:47
+#: ../src/wxUI/commonMessageDialogs.py:39
+#: ../src/wxUI/commonMessageDialogs.py:51
+#: ../src/wxUI/commonMessageDialogs.py:58
+#: ../src/wxUI/commonMessageDialogs.py:61
+#: ../src/wxUI/commonMessageDialogs.py:64
+#: ../src/wxUI/commonMessageDialogs.py:67
+#: ../src/wxUI/commonMessageDialogs.py:77
+#: ../src/wxUI/commonMessageDialogs.py:80
+#: ../src/wxUI/commonMessageDialogs.py:83
+#: ../src/wxUI/commonMessageDialogs.py:89
+#: ../src/wxUI/commonMessageDialogs.py:92
+#: ../src/wxUI/commonMessageDialogs.py:95
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:38
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:43
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:48
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:53
 msgid "Error"
 msgstr "خطأ"
 
-#: src/controller/user.py:31
+#: ../src/controller/twitter/user.py:31
 msgid "User has been suspended"
 msgstr "المستخدم موقوف"
 
-#: src/controller/user.py:37
+#: ../src/controller/twitter/user.py:37
 #, python-format
 msgid "Information for %s"
 msgstr "معلومات عن %s"
 
-#: src/controller/user.py:67 src/extra/AudioUploader/audioUploader.py:127
+#: ../src/controller/twitter/user.py:67
+#: ../src/extra/AudioUploader/audioUploader.py:127
 msgid "Discarded"
 msgstr "تم التراجع"
 
-#: src/controller/user.py:95
+#: ../src/controller/twitter/user.py:95
 #, python-format
 msgid "Username: @%s\n"
 msgstr "إسم المستخدم: @%s\n"
 
-#: src/controller/user.py:96
+#: ../src/controller/twitter/user.py:96
 #, python-format
 msgid "Name: %s\n"
 msgstr "الإسم: %s\n"
 
-#: src/controller/user.py:98
+#: ../src/controller/twitter/user.py:98
 #, python-format
 msgid "Location: %s\n"
 msgstr "المكان: %s\n"
 
-#: src/controller/user.py:100
+#: ../src/controller/twitter/user.py:100
 #, python-format
 msgid "URL: %s\n"
 msgstr "رابط لصفحة: %s\n"
 
-#: src/controller/user.py:104
+#: ../src/controller/twitter/user.py:104
 #, python-format
 msgid "Bio: %s\n"
 msgstr "السيرة الذاتية: %s\n"
 
-#: src/controller/user.py:105 src/controller/user.py:120
+#: ../src/controller/twitter/user.py:105 ../src/controller/twitter/user.py:120
 msgid "Yes"
 msgstr "نعم"
 
-#: src/controller/user.py:106 src/controller/user.py:121
+#: ../src/controller/twitter/user.py:106 ../src/controller/twitter/user.py:121
 msgid "No"
 msgstr "لا"
 
-#: src/controller/user.py:107
+#: ../src/controller/twitter/user.py:107
 #, python-format
 msgid "Protected: %s\n"
 msgstr "حساب محمي: %s\n"
 
-#: src/controller/user.py:110
+#: ../src/controller/twitter/user.py:110
 msgid "Relationship: "
 msgstr ""
 
-#: src/controller/user.py:112
+#: ../src/controller/twitter/user.py:112
 msgid "You follow {0}. "
 msgstr "أنت تتابع {0}. "
 
-#: src/controller/user.py:115
+#: ../src/controller/twitter/user.py:115
 msgid "{0} is following you."
 msgstr "{0}  يتابعك"
 
-#: src/controller/user.py:119
+#: ../src/controller/twitter/user.py:119
 #, python-format
 msgid ""
 "Followers: %s\n"
@@ -588,1323 +1186,1305 @@ msgstr ""
 "المتابعين : %s\n"
 " الإصدقاء: %s\n"
 
-#: src/controller/user.py:122
+#: ../src/controller/twitter/user.py:122
 #, python-format
 msgid "Verified: %s\n"
 msgstr "معرف: %s\n"
 
-#: src/controller/user.py:123
+#: ../src/controller/twitter/user.py:123
 #, python-format
 msgid "Tweets: %s\n"
 msgstr "التغريدات: %s\n"
 
-#: src/controller/user.py:124
+#: ../src/controller/twitter/user.py:124
 #, python-format
 msgid "Likes: %s"
 msgstr "الإعجابات: %s"
 
-#: src/controller/userActionsController.py:74
+#: ../src/controller/twitter/userActions.py:80
 msgid "You can't ignore direct messages"
 msgstr "لا يمكن تجاهل الرسائل الخاصة"
 
-#: src/controller/userAliasController.py:31
-#, fuzzy
-msgid "Edit alias for {}"
-msgstr "قائمة ل{}"
-
-#: src/controller/userSelector.py:10
-#, fuzzy
-msgid "Select user"
-msgstr "اختر المستخدم"
-
-#: src/controller/buffers/base/base.py:91
-#: src/controller/buffers/mastodon/base.py:91
-msgid "This action is not supported for this buffer"
-msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
-
-#: src/controller/buffers/twitter/base.py:76
-#, fuzzy
-msgid "{username}'s timeline"
-msgstr "إفتح سياق المستخدم"
-
-#: src/controller/buffers/twitter/base.py:78
-msgid "{username}'s likes"
-msgstr ""
-
-#: src/controller/buffers/twitter/base.py:80
-msgid "{username}'s followers"
-msgstr ""
-
-#: src/controller/buffers/twitter/base.py:82
-msgid "{username}'s friends"
-msgstr ""
-
-#: src/controller/buffers/twitter/base.py:84
-#, fuzzy
-msgid "Unknown buffer"
-msgstr "غير معروف"
-
-#: src/controller/buffers/twitter/base.py:88
-#: src/controller/buffers/twitter/trends.py:44
-#: src/controller/buffers/twitter/trends.py:135
-msgid "Write the tweet here"
-msgstr "اكتب التغريدة هنا"
-
-#: src/controller/buffers/twitter/base.py:194
-#, fuzzy
-msgid "New tweet in {0}"
-msgstr "تغريدة جديدة"
-
-#: src/controller/buffers/twitter/base.py:197
-#, fuzzy
-msgid "{0} new tweets in {1}."
-msgstr "@{0} إقتبس تغريدتك: {1} "
-
-#: src/controller/buffers/twitter/base.py:236
-#: src/controller/buffers/twitter/directMessages.py:88
-#: src/controller/buffers/twitter/people.py:177
-#, python-format
-msgid "%s items retrieved"
-msgstr "تم جلب %s عناصر"
-
-#: src/controller/buffers/twitter/base.py:268
-#: src/controller/buffers/twitter/people.py:80
-msgid "This buffer is not a timeline; it can't be deleted."
-msgstr "هذه الصفحة ليست سياق زمني ولا يمكن حذفها"
-
-#: src/controller/buffers/twitter/base.py:410
-msgid "Reply to {arg0}"
-msgstr "الرد على {arg0}"
-
-#: src/controller/buffers/twitter/base.py:412
-#: src/keystrokeEditor/constants.py:11 src/wxUI/buffers/base.py:27
-msgid "Reply"
-msgstr "الرد"
-
-#: src/controller/buffers/twitter/base.py:413
-#, python-format
-msgid "Reply to %s"
-msgstr "الرد على %s"
-
-#: src/controller/buffers/twitter/base.py:436
-#: src/controller/buffers/twitter/directMessages.py:124
-msgid "New direct message"
-msgstr "رسالة خاصة جديدة"
-
-#: src/controller/buffers/twitter/base.py:452
-#, fuzzy
-msgid "This action is not supported on protected accounts."
-msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
-
-#: src/controller/buffers/twitter/base.py:469
-msgid "Quote"
-msgstr "اقتباس"
-
-#: src/controller/buffers/twitter/base.py:469
-msgid "Add your comment to the tweet"
-msgstr "أَضفْ تعليقك للتغريدة"
-
-#: src/controller/buffers/twitter/base.py:533
-msgid "Opening URL..."
-msgstr "فتح رابط"
-
-#: src/controller/buffers/twitter/base.py:570
-msgid "User details"
-msgstr "تفاصيل المستخدم"
-
-#: src/controller/buffers/twitter/base.py:591
-msgid "Opening item in web browser..."
-msgstr ""
-
-#: src/controller/buffers/twitter/directMessages.py:93
-#: src/controller/buffers/twitter/people.py:98 src/wxUI/buffers/people.py:17
-msgid "Mention"
-msgstr "إشارة"
-
-#: src/controller/buffers/twitter/directMessages.py:93
-#: src/controller/buffers/twitter/people.py:98
-#, python-format
-msgid "Mention to %s"
-msgstr "أَشِرْ ل%s"
-
-#: src/controller/buffers/twitter/directMessages.py:127
-#, fuzzy
-msgid "{0} new direct messages."
-msgstr "رسالة خاصة جديدة"
-
-#: src/controller/buffers/twitter/directMessages.py:130
-#, fuzzy
-msgid "This action is not supported in the buffer yet."
-msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
-
-#: src/controller/buffers/twitter/directMessages.py:146
-msgid ""
-"Getting more items cannot be done in this buffer. Use the direct messages"
-" buffer instead."
-msgstr ""
-
-#: src/controller/buffers/twitter/people.py:250
-#, fuzzy
-msgid "{0} new followers."
-msgstr "متابِع جديد"
-
-#: src/controller/buffers/twitter/trends.py:150
-#, fuzzy
-msgid "This action is not supported in the buffer, yet."
-msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
-
-#: src/extra/AudioUploader/audioUploader.py:57
+#: ../src/extra/AudioUploader/audioUploader.py:57
 msgid "Attaching..."
 msgstr "جاري الإرفاق"
 
-#: src/extra/AudioUploader/audioUploader.py:74
+#: ../src/extra/AudioUploader/audioUploader.py:74
 msgid "Pause"
 msgstr "إيقاف مؤقت"
 
-#: src/extra/AudioUploader/audioUploader.py:76
+#: ../src/extra/AudioUploader/audioUploader.py:76
 msgid "&Resume"
 msgstr "&مواصلة"
 
-#: src/extra/AudioUploader/audioUploader.py:77
+#: ../src/extra/AudioUploader/audioUploader.py:77
 msgid "Resume"
 msgstr "متابعة"
 
-#: src/extra/AudioUploader/audioUploader.py:79
-#: src/extra/AudioUploader/audioUploader.py:106
-#: src/extra/AudioUploader/wx_ui.py:37
+#: ../src/extra/AudioUploader/audioUploader.py:79
+#: ../src/extra/AudioUploader/audioUploader.py:106
+#: ../src/extra/AudioUploader/wx_ui.py:37
 msgid "&Pause"
 msgstr "إي&قاف مؤقّت"
 
-#: src/extra/AudioUploader/audioUploader.py:94
-#: src/extra/AudioUploader/audioUploader.py:140
+#: ../src/extra/AudioUploader/audioUploader.py:94
+#: ../src/extra/AudioUploader/audioUploader.py:140
 msgid "&Stop"
 msgstr "&إيقاف"
 
-#: src/extra/AudioUploader/audioUploader.py:95
+#: ../src/extra/AudioUploader/audioUploader.py:95
 msgid "Recording"
 msgstr "جاري التسجيل"
 
-#: src/extra/AudioUploader/audioUploader.py:100
-#: src/extra/AudioUploader/audioUploader.py:151
+#: ../src/extra/AudioUploader/audioUploader.py:100
+#: ../src/extra/AudioUploader/audioUploader.py:151
 msgid "Stopped"
 msgstr "تم إيقافه"
 
-#: src/extra/AudioUploader/audioUploader.py:102
-#: src/extra/AudioUploader/wx_ui.py:39
+#: ../src/extra/AudioUploader/audioUploader.py:102
+#: ../src/extra/AudioUploader/wx_ui.py:39
 msgid "&Record"
 msgstr "&تسجيل"
 
-#: src/extra/AudioUploader/audioUploader.py:144
-#: src/extra/AudioUploader/audioUploader.py:154
-#: src/extra/AudioUploader/wx_ui.py:35
+#: ../src/extra/AudioUploader/audioUploader.py:144
+#: ../src/extra/AudioUploader/audioUploader.py:154
+#: ../src/extra/AudioUploader/wx_ui.py:35
 msgid "&Play"
 msgstr "ت&شغيل"
 
-#: src/extra/AudioUploader/audioUploader.py:159
+#: ../src/extra/AudioUploader/audioUploader.py:159
 msgid "Recoding audio..."
 msgstr "جاري تسجيل الصوت"
 
-#: src/extra/AudioUploader/transfer.py:82
-#: src/extra/AudioUploader/transfer.py:88
+#: ../src/extra/AudioUploader/transfer.py:82
+#: ../src/extra/AudioUploader/transfer.py:88
 #, fuzzy
 msgid "Error in file upload: {0}"
 msgstr "خطء رقم {0}"
 
-#: src/extra/AudioUploader/utils.py:29 src/update/utils.py:29
+#: ../src/extra/AudioUploader/utils.py:29 ../src/update/utils.py:29
 #, python-format
 msgid "%d day, "
 msgstr "%d يوم"
 
-#: src/extra/AudioUploader/utils.py:31 src/update/utils.py:31
+#: ../src/extra/AudioUploader/utils.py:31 ../src/update/utils.py:31
 #, python-format
 msgid "%d days, "
 msgstr "%d أيام"
 
-#: src/extra/AudioUploader/utils.py:33 src/update/utils.py:33
+#: ../src/extra/AudioUploader/utils.py:33 ../src/update/utils.py:33
 #, python-format
 msgid "%d hour, "
 msgstr "%d ساعة"
 
-#: src/extra/AudioUploader/utils.py:35 src/update/utils.py:35
+#: ../src/extra/AudioUploader/utils.py:35 ../src/update/utils.py:35
 #, python-format
 msgid "%d hours, "
 msgstr "%d ساعات"
 
-#: src/extra/AudioUploader/utils.py:37 src/update/utils.py:37
+#: ../src/extra/AudioUploader/utils.py:37 ../src/update/utils.py:37
 #, python-format
 msgid "%d minute, "
 msgstr "%d دقيقة"
 
-#: src/extra/AudioUploader/utils.py:39 src/update/utils.py:39
+#: ../src/extra/AudioUploader/utils.py:39 ../src/update/utils.py:39
 #, python-format
 msgid "%d minutes, "
 msgstr "%d  دقائق"
 
-#: src/extra/AudioUploader/utils.py:41 src/update/utils.py:41
+#: ../src/extra/AudioUploader/utils.py:41 ../src/update/utils.py:41
 #, python-format
 msgid "%s second"
 msgstr "%s ثانية"
 
-#: src/extra/AudioUploader/utils.py:43 src/update/utils.py:43
+#: ../src/extra/AudioUploader/utils.py:43 ../src/update/utils.py:43
 #, python-format
 msgid "%s seconds"
 msgstr "%s ثواني"
 
-#: src/extra/AudioUploader/wx_transfer_dialogs.py:15
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:35
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:171
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:255
+#: ../src/extra/AudioUploader/wx_transfer_dialogs.py:15
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:23
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:35
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:171
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:255
 msgid "File"
 msgstr "ملف"
 
-#: src/extra/AudioUploader/wx_transfer_dialogs.py:21
+#: ../src/extra/AudioUploader/wx_transfer_dialogs.py:21
 msgid "Transferred"
 msgstr "تم نقله"
 
-#: src/extra/AudioUploader/wx_transfer_dialogs.py:26
+#: ../src/extra/AudioUploader/wx_transfer_dialogs.py:26
 msgid "Total file size"
 msgstr "الحجم الكلي للملف"
 
-#: src/extra/AudioUploader/wx_transfer_dialogs.py:31
+#: ../src/extra/AudioUploader/wx_transfer_dialogs.py:31
 msgid "Transfer rate"
 msgstr "سرعة التحميل"
 
-#: src/extra/AudioUploader/wx_transfer_dialogs.py:36
+#: ../src/extra/AudioUploader/wx_transfer_dialogs.py:36
 msgid "Time left"
 msgstr "الوقت المتبقي"
 
-#: src/extra/AudioUploader/wx_ui.py:29
+#: ../src/extra/AudioUploader/wx_ui.py:29
 msgid "Attach audio"
 msgstr "إرفق مقطع صوتي"
 
-#: src/extra/AudioUploader/wx_ui.py:41
+#: ../src/extra/AudioUploader/wx_ui.py:41
 msgid "&Add an existing file"
 msgstr "أ&ضِف ملفا موجودا"
 
-#: src/extra/AudioUploader/wx_ui.py:42
+#: ../src/extra/AudioUploader/wx_ui.py:42
 msgid "&Discard"
 msgstr "تراجع"
 
-#: src/extra/AudioUploader/wx_ui.py:44
+#: ../src/extra/AudioUploader/wx_ui.py:44
 msgid "Upload to"
 msgstr "إرفع إلى"
 
-#: src/extra/AudioUploader/wx_ui.py:49
+#: ../src/extra/AudioUploader/wx_ui.py:49
 msgid "Attach"
 msgstr "إرفق"
 
-#: src/extra/AudioUploader/wx_ui.py:51
+#: ../src/extra/AudioUploader/wx_ui.py:51
 msgid "&Cancel"
 msgstr "إل&غاء"
 
-#: src/extra/AudioUploader/wx_ui.py:76
+#: ../src/extra/AudioUploader/wx_ui.py:76
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:154
 msgid "Select the audio file to be uploaded"
 msgstr "إختر الملف الصوتي الذي تريد رفعه"
 
-#: src/extra/AudioUploader/wx_ui.py:76
+#: ../src/extra/AudioUploader/wx_ui.py:76
 msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 msgstr "الملفات الصوتية  (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:7
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:4
 msgid "Audio tweet."
 msgstr "تغريدة تتضمّن مقطعا صوتيا"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:8
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:5
 msgid "User timeline buffer created."
 msgstr "تم إنشاء صفحة بالسياق الزمني للمستخدم."
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:9
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:6
 msgid "Buffer destroied."
 msgstr "تم حذف الصفحة."
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:10
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:7
 msgid "Direct message received."
 msgstr "رسالة خاصة مُتَسلَّمة"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:11
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:8
 msgid "Direct message sent."
 msgstr "الرسائل الخاصة المُرسَلة"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:12
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:9
 msgid "Error."
 msgstr "خطأ"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:13
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:10
 msgid "Tweet liked."
 msgstr "تمّ تسجيل الإعجاب بالتغريدة"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:14
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:11
 msgid "Likes buffer updated."
 msgstr "تمّ تحديث صفحة الإعجابات"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:15
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:12
 msgid "Geotweet."
 msgstr "إحداثيات التغريدة"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:16
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:13
 msgid "Tweet contains one or more images"
 msgstr "تحتوي التغريدة على صورة أو أكثر"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:17
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:14
 msgid "Boundary reached."
 msgstr "تم الوصول إلى النهاية"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:18
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:15
 msgid "List updated."
 msgstr "القائمة مُحدّثة"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:19
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:16
 msgid "Too many characters."
 msgstr "عدد الأحرف كبير جدا"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:20
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:17
 msgid "Mention received."
 msgstr "إشارة مُتسلّمة"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:21
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:18
 msgid "New event."
 msgstr "حدث جديد"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:22
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:19
 msgid "{0} is ready."
 msgstr "{0} جاهز"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:23
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:20
 msgid "Mention sent."
 msgstr "إشارة مُرسَلة"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:24
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:21
 msgid "Tweet retweeted."
 msgstr "لقد قمتَ بإعادة التغريد"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:25
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:22
 msgid "Search buffer updated."
 msgstr "تم تحديث صفحة البحث."
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:26
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:23
 msgid "Tweet received."
 msgstr "تم إستلام التغريدة"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:27
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:24
 msgid "Tweet sent."
 msgstr "تغريدة مُرسَلة"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:28
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:25
 msgid "Trending topics buffer updated."
 msgstr "تم تحديث صفحة المواضيع المشهورة."
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:29
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:26
 msgid "New tweet in user timeline buffer."
 msgstr "تغريدة جديدة في صفحة السياق الزمني للمستخدم."
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:30
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:27
 msgid "New follower."
 msgstr "متابِع جديد"
 
-#: src/extra/SoundsTutorial/soundsTutorial_constants.py:31
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:28
 msgid "Volume changed."
 msgstr "تم تغيير علو الصوت"
 
-#: src/extra/SoundsTutorial/wx_ui.py:9
+#: ../src/extra/SoundsTutorial/wx_ui.py:8
 msgid "Sounds tutorial"
 msgstr "مُعَلِم الأصوات"
 
-#: src/extra/SoundsTutorial/wx_ui.py:12
+#: ../src/extra/SoundsTutorial/wx_ui.py:11
 msgid "Press enter to listen to the sound for the selected event"
 msgstr "إضغط مفتاح الدخول لسماع الصوت"
 
-#: src/extra/SpellChecker/spellchecker.py:60
+#: ../src/extra/SpellChecker/spellchecker.py:56
 #, python-format
 msgid "Misspelled word: %s"
 msgstr "خطء إملائي في الكلمة: %s"
 
-#: src/extra/SpellChecker/wx_ui.py:28
+#: ../src/extra/SpellChecker/wx_ui.py:27
 msgid "Misspelled word"
 msgstr "كلمة فيها خطء إملائي"
 
-#: src/extra/SpellChecker/wx_ui.py:33
+#: ../src/extra/SpellChecker/wx_ui.py:32
 msgid "Context"
 msgstr "السياق"
 
-#: src/extra/SpellChecker/wx_ui.py:38
+#: ../src/extra/SpellChecker/wx_ui.py:37
 msgid "Suggestions"
 msgstr "إقتراحات"
 
-#: src/extra/SpellChecker/wx_ui.py:43
+#: ../src/extra/SpellChecker/wx_ui.py:42
 #, fuzzy
 msgid "&Ignore"
 msgstr "تجاهل"
 
-#: src/extra/SpellChecker/wx_ui.py:44
+#: ../src/extra/SpellChecker/wx_ui.py:43
 #, fuzzy
 msgid "I&gnore all"
 msgstr "تجاهل الكل"
 
-#: src/extra/SpellChecker/wx_ui.py:45
+#: ../src/extra/SpellChecker/wx_ui.py:44
 #, fuzzy
 msgid "&Replace"
 msgstr "استبدل"
 
-#: src/extra/SpellChecker/wx_ui.py:46
+#: ../src/extra/SpellChecker/wx_ui.py:45
 #, fuzzy
 msgid "R&eplace all"
 msgstr "استبدل الكل"
 
-#: src/extra/SpellChecker/wx_ui.py:47
+#: ../src/extra/SpellChecker/wx_ui.py:46
 msgid "&Add to personal dictionary"
 msgstr ""
 
-#: src/extra/SpellChecker/wx_ui.py:80
+#: ../src/extra/SpellChecker/wx_ui.py:79
 msgid ""
-"An error has occurred. There are no dictionaries available for the "
-"selected language in {0}"
+"An error has occurred. There are no dictionaries available for the selected "
+"language in {0}"
 msgstr "لقد حدث خطأ. لا يوجد قاموس للغة المختارة في {0}"
 
-#: src/extra/SpellChecker/wx_ui.py:83
+#: ../src/extra/SpellChecker/wx_ui.py:82
 msgid "Spell check complete."
 msgstr "انتهاء التدقيق الإملائي"
 
-#: src/extra/autocompletionUsers/completion.py:39
-#: src/extra/autocompletionUsers/completion.py:57
+#: ../src/extra/autocompletionUsers/completion.py:39
+#: ../src/extra/autocompletionUsers/completion.py:57
 msgid "You have to start writing"
 msgstr "يجب أن تبدء في الكتابة"
 
-#: src/extra/autocompletionUsers/completion.py:49
-#: src/extra/autocompletionUsers/completion.py:66
+#: ../src/extra/autocompletionUsers/completion.py:49
+#: ../src/extra/autocompletionUsers/completion.py:66
 msgid "There are no results in your users database"
 msgstr "لا توجد نتائج في قاعدة البيانات الخاصة بك."
 
-#: src/extra/autocompletionUsers/completion.py:51
+#: ../src/extra/autocompletionUsers/completion.py:51
 msgid "Autocompletion only works for users."
 msgstr "خاصية التعبئة التلقائية لا تعمل إلى مع المستخدمون"
 
-#: src/extra/autocompletionUsers/scan.py:54
+#: ../src/extra/autocompletionUsers/scan.py:54
 msgid ""
-"Updating database... You can close this window now. A message will tell "
-"you when the process finishes."
+"Updating database... You can close this window now. A message will tell you "
+"when the process finishes."
 msgstr ""
 "يتم الآن تحديث قاعدة البيانات. بإمكانك إغلاق هذه الشاشة. سوف تظهر لك رسالة "
 "تخبرك عندما تنتهي هذه العملية."
 
-#: src/extra/autocompletionUsers/wx_manage.py:9
+#: ../src/extra/autocompletionUsers/wx_manage.py:9
 msgid "Manage Autocompletion database"
 msgstr "إدارة قاعدة بيانات التعبئة التلقائية"
 
-#: src/extra/autocompletionUsers/wx_manage.py:12
+#: ../src/extra/autocompletionUsers/wx_manage.py:12
 msgid "Editing {0} users database"
 msgstr "تحرير قاعدة بيانات المستخدمين ل {0} "
 
-#: src/extra/autocompletionUsers/wx_manage.py:13
+#: ../src/extra/autocompletionUsers/wx_manage.py:13
 msgid "Username"
 msgstr "إسم المستخدم"
 
-#: src/extra/autocompletionUsers/wx_manage.py:13
-#: src/wxUI/dialogs/configuration.py:151
+#: ../src/extra/autocompletionUsers/wx_manage.py:13
+#: ../src/wxUI/dialogs/configuration.py:151
 msgid "Name"
 msgstr "الاسم"
 
-#: src/extra/autocompletionUsers/wx_manage.py:16
+#: ../src/extra/autocompletionUsers/wx_manage.py:16
 msgid "Add user"
 msgstr "أضِف مستخدما"
 
-#: src/extra/autocompletionUsers/wx_manage.py:17
+#: ../src/extra/autocompletionUsers/wx_manage.py:17
 msgid "Remove user"
 msgstr "احذف مستخدما"
 
-#: src/extra/autocompletionUsers/wx_manage.py:38
+#: ../src/extra/autocompletionUsers/wx_manage.py:38
 msgid "Twitter username"
 msgstr "إسم مستخدم تويتر"
 
-#: src/extra/autocompletionUsers/wx_manage.py:38
+#: ../src/extra/autocompletionUsers/wx_manage.py:38
 msgid "Add user to database"
 msgstr "إضف المستخدم إلى قاعدة البيانات"
 
-#: src/extra/autocompletionUsers/wx_manage.py:44
+#: ../src/extra/autocompletionUsers/wx_manage.py:44
 msgid "The user does not exist"
 msgstr "المستخدم غير موجود"
 
-#: src/extra/autocompletionUsers/wx_manage.py:44
-#: src/wxUI/commonMessageDialogs.py:45
+#: ../src/extra/autocompletionUsers/wx_manage.py:44
+#: ../src/wxUI/commonMessageDialogs.py:45
 msgid "Error!"
 msgstr "خطأ"
 
-#: src/extra/autocompletionUsers/wx_scan.py:8
+#: ../src/extra/autocompletionUsers/wx_scan.py:8
 msgid "Autocomplete users' settings"
 msgstr "إعدادات الإكمال التلقائي للمستخدم"
 
-#: src/extra/autocompletionUsers/wx_scan.py:11
+#: ../src/extra/autocompletionUsers/wx_scan.py:11
 #, fuzzy
 msgid "Add followers to database"
 msgstr "إضف المستخدم إلى قاعدة البيانات"
 
-#: src/extra/autocompletionUsers/wx_scan.py:12
+#: ../src/extra/autocompletionUsers/wx_scan.py:12
 #, fuzzy
 msgid "Add  friends to database"
 msgstr "إضف المستخدم إلى قاعدة البيانات"
 
-#: src/extra/autocompletionUsers/wx_scan.py:26
+#: ../src/extra/autocompletionUsers/wx_scan.py:26
 #, fuzzy
 msgid "Updating autocompletion database"
 msgstr "إدارة قاعدة بيانات التعبئة التلقائية"
 
-#: src/extra/autocompletionUsers/wx_scan.py:37
+#: ../src/extra/autocompletionUsers/wx_scan.py:37
 msgid ""
-"This process will retrieve the users you selected from Twitter, and add "
-"them to the user autocomplete database. Please note that if there are "
-"many users or you have tried to perform this action less than 15 minutes "
-"ago, TWBlue may reach a limit in Twitter API calls when trying to load "
-"the users into the database. If this happens, we will show you an error, "
-"in which case you will have to try this process again in a few minutes. "
-"If this process ends with no error, you will be redirected back to the "
-"account settings dialog. Do you want to continue?"
+"This process will retrieve the users you selected from Twitter, and add them "
+"to the user autocomplete database. Please note that if there are many users "
+"or you have tried to perform this action less than 15 minutes ago, TWBlue "
+"may reach a limit in Twitter API calls when trying to load the users into "
+"the database. If this happens, we will show you an error, in which case you "
+"will have to try this process again in a few minutes. If this process ends "
+"with no error, you will be redirected back to the account settings dialog. "
+"Do you want to continue?"
 msgstr ""
 
-#: src/extra/autocompletionUsers/wx_scan.py:37
-#: src/wxUI/commonMessageDialogs.py:36 src/wxUI/commonMessageDialogs.py:86
+#: ../src/extra/autocompletionUsers/wx_scan.py:37
+#: ../src/wxUI/commonMessageDialogs.py:36
+#: ../src/wxUI/commonMessageDialogs.py:86
 msgid "Attention"
 msgstr "تنبيه"
 
-#: src/extra/autocompletionUsers/wx_scan.py:43
+#: ../src/extra/autocompletionUsers/wx_scan.py:43
 msgid "TWBlue has imported {} users successfully."
 msgstr ""
 
-#: src/extra/autocompletionUsers/wx_scan.py:43
+#: ../src/extra/autocompletionUsers/wx_scan.py:43
 msgid "Done"
 msgstr "تمّ"
 
-#: src/extra/autocompletionUsers/wx_scan.py:47
+#: ../src/extra/autocompletionUsers/wx_scan.py:47
 msgid "Error adding users from Twitter. Please try again in about 15 minutes."
 msgstr ""
 
-#: src/extra/ocr/OCRSpace.py:7
+#: ../src/extra/ocr/OCRSpace.py:7
 msgid "Detect automatically"
 msgstr "اكتشف تلقائيا"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:41
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:41
 msgid "Danish"
 msgstr "Danish"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:43
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:43
 msgid "Dutch"
 msgstr "Dutch"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:44
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:44
 msgid "English"
 msgstr "الإنجليزية"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:48
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:48
 msgid "Finnish"
 msgstr "الينيقي"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:49
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:49
 msgid "French"
 msgstr "الفرنسية"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:52
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:52
 msgid "German"
 msgstr "الألمانيةGerman"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:58
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:58
 msgid "Hungarian"
 msgstr "هنجاري"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:68
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:68
 msgid "Korean"
 msgstr "الكورية"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:63
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:63
 msgid "Italian"
 msgstr "الإيطالية"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:64
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:64
 msgid "Japanese"
 msgstr "اليابانية"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:85
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:85
 msgid "Polish"
 msgstr "البولندية"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:86
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:86
 msgid "Portuguese"
 msgstr "البرتغالية"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:89
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:89
 msgid "Russian"
 msgstr "الروسية"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:96
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:96
 msgid "Spanish"
 msgstr "الإسبانية"
 
-#: src/extra/ocr/OCRSpace.py:7 src/extra/translator/translator.py:105
+#: ../src/extra/ocr/OCRSpace.py:7 ../src/extra/translator/translator.py:105
 msgid "Turkish"
 msgstr "التركية"
 
-#: src/extra/translator/translator.py:22
+#: ../src/extra/translator/translator.py:22
 msgid "Afrikaans"
 msgstr "الإفريقية"
 
-#: src/extra/translator/translator.py:23
+#: ../src/extra/translator/translator.py:23
 msgid "Albanian"
 msgstr "الألبانية"
 
-#: src/extra/translator/translator.py:24
+#: ../src/extra/translator/translator.py:24
 msgid "Amharic"
 msgstr "الأمهارية"
 
-#: src/extra/translator/translator.py:25
+#: ../src/extra/translator/translator.py:25
 msgid "Arabic"
 msgstr "العربية"
 
-#: src/extra/translator/translator.py:26
+#: ../src/extra/translator/translator.py:26
 msgid "Armenian"
 msgstr "الأرمينية"
 
-#: src/extra/translator/translator.py:27
+#: ../src/extra/translator/translator.py:27
 msgid "Azerbaijani"
 msgstr "Azerbaijani"
 
-#: src/extra/translator/translator.py:28
+#: ../src/extra/translator/translator.py:28
 msgid "Basque"
 msgstr "Basque"
 
-#: src/extra/translator/translator.py:29
+#: ../src/extra/translator/translator.py:29
 msgid "Belarusian"
 msgstr "Belarusian"
 
-#: src/extra/translator/translator.py:30
+#: ../src/extra/translator/translator.py:30
 msgid "Bengali"
 msgstr "بنغالي"
 
-#: src/extra/translator/translator.py:31
+#: ../src/extra/translator/translator.py:31
 msgid "Bihari"
 msgstr "Bihari"
 
-#: src/extra/translator/translator.py:32
+#: ../src/extra/translator/translator.py:32
 msgid "Bulgarian"
 msgstr "بللغاري"
 
-#: src/extra/translator/translator.py:33
+#: ../src/extra/translator/translator.py:33
 msgid "Burmese"
 msgstr "Burmese"
 
-#: src/extra/translator/translator.py:34
+#: ../src/extra/translator/translator.py:34
 msgid "Catalan"
 msgstr "Catalan"
 
-#: src/extra/translator/translator.py:35
+#: ../src/extra/translator/translator.py:35
 msgid "Cherokee"
 msgstr "Cherokee"
 
-#: src/extra/translator/translator.py:36
+#: ../src/extra/translator/translator.py:36
 msgid "Chinese"
 msgstr "الصينية"
 
-#: src/extra/translator/translator.py:37
+#: ../src/extra/translator/translator.py:37
 msgid "Chinese_simplified"
 msgstr "الصينية المبسطة"
 
-#: src/extra/translator/translator.py:38
+#: ../src/extra/translator/translator.py:38
 msgid "Chinese_traditional"
 msgstr "الصينية التقليدية "
 
-#: src/extra/translator/translator.py:39
+#: ../src/extra/translator/translator.py:39
 msgid "Croatian"
 msgstr "Croatian"
 
-#: src/extra/translator/translator.py:40
+#: ../src/extra/translator/translator.py:40
 msgid "Czech"
 msgstr "Czech"
 
-#: src/extra/translator/translator.py:42
+#: ../src/extra/translator/translator.py:42
 msgid "Dhivehi"
 msgstr "Dhivehi"
 
-#: src/extra/translator/translator.py:45
+#: ../src/extra/translator/translator.py:45
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#: src/extra/translator/translator.py:46
+#: ../src/extra/translator/translator.py:46
 msgid "Estonian"
 msgstr "Estonian"
 
-#: src/extra/translator/translator.py:47
+#: ../src/extra/translator/translator.py:47
 msgid "Filipino"
 msgstr "الفلبينية"
 
-#: src/extra/translator/translator.py:50
+#: ../src/extra/translator/translator.py:50
 msgid "Galician"
 msgstr "Galician"
 
-#: src/extra/translator/translator.py:51
+#: ../src/extra/translator/translator.py:51
 msgid "Georgian"
 msgstr "Georgian"
 
-#: src/extra/translator/translator.py:53
+#: ../src/extra/translator/translator.py:53
 msgid "Greek"
 msgstr "اليونانية"
 
-#: src/extra/translator/translator.py:54
+#: ../src/extra/translator/translator.py:54
 msgid "Guarani"
 msgstr "Guarani"
 
-#: src/extra/translator/translator.py:55
+#: ../src/extra/translator/translator.py:55
 msgid "Gujarati"
 msgstr "Gujarati"
 
-#: src/extra/translator/translator.py:56
+#: ../src/extra/translator/translator.py:56
 msgid "Hebrew"
 msgstr "العبرية"
 
-#: src/extra/translator/translator.py:57
+#: ../src/extra/translator/translator.py:57
 msgid "Hindi"
 msgstr "الهندية"
 
-#: src/extra/translator/translator.py:59
+#: ../src/extra/translator/translator.py:59
 msgid "Icelandic"
 msgstr "Icelandic"
 
-#: src/extra/translator/translator.py:60
+#: ../src/extra/translator/translator.py:60
 msgid "Indonesian"
 msgstr "الإندونيسية"
 
-#: src/extra/translator/translator.py:61
+#: ../src/extra/translator/translator.py:61
 msgid "Inuktitut"
 msgstr "Inuktitut"
 
-#: src/extra/translator/translator.py:62
+#: ../src/extra/translator/translator.py:62
 msgid "Irish"
 msgstr "الأيرلندلية"
 
-#: src/extra/translator/translator.py:65
+#: ../src/extra/translator/translator.py:65
 msgid "Kannada"
 msgstr "Kannada"
 
-#: src/extra/translator/translator.py:66
+#: ../src/extra/translator/translator.py:66
 msgid "Kazakh"
 msgstr "Kazakh"
 
-#: src/extra/translator/translator.py:67
+#: ../src/extra/translator/translator.py:67
 msgid "Khmer"
 msgstr "Khmer"
 
-#: src/extra/translator/translator.py:69
+#: ../src/extra/translator/translator.py:69
 msgid "Kurdish"
 msgstr "الكردية"
 
-#: src/extra/translator/translator.py:70
+#: ../src/extra/translator/translator.py:70
 msgid "Kyrgyz"
 msgstr "Kyrgyz"
 
-#: src/extra/translator/translator.py:71
+#: ../src/extra/translator/translator.py:71
 msgid "Laothian"
 msgstr "Laothian"
 
-#: src/extra/translator/translator.py:72
+#: ../src/extra/translator/translator.py:72
 msgid "Latvian"
 msgstr "الاتيفية"
 
-#: src/extra/translator/translator.py:73
+#: ../src/extra/translator/translator.py:73
 msgid "Lithuanian"
 msgstr "الثوانية"
 
-#: src/extra/translator/translator.py:74
+#: ../src/extra/translator/translator.py:74
 msgid "Macedonian"
 msgstr "المسدونية"
 
-#: src/extra/translator/translator.py:75
+#: ../src/extra/translator/translator.py:75
 msgid "Malay"
 msgstr "المالية"
 
-#: src/extra/translator/translator.py:76
+#: ../src/extra/translator/translator.py:76
 msgid "Malayalam"
 msgstr "Malayalam"
 
-#: src/extra/translator/translator.py:77
+#: ../src/extra/translator/translator.py:77
 msgid "Maltese"
 msgstr "Maltese"
 
-#: src/extra/translator/translator.py:78
+#: ../src/extra/translator/translator.py:78
 msgid "Marathi"
 msgstr "Marathi"
 
-#: src/extra/translator/translator.py:79
+#: ../src/extra/translator/translator.py:79
 msgid "Mongolian"
 msgstr "Mongolian"
 
-#: src/extra/translator/translator.py:80
+#: ../src/extra/translator/translator.py:80
 msgid "Nepali"
 msgstr "Nepali"
 
-#: src/extra/translator/translator.py:81
+#: ../src/extra/translator/translator.py:81
 msgid "Norwegian"
 msgstr "النرويجية"
 
-#: src/extra/translator/translator.py:82
+#: ../src/extra/translator/translator.py:82
 msgid "Oriya"
 msgstr "Oriya"
 
-#: src/extra/translator/translator.py:83
+#: ../src/extra/translator/translator.py:83
 msgid "Pashto"
 msgstr "Pashto"
 
-#: src/extra/translator/translator.py:84
+#: ../src/extra/translator/translator.py:84
 msgid "Persian"
 msgstr "فارسي"
 
-#: src/extra/translator/translator.py:87
+#: ../src/extra/translator/translator.py:87
 msgid "Punjabi"
 msgstr "Punjabi"
 
-#: src/extra/translator/translator.py:88
+#: ../src/extra/translator/translator.py:88
 msgid "Romanian"
 msgstr "الرومانية"
 
-#: src/extra/translator/translator.py:90
+#: ../src/extra/translator/translator.py:90
 msgid "Sanskrit"
 msgstr "السنسكريتية"
 
-#: src/extra/translator/translator.py:91
+#: ../src/extra/translator/translator.py:91
 msgid "Serbian"
 msgstr "الصربية"
 
-#: src/extra/translator/translator.py:92
+#: ../src/extra/translator/translator.py:92
 msgid "Sindhi"
 msgstr "Sindhi"
 
-#: src/extra/translator/translator.py:93
+#: ../src/extra/translator/translator.py:93
 msgid "Sinhalese"
 msgstr "Sinhalese"
 
-#: src/extra/translator/translator.py:94
+#: ../src/extra/translator/translator.py:94
 msgid "Slovak"
 msgstr "السلوفاكية"
 
-#: src/extra/translator/translator.py:95
+#: ../src/extra/translator/translator.py:95
 msgid "Slovenian"
 msgstr "السلوفية"
 
-#: src/extra/translator/translator.py:97
+#: ../src/extra/translator/translator.py:97
 msgid "Swahili"
 msgstr "السواحيلي"
 
-#: src/extra/translator/translator.py:98
+#: ../src/extra/translator/translator.py:98
 msgid "Swedish"
 msgstr "السويدية"
 
-#: src/extra/translator/translator.py:99
+#: ../src/extra/translator/translator.py:99
 msgid "Tajik"
 msgstr "Tajik"
 
-#: src/extra/translator/translator.py:100
+#: ../src/extra/translator/translator.py:100
 msgid "Tamil"
 msgstr "Tamil"
 
-#: src/extra/translator/translator.py:101
+#: ../src/extra/translator/translator.py:101
 msgid "Tagalog"
 msgstr "Tagalog"
 
-#: src/extra/translator/translator.py:102
+#: ../src/extra/translator/translator.py:102
 msgid "Telugu"
 msgstr "Telugu"
 
-#: src/extra/translator/translator.py:103
+#: ../src/extra/translator/translator.py:103
 msgid "Thai"
 msgstr "Thai"
 
-#: src/extra/translator/translator.py:104
+#: ../src/extra/translator/translator.py:104
 msgid "Tibetan"
 msgstr "Tibetan"
 
-#: src/extra/translator/translator.py:106
+#: ../src/extra/translator/translator.py:106
 msgid "Ukrainian"
 msgstr "الأكرونية"
 
-#: src/extra/translator/translator.py:107
+#: ../src/extra/translator/translator.py:107
 msgid "Urdu"
 msgstr "الأوردية"
 
-#: src/extra/translator/translator.py:108
+#: ../src/extra/translator/translator.py:108
 msgid "Uzbek"
 msgstr "الأوباكستانية"
 
-#: src/extra/translator/translator.py:109
+#: ../src/extra/translator/translator.py:109
 msgid "Uighur"
 msgstr "Uighur"
 
-#: src/extra/translator/translator.py:110
+#: ../src/extra/translator/translator.py:110
 msgid "Vietnamese"
 msgstr "الفيتمينية"
 
-#: src/extra/translator/translator.py:111
+#: ../src/extra/translator/translator.py:111
 msgid "Welsh"
 msgstr "Welsh"
 
-#: src/extra/translator/translator.py:112
+#: ../src/extra/translator/translator.py:112
 msgid "Yiddish"
 msgstr "Yiddish"
 
-#: src/extra/translator/wx_ui.py:29
+#: ../src/extra/translator/wx_ui.py:29
 msgid "Translate message"
 msgstr "ترجم الرسالة"
 
-#: src/extra/translator/wx_ui.py:32
+#: ../src/extra/translator/wx_ui.py:32
 msgid "Target language"
 msgstr "اللغة الهدف"
 
-#: src/keystrokeEditor/constants.py:3
-msgid "Go up in the current buffer"
-msgstr "اذهب لأعلى القائمة الحالية"
-
-#: src/keystrokeEditor/constants.py:4
-msgid "Go down in the current buffer"
-msgstr "اذهب لأسفل القائمة الحالية"
-
-#: src/keystrokeEditor/constants.py:5
-msgid "Go to the previous buffer"
-msgstr "انتقل إلى التبويبة السابقة"
-
-#: src/keystrokeEditor/constants.py:6
-msgid "Go to the next buffer"
-msgstr "انتقل إلى لتبويبة التالية"
-
-#: src/keystrokeEditor/constants.py:7
-msgid "Focus the next session"
-msgstr "إنتقل للجلسة التالية."
-
-#: src/keystrokeEditor/constants.py:8
-msgid "Focus the previous session"
-msgstr "إنتقل للجلسة السابقة."
-
-#: src/keystrokeEditor/constants.py:9
-msgid "Show or hide the GUI"
-msgstr "أظهِرْ أو أخفِ واجهةَ البرنامج"
-
-#: src/keystrokeEditor/constants.py:10
-msgid "New tweet"
-msgstr "تغريدة جديدة"
-
-#: src/keystrokeEditor/constants.py:12 src/wxUI/buffers/base.py:26
-#: src/wxUI/commonMessageDialogs.py:10
-msgid "Retweet"
-msgstr "إعادة التغريد"
-
-#: src/keystrokeEditor/constants.py:13
-msgid "Send direct message"
-msgstr "إرسل رسالة خاصة "
-
-#: src/keystrokeEditor/constants.py:14
-msgid "Like a tweet"
-msgstr "الإعجاب بتغريدة"
-
-#: src/keystrokeEditor/constants.py:15
-#, fuzzy
-msgid "Like/unlike a tweet"
-msgstr "إلغاء الإعجاب بتغريدة"
-
-#: src/keystrokeEditor/constants.py:16
-msgid "Unlike a tweet"
-msgstr "إلغاء الإعجاب بتغريدة"
-
-#: src/keystrokeEditor/constants.py:17
-msgid "Open the user actions dialogue"
-msgstr "افتح صندوق الحوار لإجراءات المستخدم"
-
-#: src/keystrokeEditor/constants.py:18
-msgid "See user details"
-msgstr "إظهر تفاصيل المستخدم"
-
-#: src/keystrokeEditor/constants.py:19
-msgid "Show tweet"
-msgstr "إظهار التغريدة"
-
-#: src/keystrokeEditor/constants.py:20
-msgid "Quit"
-msgstr "الخروج"
-
-#: src/keystrokeEditor/constants.py:21
-msgid "Open user timeline"
-msgstr "إفتح سياق المستخدم"
-
-#: src/keystrokeEditor/constants.py:22
-msgid "Destroy buffer"
-msgstr "إحذف الصفحة"
-
-#: src/keystrokeEditor/constants.py:23
-msgid "Interact with the currently focused tweet."
-msgstr "التفاعل مع التغريدة المختارة حاليا"
-
-#: src/keystrokeEditor/constants.py:24
-msgid "Open URL"
-msgstr "إفتح الرابط"
-
-#: src/keystrokeEditor/constants.py:25
-#, fuzzy
-msgid "View in Twitter"
-msgstr "البحث في تويتر"
-
-#: src/keystrokeEditor/constants.py:26
-msgid "Increase volume by 5%"
-msgstr "زيادة علو الصوت %5"
-
-#: src/keystrokeEditor/constants.py:27
-msgid "Decrease volume by 5%"
-msgstr "إنقاص علو الصوت %5"
-
-#: src/keystrokeEditor/constants.py:28
-msgid "Jump to the first element of a buffer"
-msgstr "القفز إلى أول عنصر في الصفحة"
-
-#: src/keystrokeEditor/constants.py:29
-msgid "Jump to the last element of the current buffer"
-msgstr "القفز إلى آخر عنصر في الصفحة الحالية"
-
-#: src/keystrokeEditor/constants.py:30
-msgid "Jump 20 elements up in the current buffer"
-msgstr "القفز إلى 20 عنصر للأعلى في الصفحة الحالية"
-
-#: src/keystrokeEditor/constants.py:31
-msgid "Jump 20 elements down in the current buffer"
-msgstr "القفز إلى 20 عنصر أسفل في الصفحة الحالية"
-
-#: src/keystrokeEditor/constants.py:32
-msgid "Edit profile"
-msgstr "حرر ملفك الشخصي"
-
-#: src/keystrokeEditor/constants.py:33
-msgid "Delete a tweet or direct message"
-msgstr "إحذف تغريدة أو رسالة مباشرة"
-
-#: src/keystrokeEditor/constants.py:34
-msgid "Empty the current buffer"
-msgstr "إفراغ السياق الزمني الحالي"
-
-#: src/keystrokeEditor/constants.py:35
-msgid "Repeat last item"
-msgstr "إعد العنصر الأخير"
-
-#: src/keystrokeEditor/constants.py:36
-msgid "Copy to clipboard"
-msgstr "إنسخ إلى لوحة النسخ"
-
-#: src/keystrokeEditor/constants.py:37
-msgid "Add to list"
-msgstr "الإضافة إلى قائمة"
-
-#: src/keystrokeEditor/constants.py:38
-msgid "Remove from list"
-msgstr "حذف من قائمة"
-
-#: src/keystrokeEditor/constants.py:39
-msgid "Mute/unmute the active buffer"
-msgstr "كتم / إلغاء كتم الصفحة النَشِطة"
-
-#: src/keystrokeEditor/constants.py:40
-msgid "Mute/unmute the current session"
-msgstr "كتم / إلغاء الكتم للجلسة الحالية"
-
-#: src/keystrokeEditor/constants.py:41
-msgid "toggle the automatic reading of incoming tweets in the active buffer"
-msgstr "تفعيل القراءة التلقائية للتغريدات الجديدة في الصفحة النَشِطة"
-
-#: src/keystrokeEditor/constants.py:42
-msgid "Search on twitter"
-msgstr "البحث في تويتر"
-
-#: src/keystrokeEditor/constants.py:43
-msgid "Find a string in the currently focused buffer"
-msgstr "ابحث عن نصّ في الصفحة الحالية"
-
-#: src/keystrokeEditor/constants.py:44
-msgid "Show the keystroke editor"
-msgstr "أظهِرْ مُحرِّر مفاتيح الاختصار"
-
-#: src/keystrokeEditor/constants.py:45
-msgid "Show lists for a specified user"
-msgstr "إظهار القوائم لمستخدم محدد"
-
-#: src/keystrokeEditor/constants.py:46
-msgid "load previous items"
-msgstr "حمل العناصر السابقة"
-
-#: src/keystrokeEditor/constants.py:47
-msgid "Get geolocation"
-msgstr "الحصول على إحداثيات الموقع"
-
-#: src/keystrokeEditor/constants.py:48
-msgid "Display the tweet's geolocation in a dialog"
-msgstr "عرض صندوق حوار بإحداثيات موقع التغريدة"
-
-#: src/keystrokeEditor/constants.py:49
-msgid "Create a trending topics buffer"
-msgstr "أنشِئ صفححةً بالمواضيع المتداولة"
-
-#: src/keystrokeEditor/constants.py:50
-msgid "View conversation"
-msgstr "إعرض المحادثة"
-
-#: src/keystrokeEditor/constants.py:51
-msgid "Check and download updates"
-msgstr "فحص وتحميل التحديثات الجديدة"
-
-#: src/keystrokeEditor/constants.py:52
-msgid ""
-"Opens the list manager, which allows you to create, edit, delete and open"
-" lists in buffers."
-msgstr ""
-"تفتح مدير القوائم والذي يمكنك من إنشاء وتحرير وحذف وفتح القوائم والصفحات."
-
-#: src/keystrokeEditor/constants.py:53
-msgid "Opens the global settings dialogue"
-msgstr "افتح صندوق حوار الخيارات"
-
-#: src/keystrokeEditor/constants.py:54
-#, fuzzy
-msgid "Opens the list manager"
-msgstr "مدير القوائم"
-
-#: src/keystrokeEditor/constants.py:55
-msgid "Opens the account settings dialogue"
-msgstr "افتح صندوق حوار إعدادات الحساب"
-
-#: src/keystrokeEditor/constants.py:56
-msgid "Try to play an audio file"
-msgstr "حاول تشغيل مقطع صوتي"
-
-#: src/keystrokeEditor/constants.py:57
-msgid "Updates the buffer and retrieves possible lost items there."
-msgstr ""
-"تقوم بتحديث الصفحة وتعيد  بعض العناصر التي من الممكن أن تكون قد ضاعت بها."
-
-#: src/keystrokeEditor/constants.py:58
-msgid "Extracts the text from a picture and displays the result in a dialog."
-msgstr "تستخلص النص من الصورة وتعرض النتيجة في صندوق الحوار"
-
-#: src/keystrokeEditor/constants.py:59
-#, fuzzy
-msgid "Adds an alias to an user"
-msgstr "إختر القائمة لإضافة المستخدم لها"
-
-#: src/keystrokeEditor/wx_ui.py:8
+#: ../src/keystrokeEditor/wx_ui.py:8
 msgid "Keystroke editor"
 msgstr "محرر مفاتيح الإختصار"
 
-#: src/keystrokeEditor/wx_ui.py:12
+#: ../src/keystrokeEditor/wx_ui.py:11
 msgid "Select a keystroke to edit"
 msgstr "إختر مفتاح الإختصار الذي تود تحريره"
 
-#: src/keystrokeEditor/wx_ui.py:13 src/wxUI/dialogs/userActions.py:10
-#: src/wxUI/dialogs/userActions.py:19 src/wxUI/dialogs/userActions.py:20
+#: ../src/keystrokeEditor/wx_ui.py:12
+#: ../src/wxUI/dialogs/mastodon/userActions.py:9
+#: ../src/wxUI/dialogs/mastodon/userActions.py:18
+#: ../src/wxUI/dialogs/mastodon/userActions.py:19
+#: ../src/wxUI/dialogs/userActions.py:10 ../src/wxUI/dialogs/userActions.py:19
+#: ../src/wxUI/dialogs/userActions.py:20
 msgid "Action"
 msgstr "الإجراء"
 
-#: src/keystrokeEditor/wx_ui.py:13
+#: ../src/keystrokeEditor/wx_ui.py:12
 msgid "Keystroke"
 msgstr "مفتاح الإختصار"
 
-#: src/keystrokeEditor/wx_ui.py:18 src/wxUI/dialogs/filterDialogs.py:135
-#: src/wxUI/dialogs/lists.py:20 src/wxUI/dialogs/userAliasDialogs.py:53
+#: ../src/keystrokeEditor/wx_ui.py:17 ../src/wxUI/dialogs/filterDialogs.py:135
+#: ../src/wxUI/dialogs/lists.py:20 ../src/wxUI/dialogs/userAliasDialogs.py:53
 msgid "Edit"
 msgstr "حرر"
 
-#: src/keystrokeEditor/wx_ui.py:20 src/keystrokeEditor/wx_ui.py:50
+#: ../src/keystrokeEditor/wx_ui.py:19 ../src/keystrokeEditor/wx_ui.py:49
 #, fuzzy
 msgid "Undefine keystroke"
 msgstr "جاري تحرير مفتاح الإختصار"
 
-#: src/keystrokeEditor/wx_ui.py:21
+#: ../src/keystrokeEditor/wx_ui.py:20
 msgid "Execute action"
 msgstr "ينفذ المهمة"
 
-#: src/keystrokeEditor/wx_ui.py:22 src/wxUI/dialogs/configuration.py:421
-#: src/wxUI/dialogs/userAliasDialogs.py:25 src/wxUI/dialogs/utils.py:39
+#: ../src/keystrokeEditor/wx_ui.py:21 ../src/wxUI/dialogs/configuration.py:421
+#: ../src/wxUI/dialogs/mastodon/configuration.py:170
+#: ../src/wxUI/dialogs/userAliasDialogs.py:25 ../src/wxUI/dialogs/utils.py:39
 msgid "Close"
 msgstr "إغلاق"
 
-#: src/keystrokeEditor/wx_ui.py:42
+#: ../src/keystrokeEditor/wx_ui.py:41
 msgid "Undefined"
 msgstr ""
 
-#: src/keystrokeEditor/wx_ui.py:50
+#: ../src/keystrokeEditor/wx_ui.py:49
 #, fuzzy
 msgid "Are you sure you want to undefine this keystroke?"
 msgstr "هل أنت متأكد من رغبتك بإزالة هذه القائمة؟"
 
-#: src/keystrokeEditor/wx_ui.py:54
+#: ../src/keystrokeEditor/wx_ui.py:53
 msgid "Editing keystroke"
 msgstr "جاري تحرير مفتاح الإختصار"
 
-#: src/keystrokeEditor/wx_ui.py:57
+#: ../src/keystrokeEditor/wx_ui.py:56
 msgid "Control"
 msgstr "مفتاح التحكم"
 
-#: src/keystrokeEditor/wx_ui.py:58
+#: ../src/keystrokeEditor/wx_ui.py:57
 msgid "Alt"
 msgstr "مفتاح القائمة"
 
-#: src/keystrokeEditor/wx_ui.py:59
+#: ../src/keystrokeEditor/wx_ui.py:58
 msgid "Shift"
 msgstr "مفتاح التبويبة"
 
-#: src/keystrokeEditor/wx_ui.py:60
+#: ../src/keystrokeEditor/wx_ui.py:59
 msgid "Windows"
 msgstr "مفتاح الويندوز"
 
-#: src/keystrokeEditor/wx_ui.py:66
+#: ../src/keystrokeEditor/wx_ui.py:65
 msgid "Key"
 msgstr "مفتاح"
 
-#: src/keystrokeEditor/wx_ui.py:71 src/wxUI/dialogs/filterDialogs.py:80
-#: src/wxUI/dialogs/find.py:21 src/wxUI/dialogs/userAliasDialogs.py:23
-#: src/wxUI/dialogs/utils.py:36
+#: ../src/keystrokeEditor/wx_ui.py:70 ../src/wxUI/dialogs/filterDialogs.py:80
+#: ../src/wxUI/dialogs/find.py:21 ../src/wxUI/dialogs/userAliasDialogs.py:23
+#: ../src/wxUI/dialogs/utils.py:36
 msgid "OK"
 msgstr "موافق"
 
-#: src/keystrokeEditor/wx_ui.py:84
+#: ../src/keystrokeEditor/wx_ui.py:83
 msgid "You need to use the Windows key"
 msgstr "تحتاج إلى إستخدام مفتاح الويندوز"
 
-#: src/keystrokeEditor/wx_ui.py:84 src/keystrokeEditor/wx_ui.py:87
+#: ../src/keystrokeEditor/wx_ui.py:83 ../src/keystrokeEditor/wx_ui.py:86
 msgid "Invalid keystroke"
 msgstr "مفتاح إختصار غير مقبول"
 
-#: src/keystrokeEditor/wx_ui.py:87
+#: ../src/keystrokeEditor/wx_ui.py:86
 msgid "You must provide a character for the keystroke"
 msgstr "يجب أن تختار حرفا لمفتاح الإختصار"
 
-#: src/sessionmanager/wxUI.py:9
+#: ../src/keystrokeEditor/actions/mastodon.py:3
+#: ../src/keystrokeEditor/actions/twitter.py:3
+msgid "Go up in the current buffer"
+msgstr "اذهب لأعلى القائمة الحالية"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:4
+#: ../src/keystrokeEditor/actions/twitter.py:4
+msgid "Go down in the current buffer"
+msgstr "اذهب لأسفل القائمة الحالية"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:5
+#: ../src/keystrokeEditor/actions/twitter.py:5
+msgid "Go to the previous buffer"
+msgstr "انتقل إلى التبويبة السابقة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:6
+#: ../src/keystrokeEditor/actions/twitter.py:6
+msgid "Go to the next buffer"
+msgstr "انتقل إلى لتبويبة التالية"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:7
+#: ../src/keystrokeEditor/actions/twitter.py:7
+msgid "Focus the next session"
+msgstr "إنتقل للجلسة التالية."
+
+#: ../src/keystrokeEditor/actions/mastodon.py:8
+#: ../src/keystrokeEditor/actions/twitter.py:8
+msgid "Focus the previous session"
+msgstr "إنتقل للجلسة السابقة."
+
+#: ../src/keystrokeEditor/actions/mastodon.py:9
+#: ../src/keystrokeEditor/actions/twitter.py:9
+msgid "Show or hide the GUI"
+msgstr "أظهِرْ أو أخفِ واجهةَ البرنامج"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:10
+#, fuzzy
+#| msgid "Create a new list"
+msgid "Make a new post"
+msgstr "إنشء قائمة جديدة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:12
+#: ../src/wxUI/buffers/mastodon/base.py:25
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:7
+msgid "Boost"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:13
+#: ../src/keystrokeEditor/actions/twitter.py:13
+msgid "Send direct message"
+msgstr "إرسل رسالة خاصة "
+
+#: ../src/keystrokeEditor/actions/mastodon.py:14
+msgid "Add post to favorites"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:15
+#, fuzzy
+#| msgid "Remove from list"
+msgid "Remove post from favorites"
+msgstr "حذف من قائمة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:16
+msgid "Add/remove post from favorites"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:17
+#: ../src/keystrokeEditor/actions/twitter.py:17
+msgid "Open the user actions dialogue"
+msgstr "افتح صندوق الحوار لإجراءات المستخدم"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:19
+#, fuzzy
+#| msgid "Show tweet"
+msgid "Show post"
+msgstr "إظهار التغريدة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:20
+#: ../src/keystrokeEditor/actions/twitter.py:20
+msgid "Quit"
+msgstr "الخروج"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:21
+#: ../src/keystrokeEditor/actions/twitter.py:21
+msgid "Open user timeline"
+msgstr "إفتح سياق المستخدم"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:22
+#: ../src/keystrokeEditor/actions/twitter.py:22
+msgid "Destroy buffer"
+msgstr "إحذف الصفحة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:23
+#, fuzzy
+#| msgid "Interact with the currently focused tweet."
+msgid "Interact with the currently focused post."
+msgstr "التفاعل مع التغريدة المختارة حاليا"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:24
+#: ../src/keystrokeEditor/actions/twitter.py:24
+msgid "Open URL"
+msgstr "إفتح الرابط"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:25
+#, fuzzy
+msgid "View in browser"
+msgstr "البحث في تويتر"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:26
+#: ../src/keystrokeEditor/actions/twitter.py:26
+msgid "Increase volume by 5%"
+msgstr "زيادة علو الصوت %5"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:27
+#: ../src/keystrokeEditor/actions/twitter.py:27
+msgid "Decrease volume by 5%"
+msgstr "إنقاص علو الصوت %5"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:28
+#: ../src/keystrokeEditor/actions/twitter.py:28
+msgid "Jump to the first element of a buffer"
+msgstr "القفز إلى أول عنصر في الصفحة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:29
+#: ../src/keystrokeEditor/actions/twitter.py:29
+msgid "Jump to the last element of the current buffer"
+msgstr "القفز إلى آخر عنصر في الصفحة الحالية"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:30
+#: ../src/keystrokeEditor/actions/twitter.py:30
+msgid "Jump 20 elements up in the current buffer"
+msgstr "القفز إلى 20 عنصر للأعلى في الصفحة الحالية"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:31
+#: ../src/keystrokeEditor/actions/twitter.py:31
+msgid "Jump 20 elements down in the current buffer"
+msgstr "القفز إلى 20 عنصر أسفل في الصفحة الحالية"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:33
+#, fuzzy
+#| msgid "Delete"
+msgid "Delete post"
+msgstr "حذف"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:34
+#: ../src/keystrokeEditor/actions/twitter.py:34
+msgid "Empty the current buffer"
+msgstr "إفراغ السياق الزمني الحالي"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:35
+#: ../src/keystrokeEditor/actions/twitter.py:35
+msgid "Repeat last item"
+msgstr "إعد العنصر الأخير"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:36
+#: ../src/keystrokeEditor/actions/twitter.py:36
+msgid "Copy to clipboard"
+msgstr "إنسخ إلى لوحة النسخ"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:39
+#: ../src/keystrokeEditor/actions/twitter.py:39
+msgid "Mute/unmute the active buffer"
+msgstr "كتم / إلغاء كتم الصفحة النَشِطة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:40
+#: ../src/keystrokeEditor/actions/twitter.py:40
+msgid "Mute/unmute the current session"
+msgstr "كتم / إلغاء الكتم للجلسة الحالية"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:41
+#: ../src/keystrokeEditor/actions/twitter.py:41
+msgid "toggle the automatic reading of incoming tweets in the active buffer"
+msgstr "تفعيل القراءة التلقائية للتغريدات الجديدة في الصفحة النَشِطة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:42
+#, fuzzy
+#| msgid "Search on twitter"
+msgid "Search on instance"
+msgstr "البحث في تويتر"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:43
+#: ../src/keystrokeEditor/actions/twitter.py:43
+msgid "Find a string in the currently focused buffer"
+msgstr "ابحث عن نصّ في الصفحة الحالية"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:44
+#: ../src/keystrokeEditor/actions/twitter.py:44
+msgid "Show the keystroke editor"
+msgstr "أظهِرْ مُحرِّر مفاتيح الاختصار"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:46
+#: ../src/keystrokeEditor/actions/twitter.py:46
+msgid "load previous items"
+msgstr "حمل العناصر السابقة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:48
+#: ../src/keystrokeEditor/actions/twitter.py:50
+msgid "View conversation"
+msgstr "إعرض المحادثة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:49
+#: ../src/keystrokeEditor/actions/twitter.py:51
+msgid "Check and download updates"
+msgstr "فحص وتحميل التحديثات الجديدة"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:50
+#: ../src/keystrokeEditor/actions/twitter.py:53
+msgid "Opens the global settings dialogue"
+msgstr "افتح صندوق حوار الخيارات"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:52
+#: ../src/keystrokeEditor/actions/twitter.py:55
+msgid "Opens the account settings dialogue"
+msgstr "افتح صندوق حوار إعدادات الحساب"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:53
+#: ../src/keystrokeEditor/actions/twitter.py:56
+#, fuzzy
+#| msgid "Try to play an audio file"
+msgid "Try to play a media file"
+msgstr "حاول تشغيل مقطع صوتي"
+
+#: ../src/keystrokeEditor/actions/mastodon.py:54
+#: ../src/keystrokeEditor/actions/twitter.py:57
+msgid "Updates the buffer and retrieves possible lost items there."
+msgstr ""
+"تقوم بتحديث الصفحة وتعيد  بعض العناصر التي من الممكن أن تكون قد ضاعت بها."
+
+#: ../src/keystrokeEditor/actions/twitter.py:10
+msgid "New tweet"
+msgstr "تغريدة جديدة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:12
+#: ../src/wxUI/buffers/twitter/base.py:26
+#: ../src/wxUI/commonMessageDialogs.py:10
+msgid "Retweet"
+msgstr "إعادة التغريد"
+
+#: ../src/keystrokeEditor/actions/twitter.py:14
+msgid "Like a tweet"
+msgstr "الإعجاب بتغريدة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:15
+#, fuzzy
+msgid "Like/unlike a tweet"
+msgstr "إلغاء الإعجاب بتغريدة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:16
+msgid "Unlike a tweet"
+msgstr "إلغاء الإعجاب بتغريدة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:18
+msgid "See user details"
+msgstr "إظهر تفاصيل المستخدم"
+
+#: ../src/keystrokeEditor/actions/twitter.py:19
+msgid "Show tweet"
+msgstr "إظهار التغريدة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:23
+msgid "Interact with the currently focused tweet."
+msgstr "التفاعل مع التغريدة المختارة حاليا"
+
+#: ../src/keystrokeEditor/actions/twitter.py:25
+#, fuzzy
+msgid "View in Twitter"
+msgstr "البحث في تويتر"
+
+#: ../src/keystrokeEditor/actions/twitter.py:32
+msgid "Edit profile"
+msgstr "حرر ملفك الشخصي"
+
+#: ../src/keystrokeEditor/actions/twitter.py:33
+msgid "Delete a tweet or direct message"
+msgstr "إحذف تغريدة أو رسالة مباشرة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:37
+msgid "Add to list"
+msgstr "الإضافة إلى قائمة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:38
+msgid "Remove from list"
+msgstr "حذف من قائمة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:42
+msgid "Search on twitter"
+msgstr "البحث في تويتر"
+
+#: ../src/keystrokeEditor/actions/twitter.py:45
+msgid "Show lists for a specified user"
+msgstr "إظهار القوائم لمستخدم محدد"
+
+#: ../src/keystrokeEditor/actions/twitter.py:47
+msgid "Get geolocation"
+msgstr "الحصول على إحداثيات الموقع"
+
+#: ../src/keystrokeEditor/actions/twitter.py:48
+msgid "Display the tweet's geolocation in a dialog"
+msgstr "عرض صندوق حوار بإحداثيات موقع التغريدة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:49
+msgid "Create a trending topics buffer"
+msgstr "أنشِئ صفححةً بالمواضيع المتداولة"
+
+#: ../src/keystrokeEditor/actions/twitter.py:52
+msgid ""
+"Opens the list manager, which allows you to create, edit, delete and open "
+"lists in buffers."
+msgstr ""
+"تفتح مدير القوائم والذي يمكنك من إنشاء وتحرير وحذف وفتح القوائم والصفحات."
+
+#: ../src/keystrokeEditor/actions/twitter.py:54
+#, fuzzy
+msgid "Opens the list manager"
+msgstr "مدير القوائم"
+
+#: ../src/keystrokeEditor/actions/twitter.py:58
+msgid "Extracts the text from a picture and displays the result in a dialog."
+msgstr "تستخلص النص من الصورة وتعرض النتيجة في صندوق الحوار"
+
+#: ../src/keystrokeEditor/actions/twitter.py:59
+#, fuzzy
+msgid "Adds an alias to an user"
+msgstr "إختر القائمة لإضافة المستخدم لها"
+
+#: ../src/sessionmanager/sessionManager.py:68
+msgid "{account_name} (Twitter)"
+msgstr ""
+
+#: ../src/sessionmanager/sessionManager.py:73
+msgid "{account_name} (Mastodon)"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:10
 msgid "Session manager"
 msgstr "مدير الجلسة"
 
-#: src/sessionmanager/wxUI.py:12
+#: ../src/sessionmanager/wxUI.py:13
 msgid "Accounts list"
 msgstr "قائمة الحسابات"
 
-#: src/sessionmanager/wxUI.py:14
+#: ../src/sessionmanager/wxUI.py:15
 msgid "Account"
 msgstr "حسابفك ربط حساب الدروب بوكس."
 
-#: src/sessionmanager/wxUI.py:18
+#: ../src/sessionmanager/wxUI.py:19
 msgid "New account"
 msgstr "حساب جديد"
 
-#: src/sessionmanager/wxUI.py:19 src/sessionmanager/wxUI.py:65
+#: ../src/sessionmanager/wxUI.py:21 ../src/sessionmanager/wxUI.py:87
 msgid "Remove account"
 msgstr "إحذف الحساب"
 
-#: src/sessionmanager/wxUI.py:20
+#: ../src/sessionmanager/wxUI.py:23
 msgid "Global Settings"
 msgstr "إعدادات عامة"
 
-#: src/sessionmanager/wxUI.py:43
+#: ../src/sessionmanager/wxUI.py:47
 msgid "You need to configure an account."
 msgstr "عليك أن تثبت حساب"
 
-#: src/sessionmanager/wxUI.py:43
+#: ../src/sessionmanager/wxUI.py:47
 msgid "Account Error"
 msgstr "خطء في الحساب"
 
-#: src/sessionmanager/wxUI.py:49
+#: ../src/sessionmanager/wxUI.py:53
+#, fuzzy
+msgid "Twitter"
+msgstr "البحث في تويتر"
+
+#: ../src/sessionmanager/wxUI.py:54
+msgid "Mastodon"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:60
+msgid ""
+"You will be prompted for your Mastodon data (instance URL, email address and "
+"password) so we can authorise TWBlue in your instance. Would you like to "
+"authorise your account now?"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:60 ../src/sessionmanager/wxUI.py:67
+msgid "Authorization"
+msgstr "التحقُّق"
+
+#: ../src/sessionmanager/wxUI.py:67
 msgid ""
 "The request to authorize your Twitter account will be opened in your "
 "browser. You only need to do this once. Would you like to continue?"
@@ -1912,75 +2492,276 @@ msgstr ""
 "سوف يفتح متصفح للسماح للبرنامج بالدخول على حساب تويتر الخاص بك. أنت تحتاج أن "
 "تفعل هذا مرة واحدة. هل ترغب بالمتابعة؟"
 
-#: src/sessionmanager/wxUI.py:49
-msgid "Authorization"
-msgstr "التحقُّق"
-
-#: src/sessionmanager/wxUI.py:53
+#: ../src/sessionmanager/wxUI.py:75
 #, python-format
 msgid "Authorized account %d"
 msgstr "تم التصريح للحساب %d"
 
-#: src/sessionmanager/wxUI.py:59
+#: ../src/sessionmanager/wxUI.py:81
 msgid ""
 "Your access token is invalid or the authorization has failed. Please try "
 "again."
 msgstr "هناك مشكلة في التصريح. يرجى المحاولة مرة أخرى."
 
-#: src/sessionmanager/wxUI.py:59
+#: ../src/sessionmanager/wxUI.py:81
 msgid "Invalid user token"
 msgstr "مفتاح العبور ر غير صحيح"
 
-#: src/sessionmanager/wxUI.py:65
+#: ../src/sessionmanager/wxUI.py:87
 msgid "Do you really want to delete this account?"
 msgstr "هل أنت متأكد من رغبتك في حذف هذا الحساب؟"
 
-#: src/sessionmanager/wxUI.py:81
+#: ../src/sessionmanager/wxUI.py:111
 msgid ""
-"TWBlue is unable to authenticate the account for {} in Twitter. It might "
-"be due to an invalid or expired token, revoqued access to the "
-"application, or after an account reactivation. Please remove the account "
-"manually from your Twitter sessions in order to stop seeing this message."
+"TWBlue is unable to authenticate the account for {} in Twitter. It might be "
+"due to an invalid or expired token, revoqued access to the application, or "
+"after an account reactivation. Please remove the account manually from your "
+"Twitter sessions in order to stop seeing this message."
 msgstr ""
 
-#: src/sessionmanager/wxUI.py:81
+#: ../src/sessionmanager/wxUI.py:111
 msgid "Authentication error for session {}"
 msgstr ""
 
-#: src/sessions/base.py:113
+#: ../src/sessions/base.py:125
 msgid ""
-"An exception occurred while saving the {app} database. It will be deleted"
-" and rebuilt automatically. If this error persists, send the error log to"
-" the {app} developers."
+"An exception occurred while saving the {app} database. It will be deleted "
+"and rebuilt automatically. If this error persists, send the error log to the "
+"{app} developers."
 msgstr ""
 
-#: src/sessions/base.py:153
+#: ../src/sessions/base.py:165
 msgid ""
-"An exception occurred while loading the {app} database. It will be "
-"deleted and rebuilt automatically. If this error persists, send the error"
-" log to the {app} developers."
+"An exception occurred while loading the {app} database. It will be deleted "
+"and rebuilt automatically. If this error persists, send the error log to the "
+"{app} developers."
 msgstr ""
 
-#: src/sessions/twitter/compose.py:25 src/sessions/twitter/compose.py:68
-#: src/sessions/twitter/compose.py:133 src/sessions/twitter/compose.py:142
-#: src/sessions/twitter/templates.py:26
+#: ../src/sessions/mastodon/compose.py:17
+#: ../src/sessions/mastodon/compose.py:64
+#, fuzzy
+#| msgid "dddd, MMMM D, YYYY H:m:s"
+msgid "dddd, MMMM D, YYYY H:m"
+msgstr "dddd, MMMM D, YYYY H:m:s"
+
+#: ../src/sessions/mastodon/compose.py:19
+#: ../src/sessions/mastodon/templates.py:80
+#: ../src/sessions/mastodon/templates.py:81
+#, fuzzy
+#| msgid "{0}. Quoted  tweet from @{1}: {2}"
+msgid "Boosted from @{}: {}"
+msgstr "{0}. إقتبس تغريدة من @{1}: {2}"
+
+#: ../src/sessions/mastodon/compose.py:35
+#: ../src/sessions/mastodon/templates.py:28
+#: ../src/sessions/twitter/compose.py:22 ../src/sessions/twitter/compose.py:62
+#: ../src/sessions/twitter/compose.py:124
+#: ../src/sessions/twitter/compose.py:130
+#: ../src/sessions/twitter/templates.py:26
 msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "dddd, MMMM D, YYYY H:m:s"
 
-#: src/sessions/twitter/compose.py:76 src/sessions/twitter/compose.py:78
+#: ../src/sessions/mastodon/compose.py:39
+#, fuzzy, python-format
+#| msgid ""
+#| "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
+#| "Twitter %s"
+msgid "%s (@%s). %s followers, %s following, %s posts. Joined %s"
+msgstr ""
+"%s (@%s). %s متابعين,  %s أصدقاء, %s تغريدات. آخر تغريدة %s. إنضم إلى تويتر "
+"في %s"
+
+#: ../src/sessions/mastodon/compose.py:50
+msgid "Last message from {}: {}"
+msgstr ""
+
+#: ../src/sessions/mastodon/compose.py:67
+msgid "{username} has mentionned you: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/compose.py:69
+msgid "{username} has boosted: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/compose.py:71
+msgid "{username} has added to favorites: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/compose.py:73
+#, fuzzy
+#| msgid "{0} is following you."
+msgid "{username} has followed you."
+msgstr "{0}  يتابعك"
+
+#: ../src/sessions/mastodon/compose.py:75
+#: ../src/sessions/mastodon/templates.py:172
+msgid "A poll in which you have voted has expired: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/compose.py:77
+#, fuzzy
+#| msgid "{0} is following you."
+msgid "{username} wants to follow you."
+msgstr "{0}  يتابعك"
+
+#: ../src/sessions/mastodon/session.py:60
+msgid "Please enter your instance URL."
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:60
+msgid "Mastodon instance"
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:71
+msgid ""
+"We could not connect to your mastodon instance. Please verify that the "
+"domain exists and the instance is accessible via a web browser."
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:71
+#, fuzzy
+#| msgid "&Report an error"
+msgid "Instance error"
+msgstr "إبلغ عن عطل"
+
+#: ../src/sessions/mastodon/session.py:76
+msgid "Enter the verification code"
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:76
+#, fuzzy
+#| msgid "Authorization"
+msgid "PIN code authorization"
+msgstr "التحقُّق"
+
+#: ../src/sessions/mastodon/session.py:85
+msgid ""
+"We could not authorice your mastodon account to be used in TWBlue. This "
+"might be caused due to an incorrect verification code. Please try to add the "
+"session again."
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:85
+#: ../src/sessions/twitter/session.py:171
+#, fuzzy
+#| msgid "Authorization"
+msgid "Authorization error"
+msgstr "التحقُّق"
+
+#: ../src/sessions/mastodon/session.py:182
+#: ../src/sessions/twitter/session.py:206
+#: ../src/sessions/twitter/session.py:233
+#, python-format
+msgid "%s failed.  Reason: %s"
+msgstr "فشل %s بسبب %s"
+
+#: ../src/sessions/mastodon/session.py:188
+#: ../src/sessions/twitter/session.py:212
+#: ../src/sessions/twitter/session.py:236
+#, python-format
+msgid "%s succeeded."
+msgstr "نجح %s"
+
+#: ../src/sessions/mastodon/templates.py:18
+#: ../src/sessions/twitter/templates.py:16
+msgid "$display_name, $text $image_descriptions $date. $source"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:19
+#: ../src/sessions/twitter/templates.py:18
+msgid "Dm to $recipient_display_name, $text $date"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:20
+msgid ""
+"$display_name (@$screen_name). $followers followers, $following following, "
+"$posts posts. Joined $created_at."
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:21
+msgid "$display_name $text, $date"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:34
+msgid "Content warning: {}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:45
+#, fuzzy
+msgid "Image description: {}"
+msgstr "وصف الصورة"
+
+#: ../src/sessions/mastodon/templates.py:85
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
+#, fuzzy
+#| msgid "Followers"
+msgid "Followers only"
+msgstr "المتابِعون"
+
+#: ../src/sessions/mastodon/templates.py:162
+msgid "has mentionned you: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:164
+msgid "has boosted: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:166
+msgid "has added to favorites: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:168
+msgid "has updated a status: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:170
+#, fuzzy
+#| msgid "{0} is following you."
+msgid "has followed you."
+msgstr "{0}  يتابعك"
+
+#: ../src/sessions/mastodon/templates.py:174
+#, fuzzy
+#| msgid "{0} is following you."
+msgid "wants to follow you."
+msgstr "{0}  يتابعك"
+
+#: ../src/sessions/mastodon/wxUI.py:6 ../src/sessions/twitter/session.py:162
+#: ../src/sessions/twitter/wxUI.py:6
+#, fuzzy
+msgid "Authorising account..."
+msgstr "حساب مرخص %d"
+
+#: ../src/sessions/mastodon/wxUI.py:9
+msgid "URL of mastodon instance:"
+msgstr ""
+
+#: ../src/sessions/mastodon/wxUI.py:15
+#, fuzzy
+#| msgid "View &address"
+msgid "Email address:"
+msgstr "عرض &العنوان"
+
+#: ../src/sessions/mastodon/wxUI.py:21
+#, fuzzy
+#| msgid "Password: "
+msgid "Password:"
+msgstr "كلمة المرور:"
+
+#: ../src/sessions/twitter/compose.py:68 ../src/sessions/twitter/compose.py:70
 #, python-format
 msgid "Dm to %s "
 msgstr "رسالة خاصة إلى %s"
 
-#: src/sessions/twitter/compose.py:117
+#: ../src/sessions/twitter/compose.py:109
 msgid "{0}. Quoted  tweet from @{1}: {2}"
 msgstr "{0}. إقتبس تغريدة من @{1}: {2}"
 
-#: src/sessions/twitter/compose.py:144 src/sessions/twitter/compose.py:146
+#: ../src/sessions/twitter/compose.py:132
 msgid "Unavailable"
 msgstr "غير متوفر"
 
-#: src/sessions/twitter/compose.py:147
+#: ../src/sessions/twitter/compose.py:133
 #, python-format
 msgid ""
 "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
@@ -1989,84 +2770,69 @@ msgstr ""
 "%s (@%s). %s متابعين,  %s أصدقاء, %s تغريدات. آخر تغريدة %s. إنضم إلى تويتر "
 "في %s"
 
-#: src/sessions/twitter/compose.py:151
+#: ../src/sessions/twitter/compose.py:137
 msgid "No description available"
 msgstr "لا يوجد وصف"
 
-#: src/sessions/twitter/compose.py:155
+#: ../src/sessions/twitter/compose.py:141
 msgid "private"
 msgstr "خاصة"
 
-#: src/sessions/twitter/compose.py:156
+#: ../src/sessions/twitter/compose.py:142
 msgid "public"
 msgstr "عامة"
 
-#: src/sessions/twitter/session.py:212 src/sessions/twitter/session.py:239
-#, python-format
-msgid "%s failed.  Reason: %s"
-msgstr "فشل %s بسبب %s"
-
-#: src/sessions/twitter/session.py:218 src/sessions/twitter/session.py:242
-#, python-format
-msgid "%s succeeded."
-msgstr "نجح %s"
-
-#: src/sessions/twitter/session.py:452 src/sessions/twitter/session.py:535
-#, fuzzy
-msgid "Deleted account"
-msgstr "حساب جديد"
-
-#: src/sessions/twitter/templates.py:16
-msgid "$display_name, $text $image_descriptions $date. $source"
-msgstr ""
-
-#: src/sessions/twitter/templates.py:17
-msgid "$sender_display_name, $text $date"
-msgstr ""
-
-#: src/sessions/twitter/templates.py:18
-msgid "Dm to $recipient_display_name, $text $date"
-msgstr ""
-
-#: src/sessions/twitter/templates.py:19
-msgid ""
-"$display_name (@$screen_name). $followers followers, $following "
-"following, $tweets tweets. Joined Twitter $created_at."
-msgstr ""
-
-#: src/sessions/twitter/templates.py:54
-#, fuzzy
-msgid "Image description: {}."
-msgstr "وصف الصورة"
-
-#: src/sessions/twitter/utils.py:243
-msgid "Sorry, you are not authorised to see this status."
-msgstr "نأسف, ليس مصرح لك أن ترى هذه الحالة."
-
-#: src/sessions/twitter/utils.py:245
-msgid "No status found with that ID"
-msgstr "لم يتم العثور على حالة بهذا الرمز."
-
-#: src/sessions/twitter/utils.py:247
-#, fuzzy
-msgid "Error {0}"
-msgstr "خطء رقم {0}"
-
-#: src/sessions/twitter/utils.py:274
-msgid "{user_1}, {user_2} and {all_users} more: {text}"
-msgstr ""
-
-#: src/sessions/twitter/wxUI.py:7
-#, fuzzy
-msgid "Authorising account..."
-msgstr "حساب مرخص %d"
-
-#: src/sessions/twitter/wxUI.py:10
+#: ../src/sessions/twitter/session.py:162 ../src/sessions/twitter/wxUI.py:9
 #, fuzzy
 msgid "Enter your PIN code here"
 msgstr "إدخل الرمزهنا."
 
-#: src/update/wxUpdater.py:14
+#: ../src/sessions/twitter/session.py:171
+msgid ""
+"We could not authorice your Twitter account to be used in TWBlue. This might "
+"be caused due to an incorrect verification code. Please try to add the "
+"session again."
+msgstr ""
+
+#: ../src/sessions/twitter/session.py:440
+#: ../src/sessions/twitter/session.py:523
+#, fuzzy
+msgid "Deleted account"
+msgstr "حساب جديد"
+
+#: ../src/sessions/twitter/templates.py:17
+msgid "$sender_display_name, $text $date"
+msgstr ""
+
+#: ../src/sessions/twitter/templates.py:19
+msgid ""
+"$display_name (@$screen_name). $followers followers, $following following, "
+"$tweets tweets. Joined Twitter $created_at."
+msgstr ""
+
+#: ../src/sessions/twitter/templates.py:54
+#, fuzzy
+msgid "Image description: {}."
+msgstr "وصف الصورة"
+
+#: ../src/sessions/twitter/utils.py:243
+msgid "Sorry, you are not authorised to see this status."
+msgstr "نأسف, ليس مصرح لك أن ترى هذه الحالة."
+
+#: ../src/sessions/twitter/utils.py:245
+msgid "No status found with that ID"
+msgstr "لم يتم العثور على حالة بهذا الرمز."
+
+#: ../src/sessions/twitter/utils.py:247
+#, fuzzy
+msgid "Error {0}"
+msgstr "خطء رقم {0}"
+
+#: ../src/sessions/twitter/utils.py:274
+msgid "{user_1}, {user_2} and {all_users} more: {text}"
+msgstr ""
+
+#: ../src/update/wxUpdater.py:11
 #, python-format
 msgid ""
 "There's a new %s version available, released on %s. Would you like to "
@@ -2084,25 +2850,52 @@ msgstr ""
 "المستجدات:\n"
 "%s"
 
-#: src/update/wxUpdater.py:14
+#: ../src/update/wxUpdater.py:14
+#, fuzzy, python-format
+#| msgid ""
+#| "There's a new %s version available, released on %s. Would you like to "
+#| "download it now?\n"
+#| "\n"
+#| " %s version: %s\n"
+#| "\n"
+#| "Changes:\n"
+#| "%s"
+msgid ""
+"There's a new %s version available, released on %s. Updates are not "
+"automatic in Windows 7, so you would need to visit TWBlue's download website "
+"to get the latest version.\n"
+"\n"
+" %s version: %s\n"
+"\n"
+"Changes:\n"
+"%s"
+msgstr ""
+"الإصدار  %s متوفر الآن, صدر في  %s. هل ترغب بتحميله الآن\n"
+"\n"
+" %s الإصدار: %s\n"
+"\n"
+"المستجدات:\n"
+"%s"
+
+#: ../src/update/wxUpdater.py:16
 #, python-format
 msgid "New version for %s"
 msgstr "إصدار جديد من %s"
 
-#: src/update/wxUpdater.py:22
+#: ../src/update/wxUpdater.py:23
 msgid "Download in Progress"
 msgstr "جاري التحميل"
 
-#: src/update/wxUpdater.py:22
+#: ../src/update/wxUpdater.py:23
 msgid "Downloading the new version..."
 msgstr "جاري تحميل الإصدار الجديد"
 
-#: src/update/wxUpdater.py:32
+#: ../src/update/wxUpdater.py:33
 #, python-format
 msgid "Updating... %s of %s"
 msgstr "جاري التحديث... %s من %s"
 
-#: src/update/wxUpdater.py:35
+#: ../src/update/wxUpdater.py:36
 msgid ""
 "The update has been downloaded and installed successfully. Press OK to "
 "continue."
@@ -2110,1512 +2903,1853 @@ msgstr ""
 "الإصدار الجديد من TW Blue تم تحميله وتنصيبه. اضغط على زر موافق لبدء تشغيل "
 "التطبيق."
 
-#: src/update/wxUpdater.py:35
+#: ../src/update/wxUpdater.py:36
 msgid "Done!"
 msgstr "تم الإنتهاء"
 
-#: src/wxUI/commonMessageDialogs.py:7
+#: ../src/wxUI/commonMessageDialogs.py:7
 msgid ""
-"This retweet is over 140 characters. Would you like to post it as a "
-"mention to the poster with your comments and a link to the original "
-"tweet?"
+"This retweet is over 140 characters. Would you like to post it as a mention "
+"to the poster with your comments and a link to the original tweet?"
 msgstr ""
 "إعادة التغريدة هذه أطول من 140 حرف. هل ترغب بنشرها كذكر  لصاحبها مع تعليق "
 "ورابط للتغريدة الأصلية؟"
 
-#: src/wxUI/commonMessageDialogs.py:10
+#: ../src/wxUI/commonMessageDialogs.py:10
 msgid "Would you like to add a comment to this tweet?"
 msgstr "هل ترغب بإضافة تعليق إلى هذه التغريدة؟"
 
-#: src/wxUI/commonMessageDialogs.py:13
+#: ../src/wxUI/commonMessageDialogs.py:13
 msgid ""
-"Do you really want to delete this tweet? It will be deleted from Twitter "
-"as well."
+"Do you really want to delete this tweet? It will be deleted from Twitter as "
+"well."
 msgstr "هل ترغبُ فعلا في حذفِ هذه التغريدة؟ سيؤدي ذلك لحذفها من تويتر أيضا."
 
-#: src/wxUI/commonMessageDialogs.py:13 src/wxUI/dialogs/lists.py:149
+#: ../src/wxUI/commonMessageDialogs.py:13 ../src/wxUI/dialogs/lists.py:149
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:15
 msgid "Delete"
 msgstr "حذف"
 
-#: src/wxUI/commonMessageDialogs.py:16
+#: ../src/wxUI/commonMessageDialogs.py:16
 msgid "Do you really want to close {0}?"
 msgstr "هل تىغب حقا إغلاق {0}?"
 
-#: src/wxUI/commonMessageDialogs.py:16
+#: ../src/wxUI/commonMessageDialogs.py:16
 msgid "Exit"
 msgstr "الخروج"
 
-#: src/wxUI/commonMessageDialogs.py:20
+#: ../src/wxUI/commonMessageDialogs.py:20
 msgid " {0} must be restarted for these changes to take effect."
 msgstr "يجب إعادة تشغيل  {0} كي تتفعل التغييرات."
 
-#: src/wxUI/commonMessageDialogs.py:20
+#: ../src/wxUI/commonMessageDialogs.py:20
 msgid "Restart {0} "
 msgstr "إعادة تشغيل {0} "
 
-#: src/wxUI/commonMessageDialogs.py:23
+#: ../src/wxUI/commonMessageDialogs.py:23
 msgid ""
-"Are you sure you want to delete this user from the database? This user "
-"will not appear in autocomplete results anymore."
+"Are you sure you want to delete this user from the database? This user will "
+"not appear in autocomplete results anymore."
 msgstr ""
 "هل أنت متأكد من رغبتك في حذف هذا المستخدم من قاعدة البيانات؟ لن يظهر "
 "المستخدم في قائمة التعبئة التلقائية بعد هذا."
 
-#: src/wxUI/commonMessageDialogs.py:23
+#: ../src/wxUI/commonMessageDialogs.py:23
 msgid "Confirm"
 msgstr "تأكيد"
 
-#: src/wxUI/commonMessageDialogs.py:26
+#: ../src/wxUI/commonMessageDialogs.py:26
 msgid "Enter the name of the client : "
 msgstr "أدخِل اسم التطبيق هنا"
 
-#: src/wxUI/commonMessageDialogs.py:26 src/wxUI/dialogs/configuration.py:267
+#: ../src/wxUI/commonMessageDialogs.py:26
+#: ../src/wxUI/dialogs/configuration.py:267
 msgid "Add client"
 msgstr "أضف تطبيق"
 
-#: src/wxUI/commonMessageDialogs.py:32
+#: ../src/wxUI/commonMessageDialogs.py:32
 msgid ""
-"Do you really want to empty this buffer? It's  items will be removed from"
-" the list but not from Twitter"
+"Do you really want to empty this buffer? It's  items will be removed from "
+"the list but not from Twitter"
 msgstr ""
 "هل أنت متأكد من رغبتك بإفراغ هذه الصفحة؟ ستزال التغريدات من هذه الصفحة فقط "
 "وليس من تويتر"
 
-#: src/wxUI/commonMessageDialogs.py:32
+#: ../src/wxUI/commonMessageDialogs.py:32
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:31
 msgid "Empty buffer"
 msgstr "إفراغ السياق الزمني"
 
-#: src/wxUI/commonMessageDialogs.py:36
+#: ../src/wxUI/commonMessageDialogs.py:36
 msgid "Do you really want to destroy this buffer?"
 msgstr "هل أنت متأكد من رغبتك في إزالة هذه الصفحة؟"
 
-#: src/wxUI/commonMessageDialogs.py:42
+#: ../src/wxUI/commonMessageDialogs.py:42
 msgid "A timeline for this user already exists. You can't open another"
 msgstr "يوجد سياق زمني لهذا المستخدم بالفعل، لا يمكن فتحُ آخر."
 
-#: src/wxUI/commonMessageDialogs.py:42
+#: ../src/wxUI/commonMessageDialogs.py:42
 msgid "Existing timeline"
 msgstr "السياق الزمني موجود مسبقا"
 
-#: src/wxUI/commonMessageDialogs.py:45
+#: ../src/wxUI/commonMessageDialogs.py:45
 msgid "This user has no tweets, so you can't open a timeline for them."
 msgstr ""
 "هذا المستخدم لا يوجد له أية تغريدات. وبالتالي لا يمكن فتح سياق زمني خاص به."
 
-#: src/wxUI/commonMessageDialogs.py:48
+#: ../src/wxUI/commonMessageDialogs.py:48
 msgid ""
 "This is a protected Twitter user, which means you can't open a timeline "
-"using the Streaming API. The user's tweets will not update due to a "
-"twitter policy. Do you want to continue?"
+"using the Streaming API. The user's tweets will not update due to a twitter "
+"policy. Do you want to continue?"
 msgstr ""
 "هذا مستخدم تويتر محمي مما يعني أنك لا تستطيع فتح سياقه الزمني بإستخدام "
 "الواجهة البرمجية لتويتر.ولم يتحدث سياقه الزمني بسبب سياسة تويتر هذه. هل تود "
 "المتابعة؟"
 
-#: src/wxUI/commonMessageDialogs.py:48 src/wxUI/commonMessageDialogs.py:98
+#: ../src/wxUI/commonMessageDialogs.py:48
+#: ../src/wxUI/commonMessageDialogs.py:98
 msgid "Warning"
 msgstr "تحذير"
 
-#: src/wxUI/commonMessageDialogs.py:51
+#: ../src/wxUI/commonMessageDialogs.py:51
 msgid ""
-"This is a protected user account, you need to follow this user to view "
-"their tweets or likes."
+"This is a protected user account, you need to follow this user to view their "
+"tweets or likes."
 msgstr ""
 "هذا حساب مستخدم محمي. تحتاج أن تتبع هذا المستخدم إذا أردت أن تشاهد تغريداته "
 "وإعجاباته."
 
-#: src/wxUI/commonMessageDialogs.py:54
+#: ../src/wxUI/commonMessageDialogs.py:54
 msgid ""
-"If you like {0} we need your help to keep it going. Help us by donating "
-"to the project. This will help us pay for the server, the domain and some"
-" other things to ensure that {0} will be actively maintained. Your "
-"donation will give us the means to continue the development of {0}, and "
-"to keep {0} free. Would you like to donate now?"
+"If you like {0} we need your help to keep it going. Help us by donating to "
+"the project. This will help us pay for the server, the domain and some other "
+"things to ensure that {0} will be actively maintained. Your donation will "
+"give us the means to continue the development of {0}, and to keep {0} free. "
+"Would you like to donate now?"
 msgstr ""
 "إذا كنت تحب {0}  فأننا بحاجة لمساعدتك لإستمراريته. ساعدنا بتبرعك للمشروع. "
 "هذا سوف يساعدنا على دفع فواتير الخادم, فاتورة النطاق, وأشياء أخرى كي يستمر "
 "تطوير {0}  وكي يبقى مجانيا. هل ترغب أن تتبرع الآن؟"
 
-#: src/wxUI/commonMessageDialogs.py:54
+#: ../src/wxUI/commonMessageDialogs.py:54
 msgid "We need your help"
 msgstr "نحن بحاجة لمساعدتك"
 
-#: src/wxUI/commonMessageDialogs.py:58
+#: ../src/wxUI/commonMessageDialogs.py:58
 msgid "This user has no tweets. {0} can't create a timeline."
 msgstr "هذا المستخدم لا يوجد له أية تغريدات. لا يمكن فتح سياق زمني خاص به."
 
-#: src/wxUI/commonMessageDialogs.py:61
+#: ../src/wxUI/commonMessageDialogs.py:61
 msgid "This user has no favorited tweets. {0} can't create a timeline."
 msgstr ""
-"هذا المستخدم لا يوجد له أية تغريدات مُفضّلة. لا يمكن ل{0} فتح سياق زمني خاص "
-"بها"
+"هذا المستخدم لا يوجد له أية تغريدات مُفضّلة. لا يمكن ل{0} فتح سياق زمني خاص بها"
 
-#: src/wxUI/commonMessageDialogs.py:64
+#: ../src/wxUI/commonMessageDialogs.py:64
 msgid "This user has no followers. {0} can't create a timeline."
 msgstr "هذا المستخدم لا يوجد له أي مُتابعين. لا يمكن فتح سياق زمني له."
 
-#: src/wxUI/commonMessageDialogs.py:67
+#: ../src/wxUI/commonMessageDialogs.py:67
 msgid "This user has no friends. {0} can't create a timeline."
 msgstr "هذا المستخدم لا يوجد له أي أصدقاء. لا يمكن فتح سياق زمني له.."
 
-#: src/wxUI/commonMessageDialogs.py:71
+#: ../src/wxUI/commonMessageDialogs.py:71
 msgid "Geolocation data: {0}"
 msgstr "إحداثيات الموقع: {0}"
 
-#: src/wxUI/commonMessageDialogs.py:71
+#: ../src/wxUI/commonMessageDialogs.py:71
 msgid "Geo data for this tweet"
 msgstr "معلومات جغرافية لهذه التغريدة"
 
-#: src/wxUI/commonMessageDialogs.py:74
+#: ../src/wxUI/commonMessageDialogs.py:74
 msgid ""
 "TWBlue has detected that you're running windows 10 and has changed the "
 "default keymap to the Windows 10 keymap. It means that some keyboard "
-"shorcuts could be different. Please check the keystroke editor by "
-"pressing Alt+Win+K to see all available keystrokes for this keymap."
+"shorcuts could be different. Please check the keystroke editor by pressing "
+"Alt+Win+K to see all available keystrokes for this keymap."
 msgstr ""
 "اكتشف TWBlue  أنّك تعمل على windows 10 وغيّر خارطة المفاتيح الافتراضية إلى "
 "خارطة مفاتيح windows 10 ، وذلك يعني اختلافا في بعض مفاتيح الاختصار. فضلا "
 "راجع محرّر مفاتيح الاختصار  بالضغط على المفاتيح: Alt+Windows+K  لرؤية كافة "
 "مفاتيح الاختصار المتاحة لهذه الخارطة"
 
-#: src/wxUI/commonMessageDialogs.py:74
+#: ../src/wxUI/commonMessageDialogs.py:74
 msgid "Information"
 msgstr "معلومات"
 
-#: src/wxUI/commonMessageDialogs.py:77
+#: ../src/wxUI/commonMessageDialogs.py:77
 msgid "You have been blocked from viewing  this content"
 msgstr "المحتوى محجوب ولا يمكن لك عرضه"
 
-#: src/wxUI/commonMessageDialogs.py:80
+#: ../src/wxUI/commonMessageDialogs.py:80
 msgid ""
 "You have been blocked from viewing  someone's content. In order to avoid "
-"conflicts with the full session, TWBlue will remove the affected "
-"timeline."
+"conflicts with the full session, TWBlue will remove the affected timeline."
 msgstr ""
-"أنت محظورٌ من عرض محتوى صفحة أحد الأشخاص. تفاديا للتعارُض مع كامل الجلسة؛ سيُ"
-"زيل TWBlue  الخطّ الزمني المتأثّر."
+"أنت محظورٌ من عرض محتوى صفحة أحد الأشخاص. تفاديا للتعارُض مع كامل الجلسة؛ "
+"سيُزيل TWBlue  الخطّ الزمني المتأثّر."
 
-#: src/wxUI/commonMessageDialogs.py:83
+#: ../src/wxUI/commonMessageDialogs.py:83
 msgid ""
-"TWBlue cannot load this timeline because the user has been suspended from"
-" Twitter."
+"TWBlue cannot load this timeline because the user has been suspended from "
+"Twitter."
 msgstr ""
 "لا يمنك لTW Blue تحميل هذا الخط الزمني لكون هذا المستخدم موقوفا من تويتر"
 
-#: src/wxUI/commonMessageDialogs.py:86
+#: ../src/wxUI/commonMessageDialogs.py:86
 #, fuzzy
 msgid "Do you really want to delete this filter?"
 msgstr "هل أنت متأكد من رغبتك بإزالة هذه القائمة؟"
 
-#: src/wxUI/commonMessageDialogs.py:89
+#: ../src/wxUI/commonMessageDialogs.py:89
 msgid "This filter already exists. Please use a different title"
 msgstr ""
 
-#: src/wxUI/commonMessageDialogs.py:95
+#: ../src/wxUI/commonMessageDialogs.py:95
 msgid "The configuration file is invalid."
 msgstr ""
 
-#: src/wxUI/commonMessageDialogs.py:98
+#: ../src/wxUI/commonMessageDialogs.py:98
 msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
 msgstr ""
 
-#: src/wxUI/menus.py:8 src/wxUI/view.py:33
-msgid "&Retweet"
-msgstr "إعادة التغريد"
-
-#: src/wxUI/menus.py:10 src/wxUI/menus.py:34 src/wxUI/view.py:32
-msgid "Re&ply"
-msgstr "الرد"
-
-#: src/wxUI/menus.py:12 src/wxUI/view.py:34
-msgid "&Like"
-msgstr "إ&عجاب"
-
-#: src/wxUI/menus.py:14 src/wxUI/view.py:35
-msgid "&Unlike"
-msgstr "&عدم الإعجاب"
-
-#: src/wxUI/menus.py:16 src/wxUI/menus.py:36 src/wxUI/menus.py:52
+#: ../src/wxUI/dialogs/mastodon/menus.py:15 ../src/wxUI/menus.py:16
+#: ../src/wxUI/menus.py:36 ../src/wxUI/menus.py:52
 msgid "&Open URL"
 msgstr "&إفتح الرابط"
 
-#: src/wxUI/menus.py:18 src/wxUI/menus.py:54 src/wxUI/menus.py:87
+#: ../src/wxUI/dialogs/mastodon/menus.py:17 ../src/wxUI/menus.py:18
+#: ../src/wxUI/menus.py:54 ../src/wxUI/menus.py:87
 #, fuzzy
 msgid "&Open in Twitter"
 msgstr "البحث في تويتر"
 
-#: src/wxUI/menus.py:20 src/wxUI/menus.py:38 src/wxUI/menus.py:56
+#: ../src/wxUI/dialogs/mastodon/menus.py:19 ../src/wxUI/menus.py:20
+#: ../src/wxUI/menus.py:38 ../src/wxUI/menus.py:56
 msgid "&Play audio"
 msgstr "&شغل  مقطع صوتي"
 
-#: src/wxUI/menus.py:22 src/wxUI/menus.py:58 src/wxUI/view.py:36
-msgid "&Show tweet"
-msgstr "إظهار التغريدة"
-
-#: src/wxUI/menus.py:24 src/wxUI/menus.py:42 src/wxUI/menus.py:60
-#: src/wxUI/menus.py:70 src/wxUI/menus.py:89 src/wxUI/menus.py:103
+#: ../src/wxUI/dialogs/mastodon/menus.py:23 ../src/wxUI/menus.py:24
+#: ../src/wxUI/menus.py:42 ../src/wxUI/menus.py:60 ../src/wxUI/menus.py:70
+#: ../src/wxUI/menus.py:89 ../src/wxUI/menus.py:103
 msgid "&Copy to clipboard"
 msgstr "&إنسخ إلى الحافظة"
 
-#: src/wxUI/menus.py:26 src/wxUI/menus.py:44 src/wxUI/menus.py:62
-#: src/wxUI/menus.py:72 src/wxUI/view.py:40
-msgid "&Delete"
-msgstr "حذف"
-
-#: src/wxUI/menus.py:28 src/wxUI/menus.py:46 src/wxUI/menus.py:91
+#: ../src/wxUI/dialogs/mastodon/menus.py:27 ../src/wxUI/menus.py:28
+#: ../src/wxUI/menus.py:46 ../src/wxUI/menus.py:91
 msgid "&User actions..."
 msgstr "&إجراآت المستخدم"
 
-#: src/wxUI/menus.py:40
+#: ../src/wxUI/menus.py:40
 msgid "&Show direct message"
 msgstr "&إعرض الرسالة الخاصة"
 
-#: src/wxUI/menus.py:68
+#: ../src/wxUI/menus.py:68
 msgid "&Show event"
 msgstr "&إظهر الحدث"
 
-#: src/wxUI/menus.py:78
+#: ../src/wxUI/menus.py:78
 msgid "Direct &message"
 msgstr "رسالة خاصة"
 
-#: src/wxUI/menus.py:80 src/wxUI/view.py:50
-msgid "&View lists"
-msgstr "عرض القوائم"
-
-#: src/wxUI/menus.py:83 src/wxUI/view.py:51
-msgid "Show user &profile"
-msgstr "إظهار الملف الشخصي للمستخدم"
-
-#: src/wxUI/menus.py:85
+#: ../src/wxUI/menus.py:85
 msgid "&Show user"
 msgstr "&إظهر المستخدمين"
 
-#: src/wxUI/buffers/trends.py:20 src/wxUI/menus.py:97
+#: ../src/wxUI/buffers/twitter/trends.py:20 ../src/wxUI/menus.py:97
 msgid "Search topic"
 msgstr "موضوع البحث"
 
-#: src/wxUI/menus.py:99
+#: ../src/wxUI/menus.py:99
 msgid "&Tweet about this trend"
 msgstr "&التغريد حول هذا الموضوع"
 
-#: src/wxUI/menus.py:101
+#: ../src/wxUI/menus.py:101
 msgid "&Show item"
 msgstr "&إعرض العنصر"
 
-#: src/wxUI/sysTrayIcon.py:36 src/wxUI/view.py:26
+#: ../src/wxUI/sysTrayIcon.py:36 ../src/wxUI/view.py:24
 msgid "&Global settings"
 msgstr "&الإعدادات العامة"
 
-#: src/wxUI/sysTrayIcon.py:37 src/wxUI/view.py:25
+#: ../src/wxUI/sysTrayIcon.py:37 ../src/wxUI/view.py:23
 msgid "Account se&ttings"
 msgstr "إعدادات الحساب"
 
-#: src/wxUI/sysTrayIcon.py:38
+#: ../src/wxUI/sysTrayIcon.py:38
 msgid "Update &profile"
 msgstr "حدث &ملفك الشخصي"
 
-#: src/wxUI/sysTrayIcon.py:39
+#: ../src/wxUI/sysTrayIcon.py:39
 msgid "&Show / hide"
 msgstr "&الإظهار او الإخفاء"
 
-#: src/wxUI/sysTrayIcon.py:40 src/wxUI/view.py:75
+#: ../src/wxUI/sysTrayIcon.py:40 ../src/wxUI/view.py:73
 msgid "&Documentation"
 msgstr "دليل المستخدم"
 
-#: src/wxUI/sysTrayIcon.py:41
+#: ../src/wxUI/sysTrayIcon.py:41
 msgid "Check for &updates"
 msgstr "فحص &التحديثات الجديدة"
 
-#: src/wxUI/sysTrayIcon.py:42
+#: ../src/wxUI/sysTrayIcon.py:42
 msgid "&Exit"
 msgstr "&الخروج"
 
-#: src/wxUI/view.py:18
+#: ../src/wxUI/view.py:16
 msgid "&Manage accounts"
 msgstr "&إدر الحسابات"
 
-#: src/wxUI/dialogs/update_profile.py:35 src/wxUI/view.py:19
-msgid "&Update profile"
-msgstr "حدّث الملف الشخصي"
-
-#: src/wxUI/view.py:20
+#: ../src/wxUI/view.py:18
 msgid "&Hide window"
 msgstr "إخفاء  شاشة التطبيق"
 
-#: src/wxUI/dialogs/search.py:13 src/wxUI/view.py:21
-msgid "&Search"
-msgstr "البحث"
-
-#: src/wxUI/view.py:22
-msgid "&Lists manager"
-msgstr "مدير القوائم"
-
-#: src/wxUI/view.py:23
-msgid "Manage user aliases"
-msgstr ""
-
-#: src/wxUI/view.py:24
+#: ../src/wxUI/view.py:22
 msgid "&Edit keystrokes"
 msgstr "حرر مفاتيح الإختصار"
 
-#: src/wxUI/view.py:27
+#: ../src/wxUI/view.py:25
 msgid "E&xit"
 msgstr "الخروج"
 
-#: src/wxUI/view.py:31 src/wxUI/view.py:86
-msgid "&Tweet"
-msgstr "تغريدة"
-
-#: src/wxUI/view.py:37
-msgid "View &address"
-msgstr "عرض &العنوان"
-
-#: src/wxUI/view.py:38
-msgid "View conversa&tion"
-msgstr "عرض المحادثة"
-
-#: src/wxUI/view.py:39
-msgid "Read text in picture"
-msgstr "اقرء النص الذي في الصورة"
-
-#: src/wxUI/view.py:44
-msgid "&Actions..."
-msgstr "إجراءات"
-
-#: src/wxUI/view.py:45
-msgid "&View timeline..."
-msgstr "&اعرِضِ السياق الزمني"
-
-#: src/wxUI/view.py:46
-msgid "Direct me&ssage"
-msgstr "رسالة خاصة"
-
-#: src/wxUI/view.py:47
-msgid "Add a&lias"
-msgstr ""
-
-#: src/wxUI/view.py:48
-msgid "&Add to list"
-msgstr "الإضافة إلى قائمة"
-
-#: src/wxUI/view.py:49
-msgid "R&emove from list"
-msgstr "حذف من قائمة"
-
-#: src/wxUI/view.py:52
+#: ../src/wxUI/view.py:50
 msgid "V&iew likes"
 msgstr "عرض قائمة الإعجابات"
 
-#: src/wxUI/view.py:56
+#: ../src/wxUI/view.py:54
 msgid "&Update buffer"
 msgstr "تحديث  السياق الزمني"
 
-#: src/wxUI/view.py:57
-msgid "New &trending topics buffer..."
-msgstr "أظهِرْ صفحة جديدة للموضوعات المتداولة"
-
-#: src/wxUI/view.py:58
-#, fuzzy
-msgid "Create a &filter"
-msgstr "إنشء قائمة جديدة"
-
-#: src/wxUI/view.py:59
-#, fuzzy
-msgid "&Manage filters"
-msgstr "&إدر الحسابات"
-
-#: src/wxUI/view.py:60
+#: ../src/wxUI/view.py:58
 msgid "Find a string in the currently focused buffer..."
 msgstr "ابحث عن نصّ في القائمة الحالية"
 
-#: src/wxUI/view.py:61
+#: ../src/wxUI/view.py:59
 msgid "&Load previous items"
 msgstr "&تحميل العناصر السابقة"
 
-#: src/wxUI/dialogs/userActions.py:22 src/wxUI/view.py:63
+#: ../src/wxUI/dialogs/mastodon/userActions.py:21
+#: ../src/wxUI/dialogs/userActions.py:22 ../src/wxUI/view.py:61
 msgid "&Mute"
 msgstr "كتم"
 
-#: src/wxUI/view.py:64
+#: ../src/wxUI/view.py:62
 msgid "&Autoread"
 msgstr "&قراءة تلقائية"
 
-#: src/wxUI/view.py:65
+#: ../src/wxUI/view.py:63
 msgid "&Clear buffer"
 msgstr "مسح التغريدات من الصفحة"
 
-#: src/wxUI/view.py:66
+#: ../src/wxUI/view.py:64
 msgid "&Destroy"
 msgstr "إ&زالة"
 
-#: src/wxUI/view.py:70
+#: ../src/wxUI/view.py:68
 msgid "&Seek back 5 seconds"
 msgstr "&تراجع للخلف خمس ثواني"
 
-#: src/wxUI/view.py:71
+#: ../src/wxUI/view.py:69
 msgid "&Seek forward 5 seconds"
 msgstr "&تقدم للأمام خمس ثواني"
 
-#: src/wxUI/view.py:76
+#: ../src/wxUI/view.py:74
 msgid "Sounds &tutorial"
 msgstr "مُعَلِم الأصوات"
 
-#: src/wxUI/view.py:77
+#: ../src/wxUI/view.py:75
 msgid "&What's new in this version?"
 msgstr "ما هو الجديد في هذا الإصدار"
 
-#: src/wxUI/view.py:78
+#: ../src/wxUI/view.py:76
 msgid "&Check for updates"
 msgstr "فحص التحديثات الجديدة"
 
-#: src/wxUI/view.py:79
+#: ../src/wxUI/view.py:77
 msgid "&Report an error"
 msgstr "إبلغ عن عطل"
 
-#: src/wxUI/view.py:80
+#: ../src/wxUI/view.py:78
 msgid "{0}'s &website"
 msgstr "&website الخاص ب{0} "
 
-#: src/wxUI/view.py:81
+#: ../src/wxUI/view.py:79
 msgid "Get soundpacks for TWBlue"
 msgstr ""
 
-#: src/wxUI/view.py:82
+#: ../src/wxUI/view.py:80
 msgid "About &{0}"
 msgstr "عن &{0}"
 
-#: src/wxUI/view.py:85
+#: ../src/wxUI/view.py:83
 msgid "&Application"
 msgstr "خيارات التطبيق"
 
-#: src/wxUI/dialogs/userActions.py:11 src/wxUI/view.py:87
+#: ../src/wxUI/view.py:84
+#, fuzzy
+#| msgid "Item"
+msgid "&Item"
+msgstr "عنصر"
+
+#: ../src/wxUI/dialogs/mastodon/userActions.py:10
+#: ../src/wxUI/dialogs/userActions.py:11 ../src/wxUI/view.py:85
 msgid "&User"
 msgstr "المستخدم"
 
-#: src/wxUI/view.py:88
+#: ../src/wxUI/view.py:86
 msgid "&Buffer"
 msgstr "الصفحة"
 
-#: src/wxUI/view.py:89
+#: ../src/wxUI/view.py:87
 msgid "&Audio"
 msgstr "&صوت"
 
-#: src/wxUI/view.py:90
+#: ../src/wxUI/view.py:88
 msgid "&Help"
 msgstr "المساعدة"
 
-#: src/wxUI/view.py:176
+#: ../src/wxUI/view.py:174
 msgid "Address"
 msgstr "عنوان"
 
-#: src/wxUI/view.py:207
+#: ../src/wxUI/view.py:205
 msgid "Your {0} version is up to date"
 msgstr "برنامجُ {0} مُحدّثٌ لآخر إصدار"
 
-#: src/wxUI/view.py:207
+#: ../src/wxUI/view.py:205
 msgid "Update"
 msgstr "حَدِث"
 
-#: src/wxUI/buffers/base.py:12 src/wxUI/buffers/people.py:12
-#: src/wxUI/buffers/user_searches.py:11 src/wxUI/dialogs/userAliasDialogs.py:14
-#: src/wxUI/dialogs/userSelection.py:11 src/wxUI/dialogs/utils.py:32
-msgid "User"
-msgstr "المستخدم"
-
-#: src/wxUI/buffers/base.py:12
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:47
-msgid "Text"
-msgstr "النص"
-
-#: src/wxUI/buffers/base.py:12 src/wxUI/buffers/events.py:14
-msgid "Date"
-msgstr "تاريخ"
-
-#: src/wxUI/buffers/base.py:12
-msgid "Client"
-msgstr "برنامج التحكم"
-
-#: src/wxUI/buffers/base.py:28
-msgid "Direct message"
-msgstr "رسالة خاصة"
-
-#: src/wxUI/buffers/events.py:14
-msgid "Event"
-msgstr "حدث"
-
-#: src/wxUI/buffers/events.py:16
-msgid "Remove event"
-msgstr "حذف الحدث"
-
-#: src/wxUI/buffers/panels.py:12 src/wxUI/buffers/panels.py:20
+#: ../src/wxUI/buffers/panels.py:12 ../src/wxUI/buffers/panels.py:20
 msgid "Login"
 msgstr "سجل الدخول"
 
-#: src/wxUI/buffers/panels.py:14
+#: ../src/wxUI/buffers/panels.py:14
 msgid "Log in automatically"
 msgstr "تسجيل الدخول تلقائيا"
 
-#: src/wxUI/buffers/panels.py:22
+#: ../src/wxUI/buffers/panels.py:22
 msgid "Logout"
 msgstr "سجل الخروج"
 
-#: src/wxUI/buffers/trends.py:9
+#: ../src/wxUI/buffers/mastodon/base.py:11
+#: ../src/wxUI/buffers/mastodon/conversationList.py:11
+#: ../src/wxUI/buffers/mastodon/user.py:8
+#: ../src/wxUI/buffers/twitter/base.py:12
+#: ../src/wxUI/buffers/twitter/people.py:12
+#: ../src/wxUI/buffers/twitter/user_searches.py:11
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:10
+#: ../src/wxUI/dialogs/userAliasDialogs.py:14
+#: ../src/wxUI/dialogs/userSelection.py:11 ../src/wxUI/dialogs/utils.py:32
+msgid "User"
+msgstr "المستخدم"
+
+#: ../src/wxUI/buffers/mastodon/base.py:11
+#: ../src/wxUI/buffers/mastodon/conversationList.py:11
+#: ../src/wxUI/buffers/mastodon/notifications.py:11
+#: ../src/wxUI/buffers/twitter/base.py:12
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:36
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:47
+msgid "Text"
+msgstr "النص"
+
+#: ../src/wxUI/buffers/mastodon/base.py:11
+#: ../src/wxUI/buffers/mastodon/conversationList.py:11
+#: ../src/wxUI/buffers/mastodon/notifications.py:11
+#: ../src/wxUI/buffers/twitter/base.py:12
+#: ../src/wxUI/buffers/twitter/events.py:14
+msgid "Date"
+msgstr "تاريخ"
+
+#: ../src/wxUI/buffers/mastodon/base.py:11
+#: ../src/wxUI/buffers/mastodon/conversationList.py:11
+#: ../src/wxUI/buffers/twitter/base.py:12
+msgid "Client"
+msgstr "برنامج التحكم"
+
+#: ../src/wxUI/buffers/mastodon/base.py:27
+msgid "Favorite"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/base.py:28
+msgid "Bookmark"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/base.py:29
+#: ../src/wxUI/buffers/twitter/base.py:28
+msgid "Direct message"
+msgstr "رسالة خاصة"
+
+#: ../src/wxUI/buffers/mastodon/notifications.py:23
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:23
+msgid "Dismiss"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/user.py:19
+#: ../src/wxUI/dialogs/userAliasDialogs.py:48
+#, fuzzy
+msgid "Actions"
+msgstr "الإجراء"
+
+#: ../src/wxUI/buffers/mastodon/user.py:20
+#, fuzzy
+#| msgid "Direct Messages"
+msgid "Message"
+msgstr "رسائل خاصة"
+
+#: ../src/wxUI/buffers/twitter/events.py:14
+msgid "Event"
+msgstr "حدث"
+
+#: ../src/wxUI/buffers/twitter/events.py:16
+msgid "Remove event"
+msgstr "حذف الحدث"
+
+#: ../src/wxUI/buffers/twitter/trends.py:9
 msgid "Trending topic"
 msgstr "موضوع متداول"
 
-#: src/wxUI/buffers/trends.py:19
+#: ../src/wxUI/buffers/twitter/trends.py:19
 msgid "Tweet about this trend"
 msgstr "غرد عن هذاالأمر المتداول "
 
-#: src/wxUI/dialogs/configuration.py:15
+#: ../src/wxUI/dialogs/configuration.py:15
 msgid "Language"
 msgstr "اللغة"
 
-#: src/wxUI/dialogs/configuration.py:22
+#: ../src/wxUI/dialogs/configuration.py:22
 msgid "Run {0} at Windows startup"
 msgstr "شغل {0} مع بداية تشغيل ويندوز"
 
-#: src/wxUI/dialogs/configuration.py:23
+#: ../src/wxUI/dialogs/configuration.py:23
 msgid "ask before exiting {0}"
 msgstr "إسأل قبل أن تخرج من {0} "
 
-#: src/wxUI/dialogs/configuration.py:26
+#: ../src/wxUI/dialogs/configuration.py:26
 msgid "Disable Streaming functions"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:29
+#: ../src/wxUI/dialogs/configuration.py:29
 msgid "Buffer update interval, in minutes"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:35
+#: ../src/wxUI/dialogs/configuration.py:35
 msgid "Play a sound when {0} launches"
 msgstr "إلعب صوتا عند بدء {0} "
 
-#: src/wxUI/dialogs/configuration.py:37
+#: ../src/wxUI/dialogs/configuration.py:37
 msgid "Speak a message when {0} launches"
 msgstr "إقرء رسالة عندما يفتح {0} "
 
-#: src/wxUI/dialogs/configuration.py:39
+#: ../src/wxUI/dialogs/configuration.py:39
 msgid "Use invisible interface's keyboard shortcuts while GUI is visible"
-msgstr "استخدم مفاتيح الاختصار الخاصة بالواجهة المخفية في واجهة التطبيق الظاهرة"
+msgstr ""
+"استخدم مفاتيح الاختصار الخاصة بالواجهة المخفية في واجهة التطبيق الظاهرة"
 
-#: src/wxUI/dialogs/configuration.py:41
+#: ../src/wxUI/dialogs/configuration.py:41
 msgid "Activate Sapi5 when any other screen reader is not being run"
 msgstr "تشغيل sapi5 عندما لا يكون أي قارء للشاشة يعمل"
 
-#: src/wxUI/dialogs/configuration.py:43
+#: ../src/wxUI/dialogs/configuration.py:43
 msgid "Hide GUI on launch"
 msgstr "إخفاء الواجهة عند البدء"
 
-#: src/wxUI/dialogs/configuration.py:45
+#: ../src/wxUI/dialogs/configuration.py:45
 msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
 msgstr ""
 "إستخدم معالجات التغريدات الطويلة لCodeofdusk's. (قد تأثر سلبا على  أداء "
 "البرنامج)"
 
-#: src/wxUI/dialogs/configuration.py:47
+#: ../src/wxUI/dialogs/configuration.py:47
 msgid "Remember state for mention all and long tweet"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:50
+#: ../src/wxUI/dialogs/configuration.py:50
 msgid "Keymap"
 msgstr "خريطة المفاتيح"
 
-#: src/wxUI/dialogs/configuration.py:55
+#: ../src/wxUI/dialogs/configuration.py:55
 msgid "Check for updates when {0} launches"
 msgstr "فحص التحديثات الجديدة عند تشغيل {0} "
 
-#: src/wxUI/dialogs/configuration.py:65
+#: ../src/wxUI/dialogs/configuration.py:65
 msgid "Proxy type: "
 msgstr "نوع خادم البروكسي"
 
-#: src/wxUI/dialogs/configuration.py:72
+#: ../src/wxUI/dialogs/configuration.py:72
 msgid "Proxy server: "
 msgstr "خادم الوكيل"
 
-#: src/wxUI/dialogs/configuration.py:78
+#: ../src/wxUI/dialogs/configuration.py:78
 msgid "Port: "
 msgstr "رقم المنفذ;"
 
-#: src/wxUI/dialogs/configuration.py:84
+#: ../src/wxUI/dialogs/configuration.py:84
 msgid "User: "
 msgstr "المستخدم:"
 
-#: src/wxUI/dialogs/configuration.py:90
+#: ../src/wxUI/dialogs/configuration.py:90
 msgid "Password: "
 msgstr "كلمة المرور:"
 
-#: src/wxUI/dialogs/configuration.py:102
+#: ../src/wxUI/dialogs/configuration.py:102
+#: ../src/wxUI/dialogs/mastodon/configuration.py:14
 #, fuzzy
 msgid "User autocompletion settings"
 msgstr "إعدادات الإكمال التلقائي"
 
-#: src/wxUI/dialogs/configuration.py:103
+#: ../src/wxUI/dialogs/configuration.py:103
 msgid ""
 "Scan account and add friends and followers to the user autocompletion "
 "database"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:104
+#: ../src/wxUI/dialogs/configuration.py:104
+#: ../src/wxUI/dialogs/mastodon/configuration.py:17
 #, fuzzy
 msgid "Manage autocompletion database"
 msgstr "إدارة قاعدة بيانات التعبئة التلقائية"
 
-#: src/wxUI/dialogs/configuration.py:109
+#: ../src/wxUI/dialogs/configuration.py:109
+#: ../src/wxUI/dialogs/mastodon/configuration.py:23
 msgid "Relative timestamps"
 msgstr "أوقات نسبية"
 
-#: src/wxUI/dialogs/configuration.py:112
+#: ../src/wxUI/dialogs/configuration.py:112
+#: ../src/wxUI/dialogs/mastodon/configuration.py:26
 msgid "Items on each API call"
 msgstr "عدد العناصر في كل تحديث"
 
-#: src/wxUI/dialogs/configuration.py:118
+#: ../src/wxUI/dialogs/configuration.py:118
 msgid ""
-"Inverted buffers: The newest tweets will be shown at the beginning while "
-"the oldest at the end"
+"Inverted buffers: The newest tweets will be shown at the beginning while the "
+"oldest at the end"
 msgstr ""
 "عكس عرض التغريدات:  التغريدة الأحدث ستُعرَض في بداية القائمة بينما تكون "
 "التغريدة الأقدم في نهايتها."
 
-#: src/wxUI/dialogs/configuration.py:120
+#: ../src/wxUI/dialogs/configuration.py:120
 msgid "Retweet mode"
 msgstr "نمطُ إعادة التغريد"
 
-#: src/wxUI/dialogs/configuration.py:126
+#: ../src/wxUI/dialogs/configuration.py:126
+#: ../src/wxUI/dialogs/mastodon/configuration.py:36
 msgid "Show screen names instead of full names"
 msgstr "تعرض أسماء الإستعارة بدلا من الأسماء الكاملة"
 
-#: src/wxUI/dialogs/configuration.py:128
+#: ../src/wxUI/dialogs/configuration.py:128
+#: ../src/wxUI/dialogs/mastodon/configuration.py:38
 msgid "hide emojis in usernames"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:130
+#: ../src/wxUI/dialogs/configuration.py:130
+#: ../src/wxUI/dialogs/mastodon/configuration.py:40
 msgid ""
-"Number of items per buffer to cache in database (0 to disable caching, "
-"blank for unlimited)"
+"Number of items per buffer to cache in database (0 to disable caching, blank "
+"for unlimited)"
 msgstr ""
 "عددُ العناصر في كل صفحة للحفظ في قاعدة البيانات (0 لتعطيل الحفظ، مسافة فارغة "
 "للحفظ غير المحدود)"
 
-#: src/wxUI/dialogs/configuration.py:134
+#: ../src/wxUI/dialogs/configuration.py:134
 msgid ""
-"Load cache for tweets in memory (much faster in big datasets but requires"
-" more RAM)"
+"Load cache for tweets in memory (much faster in big datasets but requires "
+"more RAM)"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:141
+#: ../src/wxUI/dialogs/configuration.py:141
 msgid "Enable automatic speech feedback"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:143
+#: ../src/wxUI/dialogs/configuration.py:143
 msgid "Enable automatic Braille feedback"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:151 src/wxUI/dialogs/filterDialogs.py:130
+#: ../src/wxUI/dialogs/configuration.py:151
+#: ../src/wxUI/dialogs/filterDialogs.py:130
 msgid "Buffer"
 msgstr "الصفحة"
 
-#: src/wxUI/dialogs/configuration.py:151
+#: ../src/wxUI/dialogs/configuration.py:151
 msgid "Status"
 msgstr "الحالة"
 
-#: src/wxUI/dialogs/configuration.py:154
+#: ../src/wxUI/dialogs/configuration.py:154
 msgid "Show/hide"
 msgstr "إظهار / إخفاء"
 
-#: src/wxUI/dialogs/configuration.py:155
+#: ../src/wxUI/dialogs/configuration.py:155
 msgid "Move up"
 msgstr "التحريك إلى الأعلى"
 
-#: src/wxUI/dialogs/configuration.py:156
+#: ../src/wxUI/dialogs/configuration.py:156
 msgid "Move down"
 msgstr "التحريك إلى الأسفل"
 
-#: src/wxUI/dialogs/configuration.py:166 src/wxUI/dialogs/configuration.py:231
-#: src/wxUI/dialogs/configuration.py:234 src/wxUI/dialogs/configuration.py:239
+#: ../src/wxUI/dialogs/configuration.py:166
+#: ../src/wxUI/dialogs/configuration.py:231
+#: ../src/wxUI/dialogs/configuration.py:234
+#: ../src/wxUI/dialogs/configuration.py:239
 msgid "Show"
 msgstr "إظهر"
 
-#: src/wxUI/dialogs/configuration.py:168 src/wxUI/dialogs/configuration.py:178
-#: src/wxUI/dialogs/configuration.py:202 src/wxUI/dialogs/configuration.py:232
+#: ../src/wxUI/dialogs/configuration.py:168
+#: ../src/wxUI/dialogs/configuration.py:178
+#: ../src/wxUI/dialogs/configuration.py:202
+#: ../src/wxUI/dialogs/configuration.py:232
 msgid "Hide"
 msgstr "إخفي"
 
-#: src/wxUI/dialogs/configuration.py:176 src/wxUI/dialogs/configuration.py:200
+#: ../src/wxUI/dialogs/configuration.py:176
+#: ../src/wxUI/dialogs/configuration.py:200
 msgid "Select a buffer first."
 msgstr "اختَرْ صفحةً أولًا"
 
-#: src/wxUI/dialogs/configuration.py:179 src/wxUI/dialogs/configuration.py:203
+#: ../src/wxUI/dialogs/configuration.py:179
+#: ../src/wxUI/dialogs/configuration.py:203
 msgid "The buffer is hidden, show it first."
 msgstr "الصفحة مخفيّة، اعرضها في البداية"
 
-#: src/wxUI/dialogs/configuration.py:182
+#: ../src/wxUI/dialogs/configuration.py:182
 msgid "The buffer is already at the top of the list."
 msgstr "الصفحة في أعلى القائمة بالفعل"
 
-#: src/wxUI/dialogs/configuration.py:206
+#: ../src/wxUI/dialogs/configuration.py:206
 msgid "The buffer is already at the bottom of the list."
 msgstr "الصفحةُ في أسفل القائمة بالفعل"
 
-#: src/wxUI/dialogs/configuration.py:261 src/wxUI/dialogs/configuration.py:402
+#: ../src/wxUI/dialogs/configuration.py:261
+#: ../src/wxUI/dialogs/configuration.py:402
 msgid "Ignored clients"
 msgstr "التطبيقات التي تم تجاهلها"
 
-#: src/wxUI/dialogs/configuration.py:268
+#: ../src/wxUI/dialogs/configuration.py:268
 msgid "Remove client"
 msgstr "إحذف تطبيق"
 
-#: src/wxUI/dialogs/configuration.py:292
+#: ../src/wxUI/dialogs/configuration.py:292
+#: ../src/wxUI/dialogs/mastodon/configuration.py:63
 msgid "Volume"
 msgstr "مستوا الصوت"
 
-#: src/wxUI/dialogs/configuration.py:303
+#: ../src/wxUI/dialogs/configuration.py:303
+#: ../src/wxUI/dialogs/mastodon/configuration.py:74
 msgid "Session mute"
 msgstr "كتمُ التنبيهات الصوتية للجلسة"
 
-#: src/wxUI/dialogs/configuration.py:305
+#: ../src/wxUI/dialogs/configuration.py:305
+#: ../src/wxUI/dialogs/mastodon/configuration.py:76
 msgid "Output device"
 msgstr "جهاز إخراج الصوت"
 
-#: src/wxUI/dialogs/configuration.py:312
+#: ../src/wxUI/dialogs/configuration.py:312
+#: ../src/wxUI/dialogs/mastodon/configuration.py:83
 msgid "Input device"
 msgstr "جهاز إدخال الصوت"
 
-#: src/wxUI/dialogs/configuration.py:320
+#: ../src/wxUI/dialogs/configuration.py:320
+#: ../src/wxUI/dialogs/mastodon/configuration.py:91
 msgid "Sound pack"
 msgstr "حزمة صوت"
 
-#: src/wxUI/dialogs/configuration.py:326
+#: ../src/wxUI/dialogs/configuration.py:326
 msgid "Indicate audio tweets with sound"
 msgstr "يشير إلى تغريدية صوتية من خلال  نغمة"
 
-#: src/wxUI/dialogs/configuration.py:328
+#: ../src/wxUI/dialogs/configuration.py:328
 msgid "Indicate geotweets with sound"
 msgstr "يشير إلى تغريدة تتضمن موقع من خلال نغمة"
 
-#: src/wxUI/dialogs/configuration.py:330
+#: ../src/wxUI/dialogs/configuration.py:330
 msgid "Indicate tweets containing images with sound"
 msgstr "يشير إلى تغريدة تتضمن صور من خلال نغمة"
 
-#: src/wxUI/dialogs/configuration.py:353
+#: ../src/wxUI/dialogs/configuration.py:353
+#: ../src/wxUI/dialogs/mastodon/configuration.py:122
 msgid "Language for OCR"
 msgstr "لغة التعرّف الضوئي على النصلغة النتائج"
 
-#: src/wxUI/dialogs/configuration.py:359
+#: ../src/wxUI/dialogs/configuration.py:359
 msgid "API Key for SndUp"
 msgstr "API Key for SndUp"
 
-#: src/wxUI/dialogs/configuration.py:374
+#: ../src/wxUI/dialogs/configuration.py:374
 msgid "{0} preferences"
 msgstr "{0} الخيارات"
 
-#: src/wxUI/dialogs/configuration.py:380 src/wxUI/dialogs/configuration.py:389
+#: ../src/wxUI/dialogs/configuration.py:380
+#: ../src/wxUI/dialogs/configuration.py:389
+#: ../src/wxUI/dialogs/mastodon/configuration.py:142
 msgid "General"
 msgstr "عام"
 
-#: src/wxUI/dialogs/configuration.py:385
+#: ../src/wxUI/dialogs/configuration.py:385
 msgid "Proxy"
 msgstr "خادم الوكيل"
 
-#: src/wxUI/dialogs/configuration.py:394
+#: ../src/wxUI/dialogs/configuration.py:394
+#: ../src/wxUI/dialogs/mastodon/configuration.py:147
 msgid "Feedback"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:398
+#: ../src/wxUI/dialogs/configuration.py:398
+#: ../src/wxUI/dialogs/mastodon/configuration.py:151
 msgid "Buffers"
 msgstr "الصفحات"
 
-#: src/wxUI/dialogs/configuration.py:406
+#: ../src/wxUI/dialogs/configuration.py:406
+#: ../src/wxUI/dialogs/mastodon/configuration.py:155
 msgid "Templates"
 msgstr ""
 
-#: src/wxUI/dialogs/configuration.py:410
+#: ../src/wxUI/dialogs/configuration.py:410
+#: ../src/wxUI/dialogs/mastodon/configuration.py:159
 msgid "Sound"
 msgstr "الصوت"
 
-#: src/wxUI/dialogs/configuration.py:414
+#: ../src/wxUI/dialogs/configuration.py:414
+#: ../src/wxUI/dialogs/mastodon/configuration.py:163
 msgid "Extras"
 msgstr "إضافات"
 
-#: src/wxUI/dialogs/configuration.py:419
+#: ../src/wxUI/dialogs/configuration.py:419
+#: ../src/wxUI/dialogs/mastodon/configuration.py:168
 msgid "Save"
 msgstr "حفظ"
 
-#: src/wxUI/dialogs/filterDialogs.py:13
+#: ../src/wxUI/dialogs/filterDialogs.py:13
 msgid "Create a filter  for this buffer"
 msgstr "إنشء تصفية لهذه الصفحة"
 
-#: src/wxUI/dialogs/filterDialogs.py:14
+#: ../src/wxUI/dialogs/filterDialogs.py:14
 msgid "Filter title"
 msgstr ""
 
-#: src/wxUI/dialogs/filterDialogs.py:24 src/wxUI/dialogs/filterDialogs.py:130
+#: ../src/wxUI/dialogs/filterDialogs.py:24
+#: ../src/wxUI/dialogs/filterDialogs.py:130
 msgid "Filter by word"
 msgstr ""
 
-#: src/wxUI/dialogs/filterDialogs.py:25
+#: ../src/wxUI/dialogs/filterDialogs.py:25
 #, fuzzy
 msgid "Ignore tweets wich contain the following word"
 msgstr "تجاهَل التغريدات باللغات التالية"
 
-#: src/wxUI/dialogs/filterDialogs.py:26
+#: ../src/wxUI/dialogs/filterDialogs.py:26
 #, fuzzy
 msgid "Ignore tweets without the following word"
 msgstr "تجاهَل التغريدات باللغات التالية"
 
-#: src/wxUI/dialogs/filterDialogs.py:31
+#: ../src/wxUI/dialogs/filterDialogs.py:31
 msgid "word"
 msgstr "كلمة"
 
-#: src/wxUI/dialogs/filterDialogs.py:36
+#: ../src/wxUI/dialogs/filterDialogs.py:36
 #, fuzzy
 msgid "Allow retweets"
 msgstr "إظهار التغريدة"
 
-#: src/wxUI/dialogs/filterDialogs.py:37
+#: ../src/wxUI/dialogs/filterDialogs.py:37
 msgid "Allow quoted tweets"
 msgstr ""
 
-#: src/wxUI/dialogs/filterDialogs.py:38
+#: ../src/wxUI/dialogs/filterDialogs.py:38
 #, fuzzy
 msgid "Allow replies"
 msgstr "السياقات الزمنية للمُتابِعين"
 
-#: src/wxUI/dialogs/filterDialogs.py:46
+#: ../src/wxUI/dialogs/filterDialogs.py:46
 msgid "Use this term as a regular expression"
 msgstr "استخدم هذ المصطلح كتعبير حسابي"
 
-#: src/wxUI/dialogs/filterDialogs.py:48 src/wxUI/dialogs/filterDialogs.py:130
+#: ../src/wxUI/dialogs/filterDialogs.py:48
+#: ../src/wxUI/dialogs/filterDialogs.py:130
 #, fuzzy
 msgid "Filter by language"
 msgstr "لا تصنّفْ حسبَ اللُغة"
 
-#: src/wxUI/dialogs/filterDialogs.py:49
+#: ../src/wxUI/dialogs/filterDialogs.py:49
 msgid "Load tweets in the following languages"
 msgstr "تحميل التغريدات بهذه اللغات"
 
-#: src/wxUI/dialogs/filterDialogs.py:50
+#: ../src/wxUI/dialogs/filterDialogs.py:50
 msgid "Ignore tweets in the following languages"
 msgstr "تجاهَل التغريدات باللغات التالية"
 
-#: src/wxUI/dialogs/filterDialogs.py:51
+#: ../src/wxUI/dialogs/filterDialogs.py:51
 msgid "Don't filter by language"
 msgstr "لا تصنّفْ حسبَ اللُغة"
 
-#: src/wxUI/dialogs/filterDialogs.py:62
+#: ../src/wxUI/dialogs/filterDialogs.py:62
 #, fuzzy
 msgid "Supported languages"
 msgstr "اللغة الأصلية"
 
-#: src/wxUI/dialogs/filterDialogs.py:67
+#: ../src/wxUI/dialogs/filterDialogs.py:67
 msgid "Add selected language to filter"
 msgstr ""
 
-#: src/wxUI/dialogs/filterDialogs.py:71
+#: ../src/wxUI/dialogs/filterDialogs.py:71
 #, fuzzy
 msgid "Selected languages"
 msgstr "اللغة الأصلية"
 
-#: src/wxUI/dialogs/filterDialogs.py:73 src/wxUI/dialogs/filterDialogs.py:137
-#: src/wxUI/dialogs/lists.py:21 src/wxUI/dialogs/lists.py:132
-#: src/wxUI/dialogs/userAliasDialogs.py:57
+#: ../src/wxUI/dialogs/filterDialogs.py:73
+#: ../src/wxUI/dialogs/filterDialogs.py:137 ../src/wxUI/dialogs/lists.py:21
+#: ../src/wxUI/dialogs/lists.py:132 ../src/wxUI/dialogs/userAliasDialogs.py:57
 msgid "Remove"
 msgstr "حذف"
 
-#: src/wxUI/dialogs/filterDialogs.py:83 src/wxUI/dialogs/find.py:23
+#: ../src/wxUI/dialogs/filterDialogs.py:83 ../src/wxUI/dialogs/find.py:23
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: src/wxUI/dialogs/filterDialogs.py:120
+#: ../src/wxUI/dialogs/filterDialogs.py:120
 msgid "You must define a name for the filter before creating it."
 msgstr ""
 
-#: src/wxUI/dialogs/filterDialogs.py:120
+#: ../src/wxUI/dialogs/filterDialogs.py:120
 msgid "Missing filter name"
 msgstr ""
 
-#: src/wxUI/dialogs/filterDialogs.py:127
+#: ../src/wxUI/dialogs/filterDialogs.py:127
 #, fuzzy
 msgid "Manage filters"
 msgstr "حساب جديد"
 
-#: src/wxUI/dialogs/filterDialogs.py:129
+#: ../src/wxUI/dialogs/filterDialogs.py:129
 msgid "Filters"
 msgstr ""
 
-#: src/wxUI/dialogs/filterDialogs.py:130
+#: ../src/wxUI/dialogs/filterDialogs.py:130
 msgid "Filter"
 msgstr ""
 
-#: src/wxUI/dialogs/find.py:13
+#: ../src/wxUI/dialogs/find.py:13
 msgid "Find in current buffer"
 msgstr "إبحث في الصفحة الحالية"
 
-#: src/wxUI/dialogs/find.py:14
+#: ../src/wxUI/dialogs/find.py:14
 msgid "String"
 msgstr "جملة"
 
-#: src/wxUI/dialogs/lists.py:11
+#: ../src/wxUI/dialogs/lists.py:11
 msgid "Lists manager"
 msgstr "مدير القوائم"
 
-#: src/wxUI/dialogs/lists.py:14
+#: ../src/wxUI/dialogs/lists.py:14
 msgid "List"
 msgstr "القائمة"
 
-#: src/wxUI/dialogs/lists.py:14 src/wxUI/dialogs/lists.py:70
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:37
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:126
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:173
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:257
+#: ../src/wxUI/dialogs/lists.py:14 ../src/wxUI/dialogs/lists.py:70
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:25
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:134
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:37
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:126
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:173
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:257
 msgid "Description"
 msgstr "الوصف"
 
-#: src/wxUI/dialogs/lists.py:14
+#: ../src/wxUI/dialogs/lists.py:14
 msgid "Owner"
 msgstr "المالك"
 
-#: src/wxUI/dialogs/lists.py:14
+#: ../src/wxUI/dialogs/lists.py:14
 msgid "Members"
 msgstr "الإعضاء"
 
-#: src/wxUI/dialogs/lists.py:14
+#: ../src/wxUI/dialogs/lists.py:14
 msgid "mode"
 msgstr "النمط"
 
-#: src/wxUI/dialogs/lists.py:19 src/wxUI/dialogs/lists.py:62
+#: ../src/wxUI/dialogs/lists.py:19 ../src/wxUI/dialogs/lists.py:62
 msgid "Create a new list"
 msgstr "إنشء قائمة جديدة"
 
-#: src/wxUI/dialogs/lists.py:22
+#: ../src/wxUI/dialogs/lists.py:22
 msgid "Open in buffer"
 msgstr "إفتح في صفحة جديدة"
 
-#: src/wxUI/dialogs/lists.py:52
+#: ../src/wxUI/dialogs/lists.py:52
 #, python-format
 msgid "Viewing lists for %s"
 msgstr "عرض القوائم ل%s"
 
-#: src/wxUI/dialogs/lists.py:53
+#: ../src/wxUI/dialogs/lists.py:53
 msgid "Subscribe"
 msgstr "إشترك"
 
-#: src/wxUI/dialogs/lists.py:54
+#: ../src/wxUI/dialogs/lists.py:54
 msgid "Unsubscribe"
 msgstr "إلغاء الإشتراك"
 
-#: src/wxUI/dialogs/lists.py:65
+#: ../src/wxUI/dialogs/lists.py:65
 msgid "Name (20 characters maximun)"
 msgstr "الإسم, 20 حرف على الأكثر"
 
-#: src/wxUI/dialogs/lists.py:75
+#: ../src/wxUI/dialogs/lists.py:75
 msgid "Mode"
 msgstr "النمط"
 
-#: src/wxUI/dialogs/lists.py:76
-msgid "Public"
-msgstr "عامة"
-
-#: src/wxUI/dialogs/lists.py:77
+#: ../src/wxUI/dialogs/lists.py:77
 msgid "Private"
 msgstr "خاصة"
 
-#: src/wxUI/dialogs/lists.py:97
+#: ../src/wxUI/dialogs/lists.py:97
 #, python-format
 msgid "Editing the list %s"
 msgstr "جاري تحرير القائمة %s"
 
-#: src/wxUI/dialogs/lists.py:108
+#: ../src/wxUI/dialogs/lists.py:108
 msgid "Select a list to add the user"
 msgstr "إختر القائمة لإضافة المستخدم لها"
 
-#: src/wxUI/dialogs/lists.py:109
+#: ../src/wxUI/dialogs/lists.py:109
 msgid "Add"
 msgstr "إضافة"
 
-#: src/wxUI/dialogs/lists.py:131
+#: ../src/wxUI/dialogs/lists.py:131
 msgid "Select a list to remove the user"
 msgstr "إختر القائمة التي تريد حذف المستخدم منها"
 
-#: src/wxUI/dialogs/lists.py:149
+#: ../src/wxUI/dialogs/lists.py:149
 msgid "Do you really want to delete this list?"
 msgstr "هل أنت متأكد من رغبتك بإزالة هذه القائمة؟"
 
-#: src/wxUI/dialogs/search.py:12
+#: ../src/wxUI/dialogs/search.py:12
 msgid "Search on Twitter"
 msgstr "البحث في تويتر"
 
-#: src/wxUI/dialogs/search.py:21
+#: ../src/wxUI/dialogs/search.py:21
 msgid "Tweets"
 msgstr "التغريدات"
 
-#: src/wxUI/dialogs/search.py:22 src/wxUI/dialogs/userAliasDialogs.py:43
+#: ../src/wxUI/dialogs/mastodon/search.py:19 ../src/wxUI/dialogs/search.py:22
+#: ../src/wxUI/dialogs/userAliasDialogs.py:43
 msgid "Users"
 msgstr "المستخدمون"
 
-#: src/wxUI/dialogs/search.py:29
+#: ../src/wxUI/dialogs/search.py:29
 msgid "&Language for results: "
 msgstr "لغة النتائج"
 
-#: src/wxUI/dialogs/search.py:31 src/wxUI/dialogs/search.py:55
+#: ../src/wxUI/dialogs/search.py:31 ../src/wxUI/dialogs/search.py:55
 msgid "any"
 msgstr "أي"
 
-#: src/wxUI/dialogs/search.py:37
+#: ../src/wxUI/dialogs/search.py:37
 msgid "Results &type: "
 msgstr "نوع النتائج"
 
-#: src/wxUI/dialogs/search.py:38 src/wxUI/dialogs/search.py:63
+#: ../src/wxUI/dialogs/search.py:38 ../src/wxUI/dialogs/search.py:63
 msgid "Mixed"
 msgstr "مخلوطة"
 
-#: src/wxUI/dialogs/search.py:38 src/wxUI/dialogs/search.py:64
+#: ../src/wxUI/dialogs/search.py:38 ../src/wxUI/dialogs/search.py:64
 msgid "Recent"
 msgstr "الحديث"
 
-#: src/wxUI/dialogs/search.py:38 src/wxUI/dialogs/search.py:65
+#: ../src/wxUI/dialogs/search.py:38 ../src/wxUI/dialogs/search.py:65
 msgid "Popular"
 msgstr "المشهور"
 
-#: src/wxUI/dialogs/search.py:43 src/wxUI/dialogs/trends.py:25
-#: src/wxUI/dialogs/userActions.py:41 src/wxUI/dialogs/userSelection.py:33
+#: ../src/wxUI/dialogs/mastodon/search.py:24
+#: ../src/wxUI/dialogs/mastodon/userActions.py:36
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:30
+#: ../src/wxUI/dialogs/search.py:43 ../src/wxUI/dialogs/trends.py:25
+#: ../src/wxUI/dialogs/userActions.py:41
+#: ../src/wxUI/dialogs/userSelection.py:33
 msgid "&OK"
 msgstr "&موافق"
 
-#: src/wxUI/dialogs/search.py:45 src/wxUI/dialogs/show_user.py:19
-#: src/wxUI/dialogs/trends.py:27 src/wxUI/dialogs/update_profile.py:37
-#: src/wxUI/dialogs/userActions.py:43 src/wxUI/dialogs/userSelection.py:35
+#: ../src/wxUI/dialogs/mastodon/search.py:26
+#: ../src/wxUI/dialogs/mastodon/userActions.py:38
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:32
+#: ../src/wxUI/dialogs/search.py:45 ../src/wxUI/dialogs/show_user.py:19
+#: ../src/wxUI/dialogs/trends.py:27 ../src/wxUI/dialogs/update_profile.py:37
+#: ../src/wxUI/dialogs/userActions.py:43
+#: ../src/wxUI/dialogs/userSelection.py:35
 msgid "&Close"
 msgstr "إغ&لاق"
 
-#: src/wxUI/dialogs/show_user.py:12
+#: ../src/wxUI/dialogs/show_user.py:12
 msgid "Details"
 msgstr "التفاصيل"
 
-#: src/wxUI/dialogs/show_user.py:17
+#: ../src/wxUI/dialogs/show_user.py:17
 msgid "&Go to URL"
 msgstr "&فتح الرابط"
 
-#: src/wxUI/dialogs/trends.py:10
+#: ../src/wxUI/dialogs/trends.py:10
 msgid "View trending topics"
 msgstr "إعرض المواضيع المتداولة"
 
-#: src/wxUI/dialogs/trends.py:11
+#: ../src/wxUI/dialogs/trends.py:11
 msgid "Trending topics by"
 msgstr "المواضيع المتداولة حسب"
 
-#: src/wxUI/dialogs/trends.py:12
+#: ../src/wxUI/dialogs/trends.py:12
 msgid "Country"
 msgstr "الدولة"
 
-#: src/wxUI/dialogs/trends.py:13
+#: ../src/wxUI/dialogs/trends.py:13
 msgid "City"
 msgstr "المدينة"
 
-#: src/wxUI/dialogs/trends.py:19 src/wxUI/dialogs/update_profile.py:18
+#: ../src/wxUI/dialogs/trends.py:19 ../src/wxUI/dialogs/update_profile.py:18
 msgid "&Location"
 msgstr "الموقع"
 
-#: src/wxUI/dialogs/update_profile.py:10
+#: ../src/wxUI/dialogs/update_profile.py:10
 msgid "Update your profile"
 msgstr "حدث ملفك الشخصي"
 
-#: src/wxUI/dialogs/update_profile.py:12
+#: ../src/wxUI/dialogs/update_profile.py:12
 #, fuzzy
 msgid "&Name (50 characters maximum)"
 msgstr "الاسم (20 حرفا على الأكثر)"
 
-#: src/wxUI/dialogs/update_profile.py:23
+#: ../src/wxUI/dialogs/update_profile.py:23
 msgid "&Website"
 msgstr "الم&وقع الإلكتروني"
 
-#: src/wxUI/dialogs/update_profile.py:28
+#: ../src/wxUI/dialogs/update_profile.py:28
 msgid "&Bio (160 characters maximum)"
 msgstr "السيرة الذاتية (160 حرف على الأكثر)"
 
-#: src/wxUI/dialogs/update_profile.py:34
+#: ../src/wxUI/dialogs/update_profile.py:34
 msgid "Upload a &picture"
 msgstr "ارفَعْ صورة"
 
-#: src/wxUI/dialogs/update_profile.py:77
+#: ../src/wxUI/dialogs/update_profile.py:77
 msgid "Upload a picture"
 msgstr "قم بتحميل صورة"
 
-#: src/wxUI/dialogs/update_profile.py:79
+#: ../src/wxUI/dialogs/update_profile.py:79
 msgid "Discard image"
 msgstr "التراجع عن الصورة"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:133
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:289
-#: src/wxUI/dialogs/update_profile.py:82
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:141
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:133
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:289
+#: ../src/wxUI/dialogs/update_profile.py:82
 msgid "Select the picture to be uploaded"
 msgstr "إختر الصورة التي ترغب بتحميلها"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:133
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:289
-#: src/wxUI/dialogs/update_profile.py:82
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:141
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:133
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:289
+#: ../src/wxUI/dialogs/update_profile.py:82
 msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 msgstr "ملفات الصور (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 
-#: src/wxUI/dialogs/urlList.py:6
+#: ../src/wxUI/dialogs/urlList.py:6
 msgid "Select URL"
 msgstr "اختيار رابط"
 
-#: src/wxUI/dialogs/userActions.py:14 src/wxUI/dialogs/userAliasDialogs.py:13
-#: src/wxUI/dialogs/userSelection.py:14 src/wxUI/dialogs/utils.py:31
+#: ../src/wxUI/dialogs/mastodon/userActions.py:13
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:13
+#: ../src/wxUI/dialogs/userActions.py:14
+#: ../src/wxUI/dialogs/userAliasDialogs.py:13
+#: ../src/wxUI/dialogs/userSelection.py:14 ../src/wxUI/dialogs/utils.py:31
 msgid "&Autocomplete users"
 msgstr "&التعبئة التلقائية للمستخدمون"
 
-#: src/wxUI/dialogs/userActions.py:20
+#: ../src/wxUI/dialogs/mastodon/userActions.py:19
+#: ../src/wxUI/dialogs/userActions.py:20
 msgid "&Follow"
 msgstr "متابعة"
 
-#: src/wxUI/dialogs/userActions.py:21
+#: ../src/wxUI/dialogs/mastodon/userActions.py:20
+#: ../src/wxUI/dialogs/userActions.py:21
 msgid "U&nfollow"
 msgstr "إل&غاء المتابعة"
 
-#: src/wxUI/dialogs/userActions.py:23
+#: ../src/wxUI/dialogs/mastodon/userActions.py:22
+#: ../src/wxUI/dialogs/userActions.py:23
 msgid "Unmu&te"
 msgstr "إلغاء الكتم"
 
-#: src/wxUI/dialogs/userActions.py:24
+#: ../src/wxUI/dialogs/mastodon/userActions.py:23
+#: ../src/wxUI/dialogs/userActions.py:24
 msgid "&Block"
 msgstr "حذر"
 
-#: src/wxUI/dialogs/userActions.py:25
+#: ../src/wxUI/dialogs/mastodon/userActions.py:24
+#: ../src/wxUI/dialogs/userActions.py:25
 msgid "Unbl&ock"
 msgstr "إلغاء الحظر"
 
-#: src/wxUI/dialogs/userActions.py:26
+#: ../src/wxUI/dialogs/userActions.py:26
 msgid "&Report as spam"
 msgstr "إبلاغ برسائل غير مرغوب بها"
 
-#: src/wxUI/dialogs/userActions.py:27
+#: ../src/wxUI/dialogs/userActions.py:27
 msgid "&Ignore tweets from this client"
 msgstr "ت&جاهل التغريدات من هذا التطبيق"
 
-#: src/wxUI/dialogs/userAliasDialogs.py:18
+#: ../src/wxUI/dialogs/userAliasDialogs.py:18
 #, fuzzy
 msgid "Alias"
 msgstr "دائما"
 
-#: src/wxUI/dialogs/userAliasDialogs.py:41
+#: ../src/wxUI/dialogs/userAliasDialogs.py:41
 #, fuzzy
 msgid "Edit user aliases"
 msgstr "تحرير قاعدة بيانات المستخدمين ل {0} "
 
-#: src/wxUI/dialogs/userAliasDialogs.py:48
-#, fuzzy
-msgid "Actions"
-msgstr "الإجراء"
-
-#: src/wxUI/dialogs/userAliasDialogs.py:50
+#: ../src/wxUI/dialogs/userAliasDialogs.py:50
 #, fuzzy
 msgid "Add alias"
 msgstr "الإضافة إلى قائمة"
 
-#: src/wxUI/dialogs/userAliasDialogs.py:51
+#: ../src/wxUI/dialogs/userAliasDialogs.py:51
 msgid "Adds a new user alias"
 msgstr ""
 
-#: src/wxUI/dialogs/userAliasDialogs.py:54
+#: ../src/wxUI/dialogs/userAliasDialogs.py:54
 #, fuzzy
 msgid "Edit the currently focused user Alias."
 msgstr "التفاعل مع التغريدة المختارة حاليا"
 
-#: src/wxUI/dialogs/userAliasDialogs.py:58
+#: ../src/wxUI/dialogs/userAliasDialogs.py:58
 #, fuzzy
 msgid "Remove the currently focused user alias."
 msgstr "ابحث عن نصّ في القائمة الحالية"
 
-#: src/wxUI/dialogs/userAliasDialogs.py:82
+#: ../src/wxUI/dialogs/userAliasDialogs.py:82
 #, fuzzy
 msgid "Are you sure you want to delete this user alias?"
 msgstr "هل أنت متأكد من رغبتك بإزالة هذه القائمة؟"
 
-#: src/wxUI/dialogs/userAliasDialogs.py:82
+#: ../src/wxUI/dialogs/userAliasDialogs.py:82
 #, fuzzy
 msgid "Remove user alias"
 msgstr "احذف مستخدما"
 
-#: src/wxUI/dialogs/userAliasDialogs.py:93
+#: ../src/wxUI/dialogs/userAliasDialogs.py:93
 #, fuzzy
 msgid "User alias"
 msgstr "تفاصيل المستخدم"
 
-#: src/wxUI/dialogs/userSelection.py:10
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:9
+#: ../src/wxUI/dialogs/userSelection.py:10
 #, python-format
 msgid "Timeline for %s"
 msgstr "السياق الزمني الخاص ب%s"
 
-#: src/wxUI/dialogs/userSelection.py:19
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:18
+#: ../src/wxUI/dialogs/userSelection.py:19
 msgid "Buffer type"
 msgstr "نوع الصفحة"
 
-#: src/wxUI/dialogs/userSelection.py:20
+#: ../src/wxUI/dialogs/userSelection.py:20
 msgid "&Tweets"
 msgstr "تغريدات"
 
-#: src/wxUI/dialogs/userSelection.py:21
+#: ../src/wxUI/dialogs/userSelection.py:21
 msgid "&Likes"
 msgstr "إعجابات"
 
-#: src/wxUI/dialogs/userSelection.py:22
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:20
+#: ../src/wxUI/dialogs/userSelection.py:22
 msgid "&Followers"
 msgstr "المتابِعون"
 
-#: src/wxUI/dialogs/userSelection.py:23
+#: ../src/wxUI/dialogs/userSelection.py:23
 msgid "F&riends"
 msgstr "الأ&صدقاء"
 
-#: src/wxUI/dialogs/twitterDialogs/templateDialogs.py:8
-msgid "Edit Template"
-msgstr ""
-
-#: src/wxUI/dialogs/twitterDialogs/templateDialogs.py:13
-msgid "Edit template"
-msgstr ""
-
-#: src/wxUI/dialogs/twitterDialogs/templateDialogs.py:17
-#, fuzzy
-msgid "Available variables"
-msgstr "غير متوفر"
-
-#: src/wxUI/dialogs/twitterDialogs/templateDialogs.py:29
-msgid "Restore template"
-msgstr ""
-
-#: src/wxUI/dialogs/twitterDialogs/templateDialogs.py:48
-msgid "Restored template to {}."
-msgstr ""
-
-#: src/wxUI/dialogs/twitterDialogs/templateDialogs.py:52
+#: ../src/wxUI/dialogs/mastodon/configuration.py:15
 msgid ""
-"the template you have specified include variables that do not exists for "
-"the object. Please fix the template and try again. For your reference, "
-"you can see a list of all available variables in the variables list while"
-" editing your template."
+"Scan account and add followers and following users to the user "
+"autocompletion database"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/templateDialogs.py:52
+#: ../src/wxUI/dialogs/mastodon/configuration.py:32
 #, fuzzy
-msgid "Invalid template"
-msgstr "مفتاح إختصار غير مقبول"
+#| msgid ""
+#| "Inverted buffers: The newest tweets will be shown at the beginning while "
+#| "the oldest at the end"
+msgid ""
+"Inverted buffers: The newest items will be shown at the beginning while the "
+"oldest at the end"
+msgstr ""
+"عكس عرض التغريدات:  التغريدة الأحدث ستُعرَض في بداية القائمة بينما تكون "
+"التغريدة الأقدم في نهايتها."
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:32
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:48
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:168
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:252
+#: ../src/wxUI/dialogs/mastodon/configuration.py:34
+msgid "Ask confirmation before boosting a post"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:44
+msgid ""
+"Load cache for items in memory (much faster in big datasets but requires "
+"more RAM)"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:97
+#, fuzzy
+#| msgid "Indicate audio tweets with sound"
+msgid "Indicate audio or video in posts with sound"
+msgstr "يشير إلى تغريدية صوتية من خلال  نغمة"
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:99
+#, fuzzy
+#| msgid "Indicate tweets containing images with sound"
+msgid "Indicate posts containing images with sound"
+msgstr "يشير إلى تغريدة تتضمن صور من خلال نغمة"
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:7
+#, fuzzy
+#| msgid "Would you like to add a comment to this tweet?"
+msgid "Would you like to share this post?"
+msgstr "هل ترغب بإضافة تعليق إلى هذه التغريدة؟"
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:15
+#, fuzzy
+#| msgid ""
+#| "Do you really want to delete this tweet? It will be deleted from Twitter "
+#| "as well."
+msgid ""
+"Do you really want to delete this post? It will be deleted from the instance "
+"as well."
+msgstr "هل ترغبُ فعلا في حذفِ هذه التغريدة؟ سيؤدي ذلك لحذفها من تويتر أيضا."
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:23
+msgid ""
+"Are you sure you want to dismiss this notification? If you dismiss a mention "
+"notification, it also disappears from your mentions buffer. The post is not "
+"going to be deleted from the instance, though."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:31
+#, fuzzy
+#| msgid ""
+#| "Do you really want to empty this buffer? It's  items will be removed from "
+#| "the list but not from Twitter"
+msgid ""
+"Do you really want to empty this buffer? It's  items will be removed from "
+"the list but not from the instance"
+msgstr ""
+"هل أنت متأكد من رغبتك بإفراغ هذه الصفحة؟ ستزال التغريدات من هذه الصفحة فقط "
+"وليس من تويتر"
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:38
+#, fuzzy
+#| msgid "This user has no tweets. {0} can't create a timeline."
+msgid "This user has no posts. {0} can't create a timeline."
+msgstr "هذا المستخدم لا يوجد له أية تغريدات. لا يمكن فتح سياق زمني خاص به."
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:43
+#, fuzzy
+#| msgid "This user has no favorited tweets. {0} can't create a timeline."
+msgid "This user has no favorited posts. {0} can't create a timeline."
+msgstr ""
+"هذا المستخدم لا يوجد له أية تغريدات مُفضّلة. لا يمكن ل{0} فتح سياق زمني خاص بها"
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:48
+#, fuzzy
+#| msgid "This user has no followers. {0} can't create a timeline."
+msgid "This user has no followers yet. {0} can't create a timeline."
+msgstr "هذا المستخدم لا يوجد له أي مُتابعين. لا يمكن فتح سياق زمني له."
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:53
+#, fuzzy
+#| msgid "This user has no followers. {0} can't create a timeline."
+msgid "This user is not following anyone. {0} can't create a timeline."
+msgstr "هذا المستخدم لا يوجد له أي مُتابعين. لا يمكن فتح سياق زمني له."
+
+#: ../src/wxUI/dialogs/mastodon/menus.py:13
+#, fuzzy
+#| msgid "R&emove from list"
+msgid "R&emove from favorites"
+msgstr "حذف من قائمة"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:19
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:37
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:32
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:48
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:168
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:252
 msgid "Attachments"
 msgstr "مُرفقات"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:36
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:172
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:256
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:24
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:36
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:172
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:256
 msgid "Type"
 msgstr "النوع"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:39
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:175
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:259
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:27
 #, fuzzy
-msgid "Delete attachment"
-msgstr "أِزِلِ مُرفقا"
+#| msgid "Remove client"
+msgid "Remove Attachment"
+msgstr "إحذف تطبيق"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:44
-#, fuzzy
-msgid "Added Tweets"
-msgstr "التغريدات"
-
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:51
-#, fuzzy
-msgid "Delete tweet"
-msgstr "التغريدات"
-
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:56
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:190
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:264
-msgid "A&dd..."
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:32
+msgid "Post in the thread"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:58
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:39
 #, fuzzy
-msgid "Add t&weet"
-msgstr "الإعجاب بتغريدة"
+#| msgid "Remove from list"
+msgid "Remove post"
+msgstr "حذف من قائمة"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:61
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:192
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:266
-msgid "&Attach audio..."
-msgstr "أرفق مقطعا صوتيا"
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:46
+msgid "Visibility"
+msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:65
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:196
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:235
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:51
+msgid "A&dd"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:52
+msgid "Sensitive content"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:57
+msgid "Content warning"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:64
+#, fuzzy
+#| msgid "Add to list"
+msgid "Add p&ost"
+msgstr "الإضافة إلى قائمة"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:68
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:65
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:196
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:235
 msgid "Auto&complete users"
 msgstr "&إكمال تلقائي للمستخدمين"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:67
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:198
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:270
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:364
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:437
-msgid "Check &spelling..."
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:70
+#, fuzzy
+#| msgid "Check &spelling..."
+msgid "Check &spelling"
 msgstr "تدقيق إملائي"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:69
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:200
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:272
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:72
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:69
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:200
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:272
 #, fuzzy
 msgid "&Translate"
 msgstr "تمت ترجمته"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:73
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:204
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:276
-msgid "Sen&d"
-msgstr "أر&سِلْ"
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:99
+#, fuzzy
+#| msgid "Tweet - %i characters "
+msgid "Post - {} characters"
+msgstr "تغريدة - %i أحرف"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:117
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:218
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:296
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:123
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:117
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:218
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:296
 msgid "Image"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:119
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:220
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:298
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:125
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:119
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:220
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:298
 #, fuzzy
 msgid "Video"
 msgstr "إخفي"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:121
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:127
+#, fuzzy
+#| msgid "&Audio"
+msgid "Audio"
+msgstr "&صوت"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:129
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:121
 msgid "Poll"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:126
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:134
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:126
 msgid "please provide a description"
 msgstr "فضلًا أضِفْ وصفًا"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:148
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
 #, fuzzy
 msgid "Select the video to be uploaded"
 msgstr "إختر الصورة التي ترغب بتحميلها"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
-msgid "Video files (*.mp4)|*.mp4"
-msgstr ""
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:148
+#, fuzzy
+#| msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
+msgstr "الملفات الصوتية  (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:154
 msgid ""
-"It is not possible to add more attachments. Please make sure your tweet "
-"complies with Twitter'S attachment rules. You can add only one video or "
-"GIF in every tweet, and a maximum of 4 photos."
+"Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*."
+"mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:160
+msgid ""
+"It is not possible to add more attachments. Please take into account that "
+"You can add only a maximum of 4 images, or one audio, video or poll  per "
+"post. Please remove other attachments before continuing."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:160
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
 #, fuzzy
 msgid "Error adding attachment"
 msgstr "إضف مرفقا"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:180
-msgid "&Mention to all"
-msgstr "الإ&شارة &إلى الجميع"
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:163
+msgid ""
+"You can add a poll or media files. In order to add your poll, please remove "
+"other attachments first."
+msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:233
-msgid "&Recipient"
-msgstr "المرسَل إليه"
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:163
+#, fuzzy
+msgid "Error adding poll"
+msgstr "إضف مرفقا"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:304
-#, python-format
-msgid "Tweet - %i characters "
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:167
+#, fuzzy, python-format
+#| msgid "Tweet - %i characters "
+msgid "Post - %i characters "
 msgstr "تغريدة - %i أحرف"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:321
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:180
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:321
 msgid "Image description"
 msgstr "وصف الصورة"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:332
-msgid "Retweets: "
-msgstr "إعادة التغريدات:"
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:187
+#, fuzzy
+#| msgid "Private"
+msgid "Privacy"
+msgstr "خاصة"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:337
-msgid "Likes: "
-msgstr "إعجابات"
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:192
+msgid "Boosts: "
+msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:342
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:197
+msgid "Favorites: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:202
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:342
 msgid "Source: "
 msgstr "المصدر:"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:347
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:425
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:207
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:347
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:425
 #, fuzzy
 msgid "Date: "
 msgstr "تاريخ"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:362
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:435
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:219
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:362
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:435
 #, fuzzy
 msgid "Copy link to clipboard"
 msgstr "إنسخ إلى لوحة النسخ"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:365
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:440
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:221
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:67
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:198
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:270
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:364
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:437
+msgid "Check &spelling..."
+msgstr "تدقيق إملائي"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:222
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:365
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:440
 msgid "&Translate..."
 msgstr "ترجِمْ"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:366
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:441
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:223
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:366
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:441
 msgid "C&lose"
 msgstr "&إغلاق"
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:410
-msgid "View"
-msgstr "عرض"
-
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:412
-msgid "Item"
-msgstr "عنصر"
-
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:438
-msgid "&Expand URL"
-msgstr "توسيع الرابط"
-
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:477
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:258
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:477
 msgid "Add a poll"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:481
-msgid "Participation time (in days)"
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:262
+msgid "Participation time"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:488
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d minutes, "
+msgid "5 minutes"
+msgstr "%d  دقائق"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d minutes, "
+msgid "30 minutes"
+msgstr "%d  دقائق"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d hour, "
+msgid "1 hour"
+msgstr "%d ساعة"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d hours, "
+msgid "6 hours"
+msgstr "%d ساعات"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d day, "
+msgid "1 day"
+msgstr "%d يوم"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d days, "
+msgid "2 days"
+msgstr "%d أيام"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d days, "
+msgid "3 days"
+msgstr "%d أيام"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d days, "
+msgid "4 days"
+msgstr "%d أيام"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d days, "
+msgid "5 days"
+msgstr "%d أيام"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d days, "
+msgid "6 days"
+msgstr "%d أيام"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
+#, fuzzy
+#| msgid "%d days, "
+msgid "7 days"
+msgstr "%d أيام"
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:268
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:488
 msgid "Choices"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:492
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:272
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:492
 msgid "Option 1"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:499
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:279
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:499
 msgid "Option 2"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:506
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:286
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:506
 msgid "Option 3"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:513
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:293
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:513
 msgid "Option 4"
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:298
+msgid "Allow multiple votes per user"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:301
+msgid "Hide votes count until the poll expires"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:327
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
 msgid "Please make sure you have provided at least two options for the poll."
 msgstr ""
 
-#: src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:327
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
 #, fuzzy
 msgid "Not enough information"
 msgstr "معلومات"
+
+#: ../src/wxUI/dialogs/mastodon/search.py:9
+#, fuzzy
+#| msgid "&Search"
+msgid "Search"
+msgstr "البحث"
+
+#: ../src/wxUI/dialogs/mastodon/search.py:18
+msgid "Posts"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:19
+msgid "&Posts"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:21
+#, fuzzy
+msgid "Fo&llowing"
+msgstr "إل&غاء المتابعة"
+
+#: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:8
+msgid "Edit Template"
+msgstr ""
+
+#: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:13
+msgid "Edit template"
+msgstr ""
+
+#: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:17
+#, fuzzy
+msgid "Available variables"
+msgstr "غير متوفر"
+
+#: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:29
+msgid "Restore template"
+msgstr ""
+
+#: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:48
+msgid "Restored template to {}."
+msgstr ""
+
+#: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:52
+msgid ""
+"the template you have specified include variables that do not exists for the "
+"object. Please fix the template and try again. For your reference, you can "
+"see a list of all available variables in the variables list while editing "
+"your template."
+msgstr ""
+
+#: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:52
+#, fuzzy
+msgid "Invalid template"
+msgstr "مفتاح إختصار غير مقبول"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:39
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:175
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:259
+#, fuzzy
+msgid "Delete attachment"
+msgstr "أِزِلِ مُرفقا"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:44
+#, fuzzy
+msgid "Added Tweets"
+msgstr "التغريدات"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:51
+#, fuzzy
+msgid "Delete tweet"
+msgstr "التغريدات"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:56
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:190
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:264
+msgid "A&dd..."
+msgstr ""
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:58
+#, fuzzy
+msgid "Add t&weet"
+msgstr "الإعجاب بتغريدة"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:61
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:192
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:266
+msgid "&Attach audio..."
+msgstr "أرفق مقطعا صوتيا"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:73
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:204
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:276
+msgid "Sen&d"
+msgstr "أر&سِلْ"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
+msgid "Video files (*.mp4)|*.mp4"
+msgstr ""
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
+msgid ""
+"It is not possible to add more attachments. Please make sure your tweet "
+"complies with Twitter'S attachment rules. You can add only one video or GIF "
+"in every tweet, and a maximum of 4 photos."
+msgstr ""
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:180
+msgid "&Mention to all"
+msgstr "الإ&شارة &إلى الجميع"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:233
+msgid "&Recipient"
+msgstr "المرسَل إليه"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:304
+#, python-format
+msgid "Tweet - %i characters "
+msgstr "تغريدة - %i أحرف"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:332
+msgid "Retweets: "
+msgstr "إعادة التغريدات:"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:337
+msgid "Likes: "
+msgstr "إعجابات"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:410
+msgid "View"
+msgstr "عرض"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:412
+msgid "Item"
+msgstr "عنصر"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:438
+msgid "&Expand URL"
+msgstr "توسيع الرابط"
+
+#: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:481
+msgid "Participation time (in days)"
+msgstr ""
+
+#~ msgid "There are no results for the coordinates in this tweet"
+#~ msgstr "لا توجد نتائج للإحداثيات التي في هذه التغريدة"
+
+#~ msgid "This list is already opened"
+#~ msgstr "هذه القائمة تم فتحها من قبل"
