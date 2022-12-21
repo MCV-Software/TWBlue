@@ -710,6 +710,8 @@ class Controller(object):
                     else:
                         menu_item.Enable(True)
                         menu_item.SetItemLabel(handler.menus[m])
+        if hasattr(handler, "item_menu"):
+            self.view.menubar.SetMenuLabel(1, handler.item_menu)
 
     def fix_wrong_buffer(self):
         buf = self.get_best_buffer()
@@ -1080,8 +1082,9 @@ class Controller(object):
         for i in sm.removed_sessions:
             if sessions.sessions[i].logged == True:
                 self.logout_account(sessions.sessions[i].session_id)
-            self.destroy_buffer(sessions.sessions[i].settings["twitter"]["user_name"], sessions.sessions[i].settings["twitter"]["user_name"])
-            self.accounts.remove(sessions.sessions[i].settings["twitter"]["user_name"])
+            self.destroy_buffer(sessions.sessions[i].get_name(), sessions.sessions[i].get_name())
+            if sessions.sessions[i].get_name() in self.accounts:
+                self.accounts.remove(sessions.sessions[i].get_name())
             sessions.sessions.pop(i)
 
     def update_profile(self, *args, **kwargs):

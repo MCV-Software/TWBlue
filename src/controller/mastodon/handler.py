@@ -50,6 +50,8 @@ class Handler(object):
             filter=None,
             manage_filters=None
         )
+        # Name for the "tweet" menu in the menu bar.
+        self.item_menu = _("&Post")
 
     def create_buffers(self, session, createAccounts=True, controller=None):
         session.get_user_info()

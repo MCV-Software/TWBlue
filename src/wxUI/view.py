@@ -81,7 +81,7 @@ class mainFrame(wx.Frame):
 
         # Add all to the menu Bar
         self.menubar.Append(self.menubar_application, _(u"&Application"))
-        self.menubar.Append(self.menubar_item, _(u"&Item"))
+        self.menubar.Append(self.menubar_item, _("&Tweet"))
         self.menubar.Append(self.menubar_user, _(u"&User"))
         self.menubar.Append(self.menubar_buffer, _(u"&Buffer"))
         self.menubar.Append(self.menubar_audio, _(u"&Audio"))
