@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-12-20 17:18-0600\n"
-"PO-Revision-Date: 2022-08-25 17:03+0000\n"
+"PO-Revision-Date: 2022-12-21 16:24+0000\n"
 "Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
 "Language-Team: Spanish <https://weblate.mcvsoftware.com/projects/twblue/"
 "changelog/es/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: ../doc/changelog.py:3
@@ -25,7 +25,7 @@ msgstr "Lista de cambios de TWBlue"
 
 #: ../doc/changelog.py:5
 msgid "## Changes in this version"
-msgstr ""
+msgstr "## Cambios en esta versión"
 
 #: ../doc/changelog.py:7
 msgid ""
@@ -35,6 +35,11 @@ msgid ""
 "social network. Take into account that there might be unavailable items for "
 "the currently active session."
 msgstr ""
+"* En la interfaz gráfica, TWBlue actualizará los elementos del menú, en la "
+"barra de menús, dependiendo de si se está usando una sesión de Twitter o "
+"Mastodon. Esto hace posible que TWBlue muestre los términos correctos en "
+"cada red social. Ten en cuenta que puede haber elementos no disponibles para "
+"la sesión activa."
 
 #: ../doc/changelog.py:8
 msgid ""
@@ -43,6 +48,11 @@ msgid ""
 "keystrokes are also different for Twitter and mastodon sessions to use "
 "correct terms for both networks."
 msgstr ""
+"* En el editor de combinaciones de teclado, para la interfaz invisible, "
+"TWBlue mostrará solo las combinaciones de teclado relevantes para la sesión "
+"activa. Las descripciones para las combinaciones serán también diferentes "
+"para Twitter y Mastodon, a fin de utilizar los términos correspondientes en "
+"cada red social."
 
 #: ../doc/changelog.py:9
 msgid ""
@@ -50,10 +60,12 @@ msgid ""
 "started when using the keyboard shortcut to switch between different "
 "accounts."
 msgstr ""
+"* en la interfaz invisible, TWBlue omitirá las sesiones que no han sido "
+"iniciadas al utilizar los atajos para moverse entre diferentes cuentas."
 
 #: ../doc/changelog.py:10 ../doc/changelog.py:24
 msgid "* Mastodon:"
-msgstr ""
+msgstr "* Mastodon:"
 
 #: ../doc/changelog.py:11
 msgid ""
@@ -65,20 +77,30 @@ msgid ""
 "mention notifications will remove also the mention in its corresponding "
 "buffer, due to the way TWBlue reads mentions from mastodon instances)."
 msgstr ""
+"    * Añadido soporte básico al buffer de notificaciones. Este buffer "
+"muestra notificaciones en Mastodon en tiempo real. Cada notificación está "
+"asociada a un tipo de objeto (publicaciones, usuarios, relaciones entre "
+"usuarios o encuestas). Por el momento, la única acción soportada para las "
+"notificaciones es descartarlas, lo que permite eliminar la notificación del "
+"buffer (ten en cuenta, sin embargo, que las notificaciones de mención "
+"eliminarán también la mención en su buffer correspondiente, debido a la "
+"forma en que TWBlue lee las menciones en las instancias Mastodon)."
 
 #: ../doc/changelog.py:12
 msgid ""
 "    * Fixed an issue that was preventing TWBlue to create more than one user "
 "timeline during startup."
 msgstr ""
+"    * Se ha corregido un error que impedía que TWBlue creara más de una "
+"línea temporal al iniciarse."
 
 #: ../doc/changelog.py:13
 msgid "    * TWBlue will display properly new paragraphs in mastodon posts."
-msgstr ""
+msgstr "    * TWBlue mostrará correctamente nuevos párrafos en publicaciones."
 
 #: ../doc/changelog.py:15
 msgid "## Changes in version 2022.12.13"
-msgstr ""
+msgstr "## Cambios en la versión 2022.12.13"
 
 #: ../doc/changelog.py:17
 msgid ""
@@ -89,6 +111,11 @@ msgid ""
 "will continue to be available for Windows 7 as long as it is possible to "
 "build it using Python 3.7."
 msgstr ""
+"* A petición popular, TWBlue estará disponible de nuevo para usuarios de "
+"Windows 7, mediante una versión en un paquete portable de 32-bit para este "
+"sistema operativo. No obstante, los usuarios de Windows 7 no podrán utilizar "
+"la función de actualización automática. TWBlue continuará disponible para "
+"Windows 7 mientras sea posible construir la aplicación usando Python 3.7."
 
 #: ../doc/changelog.py:18
 msgid ""
@@ -96,58 +123,75 @@ msgid ""
 "computers, related to our translator module and some COM objects handled "
 "incorrectly."
 msgstr ""
+"* Corregidos un par de errores que hacían imposible que TWBlue funcionara en "
+"algunos equipos. Estos errores estaban relacionados con el módulo para "
+"traducciones y algunos objetos COM manejados de forma incorrecta."
 
 #: ../doc/changelog.py:19
 msgid ""
 "* Fixed an issue that was making TWBlue unable to open in certain computers "
 "due to errors related to Win32 API'S."
 msgstr ""
+"* Corregido un error que impedía a TWBlue funcionar en ciertos equipos, "
+"relacionado con las API de win32."
 
 #: ../doc/changelog.py:20
 msgid "* Twitter:"
-msgstr ""
+msgstr "* Twitter:"
 
 #: ../doc/changelog.py:21
 msgid ""
 "    * Fixed a bug that was making sent direct messages to be placed in "
 "received direct messages buffer."
 msgstr ""
+"    * Corregido un error que causaba que los mensajes directos enviados "
+"fueran colocados en el buffer de mensajes recibidos."
 
 #: ../doc/changelog.py:22
 msgid ""
 "    * When quoting a tweet, you can use all 280 characters to send your "
 "quoted tweet, as opposed to the 256 characters TWBlue allowed before."
 msgstr ""
+"    * Al citar un tuit, ahora puedes usar los 280 caracteres para tu "
+"mensaje, en lugar de los 256 que TWBlue permitía antes."
 
 #: ../doc/changelog.py:23
 msgid ""
 "    * Fixed a bug that was making TWBlue unable to reply to direct messages "
 "by using the \"reply\" keystroke."
 msgstr ""
+"    * Corregido un error que causaba que no fuera posible responder a un "
+"mensaje directo desde la interfaz invisible, utilizando para ello la "
+"combinación de teclado para responder al elemento seleccionado."
 
 #: ../doc/changelog.py:25
 msgid "    * Added account settings dialog."
-msgstr ""
+msgstr "    * Añadido diálogo de opciones de cuenta."
 
 #: ../doc/changelog.py:26
 msgid "    * Added template editing functionality for mastodon accounts."
 msgstr ""
+"    * Añadida funcionalidad de edición de plantillas para sesiones Mastodon."
 
 #: ../doc/changelog.py:27
 msgid ""
 "    * When a post is edited, TWBlue will update the post object in the "
 "buffer to reflect the latest edit."
 msgstr ""
+"    * Cuando un post es editado, TWBlue actualizará el post en el buffer "
+"para reflejar la última edición."
 
 #: ../doc/changelog.py:28
 msgid ""
 "    * Fixed a small issue that was preventing TWBlue to display some posts "
 "in their corresponding dialog."
 msgstr ""
+"    * Corregido un error que hacía imposible para TWBlue mostrar un post en "
+"su diálogo correspondiente."
 
 #: ../doc/changelog.py:30
 msgid "## Changes in version 2022.12.6"
-msgstr ""
+msgstr "## Cambios en la versión 2022.12.6"
 
 #: ../doc/changelog.py:32
 msgid ""
@@ -162,28 +206,47 @@ msgid ""
 "best to make TWBlue work despite those problems, you might encounter "
 "glitches from time to time."
 msgstr ""
+"La mayoría de los cambios en esta versión se centran en añadir soporte para "
+"Mastodon a TWBlue. Las características presentes para interactuar con "
+"Twitter no deberían haber sido alteradas de ninguna manera. No teníamos la "
+"intención de lanzar esta versión tan pronto, pero desafortunadamente, "
+"Twitter comenzó a presentar problemas en algunas regiones con un método de "
+"la API en particular que estábamos usando, haciendo imposible que todos en "
+"esas regiones usaran la aplicación. Publicaremos más actualizaciones para "
+"solucionar cualquier posible problema relacionado con la API de Twitter, "
+"pero ten en cuenta que a veces se trata de un problema que ocurre en los "
+"servidores de Twitter y, aunque hacemos todo lo posible para que TWBlue "
+"funcione a pesar de esos problemas, es posible que encuentres fallos de vez "
+"en cuando."
 
 #: ../doc/changelog.py:34
 msgid ""
 "* TWBlue now builds with Python 3.10.8. ([#493](https://github.com/MCV-"
 "Software/TWBlue/issues/493))"
 msgstr ""
+"* TWBlue ahora se construye utilizando Python 3.10.8. ([#493](https://github."
+"com/MCV-Software/TWBlue/issues/493))"
 
 #: ../doc/changelog.py:35
 msgid "    * This change also drops support for Windows 7."
 msgstr ""
+"    * Este cambio también confirma la eliminación del soporte para Windows 7."
 
 #: ../doc/changelog.py:36
 msgid ""
 "* The TWBlue interface has not been translated yet, as we are releasing this "
 "update to fix an important Twitter issue for some regions."
 msgstr ""
+"* Al tratarse de una versión publicada para corregir un problema importante "
+"en la API de Twitter, la interfaz de TWBlue todavía no ha sido traducida."
 
 #: ../doc/changelog.py:37
 msgid ""
 "* Twitter sessions should be able to be opened properly again in TWBlue, in "
 "regions where it didn't work since last week."
 msgstr ""
+"* TWBlue debería poder iniciar sesiones de Twitter correctamente, en "
+"regiones del mundo donde esto no era posible desde hace una semana."
 
 #: ../doc/changelog.py:38
 msgid ""
@@ -195,6 +258,14 @@ msgid ""
 "character limit than the one set by Mastodon, TWBlue will detect the new "
 "limit and adjust the dialogs to allow you to use it correctly."
 msgstr ""
+"* Ahora es posible iniciar sesión en instancias de mastodon, hometown y "
+"software similar (Pleroma debería funcionar también, aunque no ha sido "
+"probado por el momento). Desde el gestor de sesiones, al pulsar en el botón “"
+"nueva cuenta” se desplegará un menú desde donde se puede seleccionar si se "
+"desea iniciar sesión en Twitter o en Mastodon. Para instancias que tienen un "
+"límite de caracteres diferente al establecido por Mastodon, TWBlue detectará "
+"el nuevo límite y ajustará los diálogos para permitir utilizarlo "
+"correctamente."
 
 #: ../doc/changelog.py:39
 msgid ""
