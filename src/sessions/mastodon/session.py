@@ -15,7 +15,6 @@ from pubsub import pub
 from mysc.thread_utils import call_threaded
 from sessions import base
 from sessions.mastodon import utils, streaming
-from .wxUI import authorisationDialog
 
 log = logging.getLogger("sessions.mastodonSession")
 

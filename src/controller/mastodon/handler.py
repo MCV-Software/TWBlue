@@ -88,7 +88,7 @@ class Handler(object):
         pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="timelines", account=name))
         timelines_position =controller.view.search("timelines", name)
         for i in session.settings["other_buffers"]["timelines"]:
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Timelines for {}").format(i), parent_tab=timelines_position, start=False, kwargs=dict(parent=controller.view.nb, function="account_statuses", name="{}-timeline".format(i), sessionObject=session, account=name, sound="tweet_timeline.ogg", id=i))
+                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=session.type, buffer_title=_("Timeline for {}").format(i), parent_tab=timelines_position, start=False, kwargs=dict(parent=controller.view.nb, function="account_statuses", name="{}-timeline".format(i), sessionObject=session, account=name, sound="tweet_timeline.ogg", id=i))
         for i in session.settings["other_buffers"]["followers_timelines"]:
             pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=session.type, buffer_title=_("Followers for {}").format(i), parent_tab=timelines_position, start=False, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_followers", name="{}-followers".format(i,), sessionObject=session, account=name, sound="new_event.ogg", id=i))
         for i in session.settings["other_buffers"]["following_timelines"]:

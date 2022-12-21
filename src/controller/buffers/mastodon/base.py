@@ -350,7 +350,7 @@ class BaseBuffer(base.Buffer):
 
     def share_item(self, *args, **kwargs):
         if self.can_share() == False:
-            return output.speak(_("This action is not supported on conversation posts."))
+            return output.speak(_("This action is not supported on conversations."))
         post = self.get_item()
         id = post.id
         if self.session.settings["general"]["boost_mode"] == "ask":
