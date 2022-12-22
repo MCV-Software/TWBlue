@@ -1,21 +1,11 @@
-﻿TWBlue -
+﻿TWBlue
 ======
 
 [![Build status](https://ci.appveyor.com/api/projects/status/fml5fu7h1fj8vf6l?svg=true)](https://ci.appveyor.com/project/manuelcortez/twblue)
 
-TW Blue is an app designed to use Twitter simply and efficiently while using minimal system resources.  
-With this app you’ll have access to twitter features such as:
+TWBlue is a free and open source application that allows you to interact with the main features of Twitter and mastodon from the comfort of a windows software, with 2 different interfaces specially designed for screen reader users.
 
-* Create, reply to, like, retweet and delete tweets,
-* Send and delete direct messages,
-* See your friends and followers,
-* Follow, unfollow, block and report users as spam,
-* Open a user’s timeline, which will allow you to get that user’s tweets separately,
-* Open URLs when attached to a tweet or direct message,
-* Play audio tweets
-* and more!
-
-See [TWBlue's webpage](http://twblue.es) for more details.
+See [TWBlue's webpage](https://twblue.es) for more details.
 
 ## Running TWBlue from source
 
@@ -83,15 +73,7 @@ This dependency has been built using pure basic 4.61. Its source can be found at
 
 * [NSIS,](http://nsis.sourceforge.net/) version 3.04
 
-#### Dependencies required to build the portableApps.com format archive
-
-* [NSIS Portable,](http://portableapps.com/apps/development/nsis_portable) version 3.03
-* [PortableApps.com Launcher,](http://portableapps.com/apps/development/portableapps.com_launcher) version 2.2.1
-* [PortableApps.com Installer,](http://portableapps.com/apps/development/portableapps.com_installer) version 3.5.11
-
-Important! Install these 3 apps into the same folder, otherwise you won't be able to build the pa.c version. For example: D:\portableApps\NSISPortable, D:\PortableApps\PortableApps.com installer, ...
-
-#### Dependencies to make the spell checker multilingual ####
+#### Dependencies to make the spell checker multilingual
 
 In order to add the support for spell checking in more languages than english you need to add some additional dictionaries to pyenchant. These are located on the dictionaries folder under windows-dependencies. Simply copy them to the share/enchant/myspell folder located in your enchant installation. They will be automatically copied when building a binary version.
 
@@ -136,16 +118,8 @@ If you want to install TWBlue on your computer, you must create the installer fi
 
 ### How to generate a translation template
 
-Run the gen_pot.bat file, located in the tools directory. Your python installation must be in your path environment variable. The pot file will appear in the tools directory.
+To manage translations in TWBlue, you can install the [Babel package.](https://pypi.org/project/Babel/) You can extract message catalogs and generate the main template file with the following command:
 
-### How to build the portableApps.com archive
+pybabel extract -o twblue.pot --msgid-bugs-address "manuel@manuelcortez.net" --copyright-holder "MCV software" --input-dirs ..\src
 
-If you want to have TWBlue on your PortableApps.com platform, follow these steps:
-
-* Navigate to the src directory, and create a binary version for x86: C:\python37\python setup.py build
-* Move the dist directory to the misc\pa.c format\app folder in this repo, and rename it to twblue
-* Repeat these steps with Python for x64: C:\python37x64\python setup.py build
-* Move the new dist directory to the misc\pa.c format\app folder, and rename it to twblue64
-* Run the PortableApps.com Launcher Generator, and follow the wizard. Choose the pa.c format folder and continue to generate the launcher. If the wizard is completed, you will see a file named TWBlue portable.exe inside the pa.c format folder.
-* Run the PortableApps.com Installer, and follow the wizard. As in the above step, choose the pa.c format folder. When it completes, you will see a file named TWBluePortable_x.y.paf.exe inside the misc folder, where x.y is the version number.
-
+Take into account, though, that we use [weblate](https://weblate.mcvsoftware.com) to track translation work for TWBlue. If you wish to be part of our translation team, please open an issue so we can create an account for you in Weblate.
