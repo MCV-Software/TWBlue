@@ -9,6 +9,7 @@ import config
 import sound
 import languageHandler
 import logging
+from mastodon import MastodonNotFoundError
 from audio_services import youtube_utils
 from controller.buffers.base import base
 from controller.mastodon import messages
@@ -72,14 +73,22 @@ class BaseBuffer(base.Buffer):
             post.message.destroy()
 
     def get_formatted_message(self):
-        return self.compose_function(self.get_item(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
+        safe = True
+        if self.session.settings["general"]["read_preferences_from_instance"]:
+            safe = self.session.expand_spoilers == False
+        return self.compose_function(self.get_item(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)[1]
 
     def get_message(self):
         post = self.get_item()
         if post == None:
             return
         template = self.session.settings["templates"]["post"]
-
+        # If template is set to hide sensitive media by default, let's change it according to user preferences.
+        if self.session.settings["general"]["read_preferences_from_instance"] == True:
+            if self.session.expand_spoilers == True and "$safe_text" in template:
+                template = template.replace("$safe_text", "$text")
+            elif self.session.expand_spoilers == False and "$text" in template:
+                template = template.replace("$text", "$safe_text")
         t = templates.render_post(post, template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
         return t
 
@@ -124,7 +133,10 @@ class BaseBuffer(base.Buffer):
             else:
                 post = self.session.db[self.name][0]
             output.speak(_("New post in {0}").format(self.get_buffer_name()))
-            output.speak(" ".join(self.compose_function(post, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])))
+            safe = True
+            if self.session.settings["general"]["read_preferences_from_instance"]:
+                safe = self.session.expand_spoilers == False
+            output.speak(" ".join(self.compose_function(post, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)))
         elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
             output.speak(_("{0} new posts in {1}.").format(number_of_items, self.get_buffer_name()))
 
@@ -150,13 +162,16 @@ class BaseBuffer(base.Buffer):
         self.session.db[self.name] = items_db
         selection = self.buffer.list.get_selected()
         log.debug("Retrieved %d items from cursored search in function %s." % (len(elements), self.function))
+        safe = True
+        if self.session.settings["general"]["read_preferences_from_instance"]:
+            safe = self.session.expand_spoilers == False
         if self.session.settings["general"]["reverse_timelines"] == False:
             for i in elements:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(True, *post)
         else:
             for i in elements:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)
         output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
@@ -185,27 +200,33 @@ class BaseBuffer(base.Buffer):
         if number_of_items == 0 and self.session.settings["general"]["persist_size"] == 0: return
         log.debug("The list contains %d items " % (self.buffer.list.get_count(),))
         log.debug("Putting %d items on the list" % (number_of_items,))
+        safe = True
+        if self.session.settings["general"]["read_preferences_from_instance"]:
+            safe = self.session.expand_spoilers == False
         if self.buffer.list.get_count() == 0:
             for i in list_to_use:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(False, *post)
             self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
         elif self.buffer.list.get_count() > 0 and number_of_items > 0:
             if self.session.settings["general"]["reverse_timelines"] == False:
                 items = list_to_use[len(list_to_use)-number_of_items:]
                 for i in items:
-                    post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                    post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                     self.buffer.list.insert_item(False, *post)
             else:
                 items = list_to_use[0:number_of_items]
                 items.reverse()
                 for i in items:
-                    post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                    post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                     self.buffer.list.insert_item(True, *post)
         log.debug("Now the list contains %d items " % (self.buffer.list.get_count(),))
 
     def add_new_item(self, item):
-        post = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+        safe = True
+        if self.session.settings["general"]["read_preferences_from_instance"]:
+            safe = self.session.expand_spoilers == False
+        post = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
         if self.session.settings["general"]["reverse_timelines"] == False:
             self.buffer.list.insert_item(False, *post)
         else:
@@ -214,7 +235,10 @@ class BaseBuffer(base.Buffer):
             output.speak(" ".join(post[:2]), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
 
     def update_item(self, item, position):
-        post = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+        safe = True
+        if self.session.settings["general"]["read_preferences_from_instance"]:
+            safe = self.session.expand_spoilers == False
+        post = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
         self.buffer.list.list.SetItem(position, 1, post[1])
 
     def bind_events(self):
@@ -439,6 +463,7 @@ class BaseBuffer(base.Buffer):
                 self.buffer.list.remove_item(index)
             except Exception as e:
                 self.session.sound.play("error.ogg")
+                log.exception("")
             self.session.db[self.name] = items
 
     def user_details(self):
@@ -472,7 +497,11 @@ class BaseBuffer(base.Buffer):
         item = self.get_item()
         if item.reblog != None:
             item = item.reblog
-        item = self.session.api.status(item.id)
+        try:
+            item = self.session.api.status(item.id)
+        except MastodonNotFoundError:
+            output.speak(_("No status found with that ID"))
+            return
         if item.favourited == False:
             call_threaded(self.session.api_call, call_name="status_favourite", preexec_message=_("Adding to favorites..."), _sound="favourite.ogg", id=item.id)
         else:
@@ -482,7 +511,11 @@ class BaseBuffer(base.Buffer):
         item = self.get_item()
         if item.reblog != None:
             item = item.reblog
-        item = self.session.api.status(item.id)
+        try:
+            item = self.session.api.status(item.id)
+        except MastodonNotFoundError:
+            output.speak(_("No status found with that ID"))
+            return
         if item.bookmarked == False:
             call_threaded(self.session.api_call, call_name="status_bookmark", preexec_message=_("Adding to bookmarks..."), _sound="favourite.ogg", id=item.id)
         else:
@@ -491,7 +524,11 @@ class BaseBuffer(base.Buffer):
     def view_item(self):
         post = self.get_item()
         # Update object so we can retrieve newer stats
-        post = self.session.api.status(id=post.id)
+        try:
+            post = self.session.api.status(id=post.id)
+        except MastodonNotFoundError:
+            output.speak(_("No status found with that ID"))
+            return
 #        print(post)
         msg = messages.viewPost(post, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url())
 

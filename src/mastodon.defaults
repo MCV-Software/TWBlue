@@ -6,6 +6,7 @@ ignored_clients = list(default=list())
 
 [general]
 relative_times = boolean(default=True)
+read_preferences_from_instance = boolean(default=True)
 max_posts_per_call = integer(default=40)
 reverse_timelines = boolean(default=False)
 persist_size = integer(default=0)

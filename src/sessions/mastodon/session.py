@@ -29,6 +29,8 @@ class Session(base.baseSession):
         self.type = "mastodon"
         self.db["pagination_info"] = dict()
         self.char_limit = 500
+        self.post_visibility = "public"
+        self.expand_spoilers = False
         pub.subscribe(self.on_status, "mastodon.status_received")
         pub.subscribe(self.on_status_updated, "mastodon.status_updated")
         pub.subscribe(self.on_notification, "mastodon.notification_received")
@@ -98,14 +100,18 @@ class Session(base.baseSession):
         offset = time.timezone if (time.localtime().tm_isdst == 0) else time.altzone
         offset = offset / 60 / 60 * -1
         self.db["utc_offset"] = offset
+        instance = self.api.instance()
         if len(self.supported_languages) == 0:
-            self.supported_languages = self.api.instance().languages
+            self.supported_languages = instance.languages
         self.get_lists()
         self.get_muted_users()
         # determine instance custom characters limit.
-        instance = self.api.instance()
         if hasattr(instance, "configuration") and hasattr(instance.configuration, "statuses") and hasattr(instance.configuration.statuses, "max_characters"):
             self.char_limit = instance.configuration.statuses.max_characters
+        # User preferences for some things.
+        preferences = self.api.preferences()
+        self.post_visibility = preferences.get("posting:default:visibility")
+        self.expand_spoilers = preferences.get("reading:expand:spoilers")
         self.settings.write()
 
     def get_lists(self):

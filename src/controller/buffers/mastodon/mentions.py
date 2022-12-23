@@ -56,13 +56,16 @@ class MentionsBuffer(BaseBuffer):
         self.session.db[self.name] = items_db
         selection = self.buffer.list.get_selected()
         log.debug("Retrieved %d items from cursored search in function %s." % (len(elements), self.function))
+        safe = True
+        if self.session.settings["general"]["read_preferences_from_instance"]:
+            safe = self.session.expand_spoilers == False
         if self.session.settings["general"]["reverse_timelines"] == False:
             for i in elements:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(True, *post)
         else:
             for i in elements:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)
         output.speak(_(u"%s items retrieved") % (str(len(elements))), True)

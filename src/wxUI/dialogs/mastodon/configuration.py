@@ -22,6 +22,8 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
         sizer.Add(autocompletionSizer, 0, wx.ALL, 5)
         self.relative_time = wx.CheckBox(self, wx.ID_ANY, _("Relative timestamps"))
         sizer.Add(self.relative_time, 0, wx.ALL, 5)
+        self.read_preferences_from_instance = wx.CheckBox(self, wx.ID_ANY, _("Read preferences from instance (default visibility when publishing and displaying sensitive content)"))
+        sizer.Add(self.read_preferences_from_instance, 0, wx.ALL, 5)
         itemsPerCallBox = wx.BoxSizer(wx.HORIZONTAL)
         itemsPerCallBox.Add(wx.StaticText(self, -1, _("Items on each API call")), 0, wx.ALL, 5)
         self.itemsPerApiCall = wx.SpinCtrl(self, wx.ID_ANY)

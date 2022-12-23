@@ -4,6 +4,7 @@ import logging
 import wx
 import widgetUtils
 import output
+from mastodon import MastodonNotFoundError
 from controller.mastodon import messages
 from controller.buffers.mastodon.base import BaseBuffer
 from mysc.thread_utils import call_threaded
@@ -200,7 +201,11 @@ class ConversationBuffer(BaseBuffer):
             self.execution_time = current_time
             log.debug("Starting stream for buffer %s, account %s and type %s" % (self.name, self.account, self.type))
             log.debug("args: %s, kwargs: %s" % (self.args, self.kwargs))
-            self.post = self.session.api.status(id=self.post.id)
+            try:
+                self.post = self.session.api.status(id=self.post.id)
+            except MastodonNotFoundError:
+                output.speak(_("No status found with that ID"))
+                return
             # toDo: Implement reverse timelines properly here.
             try:
                 results = []

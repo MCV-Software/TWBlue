@@ -185,6 +185,11 @@ class post(messages.basicTweet):
         visibility_settings = ["public", "unlisted", "private", "direct"]
         return visibility_settings[self.message.visibility.GetSelection()]
 
+    def set_visibility(self, setting):
+        visibility_settings = ["public", "unlisted", "private", "direct"]
+        visibility_setting = visibility_settings.index(setting)
+        self.message.visibility.SetSelection(setting)
+
 class viewPost(post):
     def __init__(self, post, offset_hours=0, date="", item_url=""):
         if post.reblog != None:
