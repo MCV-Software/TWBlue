@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: TwBlue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-12-20 17:15-0600\n"
-"PO-Revision-Date: 2022-12-21 16:54+0000\n"
+"PO-Revision-Date: 2022-12-21 18:05+0000\n"
 "Last-Translator: Nikola Jović <wwenikola123@gmail.com>\n"
 "Language-Team: Serbian <https://weblate.mcvsoftware.com/projects/twblue/"
 "twblue/sr/>\n"
@@ -61,13 +61,11 @@ msgid "Galician"
 msgstr "Galicijski"
 
 #: ../src/languageHandler.py:69
-#, fuzzy
 msgctxt "languageName"
 msgid "Catala"
 msgstr "Katalonski"
 
 #: ../src/languageHandler.py:70
-#, fuzzy
 msgctxt "languageName"
 msgid "Vasque"
 msgstr "Baskijski"
@@ -528,7 +526,7 @@ msgstr "Novi razgovor sa {}"
 
 #: ../src/controller/buffers/mastodon/users.py:104
 msgid "There are no more items in this buffer."
-msgstr "Nema više stavki u ovom kalanu."
+msgstr "Nema više stavki na ovom kalanu."
 
 #: ../src/controller/buffers/twitter/base.py:65
 #: ../src/controller/twitter/handler.py:69
@@ -922,8 +920,6 @@ msgid "Show user &profile"
 msgstr "Prikaži profil korisnika"
 
 #: ../src/controller/twitter/handler.py:47
-#, fuzzy
-#| msgid "V&iew likes"
 msgid "View likes"
 msgstr "Vidi sviđanja"
 
@@ -2647,8 +2643,6 @@ msgid "Email address:"
 msgstr "Email adresa:"
 
 #: ../src/sessions/mastodon/wxUI.py:21
-#, fuzzy
-#| msgid "Password: "
 msgid "Password:"
 msgstr "Lozinka:"
 
@@ -4127,22 +4121,18 @@ msgstr ""
 "Ovaj korisnik nema omiljenih objava. {0} ne može da napravi vremensku liniju."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:48
-#, fuzzy
-#| msgid "This user has no followers. {0} can't create a timeline."
 msgid "This user has no followers yet. {0} can't create a timeline."
-msgstr "Ovog korisnika niko ne prati. {0} ne može da kreira vremensku liniju."
+msgstr ""
+"Ovaj korisnik još uvek nema pratilaca. {0} ne može da kreira vremensku "
+"liniju."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:53
-#, fuzzy
-#| msgid "This user has no followers. {0} can't create a timeline."
 msgid "This user is not following anyone. {0} can't create a timeline."
-msgstr "Ovog korisnika niko ne prati. {0} ne može da kreira vremensku liniju."
+msgstr "Ovaj korisnik ne prati nikoga. {0} ne može da kreira vremensku liniju."
 
 #: ../src/wxUI/dialogs/mastodon/menus.py:13
-#, fuzzy
-#| msgid "R&emove from list"
 msgid "R&emove from favorites"
-msgstr "Ukloni sa liste"
+msgstr "&Ukloni iz omiljenih"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:19
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:37
@@ -4161,44 +4151,36 @@ msgid "Type"
 msgstr "Vrsta"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:27
-#, fuzzy
-#| msgid "Remove client"
 msgid "Remove Attachment"
-msgstr "Ukloni program"
+msgstr "Ukloni prilog"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:32
 msgid "Post in the thread"
-msgstr ""
+msgstr "Objavi u temi"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:39
-#, fuzzy
-#| msgid "Remove from list"
 msgid "Remove post"
-msgstr "Ukloni iz liste"
+msgstr "Ukloni objavu"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:46
 msgid "Visibility"
-msgstr ""
+msgstr "Vidljivost"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:51
-#, fuzzy
-#| msgid "A&dd..."
 msgid "A&dd"
-msgstr "&Dodaj..."
+msgstr "&Dodaj"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:52
 msgid "Sensitive content"
-msgstr ""
+msgstr "Osetljiv sadržaj"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:57
 msgid "Content warning"
-msgstr ""
+msgstr "Upozorenje sadržaja"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:64
-#, fuzzy
-#| msgid "Add to list"
 msgid "Add p&ost"
-msgstr "Dodaj u listu"
+msgstr "Dodaj &objavu"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:68
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:65
@@ -4208,10 +4190,8 @@ msgid "Auto&complete users"
 msgstr "&Automatsko dovršavanje"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:70
-#, fuzzy
-#| msgid "Check &spelling..."
 msgid "Check &spelling"
-msgstr "Proveri pravopis..."
+msgstr "Proveri &pravopis"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:72
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:69
@@ -4221,10 +4201,8 @@ msgid "&Translate"
 msgstr "&Prevedi"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:99
-#, fuzzy
-#| msgid "Tweet - %i characters "
 msgid "Post - {} characters"
-msgstr "Tvit - %i znakova"
+msgstr "Objava - {} znakova"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:123
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:117
@@ -4241,8 +4219,6 @@ msgid "Video"
 msgstr "Video"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:127
-#, fuzzy
-#| msgid "&Audio"
 msgid "Audio"
 msgstr "Audio"
 
@@ -4262,16 +4238,18 @@ msgid "Select the video to be uploaded"
 msgstr "Izaberite video zapis koji želite da otpremite"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:148
-#, fuzzy
-#| msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
-msgstr "Zvučni zapisi (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+msgstr ""
+"Datoteke video zapisa (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *."
+"webm"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:154
 msgid ""
 "Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*."
 "mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 msgstr ""
+"Audio datoteke (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*."
+"mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:160
 msgid ""
@@ -4279,6 +4257,9 @@ msgid ""
 "You can add only a maximum of 4 images, or one audio, video or poll  per "
 "post. Please remove other attachments before continuing."
 msgstr ""
+"Nije moguće dodati više priloga. Molimo imajte na umu da možete dodati "
+"najviše 4 slike, ili 1 audio, video video ili  anketu po objavi. Molimo "
+"uklonite druge priloge pre nego što nastavite."
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:160
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
@@ -4290,18 +4271,17 @@ msgid ""
 "You can add a poll or media files. In order to add your poll, please remove "
 "other attachments first."
 msgstr ""
+"Možete dodati anketu ili medijske zapise. Da biste dodali vašu anketu, "
+"molimo prvo uklonite druge priloge."
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:163
-#, fuzzy
-#| msgid "Error adding attachment"
 msgid "Error adding poll"
-msgstr "Greška pri dodavanju priloga"
+msgstr "Greška pri dodavanju ankete"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:167
-#, fuzzy, python-format
-#| msgid "Tweet - %i characters "
+#, python-format
 msgid "Post - %i characters "
-msgstr "Tvit - %i znakova"
+msgstr "objava - %i znakova "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:180
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:321
@@ -4309,18 +4289,16 @@ msgid "Image description"
 msgstr "Opis slike"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:187
-#, fuzzy
-#| msgid "Private"
 msgid "Privacy"
-msgstr "Privatna"
+msgstr "Privatnost"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:192
 msgid "Boosts: "
-msgstr ""
+msgstr "Deljenja: "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:197
 msgid "Favorites: "
-msgstr ""
+msgstr "Omiljeni: "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:202
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:342
@@ -4366,76 +4344,52 @@ msgid "Add a poll"
 msgstr "Dodaj anketu"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:262
-#, fuzzy
-#| msgid "Participation time (in days)"
 msgid "Participation time"
-msgstr "Vreme učešća (u danima)"
+msgstr "Vreme učešća"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d minutes, "
 msgid "5 minutes"
-msgstr "%d minuta, "
+msgstr "5 minuta"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d minutes, "
 msgid "30 minutes"
-msgstr "%d minuta, "
+msgstr "30 minuta"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d hour, "
 msgid "1 hour"
-msgstr "%d čas, "
+msgstr "1 sat"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d hours, "
 msgid "6 hours"
-msgstr "%d časova, "
+msgstr "6 sati"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d day, "
 msgid "1 day"
-msgstr "%d dan, "
+msgstr "1 dan"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "2 days"
-msgstr "%d dana, "
+msgstr "2 dana"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "3 days"
-msgstr "%d dana, "
+msgstr "3 dana"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "4 days"
-msgstr "%d dana, "
+msgstr "4 dana"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "5 days"
-msgstr "%d dana, "
+msgstr "5 dana"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "6 days"
-msgstr "%d dana, "
+msgstr "6 dana"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "7 days"
-msgstr "%d dana, "
+msgstr "7 dana"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:268
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:488
@@ -4464,11 +4418,11 @@ msgstr "Opcija 4"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:298
 msgid "Allow multiple votes per user"
-msgstr ""
+msgstr "Dozvoliti više glasova po korisniku"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:301
 msgid "Hide votes count until the poll expires"
-msgstr ""
+msgstr "Sakrij broj glasova dok se anketa ne završi"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:327
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
@@ -4481,24 +4435,20 @@ msgid "Not enough information"
 msgstr "Nema dovoljno informacija"
 
 #: ../src/wxUI/dialogs/mastodon/search.py:9
-#, fuzzy
-#| msgid "&Search"
 msgid "Search"
 msgstr "Pretraži"
 
 #: ../src/wxUI/dialogs/mastodon/search.py:18
 msgid "Posts"
-msgstr ""
+msgstr "Objave"
 
 #: ../src/wxUI/dialogs/mastodon/userTimeline.py:19
 msgid "&Posts"
-msgstr ""
+msgstr "&Objave"
 
 #: ../src/wxUI/dialogs/mastodon/userTimeline.py:21
-#, fuzzy
-#| msgid "Following"
 msgid "Fo&llowing"
-msgstr "Praćenja"
+msgstr "P&raćenja"
 
 #: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:8
 msgid "Edit Template"

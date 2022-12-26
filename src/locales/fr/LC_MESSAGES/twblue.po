@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-12-20 17:15-0600\n"
-"PO-Revision-Date: 2022-12-21 16:06+0000\n"
+"PO-Revision-Date: 2022-12-25 17:39+0000\n"
 "Last-Translator: Corentin Bacqué-Cazenave <corentin@progaccess.net>\n"
 "Language-Team: French <https://weblate.mcvsoftware.com/projects/twblue/"
 "twblue/fr/>\n"
@@ -24,72 +24,72 @@ msgstr "Amharic"
 #: ../src/languageHandler.py:62
 msgctxt "languageName"
 msgid "Aragonese"
-msgstr "Aragonese"
+msgstr "Aragonais"
 
 #: ../src/languageHandler.py:63
 msgctxt "languageName"
 msgid "Spanish"
-msgstr "Spanish"
+msgstr "Espagnol"
 
 #: ../src/languageHandler.py:64
 msgctxt "languageName"
 msgid "Portuguese"
-msgstr "Portuguese"
+msgstr "Portugais"
 
 #: ../src/languageHandler.py:65
 msgctxt "languageName"
 msgid "Russian"
-msgstr "Russian"
+msgstr "Russe"
 
 #: ../src/languageHandler.py:66
 msgctxt "languageName"
 msgid "italian"
-msgstr "italian"
+msgstr "italien"
 
 #: ../src/languageHandler.py:67
 msgctxt "languageName"
 msgid "Turkey"
-msgstr "Turkey"
+msgstr "Turc"
 
 #: ../src/languageHandler.py:68
 msgctxt "languageName"
 msgid "Galician"
-msgstr "Galician"
+msgstr "Galicien"
 
 #: ../src/languageHandler.py:69
 msgctxt "languageName"
 msgid "Catala"
-msgstr "Catala"
+msgstr "Catalan"
 
 #: ../src/languageHandler.py:70
 msgctxt "languageName"
 msgid "Vasque"
-msgstr "Vasque"
+msgstr "Basque"
 
 #: ../src/languageHandler.py:71
 msgctxt "languageName"
 msgid "polish"
-msgstr "polish"
+msgstr "polonais"
 
 #: ../src/languageHandler.py:72
 msgctxt "languageName"
 msgid "Arabic"
-msgstr "Arabic"
+msgstr "Arabe"
 
 #: ../src/languageHandler.py:73
 msgctxt "languageName"
 msgid "Nepali"
-msgstr "Nepali"
+msgstr "Népalais"
 
 #: ../src/languageHandler.py:74
 msgctxt "languageName"
 msgid "Serbian (Latin)"
-msgstr "Serbian (Latin)"
+msgstr "Serbe (Latin)"
 
 #: ../src/languageHandler.py:75
 msgctxt "languageName"
 msgid "Japanese"
-msgstr "Japanese"
+msgstr "Japonais"
 
 #: ../src/languageHandler.py:99
 msgid "User default"
@@ -192,11 +192,11 @@ msgstr ""
 
 #: ../src/controller/mainController.py:1114
 msgid "Session mute on"
-msgstr "Session muet"
+msgstr "Session muette"
 
 #: ../src/controller/mainController.py:1117
 msgid "Session mute off"
-msgstr "Session non muet"
+msgstr "Session non muette"
 
 #: ../src/controller/mainController.py:1126
 msgid "Buffer mute on"
@@ -621,7 +621,7 @@ msgstr "Citer"
 
 #: ../src/controller/buffers/twitter/base.py:460
 msgid "Add your comment to the tweet"
-msgstr "Ajoutez votre commentaire pour le tweet"
+msgstr "Ajoutez votre commentaire au tweet"
 
 #: ../src/controller/buffers/twitter/base.py:561
 msgid "User details"
@@ -712,7 +712,7 @@ msgstr "Ré&pondre"
 #: ../src/controller/mastodon/handler.py:30
 #: ../src/wxUI/dialogs/mastodon/menus.py:7
 msgid "&Boost"
-msgstr "&Booster"
+msgstr "&Partager"
 
 #: ../src/controller/mastodon/handler.py:31
 #: ../src/wxUI/dialogs/mastodon/menus.py:11
@@ -738,7 +738,7 @@ msgstr "Voir &conversation"
 #: ../src/wxUI/menus.py:44 ../src/wxUI/menus.py:62 ../src/wxUI/menus.py:72
 #: ../src/wxUI/view.py:38
 msgid "&Delete"
-msgstr "&Supprimer Tweet"
+msgstr "&Supprimer"
 
 #: ../src/controller/mastodon/handler.py:39
 #: ../src/controller/twitter/handler.py:39 ../src/wxUI/view.py:42
@@ -2069,7 +2069,7 @@ msgstr "Créer un nouveau post"
 #: ../src/wxUI/buffers/mastodon/base.py:25
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:7
 msgid "Boost"
-msgstr "Booster"
+msgstr "Partager"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:13
 #: ../src/keystrokeEditor/actions/twitter.py:13
@@ -2474,7 +2474,7 @@ msgstr "dddd, MMMM D, YYYY H:m"
 #: ../src/sessions/mastodon/templates.py:80
 #: ../src/sessions/mastodon/templates.py:81
 msgid "Boosted from @{}: {}"
-msgstr "Boosté depuis @{} : {}"
+msgstr "Partage de @{} : {}"
 
 #: ../src/sessions/mastodon/compose.py:35
 #: ../src/sessions/mastodon/templates.py:28
@@ -2500,7 +2500,7 @@ msgstr "{username} vous a mensionné : {status}"
 
 #: ../src/sessions/mastodon/compose.py:69
 msgid "{username} has boosted: {status}"
-msgstr "{username} a boosté : {status}"
+msgstr "{username} a partagé : {status}"
 
 #: ../src/sessions/mastodon/compose.py:71
 msgid "{username} has added to favorites: {status}"
@@ -2617,7 +2617,7 @@ msgstr "vous a mensionné : {status}"
 
 #: ../src/sessions/mastodon/templates.py:164
 msgid "has boosted: {status}"
-msgstr "a boosté : {status}"
+msgstr "a partagé : {status}"
 
 #: ../src/sessions/mastodon/templates.py:166
 msgid "has added to favorites: {status}"
@@ -4081,7 +4081,7 @@ msgstr ""
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:34
 msgid "Ask confirmation before boosting a post"
-msgstr "Demander confirmation avant de booster un post"
+msgstr "Demander confirmation avant de partager un post"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:44
 msgid ""
@@ -4312,7 +4312,7 @@ msgstr "Confidentialité"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:192
 msgid "Boosts: "
-msgstr "Boosts : "
+msgstr "Partages : "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:197
 msgid "Favorites: "
