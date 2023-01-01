@@ -666,6 +666,6 @@ class Session(base.baseSession):
 
     def get_name(self):
         if self.logged:
-            return "Twitter: {}".format(self.db["user_name"])
+            return "{}: Twitter".format(self.db["user_name"])
         else:
-            return "Twitter: {}".format(self.settings["twitter"]["user_name"])
+            return "{}: Twitter".format(self.settings["twitter"]["user_name"])

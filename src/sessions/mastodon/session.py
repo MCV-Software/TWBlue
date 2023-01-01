@@ -220,7 +220,7 @@ class Session(base.baseSession):
         instance = self.settings["mastodon"]["instance"]
         instance = instance.replace("https://", "")
         user = self.settings["mastodon"]["user_name"]
-        return "Mastodon: {}@{}".format(user, instance)
+        return "{}@{}: Mastodon".format(user, instance)
 
     def start_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
