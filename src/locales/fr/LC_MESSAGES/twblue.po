@@ -1,10 +1,10 @@
-# Corentin Bacqué-Cazenave <corentin@progaccess.net>, 2022.
+# Corentin Bacqué-Cazenave <corentin@progaccess.net>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-12-20 17:15-0600\n"
-"PO-Revision-Date: 2022-12-25 17:39+0000\n"
+"PO-Revision-Date: 2023-01-02 22:39+0000\n"
 "Last-Translator: Corentin Bacqué-Cazenave <corentin@progaccess.net>\n"
 "Language-Team: French <https://weblate.mcvsoftware.com/projects/twblue/"
 "twblue/fr/>\n"
@@ -44,7 +44,7 @@ msgstr "Russe"
 #: ../src/languageHandler.py:66
 msgctxt "languageName"
 msgid "italian"
-msgstr "italien"
+msgstr "Italien"
 
 #: ../src/languageHandler.py:67
 msgctxt "languageName"
@@ -1316,7 +1316,7 @@ msgstr "Tampon des favoris mis à jour."
 
 #: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:12
 msgid "Geotweet."
-msgstr "Tweet avec localisation géographique."
+msgstr "Tweet avec géolocalisation."
 
 #: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:13
 msgid "Tweet contains one or more images"
@@ -2208,7 +2208,7 @@ msgstr "Afficher le modificateur de raccourci"
 #: ../src/keystrokeEditor/actions/mastodon.py:46
 #: ../src/keystrokeEditor/actions/twitter.py:46
 msgid "load previous items"
-msgstr "charger des éléments plus anciens"
+msgstr "charger les éléments précédents"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:48
 #: ../src/keystrokeEditor/actions/twitter.py:50
@@ -2223,12 +2223,12 @@ msgstr "Vérifier et télécharger les mises à jour"
 #: ../src/keystrokeEditor/actions/mastodon.py:50
 #: ../src/keystrokeEditor/actions/twitter.py:53
 msgid "Opens the global settings dialogue"
-msgstr "Ouvrir la boîte de dialogue Paramètres globaux"
+msgstr "Ouvrir le dialogue Paramètres globaux"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:52
 #: ../src/keystrokeEditor/actions/twitter.py:55
 msgid "Opens the account settings dialogue"
-msgstr "Ouvrir la boîte de dialogue Paramètres du compte"
+msgstr "Ouvrir le dialogue Paramètres du compte"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:53
 #: ../src/keystrokeEditor/actions/twitter.py:56
@@ -2238,7 +2238,7 @@ msgstr "Essayer de lire un fichier média"
 #: ../src/keystrokeEditor/actions/mastodon.py:54
 #: ../src/keystrokeEditor/actions/twitter.py:57
 msgid "Updates the buffer and retrieves possible lost items there."
-msgstr "Mettre à jour le tampon et récupérer les éléments perdus si possible."
+msgstr "Mettre à jour le tampon et récupérer les éléments possiblement perdus."
 
 #: ../src/keystrokeEditor/actions/twitter.py:10
 msgid "New tweet"
@@ -2304,12 +2304,11 @@ msgstr "Afficher les listes d'un utilisateur spécifié"
 
 #: ../src/keystrokeEditor/actions/twitter.py:47
 msgid "Get geolocation"
-msgstr "Obtenir la localisation géographique"
+msgstr "Obtenir la géolocalisation"
 
 #: ../src/keystrokeEditor/actions/twitter.py:48
 msgid "Display the tweet's geolocation in a dialog"
-msgstr ""
-"Afficher la localisation géographique du tweet dans une boîte de dialogue"
+msgstr "Afficher la géolocalisation du tweet dans une boîte de dialogue"
 
 #: ../src/keystrokeEditor/actions/twitter.py:49
 msgid "Create a trending topics buffer"
@@ -2971,11 +2970,11 @@ msgstr ""
 
 #: ../src/wxUI/commonMessageDialogs.py:71
 msgid "Geolocation data: {0}"
-msgstr "Données de localisation géographique: {0}"
+msgstr "Données de géolocalisation: {0}"
 
 #: ../src/wxUI/commonMessageDialogs.py:71
 msgid "Geo data for this tweet"
-msgstr "Données de localisation géographique pour ce tweet"
+msgstr "Données de géolocalisation pour ce tweet"
 
 #: ../src/wxUI/commonMessageDialogs.py:74
 msgid ""
@@ -3146,7 +3145,7 @@ msgstr "Trouver une chaîne dans le tampon ayant actuellement le f&ocus..."
 
 #: ../src/wxUI/view.py:59
 msgid "&Load previous items"
-msgstr "&Charger des éléments plus anciens"
+msgstr "&Charger les éléments précédents"
 
 #: ../src/wxUI/dialogs/mastodon/userActions.py:21
 #: ../src/wxUI/dialogs/userActions.py:22 ../src/wxUI/view.py:61
@@ -3159,7 +3158,7 @@ msgstr "&Lecture automatique"
 
 #: ../src/wxUI/view.py:63
 msgid "&Clear buffer"
-msgstr "&Effacer le tampon"
+msgstr "&Vider le tampon"
 
 #: ../src/wxUI/view.py:64
 msgid "&Destroy"
@@ -3554,7 +3553,7 @@ msgstr "Volume"
 #: ../src/wxUI/dialogs/configuration.py:303
 #: ../src/wxUI/dialogs/mastodon/configuration.py:74
 msgid "Session mute"
-msgstr "Session muet"
+msgstr "Session muette"
 
 #: ../src/wxUI/dialogs/configuration.py:305
 #: ../src/wxUI/dialogs/mastodon/configuration.py:76
@@ -3573,15 +3572,15 @@ msgstr "Pack de sons"
 
 #: ../src/wxUI/dialogs/configuration.py:326
 msgid "Indicate audio tweets with sound"
-msgstr "Indiquer les tweets audio avec son"
+msgstr "Indiquer les tweets audio par un son"
 
 #: ../src/wxUI/dialogs/configuration.py:328
 msgid "Indicate geotweets with sound"
-msgstr "Indiquer les Tweet avec localisation géographique avec son"
+msgstr "Indiquer les Tweets géolocalisés par un son"
 
 #: ../src/wxUI/dialogs/configuration.py:330
 msgid "Indicate tweets containing images with sound"
-msgstr "Indiquer les tweets contenant des images avec du son"
+msgstr "Indiquer les tweets contenant des images par un son"
 
 #: ../src/wxUI/dialogs/configuration.py:353
 #: ../src/wxUI/dialogs/mastodon/configuration.py:122
@@ -4557,7 +4556,7 @@ msgstr ""
 
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:180
 msgid "&Mention to all"
-msgstr "&Répondre à tout le monde"
+msgstr "&Répondre à tous"
 
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:233
 msgid "&Recipient"
@@ -4586,7 +4585,7 @@ msgstr "Élément"
 
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:438
 msgid "&Expand URL"
-msgstr "&Élargir URL"
+msgstr "&Étendre l'URL"
 
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:481
 msgid "Participation time (in days)"
