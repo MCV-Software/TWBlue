@@ -48,8 +48,8 @@ class Session(base.baseSession):
                 self.logged = True
                 log.debug("Logged.")
                 self.counter = 0
-            except IOError:
-                log.error("The login attempt failed.")
+            except MastodonError:
+                log.exception("The login attempt failed.")
                 self.logged = False
         else:
             self.logged = False

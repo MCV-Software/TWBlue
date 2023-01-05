@@ -12,6 +12,7 @@ TWBlue Changelog
     * TWBlue will display properly new paragraphs in mastodon posts.
     * In the session manager, Mastodon sessions are now displayed including the instance to avoid confusion.
     * TWBlue will now read default visibility preferences when posting new statuses, and display sensitive content. These preferences can be set on the mastodon instance, in the account's preferences section. If you wish to change TWBlue's behavior and have it not read those preferences from your instance, but instead set the default public visibility and hide sensitive content, you can uncheck the Read preferences from instance checkbox in the account options.
+    * If a mastodon instance is not active or there are errors during login, TWBlue will report it in the log file and will continue with other sessions.
 
 ## Changes in version 2022.12.13
 
