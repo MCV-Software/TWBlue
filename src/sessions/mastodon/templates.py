@@ -158,7 +158,9 @@ def render_notification(notification, template, post_template, relative_times=Fa
     text = "Unknown: %r" % (notification)
     # Remove date from status, so it won't be rendered twice.
     post_template = post_template.replace("$date", "")
-    if notification.type == "mention":
+    if notification.type == "status":
+        text = _("has posted: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+    elif notification.type == "mention":
         text = _("has mentionned you: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
     elif notification.type == "reblog":
         text = _("has boosted: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
