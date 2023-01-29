@@ -2,6 +2,8 @@ TWBlue Changelog
 
 ## changes in this version
 
+As we're sure users of TWBlue and other third-party clients already know, Twitter has added new rules to its developer policies that make it impossible to attempt to replicate the social network experience in other applications. This means that officially, TWBlue, as well as other clients, is breaking the platform's rules and could be blocked from using the Twitter API at any time. At this time, according to our reports, TWBlue still works with Twitter and has been working even after the platform's announcement. We do not know how long it will continue to work. From the TWBlue team, we want to assure our users that we will maintain the code that makes it possible for TWBlue to work with Twitter as long as possible, but there will be no feature updates for our Twitter session, as it could be blocked at any time. We will use our limited resources instead to improve Mastodon support and add more sites in the near future.
+
 * In the graphical interface, TWBlue will update menu items, in the menu bar, depending on whether you are focusing a Twitter or Mastodon session. This makes it possible for TWBlue to display the correct terms in each social network. Take into account that there might be unavailable items for the currently active session.
 * in the keystroke editor for the invisible interface, TWBlue displays the available shortcuts for the currently active session. Descriptions of those keystrokes are also different for Twitter and mastodon sessions to use correct terms for both networks.
 * In the invisible interface, TWBlue will skip sessions that have not been started when using the keyboard shortcut to switch between different accounts.
