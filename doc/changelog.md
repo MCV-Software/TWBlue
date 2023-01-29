@@ -16,6 +16,8 @@ As we're sure users of TWBlue and other third-party clients already know, Twitte
     * TWBlue will now read default visibility preferences when posting new statuses, and display sensitive content. These preferences can be set on the mastodon instance, in the account's preferences section. If you wish to change TWBlue's behavior and have it not read those preferences from your instance, but instead set the default public visibility and hide sensitive content, you can uncheck the Read preferences from instance checkbox in the account options.
     * If a mastodon instance is not active or there are errors during login, TWBlue will report it in the log file and will continue with other sessions.
     * When replying to someone in a public post, TWBlue will default to "unlisted" as its visibility setting. This is done so replies will not clutter local and federated timelines. This setting might be changed when writing the reply, though. ([#504,](https://github.com/MCV-Software/TWBlue/issues/504))
+    * TWBlue uses its own user agent in Mastodon sessions, so it will be easier to identify the client for instance admins.
+    * TWBlue will check if the streaming API endpoints are available before attempting to start Streaming for the current session. Before, TWBlue caused load issues in misconfigured mastodon instances where the streaming API were not available.
 
 ## Changes in version 2022.12.13
 

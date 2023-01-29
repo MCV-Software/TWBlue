@@ -39,7 +39,7 @@ class Session(base.baseSession):
         if self.settings["mastodon"]["access_token"] != None and self.settings["mastodon"]["instance"] != None:
             try:
                 log.debug("Logging in to Mastodon instance {}...".format(self.settings["mastodon"]["instance"]))
-                self.api = mastodon.Mastodon(access_token=self.settings["mastodon"]["access_token"], api_base_url=self.settings["mastodon"]["instance"], mastodon_version=MASTODON_VERSION)
+                self.api = mastodon.Mastodon(access_token=self.settings["mastodon"]["access_token"], api_base_url=self.settings["mastodon"]["instance"], mastodon_version=MASTODON_VERSION, user_agent="TWBlue/{}".format(application.version))
                 if verify_credentials == True:
                     credentials = self.api.account_verify_credentials()
                     self.db["user_name"] = credentials["username"]
@@ -226,8 +226,14 @@ class Session(base.baseSession):
         if config.app["app-settings"]["no_streaming"]:
             return
         listener = streaming.StreamListener(session_name=self.get_name(), user_id=self.db["user_id"])
-        self.user_stream = self.api.stream_user(listener, run_async=True)
-        self.direct_stream = self.api.stream_direct(listener, run_async=True)
+        try:
+            stream_healthy = self.api.stream_healthy()
+            if stream_healthy == True:
+                self.user_stream = self.api.stream_user(listener, run_async=True)
+                self.direct_stream = self.api.stream_direct(listener, run_async=True)
+                log.debug("Started streams for session {}.".format(self.get_name()))
+        except Exception as e:
+            log.exception("Detected streaming unhealthy in {} session.".format(self.get_name()))
 
     def stop_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
