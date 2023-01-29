@@ -1,11 +1,11 @@
-# Steffen Schultz <steffenschultz@mailbox.org>, 2022.
+# Steffen Schultz <steffenschultz@mailbox.org>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-12-20 17:15-0600\n"
-"PO-Revision-Date: 2022-12-20 22:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2023-01-14 15:40+0000\n"
+"Last-Translator: Steffen Schultz <steffenschultz@mailbox.org>\n"
 "Language-Team: German <https://weblate.mcvsoftware.com/projects/twblue/"
 "twblue/de/>\n"
 "Language: de\n"
@@ -252,8 +252,6 @@ msgstr "Freunde von {}"
 #: ../src/controller/mainController.py:1193
 #: ../src/controller/mastodon/handler.py:95
 #: ../src/controller/mastodon/handler.py:214
-#, fuzzy
-#| msgid "Followers for {}"
 msgid "Following for {}"
 msgstr "Folger von {}"
 
@@ -314,13 +312,13 @@ msgstr "Start"
 #: ../src/controller/mastodon/handler.py:65
 #: ../src/controller/mastodon/settings.py:187
 msgid "Local"
-msgstr ""
+msgstr "Lokal"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/mastodon/handler.py:67
 #: ../src/controller/mastodon/settings.py:188
 msgid "Federated"
-msgstr ""
+msgstr "Föderiert"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/buffers/twitter/base.py:65
@@ -335,7 +333,7 @@ msgstr "Erwähnungen"
 #: ../src/controller/mastodon/handler.py:77
 #: ../src/controller/mastodon/settings.py:193
 msgid "Bookmarks"
-msgstr ""
+msgstr "Lesezeichen"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/buffers/twitter/base.py:65
@@ -348,13 +346,13 @@ msgstr "Direktnachrichten"
 #: ../src/controller/mastodon/handler.py:73
 #: ../src/controller/mastodon/settings.py:191
 msgid "Sent"
-msgstr ""
+msgstr "Gesendet"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/mastodon/handler.py:75
 #: ../src/controller/mastodon/settings.py:192
 msgid "Favorites"
-msgstr ""
+msgstr "Favoriten"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/buffers/twitter/base.py:65
@@ -393,10 +391,8 @@ msgstr "Stummgeschaltete Benutzer"
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/mastodon/handler.py:87
 #: ../src/controller/mastodon/settings.py:198
-#, fuzzy
-#| msgid "&Location"
 msgid "Notifications"
-msgstr "&Ort"
+msgstr "Benachrichtigungen"
 
 #: ../src/controller/buffers/mastodon/base.py:55
 #: ../src/controller/buffers/twitter/base.py:71
@@ -409,10 +405,8 @@ msgid "{username}'s followers"
 msgstr "{username}s Folger"
 
 #: ../src/controller/buffers/mastodon/base.py:59
-#, fuzzy
-#| msgid "{username}'s followers"
 msgid "{username}'s following"
-msgstr "{username}s Folger"
+msgstr "{username} folgt"
 
 #: ../src/controller/buffers/mastodon/base.py:61
 #: ../src/controller/buffers/twitter/base.py:79
@@ -427,25 +421,19 @@ msgstr "Unbekannte Ansicht"
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:4
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:172
 msgid "Post"
-msgstr ""
+msgstr "Beitrag"
 
 #: ../src/controller/buffers/mastodon/base.py:65
-#, fuzzy
-#| msgid "Write the tweet here"
 msgid "Write your post here"
-msgstr "Gib deinen Tweet hier ein"
+msgstr "Gib deinen Beitrag hier ein"
 
 #: ../src/controller/buffers/mastodon/base.py:126
-#, fuzzy
-#| msgid "New tweet in {0}"
 msgid "New post in {0}"
-msgstr "Neuer Tweet in {0}"
+msgstr "Neuer Beitrag in {0}"
 
 #: ../src/controller/buffers/mastodon/base.py:129
-#, fuzzy
-#| msgid "{0} new tweets in {1}."
 msgid "{0} new posts in {1}."
-msgstr "{0} neue Tweets in {1}."
+msgstr "{0} neue Beiträge in {1}."
 
 #: ../src/controller/buffers/mastodon/base.py:162
 #: ../src/controller/buffers/mastodon/conversations.py:98
@@ -467,37 +455,27 @@ msgstr "Diese Ansicht ist keine Zeitleiste und kann nicht gelöscht werden."
 
 #: ../src/controller/buffers/mastodon/base.py:296
 #: ../src/controller/buffers/mastodon/base.py:327
-#, fuzzy
-#| msgid "Conversation with {0}"
 msgid "Conversation with {}"
-msgstr "Unterhaltung mit {0}"
+msgstr "Unterhaltung mit {}"
 
 #: ../src/controller/buffers/mastodon/base.py:297
 #: ../src/controller/buffers/mastodon/base.py:328
 #: ../src/controller/buffers/mastodon/conversations.py:174
 #: ../src/controller/buffers/mastodon/users.py:51
-#, fuzzy
-#| msgid "Write the tweet here"
 msgid "Write your message here"
-msgstr "Gib deinen Tweet hier ein"
+msgstr "Gib deine Nachricht hier ein"
 
 #: ../src/controller/buffers/mastodon/base.py:299
-#, fuzzy
-#| msgid "Reply to {arg0}"
 msgid "Reply to {}"
-msgstr "Antwort an {arg0}"
+msgstr "Antwort an {}"
 
 #: ../src/controller/buffers/mastodon/base.py:300
-#, fuzzy
-#| msgid "Write the tweet here"
 msgid "Write your reply here"
-msgstr "Gib deinen Tweet hier ein"
+msgstr "Gib deine Antwort hier ein"
 
 #: ../src/controller/buffers/mastodon/base.py:353
-#, fuzzy
-#| msgid "This action is not supported on protected accounts."
 msgid "This action is not supported on conversation posts."
-msgstr "Diese Aktion wird für geschützte Accounts nicht unterstützt."
+msgstr "Diese Aktion wird für Unterhaltungsbeiträge nicht unterstützt."
 
 #: ../src/controller/buffers/mastodon/base.py:418
 #: ../src/controller/buffers/twitter/base.py:524
@@ -506,7 +484,7 @@ msgstr "URL wird geöffnet..."
 
 #: ../src/controller/buffers/mastodon/base.py:431
 msgid "You can delete only your own posts."
-msgstr ""
+msgstr "Du kannst nur deine eigenen Beiträge löschen."
 
 #: ../src/controller/buffers/mastodon/base.py:456
 #: ../src/controller/buffers/twitter/base.py:582
@@ -516,44 +494,36 @@ msgstr "Eintrag wird im Browser geöffnet..."
 #: ../src/controller/buffers/mastodon/base.py:463
 #: ../src/controller/buffers/mastodon/base.py:477
 msgid "Adding to favorites..."
-msgstr ""
+msgstr "Wird den Favoriten hinzugefügt..."
 
 #: ../src/controller/buffers/mastodon/base.py:469
 #: ../src/controller/buffers/mastodon/base.py:479
-#, fuzzy
-#| msgid "Remove from list"
 msgid "Removing from favorites..."
-msgstr "Aus Liste entfernen"
+msgstr "Wird aus Favoriten entfernt..."
 
 #: ../src/controller/buffers/mastodon/base.py:487
 msgid "Adding to bookmarks..."
-msgstr ""
+msgstr "Wird den Lesezeichen hinzugefügt..."
 
 #: ../src/controller/buffers/mastodon/base.py:489
 msgid "Removing from bookmarks..."
-msgstr ""
+msgstr "Wird aus Lesezeichen entfernt..."
 
 #: ../src/controller/buffers/mastodon/conversations.py:173
-#, fuzzy
-#| msgid "Conversation with {0}"
 msgid "Reply to conversation with {}"
-msgstr "Unterhaltung mit {0}"
+msgstr "Antwort auf Unterhaltung mit {}"
 
 #: ../src/controller/buffers/mastodon/notifications.py:59
 msgid "Notification dismissed."
-msgstr ""
+msgstr "Benachrichtigung verworfen."
 
 #: ../src/controller/buffers/mastodon/users.py:50
-#, fuzzy
-#| msgid "Conversation with {0}"
 msgid "New conversation with {}"
-msgstr "Unterhaltung mit {0}"
+msgstr "Neue Unterhaltung mit {}"
 
 #: ../src/controller/buffers/mastodon/users.py:104
-#, fuzzy
-#| msgid "There are no coordinates in this tweet"
 msgid "There are no more items in this buffer."
-msgstr "Dieser Tweet hat keine Koordinaten."
+msgstr "Keine weiteren Einträge in dieser Ansicht."
 
 #: ../src/controller/buffers/twitter/base.py:65
 #: ../src/controller/twitter/handler.py:69
@@ -661,7 +631,7 @@ msgstr "Benutzerdetails"
 #: ../src/controller/buffers/twitter/directMessages.py:163
 #: ../src/controller/twitter/messages.py:329
 msgid "MMM D, YYYY. H:m"
-msgstr "dddd, MMMM D, YYYY H:m:s"
+msgstr "dddd, D. MMMM YYYY, H:m"
 
 #: ../src/controller/buffers/twitter/base.py:621
 msgid "There are no coordinates in this tweet"
@@ -731,7 +701,7 @@ msgstr "&Suche"
 
 #: ../src/controller/mastodon/handler.py:28
 msgid "&Post"
-msgstr ""
+msgstr "&Beitrag"
 
 #: ../src/controller/mastodon/handler.py:29
 #: ../src/controller/twitter/handler.py:29
@@ -743,26 +713,20 @@ msgstr "Ant&worten"
 #: ../src/controller/mastodon/handler.py:30
 #: ../src/wxUI/dialogs/mastodon/menus.py:7
 msgid "&Boost"
-msgstr ""
+msgstr "&Teilen"
 
 #: ../src/controller/mastodon/handler.py:31
 #: ../src/wxUI/dialogs/mastodon/menus.py:11
-#, fuzzy
-#| msgid "&Add to list"
 msgid "&Add to favorites"
-msgstr "Zur L&iste hinzufügen"
+msgstr "Zu F&avoriten hinzufügen"
 
 #: ../src/controller/mastodon/handler.py:32
-#, fuzzy
-#| msgid "Remove from list"
 msgid "Remove from favorites"
-msgstr "Aus Liste entfernen"
+msgstr "Aus Favoriten entfernen"
 
 #: ../src/controller/mastodon/handler.py:33
-#, fuzzy
-#| msgid "&Show user"
 msgid "&Show post"
-msgstr "Benutzer an&sehen"
+msgstr "Beitrag &zeigen"
 
 #: ../src/controller/mastodon/handler.py:35
 #: ../src/controller/twitter/handler.py:35 ../src/wxUI/view.py:36
@@ -785,7 +749,7 @@ msgstr "&Aktionen..."
 #: ../src/controller/mastodon/handler.py:40
 #: ../src/controller/twitter/handler.py:40 ../src/wxUI/view.py:43
 msgid "&View timeline..."
-msgstr "&Zeitleiste ansehen"
+msgstr "&Zeitleiste anzeigen"
 
 #: ../src/controller/mastodon/handler.py:41
 #: ../src/controller/twitter/handler.py:41 ../src/wxUI/view.py:44
@@ -798,10 +762,8 @@ msgid "Timelines"
 msgstr "Zeitleisten"
 
 #: ../src/controller/mastodon/handler.py:91
-#, fuzzy
-#| msgid "Timeline for {}"
 msgid "Timelines for {}"
-msgstr "Zeitleiste für {}"
+msgstr "Zeitleisten für {}"
 
 #: ../src/controller/mastodon/handler.py:100
 #: ../src/controller/twitter/handler.py:102
@@ -822,13 +784,11 @@ msgstr "Suche nach {}"
 
 #: ../src/controller/mastodon/messages.py:174
 msgid "Poll with {} options"
-msgstr ""
+msgstr "Umfrage mit {} Optionen"
 
 #: ../src/controller/mastodon/messages.py:193
-#, fuzzy
-#| msgid "List for {}"
 msgid "Post from {}"
-msgstr "Liste für {}"
+msgstr "Beitrag von {}"
 
 #: ../src/controller/mastodon/messages.py:197
 #: ../src/sessions/mastodon/templates.py:85 ../src/wxUI/dialogs/lists.py:76
@@ -839,30 +799,22 @@ msgstr "Öffentlich"
 #: ../src/controller/mastodon/messages.py:197
 #: ../src/sessions/mastodon/templates.py:85
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
-#, fuzzy
-#| msgid "Accounts list"
 msgid "Not listed"
-msgstr "Account-Liste"
+msgstr "Nicht gelistet"
 
 #: ../src/controller/mastodon/messages.py:197
-#, fuzzy
-#| msgid "Followers"
 msgid "followers only"
-msgstr "Folger"
+msgstr "Nur Folger"
 
 #: ../src/controller/mastodon/messages.py:197
 #: ../src/sessions/mastodon/templates.py:85
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
-#, fuzzy
-#| msgid "Direct message"
 msgid "Direct"
-msgstr "Direktnachricht"
+msgstr "Direkt"
 
 #: ../src/controller/mastodon/messages.py:204
-#, fuzzy
-#| msgid "Remove client"
 msgid "Remote instance"
-msgstr "Client entfernen"
+msgstr "Entfernte Instanz"
 
 #: ../src/controller/mastodon/messages.py:227
 #: ../src/controller/twitter/messages.py:382
@@ -877,17 +829,13 @@ msgstr "Account-Einstellungen für %s"
 
 #: ../src/controller/mastodon/settings.py:89
 #: ../src/wxUI/dialogs/mastodon/configuration.py:51
-#, fuzzy
-#| msgid "Edit template for persons. Current template: {}"
 msgid "Edit template for posts. Current template: {}"
-msgstr "Vorlage für Personen bearbeiten. Aktuelle Vorlage: {}"
+msgstr "Vorlage für Beiträge bearbeiten. Aktuelle Vorlage: {}"
 
 #: ../src/controller/mastodon/settings.py:98
 #: ../src/wxUI/dialogs/mastodon/configuration.py:53
-#, fuzzy
-#| msgid "Edit template for persons. Current template: {}"
 msgid "Edit template for conversations. Current template: {}"
-msgstr "Vorlage für Personen bearbeiten. Aktuelle Vorlage: {}"
+msgstr "Vorlage für Unterhaltungen bearbeiten. Aktuelle Vorlage: {}"
 
 #: ../src/controller/mastodon/settings.py:107
 #: ../src/controller/twitter/settings.py:122
@@ -937,7 +885,7 @@ msgstr "\"Gefällt mir\" &entfernen"
 #: ../src/wxUI/dialogs/mastodon/menus.py:21 ../src/wxUI/menus.py:22
 #: ../src/wxUI/menus.py:58 ../src/wxUI/view.py:34
 msgid "&Show tweet"
-msgstr "Tweet an&sehen"
+msgstr "Tweet an&zeigen"
 
 #: ../src/controller/twitter/handler.py:34 ../src/wxUI/view.py:35
 msgid "View &address"
@@ -962,18 +910,16 @@ msgstr "Aus Liste &entfernen"
 #: ../src/controller/twitter/handler.py:45 ../src/wxUI/menus.py:80
 #: ../src/wxUI/view.py:48
 msgid "&View lists"
-msgstr "Listen &ansehen"
+msgstr "Listen &anzeigen"
 
 #: ../src/controller/twitter/handler.py:46 ../src/wxUI/menus.py:83
 #: ../src/wxUI/view.py:49
 msgid "Show user &profile"
-msgstr "Benutzer&profil ansehen"
+msgstr "Benutzer&profil anzeigen"
 
 #: ../src/controller/twitter/handler.py:47
-#, fuzzy
-#| msgid "V&iew likes"
 msgid "View likes"
-msgstr "L&ikes ansehen"
+msgstr "Likes anzeigen"
 
 #: ../src/controller/twitter/handler.py:49 ../src/wxUI/view.py:55
 msgid "New &trending topics buffer..."
@@ -1031,7 +977,7 @@ msgstr "%s - %s von %d Zeichen"
 
 #: ../src/controller/twitter/messages.py:356
 msgid "View item"
-msgstr "Eintrag ansehen"
+msgstr "Eintrag anzeigen"
 
 #: ../src/controller/twitter/settings.py:37
 #: ../src/controller/twitter/settings.py:151
@@ -2116,16 +2062,14 @@ msgid "Show or hide the GUI"
 msgstr "GUI zeigen/verbergen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:10
-#, fuzzy
-#| msgid "Create a new list"
 msgid "Make a new post"
-msgstr "Neue Liste erstellen"
+msgstr "Neuen Beitrag verfassen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:12
 #: ../src/wxUI/buffers/mastodon/base.py:25
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:7
 msgid "Boost"
-msgstr ""
+msgstr "Teilen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:13
 #: ../src/keystrokeEditor/actions/twitter.py:13
@@ -2134,17 +2078,15 @@ msgstr "Direktnachricht senden"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:14
 msgid "Add post to favorites"
-msgstr ""
+msgstr "Beitrag favorisieren"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:15
-#, fuzzy
-#| msgid "Remove from list"
 msgid "Remove post from favorites"
-msgstr "Aus Liste entfernen"
+msgstr "Beitrag aus Favoriten entfernen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:16
 msgid "Add/remove post from favorites"
-msgstr ""
+msgstr "Beitrag zu Favoriten hinzufügen/entfernen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:17
 #: ../src/keystrokeEditor/actions/twitter.py:17
@@ -2152,10 +2094,8 @@ msgid "Open the user actions dialogue"
 msgstr "Aktionen-Dialog öffnen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:19
-#, fuzzy
-#| msgid "Show tweet"
 msgid "Show post"
-msgstr "Tweet ansehen"
+msgstr "Beitrag zeigen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:20
 #: ../src/keystrokeEditor/actions/twitter.py:20
@@ -2173,10 +2113,8 @@ msgid "Destroy buffer"
 msgstr "Ansicht löschen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:23
-#, fuzzy
-#| msgid "Interact with the currently focused tweet."
 msgid "Interact with the currently focused post."
-msgstr "Interagiert mit dem momentan fokussierten Tweet."
+msgstr "Interagiert mit dem momentan fokussierten Beitrag."
 
 #: ../src/keystrokeEditor/actions/mastodon.py:24
 #: ../src/keystrokeEditor/actions/twitter.py:24
@@ -2184,10 +2122,8 @@ msgid "Open URL"
 msgstr "URL öffnen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:25
-#, fuzzy
-#| msgid "View in Twitter"
 msgid "View in browser"
-msgstr "Auf Twitter ansehen"
+msgstr "Im Browser anzeigen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:26
 #: ../src/keystrokeEditor/actions/twitter.py:26
@@ -2220,10 +2156,8 @@ msgid "Jump 20 elements down in the current buffer"
 msgstr "20 Elemente in der gewählten Ansicht nach unten springen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:33
-#, fuzzy
-#| msgid "Delete"
 msgid "Delete post"
-msgstr "Löschen"
+msgstr "Beitrag löschen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:34
 #: ../src/keystrokeEditor/actions/twitter.py:34
@@ -2257,10 +2191,8 @@ msgstr ""
 "Schaltet das automatische Vorlesen neuer Tweets in der aktuellen Ansicht um"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:42
-#, fuzzy
-#| msgid "Search on twitter"
 msgid "Search on instance"
-msgstr "Auf Twitter suchen"
+msgstr "Auf Instanz suchen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:43
 #: ../src/keystrokeEditor/actions/twitter.py:43
@@ -2299,10 +2231,8 @@ msgstr "Öffnet die Account-Einstellungen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:53
 #: ../src/keystrokeEditor/actions/twitter.py:56
-#, fuzzy
-#| msgid "Try to play an audio file"
 msgid "Try to play a media file"
-msgstr "Versuche eine Audiodatei abzuspielen"
+msgstr "Versuche eine Mediendatei abzuspielen"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:54
 #: ../src/keystrokeEditor/actions/twitter.py:57
@@ -2335,11 +2265,11 @@ msgstr "\"Gefällt mir\" entfernen"
 
 #: ../src/keystrokeEditor/actions/twitter.py:18
 msgid "See user details"
-msgstr "Benutzerdetails ansehen"
+msgstr "Benutzerdetails anzeigen"
 
 #: ../src/keystrokeEditor/actions/twitter.py:19
 msgid "Show tweet"
-msgstr "Tweet ansehen"
+msgstr "Tweet anzeigen"
 
 #: ../src/keystrokeEditor/actions/twitter.py:23
 msgid "Interact with the currently focused tweet."
@@ -2347,7 +2277,7 @@ msgstr "Interagiert mit dem momentan fokussierten Tweet."
 
 #: ../src/keystrokeEditor/actions/twitter.py:25
 msgid "View in Twitter"
-msgstr "Auf Twitter ansehen"
+msgstr "Auf Twitter anzeigen"
 
 #: ../src/keystrokeEditor/actions/twitter.py:32
 msgid "Edit profile"
@@ -2407,11 +2337,11 @@ msgstr "Erstellt einen Alias für einen Benutzer"
 
 #: ../src/sessionmanager/sessionManager.py:68
 msgid "{account_name} (Twitter)"
-msgstr ""
+msgstr "{account_name} (Twitter)"
 
 #: ../src/sessionmanager/sessionManager.py:73
 msgid "{account_name} (Mastodon)"
-msgstr ""
+msgstr "{account_name} (Mastodon)"
 
 #: ../src/sessionmanager/wxUI.py:10
 msgid "Session manager"
@@ -2446,14 +2376,12 @@ msgid "Account Error"
 msgstr "Account-Fehler"
 
 #: ../src/sessionmanager/wxUI.py:53
-#, fuzzy
-#| msgid "View in Twitter"
 msgid "Twitter"
-msgstr "Auf Twitter ansehen"
+msgstr "Twitter"
 
 #: ../src/sessionmanager/wxUI.py:54
 msgid "Mastodon"
-msgstr ""
+msgstr "Mastodon"
 
 #: ../src/sessionmanager/wxUI.py:60
 msgid ""
@@ -2461,6 +2389,9 @@ msgid ""
 "password) so we can authorise TWBlue in your instance. Would you like to "
 "authorise your account now?"
 msgstr ""
+"Du wirst nach deinen Mastodon-Daten gefragt (URL der Instanz, E-Mail-Adresse "
+"und Passwort), damit TWBlue für den Zugriff auf deine Instanz berechtigt "
+"ist. Möchtest du deinen Account jetzt autorisieren?"
 
 #: ../src/sessionmanager/wxUI.py:60 ../src/sessionmanager/wxUI.py:67
 msgid "Authorization"
@@ -2534,18 +2465,14 @@ msgstr ""
 
 #: ../src/sessions/mastodon/compose.py:17
 #: ../src/sessions/mastodon/compose.py:64
-#, fuzzy
-#| msgid "dddd, MMMM D, YYYY H:m:s"
 msgid "dddd, MMMM D, YYYY H:m"
-msgstr "dddd, MMMM D, YYYY H:m:s"
+msgstr "dddd, D. MMMM YYYY, H:m"
 
 #: ../src/sessions/mastodon/compose.py:19
 #: ../src/sessions/mastodon/templates.py:80
 #: ../src/sessions/mastodon/templates.py:81
-#, fuzzy
-#| msgid "{0}. Quoted  tweet from @{1}: {2}"
 msgid "Boosted from @{}: {}"
-msgstr "{0}. Zitierter Tweet von @{1}: {2}"
+msgstr "Geteilt von @{}: {}"
 
 #: ../src/sessions/mastodon/compose.py:35
 #: ../src/sessions/mastodon/templates.py:28
@@ -2554,80 +2481,70 @@ msgstr "{0}. Zitierter Tweet von @{1}: {2}"
 #: ../src/sessions/twitter/compose.py:130
 #: ../src/sessions/twitter/templates.py:26
 msgid "dddd, MMMM D, YYYY H:m:s"
-msgstr "dddd, MMMM D, YYYY H:m:s"
+msgstr "dddd, D. MMMM YYYY, H:m:s"
 
 #: ../src/sessions/mastodon/compose.py:39
-#, fuzzy, python-format
-#| msgid ""
-#| "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
-#| "Twitter %s"
+#, python-format
 msgid "%s (@%s). %s followers, %s following, %s posts. Joined %s"
-msgstr ""
-"%s (@%s). %s Folger, %s Freunde, %s Tweets. Letzter Tweet: %s. Trat Twitter "
-"%s bei."
+msgstr "%s (@%s). %s Folger, folgt %s, %s Beiträge. Beigetreten %s"
 
 #: ../src/sessions/mastodon/compose.py:50
 msgid "Last message from {}: {}"
-msgstr ""
+msgstr "Letzte Nachricht von {}: {}"
 
 #: ../src/sessions/mastodon/compose.py:67
 msgid "{username} has mentionned you: {status}"
-msgstr ""
+msgstr "{username} hat dich erwähnt: {status}"
 
 #: ../src/sessions/mastodon/compose.py:69
 msgid "{username} has boosted: {status}"
-msgstr ""
+msgstr "{username} hat geteilt: {status}"
 
 #: ../src/sessions/mastodon/compose.py:71
 msgid "{username} has added to favorites: {status}"
-msgstr ""
+msgstr "{username} hat favorisiert: {status}"
 
 #: ../src/sessions/mastodon/compose.py:73
-#, fuzzy
-#| msgid "{username}'s followers"
 msgid "{username} has followed you."
-msgstr "{username}s Folger"
+msgstr "{username} folgt dir."
 
 #: ../src/sessions/mastodon/compose.py:75
 #: ../src/sessions/mastodon/templates.py:172
 msgid "A poll in which you have voted has expired: {status}"
-msgstr ""
+msgstr "Eine Umfrage in der du abgestimmt hast ist abgelaufen: {status}"
 
 #: ../src/sessions/mastodon/compose.py:77
-#, fuzzy
-#| msgid "{username}'s followers"
 msgid "{username} wants to follow you."
-msgstr "{username}s Folger"
+msgstr "{username} möchte dir folgen."
 
 #: ../src/sessions/mastodon/session.py:60
 msgid "Please enter your instance URL."
-msgstr ""
+msgstr "Bitte trage die URL deiner Instanz ein."
 
 #: ../src/sessions/mastodon/session.py:60
 msgid "Mastodon instance"
-msgstr ""
+msgstr "Mastodon-Instanz"
 
 #: ../src/sessions/mastodon/session.py:71
 msgid ""
 "We could not connect to your mastodon instance. Please verify that the "
 "domain exists and the instance is accessible via a web browser."
 msgstr ""
+"Es konnte keine Verbindung zu deiner Mastodon-Instanz aufgebaut werden. "
+"Bitte prüfe, ob die URL korrekt und die Instanz mit einem Browser erreichbar "
+"ist."
 
 #: ../src/sessions/mastodon/session.py:71
-#, fuzzy
-#| msgid "&Report an error"
 msgid "Instance error"
-msgstr "Fehle&r melden"
+msgstr "Instanzfehler"
 
 #: ../src/sessions/mastodon/session.py:76
 msgid "Enter the verification code"
-msgstr ""
+msgstr "Trage den Bestätigungs-Code ein"
 
 #: ../src/sessions/mastodon/session.py:76
-#, fuzzy
-#| msgid "Authorization"
 msgid "PIN code authorization"
-msgstr "Autorisierung"
+msgstr "PIN-Code-Autorisierung"
 
 #: ../src/sessions/mastodon/session.py:85
 msgid ""
@@ -2635,13 +2552,14 @@ msgid ""
 "might be caused due to an incorrect verification code. Please try to add the "
 "session again."
 msgstr ""
+"Dein Mastodon-Account konnte nicht für TWBlue autorisiert werden. "
+"Möglicherweise war der Bestädigungs-Code nicht korrekt. Bitte versuche die "
+"Sitzung erneut zu erstellen."
 
 #: ../src/sessions/mastodon/session.py:85
 #: ../src/sessions/twitter/session.py:171
-#, fuzzy
-#| msgid "Authorization"
 msgid "Authorization error"
-msgstr "Autorisierung"
+msgstr "Autorisierungsfehler"
 
 #: ../src/sessions/mastodon/session.py:182
 #: ../src/sessions/twitter/session.py:206
@@ -2668,67 +2586,53 @@ msgid "Dm to $recipient_display_name, $text $date"
 msgstr "Direktnachricht an $recipient_display_name, $text $date"
 
 #: ../src/sessions/mastodon/templates.py:20
-#, fuzzy
-#| msgid ""
-#| "$display_name (@$screen_name). $followers followers, $following "
-#| "following, $tweets tweets. Joined Twitter $created_at."
 msgid ""
 "$display_name (@$screen_name). $followers followers, $following following, "
 "$posts posts. Joined $created_at."
 msgstr ""
-"$display_name (@$screen_name). $followers Folger, folgt $following, $tweets "
-"Tweets. Trat Twitter $created_at bei."
+"$display_name (@$screen_name). $followers Folger, folgt $following, $posts "
+"Beiträge. Beigetreten $created_at."
 
 #: ../src/sessions/mastodon/templates.py:21
-#, fuzzy
-#| msgid "$sender_display_name, $text $date"
 msgid "$display_name $text, $date"
-msgstr "$sender_display_name, $text $date"
+msgstr "$display_name $text, $date"
 
 #: ../src/sessions/mastodon/templates.py:34
 msgid "Content warning: {}"
-msgstr ""
+msgstr "Inhaltswarnung: {}"
 
 #: ../src/sessions/mastodon/templates.py:45
-#, fuzzy
-#| msgid "Image description: {}."
 msgid "Image description: {}"
-msgstr "Bildbeschreibung"
+msgstr "Bildbeschreibung: {}"
 
 #: ../src/sessions/mastodon/templates.py:85
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
-#, fuzzy
-#| msgid "Followers"
 msgid "Followers only"
-msgstr "Folger"
+msgstr "Nur Folger"
 
 #: ../src/sessions/mastodon/templates.py:162
 msgid "has mentionned you: {status}"
-msgstr ""
+msgstr "hat dich erwähnt: {status}"
 
 #: ../src/sessions/mastodon/templates.py:164
 msgid "has boosted: {status}"
-msgstr ""
+msgstr "hat geteilt: {status}"
 
 #: ../src/sessions/mastodon/templates.py:166
 msgid "has added to favorites: {status}"
-msgstr ""
+msgstr "hat favorisiert: {status}"
 
 #: ../src/sessions/mastodon/templates.py:168
 msgid "has updated a status: {status}"
-msgstr ""
+msgstr "hat einen Status aktualisiert: {status}"
 
 #: ../src/sessions/mastodon/templates.py:170
-#, fuzzy
-#| msgid "{0} is following you."
 msgid "has followed you."
-msgstr "{0} folgt dir."
+msgstr "folgt dir."
 
 #: ../src/sessions/mastodon/templates.py:174
-#, fuzzy
-#| msgid "{0} is following you."
 msgid "wants to follow you."
-msgstr "{0} folgt dir."
+msgstr "möchte dir folgen."
 
 #: ../src/sessions/mastodon/wxUI.py:6 ../src/sessions/twitter/session.py:162
 #: ../src/sessions/twitter/wxUI.py:6
@@ -2737,19 +2641,15 @@ msgstr "Autorisiere Account..."
 
 #: ../src/sessions/mastodon/wxUI.py:9
 msgid "URL of mastodon instance:"
-msgstr ""
+msgstr "URL der Mastodon-Instanz:"
 
 #: ../src/sessions/mastodon/wxUI.py:15
-#, fuzzy
-#| msgid "View &address"
 msgid "Email address:"
-msgstr "&Adresse abrufen"
+msgstr "E-Mail-Adresse:"
 
 #: ../src/sessions/mastodon/wxUI.py:21
-#, fuzzy
-#| msgid "Password: "
 msgid "Password:"
-msgstr "Passwort: "
+msgstr "Passwort:"
 
 #: ../src/sessions/twitter/compose.py:68 ../src/sessions/twitter/compose.py:70
 #, python-format
@@ -2795,6 +2695,9 @@ msgid ""
 "be caused due to an incorrect verification code. Please try to add the "
 "session again."
 msgstr ""
+"Dein Twitter-Account konnte nicht für TWBlue autorisiert werden. "
+"Möglicherweise war der Bestädigungs-Code nicht korrekt. Bitte versuche die "
+"Sitzung erneut zu erstellen."
 
 #: ../src/sessions/twitter/session.py:440
 #: ../src/sessions/twitter/session.py:523
@@ -2853,15 +2756,7 @@ msgstr ""
 "%s"
 
 #: ../src/update/wxUpdater.py:14
-#, fuzzy, python-format
-#| msgid ""
-#| "There's a new %s version available, released on %s. Would you like to "
-#| "download it now?\n"
-#| "\n"
-#| " %s version: %s\n"
-#| "\n"
-#| "Changes:\n"
-#| "%s"
+#, python-format
 msgid ""
 "There's a new %s version available, released on %s. Updates are not "
 "automatic in Windows 7, so you would need to visit TWBlue's download website "
@@ -2872,8 +2767,9 @@ msgid ""
 "Changes:\n"
 "%s"
 msgstr ""
-"Es ist eine neue Version von %s verfügbar, freigegeben am %s. Möchtest du "
-"sie jetzt herunterladen?\n"
+"Es ist eine neue %s-Version verfügbar, freigegeben am %s. Automatische "
+"Updates sind in Windows 7 nicht verfügbar, daher musst du zum Herunterladen "
+"die TWBlue-Webseite aufrufen.\n"
 "\n"
 " %s Version: %s\n"
 "\n"
@@ -3159,11 +3055,11 @@ msgstr "Ben&utzeraktionen"
 
 #: ../src/wxUI/menus.py:40
 msgid "&Show direct message"
-msgstr "Direktnachricht an&sehen"
+msgstr "Direktnachricht an&zeigen"
 
 #: ../src/wxUI/menus.py:68
 msgid "&Show event"
-msgstr "Ereignis an&sehen"
+msgstr "Ereignis an&zeigen"
 
 #: ../src/wxUI/menus.py:78
 msgid "Direct &message"
@@ -3171,7 +3067,7 @@ msgstr "Direkt&nachricht"
 
 #: ../src/wxUI/menus.py:85
 msgid "&Show user"
-msgstr "Benutzer an&sehen"
+msgstr "Benutzer an&zeigen"
 
 #: ../src/wxUI/buffers/twitter/trends.py:20 ../src/wxUI/menus.py:97
 msgid "Search topic"
@@ -3183,7 +3079,7 @@ msgstr "Über diesen &Trend twittern"
 
 #: ../src/wxUI/menus.py:101
 msgid "&Show item"
-msgstr "Eintrag an&sehen"
+msgstr "Eintrag an&zeigen"
 
 #: ../src/wxUI/sysTrayIcon.py:36 ../src/wxUI/view.py:24
 msgid "&Global settings"
@@ -3231,7 +3127,7 @@ msgstr "&Beenden"
 
 #: ../src/wxUI/view.py:50
 msgid "V&iew likes"
-msgstr "L&ikes ansehen"
+msgstr "L&ikes anzeigen"
 
 #: ../src/wxUI/view.py:54
 msgid "&Update buffer"
@@ -3303,10 +3199,8 @@ msgid "&Application"
 msgstr "&Anwendung"
 
 #: ../src/wxUI/view.py:84
-#, fuzzy
-#| msgid "Item"
 msgid "&Item"
-msgstr "Eintrag"
+msgstr "E&intrag"
 
 #: ../src/wxUI/dialogs/mastodon/userActions.py:10
 #: ../src/wxUI/dialogs/userActions.py:11 ../src/wxUI/view.py:85
@@ -3386,11 +3280,11 @@ msgstr "Client"
 
 #: ../src/wxUI/buffers/mastodon/base.py:27
 msgid "Favorite"
-msgstr ""
+msgstr "Favorit"
 
 #: ../src/wxUI/buffers/mastodon/base.py:28
 msgid "Bookmark"
-msgstr ""
+msgstr "Lesezeichen"
 
 #: ../src/wxUI/buffers/mastodon/base.py:29
 #: ../src/wxUI/buffers/twitter/base.py:28
@@ -3400,7 +3294,7 @@ msgstr "Direktnachricht"
 #: ../src/wxUI/buffers/mastodon/notifications.py:23
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:23
 msgid "Dismiss"
-msgstr ""
+msgstr "Verwerfen"
 
 #: ../src/wxUI/buffers/mastodon/user.py:19
 #: ../src/wxUI/dialogs/userAliasDialogs.py:48
@@ -3408,10 +3302,8 @@ msgid "Actions"
 msgstr "Aktionen"
 
 #: ../src/wxUI/buffers/mastodon/user.py:20
-#, fuzzy
-#| msgid "Direct Messages"
 msgid "Message"
-msgstr "Direktnachrichten"
+msgstr "Nachricht"
 
 #: ../src/wxUI/buffers/twitter/events.py:14
 msgid "Event"
@@ -3992,7 +3884,7 @@ msgstr "&Gehe zu URL"
 
 #: ../src/wxUI/dialogs/trends.py:10
 msgid "View trending topics"
-msgstr "Trends ansehen"
+msgstr "Trends anzeigen"
 
 #: ../src/wxUI/dialogs/trends.py:11
 msgid "Trending topics by"
@@ -4162,73 +4054,52 @@ msgid "F&riends"
 msgstr "F&reunde"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:15
-#, fuzzy
-#| msgid ""
-#| "Scan account and add friends and followers to the user autocompletion "
-#| "database"
 msgid ""
 "Scan account and add followers and following users to the user "
 "autocompletion database"
 msgstr ""
-"Account scannen und Freunde und Folger zur Autovervollständigungs-Datenbank "
+"Account scannen und Folger und Freunde zur Autovervollständigungs-Datenbank "
 "hinzufügen"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:32
-#, fuzzy
-#| msgid ""
-#| "Inverted buffers: The newest tweets will be shown at the beginning while "
-#| "the oldest at the end"
 msgid ""
 "Inverted buffers: The newest items will be shown at the beginning while the "
 "oldest at the end"
 msgstr ""
-"Umgekehrte Ansicht: Neueste Tweets werden am Anfang der Liste angezeigt, die "
-"ältesten am Ende"
+"Umgekehrte Ansicht: Neueste Einträge werden am Anfang der Liste angezeigt, "
+"die ältesten am Ende"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:34
 msgid "Ask confirmation before boosting a post"
-msgstr ""
+msgstr "Bestätigung vor dem Teilen eines Beitrags"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:44
-#, fuzzy
-#| msgid ""
-#| "Load cache for tweets in memory (much faster in big datasets but requires "
-#| "more RAM)"
 msgid ""
 "Load cache for items in memory (much faster in big datasets but requires "
 "more RAM)"
 msgstr ""
-"Tweets im Speicher zwischenlagern (sorgt für verbesserte Geschwindigkeit bei "
-"großen Datenmengen, erhöht jedoch die RAM-Nutzung)"
+"Einträge im Speicher zwischenlagern (sorgt für verbesserte Geschwindigkeit "
+"bei großen Datenmengen, erhöht jedoch die RAM-Nutzung)"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:97
-#, fuzzy
-#| msgid "Indicate audio tweets with sound"
 msgid "Indicate audio or video in posts with sound"
-msgstr "Klang bei Audio-Tweets abspielen"
+msgstr "Klang bei Audio- oder Videobeiträgen abspielen"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:99
-#, fuzzy
-#| msgid "Indicate tweets containing images with sound"
 msgid "Indicate posts containing images with sound"
-msgstr "Klang bei Tweets mit Bildern abspielen"
+msgstr "Klang bei Beiträgen mit Bildern abspielen"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:7
-#, fuzzy
-#| msgid "Would you like to add a comment to this tweet?"
 msgid "Would you like to share this post?"
-msgstr "Möchtest du einen Kommentar hinzufügen?"
+msgstr "Möchtest du diesen Beitrag teilen?"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:15
-#, fuzzy
-#| msgid ""
-#| "Do you really want to delete this tweet? It will be deleted from Twitter "
-#| "as well."
 msgid ""
 "Do you really want to delete this post? It will be deleted from the instance "
 "as well."
 msgstr ""
-"Möchtest du diesen Tweet wirklich löschen? Er wird auch auf Twitter gelöscht."
+"Möchtest du diesen Beitrag wirklich löschen? Er wird auch auf der Instanz "
+"gelöscht."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:23
 msgid ""
@@ -4236,53 +4107,44 @@ msgid ""
 "notification, it also disappears from your mentions buffer. The post is not "
 "going to be deleted from the instance, though."
 msgstr ""
+"Möchtest du diese Benachrichtigung wirklich verwerfen? Wenn du eine "
+"Erwähnungsbenachrichtigung verwirfst, wird sie auch aus der Erwähnungen-"
+"Zeitleiste entfernt. Der Beitrag wird jedoch nicht aus der Instanz gelöscht."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:31
-#, fuzzy
-#| msgid ""
-#| "Do you really want to empty this buffer? It's  items will be removed from "
-#| "the list but not from Twitter"
 msgid ""
 "Do you really want to empty this buffer? It's  items will be removed from "
 "the list but not from the instance"
 msgstr ""
 "Möchtest du diese Ansicht wirklich leeren? Die Einträge werden aus der Liste "
-"entfernt, jedoch nicht von Twitter."
+"entfernt, jedoch nicht von der Instanz."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:38
-#, fuzzy
-#| msgid "This user has no tweets. {0} can't create a timeline."
 msgid "This user has no posts. {0} can't create a timeline."
 msgstr ""
-"Dieser Benutzer hat keine Tweets, {0} kann daher keine Zeitleiste erstellen."
+"Dieser Benutzer hat keine Beiträge, {0} kann daher keine Zeitleiste "
+"erstellen."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:43
-#, fuzzy
-#| msgid "This user has no favorited tweets. {0} can't create a timeline."
 msgid "This user has no favorited posts. {0} can't create a timeline."
 msgstr ""
 "Dieser Benutzer hat keine Favoriten. {0} kann daher keine Zeitleiste "
 "erstellen."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:48
-#, fuzzy
-#| msgid "This user has no followers. {0} can't create a timeline."
 msgid "This user has no followers yet. {0} can't create a timeline."
 msgstr ""
-"Dieser Benutzer hat keine Tweets, {0} kann daher keine Zeitleiste erstellen."
+"Dieser Benutzer hat noch keine Folger, {0} kann daher keine Zeitleiste "
+"erstellen."
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:53
-#, fuzzy
-#| msgid "This user has no followers. {0} can't create a timeline."
 msgid "This user is not following anyone. {0} can't create a timeline."
 msgstr ""
-"Dieser Benutzer hat keine Tweets, {0} kann daher keine Zeitleiste erstellen."
+"Dieser Benutzer folgt niemandem, {0} kann daher keine Zeitleiste erstellen."
 
 #: ../src/wxUI/dialogs/mastodon/menus.py:13
-#, fuzzy
-#| msgid "R&emove from list"
 msgid "R&emove from favorites"
-msgstr "Aus Liste &entfernen"
+msgstr "Aus Favoriten &entfernen"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:19
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:37
@@ -4301,44 +4163,36 @@ msgid "Type"
 msgstr "Typ"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:27
-#, fuzzy
-#| msgid "Remove client"
 msgid "Remove Attachment"
-msgstr "Client entfernen"
+msgstr "Anhang entfernen"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:32
 msgid "Post in the thread"
-msgstr ""
+msgstr "Beitrag im Thread"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:39
-#, fuzzy
-#| msgid "Remove from list"
 msgid "Remove post"
-msgstr "Aus Liste entfernen"
+msgstr "Beitrag entfernen"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:46
 msgid "Visibility"
-msgstr ""
+msgstr "Sichtbarkeit"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:51
-#, fuzzy
-#| msgid "A&dd..."
 msgid "A&dd"
-msgstr "Hin&zufügen..."
+msgstr "Hin&zufügen"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:52
 msgid "Sensitive content"
-msgstr ""
+msgstr "Heikler Inhalt"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:57
 msgid "Content warning"
-msgstr ""
+msgstr "Inhaltswarnung"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:64
-#, fuzzy
-#| msgid "Add to list"
 msgid "Add p&ost"
-msgstr "Zur Liste hinzufügen"
+msgstr "&Beitrag hinzufügen"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:68
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:65
@@ -4348,10 +4202,8 @@ msgid "Auto&complete users"
 msgstr "Auto-&Vervollständigung der Benutzer"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:70
-#, fuzzy
-#| msgid "Check &spelling..."
 msgid "Check &spelling"
-msgstr "Rechtschreib&prüfung..."
+msgstr "Rechtschreib&prüfung"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:72
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:69
@@ -4361,10 +4213,8 @@ msgid "&Translate"
 msgstr "Überse&tzen"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:99
-#, fuzzy
-#| msgid "Tweet - %i characters "
 msgid "Post - {} characters"
-msgstr "Tweet - %i Zeichen "
+msgstr "Beitrag - {} Zeichen"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:123
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:117
@@ -4381,10 +4231,8 @@ msgid "Video"
 msgstr "Video"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:127
-#, fuzzy
-#| msgid "&Audio"
 msgid "Audio"
-msgstr "&Audio"
+msgstr "Audio"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:129
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:121
@@ -4402,16 +4250,16 @@ msgid "Select the video to be uploaded"
 msgstr "Wähle das hochzuladende Video aus."
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:148
-#, fuzzy
-#| msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
-msgstr "Audiodateien (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+msgstr "Videodateien (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:154
 msgid ""
 "Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*."
 "mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 msgstr ""
+"Audiodateien (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*."
+"mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:160
 msgid ""
@@ -4419,6 +4267,10 @@ msgid ""
 "You can add only a maximum of 4 images, or one audio, video or poll  per "
 "post. Please remove other attachments before continuing."
 msgstr ""
+"Weitere Anhänge können nicht hinzugefügt werden. Bitte denke daran, dass du "
+"nur maximal 4 Bilder oder eine Audio- bzw. Videodatei oder Umfrage pro "
+"Beitrag anhängen kannst. Bitte entferne vor dem Fortfahren die weiteren "
+"Anhänge."
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:160
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
@@ -4430,18 +4282,17 @@ msgid ""
 "You can add a poll or media files. In order to add your poll, please remove "
 "other attachments first."
 msgstr ""
+"Du kannst eine Umfrage oder mediendateien hinzufügen. Bitte entferne vor dem "
+"Hinzufügen einer Umfrage die weiteren Anhänge."
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:163
-#, fuzzy
-#| msgid "Error adding attachment"
 msgid "Error adding poll"
-msgstr "Fehler beim Hinzufügen des Anhangs"
+msgstr "Fehler beim Hinzufügen der umfrage"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:167
-#, fuzzy, python-format
-#| msgid "Tweet - %i characters "
+#, python-format
 msgid "Post - %i characters "
-msgstr "Tweet - %i Zeichen "
+msgstr "Beitrag - %i Zeichen "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:180
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:321
@@ -4449,18 +4300,16 @@ msgid "Image description"
 msgstr "Bildbeschreibung"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:187
-#, fuzzy
-#| msgid "Private"
 msgid "Privacy"
-msgstr "Privat"
+msgstr "Privatsphäre"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:192
 msgid "Boosts: "
-msgstr ""
+msgstr "Geteilt: "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:197
 msgid "Favorites: "
-msgstr ""
+msgstr "Favorisiert: "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:202
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:342
@@ -4506,76 +4355,52 @@ msgid "Add a poll"
 msgstr "Füge eine Umfrage hinzu"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:262
-#, fuzzy
-#| msgid "Participation time (in days)"
 msgid "Participation time"
-msgstr "Teilnahmezeitraum (in Tagen)"
+msgstr "Teilnahmezeitraum"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d minutes, "
 msgid "5 minutes"
-msgstr "%d Minuten, "
+msgstr "5 Minuten"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d minutes, "
 msgid "30 minutes"
-msgstr "%d Minuten, "
+msgstr "30 Minuten"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d hour, "
 msgid "1 hour"
-msgstr "%d Stunde, "
+msgstr "1 Stunde"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d hours, "
 msgid "6 hours"
-msgstr "%d Stunden, "
+msgstr "6 Stunden"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d day, "
 msgid "1 day"
-msgstr "%d Tag, "
+msgstr "1 Tag"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "2 days"
-msgstr "%d Tage, "
+msgstr "2 Tage"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "3 days"
-msgstr "%d Tage, "
+msgstr "3 Tage"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "4 days"
-msgstr "%d Tage, "
+msgstr "4 Tage"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "5 days"
-msgstr "%d Tage, "
+msgstr "5 Tage"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "6 days"
-msgstr "%d Tage, "
+msgstr "6 Tage"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "7 days"
-msgstr "%d Tage, "
+msgstr "7 Tage"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:268
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:488
@@ -4604,11 +4429,11 @@ msgstr "Option 4"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:298
 msgid "Allow multiple votes per user"
-msgstr ""
+msgstr "Mehrfache Abstimmungen pro Benutzer erlauben"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:301
 msgid "Hide votes count until the poll expires"
-msgstr ""
+msgstr "Anzahl Stimmen bis zum Ablauf der Umfrage verbergen"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:327
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
@@ -4623,24 +4448,20 @@ msgid "Not enough information"
 msgstr "Nicht genügend Informationen"
 
 #: ../src/wxUI/dialogs/mastodon/search.py:9
-#, fuzzy
-#| msgid "&Search"
 msgid "Search"
-msgstr "&Suche"
+msgstr "Suche"
 
 #: ../src/wxUI/dialogs/mastodon/search.py:18
 msgid "Posts"
-msgstr ""
+msgstr "Beiträge"
 
 #: ../src/wxUI/dialogs/mastodon/userTimeline.py:19
 msgid "&Posts"
-msgstr ""
+msgstr "&Beiträge"
 
 #: ../src/wxUI/dialogs/mastodon/userTimeline.py:21
-#, fuzzy
-#| msgid "Following"
 msgid "Fo&llowing"
-msgstr "Folge ich"
+msgstr "Fo&lgt"
 
 #: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:8
 msgid "Edit Template"
@@ -4751,7 +4572,7 @@ msgstr "Likes: "
 
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:410
 msgid "View"
-msgstr "Ansehen"
+msgstr "Anzeigen"
 
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:412
 msgid "Item"

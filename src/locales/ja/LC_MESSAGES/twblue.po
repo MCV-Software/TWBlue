@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2022 ORGANIZATION
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
-# Riku <riku@riku22.net>, 2022.
+# Riku <riku@riku22.net>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-12-20 17:15-0600\n"
-"PO-Revision-Date: 2022-12-20 22:43+0000\n"
+"PO-Revision-Date: 2023-01-10 07:39+0000\n"
 "Last-Translator: Riku <riku@riku22.net>\n"
 "Language-Team: Japanese <https://weblate.mcvsoftware.com/projects/twblue/"
 "twblue/ja/>\n"
@@ -229,7 +229,7 @@ msgstr "{0}個のアイテムを取得しました"
 #: ../src/controller/twitter/handler.py:85
 #: ../src/controller/twitter/handler.py:271
 msgid "Timeline for {}"
-msgstr "「{}」のタイムライン"
+msgstr "{} のタイムライン"
 
 #: ../src/controller/mainController.py:1187
 #: ../src/controller/twitter/handler.py:89
@@ -254,8 +254,6 @@ msgstr "{}がフォローしているユーザー"
 #: ../src/controller/mainController.py:1193
 #: ../src/controller/mastodon/handler.py:95
 #: ../src/controller/mastodon/handler.py:214
-#, fuzzy
-#| msgid "Followers for {}"
 msgid "Following for {}"
 msgstr "{}をフォローしているユーザー"
 
@@ -316,13 +314,13 @@ msgstr "ホーム"
 #: ../src/controller/mastodon/handler.py:65
 #: ../src/controller/mastodon/settings.py:187
 msgid "Local"
-msgstr ""
+msgstr "ローカル"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/mastodon/handler.py:67
 #: ../src/controller/mastodon/settings.py:188
 msgid "Federated"
-msgstr ""
+msgstr "連合"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/buffers/twitter/base.py:65
@@ -337,7 +335,7 @@ msgstr "メンション"
 #: ../src/controller/mastodon/handler.py:77
 #: ../src/controller/mastodon/settings.py:193
 msgid "Bookmarks"
-msgstr ""
+msgstr "ブックマーク"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/buffers/twitter/base.py:65
@@ -350,13 +348,13 @@ msgstr "ダイレクトメッセージ"
 #: ../src/controller/mastodon/handler.py:73
 #: ../src/controller/mastodon/settings.py:191
 msgid "Sent"
-msgstr ""
+msgstr "送信済み"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/mastodon/handler.py:75
 #: ../src/controller/mastodon/settings.py:192
 msgid "Favorites"
-msgstr ""
+msgstr "お気に入り"
 
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/buffers/twitter/base.py:65
@@ -395,26 +393,22 @@ msgstr "ミューとしたユーザー"
 #: ../src/controller/buffers/mastodon/base.py:49
 #: ../src/controller/mastodon/handler.py:87
 #: ../src/controller/mastodon/settings.py:198
-#, fuzzy
-#| msgid "&Location"
 msgid "Notifications"
-msgstr "場所(&L)"
+msgstr "通知"
 
 #: ../src/controller/buffers/mastodon/base.py:55
 #: ../src/controller/buffers/twitter/base.py:71
 msgid "{username}'s timeline"
-msgstr "「{username}」のタイムライン"
+msgstr "{username} のタイムライン"
 
 #: ../src/controller/buffers/mastodon/base.py:57
 #: ../src/controller/buffers/twitter/base.py:75
 msgid "{username}'s followers"
-msgstr "「{username}」のフォロワー"
+msgstr "{username} のフォロワー"
 
 #: ../src/controller/buffers/mastodon/base.py:59
-#, fuzzy
-#| msgid "{username}'s followers"
 msgid "{username}'s following"
-msgstr "「{username}」のフォロワー"
+msgstr "{username} をフォローしているユーザー"
 
 #: ../src/controller/buffers/mastodon/base.py:61
 #: ../src/controller/buffers/twitter/base.py:79
@@ -429,25 +423,19 @@ msgstr "不明なバッファ"
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:4
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:172
 msgid "Post"
-msgstr ""
+msgstr "投稿"
 
 #: ../src/controller/buffers/mastodon/base.py:65
-#, fuzzy
-#| msgid "Write the tweet here"
 msgid "Write your post here"
-msgstr "ツイートを入力"
+msgstr "投稿を入力"
 
 #: ../src/controller/buffers/mastodon/base.py:126
-#, fuzzy
-#| msgid "New tweet in {0}"
 msgid "New post in {0}"
-msgstr "「{0}」への新規ツイート"
+msgstr "{0} への投稿"
 
 #: ../src/controller/buffers/mastodon/base.py:129
-#, fuzzy
-#| msgid "{0} new tweets in {1}."
 msgid "{0} new posts in {1}."
-msgstr "「{1}」への{0}個の新規ツイート。"
+msgstr "{1}の{0}個の新規投稿。"
 
 #: ../src/controller/buffers/mastodon/base.py:162
 #: ../src/controller/buffers/mastodon/conversations.py:98
@@ -469,8 +457,6 @@ msgstr "このバッファは、タイムラインではないため、削除で
 
 #: ../src/controller/buffers/mastodon/base.py:296
 #: ../src/controller/buffers/mastodon/base.py:327
-#, fuzzy
-#| msgid "Conversation with {0}"
 msgid "Conversation with {}"
 msgstr "{0}との会話"
 
@@ -478,28 +464,20 @@ msgstr "{0}との会話"
 #: ../src/controller/buffers/mastodon/base.py:328
 #: ../src/controller/buffers/mastodon/conversations.py:174
 #: ../src/controller/buffers/mastodon/users.py:51
-#, fuzzy
-#| msgid "Write the tweet here"
 msgid "Write your message here"
-msgstr "ツイートを入力"
+msgstr "メッセージを入力"
 
 #: ../src/controller/buffers/mastodon/base.py:299
-#, fuzzy
-#| msgid "Reply to {arg0}"
 msgid "Reply to {}"
-msgstr "「{arg0}」への返信:"
+msgstr "{} への返信:"
 
 #: ../src/controller/buffers/mastodon/base.py:300
-#, fuzzy
-#| msgid "Write the tweet here"
 msgid "Write your reply here"
-msgstr "ツイートを入力"
+msgstr "返信を入力"
 
 #: ../src/controller/buffers/mastodon/base.py:353
-#, fuzzy
-#| msgid "This action is not supported on protected accounts."
 msgid "This action is not supported on conversation posts."
-msgstr "この動作は、保護されたアカウントではサポートされていません。"
+msgstr "このアクションは、会話の投稿ではサポートされていません。"
 
 #: ../src/controller/buffers/mastodon/base.py:418
 #: ../src/controller/buffers/twitter/base.py:524
@@ -508,7 +486,7 @@ msgstr "URLを開いています…"
 
 #: ../src/controller/buffers/mastodon/base.py:431
 msgid "You can delete only your own posts."
-msgstr ""
+msgstr "自分の投稿のみを削除できます。"
 
 #: ../src/controller/buffers/mastodon/base.py:456
 #: ../src/controller/buffers/twitter/base.py:582
@@ -518,44 +496,36 @@ msgstr "ブラウザでアイテムを開いています…"
 #: ../src/controller/buffers/mastodon/base.py:463
 #: ../src/controller/buffers/mastodon/base.py:477
 msgid "Adding to favorites..."
-msgstr ""
+msgstr "お気に入りに追加中..."
 
 #: ../src/controller/buffers/mastodon/base.py:469
 #: ../src/controller/buffers/mastodon/base.py:479
-#, fuzzy
-#| msgid "Remove from list"
 msgid "Removing from favorites..."
-msgstr "リストから削除"
+msgstr "お気に入りから削除中..."
 
 #: ../src/controller/buffers/mastodon/base.py:487
 msgid "Adding to bookmarks..."
-msgstr ""
+msgstr "ブックマークに追加中..."
 
 #: ../src/controller/buffers/mastodon/base.py:489
 msgid "Removing from bookmarks..."
-msgstr ""
+msgstr "ブックマークから削除中..."
 
 #: ../src/controller/buffers/mastodon/conversations.py:173
-#, fuzzy
-#| msgid "Conversation with {0}"
 msgid "Reply to conversation with {}"
-msgstr "{0}との会話"
+msgstr "{} との会話に返信"
 
 #: ../src/controller/buffers/mastodon/notifications.py:59
 msgid "Notification dismissed."
-msgstr ""
+msgstr "通知を却下しました。"
 
 #: ../src/controller/buffers/mastodon/users.py:50
-#, fuzzy
-#| msgid "Conversation with {0}"
 msgid "New conversation with {}"
-msgstr "{0}との会話"
+msgstr "{} との新しい会話{0}との会話"
 
 #: ../src/controller/buffers/mastodon/users.py:104
-#, fuzzy
-#| msgid "There are no coordinates in this tweet"
 msgid "There are no more items in this buffer."
-msgstr "このツイートに位置情報は存在しません"
+msgstr "このバッファにはこれ以上アイテムがありません。"
 
 #: ../src/controller/buffers/twitter/base.py:65
 #: ../src/controller/twitter/handler.py:69
@@ -582,11 +552,11 @@ msgstr "フォロー"
 
 #: ../src/controller/buffers/twitter/base.py:73
 msgid "{username}'s likes"
-msgstr "「{username}」のいいね一覧"
+msgstr "{username} のいいね一覧"
 
 #: ../src/controller/buffers/twitter/base.py:77
 msgid "{username}'s friends"
-msgstr "「{username}」のフォロー"
+msgstr "{username} のフォロー"
 
 #: ../src/controller/buffers/twitter/base.py:82
 #: ../src/controller/buffers/twitter/trends.py:37
@@ -608,15 +578,15 @@ msgstr "ツイートを入力"
 
 #: ../src/controller/buffers/twitter/base.py:189
 msgid "New tweet in {0}"
-msgstr "「{0}」への新規ツイート"
+msgstr "{0} への新規ツイート"
 
 #: ../src/controller/buffers/twitter/base.py:192
 msgid "{0} new tweets in {1}."
-msgstr "「{1}」への{0}個の新規ツイート。"
+msgstr "{1} への {0}個の新規ツイート。"
 
 #: ../src/controller/buffers/twitter/base.py:401
 msgid "Reply to {arg0}"
-msgstr "「{arg0}」への返信:"
+msgstr "{arg0} への返信:"
 
 #: ../src/controller/buffers/twitter/base.py:403
 #: ../src/keystrokeEditor/actions/mastodon.py:11
@@ -732,7 +702,7 @@ msgstr "検索(&S)"
 
 #: ../src/controller/mastodon/handler.py:28
 msgid "&Post"
-msgstr ""
+msgstr "投稿(&P)"
 
 #: ../src/controller/mastodon/handler.py:29
 #: ../src/controller/twitter/handler.py:29
@@ -744,26 +714,20 @@ msgstr "リプライ(&P)"
 #: ../src/controller/mastodon/handler.py:30
 #: ../src/wxUI/dialogs/mastodon/menus.py:7
 msgid "&Boost"
-msgstr ""
+msgstr "ブースト(&B)"
 
 #: ../src/controller/mastodon/handler.py:31
 #: ../src/wxUI/dialogs/mastodon/menus.py:11
-#, fuzzy
-#| msgid "&Add to list"
 msgid "&Add to favorites"
-msgstr "リストに追加(&A)"
+msgstr "お気に入りへ追加(&A)"
 
 #: ../src/controller/mastodon/handler.py:32
-#, fuzzy
-#| msgid "Remove from list"
 msgid "Remove from favorites"
-msgstr "リストから削除"
+msgstr "お気に入りから削除リストから削除"
 
 #: ../src/controller/mastodon/handler.py:33
-#, fuzzy
-#| msgid "&Show user"
 msgid "&Show post"
-msgstr "ユーザーを表示(&S)"
+msgstr "投稿を表示(&S)"
 
 #: ../src/controller/mastodon/handler.py:35
 #: ../src/controller/twitter/handler.py:35 ../src/wxUI/view.py:36
@@ -799,10 +763,8 @@ msgid "Timelines"
 msgstr "タイムライン"
 
 #: ../src/controller/mastodon/handler.py:91
-#, fuzzy
-#| msgid "Timeline for {}"
 msgid "Timelines for {}"
-msgstr "「{}」のタイムライン"
+msgstr "{} のタイムライン"
 
 #: ../src/controller/mastodon/handler.py:100
 #: ../src/controller/twitter/handler.py:102
@@ -819,17 +781,15 @@ msgstr "{0}との会話"
 #: ../src/controller/twitter/handler.py:369
 #: ../src/controller/twitter/handler.py:374
 msgid "Search for {}"
-msgstr "「{}」の検索結果"
+msgstr "{} の検索結果"
 
 #: ../src/controller/mastodon/messages.py:174
 msgid "Poll with {} options"
-msgstr ""
+msgstr "{}つの項目の投票"
 
 #: ../src/controller/mastodon/messages.py:193
-#, fuzzy
-#| msgid "List for {}"
 msgid "Post from {}"
-msgstr "{}のリスト"
+msgstr "{} からの投稿"
 
 #: ../src/controller/mastodon/messages.py:197
 #: ../src/sessions/mastodon/templates.py:85 ../src/wxUI/dialogs/lists.py:76
@@ -840,30 +800,22 @@ msgstr "公開"
 #: ../src/controller/mastodon/messages.py:197
 #: ../src/sessions/mastodon/templates.py:85
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
-#, fuzzy
-#| msgid "Accounts list"
 msgid "Not listed"
-msgstr "アカウントリスト"
+msgstr "誰でも閲覧可"
 
 #: ../src/controller/mastodon/messages.py:197
-#, fuzzy
-#| msgid "Followers"
 msgid "followers only"
-msgstr "フォロワー"
+msgstr "フォロワーのみ"
 
 #: ../src/controller/mastodon/messages.py:197
 #: ../src/sessions/mastodon/templates.py:85
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
-#, fuzzy
-#| msgid "Direct message"
 msgid "Direct"
-msgstr "ダイレクトメッセージ"
+msgstr "指定された相手のみ"
 
 #: ../src/controller/mastodon/messages.py:204
-#, fuzzy
-#| msgid "Remove client"
 msgid "Remote instance"
-msgstr "クライアントを削除"
+msgstr "リモートインスタンスクライアントを削除"
 
 #: ../src/controller/mastodon/messages.py:227
 #: ../src/controller/twitter/messages.py:382
@@ -878,17 +830,13 @@ msgstr "%sのアカウント設定"
 
 #: ../src/controller/mastodon/settings.py:89
 #: ../src/wxUI/dialogs/mastodon/configuration.py:51
-#, fuzzy
-#| msgid "Edit template for persons. Current template: {}"
 msgid "Edit template for posts. Current template: {}"
-msgstr "人のテンプレートを編集します。現在のテンプレート: {}"
+msgstr "投稿のテンプレートを編集します。現在のテンプレート: {}"
 
 #: ../src/controller/mastodon/settings.py:98
 #: ../src/wxUI/dialogs/mastodon/configuration.py:53
-#, fuzzy
-#| msgid "Edit template for persons. Current template: {}"
 msgid "Edit template for conversations. Current template: {}"
-msgstr "人のテンプレートを編集します。現在のテンプレート: {}"
+msgstr "会話のテンプレートを編集します。現在のテンプレート: {}"
 
 #: ../src/controller/mastodon/settings.py:107
 #: ../src/controller/twitter/settings.py:122
@@ -971,10 +919,8 @@ msgid "Show user &profile"
 msgstr "ユーザーのプロフィールを表示(&P)"
 
 #: ../src/controller/twitter/handler.py:47
-#, fuzzy
-#| msgid "V&iew likes"
 msgid "View likes"
-msgstr "いいね一覧を見る(&I)"
+msgstr "いいね一覧を見る"
 
 #: ../src/controller/twitter/handler.py:49 ../src/wxUI/view.py:55
 msgid "New &trending topics buffer..."
@@ -1044,12 +990,12 @@ msgstr "その都度、質問する"
 #: ../src/controller/twitter/settings.py:153
 #: ../src/wxUI/dialogs/configuration.py:121
 msgid "Retweet without comments"
-msgstr "コメントを付けずにリツイート（公式RT）"
+msgstr "コメントを付けずにリツイート(公式RT)"
 
 #: ../src/controller/twitter/settings.py:41
 #: ../src/wxUI/dialogs/configuration.py:121
 msgid "Retweet with comments"
-msgstr "コメントをつけてリツイート（非公式RT）"
+msgstr "コメントをつけてリツイート(非公式RT)"
 
 #: ../src/controller/twitter/settings.py:95
 #: ../src/wxUI/dialogs/configuration.py:247
@@ -2115,16 +2061,14 @@ msgid "Show or hide the GUI"
 msgstr "GUIの表示と非表示を切り替え"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:10
-#, fuzzy
-#| msgid "Create a new list"
 msgid "Make a new post"
-msgstr "新しいリストを作成"
+msgstr "新しい投稿"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:12
 #: ../src/wxUI/buffers/mastodon/base.py:25
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:7
 msgid "Boost"
-msgstr ""
+msgstr "ブースト"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:13
 #: ../src/keystrokeEditor/actions/twitter.py:13
@@ -2133,17 +2077,15 @@ msgstr "ダイレクトメッセージを作成"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:14
 msgid "Add post to favorites"
-msgstr ""
+msgstr "投稿をお気に入りに追加"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:15
-#, fuzzy
-#| msgid "Remove from list"
 msgid "Remove post from favorites"
-msgstr "リストから削除"
+msgstr "投稿をお気に入りから削除"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:16
 msgid "Add/remove post from favorites"
-msgstr ""
+msgstr "投稿のお気に入りへの追加・削除"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:17
 #: ../src/keystrokeEditor/actions/twitter.py:17
@@ -2151,10 +2093,8 @@ msgid "Open the user actions dialogue"
 msgstr "ユーザーのアクションを選択する画面を表示"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:19
-#, fuzzy
-#| msgid "Show tweet"
 msgid "Show post"
-msgstr "ツイートを表示"
+msgstr "投稿を表示"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:20
 #: ../src/keystrokeEditor/actions/twitter.py:20
@@ -2172,10 +2112,8 @@ msgid "Destroy buffer"
 msgstr "現在のバッファを削除"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:23
-#, fuzzy
-#| msgid "Interact with the currently focused tweet."
 msgid "Interact with the currently focused post."
-msgstr "現在フォーカス中のツイートを相呼応する。"
+msgstr "現在フォーカスされている投稿を操作します。"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:24
 #: ../src/keystrokeEditor/actions/twitter.py:24
@@ -2183,10 +2121,8 @@ msgid "Open URL"
 msgstr "URLを開く"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:25
-#, fuzzy
-#| msgid "View in Twitter"
 msgid "View in browser"
-msgstr "Twitterで見る"
+msgstr "ブラウザで表示"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:26
 #: ../src/keystrokeEditor/actions/twitter.py:26
@@ -2219,10 +2155,8 @@ msgid "Jump 20 elements down in the current buffer"
 msgstr "２０個先の要素に移動"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:33
-#, fuzzy
-#| msgid "Delete"
 msgid "Delete post"
-msgstr "削除"
+msgstr "投稿を削除"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:34
 #: ../src/keystrokeEditor/actions/twitter.py:34
@@ -2255,10 +2189,8 @@ msgid "toggle the automatic reading of incoming tweets in the active buffer"
 msgstr "新着のツイートを自動で読み上げるかどうかを設定"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:42
-#, fuzzy
-#| msgid "Search on twitter"
 msgid "Search on instance"
-msgstr "Twitterを検索"
+msgstr "インスタンスで検索"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:43
 #: ../src/keystrokeEditor/actions/twitter.py:43
@@ -2297,8 +2229,6 @@ msgstr "「アカウント設定」ダイアログを開く"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:53
 #: ../src/keystrokeEditor/actions/twitter.py:56
-#, fuzzy
-#| msgid "Try to play an audio file"
 msgid "Try to play a media file"
 msgstr "音声ファイルの再生"
 
@@ -2402,11 +2332,11 @@ msgstr "ユーザーにエイリアスを追加"
 
 #: ../src/sessionmanager/sessionManager.py:68
 msgid "{account_name} (Twitter)"
-msgstr ""
+msgstr "{account_name} (Twitter)"
 
 #: ../src/sessionmanager/sessionManager.py:73
 msgid "{account_name} (Mastodon)"
-msgstr ""
+msgstr "{account_name} (Mastodon)"
 
 #: ../src/sessionmanager/wxUI.py:10
 msgid "Session manager"
@@ -2441,14 +2371,12 @@ msgid "Account Error"
 msgstr "アカウントエラー"
 
 #: ../src/sessionmanager/wxUI.py:53
-#, fuzzy
-#| msgid "View in Twitter"
 msgid "Twitter"
-msgstr "Twitterで見る"
+msgstr "Twitter"
 
 #: ../src/sessionmanager/wxUI.py:54
 msgid "Mastodon"
-msgstr ""
+msgstr "Mastodon"
 
 #: ../src/sessionmanager/wxUI.py:60
 msgid ""
@@ -2456,6 +2384,9 @@ msgid ""
 "password) so we can authorise TWBlue in your instance. Would you like to "
 "authorise your account now?"
 msgstr ""
+"インスタンスでTWBlueを承認できるように、Mastodonデータ(インスタンスURL、メー"
+"ルアドレス、およびパスワード)の入力を求められます。今すぐアカウントを認証しま"
+"すか？"
 
 #: ../src/sessionmanager/wxUI.py:60 ../src/sessionmanager/wxUI.py:67
 msgid "Authorization"
@@ -2527,18 +2458,14 @@ msgstr ""
 
 #: ../src/sessions/mastodon/compose.py:17
 #: ../src/sessions/mastodon/compose.py:64
-#, fuzzy
-#| msgid "dddd, MMMM D, YYYY H:m:s"
 msgid "dddd, MMMM D, YYYY H:m"
 msgstr "YYYY年MMMMD日(dddd) H時m分s秒"
 
 #: ../src/sessions/mastodon/compose.py:19
 #: ../src/sessions/mastodon/templates.py:80
 #: ../src/sessions/mastodon/templates.py:81
-#, fuzzy
-#| msgid "{0}. Quoted  tweet from @{1}: {2}"
 msgid "Boosted from @{}: {}"
-msgstr "{0} 引用:@{1}:{2}"
+msgstr "@{} からブースト: {}"
 
 #: ../src/sessions/mastodon/compose.py:35
 #: ../src/sessions/mastodon/templates.py:28
@@ -2550,77 +2477,65 @@ msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "YYYY年MMMMD日(dddd) H時m分s秒"
 
 #: ../src/sessions/mastodon/compose.py:39
-#, fuzzy, python-format
-#| msgid ""
-#| "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
-#| "Twitter %s"
+#, python-format
 msgid "%s (@%s). %s followers, %s following, %s posts. Joined %s"
-msgstr ""
-"%s: @%s フォロワー: %s フォロー: %s ツイート数: %s 最後のツイート: %s ツイッ"
-"ターへの参加: %s"
+msgstr "%s (@%s)。%s フォロワー、%s フォロー中、%s 投稿。参加 %s"
 
 #: ../src/sessions/mastodon/compose.py:50
 msgid "Last message from {}: {}"
-msgstr ""
+msgstr "{} からの最後のメッセージ: {}"
 
 #: ../src/sessions/mastodon/compose.py:67
 msgid "{username} has mentionned you: {status}"
-msgstr ""
+msgstr "{username} があなたにメンションしました: {status}"
 
 #: ../src/sessions/mastodon/compose.py:69
 msgid "{username} has boosted: {status}"
-msgstr ""
+msgstr "{username} がブーストしました: {status}"
 
 #: ../src/sessions/mastodon/compose.py:71
 msgid "{username} has added to favorites: {status}"
-msgstr ""
+msgstr "{username} がお気に入りに追加しました: {status}"
 
 #: ../src/sessions/mastodon/compose.py:73
-#, fuzzy
-#| msgid "{username}'s followers"
 msgid "{username} has followed you."
-msgstr "「{username}」のフォロワー"
+msgstr "{username} がフォローしました。"
 
 #: ../src/sessions/mastodon/compose.py:75
 #: ../src/sessions/mastodon/templates.py:172
 msgid "A poll in which you have voted has expired: {status}"
-msgstr ""
+msgstr "あなたが投票した投票の有効期限が切れました: {status}"
 
 #: ../src/sessions/mastodon/compose.py:77
-#, fuzzy
-#| msgid "{username}'s followers"
 msgid "{username} wants to follow you."
-msgstr "「{username}」のフォロワー"
+msgstr "{username} がフォローしようとしています。"
 
 #: ../src/sessions/mastodon/session.py:60
 msgid "Please enter your instance URL."
-msgstr ""
+msgstr "インスタンスのURLを入力してください。"
 
 #: ../src/sessions/mastodon/session.py:60
 msgid "Mastodon instance"
-msgstr ""
+msgstr "Mastodonのインスタンス"
 
 #: ../src/sessions/mastodon/session.py:71
 msgid ""
 "We could not connect to your mastodon instance. Please verify that the "
 "domain exists and the instance is accessible via a web browser."
-msgstr ""
+msgstr "Mastodonインスタンスに接続できませんでした。ドメインが存在し、Webブラウザから"
+"インスタンスにアクセスできることを確認してください。"
 
 #: ../src/sessions/mastodon/session.py:71
-#, fuzzy
-#| msgid "&Report an error"
 msgid "Instance error"
-msgstr "エラーを報告(&R)"
+msgstr "インスタンスエラー"
 
 #: ../src/sessions/mastodon/session.py:76
 msgid "Enter the verification code"
-msgstr ""
+msgstr "確認コードを入力"
 
 #: ../src/sessions/mastodon/session.py:76
-#, fuzzy
-#| msgid "Authorization"
 msgid "PIN code authorization"
-msgstr "認証"
+msgstr "PINコード認証"
 
 #: ../src/sessions/mastodon/session.py:85
 msgid ""
@@ -2628,13 +2543,14 @@ msgid ""
 "might be caused due to an incorrect verification code. Please try to add the "
 "session again."
 msgstr ""
+"TWBlueで使用するMastodonアカウントを認証できませんでした。これは、認証コード"
+"が正しくないことが原因である可能性があります。もう1度セッションを追加してくだ"
+"さい。"
 
 #: ../src/sessions/mastodon/session.py:85
 #: ../src/sessions/twitter/session.py:171
-#, fuzzy
-#| msgid "Authorization"
 msgid "Authorization error"
-msgstr "認証"
+msgstr "認証エラー"
 
 #: ../src/sessions/mastodon/session.py:182
 #: ../src/sessions/twitter/session.py:206
@@ -2661,67 +2577,53 @@ msgid "Dm to $recipient_display_name, $text $date"
 msgstr "$recipient_display_name へのDM, $text $date"
 
 #: ../src/sessions/mastodon/templates.py:20
-#, fuzzy
-#| msgid ""
-#| "$display_name (@$screen_name). $followers followers, $following "
-#| "following, $tweets tweets. Joined Twitter $created_at."
 msgid ""
 "$display_name (@$screen_name). $followers followers, $following following, "
 "$posts posts. Joined $created_at."
 msgstr ""
-"$display_name (@$screen_name)。$followers フォロワー、$following フォロー"
-"中、$tweets 件のツイート。Twitter への参加 $created_at。"
+"$display_name (@$screen_name)。$followers フォロワー、$following "
+"フォロー中、$posts 投稿. 参加 $created_at。"
 
 #: ../src/sessions/mastodon/templates.py:21
-#, fuzzy
-#| msgid "$sender_display_name, $text $date"
 msgid "$display_name $text, $date"
-msgstr "$sender_display_name, $text $date"
+msgstr "$display_name $text、$date"
 
 #: ../src/sessions/mastodon/templates.py:34
 msgid "Content warning: {}"
-msgstr ""
+msgstr "コンテンツの警告: {}"
 
 #: ../src/sessions/mastodon/templates.py:45
-#, fuzzy
-#| msgid "Image description: {}."
 msgid "Image description: {}"
 msgstr "画像の説明: {}。"
 
 #: ../src/sessions/mastodon/templates.py:85
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:48
-#, fuzzy
-#| msgid "Followers"
 msgid "Followers only"
-msgstr "フォロワー"
+msgstr "フォロワーのみ"
 
 #: ../src/sessions/mastodon/templates.py:162
 msgid "has mentionned you: {status}"
-msgstr ""
+msgstr "があなたにメンションしました: {status}"
 
 #: ../src/sessions/mastodon/templates.py:164
 msgid "has boosted: {status}"
-msgstr ""
+msgstr "がブーストしました: {status}"
 
 #: ../src/sessions/mastodon/templates.py:166
 msgid "has added to favorites: {status}"
-msgstr ""
+msgstr "がお気に入りに追加しました: {status}"
 
 #: ../src/sessions/mastodon/templates.py:168
 msgid "has updated a status: {status}"
-msgstr ""
+msgstr "がステータスを更新しました: {status}"
 
 #: ../src/sessions/mastodon/templates.py:170
-#, fuzzy
-#| msgid "{0} is following you."
 msgid "has followed you."
-msgstr "{0}がフォロー。"
+msgstr "がフォロー。"
 
 #: ../src/sessions/mastodon/templates.py:174
-#, fuzzy
-#| msgid "{0} is following you."
 msgid "wants to follow you."
-msgstr "{0}がフォロー。"
+msgstr "がフォローしようとしています。"
 
 #: ../src/sessions/mastodon/wxUI.py:6 ../src/sessions/twitter/session.py:162
 #: ../src/sessions/twitter/wxUI.py:6
@@ -2730,19 +2632,15 @@ msgstr "アカウントを連携中…"
 
 #: ../src/sessions/mastodon/wxUI.py:9
 msgid "URL of mastodon instance:"
-msgstr ""
+msgstr "MastodonインスタンスのURL:"
 
 #: ../src/sessions/mastodon/wxUI.py:15
-#, fuzzy
-#| msgid "View &address"
 msgid "Email address:"
-msgstr "位置情報を表示(&A)"
+msgstr "メールアドレス:"
 
 #: ../src/sessions/mastodon/wxUI.py:21
-#, fuzzy
-#| msgid "Password: "
 msgid "Password:"
-msgstr "パスワード: "
+msgstr "パスワード:"
 
 #: ../src/sessions/twitter/compose.py:68 ../src/sessions/twitter/compose.py:70
 #, python-format
@@ -2788,6 +2686,9 @@ msgid ""
 "be caused due to an incorrect verification code. Please try to add the "
 "session again."
 msgstr ""
+"TWBlueで使用するTwitterアカウントを認証できませんでした。これは、認証コードが"
+"正しくないことが原因である可能性があります。もう1度セッションを追加してくださ"
+"い。"
 
 #: ../src/sessions/twitter/session.py:440
 #: ../src/sessions/twitter/session.py:523
@@ -2846,15 +2747,7 @@ msgstr ""
 "%s"
 
 #: ../src/update/wxUpdater.py:14
-#, fuzzy, python-format
-#| msgid ""
-#| "There's a new %s version available, released on %s. Would you like to "
-#| "download it now?\n"
-#| "\n"
-#| " %s version: %s\n"
-#| "\n"
-#| "Changes:\n"
-#| "%s"
+#, python-format
 msgid ""
 "There's a new %s version available, released on %s. Updates are not "
 "automatic in Windows 7, so you would need to visit TWBlue's download website "
@@ -2865,8 +2758,9 @@ msgid ""
 "Changes:\n"
 "%s"
 msgstr ""
-"%sの新しいバージョンが%sにリリースされています。今すぐダウンロードします"
-"か？\n"
+"%sの新しいバージョンが%sにリリースされています。Windows7では更新が自動的に行"
+"われないため、TWBlueのダウンロードWebサイトにアクセスして最新バージョンを入手"
+"する必要があります。\n"
 "\n"
 "%sバージョン: %s\n"
 "\n"
@@ -2929,7 +2823,7 @@ msgstr "削除"
 
 #: ../src/wxUI/commonMessageDialogs.py:16
 msgid "Do you really want to close {0}?"
-msgstr "本当に「{0}」を終了しますか？"
+msgstr "本当に{0}を終了しますか？"
 
 #: ../src/wxUI/commonMessageDialogs.py:16
 msgid "Exit"
@@ -2937,11 +2831,11 @@ msgstr "終了確認"
 
 #: ../src/wxUI/commonMessageDialogs.py:20
 msgid " {0} must be restarted for these changes to take effect."
-msgstr "これらの変更を有効にするには、「{0}」を再起動する必要があります。"
+msgstr " これらの変更を有効にするには、{0}を再起動する必要があります。"
 
 #: ../src/wxUI/commonMessageDialogs.py:20
 msgid "Restart {0} "
-msgstr "「{0}」を再起動"
+msgstr "{0}を再起動 "
 
 #: ../src/wxUI/commonMessageDialogs.py:23
 msgid ""
@@ -3026,11 +2920,11 @@ msgid ""
 "give us the means to continue the development of {0}, and to keep {0} free. "
 "Would you like to donate now?"
 msgstr ""
-"「{0}」が好きなら、私たちは、それを続けるために、助けを必要としています。プロ"
-"ジェクトに寄付することで、私たちを助けてください。これは、私たちは{0}が積極的"
-"に維持されることを保証するために、サーバー、ドメイン、およびいくつかの他のも"
-"ののために支払うのに役立ちます。あなたの寄付は私たちに「{0}」の開発を継続する"
-"ための手段を与え、自由な「{0}」を維持します。今すぐ寄付しますか？"
+"{0}が好きなら、私たちは、それを続けるために、助けを必要としています。プロジェ"
+"クトに寄付することで、私たちを助けてください。これは、私たちは{0}が積極的に維"
+"持されることを保証するために、サーバー、ドメイン、およびいくつかの他のものの"
+"ために支払うのに役立ちます。あなたの寄付は私たちに{0}の開発を継続するための手"
+"段を与え、自由な{0}を維持します。今すぐ寄付しますか？"
 
 #: ../src/wxUI/commonMessageDialogs.py:54
 msgid "We need your help"
@@ -3038,27 +2932,23 @@ msgstr "寄付のお願い"
 
 #: ../src/wxUI/commonMessageDialogs.py:58
 msgid "This user has no tweets. {0} can't create a timeline."
-msgstr ""
-"このユーザーにはツイートがないため、「{0}」のタイムラインを作成することはでき"
-"ません。"
+msgstr "このユーザーにはツイートがないため、 {0} "
+"のタイムラインを作成することはできません。"
 
 #: ../src/wxUI/commonMessageDialogs.py:61
 msgid "This user has no favorited tweets. {0} can't create a timeline."
-msgstr ""
-"このユーザーには、お気に入り登録されたツイートがないため、「{0}」のタイムライ"
-"ンを作成することはできません。"
+msgstr "このユーザーには、お気に入り登録されたツイートがないため、 {0} "
+"のタイムラインを作成することはできません。"
 
 #: ../src/wxUI/commonMessageDialogs.py:64
 msgid "This user has no followers. {0} can't create a timeline."
-msgstr ""
-"このユーザーのフォロワーがいないため、「{0}」でタイムラインを作ることはできま"
-"せん。"
+msgstr "このユーザーはフォロワーがいないため、 {0} "
+"のタイムラインを作成することはできません。"
 
 #: ../src/wxUI/commonMessageDialogs.py:67
 msgid "This user has no friends. {0} can't create a timeline."
-msgstr ""
-"このユーザーは、誰もフォローしていないため、「{0}」でタイムラインを作ることは"
-"できません。"
+msgstr "このユーザーは誰もフォローしていないため、 {0} "
+"のタイムラインを作成することはできません。"
 
 #: ../src/wxUI/commonMessageDialogs.py:71
 msgid "Geolocation data: {0}"
@@ -3280,7 +3170,7 @@ msgstr "エラーを報告(&R)"
 
 #: ../src/wxUI/view.py:78
 msgid "{0}'s &website"
-msgstr "「{0}」のウェブサイト(&W)"
+msgstr "{0}のウェブサイト(&W)"
 
 #: ../src/wxUI/view.py:79
 msgid "Get soundpacks for TWBlue"
@@ -3295,10 +3185,8 @@ msgid "&Application"
 msgstr "アプリケーション(&A)"
 
 #: ../src/wxUI/view.py:84
-#, fuzzy
-#| msgid "Item"
 msgid "&Item"
-msgstr "アイテム"
+msgstr "アイテム(&I)"
 
 #: ../src/wxUI/dialogs/mastodon/userActions.py:10
 #: ../src/wxUI/dialogs/userActions.py:11 ../src/wxUI/view.py:85
@@ -3323,7 +3211,7 @@ msgstr "アドレス"
 
 #: ../src/wxUI/view.py:205
 msgid "Your {0} version is up to date"
-msgstr "「{0}」のバージョンは最新です"
+msgstr "{0}のバージョンは最新です"
 
 #: ../src/wxUI/view.py:205
 msgid "Update"
@@ -3378,11 +3266,11 @@ msgstr "クライアント"
 
 #: ../src/wxUI/buffers/mastodon/base.py:27
 msgid "Favorite"
-msgstr ""
+msgstr "お気に入り"
 
 #: ../src/wxUI/buffers/mastodon/base.py:28
 msgid "Bookmark"
-msgstr ""
+msgstr "ブックマーク"
 
 #: ../src/wxUI/buffers/mastodon/base.py:29
 #: ../src/wxUI/buffers/twitter/base.py:28
@@ -3392,7 +3280,7 @@ msgstr "ダイレクトメッセージ"
 #: ../src/wxUI/buffers/mastodon/notifications.py:23
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:23
 msgid "Dismiss"
-msgstr ""
+msgstr "却下"
 
 #: ../src/wxUI/buffers/mastodon/user.py:19
 #: ../src/wxUI/dialogs/userAliasDialogs.py:48
@@ -3400,10 +3288,8 @@ msgid "Actions"
 msgstr "操作"
 
 #: ../src/wxUI/buffers/mastodon/user.py:20
-#, fuzzy
-#| msgid "Direct Messages"
 msgid "Message"
-msgstr "ダイレクトメッセージ"
+msgstr "メッセージ"
 
 #: ../src/wxUI/buffers/twitter/events.py:14
 msgid "Event"
@@ -3439,7 +3325,7 @@ msgstr "ストリーミング機能を無効化する"
 
 #: ../src/wxUI/dialogs/configuration.py:29
 msgid "Buffer update interval, in minutes"
-msgstr "バッファの更新間隔（分）"
+msgstr "バッファの更新間隔(分)"
 
 #: ../src/wxUI/dialogs/configuration.py:35
 msgid "Play a sound when {0} launches"
@@ -3463,9 +3349,8 @@ msgstr "起動時にGUIを隠す"
 
 #: ../src/wxUI/dialogs/configuration.py:45
 msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
-msgstr ""
-"Codeofduskを利用して長いツイートをできるようにする（パフォーマンスが低下する"
-"場合があります）"
+msgstr "Codeofduskを利用して長いツイートをできるようにする(パフォーマンスが低下する場"
+"合があります)"
 
 #: ../src/wxUI/dialogs/configuration.py:47
 msgid "Remember state for mention all and long tweet"
@@ -3503,7 +3388,7 @@ msgstr "パスワード: "
 #: ../src/wxUI/dialogs/configuration.py:102
 #: ../src/wxUI/dialogs/mastodon/configuration.py:14
 msgid "User autocompletion settings"
-msgstr "自動保管の設定..."
+msgstr "自動保管の設定"
 
 #: ../src/wxUI/dialogs/configuration.py:103
 msgid ""
@@ -3532,9 +3417,8 @@ msgstr "各API呼び出しの回数"
 msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning while the "
 "oldest at the end"
-msgstr ""
-"バッファの並び順を入れ替える（新しいツイートを先頭に、古いツイートを最後に表"
-"示）"
+msgstr "バッファの並び順を入れ替える(新しいツイートを先頭に、古いツイートを最後に表示"
+")"
 
 #: ../src/wxUI/dialogs/configuration.py:120
 msgid "Retweet mode"
@@ -3555,17 +3439,15 @@ msgstr "ユーザー名から絵文字を非表示にする"
 msgid ""
 "Number of items per buffer to cache in database (0 to disable caching, blank "
 "for unlimited)"
-msgstr ""
-"バッファごとにデータベースにキャッシュする項目数（0はキャッシュしない、空欄の"
-"場合は無制限）"
+msgstr "バッファごとにデータベースにキャッシュする項目数(0はキャッシュしない、空欄の"
+"場合は無制限)"
 
 #: ../src/wxUI/dialogs/configuration.py:134
 msgid ""
 "Load cache for tweets in memory (much faster in big datasets but requires "
 "more RAM)"
-msgstr ""
-"ツイートのキャッシュをメモリにロードする（大きなデータセットでははるかに高速"
-"ですが、より多くのRAMが必要です）"
+msgstr "ツイートのキャッシュをメモリにロードする(大きなデータセットでははるかに高速で"
+"すが、より多くのRAMが必要です)"
 
 #: ../src/wxUI/dialogs/configuration.py:141
 msgid "Enable automatic speech feedback"
@@ -3888,7 +3770,7 @@ msgstr "登録解除"
 
 #: ../src/wxUI/dialogs/lists.py:65
 msgid "Name (20 characters maximun)"
-msgstr "名前（二〇文字以内）"
+msgstr "名前(20文字以内)"
 
 #: ../src/wxUI/dialogs/lists.py:75
 msgid "Mode"
@@ -4009,7 +3891,7 @@ msgstr "プロフィールを更新"
 
 #: ../src/wxUI/dialogs/update_profile.py:12
 msgid "&Name (50 characters maximum)"
-msgstr "名前（50文字以内）(&N)"
+msgstr "名前(50文字以内)(&N)"
 
 #: ../src/wxUI/dialogs/update_profile.py:23
 msgid "&Website"
@@ -4017,7 +3899,7 @@ msgstr "ウェブサイト(&W)"
 
 #: ../src/wxUI/dialogs/update_profile.py:28
 msgid "&Bio (160 characters maximum)"
-msgstr "自己紹介（160文字以内）(&B)"
+msgstr "自己紹介(160文字以内)(&B)"
 
 #: ../src/wxUI/dialogs/update_profile.py:34
 msgid "Upload a &picture"
@@ -4155,129 +4037,88 @@ msgid "F&riends"
 msgstr "フォロー(&R)"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:15
-#, fuzzy
-#| msgid ""
-#| "Scan account and add friends and followers to the user autocompletion "
-#| "database"
 msgid ""
 "Scan account and add followers and following users to the user "
 "autocompletion database"
-msgstr ""
-"アカウントをスキャンして、フォロー中のユーザーやフォロワーをユーザーの自動補"
+msgstr "アカウントをスキャンして、フォロー中のユーザーやフォロワーをユーザーの自動補"
 "完のデータベースに追加します"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:32
-#, fuzzy
-#| msgid ""
-#| "Inverted buffers: The newest tweets will be shown at the beginning while "
-#| "the oldest at the end"
 msgid ""
 "Inverted buffers: The newest items will be shown at the beginning while the "
 "oldest at the end"
-msgstr ""
-"バッファの並び順を入れ替える（新しいツイートを先頭に、古いツイートを最後に表"
-"示）"
+msgstr "バッファの並び順を入れ替える: "
+"新しいツイートを先頭に、古いツイートを最後に表示"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:34
 msgid "Ask confirmation before boosting a post"
-msgstr ""
+msgstr "投稿をブーストする前に確認する"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:44
-#, fuzzy
-#| msgid ""
-#| "Load cache for tweets in memory (much faster in big datasets but requires "
-#| "more RAM)"
 msgid ""
 "Load cache for items in memory (much faster in big datasets but requires "
 "more RAM)"
-msgstr ""
-"ツイートのキャッシュをメモリにロードする（大きなデータセットでははるかに高速"
-"ですが、より多くのRAMが必要です）"
+msgstr "アイテムのキャッシュをメモリにロードする(大きなデータセットでははるかに高速で"
+"すが、より多くのRAMが必要です)"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:97
-#, fuzzy
-#| msgid "Indicate audio tweets with sound"
 msgid "Indicate audio or video in posts with sound"
-msgstr "音声付きツイートを音で報告"
+msgstr "音声や動画付き投稿を音で報告"
 
 #: ../src/wxUI/dialogs/mastodon/configuration.py:99
-#, fuzzy
-#| msgid "Indicate tweets containing images with sound"
 msgid "Indicate posts containing images with sound"
-msgstr "画像付きツイートを音で報告"
+msgstr "画像付き投稿を音で報告"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:7
-#, fuzzy
-#| msgid "Would you like to add a comment to this tweet?"
 msgid "Would you like to share this post?"
-msgstr "このツイートにコメントをつけますか？"
+msgstr "この投稿を共有しますか？"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:15
-#, fuzzy
-#| msgid ""
-#| "Do you really want to delete this tweet? It will be deleted from Twitter "
-#| "as well."
 msgid ""
 "Do you really want to delete this post? It will be deleted from the instance "
 "as well."
 msgstr ""
-"本当にこのツイートを削除しますか？このツイートは、Twitterから削除されます。"
+"本当にこの投稿を削除しますか？インスタンスからも削除されます。本当にこのツイ"
+"ートを削除しますか？このツイートは、Twitterから削除されます。"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:23
 msgid ""
 "Are you sure you want to dismiss this notification? If you dismiss a mention "
 "notification, it also disappears from your mentions buffer. The post is not "
 "going to be deleted from the instance, though."
-msgstr ""
+msgstr "この通知を閉じてもよろしいですか？メンション通知を閉じると、メンションバッフ"
+"ァからも消えます。ただし、投稿はインスタンスから削除されません。"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:31
-#, fuzzy
-#| msgid ""
-#| "Do you really want to empty this buffer? It's  items will be removed from "
-#| "the list but not from Twitter"
 msgid ""
 "Do you really want to empty this buffer? It's  items will be removed from "
 "the list but not from the instance"
-msgstr ""
-"本当にこのバッファをクリアしますか？これは、Twitterからは削除されません。"
+msgstr "本当にこのバッファをクリアしますか？アイテムはリストから削除されますが、イン"
+"スタンスからは削除されません"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:38
-#, fuzzy
-#| msgid "This user has no tweets. {0} can't create a timeline."
 msgid "This user has no posts. {0} can't create a timeline."
-msgstr ""
-"このユーザーにはツイートがないため、「{0}」のタイムラインを作成することはでき"
-"ません。"
+msgstr "このユーザーには投稿がないため、 {0} "
+"のタイムラインを作成することはできません。"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:43
-#, fuzzy
-#| msgid "This user has no favorited tweets. {0} can't create a timeline."
 msgid "This user has no favorited posts. {0} can't create a timeline."
-msgstr ""
-"このユーザーには、お気に入り登録されたツイートがないため、「{0}」のタイムライ"
-"ンを作成することはできません。"
+msgstr "このユーザーには、お気に入り登録された投稿がないため、 {0} "
+"のタイムラインを作成することはできません。"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:48
-#, fuzzy
-#| msgid "This user has no followers. {0} can't create a timeline."
 msgid "This user has no followers yet. {0} can't create a timeline."
-msgstr ""
-"このユーザーのフォロワーがいないため、「{0}」でタイムラインを作ることはできま"
-"せん。"
+msgstr "このユーザーにはフォロワーがいないため、 {0} "
+"のタイムラインを作成することはできません。"
 
 #: ../src/wxUI/dialogs/mastodon/dialogs.py:53
-#, fuzzy
-#| msgid "This user has no followers. {0} can't create a timeline."
 msgid "This user is not following anyone. {0} can't create a timeline."
-msgstr ""
-"このユーザーのフォロワーがいないため、「{0}」でタイムラインを作ることはできま"
-"せん。"
+msgstr "このユーザーは誰もフォローしていないため、 {0} "
+"のタイムラインを作成することはできません。"
 
 #: ../src/wxUI/dialogs/mastodon/menus.py:13
-#, fuzzy
-#| msgid "R&emove from list"
 msgid "R&emove from favorites"
-msgstr "リストから削除(&E)"
+msgstr "お気に入りから削除(&E)"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:19
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:37
@@ -4296,44 +4137,36 @@ msgid "Type"
 msgstr "形式"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:27
-#, fuzzy
-#| msgid "Remove client"
 msgid "Remove Attachment"
-msgstr "クライアントを削除"
+msgstr "添付ファイルを削除"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:32
 msgid "Post in the thread"
-msgstr ""
+msgstr "スレッドに投稿"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:39
-#, fuzzy
-#| msgid "Remove from list"
 msgid "Remove post"
-msgstr "リストから削除"
+msgstr "投稿を削除"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:46
 msgid "Visibility"
-msgstr ""
+msgstr "公開範囲"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:51
-#, fuzzy
-#| msgid "A&dd..."
 msgid "A&dd"
 msgstr "追加(&D)"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:52
 msgid "Sensitive content"
-msgstr ""
+msgstr "閲覧注意コンテンツ"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:57
 msgid "Content warning"
-msgstr ""
+msgstr "コンテンツ警告"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:64
-#, fuzzy
-#| msgid "Add to list"
 msgid "Add p&ost"
-msgstr "リストに追加"
+msgstr "投稿を追加(&O)"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:68
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:65
@@ -4343,8 +4176,6 @@ msgid "Auto&complete users"
 msgstr "ユーザーを自動保管(&C)"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:70
-#, fuzzy
-#| msgid "Check &spelling..."
 msgid "Check &spelling"
 msgstr "スペルチェック(&S)"
 
@@ -4356,10 +4187,8 @@ msgid "&Translate"
 msgstr "翻訳(&T)"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:99
-#, fuzzy
-#| msgid "Tweet - %i characters "
 msgid "Post - {} characters"
-msgstr "ツイート - %i文字"
+msgstr "投稿 - {}文字"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:123
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:117
@@ -4376,10 +4205,8 @@ msgid "Video"
 msgstr "動画"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:127
-#, fuzzy
-#| msgid "&Audio"
 msgid "Audio"
-msgstr "音声(&A)"
+msgstr "音声"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:129
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:121
@@ -4397,16 +4224,16 @@ msgid "Select the video to be uploaded"
 msgstr "アップロードする動画を選択"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:148
-#, fuzzy
-#| msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
-msgstr "音声ファイル (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+msgstr "動画ファイル (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:154
 msgid ""
 "Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*."
 "mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 msgstr ""
+"音声ファイル (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*."
+"mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:160
 msgid ""
@@ -4414,6 +4241,9 @@ msgid ""
 "You can add only a maximum of 4 images, or one audio, video or poll  per "
 "post. Please remove other attachments before continuing."
 msgstr ""
+"これ以上添付ファイルを追加することはできません。投稿ごとに最大4つの画像、また"
+"は1つの音声、ビデオ、または投票のみを追加できることを考慮してください。続行す"
+"る前に、他の添付ファイルを削除してください。"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:160
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
@@ -4424,19 +4254,17 @@ msgstr "添付ファイルの追加中にエラーが発生しました"
 msgid ""
 "You can add a poll or media files. In order to add your poll, please remove "
 "other attachments first."
-msgstr ""
+msgstr "投票またはメディアファイルを追加できます。投票を追加するには、まず他の添付フ"
+"ァイルを削除してください。"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:163
-#, fuzzy
-#| msgid "Error adding attachment"
 msgid "Error adding poll"
-msgstr "添付ファイルの追加中にエラーが発生しました"
+msgstr "投票の追加中にエラーが発生しました"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:167
-#, fuzzy, python-format
-#| msgid "Tweet - %i characters "
+#, python-format
 msgid "Post - %i characters "
-msgstr "ツイート - %i文字"
+msgstr "投稿 - %i文字 "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:180
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:321
@@ -4444,18 +4272,16 @@ msgid "Image description"
 msgstr "画像の説明"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:187
-#, fuzzy
-#| msgid "Private"
 msgid "Privacy"
-msgstr "プライベート"
+msgstr "プライバシー"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:192
 msgid "Boosts: "
-msgstr ""
+msgstr "ブースト: "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:197
 msgid "Favorites: "
-msgstr ""
+msgstr "お気に入り: "
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:202
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:342
@@ -4501,76 +4327,52 @@ msgid "Add a poll"
 msgstr "投票を追加"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:262
-#, fuzzy
-#| msgid "Participation time (in days)"
 msgid "Participation time"
-msgstr "投票期間(日数)"
+msgstr "投票期間"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d minutes, "
 msgid "5 minutes"
-msgstr "%d分 "
+msgstr "5分"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d minutes, "
 msgid "30 minutes"
-msgstr "%d分 "
+msgstr "30分"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d hour, "
 msgid "1 hour"
-msgstr "%d時間 "
+msgstr "1時間"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d hours, "
 msgid "6 hours"
-msgstr "%d時間 "
+msgstr "6時間"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d day, "
 msgid "1 day"
-msgstr "%d日 "
+msgstr "1日"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "2 days"
-msgstr "%d日 "
+msgstr "2日"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "3 days"
-msgstr "%d日 "
+msgstr "3日"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "4 days"
-msgstr "%d日 "
+msgstr "4日"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "5 days"
-msgstr "%d日 "
+msgstr "5日"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "6 days"
-msgstr "%d日 "
+msgstr "6日"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:264
-#, fuzzy
-#| msgid "%d days, "
 msgid "7 days"
-msgstr "%d日 "
+msgstr "7日"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:268
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:488
@@ -4599,11 +4401,11 @@ msgstr "オプション4"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:298
 msgid "Allow multiple votes per user"
-msgstr ""
+msgstr "ユーザーごとに複数の投票を許可する"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:301
 msgid "Hide votes count until the poll expires"
-msgstr ""
+msgstr "投票の有効期限が切れるまで投票数を非表示にする"
 
 #: ../src/wxUI/dialogs/mastodon/postDialogs.py:327
 #: ../src/wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
@@ -4616,24 +4418,20 @@ msgid "Not enough information"
 msgstr "十分な情報がありません"
 
 #: ../src/wxUI/dialogs/mastodon/search.py:9
-#, fuzzy
-#| msgid "&Search"
 msgid "Search"
-msgstr "検索(&S)"
+msgstr "検索"
 
 #: ../src/wxUI/dialogs/mastodon/search.py:18
 msgid "Posts"
-msgstr ""
+msgstr "投稿"
 
 #: ../src/wxUI/dialogs/mastodon/userTimeline.py:19
 msgid "&Posts"
-msgstr ""
+msgstr "投稿(&P)"
 
 #: ../src/wxUI/dialogs/mastodon/userTimeline.py:21
-#, fuzzy
-#| msgid "Following"
 msgid "Fo&llowing"
-msgstr "フォロー中"
+msgstr "フォロー中(&L)"
 
 #: ../src/wxUI/dialogs/twitterDialogs/templateDialogs.py:8
 msgid "Edit Template"
