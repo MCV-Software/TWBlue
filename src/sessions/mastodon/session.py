@@ -290,7 +290,7 @@ class Session(base.baseSession):
         obj = None
         if notification.type == "mention":
             buffers = ["mentions"]
-            obj = notification.status
+            obj = notification
         elif notification.type == "follow":
             buffers = ["followers"]
             obj = notification.account
