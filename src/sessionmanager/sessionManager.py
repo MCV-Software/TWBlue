@@ -10,6 +10,7 @@ import output
 import paths
 import config_utils
 import config
+import application
 from pubsub import pub
 from tweepy.errors import TweepyException
 from controller import settings
@@ -66,6 +67,8 @@ class sessionManagerController(object):
                         os.exception("Exception thrown while removing malformed session")
                         continue
                 if config_test.get("twitter") != None:
+                    if application.twitter_support_enabled == False:
+                        continue
                     name = _("{account_name} (Twitter)").format(account_name=config_test["twitter"]["user_name"])
                     if config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
                         sessionsList.append(name)
@@ -99,6 +102,8 @@ class sessionManagerController(object):
                 continue
             # Create the session object based in session type.
             if i.get("type") == "twitter":
+                if application.twitter_support_enabled == False:
+                    continue
                 s = TwitterSession.Session(i.get("id"))
             elif i.get("type") == "mastodon":
                 s = MastodonSession.Session(i.get("id"))

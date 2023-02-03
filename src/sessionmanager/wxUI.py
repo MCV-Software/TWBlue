@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """ Base GUI (Wx) class for the Session manager module."""
 import wx
+import application
 from pubsub import pub
 from multiplatform_widgets import widgets
 
@@ -50,9 +51,10 @@ class sessionManagerWindow(wx.Dialog):
 
     def on_new_account(self, *args, **kwargs):
         menu = wx.Menu()
-        twitter = menu.Append(wx.ID_ANY, _("Twitter"))
+        if application.twitter_support_enabled:
+            twitter = menu.Append(wx.ID_ANY, _("Twitter"))
+            menu.Bind(wx.EVT_MENU, self.on_new_twitter_account, twitter)
         mastodon = menu.Append(wx.ID_ANY, _("Mastodon"))
-        menu.Bind(wx.EVT_MENU, self.on_new_twitter_account, twitter)
         menu.Bind(wx.EVT_MENU, self.on_new_mastodon_account, mastodon)
         self.PopupMenu(menu, self.new.GetPosition())
 
@@ -64,6 +66,8 @@ class sessionManagerWindow(wx.Dialog):
             pub.sendMessage("sessionmanager.new_account", type="mastodon")
 
     def on_new_twitter_account(self, *args, **kwargs):
+        if application.twitter_support_enabled == False:
+            return
         dlg = wx.MessageDialog(self, _(u"The request to authorize your Twitter account will be opened in your browser. You only need to do this once. Would you like to continue?"), _(u"Authorization"), wx.YES_NO)
         response = dlg.ShowModal()
         dlg.Destroy()
