@@ -66,7 +66,7 @@ class Session(base.baseSession):
             return
         try:
             client_id, client_secret = mastodon.Mastodon.create_app("TWBlue", api_base_url=authorisation_dialog.GetValue(), website="https://twblue.es")
-            temporary_api = mastodon.Mastodon(client_id=client_id, client_secret=client_secret, api_base_url=instance, mastodon_version=MASTODON_VERSION)
+            temporary_api = mastodon.Mastodon(client_id=client_id, client_secret=client_secret, api_base_url=instance, mastodon_version=MASTODON_VERSION, user_agent="TWBlue/{}".format(application.version))
             auth_url = temporary_api.auth_request_url()
         except MastodonError:
             dlg = wx.MessageDialog(None, _("We could not connect to your mastodon instance. Please verify that the domain exists and the instance is accessible via a web browser."), _("Instance error"), wx.ICON_ERROR)
@@ -229,8 +229,8 @@ class Session(base.baseSession):
         try:
             stream_healthy = self.api.stream_healthy()
             if stream_healthy == True:
-                self.user_stream = self.api.stream_user(listener, run_async=True)
-                self.direct_stream = self.api.stream_direct(listener, run_async=True)
+                self.user_stream = self.api.stream_user(listener, run_async=True, reconnect_async=True, reconnect_async_wait_sec=30)
+                self.direct_stream = self.api.stream_direct(listener, run_async=True, reconnect_async=True, reconnect_async_wait_sec=30)
                 log.debug("Started streams for session {}.".format(self.get_name()))
         except Exception as e:
             log.exception("Detected streaming unhealthy in {} session.".format(self.get_name()))
@@ -238,20 +238,9 @@ class Session(base.baseSession):
     def stop_streaming(self):
         if config.app["app-settings"]["no_streaming"]:
             return
-#        if hasattr(self, "user_stream"):
-#            self.user_stream.close()
-#            log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
-#        if hasattr(self, "direct_stream"):
-#            self.direct_stream.close()
-#            log.debug("Stream stopped for accounr {}".format(self.db["user_name"]))
 
     def check_streams(self):
-        if config.app["app-settings"]["no_streaming"]:
-            return
-        if not hasattr(self, "user_stream"):
-            return
-        if self.user_stream.is_alive() == False or self.user_stream.is_receiving() == False or self.direct_stream.is_alive() == False or self.direct_stream.is_receiving() == False:
-            self.start_streaming()
+        pass
 
     def check_buffers(self, status):
         buffers = []
