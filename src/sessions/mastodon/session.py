@@ -223,7 +223,8 @@ class Session(base.baseSession):
         return "Mastodon: {}@{}".format(user, instance)
 
     def start_streaming(self):
-        if config.app["app-settings"]["no_streaming"]:
+        if self.settings["general"]["disable_streaming"]:
+            log.info("Streaming is disabled for session {}. Skipping...".format(self.get_name()))
             return
         listener = streaming.StreamListener(session_name=self.get_name(), user_id=self.db["user_id"])
         try:

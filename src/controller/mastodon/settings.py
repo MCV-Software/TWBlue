@@ -31,6 +31,7 @@ class accountSettingsController(globalSettingsController):
         self.dialog.create_general_account()
 #        widgetUtils.connect_event(self.dialog.general.userAutocompletionScan, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_scan)
 #        widgetUtils.connect_event(self.dialog.general.userAutocompletionManage, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_manage)
+        self.dialog.set_value("general", "disable_streaming", self.config["general"]["disable_streaming"])
         self.dialog.set_value("general", "relative_time", self.config["general"]["relative_times"])
         self.dialog.set_value("general", "read_preferences_from_instance", self.config["general"]["read_preferences_from_instance"])
         self.dialog.set_value("general", "show_screen_names", self.config["general"]["show_screen_names"])
@@ -112,6 +113,10 @@ class accountSettingsController(globalSettingsController):
             self.needs_restart = True
             log.debug("Triggered app restart due to change in relative times.")
             self.config["general"]["relative_times"] = self.dialog.get_value("general", "relative_time")
+        if self.config["general"]["disable_streaming"] != self.dialog.get_value("general", "disable_streaming"):
+            self.needs_restart = True
+            log.debug("Triggered app restart due to change in streaming settings.")
+            self.config["general"]["disable_streaming"] = self.dialog.get_value("general", "disable_streaming")
         self.config["general"]["read_preferences_from_instance"] = self.dialog.get_value("general", "read_preferences_from_instance")
         self.config["general"]["show_screen_names"] = self.dialog.get_value("general", "show_screen_names")
         self.config["general"]["hide_emojis"] = self.dialog.get_value("general", "hide_emojis")

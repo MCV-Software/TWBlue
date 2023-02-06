@@ -20,6 +20,8 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
         autocompletionSizer.Add(self.userAutocompletionScan, 0, wx.ALL, 5)
         autocompletionSizer.Add(self.userAutocompletionManage, 0, wx.ALL, 5)
         sizer.Add(autocompletionSizer, 0, wx.ALL, 5)
+        self.disable_streaming = wx.CheckBox(self, wx.ID_ANY, _("Disable Streaming API endpoints"))
+        sizer.Add(self.disable_streaming, 0, wx.ALL, 5)
         self.relative_time = wx.CheckBox(self, wx.ID_ANY, _("Relative timestamps"))
         sizer.Add(self.relative_time, 0, wx.ALL, 5)
         self.read_preferences_from_instance = wx.CheckBox(self, wx.ID_ANY, _("Read preferences from instance (default visibility when publishing and displaying sensitive content)"))

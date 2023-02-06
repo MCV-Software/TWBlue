@@ -15,6 +15,7 @@ show_screen_names = boolean(default=False)
 hide_emojis = boolean(default=False)
 buffer_order = list(default=list('home', 'local', 'mentions', 'direct_messages', 'sent', 'favorites', 'bookmarks', 'followers', 'following', 'blocked', 'muted', 'notifications'))
 boost_mode = string(default="ask")
+disable_streaming = boolean(default=False)
 
 [sound]
 volume = float(default=1.0)
