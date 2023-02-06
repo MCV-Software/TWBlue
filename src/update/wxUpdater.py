@@ -30,7 +30,7 @@ def progress_callback(total_downloaded, total_size):
     if total_downloaded == total_size:
         progress_dialog.Destroy()
     else:
-        progress_dialog.Update(old_div((total_downloaded*100),total_size), _(u"Updating... %s of %s") % (str(utils.convert_bytes(total_downloaded)), str(utils.convert_bytes(total_size))))
+        progress_dialog.Update(int((total_downloaded*100)/total_size), _(u"Updating... %s of %s") % (str(utils.convert_bytes(total_downloaded)), str(utils.convert_bytes(total_size))))
 
 def update_finished():
     ms = wx.MessageDialog(None, _(u"The update has been downloaded and installed successfully. Press OK to continue."), _(u"Done!")).ShowModal()
