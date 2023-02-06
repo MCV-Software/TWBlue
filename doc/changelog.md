@@ -11,6 +11,7 @@ This release focuses on fixing some important bugs that have been reported in th
     * Added notification when a user joins an instance. This notification is only available for administrators.
     * Added option to disable Streaming in the account options. This can be useful if TWBlue, for some reason, repeatedly calls the instance API.
     * Improved the code that works with the Streaming API to reduce the number of reconnection attempts TWBlue performs.
+    * Fixed media uploads for audio, video and gifvs. ([#513](https://github.com/MCV-Software/TWBlue/issues/513))
 
 ## Changes in version 2023.2.3
 
