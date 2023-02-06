@@ -1,12 +1,27 @@
 # -*- coding: utf-8 -*-
 import os
+import re
 import wx
 import widgetUtils
 import config
 import output
+from twitter_text import parse_tweet, config
 from controller.twitter import messages
 from sessions.mastodon import templates
 from wxUI.dialogs.mastodon import postDialogs
+
+def character_count(post_text, post_cw, character_limit=500):
+    # We will use text for counting character limit only.
+    full_text = post_text+post_cw
+    # find remote users as Mastodon doesn't count the domain in char limit.
+    users = re.findall("@[\w\.-]+@[\w\.-]+", full_text)
+    for user in users:
+        domain = user.split("@")[-1]
+        full_text = full_text.replace("@"+domain, "")
+    options = config.config.get("defaults")
+    options.update(max_weighted_tweet_length=character_limit, default_weight=100)
+    parsed = parse_tweet(full_text, options=options)
+    return parsed.weightedLength
 
 class post(messages.basicTweet):
     def __init__(self, session, title, caption, text="", *args, **kwargs):
@@ -19,6 +34,7 @@ class post(messages.basicTweet):
         self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
         widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
         widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
+        widgetUtils.connect_event(self.message.spoiler, widgetUtils.ENTERED_TEXT, self.text_processor)
         widgetUtils.connect_event(self.message.translate, widgetUtils.BUTTON_PRESSED, self.translate)
         widgetUtils.connect_event(self.message.add, widgetUtils.BUTTON_PRESSED, self.on_attach)
         widgetUtils.connect_event(self.message.remove_attachment, widgetUtils.BUTTON_PRESSED, self.remove_attachment)
@@ -49,7 +65,12 @@ class post(messages.basicTweet):
         return self.thread
 
     def text_processor(self, *args, **kwargs):
-        super(post, self).text_processor(*args, **kwargs)
+        text = self.message.text.GetValue()
+        cw = self.message.spoiler.GetValue()
+        results = character_count(text, cw, character_limit=self.max)
+        self.message.SetTitle(_("%s - %s of %d characters") % (self.title, results, self.max))
+        if results > self.max:
+            self.session.sound.play("max_length.ogg")
         if len(self.thread) > 0:
             if hasattr(self.message, "posts"):
                 self.message.posts.Enable(True)

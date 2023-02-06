@@ -7,6 +7,7 @@ This release focuses on fixing some important bugs that have been reported in th
 * Fixed the update system.
 * Fixed a bug when attempting to switch between different accounts using the invisible interface, if the focused account is not an active session.
 * Mastodon:
+    * Improved the way TWBlue counts characters in Mastodon. Now it counts only the username part in a remote user (@domain is not counted against character limit), adds content warning text to character count, also emojis and CJK characters are counted as 1 as opposed to 2. ([#511](https://github.com/MCV-Software/TWBlue/issues/511))
     * Added notification when a user joins an instance. This notification is only available for administrators.
     * Added option to disable Streaming in the account options. This can be useful if TWBlue, for some reason, repeatedly calls the instance API.
     * Improved the code that works with the Streaming API to reduce the number of reconnection attempts TWBlue performs.
