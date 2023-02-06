@@ -801,7 +801,10 @@ class Controller(object):
         output.speak(msg, True)
 
     def next_account(self, *args, **kwargs):
-        index = self.accounts.index(self.current_account)
+        try:
+            index = self.accounts.index(self.current_account)
+        except ValueError:
+            index = -1
         if index+1 == len(self.accounts):
             index = 0
         else:
