@@ -2,6 +2,17 @@ TWBlue Changelog
 
 ## changes in this version
 
+This release focuses on fixing some important bugs that have been reported in the previous version. Particularly, TWBlue should be able to authorize on some instances that have blocked the Mastodon.py library, and should be able to avoid repeatedly calling some endpoints that cause excessive connections for some instances. Additionally, it is possible to disable Streaming from the account options in Mastodon. This can be especially useful if TWBlue keeps making a lot of API calls for some instances.
+
+* Fixed the update system.
+* Fixed a bug when attempting to switch between different accounts using the invisible interface, if the focused account is not an active session.
+* Mastodon:
+    * Added notification when a user joins an instance. This notification is only available for administrators.
+    * Added option to disable Streaming in the account options. This can be useful if TWBlue, for some reason, repeatedly calls the instance API.
+    * Improved the code that works with the Streaming API to reduce the number of reconnection attempts TWBlue performs.
+
+## Changes in version 2023.2.3
+
 In this version, TWBlue will no longer support Twitter sessions starting on February 9, due to Twitter's policies prohibiting third-party clients, in addition to the shutdown of the free access to the Twitter API. All Twitter sessions that are active on TWBlue will stop working as of February 9, when the free API access will finally be shut down. It will not be possible to display or add Twitter sessions from the Session manager. From the TWBlue team, we will continue working to improve our support for Mastodon instances and add other social networks in the near future. If you want to keep in touch with the project, you can follow us in our mastodon account, at [@twblue@maaw.social.](https://maaw.social/@twblue)
 
 * In the graphical interface, TWBlue will update menu items, in the menu bar, depending on whether you are focusing a Twitter or Mastodon session. This makes it possible for TWBlue to display the correct terms in each social network. Take into account that there might be unavailable items for the currently active session.
