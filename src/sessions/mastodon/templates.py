@@ -170,6 +170,8 @@ def render_notification(notification, template, post_template, relative_times=Fa
         text = _("has updated a status: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
     elif notification.type == "follow":
         text = _("has followed you.")
+    elif notification.type == "admin.sign_up":
+        text = _("has joined the instance.")
     elif notification.type == "poll":
         text = _("A poll in which you have voted has expired: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
     elif notification.type == "follow_request":
