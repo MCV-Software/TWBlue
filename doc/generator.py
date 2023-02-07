@@ -10,7 +10,6 @@ from importlib import reload
 # Languages already translated or translating the documentation.
 documentation_languages = ["en", "es", "fr", "de", "it", "gl", "ja", "ru", "ro", "eu", "ca", "da", "sr"]
 
-
 # Changelog translated languages.
 changelog_languages = ["en", "ca", "de", "es", "eu", "fr", "gl", "ja", "ro", "ru", "sr"]
 
@@ -29,8 +28,13 @@ def get_translations(name):
         langs = changelog_languages
     for l in langs:
         if l != "en":
-            _ = gettext.translation(name, os.path.join(paths.app_path(), "locales"), languages=[l])
-            translations[l] = _
+            try:
+                _ = gettext.translation(name, os.path.join(paths.app_path(), "locales"), languages=[l])
+                translations[l] = _
+                print(l, name)
+            except FileNotFoundError:
+                _ = gettext.NullTranslations()
+                translations[l] = _
         else:
             _ = gettext.NullTranslations()
             translations[l] = _
