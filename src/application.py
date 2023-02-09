@@ -3,10 +3,10 @@ import datetime
 
 # Make date check for feb 9.
 now = datetime.datetime.now()
-end_of_twitter = datetime.datetime(2023, 2, 9)
+end_of_twitter = datetime.datetime(2023, 2, 13)
 twitter_support_enabled = True
-if now >= end_of_twitter:
-    twitter_support_enabled = False
+#if now >= end_of_twitter:
+#    twitter_support_enabled = False
 name = 'TWBlue'
 short_name='twblue'
 update_url = 'https://twblue.es/updates/updates.php'
