@@ -2,6 +2,12 @@ TWBlue Changelog
 
 ## changes in this version
 
+We had to release a 2023.2.8 version of TWblue, which removes the API deprecation code as Twitter has changed again their plans, and set their free API shutdown to February 13. This new release will not enforce any date for stopping support to Twitter sessions, but will skip loading the sessions if there are errors when logging into Twitter. There are also some significant improvements to our Mastodon support, which you can read in the following list of changes:
+
+* TWBlue should be able to display variables within templates (for example, now it is possible to send a template inside a post's text). Before, it was removing $variables so it was difficult to show how to edit templates from the client. ([#515](https://github.com/MCV-Software/TWBlue/issues/515))
+
+## Changes on version 2023.2.6
+
 This release focuses on fixing some important bugs that have been reported in the previous version. Particularly, TWBlue should be able to authorize on some instances that have blocked the Mastodon.py library, and should be able to avoid repeatedly calling some endpoints that cause excessive connections for some instances. Additionally, it is possible to disable Streaming from the account options in Mastodon. This can be especially useful if TWBlue keeps making a lot of API calls for some instances.
 
 * Fixed the update system.

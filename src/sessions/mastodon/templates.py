@@ -45,11 +45,6 @@ def process_image_descriptions(media_attachments):
         idescriptions = idescriptions + _("Image description: {}").format(image) + "\n"
     return idescriptions
 
-def remove_unneeded_variables(template, variables):
-    for variable in variables:
-        template = re.sub("\$"+variable, "", template)
-    return template
-
 def render_post(post, template, relative_times=False, offset_hours=0):
     """ Renders any given post according to the passed template.
     Available data for posts will be stored in the following variables:
@@ -64,7 +59,7 @@ def render_post(post, template, relative_times=False, offset_hours=0):
     $visibility: post's visibility: public, not listed, followers only or direct.
     """
     global post_variables
-    available_data = dict()
+    available_data = dict(source="")
     created_at = process_date(post.created_at, relative_times, offset_hours)
     available_data.update(date=created_at)
     # user.
@@ -91,10 +86,8 @@ def render_post(post, template, relative_times=False, offset_hours=0):
         image_descriptions = process_image_descriptions(post.reblog.media_attachments)
     else:
         image_descriptions = process_image_descriptions(post.media_attachments)
-    if image_descriptions != "":
-        available_data.update(image_descriptions=image_descriptions)
+    available_data.update(image_descriptions=image_descriptions)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = remove_unneeded_variables(result, post_variables)
     return result
 
 def render_user(user, template, relative_times=True, offset_hours=0):
@@ -121,7 +114,6 @@ def render_user(user, template, relative_times=True, offset_hours=0):
     created_at = process_date(user.created_at, relative_times=relative_times, offset_hours=offset_hours)
     available_data.update(created_at=created_at)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = remove_unneeded_variables(result, person_variables)
     return result
 
 def render_conversation(conversation, template, post_template, relative_times=False, offset_hours=0):
@@ -135,7 +127,6 @@ def render_conversation(conversation, template, post_template, relative_times=Fa
     last_post = render_post(conversation.last_status, post_template, relative_times=relative_times, offset_hours=offset_hours)
     available_data = dict(users=users, last_post=last_post)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = remove_unneeded_variables(result, conversation_variables)
     return result
 
 def render_notification(notification, template, post_template, relative_times=False, offset_hours=0):
@@ -178,6 +169,5 @@ def render_notification(notification, template, post_template, relative_times=Fa
         text = _("wants to follow you.")
     available_data.update(text=text)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = remove_unneeded_variables(result, post_variables)
     result = result.replace(" . ", "")
     return result

@@ -54,11 +54,6 @@ def process_image_descriptions(entities):
         idescriptions += _("Image description: {}.").format(image)
     return idescriptions
 
-def remove_unneeded_variables(template, variables):
-    for variable in variables:
-        template = re.sub("\$"+variable, "", template)
-    return template
-
 def render_tweet(tweet, template, session, relative_times=False, offset_seconds=0):
     """ Renders any given Tweet according to the passed template.
     Available data for tweets will be stored in the following variables:
@@ -96,10 +91,8 @@ def render_tweet(tweet, template, session, relative_times=False, offset_seconds=
         image_descriptions = process_image_descriptions(tweet.retweeted_status.quoted_status.extended_entities)
     elif hasattr(tweet, "extended_entities"):
         image_descriptions = process_image_descriptions(tweet.extended_entities)
-    if image_descriptions != "":
-        available_data.update(image_descriptions=image_descriptions)
+    available_data.update(image_descriptions=image_descriptions)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = remove_unneeded_variables(result, tweet_variables)
     return result
 
 def render_dm(dm, template, session, relative_times=False, offset_seconds=0):
@@ -127,7 +120,6 @@ def render_dm(dm, template, session, relative_times=False, offset_seconds=0):
     recipient = session.get_user(dm.message_create["target"]["recipient_id"])
     available_data.update(sender_display_name=sender.name, sender_screen_name=sender.screen_name, recipient_display_name=recipient.name, recipient_screen_name=recipient.screen_name)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = remove_unneeded_variables(result, dm_variables)
     return result
 
 # Sesion object is not used in this function but we keep compatibility across all rendering functions.
@@ -152,8 +144,9 @@ def render_person(user, template, session=None, relative_times=True, offset_seco
     for nullable in nullables:
         if hasattr(user, nullable) and getattr(user, nullable) != None:
             available_data[nullable] = getattr(user, nullable)
+        else:
+            available_data[nullable] = ""
     created_at = process_date(user.created_at, relative_times=relative_times, offset_seconds=offset_seconds)
     available_data.update(created_at=created_at)
     result = Template(_(template)).safe_substitute(**available_data)
-    result = remove_unneeded_variables(result, person_variables)
     return result
