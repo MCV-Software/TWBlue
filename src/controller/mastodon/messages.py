@@ -148,9 +148,9 @@ class post(messages.basicTweet):
                 break
         if can_attach == False or big_media_present == True:
             return self.message.unable_to_attach_file()
-        video = self.message.get_video()
+        video, description = self.message.get_video()
         if video != None:
-            videoInfo = {"type": "video", "file": video, "description": ""}
+            videoInfo = {"type": "video", "file": video, "description": description}
             self.attachments.append(videoInfo)
             self.message.add_item(item=[os.path.basename(videoInfo["file"]), videoInfo["type"], videoInfo["description"]])
             self.text_processor()
@@ -166,9 +166,9 @@ class post(messages.basicTweet):
                 break
         if can_attach == False or big_media_present == True:
             return self.message.unable_to_attach_file()
-        audio = self.message.get_audio()
+        audio, description = self.message.get_audio()
         if audio != None:
-            audioInfo = {"type": "audio", "file": audio, "description": ""}
+            audioInfo = {"type": "audio", "file": audio, "description": description}
             self.attachments.append(audioInfo)
             self.message.add_item(item=[os.path.basename(audioInfo["file"]), audioInfo["type"], audioInfo["description"]])
             self.text_processor()

@@ -5,6 +5,8 @@ TWBlue Changelog
 We had to release a 2023.2.8 version of TWblue, which removes the API deprecation code as Twitter has changed again their plans, and set their free API shutdown to February 13. This new release will not enforce any date for stopping support to Twitter sessions, but will skip loading the sessions if there are errors when logging into Twitter. There are also some significant improvements to our Mastodon support, which you can read in the following list of changes:
 
 * TWBlue should be able to display variables within templates (for example, now it is possible to send a template inside a post's text). Before, it was removing $variables so it was difficult to show how to edit templates from the client. ([#515](https://github.com/MCV-Software/TWBlue/issues/515))
+* Mastodon:
+    * it is possible to add descriptions for all media available on Mastodon (audio, photos, video and Givs). ([#516](https://github.com/MCV-Software/TWBlue/issues/516))
 
 ## Changes on version 2023.2.6
 

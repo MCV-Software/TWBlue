@@ -42,7 +42,7 @@ def process_image_descriptions(media_attachments):
             image_descriptions.append(media.get("description"))
     idescriptions = ""
     for image in image_descriptions:
-        idescriptions = idescriptions + _("Image description: {}").format(image) + "\n"
+        idescriptions = idescriptions + _("Media description: {}").format(image) + "\n"
     return idescriptions
 
 def render_post(post, template, relative_times=False, offset_hours=0):

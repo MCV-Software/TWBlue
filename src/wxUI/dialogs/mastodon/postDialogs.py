@@ -147,14 +147,16 @@ class Post(wx.Dialog):
     def get_video(self):
         openFileDialog = wx.FileDialog(self, _("Select the video to be uploaded"), "", "", _("Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
         if openFileDialog.ShowModal() == wx.ID_CANCEL:
-            return None
-        return openFileDialog.GetPath()
+            return (None, None)
+        dsc = self.ask_description()
+        return (openFileDialog.GetPath(), dsc)
 
     def get_audio(self):
         openFileDialog = wx.FileDialog(self, _("Select the audio file to be uploaded"), "", "", _("Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*.mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"), wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
         if openFileDialog.ShowModal() == wx.ID_CANCEL:
-            return None
-        return openFileDialog.GetPath()
+            return (None, None)
+        dsc = self.ask_description()
+        return (openFileDialog.GetPath(), dsc)
 
     def unable_to_attach_file(self, *args, **kwargs):
         return wx.MessageDialog(self, _("It is not possible to add more attachments. Please take into account that You can add only a maximum of 4 images, or one audio, video or poll  per post. Please remove other attachments before continuing."), _("Error adding attachment"), wx.ICON_ERROR).ShowModal()

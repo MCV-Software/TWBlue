@@ -210,8 +210,8 @@ class Session(base.baseSession):
                     poll = self.api.make_poll(options=obj["attachments"][0]["options"], expires_in=obj["attachments"][0]["expires_in"], multiple=obj["attachments"][0]["multiple"], hide_totals=obj["attachments"][0]["hide_totals"])
                 else:
                     for i in obj["attachments"]:
-                        img = self.api_call("media_post", media_file=i["file"], description=i["description"], synchronous=True)
-                        media_ids.append(img.id)
+                        media = self.api_call("media_post", media_file=i["file"], description=i["description"], synchronous=True)
+                        media_ids.append(media.id)
                 item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
                 if item != None:
                     in_reply_to_id = item["id"]
