@@ -42,6 +42,9 @@ class NotificationsBuffer(BaseBuffer):
     def unfav(self):
         pass
 
+    def vote(self):
+        pass
+
     def can_share(self):
         return False
 

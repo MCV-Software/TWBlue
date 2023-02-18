@@ -593,6 +593,11 @@ class Controller(object):
         if hasattr(buffer, "toggle_favorite"):
             return buffer.toggle_favorite()
 
+    def vote(self, *args, **kwargs):
+        buffer = self.get_current_buffer()
+        if hasattr(buffer, "vote"):
+            return buffer.vote()
+
     def view_item(self, *args, **kwargs):
         buffer = self.get_current_buffer()
         if hasattr(buffer, "view_item"):

@@ -20,6 +20,7 @@ from extra import ocr
 from wxUI import buffers, dialogs, commonMessageDialogs
 from wxUI.dialogs.mastodon import menus
 from wxUI.dialogs.mastodon import dialogs as mastodon_dialogs
+from wxUI.dialogs.mastodon.postDialogs import attachedPoll
 
 log = logging.getLogger("controller.buffers.mastodon.base")
 
@@ -539,3 +540,28 @@ class BaseBuffer(base.Buffer):
         post = self.get_item()
         media_list = []
         pass
+
+    def vote(self):
+        post = self.get_item()
+        if not hasattr(post, "poll") or post.poll == None:
+            return
+        poll = post.poll
+        try:
+            poll = self.session.api.poll(id=poll.id)
+        except MastodonNotFoundError:
+            output.speak(_("this poll no longer exists."))
+            return
+        if poll.expired:
+            output.speak(_("This poll has already expired."))
+            return
+        if poll.voted:
+            output.speak(_("You have already voted on this poll."))
+            return
+        options = poll.options
+        dlg = attachedPoll(poll_options=[option.title for option in options], multiple=poll.multiple)
+        answer = dlg.ShowModal()
+        options = dlg.get_selected()
+        dlg.Destroy()
+        if answer != wx.ID_OK:
+            return
+        poll = self.session.api_call(call_name="poll_vote", id=poll.id, choices=options, preexec_message=_("Sending vote..."))
