@@ -188,6 +188,7 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_list, self.view.removeFromList)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_buffer, self.view.update_buffer)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_aliases, self.view.manageAliases)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
 
     def set_systray_icon(self):
         self.systrayIcon = sysTrayIcon.SysTrayIcon()
@@ -1266,3 +1267,8 @@ class Controller(object):
 #            sound_to_play = "dm_received.ogg"
 #            if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
 #                self.notify(buffer.session, sound_to_play)
+
+    def report_error(self, *args, **kwargs):
+        """Redirects the user to the issue page on github"""
+        log.debug("Redirecting the user to report an error...")
+        webbrowser.open_new_tab(application.report_bugs_url)
