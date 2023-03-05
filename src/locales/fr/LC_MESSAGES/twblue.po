@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2022-12-20 17:15-0600\n"
-"PO-Revision-Date: 2023-01-02 22:39+0000\n"
+"PO-Revision-Date: 2023-02-18 05:20+0000\n"
 "Last-Translator: Corentin Bacqué-Cazenave <corentin@progaccess.net>\n"
 "Language-Team: French <https://weblate.mcvsoftware.com/projects/twblue/"
 "twblue/fr/>\n"
@@ -663,7 +663,7 @@ msgstr "{0} nouveau message"
 
 #: ../src/controller/buffers/twitter/directMessages.py:122
 msgid "This action is not supported in the buffer yet."
-msgstr "Cette action n'est pas supportée dans le tampon actuel"
+msgstr "Cette action n'est pas encore supportée dans ce tampon"
 
 #: ../src/controller/buffers/twitter/directMessages.py:138
 msgid ""
@@ -689,7 +689,7 @@ msgstr "{0} nouvel abonné"
 
 #: ../src/controller/buffers/twitter/trends.py:144
 msgid "This action is not supported in the buffer, yet."
-msgstr "Cette action n'est pas supportée pour le tampon actuel"
+msgstr "Cette action n'est pas supportée dans ce tampon, pour le moment"
 
 #: ../src/controller/mastodon/handler.py:24
 #: ../src/controller/twitter/handler.py:24
@@ -964,7 +964,7 @@ msgstr "Ajoute un alias pour l'utilisateur"
 
 #: ../src/controller/twitter/handler.py:236
 msgid "Alias has been set correctly for {}."
-msgstr "L'alias pour {} a correctement été définie"
+msgstr "L'alias pour {} a correctement été défini"
 
 #: ../src/controller/twitter/messages.py:50
 msgid "Translated"
@@ -1108,7 +1108,7 @@ msgid ""
 " Friends: %s\n"
 msgstr ""
 "Abonnés: %s\n"
-" Abonnements: %s\n"
+"Abonnements: %s\n"
 
 #: ../src/controller/twitter/user.py:122
 #, python-format
@@ -1183,7 +1183,7 @@ msgstr "Recodage audio..."
 #: ../src/extra/AudioUploader/transfer.py:82
 #: ../src/extra/AudioUploader/transfer.py:88
 msgid "Error in file upload: {0}"
-msgstr "Erreur lors du chargement du fichier: {0}"
+msgstr "Erreur lors du téléversement du fichier: {0}"
 
 #: ../src/extra/AudioUploader/utils.py:29 ../src/update/utils.py:29
 #, python-format
@@ -1267,7 +1267,7 @@ msgstr "Charger"
 
 #: ../src/extra/AudioUploader/wx_ui.py:49
 msgid "Attach"
-msgstr "Joindre "
+msgstr "Joindre"
 
 #: ../src/extra/AudioUploader/wx_ui.py:51
 msgid "&Cancel"
@@ -2100,7 +2100,7 @@ msgstr "Afficher le post"
 #: ../src/keystrokeEditor/actions/mastodon.py:20
 #: ../src/keystrokeEditor/actions/twitter.py:20
 msgid "Quit"
-msgstr "Quitter "
+msgstr "Quitter"
 
 #: ../src/keystrokeEditor/actions/mastodon.py:21
 #: ../src/keystrokeEditor/actions/twitter.py:21
@@ -2566,7 +2566,7 @@ msgstr "Erreur d'autorisation"
 #: ../src/sessions/twitter/session.py:233
 #, python-format
 msgid "%s failed.  Reason: %s"
-msgstr "%s erreur.  Raison: %s"
+msgstr "Erreur %s. Motif: %s"
 
 #: ../src/sessions/mastodon/session.py:188
 #: ../src/sessions/twitter/session.py:212
@@ -2654,7 +2654,7 @@ msgstr "Mot de passe :"
 #: ../src/sessions/twitter/compose.py:68 ../src/sessions/twitter/compose.py:70
 #, python-format
 msgid "Dm to %s "
-msgstr "Mp à %s"
+msgstr "Mp à %s "
 
 #: ../src/sessions/twitter/compose.py:109
 msgid "{0}. Quoted  tweet from @{1}: {2}"
@@ -2748,12 +2748,12 @@ msgid ""
 "Changes:\n"
 "%s"
 msgstr ""
-"Une nouvelle version de %s est disponible, sur %s. Voulez-vous la "
+"Une nouvelle version de %s est disponible, publiée le %s. Voulez-vous la "
 "télécharger maintenant ?\n"
 "\n"
-" %s version: %s\n"
+"%s version: %s\n"
 "\n"
-"Modifications:\n"
+"Changements:\n"
 "%s"
 
 #: ../src/update/wxUpdater.py:14
@@ -2772,7 +2772,7 @@ msgstr ""
 "ne sont pas automatiques sous Windows 7, vous devrez visiter le site de "
 "téléchargement de TWBlue pour obtenir la dernière version.\n"
 "\n"
-" %s version : %s\n"
+"%s version : %s\n"
 "\n"
 "Changements:\n"
 "%s"
@@ -2901,7 +2901,7 @@ msgstr "Chronologie existante"
 #: ../src/wxUI/commonMessageDialogs.py:45
 msgid "This user has no tweets, so you can't open a timeline for them."
 msgstr ""
-"Cet utilisateur n'a aucun tweets, donc  vous ne pouvez pas ouvrir une "
+"Cet utilisateur n'a aucun tweets, vous ne pouvez donc pas ouvrir de "
 "chronologie pour lui."
 
 #: ../src/wxUI/commonMessageDialogs.py:48
@@ -3441,8 +3441,8 @@ msgid ""
 "Inverted buffers: The newest tweets will be shown at the beginning while the "
 "oldest at the end"
 msgstr ""
-"Tampons inversés: les tweets plus récents seront affichées en haut alors que "
-"les plus ancien à la fin"
+"Tampons inversés: les tweets plus récents seront affichées au début et les "
+"plus ancien à la fin"
 
 #: ../src/wxUI/dialogs/configuration.py:120
 msgid "Retweet mode"
