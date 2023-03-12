@@ -9,8 +9,9 @@ from controller.buffers.mastodon.base import BaseBuffer
 from controller.mastodon import messages
 from sessions.mastodon import templates, utils
 from wxUI import buffers, commonMessageDialogs
+from pubsub import pub
 
-log = logging.getLogger("controller.buffers.mastodon.conversations")
+log = logging.getLogger("controller.buffers.mastodon.users")
 
 class UserBuffer(BaseBuffer):
 
@@ -86,6 +87,12 @@ class UserBuffer(BaseBuffer):
                 return
             number_of_items = self.session.order_buffer(self.name, results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
+            if self.name.endswith("-searchUser") and number_of_items == 0:
+                # No search result found, alert user and destroy buffer
+                log.debug("Destroying buffer %s, account %s and type %s" % (self.name, self.account, self.type))
+                output.speak(_(u"Your search didn't match any results."))
+                pub.sendMessage("destroy_buffer", buffer_name=self.name,
+                        session_name=self.account)
             if hasattr(self, "finished_timeline") and self.finished_timeline == False:
                 if "-followers" in self.name or "-following" in self.name:
                     self.username = self.session.api.account(id=self.kwargs.get("id")).username

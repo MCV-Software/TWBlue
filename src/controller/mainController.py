@@ -110,6 +110,7 @@ class Controller(object):
         pub.subscribe(self.toggle_share_settings, "toggleShare")
         pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
         pub.subscribe(self.create_account_buffer, "core.create_account")
+        pub.subscribe(self.destroy_buffer, "destroy_buffer")
 
         # Twitter specific events.
         pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
