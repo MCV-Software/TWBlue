@@ -64,6 +64,19 @@ class post(messages.basicTweet):
         self.add_post(event=None, update_gui=False)
         return self.thread
 
+    def set_post_data(self, *data):
+        if len(data) == 0:
+            return
+        if len(data) > 1:
+            self.thread = data[:-1]
+            for p in self.thread:
+                self.message.add_item(item=[p.get("text", ""), len(p.get("attachments", []))], list_type="post")
+        post = data[-1]
+        self.attachments = post.get("attachments", [])
+        self.message.text.SetValue(post.get("text", ""))
+        self.message.sensitive.SetValue(post.get("sensitive", False))
+        self.message.spoiler.SetValue(post.get("spoiler_text", ""))
+
     def text_processor(self, *args, **kwargs):
         text = self.message.text.GetValue()
         cw = self.message.spoiler.GetValue()
