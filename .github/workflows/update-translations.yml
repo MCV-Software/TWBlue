@@ -1,0 +1,32 @@
+name: Update translation files
+
+on: 
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+permissions: write-all
+
+jobs:
+
+  update_catalogs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+        cache: 'pip'
+    - name: Install dependencies
+      run: pip install babel
+    - name: Extract messages
+      run: pybabel extract -o twblue.pot --msgid-bugs-address "manuel@manuelcortez.net" --copyright-holder "MCV software" --input-dirs .
+      working-directory: 'src'
+    - name: Update catalogs
+      run: pybabel update --input-file twblue.pot --domain twblue --output-dir locales
+      working-directory: 'src'
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Updated translation catalogs
+        repository: src/locales
