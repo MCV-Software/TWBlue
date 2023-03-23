@@ -203,7 +203,7 @@ class Session(base.baseSession):
             self.sound.play(_sound)
         return val
 
-    def send_post(self, reply_to=None, users=None, visibility=None, posts=[]):
+    def send_post(self, reply_to=None, visibility=None, posts=[]):
         """ Convenience function to send a thread. """
         in_reply_to_id = reply_to
         for obj in posts:
@@ -213,8 +213,7 @@ class Session(base.baseSession):
                     item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
                 # If it fails, let's basically send an event with all passed info so we will catch it later.
                 except Exception as e:
-                    pub.sendMessage("mastodon.error_post", reply_to=reply_to, users=users, visibility=visibility, posts=posts)
-                    print("message sent")
+                    pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts)
                     return
                 if item != None:
                     in_reply_to_id = item["id"]
@@ -232,7 +231,7 @@ class Session(base.baseSession):
                     if item != None:
                         in_reply_to_id = item["id"]
                 except Exception as e:
-                    pub.sendMessage("mastodon.error_post", reply_to=reply_to, users=users, visibility=visibility, posts=posts)
+                    pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts)
                     return
 
     def get_name(self):

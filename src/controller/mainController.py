@@ -130,7 +130,7 @@ class Controller(object):
         pub.subscribe(self.mastodon_new_item, "mastodon.new_item")
         pub.subscribe(self.mastodon_updated_item, "mastodon.updated_item")
         pub.subscribe(self.mastodon_new_conversation, "mastodon.conversation_received")
-
+        pub.subscribe(self.mastodon_error_post, "mastodon.error_post")
         # connect application events to GUI
         widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -1305,6 +1305,10 @@ class Controller(object):
 #            sound_to_play = "dm_received.ogg"
 #            if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
 #                self.notify(buffer.session, sound_to_play)
+
+    def mastodon_error_post(self, name, reply_to, visibility, posts):
+        home = self.search_buffer("home_timeline", name)
+        wx.CallAfter(home.post_from_error, visibility=visibility, data=posts)
 
     def report_error(self, *args, **kwargs):
         """Redirects the user to the issue page on github"""
