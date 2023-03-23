@@ -66,7 +66,7 @@ def compose_notification(notification, db, relative_times, show_screen_names, sa
     if notification.type == "status":
         text = _("{username} has posted: {status}").format(username=user, status=",".join(compose_post(notification.status, db, relative_times, show_screen_names, safe=safe)))
     elif notification.type == "mention":
-        text = _("{username} has mentionned you: {status}").format(username=user, status=",".join(compose_post(notification.status, db, relative_times, show_screen_names, safe=safe)))
+        text = _("{username} has mentioned you: {status}").format(username=user, status=",".join(compose_post(notification.status, db, relative_times, show_screen_names, safe=safe)))
     elif notification.type == "reblog":
         text = _("{username} has boosted: {status}").format(username=user, status=",".join(compose_post(notification.status, db, relative_times, show_screen_names, safe=safe)))
     elif notification.type == "favourite":
