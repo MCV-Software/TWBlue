@@ -6,6 +6,7 @@ import logging
 import webbrowser
 import wx
 import mastodon
+import demoji
 import config
 import config_utils
 import output
@@ -123,14 +124,23 @@ class Session(base.baseSession):
         self.db["muted_users"] = self.api.mutes()
 
     def get_user_alias(self, user):
+        if user.display_name == None or user.display_name == "":
+            display_name = user.username
+        else:
+            display_name = user.display_name
         aliases = self.settings.get("user-aliases")
         if aliases == None:
             log.error("Aliases are not defined for this config spec.")
-            return user.name
-        user_alias = aliases.get(user.id_str)
+            return self.demoji_user(display_name)
+        user_alias = aliases.get(user.id)
         if user_alias != None:
             return user_alias
-        return user.name
+        return self.demoji_user(display_name)
+
+    def demoji_user(self, name):
+        if self.settings["general"]["hide_emojis"] == True:
+            return demoji.replace(name, "")
+        return name
 
     def order_buffer(self, name, data, ignore_older=False):
         num = 0
@@ -173,25 +183,24 @@ class Session(base.baseSession):
         tries = 0
         if preexec_message:
             output.speak(preexec_message, True)
-        while finished==False and tries < 25:
+        while finished==False and tries < 5:
             try:
                 val = getattr(self.api, call_name)(*args, **kwargs)
                 finished = True
-            except MastodonError as e:
+            except Exception as e:
                 output.speak(str(e))
                 val = None
                 if type(e) != MastodonNotFoundError  and type(e) != MastodonUnauthorizedError :
                     tries = tries+1
                     time.sleep(5)
-                elif report_failure:
-                    output.speak(_("%s failed.  Reason: %s") % (action, str(e)))
-                finished = True
-#   except:
-#    tries = tries + 1
-#    time.sleep(5)
+                if tries == 4 and finished == False:
+                    raise e
+                else:
+                    raise e
         if report_success:
             output.speak(_("%s succeeded.") % action)
-        if _sound != None: self.sound.play(_sound)
+        if _sound != None:
+            self.sound.play(_sound)
         return val
 
     def send_post(self, reply_to=None, users=None, visibility=None, posts=[]):
@@ -200,21 +209,31 @@ class Session(base.baseSession):
         for obj in posts:
             text = obj.get("text")
             if len(obj["attachments"]) == 0:
-                item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
+                try:
+                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
+                # If it fails, let's basically send an event with all passed info so we will catch it later.
+                except Exception as e:
+                    pub.sendMessage("mastodon.error_post", reply_to=reply_to, users=users, visibility=visibility, posts=posts)
+                    print("message sent")
+                    return
                 if item != None:
                     in_reply_to_id = item["id"]
             else:
                 media_ids = []
-                poll = None
-                if len(obj["attachments"]) == 1 and obj["attachments"][0]["type"] == "poll":
-                    poll = self.api.make_poll(options=obj["attachments"][0]["options"], expires_in=obj["attachments"][0]["expires_in"], multiple=obj["attachments"][0]["multiple"], hide_totals=obj["attachments"][0]["hide_totals"])
-                else:
-                    for i in obj["attachments"]:
-                        media = self.api_call("media_post", media_file=i["file"], description=i["description"], synchronous=True)
-                        media_ids.append(media.id)
-                item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
-                if item != None:
-                    in_reply_to_id = item["id"]
+                try:
+                    poll = None
+                    if len(obj["attachments"]) == 1 and obj["attachments"][0]["type"] == "poll":
+                        poll = self.api.make_poll(options=obj["attachments"][0]["options"], expires_in=obj["attachments"][0]["expires_in"], multiple=obj["attachments"][0]["multiple"], hide_totals=obj["attachments"][0]["hide_totals"])
+                    else:
+                        for i in obj["attachments"]:
+                            media = self.api_call("media_post", media_file=i["file"], description=i["description"], synchronous=True)
+                            media_ids.append(media.id)
+                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
+                    if item != None:
+                        in_reply_to_id = item["id"]
+                except Exception as e:
+                    pub.sendMessage("mastodon.error_post", reply_to=reply_to, users=users, visibility=visibility, posts=posts)
+                    return
 
     def get_name(self):
         instance = self.settings["mastodon"]["instance"]
