@@ -28,6 +28,8 @@ class MentionsBuffer(BaseBuffer):
             except Exception as e:
                 log.exception("Error %s" % (str(e)))
                 return
+            # Attempt to remove items with no statuses attached to them as it might happen when blocked accounts have notifications.
+            items = [item for item in items if item.status != None]
             number_of_items = self.session.order_buffer(self.name, items)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
             self.put_items_on_list(number_of_items)
@@ -49,7 +51,8 @@ class MentionsBuffer(BaseBuffer):
         except Exception as e:
             log.exception("Error %s" % (str(e)))
             return
-        print(items)
+        # Attempt to remove items with no statuses attached to them as it might happen when blocked accounts have notifications.
+        items = [item for item in items if item.status != None]
         items_db = self.session.db[self.name]
         for i in items:
             if utils.find_item(i, self.session.db[self.name]) == None:

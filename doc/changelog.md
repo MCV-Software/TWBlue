@@ -7,6 +7,7 @@ We had to release a 2023.2.8 version of TWblue, which removes the API deprecatio
 * TWBlue should be able to display variables within templates (for example, now it is possible to send a template inside a post's text). Before, it was removing $variables so it was difficult to show how to edit templates from the client. ([#515](https://github.com/MCV-Software/TWBlue/issues/515))
 * Mastodon:
     * it is possible to add descriptions for all media available on Mastodon (audio, photos, video and Givs). ([#516](https://github.com/MCV-Software/TWBlue/issues/516))
+    * Fixed an error on mentions buffer that was making TWBlue unable to load posts if there were mentions from a blocked or deleted account.
 
 ## Changes on version 2023.2.6
 
