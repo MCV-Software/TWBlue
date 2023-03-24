@@ -565,3 +565,15 @@ class BaseBuffer(base.Buffer):
         if answer != wx.ID_OK:
             return
         poll = self.session.api_call(call_name="poll_vote", id=poll.id, choices=options, preexec_message=_("Sending vote..."))
+
+    def post_from_error(self, visibility, data):
+        title = _("Post")
+        caption = _("Write your post here")
+        post = messages.post(session=self.session, title=title, caption=caption)
+        post.set_post_data(visibility=visibility, data=data)
+        response = post.message.ShowModal()
+        if response == wx.ID_OK:
+            post_data = post.get_data()
+            call_threaded(self.session.send_post, posts=post_data, visibility=post.get_visibility())
+        if hasattr(post.message, "destroy"):
+            post.message.destroy()

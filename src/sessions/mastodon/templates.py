@@ -152,7 +152,7 @@ def render_notification(notification, template, post_template, relative_times=Fa
     if notification.type == "status":
         text = _("has posted: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
     elif notification.type == "mention":
-        text = _("has mentionned you: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+        text = _("has mentioned you: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
     elif notification.type == "reblog":
         text = _("has boosted: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
     elif notification.type == "favourite":
