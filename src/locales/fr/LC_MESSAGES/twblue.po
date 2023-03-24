@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-03-23 11:08+0000\n"
+"POT-Creation-Date: 2023-03-24 00:20+0000\n"
 "PO-Revision-Date: 2023-02-18 05:20+0000\n"
 "Last-Translator: Corentin Bacqué-Cazenave <corentin@progaccess.net>\n"
 "Language: fr\n"
@@ -366,7 +366,8 @@ msgstr "Abonnements de {username}"
 msgid "Unknown buffer"
 msgstr "Tampon inconnu"
 
-#: controller/buffers/mastodon/base.py:66 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:66
+#: controller/buffers/mastodon/base.py:570 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:4
@@ -375,6 +376,7 @@ msgid "Post"
 msgstr "Post"
 
 #: controller/buffers/mastodon/base.py:67
+#: controller/buffers/mastodon/base.py:571
 msgid "Write your post here"
 msgstr "Écrivez votre post ici"
 
@@ -388,7 +390,7 @@ msgstr "{0} nouveaux posts dans {1}."
 
 #: controller/buffers/mastodon/base.py:178
 #: controller/buffers/mastodon/conversations.py:99
-#: controller/buffers/mastodon/mentions.py:76
+#: controller/buffers/mastodon/mentions.py:79
 #: controller/buffers/mastodon/users.py:133
 #: controller/buffers/twitter/base.py:231
 #: controller/buffers/twitter/directMessages.py:87
@@ -731,43 +733,43 @@ msgstr "Conversation avec {0}"
 msgid "Search for {}"
 msgstr "Recherche de {}"
 
-#: controller/mastodon/messages.py:71 controller/twitter/messages.py:57
+#: controller/mastodon/messages.py:88 controller/twitter/messages.py:57
 #, python-format
 msgid "%s - %s of %d characters"
 msgstr "%s - %s/%d caractères"
 
-#: controller/mastodon/messages.py:195
+#: controller/mastodon/messages.py:212
 msgid "Poll with {} options"
 msgstr "Sondage avec {} options"
 
-#: controller/mastodon/messages.py:219
+#: controller/mastodon/messages.py:236
 msgid "Post from {}"
 msgstr "Post de {}"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/lists.py:76 wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Public"
 msgstr "Public"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Not listed"
 msgstr "Non listé"
 
-#: controller/mastodon/messages.py:223
+#: controller/mastodon/messages.py:240
 msgid "followers only"
 msgstr "Seulement les abonnés"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Direct"
 msgstr "Direct"
 
-#: controller/mastodon/messages.py:230
+#: controller/mastodon/messages.py:247
 msgid "Remote instance"
 msgstr "Instance distante"
 
-#: controller/mastodon/messages.py:253 controller/twitter/messages.py:382
+#: controller/mastodon/messages.py:270 controller/twitter/messages.py:382
 msgid "Link copied to clipboard."
 msgstr "Lien copié dans le Presse-papiers"
 
@@ -2370,7 +2372,8 @@ msgid "{username} has posted: {status}"
 msgstr "{username} a partagé : {status}"
 
 #: sessions/mastodon/compose.py:69
-msgid "{username} has mentionned you: {status}"
+#, fuzzy
+msgid "{username} has mentioned you: {status}"
 msgstr "{username} vous a mensionné : {status}"
 
 #: sessions/mastodon/compose.py:71
@@ -2398,15 +2401,15 @@ msgstr "Un sondage où vous avez voté a expiré : {status}"
 msgid "{username} wants to follow you."
 msgstr "{username} souhaite vous suivre."
 
-#: sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Please enter your instance URL."
 msgstr "Veuillez entrer l'URL de votre instance."
 
-#: sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Mastodon instance"
 msgstr "Instance Mastodon"
 
-#: sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 msgid ""
 "We could not connect to your mastodon instance. Please verify that the "
 "domain exists and the instance is accessible via a web browser."
@@ -2415,19 +2418,19 @@ msgstr ""
 "que le domaine existe et que l'instance est accessible depuis un "
 "navigateur web."
 
-#: sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 msgid "Instance error"
 msgstr "Erreur de l'instance"
 
-#: sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 msgid "Enter the verification code"
 msgstr "Entrer le code de vérification"
 
-#: sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 msgid "PIN code authorization"
 msgstr "Code PIN d'autorisation"
 
-#: sessions/mastodon/session.py:86
+#: sessions/mastodon/session.py:87
 msgid ""
 "We could not authorice your mastodon account to be used in TWBlue. This "
 "might be caused due to an incorrect verification code. Please try to add "
@@ -2437,17 +2440,11 @@ msgstr ""
 "cela peut être dû à un code d'autorisation incorrect. Veuillez réessayer "
 "d'ajouter votre compte."
 
-#: sessions/mastodon/session.py:86 sessions/twitter/session.py:171
+#: sessions/mastodon/session.py:87 sessions/twitter/session.py:171
 msgid "Authorization error"
 msgstr "Erreur d'autorisation"
 
-#: sessions/mastodon/session.py:187 sessions/twitter/session.py:206
-#: sessions/twitter/session.py:233
-#, python-format
-msgid "%s failed.  Reason: %s"
-msgstr "Erreur %s. Motif: %s"
-
-#: sessions/mastodon/session.py:193 sessions/twitter/session.py:212
+#: sessions/mastodon/session.py:201 sessions/twitter/session.py:212
 #: sessions/twitter/session.py:236
 #, python-format
 msgid "%s succeeded."
@@ -2492,7 +2489,8 @@ msgid "has posted: {status}"
 msgstr "a partagé : {status}"
 
 #: sessions/mastodon/templates.py:155
-msgid "has mentionned you: {status}"
+#, fuzzy
+msgid "has mentioned you: {status}"
 msgstr "vous a mensionné : {status}"
 
 #: sessions/mastodon/templates.py:157
@@ -2571,6 +2569,11 @@ msgstr ""
 "Nous ne pouvons pas autoriser votre compte Twitter à être utilisé dans "
 "TWBlue, cela peut être dû à un code d'autorisation incorrect. Veuillez "
 "réessayer d'ajouter le compte."
+
+#: sessions/twitter/session.py:206 sessions/twitter/session.py:233
+#, python-format
+msgid "%s failed.  Reason: %s"
+msgstr "Erreur %s. Motif: %s"
 
 #: sessions/twitter/session.py:440 sessions/twitter/session.py:523
 msgid "Deleted account"

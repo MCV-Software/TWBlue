@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-03-23 11:08+0000\n"
+"POT-Creation-Date: 2023-03-24 00:20+0000\n"
 "PO-Revision-Date: 2022-12-20 22:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: ro\n"
@@ -391,7 +391,8 @@ msgstr "Urmăritorii lui {username}"
 msgid "Unknown buffer"
 msgstr "Buffer necunoscut"
 
-#: controller/buffers/mastodon/base.py:66 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:66
+#: controller/buffers/mastodon/base.py:570 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:4
@@ -401,6 +402,7 @@ msgstr ""
 
 # | msgid "Write the tweet here"
 #: controller/buffers/mastodon/base.py:67
+#: controller/buffers/mastodon/base.py:571
 #, fuzzy
 msgid "Write your post here"
 msgstr "Scrie postarea aici"
@@ -419,7 +421,7 @@ msgstr "{0} postări noi în {1}."
 
 #: controller/buffers/mastodon/base.py:178
 #: controller/buffers/mastodon/conversations.py:99
-#: controller/buffers/mastodon/mentions.py:76
+#: controller/buffers/mastodon/mentions.py:79
 #: controller/buffers/mastodon/users.py:133
 #: controller/buffers/twitter/base.py:231
 #: controller/buffers/twitter/directMessages.py:87
@@ -785,53 +787,53 @@ msgstr "Conversație cu {0}"
 msgid "Search for {}"
 msgstr "Căutare pentru"
 
-#: controller/mastodon/messages.py:71 controller/twitter/messages.py:57
+#: controller/mastodon/messages.py:88 controller/twitter/messages.py:57
 #, python-format
 msgid "%s - %s of %d characters"
 msgstr "%s - %s din %d caractere"
 
-#: controller/mastodon/messages.py:195
+#: controller/mastodon/messages.py:212
 msgid "Poll with {} options"
 msgstr ""
 
 # | msgid "List for {}"
-#: controller/mastodon/messages.py:219
+#: controller/mastodon/messages.py:236
 #, fuzzy
 msgid "Post from {}"
 msgstr "Listă pentru {}"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/lists.py:76 wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Public"
 msgstr "Public"
 
 # | msgid "Accounts list"
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 #, fuzzy
 msgid "Not listed"
 msgstr "Lista de conturi"
 
 # | msgid "Followers"
-#: controller/mastodon/messages.py:223
+#: controller/mastodon/messages.py:240
 #, fuzzy
 msgid "followers only"
 msgstr "Urmăritori"
 
 # | msgid "Direct message"
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 #, fuzzy
 msgid "Direct"
 msgstr "mesaj privat"
 
 # | msgid "Remove client"
-#: controller/mastodon/messages.py:230
+#: controller/mastodon/messages.py:247
 #, fuzzy
 msgid "Remote instance"
 msgstr "scoate aplicația"
 
-#: controller/mastodon/messages.py:253 controller/twitter/messages.py:382
+#: controller/mastodon/messages.py:270 controller/twitter/messages.py:382
 #, fuzzy
 msgid "Link copied to clipboard."
 msgstr "Copiați pe planșetă"
@@ -2446,9 +2448,11 @@ msgstr ""
 msgid "{username} has posted: {status}"
 msgstr "Urmăritorii lui {username}"
 
+# | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:69
-msgid "{username} has mentionned you: {status}"
-msgstr ""
+#, fuzzy
+msgid "{username} has mentioned you: {status}"
+msgstr "Urmăritorii lui {username}"
 
 #: sessions/mastodon/compose.py:71
 msgid "{username} has boosted: {status}"
@@ -2480,37 +2484,37 @@ msgstr ""
 msgid "{username} wants to follow you."
 msgstr "Urmăritorii lui {username}"
 
-#: sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Please enter your instance URL."
 msgstr ""
 
-#: sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Mastodon instance"
 msgstr ""
 
-#: sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 msgid ""
 "We could not connect to your mastodon instance. Please verify that the "
 "domain exists and the instance is accessible via a web browser."
 msgstr ""
 
 # | msgid "&Report an error"
-#: sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 #, fuzzy
 msgid "Instance error"
 msgstr "&Raportează o eroare"
 
-#: sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 msgid "Enter the verification code"
 msgstr ""
 
 # | msgid "Authorization"
-#: sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 #, fuzzy
 msgid "PIN code authorization"
 msgstr "Autorizație"
 
-#: sessions/mastodon/session.py:86
+#: sessions/mastodon/session.py:87
 msgid ""
 "We could not authorice your mastodon account to be used in TWBlue. This "
 "might be caused due to an incorrect verification code. Please try to add "
@@ -2518,18 +2522,12 @@ msgid ""
 msgstr ""
 
 # | msgid "Authorization"
-#: sessions/mastodon/session.py:86 sessions/twitter/session.py:171
+#: sessions/mastodon/session.py:87 sessions/twitter/session.py:171
 #, fuzzy
 msgid "Authorization error"
 msgstr "Autorizație"
 
-#: sessions/mastodon/session.py:187 sessions/twitter/session.py:206
-#: sessions/twitter/session.py:233
-#, python-format
-msgid "%s failed.  Reason: %s"
-msgstr "%s eșuat.  Motiv: %s"
-
-#: sessions/mastodon/session.py:193 sessions/twitter/session.py:212
+#: sessions/mastodon/session.py:201 sessions/twitter/session.py:212
 #: sessions/twitter/session.py:236
 #, python-format
 msgid "%s succeeded."
@@ -2573,7 +2571,7 @@ msgid "has posted: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:155
-msgid "has mentionned you: {status}"
+msgid "has mentioned you: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:157
@@ -2654,6 +2652,11 @@ msgid ""
 "might be caused due to an incorrect verification code. Please try to add "
 "the session again."
 msgstr ""
+
+#: sessions/twitter/session.py:206 sessions/twitter/session.py:233
+#, python-format
+msgid "%s failed.  Reason: %s"
+msgstr "%s eșuat.  Motiv: %s"
 
 #: sessions/twitter/session.py:440 sessions/twitter/session.py:523
 #, fuzzy
@@ -4619,5 +4622,11 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Allow multiple votes per user"
+#~ msgstr ""
+
+#~ msgid "{username} has mentionned you: {status}"
+#~ msgstr ""
+
+#~ msgid "has mentionned you: {status}"
 #~ msgstr ""
 

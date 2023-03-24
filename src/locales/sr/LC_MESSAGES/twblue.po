@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TwBlue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-03-23 11:08+0000\n"
+"POT-Creation-Date: 2023-03-24 00:20+0000\n"
 "PO-Revision-Date: 2022-12-21 18:05+0000\n"
 "Last-Translator: Nikola Jović <wwenikola123@gmail.com>\n"
 "Language: sr\n"
@@ -370,7 +370,8 @@ msgstr "Praćenja korisnika {username}"
 msgid "Unknown buffer"
 msgstr "Nepoznat kanal"
 
-#: controller/buffers/mastodon/base.py:66 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:66
+#: controller/buffers/mastodon/base.py:570 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:4
@@ -379,6 +380,7 @@ msgid "Post"
 msgstr "Objava"
 
 #: controller/buffers/mastodon/base.py:67
+#: controller/buffers/mastodon/base.py:571
 msgid "Write your post here"
 msgstr "Otkucajte objavu ovde:"
 
@@ -392,7 +394,7 @@ msgstr "{0} novih objava u kanalu {1}."
 
 #: controller/buffers/mastodon/base.py:178
 #: controller/buffers/mastodon/conversations.py:99
-#: controller/buffers/mastodon/mentions.py:76
+#: controller/buffers/mastodon/mentions.py:79
 #: controller/buffers/mastodon/users.py:133
 #: controller/buffers/twitter/base.py:231
 #: controller/buffers/twitter/directMessages.py:87
@@ -735,43 +737,43 @@ msgstr "Razgovor sa {0}"
 msgid "Search for {}"
 msgstr "Pretraga za {}"
 
-#: controller/mastodon/messages.py:71 controller/twitter/messages.py:57
+#: controller/mastodon/messages.py:88 controller/twitter/messages.py:57
 #, python-format
 msgid "%s - %s of %d characters"
 msgstr "%s - %s od %d znakova"
 
-#: controller/mastodon/messages.py:195
+#: controller/mastodon/messages.py:212
 msgid "Poll with {} options"
 msgstr "Anketa sa {} opcija"
 
-#: controller/mastodon/messages.py:219
+#: controller/mastodon/messages.py:236
 msgid "Post from {}"
 msgstr "Objava iz {}"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/lists.py:76 wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Public"
 msgstr "Javna"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Not listed"
 msgstr "Nije u listi"
 
-#: controller/mastodon/messages.py:223
+#: controller/mastodon/messages.py:240
 msgid "followers only"
 msgstr "Samo pratioci"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Direct"
 msgstr "Direktna"
 
-#: controller/mastodon/messages.py:230
+#: controller/mastodon/messages.py:247
 msgid "Remote instance"
 msgstr "Udaljena instanca"
 
-#: controller/mastodon/messages.py:253 controller/twitter/messages.py:382
+#: controller/mastodon/messages.py:270 controller/twitter/messages.py:382
 msgid "Link copied to clipboard."
 msgstr "Link kopiran u privremenu memoriju."
 
@@ -2365,7 +2367,8 @@ msgid "{username} has posted: {status}"
 msgstr "{username} je podelio: {status}"
 
 #: sessions/mastodon/compose.py:69
-msgid "{username} has mentionned you: {status}"
+#, fuzzy
+msgid "{username} has mentioned you: {status}"
 msgstr "{username} vas je spomenuo: {status}"
 
 #: sessions/mastodon/compose.py:71
@@ -2393,15 +2396,15 @@ msgstr "Anketa u kojoj ste glasali je završena: {status}"
 msgid "{username} wants to follow you."
 msgstr "{username} želi da vas zaprati."
 
-#: sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Please enter your instance URL."
 msgstr "Molimo upišite adresu  vaše instance."
 
-#: sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Mastodon instance"
 msgstr "Mastodon instanca"
 
-#: sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 msgid ""
 "We could not connect to your mastodon instance. Please verify that the "
 "domain exists and the instance is accessible via a web browser."
@@ -2410,19 +2413,19 @@ msgstr ""
 "da li domen postoji i da li se instanci može pristupiti iz vašeg Web "
 "pretraživača."
 
-#: sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 msgid "Instance error"
 msgstr "Greška instance"
 
-#: sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 msgid "Enter the verification code"
 msgstr "Upišite kod za potvrdu"
 
-#: sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 msgid "PIN code authorization"
 msgstr "Autorizacija uz PIN kod"
 
-#: sessions/mastodon/session.py:86
+#: sessions/mastodon/session.py:87
 msgid ""
 "We could not authorice your mastodon account to be used in TWBlue. This "
 "might be caused due to an incorrect verification code. Please try to add "
@@ -2431,17 +2434,11 @@ msgstr ""
 "Autorizacija vašeg Mastodon naloga uz TWBlue nije uspela. Možda je kod za"
 " potvrdu neispravan. Molimo  pokušajte ponovo  da dodate sesiju."
 
-#: sessions/mastodon/session.py:86 sessions/twitter/session.py:171
+#: sessions/mastodon/session.py:87 sessions/twitter/session.py:171
 msgid "Authorization error"
 msgstr "Greška pri autorizaciji"
 
-#: sessions/mastodon/session.py:187 sessions/twitter/session.py:206
-#: sessions/twitter/session.py:233
-#, python-format
-msgid "%s failed.  Reason: %s"
-msgstr "%s nije uspelo.  Razlog: %s"
-
-#: sessions/mastodon/session.py:193 sessions/twitter/session.py:212
+#: sessions/mastodon/session.py:201 sessions/twitter/session.py:212
 #: sessions/twitter/session.py:236
 #, python-format
 msgid "%s succeeded."
@@ -2486,7 +2483,8 @@ msgid "has posted: {status}"
 msgstr "je podelio: {status}"
 
 #: sessions/mastodon/templates.py:155
-msgid "has mentionned you: {status}"
+#, fuzzy
+msgid "has mentioned you: {status}"
 msgstr "vas je spomenuo: {status}"
 
 #: sessions/mastodon/templates.py:157
@@ -2564,6 +2562,11 @@ msgid ""
 msgstr ""
 "Autorizacija vašeg Twitter naloga uz TWBlue nije uspela. Kod za potvrdu "
 "je možda neispravan. Molimo pokušajte ponovo da dodate sesiju."
+
+#: sessions/twitter/session.py:206 sessions/twitter/session.py:233
+#, python-format
+msgid "%s failed.  Reason: %s"
+msgstr "%s nije uspelo.  Razlog: %s"
 
 #: sessions/twitter/session.py:440 sessions/twitter/session.py:523
 msgid "Deleted account"

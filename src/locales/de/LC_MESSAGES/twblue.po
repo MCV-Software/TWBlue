@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-03-23 11:08+0000\n"
+"POT-Creation-Date: 2023-03-24 00:20+0000\n"
 "PO-Revision-Date: 2023-01-14 15:40+0000\n"
 "Last-Translator: Steffen Schultz <steffenschultz@mailbox.org>\n"
 "Language: de\n"
@@ -366,7 +366,8 @@ msgstr "{username} folgt"
 msgid "Unknown buffer"
 msgstr "Unbekannte Ansicht"
 
-#: controller/buffers/mastodon/base.py:66 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:66
+#: controller/buffers/mastodon/base.py:570 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:4
@@ -375,6 +376,7 @@ msgid "Post"
 msgstr "Beitrag"
 
 #: controller/buffers/mastodon/base.py:67
+#: controller/buffers/mastodon/base.py:571
 msgid "Write your post here"
 msgstr "Gib deinen Beitrag hier ein"
 
@@ -388,7 +390,7 @@ msgstr "{0} neue Beiträge in {1}."
 
 #: controller/buffers/mastodon/base.py:178
 #: controller/buffers/mastodon/conversations.py:99
-#: controller/buffers/mastodon/mentions.py:76
+#: controller/buffers/mastodon/mentions.py:79
 #: controller/buffers/mastodon/users.py:133
 #: controller/buffers/twitter/base.py:231
 #: controller/buffers/twitter/directMessages.py:87
@@ -731,43 +733,43 @@ msgstr "Unterhaltung mit {0}"
 msgid "Search for {}"
 msgstr "Suche nach {}"
 
-#: controller/mastodon/messages.py:71 controller/twitter/messages.py:57
+#: controller/mastodon/messages.py:88 controller/twitter/messages.py:57
 #, python-format
 msgid "%s - %s of %d characters"
 msgstr "%s - %s von %d Zeichen"
 
-#: controller/mastodon/messages.py:195
+#: controller/mastodon/messages.py:212
 msgid "Poll with {} options"
 msgstr "Umfrage mit {} Optionen"
 
-#: controller/mastodon/messages.py:219
+#: controller/mastodon/messages.py:236
 msgid "Post from {}"
 msgstr "Beitrag von {}"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/lists.py:76 wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Public"
 msgstr "Öffentlich"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Not listed"
 msgstr "Nicht gelistet"
 
-#: controller/mastodon/messages.py:223
+#: controller/mastodon/messages.py:240
 msgid "followers only"
 msgstr "Nur Folger"
 
-#: controller/mastodon/messages.py:223 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Direct"
 msgstr "Direkt"
 
-#: controller/mastodon/messages.py:230
+#: controller/mastodon/messages.py:247
 msgid "Remote instance"
 msgstr "Entfernte Instanz"
 
-#: controller/mastodon/messages.py:253 controller/twitter/messages.py:382
+#: controller/mastodon/messages.py:270 controller/twitter/messages.py:382
 msgid "Link copied to clipboard."
 msgstr "Link in Zwischenablage kopiert."
 
@@ -2367,7 +2369,8 @@ msgid "{username} has posted: {status}"
 msgstr "{username} hat geteilt: {status}"
 
 #: sessions/mastodon/compose.py:69
-msgid "{username} has mentionned you: {status}"
+#, fuzzy
+msgid "{username} has mentioned you: {status}"
 msgstr "{username} hat dich erwähnt: {status}"
 
 #: sessions/mastodon/compose.py:71
@@ -2395,15 +2398,15 @@ msgstr "Eine Umfrage in der du abgestimmt hast ist abgelaufen: {status}"
 msgid "{username} wants to follow you."
 msgstr "{username} möchte dir folgen."
 
-#: sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Please enter your instance URL."
 msgstr "Bitte trage die URL deiner Instanz ein."
 
-#: sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Mastodon instance"
 msgstr "Mastodon-Instanz"
 
-#: sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 msgid ""
 "We could not connect to your mastodon instance. Please verify that the "
 "domain exists and the instance is accessible via a web browser."
@@ -2412,19 +2415,19 @@ msgstr ""
 "Bitte prüfe, ob die URL korrekt und die Instanz mit einem Browser "
 "erreichbar ist."
 
-#: sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 msgid "Instance error"
 msgstr "Instanzfehler"
 
-#: sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 msgid "Enter the verification code"
 msgstr "Trage den Bestätigungs-Code ein"
 
-#: sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 msgid "PIN code authorization"
 msgstr "PIN-Code-Autorisierung"
 
-#: sessions/mastodon/session.py:86
+#: sessions/mastodon/session.py:87
 msgid ""
 "We could not authorice your mastodon account to be used in TWBlue. This "
 "might be caused due to an incorrect verification code. Please try to add "
@@ -2434,17 +2437,11 @@ msgstr ""
 "Möglicherweise war der Bestädigungs-Code nicht korrekt. Bitte versuche "
 "die Sitzung erneut zu erstellen."
 
-#: sessions/mastodon/session.py:86 sessions/twitter/session.py:171
+#: sessions/mastodon/session.py:87 sessions/twitter/session.py:171
 msgid "Authorization error"
 msgstr "Autorisierungsfehler"
 
-#: sessions/mastodon/session.py:187 sessions/twitter/session.py:206
-#: sessions/twitter/session.py:233
-#, python-format
-msgid "%s failed.  Reason: %s"
-msgstr "%s fehlgeschlagen.  Grund: %s"
-
-#: sessions/mastodon/session.py:193 sessions/twitter/session.py:212
+#: sessions/mastodon/session.py:201 sessions/twitter/session.py:212
 #: sessions/twitter/session.py:236
 #, python-format
 msgid "%s succeeded."
@@ -2489,7 +2486,8 @@ msgid "has posted: {status}"
 msgstr "hat geteilt: {status}"
 
 #: sessions/mastodon/templates.py:155
-msgid "has mentionned you: {status}"
+#, fuzzy
+msgid "has mentioned you: {status}"
 msgstr "hat dich erwähnt: {status}"
 
 #: sessions/mastodon/templates.py:157
@@ -2568,6 +2566,11 @@ msgstr ""
 "Dein Twitter-Account konnte nicht für TWBlue autorisiert werden. "
 "Möglicherweise war der Bestädigungs-Code nicht korrekt. Bitte versuche "
 "die Sitzung erneut zu erstellen."
+
+#: sessions/twitter/session.py:206 sessions/twitter/session.py:233
+#, python-format
+msgid "%s failed.  Reason: %s"
+msgstr "%s fehlgeschlagen.  Grund: %s"
 
 #: sessions/twitter/session.py:440 sessions/twitter/session.py:523
 msgid "Deleted account"
