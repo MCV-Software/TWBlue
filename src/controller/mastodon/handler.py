@@ -29,7 +29,6 @@ class Handler(object):
             fav=_("&Add to favorites"),
             unfav=_("Remove from favorites"),
             view=_("&Show post"),
-            view_coordinates=None,
             view_conversation=_("View conversa&tion"),
             ocr=None,
             delete=_("&Delete"),
@@ -40,7 +39,6 @@ class Handler(object):
             addAlias=None,
             addToList=None,
             removeFromList=None,
-            viewLists=None,
             details=None,
             favs=None,
             # In buffer Menu.
