@@ -17,10 +17,11 @@ from sessions.mastodon import compose, utils, templates
 from mysc.thread_utils import call_threaded
 from pubsub import pub
 from extra import ocr
-from wxUI import buffers, dialogs, commonMessageDialogs
+from wxUI import buffers, commonMessageDialogs
 from wxUI.dialogs.mastodon import menus
 from wxUI.dialogs.mastodon import dialogs as mastodon_dialogs
 from wxUI.dialogs.mastodon.postDialogs import attachedPoll
+from wxUI.dialogs import urlList
 
 log = logging.getLogger("controller.buffers.mastodon.base")
 
@@ -415,7 +416,7 @@ class BaseBuffer(base.Buffer):
         if len(urls) == 1:
             url=urls[0]
         elif len(urls) > 1:
-            urls_list = dialogs.urlList.urlList()
+            urls_list = urlList.urlList()
             urls_list.populate_list(urls)
             if urls_list.get_response() == widgetUtils.OK:
                 url=urls_list.get_string()
@@ -436,7 +437,7 @@ class BaseBuffer(base.Buffer):
             if len(urls) == 1:
                 url=urls[0]
             elif len(urls) > 1:
-                urls_list = dialogs.urlList.urlList()
+                urls_list = urlList.urlList()
                 urls_list.populate_list(urls)
                 if urls_list.get_response() == widgetUtils.OK:
                     url=urls_list.get_string()
