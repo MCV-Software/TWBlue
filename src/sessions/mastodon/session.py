@@ -11,7 +11,7 @@ import config
 import config_utils
 import output
 import application
-from mastodon import MastodonError, MastodonNotFoundError, MastodonUnauthorizedError
+from mastodon import MastodonError, MastodonAPIError, MastodonNotFoundError, MastodonUnauthorizedError
 from pubsub import pub
 from mysc.thread_utils import call_threaded
 from sessions import base
@@ -189,10 +189,12 @@ class Session(base.baseSession):
                 finished = True
             except Exception as e:
                 output.speak(str(e))
+                if isinstance(e, MastodonAPIError):
+                    log.exception("API Error returned when making a Call on {}. Call name={}, args={}, kwargs={}".format(self.get_name(), call_name, args, kwargs))
+                    raise e
                 val = None
-                if type(e) != MastodonNotFoundError  and type(e) != MastodonUnauthorizedError :
-                    tries = tries+1
-                    time.sleep(5)
+                tries = tries+1
+                time.sleep(5)
                 if tries == 4 and finished == False:
                     raise e
         if report_success:
