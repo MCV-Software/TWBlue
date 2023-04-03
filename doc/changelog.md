@@ -2,7 +2,7 @@ TWBlue Changelog
 
 ## changes in this version
 
-We had to release a 2023.2.8 version of TWblue, which removes the API deprecation code as Twitter has changed again their plans, and set their free API shutdown to February 13. This new release will not enforce any date for stopping support to Twitter sessions, but will skip loading the sessions if there are errors when logging into Twitter. There are also some significant improvements to our Mastodon support, which you can read in the following list of changes:
+During the development of the current TWBlue version, Twitter has cut out access from their API, meaning TWBlue will no longer be able to communicate with Twitter. This is the end of the support of TWBlue for Twitter sessions. No new sessions will be available for this social network, and we will focus in adding more features to our Mastodon support and writing support for more websites and network. Thank you everyone who have been using TWBlue to manage your Twitter accounts since 2013.
 
 * TWBlue should be able to display variables within templates (for example, now it is possible to send a template inside a post's text). Before, it was removing $variables so it was difficult to show how to edit templates from the client. ([#515](https://github.com/MCV-Software/TWBlue/issues/515))
 * Mastodon:
