@@ -1073,7 +1073,7 @@ class Controller(object):
     def mastodon_error_post(self, name, reply_to, visibility, posts):
         home = self.search_buffer("home_timeline", name)
         if home != None:
-            wx.CallAfter(home.post_from_error, visibility=visibility, data=posts)
+            wx.CallAfter(home.post_from_error, visibility=visibility, reply_to=reply_to, data=posts)
 
     def report_error(self, *args, **kwargs):
         """Redirects the user to the issue page on github"""

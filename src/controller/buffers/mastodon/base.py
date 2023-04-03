@@ -567,7 +567,7 @@ class BaseBuffer(base.Buffer):
             return
         poll = self.session.api_call(call_name="poll_vote", id=poll.id, choices=options, preexec_message=_("Sending vote..."))
 
-    def post_from_error(self, visibility, data):
+    def post_from_error(self, visibility, reply_to, data):
         title = _("Post")
         caption = _("Write your post here")
         post = messages.post(session=self.session, title=title, caption=caption)
@@ -575,6 +575,6 @@ class BaseBuffer(base.Buffer):
         response = post.message.ShowModal()
         if response == wx.ID_OK:
             post_data = post.get_data()
-            call_threaded(self.session.send_post, posts=post_data, visibility=post.get_visibility())
+            call_threaded(self.session.send_post, posts=post_data, reply_to=reply_to, visibility=post.get_visibility())
         if hasattr(post.message, "destroy"):
             post.message.destroy()

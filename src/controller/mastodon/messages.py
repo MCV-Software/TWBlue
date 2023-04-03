@@ -79,6 +79,8 @@ class post(messages.basicMessage):
         visibility_settings = dict(public=0, unlisted=1, private=2, direct=3)
         self.message.visibility.SetSelection(visibility_settings.get(visibility))
         self.message.on_sensitivity_changed()
+        for attachment in self.attachments:
+            self.message.add_item(item=[attachment["file"], attachment["type"], attachment["description"]])
         self.text_processor()
 
     def text_processor(self, *args, **kwargs):
