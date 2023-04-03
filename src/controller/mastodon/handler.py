@@ -3,11 +3,9 @@ import wx
 import logging
 from pubsub import pub
 from mysc import restart
-from wxUI.dialogs.mastodon import dialogs
 from wxUI.dialogs.mastodon import search as search_dialogs
 from wxUI.dialogs.mastodon import dialogs
 from wxUI import commonMessageDialogs
-from sessions.twitter import utils
 from . import userActions, settings
 
 log = logging.getLogger("controller.mastodon.handler")

@@ -12,9 +12,7 @@ import config_utils
 import config
 import application
 from pubsub import pub
-from tweepy.errors import TweepyException
 from controller import settings
-from sessions.twitter import session as TwitterSession
 from sessions.mastodon import session as MastodonSession
 from . import manager
 from . import wxUI as view
@@ -66,14 +64,7 @@ class sessionManagerController(object):
                         output.speak("An exception was raised while attempting to clean malformed session data. See the error log for details. If this message persists, contact the developers.",True)
                         os.exception("Exception thrown while removing malformed session")
                         continue
-                if config_test.get("twitter") != None:
-                    if application.twitter_support_enabled == False:
-                        continue
-                    name = _("{account_name} (Twitter)").format(account_name=config_test["twitter"]["user_name"])
-                    if config_test["twitter"]["user_key"] != "" and config_test["twitter"]["user_secret"] != "":
-                        sessionsList.append(name)
-                        self.sessions.append(dict(type="twitter", id=i))
-                elif config_test.get("mastodon") != None:
+                if config_test.get("mastodon") != None:
                     name = _("{account_name}@{instance} (Mastodon)").format(account_name=config_test["mastodon"]["user_name"], instance=config_test["mastodon"]["instance"].replace("https://", ""))
                     if config_test["mastodon"]["instance"] != "" and config_test["mastodon"]["access_token"] != "":
                         sessionsList.append(name)
@@ -101,33 +92,27 @@ class sessionManagerController(object):
             if sessions.sessions.get(i.get("id")) != None:
                 continue
             # Create the session object based in session type.
-            if i.get("type") == "twitter":
-                if application.twitter_support_enabled == False:
-                    continue
-                s = TwitterSession.Session(i.get("id"))
-            elif i.get("type") == "mastodon":
+            if i.get("type") == "mastodon":
                 s = MastodonSession.Session(i.get("id"))
             s.get_configuration()
             if i.get("id") not in config.app["sessions"]["ignored_sessions"]:
                 try:
                     s.login()
-                except TweepyException:
-                    self.show_auth_error(s.settings["twitter"]["user_name"])
+                except Exception as e:
+                    log.exception("Exception during login on a TWBlue session.")
                     continue
             sessions.sessions[i.get("id")] = s
             self.new_sessions[i.get("id")] = s
 #  self.view.destroy()
 
-    def show_auth_error(self, user_name):
-        error = view.auth_error(user_name)
+    def show_auth_error(self):
+        error = view.auth_error()
 
     def manage_new_account(self, type):
         # Generic settings for all account types.
         location = (str(time.time())[-6:])
         log.debug("Creating %s session in the %s path" % (type, location))
-        if type == "twitter":
-            s = TwitterSession.Session(location)
-        elif type == "mastodon":
+        if type == "mastodon":
             s = MastodonSession.Session(location)
         result = s.authorise()
         if result == True:

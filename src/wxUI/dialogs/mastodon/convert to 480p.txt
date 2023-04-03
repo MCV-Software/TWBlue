@@ -1,0 +1,7 @@
+ffmpeg -hwaccel qsv -c:v h264_qsv -i "$1" -map 0 -c copy -c:v hevc_qsv -preset slow -global_quality 22 -look_ahead 1 "final/${1%.*}.mkv"
+
+#!/bin/bash
+for i in *.wmv;
+do 
+    ffmpeg -i "$i" -c:v libx264 -c:a aac -vf scale=640:480 -crf 20 "final/$i.mp4"
+done

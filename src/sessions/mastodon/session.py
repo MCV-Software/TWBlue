@@ -195,8 +195,6 @@ class Session(base.baseSession):
                     time.sleep(5)
                 if tries == 4 and finished == False:
                     raise e
-                else:
-                    raise e
         if report_success:
             output.speak(_("%s succeeded.") % action)
         if _sound != None:

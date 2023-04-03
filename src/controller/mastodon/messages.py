@@ -6,7 +6,7 @@ import widgetUtils
 import config
 import output
 from twitter_text import parse_tweet, config
-from controller.twitter import messages
+from controller import messages
 from sessions.mastodon import templates
 from wxUI.dialogs.mastodon import postDialogs
 
@@ -23,7 +23,7 @@ def character_count(post_text, post_cw, character_limit=500):
     parsed = parse_tweet(full_text, options=options)
     return parsed.weightedLength
 
-class post(messages.basicTweet):
+class post(messages.basicMessage):
     def __init__(self, session, title, caption, text="", *args, **kwargs):
         # take max character limit from session as this might be different for some instances.
         self.max = session.char_limit

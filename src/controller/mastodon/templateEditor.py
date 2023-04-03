@@ -3,7 +3,7 @@ import re
 import wx
 from typing import List
 from sessions.mastodon.templates import post_variables, conversation_variables, person_variables
-from wxUI.dialogs.twitterDialogs import templateDialogs
+from wxUI.dialogs import templateDialogs
 
 class EditTemplate(object):
     def __init__(self, template: str, type: str) -> None:

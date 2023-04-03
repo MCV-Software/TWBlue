@@ -51,9 +51,6 @@ class sessionManagerWindow(wx.Dialog):
 
     def on_new_account(self, *args, **kwargs):
         menu = wx.Menu()
-        if application.twitter_support_enabled:
-            twitter = menu.Append(wx.ID_ANY, _("Twitter"))
-            menu.Bind(wx.EVT_MENU, self.on_new_twitter_account, twitter)
         mastodon = menu.Append(wx.ID_ANY, _("Mastodon"))
         menu.Bind(wx.EVT_MENU, self.on_new_mastodon_account, mastodon)
         self.PopupMenu(menu, self.new.GetPosition())
@@ -64,15 +61,6 @@ class sessionManagerWindow(wx.Dialog):
         dlg.Destroy()
         if response == wx.ID_YES:
             pub.sendMessage("sessionmanager.new_account", type="mastodon")
-
-    def on_new_twitter_account(self, *args, **kwargs):
-        if application.twitter_support_enabled == False:
-            return
-        dlg = wx.MessageDialog(self, _(u"The request to authorize your Twitter account will be opened in your browser. You only need to do this once. Would you like to continue?"), _(u"Authorization"), wx.YES_NO)
-        response = dlg.ShowModal()
-        dlg.Destroy()
-        if response == wx.ID_YES:
-            pub.sendMessage("sessionmanager.new_account", type="twitter")
 
     def add_new_session_to_list(self):
         total = self.list.get_count()
@@ -104,12 +92,8 @@ class sessionManagerWindow(wx.Dialog):
     def remove_session(self, sessionID):
         self.list.remove_item(sessionID)
 
-
     def hide_configuration(self):
         self.configuration.Hide()
 
     def destroy(self):
         self.Destroy()
-
-def auth_error(user_name):
-    return wx.MessageDialog(None, _("TWBlue is unable to authenticate the account for {} in Twitter. It might be due to an invalid or expired token, revoqued access to the application, or after an account reactivation. Please remove the account manually from your Twitter sessions in order to stop seeing this message.").format(user_name,), _("Authentication error for session {}").format(user_name,), wx.OK).ShowModal()

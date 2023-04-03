@@ -21,7 +21,6 @@ import config
 import output
 import logging
 import application
-import keys
 from mysc.thread_utils import call_threaded
 import fixes
 import widgetUtils
@@ -65,7 +64,6 @@ def setup():
     languageHandler.setLanguage(config.app["app-settings"]["language"])
     fixes.setup() 
     output.setup()
-    keys.setup()
     from controller import settings
     from controller import mainController
     from sessionmanager import sessionManager

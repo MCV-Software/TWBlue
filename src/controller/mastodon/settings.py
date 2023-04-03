@@ -9,7 +9,7 @@ import output
 from collections import OrderedDict
 from wxUI import commonMessageDialogs
 from wxUI.dialogs.mastodon import configuration
-from extra.autocompletionUsers import scan, manage
+#from extra.autocompletionUsers import scan, manage
 from extra.ocr import OCRSpace
 from controller.settings import globalSettingsController
 from . templateEditor import EditTemplate

@@ -13,8 +13,6 @@ import application
 import sound
 import output
 from pubsub import pub
-from tweepy.errors import TweepyException, Forbidden
-from geopy.geocoders import Nominatim
 from extra import SoundsTutorial
 from update import updater
 from wxUI import view, dialogs, commonMessageDialogs, sysTrayIcon
@@ -25,13 +23,10 @@ from mysc import restart
 from mysc import localization
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
-from controller.twitter import handler as TwitterHandler
 from controller.mastodon import handler as MastodonHandler
 from . import settings, userAlias
 
 log = logging.getLogger("mainController")
-
-geocoder = Nominatim(user_agent="TWBlue")
 
 class Controller(object):
 
@@ -111,34 +106,17 @@ class Controller(object):
         pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
         pub.subscribe(self.create_account_buffer, "core.create_account")
 
-        # Twitter specific events.
-        pub.subscribe(self.buffer_title_changed, "buffer-title-changed")
-        pub.subscribe(self.manage_sent_dm, "twitter.sent_dm")
-        pub.subscribe(self.update_sent_dms, "twitter.sent_dms_updated")
-        pub.subscribe(self.more_dms, "twitter.more_sent_dms")
-        pub.subscribe(self.manage_sent_tweets, "twitter.sent_tweet")
-        pub.subscribe(self.manage_new_tweet, "twitter.new_tweet")
-        pub.subscribe(self.manage_friend, "twitter.friend")
-        pub.subscribe(self.manage_unfollowing, "twitter.unfollowing")
-        pub.subscribe(self.manage_favourite, "twitter.favourite")
-        pub.subscribe(self.manage_unfavourite, "twitter.unfavourite")
-        pub.subscribe(self.manage_blocked_user, "twitter.blocked_user")
-        pub.subscribe(self.manage_unblocked_user, "twitter.unblocked_user")
-        pub.subscribe(self.restart_streaming, "twitter.restart_streaming")
-
         # Mastodon specific events.
         pub.subscribe(self.mastodon_new_item, "mastodon.new_item")
         pub.subscribe(self.mastodon_updated_item, "mastodon.updated_item")
         pub.subscribe(self.mastodon_new_conversation, "mastodon.conversation_received")
         pub.subscribe(self.mastodon_error_post, "mastodon.error_post")
+
         # connect application events to GUI
         widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_trending_topics, menuitem=self.view.trends)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.filter, menuitem=self.view.filter)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_filters, menuitem=self.view.manage_filters)
+#        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.find, menuitem=self.view.find)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.accountConfiguration, menuitem=self.view.account_settings)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.configuration, menuitem=self.view.prefs)
@@ -156,13 +134,10 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_favourites, self.view.fav)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_favourites, self.view.unfav)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_item, self.view.view)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_reverse_geocode, menuitem=self.view.view_coordinates)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.delete, self.view.delete)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.follow, menuitem=self.view.follow)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.send_dm, self.view.dm)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_user_lists, menuitem=self.view.viewLists)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_more_items, menuitem=self.view.load_previous_items)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_user_lists, menuitem=self.view.viewLists)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.clear_buffer, menuitem=self.view.clear)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_buffer, self.view.deleteTl)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.check_for_updates, self.view.check_for_updates)
@@ -170,8 +145,6 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.visit_website, menuitem=self.view.visit_website)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.get_soundpacks, menuitem=self.view.get_soundpacks)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_accounts, self.view.manage_accounts)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_profile, menuitem=self.view.updateProfile)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.user_details, menuitem=self.view.details)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_autoread, menuitem=self.view.autoread)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.toggle_buffer_mute, self.view.mute_buffer)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.open_timeline, self.view.timeline)
@@ -183,19 +156,16 @@ class Controller(object):
             widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_documentation, self.view.doc)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_changelog, self.view.changelog)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_alias, self.view.addAlias)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_to_list, self.view.addToList)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.remove_from_list, self.view.removeFromList)
+#        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_alias, self.view.addAlias)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_buffer, self.view.update_buffer)
-        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_aliases, self.view.manageAliases)
+#        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_aliases, self.view.manageAliases)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
 
     def set_systray_icon(self):
         self.systrayIcon = sysTrayIcon.SysTrayIcon()
-        widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.post_tweet, menuitem=self.systrayIcon.tweet)
+        widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.post_tweet, menuitem=self.systrayIcon.post)
         widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.configuration, menuitem=self.systrayIcon.global_settings)
         widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.accountConfiguration, menuitem=self.systrayIcon.account_settings)
-        widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.update_profile, menuitem=self.systrayIcon.update_profile)
         widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.show_hide, menuitem=self.systrayIcon.show_hide)
         widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.check_for_updates, menuitem=self.systrayIcon.check_for_updates)
         widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.view_documentation, menuitem=self.systrayIcon.doc)
@@ -215,9 +185,7 @@ class Controller(object):
     def get_handler(self, type):
         handler = self.handlers.get(type)
         if handler == None:
-            if type == "twitter":
-                handler = TwitterHandler.Handler()
-            elif type == "mastodon":
+            if type == "mastodon":
                 handler = MastodonHandler.Handler()
             self.handlers[type]=handler
         return handler
@@ -262,9 +230,9 @@ class Controller(object):
             if sessions.sessions[i].is_logged == False:
                 self.create_ignored_session_buffer(sessions.sessions[i])
                 continue
-            # Valid types currently are twitter and mastodon (Work in progress)
+            # Valid types currently are mastodon (Work in progress)
             # More can be added later.
-            valid_session_types = ["twitter", "mastodon"]
+            valid_session_types = ["mastodon"]
             if sessions.sessions[i].type in valid_session_types:
                 handler = self.get_handler(type=sessions.sessions[i].type)
                 handler.create_buffers(sessions.sessions[i], controller=self)
@@ -285,8 +253,6 @@ class Controller(object):
         if config.app["app-settings"]["speak_ready_msg"] == True:
             output.speak(_(u"Ready"))
         self.started = True
-        self.streams_checker_function = RepeatingTimer(60, self.check_streams)
-        self.streams_checker_function.start()
         if len(self.accounts) > 0:
             b = self.get_first_buffer(self.accounts[0])
             self.update_menus(handler=self.get_handler(b.session.type))
@@ -406,21 +372,6 @@ class Controller(object):
                 return output.speak(page.get_message(), True)
         output.speak(_(u"{0} not found.").format(string,), True)
 
-    def filter(self, *args, **kwargs):
-        buffer = self.get_current_buffer()
-        if not hasattr(buffer.buffer, "list"):
-            output.speak(_(u"No session is currently in focus. Focus a session with the next or previous session shortcut."), True)
-            return
-        handler = self.get_handler(type=buffer.session.type)
-        if handler != None and hasattr(handler, "filter"):
-            return handler.filter(buffer=buffer)
-
-    def manage_filters(self, *args, **kwargs):
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler != None and hasattr(handler, "manage_filters"):
-            return handler.manage_filters(session=buffer.session)
-
     def seekLeft(self, *args, **kwargs):
         try:
             sound.URLPlayer.seek(-5000)
@@ -456,31 +407,6 @@ class Controller(object):
         """ Opens the sounds tutorial for the current account."""
         buffer = self.get_best_buffer()
         SoundsTutorial.soundsTutorial(buffer.session)
-
-    def view_user_lists(self, *args, **kwargs):
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler != None and hasattr(handler, "view_user_lists"):
-            return handler.view_user_lists(buffer=buffer)
-
-    def add_to_list(self, *args, **kwargs):
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler != None and hasattr(handler, "add_to_list"):
-            return handler.add_to_list(controller=self, buffer=buffer)
-
-    def remove_from_list(self, *args, **kwargs):
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler != None and hasattr(handler, "remove_from_list"):
-            return handler.remove_from_list(controller=self, buffer=buffer)
-
-    def list_manager(self, *args, **kwargs):
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler != None and hasattr(handler, "list_manager"):
-            lists_buffer_position = self.view.search("lists", buffer.session.get_name())
-            return handler.list_manager(session=buffer.session, lists_buffer_position=lists_buffer_position)
 
     def configuration(self, *args, **kwargs):
         """ Opens the global settings dialogue."""
@@ -527,10 +453,6 @@ class Controller(object):
         for item in sessions.sessions:
             if sessions.sessions[item].logged == False:
                 continue
-            if hasattr(sessions.sessions[item], "stop_streaming"):
-                log.debug("Disconnecting streaming endpoint for session" +    sessions.sessions[item].session_id)
-                sessions.sessions[item].stop_streaming()
-                log.debug("Disconnecting streams for %s session" % (sessions.sessions[item].session_id,))
             sessions.sessions[item].sound.cleaner.cancel()
             log.debug("Saving database for " +    sessions.sessions[item].session_id)
             sessions.sessions[item].save_persistent_data()
@@ -538,9 +460,6 @@ class Controller(object):
         pidpath = os.path.join(os.getenv("temp"), "{}.pid".format(application.name))
         if os.path.exists(pidpath):
             os.remove(pidpath)
-        if hasattr(self, "streams_checker_function"):
-            log.debug("Stopping stream checker...")
-            self.streams_checker_function.cancel()
         widgetUtils.exit_application()
 
     def follow(self, *args, **kwargs):
@@ -641,19 +560,6 @@ class Controller(object):
                 self.unregister_invisible_keyboard_shorcuts(km)
             self.view.Show()
             self.showing = True
-
-    def get_trending_topics(self, *args, **kwargs):
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler != None and hasattr(handler, "get_trending_topics"):
-            return handler.get_trending_topics(controller=self, session=buffer.session)
-
-    def view_reverse_geocode(self, event=None):
-        buffer = self.get_current_buffer()
-        if hasattr(buffer, "reverse_geocode"):
-            address = buffer.reverse_geocode()
-            if address != None:
-                    dlg = commonMessageDialogs.view_geodata(address[0].__str__())
 
     def get_more_items(self, *args, **kwargs):
         buffer = self.get_current_buffer()
@@ -953,70 +859,6 @@ class Controller(object):
         if message != None:
             output.speak(message, speech=session.settings["reporting"]["speech_reporting"], braille=session.settings["reporting"]["braille_reporting"])
 
-    def manage_sent_dm(self, data, session_name):
-        buffer = self.search_buffer("sent_direct_messages", session_name)
-        if buffer == None:
-            return
-        play_sound = "dm_sent.ogg"
-        if "sent_direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-            self.notify(buffer.session, play_sound=play_sound)
-        buffer.add_new_item(data)
-
-    def manage_sent_tweets(self, data, session_name):
-        buffer = self.search_buffer("sent_tweets", session_name)
-        if buffer == None:
-            return
-        data = buffer.session.check_quoted_status(data)
-        data = buffer.session.check_long_tweet(data)
-        if data == False: # Long tweet deleted from twishort.
-            return 
-        items = buffer.session.db[buffer.name]
-        if buffer.session.settings["general"]["reverse_timelines"] == False:
-            items.append(data)
-        else:
-            items.insert(0, data)
-        buffer.session.db[buffer.name] = items
-        buffer.add_new_item(data)
-
-    def manage_friend(self, data, session_name):
-        buffer = self.search_buffer("friends", session_name)
-        if buffer == None:
-            return
-        buffer.add_new_item(data)
-
-    def manage_unfollowing(self, item, session_name):
-        buffer = self.search_buffer("friends", session_name)
-        if buffer == None:
-            return
-        buffer.remove_item(item)
-
-    def manage_favourite(self, data, session_name):
-        buffer = self.search_buffer("favourites", session_name)
-        if buffer == None:
-            return
-        play_sound = "favourite.ogg"
-        if "favourites" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-            self.notify(buffer.session, play_sound=play_sound)
-        buffer.add_new_item(data)
-
-    def manage_unfavourite(self, item, session_name):
-        buffer = self.search_buffer("favourites", session_name)
-        if buffer == None:
-            return
-        buffer.remove_item(item)
-
-    def manage_blocked_user(self, data, session_name):
-        buffer = self.search_buffer("blocked", session_name)
-        if buffer == None:
-            return
-        buffer.add_new_item(data)
-
-    def manage_unblocked_user(self, item, session_name):
-        buffer = self.search_buffer("blocked", session_name)
-        if buffer == None:
-            return
-        buffer.remove_item(item)
-
     def start_buffers(self, session):
         log.debug("starting buffers... Session %s" % (session.session_id,))
         handler = self.get_handler(type=session.type)
@@ -1027,17 +869,6 @@ class Controller(object):
     def set_positions(self):
         for i in sessions.sessions:
             self.set_buffer_positions(i)
-
-    def check_connection(self):
-        if self.started == False:
-            return
-        for i in sessions.sessions:
-            try:
-                if sessions.sessions[i].is_logged == False:
-                    continue
-                sessions.sessions[i].check_connection()
-            except: # We shouldn't allow this function to die.
-                pass
 
     def invisible_shorcuts_changed(self, registered):
         if registered == True:
@@ -1098,17 +929,6 @@ class Controller(object):
             if sessions.sessions[i].get_name() in self.accounts:
                 self.accounts.remove(sessions.sessions[i].get_name())
             sessions.sessions.pop(i)
-
-    def update_profile(self, *args, **kwargs):
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if hasattr(handler, "update_profile"):
-            return handler.update_profile(session=buffer.session)
-
-    def user_details(self, *args, **kwargs):
-        buffer = self.get_current_buffer()
-        if hasattr(buffer, "user_details"):
-            buffer.user_details()
 
     def toggle_autoread(self, *args, **kwargs):
         buffer = self.get_current_buffer()
@@ -1174,16 +994,6 @@ class Controller(object):
                     i.start_stream(mandatory=True)
                 except Exception as err:
                     log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
-                    # Determine if this error was caused by a block applied to the current user (IE permission errors).
-                    if type(err) == Forbidden:
-                        buff = self.view.search(i.name, i.account)
-                        i.remove_buffer(force=True)
-                        commonMessageDialogs.blocked_timeline()
-                        if self.get_current_buffer() == i:
-                            self.right()
-                        self.view.delete_buffer(buff)
-                        self.buffers.remove(i)
-                        del i
 
     def update_buffer(self, *args, **kwargs):
         bf = self.get_current_buffer()
@@ -1198,16 +1008,12 @@ class Controller(object):
     def buffer_title_changed(self, buffer):
         if buffer.name.endswith("-timeline"):
             title = _(u"Timeline for {}").format(buffer.username,)
-        elif buffer.name.endswith("-favorite"):
-            title = _(u"Likes for {}").format(buffer.username,)
         elif buffer.name.endswith("-followers"):
             title = _(u"Followers for {}").format(buffer.username,)
         elif buffer.name.endswith("-friends"):
             title = _(u"Friends for {}").format(buffer.username,)
         elif buffer.name.endswith("-following"):
             title = _(u"Following for {}").format(buffer.username,)
-        elif buffer.name.endswith("_tt"):
-            title = _("Trending topics for %s") % (buffer.name_)
         buffer_index = self.view.search(buffer.name, buffer.account)
         self.view.set_page_title(buffer_index, title)
 
@@ -1216,54 +1022,12 @@ class Controller(object):
         if hasattr(buffer, "ocr_image"):
             return buffer.ocr_image()
 
-    def update_sent_dms(self, total, session_name):
-        sent_dms = self.search_buffer("sent_direct_messages", session_name)
-        if sent_dms != None:
-            sent_dms.put_items_on_list(total)
-
-    def more_dms(self, data, account):
-        sent_dms = self.search_buffer("sent_direct_messages", account)
-        if sent_dms != None:
-            sent_dms.put_more_items(data)
-
     def save_data_in_db(self):
         for i in sessions.sessions:
             sessions.sessions[i].save_persistent_data()
 
-    def manage_new_tweet(self, data, session_name, _buffers):
-        sound_to_play = None
-        for buff in _buffers:
-            buffer = self.search_buffer(buff, session_name)
-            if buffer == None or buffer.session.get_name() != session_name:
-                return
-            buffer.add_new_item(data)
-            if buff == "home_timeline": sound_to_play = "tweet_received.ogg"
-            elif buff == "mentions": sound_to_play = "mention_received.ogg"
-            elif buff == "sent_tweets": sound_to_play = "tweet_send.ogg"
-            elif "timeline" in buff: sound_to_play = "tweet_timeline.ogg"
-            else: sound_to_play = None
-            if sound_to_play != None and buff not in buffer.session.settings["other_buffers"]["muted_buffers"]:
-                self.notify(buffer.session, sound_to_play)
-
     def toggle_share_settings(self, shareable=True):
         self.view.share.Enable(shareable)
-
-    def check_streams(self):
-        if self.started == False:
-            return
-        for i in sessions.sessions:
-            try:
-                if sessions.sessions[i].is_logged == False: continue
-                sessions.sessions[i].check_streams()
-            except TweepyException: # We shouldn't allow this function to die.
-                pass
-
-    def restart_streaming(self, session):
-        for s in sessions.sessions:
-            if sessions.sessions[s].session_id == session:
-                log.debug("Restarting stream in session %s" % (session))
-                sessions.sessions[s].stop_streaming()
-                sessions.sessions[s].start_streaming()
 
     def mastodon_new_item(self, item, session_name, _buffers):
         sound_to_play = None
@@ -1308,7 +1072,8 @@ class Controller(object):
 
     def mastodon_error_post(self, name, reply_to, visibility, posts):
         home = self.search_buffer("home_timeline", name)
-        wx.CallAfter(home.post_from_error, visibility=visibility, data=posts)
+        if home != None:
+            wx.CallAfter(home.post_from_error, visibility=visibility, data=posts)
 
     def report_error(self, *args, **kwargs):
         """Redirects the user to the issue page on github"""

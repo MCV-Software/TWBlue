@@ -3,22 +3,13 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/fml5fu7h1fj8vf6l?svg=true)](https://ci.appveyor.com/project/manuelcortez/twblue)
 
-TWBlue is a free and open source application that allows you to interact with the main features of Twitter and mastodon from the comfort of a windows software, with 2 different interfaces specially designed for screen reader users.
+TWBlue is a free and open source application that allows you to interact with the main features of mastodon from the comfort of a windows software, with 2 different interfaces specially designed for screen reader users.
 
 See [TWBlue's webpage](https://twblue.es) for more details.
 
 ## Running TWBlue from source
 
 This document describes how to run tw blue from source and how to build a binary version which doesn't need Python and the other dependencies to run.
-
-### Generating application keys
-
-In order to communicate with Twitter, you will need to generate a set of API keys in their [developer portal](https://developer.twitter.com/en/portal/dashboard) (If you haven't signed up, [visit this site to register as a developer](https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api)) and create a module called appkeys.py, within the src directory, with the following content, replacing the example values with your set of API keys:
-
-```
-twitter_api_key='xxxxxxxxxx'
-twitter_api_secret='xxxxxxxxxx'
-```
 
 ### Required dependencies.
 

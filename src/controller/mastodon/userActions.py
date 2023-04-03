@@ -6,7 +6,7 @@ from wxUI.dialogs.mastodon import userActions as userActionsDialog
 from wxUI.dialogs.mastodon import userTimeline as userTimelineDialog
 from pubsub import pub
 from mastodon import MastodonError, MastodonNotFoundError
-from extra.autocompletionUsers import completion
+#from extra.autocompletionUsers import completion
 
 log = logging.getLogger("controller.mastodon.userActions")
 
