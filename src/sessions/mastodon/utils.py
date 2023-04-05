@@ -54,7 +54,11 @@ def get_media_urls(post):
     urls = []
     for media in post.media_attachments:
         if media.get("type") == "audio" or media.get("type") == "video":
-            urls.append(media.get("url"))
+            url_keys = ["remote_url", "url"]
+            for url_key in url_keys:
+                if media.get(url_key) != None:
+                    urls.append(media.get(url_key))
+                    break
     return urls
 
 def find_urls(post, include_tags=False):
