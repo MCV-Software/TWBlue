@@ -255,10 +255,6 @@ class viewPost(wx.Dialog):
         if hasattr(self, buttonName):
             return getattr(self, buttonName).Enable()
 
-class viewPost(wx.Dialog):
-    def set_title(self, lenght):
-        self.SetTitle(_("Post - %i characters ") % (lenght,))
-
 class viewText(wx.Dialog):
     def __init__(self, title="", text="", *args, **kwargs):
         super(viewText, self).__init__(parent=None, id=wx.ID_ANY, size=(850,850), title=title)
