@@ -28,7 +28,7 @@ class ConversationListBuffer(BaseBuffer):
             return self.session.db[self.name][index]
 
     def get_formatted_message(self):
-        return self.compose_function(self.get_conversation(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
+        return self.compose_function(self.get_conversation(), self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])[1]
 
     def get_message(self):
         conversation = self.get_conversation()
@@ -36,7 +36,7 @@ class ConversationListBuffer(BaseBuffer):
             return
         template = self.session.settings["templates"]["conversation"]
         post_template = self.session.settings["templates"]["post"]
-        t = templates.render_conversation(conversation=conversation, template=template, post_template=post_template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
+        t = templates.render_conversation(conversation=conversation, template=template, post_template=post_template, settings=self.session.settings, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
         return t
 
     def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
@@ -89,11 +89,11 @@ class ConversationListBuffer(BaseBuffer):
         log.debug("Retrieved %d items from cursored search in function %s." % (len(elements), self.function))
         if self.session.settings["general"]["reverse_timelines"] == False:
             for i in elements:
-                conversation = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                conversation = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(True, *conversation)
         else:
             for i in elements:
-                conversation = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                conversation = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(False, *conversation)
             self.buffer.list.select_item(selection)
         output.speak(_(u"%s items retrieved") % (str(len(elements))), True)

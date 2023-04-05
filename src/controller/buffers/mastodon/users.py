@@ -22,7 +22,7 @@ class UserBuffer(BaseBuffer):
         if user == None:
             return
         template = self.session.settings["templates"]["person"]
-        t = templates.render_user(user=user, template=template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
+        t = templates.render_user(user=user, template=template, settings=self.session.settings, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
         return t
 
     def bind_events(self):
@@ -123,11 +123,11 @@ class UserBuffer(BaseBuffer):
         log.debug("Retrieved %d items from cursored search in function %s." % (len(elements), self.function))
         if self.session.settings["general"]["reverse_timelines"] == False:
             for i in elements:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                post = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(True, *post)
         else:
             for i in elements:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
+                post = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"])
                 self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)
         output.speak(_(u"%s items retrieved") % (str(len(elements))), True)

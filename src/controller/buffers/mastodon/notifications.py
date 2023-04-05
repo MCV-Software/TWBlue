@@ -18,7 +18,7 @@ class NotificationsBuffer(BaseBuffer):
             return
         template = self.session.settings["templates"]["notification"]
         post_template = self.session.settings["templates"]["post"]
-        t = templates.render_notification(notification, template, post_template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
+        t = templates.render_notification(notification, template, post_template, self.session.settings, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
         return t
 
     def create_buffer(self, parent, name):

@@ -69,11 +69,11 @@ class MentionsBuffer(BaseBuffer):
             safe = self.session.expand_spoilers == False
         if self.session.settings["general"]["reverse_timelines"] == False:
             for i in elements:
-                post = self.compose_function(i.status, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                post = self.compose_function(i.status, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(True, *post)
         else:
             for i in elements:
-                post = self.compose_function(i.status, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                post = self.compose_function(i.status, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)
         output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
@@ -88,20 +88,20 @@ class MentionsBuffer(BaseBuffer):
             safe = self.session.expand_spoilers == False
         if self.buffer.list.get_count() == 0:
             for i in list_to_use:
-                post = self.compose_function(i.status, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                post = self.compose_function(i.status, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(False, *post)
             self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
         elif self.buffer.list.get_count() > 0 and number_of_items > 0:
             if self.session.settings["general"]["reverse_timelines"] == False:
                 items = list_to_use[len(list_to_use)-number_of_items:]
                 for i in items:
-                    post = self.compose_function(i.status, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                    post = self.compose_function(i.status, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                     self.buffer.list.insert_item(False, *post)
             else:
                 items = list_to_use[0:number_of_items]
                 items.reverse()
                 for i in items:
-                    post = self.compose_function(i.status, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                    post = self.compose_function(i.status, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                     self.buffer.list.insert_item(True, *post)
         log.debug("Now the list contains %d items " % (self.buffer.list.get_count(),))
 
@@ -109,7 +109,7 @@ class MentionsBuffer(BaseBuffer):
         safe = True
         if self.session.settings["general"]["read_preferences_from_instance"]:
             safe = self.session.expand_spoilers == False
-        post = self.compose_function(item.status, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+        post = self.compose_function(item.status, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
         if self.session.settings["general"]["reverse_timelines"] == False:
             self.buffer.list.insert_item(False, *post)
         else:

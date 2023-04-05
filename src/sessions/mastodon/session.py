@@ -123,25 +123,6 @@ class Session(base.baseSession):
         ### ToDo: Use a function to retrieve all muted users.
         self.db["muted_users"] = self.api.mutes()
 
-    def get_user_alias(self, user):
-        if user.display_name == None or user.display_name == "":
-            display_name = user.username
-        else:
-            display_name = user.display_name
-        aliases = self.settings.get("user-aliases")
-        if aliases == None:
-            log.error("Aliases are not defined for this config spec.")
-            return self.demoji_user(display_name)
-        user_alias = aliases.get(user.id)
-        if user_alias != None:
-            return user_alias
-        return self.demoji_user(display_name)
-
-    def demoji_user(self, name):
-        if self.settings["general"]["hide_emojis"] == True:
-            return demoji.replace(name, "")
-        return name
-
     def order_buffer(self, name, data, ignore_older=False):
         num = 0
         last_id = None

@@ -78,7 +78,7 @@ class BaseBuffer(base.Buffer):
         safe = True
         if self.session.settings["general"]["read_preferences_from_instance"]:
             safe = self.session.expand_spoilers == False
-        return self.compose_function(self.get_item(), self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)[1]
+        return self.compose_function(self.get_item(), self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)[1]
 
     def get_message(self):
         post = self.get_item()
@@ -91,7 +91,7 @@ class BaseBuffer(base.Buffer):
                 template = template.replace("$safe_text", "$text")
             elif self.session.expand_spoilers == False and "$text" in template:
                 template = template.replace("$text", "$safe_text")
-        t = templates.render_post(post, template, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
+        t = templates.render_post(post, template, self.session.settings, relative_times=self.session.settings["general"]["relative_times"], offset_hours=self.session.db["utc_offset"])
         return t
 
     def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
@@ -138,7 +138,7 @@ class BaseBuffer(base.Buffer):
             safe = True
             if self.session.settings["general"]["read_preferences_from_instance"]:
                 safe = self.session.expand_spoilers == False
-            output.speak(" ".join(self.compose_function(post, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)))
+            output.speak(" ".join(self.compose_function(post, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)))
         elif number_of_items > 1 and self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
             output.speak(_("{0} new posts in {1}.").format(number_of_items, self.get_buffer_name()))
 
@@ -169,11 +169,11 @@ class BaseBuffer(base.Buffer):
             safe = self.session.expand_spoilers == False
         if self.session.settings["general"]["reverse_timelines"] == False:
             for i in elements:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                post = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(True, *post)
         else:
             for i in elements:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                post = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(False, *post)
             self.buffer.list.select_item(selection)
         output.speak(_(u"%s items retrieved") % (str(len(elements))), True)
@@ -207,20 +207,20 @@ class BaseBuffer(base.Buffer):
             safe = self.session.expand_spoilers == False
         if self.buffer.list.get_count() == 0:
             for i in list_to_use:
-                post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                post = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                 self.buffer.list.insert_item(False, *post)
             self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
         elif self.buffer.list.get_count() > 0 and number_of_items > 0:
             if self.session.settings["general"]["reverse_timelines"] == False:
                 items = list_to_use[len(list_to_use)-number_of_items:]
                 for i in items:
-                    post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                    post = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                     self.buffer.list.insert_item(False, *post)
             else:
                 items = list_to_use[0:number_of_items]
                 items.reverse()
                 for i in items:
-                    post = self.compose_function(i, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+                    post = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
                     self.buffer.list.insert_item(True, *post)
         log.debug("Now the list contains %d items " % (self.buffer.list.get_count(),))
 
@@ -228,7 +228,7 @@ class BaseBuffer(base.Buffer):
         safe = True
         if self.session.settings["general"]["read_preferences_from_instance"]:
             safe = self.session.expand_spoilers == False
-        post = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+        post = self.compose_function(item, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
         if self.session.settings["general"]["reverse_timelines"] == False:
             self.buffer.list.insert_item(False, *post)
         else:
@@ -240,7 +240,7 @@ class BaseBuffer(base.Buffer):
         safe = True
         if self.session.settings["general"]["read_preferences_from_instance"]:
             safe = self.session.expand_spoilers == False
-        post = self.compose_function(item, self.session.db, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
+        post = self.compose_function(item, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
         self.buffer.list.list.SetItem(position, 1, post[1])
 
     def bind_events(self):
@@ -412,6 +412,7 @@ class BaseBuffer(base.Buffer):
         item = self.get_item()
         if item == None:
             return
+        print(item)
         urls = utils.get_media_urls(item)
         if len(urls) == 1:
             url=urls[0]

@@ -45,7 +45,7 @@ def process_image_descriptions(media_attachments):
         idescriptions = idescriptions + _("Media description: {}").format(image) + "\n"
     return idescriptions
 
-def render_post(post, template, relative_times=False, offset_hours=0):
+def render_post(post, template, settings, relative_times=False, offset_hours=0):
     """ Renders any given post according to the passed template.
     Available data for posts will be stored in the following variables:
     $date: Creation date.
@@ -63,9 +63,7 @@ def render_post(post, template, relative_times=False, offset_hours=0):
     created_at = process_date(post.created_at, relative_times, offset_hours)
     available_data.update(date=created_at)
     # user.
-    display_name = post.account.display_name
-    if display_name == "":
-        display_name = post.account.username
+    display_name = utils.get_user_alias(post.account, settings)
     available_data.update(display_name=display_name, screen_name=post.account.acct)
     # Source client from where tweet was originated.
     source = ""
@@ -90,7 +88,7 @@ def render_post(post, template, relative_times=False, offset_hours=0):
     result = Template(_(template)).safe_substitute(**available_data)
     return result
 
-def render_user(user, template, relative_times=True, offset_hours=0):
+def render_user(user, template, settings, relative_times=True, offset_hours=0):
     """ Renders persons by using the provided template.
     Available data will be stored in the following variables:
     $display_name: The name of the user, as they’ve defined it. Not necessarily a person’s name. Typically capped at 50 characters, but subject to change.
@@ -102,9 +100,7 @@ def render_user(user, template, relative_times=True, offset_hours=0):
     $created_at: The date and time that the user account was created on Twitter.
     """
     global person_variables
-    display_name = user.display_name
-    if display_name == "":
-        display_name = user.username
+    display_name = utils.get_user_alias(user, settings)
     available_data = dict(display_name=display_name, screen_name=user.acct, followers=user.followers_count, following=user.following_count, posts=user.statuses_count)
     # Nullable values.
     nullables = ["description"]
@@ -116,20 +112,20 @@ def render_user(user, template, relative_times=True, offset_hours=0):
     result = Template(_(template)).safe_substitute(**available_data)
     return result
 
-def render_conversation(conversation, template, post_template, relative_times=False, offset_hours=0):
+def render_conversation(conversation, template, settings, post_template, relative_times=False, offset_hours=0):
     users = []
     for account in conversation.accounts:
         if account.display_name != "":
-            users.append(account.display_name)
+            users.append(utils.get_user_alias(account, settings))
         else:
             users.append(account.username)
     users = ", ".join(users)
-    last_post = render_post(conversation.last_status, post_template, relative_times=relative_times, offset_hours=offset_hours)
+    last_post = render_post(conversation.last_status, post_template, settings, relative_times=relative_times, offset_hours=offset_hours)
     available_data = dict(users=users, last_post=last_post)
     result = Template(_(template)).safe_substitute(**available_data)
     return result
 
-def render_notification(notification, template, post_template, relative_times=False, offset_hours=0):
+def render_notification(notification, template, post_template, settings, relative_times=False, offset_hours=0):
     """ Renders any given notification according to the passed template.
     Available data for notifications will be stored in the following variables:
     $date: Creation date.
@@ -142,29 +138,27 @@ def render_notification(notification, template, post_template, relative_times=Fa
     created_at = process_date(notification.created_at, relative_times, offset_hours)
     available_data.update(date=created_at)
     # user.
-    display_name = notification.account.display_name
-    if display_name == "":
-        display_name = notification.account.username
+    display_name = utils.get_user_alias(notification.account, settings)
     available_data.update(display_name=display_name, screen_name=notification.account.acct)
     text = "Unknown: %r" % (notification)
     # Remove date from status, so it won't be rendered twice.
     post_template = post_template.replace("$date", "")
     if notification.type == "status":
-        text = _("has posted: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+        text = _("has posted: {status}").format(status=render_post(notification.status, post_template, settings, relative_times, offset_hours))
     elif notification.type == "mention":
-        text = _("has mentioned you: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+        text = _("has mentioned you: {status}").format(status=render_post(notification.status, post_template, settings, relative_times, offset_hours))
     elif notification.type == "reblog":
-        text = _("has boosted: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+        text = _("has boosted: {status}").format(status=render_post(notification.status, post_template, settings, relative_times, offset_hours))
     elif notification.type == "favourite":
-        text = _("has added to favorites: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+        text = _("has added to favorites: {status}").format(status=render_post(notification.status, post_template, settings, relative_times, offset_hours))
     elif notification.type == "update":
-        text = _("has updated a status: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+        text = _("has updated a status: {status}").format(status=render_post(notification.status, post_template, settings, relative_times, offset_hours))
     elif notification.type == "follow":
         text = _("has followed you.")
     elif notification.type == "admin.sign_up":
         text = _("has joined the instance.")
     elif notification.type == "poll":
-        text = _("A poll in which you have voted has expired: {status}").format(status=render_post(notification.status, post_template, relative_times, offset_hours))
+        text = _("A poll in which you have voted has expired: {status}").format(status=render_post(notification.status, post_template, settings, relative_times, offset_hours))
     elif notification.type == "follow_request":
         text = _("wants to follow you.")
     available_data.update(text=text)
