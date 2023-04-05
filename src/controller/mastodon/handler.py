@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import wx
 import logging
+import output
 from pubsub import pub
 from mysc import restart
 from wxUI.dialogs.mastodon import search as search_dialogs
 from wxUI.dialogs.mastodon import dialogs
+from wxUI.dialogs import userAliasDialogs
 from wxUI import commonMessageDialogs
 from . import userActions, settings
 
@@ -21,7 +23,7 @@ class Handler(object):
             updateProfile=None,
             menuitem_search=_("&Search"),
             lists=None,
-            manageAliases=None,
+            manageAliases=_("Manage user aliases"),
             # In item menu.
             compose=_("&Post"),
             reply=_("Re&ply"),
@@ -36,7 +38,7 @@ class Handler(object):
             follow=_("&Actions..."),
             timeline=_("&View timeline..."),
             dm=_("Direct me&ssage"),
-            addAlias=None,
+            addAlias=_("Add a&lias"),
             addToList=None,
             removeFromList=None,
             details=None,
@@ -223,3 +225,33 @@ class Handler(object):
                 buffer.session.settings.write()
                 buffer.session.save_persistent_data()
                 restart.restart_program()
+
+    def add_alias(self, buffer):
+        if not hasattr(buffer, "get_item"):
+            return
+        item = buffer.get_item()
+        if buffer.type == "user":
+            users = [item.acct]
+        elif buffer.type == "baseBuffer":
+            if item.reblog != None:
+                users = [user.acct for user in item.reblog.mentions if user.id != buffer.session.db["user_id"]]
+                if item.reblog.account.acct not in users and item.account.id != buffer.session.db["user_id"]:
+                    users.insert(0, item.reblog.account.acct)
+            else:
+                users = [user.acct for user in item.mentions if user.id != buffer.session.db["user_id"]]
+            if item.account.acct not in users:
+                users.insert(0, item.account.acct)
+        dlg = userAliasDialogs.addAliasDialog(_("Add an user alias"), users)
+        if dlg.get_response() == wx.ID_OK:
+            user, alias = dlg.get_user()
+            if user == "" or alias == "":
+                return
+            try:
+                full_user = buffer.session.api.account_lookup(user)
+            except Exception as e:
+                log.exception("Error adding alias to user {}.".format(user))
+                return
+            buffer.session.settings["user-aliases"][str(full_user.id)] = alias
+            buffer.session.settings.write()
+            output.speak(_("Alias has been set correctly for {}.").format(user))
+            pub.sendMessage("alias-added")

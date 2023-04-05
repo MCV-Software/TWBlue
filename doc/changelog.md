@@ -8,6 +8,7 @@ During the development of the current TWBlue version, Twitter has cut out access
 * Mastodon:
     * it is possible to add descriptions for all media available on Mastodon (audio, photos, video and Givs). ([#516](https://github.com/MCV-Software/TWBlue/issues/516))
     * TWBlue can now perform OCR in attached images.
+    * It is possible to add aliases to mastodon users. Also, the "manage user aliases" setting, located on the application menu within the menu bar can be used to add, edit or remove aliases.
     * Implemented "Hide emojis on usernames" in both GUI and invisible interface.
     * Added an experimental feature to recover from connection errors. When making a post, if the post cannot be published due to any kind of error, TWBlue will bring up the dialog where the post was composed, so you can give the post a second chance or save the post's text. This feature should work for threads, posts with attachments, polls and replies. ([#527,](https://github.com/MCV-Software/TWBlue/issues/527) [#526,](https://github.com/MCV-Software/TWBlue/issues/526) [#377,](https://github.com/MCV-Software/TWBlue/issues/377) [#137,](https://github.com/MCV-Software/TWBlue/issues/137) [#108](https://github.com/MCV-Software/TWBlue/issues/108))
     * When playing media items, TWBlue will prefer remote URL streams and fall back to instance cached stream URL'S.

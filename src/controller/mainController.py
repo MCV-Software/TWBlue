@@ -157,9 +157,9 @@ class Controller(object):
             widgetUtils.connect_event(self.view.nb, widgetUtils.NOTEBOOK_PAGE_CHANGED, self.buffer_changed)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_documentation, self.view.doc)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.view_changelog, self.view.changelog)
-#        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_alias, self.view.addAlias)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.add_alias, self.view.addAlias)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_buffer, self.view.update_buffer)
-#        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_aliases, self.view.manageAliases)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_aliases, self.view.manageAliases)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
 
     def set_systray_icon(self):

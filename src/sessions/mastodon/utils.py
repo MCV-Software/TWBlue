@@ -79,7 +79,7 @@ def get_user_alias(user, settings):
     aliases = settings.get("user-aliases")
     if aliases == None:
         return demoji_user(display_name, settings)
-    user_alias = aliases.get(user.id)
+    user_alias = aliases.get(str(user.id))
     if user_alias != None:
         return user_alias
     return demoji_user(display_name, settings)

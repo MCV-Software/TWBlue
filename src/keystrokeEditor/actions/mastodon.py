@@ -53,5 +53,5 @@ actions = {
     "audio": _(u"Try to play a media file"),
     "update_buffer": _(u"Updates the buffer and retrieves possible lost items there."),
     "ocr_image": _(u"Extracts the text from a picture and displays the result in a dialog."),
-#    "add_alias": _("Adds an alias to an user"),
+    "add_alias": _("Adds an alias to an user"),
 }
