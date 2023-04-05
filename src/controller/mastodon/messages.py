@@ -270,3 +270,11 @@ class viewPost(post):
         if hasattr(self, "item_url"):
             output.copy(self.item_url)
             output.speak(_("Link copied to clipboard."))
+
+class text(messages.basicMessage):
+    def __init__(self, title, text="", *args, **kwargs):
+        self.title = title
+        self.message = postDialogs.viewText(title=title, text=text, *args, **kwargs)
+        self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
+        widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
+        widgetUtils.connect_event(self.message.translateButton, widgetUtils.BUTTON_PRESSED, self.translate)

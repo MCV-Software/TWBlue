@@ -413,7 +413,6 @@ class BaseBuffer(base.Buffer):
         item = self.get_item()
         if item == None:
             return
-        print(item)
         urls = utils.get_media_urls(item)
         if len(urls) == 1:
             url=urls[0]
@@ -542,7 +541,41 @@ class BaseBuffer(base.Buffer):
     def ocr_image(self):
         post = self.get_item()
         media_list = []
-        pass
+        if post.reblog != None:
+            post = post.reblog
+        for media in post.get("media_attachments"):
+            if media.get("type", "") == "image":
+                media_list.append(media)
+        if len(media_list) > 1:
+            image_list = [_(u"Picture {0}").format(i+1,) for i in range(0, len(media_list))]
+            dialog = urlList.urlList(title=_(u"Select the picture"))
+            dialog.populate_list(image_list)
+            if dialog.get_response() == widgetUtils.OK:
+                img = media_list[dialog.get_item()]
+            else:
+                return
+        elif len(media_list) == 1:
+            img = media_list[0]
+        else:
+            return
+        if self.session.settings["mysc"]["ocr_language"] != "":
+            ocr_lang = self.session.settings["mysc"]["ocr_language"]
+        else:
+            ocr_lang = ocr.OCRSpace.short_langs.index(post.language)
+            ocr_lang = ocr.OCRSpace.OcrLangs[ocr_lang]
+        if img["remote_url"] != None:
+            url = img["remote_url"]
+        else:
+            url = img["url"]
+        api = ocr.OCRSpace.OCRSpaceAPI()
+        try:
+            text = api.OCR_URL(url)
+        except ocr.OCRSpace.APIError as er:
+            output.speak(_(u"Unable to extract text"))
+            return
+        viewer = messages.text(title=_("OCR Result"), text=text["ParsedText"])
+        response = viewer.message.ShowModal()
+        viewer.message.Destroy()
 
     def vote(self):
         post = self.get_item()

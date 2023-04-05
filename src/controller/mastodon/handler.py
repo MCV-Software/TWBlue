@@ -30,7 +30,7 @@ class Handler(object):
             unfav=_("Remove from favorites"),
             view=_("&Show post"),
             view_conversation=_("View conversa&tion"),
-            ocr=None,
+            ocr=_("Read text in picture"),
             delete=_("&Delete"),
             # In user menu.
             follow=_("&Actions..."),
