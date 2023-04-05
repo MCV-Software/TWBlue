@@ -4,6 +4,7 @@ import logging
 import wx
 import widgetUtils
 import output
+from pubsub import pub
 from mysc.thread_utils import call_threaded
 from controller.buffers.mastodon.base import BaseBuffer
 from controller.mastodon import messages
@@ -88,6 +89,11 @@ class UserBuffer(BaseBuffer):
             if hasattr(self, "finished_timeline") and self.finished_timeline == False:
                 if "-followers" in self.name or "-following" in self.name:
                     self.username = self.session.api.account(id=self.kwargs.get("id")).username
+                    if "-followers" in self.name:
+                        title=_("Followers for {}").format(self.username)
+                    else:
+                        title=_("Following for {}").format(self.username)
+                    pub.sendMessage("core.change_buffer_title", name=self.session.get_name(), buffer=self.name, title=title)
                 self.finished_timeline = True
             self.put_items_on_list(number_of_items)
             if number_of_items > 0 and  self.name != "sent_posts" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:

@@ -10,6 +10,7 @@ During the development of the current TWBlue version, Twitter has cut out access
     * Implemented "Hide emojis on usernames" in both GUI and invisible interface.
     * Added an experimental feature to recover from connection errors. When making a post, if the post cannot be published due to any kind of error, TWBlue will bring up the dialog where the post was composed, so you can give the post a second chance or save the post's text. This feature should work for threads, posts with attachments, polls and replies. ([#527,](https://github.com/MCV-Software/TWBlue/issues/527) [#526,](https://github.com/MCV-Software/TWBlue/issues/526) [#377,](https://github.com/MCV-Software/TWBlue/issues/377) [#137,](https://github.com/MCV-Software/TWBlue/issues/137) [#108](https://github.com/MCV-Software/TWBlue/issues/108))
     * Fixed an error on mentions buffer that was making TWBlue unable to load posts if there were mentions from a blocked or deleted account.
+    * Fixed an error when loading timelines during startup where TWBlue was unable to change the buffer title properly.
 
 ## Changes on version 2023.2.6
 

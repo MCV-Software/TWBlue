@@ -119,6 +119,7 @@ class BaseBuffer(base.Buffer):
             if hasattr(self, "finished_timeline") and self.finished_timeline == False:
                 if "-timeline" in self.name:
                     self.username = self.session.db[self.name][0]["account"].username
+                    pub.sendMessage("core.change_buffer_title", name=self.session.get_name(), buffer=self.name, title=_("Timeline for {}").format(self.username))
                 self.finished_timeline = True
             self.put_items_on_list(number_of_items)
             if number_of_items > 0 and  self.name != "sent_posts" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:

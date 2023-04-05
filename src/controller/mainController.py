@@ -105,6 +105,7 @@ class Controller(object):
         pub.subscribe(self.toggle_share_settings, "toggleShare")
         pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
         pub.subscribe(self.create_account_buffer, "core.create_account")
+        pub.subscribe(self.change_buffer_title, "core.change_buffer_title")
 
         # Mastodon specific events.
         pub.subscribe(self.mastodon_new_item, "mastodon.new_item")
@@ -1074,6 +1075,11 @@ class Controller(object):
         home = self.search_buffer("home_timeline", name)
         if home != None:
             wx.CallAfter(home.post_from_error, visibility=visibility, reply_to=reply_to, data=posts)
+
+    def change_buffer_title(self, name, buffer, title):
+        buffer_index = self.view.search(buffer, name)
+        if buffer_index != None and buffer_index > -1:
+            self.view.set_page_title(buffer_index, title)
 
     def report_error(self, *args, **kwargs):
         """Redirects the user to the issue page on github"""
