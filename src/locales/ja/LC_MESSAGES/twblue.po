@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-04-02 00:55+0000\n"
+"POT-Creation-Date: 2023-04-09 00:55+0000\n"
 "PO-Revision-Date: 2023-01-31 23:40+0000\n"
 "Last-Translator: Riku <riku@riku22.net>\n"
 "Language: ja\n"
@@ -97,18 +97,18 @@ msgstr "日本語"
 msgid "User default"
 msgstr "ユーザーのデフォルト"
 
-#: main.py:109
+#: main.py:107
 msgid "https://twblue.es/donate"
 msgstr "https://twblue.es/donate"
 
-#: main.py:122
+#: main.py:120
 msgid ""
 "{0} is already running. Close the other instance before starting this "
 "one. If you're sure that {0} isn't running, try deleting the file at {1}."
 " If you're unsure of how to do this, contact the {0} developers."
 msgstr "{0}は、すでに実行されています。このインスタンスを開始する前に、他のインスタンスを閉じてください。{0}が実行されていないことが確実な場合は、{1}でファイルを削除してみてください。これを行う方法がわからない場合は、{0}開発者に連絡してください。"
 
-#: extra/AudioUploader/audioUploader.py:136 sound.py:148
+#: sound.py:148
 msgid "Playing..."
 msgstr "再生中…"
 
@@ -116,127 +116,117 @@ msgstr "再生中…"
 msgid "Stopped."
 msgstr "停止。"
 
-#: controller/mainController.py:286
+#: controller/mainController.py:255
 msgid "Ready"
 msgstr "準備完了"
 
-#: controller/mainController.py:396 controller/mainController.py:412
-#: controller/mainController.py:737 controller/mainController.py:756
-#: controller/mainController.py:775 controller/mainController.py:794
+#: controller/mainController.py:363 controller/mainController.py:644
+#: controller/mainController.py:663 controller/mainController.py:682
+#: controller/mainController.py:701
 msgid ""
 "No session is currently in focus. Focus a session with the next or "
 "previous session shortcut."
 msgstr "セッションが選択されていません。「次のセッション」または「前のセッション」のショートカットを利用して、セッションを選択してください。"
 
-#: controller/mainController.py:400
+#: controller/mainController.py:367
 msgid "Empty buffer."
 msgstr "からのバッファ。"
 
-#: controller/mainController.py:407
+#: controller/mainController.py:374
 msgid "{0} not found."
 msgstr "{0}が見つかりませんでした。"
 
-#: controller/mainController.py:785 controller/mainController.py:804
+#: controller/mainController.py:692 controller/mainController.py:711
 #, python-format
 msgid "%s, %s of %s"
 msgstr "%s %s/%s"
 
-#: controller/mainController.py:787 controller/mainController.py:806
-#: controller/mainController.py:834 controller/mainController.py:862
+#: controller/mainController.py:694 controller/mainController.py:713
+#: controller/mainController.py:741 controller/mainController.py:769
 #, python-format
 msgid "%s. Empty"
 msgstr "%sは、からです"
 
-#: controller/mainController.py:822 controller/mainController.py:826
-#: controller/mainController.py:850
+#: controller/mainController.py:729 controller/mainController.py:733
+#: controller/mainController.py:757
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: このアカウントは、まだTwitterにログインしていません。"
 
-#: controller/mainController.py:832 controller/mainController.py:860
+#: controller/mainController.py:739 controller/mainController.py:767
 #, python-format
 msgid "%s. %s, %s of %s"
 msgstr "セッション:%s %s %s/%s"
 
-#: controller/mainController.py:854
+#: controller/mainController.py:761
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: このアカウントは、まだTwitterにログインしていません。"
 
-#: controller/mainController.py:1061 controller/mainController.py:1077
+#: controller/mainController.py:893 controller/mainController.py:909
 msgid "An error happened while trying to connect to the server. Please try later."
 msgstr "サーバーへの接続中に、予期しないエラーが発生しました。あとで再試行してください。"
 
-#: controller/mainController.py:1119
+#: controller/mainController.py:940
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "自動読み上げ 有効"
 
-#: controller/mainController.py:1122
+#: controller/mainController.py:943
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "自動読み上げ 無効"
 
-#: controller/mainController.py:1129
+#: controller/mainController.py:950
 msgid "Session mute on"
 msgstr "このセッションのミュートを設定"
 
-#: controller/mainController.py:1132
+#: controller/mainController.py:953
 msgid "Session mute off"
 msgstr "このセッションのミュートを解除"
 
-#: controller/mainController.py:1141
+#: controller/mainController.py:962
 msgid "Buffer mute on"
 msgstr "このバッファのミュートを設定"
 
-#: controller/mainController.py:1144
+#: controller/mainController.py:965
 msgid "Buffer mute off"
 msgstr "このバッファのミュートを解除"
 
-#: controller/mainController.py:1161
+#: controller/mainController.py:982
 msgid "Copied"
 msgstr "コピーしました"
 
-#: controller/mainController.py:1191
+#: controller/mainController.py:1002
 msgid "Unable to update this buffer."
 msgstr "このバッファを更新できません。"
 
-#: controller/mainController.py:1193
+#: controller/mainController.py:1004
 msgid "Updating buffer..."
 msgstr "バッファを更新中…"
 
-#: controller/mainController.py:1196
+#: controller/mainController.py:1007
 msgid "{0} items retrieved"
 msgstr "{0}個のアイテムを取得しました"
 
-#: controller/mainController.py:1200 controller/mastodon/handler.py:93
-#: controller/mastodon/handler.py:194 controller/twitter/handler.py:87
-#: controller/twitter/handler.py:273
+#: controller/buffers/mastodon/base.py:122 controller/mainController.py:1011
+#: controller/mastodon/handler.py:91 controller/mastodon/handler.py:192
 msgid "Timeline for {}"
 msgstr "{} のタイムライン"
 
-#: controller/mainController.py:1202 controller/twitter/handler.py:91
-#: controller/twitter/handler.py:284
-msgid "Likes for {}"
-msgstr "{}のいいね一覧"
-
-#: controller/mainController.py:1204 controller/mastodon/handler.py:95
-#: controller/mastodon/handler.py:205 controller/twitter/handler.py:95
-#: controller/twitter/handler.py:295
+#: controller/buffers/mastodon/users.py:93 controller/mainController.py:1013
+#: controller/mastodon/handler.py:93 controller/mastodon/handler.py:203
 msgid "Followers for {}"
 msgstr "{}をフォローしているユーザー"
 
-#: controller/mainController.py:1206 controller/twitter/handler.py:99
-#: controller/twitter/handler.py:306
+#: controller/mainController.py:1015
 msgid "Friends for {}"
 msgstr "{}がフォローしているユーザー"
 
-#: controller/mainController.py:1208 controller/mastodon/handler.py:97
-#: controller/mastodon/handler.py:216
+#: controller/buffers/mastodon/users.py:95 controller/mainController.py:1017
+#: controller/mastodon/handler.py:95 controller/mastodon/handler.py:214
 msgid "Following for {}"
 msgstr "{}をフォローしているユーザー"
 
-#: controller/mainController.py:1210 controller/twitter/handler.py:109
-#: controller/twitter/handler.py:328
-#, python-format
-msgid "Trending topics for %s"
-msgstr "%s のトレンド"
+#: controller/messages.py:20
+msgid "Translated"
+msgstr "翻訳完了"
 
 #: controller/settings.py:66
 msgid "System default"
@@ -266,219 +256,217 @@ msgstr "DNSをサポートする SOCKS v5"
 msgid "Edit alias for {}"
 msgstr "{}のエイリアスを編集"
 
-#: controller/userSelector.py:10
-msgid "Select user"
-msgstr "ユーザーを選択"
-
 #: controller/buffers/base/base.py:91
 #: controller/buffers/mastodon/conversations.py:231
 msgid "This action is not supported for this buffer"
 msgstr "この動作は、現在のバッファではサポートされていません"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:65 controller/mastodon/settings.py:193
-#: controller/twitter/handler.py:65 controller/twitter/settings.py:220
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:63
+#: controller/mastodon/settings.py:193
 msgid "Home"
 msgstr "ホーム"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:67
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:65
 #: controller/mastodon/settings.py:194
 msgid "Local"
 msgstr "ローカル"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:69
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:67
 #: controller/mastodon/settings.py:195
 msgid "Federated"
 msgstr "連合"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:71 controller/mastodon/settings.py:196
-#: controller/twitter/handler.py:67 controller/twitter/settings.py:221
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:69
+#: controller/mastodon/settings.py:196
 msgid "Mentions"
 msgstr "メンション"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:79
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:77
 #: controller/mastodon/settings.py:200
 msgid "Bookmarks"
 msgstr "ブックマーク"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:73 controller/twitter/handler.py:69
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:71
 msgid "Direct messages"
 msgstr "ダイレクトメッセージ"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:75
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:73
 #: controller/mastodon/settings.py:198
 msgid "Sent"
 msgstr "送信済み"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:77
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:75
 #: controller/mastodon/settings.py:199
 msgid "Favorites"
 msgstr "お気に入り"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:81 controller/mastodon/settings.py:201
-#: controller/twitter/handler.py:77 controller/twitter/settings.py:226
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:79
+#: controller/mastodon/settings.py:201
 msgid "Followers"
 msgstr "フォロワー"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:83
-#: controller/mastodon/settings.py:202 controller/twitter/handler.py:79
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:81
+#: controller/mastodon/settings.py:202
 msgid "Following"
 msgstr "フォロー中"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:87 controller/mastodon/settings.py:203
-#: controller/twitter/handler.py:81 controller/twitter/settings.py:228
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:85
+#: controller/mastodon/settings.py:203
 msgid "Blocked users"
 msgstr "ブロックしたユーザー"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:85 controller/mastodon/settings.py:204
-#: controller/twitter/handler.py:83 controller/twitter/settings.py:229
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:83
+#: controller/mastodon/settings.py:204
 msgid "Muted users"
 msgstr "ミューとしたユーザー"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:89
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:87
 #: controller/mastodon/settings.py:205
 msgid "Notifications"
 msgstr "通知"
 
-#: controller/buffers/mastodon/base.py:57 controller/buffers/twitter/base.py:71
+#: controller/buffers/mastodon/base.py:58
 msgid "{username}'s timeline"
 msgstr "{username} のタイムライン"
 
-#: controller/buffers/mastodon/base.py:59 controller/buffers/twitter/base.py:75
+#: controller/buffers/mastodon/base.py:60
 msgid "{username}'s followers"
 msgstr "{username} のフォロワー"
 
-#: controller/buffers/mastodon/base.py:61
+#: controller/buffers/mastodon/base.py:62
 msgid "{username}'s following"
 msgstr "{username} をフォローしているユーザー"
 
-#: controller/buffers/mastodon/base.py:63 controller/buffers/twitter/base.py:79
+#: controller/buffers/mastodon/base.py:64
 msgid "Unknown buffer"
 msgstr "不明なバッファ"
 
-#: controller/buffers/mastodon/base.py:66
-#: controller/buffers/mastodon/base.py:570 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:67
+#: controller/buffers/mastodon/base.py:606 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:4
-#: wxUI/dialogs/mastodon/postDialogs.py:174
+#: wxUI/dialogs/mastodon/postDialogs.py:174 wxUI/sysTrayIcon.py:35
 msgid "Post"
 msgstr "投稿"
 
-#: controller/buffers/mastodon/base.py:67
-#: controller/buffers/mastodon/base.py:571
+#: controller/buffers/mastodon/base.py:68
+#: controller/buffers/mastodon/base.py:607
 msgid "Write your post here"
 msgstr "投稿を入力"
 
-#: controller/buffers/mastodon/base.py:136
+#: controller/buffers/mastodon/base.py:138
 msgid "New post in {0}"
 msgstr "{0} への投稿"
 
-#: controller/buffers/mastodon/base.py:142
+#: controller/buffers/mastodon/base.py:144
 msgid "{0} new posts in {1}."
 msgstr "{1}の{0}個の新規投稿。"
 
-#: controller/buffers/mastodon/base.py:178
+#: controller/buffers/mastodon/base.py:180
 #: controller/buffers/mastodon/conversations.py:99
 #: controller/buffers/mastodon/mentions.py:79
-#: controller/buffers/mastodon/users.py:133
-#: controller/buffers/twitter/base.py:231
-#: controller/buffers/twitter/directMessages.py:87
-#: controller/buffers/twitter/people.py:171
+#: controller/buffers/mastodon/users.py:139
 #, python-format
 msgid "%s items retrieved"
 msgstr "%s個のアイテムを取得しました"
 
-#: controller/buffers/mastodon/base.py:196
-#: controller/buffers/mastodon/users.py:200
-#: controller/buffers/twitter/base.py:263
-#: controller/buffers/twitter/people.py:74
+#: controller/buffers/mastodon/base.py:198
+#: controller/buffers/mastodon/users.py:206
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "このバッファは、タイムラインではないため、削除できません。"
 
-#: controller/buffers/mastodon/base.py:321
-#: controller/buffers/mastodon/base.py:355
+#: controller/buffers/mastodon/base.py:323
+#: controller/buffers/mastodon/base.py:357
 msgid "Conversation with {}"
 msgstr "{0}との会話"
 
-#: controller/buffers/mastodon/base.py:322
-#: controller/buffers/mastodon/base.py:356
+#: controller/buffers/mastodon/base.py:324
+#: controller/buffers/mastodon/base.py:358
 #: controller/buffers/mastodon/conversations.py:175
-#: controller/buffers/mastodon/users.py:51
+#: controller/buffers/mastodon/users.py:52
 msgid "Write your message here"
 msgstr "メッセージを入力"
 
-#: controller/buffers/mastodon/base.py:324
+#: controller/buffers/mastodon/base.py:326
 msgid "Reply to {}"
 msgstr "{} への返信:"
 
-#: controller/buffers/mastodon/base.py:325
+#: controller/buffers/mastodon/base.py:327
 msgid "Write your reply here"
 msgstr "返信を入力"
 
-#: controller/buffers/mastodon/base.py:381
+#: controller/buffers/mastodon/base.py:383
 #, fuzzy
 msgid "This action is not supported on conversations."
 msgstr "このアクションは、会話の投稿ではサポートされていません。"
 
-#: controller/buffers/mastodon/base.py:446
-#: controller/buffers/twitter/base.py:524
+#: controller/buffers/mastodon/base.py:448
 msgid "Opening URL..."
 msgstr "URLを開いています…"
 
-#: controller/buffers/mastodon/base.py:459
+#: controller/buffers/mastodon/base.py:461
 msgid "You can delete only your own posts."
 msgstr "自分の投稿のみを削除できます。"
 
-#: controller/buffers/mastodon/base.py:485
-#: controller/buffers/twitter/base.py:582
+#: controller/buffers/mastodon/base.py:487
 msgid "Opening item in web browser..."
 msgstr "ブラウザでアイテムを開いています…"
 
-#: controller/buffers/mastodon/base.py:492
-#: controller/buffers/mastodon/base.py:510
+#: controller/buffers/mastodon/base.py:494
+#: controller/buffers/mastodon/base.py:512
 msgid "Adding to favorites..."
 msgstr "お気に入りに追加中..."
 
-#: controller/buffers/mastodon/base.py:498
-#: controller/buffers/mastodon/base.py:512
+#: controller/buffers/mastodon/base.py:500
+#: controller/buffers/mastodon/base.py:514
 msgid "Removing from favorites..."
 msgstr "お気に入りから削除中..."
 
-#: controller/buffers/mastodon/base.py:507
-#: controller/buffers/mastodon/base.py:521
-#: controller/buffers/mastodon/base.py:534
+#: controller/buffers/mastodon/base.py:509
+#: controller/buffers/mastodon/base.py:523
+#: controller/buffers/mastodon/base.py:536
 #: controller/buffers/mastodon/conversations.py:207
-#: sessions/twitter/utils.py:245
 msgid "No status found with that ID"
 msgstr "そのIDのステータスが見つかりませんでした"
 
-#: controller/buffers/mastodon/base.py:524
+#: controller/buffers/mastodon/base.py:526
 msgid "Adding to bookmarks..."
 msgstr "ブックマークに追加中..."
 
-#: controller/buffers/mastodon/base.py:526
+#: controller/buffers/mastodon/base.py:528
 msgid "Removing from bookmarks..."
 msgstr "ブックマークから削除中..."
 
-#: controller/buffers/mastodon/base.py:552
+#: controller/buffers/mastodon/base.py:550
+msgid "Picture {0}"
+msgstr "画像{0}"
+
+#: controller/buffers/mastodon/base.py:551
+msgid "Select the picture"
+msgstr "画像を選択"
+
+#: controller/buffers/mastodon/base.py:574
+msgid "Unable to extract text"
+msgstr "テキストを抽出できません"
+
+#: controller/buffers/mastodon/base.py:576
+msgid "OCR Result"
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:588
 msgid "this poll no longer exists."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:555
+#: controller/buffers/mastodon/base.py:591
 msgid "This poll has already expired."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:558
+#: controller/buffers/mastodon/base.py:594
 msgid "You have already voted on this poll."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:567
+#: controller/buffers/mastodon/base.py:603
 #, fuzzy
 msgid "Sending vote..."
 msgstr "お気に入りに追加中..."
@@ -491,187 +479,40 @@ msgstr "{} との会話に返信"
 msgid "Notification dismissed."
 msgstr "通知を却下しました。"
 
-#: controller/buffers/mastodon/users.py:50
+#: controller/buffers/mastodon/users.py:51
 msgid "New conversation with {}"
 msgstr "{} との新しい会話{0}との会話"
 
-#: controller/buffers/mastodon/users.py:104
+#: controller/buffers/mastodon/users.py:110
 msgid "There are no more items in this buffer."
 msgstr "このバッファにはこれ以上アイテムがありません。"
 
-#: controller/buffers/twitter/base.py:65 controller/twitter/handler.py:71
-#: controller/twitter/settings.py:223
-msgid "Sent direct messages"
-msgstr "送信済みのダイレクトメッセージ"
-
-#: controller/buffers/twitter/base.py:65 controller/twitter/handler.py:73
-#: controller/twitter/settings.py:224
-msgid "Sent tweets"
-msgstr "送信済みのツイート"
-
-#: controller/buffers/twitter/base.py:65 controller/twitter/handler.py:75
-#: controller/twitter/settings.py:225
-msgid "Likes"
-msgstr "いいね"
-
-#: controller/buffers/twitter/base.py:65 controller/twitter/settings.py:227
-msgid "Friends"
-msgstr "フォロー"
-
-#: controller/buffers/twitter/base.py:73
-msgid "{username}'s likes"
-msgstr "{username} のいいね一覧"
-
-#: controller/buffers/twitter/base.py:77
-msgid "{username}'s friends"
-msgstr "{username} のフォロー"
-
-#: controller/buffers/twitter/base.py:82
-#: controller/buffers/twitter/trends.py:37
-#: controller/buffers/twitter/trends.py:128 controller/twitter/messages.py:298
-#: wxUI/buffers/twitter/base.py:25 wxUI/buffers/twitter/events.py:15
-#: wxUI/buffers/twitter/trends.py:18
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:309 wxUI/sysTrayIcon.py:35
-msgid "Tweet"
-msgstr "ツイート"
-
-#: controller/buffers/twitter/base.py:83
-#: controller/buffers/twitter/trends.py:38
-#: controller/buffers/twitter/trends.py:129
-msgid "Write the tweet here"
-msgstr "ツイートを入力"
-
-#: controller/buffers/twitter/base.py:189
-msgid "New tweet in {0}"
-msgstr "{0} への新規ツイート"
-
-#: controller/buffers/twitter/base.py:192
-msgid "{0} new tweets in {1}."
-msgstr "{1} への {0}個の新規ツイート。"
-
-#: controller/buffers/twitter/base.py:401
-msgid "Reply to {arg0}"
-msgstr "{arg0} への返信:"
-
-#: controller/buffers/twitter/base.py:403
-#: keystrokeEditor/actions/mastodon.py:11 keystrokeEditor/actions/twitter.py:11
-#: wxUI/buffers/mastodon/base.py:26
-#: wxUI/buffers/mastodon/conversationList.py:25 wxUI/buffers/twitter/base.py:27
-msgid "Reply"
-msgstr "返信"
-
-#: controller/buffers/twitter/base.py:404
-#, python-format
-msgid "Reply to %s"
-msgstr "「%s」への返信"
-
-#: controller/buffers/twitter/base.py:427 controller/twitter/messages.py:270
-#, python-format
-msgid "Direct message to %s"
-msgstr "「%s」へのダイレクトメッセージ"
-
-#: controller/buffers/twitter/base.py:427
-#: controller/buffers/twitter/directMessages.py:116
-msgid "New direct message"
-msgstr "新しいダイレクトメッセージ"
-
-#: controller/buffers/twitter/base.py:443
-msgid "This action is not supported on protected accounts."
-msgstr "この動作は、保護されたアカウントではサポートされていません。"
-
-#: controller/buffers/twitter/base.py:460
-msgid "Quote"
-msgstr "引用"
-
-#: controller/buffers/twitter/base.py:460
-msgid "Add your comment to the tweet"
-msgstr "ツイートにコメントを追加"
-
-#: controller/buffers/twitter/base.py:561
-msgid "User details"
-msgstr "ユーザーの詳細"
-
-#: controller/buffers/twitter/base.py:606
-#: controller/buffers/twitter/directMessages.py:163
-#: controller/twitter/messages.py:329
-msgid "MMM D, YYYY. H:m"
-msgstr "YYYY年MMMMD日 H時m分"
-
-#: controller/buffers/twitter/base.py:621
-msgid "There are no coordinates in this tweet"
-msgstr "このツイートに位置情報は存在しません"
-
-#: controller/buffers/twitter/base.py:625
-msgid "Error decoding coordinates. Try again later."
-msgstr "位置情報の取得に失敗しました。あとで再試行してください。"
-
-#: controller/buffers/twitter/base.py:641
-msgid "Picture {0}"
-msgstr "画像{0}"
-
-#: controller/buffers/twitter/base.py:642
-msgid "Select the picture"
-msgstr "画像を選択"
-
-#: controller/buffers/twitter/base.py:650
-msgid "Invalid buffer"
-msgstr "無効なバッファ"
-
-#: controller/buffers/twitter/base.py:661
-msgid "Unable to extract text"
-msgstr "テキストを抽出できません"
-
-#: controller/buffers/twitter/directMessages.py:119
-msgid "{0} new direct messages."
-msgstr "{0}件の新しいダイレクトメッセージ。"
-
-#: controller/buffers/twitter/directMessages.py:122
-msgid "This action is not supported in the buffer yet."
-msgstr "この動作は、現在のバッファではサポートされていません。"
-
-#: controller/buffers/twitter/directMessages.py:138
-msgid ""
-"Getting more items cannot be done in this buffer. Use the direct messages"
-" buffer instead."
-msgstr "このバッファでは、さらにアイテムを取得することはできません。代わりにダイレクトメッセージバッファを使用してください。"
-
-#: controller/buffers/twitter/people.py:92 wxUI/buffers/twitter/people.py:17
-msgid "Mention"
-msgstr "メンション"
-
-#: controller/buffers/twitter/people.py:92
-#, python-format
-msgid "Mention to %s"
-msgstr "%sへのメンション"
-
-#: controller/buffers/twitter/people.py:244
-msgid "{0} new followers."
-msgstr "{0}人の新しいフォロワー。"
-
-#: controller/buffers/twitter/trends.py:144
-msgid "This action is not supported in the buffer, yet."
-msgstr "この動作は、現在のバッファではサポートされていません。"
-
-#: controller/mastodon/handler.py:24 controller/twitter/handler.py:24
-#: wxUI/dialogs/mastodon/search.py:10 wxUI/dialogs/search.py:13 wxUI/view.py:19
+#: controller/mastodon/handler.py:24 wxUI/dialogs/mastodon/search.py:10
+#: wxUI/view.py:20
 msgid "&Search"
 msgstr "検索(&S)"
 
-#: controller/mastodon/handler.py:28 controller/mastodon/handler.py:54
+#: controller/mastodon/handler.py:26 wxUI/view.py:23
+msgid "Manage user aliases"
+msgstr "ユーザーエイリアスの管理"
+
+#: controller/mastodon/handler.py:28 controller/mastodon/handler.py:52
+#: wxUI/view.py:31
 msgid "&Post"
 msgstr "投稿(&P)"
 
-#: controller/mastodon/handler.py:29 controller/twitter/handler.py:29
-#: wxUI/dialogs/mastodon/menus.py:9 wxUI/menus.py:10 wxUI/menus.py:34
-#: wxUI/view.py:30
+#: controller/mastodon/handler.py:29 wxUI/dialogs/mastodon/menus.py:9
+#: wxUI/view.py:32
 msgid "Re&ply"
 msgstr "リプライ(&P)"
 
 #: controller/mastodon/handler.py:30 wxUI/dialogs/mastodon/menus.py:7
+#: wxUI/view.py:33
 msgid "&Boost"
 msgstr "ブースト(&B)"
 
 #: controller/mastodon/handler.py:31 wxUI/dialogs/mastodon/menus.py:11
+#: wxUI/view.py:34
 msgid "&Add to favorites"
 msgstr "お気に入りへ追加(&A)"
 
@@ -679,94 +520,104 @@ msgstr "お気に入りへ追加(&A)"
 msgid "Remove from favorites"
 msgstr "お気に入りから削除リストから削除"
 
-#: controller/mastodon/handler.py:33
+#: controller/mastodon/handler.py:33 wxUI/view.py:36
 msgid "&Show post"
 msgstr "投稿を表示(&S)"
 
-#: controller/mastodon/handler.py:35 controller/twitter/handler.py:35
-#: wxUI/view.py:36
+#: controller/mastodon/handler.py:34 wxUI/view.py:37
 msgid "View conversa&tion"
 msgstr "会話を見る(&T)"
 
-#: controller/mastodon/handler.py:37 controller/twitter/handler.py:37
-#: wxUI/dialogs/mastodon/menus.py:25 wxUI/menus.py:26 wxUI/menus.py:44
-#: wxUI/menus.py:62 wxUI/menus.py:72 wxUI/view.py:38
+#: controller/mastodon/handler.py:35 wxUI/view.py:38
+msgid "Read text in picture"
+msgstr "画像からテキストを読み取り"
+
+#: controller/mastodon/handler.py:36 wxUI/dialogs/mastodon/menus.py:25
+#: wxUI/view.py:40
 msgid "&Delete"
 msgstr "削除(&D)"
 
-#: controller/mastodon/handler.py:39 controller/twitter/handler.py:39
-#: wxUI/view.py:42
+#: controller/mastodon/handler.py:38 wxUI/view.py:44
 msgid "&Actions..."
 msgstr "操作(&A)"
 
-#: controller/mastodon/handler.py:40 controller/twitter/handler.py:40
-#: wxUI/view.py:43
+#: controller/mastodon/handler.py:39 wxUI/view.py:45
 msgid "&View timeline..."
 msgstr "タイムラインを表示(&V)"
 
-#: controller/mastodon/handler.py:41 controller/twitter/handler.py:41
-#: wxUI/view.py:44
+#: controller/mastodon/handler.py:40 wxUI/view.py:46
 msgid "Direct me&ssage"
 msgstr "ダイレクトメッセージ(&S)"
 
-#: controller/mastodon/handler.py:90 controller/twitter/handler.py:84
+#: controller/mastodon/handler.py:41 wxUI/view.py:47
+msgid "Add a&lias"
+msgstr "エイリアスを追加(&A)"
+
+#: controller/mastodon/handler.py:88
 msgid "Timelines"
 msgstr "タイムライン"
 
-#: controller/mastodon/handler.py:102 controller/twitter/handler.py:104
+#: controller/mastodon/handler.py:100
 msgid "Searches"
 msgstr "検索"
 
-#: controller/mastodon/handler.py:126 controller/twitter/handler.py:319
+#: controller/mastodon/handler.py:124
 msgid "Conversation with {0}"
 msgstr "{0}との会話"
 
-#: controller/mastodon/handler.py:160 controller/twitter/handler.py:107
-#: controller/twitter/handler.py:371 controller/twitter/handler.py:376
+#: controller/mastodon/handler.py:158
 msgid "Search for {}"
 msgstr "{} の検索結果"
 
-#: controller/mastodon/messages.py:88 controller/twitter/messages.py:57
+#: controller/mastodon/handler.py:244
+msgid "Add an user alias"
+msgstr "ユーザーエイリアスを追加"
+
+#: controller/mastodon/handler.py:256
+msgid "Alias has been set correctly for {}."
+msgstr "{}のエイリアスが正しく設定されています。"
+
+#: controller/mastodon/messages.py:90
 #, python-format
 msgid "%s - %s of %d characters"
 msgstr "%s - %s/%d"
 
-#: controller/mastodon/messages.py:212
+#: controller/mastodon/messages.py:214
 msgid "Poll with {} options"
 msgstr "{}つの項目の投票"
 
-#: controller/mastodon/messages.py:236
+#: controller/mastodon/messages.py:238
 msgid "Post from {}"
 msgstr "{} からの投稿"
 
-#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
-#: wxUI/dialogs/lists.py:76 wxUI/dialogs/mastodon/postDialogs.py:48
+#: controller/mastodon/messages.py:242 sessions/mastodon/templates.py:78
+#: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Public"
 msgstr "公開"
 
-#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:242 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Not listed"
 msgstr "誰でも閲覧可"
 
-#: controller/mastodon/messages.py:240
+#: controller/mastodon/messages.py:242
 msgid "followers only"
 msgstr "フォロワーのみ"
 
-#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:242 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Direct"
 msgstr "指定された相手のみ"
 
-#: controller/mastodon/messages.py:247
+#: controller/mastodon/messages.py:249
 msgid "Remote instance"
 msgstr "リモートインスタンス"
 
-#: controller/mastodon/messages.py:270 controller/twitter/messages.py:382
+#: controller/mastodon/messages.py:272
 msgid "Link copied to clipboard."
 msgstr "リンクをクリップボードへコピーしました。"
 
-#: controller/mastodon/settings.py:81 controller/twitter/settings.py:85
+#: controller/mastodon/settings.py:81
 #, python-format
 msgid "Account settings for %s"
 msgstr "%sのアカウント設定"
@@ -780,415 +631,14 @@ msgstr "投稿のテンプレートを編集します。現在のテンプレー
 msgid "Edit template for conversations. Current template: {}"
 msgstr "会話のテンプレートを編集します。現在のテンプレート: {}"
 
-#: controller/mastodon/settings.py:109 controller/twitter/settings.py:122
-#: wxUI/dialogs/configuration.py:253 wxUI/dialogs/mastodon/configuration.py:59
+#: controller/mastodon/settings.py:109
+#: wxUI/dialogs/mastodon/configuration.py:59
 msgid "Edit template for persons. Current template: {}"
 msgstr "人のテンプレートを編集します。現在のテンプレート: {}"
 
-#: controller/mastodon/settings.py:197 controller/twitter/settings.py:222
+#: controller/mastodon/settings.py:197
 msgid "Direct Messages"
 msgstr "ダイレクトメッセージ"
-
-#: controller/twitter/handler.py:23 wxUI/dialogs/update_profile.py:35
-#: wxUI/view.py:17
-msgid "&Update profile"
-msgstr "プロフィールを更新(&U)"
-
-#: controller/twitter/handler.py:25 wxUI/view.py:20
-msgid "&Lists manager"
-msgstr "リストの管理(&L)"
-
-#: controller/twitter/handler.py:26 wxUI/view.py:21
-msgid "Manage user aliases"
-msgstr "ユーザーエイリアスの管理"
-
-#: controller/twitter/handler.py:28 controller/twitter/handler.py:54
-#: wxUI/view.py:29 wxUI/view.py:84
-msgid "&Tweet"
-msgstr "ツイート(&T)"
-
-#: controller/twitter/handler.py:30 wxUI/menus.py:8 wxUI/view.py:31
-msgid "&Retweet"
-msgstr "リツイート(&R)"
-
-#: controller/twitter/handler.py:31 wxUI/menus.py:12 wxUI/view.py:32
-msgid "&Like"
-msgstr "いいね(&L)"
-
-#: controller/twitter/handler.py:32 wxUI/menus.py:14 wxUI/view.py:33
-msgid "&Unlike"
-msgstr "いいねを解除(&U)"
-
-#: controller/twitter/handler.py:33 wxUI/dialogs/mastodon/menus.py:21
-#: wxUI/menus.py:22 wxUI/menus.py:58 wxUI/view.py:34
-msgid "&Show tweet"
-msgstr "ツイートを表示(&S)"
-
-#: controller/twitter/handler.py:34 wxUI/view.py:35
-msgid "View &address"
-msgstr "位置情報を表示(&A)"
-
-#: controller/twitter/handler.py:36 wxUI/view.py:37
-msgid "Read text in picture"
-msgstr "画像からテキストを読み取り"
-
-#: controller/twitter/handler.py:42 wxUI/view.py:45
-msgid "Add a&lias"
-msgstr "エイリアスを追加(&A)"
-
-#: controller/twitter/handler.py:43 wxUI/view.py:46
-msgid "&Add to list"
-msgstr "リストに追加(&A)"
-
-#: controller/twitter/handler.py:44 wxUI/view.py:47
-msgid "R&emove from list"
-msgstr "リストから削除(&E)"
-
-#: controller/twitter/handler.py:45 wxUI/menus.py:80 wxUI/view.py:48
-msgid "&View lists"
-msgstr "リストを見る(&V)"
-
-#: controller/twitter/handler.py:46 wxUI/menus.py:83 wxUI/view.py:49
-msgid "Show user &profile"
-msgstr "ユーザーのプロフィールを表示(&P)"
-
-#: controller/twitter/handler.py:47
-msgid "View likes"
-msgstr "いいね一覧を見る"
-
-#: controller/twitter/handler.py:49 wxUI/view.py:55
-msgid "New &trending topics buffer..."
-msgstr "新しいトレンドのバッファ(&T)"
-
-#: controller/twitter/handler.py:50 wxUI/view.py:56
-msgid "Create a &filter"
-msgstr "新しいフィルターを作成(&F)"
-
-#: controller/twitter/handler.py:51 wxUI/view.py:57
-msgid "&Manage filters"
-msgstr "フィルターの管理(&M)"
-
-#: controller/twitter/handler.py:88
-msgid "Likes timelines"
-msgstr "ほかのユーザーのいいね一覧"
-
-#: controller/twitter/handler.py:92
-msgid "Followers timelines"
-msgstr "フォロワー一覧"
-
-#: controller/twitter/handler.py:96
-msgid "Following timelines"
-msgstr "フォロー一覧"
-
-#: controller/twitter/handler.py:100 wxUI/dialogs/lists.py:13
-msgid "Lists"
-msgstr "リスト"
-
-#: controller/twitter/handler.py:103 controller/twitter/lists.py:94
-msgid "List for {}"
-msgstr "{}のリスト"
-
-#: controller/twitter/handler.py:114
-msgid "Filters cannot be applied on this buffer"
-msgstr "このバッファにはフィルターを適応できません"
-
-#: controller/twitter/handler.py:230
-msgid "Add an user alias"
-msgstr "ユーザーエイリアスを追加"
-
-#: controller/twitter/handler.py:238
-msgid "Alias has been set correctly for {}."
-msgstr "{}のエイリアスが正しく設定されています。"
-
-#: controller/twitter/messages.py:50
-msgid "Translated"
-msgstr "翻訳完了"
-
-#: controller/twitter/messages.py:356
-msgid "View item"
-msgstr "アイテムを見る"
-
-#: controller/twitter/settings.py:37 controller/twitter/settings.py:151
-#: wxUI/dialogs/configuration.py:121
-msgid "Ask"
-msgstr "その都度、質問する"
-
-#: controller/twitter/settings.py:39 controller/twitter/settings.py:153
-#: wxUI/dialogs/configuration.py:121
-msgid "Retweet without comments"
-msgstr "コメントを付けずにリツイート(公式RT)"
-
-#: controller/twitter/settings.py:41 wxUI/dialogs/configuration.py:121
-msgid "Retweet with comments"
-msgstr "コメントをつけてリツイート(非公式RT)"
-
-#: controller/twitter/settings.py:95 wxUI/dialogs/configuration.py:247
-msgid "Edit template for tweets. Current template: {}"
-msgstr "ツイートのテンプレートを編集します。現在のテンプレート: {}"
-
-#: controller/twitter/settings.py:104 wxUI/dialogs/configuration.py:249
-msgid "Edit template for direct messages. Current template: {}"
-msgstr "ダイレクトメッセージのテンプレートを編集します。現在のテンプレート: {}"
-
-#: controller/twitter/settings.py:113 wxUI/dialogs/configuration.py:251
-msgid "Edit template for sent direct messages. Current template: {}"
-msgstr "送信済みのダイレクトメッセージのテンプレートを編集します。現在のテンプレート: {}"
-
-#: controller/twitter/user.py:29 wxUI/commonMessageDialogs.py:39
-msgid "That user does not exist"
-msgstr "そのユーザーは存在しません"
-
-#: controller/twitter/user.py:29 controller/twitter/user.py:31
-#: extra/SpellChecker/wx_ui.py:79 extra/autocompletionUsers/wx_scan.py:47
-#: wxUI/commonMessageDialogs.py:39 wxUI/commonMessageDialogs.py:51
-#: wxUI/commonMessageDialogs.py:58 wxUI/commonMessageDialogs.py:61
-#: wxUI/commonMessageDialogs.py:64 wxUI/commonMessageDialogs.py:67
-#: wxUI/commonMessageDialogs.py:77 wxUI/commonMessageDialogs.py:80
-#: wxUI/commonMessageDialogs.py:83 wxUI/commonMessageDialogs.py:89
-#: wxUI/commonMessageDialogs.py:92 wxUI/commonMessageDialogs.py:95
-#: wxUI/dialogs/mastodon/dialogs.py:38 wxUI/dialogs/mastodon/dialogs.py:43
-#: wxUI/dialogs/mastodon/dialogs.py:48 wxUI/dialogs/mastodon/dialogs.py:53
-msgid "Error"
-msgstr "エラー"
-
-#: controller/twitter/user.py:31
-msgid "User has been suspended"
-msgstr "ユーザーが凍結されています"
-
-#: controller/twitter/user.py:37
-#, python-format
-msgid "Information for %s"
-msgstr "%s の情報"
-
-#: controller/twitter/user.py:67 extra/AudioUploader/audioUploader.py:127
-msgid "Discarded"
-msgstr "破棄しました"
-
-#: controller/twitter/user.py:95
-#, python-format
-msgid "Username: @%s\n"
-msgstr "ユーザー名: @%s\n"
-
-#: controller/twitter/user.py:96
-#, python-format
-msgid "Name: %s\n"
-msgstr "名前: %s\n"
-
-#: controller/twitter/user.py:98
-#, python-format
-msgid "Location: %s\n"
-msgstr "居住地: %s\n"
-
-#: controller/twitter/user.py:100
-#, python-format
-msgid "URL: %s\n"
-msgstr "URL: %s\n"
-
-#: controller/twitter/user.py:104
-#, python-format
-msgid "Bio: %s\n"
-msgstr "自己紹介: %s\n"
-
-#: controller/twitter/user.py:105 controller/twitter/user.py:120
-msgid "Yes"
-msgstr "はい"
-
-#: controller/twitter/user.py:106 controller/twitter/user.py:121
-msgid "No"
-msgstr "いいえ"
-
-#: controller/twitter/user.py:107
-#, python-format
-msgid "Protected: %s\n"
-msgstr "保護設定: %s\n"
-
-#: controller/twitter/user.py:110
-msgid "Relationship: "
-msgstr "関係: "
-
-#: controller/twitter/user.py:112
-msgid "You follow {0}. "
-msgstr "{0}をフォロー。 "
-
-#: controller/twitter/user.py:115
-msgid "{0} is following you."
-msgstr "{0}がフォロー。"
-
-#: controller/twitter/user.py:119
-#, python-format
-msgid ""
-"Followers: %s\n"
-" Friends: %s\n"
-msgstr ""
-"フォロワー: %s\n"
-"フォロー: %s\n"
-
-#: controller/twitter/user.py:122
-#, python-format
-msgid "Verified: %s\n"
-msgstr "認証済み: %s\n"
-
-#: controller/twitter/user.py:123
-#, python-format
-msgid "Tweets: %s\n"
-msgstr "ツイート数: %s\n"
-
-#: controller/twitter/user.py:124
-#, python-format
-msgid "Likes: %s"
-msgstr "いいね数: %s"
-
-#: controller/twitter/userActions.py:80
-msgid "You can't ignore direct messages"
-msgstr "ダイレクトメッセージを無視することはできません"
-
-#: extra/AudioUploader/audioUploader.py:57
-msgid "Attaching..."
-msgstr "添付中…"
-
-#: extra/AudioUploader/audioUploader.py:74
-msgid "Pause"
-msgstr "一時停止"
-
-#: extra/AudioUploader/audioUploader.py:76
-msgid "&Resume"
-msgstr "再開(&R)"
-
-#: extra/AudioUploader/audioUploader.py:77
-msgid "Resume"
-msgstr "再開"
-
-#: extra/AudioUploader/audioUploader.py:79
-#: extra/AudioUploader/audioUploader.py:106 extra/AudioUploader/wx_ui.py:37
-msgid "&Pause"
-msgstr "一時停止(&P)"
-
-#: extra/AudioUploader/audioUploader.py:94
-#: extra/AudioUploader/audioUploader.py:140
-msgid "&Stop"
-msgstr "停止(&S)"
-
-#: extra/AudioUploader/audioUploader.py:95
-msgid "Recording"
-msgstr "録音中"
-
-#: extra/AudioUploader/audioUploader.py:100
-#: extra/AudioUploader/audioUploader.py:151
-msgid "Stopped"
-msgstr "停止"
-
-#: extra/AudioUploader/audioUploader.py:102 extra/AudioUploader/wx_ui.py:39
-msgid "&Record"
-msgstr "録音(&R)"
-
-#: extra/AudioUploader/audioUploader.py:144
-#: extra/AudioUploader/audioUploader.py:154 extra/AudioUploader/wx_ui.py:35
-msgid "&Play"
-msgstr "再生(&P)"
-
-#: extra/AudioUploader/audioUploader.py:159
-msgid "Recoding audio..."
-msgstr "音声を録音中…"
-
-#: extra/AudioUploader/transfer.py:82 extra/AudioUploader/transfer.py:88
-msgid "Error in file upload: {0}"
-msgstr "ファイルアップロードエラー: {0}"
-
-#: extra/AudioUploader/utils.py:29 update/utils.py:29
-#, python-format
-msgid "%d day, "
-msgstr "%d日 "
-
-#: extra/AudioUploader/utils.py:31 update/utils.py:31
-#, python-format
-msgid "%d days, "
-msgstr "%d日 "
-
-#: extra/AudioUploader/utils.py:33 update/utils.py:33
-#, python-format
-msgid "%d hour, "
-msgstr "%d時間 "
-
-#: extra/AudioUploader/utils.py:35 update/utils.py:35
-#, python-format
-msgid "%d hours, "
-msgstr "%d時間 "
-
-#: extra/AudioUploader/utils.py:37 update/utils.py:37
-#, python-format
-msgid "%d minute, "
-msgstr "%d分 "
-
-#: extra/AudioUploader/utils.py:39 update/utils.py:39
-#, python-format
-msgid "%d minutes, "
-msgstr "%d分 "
-
-#: extra/AudioUploader/utils.py:41 update/utils.py:41
-#, python-format
-msgid "%s second"
-msgstr "%s秒"
-
-#: extra/AudioUploader/utils.py:43 update/utils.py:43
-#, python-format
-msgid "%s seconds"
-msgstr "%s秒"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:15
-#: wxUI/dialogs/mastodon/postDialogs.py:23
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:35
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:171
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:255
-msgid "File"
-msgstr "ファイル"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:21
-msgid "Transferred"
-msgstr "転送済み"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:26
-msgid "Total file size"
-msgstr "合計サイズ"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:31
-msgid "Transfer rate"
-msgstr "転送速度"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:36
-msgid "Time left"
-msgstr "残り時間"
-
-#: extra/AudioUploader/wx_ui.py:29
-msgid "Attach audio"
-msgstr "音声を添付"
-
-#: extra/AudioUploader/wx_ui.py:41
-msgid "&Add an existing file"
-msgstr "既存のファイルを追加(&A)"
-
-#: extra/AudioUploader/wx_ui.py:42
-msgid "&Discard"
-msgstr "拒否(&D)"
-
-#: extra/AudioUploader/wx_ui.py:44
-msgid "Upload to"
-msgstr "アップロード先"
-
-#: extra/AudioUploader/wx_ui.py:49
-msgid "Attach"
-msgstr "添付"
-
-#: extra/AudioUploader/wx_ui.py:51
-msgid "&Cancel"
-msgstr "キャンセル(&C)"
-
-#: extra/AudioUploader/wx_ui.py:76 wxUI/dialogs/mastodon/postDialogs.py:155
-msgid "Select the audio file to be uploaded"
-msgstr "アップロードする音声ファイルを選択"
-
-#: extra/AudioUploader/wx_ui.py:76
-msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
-msgstr "音声ファイル (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 
 #: extra/SoundsTutorial/soundsTutorial_constants.py:4
 msgid "Audio tweet."
@@ -1341,114 +791,16 @@ msgid ""
 "selected language in {0}"
 msgstr "エラーが発生しました。{0}で選択した言語用の辞書がありません"
 
+#: extra/SpellChecker/wx_ui.py:79 wxUI/commonMessageDialogs.py:23
+#: wxUI/commonMessageDialogs.py:36 wxUI/dialogs/mastodon/dialogs.py:38
+#: wxUI/dialogs/mastodon/dialogs.py:43 wxUI/dialogs/mastodon/dialogs.py:48
+#: wxUI/dialogs/mastodon/dialogs.py:53
+msgid "Error"
+msgstr "エラー"
+
 #: extra/SpellChecker/wx_ui.py:82
 msgid "Spell check complete."
 msgstr "スペルチェックが完了しました。"
-
-#: extra/autocompletionUsers/completion.py:39
-#: extra/autocompletionUsers/completion.py:57
-msgid "You have to start writing"
-msgstr "あなたは、書き込みを開始しなければなりません"
-
-#: extra/autocompletionUsers/completion.py:49
-#: extra/autocompletionUsers/completion.py:66
-msgid "There are no results in your users database"
-msgstr "あなたのユーザーのデータベースには、見つかりませんでした"
-
-#: extra/autocompletionUsers/completion.py:51
-msgid "Autocompletion only works for users."
-msgstr "自動補完はユーザーのみで動作します。"
-
-#: extra/autocompletionUsers/scan.py:54
-msgid ""
-"Updating database... You can close this window now. A message will tell "
-"you when the process finishes."
-msgstr "データベースの更新中… なお、このウィンドウを閉じることができます。処理が終了すると、メッセージが表示されます。"
-
-#: extra/autocompletionUsers/wx_manage.py:9
-msgid "Manage Autocompletion database"
-msgstr "自動補完のデータベースを管理"
-
-#: extra/autocompletionUsers/wx_manage.py:12
-msgid "Editing {0} users database"
-msgstr "{0}のユーザーデータベースを編集中"
-
-#: extra/autocompletionUsers/wx_manage.py:13
-msgid "Username"
-msgstr "ユーザー名"
-
-#: extra/autocompletionUsers/wx_manage.py:13 wxUI/dialogs/configuration.py:151
-msgid "Name"
-msgstr "名前"
-
-#: extra/autocompletionUsers/wx_manage.py:16
-msgid "Add user"
-msgstr "ユーザーを追加"
-
-#: extra/autocompletionUsers/wx_manage.py:17
-msgid "Remove user"
-msgstr "ユーザーを削除"
-
-#: extra/autocompletionUsers/wx_manage.py:38
-msgid "Twitter username"
-msgstr "Twitterのユーザー名"
-
-#: extra/autocompletionUsers/wx_manage.py:38
-msgid "Add user to database"
-msgstr "データベースにユーザーを追加"
-
-#: extra/autocompletionUsers/wx_manage.py:44
-msgid "The user does not exist"
-msgstr "そのユーザーは存在しません"
-
-#: extra/autocompletionUsers/wx_manage.py:44 wxUI/commonMessageDialogs.py:45
-msgid "Error!"
-msgstr "エラー！"
-
-#: extra/autocompletionUsers/wx_scan.py:8
-msgid "Autocomplete users' settings"
-msgstr "自動補完のユーザーの設定"
-
-#: extra/autocompletionUsers/wx_scan.py:11
-msgid "Add followers to database"
-msgstr "フォロワーをデータベースに追加"
-
-#: extra/autocompletionUsers/wx_scan.py:12
-msgid "Add  friends to database"
-msgstr "データベースにフォロー中のユーザーを追加"
-
-#: extra/autocompletionUsers/wx_scan.py:26
-msgid "Updating autocompletion database"
-msgstr "自動補完のデータベースを更新中"
-
-#: extra/autocompletionUsers/wx_scan.py:37
-msgid ""
-"This process will retrieve the users you selected from Twitter, and add "
-"them to the user autocomplete database. Please note that if there are "
-"many users or you have tried to perform this action less than 15 minutes "
-"ago, TWBlue may reach a limit in Twitter API calls when trying to load "
-"the users into the database. If this happens, we will show you an error, "
-"in which case you will have to try this process again in a few minutes. "
-"If this process ends with no error, you will be redirected back to the "
-"account settings dialog. Do you want to continue?"
-msgstr "このプロセスにより、選択したユーザーがTwitterから取得され、ユーザーの自動補完のデータベースに追加されます。多くのユーザーがいる場合、またはこのアクションを実行しようとしてから15分以内にユーザーをデータベースにロードしようとしたときに、TWBlueがTwitterAPI呼び出しの制限に達する可能性があることに注意してください。これが発生した場合、エラーが表示されます。その場合、数分後にこのプロセスを再試行する必要があります。このプロセスがエラーなしで終了すると、アカウント設定ダイアログにリダイレクトされます。続行してもよろしいですか？"
-
-#: extra/autocompletionUsers/wx_scan.py:37 wxUI/commonMessageDialogs.py:36
-#: wxUI/commonMessageDialogs.py:86
-msgid "Attention"
-msgstr "確認"
-
-#: extra/autocompletionUsers/wx_scan.py:43
-msgid "TWBlue has imported {} users successfully."
-msgstr "TWBlueは{}ユーザーを正常にインポートしました。"
-
-#: extra/autocompletionUsers/wx_scan.py:43
-msgid "Done"
-msgstr "完了"
-
-#: extra/autocompletionUsers/wx_scan.py:47
-msgid "Error adding users from Twitter. Please try again in about 15 minutes."
-msgstr "Twitterからユーザーを追加するときにエラーが発生しました。約15分後にもう1度お試しください。"
 
 #: extra/ocr/OCRSpace.py:7
 msgid "Detect automatically"
@@ -1836,8 +1188,7 @@ msgstr "編集するキーストロークを選択"
 
 #: keystrokeEditor/wx_ui.py:12 wxUI/dialogs/mastodon/userActions.py:9
 #: wxUI/dialogs/mastodon/userActions.py:18
-#: wxUI/dialogs/mastodon/userActions.py:19 wxUI/dialogs/userActions.py:10
-#: wxUI/dialogs/userActions.py:19 wxUI/dialogs/userActions.py:20
+#: wxUI/dialogs/mastodon/userActions.py:19
 msgid "Action"
 msgstr "操作"
 
@@ -1845,8 +1196,7 @@ msgstr "操作"
 msgid "Keystroke"
 msgstr "キーストローク"
 
-#: keystrokeEditor/wx_ui.py:17 wxUI/dialogs/filterDialogs.py:135
-#: wxUI/dialogs/lists.py:20 wxUI/dialogs/userAliasDialogs.py:53
+#: keystrokeEditor/wx_ui.py:17 wxUI/dialogs/userAliasDialogs.py:53
 msgid "Edit"
 msgstr "編集"
 
@@ -1858,9 +1208,9 @@ msgstr "キーストロークの定義を解除"
 msgid "Execute action"
 msgstr "現在の動作を実行"
 
-#: keystrokeEditor/wx_ui.py:21 wxUI/dialogs/configuration.py:421
+#: keystrokeEditor/wx_ui.py:21 wxUI/dialogs/configuration.py:229
 #: wxUI/dialogs/mastodon/configuration.py:174
-#: wxUI/dialogs/userAliasDialogs.py:25 wxUI/dialogs/utils.py:39
+#: wxUI/dialogs/userAliasDialogs.py:25
 msgid "Close"
 msgstr "閉じる"
 
@@ -1896,9 +1246,8 @@ msgstr "ウィンドウズ"
 msgid "Key"
 msgstr "キー名"
 
-#: keystrokeEditor/wx_ui.py:70 wxUI/dialogs/filterDialogs.py:80
-#: wxUI/dialogs/find.py:21 wxUI/dialogs/userAliasDialogs.py:23
-#: wxUI/dialogs/utils.py:36
+#: keystrokeEditor/wx_ui.py:70 wxUI/dialogs/find.py:21
+#: wxUI/dialogs/userAliasDialogs.py:23
 msgid "OK"
 msgstr "OK"
 
@@ -1914,31 +1263,31 @@ msgstr "無効なキーストローク"
 msgid "You must provide a character for the keystroke"
 msgstr "キー名が入力されていません"
 
-#: keystrokeEditor/actions/mastodon.py:3 keystrokeEditor/actions/twitter.py:3
+#: keystrokeEditor/actions/mastodon.py:3
 msgid "Go up in the current buffer"
 msgstr "現在のバッファで、前のツイートに移動"
 
-#: keystrokeEditor/actions/mastodon.py:4 keystrokeEditor/actions/twitter.py:4
+#: keystrokeEditor/actions/mastodon.py:4
 msgid "Go down in the current buffer"
 msgstr "現在のバッファで、次のツイートに移動"
 
-#: keystrokeEditor/actions/mastodon.py:5 keystrokeEditor/actions/twitter.py:5
+#: keystrokeEditor/actions/mastodon.py:5
 msgid "Go to the previous buffer"
 msgstr "前のバッファに移動"
 
-#: keystrokeEditor/actions/mastodon.py:6 keystrokeEditor/actions/twitter.py:6
+#: keystrokeEditor/actions/mastodon.py:6
 msgid "Go to the next buffer"
 msgstr "次のバッファに移動"
 
-#: keystrokeEditor/actions/mastodon.py:7 keystrokeEditor/actions/twitter.py:7
+#: keystrokeEditor/actions/mastodon.py:7
 msgid "Focus the next session"
 msgstr "次のセッションにフォーカス"
 
-#: keystrokeEditor/actions/mastodon.py:8 keystrokeEditor/actions/twitter.py:8
+#: keystrokeEditor/actions/mastodon.py:8
 msgid "Focus the previous session"
 msgstr "前のセッションにフォーカス"
 
-#: keystrokeEditor/actions/mastodon.py:9 keystrokeEditor/actions/twitter.py:9
+#: keystrokeEditor/actions/mastodon.py:9
 msgid "Show or hide the GUI"
 msgstr "GUIの表示と非表示を切り替え"
 
@@ -1946,12 +1295,17 @@ msgstr "GUIの表示と非表示を切り替え"
 msgid "Make a new post"
 msgstr "新しい投稿"
 
+#: keystrokeEditor/actions/mastodon.py:11 wxUI/buffers/mastodon/base.py:26
+#: wxUI/buffers/mastodon/conversationList.py:25
+msgid "Reply"
+msgstr "返信"
+
 #: keystrokeEditor/actions/mastodon.py:12 wxUI/buffers/mastodon/base.py:25
 #: wxUI/dialogs/mastodon/dialogs.py:7
 msgid "Boost"
 msgstr "ブースト"
 
-#: keystrokeEditor/actions/mastodon.py:13 keystrokeEditor/actions/twitter.py:13
+#: keystrokeEditor/actions/mastodon.py:13
 msgid "Send direct message"
 msgstr "ダイレクトメッセージを作成"
 
@@ -1967,7 +1321,7 @@ msgstr "投稿をお気に入りから削除"
 msgid "Add/remove post from favorites"
 msgstr "投稿のお気に入りへの追加・削除"
 
-#: keystrokeEditor/actions/mastodon.py:17 keystrokeEditor/actions/twitter.py:17
+#: keystrokeEditor/actions/mastodon.py:17
 msgid "Open the user actions dialogue"
 msgstr "ユーザーのアクションを選択する画面を表示"
 
@@ -1975,15 +1329,15 @@ msgstr "ユーザーのアクションを選択する画面を表示"
 msgid "Show post"
 msgstr "投稿を表示"
 
-#: keystrokeEditor/actions/mastodon.py:20 keystrokeEditor/actions/twitter.py:20
+#: keystrokeEditor/actions/mastodon.py:20
 msgid "Quit"
 msgstr "終了"
 
-#: keystrokeEditor/actions/mastodon.py:21 keystrokeEditor/actions/twitter.py:21
+#: keystrokeEditor/actions/mastodon.py:21
 msgid "Open user timeline"
 msgstr "特定のユーザーのタイムラインを開く"
 
-#: keystrokeEditor/actions/mastodon.py:22 keystrokeEditor/actions/twitter.py:22
+#: keystrokeEditor/actions/mastodon.py:22
 msgid "Destroy buffer"
 msgstr "現在のバッファを削除"
 
@@ -1991,7 +1345,7 @@ msgstr "現在のバッファを削除"
 msgid "Interact with the currently focused post."
 msgstr "現在フォーカスされている投稿を操作します。"
 
-#: keystrokeEditor/actions/mastodon.py:24 keystrokeEditor/actions/twitter.py:24
+#: keystrokeEditor/actions/mastodon.py:24
 msgid "Open URL"
 msgstr "URLを開く"
 
@@ -1999,27 +1353,27 @@ msgstr "URLを開く"
 msgid "View in browser"
 msgstr "ブラウザで表示"
 
-#: keystrokeEditor/actions/mastodon.py:26 keystrokeEditor/actions/twitter.py:26
+#: keystrokeEditor/actions/mastodon.py:26
 msgid "Increase volume by 5%"
 msgstr "音量を5パーセント上げる"
 
-#: keystrokeEditor/actions/mastodon.py:27 keystrokeEditor/actions/twitter.py:27
+#: keystrokeEditor/actions/mastodon.py:27
 msgid "Decrease volume by 5%"
 msgstr "音量を5パーセント下げる"
 
-#: keystrokeEditor/actions/mastodon.py:28 keystrokeEditor/actions/twitter.py:28
+#: keystrokeEditor/actions/mastodon.py:28
 msgid "Jump to the first element of a buffer"
 msgstr "現在のバッファの先頭に移動"
 
-#: keystrokeEditor/actions/mastodon.py:29 keystrokeEditor/actions/twitter.py:29
+#: keystrokeEditor/actions/mastodon.py:29
 msgid "Jump to the last element of the current buffer"
 msgstr "現在のバッファの最後に移動"
 
-#: keystrokeEditor/actions/mastodon.py:30 keystrokeEditor/actions/twitter.py:30
+#: keystrokeEditor/actions/mastodon.py:30
 msgid "Jump 20 elements up in the current buffer"
 msgstr "２０個前の要素に移動"
 
-#: keystrokeEditor/actions/mastodon.py:31 keystrokeEditor/actions/twitter.py:31
+#: keystrokeEditor/actions/mastodon.py:31
 msgid "Jump 20 elements down in the current buffer"
 msgstr "２０個先の要素に移動"
 
@@ -2027,27 +1381,27 @@ msgstr "２０個先の要素に移動"
 msgid "Delete post"
 msgstr "投稿を削除"
 
-#: keystrokeEditor/actions/mastodon.py:34 keystrokeEditor/actions/twitter.py:34
+#: keystrokeEditor/actions/mastodon.py:34
 msgid "Empty the current buffer"
 msgstr "現在のバッファをクリア"
 
-#: keystrokeEditor/actions/mastodon.py:35 keystrokeEditor/actions/twitter.py:35
+#: keystrokeEditor/actions/mastodon.py:35
 msgid "Repeat last item"
 msgstr "現在のアイテムをもう一度読み上げ"
 
-#: keystrokeEditor/actions/mastodon.py:36 keystrokeEditor/actions/twitter.py:36
+#: keystrokeEditor/actions/mastodon.py:36
 msgid "Copy to clipboard"
 msgstr "クリップボードにコピー"
 
-#: keystrokeEditor/actions/mastodon.py:39 keystrokeEditor/actions/twitter.py:39
+#: keystrokeEditor/actions/mastodon.py:39
 msgid "Mute/unmute the active buffer"
 msgstr "現在のバッファのミュートを切り替え"
 
-#: keystrokeEditor/actions/mastodon.py:40 keystrokeEditor/actions/twitter.py:40
+#: keystrokeEditor/actions/mastodon.py:40
 msgid "Mute/unmute the current session"
 msgstr "現在のセッションのミュートを切り替え"
 
-#: keystrokeEditor/actions/mastodon.py:41 keystrokeEditor/actions/twitter.py:41
+#: keystrokeEditor/actions/mastodon.py:41
 msgid "toggle the automatic reading of incoming tweets in the active buffer"
 msgstr "新着のツイートを自動で読み上げるかどうかを設定"
 
@@ -2055,138 +1409,51 @@ msgstr "新着のツイートを自動で読み上げるかどうかを設定"
 msgid "Search on instance"
 msgstr "インスタンスで検索"
 
-#: keystrokeEditor/actions/mastodon.py:43 keystrokeEditor/actions/twitter.py:43
+#: keystrokeEditor/actions/mastodon.py:43
 msgid "Find a string in the currently focused buffer"
 msgstr "現在のバッファ内の文字列を検索"
 
-#: keystrokeEditor/actions/mastodon.py:44 keystrokeEditor/actions/twitter.py:44
+#: keystrokeEditor/actions/mastodon.py:44
 msgid "Show the keystroke editor"
 msgstr "キーストロークエディタを表示"
 
-#: keystrokeEditor/actions/mastodon.py:46 keystrokeEditor/actions/twitter.py:46
+#: keystrokeEditor/actions/mastodon.py:46
 msgid "load previous items"
 msgstr "以前のアイテムを取得"
 
-#: keystrokeEditor/actions/mastodon.py:48 keystrokeEditor/actions/twitter.py:50
+#: keystrokeEditor/actions/mastodon.py:48
 msgid "View conversation"
 msgstr "会話を見る"
 
-#: keystrokeEditor/actions/mastodon.py:49 keystrokeEditor/actions/twitter.py:51
+#: keystrokeEditor/actions/mastodon.py:49
 msgid "Check and download updates"
 msgstr "アップデートをチェックしてダウンロード"
 
-#: keystrokeEditor/actions/mastodon.py:50 keystrokeEditor/actions/twitter.py:53
+#: keystrokeEditor/actions/mastodon.py:50
 msgid "Opens the global settings dialogue"
 msgstr "「全般設定」ダイアログを開く"
 
-#: keystrokeEditor/actions/mastodon.py:52 keystrokeEditor/actions/twitter.py:55
+#: keystrokeEditor/actions/mastodon.py:52
 msgid "Opens the account settings dialogue"
 msgstr "「アカウント設定」ダイアログを開く"
 
-#: keystrokeEditor/actions/mastodon.py:53 keystrokeEditor/actions/twitter.py:56
+#: keystrokeEditor/actions/mastodon.py:53
 msgid "Try to play a media file"
 msgstr "音声ファイルの再生"
 
-#: keystrokeEditor/actions/mastodon.py:54 keystrokeEditor/actions/twitter.py:57
+#: keystrokeEditor/actions/mastodon.py:54
 msgid "Updates the buffer and retrieves possible lost items there."
 msgstr "バッファを更新して、取得に失敗したアイテムを取得。"
 
-#: keystrokeEditor/actions/twitter.py:10
-msgid "New tweet"
-msgstr "新規ツイート"
-
-#: keystrokeEditor/actions/twitter.py:12 wxUI/buffers/twitter/base.py:26
-#: wxUI/commonMessageDialogs.py:10
-msgid "Retweet"
-msgstr "リツイート"
-
-#: keystrokeEditor/actions/twitter.py:14
-msgid "Like a tweet"
-msgstr "ツイートをいいねする"
-
-#: keystrokeEditor/actions/twitter.py:15
-msgid "Like/unlike a tweet"
-msgstr "ツイートをいいね・いいね解除"
-
-#: keystrokeEditor/actions/twitter.py:16
-msgid "Unlike a tweet"
-msgstr "ツイートのいいねを解除"
-
-#: keystrokeEditor/actions/twitter.py:18
-msgid "See user details"
-msgstr "ユーザーの詳細を表示"
-
-#: keystrokeEditor/actions/twitter.py:19
-msgid "Show tweet"
-msgstr "ツイートを表示"
-
-#: keystrokeEditor/actions/twitter.py:23
-msgid "Interact with the currently focused tweet."
-msgstr "現在フォーカス中のツイートを相呼応する。"
-
-#: keystrokeEditor/actions/twitter.py:25
-msgid "View in Twitter"
-msgstr "Twitterで見る"
-
-#: keystrokeEditor/actions/twitter.py:32
-msgid "Edit profile"
-msgstr "プロフィールを編集"
-
-#: keystrokeEditor/actions/twitter.py:33
-msgid "Delete a tweet or direct message"
-msgstr "ツイートまたはダイレクトメッセージを削除"
-
-#: keystrokeEditor/actions/twitter.py:37
-msgid "Add to list"
-msgstr "リストに追加"
-
-#: keystrokeEditor/actions/twitter.py:38
-msgid "Remove from list"
-msgstr "リストから削除"
-
-#: keystrokeEditor/actions/twitter.py:42
-msgid "Search on twitter"
-msgstr "Twitterを検索"
-
-#: keystrokeEditor/actions/twitter.py:45
-msgid "Show lists for a specified user"
-msgstr "特定のユーザーのリストを表示"
-
-#: keystrokeEditor/actions/twitter.py:47
-msgid "Get geolocation"
-msgstr "位置情報を取得"
-
-#: keystrokeEditor/actions/twitter.py:48
-msgid "Display the tweet's geolocation in a dialog"
-msgstr "位置情報を表示"
-
-#: keystrokeEditor/actions/twitter.py:49
-msgid "Create a trending topics buffer"
-msgstr "トレンドのバッファを作成"
-
-#: keystrokeEditor/actions/twitter.py:52
-msgid ""
-"Opens the list manager, which allows you to create, edit, delete and open"
-" lists in buffers."
-msgstr "リストを作成したり、編集したり、削除したりするために「リストの管理」を開く。"
-
-#: keystrokeEditor/actions/twitter.py:54
-msgid "Opens the list manager"
-msgstr "リストの管理"
-
-#: keystrokeEditor/actions/twitter.py:58
+#: keystrokeEditor/actions/mastodon.py:55
 msgid "Extracts the text from a picture and displays the result in a dialog."
 msgstr "画像からテキストを抽出して、結果をダイアログで表示。"
 
-#: keystrokeEditor/actions/twitter.py:59
+#: keystrokeEditor/actions/mastodon.py:56
 msgid "Adds an alias to an user"
 msgstr "ユーザーにエイリアスを追加"
 
-#: sessionmanager/sessionManager.py:72
-msgid "{account_name} (Twitter)"
-msgstr "{account_name} (Twitter)"
-
-#: sessionmanager/sessionManager.py:77
+#: sessionmanager/sessionManager.py:68
 #, fuzzy
 msgid "{account_name}@{instance} (Mastodon)"
 msgstr "{account_name} (Mastodon)"
@@ -2207,7 +1474,7 @@ msgstr "アカウント"
 msgid "New account"
 msgstr "新しいアカウントを連携"
 
-#: sessionmanager/wxUI.py:22 sessionmanager/wxUI.py:91
+#: sessionmanager/wxUI.py:22 sessionmanager/wxUI.py:79
 msgid "Remove account"
 msgstr "このアカウントを削除"
 
@@ -2223,63 +1490,39 @@ msgstr "アカウントを設定する必要があります。"
 msgid "Account Error"
 msgstr "アカウントエラー"
 
-#: sessionmanager/wxUI.py:55
-msgid "Twitter"
-msgstr "Twitter"
-
-#: sessionmanager/wxUI.py:57
+#: sessionmanager/wxUI.py:54
 msgid "Mastodon"
 msgstr "Mastodon"
 
-#: sessionmanager/wxUI.py:62
+#: sessionmanager/wxUI.py:59
 msgid ""
 "You will be prompted for your Mastodon data (instance URL, email address "
 "and password) so we can authorise TWBlue in your instance. Would you like"
 " to authorise your account now?"
 msgstr "インスタンスでTWBlueを承認できるように、Mastodonデータ(インスタンスURL、メールアドレス、およびパスワード)の入力を求められます。今すぐアカウントを認証しますか？"
 
-#: sessionmanager/wxUI.py:62 sessionmanager/wxUI.py:71
+#: sessionmanager/wxUI.py:59
 msgid "Authorization"
 msgstr "認証"
 
-#: sessionmanager/wxUI.py:71
-msgid ""
-"The request to authorize your Twitter account will be opened in your "
-"browser. You only need to do this once. Would you like to continue?"
-msgstr "アカウントを認証するために、ブラウザを開きます。あなたは、一度だけ、これを実行する必要があります。続行しますか？"
-
-#: sessionmanager/wxUI.py:79
+#: sessionmanager/wxUI.py:67
 #, python-format
 msgid "Authorized account %d"
 msgstr "認証したアカウント%d"
 
-#: sessionmanager/wxUI.py:85
+#: sessionmanager/wxUI.py:73
 msgid ""
 "Your access token is invalid or the authorization has failed. Please try "
 "again."
 msgstr "あなたのアクセストークンが無効であるか、または許可が失敗しました。もう一度やり直してください。"
 
-#: sessionmanager/wxUI.py:85
+#: sessionmanager/wxUI.py:73
 msgid "Invalid user token"
 msgstr "無効なユーザートークン"
 
-#: sessionmanager/wxUI.py:91
+#: sessionmanager/wxUI.py:79
 msgid "Do you really want to delete this account?"
 msgstr "本当にこのアカウントを削除しますか？"
-
-#: sessionmanager/wxUI.py:115
-msgid ""
-"TWBlue is unable to authenticate the account for {} in Twitter. It might "
-"be due to an invalid or expired token, revoqued access to the "
-"application, or after an account reactivation. Please remove the account "
-"manually from your Twitter sessions in order to stop seeing this message."
-msgstr ""
-"TWBlueはTwitterで {} "
-"のアカウントを認証できません。トークンが無効または期限切れであるか、アプリケーションへのアクセスが取り消されているか、アカウントの再アクティブ化が原因である可能性があります。このメッセージの表示を停止するには、Twitterセッションからアカウントを手動で削除してください。"
-
-#: sessionmanager/wxUI.py:115
-msgid "Authentication error for session {}"
-msgstr "セッション {} の認証エラー"
 
 #: sessions/base.py:125
 msgid ""
@@ -2299,63 +1542,60 @@ msgstr ""
 "{app} データベースの読み込み中に例外が発生しました。自動的に削除され、再構築されます。このエラーが続く場合は、エラーログを {app} "
 "開発者に送信してください。"
 
-#: sessions/mastodon/compose.py:17 sessions/mastodon/compose.py:64
+#: sessions/mastodon/compose.py:15 sessions/mastodon/compose.py:58
 msgid "dddd, MMMM D, YYYY H:m"
 msgstr "YYYY年MMMMD日(dddd) H時m分s秒"
 
-#: sessions/mastodon/compose.py:19 sessions/mastodon/templates.py:75
-#: sessions/mastodon/templates.py:76
+#: sessions/mastodon/compose.py:17 sessions/mastodon/templates.py:73
+#: sessions/mastodon/templates.py:74
 msgid "Boosted from @{}: {}"
 msgstr "@{} からブースト: {}"
 
-#: sessions/mastodon/compose.py:35 sessions/mastodon/templates.py:28
-#: sessions/twitter/compose.py:22 sessions/twitter/compose.py:62
-#: sessions/twitter/compose.py:124 sessions/twitter/compose.py:130
-#: sessions/twitter/templates.py:26
+#: sessions/mastodon/compose.py:33 sessions/mastodon/templates.py:28
 msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "YYYY年MMMMD日(dddd) H時m分s秒"
 
-#: sessions/mastodon/compose.py:39
+#: sessions/mastodon/compose.py:35
 #, python-format
 msgid "%s (@%s). %s followers, %s following, %s posts. Joined %s"
 msgstr "%s (@%s)。%s フォロワー、%s フォロー中、%s 投稿。参加 %s"
 
-#: sessions/mastodon/compose.py:50
+#: sessions/mastodon/compose.py:46
 msgid "Last message from {}: {}"
 msgstr "{} からの最後のメッセージ: {}"
 
-#: sessions/mastodon/compose.py:67
+#: sessions/mastodon/compose.py:61
 #, fuzzy
 msgid "{username} has posted: {status}"
 msgstr "{username} がブーストしました: {status}"
 
-#: sessions/mastodon/compose.py:69
+#: sessions/mastodon/compose.py:63
 #, fuzzy
 msgid "{username} has mentioned you: {status}"
 msgstr "{username} があなたにメンションしました: {status}"
 
-#: sessions/mastodon/compose.py:71
+#: sessions/mastodon/compose.py:65
 msgid "{username} has boosted: {status}"
 msgstr "{username} がブーストしました: {status}"
 
-#: sessions/mastodon/compose.py:73
+#: sessions/mastodon/compose.py:67
 msgid "{username} has added to favorites: {status}"
 msgstr "{username} がお気に入りに追加しました: {status}"
 
-#: sessions/mastodon/compose.py:75
+#: sessions/mastodon/compose.py:69
 msgid "{username} has followed you."
 msgstr "{username} がフォローしました。"
 
-#: sessions/mastodon/compose.py:77
+#: sessions/mastodon/compose.py:71
 #, fuzzy
 msgid "{username} has joined the instance."
 msgstr "{username} がブーストしました: {status}"
 
-#: sessions/mastodon/compose.py:79 sessions/mastodon/templates.py:167
+#: sessions/mastodon/compose.py:73 sessions/mastodon/templates.py:161
 msgid "A poll in which you have voted has expired: {status}"
 msgstr "あなたが投票した投票の有効期限が切れました: {status}"
 
-#: sessions/mastodon/compose.py:81
+#: sessions/mastodon/compose.py:75
 msgid "{username} wants to follow you."
 msgstr "{username} がフォローしようとしています。"
 
@@ -2392,21 +1632,20 @@ msgid ""
 "the session again."
 msgstr "TWBlueで使用するMastodonアカウントを認証できませんでした。これは、認証コードが正しくないことが原因である可能性があります。もう1度セッションを追加してください。"
 
-#: sessions/mastodon/session.py:87 sessions/twitter/session.py:171
+#: sessions/mastodon/session.py:87
 msgid "Authorization error"
 msgstr "認証エラー"
 
-#: sessions/mastodon/session.py:201 sessions/twitter/session.py:212
-#: sessions/twitter/session.py:236
+#: sessions/mastodon/session.py:182
 #, python-format
 msgid "%s succeeded."
 msgstr "%sに成功しました。"
 
-#: sessions/mastodon/templates.py:18 sessions/twitter/templates.py:16
+#: sessions/mastodon/templates.py:18
 msgid "$display_name, $text $image_descriptions $date. $source"
 msgstr "$display_name, $text $image_descriptions $date. $source"
 
-#: sessions/mastodon/templates.py:19 sessions/twitter/templates.py:18
+#: sessions/mastodon/templates.py:19
 msgid "Dm to $recipient_display_name, $text $date"
 msgstr "$recipient_display_name へのDM, $text $date"
 
@@ -2431,143 +1670,84 @@ msgstr "コンテンツの警告: {}"
 msgid "Media description: {}"
 msgstr "画像の説明: {}。"
 
-#: sessions/mastodon/templates.py:80 wxUI/dialogs/mastodon/postDialogs.py:48
+#: sessions/mastodon/templates.py:78 wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Followers only"
 msgstr "フォロワーのみ"
 
-#: sessions/mastodon/templates.py:153
+#: sessions/mastodon/templates.py:147
 #, fuzzy
 msgid "has posted: {status}"
 msgstr "がブーストしました: {status}"
 
-#: sessions/mastodon/templates.py:155
+#: sessions/mastodon/templates.py:149
 #, fuzzy
 msgid "has mentioned you: {status}"
 msgstr "があなたにメンションしました: {status}"
 
-#: sessions/mastodon/templates.py:157
+#: sessions/mastodon/templates.py:151
 msgid "has boosted: {status}"
 msgstr "がブーストしました: {status}"
 
-#: sessions/mastodon/templates.py:159
+#: sessions/mastodon/templates.py:153
 msgid "has added to favorites: {status}"
 msgstr "がお気に入りに追加しました: {status}"
 
-#: sessions/mastodon/templates.py:161
+#: sessions/mastodon/templates.py:155
 msgid "has updated a status: {status}"
 msgstr "がステータスを更新しました: {status}"
 
-#: sessions/mastodon/templates.py:163
+#: sessions/mastodon/templates.py:157
 msgid "has followed you."
 msgstr "がフォロー。"
 
-#: sessions/mastodon/templates.py:165
+#: sessions/mastodon/templates.py:159
 #, fuzzy
 msgid "has joined the instance."
 msgstr "リモートインスタンス"
 
-#: sessions/mastodon/templates.py:169
+#: sessions/mastodon/templates.py:163
 msgid "wants to follow you."
 msgstr "がフォローしようとしています。"
 
-#: sessions/twitter/compose.py:68 sessions/twitter/compose.py:70
+#: update/utils.py:29
 #, python-format
-msgid "Dm to %s "
-msgstr "「%s」へのDM "
+msgid "%d day, "
+msgstr "%d日 "
 
-#: sessions/twitter/compose.py:109
-msgid "{0}. Quoted  tweet from @{1}: {2}"
-msgstr "{0} 引用:@{1}:{2}"
-
-#: sessions/twitter/compose.py:132
-msgid "Unavailable"
-msgstr "無効"
-
-#: sessions/twitter/compose.py:133
+#: update/utils.py:31
 #, python-format
-msgid ""
-"%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
-"Twitter %s"
-msgstr "%s: @%s フォロワー: %s フォロー: %s ツイート数: %s 最後のツイート: %s ツイッターへの参加: %s"
+msgid "%d days, "
+msgstr "%d日 "
 
-#: sessions/twitter/compose.py:137
-msgid "No description available"
-msgstr "説明はありません"
-
-#: sessions/twitter/compose.py:141
-msgid "private"
-msgstr "プライベート"
-
-#: sessions/twitter/compose.py:142
-msgid "public"
-msgstr "公式"
-
-#: sessions/twitter/session.py:162 sessions/twitter/wxUI.py:9
-msgid "Enter your PIN code here"
-msgstr "PINコードを入力"
-
-#: sessions/twitter/session.py:162 sessions/twitter/wxUI.py:6
-msgid "Authorising account..."
-msgstr "アカウントを連携中…"
-
-#: sessions/twitter/session.py:171
-msgid ""
-"We could not authorice your Twitter account to be used in TWBlue. This "
-"might be caused due to an incorrect verification code. Please try to add "
-"the session again."
-msgstr "TWBlueで使用するTwitterアカウントを認証できませんでした。これは、認証コードが正しくないことが原因である可能性があります。もう1度セッションを追加してください。"
-
-#: sessions/twitter/session.py:206 sessions/twitter/session.py:233
+#: update/utils.py:33
 #, python-format
-msgid "%s failed.  Reason: %s"
-msgstr "%s が失敗しました。理由: %s"
+msgid "%d hour, "
+msgstr "%d時間 "
 
-#: sessions/twitter/session.py:440 sessions/twitter/session.py:523
-msgid "Deleted account"
-msgstr "削除されたアカウント"
+#: update/utils.py:35
+#, python-format
+msgid "%d hours, "
+msgstr "%d時間 "
 
-#: sessions/twitter/templates.py:17
-msgid "$sender_display_name, $text $date"
-msgstr "$sender_display_name, $text $date"
+#: update/utils.py:37
+#, python-format
+msgid "%d minute, "
+msgstr "%d分 "
 
-#: sessions/twitter/templates.py:19
-msgid ""
-"$display_name (@$screen_name). $followers followers, $following "
-"following, $tweets tweets. Joined Twitter $created_at."
-msgstr ""
-"$display_name (@$screen_name)。$followers フォロワー、$following フォロー中、$tweets "
-"件のツイート。Twitter への参加 $created_at。"
+#: update/utils.py:39
+#, python-format
+msgid "%d minutes, "
+msgstr "%d分 "
 
-#: sessions/twitter/templates.py:54
-msgid "Image description: {}."
-msgstr "画像の説明: {}。"
+#: update/utils.py:41
+#, python-format
+msgid "%s second"
+msgstr "%s秒"
 
-#: sessions/twitter/templates.py:78
-#, fuzzy
-msgid "RT @{}: {} Quote from @{}: {}"
-msgstr "{0} 引用:@{1}:{2}"
-
-#: sessions/twitter/templates.py:80
-#, fuzzy
-msgid "RT @{}: {}"
-msgstr "@{} からブースト: {}"
-
-#: sessions/twitter/templates.py:82
-#, fuzzy
-msgid "{} Quote from @{}: {}"
-msgstr "@{} からブースト: {}"
-
-#: sessions/twitter/utils.py:243
-msgid "Sorry, you are not authorised to see this status."
-msgstr "申し訳ありませんが、あなたはこのステータスを表示する権限がありません。"
-
-#: sessions/twitter/utils.py:247
-msgid "Error {0}"
-msgstr "エラー {0}"
-
-#: sessions/twitter/utils.py:274
-msgid "{user_1}, {user_2} and {all_users} more: {text}"
-msgstr "{user_1}、{user_2}、ほか{all_users}ユーザー: {text}"
+#: update/utils.py:43
+#, python-format
+msgid "%s seconds"
+msgstr "%s秒"
 
 #: update/wxUpdater.py:11
 #, python-format
@@ -2635,106 +1815,63 @@ msgstr "アップデートは正常にダウンロードされ、インストー
 msgid "Done!"
 msgstr "完了！"
 
-#: wxUI/commonMessageDialogs.py:7
-msgid ""
-"This retweet is over 140 characters. Would you like to post it as a "
-"mention to the poster with your comments and a link to the original "
-"tweet?"
-msgstr "このリツイートは、１４０文字を超えています。投稿者へのリプライとコメント、および元のツイートへのリンクで登校しますか？"
-
-#: wxUI/commonMessageDialogs.py:10
-msgid "Would you like to add a comment to this tweet?"
-msgstr "このツイートにコメントをつけますか？"
-
-#: wxUI/commonMessageDialogs.py:13
-msgid ""
-"Do you really want to delete this tweet? It will be deleted from Twitter "
-"as well."
-msgstr "本当にこのツイートを削除しますか？このツイートは、Twitterから削除されます。"
-
-#: wxUI/commonMessageDialogs.py:13 wxUI/dialogs/lists.py:149
-#: wxUI/dialogs/mastodon/dialogs.py:15
-msgid "Delete"
-msgstr "削除"
-
-#: wxUI/commonMessageDialogs.py:16
+#: wxUI/commonMessageDialogs.py:6
 msgid "Do you really want to close {0}?"
 msgstr "本当に{0}を終了しますか？"
 
-#: wxUI/commonMessageDialogs.py:16
+#: wxUI/commonMessageDialogs.py:6
 msgid "Exit"
 msgstr "終了確認"
 
-#: wxUI/commonMessageDialogs.py:20
+#: wxUI/commonMessageDialogs.py:10
 msgid " {0} must be restarted for these changes to take effect."
 msgstr " これらの変更を有効にするには、{0}を再起動する必要があります。"
 
-#: wxUI/commonMessageDialogs.py:20
+#: wxUI/commonMessageDialogs.py:10
 msgid "Restart {0} "
 msgstr "{0}を再起動 "
 
-#: wxUI/commonMessageDialogs.py:23
+#: wxUI/commonMessageDialogs.py:13
 msgid ""
 "Are you sure you want to delete this user from the database? This user "
 "will not appear in autocomplete results anymore."
 msgstr "データベースからこのユーザーを削除してもよろしいですか？このユーザーは、自動補完結果には表示されません。"
 
-#: wxUI/commonMessageDialogs.py:23
+#: wxUI/commonMessageDialogs.py:13
 msgid "Confirm"
 msgstr "確認"
 
-#: wxUI/commonMessageDialogs.py:26
-msgid "Enter the name of the client : "
-msgstr "クライアントの名前: "
-
-#: wxUI/commonMessageDialogs.py:26 wxUI/dialogs/configuration.py:267
-msgid "Add client"
-msgstr "クライアントを追加"
-
-#: wxUI/commonMessageDialogs.py:32
+#: wxUI/commonMessageDialogs.py:16
 msgid ""
 "Do you really want to empty this buffer? It's  items will be removed from"
 " the list but not from Twitter"
 msgstr "本当にこのバッファをクリアしますか？これは、Twitterからは削除されません"
 
-#: wxUI/commonMessageDialogs.py:32 wxUI/dialogs/mastodon/dialogs.py:31
+#: wxUI/commonMessageDialogs.py:16 wxUI/dialogs/mastodon/dialogs.py:31
 msgid "Empty buffer"
 msgstr "バッファをクリア"
 
-#: wxUI/commonMessageDialogs.py:36
+#: wxUI/commonMessageDialogs.py:20
 msgid "Do you really want to destroy this buffer?"
 msgstr "本当にこのバッファを削除しますか？"
 
-#: wxUI/commonMessageDialogs.py:42
+#: wxUI/commonMessageDialogs.py:20
+msgid "Attention"
+msgstr "確認"
+
+#: wxUI/commonMessageDialogs.py:23
+msgid "That user does not exist"
+msgstr "そのユーザーは存在しません"
+
+#: wxUI/commonMessageDialogs.py:26
 msgid "A timeline for this user already exists. You can't open another"
 msgstr "このユーザーのタイムラインは既に存在します。別のものを開くことはできません"
 
-#: wxUI/commonMessageDialogs.py:42
+#: wxUI/commonMessageDialogs.py:26
 msgid "Existing timeline"
 msgstr "既存のタイムライン"
 
-#: wxUI/commonMessageDialogs.py:45
-msgid "This user has no tweets, so you can't open a timeline for them."
-msgstr "このユーザーは、何もツイートしていないため、タイムラインを開くことができません。"
-
-#: wxUI/commonMessageDialogs.py:48
-msgid ""
-"This is a protected Twitter user, which means you can't open a timeline "
-"using the Streaming API. The user's tweets will not update due to a "
-"twitter policy. Do you want to continue?"
-msgstr "このアカウントは、保護されています。これは、ストリーミングAPIを利用して、タイムラインを開くことができないことを意味します。ユーザーのツイートはTwitterのポリシーにより更新されません。続行しますか？"
-
-#: wxUI/commonMessageDialogs.py:48 wxUI/commonMessageDialogs.py:98
-msgid "Warning"
-msgstr "警告"
-
-#: wxUI/commonMessageDialogs.py:51
-msgid ""
-"This is a protected user account, you need to follow this user to view "
-"their tweets or likes."
-msgstr "このユーザーは保護されています。このユーザーのツイートやお気に入り一覧を見るには、このユーザーをフォローする必要があります。"
-
-#: wxUI/commonMessageDialogs.py:54
+#: wxUI/commonMessageDialogs.py:29
 msgid ""
 "If you like {0} we need your help to keep it going. Help us by donating "
 "to the project. This will help us pay for the server, the domain and some"
@@ -2743,35 +1880,11 @@ msgid ""
 "to keep {0} free. Would you like to donate now?"
 msgstr "{0}が好きなら、私たちは、それを続けるために、助けを必要としています。プロジェクトに寄付することで、私たちを助けてください。これは、私たちは{0}が積極的に維持されることを保証するために、サーバー、ドメイン、およびいくつかの他のもののために支払うのに役立ちます。あなたの寄付は私たちに{0}の開発を継続するための手段を与え、自由な{0}を維持します。今すぐ寄付しますか？"
 
-#: wxUI/commonMessageDialogs.py:54
+#: wxUI/commonMessageDialogs.py:29
 msgid "We need your help"
 msgstr "寄付のお願い"
 
-#: wxUI/commonMessageDialogs.py:58
-msgid "This user has no tweets. {0} can't create a timeline."
-msgstr "このユーザーにはツイートがないため、 {0} のタイムラインを作成することはできません。"
-
-#: wxUI/commonMessageDialogs.py:61
-msgid "This user has no favorited tweets. {0} can't create a timeline."
-msgstr "このユーザーには、お気に入り登録されたツイートがないため、 {0} のタイムラインを作成することはできません。"
-
-#: wxUI/commonMessageDialogs.py:64
-msgid "This user has no followers. {0} can't create a timeline."
-msgstr "このユーザーはフォロワーがいないため、 {0} のタイムラインを作成することはできません。"
-
-#: wxUI/commonMessageDialogs.py:67
-msgid "This user has no friends. {0} can't create a timeline."
-msgstr "このユーザーは誰もフォローしていないため、 {0} のタイムラインを作成することはできません。"
-
-#: wxUI/commonMessageDialogs.py:71
-msgid "Geolocation data: {0}"
-msgstr "位置情報: {0}"
-
-#: wxUI/commonMessageDialogs.py:71
-msgid "Geo data for this tweet"
-msgstr "このツイートの位置情報"
-
-#: wxUI/commonMessageDialogs.py:74
+#: wxUI/commonMessageDialogs.py:33
 msgid ""
 "TWBlue has detected that you're running windows 10 and has changed the "
 "default keymap to the Windows 10 keymap. It means that some keyboard "
@@ -2779,115 +1892,37 @@ msgid ""
 "pressing Alt+Win+K to see all available keystrokes for this keymap."
 msgstr "TWBlueは、Windows10で動作していることを検出したため、デフォルトのキーマップをWindows10のキーマップに変更しました。これは、一部のキーボードショートカットが違うことを意味します。このキーマップで使用できる全てのショートカットを見るには、Alt+Win+Kで、キーストロークエディタを開いて確認してください。"
 
-#: wxUI/commonMessageDialogs.py:74
+#: wxUI/commonMessageDialogs.py:33
 msgid "Information"
 msgstr "情報"
 
-#: wxUI/commonMessageDialogs.py:77
-msgid "You have been blocked from viewing  this content"
-msgstr "このコンテンツの表示がブロックされています"
-
-#: wxUI/commonMessageDialogs.py:80
-msgid ""
-"You have been blocked from viewing  someone's content. In order to avoid "
-"conflicts with the full session, TWBlue will remove the affected "
-"timeline."
-msgstr "他のユーザーのコンテンツを表示できないようになっています。フルセッションとの競合を避けるため、TWBlueは影響を受けるタイムラインを削除します。"
-
-#: wxUI/commonMessageDialogs.py:83
-msgid ""
-"TWBlue cannot load this timeline because the user has been suspended from"
-" Twitter."
-msgstr "ユーザーがTwitterから凍結されているため、このタイムラインをロードできません。"
-
-#: wxUI/commonMessageDialogs.py:86
-msgid "Do you really want to delete this filter?"
-msgstr "本当に、このフィルターを削除しますか？"
-
-#: wxUI/commonMessageDialogs.py:89
-msgid "This filter already exists. Please use a different title"
-msgstr "このフィルターはすでに利用されています。別の名前を利用してください"
-
-#: wxUI/commonMessageDialogs.py:95
+#: wxUI/commonMessageDialogs.py:36
 msgid "The configuration file is invalid."
 msgstr "設定ファイルが不正です。"
 
-#: wxUI/commonMessageDialogs.py:98
+#: wxUI/commonMessageDialogs.py:39
 msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
 msgstr "{0}は、前回の実行時に予期せず終了しました。問題が解決しない場合は、{0}開発者に報告してください。"
 
-#: wxUI/dialogs/mastodon/menus.py:15 wxUI/menus.py:16 wxUI/menus.py:36
-#: wxUI/menus.py:52
-msgid "&Open URL"
-msgstr "URLを開く(&O)"
+#: wxUI/commonMessageDialogs.py:39
+msgid "Warning"
+msgstr "警告"
 
-#: wxUI/dialogs/mastodon/menus.py:17 wxUI/menus.py:18 wxUI/menus.py:54
-#: wxUI/menus.py:87
-msgid "&Open in Twitter"
-msgstr "ツイッターを検索"
-
-#: wxUI/dialogs/mastodon/menus.py:19 wxUI/menus.py:20 wxUI/menus.py:38
-#: wxUI/menus.py:56
-msgid "&Play audio"
-msgstr "音声を再生(&P)"
-
-#: wxUI/dialogs/mastodon/menus.py:23 wxUI/menus.py:24 wxUI/menus.py:42
-#: wxUI/menus.py:60 wxUI/menus.py:70 wxUI/menus.py:89 wxUI/menus.py:103
-msgid "&Copy to clipboard"
-msgstr "クリップボードにコピー(&C)"
-
-#: wxUI/dialogs/mastodon/menus.py:27 wxUI/menus.py:28 wxUI/menus.py:46
-#: wxUI/menus.py:91
-msgid "&User actions..."
-msgstr "ユーザーのアクション(&U)"
-
-#: wxUI/menus.py:40
-msgid "&Show direct message"
-msgstr "ダイレクトメッセージを表示(&S)"
-
-#: wxUI/menus.py:68
-msgid "&Show event"
-msgstr "イベントを表示(&S)"
-
-#: wxUI/menus.py:78
-msgid "Direct &message"
-msgstr "ダイレクトメッセージ(&M)"
-
-#: wxUI/menus.py:85
-msgid "&Show user"
-msgstr "ユーザーを表示(&S)"
-
-#: wxUI/buffers/twitter/trends.py:20 wxUI/menus.py:97
-msgid "Search topic"
-msgstr "トピックを検索"
-
-#: wxUI/menus.py:99
-msgid "&Tweet about this trend"
-msgstr "このトレンドのツイート(&T)"
-
-#: wxUI/menus.py:101
-msgid "&Show item"
-msgstr "アイテムを表示(&S)"
-
-#: wxUI/sysTrayIcon.py:36 wxUI/view.py:24
+#: wxUI/sysTrayIcon.py:36 wxUI/view.py:26
 msgid "&Global settings"
 msgstr "全般設定(&G)"
 
-#: wxUI/sysTrayIcon.py:37 wxUI/view.py:23
+#: wxUI/sysTrayIcon.py:37 wxUI/view.py:25
 msgid "Account se&ttings"
 msgstr "アカウント設定(&T("
-
-#: wxUI/sysTrayIcon.py:38
-msgid "Update &profile"
-msgstr "プロフィールを更新(&P)"
 
 #: wxUI/sysTrayIcon.py:39
 msgid "&Show / hide"
 msgstr "表示または非表示(&S)"
 
-#: wxUI/sysTrayIcon.py:40 wxUI/view.py:73
+#: wxUI/sysTrayIcon.py:40 wxUI/view.py:74
 msgid "&Documentation"
 msgstr "取扱説明書(&D)"
 
@@ -2903,117 +1938,156 @@ msgstr "終了(&E)"
 msgid "&Manage accounts"
 msgstr "アカウントの管理(&M)"
 
-#: wxUI/view.py:18
+#: wxUI/view.py:17
+msgid "&Update profile"
+msgstr "プロフィールを更新(&U)"
+
+#: wxUI/view.py:19
 msgid "&Hide window"
 msgstr "ウィンドウを隠す(&H)"
 
-#: wxUI/view.py:22
+#: wxUI/view.py:21
+msgid "&Lists manager"
+msgstr "リストの管理(&L)"
+
+#: wxUI/view.py:24
 msgid "&Edit keystrokes"
 msgstr "キーストロークを編集(&E)"
 
-#: wxUI/view.py:25
+#: wxUI/view.py:27
 msgid "E&xit"
 msgstr "終了(&X)"
 
+#: wxUI/view.py:35
+#, fuzzy
+msgid "&Remove from favorites"
+msgstr "お気に入りから削除リストから削除"
+
+#: wxUI/view.py:48
+msgid "&Add to list"
+msgstr "リストに追加(&A)"
+
+#: wxUI/view.py:49
+msgid "R&emove from list"
+msgstr "リストから削除(&E)"
+
 #: wxUI/view.py:50
+msgid "Show user &profile"
+msgstr "ユーザーのプロフィールを表示(&P)"
+
+#: wxUI/view.py:51
 msgid "V&iew likes"
 msgstr "いいね一覧を見る(&I)"
 
-#: wxUI/view.py:54
+#: wxUI/view.py:55
 msgid "&Update buffer"
 msgstr "バッファを更新(&U)"
 
+#: wxUI/view.py:56
+msgid "New &trending topics buffer..."
+msgstr "新しいトレンドのバッファ(&T)"
+
+#: wxUI/view.py:57
+msgid "Create a &filter"
+msgstr "新しいフィルターを作成(&F)"
+
 #: wxUI/view.py:58
+msgid "&Manage filters"
+msgstr "フィルターの管理(&M)"
+
+#: wxUI/view.py:59
 msgid "Find a string in the currently focused buffer..."
 msgstr "現在フォーカス中のバッファ内の文字列を検索..."
 
-#: wxUI/view.py:59
+#: wxUI/view.py:60
 msgid "&Load previous items"
 msgstr "以前のアイテムを取得(&L)"
 
-#: wxUI/dialogs/mastodon/userActions.py:21 wxUI/dialogs/userActions.py:22
-#: wxUI/view.py:61
+#: wxUI/dialogs/mastodon/userActions.py:21 wxUI/view.py:62
 msgid "&Mute"
 msgstr "ミュート(&M)"
 
-#: wxUI/view.py:62
+#: wxUI/view.py:63
 msgid "&Autoread"
 msgstr "自動読み上げ(&A)"
 
-#: wxUI/view.py:63
+#: wxUI/view.py:64
 msgid "&Clear buffer"
 msgstr "バッファをクリア(&C)"
 
-#: wxUI/view.py:64
+#: wxUI/view.py:65
 msgid "&Destroy"
 msgstr "バッファを削除(&D)"
 
-#: wxUI/view.py:68
+#: wxUI/view.py:69
 msgid "&Seek back 5 seconds"
 msgstr "5秒戻る(&S)"
 
-#: wxUI/view.py:69
+#: wxUI/view.py:70
 msgid "&Seek forward 5 seconds"
 msgstr "5秒進む(&S)"
 
-#: wxUI/view.py:74
+#: wxUI/view.py:75
 msgid "Sounds &tutorial"
 msgstr "サウンドの確認(&T)"
 
-#: wxUI/view.py:75
+#: wxUI/view.py:76
 msgid "&What's new in this version?"
 msgstr "更新履歴(&W)"
 
-#: wxUI/view.py:76
+#: wxUI/view.py:77
 msgid "&Check for updates"
 msgstr "アップデートを確認(&C)"
 
-#: wxUI/view.py:77
+#: wxUI/view.py:78
 msgid "&Report an error"
 msgstr "エラーを報告(&R)"
 
-#: wxUI/view.py:78
+#: wxUI/view.py:79
 msgid "{0}'s &website"
 msgstr "{0}のウェブサイト(&W)"
 
-#: wxUI/view.py:79
+#: wxUI/view.py:80
 msgid "Get soundpacks for TWBlue"
 msgstr "TWBlueのサウンドパックを入手"
 
-#: wxUI/view.py:80
+#: wxUI/view.py:81
 msgid "About &{0}"
 msgstr "{0}について(&A)"
 
-#: wxUI/view.py:83
+#: wxUI/view.py:84
 msgid "&Application"
 msgstr "アプリケーション(&A)"
 
-#: wxUI/dialogs/mastodon/userActions.py:10 wxUI/dialogs/userActions.py:11
 #: wxUI/view.py:85
+msgid "&Tweet"
+msgstr "ツイート(&T)"
+
+#: wxUI/dialogs/mastodon/userActions.py:10 wxUI/view.py:86
 msgid "&User"
 msgstr "ユーザー(&U)"
 
-#: wxUI/view.py:86
+#: wxUI/view.py:87
 msgid "&Buffer"
 msgstr "バッファ(&B)"
 
-#: wxUI/view.py:87
+#: wxUI/view.py:88
 msgid "&Audio"
 msgstr "音声(&A)"
 
-#: wxUI/view.py:88
+#: wxUI/view.py:89
 msgid "&Help"
 msgstr "ヘルプ(&H)"
 
-#: wxUI/view.py:174
+#: wxUI/view.py:175
 msgid "Address"
 msgstr "アドレス"
 
-#: wxUI/view.py:205
+#: wxUI/view.py:206
 msgid "Your {0} version is up to date"
 msgstr "{0}のバージョンは最新です"
 
-#: wxUI/view.py:205
+#: wxUI/view.py:206
 msgid "Update"
 msgstr "アップデート"
 
@@ -3031,30 +2105,26 @@ msgstr "ログアウト"
 
 #: wxUI/buffers/mastodon/base.py:11
 #: wxUI/buffers/mastodon/conversationList.py:11 wxUI/buffers/mastodon/user.py:8
-#: wxUI/buffers/twitter/base.py:12 wxUI/buffers/twitter/people.py:12
-#: wxUI/buffers/twitter/user_searches.py:11
 #: wxUI/dialogs/mastodon/userTimeline.py:10 wxUI/dialogs/userAliasDialogs.py:14
-#: wxUI/dialogs/userSelection.py:11 wxUI/dialogs/utils.py:32
 msgid "User"
 msgstr "ユーザー"
 
 #: wxUI/buffers/mastodon/base.py:11
 #: wxUI/buffers/mastodon/conversationList.py:11
-#: wxUI/buffers/mastodon/notifications.py:11 wxUI/buffers/twitter/base.py:12
+#: wxUI/buffers/mastodon/notifications.py:11
 #: wxUI/dialogs/mastodon/postDialogs.py:36
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:47
+#: wxUI/dialogs/mastodon/postDialogs.py:262
 msgid "Text"
 msgstr "内容"
 
 #: wxUI/buffers/mastodon/base.py:11
 #: wxUI/buffers/mastodon/conversationList.py:11
-#: wxUI/buffers/mastodon/notifications.py:11 wxUI/buffers/twitter/base.py:12
-#: wxUI/buffers/twitter/events.py:14
+#: wxUI/buffers/mastodon/notifications.py:11
 msgid "Date"
 msgstr "日時"
 
 #: wxUI/buffers/mastodon/base.py:11
-#: wxUI/buffers/mastodon/conversationList.py:11 wxUI/buffers/twitter/base.py:12
+#: wxUI/buffers/mastodon/conversationList.py:11
 msgid "Client"
 msgstr "クライアント"
 
@@ -3066,7 +2136,7 @@ msgstr "お気に入り"
 msgid "Bookmark"
 msgstr "ブックマーク"
 
-#: wxUI/buffers/mastodon/base.py:29 wxUI/buffers/twitter/base.py:28
+#: wxUI/buffers/mastodon/base.py:29
 msgid "Direct message"
 msgstr "ダイレクトメッセージ"
 
@@ -3082,22 +2152,6 @@ msgstr "操作"
 #: wxUI/buffers/mastodon/user.py:20
 msgid "Message"
 msgstr "メッセージ"
-
-#: wxUI/buffers/twitter/events.py:14
-msgid "Event"
-msgstr "イベント"
-
-#: wxUI/buffers/twitter/events.py:16
-msgid "Remove event"
-msgstr "イベントを削除"
-
-#: wxUI/buffers/twitter/trends.py:9
-msgid "Trending topic"
-msgstr "トレンド"
-
-#: wxUI/buffers/twitter/trends.py:19
-msgid "Tweet about this trend"
-msgstr "このトレンドのツイート"
 
 #: wxUI/dialogs/configuration.py:15
 msgid "Language"
@@ -3175,294 +2229,79 @@ msgstr "ユーザー名: "
 msgid "Password: "
 msgstr "パスワード: "
 
-#: wxUI/dialogs/configuration.py:102 wxUI/dialogs/mastodon/configuration.py:14
-msgid "User autocompletion settings"
-msgstr "自動保管の設定"
-
-#: wxUI/dialogs/configuration.py:103
-msgid ""
-"Scan account and add friends and followers to the user autocompletion "
-"database"
-msgstr "アカウントをスキャンして、フォロー中のユーザーやフォロワーをユーザーの自動補完のデータベースに追加します"
-
-#: wxUI/dialogs/configuration.py:104 wxUI/dialogs/mastodon/configuration.py:17
-msgid "Manage autocompletion database"
-msgstr "自動補完のデータベースを管理"
-
-#: wxUI/dialogs/configuration.py:109 wxUI/dialogs/mastodon/configuration.py:25
-msgid "Relative timestamps"
-msgstr "相対的な時刻を利用する"
-
-#: wxUI/dialogs/configuration.py:112 wxUI/dialogs/mastodon/configuration.py:30
-msgid "Items on each API call"
-msgstr "各API呼び出しの回数"
-
-#: wxUI/dialogs/configuration.py:118
-msgid ""
-"Inverted buffers: The newest tweets will be shown at the beginning while "
-"the oldest at the end"
-msgstr "バッファの並び順を入れ替える(新しいツイートを先頭に、古いツイートを最後に表示)"
-
-#: wxUI/dialogs/configuration.py:120
-msgid "Retweet mode"
-msgstr "リツイートのモード"
-
-#: wxUI/dialogs/configuration.py:126 wxUI/dialogs/mastodon/configuration.py:40
-msgid "Show screen names instead of full names"
-msgstr "表示名の代わりに、ユーザー名を表示する"
-
-#: wxUI/dialogs/configuration.py:128 wxUI/dialogs/mastodon/configuration.py:42
-msgid "hide emojis in usernames"
-msgstr "ユーザー名から絵文字を非表示にする"
-
-#: wxUI/dialogs/configuration.py:130 wxUI/dialogs/mastodon/configuration.py:44
-msgid ""
-"Number of items per buffer to cache in database (0 to disable caching, "
-"blank for unlimited)"
-msgstr "バッファごとにデータベースにキャッシュする項目数(0はキャッシュしない、空欄の場合は無制限)"
-
-#: wxUI/dialogs/configuration.py:134
-msgid ""
-"Load cache for tweets in memory (much faster in big datasets but requires"
-" more RAM)"
-msgstr "ツイートのキャッシュをメモリにロードする(大きなデータセットでははるかに高速ですが、より多くのRAMが必要です)"
-
-#: wxUI/dialogs/configuration.py:141
+#: wxUI/dialogs/configuration.py:102
 msgid "Enable automatic speech feedback"
 msgstr "自動音声フィードバックを有効化"
 
-#: wxUI/dialogs/configuration.py:143
+#: wxUI/dialogs/configuration.py:104
 msgid "Enable automatic Braille feedback"
 msgstr "自動点字フィードバックを有効化"
 
-#: wxUI/dialogs/configuration.py:151 wxUI/dialogs/filterDialogs.py:130
+#: wxUI/dialogs/configuration.py:112
 msgid "Buffer"
 msgstr "バッファ"
 
-#: wxUI/dialogs/configuration.py:151
+#: wxUI/dialogs/configuration.py:112
+msgid "Name"
+msgstr "名前"
+
+#: wxUI/dialogs/configuration.py:112
 msgid "Status"
 msgstr "ステータス"
 
-#: wxUI/dialogs/configuration.py:154
+#: wxUI/dialogs/configuration.py:115
 msgid "Show/hide"
 msgstr "表示または非表示"
 
-#: wxUI/dialogs/configuration.py:155
+#: wxUI/dialogs/configuration.py:116
 msgid "Move up"
 msgstr "上へ"
 
-#: wxUI/dialogs/configuration.py:156
+#: wxUI/dialogs/configuration.py:117
 msgid "Move down"
 msgstr "下へ"
 
-#: wxUI/dialogs/configuration.py:166 wxUI/dialogs/configuration.py:231
-#: wxUI/dialogs/configuration.py:234 wxUI/dialogs/configuration.py:239
+#: wxUI/dialogs/configuration.py:127 wxUI/dialogs/configuration.py:192
+#: wxUI/dialogs/configuration.py:195 wxUI/dialogs/configuration.py:200
 msgid "Show"
 msgstr "表示"
 
-#: wxUI/dialogs/configuration.py:168 wxUI/dialogs/configuration.py:178
-#: wxUI/dialogs/configuration.py:202 wxUI/dialogs/configuration.py:232
+#: wxUI/dialogs/configuration.py:129 wxUI/dialogs/configuration.py:139
+#: wxUI/dialogs/configuration.py:163 wxUI/dialogs/configuration.py:193
 msgid "Hide"
 msgstr "非表示"
 
-#: wxUI/dialogs/configuration.py:176 wxUI/dialogs/configuration.py:200
+#: wxUI/dialogs/configuration.py:137 wxUI/dialogs/configuration.py:161
 msgid "Select a buffer first."
 msgstr "最初にバッファを選んでください。"
 
-#: wxUI/dialogs/configuration.py:179 wxUI/dialogs/configuration.py:203
+#: wxUI/dialogs/configuration.py:140 wxUI/dialogs/configuration.py:164
 msgid "The buffer is hidden, show it first."
 msgstr "そのバッファは非表示状態です。まず最初に、表示してください。"
 
-#: wxUI/dialogs/configuration.py:182
+#: wxUI/dialogs/configuration.py:143
 msgid "The buffer is already at the top of the list."
 msgstr "既にそのバッファは、リストの先頭です。"
 
-#: wxUI/dialogs/configuration.py:206
+#: wxUI/dialogs/configuration.py:167
 msgid "The buffer is already at the bottom of the list."
 msgstr "既にそのバッファは、リストの最後です。"
 
-#: wxUI/dialogs/configuration.py:261 wxUI/dialogs/configuration.py:402
-msgid "Ignored clients"
-msgstr "無視するクライアント"
-
-#: wxUI/dialogs/configuration.py:268
-msgid "Remove client"
-msgstr "クライアントを削除"
-
-#: wxUI/dialogs/configuration.py:292 wxUI/dialogs/mastodon/configuration.py:67
-msgid "Volume"
-msgstr "ボリューム"
-
-#: wxUI/dialogs/configuration.py:303 wxUI/dialogs/mastodon/configuration.py:78
-msgid "Session mute"
-msgstr "セッションのミュート"
-
-#: wxUI/dialogs/configuration.py:305 wxUI/dialogs/mastodon/configuration.py:80
-msgid "Output device"
-msgstr "出力先デバイス"
-
-#: wxUI/dialogs/configuration.py:312 wxUI/dialogs/mastodon/configuration.py:87
-msgid "Input device"
-msgstr "入力デバイス"
-
-#: wxUI/dialogs/configuration.py:320 wxUI/dialogs/mastodon/configuration.py:95
-msgid "Sound pack"
-msgstr "サウンドパック"
-
-#: wxUI/dialogs/configuration.py:326
-msgid "Indicate audio tweets with sound"
-msgstr "音声付きツイートを音で報告"
-
-#: wxUI/dialogs/configuration.py:328
-msgid "Indicate geotweets with sound"
-msgstr "位置情報付きツイートを音で報告"
-
-#: wxUI/dialogs/configuration.py:330
-msgid "Indicate tweets containing images with sound"
-msgstr "画像付きツイートを音で報告"
-
-#: wxUI/dialogs/configuration.py:353 wxUI/dialogs/mastodon/configuration.py:126
-msgid "Language for OCR"
-msgstr "OCRの言語"
-
-#: wxUI/dialogs/configuration.py:359
-msgid "API Key for SndUp"
-msgstr "SndUpのAPIキー"
-
-#: wxUI/dialogs/configuration.py:374
+#: wxUI/dialogs/configuration.py:211
 msgid "{0} preferences"
 msgstr "{0}の設定"
 
-#: wxUI/dialogs/configuration.py:380 wxUI/dialogs/configuration.py:389
-#: wxUI/dialogs/mastodon/configuration.py:146
+#: wxUI/dialogs/configuration.py:217 wxUI/dialogs/mastodon/configuration.py:146
 msgid "General"
 msgstr "一般"
 
-#: wxUI/dialogs/configuration.py:385
+#: wxUI/dialogs/configuration.py:222
 msgid "Proxy"
 msgstr "プロキシ"
 
-#: wxUI/dialogs/configuration.py:394 wxUI/dialogs/mastodon/configuration.py:151
-msgid "Feedback"
-msgstr "フィードバック"
-
-#: wxUI/dialogs/configuration.py:398 wxUI/dialogs/mastodon/configuration.py:155
-msgid "Buffers"
-msgstr "バッファ"
-
-#: wxUI/dialogs/configuration.py:406 wxUI/dialogs/mastodon/configuration.py:159
-msgid "Templates"
-msgstr "テンプレート"
-
-#: wxUI/dialogs/configuration.py:410 wxUI/dialogs/mastodon/configuration.py:163
-msgid "Sound"
-msgstr "サウンド"
-
-#: wxUI/dialogs/configuration.py:414 wxUI/dialogs/mastodon/configuration.py:167
-msgid "Extras"
-msgstr "その他"
-
-#: wxUI/dialogs/configuration.py:419 wxUI/dialogs/mastodon/configuration.py:172
+#: wxUI/dialogs/configuration.py:227 wxUI/dialogs/mastodon/configuration.py:172
 msgid "Save"
 msgstr "保存"
-
-#: wxUI/dialogs/filterDialogs.py:13
-msgid "Create a filter  for this buffer"
-msgstr "このバッファのフィルタを作成"
-
-#: wxUI/dialogs/filterDialogs.py:14
-msgid "Filter title"
-msgstr "フィルター名"
-
-#: wxUI/dialogs/filterDialogs.py:24 wxUI/dialogs/filterDialogs.py:130
-msgid "Filter by word"
-msgstr "単語でフィルター"
-
-#: wxUI/dialogs/filterDialogs.py:25
-msgid "Ignore tweets wich contain the following word"
-msgstr "次の単語が含まれるツイートを無視する"
-
-#: wxUI/dialogs/filterDialogs.py:26
-msgid "Ignore tweets without the following word"
-msgstr "次の単語が含まれないツイートを無視する"
-
-#: wxUI/dialogs/filterDialogs.py:31
-msgid "word"
-msgstr "単語"
-
-#: wxUI/dialogs/filterDialogs.py:36
-msgid "Allow retweets"
-msgstr "リツイートを許可する"
-
-#: wxUI/dialogs/filterDialogs.py:37
-msgid "Allow quoted tweets"
-msgstr "引用ツイートを許可する"
-
-#: wxUI/dialogs/filterDialogs.py:38
-msgid "Allow replies"
-msgstr "リプライを許可するフォロワー一覧"
-
-#: wxUI/dialogs/filterDialogs.py:46
-msgid "Use this term as a regular expression"
-msgstr "正規表現を利用"
-
-#: wxUI/dialogs/filterDialogs.py:48 wxUI/dialogs/filterDialogs.py:130
-msgid "Filter by language"
-msgstr "言語でフィルター"
-
-#: wxUI/dialogs/filterDialogs.py:49
-msgid "Load tweets in the following languages"
-msgstr "下記の言語のツイートを表示"
-
-#: wxUI/dialogs/filterDialogs.py:50
-msgid "Ignore tweets in the following languages"
-msgstr "下記の言語のツイートを無視する"
-
-#: wxUI/dialogs/filterDialogs.py:51
-msgid "Don't filter by language"
-msgstr "言語でフィルタしない"
-
-#: wxUI/dialogs/filterDialogs.py:62
-msgid "Supported languages"
-msgstr "サポートしている言語"
-
-#: wxUI/dialogs/filterDialogs.py:67
-msgid "Add selected language to filter"
-msgstr "選択した言語をフィルターに追加"
-
-#: wxUI/dialogs/filterDialogs.py:71
-msgid "Selected languages"
-msgstr "選択した言語"
-
-#: wxUI/dialogs/filterDialogs.py:73 wxUI/dialogs/filterDialogs.py:137
-#: wxUI/dialogs/lists.py:21 wxUI/dialogs/lists.py:132
-#: wxUI/dialogs/userAliasDialogs.py:57
-msgid "Remove"
-msgstr "削除"
-
-#: wxUI/dialogs/filterDialogs.py:83 wxUI/dialogs/find.py:23
-msgid "Cancel"
-msgstr "キャンセル"
-
-#: wxUI/dialogs/filterDialogs.py:120
-msgid "You must define a name for the filter before creating it."
-msgstr "フィルターを作成する前に、フィルターの名前を定義する必要があります。"
-
-#: wxUI/dialogs/filterDialogs.py:120
-msgid "Missing filter name"
-msgstr "フィルター名がありません"
-
-#: wxUI/dialogs/filterDialogs.py:127
-msgid "Manage filters"
-msgstr "フィルターの管理"
-
-#: wxUI/dialogs/filterDialogs.py:129
-msgid "Filters"
-msgstr "フィルター"
-
-#: wxUI/dialogs/filterDialogs.py:130
-msgid "Filter"
-msgstr "フィルター"
 
 #: wxUI/dialogs/find.py:13
 msgid "Find in current buffer"
@@ -3472,250 +2311,50 @@ msgstr "現在のバッファ内を検索"
 msgid "String"
 msgstr "検索文字"
 
-#: wxUI/dialogs/lists.py:11
-msgid "Lists manager"
-msgstr "リストの管理"
+#: wxUI/dialogs/find.py:23
+msgid "Cancel"
+msgstr "キャンセル"
 
-#: wxUI/dialogs/lists.py:14
-msgid "List"
-msgstr "リスト"
+#: wxUI/dialogs/templateDialogs.py:8
+msgid "Edit Template"
+msgstr "テンプレートを編集"
 
-#: wxUI/dialogs/lists.py:14 wxUI/dialogs/lists.py:70
-#: wxUI/dialogs/mastodon/postDialogs.py:25
-#: wxUI/dialogs/mastodon/postDialogs.py:134
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:37
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:126
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:173
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:257
-msgid "Description"
-msgstr "説明"
+#: wxUI/dialogs/templateDialogs.py:13
+msgid "Edit template"
+msgstr "テンプレートを編集"
 
-#: wxUI/dialogs/lists.py:14
-msgid "Owner"
-msgstr "所有者"
+#: wxUI/dialogs/templateDialogs.py:17
+msgid "Available variables"
+msgstr "使用可能な変数"
 
-#: wxUI/dialogs/lists.py:14
-msgid "Members"
-msgstr "メンバー"
+#: wxUI/dialogs/templateDialogs.py:29
+msgid "Restore template"
+msgstr "テンプレートを復元"
 
-#: wxUI/dialogs/lists.py:14
-msgid "mode"
-msgstr "モード"
+#: wxUI/dialogs/templateDialogs.py:48
+msgid "Restored template to {}."
+msgstr "テンプレートを {} に復元しました。"
 
-#: wxUI/dialogs/lists.py:19 wxUI/dialogs/lists.py:62
-msgid "Create a new list"
-msgstr "新しいリストを作成"
+#: wxUI/dialogs/templateDialogs.py:52
+msgid ""
+"the template you have specified include variables that do not exists for "
+"the object. Please fix the template and try again. For your reference, "
+"you can see a list of all available variables in the variables list while"
+" editing your template."
+msgstr "指定したテンプレートには、オブジェクトに存在しない変数が含まれています。テンプレートを修正して、再試行してください。参考までに、テンプレートの編集中に、変数リストで使用可能なすべての変数のリストを確認できます。"
 
-#: wxUI/dialogs/lists.py:22
-msgid "Open in buffer"
-msgstr "バッファで開く"
-
-#: wxUI/dialogs/lists.py:52
-#, python-format
-msgid "Viewing lists for %s"
-msgstr "「%s」のリストを閲覧中"
-
-#: wxUI/dialogs/lists.py:53
-msgid "Subscribe"
-msgstr "登録"
-
-#: wxUI/dialogs/lists.py:54
-msgid "Unsubscribe"
-msgstr "登録解除"
-
-#: wxUI/dialogs/lists.py:65
-msgid "Name (20 characters maximun)"
-msgstr "名前(20文字以内)"
-
-#: wxUI/dialogs/lists.py:75
-msgid "Mode"
-msgstr "モード"
-
-#: wxUI/dialogs/lists.py:77
-msgid "Private"
-msgstr "プライベート"
-
-#: wxUI/dialogs/lists.py:97
-#, python-format
-msgid "Editing the list %s"
-msgstr "リスト「%s」を編集中"
-
-#: wxUI/dialogs/lists.py:108
-msgid "Select a list to add the user"
-msgstr "ユーザーを追加するリストを選択"
-
-#: wxUI/dialogs/lists.py:109
-msgid "Add"
-msgstr "追加"
-
-#: wxUI/dialogs/lists.py:131
-msgid "Select a list to remove the user"
-msgstr "ユーザーを削除するには、リストを選択"
-
-#: wxUI/dialogs/lists.py:149
-msgid "Do you really want to delete this list?"
-msgstr "本当に、このリストを削除しますか？"
-
-#: wxUI/dialogs/search.py:12
-msgid "Search on Twitter"
-msgstr "ツイッターを検索"
-
-#: wxUI/dialogs/search.py:21
-msgid "Tweets"
-msgstr "ツイート"
-
-#: wxUI/dialogs/mastodon/search.py:19 wxUI/dialogs/search.py:22
-#: wxUI/dialogs/userAliasDialogs.py:43
-msgid "Users"
-msgstr "ユーザー"
-
-#: wxUI/dialogs/search.py:29
-msgid "&Language for results: "
-msgstr "結果の言語(&L): "
-
-#: wxUI/dialogs/search.py:31 wxUI/dialogs/search.py:55
-msgid "any"
-msgstr "指定しない"
-
-#: wxUI/dialogs/search.py:37
-msgid "Results &type: "
-msgstr "結果のタイプ(&T): "
-
-#: wxUI/dialogs/search.py:38 wxUI/dialogs/search.py:63
-msgid "Mixed"
-msgstr "混合"
-
-#: wxUI/dialogs/search.py:38 wxUI/dialogs/search.py:64
-msgid "Recent"
-msgstr "最近"
-
-#: wxUI/dialogs/search.py:38 wxUI/dialogs/search.py:65
-msgid "Popular"
-msgstr "人気"
-
-#: wxUI/dialogs/mastodon/search.py:24 wxUI/dialogs/mastodon/userActions.py:36
-#: wxUI/dialogs/mastodon/userTimeline.py:30 wxUI/dialogs/search.py:43
-#: wxUI/dialogs/trends.py:25 wxUI/dialogs/userActions.py:41
-#: wxUI/dialogs/userSelection.py:33
-msgid "&OK"
-msgstr "OK(&O)"
-
-#: wxUI/dialogs/mastodon/search.py:26 wxUI/dialogs/mastodon/userActions.py:38
-#: wxUI/dialogs/mastodon/userTimeline.py:32 wxUI/dialogs/search.py:45
-#: wxUI/dialogs/show_user.py:19 wxUI/dialogs/trends.py:27
-#: wxUI/dialogs/update_profile.py:37 wxUI/dialogs/userActions.py:43
-#: wxUI/dialogs/userSelection.py:35
-msgid "&Close"
-msgstr "閉じる(&C)"
-
-#: wxUI/dialogs/show_user.py:12
-msgid "Details"
-msgstr "詳細"
-
-#: wxUI/dialogs/show_user.py:17
-msgid "&Go to URL"
-msgstr "URLへ移動(&G)"
-
-#: wxUI/dialogs/trends.py:10
-msgid "View trending topics"
-msgstr "トレンドを表示"
-
-#: wxUI/dialogs/trends.py:11
-msgid "Trending topics by"
-msgstr "トレンド"
-
-#: wxUI/dialogs/trends.py:12
-msgid "Country"
-msgstr "国"
-
-#: wxUI/dialogs/trends.py:13
-msgid "City"
-msgstr "都市"
-
-#: wxUI/dialogs/trends.py:19 wxUI/dialogs/update_profile.py:18
-msgid "&Location"
-msgstr "場所(&L)"
-
-#: wxUI/dialogs/update_profile.py:10
-msgid "Update your profile"
-msgstr "プロフィールを更新"
-
-#: wxUI/dialogs/update_profile.py:12
-msgid "&Name (50 characters maximum)"
-msgstr "名前(50文字以内)(&N)"
-
-#: wxUI/dialogs/update_profile.py:23
-msgid "&Website"
-msgstr "ウェブサイト(&W)"
-
-#: wxUI/dialogs/update_profile.py:28
-msgid "&Bio (160 characters maximum)"
-msgstr "自己紹介(160文字以内)(&B)"
-
-#: wxUI/dialogs/update_profile.py:34
-msgid "Upload a &picture"
-msgstr "画像をアップロード(&P)"
-
-#: wxUI/dialogs/update_profile.py:77
-msgid "Upload a picture"
-msgstr "画像をアップロード"
-
-#: wxUI/dialogs/update_profile.py:79
-msgid "Discard image"
-msgstr "画像を破棄"
-
-#: wxUI/dialogs/mastodon/postDialogs.py:141
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:133
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:289
-#: wxUI/dialogs/update_profile.py:82
-msgid "Select the picture to be uploaded"
-msgstr "アップロードする画像を選択"
-
-#: wxUI/dialogs/mastodon/postDialogs.py:141
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:133
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:289
-#: wxUI/dialogs/update_profile.py:82
-msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
-msgstr "画像ファイル (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+#: wxUI/dialogs/templateDialogs.py:52
+msgid "Invalid template"
+msgstr "無効なテンプレート"
 
 #: wxUI/dialogs/urlList.py:6
 msgid "Select URL"
 msgstr "URLを選択"
 
 #: wxUI/dialogs/mastodon/userActions.py:13
-#: wxUI/dialogs/mastodon/userTimeline.py:13 wxUI/dialogs/userActions.py:14
-#: wxUI/dialogs/userAliasDialogs.py:13 wxUI/dialogs/userSelection.py:14
-#: wxUI/dialogs/utils.py:31
+#: wxUI/dialogs/mastodon/userTimeline.py:13 wxUI/dialogs/userAliasDialogs.py:13
 msgid "&Autocomplete users"
 msgstr "自動保管されたユーザー"
-
-#: wxUI/dialogs/mastodon/userActions.py:19 wxUI/dialogs/userActions.py:20
-msgid "&Follow"
-msgstr "フォロー(&F)"
-
-#: wxUI/dialogs/mastodon/userActions.py:20 wxUI/dialogs/userActions.py:21
-msgid "U&nfollow"
-msgstr "フォロー解除(&N)"
-
-#: wxUI/dialogs/mastodon/userActions.py:22 wxUI/dialogs/userActions.py:23
-msgid "Unmu&te"
-msgstr "ミュート解除(&T)"
-
-#: wxUI/dialogs/mastodon/userActions.py:23 wxUI/dialogs/userActions.py:24
-msgid "&Block"
-msgstr "ブロック(&B)"
-
-#: wxUI/dialogs/mastodon/userActions.py:24 wxUI/dialogs/userActions.py:25
-msgid "Unbl&ock"
-msgstr "ブロック解除(&O)"
-
-#: wxUI/dialogs/userActions.py:26
-msgid "&Report as spam"
-msgstr "スパムとして報告(&R)"
-
-#: wxUI/dialogs/userActions.py:27
-msgid "&Ignore tweets from this client"
-msgstr "このクライアントからのツイートを無視(&I)"
 
 #: wxUI/dialogs/userAliasDialogs.py:18
 msgid "Alias"
@@ -3724,6 +2363,10 @@ msgstr "エイリアス"
 #: wxUI/dialogs/userAliasDialogs.py:41
 msgid "Edit user aliases"
 msgstr "ユーザーエイリアスを編集"
+
+#: wxUI/dialogs/mastodon/search.py:19 wxUI/dialogs/userAliasDialogs.py:43
+msgid "Users"
+msgstr "ユーザー"
 
 #: wxUI/dialogs/userAliasDialogs.py:50
 msgid "Add alias"
@@ -3736,6 +2379,10 @@ msgstr "新しいユーザーエイリアスを追加"
 #: wxUI/dialogs/userAliasDialogs.py:54
 msgid "Edit the currently focused user Alias."
 msgstr "現在フォーカスされているユーザーエイリアスを編集します。"
+
+#: wxUI/dialogs/userAliasDialogs.py:57
+msgid "Remove"
+msgstr "削除"
 
 #: wxUI/dialogs/userAliasDialogs.py:58
 msgid "Remove the currently focused user alias."
@@ -3753,30 +2400,9 @@ msgstr "ユーザーエイリアスを削除"
 msgid "User alias"
 msgstr "ユーザーエイリアス"
 
-#: wxUI/dialogs/mastodon/userTimeline.py:9 wxUI/dialogs/userSelection.py:10
-#, python-format
-msgid "Timeline for %s"
-msgstr "「%s」のタイムライン"
-
-#: wxUI/dialogs/mastodon/userTimeline.py:18 wxUI/dialogs/userSelection.py:19
-msgid "Buffer type"
-msgstr "バッファのタイプ"
-
-#: wxUI/dialogs/userSelection.py:20
-msgid "&Tweets"
-msgstr "ツイート(&T)"
-
-#: wxUI/dialogs/userSelection.py:21
-msgid "&Likes"
-msgstr "いいね(&L)"
-
-#: wxUI/dialogs/mastodon/userTimeline.py:20 wxUI/dialogs/userSelection.py:22
-msgid "&Followers"
-msgstr "フォロワー(&F)"
-
-#: wxUI/dialogs/userSelection.py:23
-msgid "F&riends"
-msgstr "フォロー(&R)"
+#: wxUI/dialogs/mastodon/configuration.py:14
+msgid "User autocompletion settings"
+msgstr "自動保管の設定"
 
 #: wxUI/dialogs/mastodon/configuration.py:15
 msgid ""
@@ -3784,16 +2410,28 @@ msgid ""
 "autocompletion database"
 msgstr "アカウントをスキャンして、フォロー中のユーザーやフォロワーをユーザーの自動補完のデータベースに追加します"
 
+#: wxUI/dialogs/mastodon/configuration.py:17
+msgid "Manage autocompletion database"
+msgstr "自動補完のデータベースを管理"
+
 #: wxUI/dialogs/mastodon/configuration.py:23
 #, fuzzy
 msgid "Disable Streaming API endpoints"
 msgstr "ストリーミング機能を無効化する"
+
+#: wxUI/dialogs/mastodon/configuration.py:25
+msgid "Relative timestamps"
+msgstr "相対的な時刻を利用する"
 
 #: wxUI/dialogs/mastodon/configuration.py:27
 msgid ""
 "Read preferences from instance (default visibility when publishing and "
 "displaying sensitive content)"
 msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:30
+msgid "Items on each API call"
+msgstr "各API呼び出しの回数"
 
 #: wxUI/dialogs/mastodon/configuration.py:36
 msgid ""
@@ -3805,11 +2443,45 @@ msgstr "バッファの並び順を入れ替える: 新しいツイートを先�
 msgid "Ask confirmation before boosting a post"
 msgstr "投稿をブーストする前に確認する"
 
+#: wxUI/dialogs/mastodon/configuration.py:40
+msgid "Show screen names instead of full names"
+msgstr "表示名の代わりに、ユーザー名を表示する"
+
+#: wxUI/dialogs/mastodon/configuration.py:42
+msgid "hide emojis in usernames"
+msgstr "ユーザー名から絵文字を非表示にする"
+
+#: wxUI/dialogs/mastodon/configuration.py:44
+msgid ""
+"Number of items per buffer to cache in database (0 to disable caching, "
+"blank for unlimited)"
+msgstr "バッファごとにデータベースにキャッシュする項目数(0はキャッシュしない、空欄の場合は無制限)"
+
 #: wxUI/dialogs/mastodon/configuration.py:48
 msgid ""
 "Load cache for items in memory (much faster in big datasets but requires "
 "more RAM)"
 msgstr "アイテムのキャッシュをメモリにロードする(大きなデータセットでははるかに高速ですが、より多くのRAMが必要です)"
+
+#: wxUI/dialogs/mastodon/configuration.py:67
+msgid "Volume"
+msgstr "ボリューム"
+
+#: wxUI/dialogs/mastodon/configuration.py:78
+msgid "Session mute"
+msgstr "セッションのミュート"
+
+#: wxUI/dialogs/mastodon/configuration.py:80
+msgid "Output device"
+msgstr "出力先デバイス"
+
+#: wxUI/dialogs/mastodon/configuration.py:87
+msgid "Input device"
+msgstr "入力デバイス"
+
+#: wxUI/dialogs/mastodon/configuration.py:95
+msgid "Sound pack"
+msgstr "サウンドパック"
 
 #: wxUI/dialogs/mastodon/configuration.py:101
 msgid "Indicate audio or video in posts with sound"
@@ -3818,6 +2490,30 @@ msgstr "音声や動画付き投稿を音で報告"
 #: wxUI/dialogs/mastodon/configuration.py:103
 msgid "Indicate posts containing images with sound"
 msgstr "画像付き投稿を音で報告"
+
+#: wxUI/dialogs/mastodon/configuration.py:126
+msgid "Language for OCR"
+msgstr "OCRの言語"
+
+#: wxUI/dialogs/mastodon/configuration.py:151
+msgid "Feedback"
+msgstr "フィードバック"
+
+#: wxUI/dialogs/mastodon/configuration.py:155
+msgid "Buffers"
+msgstr "バッファ"
+
+#: wxUI/dialogs/mastodon/configuration.py:159
+msgid "Templates"
+msgstr "テンプレート"
+
+#: wxUI/dialogs/mastodon/configuration.py:163
+msgid "Sound"
+msgstr "サウンド"
+
+#: wxUI/dialogs/mastodon/configuration.py:167
+msgid "Extras"
+msgstr "その他"
 
 #: wxUI/dialogs/mastodon/dialogs.py:7
 msgid "Would you like to share this post?"
@@ -3828,6 +2524,10 @@ msgid ""
 "Do you really want to delete this post? It will be deleted from the "
 "instance as well."
 msgstr "本当にこの投稿を削除しますか？インスタンスからも削除されます。本当にこのツイートを削除しますか？このツイートは、Twitterから削除されます。"
+
+#: wxUI/dialogs/mastodon/dialogs.py:15
+msgid "Delete"
+msgstr "削除"
 
 #: wxUI/dialogs/mastodon/dialogs.py:23
 msgid ""
@@ -3862,21 +2562,47 @@ msgstr "このユーザーは誰もフォローしていないため、 {0} の�
 msgid "R&emove from favorites"
 msgstr "お気に入りから削除(&E)"
 
+#: wxUI/dialogs/mastodon/menus.py:15
+msgid "&Open URL"
+msgstr "URLを開く(&O)"
+
+#: wxUI/dialogs/mastodon/menus.py:17
+msgid "&Open in Twitter"
+msgstr "ツイッターを検索"
+
+#: wxUI/dialogs/mastodon/menus.py:19
+msgid "&Play audio"
+msgstr "音声を再生(&P)"
+
+#: wxUI/dialogs/mastodon/menus.py:21
+msgid "&Show tweet"
+msgstr "ツイートを表示(&S)"
+
+#: wxUI/dialogs/mastodon/menus.py:23
+msgid "&Copy to clipboard"
+msgstr "クリップボードにコピー(&C)"
+
+#: wxUI/dialogs/mastodon/menus.py:27
+msgid "&User actions..."
+msgstr "ユーザーのアクション(&U)"
+
 #: wxUI/dialogs/mastodon/postDialogs.py:19
 #: wxUI/dialogs/mastodon/postDialogs.py:37
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:32
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:48
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:168
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:252
 msgid "Attachments"
 msgstr "添付ファイル"
 
+#: wxUI/dialogs/mastodon/postDialogs.py:23
+msgid "File"
+msgstr "ファイル"
+
 #: wxUI/dialogs/mastodon/postDialogs.py:24
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:36
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:172
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:256
 msgid "Type"
 msgstr "形式"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:25
+#: wxUI/dialogs/mastodon/postDialogs.py:134
+msgid "Description"
+msgstr "説明"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:27
 msgid "Remove Attachment"
@@ -3913,9 +2639,6 @@ msgid "Add p&ost"
 msgstr "投稿を追加(&O)"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:68
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:65
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:196
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:235
 msgid "Auto&complete users"
 msgstr "ユーザーを自動保管(&C)"
 
@@ -3924,9 +2647,6 @@ msgid "Check &spelling"
 msgstr "スペルチェック(&S)"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:72
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:69
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:200
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:272
 msgid "&Translate"
 msgstr "翻訳(&T)"
 
@@ -3935,16 +2655,10 @@ msgid "Post - {} characters"
 msgstr "投稿 - {}文字"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:123
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:117
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:218
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:296
 msgid "Image"
 msgstr "画像"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:125
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:119
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:220
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:298
 msgid "Video"
 msgstr "動画"
 
@@ -3953,23 +2667,32 @@ msgid "Audio"
 msgstr "音声"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:129
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:121
 msgid "Poll"
 msgstr "投票"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:134
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:126
 msgid "please provide a description"
 msgstr "説明を入力"
 
+#: wxUI/dialogs/mastodon/postDialogs.py:141
+msgid "Select the picture to be uploaded"
+msgstr "アップロードする画像を選択"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:141
+msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+msgstr "画像ファイル (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+
 #: wxUI/dialogs/mastodon/postDialogs.py:148
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
 msgid "Select the video to be uploaded"
 msgstr "アップロードする動画を選択"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:148
 msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
 msgstr "動画ファイル (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:155
+msgid "Select the audio file to be uploaded"
+msgstr "アップロードする音声ファイルを選択"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:155
 msgid ""
@@ -3987,7 +2710,6 @@ msgid ""
 msgstr "これ以上添付ファイルを追加することはできません。投稿ごとに最大4つの画像、または1つの音声、ビデオ、または投票のみを追加できることを考慮してください。続行する前に、他の添付ファイルを削除してください。"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:162
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
 msgid "Error adding attachment"
 msgstr "添付ファイルの追加中にエラーが発生しました"
 
@@ -4007,7 +2729,6 @@ msgid "Post - %i characters "
 msgstr "投稿 - %i文字 "
 
 #: wxUI/dialogs/mastodon/postDialogs.py:182
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:321
 msgid "Image description"
 msgstr "画像の説明"
 
@@ -4024,145 +2745,126 @@ msgid "Favorites: "
 msgstr "お気に入り: "
 
 #: wxUI/dialogs/mastodon/postDialogs.py:204
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:342
 msgid "Source: "
 msgstr "ソース: "
 
 #: wxUI/dialogs/mastodon/postDialogs.py:209
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:347
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:425
 msgid "Date: "
 msgstr "日付: "
 
 #: wxUI/dialogs/mastodon/postDialogs.py:221
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:362
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:435
 msgid "Copy link to clipboard"
 msgstr "リンクをクリップボードへコピー"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:223
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:67
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:198
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:270
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:364
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:437
+#: wxUI/dialogs/mastodon/postDialogs.py:270
 msgid "Check &spelling..."
 msgstr "スペルチェック(&S)"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:224
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:365
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:440
+#: wxUI/dialogs/mastodon/postDialogs.py:271
 msgid "&Translate..."
 msgstr "翻訳(&T)..."
 
 #: wxUI/dialogs/mastodon/postDialogs.py:225
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:366
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:441
+#: wxUI/dialogs/mastodon/postDialogs.py:272
 msgid "C&lose"
 msgstr "閉じる(&C)"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:260
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:477
+#: wxUI/dialogs/mastodon/postDialogs.py:284
 msgid "Add a poll"
 msgstr "投票を追加"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:264
+#: wxUI/dialogs/mastodon/postDialogs.py:288
 msgid "Participation time"
 msgstr "投票期間"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "5 minutes"
 msgstr "5分"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "30 minutes"
 msgstr "30分"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "1 hour"
 msgstr "1時間"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "6 hours"
 msgstr "6時間"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "1 day"
 msgstr "1日"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "2 days"
 msgstr "2日"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "3 days"
 msgstr "3日"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "4 days"
 msgstr "4日"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "5 days"
 msgstr "5日"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "6 days"
 msgstr "6日"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "7 days"
 msgstr "7日"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:270
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:488
+#: wxUI/dialogs/mastodon/postDialogs.py:294
 msgid "Choices"
 msgstr "選択肢"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:274
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:492
+#: wxUI/dialogs/mastodon/postDialogs.py:298
 msgid "Option 1"
 msgstr "オプション1"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:281
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:499
+#: wxUI/dialogs/mastodon/postDialogs.py:305
 msgid "Option 2"
 msgstr "オプション2"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:288
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:506
+#: wxUI/dialogs/mastodon/postDialogs.py:312
 msgid "Option 3"
 msgstr "オプション3"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:513
+#: wxUI/dialogs/mastodon/postDialogs.py:319
 msgid "Option 4"
 msgstr "オプション4"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:300
+#: wxUI/dialogs/mastodon/postDialogs.py:324
 #, fuzzy
 msgid "Allow multiple choices per user"
 msgstr "ユーザーごとに複数の投票を許可する"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:303
+#: wxUI/dialogs/mastodon/postDialogs.py:327
 msgid "Hide votes count until the poll expires"
 msgstr "投票の有効期限が切れるまで投票数を非表示にする"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:329
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
+#: wxUI/dialogs/mastodon/postDialogs.py:353
 msgid "Please make sure you have provided at least two options for the poll."
 msgstr "投票に少なくとも2つのオプションを提供していることを確認してください。"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:329
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
+#: wxUI/dialogs/mastodon/postDialogs.py:353
 msgid "Not enough information"
 msgstr "十分な情報がありません"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:334
+#: wxUI/dialogs/mastodon/postDialogs.py:358
 msgid "Vote in this poll"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:337
+#: wxUI/dialogs/mastodon/postDialogs.py:361
 #, fuzzy
 msgid "Options"
 msgstr "オプション4"
@@ -4175,129 +2877,56 @@ msgstr "検索"
 msgid "Posts"
 msgstr "投稿"
 
+#: wxUI/dialogs/mastodon/search.py:24 wxUI/dialogs/mastodon/userActions.py:36
+#: wxUI/dialogs/mastodon/userTimeline.py:30
+msgid "&OK"
+msgstr "OK(&O)"
+
+#: wxUI/dialogs/mastodon/search.py:26 wxUI/dialogs/mastodon/userActions.py:38
+#: wxUI/dialogs/mastodon/userTimeline.py:32
+msgid "&Close"
+msgstr "閉じる(&C)"
+
+#: wxUI/dialogs/mastodon/userActions.py:19
+msgid "&Follow"
+msgstr "フォロー(&F)"
+
+#: wxUI/dialogs/mastodon/userActions.py:20
+msgid "U&nfollow"
+msgstr "フォロー解除(&N)"
+
+#: wxUI/dialogs/mastodon/userActions.py:22
+msgid "Unmu&te"
+msgstr "ミュート解除(&T)"
+
+#: wxUI/dialogs/mastodon/userActions.py:23
+msgid "&Block"
+msgstr "ブロック(&B)"
+
+#: wxUI/dialogs/mastodon/userActions.py:24
+msgid "Unbl&ock"
+msgstr "ブロック解除(&O)"
+
+#: wxUI/dialogs/mastodon/userTimeline.py:9
+#, python-format
+msgid "Timeline for %s"
+msgstr "「%s」のタイムライン"
+
+#: wxUI/dialogs/mastodon/userTimeline.py:18
+msgid "Buffer type"
+msgstr "バッファのタイプ"
+
 #: wxUI/dialogs/mastodon/userTimeline.py:19
 msgid "&Posts"
 msgstr "投稿(&P)"
 
+#: wxUI/dialogs/mastodon/userTimeline.py:20
+msgid "&Followers"
+msgstr "フォロワー(&F)"
+
 #: wxUI/dialogs/mastodon/userTimeline.py:21
 msgid "Fo&llowing"
 msgstr "フォロー中(&L)"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:8
-msgid "Edit Template"
-msgstr "テンプレートを編集"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:13
-msgid "Edit template"
-msgstr "テンプレートを編集"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:17
-msgid "Available variables"
-msgstr "使用可能な変数"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:29
-msgid "Restore template"
-msgstr "テンプレートを復元"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:48
-msgid "Restored template to {}."
-msgstr "テンプレートを {} に復元しました。"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
-msgid ""
-"the template you have specified include variables that do not exists for "
-"the object. Please fix the template and try again. For your reference, "
-"you can see a list of all available variables in the variables list while"
-" editing your template."
-msgstr "指定したテンプレートには、オブジェクトに存在しない変数が含まれています。テンプレートを修正して、再試行してください。参考までに、テンプレートの編集中に、変数リストで使用可能なすべての変数のリストを確認できます。"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
-msgid "Invalid template"
-msgstr "無効なテンプレート"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:39
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:175
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:259
-msgid "Delete attachment"
-msgstr "添付ファイルを削除"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:44
-msgid "Added Tweets"
-msgstr "ツイートを追加"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:51
-msgid "Delete tweet"
-msgstr "ツイートを削除"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:56
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:190
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:264
-msgid "A&dd..."
-msgstr "追加(&D)"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:58
-msgid "Add t&weet"
-msgstr "ツイートを追加(&W)"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:61
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:192
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:266
-msgid "&Attach audio..."
-msgstr "音声を添付(&A)"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:73
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:204
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:276
-msgid "Sen&d"
-msgstr "送信(&D)"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
-msgid "Video files (*.mp4)|*.mp4"
-msgstr "動画ファイル (*.mp4)|*.mp4"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
-msgid ""
-"It is not possible to add more attachments. Please make sure your tweet "
-"complies with Twitter'S attachment rules. You can add only one video or "
-"GIF in every tweet, and a maximum of 4 photos."
-msgstr "これ以上添付ファイルを追加することはできません。ツイートがTwitterの添付ルールに準拠していることを確認してください。すべてのツイートに追加できるビデオまたはGIFは1つだけで、最大4枚の写真を追加できます。"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:180
-msgid "&Mention to all"
-msgstr "全員にリプライ(&M)"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:233
-msgid "&Recipient"
-msgstr "送信先(&R)"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:304
-#, python-format
-msgid "Tweet - %i characters "
-msgstr "ツイート - %i文字 "
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:332
-msgid "Retweets: "
-msgstr "リツイート: "
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:337
-msgid "Likes: "
-msgstr "いいね: "
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:410
-msgid "View"
-msgstr "ツイート"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:412
-msgid "Item"
-msgstr "アイテム"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:438
-msgid "&Expand URL"
-msgstr "URLを元に戻す(&E)"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:481
-msgid "Participation time (in days)"
-msgstr "投票期間(日数)"
 
 #~ msgid "Unable to find address in OpenStreetMap."
 #~ msgstr "OpenStreetMapでアドレスが見つかりません。"
@@ -4322,4 +2951,958 @@ msgstr "投票期間(日数)"
 
 #~ msgid "&Item"
 #~ msgstr "アイテム(&I)"
+
+#~ msgid "Likes for {}"
+#~ msgstr "{}のいいね一覧"
+
+#~ msgid "Trending topics for %s"
+#~ msgstr "%s のトレンド"
+
+#~ msgid "Select user"
+#~ msgstr "ユーザーを選択"
+
+#~ msgid "Sent direct messages"
+#~ msgstr "送信済みのダイレクトメッセージ"
+
+#~ msgid "Sent tweets"
+#~ msgstr "送信済みのツイート"
+
+#~ msgid "Likes"
+#~ msgstr "いいね"
+
+#~ msgid "Friends"
+#~ msgstr "フォロー"
+
+#~ msgid "{username}'s likes"
+#~ msgstr "{username} のいいね一覧"
+
+#~ msgid "{username}'s friends"
+#~ msgstr "{username} のフォロー"
+
+#~ msgid "Tweet"
+#~ msgstr "ツイート"
+
+#~ msgid "Write the tweet here"
+#~ msgstr "ツイートを入力"
+
+#~ msgid "New tweet in {0}"
+#~ msgstr "{0} への新規ツイート"
+
+#~ msgid "{0} new tweets in {1}."
+#~ msgstr "{1} への {0}個の新規ツイート。"
+
+#~ msgid "Reply to {arg0}"
+#~ msgstr "{arg0} への返信:"
+
+#~ msgid "Reply to %s"
+#~ msgstr "「%s」への返信"
+
+#~ msgid "Direct message to %s"
+#~ msgstr "「%s」へのダイレクトメッセージ"
+
+#~ msgid "New direct message"
+#~ msgstr "新しいダイレクトメッセージ"
+
+#~ msgid "This action is not supported on protected accounts."
+#~ msgstr "この動作は、保護されたアカウントではサポートされていません。"
+
+#~ msgid "Quote"
+#~ msgstr "引用"
+
+#~ msgid "Add your comment to the tweet"
+#~ msgstr "ツイートにコメントを追加"
+
+#~ msgid "User details"
+#~ msgstr "ユーザーの詳細"
+
+#~ msgid "MMM D, YYYY. H:m"
+#~ msgstr "YYYY年MMMMD日 H時m分"
+
+#~ msgid "There are no coordinates in this tweet"
+#~ msgstr "このツイートに位置情報は存在しません"
+
+#~ msgid "Error decoding coordinates. Try again later."
+#~ msgstr "位置情報の取得に失敗しました。あとで再試行してください。"
+
+#~ msgid "Invalid buffer"
+#~ msgstr "無効なバッファ"
+
+#~ msgid "{0} new direct messages."
+#~ msgstr "{0}件の新しいダイレクトメッセージ。"
+
+#~ msgid "This action is not supported in the buffer yet."
+#~ msgstr "この動作は、現在のバッファではサポートされていません。"
+
+#~ msgid ""
+#~ "Getting more items cannot be done "
+#~ "in this buffer. Use the direct "
+#~ "messages buffer instead."
+#~ msgstr "このバッファでは、さらにアイテムを取得することはできません。代わりにダイレクトメッセージバッファを使用してください。"
+
+#~ msgid "Mention"
+#~ msgstr "メンション"
+
+#~ msgid "Mention to %s"
+#~ msgstr "%sへのメンション"
+
+#~ msgid "{0} new followers."
+#~ msgstr "{0}人の新しいフォロワー。"
+
+#~ msgid "This action is not supported in the buffer, yet."
+#~ msgstr "この動作は、現在のバッファではサポートされていません。"
+
+#~ msgid "&Retweet"
+#~ msgstr "リツイート(&R)"
+
+#~ msgid "&Like"
+#~ msgstr "いいね(&L)"
+
+#~ msgid "&Unlike"
+#~ msgstr "いいねを解除(&U)"
+
+#~ msgid "View &address"
+#~ msgstr "位置情報を表示(&A)"
+
+#~ msgid "&View lists"
+#~ msgstr "リストを見る(&V)"
+
+#~ msgid "View likes"
+#~ msgstr "いいね一覧を見る"
+
+#~ msgid "Likes timelines"
+#~ msgstr "ほかのユーザーのいいね一覧"
+
+#~ msgid "Followers timelines"
+#~ msgstr "フォロワー一覧"
+
+#~ msgid "Following timelines"
+#~ msgstr "フォロー一覧"
+
+#~ msgid "Lists"
+#~ msgstr "リスト"
+
+#~ msgid "List for {}"
+#~ msgstr "{}のリスト"
+
+#~ msgid "Filters cannot be applied on this buffer"
+#~ msgstr "このバッファにはフィルターを適応できません"
+
+#~ msgid "View item"
+#~ msgstr "アイテムを見る"
+
+#~ msgid "Ask"
+#~ msgstr "その都度、質問する"
+
+#~ msgid "Retweet without comments"
+#~ msgstr "コメントを付けずにリツイート(公式RT)"
+
+#~ msgid "Retweet with comments"
+#~ msgstr "コメントをつけてリツイート(非公式RT)"
+
+#~ msgid "Edit template for tweets. Current template: {}"
+#~ msgstr "ツイートのテンプレートを編集します。現在のテンプレート: {}"
+
+#~ msgid "Edit template for direct messages. Current template: {}"
+#~ msgstr "ダイレクトメッセージのテンプレートを編集します。現在のテンプレート: {}"
+
+#~ msgid "Edit template for sent direct messages. Current template: {}"
+#~ msgstr "送信済みのダイレクトメッセージのテンプレートを編集します。現在のテンプレート: {}"
+
+#~ msgid "User has been suspended"
+#~ msgstr "ユーザーが凍結されています"
+
+#~ msgid "Information for %s"
+#~ msgstr "%s の情報"
+
+#~ msgid "Discarded"
+#~ msgstr "破棄しました"
+
+#~ msgid "Username: @%s\n"
+#~ msgstr "ユーザー名: @%s\n"
+
+#~ msgid "Name: %s\n"
+#~ msgstr "名前: %s\n"
+
+#~ msgid "Location: %s\n"
+#~ msgstr "居住地: %s\n"
+
+#~ msgid "URL: %s\n"
+#~ msgstr "URL: %s\n"
+
+#~ msgid "Bio: %s\n"
+#~ msgstr "自己紹介: %s\n"
+
+#~ msgid "Yes"
+#~ msgstr "はい"
+
+#~ msgid "No"
+#~ msgstr "いいえ"
+
+#~ msgid "Protected: %s\n"
+#~ msgstr "保護設定: %s\n"
+
+#~ msgid "Relationship: "
+#~ msgstr "関係: "
+
+#~ msgid "You follow {0}. "
+#~ msgstr "{0}をフォロー。 "
+
+#~ msgid "{0} is following you."
+#~ msgstr "{0}がフォロー。"
+
+#~ msgid ""
+#~ "Followers: %s\n"
+#~ " Friends: %s\n"
+#~ msgstr ""
+#~ "フォロワー: %s\n"
+#~ "フォロー: %s\n"
+
+#~ msgid "Verified: %s\n"
+#~ msgstr "認証済み: %s\n"
+
+#~ msgid "Tweets: %s\n"
+#~ msgstr "ツイート数: %s\n"
+
+#~ msgid "Likes: %s"
+#~ msgstr "いいね数: %s"
+
+#~ msgid "You can't ignore direct messages"
+#~ msgstr "ダイレクトメッセージを無視することはできません"
+
+#~ msgid "Attaching..."
+#~ msgstr "添付中…"
+
+#~ msgid "Pause"
+#~ msgstr "一時停止"
+
+#~ msgid "&Resume"
+#~ msgstr "再開(&R)"
+
+#~ msgid "Resume"
+#~ msgstr "再開"
+
+#~ msgid "&Pause"
+#~ msgstr "一時停止(&P)"
+
+#~ msgid "&Stop"
+#~ msgstr "停止(&S)"
+
+#~ msgid "Recording"
+#~ msgstr "録音中"
+
+#~ msgid "Stopped"
+#~ msgstr "停止"
+
+#~ msgid "&Record"
+#~ msgstr "録音(&R)"
+
+#~ msgid "&Play"
+#~ msgstr "再生(&P)"
+
+#~ msgid "Recoding audio..."
+#~ msgstr "音声を録音中…"
+
+#~ msgid "Error in file upload: {0}"
+#~ msgstr "ファイルアップロードエラー: {0}"
+
+#~ msgid "Transferred"
+#~ msgstr "転送済み"
+
+#~ msgid "Total file size"
+#~ msgstr "合計サイズ"
+
+#~ msgid "Transfer rate"
+#~ msgstr "転送速度"
+
+#~ msgid "Time left"
+#~ msgstr "残り時間"
+
+#~ msgid "Attach audio"
+#~ msgstr "音声を添付"
+
+#~ msgid "&Add an existing file"
+#~ msgstr "既存のファイルを追加(&A)"
+
+#~ msgid "&Discard"
+#~ msgstr "拒否(&D)"
+
+#~ msgid "Upload to"
+#~ msgstr "アップロード先"
+
+#~ msgid "Attach"
+#~ msgstr "添付"
+
+#~ msgid "&Cancel"
+#~ msgstr "キャンセル(&C)"
+
+#~ msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+#~ msgstr "音声ファイル (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+
+#~ msgid "You have to start writing"
+#~ msgstr "あなたは、書き込みを開始しなければなりません"
+
+#~ msgid "There are no results in your users database"
+#~ msgstr "あなたのユーザーのデータベースには、見つかりませんでした"
+
+#~ msgid "Autocompletion only works for users."
+#~ msgstr "自動補完はユーザーのみで動作します。"
+
+#~ msgid ""
+#~ "Updating database... You can close this"
+#~ " window now. A message will tell "
+#~ "you when the process finishes."
+#~ msgstr "データベースの更新中… なお、このウィンドウを閉じることができます。処理が終了すると、メッセージが表示されます。"
+
+#~ msgid "Manage Autocompletion database"
+#~ msgstr "自動補完のデータベースを管理"
+
+#~ msgid "Editing {0} users database"
+#~ msgstr "{0}のユーザーデータベースを編集中"
+
+#~ msgid "Username"
+#~ msgstr "ユーザー名"
+
+#~ msgid "Add user"
+#~ msgstr "ユーザーを追加"
+
+#~ msgid "Remove user"
+#~ msgstr "ユーザーを削除"
+
+#~ msgid "Twitter username"
+#~ msgstr "Twitterのユーザー名"
+
+#~ msgid "Add user to database"
+#~ msgstr "データベースにユーザーを追加"
+
+#~ msgid "The user does not exist"
+#~ msgstr "そのユーザーは存在しません"
+
+#~ msgid "Error!"
+#~ msgstr "エラー！"
+
+#~ msgid "Autocomplete users' settings"
+#~ msgstr "自動補完のユーザーの設定"
+
+#~ msgid "Add followers to database"
+#~ msgstr "フォロワーをデータベースに追加"
+
+#~ msgid "Add  friends to database"
+#~ msgstr "データベースにフォロー中のユーザーを追加"
+
+#~ msgid "Updating autocompletion database"
+#~ msgstr "自動補完のデータベースを更新中"
+
+#~ msgid ""
+#~ "This process will retrieve the users "
+#~ "you selected from Twitter, and add "
+#~ "them to the user autocomplete database."
+#~ " Please note that if there are "
+#~ "many users or you have tried to"
+#~ " perform this action less than 15 "
+#~ "minutes ago, TWBlue may reach a "
+#~ "limit in Twitter API calls when "
+#~ "trying to load the users into the"
+#~ " database. If this happens, we will"
+#~ " show you an error, in which "
+#~ "case you will have to try this "
+#~ "process again in a few minutes. If"
+#~ " this process ends with no error, "
+#~ "you will be redirected back to the"
+#~ " account settings dialog. Do you want"
+#~ " to continue?"
+#~ msgstr "このプロセスにより、選択したユーザーがTwitterから取得され、ユーザーの自動補完のデータベースに追加されます。多くのユーザーがいる場合、またはこのアクションを実行しようとしてから15分以内にユーザーをデータベースにロードしようとしたときに、TWBlueがTwitterAPI呼び出しの制限に達する可能性があることに注意してください。これが発生した場合、エラーが表示されます。その場合、数分後にこのプロセスを再試行する必要があります。このプロセスがエラーなしで終了すると、アカウント設定ダイアログにリダイレクトされます。続行してもよろしいですか？"
+
+#~ msgid "TWBlue has imported {} users successfully."
+#~ msgstr "TWBlueは{}ユーザーを正常にインポートしました。"
+
+#~ msgid "Done"
+#~ msgstr "完了"
+
+#~ msgid "Error adding users from Twitter. Please try again in about 15 minutes."
+#~ msgstr "Twitterからユーザーを追加するときにエラーが発生しました。約15分後にもう1度お試しください。"
+
+#~ msgid "New tweet"
+#~ msgstr "新規ツイート"
+
+#~ msgid "Retweet"
+#~ msgstr "リツイート"
+
+#~ msgid "Like a tweet"
+#~ msgstr "ツイートをいいねする"
+
+#~ msgid "Like/unlike a tweet"
+#~ msgstr "ツイートをいいね・いいね解除"
+
+#~ msgid "Unlike a tweet"
+#~ msgstr "ツイートのいいねを解除"
+
+#~ msgid "See user details"
+#~ msgstr "ユーザーの詳細を表示"
+
+#~ msgid "Show tweet"
+#~ msgstr "ツイートを表示"
+
+#~ msgid "Interact with the currently focused tweet."
+#~ msgstr "現在フォーカス中のツイートを相呼応する。"
+
+#~ msgid "View in Twitter"
+#~ msgstr "Twitterで見る"
+
+#~ msgid "Edit profile"
+#~ msgstr "プロフィールを編集"
+
+#~ msgid "Delete a tweet or direct message"
+#~ msgstr "ツイートまたはダイレクトメッセージを削除"
+
+#~ msgid "Add to list"
+#~ msgstr "リストに追加"
+
+#~ msgid "Remove from list"
+#~ msgstr "リストから削除"
+
+#~ msgid "Search on twitter"
+#~ msgstr "Twitterを検索"
+
+#~ msgid "Show lists for a specified user"
+#~ msgstr "特定のユーザーのリストを表示"
+
+#~ msgid "Get geolocation"
+#~ msgstr "位置情報を取得"
+
+#~ msgid "Display the tweet's geolocation in a dialog"
+#~ msgstr "位置情報を表示"
+
+#~ msgid "Create a trending topics buffer"
+#~ msgstr "トレンドのバッファを作成"
+
+#~ msgid ""
+#~ "Opens the list manager, which allows "
+#~ "you to create, edit, delete and "
+#~ "open lists in buffers."
+#~ msgstr "リストを作成したり、編集したり、削除したりするために「リストの管理」を開く。"
+
+#~ msgid "Opens the list manager"
+#~ msgstr "リストの管理"
+
+#~ msgid "{account_name} (Twitter)"
+#~ msgstr "{account_name} (Twitter)"
+
+#~ msgid "Twitter"
+#~ msgstr "Twitter"
+
+#~ msgid ""
+#~ "The request to authorize your Twitter"
+#~ " account will be opened in your "
+#~ "browser. You only need to do this"
+#~ " once. Would you like to continue?"
+#~ msgstr "アカウントを認証するために、ブラウザを開きます。あなたは、一度だけ、これを実行する必要があります。続行しますか？"
+
+#~ msgid ""
+#~ "TWBlue is unable to authenticate the "
+#~ "account for {} in Twitter. It "
+#~ "might be due to an invalid or "
+#~ "expired token, revoqued access to the"
+#~ " application, or after an account "
+#~ "reactivation. Please remove the account "
+#~ "manually from your Twitter sessions in"
+#~ " order to stop seeing this message."
+#~ msgstr ""
+#~ "TWBlueはTwitterで {} "
+#~ "のアカウントを認証できません。トークンが無効または期限切れであるか、アプリケーションへのアクセスが取り消されているか、アカウントの再アクティブ化が原因である可能性があります。このメッセージの表示を停止するには、Twitterセッションからアカウントを手動で削除してください。"
+
+#~ msgid "Authentication error for session {}"
+#~ msgstr "セッション {} の認証エラー"
+
+#~ msgid "Dm to %s "
+#~ msgstr "「%s」へのDM "
+
+#~ msgid "{0}. Quoted  tweet from @{1}: {2}"
+#~ msgstr "{0} 引用:@{1}:{2}"
+
+#~ msgid "Unavailable"
+#~ msgstr "無効"
+
+#~ msgid ""
+#~ "%s (@%s). %s followers, %s friends, "
+#~ "%s tweets. Last tweeted %s. Joined "
+#~ "Twitter %s"
+#~ msgstr "%s: @%s フォロワー: %s フォロー: %s ツイート数: %s 最後のツイート: %s ツイッターへの参加: %s"
+
+#~ msgid "No description available"
+#~ msgstr "説明はありません"
+
+#~ msgid "private"
+#~ msgstr "プライベート"
+
+#~ msgid "public"
+#~ msgstr "公式"
+
+#~ msgid "Enter your PIN code here"
+#~ msgstr "PINコードを入力"
+
+#~ msgid "Authorising account..."
+#~ msgstr "アカウントを連携中…"
+
+#~ msgid ""
+#~ "We could not authorice your Twitter "
+#~ "account to be used in TWBlue. This"
+#~ " might be caused due to an "
+#~ "incorrect verification code. Please try "
+#~ "to add the session again."
+#~ msgstr "TWBlueで使用するTwitterアカウントを認証できませんでした。これは、認証コードが正しくないことが原因である可能性があります。もう1度セッションを追加してください。"
+
+#~ msgid "%s failed.  Reason: %s"
+#~ msgstr "%s が失敗しました。理由: %s"
+
+#~ msgid "Deleted account"
+#~ msgstr "削除されたアカウント"
+
+#~ msgid "$sender_display_name, $text $date"
+#~ msgstr "$sender_display_name, $text $date"
+
+#~ msgid ""
+#~ "$display_name (@$screen_name). $followers followers,"
+#~ " $following following, $tweets tweets. "
+#~ "Joined Twitter $created_at."
+#~ msgstr ""
+#~ "$display_name (@$screen_name)。$followers フォロワー、$following"
+#~ " フォロー中、$tweets 件のツイート。Twitter への参加 $created_at。"
+
+#~ msgid "Image description: {}."
+#~ msgstr "画像の説明: {}。"
+
+#~ msgid "RT @{}: {} Quote from @{}: {}"
+#~ msgstr "{0} 引用:@{1}:{2}"
+
+#~ msgid "RT @{}: {}"
+#~ msgstr "@{} からブースト: {}"
+
+#~ msgid "{} Quote from @{}: {}"
+#~ msgstr "@{} からブースト: {}"
+
+#~ msgid "Sorry, you are not authorised to see this status."
+#~ msgstr "申し訳ありませんが、あなたはこのステータスを表示する権限がありません。"
+
+#~ msgid "Error {0}"
+#~ msgstr "エラー {0}"
+
+#~ msgid "{user_1}, {user_2} and {all_users} more: {text}"
+#~ msgstr "{user_1}、{user_2}、ほか{all_users}ユーザー: {text}"
+
+#~ msgid ""
+#~ "This retweet is over 140 characters. "
+#~ "Would you like to post it as "
+#~ "a mention to the poster with your"
+#~ " comments and a link to the "
+#~ "original tweet?"
+#~ msgstr "このリツイートは、１４０文字を超えています。投稿者へのリプライとコメント、および元のツイートへのリンクで登校しますか？"
+
+#~ msgid "Would you like to add a comment to this tweet?"
+#~ msgstr "このツイートにコメントをつけますか？"
+
+#~ msgid ""
+#~ "Do you really want to delete this"
+#~ " tweet? It will be deleted from "
+#~ "Twitter as well."
+#~ msgstr "本当にこのツイートを削除しますか？このツイートは、Twitterから削除されます。"
+
+#~ msgid "Enter the name of the client : "
+#~ msgstr "クライアントの名前: "
+
+#~ msgid "Add client"
+#~ msgstr "クライアントを追加"
+
+#~ msgid "This user has no tweets, so you can't open a timeline for them."
+#~ msgstr "このユーザーは、何もツイートしていないため、タイムラインを開くことができません。"
+
+#~ msgid ""
+#~ "This is a protected Twitter user, "
+#~ "which means you can't open a "
+#~ "timeline using the Streaming API. The"
+#~ " user's tweets will not update due"
+#~ " to a twitter policy. Do you "
+#~ "want to continue?"
+#~ msgstr "このアカウントは、保護されています。これは、ストリーミングAPIを利用して、タイムラインを開くことができないことを意味します。ユーザーのツイートはTwitterのポリシーにより更新されません。続行しますか？"
+
+#~ msgid ""
+#~ "This is a protected user account, "
+#~ "you need to follow this user to"
+#~ " view their tweets or likes."
+#~ msgstr "このユーザーは保護されています。このユーザーのツイートやお気に入り一覧を見るには、このユーザーをフォローする必要があります。"
+
+#~ msgid "This user has no tweets. {0} can't create a timeline."
+#~ msgstr "このユーザーにはツイートがないため、 {0} のタイムラインを作成することはできません。"
+
+#~ msgid "This user has no favorited tweets. {0} can't create a timeline."
+#~ msgstr "このユーザーには、お気に入り登録されたツイートがないため、 {0} のタイムラインを作成することはできません。"
+
+#~ msgid "This user has no followers. {0} can't create a timeline."
+#~ msgstr "このユーザーはフォロワーがいないため、 {0} のタイムラインを作成することはできません。"
+
+#~ msgid "This user has no friends. {0} can't create a timeline."
+#~ msgstr "このユーザーは誰もフォローしていないため、 {0} のタイムラインを作成することはできません。"
+
+#~ msgid "Geolocation data: {0}"
+#~ msgstr "位置情報: {0}"
+
+#~ msgid "Geo data for this tweet"
+#~ msgstr "このツイートの位置情報"
+
+#~ msgid "You have been blocked from viewing  this content"
+#~ msgstr "このコンテンツの表示がブロックされています"
+
+#~ msgid ""
+#~ "You have been blocked from viewing  "
+#~ "someone's content. In order to avoid "
+#~ "conflicts with the full session, TWBlue"
+#~ " will remove the affected timeline."
+#~ msgstr "他のユーザーのコンテンツを表示できないようになっています。フルセッションとの競合を避けるため、TWBlueは影響を受けるタイムラインを削除します。"
+
+#~ msgid ""
+#~ "TWBlue cannot load this timeline because"
+#~ " the user has been suspended from "
+#~ "Twitter."
+#~ msgstr "ユーザーがTwitterから凍結されているため、このタイムラインをロードできません。"
+
+#~ msgid "Do you really want to delete this filter?"
+#~ msgstr "本当に、このフィルターを削除しますか？"
+
+#~ msgid "This filter already exists. Please use a different title"
+#~ msgstr "このフィルターはすでに利用されています。別の名前を利用してください"
+
+#~ msgid "&Show direct message"
+#~ msgstr "ダイレクトメッセージを表示(&S)"
+
+#~ msgid "&Show event"
+#~ msgstr "イベントを表示(&S)"
+
+#~ msgid "Direct &message"
+#~ msgstr "ダイレクトメッセージ(&M)"
+
+#~ msgid "&Show user"
+#~ msgstr "ユーザーを表示(&S)"
+
+#~ msgid "Search topic"
+#~ msgstr "トピックを検索"
+
+#~ msgid "&Tweet about this trend"
+#~ msgstr "このトレンドのツイート(&T)"
+
+#~ msgid "&Show item"
+#~ msgstr "アイテムを表示(&S)"
+
+#~ msgid "Update &profile"
+#~ msgstr "プロフィールを更新(&P)"
+
+#~ msgid "Event"
+#~ msgstr "イベント"
+
+#~ msgid "Remove event"
+#~ msgstr "イベントを削除"
+
+#~ msgid "Trending topic"
+#~ msgstr "トレンド"
+
+#~ msgid "Tweet about this trend"
+#~ msgstr "このトレンドのツイート"
+
+#~ msgid ""
+#~ "Scan account and add friends and "
+#~ "followers to the user autocompletion "
+#~ "database"
+#~ msgstr "アカウントをスキャンして、フォロー中のユーザーやフォロワーをユーザーの自動補完のデータベースに追加します"
+
+#~ msgid ""
+#~ "Inverted buffers: The newest tweets will"
+#~ " be shown at the beginning while "
+#~ "the oldest at the end"
+#~ msgstr "バッファの並び順を入れ替える(新しいツイートを先頭に、古いツイートを最後に表示)"
+
+#~ msgid "Retweet mode"
+#~ msgstr "リツイートのモード"
+
+#~ msgid ""
+#~ "Load cache for tweets in memory "
+#~ "(much faster in big datasets but "
+#~ "requires more RAM)"
+#~ msgstr "ツイートのキャッシュをメモリにロードする(大きなデータセットでははるかに高速ですが、より多くのRAMが必要です)"
+
+#~ msgid "Ignored clients"
+#~ msgstr "無視するクライアント"
+
+#~ msgid "Remove client"
+#~ msgstr "クライアントを削除"
+
+#~ msgid "Indicate audio tweets with sound"
+#~ msgstr "音声付きツイートを音で報告"
+
+#~ msgid "Indicate geotweets with sound"
+#~ msgstr "位置情報付きツイートを音で報告"
+
+#~ msgid "Indicate tweets containing images with sound"
+#~ msgstr "画像付きツイートを音で報告"
+
+#~ msgid "API Key for SndUp"
+#~ msgstr "SndUpのAPIキー"
+
+#~ msgid "Create a filter  for this buffer"
+#~ msgstr "このバッファのフィルタを作成"
+
+#~ msgid "Filter title"
+#~ msgstr "フィルター名"
+
+#~ msgid "Filter by word"
+#~ msgstr "単語でフィルター"
+
+#~ msgid "Ignore tweets wich contain the following word"
+#~ msgstr "次の単語が含まれるツイートを無視する"
+
+#~ msgid "Ignore tweets without the following word"
+#~ msgstr "次の単語が含まれないツイートを無視する"
+
+#~ msgid "word"
+#~ msgstr "単語"
+
+#~ msgid "Allow retweets"
+#~ msgstr "リツイートを許可する"
+
+#~ msgid "Allow quoted tweets"
+#~ msgstr "引用ツイートを許可する"
+
+#~ msgid "Allow replies"
+#~ msgstr "リプライを許可するフォロワー一覧"
+
+#~ msgid "Use this term as a regular expression"
+#~ msgstr "正規表現を利用"
+
+#~ msgid "Filter by language"
+#~ msgstr "言語でフィルター"
+
+#~ msgid "Load tweets in the following languages"
+#~ msgstr "下記の言語のツイートを表示"
+
+#~ msgid "Ignore tweets in the following languages"
+#~ msgstr "下記の言語のツイートを無視する"
+
+#~ msgid "Don't filter by language"
+#~ msgstr "言語でフィルタしない"
+
+#~ msgid "Supported languages"
+#~ msgstr "サポートしている言語"
+
+#~ msgid "Add selected language to filter"
+#~ msgstr "選択した言語をフィルターに追加"
+
+#~ msgid "Selected languages"
+#~ msgstr "選択した言語"
+
+#~ msgid "You must define a name for the filter before creating it."
+#~ msgstr "フィルターを作成する前に、フィルターの名前を定義する必要があります。"
+
+#~ msgid "Missing filter name"
+#~ msgstr "フィルター名がありません"
+
+#~ msgid "Manage filters"
+#~ msgstr "フィルターの管理"
+
+#~ msgid "Filters"
+#~ msgstr "フィルター"
+
+#~ msgid "Filter"
+#~ msgstr "フィルター"
+
+#~ msgid "Lists manager"
+#~ msgstr "リストの管理"
+
+#~ msgid "List"
+#~ msgstr "リスト"
+
+#~ msgid "Owner"
+#~ msgstr "所有者"
+
+#~ msgid "Members"
+#~ msgstr "メンバー"
+
+#~ msgid "mode"
+#~ msgstr "モード"
+
+#~ msgid "Create a new list"
+#~ msgstr "新しいリストを作成"
+
+#~ msgid "Open in buffer"
+#~ msgstr "バッファで開く"
+
+#~ msgid "Viewing lists for %s"
+#~ msgstr "「%s」のリストを閲覧中"
+
+#~ msgid "Subscribe"
+#~ msgstr "登録"
+
+#~ msgid "Unsubscribe"
+#~ msgstr "登録解除"
+
+#~ msgid "Name (20 characters maximun)"
+#~ msgstr "名前(20文字以内)"
+
+#~ msgid "Mode"
+#~ msgstr "モード"
+
+#~ msgid "Private"
+#~ msgstr "プライベート"
+
+#~ msgid "Editing the list %s"
+#~ msgstr "リスト「%s」を編集中"
+
+#~ msgid "Select a list to add the user"
+#~ msgstr "ユーザーを追加するリストを選択"
+
+#~ msgid "Add"
+#~ msgstr "追加"
+
+#~ msgid "Select a list to remove the user"
+#~ msgstr "ユーザーを削除するには、リストを選択"
+
+#~ msgid "Do you really want to delete this list?"
+#~ msgstr "本当に、このリストを削除しますか？"
+
+#~ msgid "Search on Twitter"
+#~ msgstr "ツイッターを検索"
+
+#~ msgid "Tweets"
+#~ msgstr "ツイート"
+
+#~ msgid "&Language for results: "
+#~ msgstr "結果の言語(&L): "
+
+#~ msgid "any"
+#~ msgstr "指定しない"
+
+#~ msgid "Results &type: "
+#~ msgstr "結果のタイプ(&T): "
+
+#~ msgid "Mixed"
+#~ msgstr "混合"
+
+#~ msgid "Recent"
+#~ msgstr "最近"
+
+#~ msgid "Popular"
+#~ msgstr "人気"
+
+#~ msgid "Details"
+#~ msgstr "詳細"
+
+#~ msgid "&Go to URL"
+#~ msgstr "URLへ移動(&G)"
+
+#~ msgid "View trending topics"
+#~ msgstr "トレンドを表示"
+
+#~ msgid "Trending topics by"
+#~ msgstr "トレンド"
+
+#~ msgid "Country"
+#~ msgstr "国"
+
+#~ msgid "City"
+#~ msgstr "都市"
+
+#~ msgid "&Location"
+#~ msgstr "場所(&L)"
+
+#~ msgid "Update your profile"
+#~ msgstr "プロフィールを更新"
+
+#~ msgid "&Name (50 characters maximum)"
+#~ msgstr "名前(50文字以内)(&N)"
+
+#~ msgid "&Website"
+#~ msgstr "ウェブサイト(&W)"
+
+#~ msgid "&Bio (160 characters maximum)"
+#~ msgstr "自己紹介(160文字以内)(&B)"
+
+#~ msgid "Upload a &picture"
+#~ msgstr "画像をアップロード(&P)"
+
+#~ msgid "Upload a picture"
+#~ msgstr "画像をアップロード"
+
+#~ msgid "Discard image"
+#~ msgstr "画像を破棄"
+
+#~ msgid "&Report as spam"
+#~ msgstr "スパムとして報告(&R)"
+
+#~ msgid "&Ignore tweets from this client"
+#~ msgstr "このクライアントからのツイートを無視(&I)"
+
+#~ msgid "&Tweets"
+#~ msgstr "ツイート(&T)"
+
+#~ msgid "&Likes"
+#~ msgstr "いいね(&L)"
+
+#~ msgid "F&riends"
+#~ msgstr "フォロー(&R)"
+
+#~ msgid "Delete attachment"
+#~ msgstr "添付ファイルを削除"
+
+#~ msgid "Added Tweets"
+#~ msgstr "ツイートを追加"
+
+#~ msgid "Delete tweet"
+#~ msgstr "ツイートを削除"
+
+#~ msgid "A&dd..."
+#~ msgstr "追加(&D)"
+
+#~ msgid "Add t&weet"
+#~ msgstr "ツイートを追加(&W)"
+
+#~ msgid "&Attach audio..."
+#~ msgstr "音声を添付(&A)"
+
+#~ msgid "Sen&d"
+#~ msgstr "送信(&D)"
+
+#~ msgid "Video files (*.mp4)|*.mp4"
+#~ msgstr "動画ファイル (*.mp4)|*.mp4"
+
+#~ msgid ""
+#~ "It is not possible to add more "
+#~ "attachments. Please make sure your tweet"
+#~ " complies with Twitter'S attachment rules."
+#~ " You can add only one video or"
+#~ " GIF in every tweet, and a "
+#~ "maximum of 4 photos."
+#~ msgstr "これ以上添付ファイルを追加することはできません。ツイートがTwitterの添付ルールに準拠していることを確認してください。すべてのツイートに追加できるビデオまたはGIFは1つだけで、最大4枚の写真を追加できます。"
+
+#~ msgid "&Mention to all"
+#~ msgstr "全員にリプライ(&M)"
+
+#~ msgid "&Recipient"
+#~ msgstr "送信先(&R)"
+
+#~ msgid "Tweet - %i characters "
+#~ msgstr "ツイート - %i文字 "
+
+#~ msgid "Retweets: "
+#~ msgstr "リツイート: "
+
+#~ msgid "Likes: "
+#~ msgstr "いいね: "
+
+#~ msgid "View"
+#~ msgstr "ツイート"
+
+#~ msgid "Item"
+#~ msgstr "アイテム"
+
+#~ msgid "&Expand URL"
+#~ msgstr "URLを元に戻す(&E)"
+
+#~ msgid "Participation time (in days)"
+#~ msgstr "投票期間(日数)"
 

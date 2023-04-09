@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TwBlue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-04-02 00:55+0000\n"
+"POT-Creation-Date: 2023-04-09 00:55+0000\n"
 "PO-Revision-Date: 2022-12-21 18:05+0000\n"
 "Last-Translator: Nikola Jović <wwenikola123@gmail.com>\n"
 "Language: sr\n"
@@ -98,11 +98,11 @@ msgstr "Japanski"
 msgid "User default"
 msgstr "Podrazumevano"
 
-#: main.py:109
+#: main.py:107
 msgid "https://twblue.es/donate"
 msgstr "https://twblue.es/donate"
 
-#: main.py:122
+#: main.py:120
 msgid ""
 "{0} is already running. Close the other instance before starting this "
 "one. If you're sure that {0} isn't running, try deleting the file at {1}."
@@ -113,7 +113,7 @@ msgstr ""
 "obrišete datoteku koja se nalazi na {1}. Ako niste sigurni kako ovo da "
 "uradite, kontaktirajte {0} programere."
 
-#: extra/AudioUploader/audioUploader.py:136 sound.py:148
+#: sound.py:148
 msgid "Playing..."
 msgstr "Reprodukujem..."
 
@@ -121,13 +121,13 @@ msgstr "Reprodukujem..."
 msgid "Stopped."
 msgstr "Zaustavljeno"
 
-#: controller/mainController.py:286
+#: controller/mainController.py:255
 msgid "Ready"
 msgstr "Spreman"
 
-#: controller/mainController.py:396 controller/mainController.py:412
-#: controller/mainController.py:737 controller/mainController.py:756
-#: controller/mainController.py:775 controller/mainController.py:794
+#: controller/mainController.py:363 controller/mainController.py:644
+#: controller/mainController.py:663 controller/mainController.py:682
+#: controller/mainController.py:701
 msgid ""
 "No session is currently in focus. Focus a session with the next or "
 "previous session shortcut."
@@ -135,117 +135,107 @@ msgstr ""
 "Trenutno nijedna sesija nije u fokusu. Fokusirajte neku pritiskom na "
 "prečicu za prethodnu ili sledeću."
 
-#: controller/mainController.py:400
+#: controller/mainController.py:367
 msgid "Empty buffer."
 msgstr "Prazan kanal."
 
-#: controller/mainController.py:407
+#: controller/mainController.py:374
 msgid "{0} not found."
 msgstr "{0} nije pronađen."
 
-#: controller/mainController.py:785 controller/mainController.py:804
+#: controller/mainController.py:692 controller/mainController.py:711
 #, python-format
 msgid "%s, %s of %s"
 msgstr "%s, %s od %s"
 
-#: controller/mainController.py:787 controller/mainController.py:806
-#: controller/mainController.py:834 controller/mainController.py:862
+#: controller/mainController.py:694 controller/mainController.py:713
+#: controller/mainController.py:741 controller/mainController.py:769
 #, python-format
 msgid "%s. Empty"
 msgstr "%s. Prazno."
 
-#: controller/mainController.py:822 controller/mainController.py:826
-#: controller/mainController.py:850
+#: controller/mainController.py:729 controller/mainController.py:733
+#: controller/mainController.py:757
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: Ovaj nalog nije prijavljen na twitter."
 
-#: controller/mainController.py:832 controller/mainController.py:860
+#: controller/mainController.py:739 controller/mainController.py:767
 #, python-format
 msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s od %s"
 
-#: controller/mainController.py:854
+#: controller/mainController.py:761
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: Ovaj nalog nije prijavljen na twitter."
 
-#: controller/mainController.py:1061 controller/mainController.py:1077
+#: controller/mainController.py:893 controller/mainController.py:909
 msgid "An error happened while trying to connect to the server. Please try later."
 msgstr ""
 "Došlo je do greške pri pokušaju povezivanja na server. Molimo pokušajte "
 "kasnije."
 
-#: controller/mainController.py:1119
+#: controller/mainController.py:940
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "Automatsko čitanje novih tvitova je uključeno na ovom kanalu"
 
-#: controller/mainController.py:1122
+#: controller/mainController.py:943
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "Automatsko čitanje tvitova je isključeno za tvitove na ovom kanalu"
 
-#: controller/mainController.py:1129
+#: controller/mainController.py:950
 msgid "Session mute on"
 msgstr "Utišavanje sesije uključeno"
 
-#: controller/mainController.py:1132
+#: controller/mainController.py:953
 msgid "Session mute off"
 msgstr "Utišavanje sesije isključeno"
 
-#: controller/mainController.py:1141
+#: controller/mainController.py:962
 msgid "Buffer mute on"
 msgstr "Utišavanje kanala uključeno"
 
-#: controller/mainController.py:1144
+#: controller/mainController.py:965
 msgid "Buffer mute off"
 msgstr "Utišavanje kanala isključeno"
 
-#: controller/mainController.py:1161
+#: controller/mainController.py:982
 msgid "Copied"
 msgstr "Kopirano"
 
-#: controller/mainController.py:1191
+#: controller/mainController.py:1002
 msgid "Unable to update this buffer."
 msgstr "Ne mogu da ažuriram ovaj kanal."
 
-#: controller/mainController.py:1193
+#: controller/mainController.py:1004
 msgid "Updating buffer..."
 msgstr "Ažuriram kanal..."
 
-#: controller/mainController.py:1196
+#: controller/mainController.py:1007
 msgid "{0} items retrieved"
 msgstr "{0} primljenih stavki"
 
-#: controller/mainController.py:1200 controller/mastodon/handler.py:93
-#: controller/mastodon/handler.py:194 controller/twitter/handler.py:87
-#: controller/twitter/handler.py:273
+#: controller/buffers/mastodon/base.py:122 controller/mainController.py:1011
+#: controller/mastodon/handler.py:91 controller/mastodon/handler.py:192
 msgid "Timeline for {}"
 msgstr "Vremenska linija od {}"
 
-#: controller/mainController.py:1202 controller/twitter/handler.py:91
-#: controller/twitter/handler.py:284
-msgid "Likes for {}"
-msgstr "Sviđanja od {}"
-
-#: controller/mainController.py:1204 controller/mastodon/handler.py:95
-#: controller/mastodon/handler.py:205 controller/twitter/handler.py:95
-#: controller/twitter/handler.py:295
+#: controller/buffers/mastodon/users.py:93 controller/mainController.py:1013
+#: controller/mastodon/handler.py:93 controller/mastodon/handler.py:203
 msgid "Followers for {}"
 msgstr "Pratioci od {}"
 
-#: controller/mainController.py:1206 controller/twitter/handler.py:99
-#: controller/twitter/handler.py:306
+#: controller/mainController.py:1015
 msgid "Friends for {}"
 msgstr "Prijatelji od {}"
 
-#: controller/mainController.py:1208 controller/mastodon/handler.py:97
-#: controller/mastodon/handler.py:216
+#: controller/buffers/mastodon/users.py:95 controller/mainController.py:1017
+#: controller/mastodon/handler.py:95 controller/mastodon/handler.py:214
 msgid "Following for {}"
 msgstr "Praćenja za {}"
 
-#: controller/mainController.py:1210 controller/twitter/handler.py:109
-#: controller/twitter/handler.py:328
-#, python-format
-msgid "Trending topics for %s"
-msgstr "Teme u trendu za %s"
+#: controller/messages.py:20
+msgid "Translated"
+msgstr "Prevedeno"
 
 #: controller/settings.py:66
 msgid "System default"
@@ -275,219 +265,217 @@ msgstr "SOCKS v5 sa DNS podrškom"
 msgid "Edit alias for {}"
 msgstr "Uredi nadimak za {}"
 
-#: controller/userSelector.py:10
-msgid "Select user"
-msgstr "Izaberite korisnika"
-
 #: controller/buffers/base/base.py:91
 #: controller/buffers/mastodon/conversations.py:231
 msgid "This action is not supported for this buffer"
 msgstr "Ova radnja nije podržana na ovom kanalu"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:65 controller/mastodon/settings.py:193
-#: controller/twitter/handler.py:65 controller/twitter/settings.py:220
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:63
+#: controller/mastodon/settings.py:193
 msgid "Home"
 msgstr "Početak"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:67
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:65
 #: controller/mastodon/settings.py:194
 msgid "Local"
 msgstr "Lokalna"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:69
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:67
 #: controller/mastodon/settings.py:195
 msgid "Federated"
 msgstr "Javna"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:71 controller/mastodon/settings.py:196
-#: controller/twitter/handler.py:67 controller/twitter/settings.py:221
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:69
+#: controller/mastodon/settings.py:196
 msgid "Mentions"
 msgstr "Spominjanja"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:79
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:77
 #: controller/mastodon/settings.py:200
 msgid "Bookmarks"
 msgstr "Markeri"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:73 controller/twitter/handler.py:69
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:71
 msgid "Direct messages"
 msgstr "Direktne poruke"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:75
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:73
 #: controller/mastodon/settings.py:198
 msgid "Sent"
 msgstr "Poslato"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:77
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:75
 #: controller/mastodon/settings.py:199
 msgid "Favorites"
 msgstr "Omiljeni"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:81 controller/mastodon/settings.py:201
-#: controller/twitter/handler.py:77 controller/twitter/settings.py:226
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:79
+#: controller/mastodon/settings.py:201
 msgid "Followers"
 msgstr "Pratioci"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:83
-#: controller/mastodon/settings.py:202 controller/twitter/handler.py:79
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:81
+#: controller/mastodon/settings.py:202
 msgid "Following"
 msgstr "Praćenja"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:87 controller/mastodon/settings.py:203
-#: controller/twitter/handler.py:81 controller/twitter/settings.py:228
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:85
+#: controller/mastodon/settings.py:203
 msgid "Blocked users"
 msgstr "Blokirani korisnici"
 
-#: controller/buffers/mastodon/base.py:51 controller/buffers/twitter/base.py:65
-#: controller/mastodon/handler.py:85 controller/mastodon/settings.py:204
-#: controller/twitter/handler.py:83 controller/twitter/settings.py:229
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:83
+#: controller/mastodon/settings.py:204
 msgid "Muted users"
 msgstr "Utišani korisnici"
 
-#: controller/buffers/mastodon/base.py:51 controller/mastodon/handler.py:89
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:87
 #: controller/mastodon/settings.py:205
 msgid "Notifications"
 msgstr "Obaveštenja"
 
-#: controller/buffers/mastodon/base.py:57 controller/buffers/twitter/base.py:71
+#: controller/buffers/mastodon/base.py:58
 msgid "{username}'s timeline"
 msgstr "Vremenska linija korisnika {username}"
 
-#: controller/buffers/mastodon/base.py:59 controller/buffers/twitter/base.py:75
+#: controller/buffers/mastodon/base.py:60
 msgid "{username}'s followers"
 msgstr "Pratioci korisnika {username}"
 
-#: controller/buffers/mastodon/base.py:61
+#: controller/buffers/mastodon/base.py:62
 msgid "{username}'s following"
 msgstr "Praćenja korisnika {username}"
 
-#: controller/buffers/mastodon/base.py:63 controller/buffers/twitter/base.py:79
+#: controller/buffers/mastodon/base.py:64
 msgid "Unknown buffer"
 msgstr "Nepoznat kanal"
 
-#: controller/buffers/mastodon/base.py:66
-#: controller/buffers/mastodon/base.py:570 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:67
+#: controller/buffers/mastodon/base.py:606 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:4
-#: wxUI/dialogs/mastodon/postDialogs.py:174
+#: wxUI/dialogs/mastodon/postDialogs.py:174 wxUI/sysTrayIcon.py:35
 msgid "Post"
 msgstr "Objava"
 
-#: controller/buffers/mastodon/base.py:67
-#: controller/buffers/mastodon/base.py:571
+#: controller/buffers/mastodon/base.py:68
+#: controller/buffers/mastodon/base.py:607
 msgid "Write your post here"
 msgstr "Otkucajte objavu ovde:"
 
-#: controller/buffers/mastodon/base.py:136
+#: controller/buffers/mastodon/base.py:138
 msgid "New post in {0}"
 msgstr "Nova objava u {0}"
 
-#: controller/buffers/mastodon/base.py:142
+#: controller/buffers/mastodon/base.py:144
 msgid "{0} new posts in {1}."
 msgstr "{0} novih objava u kanalu {1}."
 
-#: controller/buffers/mastodon/base.py:178
+#: controller/buffers/mastodon/base.py:180
 #: controller/buffers/mastodon/conversations.py:99
 #: controller/buffers/mastodon/mentions.py:79
-#: controller/buffers/mastodon/users.py:133
-#: controller/buffers/twitter/base.py:231
-#: controller/buffers/twitter/directMessages.py:87
-#: controller/buffers/twitter/people.py:171
+#: controller/buffers/mastodon/users.py:139
 #, python-format
 msgid "%s items retrieved"
 msgstr "%s primljenih stavki"
 
-#: controller/buffers/mastodon/base.py:196
-#: controller/buffers/mastodon/users.py:200
-#: controller/buffers/twitter/base.py:263
-#: controller/buffers/twitter/people.py:74
+#: controller/buffers/mastodon/base.py:198
+#: controller/buffers/mastodon/users.py:206
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Ovaj kanal nije vremenska linija i ne može biti izbrisan."
 
-#: controller/buffers/mastodon/base.py:321
-#: controller/buffers/mastodon/base.py:355
+#: controller/buffers/mastodon/base.py:323
+#: controller/buffers/mastodon/base.py:357
 msgid "Conversation with {}"
 msgstr "Razgovor sa {}"
 
-#: controller/buffers/mastodon/base.py:322
-#: controller/buffers/mastodon/base.py:356
+#: controller/buffers/mastodon/base.py:324
+#: controller/buffers/mastodon/base.py:358
 #: controller/buffers/mastodon/conversations.py:175
-#: controller/buffers/mastodon/users.py:51
+#: controller/buffers/mastodon/users.py:52
 msgid "Write your message here"
 msgstr "Otkucajte vašu poruku ovde"
 
-#: controller/buffers/mastodon/base.py:324
+#: controller/buffers/mastodon/base.py:326
 msgid "Reply to {}"
 msgstr "Odgovori korisniku {}"
 
-#: controller/buffers/mastodon/base.py:325
+#: controller/buffers/mastodon/base.py:327
 msgid "Write your reply here"
 msgstr "Otkucajte vaš odgovor ovde"
 
-#: controller/buffers/mastodon/base.py:381
+#: controller/buffers/mastodon/base.py:383
 #, fuzzy
 msgid "This action is not supported on conversations."
 msgstr "Ova radnja nije podržana na objavama razgovora."
 
-#: controller/buffers/mastodon/base.py:446
-#: controller/buffers/twitter/base.py:524
+#: controller/buffers/mastodon/base.py:448
 msgid "Opening URL..."
 msgstr "Otvaram vezu..."
 
-#: controller/buffers/mastodon/base.py:459
+#: controller/buffers/mastodon/base.py:461
 msgid "You can delete only your own posts."
 msgstr "Možete da obrišete samo vaše objave."
 
-#: controller/buffers/mastodon/base.py:485
-#: controller/buffers/twitter/base.py:582
+#: controller/buffers/mastodon/base.py:487
 msgid "Opening item in web browser..."
 msgstr "Otvaram stavku u Web pretraživaču..."
 
-#: controller/buffers/mastodon/base.py:492
-#: controller/buffers/mastodon/base.py:510
+#: controller/buffers/mastodon/base.py:494
+#: controller/buffers/mastodon/base.py:512
 msgid "Adding to favorites..."
 msgstr "Dodavanje u omiljene..."
 
-#: controller/buffers/mastodon/base.py:498
-#: controller/buffers/mastodon/base.py:512
+#: controller/buffers/mastodon/base.py:500
+#: controller/buffers/mastodon/base.py:514
 msgid "Removing from favorites..."
 msgstr "Uklanjanje iz  omiljenih..."
 
-#: controller/buffers/mastodon/base.py:507
-#: controller/buffers/mastodon/base.py:521
-#: controller/buffers/mastodon/base.py:534
+#: controller/buffers/mastodon/base.py:509
+#: controller/buffers/mastodon/base.py:523
+#: controller/buffers/mastodon/base.py:536
 #: controller/buffers/mastodon/conversations.py:207
-#: sessions/twitter/utils.py:245
 msgid "No status found with that ID"
 msgstr "Status nije pronađen pod tim brojem."
 
-#: controller/buffers/mastodon/base.py:524
+#: controller/buffers/mastodon/base.py:526
 msgid "Adding to bookmarks..."
 msgstr "Dodavanje u markere..."
 
-#: controller/buffers/mastodon/base.py:526
+#: controller/buffers/mastodon/base.py:528
 msgid "Removing from bookmarks..."
 msgstr "Uklanjanje iz markera..."
 
-#: controller/buffers/mastodon/base.py:552
+#: controller/buffers/mastodon/base.py:550
+msgid "Picture {0}"
+msgstr "Slika {0}"
+
+#: controller/buffers/mastodon/base.py:551
+msgid "Select the picture"
+msgstr "Izaberite sliku"
+
+#: controller/buffers/mastodon/base.py:574
+msgid "Unable to extract text"
+msgstr "Ne mogu da izdvojim tekst."
+
+#: controller/buffers/mastodon/base.py:576
+msgid "OCR Result"
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:588
 msgid "this poll no longer exists."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:555
+#: controller/buffers/mastodon/base.py:591
 msgid "This poll has already expired."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:558
+#: controller/buffers/mastodon/base.py:594
 msgid "You have already voted on this poll."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:567
+#: controller/buffers/mastodon/base.py:603
 #, fuzzy
 msgid "Sending vote..."
 msgstr "Dodavanje u omiljene..."
@@ -500,189 +488,40 @@ msgstr "Odgovor na razgovor sa korisnikom {}"
 msgid "Notification dismissed."
 msgstr "Obaveštenje odbačeno."
 
-#: controller/buffers/mastodon/users.py:50
+#: controller/buffers/mastodon/users.py:51
 msgid "New conversation with {}"
 msgstr "Novi razgovor sa {}"
 
-#: controller/buffers/mastodon/users.py:104
+#: controller/buffers/mastodon/users.py:110
 msgid "There are no more items in this buffer."
 msgstr "Nema više stavki na ovom kalanu."
 
-#: controller/buffers/twitter/base.py:65 controller/twitter/handler.py:71
-#: controller/twitter/settings.py:223
-msgid "Sent direct messages"
-msgstr "Poslate direktne poruke"
-
-#: controller/buffers/twitter/base.py:65 controller/twitter/handler.py:73
-#: controller/twitter/settings.py:224
-msgid "Sent tweets"
-msgstr "Poslati tvitovi"
-
-#: controller/buffers/twitter/base.py:65 controller/twitter/handler.py:75
-#: controller/twitter/settings.py:225
-msgid "Likes"
-msgstr "Sviđanja"
-
-#: controller/buffers/twitter/base.py:65 controller/twitter/settings.py:227
-msgid "Friends"
-msgstr "Prijatelji"
-
-#: controller/buffers/twitter/base.py:73
-msgid "{username}'s likes"
-msgstr "Sviđanja korisnika {username}"
-
-#: controller/buffers/twitter/base.py:77
-msgid "{username}'s friends"
-msgstr "Prijatelji korisnika {username}"
-
-#: controller/buffers/twitter/base.py:82
-#: controller/buffers/twitter/trends.py:37
-#: controller/buffers/twitter/trends.py:128 controller/twitter/messages.py:298
-#: wxUI/buffers/twitter/base.py:25 wxUI/buffers/twitter/events.py:15
-#: wxUI/buffers/twitter/trends.py:18
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:309 wxUI/sysTrayIcon.py:35
-msgid "Tweet"
-msgstr "Tvit"
-
-#: controller/buffers/twitter/base.py:83
-#: controller/buffers/twitter/trends.py:38
-#: controller/buffers/twitter/trends.py:129
-msgid "Write the tweet here"
-msgstr "Otkucajte tvit ovde:"
-
-#: controller/buffers/twitter/base.py:189
-msgid "New tweet in {0}"
-msgstr "Novi tvit u kanalu {0}"
-
-#: controller/buffers/twitter/base.py:192
-msgid "{0} new tweets in {1}."
-msgstr "{0} novih tvitova u kanalu {1}."
-
-#: controller/buffers/twitter/base.py:401
-msgid "Reply to {arg0}"
-msgstr "Odgovori {arg0}"
-
-#: controller/buffers/twitter/base.py:403
-#: keystrokeEditor/actions/mastodon.py:11 keystrokeEditor/actions/twitter.py:11
-#: wxUI/buffers/mastodon/base.py:26
-#: wxUI/buffers/mastodon/conversationList.py:25 wxUI/buffers/twitter/base.py:27
-msgid "Reply"
-msgstr "Odgovori"
-
-#: controller/buffers/twitter/base.py:404
-#, python-format
-msgid "Reply to %s"
-msgstr "Odgovori %s"
-
-#: controller/buffers/twitter/base.py:427 controller/twitter/messages.py:270
-#, python-format
-msgid "Direct message to %s"
-msgstr "Direktna poruka za %s"
-
-#: controller/buffers/twitter/base.py:427
-#: controller/buffers/twitter/directMessages.py:116
-msgid "New direct message"
-msgstr "Nova direktna poruka"
-
-#: controller/buffers/twitter/base.py:443
-msgid "This action is not supported on protected accounts."
-msgstr "Ova radnja nije podržana na zaštićenim nalozima."
-
-#: controller/buffers/twitter/base.py:460
-msgid "Quote"
-msgstr "Citiraj"
-
-#: controller/buffers/twitter/base.py:460
-msgid "Add your comment to the tweet"
-msgstr "Dodajte vaš komentar u tvit"
-
-#: controller/buffers/twitter/base.py:561
-msgid "User details"
-msgstr "Podaci o korisniku"
-
-#: controller/buffers/twitter/base.py:606
-#: controller/buffers/twitter/directMessages.py:163
-#: controller/twitter/messages.py:329
-msgid "MMM D, YYYY. H:m"
-msgstr "MMM D, YYYY. H:m"
-
-#: controller/buffers/twitter/base.py:621
-msgid "There are no coordinates in this tweet"
-msgstr "Nema koordinata u ovom tvitu."
-
-#: controller/buffers/twitter/base.py:625
-msgid "Error decoding coordinates. Try again later."
-msgstr "Greška prilikom čitanja koordinata. Molimo vas da pokušate kasnije."
-
-#: controller/buffers/twitter/base.py:641
-msgid "Picture {0}"
-msgstr "Slika {0}"
-
-#: controller/buffers/twitter/base.py:642
-msgid "Select the picture"
-msgstr "Izaberite sliku"
-
-#: controller/buffers/twitter/base.py:650
-msgid "Invalid buffer"
-msgstr "Nevažeći kanal"
-
-#: controller/buffers/twitter/base.py:661
-msgid "Unable to extract text"
-msgstr "Ne mogu da izdvojim tekst."
-
-#: controller/buffers/twitter/directMessages.py:119
-msgid "{0} new direct messages."
-msgstr "{0} novih direktnih poruka."
-
-#: controller/buffers/twitter/directMessages.py:122
-msgid "This action is not supported in the buffer yet."
-msgstr "Ova radnja još uvek nije podržana na ovom kanalu."
-
-#: controller/buffers/twitter/directMessages.py:138
-msgid ""
-"Getting more items cannot be done in this buffer. Use the direct messages"
-" buffer instead."
-msgstr ""
-"Nemoguće preuzeti dodatne stavke za ovaj kanal. Umesto toga, koristite "
-"kanal direktne poruke."
-
-#: controller/buffers/twitter/people.py:92 wxUI/buffers/twitter/people.py:17
-msgid "Mention"
-msgstr "Spomeni"
-
-#: controller/buffers/twitter/people.py:92
-#, python-format
-msgid "Mention to %s"
-msgstr "Spomeni %s"
-
-#: controller/buffers/twitter/people.py:244
-msgid "{0} new followers."
-msgstr "{0} novih pratilaca."
-
-#: controller/buffers/twitter/trends.py:144
-msgid "This action is not supported in the buffer, yet."
-msgstr "Ova radnja još uvek nije podržana na ovom kanalu"
-
-#: controller/mastodon/handler.py:24 controller/twitter/handler.py:24
-#: wxUI/dialogs/mastodon/search.py:10 wxUI/dialogs/search.py:13 wxUI/view.py:19
+#: controller/mastodon/handler.py:24 wxUI/dialogs/mastodon/search.py:10
+#: wxUI/view.py:20
 msgid "&Search"
 msgstr "Pretraži"
 
-#: controller/mastodon/handler.py:28 controller/mastodon/handler.py:54
+#: controller/mastodon/handler.py:26 wxUI/view.py:23
+msgid "Manage user aliases"
+msgstr "Upravljanje korisničkim nadimcima"
+
+#: controller/mastodon/handler.py:28 controller/mastodon/handler.py:52
+#: wxUI/view.py:31
 msgid "&Post"
 msgstr "&Objavi"
 
-#: controller/mastodon/handler.py:29 controller/twitter/handler.py:29
-#: wxUI/dialogs/mastodon/menus.py:9 wxUI/menus.py:10 wxUI/menus.py:34
-#: wxUI/view.py:30
+#: controller/mastodon/handler.py:29 wxUI/dialogs/mastodon/menus.py:9
+#: wxUI/view.py:32
 msgid "Re&ply"
 msgstr "Odgovori"
 
 #: controller/mastodon/handler.py:30 wxUI/dialogs/mastodon/menus.py:7
+#: wxUI/view.py:33
 msgid "&Boost"
 msgstr "&Podeli"
 
 #: controller/mastodon/handler.py:31 wxUI/dialogs/mastodon/menus.py:11
+#: wxUI/view.py:34
 msgid "&Add to favorites"
 msgstr "&Dodaj u omiljene"
 
@@ -690,94 +529,104 @@ msgstr "&Dodaj u omiljene"
 msgid "Remove from favorites"
 msgstr "Ukloni iz omiljenih"
 
-#: controller/mastodon/handler.py:33
+#: controller/mastodon/handler.py:33 wxUI/view.py:36
 msgid "&Show post"
 msgstr "&Prikaži objavu"
 
-#: controller/mastodon/handler.py:35 controller/twitter/handler.py:35
-#: wxUI/view.py:36
+#: controller/mastodon/handler.py:34 wxUI/view.py:37
 msgid "View conversa&tion"
 msgstr "Vidi razgovor"
 
-#: controller/mastodon/handler.py:37 controller/twitter/handler.py:37
-#: wxUI/dialogs/mastodon/menus.py:25 wxUI/menus.py:26 wxUI/menus.py:44
-#: wxUI/menus.py:62 wxUI/menus.py:72 wxUI/view.py:38
+#: controller/mastodon/handler.py:35 wxUI/view.py:38
+msgid "Read text in picture"
+msgstr "Čitaj tekst u slici"
+
+#: controller/mastodon/handler.py:36 wxUI/dialogs/mastodon/menus.py:25
+#: wxUI/view.py:40
 msgid "&Delete"
 msgstr "Izbriši"
 
-#: controller/mastodon/handler.py:39 controller/twitter/handler.py:39
-#: wxUI/view.py:42
+#: controller/mastodon/handler.py:38 wxUI/view.py:44
 msgid "&Actions..."
 msgstr "Radnje..."
 
-#: controller/mastodon/handler.py:40 controller/twitter/handler.py:40
-#: wxUI/view.py:43
+#: controller/mastodon/handler.py:39 wxUI/view.py:45
 msgid "&View timeline..."
 msgstr "Vidi vremensku liniju..."
 
-#: controller/mastodon/handler.py:41 controller/twitter/handler.py:41
-#: wxUI/view.py:44
+#: controller/mastodon/handler.py:40 wxUI/view.py:46
 msgid "Direct me&ssage"
 msgstr "Direktna poruka"
 
-#: controller/mastodon/handler.py:90 controller/twitter/handler.py:84
+#: controller/mastodon/handler.py:41 wxUI/view.py:47
+msgid "Add a&lias"
+msgstr "Dodaj &nadimak"
+
+#: controller/mastodon/handler.py:88
 msgid "Timelines"
 msgstr "Vremenske linije"
 
-#: controller/mastodon/handler.py:102 controller/twitter/handler.py:104
+#: controller/mastodon/handler.py:100
 msgid "Searches"
 msgstr "Pretrage"
 
-#: controller/mastodon/handler.py:126 controller/twitter/handler.py:319
+#: controller/mastodon/handler.py:124
 msgid "Conversation with {0}"
 msgstr "Razgovor sa {0}"
 
-#: controller/mastodon/handler.py:160 controller/twitter/handler.py:107
-#: controller/twitter/handler.py:371 controller/twitter/handler.py:376
+#: controller/mastodon/handler.py:158
 msgid "Search for {}"
 msgstr "Pretraga za {}"
 
-#: controller/mastodon/messages.py:88 controller/twitter/messages.py:57
+#: controller/mastodon/handler.py:244
+msgid "Add an user alias"
+msgstr "Dodaj nadimak za korisnika"
+
+#: controller/mastodon/handler.py:256
+msgid "Alias has been set correctly for {}."
+msgstr "Nadimak za {} je uspešno podešen."
+
+#: controller/mastodon/messages.py:90
 #, python-format
 msgid "%s - %s of %d characters"
 msgstr "%s - %s od %d znakova"
 
-#: controller/mastodon/messages.py:212
+#: controller/mastodon/messages.py:214
 msgid "Poll with {} options"
 msgstr "Anketa sa {} opcija"
 
-#: controller/mastodon/messages.py:236
+#: controller/mastodon/messages.py:238
 msgid "Post from {}"
 msgstr "Objava iz {}"
 
-#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
-#: wxUI/dialogs/lists.py:76 wxUI/dialogs/mastodon/postDialogs.py:48
+#: controller/mastodon/messages.py:242 sessions/mastodon/templates.py:78
+#: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Public"
 msgstr "Javna"
 
-#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:242 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Not listed"
 msgstr "Nije u listi"
 
-#: controller/mastodon/messages.py:240
+#: controller/mastodon/messages.py:242
 msgid "followers only"
 msgstr "Samo pratioci"
 
-#: controller/mastodon/messages.py:240 sessions/mastodon/templates.py:80
+#: controller/mastodon/messages.py:242 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Direct"
 msgstr "Direktna"
 
-#: controller/mastodon/messages.py:247
+#: controller/mastodon/messages.py:249
 msgid "Remote instance"
 msgstr "Udaljena instanca"
 
-#: controller/mastodon/messages.py:270 controller/twitter/messages.py:382
+#: controller/mastodon/messages.py:272
 msgid "Link copied to clipboard."
 msgstr "Link kopiran u privremenu memoriju."
 
-#: controller/mastodon/settings.py:81 controller/twitter/settings.py:85
+#: controller/mastodon/settings.py:81
 #, python-format
 msgid "Account settings for %s"
 msgstr "Postavke naloga za %s"
@@ -791,415 +640,14 @@ msgstr "Uredi šablon objava. Trenutni šablon: {}"
 msgid "Edit template for conversations. Current template: {}"
 msgstr "Uredi šablon razgovora. Trenutni šablon: {}"
 
-#: controller/mastodon/settings.py:109 controller/twitter/settings.py:122
-#: wxUI/dialogs/configuration.py:253 wxUI/dialogs/mastodon/configuration.py:59
+#: controller/mastodon/settings.py:109
+#: wxUI/dialogs/mastodon/configuration.py:59
 msgid "Edit template for persons. Current template: {}"
 msgstr "Uredi šablon prikazivanja osoba. Trenutni šablon: {}"
 
-#: controller/mastodon/settings.py:197 controller/twitter/settings.py:222
+#: controller/mastodon/settings.py:197
 msgid "Direct Messages"
 msgstr "Direktne poruke "
-
-#: controller/twitter/handler.py:23 wxUI/dialogs/update_profile.py:35
-#: wxUI/view.py:17
-msgid "&Update profile"
-msgstr "Ažuriraj profil"
-
-#: controller/twitter/handler.py:25 wxUI/view.py:20
-msgid "&Lists manager"
-msgstr "Upravljanje listama"
-
-#: controller/twitter/handler.py:26 wxUI/view.py:21
-msgid "Manage user aliases"
-msgstr "Upravljanje korisničkim nadimcima"
-
-#: controller/twitter/handler.py:28 controller/twitter/handler.py:54
-#: wxUI/view.py:29 wxUI/view.py:84
-msgid "&Tweet"
-msgstr "Tvit"
-
-#: controller/twitter/handler.py:30 wxUI/menus.py:8 wxUI/view.py:31
-msgid "&Retweet"
-msgstr "Retvituj"
-
-#: controller/twitter/handler.py:31 wxUI/menus.py:12 wxUI/view.py:32
-msgid "&Like"
-msgstr "Sviđa mi se"
-
-#: controller/twitter/handler.py:32 wxUI/menus.py:14 wxUI/view.py:33
-msgid "&Unlike"
-msgstr "Ne sviđa mi se"
-
-#: controller/twitter/handler.py:33 wxUI/dialogs/mastodon/menus.py:21
-#: wxUI/menus.py:22 wxUI/menus.py:58 wxUI/view.py:34
-msgid "&Show tweet"
-msgstr "Prikaži tvit"
-
-#: controller/twitter/handler.py:34 wxUI/view.py:35
-msgid "View &address"
-msgstr "Vidi adresu"
-
-#: controller/twitter/handler.py:36 wxUI/view.py:37
-msgid "Read text in picture"
-msgstr "Čitaj tekst u slici"
-
-#: controller/twitter/handler.py:42 wxUI/view.py:45
-msgid "Add a&lias"
-msgstr "Dodaj &nadimak"
-
-#: controller/twitter/handler.py:43 wxUI/view.py:46
-msgid "&Add to list"
-msgstr "Dodaj na listu"
-
-#: controller/twitter/handler.py:44 wxUI/view.py:47
-msgid "R&emove from list"
-msgstr "Ukloni sa liste"
-
-#: controller/twitter/handler.py:45 wxUI/menus.py:80 wxUI/view.py:48
-msgid "&View lists"
-msgstr "Vidi liste"
-
-#: controller/twitter/handler.py:46 wxUI/menus.py:83 wxUI/view.py:49
-msgid "Show user &profile"
-msgstr "Prikaži profil korisnika"
-
-#: controller/twitter/handler.py:47
-msgid "View likes"
-msgstr "Vidi sviđanja"
-
-#: controller/twitter/handler.py:49 wxUI/view.py:55
-msgid "New &trending topics buffer..."
-msgstr "Novi kanal sa temama u trendu"
-
-#: controller/twitter/handler.py:50 wxUI/view.py:56
-msgid "Create a &filter"
-msgstr "Napravi &filter"
-
-#: controller/twitter/handler.py:51 wxUI/view.py:57
-msgid "&Manage filters"
-msgstr "&Upravljanje filterima"
-
-#: controller/twitter/handler.py:88
-msgid "Likes timelines"
-msgstr "Vremenska linija omiljenih tvitova"
-
-#: controller/twitter/handler.py:92
-msgid "Followers timelines"
-msgstr "Vremenske linije pratilaca"
-
-#: controller/twitter/handler.py:96
-msgid "Following timelines"
-msgstr "Vremenske linije praćenih korisnika"
-
-#: controller/twitter/handler.py:100 wxUI/dialogs/lists.py:13
-msgid "Lists"
-msgstr "Liste"
-
-#: controller/twitter/handler.py:103 controller/twitter/lists.py:94
-msgid "List for {}"
-msgstr "Liste od {}"
-
-#: controller/twitter/handler.py:114
-msgid "Filters cannot be applied on this buffer"
-msgstr "Filteri se ne mogu primeniti na ovaj kanal"
-
-#: controller/twitter/handler.py:230
-msgid "Add an user alias"
-msgstr "Dodaj nadimak za korisnika"
-
-#: controller/twitter/handler.py:238
-msgid "Alias has been set correctly for {}."
-msgstr "Nadimak za {} je uspešno podešen."
-
-#: controller/twitter/messages.py:50
-msgid "Translated"
-msgstr "Prevedeno"
-
-#: controller/twitter/messages.py:356
-msgid "View item"
-msgstr "Prikaži stavku"
-
-#: controller/twitter/settings.py:37 controller/twitter/settings.py:151
-#: wxUI/dialogs/configuration.py:121
-msgid "Ask"
-msgstr "Pitaj"
-
-#: controller/twitter/settings.py:39 controller/twitter/settings.py:153
-#: wxUI/dialogs/configuration.py:121
-msgid "Retweet without comments"
-msgstr "Retvituj bez komentara"
-
-#: controller/twitter/settings.py:41 wxUI/dialogs/configuration.py:121
-msgid "Retweet with comments"
-msgstr "Retvituj sa komentarima"
-
-#: controller/twitter/settings.py:95 wxUI/dialogs/configuration.py:247
-msgid "Edit template for tweets. Current template: {}"
-msgstr "Uredi šablon prikazivanja tvitova. Trenutni šablon: {}"
-
-#: controller/twitter/settings.py:104 wxUI/dialogs/configuration.py:249
-msgid "Edit template for direct messages. Current template: {}"
-msgstr "Uredi šablon prikazivanja direktnih poruka. Trenutni šablon: {}"
-
-#: controller/twitter/settings.py:113 wxUI/dialogs/configuration.py:251
-msgid "Edit template for sent direct messages. Current template: {}"
-msgstr "Uredi šablon prikazivanja poslatih direktnih poruka. Trenutni šablon: {}"
-
-#: controller/twitter/user.py:29 wxUI/commonMessageDialogs.py:39
-msgid "That user does not exist"
-msgstr "Taj korisnik ne postoji."
-
-#: controller/twitter/user.py:29 controller/twitter/user.py:31
-#: extra/SpellChecker/wx_ui.py:79 extra/autocompletionUsers/wx_scan.py:47
-#: wxUI/commonMessageDialogs.py:39 wxUI/commonMessageDialogs.py:51
-#: wxUI/commonMessageDialogs.py:58 wxUI/commonMessageDialogs.py:61
-#: wxUI/commonMessageDialogs.py:64 wxUI/commonMessageDialogs.py:67
-#: wxUI/commonMessageDialogs.py:77 wxUI/commonMessageDialogs.py:80
-#: wxUI/commonMessageDialogs.py:83 wxUI/commonMessageDialogs.py:89
-#: wxUI/commonMessageDialogs.py:92 wxUI/commonMessageDialogs.py:95
-#: wxUI/dialogs/mastodon/dialogs.py:38 wxUI/dialogs/mastodon/dialogs.py:43
-#: wxUI/dialogs/mastodon/dialogs.py:48 wxUI/dialogs/mastodon/dialogs.py:53
-msgid "Error"
-msgstr "Greška"
-
-#: controller/twitter/user.py:31
-msgid "User has been suspended"
-msgstr "Korisnik je suspendovan."
-
-#: controller/twitter/user.py:37
-#, python-format
-msgid "Information for %s"
-msgstr "Informacija za %s"
-
-#: controller/twitter/user.py:67 extra/AudioUploader/audioUploader.py:127
-msgid "Discarded"
-msgstr "Odbačeno"
-
-#: controller/twitter/user.py:95
-#, python-format
-msgid "Username: @%s\n"
-msgstr "Korisničko ime: @%s\n"
-
-#: controller/twitter/user.py:96
-#, python-format
-msgid "Name: %s\n"
-msgstr "Ime: %s\n"
-
-#: controller/twitter/user.py:98
-#, python-format
-msgid "Location: %s\n"
-msgstr "Mesto: %s\n"
-
-#: controller/twitter/user.py:100
-#, python-format
-msgid "URL: %s\n"
-msgstr "Veza: %s\n"
-
-#: controller/twitter/user.py:104
-#, python-format
-msgid "Bio: %s\n"
-msgstr "Bio: %s\n"
-
-#: controller/twitter/user.py:105 controller/twitter/user.py:120
-msgid "Yes"
-msgstr "Da"
-
-#: controller/twitter/user.py:106 controller/twitter/user.py:121
-msgid "No"
-msgstr "Ne"
-
-#: controller/twitter/user.py:107
-#, python-format
-msgid "Protected: %s\n"
-msgstr "Zaštićeno: %s\n"
-
-#: controller/twitter/user.py:110
-msgid "Relationship: "
-msgstr "Odnos: "
-
-#: controller/twitter/user.py:112
-msgid "You follow {0}. "
-msgstr "Pratite {0}. "
-
-#: controller/twitter/user.py:115
-msgid "{0} is following you."
-msgstr "{0} vas prati."
-
-#: controller/twitter/user.py:119
-#, python-format
-msgid ""
-"Followers: %s\n"
-" Friends: %s\n"
-msgstr ""
-"Pratioci: %s\n"
-" Prijatelji: %s\n"
-
-#: controller/twitter/user.py:122
-#, python-format
-msgid "Verified: %s\n"
-msgstr "Potvrđen: %s\n"
-
-#: controller/twitter/user.py:123
-#, python-format
-msgid "Tweets: %s\n"
-msgstr "Tvitovi: %s\n"
-
-#: controller/twitter/user.py:124
-#, python-format
-msgid "Likes: %s"
-msgstr "Omiljeno: %s"
-
-#: controller/twitter/userActions.py:80
-msgid "You can't ignore direct messages"
-msgstr "Ne možete zanemariti direktne poruke."
-
-#: extra/AudioUploader/audioUploader.py:57
-msgid "Attaching..."
-msgstr "Prilažem..."
-
-#: extra/AudioUploader/audioUploader.py:74
-msgid "Pause"
-msgstr "Zastani"
-
-#: extra/AudioUploader/audioUploader.py:76
-msgid "&Resume"
-msgstr "&Nastavi"
-
-#: extra/AudioUploader/audioUploader.py:77
-msgid "Resume"
-msgstr "Nastavi"
-
-#: extra/AudioUploader/audioUploader.py:79
-#: extra/AudioUploader/audioUploader.py:106 extra/AudioUploader/wx_ui.py:37
-msgid "&Pause"
-msgstr "&zastani"
-
-#: extra/AudioUploader/audioUploader.py:94
-#: extra/AudioUploader/audioUploader.py:140
-msgid "&Stop"
-msgstr "&Zaustavi"
-
-#: extra/AudioUploader/audioUploader.py:95
-msgid "Recording"
-msgstr "Snimanje"
-
-#: extra/AudioUploader/audioUploader.py:100
-#: extra/AudioUploader/audioUploader.py:151
-msgid "Stopped"
-msgstr "Zaustavljeno"
-
-#: extra/AudioUploader/audioUploader.py:102 extra/AudioUploader/wx_ui.py:39
-msgid "&Record"
-msgstr "&Snimi"
-
-#: extra/AudioUploader/audioUploader.py:144
-#: extra/AudioUploader/audioUploader.py:154 extra/AudioUploader/wx_ui.py:35
-msgid "&Play"
-msgstr "&Pusti"
-
-#: extra/AudioUploader/audioUploader.py:159
-msgid "Recoding audio..."
-msgstr "Snimam zvučni zapis..."
-
-#: extra/AudioUploader/transfer.py:82 extra/AudioUploader/transfer.py:88
-msgid "Error in file upload: {0}"
-msgstr "Greška u otpremanju datoteke: {0}"
-
-#: extra/AudioUploader/utils.py:29 update/utils.py:29
-#, python-format
-msgid "%d day, "
-msgstr "%d dan, "
-
-#: extra/AudioUploader/utils.py:31 update/utils.py:31
-#, python-format
-msgid "%d days, "
-msgstr "%d dana, "
-
-#: extra/AudioUploader/utils.py:33 update/utils.py:33
-#, python-format
-msgid "%d hour, "
-msgstr "%d čas, "
-
-#: extra/AudioUploader/utils.py:35 update/utils.py:35
-#, python-format
-msgid "%d hours, "
-msgstr "%d časova, "
-
-#: extra/AudioUploader/utils.py:37 update/utils.py:37
-#, python-format
-msgid "%d minute, "
-msgstr "%d minut, "
-
-#: extra/AudioUploader/utils.py:39 update/utils.py:39
-#, python-format
-msgid "%d minutes, "
-msgstr "%d minuta, "
-
-#: extra/AudioUploader/utils.py:41 update/utils.py:41
-#, python-format
-msgid "%s second"
-msgstr "%s sekund"
-
-#: extra/AudioUploader/utils.py:43 update/utils.py:43
-#, python-format
-msgid "%s seconds"
-msgstr "%s sekundi"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:15
-#: wxUI/dialogs/mastodon/postDialogs.py:23
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:35
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:171
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:255
-msgid "File"
-msgstr "Datoteka"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:21
-msgid "Transferred"
-msgstr "Preuzeto"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:26
-msgid "Total file size"
-msgstr "Ukupna veličina datoteke"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:31
-msgid "Transfer rate"
-msgstr "Brzina prenosa"
-
-#: extra/AudioUploader/wx_transfer_dialogs.py:36
-msgid "Time left"
-msgstr "Preostalo vreme"
-
-#: extra/AudioUploader/wx_ui.py:29
-msgid "Attach audio"
-msgstr "Priloži zvučni zapis"
-
-#: extra/AudioUploader/wx_ui.py:41
-msgid "&Add an existing file"
-msgstr "&Dodaj postojeću datoteku"
-
-#: extra/AudioUploader/wx_ui.py:42
-msgid "&Discard"
-msgstr "&Odbaci"
-
-#: extra/AudioUploader/wx_ui.py:44
-msgid "Upload to"
-msgstr "Otpremi na"
-
-#: extra/AudioUploader/wx_ui.py:49
-msgid "Attach"
-msgstr "Priloži"
-
-#: extra/AudioUploader/wx_ui.py:51
-msgid "&Cancel"
-msgstr "&Otkaži"
-
-#: extra/AudioUploader/wx_ui.py:76 wxUI/dialogs/mastodon/postDialogs.py:155
-msgid "Select the audio file to be uploaded"
-msgstr "Izaberite zvučni zapis koji želite da otpremite"
-
-#: extra/AudioUploader/wx_ui.py:76
-msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
-msgstr "Zvučni zapisi (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
 
 #: extra/SoundsTutorial/soundsTutorial_constants.py:4
 msgid "Audio tweet."
@@ -1352,126 +800,16 @@ msgid ""
 "selected language in {0}"
 msgstr "Došlo je do greške. Nema rečnika za odabrani jezik {0}"
 
+#: extra/SpellChecker/wx_ui.py:79 wxUI/commonMessageDialogs.py:23
+#: wxUI/commonMessageDialogs.py:36 wxUI/dialogs/mastodon/dialogs.py:38
+#: wxUI/dialogs/mastodon/dialogs.py:43 wxUI/dialogs/mastodon/dialogs.py:48
+#: wxUI/dialogs/mastodon/dialogs.py:53
+msgid "Error"
+msgstr "Greška"
+
 #: extra/SpellChecker/wx_ui.py:82
 msgid "Spell check complete."
 msgstr "Provera pravopisa je završena."
-
-#: extra/autocompletionUsers/completion.py:39
-#: extra/autocompletionUsers/completion.py:57
-msgid "You have to start writing"
-msgstr "Morate da počnete da pišete."
-
-#: extra/autocompletionUsers/completion.py:49
-#: extra/autocompletionUsers/completion.py:66
-msgid "There are no results in your users database"
-msgstr "Nema rezultata u vašoj bazi korisnika-."
-
-#: extra/autocompletionUsers/completion.py:51
-msgid "Autocompletion only works for users."
-msgstr "Automatsko dovršavanje radi samo za korisnike."
-
-#: extra/autocompletionUsers/scan.py:54
-msgid ""
-"Updating database... You can close this window now. A message will tell "
-"you when the process finishes."
-msgstr ""
-"Ažuriram bazu podataka... Sada možete zatvoriti ovaj prozor. Dobićete "
-"obaveštenje kada se proces završi."
-
-#: extra/autocompletionUsers/wx_manage.py:9
-msgid "Manage Autocompletion database"
-msgstr "Upravljaj bazom automatskog dovršavanja"
-
-#: extra/autocompletionUsers/wx_manage.py:12
-msgid "Editing {0} users database"
-msgstr "Uređujem {0} bazu korisničkih podataka"
-
-#: extra/autocompletionUsers/wx_manage.py:13
-msgid "Username"
-msgstr "Korisničko ime"
-
-#: extra/autocompletionUsers/wx_manage.py:13 wxUI/dialogs/configuration.py:151
-msgid "Name"
-msgstr "Ime"
-
-#: extra/autocompletionUsers/wx_manage.py:16
-msgid "Add user"
-msgstr "Dodaj korisnika"
-
-#: extra/autocompletionUsers/wx_manage.py:17
-msgid "Remove user"
-msgstr "Ukloni korisnika"
-
-#: extra/autocompletionUsers/wx_manage.py:38
-msgid "Twitter username"
-msgstr "Twitter korisničko ime"
-
-#: extra/autocompletionUsers/wx_manage.py:38
-msgid "Add user to database"
-msgstr "Dodaj korisnika u bazu podataka"
-
-#: extra/autocompletionUsers/wx_manage.py:44
-msgid "The user does not exist"
-msgstr "Korisnik ne postoji."
-
-#: extra/autocompletionUsers/wx_manage.py:44 wxUI/commonMessageDialogs.py:45
-msgid "Error!"
-msgstr "Greška"
-
-#: extra/autocompletionUsers/wx_scan.py:8
-msgid "Autocomplete users' settings"
-msgstr "Podešavanja automatskog dovršavanja"
-
-#: extra/autocompletionUsers/wx_scan.py:11
-msgid "Add followers to database"
-msgstr "Dodaj pratioce u bazu podataka"
-
-#: extra/autocompletionUsers/wx_scan.py:12
-msgid "Add  friends to database"
-msgstr "Dodaj prijatelje u bazu podataka"
-
-#: extra/autocompletionUsers/wx_scan.py:26
-msgid "Updating autocompletion database"
-msgstr "Ažuriranje baze automatskog dovršavanja"
-
-#: extra/autocompletionUsers/wx_scan.py:37
-msgid ""
-"This process will retrieve the users you selected from Twitter, and add "
-"them to the user autocomplete database. Please note that if there are "
-"many users or you have tried to perform this action less than 15 minutes "
-"ago, TWBlue may reach a limit in Twitter API calls when trying to load "
-"the users into the database. If this happens, we will show you an error, "
-"in which case you will have to try this process again in a few minutes. "
-"If this process ends with no error, you will be redirected back to the "
-"account settings dialog. Do you want to continue?"
-msgstr ""
-"Ovaj proces će preuzeti korisnike koje ste izabrali sa Twittera, i dodati"
-" ih u bazu korisnika za automatsko dovršavanje. Molimo imajte na umu da "
-"ako je izabrano mnogo korisnika ili ste pokušali da izvršite ovu radnju "
-"pre manje od 15 minuta, TWBlue može da dostigne API ograničenje kada "
-"pokušava da dodaje korisnike u bazu. Ako se ovo desi, biće prikazana "
-"greška, a u tom slučaju ćete morati da pokušate ovaj proces ponovo za "
-"nekoliko minuta. Ako se ovaj proces završi bez greške, bićete vraćeni na "
-"dijalog sa podešavanjima naloga. Da li želite da nastavite?"
-
-#: extra/autocompletionUsers/wx_scan.py:37 wxUI/commonMessageDialogs.py:36
-#: wxUI/commonMessageDialogs.py:86
-msgid "Attention"
-msgstr "Pažnja"
-
-#: extra/autocompletionUsers/wx_scan.py:43
-msgid "TWBlue has imported {} users successfully."
-msgstr "TWBlue je uspešno uvezao {} korisnika."
-
-#: extra/autocompletionUsers/wx_scan.py:43
-msgid "Done"
-msgstr "Dovršeno"
-
-#: extra/autocompletionUsers/wx_scan.py:47
-msgid "Error adding users from Twitter. Please try again in about 15 minutes."
-msgstr ""
-"Greška pri dodavanju korisnika sa Twittera. Molimo pokušajte ponovo za "
-"oko 15 minuta."
 
 #: extra/ocr/OCRSpace.py:7
 msgid "Detect automatically"
@@ -1859,8 +1197,7 @@ msgstr "Izaberite prečicu koju želite da izmenite"
 
 #: keystrokeEditor/wx_ui.py:12 wxUI/dialogs/mastodon/userActions.py:9
 #: wxUI/dialogs/mastodon/userActions.py:18
-#: wxUI/dialogs/mastodon/userActions.py:19 wxUI/dialogs/userActions.py:10
-#: wxUI/dialogs/userActions.py:19 wxUI/dialogs/userActions.py:20
+#: wxUI/dialogs/mastodon/userActions.py:19
 msgid "Action"
 msgstr "Radnja"
 
@@ -1868,8 +1205,7 @@ msgstr "Radnja"
 msgid "Keystroke"
 msgstr "Prečica"
 
-#: keystrokeEditor/wx_ui.py:17 wxUI/dialogs/filterDialogs.py:135
-#: wxUI/dialogs/lists.py:20 wxUI/dialogs/userAliasDialogs.py:53
+#: keystrokeEditor/wx_ui.py:17 wxUI/dialogs/userAliasDialogs.py:53
 msgid "Edit"
 msgstr "Izmeni"
 
@@ -1881,9 +1217,9 @@ msgstr "Izbriši prečicu"
 msgid "Execute action"
 msgstr "Izvrši radnju"
 
-#: keystrokeEditor/wx_ui.py:21 wxUI/dialogs/configuration.py:421
+#: keystrokeEditor/wx_ui.py:21 wxUI/dialogs/configuration.py:229
 #: wxUI/dialogs/mastodon/configuration.py:174
-#: wxUI/dialogs/userAliasDialogs.py:25 wxUI/dialogs/utils.py:39
+#: wxUI/dialogs/userAliasDialogs.py:25
 msgid "Close"
 msgstr "Zatvori"
 
@@ -1919,9 +1255,8 @@ msgstr "Windows"
 msgid "Key"
 msgstr "Taster"
 
-#: keystrokeEditor/wx_ui.py:70 wxUI/dialogs/filterDialogs.py:80
-#: wxUI/dialogs/find.py:21 wxUI/dialogs/userAliasDialogs.py:23
-#: wxUI/dialogs/utils.py:36
+#: keystrokeEditor/wx_ui.py:70 wxUI/dialogs/find.py:21
+#: wxUI/dialogs/userAliasDialogs.py:23
 msgid "OK"
 msgstr "U redu"
 
@@ -1937,31 +1272,31 @@ msgstr "Pogrešna prečica"
 msgid "You must provide a character for the keystroke"
 msgstr "Morate omogućiti znak u  prečici"
 
-#: keystrokeEditor/actions/mastodon.py:3 keystrokeEditor/actions/twitter.py:3
+#: keystrokeEditor/actions/mastodon.py:3
 msgid "Go up in the current buffer"
 msgstr "Idite na gore u trenutnom kanalu"
 
-#: keystrokeEditor/actions/mastodon.py:4 keystrokeEditor/actions/twitter.py:4
+#: keystrokeEditor/actions/mastodon.py:4
 msgid "Go down in the current buffer"
 msgstr "Idite na dole u trenutnom kanalu"
 
-#: keystrokeEditor/actions/mastodon.py:5 keystrokeEditor/actions/twitter.py:5
+#: keystrokeEditor/actions/mastodon.py:5
 msgid "Go to the previous buffer"
 msgstr "Idi na prethodni kanal"
 
-#: keystrokeEditor/actions/mastodon.py:6 keystrokeEditor/actions/twitter.py:6
+#: keystrokeEditor/actions/mastodon.py:6
 msgid "Go to the next buffer"
 msgstr "Idi na sledeći kanal"
 
-#: keystrokeEditor/actions/mastodon.py:7 keystrokeEditor/actions/twitter.py:7
+#: keystrokeEditor/actions/mastodon.py:7
 msgid "Focus the next session"
 msgstr "Fokusiraj sledeću sesiju"
 
-#: keystrokeEditor/actions/mastodon.py:8 keystrokeEditor/actions/twitter.py:8
+#: keystrokeEditor/actions/mastodon.py:8
 msgid "Focus the previous session"
 msgstr "Fokusiraj prethodnu sesiju"
 
-#: keystrokeEditor/actions/mastodon.py:9 keystrokeEditor/actions/twitter.py:9
+#: keystrokeEditor/actions/mastodon.py:9
 msgid "Show or hide the GUI"
 msgstr "Prikaži ili sakrij okruženje"
 
@@ -1969,12 +1304,17 @@ msgstr "Prikaži ili sakrij okruženje"
 msgid "Make a new post"
 msgstr "Napiši novu objavu"
 
+#: keystrokeEditor/actions/mastodon.py:11 wxUI/buffers/mastodon/base.py:26
+#: wxUI/buffers/mastodon/conversationList.py:25
+msgid "Reply"
+msgstr "Odgovori"
+
 #: keystrokeEditor/actions/mastodon.py:12 wxUI/buffers/mastodon/base.py:25
 #: wxUI/dialogs/mastodon/dialogs.py:7
 msgid "Boost"
 msgstr "Podeli"
 
-#: keystrokeEditor/actions/mastodon.py:13 keystrokeEditor/actions/twitter.py:13
+#: keystrokeEditor/actions/mastodon.py:13
 msgid "Send direct message"
 msgstr "Pošalji direktnu poruku"
 
@@ -1990,7 +1330,7 @@ msgstr "Ukloni objavu iz omiljenih"
 msgid "Add/remove post from favorites"
 msgstr "Dodaj/ukloni objavu iz omiljenih"
 
-#: keystrokeEditor/actions/mastodon.py:17 keystrokeEditor/actions/twitter.py:17
+#: keystrokeEditor/actions/mastodon.py:17
 msgid "Open the user actions dialogue"
 msgstr "Otvori dialog korisničkih radnji"
 
@@ -1998,15 +1338,15 @@ msgstr "Otvori dialog korisničkih radnji"
 msgid "Show post"
 msgstr "Prikaži objavu"
 
-#: keystrokeEditor/actions/mastodon.py:20 keystrokeEditor/actions/twitter.py:20
+#: keystrokeEditor/actions/mastodon.py:20
 msgid "Quit"
 msgstr "Napusti"
 
-#: keystrokeEditor/actions/mastodon.py:21 keystrokeEditor/actions/twitter.py:21
+#: keystrokeEditor/actions/mastodon.py:21
 msgid "Open user timeline"
 msgstr "Otvori korisničku vremensku crtu"
 
-#: keystrokeEditor/actions/mastodon.py:22 keystrokeEditor/actions/twitter.py:22
+#: keystrokeEditor/actions/mastodon.py:22
 msgid "Destroy buffer"
 msgstr "Izbriši kanal"
 
@@ -2014,7 +1354,7 @@ msgstr "Izbriši kanal"
 msgid "Interact with the currently focused post."
 msgstr "Interakcija sa trenutno fokusiranom objavom."
 
-#: keystrokeEditor/actions/mastodon.py:24 keystrokeEditor/actions/twitter.py:24
+#: keystrokeEditor/actions/mastodon.py:24
 msgid "Open URL"
 msgstr "Otvori vezu"
 
@@ -2022,27 +1362,27 @@ msgstr "Otvori vezu"
 msgid "View in browser"
 msgstr "Prikaži u pretraživaču"
 
-#: keystrokeEditor/actions/mastodon.py:26 keystrokeEditor/actions/twitter.py:26
+#: keystrokeEditor/actions/mastodon.py:26
 msgid "Increase volume by 5%"
 msgstr "Pojačaj ton za 5%"
 
-#: keystrokeEditor/actions/mastodon.py:27 keystrokeEditor/actions/twitter.py:27
+#: keystrokeEditor/actions/mastodon.py:27
 msgid "Decrease volume by 5%"
 msgstr "Utišaj ton za 5%"
 
-#: keystrokeEditor/actions/mastodon.py:28 keystrokeEditor/actions/twitter.py:28
+#: keystrokeEditor/actions/mastodon.py:28
 msgid "Jump to the first element of a buffer"
 msgstr "Skoči na prvi element kanala"
 
-#: keystrokeEditor/actions/mastodon.py:29 keystrokeEditor/actions/twitter.py:29
+#: keystrokeEditor/actions/mastodon.py:29
 msgid "Jump to the last element of the current buffer"
 msgstr "Skoči na poslednji element kanala"
 
-#: keystrokeEditor/actions/mastodon.py:30 keystrokeEditor/actions/twitter.py:30
+#: keystrokeEditor/actions/mastodon.py:30
 msgid "Jump 20 elements up in the current buffer"
 msgstr "Skoči dvadeset elemenata na gore u trenutnom kanalu"
 
-#: keystrokeEditor/actions/mastodon.py:31 keystrokeEditor/actions/twitter.py:31
+#: keystrokeEditor/actions/mastodon.py:31
 msgid "Jump 20 elements down in the current buffer"
 msgstr "Skoči 20 elemenata nadole u trenutnom kanalu"
 
@@ -2050,27 +1390,27 @@ msgstr "Skoči 20 elemenata nadole u trenutnom kanalu"
 msgid "Delete post"
 msgstr "Izbriši objavu"
 
-#: keystrokeEditor/actions/mastodon.py:34 keystrokeEditor/actions/twitter.py:34
+#: keystrokeEditor/actions/mastodon.py:34
 msgid "Empty the current buffer"
 msgstr "Očisti trenutni kanal"
 
-#: keystrokeEditor/actions/mastodon.py:35 keystrokeEditor/actions/twitter.py:35
+#: keystrokeEditor/actions/mastodon.py:35
 msgid "Repeat last item"
 msgstr "Ponovi poslednju stavku"
 
-#: keystrokeEditor/actions/mastodon.py:36 keystrokeEditor/actions/twitter.py:36
+#: keystrokeEditor/actions/mastodon.py:36
 msgid "Copy to clipboard"
 msgstr "Kopiraj u ostavu"
 
-#: keystrokeEditor/actions/mastodon.py:39 keystrokeEditor/actions/twitter.py:39
+#: keystrokeEditor/actions/mastodon.py:39
 msgid "Mute/unmute the active buffer"
 msgstr "Utišaj ili pokreni trenutni kanal"
 
-#: keystrokeEditor/actions/mastodon.py:40 keystrokeEditor/actions/twitter.py:40
+#: keystrokeEditor/actions/mastodon.py:40
 msgid "Mute/unmute the current session"
 msgstr "Utišaj ili pokreni trenutnu sesiju"
 
-#: keystrokeEditor/actions/mastodon.py:41 keystrokeEditor/actions/twitter.py:41
+#: keystrokeEditor/actions/mastodon.py:41
 msgid "toggle the automatic reading of incoming tweets in the active buffer"
 msgstr "uključi ili isključi automatsko čitanje tvitova u trenutnom kanalu"
 
@@ -2078,140 +1418,51 @@ msgstr "uključi ili isključi automatsko čitanje tvitova u trenutnom kanalu"
 msgid "Search on instance"
 msgstr "Traži na instanci"
 
-#: keystrokeEditor/actions/mastodon.py:43 keystrokeEditor/actions/twitter.py:43
+#: keystrokeEditor/actions/mastodon.py:43
 msgid "Find a string in the currently focused buffer"
 msgstr "Pronađi tekst u trenutnom kanalu"
 
-#: keystrokeEditor/actions/mastodon.py:44 keystrokeEditor/actions/twitter.py:44
+#: keystrokeEditor/actions/mastodon.py:44
 msgid "Show the keystroke editor"
 msgstr "Prikaži uređivača prečica"
 
-#: keystrokeEditor/actions/mastodon.py:46 keystrokeEditor/actions/twitter.py:46
+#: keystrokeEditor/actions/mastodon.py:46
 msgid "load previous items"
 msgstr "Učitaj prethodne stavke"
 
-#: keystrokeEditor/actions/mastodon.py:48 keystrokeEditor/actions/twitter.py:50
+#: keystrokeEditor/actions/mastodon.py:48
 msgid "View conversation"
 msgstr "Vidi razgovor"
 
-#: keystrokeEditor/actions/mastodon.py:49 keystrokeEditor/actions/twitter.py:51
+#: keystrokeEditor/actions/mastodon.py:49
 msgid "Check and download updates"
 msgstr "Proveri i preuzmi nadogradnje"
 
-#: keystrokeEditor/actions/mastodon.py:50 keystrokeEditor/actions/twitter.py:53
+#: keystrokeEditor/actions/mastodon.py:50
 msgid "Opens the global settings dialogue"
 msgstr "Otvara dijalog globalnih podešavanja"
 
-#: keystrokeEditor/actions/mastodon.py:52 keystrokeEditor/actions/twitter.py:55
+#: keystrokeEditor/actions/mastodon.py:52
 msgid "Opens the account settings dialogue"
 msgstr "Otvara podešavanja naloga"
 
-#: keystrokeEditor/actions/mastodon.py:53 keystrokeEditor/actions/twitter.py:56
+#: keystrokeEditor/actions/mastodon.py:53
 msgid "Try to play a media file"
 msgstr "Pokušaj reprodukcije medijskog zapisa"
 
-#: keystrokeEditor/actions/mastodon.py:54 keystrokeEditor/actions/twitter.py:57
+#: keystrokeEditor/actions/mastodon.py:54
 msgid "Updates the buffer and retrieves possible lost items there."
 msgstr "Ažurira kanal i preuzima moguće izgubljene stavke."
 
-#: keystrokeEditor/actions/twitter.py:10
-msgid "New tweet"
-msgstr "Novi tvit"
-
-#: keystrokeEditor/actions/twitter.py:12 wxUI/buffers/twitter/base.py:26
-#: wxUI/commonMessageDialogs.py:10
-msgid "Retweet"
-msgstr "Retvituj"
-
-#: keystrokeEditor/actions/twitter.py:14
-msgid "Like a tweet"
-msgstr "Označi tvit sa sviđa mi se"
-
-#: keystrokeEditor/actions/twitter.py:15
-msgid "Like/unlike a tweet"
-msgstr "Označi da ti se tvit sviđa / ne sviđa"
-
-#: keystrokeEditor/actions/twitter.py:16
-msgid "Unlike a tweet"
-msgstr "Označi tvit sa ne sviđa mi se"
-
-#: keystrokeEditor/actions/twitter.py:18
-msgid "See user details"
-msgstr "Vidi pojedinosti o korisniku"
-
-#: keystrokeEditor/actions/twitter.py:19
-msgid "Show tweet"
-msgstr "Prikaži tvit"
-
-#: keystrokeEditor/actions/twitter.py:23
-msgid "Interact with the currently focused tweet."
-msgstr "Radnje sa trenutno obeleženim tvitom"
-
-#: keystrokeEditor/actions/twitter.py:25
-msgid "View in Twitter"
-msgstr "Prikaži na Twitteru"
-
-#: keystrokeEditor/actions/twitter.py:32
-msgid "Edit profile"
-msgstr "Izmeni profil"
-
-#: keystrokeEditor/actions/twitter.py:33
-msgid "Delete a tweet or direct message"
-msgstr "Izbriši tvit ili direktnu poruku"
-
-#: keystrokeEditor/actions/twitter.py:37
-msgid "Add to list"
-msgstr "Dodaj u listu"
-
-#: keystrokeEditor/actions/twitter.py:38
-msgid "Remove from list"
-msgstr "Ukloni iz liste"
-
-#: keystrokeEditor/actions/twitter.py:42
-msgid "Search on twitter"
-msgstr "Traži na twitter-u"
-
-#: keystrokeEditor/actions/twitter.py:45
-msgid "Show lists for a specified user"
-msgstr "Prikaži liste određenog korisnika"
-
-#: keystrokeEditor/actions/twitter.py:47
-msgid "Get geolocation"
-msgstr "Preuzmi geografsku lokaciju"
-
-#: keystrokeEditor/actions/twitter.py:48
-msgid "Display the tweet's geolocation in a dialog"
-msgstr "Prikaži geografsku lokaciju u dijalogu"
-
-#: keystrokeEditor/actions/twitter.py:49
-msgid "Create a trending topics buffer"
-msgstr "Stvori kanal trenutnih tema u trendu"
-
-#: keystrokeEditor/actions/twitter.py:52
-msgid ""
-"Opens the list manager, which allows you to create, edit, delete and open"
-" lists in buffers."
-msgstr ""
-"Otvara upravljanje listama, što vam dozvoljava da kreirate, uređujete, "
-"brišete i otvarate liste u kanalima."
-
-#: keystrokeEditor/actions/twitter.py:54
-msgid "Opens the list manager"
-msgstr "Otvara upravljanje listama"
-
-#: keystrokeEditor/actions/twitter.py:58
+#: keystrokeEditor/actions/mastodon.py:55
 msgid "Extracts the text from a picture and displays the result in a dialog."
 msgstr "Izdvaja tekst iz slike i prikazuje rezultat u dijaloškom prozoru."
 
-#: keystrokeEditor/actions/twitter.py:59
+#: keystrokeEditor/actions/mastodon.py:56
 msgid "Adds an alias to an user"
 msgstr "Dodaje nadimak za korisnika"
 
-#: sessionmanager/sessionManager.py:72
-msgid "{account_name} (Twitter)"
-msgstr "{account_name} (Twitter)"
-
-#: sessionmanager/sessionManager.py:77
+#: sessionmanager/sessionManager.py:68
 #, fuzzy
 msgid "{account_name}@{instance} (Mastodon)"
 msgstr "{account_name} (Mastodon)"
@@ -2232,7 +1483,7 @@ msgstr "Nalog"
 msgid "New account"
 msgstr "Novi nalog"
 
-#: sessionmanager/wxUI.py:22 sessionmanager/wxUI.py:91
+#: sessionmanager/wxUI.py:22 sessionmanager/wxUI.py:79
 msgid "Remove account"
 msgstr "Ukloni nalog"
 
@@ -2248,15 +1499,11 @@ msgstr "Morate podesiti nalog."
 msgid "Account Error"
 msgstr "Greška naloga"
 
-#: sessionmanager/wxUI.py:55
-msgid "Twitter"
-msgstr "Twitter"
-
-#: sessionmanager/wxUI.py:57
+#: sessionmanager/wxUI.py:54
 msgid "Mastodon"
 msgstr "Mastodon"
 
-#: sessionmanager/wxUI.py:62
+#: sessionmanager/wxUI.py:59
 msgid ""
 "You will be prompted for your Mastodon data (instance URL, email address "
 "and password) so we can authorise TWBlue in your instance. Would you like"
@@ -2266,25 +1513,16 @@ msgstr ""
 "lozinka) kako bismo mogli da autorizujemo TWBlue na vašoj instanci. Da li"
 " sada želite da autorizujete vaš nalog?"
 
-#: sessionmanager/wxUI.py:62 sessionmanager/wxUI.py:71
+#: sessionmanager/wxUI.py:59
 msgid "Authorization"
 msgstr "Autorizacija"
 
-#: sessionmanager/wxUI.py:71
-msgid ""
-"The request to authorize your Twitter account will be opened in your "
-"browser. You only need to do this once. Would you like to continue?"
-msgstr ""
-"Zahtev za autorizaciju vašeg Twitter naloga će biti otvoren u vašem "
-"pregledniku. Potrebno je da to uradite samo jednom. Želite li da "
-"nastavite?"
-
-#: sessionmanager/wxUI.py:79
+#: sessionmanager/wxUI.py:67
 #, python-format
 msgid "Authorized account %d"
 msgstr "Autorizovan nalog %d"
 
-#: sessionmanager/wxUI.py:85
+#: sessionmanager/wxUI.py:73
 msgid ""
 "Your access token is invalid or the authorization has failed. Please try "
 "again."
@@ -2292,29 +1530,13 @@ msgstr ""
 "Vaš pristupni token je pogrešan ili autorizacija nije uspela. Molimo vas,"
 " pokušajte ponovo."
 
-#: sessionmanager/wxUI.py:85
+#: sessionmanager/wxUI.py:73
 msgid "Invalid user token"
 msgstr "Pogrešan korisnički token"
 
-#: sessionmanager/wxUI.py:91
+#: sessionmanager/wxUI.py:79
 msgid "Do you really want to delete this account?"
 msgstr "Želite li zaista da izbrišete ovaj nalog?"
-
-#: sessionmanager/wxUI.py:115
-msgid ""
-"TWBlue is unable to authenticate the account for {} in Twitter. It might "
-"be due to an invalid or expired token, revoqued access to the "
-"application, or after an account reactivation. Please remove the account "
-"manually from your Twitter sessions in order to stop seeing this message."
-msgstr ""
-"TWBlue ne može da izvrši autentikaciju naloga za {} na Twitteru. Ovo se "
-"može desiti zbog neispravnog ili isteklog tokena, odbijanja pristupa "
-"aplikacije, ili nakon ponovne aktivacije naloga. Molimo ručno uklonite "
-"nalog iz vaših Twitter sesija kako biste prestali da dobijate ovu poruku."
-
-#: sessionmanager/wxUI.py:115
-msgid "Authentication error for session {}"
-msgstr "Greška u autentikaciji za sesiju {}"
 
 #: sessions/base.py:125
 msgid ""
@@ -2336,63 +1558,60 @@ msgstr ""
 "automatski ponovno napravljena. Ako se ova greška nastavi, pošaljite "
 "dnevnike sa greškama {app} programerima."
 
-#: sessions/mastodon/compose.py:17 sessions/mastodon/compose.py:64
+#: sessions/mastodon/compose.py:15 sessions/mastodon/compose.py:58
 msgid "dddd, MMMM D, YYYY H:m"
 msgstr "dddd, MMMM D, YYYY H:m"
 
-#: sessions/mastodon/compose.py:19 sessions/mastodon/templates.py:75
-#: sessions/mastodon/templates.py:76
+#: sessions/mastodon/compose.py:17 sessions/mastodon/templates.py:73
+#: sessions/mastodon/templates.py:74
 msgid "Boosted from @{}: {}"
 msgstr "Podeljeno od strane korisnika @{}: {}"
 
-#: sessions/mastodon/compose.py:35 sessions/mastodon/templates.py:28
-#: sessions/twitter/compose.py:22 sessions/twitter/compose.py:62
-#: sessions/twitter/compose.py:124 sessions/twitter/compose.py:130
-#: sessions/twitter/templates.py:26
+#: sessions/mastodon/compose.py:33 sessions/mastodon/templates.py:28
 msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "dddd, MMMM D, YYYY H:m:s"
 
-#: sessions/mastodon/compose.py:39
+#: sessions/mastodon/compose.py:35
 #, python-format
 msgid "%s (@%s). %s followers, %s following, %s posts. Joined %s"
 msgstr "%s (@%s). %s pratilaca, %s praćenja, %s objava. Pridružio se na %s"
 
-#: sessions/mastodon/compose.py:50
+#: sessions/mastodon/compose.py:46
 msgid "Last message from {}: {}"
 msgstr "Poslednja poruka od korisnika {}: {}"
 
-#: sessions/mastodon/compose.py:67
+#: sessions/mastodon/compose.py:61
 #, fuzzy
 msgid "{username} has posted: {status}"
 msgstr "{username} je podelio: {status}"
 
-#: sessions/mastodon/compose.py:69
+#: sessions/mastodon/compose.py:63
 #, fuzzy
 msgid "{username} has mentioned you: {status}"
 msgstr "{username} vas je spomenuo: {status}"
 
-#: sessions/mastodon/compose.py:71
+#: sessions/mastodon/compose.py:65
 msgid "{username} has boosted: {status}"
 msgstr "{username} je podelio: {status}"
 
-#: sessions/mastodon/compose.py:73
+#: sessions/mastodon/compose.py:67
 msgid "{username} has added to favorites: {status}"
 msgstr "{username} je dodao u omiljene: {status}"
 
-#: sessions/mastodon/compose.py:75
+#: sessions/mastodon/compose.py:69
 msgid "{username} has followed you."
 msgstr "{username} vas je zapratio."
 
-#: sessions/mastodon/compose.py:77
+#: sessions/mastodon/compose.py:71
 #, fuzzy
 msgid "{username} has joined the instance."
 msgstr "{username} je podelio: {status}"
 
-#: sessions/mastodon/compose.py:79 sessions/mastodon/templates.py:167
+#: sessions/mastodon/compose.py:73 sessions/mastodon/templates.py:161
 msgid "A poll in which you have voted has expired: {status}"
 msgstr "Anketa u kojoj ste glasali je završena: {status}"
 
-#: sessions/mastodon/compose.py:81
+#: sessions/mastodon/compose.py:75
 msgid "{username} wants to follow you."
 msgstr "{username} želi da vas zaprati."
 
@@ -2434,21 +1653,20 @@ msgstr ""
 "Autorizacija vašeg Mastodon naloga uz TWBlue nije uspela. Možda je kod za"
 " potvrdu neispravan. Molimo  pokušajte ponovo  da dodate sesiju."
 
-#: sessions/mastodon/session.py:87 sessions/twitter/session.py:171
+#: sessions/mastodon/session.py:87
 msgid "Authorization error"
 msgstr "Greška pri autorizaciji"
 
-#: sessions/mastodon/session.py:201 sessions/twitter/session.py:212
-#: sessions/twitter/session.py:236
+#: sessions/mastodon/session.py:182
 #, python-format
 msgid "%s succeeded."
 msgstr "%s uspelo."
 
-#: sessions/mastodon/templates.py:18 sessions/twitter/templates.py:16
+#: sessions/mastodon/templates.py:18
 msgid "$display_name, $text $image_descriptions $date. $source"
 msgstr "$display_name, $text $image_descriptions $date. $source"
 
-#: sessions/mastodon/templates.py:19 sessions/twitter/templates.py:18
+#: sessions/mastodon/templates.py:19
 msgid "Dm to $recipient_display_name, $text $date"
 msgstr "Direktna poruka za $recipient_display_name, $text $date"
 
@@ -2473,147 +1691,84 @@ msgstr "Upozorenje za sadržaj: {}"
 msgid "Media description: {}"
 msgstr "Opis slike: {}"
 
-#: sessions/mastodon/templates.py:80 wxUI/dialogs/mastodon/postDialogs.py:48
+#: sessions/mastodon/templates.py:78 wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Followers only"
 msgstr "Samo pratioci"
 
-#: sessions/mastodon/templates.py:153
+#: sessions/mastodon/templates.py:147
 #, fuzzy
 msgid "has posted: {status}"
 msgstr "je podelio: {status}"
 
-#: sessions/mastodon/templates.py:155
+#: sessions/mastodon/templates.py:149
 #, fuzzy
 msgid "has mentioned you: {status}"
 msgstr "vas je spomenuo: {status}"
 
-#: sessions/mastodon/templates.py:157
+#: sessions/mastodon/templates.py:151
 msgid "has boosted: {status}"
 msgstr "je podelio: {status}"
 
-#: sessions/mastodon/templates.py:159
+#: sessions/mastodon/templates.py:153
 msgid "has added to favorites: {status}"
 msgstr "je dodao u omiljene: {status}"
 
-#: sessions/mastodon/templates.py:161
+#: sessions/mastodon/templates.py:155
 msgid "has updated a status: {status}"
 msgstr "je ažurirao status: {status}"
 
-#: sessions/mastodon/templates.py:163
+#: sessions/mastodon/templates.py:157
 msgid "has followed you."
 msgstr "vas je zapratio."
 
-#: sessions/mastodon/templates.py:165
+#: sessions/mastodon/templates.py:159
 #, fuzzy
 msgid "has joined the instance."
 msgstr "Udaljena instanca"
 
-#: sessions/mastodon/templates.py:169
+#: sessions/mastodon/templates.py:163
 msgid "wants to follow you."
 msgstr "želi da vas prati."
 
-#: sessions/twitter/compose.py:68 sessions/twitter/compose.py:70
+#: update/utils.py:29
 #, python-format
-msgid "Dm to %s "
-msgstr "Direktna poruka za %s "
+msgid "%d day, "
+msgstr "%d dan, "
 
-#: sessions/twitter/compose.py:109
-msgid "{0}. Quoted  tweet from @{1}: {2}"
-msgstr "{0}. citira tvit od @{1}: {2}"
-
-#: sessions/twitter/compose.py:132
-msgid "Unavailable"
-msgstr "Nedostupno"
-
-#: sessions/twitter/compose.py:133
+#: update/utils.py:31
 #, python-format
-msgid ""
-"%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
-"Twitter %s"
-msgstr ""
-"%s (@%s). %s pratilaca, %s prijatelja, %s tvitova. Poslednji tvit %s. "
-"Pridružio se twitteru  %s"
+msgid "%d days, "
+msgstr "%d dana, "
 
-#: sessions/twitter/compose.py:137
-msgid "No description available"
-msgstr "Opis nije dostupan"
-
-#: sessions/twitter/compose.py:141
-msgid "private"
-msgstr "Privatno"
-
-#: sessions/twitter/compose.py:142
-msgid "public"
-msgstr "Javno"
-
-#: sessions/twitter/session.py:162 sessions/twitter/wxUI.py:9
-msgid "Enter your PIN code here"
-msgstr "Ovde upišite vaš PIN kod"
-
-#: sessions/twitter/session.py:162 sessions/twitter/wxUI.py:6
-msgid "Authorising account..."
-msgstr "Autorizacija naloga..."
-
-#: sessions/twitter/session.py:171
-msgid ""
-"We could not authorice your Twitter account to be used in TWBlue. This "
-"might be caused due to an incorrect verification code. Please try to add "
-"the session again."
-msgstr ""
-"Autorizacija vašeg Twitter naloga uz TWBlue nije uspela. Kod za potvrdu "
-"je možda neispravan. Molimo pokušajte ponovo da dodate sesiju."
-
-#: sessions/twitter/session.py:206 sessions/twitter/session.py:233
+#: update/utils.py:33
 #, python-format
-msgid "%s failed.  Reason: %s"
-msgstr "%s nije uspelo.  Razlog: %s"
+msgid "%d hour, "
+msgstr "%d čas, "
 
-#: sessions/twitter/session.py:440 sessions/twitter/session.py:523
-msgid "Deleted account"
-msgstr "Obrisan nalog"
+#: update/utils.py:35
+#, python-format
+msgid "%d hours, "
+msgstr "%d časova, "
 
-#: sessions/twitter/templates.py:17
-msgid "$sender_display_name, $text $date"
-msgstr "$sender_display_name, $text $date"
+#: update/utils.py:37
+#, python-format
+msgid "%d minute, "
+msgstr "%d minut, "
 
-#: sessions/twitter/templates.py:19
-msgid ""
-"$display_name (@$screen_name). $followers followers, $following "
-"following, $tweets tweets. Joined Twitter $created_at."
-msgstr ""
-"$display_name (@$screen_name). $followers pratilaca, $following praćenja,"
-" $tweets tvitova. Pridružio se Twitteru $created_at."
+#: update/utils.py:39
+#, python-format
+msgid "%d minutes, "
+msgstr "%d minuta, "
 
-#: sessions/twitter/templates.py:54
-msgid "Image description: {}."
-msgstr "Opis slike: {}."
+#: update/utils.py:41
+#, python-format
+msgid "%s second"
+msgstr "%s sekund"
 
-#: sessions/twitter/templates.py:78
-#, fuzzy
-msgid "RT @{}: {} Quote from @{}: {}"
-msgstr "{0}. citira tvit od @{1}: {2}"
-
-#: sessions/twitter/templates.py:80
-#, fuzzy
-msgid "RT @{}: {}"
-msgstr "Podeljeno od strane korisnika @{}: {}"
-
-#: sessions/twitter/templates.py:82
-#, fuzzy
-msgid "{} Quote from @{}: {}"
-msgstr "Podeljeno od strane korisnika @{}: {}"
-
-#: sessions/twitter/utils.py:243
-msgid "Sorry, you are not authorised to see this status."
-msgstr "Izvinite, nije vam dozvoljeno da vidite ovaj status."
-
-#: sessions/twitter/utils.py:247
-msgid "Error {0}"
-msgstr "Greška {0}"
-
-#: sessions/twitter/utils.py:274
-msgid "{user_1}, {user_2} and {all_users} more: {text}"
-msgstr "{user_1}, {user_2} i još {all_users} korisnika: {text}"
+#: update/utils.py:43
+#, python-format
+msgid "%s seconds"
+msgstr "%s sekundi"
 
 #: update/wxUpdater.py:11
 #, python-format
@@ -2684,49 +1839,23 @@ msgstr ""
 msgid "Done!"
 msgstr "Dovršeno"
 
-#: wxUI/commonMessageDialogs.py:7
-msgid ""
-"This retweet is over 140 characters. Would you like to post it as a "
-"mention to the poster with your comments and a link to the original "
-"tweet?"
-msgstr ""
-"Ovaj retvit ima preko 140 znakova. Želite li da pošaljete to kao "
-"spominjanje na pošiljaoca sa vašim komentarom i linkom do izvornog tvita?"
-
-#: wxUI/commonMessageDialogs.py:10
-msgid "Would you like to add a comment to this tweet?"
-msgstr "Želite li da dodate komentar na ovaj tvit?"
-
-#: wxUI/commonMessageDialogs.py:13
-msgid ""
-"Do you really want to delete this tweet? It will be deleted from Twitter "
-"as well."
-msgstr ""
-"Želite li zaista da izbrišete ovaj tvit? On će biti izbrisan sa Twitera "
-"takođe."
-
-#: wxUI/commonMessageDialogs.py:13 wxUI/dialogs/lists.py:149
-#: wxUI/dialogs/mastodon/dialogs.py:15
-msgid "Delete"
-msgstr "Izbriši"
-
-#: wxUI/commonMessageDialogs.py:16
+#: wxUI/commonMessageDialogs.py:6
 msgid "Do you really want to close {0}?"
 msgstr "Želite li stvarno da zatvorite {0}?"
 
-#: wxUI/commonMessageDialogs.py:16
+#: wxUI/commonMessageDialogs.py:6
 msgid "Exit"
 msgstr "Izlaz"
 
-#: wxUI/commonMessageDialogs.py:20
+#: wxUI/commonMessageDialogs.py:10
 msgid " {0} must be restarted for these changes to take effect."
 msgstr " {0} se mora ponovo pokrenuti kako bi ove promene stupile na snagu."
 
-#: wxUI/commonMessageDialogs.py:20
+#: wxUI/commonMessageDialogs.py:10
 msgid "Restart {0} "
 msgstr "Ponovo pokreni {0} "
 
-#: wxUI/commonMessageDialogs.py:23
+#: wxUI/commonMessageDialogs.py:13
 msgid ""
 "Are you sure you want to delete this user from the database? This user "
 "will not appear in autocomplete results anymore."
@@ -2735,19 +1864,11 @@ msgstr ""
 "Ovaj korisnik se više neće pojavljivati u rezultatima automatskog "
 "dovršavanja."
 
-#: wxUI/commonMessageDialogs.py:23
+#: wxUI/commonMessageDialogs.py:13
 msgid "Confirm"
 msgstr "Potvrdi"
 
-#: wxUI/commonMessageDialogs.py:26
-msgid "Enter the name of the client : "
-msgstr "Unesite ime klijenta"
-
-#: wxUI/commonMessageDialogs.py:26 wxUI/dialogs/configuration.py:267
-msgid "Add client"
-msgstr "Dodaj program"
-
-#: wxUI/commonMessageDialogs.py:32
+#: wxUI/commonMessageDialogs.py:16
 msgid ""
 "Do you really want to empty this buffer? It's  items will be removed from"
 " the list but not from Twitter"
@@ -2755,53 +1876,33 @@ msgstr ""
 "Želite li zaista da očistite ovaj kanal? Njegove stavke će biti uklonjene"
 " sa kanala, ali ne i sa twittera."
 
-#: wxUI/commonMessageDialogs.py:32 wxUI/dialogs/mastodon/dialogs.py:31
+#: wxUI/commonMessageDialogs.py:16 wxUI/dialogs/mastodon/dialogs.py:31
 msgid "Empty buffer"
 msgstr "Očisti kanal"
 
-#: wxUI/commonMessageDialogs.py:36
+#: wxUI/commonMessageDialogs.py:20
 msgid "Do you really want to destroy this buffer?"
 msgstr "Želite li zaista da izbrišete ovaj kanal?"
 
-#: wxUI/commonMessageDialogs.py:42
+#: wxUI/commonMessageDialogs.py:20
+msgid "Attention"
+msgstr "Pažnja"
+
+#: wxUI/commonMessageDialogs.py:23
+msgid "That user does not exist"
+msgstr "Taj korisnik ne postoji."
+
+#: wxUI/commonMessageDialogs.py:26
 msgid "A timeline for this user already exists. You can't open another"
 msgstr ""
 "Vremenska linija za tog korisnika već postoji. Ne možete otvoriti još "
 "jednu."
 
-#: wxUI/commonMessageDialogs.py:42
+#: wxUI/commonMessageDialogs.py:26
 msgid "Existing timeline"
 msgstr "Postojeća vremenska linija."
 
-#: wxUI/commonMessageDialogs.py:45
-msgid "This user has no tweets, so you can't open a timeline for them."
-msgstr ""
-"Ovaj korisnik nema nijedan tvit, te s toga ne možete otvoriti njegovu "
-"vremensku liniju."
-
-#: wxUI/commonMessageDialogs.py:48
-msgid ""
-"This is a protected Twitter user, which means you can't open a timeline "
-"using the Streaming API. The user's tweets will not update due to a "
-"twitter policy. Do you want to continue?"
-msgstr ""
-"Ovo je zaštićeni korisnik twittera, što znači da ne možete otvarati "
-"vremensku liniju koristeći Streaming API. Tvitovi korisnika neće biti "
-"ažurirani zbog politike tvitera. Želite li da nastavite??"
-
-#: wxUI/commonMessageDialogs.py:48 wxUI/commonMessageDialogs.py:98
-msgid "Warning"
-msgstr "Upozorenje"
-
-#: wxUI/commonMessageDialogs.py:51
-msgid ""
-"This is a protected user account, you need to follow this user to view "
-"their tweets or likes."
-msgstr ""
-"Ovaj korisnik je zaštitio svoj nalog. Morate ga zapratiti kako bi videli "
-"njegove tvitove ili omiljene stvari."
-
-#: wxUI/commonMessageDialogs.py:54
+#: wxUI/commonMessageDialogs.py:29
 msgid ""
 "If you like {0} we need your help to keep it going. Help us by donating "
 "to the project. This will help us pay for the server, the domain and some"
@@ -2815,37 +1916,11 @@ msgstr ""
 "dati motivaciju da nastavimo sa razvojem {0}, i da sačuvamo {0} "
 "besplatnim. Želite li da donirate sada?"
 
-#: wxUI/commonMessageDialogs.py:54
+#: wxUI/commonMessageDialogs.py:29
 msgid "We need your help"
 msgstr "Potrebna nam je vaša pomoć"
 
-#: wxUI/commonMessageDialogs.py:58
-msgid "This user has no tweets. {0} can't create a timeline."
-msgstr "Ovaj korisnik nema tvitove. {0} ne može da napravi vremensku liniju."
-
-#: wxUI/commonMessageDialogs.py:61
-msgid "This user has no favorited tweets. {0} can't create a timeline."
-msgstr ""
-"Ovaj korisnik nema omiljenih tvitova. {0} ne može da napravi vremensku "
-"liniju."
-
-#: wxUI/commonMessageDialogs.py:64
-msgid "This user has no followers. {0} can't create a timeline."
-msgstr "Ovog korisnika niko ne prati. {0} ne može da kreira vremensku liniju."
-
-#: wxUI/commonMessageDialogs.py:67
-msgid "This user has no friends. {0} can't create a timeline."
-msgstr "Ovaj korisnik nema prijatelje. {0} ne može da napravi vremensku liniju."
-
-#: wxUI/commonMessageDialogs.py:71
-msgid "Geolocation data: {0}"
-msgstr "Podaci o geografskoj lokaciji: {0}"
-
-#: wxUI/commonMessageDialogs.py:71
-msgid "Geo data for this tweet"
-msgstr "Geografski podaci o ovom tvitu"
-
-#: wxUI/commonMessageDialogs.py:74
+#: wxUI/commonMessageDialogs.py:33
 msgid ""
 "TWBlue has detected that you're running windows 10 and has changed the "
 "default keymap to the Windows 10 keymap. It means that some keyboard "
@@ -2858,45 +1933,15 @@ msgstr ""
 "prečica pritiskanjem Alt+Win+K i pogledate sve dostupne prečice za ovaj "
 "način rada."
 
-#: wxUI/commonMessageDialogs.py:74
+#: wxUI/commonMessageDialogs.py:33
 msgid "Information"
 msgstr "Informacija"
 
-#: wxUI/commonMessageDialogs.py:77
-msgid "You have been blocked from viewing  this content"
-msgstr "Blokirani ste i ne možete videti ovaj sadržaj."
-
-#: wxUI/commonMessageDialogs.py:80
-msgid ""
-"You have been blocked from viewing  someone's content. In order to avoid "
-"conflicts with the full session, TWBlue will remove the affected "
-"timeline."
-msgstr ""
-"Blokirani ste i ne možete videti sadržaj nekog korisnika. Kako bi smo "
-"izbegli konflikte sa sesijom, TWBlue će ukloniti vremensku liniju na koju"
-" ovo utiče."
-
-#: wxUI/commonMessageDialogs.py:83
-msgid ""
-"TWBlue cannot load this timeline because the user has been suspended from"
-" Twitter."
-msgstr ""
-"TWBlue ne može da učita ovu vremensku liniju zbog toga što je korisnik "
-"suspendovan sa tvitera."
-
-#: wxUI/commonMessageDialogs.py:86
-msgid "Do you really want to delete this filter?"
-msgstr "Da li zaista želite da izbrišete ovaj filter?"
-
-#: wxUI/commonMessageDialogs.py:89
-msgid "This filter already exists. Please use a different title"
-msgstr "Ovaj filter već postoji. Molimo koristite drugi naziv"
-
-#: wxUI/commonMessageDialogs.py:95
+#: wxUI/commonMessageDialogs.py:36
 msgid "The configuration file is invalid."
 msgstr "Datoteka sa podešavanjima je neispravna."
 
-#: wxUI/commonMessageDialogs.py:98
+#: wxUI/commonMessageDialogs.py:39
 msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
@@ -2904,76 +1949,23 @@ msgstr ""
 "{0} je neočekivano zatvoren pri poslednjem pokretanju. Ako se problem "
 "nastavi, molimo prijavite ga{0} programerima."
 
-#: wxUI/dialogs/mastodon/menus.py:15 wxUI/menus.py:16 wxUI/menus.py:36
-#: wxUI/menus.py:52
-msgid "&Open URL"
-msgstr "otvori vezu"
+#: wxUI/commonMessageDialogs.py:39
+msgid "Warning"
+msgstr "Upozorenje"
 
-#: wxUI/dialogs/mastodon/menus.py:17 wxUI/menus.py:18 wxUI/menus.py:54
-#: wxUI/menus.py:87
-msgid "&Open in Twitter"
-msgstr "&Otvori na Twitteru"
-
-#: wxUI/dialogs/mastodon/menus.py:19 wxUI/menus.py:20 wxUI/menus.py:38
-#: wxUI/menus.py:56
-msgid "&Play audio"
-msgstr "reprodukuj zvučni zapis"
-
-#: wxUI/dialogs/mastodon/menus.py:23 wxUI/menus.py:24 wxUI/menus.py:42
-#: wxUI/menus.py:60 wxUI/menus.py:70 wxUI/menus.py:89 wxUI/menus.py:103
-msgid "&Copy to clipboard"
-msgstr "Kopiraj u ostavu"
-
-#: wxUI/dialogs/mastodon/menus.py:27 wxUI/menus.py:28 wxUI/menus.py:46
-#: wxUI/menus.py:91
-msgid "&User actions..."
-msgstr "Radnje korisnika..."
-
-#: wxUI/menus.py:40
-msgid "&Show direct message"
-msgstr "Prikaži direktnu poruku"
-
-#: wxUI/menus.py:68
-msgid "&Show event"
-msgstr "Prikaži događaj"
-
-#: wxUI/menus.py:78
-msgid "Direct &message"
-msgstr "Direktna poruka"
-
-#: wxUI/menus.py:85
-msgid "&Show user"
-msgstr "Prikaži korisnika"
-
-#: wxUI/buffers/twitter/trends.py:20 wxUI/menus.py:97
-msgid "Search topic"
-msgstr "Pretraži temu"
-
-#: wxUI/menus.py:99
-msgid "&Tweet about this trend"
-msgstr "Tvituj o ovom trendu"
-
-#: wxUI/menus.py:101
-msgid "&Show item"
-msgstr "Prikaži stavku"
-
-#: wxUI/sysTrayIcon.py:36 wxUI/view.py:24
+#: wxUI/sysTrayIcon.py:36 wxUI/view.py:26
 msgid "&Global settings"
 msgstr "Globalna podešavanja"
 
-#: wxUI/sysTrayIcon.py:37 wxUI/view.py:23
+#: wxUI/sysTrayIcon.py:37 wxUI/view.py:25
 msgid "Account se&ttings"
 msgstr "Postavke naloga"
-
-#: wxUI/sysTrayIcon.py:38
-msgid "Update &profile"
-msgstr "Ažuriraj profil"
 
 #: wxUI/sysTrayIcon.py:39
 msgid "&Show / hide"
 msgstr "Prikaži ili sakrij"
 
-#: wxUI/sysTrayIcon.py:40 wxUI/view.py:73
+#: wxUI/sysTrayIcon.py:40 wxUI/view.py:74
 msgid "&Documentation"
 msgstr "Dokumentacija"
 
@@ -2989,117 +1981,156 @@ msgstr "Izlaz"
 msgid "&Manage accounts"
 msgstr "Upravljaj nalozima"
 
-#: wxUI/view.py:18
+#: wxUI/view.py:17
+msgid "&Update profile"
+msgstr "Ažuriraj profil"
+
+#: wxUI/view.py:19
 msgid "&Hide window"
 msgstr "Sakrij prozor"
 
-#: wxUI/view.py:22
+#: wxUI/view.py:21
+msgid "&Lists manager"
+msgstr "Upravljanje listama"
+
+#: wxUI/view.py:24
 msgid "&Edit keystrokes"
 msgstr "Izmeni tasterske prečice"
 
-#: wxUI/view.py:25
+#: wxUI/view.py:27
 msgid "E&xit"
 msgstr "Izlaz"
 
+#: wxUI/view.py:35
+#, fuzzy
+msgid "&Remove from favorites"
+msgstr "Ukloni iz omiljenih"
+
+#: wxUI/view.py:48
+msgid "&Add to list"
+msgstr "Dodaj na listu"
+
+#: wxUI/view.py:49
+msgid "R&emove from list"
+msgstr "Ukloni sa liste"
+
 #: wxUI/view.py:50
+msgid "Show user &profile"
+msgstr "Prikaži profil korisnika"
+
+#: wxUI/view.py:51
 msgid "V&iew likes"
 msgstr "Vidi sviđanja"
 
-#: wxUI/view.py:54
+#: wxUI/view.py:55
 msgid "&Update buffer"
 msgstr "Ažuriraj kanal"
 
+#: wxUI/view.py:56
+msgid "New &trending topics buffer..."
+msgstr "Novi kanal sa temama u trendu"
+
+#: wxUI/view.py:57
+msgid "Create a &filter"
+msgstr "Napravi &filter"
+
 #: wxUI/view.py:58
+msgid "&Manage filters"
+msgstr "&Upravljanje filterima"
+
+#: wxUI/view.py:59
 msgid "Find a string in the currently focused buffer..."
 msgstr "Pronađi pojam u trenutno označenom kanalu..."
 
-#: wxUI/view.py:59
+#: wxUI/view.py:60
 msgid "&Load previous items"
 msgstr "Učitaj prethodne stavke"
 
-#: wxUI/dialogs/mastodon/userActions.py:21 wxUI/dialogs/userActions.py:22
-#: wxUI/view.py:61
+#: wxUI/dialogs/mastodon/userActions.py:21 wxUI/view.py:62
 msgid "&Mute"
 msgstr "Utišaj"
 
-#: wxUI/view.py:62
+#: wxUI/view.py:63
 msgid "&Autoread"
 msgstr "Automatski čitaj"
 
-#: wxUI/view.py:63
+#: wxUI/view.py:64
 msgid "&Clear buffer"
 msgstr "Očisti kanal"
 
-#: wxUI/view.py:64
+#: wxUI/view.py:65
 msgid "&Destroy"
 msgstr "Izbriši"
 
-#: wxUI/view.py:68
+#: wxUI/view.py:69
 msgid "&Seek back 5 seconds"
 msgstr "Premotaj unazad za 5 sekundi"
 
-#: wxUI/view.py:69
+#: wxUI/view.py:70
 msgid "&Seek forward 5 seconds"
 msgstr "Premotaj unapred za 5 sekundi"
 
-#: wxUI/view.py:74
+#: wxUI/view.py:75
 msgid "Sounds &tutorial"
 msgstr "Zvučna uputstva"
 
-#: wxUI/view.py:75
+#: wxUI/view.py:76
 msgid "&What's new in this version?"
 msgstr "Šta je novo u ovoj verziji"
 
-#: wxUI/view.py:76
+#: wxUI/view.py:77
 msgid "&Check for updates"
 msgstr "Proveri da li postoje nadogradnje"
 
-#: wxUI/view.py:77
+#: wxUI/view.py:78
 msgid "&Report an error"
 msgstr "Prijavi grešku"
 
-#: wxUI/view.py:78
+#: wxUI/view.py:79
 msgid "{0}'s &website"
 msgstr "{0} &website"
 
-#: wxUI/view.py:79
+#: wxUI/view.py:80
 msgid "Get soundpacks for TWBlue"
 msgstr "Nabavi zvučne pakete za TW Blue"
 
-#: wxUI/view.py:80
+#: wxUI/view.py:81
 msgid "About &{0}"
 msgstr "O &{0}"
 
-#: wxUI/view.py:83
+#: wxUI/view.py:84
 msgid "&Application"
 msgstr "Aplikacija"
 
-#: wxUI/dialogs/mastodon/userActions.py:10 wxUI/dialogs/userActions.py:11
 #: wxUI/view.py:85
+msgid "&Tweet"
+msgstr "Tvit"
+
+#: wxUI/dialogs/mastodon/userActions.py:10 wxUI/view.py:86
 msgid "&User"
 msgstr "Korisnik"
 
-#: wxUI/view.py:86
+#: wxUI/view.py:87
 msgid "&Buffer"
 msgstr "Kanal"
 
-#: wxUI/view.py:87
+#: wxUI/view.py:88
 msgid "&Audio"
 msgstr "Audio"
 
-#: wxUI/view.py:88
+#: wxUI/view.py:89
 msgid "&Help"
 msgstr "Pomoć"
 
-#: wxUI/view.py:174
+#: wxUI/view.py:175
 msgid "Address"
 msgstr "Adresa"
 
-#: wxUI/view.py:205
+#: wxUI/view.py:206
 msgid "Your {0} version is up to date"
 msgstr "Imate najnoviju verziju {0}."
 
-#: wxUI/view.py:205
+#: wxUI/view.py:206
 msgid "Update"
 msgstr "Ažuriraj"
 
@@ -3117,30 +2148,26 @@ msgstr "Odjavi se"
 
 #: wxUI/buffers/mastodon/base.py:11
 #: wxUI/buffers/mastodon/conversationList.py:11 wxUI/buffers/mastodon/user.py:8
-#: wxUI/buffers/twitter/base.py:12 wxUI/buffers/twitter/people.py:12
-#: wxUI/buffers/twitter/user_searches.py:11
 #: wxUI/dialogs/mastodon/userTimeline.py:10 wxUI/dialogs/userAliasDialogs.py:14
-#: wxUI/dialogs/userSelection.py:11 wxUI/dialogs/utils.py:32
 msgid "User"
 msgstr "Korisnik"
 
 #: wxUI/buffers/mastodon/base.py:11
 #: wxUI/buffers/mastodon/conversationList.py:11
-#: wxUI/buffers/mastodon/notifications.py:11 wxUI/buffers/twitter/base.py:12
+#: wxUI/buffers/mastodon/notifications.py:11
 #: wxUI/dialogs/mastodon/postDialogs.py:36
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:47
+#: wxUI/dialogs/mastodon/postDialogs.py:262
 msgid "Text"
 msgstr "Tekst"
 
 #: wxUI/buffers/mastodon/base.py:11
 #: wxUI/buffers/mastodon/conversationList.py:11
-#: wxUI/buffers/mastodon/notifications.py:11 wxUI/buffers/twitter/base.py:12
-#: wxUI/buffers/twitter/events.py:14
+#: wxUI/buffers/mastodon/notifications.py:11
 msgid "Date"
 msgstr "Datum"
 
 #: wxUI/buffers/mastodon/base.py:11
-#: wxUI/buffers/mastodon/conversationList.py:11 wxUI/buffers/twitter/base.py:12
+#: wxUI/buffers/mastodon/conversationList.py:11
 msgid "Client"
 msgstr "Klijent"
 
@@ -3152,7 +2179,7 @@ msgstr "Omiljena"
 msgid "Bookmark"
 msgstr "Marker"
 
-#: wxUI/buffers/mastodon/base.py:29 wxUI/buffers/twitter/base.py:28
+#: wxUI/buffers/mastodon/base.py:29
 msgid "Direct message"
 msgstr "Direktna poruka"
 
@@ -3168,22 +2195,6 @@ msgstr "Radnje"
 #: wxUI/buffers/mastodon/user.py:20
 msgid "Message"
 msgstr "Poruka"
-
-#: wxUI/buffers/twitter/events.py:14
-msgid "Event"
-msgstr "Događaj"
-
-#: wxUI/buffers/twitter/events.py:16
-msgid "Remove event"
-msgstr "Ukloni događaj"
-
-#: wxUI/buffers/twitter/trends.py:9
-msgid "Trending topic"
-msgstr "Tema trenda"
-
-#: wxUI/buffers/twitter/trends.py:19
-msgid "Tweet about this trend"
-msgstr "Tvituj o ovom trendu"
 
 #: wxUI/dialogs/configuration.py:15
 msgid "Language"
@@ -3263,302 +2274,79 @@ msgstr "Korisnik:"
 msgid "Password: "
 msgstr "Lozinka:"
 
-#: wxUI/dialogs/configuration.py:102 wxUI/dialogs/mastodon/configuration.py:14
-msgid "User autocompletion settings"
-msgstr "Podešavanja automatskog dovršavanja korisnika"
-
-#: wxUI/dialogs/configuration.py:103
-msgid ""
-"Scan account and add friends and followers to the user autocompletion "
-"database"
-msgstr ""
-"Skeniraj nalog i dodaj pratioce i prijatelje u bazu korisnika za "
-"automatsko dovršavanje"
-
-#: wxUI/dialogs/configuration.py:104 wxUI/dialogs/mastodon/configuration.py:17
-msgid "Manage autocompletion database"
-msgstr "Upravljaj bazom automatskog dovršavanja"
-
-#: wxUI/dialogs/configuration.py:109 wxUI/dialogs/mastodon/configuration.py:25
-msgid "Relative timestamps"
-msgstr "Relativne vremenske oznake"
-
-#: wxUI/dialogs/configuration.py:112 wxUI/dialogs/mastodon/configuration.py:30
-msgid "Items on each API call"
-msgstr "Stavke po svakom API pozivu"
-
-#: wxUI/dialogs/configuration.py:118
-msgid ""
-"Inverted buffers: The newest tweets will be shown at the beginning while "
-"the oldest at the end"
-msgstr ""
-"Okreni kanal: Najnoviji tvitovi će biti prikazani na vrhu a najstariji na"
-" dnu."
-
-#: wxUI/dialogs/configuration.py:120
-msgid "Retweet mode"
-msgstr "Način retvitovanja"
-
-#: wxUI/dialogs/configuration.py:126 wxUI/dialogs/mastodon/configuration.py:40
-msgid "Show screen names instead of full names"
-msgstr "Prikaži Twitter korisničko ime umesto punog imena"
-
-#: wxUI/dialogs/configuration.py:128 wxUI/dialogs/mastodon/configuration.py:42
-msgid "hide emojis in usernames"
-msgstr "Sakrij Emoji znakove u korisničkim imenima"
-
-#: wxUI/dialogs/configuration.py:130 wxUI/dialogs/mastodon/configuration.py:44
-msgid ""
-"Number of items per buffer to cache in database (0 to disable caching, "
-"blank for unlimited)"
-msgstr ""
-"Broj stavki po kanalu u bazi podataka (0 za isključivanje memorije, "
-"prazno za neograničeno)"
-
-#: wxUI/dialogs/configuration.py:134
-msgid ""
-"Load cache for tweets in memory (much faster in big datasets but requires"
-" more RAM)"
-msgstr ""
-"Učitavaj keš za Tvitove iz memorije (dosta brže sa većim količinama "
-"podataka ali zahteva više RAM memorije)"
-
-#: wxUI/dialogs/configuration.py:141
+#: wxUI/dialogs/configuration.py:102
 msgid "Enable automatic speech feedback"
 msgstr "Omogući automatske govorne povratne informacije"
 
-#: wxUI/dialogs/configuration.py:143
+#: wxUI/dialogs/configuration.py:104
 msgid "Enable automatic Braille feedback"
 msgstr "Omogući automatske povratne informacije na brajevom redu"
 
-#: wxUI/dialogs/configuration.py:151 wxUI/dialogs/filterDialogs.py:130
+#: wxUI/dialogs/configuration.py:112
 msgid "Buffer"
 msgstr "Kanal"
 
-#: wxUI/dialogs/configuration.py:151
+#: wxUI/dialogs/configuration.py:112
+msgid "Name"
+msgstr "Ime"
+
+#: wxUI/dialogs/configuration.py:112
 msgid "Status"
 msgstr "Status"
 
-#: wxUI/dialogs/configuration.py:154
+#: wxUI/dialogs/configuration.py:115
 msgid "Show/hide"
 msgstr "Prikaži ili sakrij"
 
-#: wxUI/dialogs/configuration.py:155
+#: wxUI/dialogs/configuration.py:116
 msgid "Move up"
 msgstr "Pomeri gore"
 
-#: wxUI/dialogs/configuration.py:156
+#: wxUI/dialogs/configuration.py:117
 msgid "Move down"
 msgstr "Pomeri dole"
 
-#: wxUI/dialogs/configuration.py:166 wxUI/dialogs/configuration.py:231
-#: wxUI/dialogs/configuration.py:234 wxUI/dialogs/configuration.py:239
+#: wxUI/dialogs/configuration.py:127 wxUI/dialogs/configuration.py:192
+#: wxUI/dialogs/configuration.py:195 wxUI/dialogs/configuration.py:200
 msgid "Show"
 msgstr "Prikaži"
 
-#: wxUI/dialogs/configuration.py:168 wxUI/dialogs/configuration.py:178
-#: wxUI/dialogs/configuration.py:202 wxUI/dialogs/configuration.py:232
+#: wxUI/dialogs/configuration.py:129 wxUI/dialogs/configuration.py:139
+#: wxUI/dialogs/configuration.py:163 wxUI/dialogs/configuration.py:193
 msgid "Hide"
 msgstr "Sakrij"
 
-#: wxUI/dialogs/configuration.py:176 wxUI/dialogs/configuration.py:200
+#: wxUI/dialogs/configuration.py:137 wxUI/dialogs/configuration.py:161
 msgid "Select a buffer first."
 msgstr "Najpre izaberite kanal."
 
-#: wxUI/dialogs/configuration.py:179 wxUI/dialogs/configuration.py:203
+#: wxUI/dialogs/configuration.py:140 wxUI/dialogs/configuration.py:164
 msgid "The buffer is hidden, show it first."
 msgstr "Kanal je sakriven, najpre ga prikažite."
 
-#: wxUI/dialogs/configuration.py:182
+#: wxUI/dialogs/configuration.py:143
 msgid "The buffer is already at the top of the list."
 msgstr "Kanal je već na vrhu liste."
 
-#: wxUI/dialogs/configuration.py:206
+#: wxUI/dialogs/configuration.py:167
 msgid "The buffer is already at the bottom of the list."
 msgstr "Kanal je već na dnu liste."
 
-#: wxUI/dialogs/configuration.py:261 wxUI/dialogs/configuration.py:402
-msgid "Ignored clients"
-msgstr "Zanemareni klijenti"
-
-#: wxUI/dialogs/configuration.py:268
-msgid "Remove client"
-msgstr "Ukloni program"
-
-#: wxUI/dialogs/configuration.py:292 wxUI/dialogs/mastodon/configuration.py:67
-msgid "Volume"
-msgstr "Jačina"
-
-#: wxUI/dialogs/configuration.py:303 wxUI/dialogs/mastodon/configuration.py:78
-msgid "Session mute"
-msgstr "Utišaj sesiju"
-
-#: wxUI/dialogs/configuration.py:305 wxUI/dialogs/mastodon/configuration.py:80
-msgid "Output device"
-msgstr "Izlazni uređaj"
-
-#: wxUI/dialogs/configuration.py:312 wxUI/dialogs/mastodon/configuration.py:87
-msgid "Input device"
-msgstr "Ulazni uređaj"
-
-#: wxUI/dialogs/configuration.py:320 wxUI/dialogs/mastodon/configuration.py:95
-msgid "Sound pack"
-msgstr "Zvučna šema"
-
-#: wxUI/dialogs/configuration.py:326
-msgid "Indicate audio tweets with sound"
-msgstr "Označi Audio u tvitovima zvukom"
-
-#: wxUI/dialogs/configuration.py:328
-msgid "Indicate geotweets with sound"
-msgstr "Označi tvitove sa geografskim informacijama zvukom"
-
-#: wxUI/dialogs/configuration.py:330
-msgid "Indicate tweets containing images with sound"
-msgstr "Označi tvitove koji sadrže slike zvukom"
-
-#: wxUI/dialogs/configuration.py:353 wxUI/dialogs/mastodon/configuration.py:126
-msgid "Language for OCR"
-msgstr "Jezik za OCR"
-
-#: wxUI/dialogs/configuration.py:359
-msgid "API Key for SndUp"
-msgstr "API ključ za SndUp"
-
-#: wxUI/dialogs/configuration.py:374
+#: wxUI/dialogs/configuration.py:211
 msgid "{0} preferences"
 msgstr "{0} postavke"
 
-#: wxUI/dialogs/configuration.py:380 wxUI/dialogs/configuration.py:389
-#: wxUI/dialogs/mastodon/configuration.py:146
+#: wxUI/dialogs/configuration.py:217 wxUI/dialogs/mastodon/configuration.py:146
 msgid "General"
 msgstr "opšte"
 
-#: wxUI/dialogs/configuration.py:385
+#: wxUI/dialogs/configuration.py:222
 msgid "Proxy"
 msgstr "Proksi"
 
-#: wxUI/dialogs/configuration.py:394 wxUI/dialogs/mastodon/configuration.py:151
-msgid "Feedback"
-msgstr "Povratne informacije"
-
-#: wxUI/dialogs/configuration.py:398 wxUI/dialogs/mastodon/configuration.py:155
-msgid "Buffers"
-msgstr "Kanali"
-
-#: wxUI/dialogs/configuration.py:406 wxUI/dialogs/mastodon/configuration.py:159
-msgid "Templates"
-msgstr "Šabloni"
-
-#: wxUI/dialogs/configuration.py:410 wxUI/dialogs/mastodon/configuration.py:163
-msgid "Sound"
-msgstr "Zvuk"
-
-#: wxUI/dialogs/configuration.py:414 wxUI/dialogs/mastodon/configuration.py:167
-msgid "Extras"
-msgstr "Dodaci"
-
-#: wxUI/dialogs/configuration.py:419 wxUI/dialogs/mastodon/configuration.py:172
+#: wxUI/dialogs/configuration.py:227 wxUI/dialogs/mastodon/configuration.py:172
 msgid "Save"
 msgstr "Sačuvaj"
-
-#: wxUI/dialogs/filterDialogs.py:13
-msgid "Create a filter  for this buffer"
-msgstr "Napravi filter za ovaj kanal"
-
-#: wxUI/dialogs/filterDialogs.py:14
-msgid "Filter title"
-msgstr "Naziv filtera"
-
-#: wxUI/dialogs/filterDialogs.py:24 wxUI/dialogs/filterDialogs.py:130
-msgid "Filter by word"
-msgstr "Filtriraj na osnovu reči"
-
-#: wxUI/dialogs/filterDialogs.py:25
-msgid "Ignore tweets wich contain the following word"
-msgstr "Zanemari tvitove koji sadrže sledeću reč"
-
-#: wxUI/dialogs/filterDialogs.py:26
-msgid "Ignore tweets without the following word"
-msgstr "Zanemari tvitove bez sledeće reči"
-
-#: wxUI/dialogs/filterDialogs.py:31
-msgid "word"
-msgstr "Reč"
-
-#: wxUI/dialogs/filterDialogs.py:36
-msgid "Allow retweets"
-msgstr "Dozvoli retvitove"
-
-#: wxUI/dialogs/filterDialogs.py:37
-msgid "Allow quoted tweets"
-msgstr "Dozvoli citirane tvitove"
-
-#: wxUI/dialogs/filterDialogs.py:38
-msgid "Allow replies"
-msgstr "Dozvoli odgovore"
-
-#: wxUI/dialogs/filterDialogs.py:46
-msgid "Use this term as a regular expression"
-msgstr "Koristi ovaj termin kao regulara nizraz"
-
-#: wxUI/dialogs/filterDialogs.py:48 wxUI/dialogs/filterDialogs.py:130
-msgid "Filter by language"
-msgstr "Filtriraj na osnovu jezika"
-
-#: wxUI/dialogs/filterDialogs.py:49
-msgid "Load tweets in the following languages"
-msgstr "Učitaj tvitove na sledećim jezicima"
-
-#: wxUI/dialogs/filterDialogs.py:50
-msgid "Ignore tweets in the following languages"
-msgstr "Zanemari tvitove na sledećim jezicima"
-
-#: wxUI/dialogs/filterDialogs.py:51
-msgid "Don't filter by language"
-msgstr "Ne filtriraj na osnovu jezika"
-
-#: wxUI/dialogs/filterDialogs.py:62
-msgid "Supported languages"
-msgstr "Podržani jezici"
-
-#: wxUI/dialogs/filterDialogs.py:67
-msgid "Add selected language to filter"
-msgstr "Dodaj izabrani jezik u filter"
-
-#: wxUI/dialogs/filterDialogs.py:71
-msgid "Selected languages"
-msgstr "Izabrani jezici"
-
-#: wxUI/dialogs/filterDialogs.py:73 wxUI/dialogs/filterDialogs.py:137
-#: wxUI/dialogs/lists.py:21 wxUI/dialogs/lists.py:132
-#: wxUI/dialogs/userAliasDialogs.py:57
-msgid "Remove"
-msgstr "Ukloni"
-
-#: wxUI/dialogs/filterDialogs.py:83 wxUI/dialogs/find.py:23
-msgid "Cancel"
-msgstr "Otkaži"
-
-#: wxUI/dialogs/filterDialogs.py:120
-msgid "You must define a name for the filter before creating it."
-msgstr "Morate upisati ime za filter pre nego što ga napravite."
-
-#: wxUI/dialogs/filterDialogs.py:120
-msgid "Missing filter name"
-msgstr "Ime filtera nedostaje"
-
-#: wxUI/dialogs/filterDialogs.py:127
-msgid "Manage filters"
-msgstr "Upravljanje filterima"
-
-#: wxUI/dialogs/filterDialogs.py:129
-msgid "Filters"
-msgstr "Filteri"
-
-#: wxUI/dialogs/filterDialogs.py:130
-msgid "Filter"
-msgstr "Filter"
 
 #: wxUI/dialogs/find.py:13
 msgid "Find in current buffer"
@@ -3568,250 +2356,54 @@ msgstr "Pronađi u trenutnom kanalu"
 msgid "String"
 msgstr "Pojam"
 
-#: wxUI/dialogs/lists.py:11
-msgid "Lists manager"
-msgstr "Upravljanje listama"
+#: wxUI/dialogs/find.py:23
+msgid "Cancel"
+msgstr "Otkaži"
 
-#: wxUI/dialogs/lists.py:14
-msgid "List"
-msgstr "Lista"
+#: wxUI/dialogs/templateDialogs.py:8
+msgid "Edit Template"
+msgstr "Uredi šablon"
 
-#: wxUI/dialogs/lists.py:14 wxUI/dialogs/lists.py:70
-#: wxUI/dialogs/mastodon/postDialogs.py:25
-#: wxUI/dialogs/mastodon/postDialogs.py:134
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:37
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:126
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:173
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:257
-msgid "Description"
-msgstr "Opis"
+#: wxUI/dialogs/templateDialogs.py:13
+msgid "Edit template"
+msgstr "Uredi šablon"
 
-#: wxUI/dialogs/lists.py:14
-msgid "Owner"
-msgstr "Vlasnik"
+#: wxUI/dialogs/templateDialogs.py:17
+msgid "Available variables"
+msgstr "Dostupne varijable"
 
-#: wxUI/dialogs/lists.py:14
-msgid "Members"
-msgstr "Članovi"
+#: wxUI/dialogs/templateDialogs.py:29
+msgid "Restore template"
+msgstr "Vrati šablon"
 
-#: wxUI/dialogs/lists.py:14
-msgid "mode"
-msgstr "Način"
+#: wxUI/dialogs/templateDialogs.py:48
+msgid "Restored template to {}."
+msgstr "Šablon vraćen na {}."
 
-#: wxUI/dialogs/lists.py:19 wxUI/dialogs/lists.py:62
-msgid "Create a new list"
-msgstr "Stvori novu listu"
+#: wxUI/dialogs/templateDialogs.py:52
+msgid ""
+"the template you have specified include variables that do not exists for "
+"the object. Please fix the template and try again. For your reference, "
+"you can see a list of all available variables in the variables list while"
+" editing your template."
+msgstr ""
+"Šablon koji ste odredili sadrži varijable koje nisu ispravne za ovaj "
+"objekat. Molimo popravite šablon i pokušajte ponovo. Kako bi vam olakšali"
+" postupak, možete videti sve dostupne varijable iz liste kada uređujete "
+"šablon."
 
-#: wxUI/dialogs/lists.py:22
-msgid "Open in buffer"
-msgstr "Otvori u kanalu"
-
-#: wxUI/dialogs/lists.py:52
-#, python-format
-msgid "Viewing lists for %s"
-msgstr "Prikazivanje lista za %s"
-
-#: wxUI/dialogs/lists.py:53
-msgid "Subscribe"
-msgstr "Prijavi se"
-
-#: wxUI/dialogs/lists.py:54
-msgid "Unsubscribe"
-msgstr "Odjavi se"
-
-#: wxUI/dialogs/lists.py:65
-msgid "Name (20 characters maximun)"
-msgstr "Ime, najviše 20 znakova"
-
-#: wxUI/dialogs/lists.py:75
-msgid "Mode"
-msgstr "Način"
-
-#: wxUI/dialogs/lists.py:77
-msgid "Private"
-msgstr "Privatna"
-
-#: wxUI/dialogs/lists.py:97
-#, python-format
-msgid "Editing the list %s"
-msgstr "Uređivanje liste %s"
-
-#: wxUI/dialogs/lists.py:108
-msgid "Select a list to add the user"
-msgstr "Izaberite listu na koju želite da dodate korisnika"
-
-#: wxUI/dialogs/lists.py:109
-msgid "Add"
-msgstr "Dodaj"
-
-#: wxUI/dialogs/lists.py:131
-msgid "Select a list to remove the user"
-msgstr "Izaberite listu sa koje želite da uklonite korisnika"
-
-#: wxUI/dialogs/lists.py:149
-msgid "Do you really want to delete this list?"
-msgstr "Želite li zaista da izbrišete ovu listu?"
-
-#: wxUI/dialogs/search.py:12
-msgid "Search on Twitter"
-msgstr "Pretraži ttwitter"
-
-#: wxUI/dialogs/search.py:21
-msgid "Tweets"
-msgstr "Tvitovi"
-
-#: wxUI/dialogs/mastodon/search.py:19 wxUI/dialogs/search.py:22
-#: wxUI/dialogs/userAliasDialogs.py:43
-msgid "Users"
-msgstr "Korisnici"
-
-#: wxUI/dialogs/search.py:29
-msgid "&Language for results: "
-msgstr "Jezik za rezultate:"
-
-#: wxUI/dialogs/search.py:31 wxUI/dialogs/search.py:55
-msgid "any"
-msgstr "Bilo šta"
-
-#: wxUI/dialogs/search.py:37
-msgid "Results &type: "
-msgstr "Vrsta rezultata:"
-
-#: wxUI/dialogs/search.py:38 wxUI/dialogs/search.py:63
-msgid "Mixed"
-msgstr "Pomešano"
-
-#: wxUI/dialogs/search.py:38 wxUI/dialogs/search.py:64
-msgid "Recent"
-msgstr "Nedavno"
-
-#: wxUI/dialogs/search.py:38 wxUI/dialogs/search.py:65
-msgid "Popular"
-msgstr "Popularno"
-
-#: wxUI/dialogs/mastodon/search.py:24 wxUI/dialogs/mastodon/userActions.py:36
-#: wxUI/dialogs/mastodon/userTimeline.py:30 wxUI/dialogs/search.py:43
-#: wxUI/dialogs/trends.py:25 wxUI/dialogs/userActions.py:41
-#: wxUI/dialogs/userSelection.py:33
-msgid "&OK"
-msgstr "U redu"
-
-#: wxUI/dialogs/mastodon/search.py:26 wxUI/dialogs/mastodon/userActions.py:38
-#: wxUI/dialogs/mastodon/userTimeline.py:32 wxUI/dialogs/search.py:45
-#: wxUI/dialogs/show_user.py:19 wxUI/dialogs/trends.py:27
-#: wxUI/dialogs/update_profile.py:37 wxUI/dialogs/userActions.py:43
-#: wxUI/dialogs/userSelection.py:35
-msgid "&Close"
-msgstr "Zatvori"
-
-#: wxUI/dialogs/show_user.py:12
-msgid "Details"
-msgstr "Pojedoinosti"
-
-#: wxUI/dialogs/show_user.py:17
-msgid "&Go to URL"
-msgstr "Idi na vezu"
-
-#: wxUI/dialogs/trends.py:10
-msgid "View trending topics"
-msgstr "Pogledaj teme u trendu"
-
-#: wxUI/dialogs/trends.py:11
-msgid "Trending topics by"
-msgstr "Teme u trendu po"
-
-#: wxUI/dialogs/trends.py:12
-msgid "Country"
-msgstr "Zemlji"
-
-#: wxUI/dialogs/trends.py:13
-msgid "City"
-msgstr "Gradu"
-
-#: wxUI/dialogs/trends.py:19 wxUI/dialogs/update_profile.py:18
-msgid "&Location"
-msgstr "Mesto"
-
-#: wxUI/dialogs/update_profile.py:10
-msgid "Update your profile"
-msgstr "Ažurirajte vaš profil"
-
-#: wxUI/dialogs/update_profile.py:12
-msgid "&Name (50 characters maximum)"
-msgstr "&Ime(najviše 50 znakova)"
-
-#: wxUI/dialogs/update_profile.py:23
-msgid "&Website"
-msgstr "Web:"
-
-#: wxUI/dialogs/update_profile.py:28
-msgid "&Bio (160 characters maximum)"
-msgstr "Biografija, najviše 160 znakova"
-
-#: wxUI/dialogs/update_profile.py:34
-msgid "Upload a &picture"
-msgstr "Otpremi sliku"
-
-#: wxUI/dialogs/update_profile.py:77
-msgid "Upload a picture"
-msgstr "Otpremi sliku"
-
-#: wxUI/dialogs/update_profile.py:79
-msgid "Discard image"
-msgstr "Odbaci sliku"
-
-#: wxUI/dialogs/mastodon/postDialogs.py:141
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:133
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:289
-#: wxUI/dialogs/update_profile.py:82
-msgid "Select the picture to be uploaded"
-msgstr "Izaberite sliku koju želite da otpremite"
-
-#: wxUI/dialogs/mastodon/postDialogs.py:141
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:133
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:289
-#: wxUI/dialogs/update_profile.py:82
-msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
-msgstr "Datoteke sa slikama"
+#: wxUI/dialogs/templateDialogs.py:52
+msgid "Invalid template"
+msgstr "Neispravan šablon"
 
 #: wxUI/dialogs/urlList.py:6
 msgid "Select URL"
 msgstr "Izaberite vezu"
 
 #: wxUI/dialogs/mastodon/userActions.py:13
-#: wxUI/dialogs/mastodon/userTimeline.py:13 wxUI/dialogs/userActions.py:14
-#: wxUI/dialogs/userAliasDialogs.py:13 wxUI/dialogs/userSelection.py:14
-#: wxUI/dialogs/utils.py:31
+#: wxUI/dialogs/mastodon/userTimeline.py:13 wxUI/dialogs/userAliasDialogs.py:13
 msgid "&Autocomplete users"
 msgstr "&Automatsko dovršavanje"
-
-#: wxUI/dialogs/mastodon/userActions.py:19 wxUI/dialogs/userActions.py:20
-msgid "&Follow"
-msgstr "Prati"
-
-#: wxUI/dialogs/mastodon/userActions.py:20 wxUI/dialogs/userActions.py:21
-msgid "U&nfollow"
-msgstr "Otprati"
-
-#: wxUI/dialogs/mastodon/userActions.py:22 wxUI/dialogs/userActions.py:23
-msgid "Unmu&te"
-msgstr "Ukloni utišavanje"
-
-#: wxUI/dialogs/mastodon/userActions.py:23 wxUI/dialogs/userActions.py:24
-msgid "&Block"
-msgstr "Blokiraj"
-
-#: wxUI/dialogs/mastodon/userActions.py:24 wxUI/dialogs/userActions.py:25
-msgid "Unbl&ock"
-msgstr "Odblokiraj"
-
-#: wxUI/dialogs/userActions.py:26
-msgid "&Report as spam"
-msgstr "Prijavi kao neželjeno"
-
-#: wxUI/dialogs/userActions.py:27
-msgid "&Ignore tweets from this client"
-msgstr "Zanemari tvitove iz ovog klijenta"
 
 #: wxUI/dialogs/userAliasDialogs.py:18
 msgid "Alias"
@@ -3820,6 +2412,10 @@ msgstr "Nadimak"
 #: wxUI/dialogs/userAliasDialogs.py:41
 msgid "Edit user aliases"
 msgstr "Uredi korisničke nadimke"
+
+#: wxUI/dialogs/mastodon/search.py:19 wxUI/dialogs/userAliasDialogs.py:43
+msgid "Users"
+msgstr "Korisnici"
 
 #: wxUI/dialogs/userAliasDialogs.py:50
 msgid "Add alias"
@@ -3832,6 +2428,10 @@ msgstr "Dodaje novi nadimak za korisnika"
 #: wxUI/dialogs/userAliasDialogs.py:54
 msgid "Edit the currently focused user Alias."
 msgstr "Uredi trenutno fokusirani korisnički nadimak."
+
+#: wxUI/dialogs/userAliasDialogs.py:57
+msgid "Remove"
+msgstr "Ukloni"
 
 #: wxUI/dialogs/userAliasDialogs.py:58
 msgid "Remove the currently focused user alias."
@@ -3849,30 +2449,9 @@ msgstr "Ukloni korisnički nadimak"
 msgid "User alias"
 msgstr "Korisnički nadimak"
 
-#: wxUI/dialogs/mastodon/userTimeline.py:9 wxUI/dialogs/userSelection.py:10
-#, python-format
-msgid "Timeline for %s"
-msgstr "Vremenska crta od %s"
-
-#: wxUI/dialogs/mastodon/userTimeline.py:18 wxUI/dialogs/userSelection.py:19
-msgid "Buffer type"
-msgstr "Vrsta kanala"
-
-#: wxUI/dialogs/userSelection.py:20
-msgid "&Tweets"
-msgstr "Tvitovi"
-
-#: wxUI/dialogs/userSelection.py:21
-msgid "&Likes"
-msgstr "Sviđanja"
-
-#: wxUI/dialogs/mastodon/userTimeline.py:20 wxUI/dialogs/userSelection.py:22
-msgid "&Followers"
-msgstr "Pratioci"
-
-#: wxUI/dialogs/userSelection.py:23
-msgid "F&riends"
-msgstr "Prijatelji"
+#: wxUI/dialogs/mastodon/configuration.py:14
+msgid "User autocompletion settings"
+msgstr "Podešavanja automatskog dovršavanja korisnika"
 
 #: wxUI/dialogs/mastodon/configuration.py:15
 msgid ""
@@ -3882,16 +2461,28 @@ msgstr ""
 "Skeniraj nalog i dodaj pratioce i korisnike koje pratite u bazu korisnika"
 " za automatsko dovršavanje"
 
+#: wxUI/dialogs/mastodon/configuration.py:17
+msgid "Manage autocompletion database"
+msgstr "Upravljaj bazom automatskog dovršavanja"
+
 #: wxUI/dialogs/mastodon/configuration.py:23
 #, fuzzy
 msgid "Disable Streaming API endpoints"
 msgstr "Onemogući streaming funkcije"
+
+#: wxUI/dialogs/mastodon/configuration.py:25
+msgid "Relative timestamps"
+msgstr "Relativne vremenske oznake"
 
 #: wxUI/dialogs/mastodon/configuration.py:27
 msgid ""
 "Read preferences from instance (default visibility when publishing and "
 "displaying sensitive content)"
 msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:30
+msgid "Items on each API call"
+msgstr "Stavke po svakom API pozivu"
 
 #: wxUI/dialogs/mastodon/configuration.py:36
 msgid ""
@@ -3905,6 +2496,22 @@ msgstr ""
 msgid "Ask confirmation before boosting a post"
 msgstr "zahtevaj potvrdu pre deljenja objave"
 
+#: wxUI/dialogs/mastodon/configuration.py:40
+msgid "Show screen names instead of full names"
+msgstr "Prikaži Twitter korisničko ime umesto punog imena"
+
+#: wxUI/dialogs/mastodon/configuration.py:42
+msgid "hide emojis in usernames"
+msgstr "Sakrij Emoji znakove u korisničkim imenima"
+
+#: wxUI/dialogs/mastodon/configuration.py:44
+msgid ""
+"Number of items per buffer to cache in database (0 to disable caching, "
+"blank for unlimited)"
+msgstr ""
+"Broj stavki po kanalu u bazi podataka (0 za isključivanje memorije, "
+"prazno za neograničeno)"
+
 #: wxUI/dialogs/mastodon/configuration.py:48
 msgid ""
 "Load cache for items in memory (much faster in big datasets but requires "
@@ -3913,6 +2520,26 @@ msgstr ""
 "Učitavaj keš za stavke iz memorije (dosta brže sa većim količinama "
 "podataka ali zahteva više RAM memorije)"
 
+#: wxUI/dialogs/mastodon/configuration.py:67
+msgid "Volume"
+msgstr "Jačina"
+
+#: wxUI/dialogs/mastodon/configuration.py:78
+msgid "Session mute"
+msgstr "Utišaj sesiju"
+
+#: wxUI/dialogs/mastodon/configuration.py:80
+msgid "Output device"
+msgstr "Izlazni uređaj"
+
+#: wxUI/dialogs/mastodon/configuration.py:87
+msgid "Input device"
+msgstr "Ulazni uređaj"
+
+#: wxUI/dialogs/mastodon/configuration.py:95
+msgid "Sound pack"
+msgstr "Zvučna šema"
+
 #: wxUI/dialogs/mastodon/configuration.py:101
 msgid "Indicate audio or video in posts with sound"
 msgstr "Označi Audio ili  video u objavama zvukom"
@@ -3920,6 +2547,30 @@ msgstr "Označi Audio ili  video u objavama zvukom"
 #: wxUI/dialogs/mastodon/configuration.py:103
 msgid "Indicate posts containing images with sound"
 msgstr "Označi objave koje sadrže slike zvukom"
+
+#: wxUI/dialogs/mastodon/configuration.py:126
+msgid "Language for OCR"
+msgstr "Jezik za OCR"
+
+#: wxUI/dialogs/mastodon/configuration.py:151
+msgid "Feedback"
+msgstr "Povratne informacije"
+
+#: wxUI/dialogs/mastodon/configuration.py:155
+msgid "Buffers"
+msgstr "Kanali"
+
+#: wxUI/dialogs/mastodon/configuration.py:159
+msgid "Templates"
+msgstr "Šabloni"
+
+#: wxUI/dialogs/mastodon/configuration.py:163
+msgid "Sound"
+msgstr "Zvuk"
+
+#: wxUI/dialogs/mastodon/configuration.py:167
+msgid "Extras"
+msgstr "Dodaci"
 
 #: wxUI/dialogs/mastodon/dialogs.py:7
 msgid "Would you like to share this post?"
@@ -3932,6 +2583,10 @@ msgid ""
 msgstr ""
 "Želite li zaista da izbrišete ovu objavu? Takođe će biti izbrisana sa "
 "instance."
+
+#: wxUI/dialogs/mastodon/dialogs.py:15
+msgid "Delete"
+msgstr "Izbriši"
 
 #: wxUI/dialogs/mastodon/dialogs.py:23
 msgid ""
@@ -3975,21 +2630,47 @@ msgstr "Ovaj korisnik ne prati nikoga. {0} ne može da kreira vremensku liniju."
 msgid "R&emove from favorites"
 msgstr "&Ukloni iz omiljenih"
 
+#: wxUI/dialogs/mastodon/menus.py:15
+msgid "&Open URL"
+msgstr "otvori vezu"
+
+#: wxUI/dialogs/mastodon/menus.py:17
+msgid "&Open in Twitter"
+msgstr "&Otvori na Twitteru"
+
+#: wxUI/dialogs/mastodon/menus.py:19
+msgid "&Play audio"
+msgstr "reprodukuj zvučni zapis"
+
+#: wxUI/dialogs/mastodon/menus.py:21
+msgid "&Show tweet"
+msgstr "Prikaži tvit"
+
+#: wxUI/dialogs/mastodon/menus.py:23
+msgid "&Copy to clipboard"
+msgstr "Kopiraj u ostavu"
+
+#: wxUI/dialogs/mastodon/menus.py:27
+msgid "&User actions..."
+msgstr "Radnje korisnika..."
+
 #: wxUI/dialogs/mastodon/postDialogs.py:19
 #: wxUI/dialogs/mastodon/postDialogs.py:37
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:32
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:48
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:168
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:252
 msgid "Attachments"
 msgstr "Prilozi"
 
+#: wxUI/dialogs/mastodon/postDialogs.py:23
+msgid "File"
+msgstr "Datoteka"
+
 #: wxUI/dialogs/mastodon/postDialogs.py:24
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:36
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:172
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:256
 msgid "Type"
 msgstr "Vrsta"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:25
+#: wxUI/dialogs/mastodon/postDialogs.py:134
+msgid "Description"
+msgstr "Opis"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:27
 msgid "Remove Attachment"
@@ -4026,9 +2707,6 @@ msgid "Add p&ost"
 msgstr "Dodaj &objavu"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:68
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:65
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:196
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:235
 msgid "Auto&complete users"
 msgstr "&Automatsko dovršavanje"
 
@@ -4037,9 +2715,6 @@ msgid "Check &spelling"
 msgstr "Proveri &pravopis"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:72
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:69
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:200
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:272
 msgid "&Translate"
 msgstr "&Prevedi"
 
@@ -4048,16 +2723,10 @@ msgid "Post - {} characters"
 msgstr "Objava - {} znakova"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:123
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:117
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:218
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:296
 msgid "Image"
 msgstr "Slika"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:125
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:119
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:220
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:298
 msgid "Video"
 msgstr "Video"
 
@@ -4066,17 +2735,22 @@ msgid "Audio"
 msgstr "Audio"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:129
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:121
 msgid "Poll"
 msgstr "Anketa"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:134
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:126
 msgid "please provide a description"
 msgstr "Molimo vas navedite opis:"
 
+#: wxUI/dialogs/mastodon/postDialogs.py:141
+msgid "Select the picture to be uploaded"
+msgstr "Izaberite sliku koju želite da otpremite"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:141
+msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+msgstr "Datoteke sa slikama"
+
 #: wxUI/dialogs/mastodon/postDialogs.py:148
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
 msgid "Select the video to be uploaded"
 msgstr "Izaberite video zapis koji želite da otpremite"
 
@@ -4085,6 +2759,10 @@ msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
 msgstr ""
 "Datoteke video zapisa (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov;"
 " *.webm"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:155
+msgid "Select the audio file to be uploaded"
+msgstr "Izaberite zvučni zapis koji želite da otpremite"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:155
 msgid ""
@@ -4105,7 +2783,6 @@ msgstr ""
 "uklonite druge priloge pre nego što nastavite."
 
 #: wxUI/dialogs/mastodon/postDialogs.py:162
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
 msgid "Error adding attachment"
 msgstr "Greška pri dodavanju priloga"
 
@@ -4127,7 +2804,6 @@ msgid "Post - %i characters "
 msgstr "objava - %i znakova "
 
 #: wxUI/dialogs/mastodon/postDialogs.py:182
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:321
 msgid "Image description"
 msgstr "Opis slike"
 
@@ -4144,145 +2820,126 @@ msgid "Favorites: "
 msgstr "Omiljeni: "
 
 #: wxUI/dialogs/mastodon/postDialogs.py:204
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:342
 msgid "Source: "
 msgstr "Izvor:"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:209
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:347
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:425
 msgid "Date: "
 msgstr "Datum:"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:221
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:362
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:435
 msgid "Copy link to clipboard"
 msgstr "Kopiraj link u privremenu memoriju"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:223
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:67
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:198
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:270
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:364
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:437
+#: wxUI/dialogs/mastodon/postDialogs.py:270
 msgid "Check &spelling..."
 msgstr "Proveri pravopis..."
 
 #: wxUI/dialogs/mastodon/postDialogs.py:224
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:365
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:440
+#: wxUI/dialogs/mastodon/postDialogs.py:271
 msgid "&Translate..."
 msgstr "Prevedi..."
 
 #: wxUI/dialogs/mastodon/postDialogs.py:225
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:366
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:441
+#: wxUI/dialogs/mastodon/postDialogs.py:272
 msgid "C&lose"
 msgstr "Zatvori"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:260
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:477
+#: wxUI/dialogs/mastodon/postDialogs.py:284
 msgid "Add a poll"
 msgstr "Dodaj anketu"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:264
+#: wxUI/dialogs/mastodon/postDialogs.py:288
 msgid "Participation time"
 msgstr "Vreme učešća"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "5 minutes"
 msgstr "5 minuta"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "30 minutes"
 msgstr "30 minuta"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "1 hour"
 msgstr "1 sat"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "6 hours"
 msgstr "6 sati"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "1 day"
 msgstr "1 dan"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "2 days"
 msgstr "2 dana"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "3 days"
 msgstr "3 dana"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "4 days"
 msgstr "4 dana"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "5 days"
 msgstr "5 dana"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "6 days"
 msgstr "6 dana"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:266
+#: wxUI/dialogs/mastodon/postDialogs.py:290
 msgid "7 days"
 msgstr "7 dana"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:270
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:488
+#: wxUI/dialogs/mastodon/postDialogs.py:294
 msgid "Choices"
 msgstr "Opcije"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:274
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:492
+#: wxUI/dialogs/mastodon/postDialogs.py:298
 msgid "Option 1"
 msgstr "Opcija 1"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:281
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:499
+#: wxUI/dialogs/mastodon/postDialogs.py:305
 msgid "Option 2"
 msgstr "Opcija 2"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:288
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:506
+#: wxUI/dialogs/mastodon/postDialogs.py:312
 msgid "Option 3"
 msgstr "Opcija 3"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:513
+#: wxUI/dialogs/mastodon/postDialogs.py:319
 msgid "Option 4"
 msgstr "Opcija 4"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:300
+#: wxUI/dialogs/mastodon/postDialogs.py:324
 #, fuzzy
 msgid "Allow multiple choices per user"
 msgstr "Dozvoliti više glasova po korisniku"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:303
+#: wxUI/dialogs/mastodon/postDialogs.py:327
 msgid "Hide votes count until the poll expires"
 msgstr "Sakrij broj glasova dok se anketa ne završi"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:329
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
+#: wxUI/dialogs/mastodon/postDialogs.py:353
 msgid "Please make sure you have provided at least two options for the poll."
 msgstr "Molimo uverite se da ste ponudili bar dve opcije u anketi."
 
-#: wxUI/dialogs/mastodon/postDialogs.py:329
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:541
+#: wxUI/dialogs/mastodon/postDialogs.py:353
 msgid "Not enough information"
 msgstr "Nema dovoljno informacija"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:334
+#: wxUI/dialogs/mastodon/postDialogs.py:358
 msgid "Vote in this poll"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:337
+#: wxUI/dialogs/mastodon/postDialogs.py:361
 #, fuzzy
 msgid "Options"
 msgstr "Opcija 4"
@@ -4295,136 +2952,56 @@ msgstr "Pretraži"
 msgid "Posts"
 msgstr "Objave"
 
+#: wxUI/dialogs/mastodon/search.py:24 wxUI/dialogs/mastodon/userActions.py:36
+#: wxUI/dialogs/mastodon/userTimeline.py:30
+msgid "&OK"
+msgstr "U redu"
+
+#: wxUI/dialogs/mastodon/search.py:26 wxUI/dialogs/mastodon/userActions.py:38
+#: wxUI/dialogs/mastodon/userTimeline.py:32
+msgid "&Close"
+msgstr "Zatvori"
+
+#: wxUI/dialogs/mastodon/userActions.py:19
+msgid "&Follow"
+msgstr "Prati"
+
+#: wxUI/dialogs/mastodon/userActions.py:20
+msgid "U&nfollow"
+msgstr "Otprati"
+
+#: wxUI/dialogs/mastodon/userActions.py:22
+msgid "Unmu&te"
+msgstr "Ukloni utišavanje"
+
+#: wxUI/dialogs/mastodon/userActions.py:23
+msgid "&Block"
+msgstr "Blokiraj"
+
+#: wxUI/dialogs/mastodon/userActions.py:24
+msgid "Unbl&ock"
+msgstr "Odblokiraj"
+
+#: wxUI/dialogs/mastodon/userTimeline.py:9
+#, python-format
+msgid "Timeline for %s"
+msgstr "Vremenska crta od %s"
+
+#: wxUI/dialogs/mastodon/userTimeline.py:18
+msgid "Buffer type"
+msgstr "Vrsta kanala"
+
 #: wxUI/dialogs/mastodon/userTimeline.py:19
 msgid "&Posts"
 msgstr "&Objave"
 
+#: wxUI/dialogs/mastodon/userTimeline.py:20
+msgid "&Followers"
+msgstr "Pratioci"
+
 #: wxUI/dialogs/mastodon/userTimeline.py:21
 msgid "Fo&llowing"
 msgstr "P&raćenja"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:8
-msgid "Edit Template"
-msgstr "Uredi šablon"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:13
-msgid "Edit template"
-msgstr "Uredi šablon"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:17
-msgid "Available variables"
-msgstr "Dostupne varijable"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:29
-msgid "Restore template"
-msgstr "Vrati šablon"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:48
-msgid "Restored template to {}."
-msgstr "Šablon vraćen na {}."
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
-msgid ""
-"the template you have specified include variables that do not exists for "
-"the object. Please fix the template and try again. For your reference, "
-"you can see a list of all available variables in the variables list while"
-" editing your template."
-msgstr ""
-"Šablon koji ste odredili sadrži varijable koje nisu ispravne za ovaj "
-"objekat. Molimo popravite šablon i pokušajte ponovo. Kako bi vam olakšali"
-" postupak, možete videti sve dostupne varijable iz liste kada uređujete "
-"šablon."
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
-msgid "Invalid template"
-msgstr "Neispravan šablon"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:39
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:175
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:259
-msgid "Delete attachment"
-msgstr "Ukloni prilog"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:44
-msgid "Added Tweets"
-msgstr "Dodati tvitovi"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:51
-msgid "Delete tweet"
-msgstr "Obriši tvit"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:56
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:190
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:264
-msgid "A&dd..."
-msgstr "&Dodaj..."
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:58
-msgid "Add t&weet"
-msgstr "Dodaj t&vit"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:61
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:192
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:266
-msgid "&Attach audio..."
-msgstr "Priloži zvučni zapis..."
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:73
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:204
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:276
-msgid "Sen&d"
-msgstr "Pošalji"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
-msgid "Video files (*.mp4)|*.mp4"
-msgstr "Datoteke video zapisa (*.mp4)|*.mp4"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
-msgid ""
-"It is not possible to add more attachments. Please make sure your tweet "
-"complies with Twitter'S attachment rules. You can add only one video or "
-"GIF in every tweet, and a maximum of 4 photos."
-msgstr ""
-"Nije moguće dodati više priloga. Molimo uverite se da vaš tvit poštuje "
-"Twitter pravila o prilozima. Možete dodati samo jedan video ili GIF u "
-"svaki tvit, i najviše 4 slike."
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:180
-msgid "&Mention to all"
-msgstr "Spomeni sve"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:233
-msgid "&Recipient"
-msgstr "Primalac"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:304
-#, python-format
-msgid "Tweet - %i characters "
-msgstr "Tvit - %i znakova"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:332
-msgid "Retweets: "
-msgstr "Retvitova"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:337
-msgid "Likes: "
-msgstr "Sviđanja:"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:410
-msgid "View"
-msgstr "Vidi"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:412
-msgid "Item"
-msgstr "Stavka"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:438
-msgid "&Expand URL"
-msgstr "Proširi vezu"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:481
-msgid "Participation time (in days)"
-msgstr "Vreme učešća (u danima)"
 
 #~ msgid "Unable to find address in OpenStreetMap."
 #~ msgstr "Nemoguće pronaći adresu u OpenStreet mapi."
@@ -4449,4 +3026,1050 @@ msgstr "Vreme učešća (u danima)"
 
 #~ msgid "&Item"
 #~ msgstr "&Stavka"
+
+#~ msgid "Likes for {}"
+#~ msgstr "Sviđanja od {}"
+
+#~ msgid "Trending topics for %s"
+#~ msgstr "Teme u trendu za %s"
+
+#~ msgid "Select user"
+#~ msgstr "Izaberite korisnika"
+
+#~ msgid "Sent direct messages"
+#~ msgstr "Poslate direktne poruke"
+
+#~ msgid "Sent tweets"
+#~ msgstr "Poslati tvitovi"
+
+#~ msgid "Likes"
+#~ msgstr "Sviđanja"
+
+#~ msgid "Friends"
+#~ msgstr "Prijatelji"
+
+#~ msgid "{username}'s likes"
+#~ msgstr "Sviđanja korisnika {username}"
+
+#~ msgid "{username}'s friends"
+#~ msgstr "Prijatelji korisnika {username}"
+
+#~ msgid "Tweet"
+#~ msgstr "Tvit"
+
+#~ msgid "Write the tweet here"
+#~ msgstr "Otkucajte tvit ovde:"
+
+#~ msgid "New tweet in {0}"
+#~ msgstr "Novi tvit u kanalu {0}"
+
+#~ msgid "{0} new tweets in {1}."
+#~ msgstr "{0} novih tvitova u kanalu {1}."
+
+#~ msgid "Reply to {arg0}"
+#~ msgstr "Odgovori {arg0}"
+
+#~ msgid "Reply to %s"
+#~ msgstr "Odgovori %s"
+
+#~ msgid "Direct message to %s"
+#~ msgstr "Direktna poruka za %s"
+
+#~ msgid "New direct message"
+#~ msgstr "Nova direktna poruka"
+
+#~ msgid "This action is not supported on protected accounts."
+#~ msgstr "Ova radnja nije podržana na zaštićenim nalozima."
+
+#~ msgid "Quote"
+#~ msgstr "Citiraj"
+
+#~ msgid "Add your comment to the tweet"
+#~ msgstr "Dodajte vaš komentar u tvit"
+
+#~ msgid "User details"
+#~ msgstr "Podaci o korisniku"
+
+#~ msgid "MMM D, YYYY. H:m"
+#~ msgstr "MMM D, YYYY. H:m"
+
+#~ msgid "There are no coordinates in this tweet"
+#~ msgstr "Nema koordinata u ovom tvitu."
+
+#~ msgid "Error decoding coordinates. Try again later."
+#~ msgstr "Greška prilikom čitanja koordinata. Molimo vas da pokušate kasnije."
+
+#~ msgid "Invalid buffer"
+#~ msgstr "Nevažeći kanal"
+
+#~ msgid "{0} new direct messages."
+#~ msgstr "{0} novih direktnih poruka."
+
+#~ msgid "This action is not supported in the buffer yet."
+#~ msgstr "Ova radnja još uvek nije podržana na ovom kanalu."
+
+#~ msgid ""
+#~ "Getting more items cannot be done "
+#~ "in this buffer. Use the direct "
+#~ "messages buffer instead."
+#~ msgstr ""
+#~ "Nemoguće preuzeti dodatne stavke za ovaj"
+#~ " kanal. Umesto toga, koristite kanal "
+#~ "direktne poruke."
+
+#~ msgid "Mention"
+#~ msgstr "Spomeni"
+
+#~ msgid "Mention to %s"
+#~ msgstr "Spomeni %s"
+
+#~ msgid "{0} new followers."
+#~ msgstr "{0} novih pratilaca."
+
+#~ msgid "This action is not supported in the buffer, yet."
+#~ msgstr "Ova radnja još uvek nije podržana na ovom kanalu"
+
+#~ msgid "&Retweet"
+#~ msgstr "Retvituj"
+
+#~ msgid "&Like"
+#~ msgstr "Sviđa mi se"
+
+#~ msgid "&Unlike"
+#~ msgstr "Ne sviđa mi se"
+
+#~ msgid "View &address"
+#~ msgstr "Vidi adresu"
+
+#~ msgid "&View lists"
+#~ msgstr "Vidi liste"
+
+#~ msgid "View likes"
+#~ msgstr "Vidi sviđanja"
+
+#~ msgid "Likes timelines"
+#~ msgstr "Vremenska linija omiljenih tvitova"
+
+#~ msgid "Followers timelines"
+#~ msgstr "Vremenske linije pratilaca"
+
+#~ msgid "Following timelines"
+#~ msgstr "Vremenske linije praćenih korisnika"
+
+#~ msgid "Lists"
+#~ msgstr "Liste"
+
+#~ msgid "List for {}"
+#~ msgstr "Liste od {}"
+
+#~ msgid "Filters cannot be applied on this buffer"
+#~ msgstr "Filteri se ne mogu primeniti na ovaj kanal"
+
+#~ msgid "View item"
+#~ msgstr "Prikaži stavku"
+
+#~ msgid "Ask"
+#~ msgstr "Pitaj"
+
+#~ msgid "Retweet without comments"
+#~ msgstr "Retvituj bez komentara"
+
+#~ msgid "Retweet with comments"
+#~ msgstr "Retvituj sa komentarima"
+
+#~ msgid "Edit template for tweets. Current template: {}"
+#~ msgstr "Uredi šablon prikazivanja tvitova. Trenutni šablon: {}"
+
+#~ msgid "Edit template for direct messages. Current template: {}"
+#~ msgstr "Uredi šablon prikazivanja direktnih poruka. Trenutni šablon: {}"
+
+#~ msgid "Edit template for sent direct messages. Current template: {}"
+#~ msgstr ""
+#~ "Uredi šablon prikazivanja poslatih direktnih"
+#~ " poruka. Trenutni šablon: {}"
+
+#~ msgid "User has been suspended"
+#~ msgstr "Korisnik je suspendovan."
+
+#~ msgid "Information for %s"
+#~ msgstr "Informacija za %s"
+
+#~ msgid "Discarded"
+#~ msgstr "Odbačeno"
+
+#~ msgid "Username: @%s\n"
+#~ msgstr "Korisničko ime: @%s\n"
+
+#~ msgid "Name: %s\n"
+#~ msgstr "Ime: %s\n"
+
+#~ msgid "Location: %s\n"
+#~ msgstr "Mesto: %s\n"
+
+#~ msgid "URL: %s\n"
+#~ msgstr "Veza: %s\n"
+
+#~ msgid "Bio: %s\n"
+#~ msgstr "Bio: %s\n"
+
+#~ msgid "Yes"
+#~ msgstr "Da"
+
+#~ msgid "No"
+#~ msgstr "Ne"
+
+#~ msgid "Protected: %s\n"
+#~ msgstr "Zaštićeno: %s\n"
+
+#~ msgid "Relationship: "
+#~ msgstr "Odnos: "
+
+#~ msgid "You follow {0}. "
+#~ msgstr "Pratite {0}. "
+
+#~ msgid "{0} is following you."
+#~ msgstr "{0} vas prati."
+
+#~ msgid ""
+#~ "Followers: %s\n"
+#~ " Friends: %s\n"
+#~ msgstr ""
+#~ "Pratioci: %s\n"
+#~ " Prijatelji: %s\n"
+
+#~ msgid "Verified: %s\n"
+#~ msgstr "Potvrđen: %s\n"
+
+#~ msgid "Tweets: %s\n"
+#~ msgstr "Tvitovi: %s\n"
+
+#~ msgid "Likes: %s"
+#~ msgstr "Omiljeno: %s"
+
+#~ msgid "You can't ignore direct messages"
+#~ msgstr "Ne možete zanemariti direktne poruke."
+
+#~ msgid "Attaching..."
+#~ msgstr "Prilažem..."
+
+#~ msgid "Pause"
+#~ msgstr "Zastani"
+
+#~ msgid "&Resume"
+#~ msgstr "&Nastavi"
+
+#~ msgid "Resume"
+#~ msgstr "Nastavi"
+
+#~ msgid "&Pause"
+#~ msgstr "&zastani"
+
+#~ msgid "&Stop"
+#~ msgstr "&Zaustavi"
+
+#~ msgid "Recording"
+#~ msgstr "Snimanje"
+
+#~ msgid "Stopped"
+#~ msgstr "Zaustavljeno"
+
+#~ msgid "&Record"
+#~ msgstr "&Snimi"
+
+#~ msgid "&Play"
+#~ msgstr "&Pusti"
+
+#~ msgid "Recoding audio..."
+#~ msgstr "Snimam zvučni zapis..."
+
+#~ msgid "Error in file upload: {0}"
+#~ msgstr "Greška u otpremanju datoteke: {0}"
+
+#~ msgid "Transferred"
+#~ msgstr "Preuzeto"
+
+#~ msgid "Total file size"
+#~ msgstr "Ukupna veličina datoteke"
+
+#~ msgid "Transfer rate"
+#~ msgstr "Brzina prenosa"
+
+#~ msgid "Time left"
+#~ msgstr "Preostalo vreme"
+
+#~ msgid "Attach audio"
+#~ msgstr "Priloži zvučni zapis"
+
+#~ msgid "&Add an existing file"
+#~ msgstr "&Dodaj postojeću datoteku"
+
+#~ msgid "&Discard"
+#~ msgstr "&Odbaci"
+
+#~ msgid "Upload to"
+#~ msgstr "Otpremi na"
+
+#~ msgid "Attach"
+#~ msgstr "Priloži"
+
+#~ msgid "&Cancel"
+#~ msgstr "&Otkaži"
+
+#~ msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+#~ msgstr "Zvučni zapisi (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+
+#~ msgid "You have to start writing"
+#~ msgstr "Morate da počnete da pišete."
+
+#~ msgid "There are no results in your users database"
+#~ msgstr "Nema rezultata u vašoj bazi korisnika-."
+
+#~ msgid "Autocompletion only works for users."
+#~ msgstr "Automatsko dovršavanje radi samo za korisnike."
+
+#~ msgid ""
+#~ "Updating database... You can close this"
+#~ " window now. A message will tell "
+#~ "you when the process finishes."
+#~ msgstr ""
+#~ "Ažuriram bazu podataka... Sada možete "
+#~ "zatvoriti ovaj prozor. Dobićete obaveštenje"
+#~ " kada se proces završi."
+
+#~ msgid "Manage Autocompletion database"
+#~ msgstr "Upravljaj bazom automatskog dovršavanja"
+
+#~ msgid "Editing {0} users database"
+#~ msgstr "Uređujem {0} bazu korisničkih podataka"
+
+#~ msgid "Username"
+#~ msgstr "Korisničko ime"
+
+#~ msgid "Add user"
+#~ msgstr "Dodaj korisnika"
+
+#~ msgid "Remove user"
+#~ msgstr "Ukloni korisnika"
+
+#~ msgid "Twitter username"
+#~ msgstr "Twitter korisničko ime"
+
+#~ msgid "Add user to database"
+#~ msgstr "Dodaj korisnika u bazu podataka"
+
+#~ msgid "The user does not exist"
+#~ msgstr "Korisnik ne postoji."
+
+#~ msgid "Error!"
+#~ msgstr "Greška"
+
+#~ msgid "Autocomplete users' settings"
+#~ msgstr "Podešavanja automatskog dovršavanja"
+
+#~ msgid "Add followers to database"
+#~ msgstr "Dodaj pratioce u bazu podataka"
+
+#~ msgid "Add  friends to database"
+#~ msgstr "Dodaj prijatelje u bazu podataka"
+
+#~ msgid "Updating autocompletion database"
+#~ msgstr "Ažuriranje baze automatskog dovršavanja"
+
+#~ msgid ""
+#~ "This process will retrieve the users "
+#~ "you selected from Twitter, and add "
+#~ "them to the user autocomplete database."
+#~ " Please note that if there are "
+#~ "many users or you have tried to"
+#~ " perform this action less than 15 "
+#~ "minutes ago, TWBlue may reach a "
+#~ "limit in Twitter API calls when "
+#~ "trying to load the users into the"
+#~ " database. If this happens, we will"
+#~ " show you an error, in which "
+#~ "case you will have to try this "
+#~ "process again in a few minutes. If"
+#~ " this process ends with no error, "
+#~ "you will be redirected back to the"
+#~ " account settings dialog. Do you want"
+#~ " to continue?"
+#~ msgstr ""
+#~ "Ovaj proces će preuzeti korisnike koje"
+#~ " ste izabrali sa Twittera, i dodati"
+#~ " ih u bazu korisnika za automatsko"
+#~ " dovršavanje. Molimo imajte na umu da"
+#~ " ako je izabrano mnogo korisnika ili"
+#~ " ste pokušali da izvršite ovu radnju"
+#~ " pre manje od 15 minuta, TWBlue "
+#~ "može da dostigne API ograničenje kada"
+#~ " pokušava da dodaje korisnike u bazu."
+#~ " Ako se ovo desi, biće prikazana "
+#~ "greška, a u tom slučaju ćete "
+#~ "morati da pokušate ovaj proces ponovo"
+#~ " za nekoliko minuta. Ako se ovaj "
+#~ "proces završi bez greške, bićete vraćeni"
+#~ " na dijalog sa podešavanjima naloga. "
+#~ "Da li želite da nastavite?"
+
+#~ msgid "TWBlue has imported {} users successfully."
+#~ msgstr "TWBlue je uspešno uvezao {} korisnika."
+
+#~ msgid "Done"
+#~ msgstr "Dovršeno"
+
+#~ msgid "Error adding users from Twitter. Please try again in about 15 minutes."
+#~ msgstr ""
+#~ "Greška pri dodavanju korisnika sa "
+#~ "Twittera. Molimo pokušajte ponovo za oko"
+#~ " 15 minuta."
+
+#~ msgid "New tweet"
+#~ msgstr "Novi tvit"
+
+#~ msgid "Retweet"
+#~ msgstr "Retvituj"
+
+#~ msgid "Like a tweet"
+#~ msgstr "Označi tvit sa sviđa mi se"
+
+#~ msgid "Like/unlike a tweet"
+#~ msgstr "Označi da ti se tvit sviđa / ne sviđa"
+
+#~ msgid "Unlike a tweet"
+#~ msgstr "Označi tvit sa ne sviđa mi se"
+
+#~ msgid "See user details"
+#~ msgstr "Vidi pojedinosti o korisniku"
+
+#~ msgid "Show tweet"
+#~ msgstr "Prikaži tvit"
+
+#~ msgid "Interact with the currently focused tweet."
+#~ msgstr "Radnje sa trenutno obeleženim tvitom"
+
+#~ msgid "View in Twitter"
+#~ msgstr "Prikaži na Twitteru"
+
+#~ msgid "Edit profile"
+#~ msgstr "Izmeni profil"
+
+#~ msgid "Delete a tweet or direct message"
+#~ msgstr "Izbriši tvit ili direktnu poruku"
+
+#~ msgid "Add to list"
+#~ msgstr "Dodaj u listu"
+
+#~ msgid "Remove from list"
+#~ msgstr "Ukloni iz liste"
+
+#~ msgid "Search on twitter"
+#~ msgstr "Traži na twitter-u"
+
+#~ msgid "Show lists for a specified user"
+#~ msgstr "Prikaži liste određenog korisnika"
+
+#~ msgid "Get geolocation"
+#~ msgstr "Preuzmi geografsku lokaciju"
+
+#~ msgid "Display the tweet's geolocation in a dialog"
+#~ msgstr "Prikaži geografsku lokaciju u dijalogu"
+
+#~ msgid "Create a trending topics buffer"
+#~ msgstr "Stvori kanal trenutnih tema u trendu"
+
+#~ msgid ""
+#~ "Opens the list manager, which allows "
+#~ "you to create, edit, delete and "
+#~ "open lists in buffers."
+#~ msgstr ""
+#~ "Otvara upravljanje listama, što vam "
+#~ "dozvoljava da kreirate, uređujete, brišete "
+#~ "i otvarate liste u kanalima."
+
+#~ msgid "Opens the list manager"
+#~ msgstr "Otvara upravljanje listama"
+
+#~ msgid "{account_name} (Twitter)"
+#~ msgstr "{account_name} (Twitter)"
+
+#~ msgid "Twitter"
+#~ msgstr "Twitter"
+
+#~ msgid ""
+#~ "The request to authorize your Twitter"
+#~ " account will be opened in your "
+#~ "browser. You only need to do this"
+#~ " once. Would you like to continue?"
+#~ msgstr ""
+#~ "Zahtev za autorizaciju vašeg Twitter "
+#~ "naloga će biti otvoren u vašem "
+#~ "pregledniku. Potrebno je da to uradite"
+#~ " samo jednom. Želite li da nastavite?"
+
+#~ msgid ""
+#~ "TWBlue is unable to authenticate the "
+#~ "account for {} in Twitter. It "
+#~ "might be due to an invalid or "
+#~ "expired token, revoqued access to the"
+#~ " application, or after an account "
+#~ "reactivation. Please remove the account "
+#~ "manually from your Twitter sessions in"
+#~ " order to stop seeing this message."
+#~ msgstr ""
+#~ "TWBlue ne može da izvrši autentikaciju"
+#~ " naloga za {} na Twitteru. Ovo "
+#~ "se može desiti zbog neispravnog ili "
+#~ "isteklog tokena, odbijanja pristupa "
+#~ "aplikacije, ili nakon ponovne aktivacije "
+#~ "naloga. Molimo ručno uklonite nalog iz"
+#~ " vaših Twitter sesija kako biste "
+#~ "prestali da dobijate ovu poruku."
+
+#~ msgid "Authentication error for session {}"
+#~ msgstr "Greška u autentikaciji za sesiju {}"
+
+#~ msgid "Dm to %s "
+#~ msgstr "Direktna poruka za %s "
+
+#~ msgid "{0}. Quoted  tweet from @{1}: {2}"
+#~ msgstr "{0}. citira tvit od @{1}: {2}"
+
+#~ msgid "Unavailable"
+#~ msgstr "Nedostupno"
+
+#~ msgid ""
+#~ "%s (@%s). %s followers, %s friends, "
+#~ "%s tweets. Last tweeted %s. Joined "
+#~ "Twitter %s"
+#~ msgstr ""
+#~ "%s (@%s). %s pratilaca, %s prijatelja,"
+#~ " %s tvitova. Poslednji tvit %s. "
+#~ "Pridružio se twitteru  %s"
+
+#~ msgid "No description available"
+#~ msgstr "Opis nije dostupan"
+
+#~ msgid "private"
+#~ msgstr "Privatno"
+
+#~ msgid "public"
+#~ msgstr "Javno"
+
+#~ msgid "Enter your PIN code here"
+#~ msgstr "Ovde upišite vaš PIN kod"
+
+#~ msgid "Authorising account..."
+#~ msgstr "Autorizacija naloga..."
+
+#~ msgid ""
+#~ "We could not authorice your Twitter "
+#~ "account to be used in TWBlue. This"
+#~ " might be caused due to an "
+#~ "incorrect verification code. Please try "
+#~ "to add the session again."
+#~ msgstr ""
+#~ "Autorizacija vašeg Twitter naloga uz "
+#~ "TWBlue nije uspela. Kod za potvrdu "
+#~ "je možda neispravan. Molimo pokušajte "
+#~ "ponovo da dodate sesiju."
+
+#~ msgid "%s failed.  Reason: %s"
+#~ msgstr "%s nije uspelo.  Razlog: %s"
+
+#~ msgid "Deleted account"
+#~ msgstr "Obrisan nalog"
+
+#~ msgid "$sender_display_name, $text $date"
+#~ msgstr "$sender_display_name, $text $date"
+
+#~ msgid ""
+#~ "$display_name (@$screen_name). $followers followers,"
+#~ " $following following, $tweets tweets. "
+#~ "Joined Twitter $created_at."
+#~ msgstr ""
+#~ "$display_name (@$screen_name). $followers pratilaca,"
+#~ " $following praćenja, $tweets tvitova. "
+#~ "Pridružio se Twitteru $created_at."
+
+#~ msgid "Image description: {}."
+#~ msgstr "Opis slike: {}."
+
+#~ msgid "RT @{}: {} Quote from @{}: {}"
+#~ msgstr "{0}. citira tvit od @{1}: {2}"
+
+#~ msgid "RT @{}: {}"
+#~ msgstr "Podeljeno od strane korisnika @{}: {}"
+
+#~ msgid "{} Quote from @{}: {}"
+#~ msgstr "Podeljeno od strane korisnika @{}: {}"
+
+#~ msgid "Sorry, you are not authorised to see this status."
+#~ msgstr "Izvinite, nije vam dozvoljeno da vidite ovaj status."
+
+#~ msgid "Error {0}"
+#~ msgstr "Greška {0}"
+
+#~ msgid "{user_1}, {user_2} and {all_users} more: {text}"
+#~ msgstr "{user_1}, {user_2} i još {all_users} korisnika: {text}"
+
+#~ msgid ""
+#~ "This retweet is over 140 characters. "
+#~ "Would you like to post it as "
+#~ "a mention to the poster with your"
+#~ " comments and a link to the "
+#~ "original tweet?"
+#~ msgstr ""
+#~ "Ovaj retvit ima preko 140 znakova. "
+#~ "Želite li da pošaljete to kao "
+#~ "spominjanje na pošiljaoca sa vašim "
+#~ "komentarom i linkom do izvornog tvita?"
+
+#~ msgid "Would you like to add a comment to this tweet?"
+#~ msgstr "Želite li da dodate komentar na ovaj tvit?"
+
+#~ msgid ""
+#~ "Do you really want to delete this"
+#~ " tweet? It will be deleted from "
+#~ "Twitter as well."
+#~ msgstr ""
+#~ "Želite li zaista da izbrišete ovaj "
+#~ "tvit? On će biti izbrisan sa "
+#~ "Twitera takođe."
+
+#~ msgid "Enter the name of the client : "
+#~ msgstr "Unesite ime klijenta"
+
+#~ msgid "Add client"
+#~ msgstr "Dodaj program"
+
+#~ msgid "This user has no tweets, so you can't open a timeline for them."
+#~ msgstr ""
+#~ "Ovaj korisnik nema nijedan tvit, te "
+#~ "s toga ne možete otvoriti njegovu "
+#~ "vremensku liniju."
+
+#~ msgid ""
+#~ "This is a protected Twitter user, "
+#~ "which means you can't open a "
+#~ "timeline using the Streaming API. The"
+#~ " user's tweets will not update due"
+#~ " to a twitter policy. Do you "
+#~ "want to continue?"
+#~ msgstr ""
+#~ "Ovo je zaštićeni korisnik twittera, što"
+#~ " znači da ne možete otvarati "
+#~ "vremensku liniju koristeći Streaming API. "
+#~ "Tvitovi korisnika neće biti ažurirani "
+#~ "zbog politike tvitera. Želite li da "
+#~ "nastavite??"
+
+#~ msgid ""
+#~ "This is a protected user account, "
+#~ "you need to follow this user to"
+#~ " view their tweets or likes."
+#~ msgstr ""
+#~ "Ovaj korisnik je zaštitio svoj nalog."
+#~ " Morate ga zapratiti kako bi videli"
+#~ " njegove tvitove ili omiljene stvari."
+
+#~ msgid "This user has no tweets. {0} can't create a timeline."
+#~ msgstr "Ovaj korisnik nema tvitove. {0} ne može da napravi vremensku liniju."
+
+#~ msgid "This user has no favorited tweets. {0} can't create a timeline."
+#~ msgstr ""
+#~ "Ovaj korisnik nema omiljenih tvitova. "
+#~ "{0} ne može da napravi vremensku "
+#~ "liniju."
+
+#~ msgid "This user has no followers. {0} can't create a timeline."
+#~ msgstr "Ovog korisnika niko ne prati. {0} ne može da kreira vremensku liniju."
+
+#~ msgid "This user has no friends. {0} can't create a timeline."
+#~ msgstr "Ovaj korisnik nema prijatelje. {0} ne može da napravi vremensku liniju."
+
+#~ msgid "Geolocation data: {0}"
+#~ msgstr "Podaci o geografskoj lokaciji: {0}"
+
+#~ msgid "Geo data for this tweet"
+#~ msgstr "Geografski podaci o ovom tvitu"
+
+#~ msgid "You have been blocked from viewing  this content"
+#~ msgstr "Blokirani ste i ne možete videti ovaj sadržaj."
+
+#~ msgid ""
+#~ "You have been blocked from viewing  "
+#~ "someone's content. In order to avoid "
+#~ "conflicts with the full session, TWBlue"
+#~ " will remove the affected timeline."
+#~ msgstr ""
+#~ "Blokirani ste i ne možete videti "
+#~ "sadržaj nekog korisnika. Kako bi smo "
+#~ "izbegli konflikte sa sesijom, TWBlue će"
+#~ " ukloniti vremensku liniju na koju "
+#~ "ovo utiče."
+
+#~ msgid ""
+#~ "TWBlue cannot load this timeline because"
+#~ " the user has been suspended from "
+#~ "Twitter."
+#~ msgstr ""
+#~ "TWBlue ne može da učita ovu "
+#~ "vremensku liniju zbog toga što je "
+#~ "korisnik suspendovan sa tvitera."
+
+#~ msgid "Do you really want to delete this filter?"
+#~ msgstr "Da li zaista želite da izbrišete ovaj filter?"
+
+#~ msgid "This filter already exists. Please use a different title"
+#~ msgstr "Ovaj filter već postoji. Molimo koristite drugi naziv"
+
+#~ msgid "&Show direct message"
+#~ msgstr "Prikaži direktnu poruku"
+
+#~ msgid "&Show event"
+#~ msgstr "Prikaži događaj"
+
+#~ msgid "Direct &message"
+#~ msgstr "Direktna poruka"
+
+#~ msgid "&Show user"
+#~ msgstr "Prikaži korisnika"
+
+#~ msgid "Search topic"
+#~ msgstr "Pretraži temu"
+
+#~ msgid "&Tweet about this trend"
+#~ msgstr "Tvituj o ovom trendu"
+
+#~ msgid "&Show item"
+#~ msgstr "Prikaži stavku"
+
+#~ msgid "Update &profile"
+#~ msgstr "Ažuriraj profil"
+
+#~ msgid "Event"
+#~ msgstr "Događaj"
+
+#~ msgid "Remove event"
+#~ msgstr "Ukloni događaj"
+
+#~ msgid "Trending topic"
+#~ msgstr "Tema trenda"
+
+#~ msgid "Tweet about this trend"
+#~ msgstr "Tvituj o ovom trendu"
+
+#~ msgid ""
+#~ "Scan account and add friends and "
+#~ "followers to the user autocompletion "
+#~ "database"
+#~ msgstr ""
+#~ "Skeniraj nalog i dodaj pratioce i "
+#~ "prijatelje u bazu korisnika za "
+#~ "automatsko dovršavanje"
+
+#~ msgid ""
+#~ "Inverted buffers: The newest tweets will"
+#~ " be shown at the beginning while "
+#~ "the oldest at the end"
+#~ msgstr ""
+#~ "Okreni kanal: Najnoviji tvitovi će biti"
+#~ " prikazani na vrhu a najstariji na"
+#~ " dnu."
+
+#~ msgid "Retweet mode"
+#~ msgstr "Način retvitovanja"
+
+#~ msgid ""
+#~ "Load cache for tweets in memory "
+#~ "(much faster in big datasets but "
+#~ "requires more RAM)"
+#~ msgstr ""
+#~ "Učitavaj keš za Tvitove iz memorije "
+#~ "(dosta brže sa većim količinama podataka"
+#~ " ali zahteva više RAM memorije)"
+
+#~ msgid "Ignored clients"
+#~ msgstr "Zanemareni klijenti"
+
+#~ msgid "Remove client"
+#~ msgstr "Ukloni program"
+
+#~ msgid "Indicate audio tweets with sound"
+#~ msgstr "Označi Audio u tvitovima zvukom"
+
+#~ msgid "Indicate geotweets with sound"
+#~ msgstr "Označi tvitove sa geografskim informacijama zvukom"
+
+#~ msgid "Indicate tweets containing images with sound"
+#~ msgstr "Označi tvitove koji sadrže slike zvukom"
+
+#~ msgid "API Key for SndUp"
+#~ msgstr "API ključ za SndUp"
+
+#~ msgid "Create a filter  for this buffer"
+#~ msgstr "Napravi filter za ovaj kanal"
+
+#~ msgid "Filter title"
+#~ msgstr "Naziv filtera"
+
+#~ msgid "Filter by word"
+#~ msgstr "Filtriraj na osnovu reči"
+
+#~ msgid "Ignore tweets wich contain the following word"
+#~ msgstr "Zanemari tvitove koji sadrže sledeću reč"
+
+#~ msgid "Ignore tweets without the following word"
+#~ msgstr "Zanemari tvitove bez sledeće reči"
+
+#~ msgid "word"
+#~ msgstr "Reč"
+
+#~ msgid "Allow retweets"
+#~ msgstr "Dozvoli retvitove"
+
+#~ msgid "Allow quoted tweets"
+#~ msgstr "Dozvoli citirane tvitove"
+
+#~ msgid "Allow replies"
+#~ msgstr "Dozvoli odgovore"
+
+#~ msgid "Use this term as a regular expression"
+#~ msgstr "Koristi ovaj termin kao regulara nizraz"
+
+#~ msgid "Filter by language"
+#~ msgstr "Filtriraj na osnovu jezika"
+
+#~ msgid "Load tweets in the following languages"
+#~ msgstr "Učitaj tvitove na sledećim jezicima"
+
+#~ msgid "Ignore tweets in the following languages"
+#~ msgstr "Zanemari tvitove na sledećim jezicima"
+
+#~ msgid "Don't filter by language"
+#~ msgstr "Ne filtriraj na osnovu jezika"
+
+#~ msgid "Supported languages"
+#~ msgstr "Podržani jezici"
+
+#~ msgid "Add selected language to filter"
+#~ msgstr "Dodaj izabrani jezik u filter"
+
+#~ msgid "Selected languages"
+#~ msgstr "Izabrani jezici"
+
+#~ msgid "You must define a name for the filter before creating it."
+#~ msgstr "Morate upisati ime za filter pre nego što ga napravite."
+
+#~ msgid "Missing filter name"
+#~ msgstr "Ime filtera nedostaje"
+
+#~ msgid "Manage filters"
+#~ msgstr "Upravljanje filterima"
+
+#~ msgid "Filters"
+#~ msgstr "Filteri"
+
+#~ msgid "Filter"
+#~ msgstr "Filter"
+
+#~ msgid "Lists manager"
+#~ msgstr "Upravljanje listama"
+
+#~ msgid "List"
+#~ msgstr "Lista"
+
+#~ msgid "Owner"
+#~ msgstr "Vlasnik"
+
+#~ msgid "Members"
+#~ msgstr "Članovi"
+
+#~ msgid "mode"
+#~ msgstr "Način"
+
+#~ msgid "Create a new list"
+#~ msgstr "Stvori novu listu"
+
+#~ msgid "Open in buffer"
+#~ msgstr "Otvori u kanalu"
+
+#~ msgid "Viewing lists for %s"
+#~ msgstr "Prikazivanje lista za %s"
+
+#~ msgid "Subscribe"
+#~ msgstr "Prijavi se"
+
+#~ msgid "Unsubscribe"
+#~ msgstr "Odjavi se"
+
+#~ msgid "Name (20 characters maximun)"
+#~ msgstr "Ime, najviše 20 znakova"
+
+#~ msgid "Mode"
+#~ msgstr "Način"
+
+#~ msgid "Private"
+#~ msgstr "Privatna"
+
+#~ msgid "Editing the list %s"
+#~ msgstr "Uređivanje liste %s"
+
+#~ msgid "Select a list to add the user"
+#~ msgstr "Izaberite listu na koju želite da dodate korisnika"
+
+#~ msgid "Add"
+#~ msgstr "Dodaj"
+
+#~ msgid "Select a list to remove the user"
+#~ msgstr "Izaberite listu sa koje želite da uklonite korisnika"
+
+#~ msgid "Do you really want to delete this list?"
+#~ msgstr "Želite li zaista da izbrišete ovu listu?"
+
+#~ msgid "Search on Twitter"
+#~ msgstr "Pretraži ttwitter"
+
+#~ msgid "Tweets"
+#~ msgstr "Tvitovi"
+
+#~ msgid "&Language for results: "
+#~ msgstr "Jezik za rezultate:"
+
+#~ msgid "any"
+#~ msgstr "Bilo šta"
+
+#~ msgid "Results &type: "
+#~ msgstr "Vrsta rezultata:"
+
+#~ msgid "Mixed"
+#~ msgstr "Pomešano"
+
+#~ msgid "Recent"
+#~ msgstr "Nedavno"
+
+#~ msgid "Popular"
+#~ msgstr "Popularno"
+
+#~ msgid "Details"
+#~ msgstr "Pojedoinosti"
+
+#~ msgid "&Go to URL"
+#~ msgstr "Idi na vezu"
+
+#~ msgid "View trending topics"
+#~ msgstr "Pogledaj teme u trendu"
+
+#~ msgid "Trending topics by"
+#~ msgstr "Teme u trendu po"
+
+#~ msgid "Country"
+#~ msgstr "Zemlji"
+
+#~ msgid "City"
+#~ msgstr "Gradu"
+
+#~ msgid "&Location"
+#~ msgstr "Mesto"
+
+#~ msgid "Update your profile"
+#~ msgstr "Ažurirajte vaš profil"
+
+#~ msgid "&Name (50 characters maximum)"
+#~ msgstr "&Ime(najviše 50 znakova)"
+
+#~ msgid "&Website"
+#~ msgstr "Web:"
+
+#~ msgid "&Bio (160 characters maximum)"
+#~ msgstr "Biografija, najviše 160 znakova"
+
+#~ msgid "Upload a &picture"
+#~ msgstr "Otpremi sliku"
+
+#~ msgid "Upload a picture"
+#~ msgstr "Otpremi sliku"
+
+#~ msgid "Discard image"
+#~ msgstr "Odbaci sliku"
+
+#~ msgid "&Report as spam"
+#~ msgstr "Prijavi kao neželjeno"
+
+#~ msgid "&Ignore tweets from this client"
+#~ msgstr "Zanemari tvitove iz ovog klijenta"
+
+#~ msgid "&Tweets"
+#~ msgstr "Tvitovi"
+
+#~ msgid "&Likes"
+#~ msgstr "Sviđanja"
+
+#~ msgid "F&riends"
+#~ msgstr "Prijatelji"
+
+#~ msgid "Delete attachment"
+#~ msgstr "Ukloni prilog"
+
+#~ msgid "Added Tweets"
+#~ msgstr "Dodati tvitovi"
+
+#~ msgid "Delete tweet"
+#~ msgstr "Obriši tvit"
+
+#~ msgid "A&dd..."
+#~ msgstr "&Dodaj..."
+
+#~ msgid "Add t&weet"
+#~ msgstr "Dodaj t&vit"
+
+#~ msgid "&Attach audio..."
+#~ msgstr "Priloži zvučni zapis..."
+
+#~ msgid "Sen&d"
+#~ msgstr "Pošalji"
+
+#~ msgid "Video files (*.mp4)|*.mp4"
+#~ msgstr "Datoteke video zapisa (*.mp4)|*.mp4"
+
+#~ msgid ""
+#~ "It is not possible to add more "
+#~ "attachments. Please make sure your tweet"
+#~ " complies with Twitter'S attachment rules."
+#~ " You can add only one video or"
+#~ " GIF in every tweet, and a "
+#~ "maximum of 4 photos."
+#~ msgstr ""
+#~ "Nije moguće dodati više priloga. Molimo"
+#~ " uverite se da vaš tvit poštuje "
+#~ "Twitter pravila o prilozima. Možete "
+#~ "dodati samo jedan video ili GIF u"
+#~ " svaki tvit, i najviše 4 slike."
+
+#~ msgid "&Mention to all"
+#~ msgstr "Spomeni sve"
+
+#~ msgid "&Recipient"
+#~ msgstr "Primalac"
+
+#~ msgid "Tweet - %i characters "
+#~ msgstr "Tvit - %i znakova"
+
+#~ msgid "Retweets: "
+#~ msgstr "Retvitova"
+
+#~ msgid "Likes: "
+#~ msgstr "Sviđanja:"
+
+#~ msgid "View"
+#~ msgstr "Vidi"
+
+#~ msgid "Item"
+#~ msgstr "Stavka"
+
+#~ msgid "&Expand URL"
+#~ msgstr "Proširi vezu"
+
+#~ msgid "Participation time (in days)"
+#~ msgstr "Vreme učešća (u danima)"
 
