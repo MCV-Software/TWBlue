@@ -4,18 +4,19 @@
 # Riku <riku@riku22.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"Project-Id-Version:  \n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2023-04-09 00:55+0000\n"
-"PO-Revision-Date: 2023-01-31 23:40+0000\n"
+"PO-Revision-Date: 2023-04-11 06:45+0000\n"
 "Last-Translator: Riku <riku@riku22.net>\n"
+"Language-Team: Japanese <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese "
-"<https://weblate.mcvsoftware.com/projects/twblue/twblue/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.12.1\n"
 
 #: languageHandler.py:61
@@ -397,9 +398,8 @@ msgid "Write your reply here"
 msgstr "返信を入力"
 
 #: controller/buffers/mastodon/base.py:383
-#, fuzzy
 msgid "This action is not supported on conversations."
-msgstr "このアクションは、会話の投稿ではサポートされていません。"
+msgstr "このアクションは、会話ではサポートされていません。"
 
 #: controller/buffers/mastodon/base.py:448
 msgid "Opening URL..."
@@ -452,24 +452,23 @@ msgstr "テキストを抽出できません"
 
 #: controller/buffers/mastodon/base.py:576
 msgid "OCR Result"
-msgstr ""
+msgstr "OCR結果"
 
 #: controller/buffers/mastodon/base.py:588
 msgid "this poll no longer exists."
-msgstr ""
+msgstr "このアンケートはもう存在しません。"
 
 #: controller/buffers/mastodon/base.py:591
 msgid "This poll has already expired."
-msgstr ""
+msgstr "このアンケートは既に期限切れです。"
 
 #: controller/buffers/mastodon/base.py:594
 msgid "You have already voted on this poll."
-msgstr ""
+msgstr "あなたはすでにこのアンケートに投票しています。"
 
 #: controller/buffers/mastodon/base.py:603
-#, fuzzy
 msgid "Sending vote..."
-msgstr "お気に入りに追加中..."
+msgstr "投票を送信中..."
 
 #: controller/buffers/mastodon/conversations.py:174
 msgid "Reply to conversation with {}"
@@ -1454,9 +1453,8 @@ msgid "Adds an alias to an user"
 msgstr "ユーザーにエイリアスを追加"
 
 #: sessionmanager/sessionManager.py:68
-#, fuzzy
 msgid "{account_name}@{instance} (Mastodon)"
-msgstr "{account_name} (Mastodon)"
+msgstr "{account_name}@{instance} (Mastodon)"
 
 #: sessionmanager/wxUI.py:11
 msgid "Session manager"
@@ -1565,12 +1563,10 @@ msgid "Last message from {}: {}"
 msgstr "{} からの最後のメッセージ: {}"
 
 #: sessions/mastodon/compose.py:61
-#, fuzzy
 msgid "{username} has posted: {status}"
-msgstr "{username} がブーストしました: {status}"
+msgstr "{username} が投稿しました: {status}"
 
 #: sessions/mastodon/compose.py:63
-#, fuzzy
 msgid "{username} has mentioned you: {status}"
 msgstr "{username} があなたにメンションしました: {status}"
 
@@ -1587,9 +1583,8 @@ msgid "{username} has followed you."
 msgstr "{username} がフォローしました。"
 
 #: sessions/mastodon/compose.py:71
-#, fuzzy
 msgid "{username} has joined the instance."
-msgstr "{username} がブーストしました: {status}"
+msgstr "{username} がインスタンスに参加しました。"
 
 #: sessions/mastodon/compose.py:73 sessions/mastodon/templates.py:161
 msgid "A poll in which you have voted has expired: {status}"
@@ -1666,21 +1661,18 @@ msgid "Content warning: {}"
 msgstr "コンテンツの警告: {}"
 
 #: sessions/mastodon/templates.py:45
-#, fuzzy
 msgid "Media description: {}"
-msgstr "画像の説明: {}。"
+msgstr "メディアの説明: {}。"
 
 #: sessions/mastodon/templates.py:78 wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Followers only"
 msgstr "フォロワーのみ"
 
 #: sessions/mastodon/templates.py:147
-#, fuzzy
 msgid "has posted: {status}"
-msgstr "がブーストしました: {status}"
+msgstr "が投稿しました: {status}"
 
 #: sessions/mastodon/templates.py:149
-#, fuzzy
 msgid "has mentioned you: {status}"
 msgstr "があなたにメンションしました: {status}"
 
@@ -1701,9 +1693,8 @@ msgid "has followed you."
 msgstr "がフォロー。"
 
 #: sessions/mastodon/templates.py:159
-#, fuzzy
 msgid "has joined the instance."
-msgstr "リモートインスタンス"
+msgstr "がインスタンスに参加しました。"
 
 #: sessions/mastodon/templates.py:163
 msgid "wants to follow you."
@@ -1959,9 +1950,8 @@ msgid "E&xit"
 msgstr "終了(&X)"
 
 #: wxUI/view.py:35
-#, fuzzy
 msgid "&Remove from favorites"
-msgstr "お気に入りから削除リストから削除"
+msgstr "お気に入りから削除(&R)"
 
 #: wxUI/view.py:48
 msgid "&Add to list"
@@ -2415,9 +2405,8 @@ msgid "Manage autocompletion database"
 msgstr "自動補完のデータベースを管理"
 
 #: wxUI/dialogs/mastodon/configuration.py:23
-#, fuzzy
 msgid "Disable Streaming API endpoints"
-msgstr "ストリーミング機能を無効化する"
+msgstr "ストリーミング API エンドポイントを無効にする"
 
 #: wxUI/dialogs/mastodon/configuration.py:25
 msgid "Relative timestamps"
@@ -2427,7 +2416,8 @@ msgstr "相対的な時刻を利用する"
 msgid ""
 "Read preferences from instance (default visibility when publishing and "
 "displaying sensitive content)"
-msgstr ""
+msgstr "インスタンスから設定を読み取る（機密コンテンツを公開および表示する際のデフォ"
+"ルトの可視性）"
 
 #: wxUI/dialogs/mastodon/configuration.py:30
 msgid "Items on each API call"
@@ -2617,18 +2607,16 @@ msgid "Remove post"
 msgstr "投稿を削除"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:46
-#, fuzzy
 msgid "&Visibility"
-msgstr "公開範囲"
+msgstr "公開範囲(&V)"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:51
 msgid "A&dd"
 msgstr "追加(&D)"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:52
-#, fuzzy
 msgid "S&ensitive content"
-msgstr "閲覧注意コンテンツ"
+msgstr "閲覧注意コンテンツ(&E)"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:57
 msgid "Content warning"
@@ -2844,7 +2832,6 @@ msgid "Option 4"
 msgstr "オプション4"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:324
-#, fuzzy
 msgid "Allow multiple choices per user"
 msgstr "ユーザーごとに複数の投票を許可する"
 
@@ -2862,12 +2849,11 @@ msgstr "十分な情報がありません"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:358
 msgid "Vote in this poll"
-msgstr ""
+msgstr "このアンケートに投票する"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:361
-#, fuzzy
 msgid "Options"
-msgstr "オプション4"
+msgstr "オプション"
 
 #: wxUI/dialogs/mastodon/search.py:9
 msgid "Search"
@@ -3905,4 +3891,3 @@ msgstr "フォロー中(&L)"
 
 #~ msgid "Participation time (in days)"
 #~ msgstr "投票期間(日数)"
-
