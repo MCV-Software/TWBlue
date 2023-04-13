@@ -42,7 +42,7 @@ build_exe_options = dict(
     includes=["enchant.tokenize.en"], # This is not handled automatically by cx_freeze.
     include_msvcr=False,
     replace_paths = [("*", "")],
-    include_files=["icon.ico", "conf.defaults", "app-configuration.defaults", "mastodon.defaults", "keymaps", "locales", "sounds", "documentation", ("keys/lib", "keys/lib"), find_sound_lib_datafiles(), find_accessible_output2_datafiles()]+get_architecture_files(),
+    include_files=["icon.ico", "app-configuration.defaults", "mastodon.defaults", "keymaps", "locales", "sounds", "documentation", ("keys/lib", "keys/lib"), find_sound_lib_datafiles(), find_accessible_output2_datafiles()]+get_architecture_files(),
     packages=["wxUI"],
     bin_path_excludes=["C:\\Program Files", "C:\Program Files (x86)"],
 )
