@@ -3,17 +3,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.94\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-04-09 00:55+0000\n"
+"POT-Creation-Date: 2023-04-16 00:55+0000\n"
 "PO-Revision-Date: 2023-04-11 06:45+0000\n"
 "Last-Translator: Corentin Bacqué-Cazenave <corentin@progaccess.net>\n"
-"Language-Team: French <https://weblate.mcvsoftware.com/projects/twblue/"
-"twblue/fr/>\n"
 "Language: fr\n"
+"Language-Team: French "
+"<https://weblate.mcvsoftware.com/projects/twblue/twblue/fr/>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.12.1\n"
 
 #: languageHandler.py:61
@@ -101,14 +100,14 @@ msgstr "https://twblue.es/donate"
 
 #: main.py:120
 msgid ""
-"{0} is already running. Close the other instance before starting this one. "
-"If you're sure that {0} isn't running, try deleting the file at {1}. If "
-"you're unsure of how to do this, contact the {0} developers."
+"{0} is already running. Close the other instance before starting this "
+"one. If you're sure that {0} isn't running, try deleting the file at {1}."
+" If you're unsure of how to do this, contact the {0} developers."
 msgstr ""
-"{0} est déjà en cours d'exécution. Fermez l'autre instance avant de démarrer "
-"celle-ci. Si vous êtes sûr·e que {0} n'est pas démarré, essayez de supprimer "
-"le fichier à l'emplacement {1}. Si vous n'êtes pas sûr·e de comment faire "
-"cela, contactez les développeurs de {0}."
+"{0} est déjà en cours d'exécution. Fermez l'autre instance avant de "
+"démarrer celle-ci. Si vous êtes sûr·e que {0} n'est pas démarré, essayez "
+"de supprimer le fichier à l'emplacement {1}. Si vous n'êtes pas sûr·e de "
+"comment faire cela, contactez les développeurs de {0}."
 
 #: sound.py:148
 msgid "Playing..."
@@ -126,8 +125,8 @@ msgstr "Prêt"
 #: controller/mainController.py:663 controller/mainController.py:682
 #: controller/mainController.py:701
 msgid ""
-"No session is currently in focus. Focus a session with the next or previous "
-"session shortcut."
+"No session is currently in focus. Focus a session with the next or "
+"previous session shortcut."
 msgstr ""
 "Aucune session n'a actuellement le focus. Sélectionnez-en une avec le "
 "raccourci pour la session précédente ou suivante."
@@ -168,8 +167,8 @@ msgstr "{0}:  Ce compte n'est pas connecté à twitter."
 #: controller/mainController.py:893 controller/mainController.py:909
 msgid "An error happened while trying to connect to the server. Please try later."
 msgstr ""
-"Une erreur s'est produite en essayant de se connecter au serveur. Veuillez "
-"réessayer plus tard."
+"Une erreur s'est produite en essayant de se connecter au serveur. "
+"Veuillez réessayer plus tard."
 
 #: controller/mainController.py:940
 msgid "The auto-reading of new tweets is enabled for this buffer"
@@ -177,8 +176,7 @@ msgstr "La lecture automatique des nouveaux tweets est activée pour ce tampon"
 
 #: controller/mainController.py:943
 msgid "The auto-reading of new tweets is disabled for this buffer"
-msgstr ""
-"La lecture automatique des nouveaux tweets est désactivée pour ce tampon"
+msgstr "La lecture automatique des nouveaux tweets est désactivée pour ce tampon"
 
 #: controller/mainController.py:950
 msgid "Session mute on"
@@ -472,7 +470,7 @@ msgstr "Ce sondage a déjà expiré."
 msgid "You have already voted on this poll."
 msgstr "Vous avez déjà voté pour ce sondage."
 
-#: controller/buffers/mastodon/base.py:567
+#: controller/buffers/mastodon/base.py:603
 msgid "Sending vote..."
 msgstr "Envoi du vote..."
 
@@ -792,11 +790,11 @@ msgstr "&Ajouter au dictionnaire personnel"
 
 #: extra/SpellChecker/wx_ui.py:79
 msgid ""
-"An error has occurred. There are no dictionaries available for the selected "
-"language in {0}"
+"An error has occurred. There are no dictionaries available for the "
+"selected language in {0}"
 msgstr ""
-"Une erreur s'est produite. Il n'existe aucun dictionnaires disponibles pour "
-"la langue sélectionnée dans {0}"
+"Une erreur s'est produite. Il n'existe aucun dictionnaires disponibles "
+"pour la langue sélectionnée dans {0}"
 
 #: extra/SpellChecker/wx_ui.py:79 wxUI/commonMessageDialogs.py:23
 #: wxUI/commonMessageDialogs.py:36 wxUI/dialogs/mastodon/dialogs.py:38
@@ -808,124 +806,6 @@ msgstr "Erreur"
 #: extra/SpellChecker/wx_ui.py:82
 msgid "Spell check complete."
 msgstr "Vérification  orthographique terminée."
-
-#: extra/autocompletionUsers/completion.py:39
-#: extra/autocompletionUsers/completion.py:57
-msgid "You have to start writing"
-msgstr "Vous devez commencer à écrire"
-
-#: extra/autocompletionUsers/completion.py:49
-#: extra/autocompletionUsers/completion.py:66
-msgid "There are no results in your users database"
-msgstr "Il n'y a aucun résultat dans votre base de données des utilisateurs"
-
-#: extra/autocompletionUsers/completion.py:51
-msgid "Autocompletion only works for users."
-msgstr "La saisie automatique fonctionne uniquement pour les utilisateurs."
-
-#: extra/autocompletionUsers/scan.py:54
-msgid ""
-"Updating database... You can close this window now. A message will tell you "
-"when the process finishes."
-msgstr ""
-"Mise à jour de la base de données en cours... Vous pouvez fermer cette "
-"fenêtre maintenant. Un message vous avertira lorsque le processus est "
-"terminé."
-
-#: extra/autocompletionUsers/wx_manage.py:9
-msgid "Manage Autocompletion database"
-msgstr "Gérer la base de données pour la saisie automatique"
-
-#: extra/autocompletionUsers/wx_manage.py:12
-msgid "Editing {0} users database"
-msgstr "Modification de la base de données des utilisateurs de {0}"
-
-#: extra/autocompletionUsers/wx_manage.py:13
-msgid "Username"
-msgstr "Nom d'utilisateur"
-
-#: extra/autocompletionUsers/wx_manage.py:13 wxUI/dialogs/configuration.py:151
-msgid "Name"
-msgstr "Nom"
-
-#: extra/autocompletionUsers/wx_manage.py:16
-msgid "Add user"
-msgstr "Ajouter l'utilisateur"
-
-#: extra/autocompletionUsers/wx_manage.py:17
-msgid "Remove user"
-msgstr "Supprimer l'utilisateur"
-
-#: extra/autocompletionUsers/wx_manage.py:38
-msgid "Twitter username"
-msgstr "Nom d'utilisateur de Twitter"
-
-#: extra/autocompletionUsers/wx_manage.py:38
-msgid "Add user to database"
-msgstr "Ajouter l'utilisateur à la base de données"
-
-#: extra/autocompletionUsers/wx_manage.py:44
-msgid "The user does not exist"
-msgstr "Cet utilisateur n'existe pas sur Twitter"
-
-#: extra/autocompletionUsers/wx_manage.py:44 wxUI/commonMessageDialogs.py:45
-msgid "Error!"
-msgstr "Erreur !"
-
-#: extra/autocompletionUsers/wx_scan.py:8
-msgid "Autocomplete users' settings"
-msgstr "Paramètres pour la saisie automatique des utilisateurs"
-
-#: extra/autocompletionUsers/wx_scan.py:11
-msgid "Add followers to database"
-msgstr "Ajouter l'utilisateur à la base de données"
-
-#: extra/autocompletionUsers/wx_scan.py:12
-msgid "Add  friends to database"
-msgstr "Ajouter les abonnements à la base de données"
-
-#: extra/autocompletionUsers/wx_scan.py:26
-msgid "Updating autocompletion database"
-msgstr "Mise à jour de la base de données d'autocomplétion"
-
-#: extra/autocompletionUsers/wx_scan.py:37
-msgid ""
-"This process will retrieve the users you selected from Twitter, and add them "
-"to the user autocomplete database. Please note that if there are many users "
-"or you have tried to perform this action less than 15 minutes ago, TWBlue "
-"may reach a limit in Twitter API calls when trying to load the users into "
-"the database. If this happens, we will show you an error, in which case you "
-"will have to try this process again in a few minutes. If this process ends "
-"with no error, you will be redirected back to the account settings dialog. "
-"Do you want to continue?"
-msgstr ""
-"Ce processus va récupérer les utilisateurs que vous avez sélectionnés depuis "
-"Twitter, et les ajouter à la base de données d'autocomplétion. Notez que si "
-"il y a beaucoup d'utilisateurs ou que vous avez tenté cette action il y a "
-"moins de 15 minutes, TWBlue pourrait rencontrer une limite lors de l'appel à "
-"l'API de Twitter. Dans ce cas, nous vous afficherons une erreur, auquel cas "
-"vous devrez retenter l'action dans quelques minutes. Si le processus se "
-"termine sans erreur, vous serez redirigé vers le dialogue de paramétrage du "
-"compte. Voulez-vous continuer ?"
-
-#: extra/autocompletionUsers/wx_scan.py:37 wxUI/commonMessageDialogs.py:36
-#: wxUI/commonMessageDialogs.py:86
-msgid "Attention"
-msgstr "Attention"
-
-#: extra/autocompletionUsers/wx_scan.py:43
-msgid "TWBlue has imported {} users successfully."
-msgstr "TWBlue a correctement importé les utilisateurs {}."
-
-#: extra/autocompletionUsers/wx_scan.py:43
-msgid "Done"
-msgstr "Terminé"
-
-#: extra/autocompletionUsers/wx_scan.py:47
-msgid "Error adding users from Twitter. Please try again in about 15 minutes."
-msgstr ""
-"Erreur lors de l'import des utilisateurs depuis Twitter. Veuillez réessayer "
-"dans environ 15 minutes."
 
 #: extra/ocr/OCRSpace.py:7
 msgid "Detect automatically"
@@ -1624,13 +1504,13 @@ msgstr "Mastodon"
 
 #: sessionmanager/wxUI.py:59
 msgid ""
-"You will be prompted for your Mastodon data (instance URL, email address and "
-"password) so we can authorise TWBlue in your instance. Would you like to "
-"authorise your account now?"
+"You will be prompted for your Mastodon data (instance URL, email address "
+"and password) so we can authorise TWBlue in your instance. Would you like"
+" to authorise your account now?"
 msgstr ""
-"Les informations de votre instance Mastodon (URL, adresse e-mail et mot de "
-"passe) vont vous être demandées afin de pouvoir autoriser TWBlue sur votre "
-"instance. Voulez-vous autoriser votre compte maintenant ?"
+"Les informations de votre instance Mastodon (URL, adresse e-mail et mot "
+"de passe) vont vous être demandées afin de pouvoir autoriser TWBlue sur "
+"votre instance. Voulez-vous autoriser votre compte maintenant ?"
 
 #: sessionmanager/wxUI.py:59
 msgid "Authorization"
@@ -1646,8 +1526,8 @@ msgid ""
 "Your access token is invalid or the authorization has failed. Please try "
 "again."
 msgstr ""
-"Votre code d'accès est incorrect ou l'autorisation a échoué. S'il vous plaît "
-"essayer de nouveau."
+"Votre code d'accès est incorrect ou l'autorisation a échoué. S'il vous "
+"plaît essayer de nouveau."
 
 #: sessionmanager/wxUI.py:73
 msgid "Invalid user token"
@@ -1659,23 +1539,23 @@ msgstr "Voulez-vous vraiment supprimer ce compte ?"
 
 #: sessions/base.py:125
 msgid ""
-"An exception occurred while saving the {app} database. It will be deleted "
-"and rebuilt automatically. If this error persists, send the error log to the "
-"{app} developers."
+"An exception occurred while saving the {app} database. It will be deleted"
+" and rebuilt automatically. If this error persists, send the error log to"
+" the {app} developers."
 msgstr ""
-"Une erreur est survenue lors de l'enregistrement de la base de données de "
-"{app}, elle va être détruite et recréée automatiquement. Si ce problème "
+"Une erreur est survenue lors de l'enregistrement de la base de données de"
+" {app}, elle va être détruite et recréée automatiquement. Si ce problème "
 "perciste, veuillez envoyer le journal d'erreur aux développeurs de {app}."
 
 #: sessions/base.py:165
 msgid ""
-"An exception occurred while loading the {app} database. It will be deleted "
-"and rebuilt automatically. If this error persists, send the error log to the "
-"{app} developers."
+"An exception occurred while loading the {app} database. It will be "
+"deleted and rebuilt automatically. If this error persists, send the error"
+" log to the {app} developers."
 msgstr ""
-"Une erreur est survenue lors du chargement de la base de données de {app}, "
-"elle va être détruite et recréée automatiquement. Si ce problème perciste, "
-"veuillez envoyer le journal d'erreur aux développeurs de {app}."
+"Une erreur est survenue lors du chargement de la base de données de "
+"{app}, elle va être détruite et recréée automatiquement. Si ce problème "
+"perciste, veuillez envoyer le journal d'erreur aux développeurs de {app}."
 
 #: sessions/mastodon/compose.py:15 sessions/mastodon/compose.py:58
 msgid "dddd, MMMM D, YYYY H:m"
@@ -1719,7 +1599,7 @@ msgstr "{username} a ajouté aux favoris : {status}"
 msgid "{username} has followed you."
 msgstr "{username} vous a suivi."
 
-#: sessions/mastodon/compose.py:77
+#: sessions/mastodon/compose.py:71
 msgid "{username} has joined the instance."
 msgstr "{username} a rejoint l'instance."
 
@@ -1731,42 +1611,43 @@ msgstr "Un sondage où vous avez voté a expiré : {status}"
 msgid "{username} wants to follow you."
 msgstr "{username} souhaite vous suivre."
 
-#: sessions/mastodon/session.py:62 sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Please enter your instance URL."
 msgstr "Veuillez entrer l'URL de votre instance."
 
-#: sessions/mastodon/session.py:62 sessions/mastodon/session.py:61
+#: sessions/mastodon/session.py:62
 msgid "Mastodon instance"
 msgstr "Instance Mastodon"
 
-#: sessions/mastodon/session.py:73 sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 msgid ""
 "We could not connect to your mastodon instance. Please verify that the "
 "domain exists and the instance is accessible via a web browser."
 msgstr ""
-"Nous ne pouvons pas nous connecter à votre instance, veuillez vérifier que "
-"le domaine existe et que l'instance est accessible depuis un navigateur web."
+"Nous ne pouvons pas nous connecter à votre instance, veuillez vérifier "
+"que le domaine existe et que l'instance est accessible depuis un "
+"navigateur web."
 
-#: sessions/mastodon/session.py:73 sessions/mastodon/session.py:72
+#: sessions/mastodon/session.py:73
 msgid "Instance error"
 msgstr "Erreur de l'instance"
 
-#: sessions/mastodon/session.py:78 sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 msgid "Enter the verification code"
 msgstr "Entrer le code de vérification"
 
-#: sessions/mastodon/session.py:78 sessions/mastodon/session.py:77
+#: sessions/mastodon/session.py:78
 msgid "PIN code authorization"
 msgstr "Code PIN d'autorisation"
 
-#: sessions/mastodon/session.py:87 sessions/mastodon/session.py:86
+#: sessions/mastodon/session.py:87
 msgid ""
 "We could not authorice your mastodon account to be used in TWBlue. This "
-"might be caused due to an incorrect verification code. Please try to add the "
-"session again."
+"might be caused due to an incorrect verification code. Please try to add "
+"the session again."
 msgstr ""
-"Nous ne pouvons pas autoriser votre compte à être utilisé dans TWBlue, cela "
-"peut être dû à un code d'autorisation incorrect. Veuillez réessayer "
+"Nous ne pouvons pas autoriser votre compte à être utilisé dans TWBlue, "
+"cela peut être dû à un code d'autorisation incorrect. Veuillez réessayer "
 "d'ajouter votre compte."
 
 #: sessions/mastodon/session.py:87
@@ -1788,11 +1669,11 @@ msgstr "MP à $recipient_display_name, $text $date"
 
 #: sessions/mastodon/templates.py:20
 msgid ""
-"$display_name (@$screen_name). $followers followers, $following following, "
-"$posts posts. Joined $created_at."
+"$display_name (@$screen_name). $followers followers, $following "
+"following, $posts posts. Joined $created_at."
 msgstr ""
-"$display_name (@$screen_name). $followers abonnés, $following abonnements, "
-"$posts posts. A rejoint le $created_at."
+"$display_name (@$screen_name). $followers abonnés, $following "
+"abonnements, $posts posts. A rejoint le $created_at."
 
 #: sessions/mastodon/templates.py:21
 msgid "$display_name $text, $date"
@@ -1810,7 +1691,7 @@ msgstr "Description du média : {}"
 msgid "Followers only"
 msgstr "Seulement les abonnés"
 
-#: sessions/mastodon/templates.py:153
+#: sessions/mastodon/templates.py:147
 msgid "has posted: {status}"
 msgstr "A posté : {status}"
 
@@ -1834,7 +1715,7 @@ msgstr "a mis à jour un statut : {status}"
 msgid "has followed you."
 msgstr "vous a suivi."
 
-#: sessions/mastodon/templates.py:165
+#: sessions/mastodon/templates.py:159
 msgid "has joined the instance."
 msgstr "A rejoint l'instance."
 
@@ -1905,17 +1786,17 @@ msgstr ""
 #, python-format
 msgid ""
 "There's a new %s version available, released on %s. Updates are not "
-"automatic in Windows 7, so you would need to visit TWBlue's download website "
-"to get the latest version.\n"
+"automatic in Windows 7, so you would need to visit TWBlue's download "
+"website to get the latest version.\n"
 "\n"
 " %s version: %s\n"
 "\n"
 "Changes:\n"
 "%s"
 msgstr ""
-"Une nouvelle version de %s est disponible, publiée le %s. Les mises à jour "
-"ne sont pas automatiques sous Windows 7, vous devrez visiter le site de "
-"téléchargement de TWBlue pour obtenir la dernière version.\n"
+"Une nouvelle version de %s est disponible, publiée le %s. Les mises à "
+"jour ne sont pas automatiques sous Windows 7, vous devrez visiter le site"
+" de téléchargement de TWBlue pour obtenir la dernière version.\n"
 "\n"
 "%s version : %s\n"
 "\n"
@@ -1945,8 +1826,8 @@ msgid ""
 "The update has been downloaded and installed successfully. Press OK to "
 "continue."
 msgstr ""
-"La mise à jour a été téléchargé et installé avec succès. Appuyez sur OK pour "
-"continuer."
+"La mise à jour a été téléchargé et installé avec succès. Appuyez sur OK "
+"pour continuer."
 
 #: update/wxUpdater.py:36
 msgid "Done!"
@@ -1970,11 +1851,11 @@ msgstr "Redémarrez {0} "
 
 #: wxUI/commonMessageDialogs.py:13
 msgid ""
-"Are you sure you want to delete this user from the database? This user will "
-"not appear in autocomplete results anymore."
+"Are you sure you want to delete this user from the database? This user "
+"will not appear in autocomplete results anymore."
 msgstr ""
-"Êtes-vous sûr de vouloir supprimer cet utilisateur de la base de données ? "
-"Cet utilisateur n'apparaîtra plus dans les résultats lors de La saisie "
+"Êtes-vous sûr de vouloir supprimer cet utilisateur de la base de données "
+"? Cet utilisateur n'apparaîtra plus dans les résultats lors de La saisie "
 "automatique."
 
 #: wxUI/commonMessageDialogs.py:13
@@ -1983,11 +1864,11 @@ msgstr "Confirmer"
 
 #: wxUI/commonMessageDialogs.py:16
 msgid ""
-"Do you really want to empty this buffer? It's  items will be removed from "
-"the list but not from Twitter"
+"Do you really want to empty this buffer? It's  items will be removed from"
+" the list but not from Twitter"
 msgstr ""
-"Voulez-vous vraiment vider ce tampon ? Ces éléments seront supprimés de la "
-"liste, mais pas de Twitter"
+"Voulez-vous vraiment vider ce tampon ? Ces éléments seront supprimés de "
+"la liste, mais pas de Twitter"
 
 #: wxUI/commonMessageDialogs.py:16 wxUI/dialogs/mastodon/dialogs.py:31
 msgid "Empty buffer"
@@ -2008,8 +1889,8 @@ msgstr "Cet utilisateur n'existe pas"
 #: wxUI/commonMessageDialogs.py:26
 msgid "A timeline for this user already exists. You can't open another"
 msgstr ""
-"Une chronologie pour cet utilisateur existe déjà. Vous ne pouvez pas ouvrir "
-"une autre"
+"Une chronologie pour cet utilisateur existe déjà. Vous ne pouvez pas "
+"ouvrir une autre"
 
 #: wxUI/commonMessageDialogs.py:26
 msgid "Existing timeline"
@@ -2017,18 +1898,18 @@ msgstr "Chronologie existante"
 
 #: wxUI/commonMessageDialogs.py:29
 msgid ""
-"If you like {0} we need your help to keep it going. Help us by donating to "
-"the project. This will help us pay for the server, the domain and some other "
-"things to ensure that {0} will be actively maintained. Your donation will "
-"give us the means to continue the development of {0}, and to keep {0} free. "
-"Would you like to donate now?"
+"If you like {0} we need your help to keep it going. Help us by donating "
+"to the project. This will help us pay for the server, the domain and some"
+" other things to ensure that {0} will be actively maintained. Your "
+"donation will give us the means to continue the development of {0}, and "
+"to keep {0} free. Would you like to donate now?"
 msgstr ""
 "Si vous aimez {0} Nous avons besoin de votre aide pour maintenir le "
 "fonctionnement de celui-ci. Aidez-nous en faisant un don au projet. Cela "
-"nous aidera à payer le serveur, le domaine et autres choses pour assurer que "
-"{0} sera activement maintenue. Votre don nous donnera les moyens de "
-"poursuivre le développement de {0}, et de garder {0} gratuit. Vous souhaitez "
-"faire un don maintenant ?"
+"nous aidera à payer le serveur, le domaine et autres choses pour assurer "
+"que {0} sera activement maintenue. Votre don nous donnera les moyens de "
+"poursuivre le développement de {0}, et de garder {0} gratuit. Vous "
+"souhaitez faire un don maintenant ?"
 
 #: wxUI/commonMessageDialogs.py:29
 msgid "We need your help"
@@ -2038,14 +1919,15 @@ msgstr "Nous avons besoin de votre aide"
 msgid ""
 "TWBlue has detected that you're running windows 10 and has changed the "
 "default keymap to the Windows 10 keymap. It means that some keyboard "
-"shorcuts could be different. Please check the keystroke editor by pressing "
-"Alt+Win+K to see all available keystrokes for this keymap."
+"shorcuts could be different. Please check the keystroke editor by "
+"pressing Alt+Win+K to see all available keystrokes for this keymap."
 msgstr ""
-"TWBlue a détecté que vous exécutez windows 10 et a changé la configuration "
-"clavier par défaut à la configuration clavier Windows 10. Cela signifie que "
-"certains raccourcis clavier peuvent être différents. S'il vous plaît "
-"vérifier le Modificateur de raccourci en appuyant sur Alt+Win+K pour voir "
-"tous les raccourcis disponibles pour cette configuration clavier."
+"TWBlue a détecté que vous exécutez windows 10 et a changé la "
+"configuration clavier par défaut à la configuration clavier Windows 10. "
+"Cela signifie que certains raccourcis clavier peuvent être différents. "
+"S'il vous plaît vérifier le Modificateur de raccourci en appuyant sur "
+"Alt+Win+K pour voir tous les raccourcis disponibles pour cette "
+"configuration clavier."
 
 #: wxUI/commonMessageDialogs.py:33
 msgid "Information"
@@ -2060,8 +1942,8 @@ msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
 msgstr ""
-"{0} a été quitté inopinément lors de sa dernière exécution. Si ce problème "
-"perciste, veuillez le signaler aux développeurs de {0}."
+"{0} a été quitté inopinément lors de sa dernière exécution. Si ce "
+"problème perciste, veuillez le signaler aux développeurs de {0}."
 
 #: wxUI/commonMessageDialogs.py:39
 msgid "Warning"
@@ -2356,7 +2238,8 @@ msgstr "Masquer l'interface graphique au démarrage"
 #: wxUI/dialogs/configuration.py:45
 msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
 msgstr ""
-"Lecture complète de tweets longs (peut diminuer les performances du client)"
+"Lecture complète de tweets longs (peut diminuer les performances du "
+"client)"
 
 #: wxUI/dialogs/configuration.py:47
 msgid "Remember state for mention all and long tweet"
@@ -2390,67 +2273,7 @@ msgstr "Utilisateur: "
 msgid "Password: "
 msgstr "Mot de passe: "
 
-#: wxUI/dialogs/configuration.py:102 wxUI/dialogs/mastodon/configuration.py:14
-msgid "User autocompletion settings"
-msgstr "Paramètres d'autocomplétion utilisateur"
-
-#: wxUI/dialogs/configuration.py:103
-msgid ""
-"Scan account and add friends and followers to the user autocompletion "
-"database"
-msgstr ""
-"Scanner le compte et ajouter les abonnés et abonnements dans la base de "
-"données d'autocomplétion des utilisateurs."
-
-#: wxUI/dialogs/configuration.py:104 wxUI/dialogs/mastodon/configuration.py:17
-msgid "Manage autocompletion database"
-msgstr "Gérer la base de données d'autocomplétion"
-
-#: wxUI/dialogs/configuration.py:109 wxUI/dialogs/mastodon/configuration.py:25
-msgid "Relative timestamps"
-msgstr "Temps relatifs"
-
-#: wxUI/dialogs/configuration.py:112 wxUI/dialogs/mastodon/configuration.py:30
-msgid "Items on each API call"
-msgstr "Éléments pour chaque appel à l'API"
-
-#: wxUI/dialogs/configuration.py:118
-msgid ""
-"Inverted buffers: The newest tweets will be shown at the beginning while the "
-"oldest at the end"
-msgstr ""
-"Tampons inversés: les tweets plus récents seront affichées au début et les "
-"plus ancien à la fin"
-
-#: wxUI/dialogs/configuration.py:120
-msgid "Retweet mode"
-msgstr "Mode retweet"
-
-#: wxUI/dialogs/configuration.py:126 wxUI/dialogs/mastodon/configuration.py:40
-msgid "Show screen names instead of full names"
-msgstr "Afficher les noms d'écran au lieu des noms complets"
-
-#: wxUI/dialogs/configuration.py:128 wxUI/dialogs/mastodon/configuration.py:42
-msgid "hide emojis in usernames"
-msgstr "Masquer les emojis dans les noms d'utilisateur"
-
-#: wxUI/dialogs/configuration.py:130 wxUI/dialogs/mastodon/configuration.py:44
-msgid ""
-"Number of items per buffer to cache in database (0 to disable caching, blank "
-"for unlimited)"
-msgstr ""
-"Nombre d'éléments par tampon en cache dans la base de données (0 pour "
-"désactiver la mise en cache, laissez en blanc pour illimité)"
-
-#: wxUI/dialogs/configuration.py:134
-msgid ""
-"Load cache for tweets in memory (much faster in big datasets but requires "
-"more RAM)"
-msgstr ""
-"Charger le cache des tweets en mémoire (plus rapide pour les gros ensembles "
-"de données mais nécessite plus de RAM)"
-
-#: wxUI/dialogs/configuration.py:141
+#: wxUI/dialogs/configuration.py:102
 msgid "Enable automatic speech feedback"
 msgstr "Activer le retour automatique de la parole"
 
@@ -2654,8 +2477,8 @@ msgid ""
 "Read preferences from instance (default visibility when publishing and "
 "displaying sensitive content)"
 msgstr ""
-"Lire les préférences depuis l'instance (visibillité par défaut lors de la "
-"publication et de l'affichage de contenu sensible)"
+"Lire les préférences depuis l'instance (visibillité par défaut lors de la"
+" publication et de l'affichage de contenu sensible)"
 
 #: wxUI/dialogs/mastodon/configuration.py:30
 msgid "Items on each API call"
@@ -2663,8 +2486,8 @@ msgstr "Éléments pour chaque appel à l'API"
 
 #: wxUI/dialogs/mastodon/configuration.py:36
 msgid ""
-"Inverted buffers: The newest items will be shown at the beginning while the "
-"oldest at the end"
+"Inverted buffers: The newest items will be shown at the beginning while "
+"the oldest at the end"
 msgstr ""
 "Tampons inversés : Les nouveaux éléments seront affichés au début et les "
 "plus anciens à la fin."
@@ -2694,8 +2517,8 @@ msgid ""
 "Load cache for items in memory (much faster in big datasets but requires "
 "more RAM)"
 msgstr ""
-"Charger le cache des éléments en mémoire (plus rapide sur les grosses bases "
-"de données mais nécessite plus de RAM)"
+"Charger le cache des éléments en mémoire (plus rapide sur les grosses "
+"bases de données mais nécessite plus de RAM)"
 
 #: wxUI/dialogs/mastodon/configuration.py:67
 msgid "Volume"
@@ -2755,8 +2578,8 @@ msgstr "Souhaitez vous partager ce post ?"
 
 #: wxUI/dialogs/mastodon/dialogs.py:15
 msgid ""
-"Do you really want to delete this post? It will be deleted from the instance "
-"as well."
+"Do you really want to delete this post? It will be deleted from the "
+"instance as well."
 msgstr ""
 "Voulez-vous vraiment supprimer ce post ? Il sera également supprimer de "
 "l'instance."
@@ -2767,22 +2590,22 @@ msgstr "Supprimer Tweet"
 
 #: wxUI/dialogs/mastodon/dialogs.py:23
 msgid ""
-"Are you sure you want to dismiss this notification? If you dismiss a mention "
-"notification, it also disappears from your mentions buffer. The post is not "
-"going to be deleted from the instance, though."
+"Are you sure you want to dismiss this notification? If you dismiss a "
+"mention notification, it also disappears from your mentions buffer. The "
+"post is not going to be deleted from the instance, though."
 msgstr ""
 "Êtes vous sûr·e de vouloir masquer cette notification ? Masquer une "
 "notification de mension fera également disparaître le post de mension de "
-"votre tampon de mensions, cependant le post ne sera pas supprimé de votre "
-"instance."
+"votre tampon de mensions, cependant le post ne sera pas supprimé de votre"
+" instance."
 
 #: wxUI/dialogs/mastodon/dialogs.py:31
 msgid ""
-"Do you really want to empty this buffer? It's  items will be removed from "
-"the list but not from the instance"
+"Do you really want to empty this buffer? It's  items will be removed from"
+" the list but not from the instance"
 msgstr ""
-"Êtes vous sûr·e de vouloir vider ce tampon ? Ses éléments seront supprimés "
-"de la liste mais pas de l'instance."
+"Êtes vous sûr·e de vouloir vider ce tampon ? Ses éléments seront "
+"supprimés de la liste mais pas de l'instance."
 
 #: wxUI/dialogs/mastodon/dialogs.py:38
 msgid "This user has no posts. {0} can't create a timeline."
@@ -2791,7 +2614,8 @@ msgstr "Cet utilisateur n'a aucun post. {0} ne peut pas créer de chronologie."
 #: wxUI/dialogs/mastodon/dialogs.py:43
 msgid "This user has no favorited posts. {0} can't create a timeline."
 msgstr ""
-"Cet utilisateur n'a aucun post favori. {0} ne peut pas créer de chronologie."
+"Cet utilisateur n'a aucun post favori. {0} ne peut pas créer de "
+"chronologie."
 
 #: wxUI/dialogs/mastodon/dialogs.py:48
 msgid "This user has no followers yet. {0} can't create a timeline."
@@ -2801,8 +2625,7 @@ msgstr ""
 
 #: wxUI/dialogs/mastodon/dialogs.py:53
 msgid "This user is not following anyone. {0} can't create a timeline."
-msgstr ""
-"Cet utilisateur ne suit personne. {0} ne peut pas créer de chronologie."
+msgstr "Cet utilisateur ne suit personne. {0} ne peut pas créer de chronologie."
 
 #: wxUI/dialogs/mastodon/menus.py:13
 msgid "R&emove from favorites"
@@ -2932,8 +2755,7 @@ msgstr "Sélectionnez la vidéo à téléverser"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:148
 msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
-msgstr ""
-"Fichiers vidéo (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
+msgstr "Fichiers vidéo (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:155
 msgid "Select the audio file to be uploaded"
@@ -2941,21 +2763,21 @@ msgstr "Sélectionnez le fichier audio que vous souhaitez charger"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:155
 msgid ""
-"Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*."
-"mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
+"Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, "
+"*.3gp)|*.mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 msgstr ""
-"Fichiers audio (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, *.3gp)|*."
-"mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
+"Fichiers audio (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, "
+"*.3gp)|*.mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:162
 msgid ""
-"It is not possible to add more attachments. Please take into account that "
-"You can add only a maximum of 4 images, or one audio, video or poll  per "
-"post. Please remove other attachments before continuing."
+"It is not possible to add more attachments. Please take into account that"
+" You can add only a maximum of 4 images, or one audio, video or poll  per"
+" post. Please remove other attachments before continuing."
 msgstr ""
 "Vous ne pouvez plus ajouter de pièces jointes. Veuillez noter que vous "
-"pouvez seulement ajouter 4 images, ou un audio, une vidéo ou un sondage par "
-"post. Veuillez retirer toute autre pièce jointe avant de continuer."
+"pouvez seulement ajouter 4 images, ou un audio, une vidéo ou un sondage "
+"par post. Veuillez retirer toute autre pièce jointe avant de continuer."
 
 #: wxUI/dialogs/mastodon/postDialogs.py:162
 msgid "Error adding attachment"
@@ -2963,11 +2785,11 @@ msgstr "Erreur à l'ajout de la pièce jointe"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:165
 msgid ""
-"You can add a poll or media files. In order to add your poll, please remove "
-"other attachments first."
+"You can add a poll or media files. In order to add your poll, please "
+"remove other attachments first."
 msgstr ""
-"Vous pouvez ajouter un sondage ou des fichiers audio. Afin d'ajouter votre "
-"sondage, veuillez retirer toute autre pièce jointe avant."
+"Vous pouvez ajouter un sondage ou des fichiers audio. Afin d'ajouter "
+"votre sondage, veuillez retirer toute autre pièce jointe avant."
 
 #: wxUI/dialogs/mastodon/postDialogs.py:165
 msgid "Error adding poll"
@@ -3113,7 +2935,7 @@ msgstr "Pas assez d'informations"
 msgid "Vote in this poll"
 msgstr "Voter pour ce sondage"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:337
+#: wxUI/dialogs/mastodon/postDialogs.py:361
 msgid "Options"
 msgstr "Options"
 
@@ -3175,138 +2997,6 @@ msgstr "&Abonnés"
 #: wxUI/dialogs/mastodon/userTimeline.py:21
 msgid "Fo&llowing"
 msgstr "Abo&nnement"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:8
-msgid "Edit Template"
-msgstr "Éditer le Modèle"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:13
-msgid "Edit template"
-msgstr "Éditer le modèle"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:17
-msgid "Available variables"
-msgstr "Variables disponibles"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:29
-msgid "Restore template"
-msgstr "Restaurer le modèle"
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:48
-msgid "Restored template to {}."
-msgstr "Modèle restauré à {}."
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
-msgid ""
-"the template you have specified include variables that do not exists for the "
-"object. Please fix the template and try again. For your reference, you can "
-"see a list of all available variables in the variables list while editing "
-"your template."
-msgstr ""
-"Le modèle que vous avez spécifié contient des variables qui ne sont pas "
-"disponibles pour cet objet. Veuillez corriger le modèle et réessayer. Pour "
-"votre information, vous pouvez consulter une liste des variables disponibles "
-"dans la liste de variables lorsque vous éditez le modèle."
-
-#: wxUI/dialogs/twitterDialogs/templateDialogs.py:52
-msgid "Invalid template"
-msgstr "Modèle invalide"
-
-# | msgid "Delete attachment"
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:39
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:175
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:259
-msgid "Delete attachment"
-msgstr "Supprimer la pièce jointe"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:44
-msgid "Added Tweets"
-msgstr "Tweets ajoutés"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:51
-msgid "Delete tweet"
-msgstr "Supprimer le tweet"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:56
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:190
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:264
-msgid "A&dd..."
-msgstr "&Ajouter"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:58
-msgid "Add t&weet"
-msgstr "A&jouter un tweet"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:61
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:192
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:266
-msgid "&Attach audio..."
-msgstr "&Joindre un audio..."
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:73
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:204
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:276
-msgid "Sen&d"
-msgstr "Envoye&r"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:140
-msgid "Video files (*.mp4)|*.mp4"
-msgstr "Fichiers vidéo (*.mp4)|*.mp4"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:146
-msgid ""
-"It is not possible to add more attachments. Please make sure your tweet "
-"complies with Twitter'S attachment rules. You can add only one video or GIF "
-"in every tweet, and a maximum of 4 photos."
-msgstr ""
-"Il est impossible de joindre plus de contenu. Assurez-vous que votre tweet "
-"respecte les règles d'attachement de Twitter. Vous pouvez seulement inclure "
-"une vidéo ou un GIF par tweet, et 4 photos au maximum."
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:180
-msgid "&Mention to all"
-msgstr "&Répondre à tous"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:233
-msgid "&Recipient"
-msgstr "&Destinataire"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:304
-#, python-format
-msgid "Tweet - %i characters "
-msgstr "Tweet - %i caractères "
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:332
-msgid "Retweets: "
-msgstr "Retweets: "
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:337
-msgid "Likes: "
-msgstr "Favoris: "
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:410
-msgid "View"
-msgstr "Voir"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:412
-msgid "Item"
-msgstr "Élément"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:438
-msgid "&Expand URL"
-msgstr "&Étendre l'URL"
-
-#: wxUI/dialogs/twitterDialogs/tweetDialogs.py:481
-msgid "Participation time (in days)"
-msgstr "Temps de participation (en jours)"
-
-#: sessions/mastodon/compose.py:69
-msgid "{username} has mentionned you: {status}"
-msgstr "{username} vous a mensionné : {status}"
-
-#: sessions/mastodon/templates.py:155
-msgid "has mentionned you: {status}"
-msgstr "vous a mensionné : {status}"
 
 #~ msgid "Unable to find address in OpenStreetMap."
 #~ msgstr "Impossible de trouver l'adresse dans OpenStreetMap"
@@ -4393,3 +4083,10 @@ msgstr "vous a mensionné : {status}"
 
 #~ msgid "Participation time (in days)"
 #~ msgstr "Temps de participation (en jours)"
+
+#~ msgid "{username} has mentionned you: {status}"
+#~ msgstr "{username} vous a mensionné : {status}"
+
+#~ msgid "has mentionned you: {status}"
+#~ msgstr "vous a mensionné : {status}"
+
