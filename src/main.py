@@ -71,7 +71,7 @@ def setup():
     check_pid()
     if config.app["app-settings"]["donation_dialog_displayed"] == False:
         donation()
-    if config.app['app-settings']['check_for_updates']:
+    if config.app['app-settings']['check_for_updates'] and getattr(sys, 'frozen', False):
         updater.do_update()
     sm = sessionManager.sessionManagerController()
     sm.fill_list()
