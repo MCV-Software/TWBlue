@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 import logging
 import webbrowser
 import wx
@@ -427,6 +428,10 @@ class Controller(object):
             return handler.account_settings(buffer=buffer, controller=self)
 
     def check_for_updates(self, *args, **kwargs):
+        if not getattr(sys, 'frozen', False):
+            log.debug("Running from source, can't update")
+            commonMessageDialogs.cant_update_source()
+            return
         update = updater.do_update()
         if update == False:
             view.no_update_available()
