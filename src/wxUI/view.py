@@ -15,7 +15,6 @@ class mainFrame(wx.Frame):
         self.menubar_application = wx.Menu()
         self.manage_accounts = self.menubar_application.Append(wx.ID_ANY, _(u"&Manage accounts"))
         self.updateProfile = self.menubar_application.Append(wx.ID_ANY, _("&Update profile"))
-        self.updateProfile.Enable(False)
         self.show_hide = self.menubar_application.Append(wx.ID_ANY, _(u"&Hide window"))
         self.menuitem_search = self.menubar_application.Append(wx.ID_ANY, _(u"&Search"))
         self.lists = self.menubar_application.Append(wx.ID_ANY, _(u"&Lists manager"))
