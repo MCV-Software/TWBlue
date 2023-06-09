@@ -268,6 +268,10 @@ class Handler(object):
                 'header': profile.header,
                 'avatar': profile.avatar,
                 'fields': [(field.name, html_filter(field.value)) for field in profile.fields],
+                'locked': profile.locked,
+                'bot': profile.bot,
+                # discoverable could be None, set it to False
+                'discoverable': profile.discoverable if profile.discoverable else False,
                 }
         log.debug(f"arafat {data['fields']}")
         dialog = update_profile_dialogs.UpdateProfileDialog(**data)
