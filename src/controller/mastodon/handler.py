@@ -265,10 +265,19 @@ class Handler(object):
         data = {
                 'display_name': profile.display_name,
                 'note': html_filter(profile.note),
+                'header': profile.header,
+                'avatar': profile.avatar,
+                'fields': [(field.name, html_filter(field.value)) for field in profile.fields],
                 }
+        log.debug(f"arafat {data['fields']}")
         dialog = update_profile_dialogs.UpdateProfileDialog(**data)
-        if dialog.ShowModal() != wx.ID_OK: return
+        if dialog.ShowModal() != wx.ID_OK:
+            log.debug("User canceled dialog")
+            return
         updated_data = dialog.data
+        if updated_data == data:
+            log.debug("No profile info was changed.")
+            return
         # remove data that hasn't been updated
         for key in data:
             if data[key] == updated_data[key]:
