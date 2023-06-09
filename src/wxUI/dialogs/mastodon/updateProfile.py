@@ -40,14 +40,14 @@ class UpdateProfileDialog(wx.Dialog):
 
         # create widgets
         display_name_label = wx.StaticText(panel, label=_("Display Name"))
-        self.display_name = wx.TextCtrl(panel, value=display_name, style= wx.TE_PROCESS_ENTER, size=(100, 30))
+        self.display_name = wx.TextCtrl(panel, value=display_name, style= wx.TE_PROCESS_ENTER, size=(200, 30))
         name_sizer = wx.BoxSizer(wx.HORIZONTAL)
         name_sizer.Add(display_name_label, wx.SizerFlags().Center())
         name_sizer.Add(self.display_name, wx.SizerFlags().Center())
         sizer.Add(name_sizer, wx.CENTER)
 
         bio_label = wx.StaticText(panel, label=_("Bio"))
-        self.bio = wx.TextCtrl(panel, value=note, style=wx.TE_PROCESS_ENTER | wx.TE_MULTILINE, size=(200, 30))
+        self.bio = wx.TextCtrl(panel, value=note, style=wx.TE_PROCESS_ENTER | wx.TE_MULTILINE, size=(400, 60))
         bio_sizer = wx.BoxSizer(wx.HORIZONTAL)
         bio_sizer.Add(bio_label, wx.SizerFlags().Center())
         bio_sizer.Add(self.bio, wx.SizerFlags().Center())
@@ -109,7 +109,7 @@ class UpdateProfileDialog(wx.Dialog):
             content_label = wx.StaticText(panel, label=_("Content"))
             field_sizer.Add(content_label, wx.SizerFlags().Center().Border(wx.ALL, 5))
 
-            content_textctrl = wx.TextCtrl(panel, style=wx.TE_PROCESS_ENTER | wx.TE_MULTILINE, size=(200, 30))
+            content_textctrl = wx.TextCtrl(panel, style=wx.TE_PROCESS_ENTER | wx.TE_MULTILINE, size=(400, 60))
             if i <= len(fields):
                 content_textctrl.SetValue(fields[i-1][1])
             field_sizer.Add(content_textctrl, wx.SizerFlags().Expand().Border(wx.ALL, 5))
