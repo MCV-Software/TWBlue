@@ -116,6 +116,7 @@ class Controller(object):
         # connect application events to GUI
         widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.update_profile, menuitem=self.view.updateProfile)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.search, menuitem=self.view.menuitem_search)
 #        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.list_manager, menuitem=self.view.lists)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.find, menuitem=self.view.find)
@@ -1085,3 +1086,11 @@ class Controller(object):
         """Redirects the user to the issue page on github"""
         log.debug("Redirecting the user to report an error...")
         webbrowser.open_new_tab(application.report_bugs_url)
+
+    def update_profile(self, *args):
+        """Updates the users profile"""
+        log.debug("Update profile")
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(buffer.session.type)
+        if handler:
+            handler.update_profile(buffer.session)

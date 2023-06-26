@@ -4,10 +4,13 @@ import logging
 import output
 from pubsub import pub
 from mysc import restart
+from mysc.thread_utils import call_threaded
 from wxUI.dialogs.mastodon import search as search_dialogs
 from wxUI.dialogs.mastodon import dialogs
 from wxUI.dialogs import userAliasDialogs
 from wxUI import commonMessageDialogs
+from wxUI.dialogs.mastodon import updateProfile as update_profile_dialogs
+from sessions.mastodon.utils import html_filter
 from . import userActions, settings
 
 log = logging.getLogger("controller.mastodon.handler")
@@ -20,7 +23,7 @@ class Handler(object):
         # empty names mean the item will be Disabled.
         self.menus = dict(
             # In application menu.
-            updateProfile=None,
+            updateProfile=_("Update Profile"),
             menuitem_search=_("&Search"),
             lists=None,
             manageAliases=_("Manage user aliases"),
@@ -255,3 +258,33 @@ class Handler(object):
             buffer.session.settings.write()
             output.speak(_("Alias has been set correctly for {}.").format(user))
             pub.sendMessage("alias-added")
+
+    def update_profile(self, session):
+        """Updates the users dialog"""
+        profile = session.api.me()
+        data = {
+                'display_name': profile.display_name,
+                'note': html_filter(profile.note),
+                'header': profile.header,
+                'avatar': profile.avatar,
+                'fields': [(field.name, html_filter(field.value)) for field in profile.fields],
+                'locked': profile.locked,
+                'bot': profile.bot,
+                # discoverable could be None, set it to False
+                'discoverable': profile.discoverable if profile.discoverable else False,
+                }
+        log.debug(f"arafat {data['fields']}")
+        dialog = update_profile_dialogs.UpdateProfileDialog(**data)
+        if dialog.ShowModal() != wx.ID_OK:
+            log.debug("User canceled dialog")
+            return
+        updated_data = dialog.data
+        if updated_data == data:
+            log.debug("No profile info was changed.")
+            return
+        # remove data that hasn't been updated
+        for key in data:
+            if data[key] == updated_data[key]:
+                del updated_data[key]
+        log.debug(f"Updating users profile with: {updated_data}")
+        call_threaded(session.api_call, "account_update_credentials", _("Update profile"), report_success=True, **updated_data)
