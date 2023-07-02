@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-06-25 00:56+0000\n"
+"POT-Creation-Date: 2023-07-02 00:55+0000\n"
 "PO-Revision-Date: 2022-12-20 22:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: gl\n"
@@ -131,13 +131,13 @@ msgstr "Reproducindo..."
 msgid "Stopped."
 msgstr "Detido."
 
-#: controller/mainController.py:255
+#: controller/mainController.py:256
 msgid "Ready"
 msgstr "Listo"
 
-#: controller/mainController.py:363 controller/mainController.py:644
-#: controller/mainController.py:663 controller/mainController.py:682
-#: controller/mainController.py:701
+#: controller/mainController.py:364 controller/mainController.py:645
+#: controller/mainController.py:664 controller/mainController.py:683
+#: controller/mainController.py:702
 msgid ""
 "No session is currently in focus. Focus a session with the next or "
 "previous session shortcut."
@@ -145,102 +145,102 @@ msgstr ""
 "Non hai unha sesión actualmente no foco. Enfoca unha sesión co atallo de "
 "teclado para sesión seguinte ou anterior."
 
-#: controller/mainController.py:367
+#: controller/mainController.py:368
 msgid "Empty buffer."
 msgstr "Valdeirar búffer."
 
-#: controller/mainController.py:374
+#: controller/mainController.py:375
 msgid "{0} not found."
 msgstr "{0} non atopado."
 
-#: controller/mainController.py:692 controller/mainController.py:711
+#: controller/mainController.py:693 controller/mainController.py:712
 #, python-format
 msgid "%s, %s of %s"
 msgstr "%s, %s de %s"
 
-#: controller/mainController.py:694 controller/mainController.py:713
-#: controller/mainController.py:741 controller/mainController.py:769
+#: controller/mainController.py:695 controller/mainController.py:714
+#: controller/mainController.py:742 controller/mainController.py:770
 #, python-format
 msgid "%s. Empty"
 msgstr "%s. Valeiro"
 
-#: controller/mainController.py:729 controller/mainController.py:733
-#: controller/mainController.py:757
+#: controller/mainController.py:730 controller/mainController.py:734
+#: controller/mainController.py:758
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: Esta conta non está autentificada en Twitter."
 
-#: controller/mainController.py:739 controller/mainController.py:767
+#: controller/mainController.py:740 controller/mainController.py:768
 #, python-format
 msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s de %s"
 
-#: controller/mainController.py:761
+#: controller/mainController.py:762
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: Esta conta non está autentificada en twitter."
 
-#: controller/mainController.py:893 controller/mainController.py:909
+#: controller/mainController.py:894 controller/mainController.py:910
 msgid "An error happened while trying to connect to the server. Please try later."
 msgstr ""
 "Ocorreu un erro mentres se trataba de conectar ao servidor. Por favor "
 "téntao máis tarde."
 
-#: controller/mainController.py:940
+#: controller/mainController.py:941
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "a autolectura de novos chíos está activada neste bufer"
 
-#: controller/mainController.py:943
+#: controller/mainController.py:944
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "a autolectura de novos chíos está desactivada neste buffer"
 
-#: controller/mainController.py:950
+#: controller/mainController.py:951
 msgid "Session mute on"
 msgstr "Sesión silenciada"
 
-#: controller/mainController.py:953
+#: controller/mainController.py:954
 msgid "Session mute off"
 msgstr "Silenciar Sesión desactivado"
 
-#: controller/mainController.py:962
+#: controller/mainController.py:963
 msgid "Buffer mute on"
 msgstr "silencio de buffer activo"
 
-#: controller/mainController.py:965
+#: controller/mainController.py:966
 msgid "Buffer mute off"
 msgstr "silencio de buffer inactivo"
 
-#: controller/mainController.py:982
+#: controller/mainController.py:983
 msgid "Copied"
 msgstr "Copiado"
 
-#: controller/mainController.py:1002
+#: controller/mainController.py:1003
 msgid "Unable to update this buffer."
 msgstr "Imposible actualizar este búfer."
 
-#: controller/mainController.py:1004
+#: controller/mainController.py:1005
 msgid "Updating buffer..."
 msgstr "Actualizando búfer..."
 
-#: controller/mainController.py:1007
+#: controller/mainController.py:1008
 msgid "{0} items retrieved"
 msgstr "{0} elementos recuperados"
 
-#: controller/buffers/mastodon/base.py:122 controller/mainController.py:1011
-#: controller/mastodon/handler.py:91 controller/mastodon/handler.py:192
+#: controller/buffers/mastodon/base.py:122 controller/mainController.py:1012
+#: controller/mastodon/handler.py:94 controller/mastodon/handler.py:195
 msgid "Timeline for {}"
 msgstr "Liña temporal para {0}"
 
-#: controller/buffers/mastodon/users.py:93 controller/mainController.py:1013
-#: controller/mastodon/handler.py:93 controller/mastodon/handler.py:203
+#: controller/buffers/mastodon/users.py:93 controller/mainController.py:1014
+#: controller/mastodon/handler.py:96 controller/mastodon/handler.py:206
 msgid "Followers for {}"
 msgstr "Seguidores para {}"
 
-#: controller/mainController.py:1015
+#: controller/mainController.py:1016
 msgid "Friends for {}"
 msgstr "Amigos para {}"
 
 # | msgid "Followers for {}"
-#: controller/buffers/mastodon/users.py:95 controller/mainController.py:1017
-#: controller/mastodon/handler.py:95 controller/mastodon/handler.py:214
+#: controller/buffers/mastodon/users.py:95 controller/mainController.py:1018
+#: controller/mastodon/handler.py:98 controller/mastodon/handler.py:217
 #, fuzzy
 msgid "Following for {}"
 msgstr "Seguidores para {}"
@@ -284,68 +284,68 @@ msgstr "Lista para {}"
 msgid "This action is not supported for this buffer"
 msgstr "Esta acción non se atopa soportada para este buffer"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:63
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:66
 #: controller/mastodon/settings.py:193
 msgid "Home"
 msgstr "Principal"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:65
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:68
 #: controller/mastodon/settings.py:194
 msgid "Local"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:67
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:70
 #: controller/mastodon/settings.py:195
 msgid "Federated"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:69
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:72
 #: controller/mastodon/settings.py:196
 msgid "Mentions"
 msgstr "Mencións"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:77
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:80
 #: controller/mastodon/settings.py:200
 msgid "Bookmarks"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:71
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:74
 msgid "Direct messages"
 msgstr "Mensaxes directas"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:73
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:76
 #: controller/mastodon/settings.py:198
 msgid "Sent"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:75
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:78
 #: controller/mastodon/settings.py:199
 msgid "Favorites"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:79
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:82
 #: controller/mastodon/settings.py:201
 msgid "Followers"
 msgstr "Seguidores"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:81
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:84
 #: controller/mastodon/settings.py:202
 #, fuzzy
 msgid "Following"
 msgstr "Dei&xar de seguir"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:85
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:88
 #: controller/mastodon/settings.py:203
 msgid "Blocked users"
 msgstr "Usuarios bloqueados"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:83
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:86
 #: controller/mastodon/settings.py:204
 msgid "Muted users"
 msgstr "Usuarios silenciados"
 
 # | msgid "&Location"
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:87
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:90
 #: controller/mastodon/settings.py:205
 #, fuzzy
 msgid "Notifications"
@@ -537,101 +537,111 @@ msgstr "Conversa con {0}"
 msgid "There are no more items in this buffer."
 msgstr "Non hai coordinadas neste chío"
 
-#: controller/mastodon/handler.py:24 wxUI/dialogs/mastodon/search.py:10
-#: wxUI/view.py:20
+#: controller/mastodon/handler.py:26 wxUI/dialogs/mastodon/updateProfile.py:34
+#, fuzzy
+msgid "Update Profile"
+msgstr "A&ctualizar perfil"
+
+#: controller/mastodon/handler.py:27 wxUI/dialogs/mastodon/search.py:10
+#: wxUI/view.py:19
 msgid "&Search"
 msgstr "&Procurar"
 
-#: controller/mastodon/handler.py:26 wxUI/view.py:23
+#: controller/mastodon/handler.py:29 wxUI/view.py:22
 msgid "Manage user aliases"
 msgstr ""
 
-#: controller/mastodon/handler.py:28 controller/mastodon/handler.py:52
-#: wxUI/view.py:31
+#: controller/mastodon/handler.py:31 controller/mastodon/handler.py:55
+#: wxUI/view.py:30
 msgid "&Post"
 msgstr ""
 
-#: controller/mastodon/handler.py:29 wxUI/dialogs/mastodon/menus.py:9
-#: wxUI/view.py:32
+#: controller/mastodon/handler.py:32 wxUI/dialogs/mastodon/menus.py:9
+#: wxUI/view.py:31
 msgid "Re&ply"
 msgstr "&Responder"
 
-#: controller/mastodon/handler.py:30 wxUI/dialogs/mastodon/menus.py:7
-#: wxUI/view.py:33
+#: controller/mastodon/handler.py:33 wxUI/dialogs/mastodon/menus.py:7
+#: wxUI/view.py:32
 msgid "&Boost"
 msgstr ""
 
 # | msgid "&Add to list"
-#: controller/mastodon/handler.py:31 wxUI/dialogs/mastodon/menus.py:11
-#: wxUI/view.py:34
+#: controller/mastodon/handler.py:34 wxUI/dialogs/mastodon/menus.py:11
+#: wxUI/view.py:33
 #, fuzzy
 msgid "&Add to favorites"
 msgstr "&Engadir á listaxe"
 
 # | msgid "Remove from list"
-#: controller/mastodon/handler.py:32
+#: controller/mastodon/handler.py:35
 #, fuzzy
 msgid "Remove from favorites"
 msgstr "Quitar de listaxe"
 
 # | msgid "&Show user"
-#: controller/mastodon/handler.py:33 wxUI/view.py:36
+#: controller/mastodon/handler.py:36 wxUI/view.py:35
 #, fuzzy
 msgid "&Show post"
 msgstr "&ver usuarios silenciados"
 
-#: controller/mastodon/handler.py:34 wxUI/view.py:37
+#: controller/mastodon/handler.py:37 wxUI/view.py:36
 msgid "View conversa&tion"
 msgstr "Ver conversa&ción"
 
-#: controller/mastodon/handler.py:35 wxUI/view.py:38
+#: controller/mastodon/handler.py:38 wxUI/view.py:37
 msgid "Read text in picture"
 msgstr "Ler texto en foto"
 
-#: controller/mastodon/handler.py:36 wxUI/dialogs/mastodon/menus.py:25
-#: wxUI/view.py:40
+#: controller/mastodon/handler.py:39 wxUI/dialogs/mastodon/menus.py:25
+#: wxUI/view.py:39
 msgid "&Delete"
 msgstr "&Eliminar"
 
-#: controller/mastodon/handler.py:38 wxUI/view.py:44
+#: controller/mastodon/handler.py:41 wxUI/view.py:43
 msgid "&Actions..."
 msgstr "&Accións..."
 
-#: controller/mastodon/handler.py:39 wxUI/view.py:45
+#: controller/mastodon/handler.py:42 wxUI/view.py:44
 msgid "&View timeline..."
 msgstr "&Ver principal..."
 
-#: controller/mastodon/handler.py:40 wxUI/view.py:46
+#: controller/mastodon/handler.py:43 wxUI/view.py:45
 msgid "Direct me&ssage"
 msgstr "&Mensaxe directa"
 
-#: controller/mastodon/handler.py:41 wxUI/view.py:47
+#: controller/mastodon/handler.py:44 wxUI/view.py:46
 msgid "Add a&lias"
 msgstr ""
 
-#: controller/mastodon/handler.py:88
+#: controller/mastodon/handler.py:91
 msgid "Timelines"
 msgstr "Liñas temporais"
 
-#: controller/mastodon/handler.py:100
+#: controller/mastodon/handler.py:103
 msgid "Searches"
 msgstr "Procuras"
 
-#: controller/mastodon/handler.py:124
+#: controller/mastodon/handler.py:127
 msgid "Conversation with {0}"
 msgstr "Conversa con {0}"
 
-#: controller/mastodon/handler.py:158
+#: controller/mastodon/handler.py:161
 msgid "Search for {}"
 msgstr "Procurar {0}"
 
-#: controller/mastodon/handler.py:244
+#: controller/mastodon/handler.py:247
 msgid "Add an user alias"
 msgstr ""
 
-#: controller/mastodon/handler.py:256
+#: controller/mastodon/handler.py:259
 msgid "Alias has been set correctly for {}."
 msgstr ""
+
+#: controller/mastodon/handler.py:290
+#, fuzzy
+msgid "Update profile"
+msgstr "A&ctualizar perfil"
 
 #: controller/mastodon/messages.py:90
 #, python-format
@@ -2047,11 +2057,11 @@ msgstr ""
 msgid "Warning"
 msgstr "Precaución"
 
-#: wxUI/sysTrayIcon.py:36 wxUI/view.py:26
+#: wxUI/sysTrayIcon.py:36 wxUI/view.py:25
 msgid "&Global settings"
 msgstr "Opcións &Globais"
 
-#: wxUI/sysTrayIcon.py:37 wxUI/view.py:25
+#: wxUI/sysTrayIcon.py:37 wxUI/view.py:24
 msgid "Account se&ttings"
 msgstr "&opcións de conta"
 
@@ -2059,7 +2069,7 @@ msgstr "&opcións de conta"
 msgid "&Show / hide"
 msgstr "A&Mosar / agochar"
 
-#: wxUI/sysTrayIcon.py:40 wxUI/view.py:74
+#: wxUI/sysTrayIcon.py:40 wxUI/view.py:73
 msgid "&Documentation"
 msgstr "&Documentación"
 
@@ -2079,153 +2089,153 @@ msgstr "&Xestionar contas"
 msgid "&Update profile"
 msgstr "A&ctualizar perfil"
 
-#: wxUI/view.py:19
+#: wxUI/view.py:18
 msgid "&Hide window"
 msgstr "Agochar &xanela"
 
-#: wxUI/view.py:21
+#: wxUI/view.py:20
 msgid "&Lists manager"
 msgstr "&Xestor de listaxes"
 
-#: wxUI/view.py:24
+#: wxUI/view.py:23
 msgid "&Edit keystrokes"
 msgstr "Editar combinacións de &teclas"
 
-#: wxUI/view.py:27
+#: wxUI/view.py:26
 msgid "E&xit"
 msgstr "&Saír"
 
 # | msgid "Remove from list"
-#: wxUI/view.py:35
+#: wxUI/view.py:34
 #, fuzzy
 msgid "&Remove from favorites"
 msgstr "Quitar de listaxe"
 
-#: wxUI/view.py:48
+#: wxUI/view.py:47
 msgid "&Add to list"
 msgstr "&Engadir á listaxe"
 
-#: wxUI/view.py:49
+#: wxUI/view.py:48
 msgid "R&emove from list"
 msgstr "&Quitar de listaxe"
 
-#: wxUI/view.py:50
+#: wxUI/view.py:49
 msgid "Show user &profile"
 msgstr "Ver &perfil do usuario"
 
-#: wxUI/view.py:51
+#: wxUI/view.py:50
 msgid "V&iew likes"
 msgstr "&Ver marcados como gústame"
 
-#: wxUI/view.py:55
+#: wxUI/view.py:54
 msgid "&Update buffer"
 msgstr "&Actualizar buffer"
 
-#: wxUI/view.py:56
+#: wxUI/view.py:55
 msgid "New &trending topics buffer..."
 msgstr "Novo búfer &tendencias..."
 
-#: wxUI/view.py:57
+#: wxUI/view.py:56
 msgid "Create a &filter"
 msgstr "Crear un &filtro"
 
-#: wxUI/view.py:58
+#: wxUI/view.py:57
 msgid "&Manage filters"
 msgstr "&Xestionar filtros"
 
-#: wxUI/view.py:59
+#: wxUI/view.py:58
 msgid "Find a string in the currently focused buffer..."
 msgstr "Atopar unha cadea no búfer enfocado actualmente..."
 
-#: wxUI/view.py:60
+#: wxUI/view.py:59
 msgid "&Load previous items"
 msgstr "&Cargar elementos anteriores"
 
-#: wxUI/dialogs/mastodon/userActions.py:21 wxUI/view.py:62
+#: wxUI/dialogs/mastodon/userActions.py:21 wxUI/view.py:61
 msgid "&Mute"
 msgstr "si&lenciar"
 
-#: wxUI/view.py:63
+#: wxUI/view.py:62
 msgid "&Autoread"
 msgstr "&Autoleer"
 
-#: wxUI/view.py:64
+#: wxUI/view.py:63
 msgid "&Clear buffer"
 msgstr "&Limpar buffer"
 
-#: wxUI/view.py:65
+#: wxUI/view.py:64
 msgid "&Destroy"
 msgstr "&Destruir"
 
-#: wxUI/view.py:69
+#: wxUI/view.py:68
 msgid "&Seek back 5 seconds"
 msgstr "&buscar 5 segudnos cara atrás"
 
-#: wxUI/view.py:70
+#: wxUI/view.py:69
 msgid "&Seek forward 5 seconds"
 msgstr "&Buscar 5 segundos cara adiante"
 
-#: wxUI/view.py:75
+#: wxUI/view.py:74
 msgid "Sounds &tutorial"
 msgstr "tutorial de &sons"
 
-#: wxUI/view.py:76
+#: wxUI/view.py:75
 msgid "&What's new in this version?"
 msgstr "Qué hai de novo nesta &versión?"
 
-#: wxUI/view.py:77
+#: wxUI/view.py:76
 msgid "&Check for updates"
 msgstr "Comprobar &actualizacións"
 
-#: wxUI/view.py:78
+#: wxUI/view.py:77
 msgid "&Report an error"
 msgstr "Reportar un &erro"
 
-#: wxUI/view.py:79
+#: wxUI/view.py:78
 msgid "{0}'s &website"
 msgstr "Sitio &web do {0}"
 
-#: wxUI/view.py:80
+#: wxUI/view.py:79
 msgid "Get soundpacks for TWBlue"
 msgstr "Obter paquetes de sons para o TWBlue"
 
-#: wxUI/view.py:81
+#: wxUI/view.py:80
 msgid "About &{0}"
 msgstr "Acerca do &{0}"
 
-#: wxUI/view.py:84
+#: wxUI/view.py:83
 msgid "&Application"
 msgstr "&Aplicación"
 
-#: wxUI/view.py:85
+#: wxUI/view.py:84
 msgid "&Tweet"
 msgstr "&Chío"
 
-#: wxUI/dialogs/mastodon/userActions.py:10 wxUI/view.py:86
+#: wxUI/dialogs/mastodon/userActions.py:10 wxUI/view.py:85
 msgid "&User"
 msgstr "&Usuario"
 
-#: wxUI/view.py:87
+#: wxUI/view.py:86
 msgid "&Buffer"
 msgstr "&Buffer"
 
-#: wxUI/view.py:88
+#: wxUI/view.py:87
 msgid "&Audio"
 msgstr "&Audio"
 
-#: wxUI/view.py:89
+#: wxUI/view.py:88
 msgid "&Help"
 msgstr "A&xuda"
 
-#: wxUI/view.py:175
+#: wxUI/view.py:174
 msgid "Address"
 msgstr "Enderezo"
 
-#: wxUI/view.py:206
+#: wxUI/view.py:205
 msgid "Your {0} version is up to date"
 msgstr "A túa versión {0} está ó día"
 
-#: wxUI/view.py:206
+#: wxUI/view.py:205
 msgid "Update"
 msgstr "Actualización"
 
@@ -3114,15 +3124,86 @@ msgstr "&Procurar"
 msgid "Posts"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/search.py:24 wxUI/dialogs/mastodon/userActions.py:36
+#: wxUI/dialogs/mastodon/search.py:24
+#: wxUI/dialogs/mastodon/updateProfile.py:129
+#: wxUI/dialogs/mastodon/userActions.py:36
 #: wxUI/dialogs/mastodon/userTimeline.py:30
 msgid "&OK"
 msgstr "&Aceptar"
 
-#: wxUI/dialogs/mastodon/search.py:26 wxUI/dialogs/mastodon/userActions.py:38
+#: wxUI/dialogs/mastodon/search.py:26
+#: wxUI/dialogs/mastodon/updateProfile.py:131
+#: wxUI/dialogs/mastodon/userActions.py:38
 #: wxUI/dialogs/mastodon/userTimeline.py:32
 msgid "&Close"
 msgstr "&Pechar"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:42
+msgid "Display Name"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:49
+msgid "Bio"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:57
+#, fuzzy
+msgid "Header"
+msgstr "Agochar"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:70
+msgid "Change header"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:78
+msgid "Avatar"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:91
+msgid "Change avatar"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:101
+msgid "Field {}: Label"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:109
+#, fuzzy
+msgid "Content"
+msgstr "contexto"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:119
+#, fuzzy
+msgid "Private account"
+msgstr "Quitar conta"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:121
+#, fuzzy
+msgid "Bot account"
+msgstr "Conta"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:123
+#, fuzzy
+msgid "Discoverable account"
+msgstr "Quitar conta"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:166
+msgid "Select header image - max 2MB"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:171
+#: wxUI/dialogs/mastodon/updateProfile.py:193
+msgid "The selected file is larger than 2MB. Do you want to select another file?"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:172
+#: wxUI/dialogs/mastodon/updateProfile.py:194
+msgid "File more than 2MB"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:188
+msgid "Select avatar image - max 2MB"
+msgstr ""
 
 #: wxUI/dialogs/mastodon/userActions.py:19
 msgid "&Follow"
