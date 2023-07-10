@@ -153,7 +153,7 @@ class Handler(object):
                 if term not in session.settings["other_buffers"]["post_searches"]:
                     session.settings["other_buffers"]["post_searches"].append(term)
                     session.settings.write()
-#                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=controller.view.nb, function="search_tweets", name="%s-searchterm" % (term,), sessionObject=session, account=session.get_name(), bufferType="searchPanel", sound="search_updated.ogg", q=term, include_ext_alt_text=True, tweet_mode="extended"))
+                    pub.sendMessage("createBuffer", buffer_type="SearchBuffer", session_type=session.type, buffer_title=_("Search for {}").format(term), parent_tab=searches_position, start=True, kwargs=dict(parent=controller.view.nb, compose_func="compose_post", function="search", name="%s-searchterm" % (term,), sessionObject=session, account=session.get_name(), sound="search_updated.ogg", q=term, result_type="statuses"))
                 else:
                     log.error("A buffer for the %s search term is already created. You can't create a duplicate buffer." % (term,))
                     return
@@ -273,7 +273,7 @@ class Handler(object):
                 # discoverable could be None, set it to False
                 'discoverable': profile.discoverable if profile.discoverable else False,
                 }
-        log.debug(f"arafat {data['fields']}")
+        log.debug(f"Received data_ {data['fields']}")
         dialog = update_profile_dialogs.UpdateProfileDialog(**data)
         if dialog.ShowModal() != wx.ID_OK:
             log.debug("User canceled dialog")
