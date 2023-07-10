@@ -40,7 +40,7 @@ class BaseBuffer(base.Buffer):
         self.buffer.account = account
         self.bind_events()
         self.sound = sound
-        if "-timeline" in self.name or "-followers" in self.name or "-following" in self.name:
+        if "-timeline" in self.name or "-followers" in self.name or "-following" in self.name or "searchterm" in self.name:
             self.finished_timeline = False
 
     def create_buffer(self, parent, name):
