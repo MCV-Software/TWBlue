@@ -2,6 +2,13 @@ TWBlue Changelog
 
 ## changes in this version
 
+* Mastodon:
+    * Implemented update profile dialog. ([#547](https://github.com/MCV-Software/TWBlue/pull/547))
+    * Added possibility to vote in polls.
+    * Added posts search. Take into account that Mastodon instances should be configured with full text search enabled. Search for posts only include posts the logged-in user has interacted with. ([#541](https://github.com/MCV-Software/TWBlue/pull/541))
+
+## changes in version 2023.4.13
+
 During the development of the current TWBlue version, Twitter has cut out access from their API, meaning TWBlue will no longer be able to communicate with Twitter. This is the end of the support of TWBlue for Twitter sessions. No new sessions will be available for this social network, and we will focus in adding more features to our Mastodon support and writing support for more websites and networks. Thank you everyone who have been using TWBlue to manage your Twitter accounts since 2013.
 
 * TWBlue should be able to display variables within templates (for example, now it is possible to send a template inside a post's text). Before, it was removing $variables so it was difficult to show how to edit templates from the client. ([#515](https://github.com/MCV-Software/TWBlue/issues/515))
@@ -15,7 +22,7 @@ During the development of the current TWBlue version, Twitter has cut out access
     * Fixed an error on mentions buffer that was making TWBlue unable to load posts if there were mentions from a blocked or deleted account.
     * Fixed an error when loading timelines during startup where TWBlue was unable to change the buffer title properly.
 
-## Changes on version 2023.2.6
+## Changes on version 2023.2.8
 
 This release focuses on fixing some important bugs that have been reported in the previous version. Particularly, TWBlue should be able to authorize on some instances that have blocked the Mastodon.py library, and should be able to avoid repeatedly calling some endpoints that cause excessive connections for some instances. Additionally, it is possible to disable Streaming from the account options in Mastodon. This can be especially useful if TWBlue keeps making a lot of API calls for some instances.
 
