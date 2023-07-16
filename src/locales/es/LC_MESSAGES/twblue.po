@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.84\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-07-09 00:55+0000\n"
+"POT-Creation-Date: 2023-07-16 00:55+0000\n"
 "PO-Revision-Date: 2023-01-29 18:48+0000\n"
 "Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
 "Language: es\n"
@@ -261,6 +261,7 @@ msgstr "Editar alias para {}"
 
 #: controller/buffers/base/base.py:91
 #: controller/buffers/mastodon/conversations.py:231
+#: controller/buffers/mastodon/search.py:80
 msgid "This action is not supported for this buffer"
 msgstr "Esta acción no se encuentra soportada para este buffer"
 
@@ -569,13 +570,14 @@ msgstr "Líneas temporales"
 msgid "Searches"
 msgstr "Búsquedas"
 
-#: controller/mastodon/handler.py:127
-msgid "Conversation with {0}"
-msgstr "Conversación con {0}"
-
+#: controller/mastodon/handler.py:106 controller/mastodon/handler.py:156
 #: controller/mastodon/handler.py:161
 msgid "Search for {}"
 msgstr "Buscar {0}"
+
+#: controller/mastodon/handler.py:127
+msgid "Conversation with {0}"
+msgstr "Conversación con {0}"
 
 #: controller/mastodon/handler.py:247
 msgid "Add an user alias"

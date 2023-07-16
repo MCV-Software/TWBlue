@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-07-09 00:55+0000\n"
+"POT-Creation-Date: 2023-07-16 00:55+0000\n"
 "PO-Revision-Date: 2023-05-05 02:45+0000\n"
 "Last-Translator: Riku <riku@riku22.net>\n"
 "Language: ja\n"
@@ -258,6 +258,7 @@ msgstr "{}のエイリアスを編集"
 
 #: controller/buffers/base/base.py:91
 #: controller/buffers/mastodon/conversations.py:231
+#: controller/buffers/mastodon/search.py:80
 msgid "This action is not supported for this buffer"
 msgstr "この動作は、現在のバッファではサポートされていません"
 
@@ -564,13 +565,14 @@ msgstr "タイムライン"
 msgid "Searches"
 msgstr "検索"
 
-#: controller/mastodon/handler.py:127
-msgid "Conversation with {0}"
-msgstr "{0}との会話"
-
+#: controller/mastodon/handler.py:106 controller/mastodon/handler.py:156
 #: controller/mastodon/handler.py:161
 msgid "Search for {}"
 msgstr "{} の検索結果"
+
+#: controller/mastodon/handler.py:127
+msgid "Conversation with {0}"
+msgstr "{0}との会話"
 
 #: controller/mastodon/handler.py:247
 msgid "Add an user alias"

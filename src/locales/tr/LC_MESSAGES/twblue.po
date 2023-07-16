@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-07-09 00:55+0000\n"
+"POT-Creation-Date: 2023-07-16 00:55+0000\n"
 "PO-Revision-Date: 2022-12-20 22:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: tr\n"
@@ -281,6 +281,7 @@ msgstr "{} için liste"
 
 #: controller/buffers/base/base.py:91
 #: controller/buffers/mastodon/conversations.py:231
+#: controller/buffers/mastodon/search.py:80
 msgid "This action is not supported for this buffer"
 msgstr "Bu eylem şu anki buffer için geçerli değil"
 
@@ -622,13 +623,14 @@ msgstr "çizelgeler"
 msgid "Searches"
 msgstr "aramalar"
 
-#: controller/mastodon/handler.py:127
-msgid "Conversation with {0}"
-msgstr "{0} ile konuşma"
-
+#: controller/mastodon/handler.py:106 controller/mastodon/handler.py:156
 #: controller/mastodon/handler.py:161
 msgid "Search for {}"
 msgstr "{} kişisi için arama"
+
+#: controller/mastodon/handler.py:127
+msgid "Conversation with {0}"
+msgstr "{0} ile konuşma"
 
 #: controller/mastodon/handler.py:247
 msgid "Add an user alias"

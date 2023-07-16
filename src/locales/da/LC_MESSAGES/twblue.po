@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-07-09 00:55+0000\n"
+"POT-Creation-Date: 2023-07-16 00:55+0000\n"
 "PO-Revision-Date: 2022-12-20 22:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: da\n"
@@ -285,6 +285,7 @@ msgstr "Liste for {}"
 
 #: controller/buffers/base/base.py:91
 #: controller/buffers/mastodon/conversations.py:231
+#: controller/buffers/mastodon/search.py:80
 msgid "This action is not supported for this buffer"
 msgstr "Denne handling understøttes ikke for denne buffer"
 
@@ -626,13 +627,14 @@ msgstr "Tidslinjer"
 msgid "Searches"
 msgstr "Søgninger"
 
-#: controller/mastodon/handler.py:127
-msgid "Conversation with {0}"
-msgstr "Samtale med {0}"
-
+#: controller/mastodon/handler.py:106 controller/mastodon/handler.py:156
 #: controller/mastodon/handler.py:161
 msgid "Search for {}"
 msgstr "Søg efter {}"
+
+#: controller/mastodon/handler.py:127
+msgid "Conversation with {0}"
+msgstr "Samtale med {0}"
 
 #: controller/mastodon/handler.py:247
 msgid "Add an user alias"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-07-09 00:55+0000\n"
+"POT-Creation-Date: 2023-07-16 00:55+0000\n"
 "PO-Revision-Date: 2022-12-20 22:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: hu\n"
@@ -285,6 +285,7 @@ msgstr "{} listája"
 
 #: controller/buffers/base/base.py:91
 #: controller/buffers/mastodon/conversations.py:231
+#: controller/buffers/mastodon/search.py:80
 msgid "This action is not supported for this buffer"
 msgstr "Ez a művelet nem támogatott ebben a bufferben"
 
@@ -624,13 +625,14 @@ msgstr "Idővonalak"
 msgid "Searches"
 msgstr "Keresések"
 
-#: controller/mastodon/handler.py:127
-msgid "Conversation with {0}"
-msgstr "Beszélgetés {0} nevű személlyel"
-
+#: controller/mastodon/handler.py:106 controller/mastodon/handler.py:156
 #: controller/mastodon/handler.py:161
 msgid "Search for {}"
 msgstr "{} keresése"
+
+#: controller/mastodon/handler.py:127
+msgid "Conversation with {0}"
+msgstr "Beszélgetés {0} nevű személlyel"
 
 #: controller/mastodon/handler.py:247
 msgid "Add an user alias"
