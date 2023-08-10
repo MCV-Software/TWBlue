@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-def _(s):
-    return s
 """Wx dialogs for showing a user's profile."""
 
-import wx
-import os
-import requests
 from io import BytesIO
+import os
 from typing import Tuple
+import requests
+import wx
+
+def _(s):
+    return s
 
 
 def selectUserDialog(users: list) -> tuple:
@@ -16,7 +17,13 @@ def selectUserDialog(users: list) -> tuple:
         return users[0]
     dlg = wx.Dialog(None, title=_("Select user"))
     label = wx.StaticText(dlg, label="Select a user: ")
-    choice = wx.Choice(dlg, choices=[f"{name}: @{username}" for name, username, id in users])
+    choiceList = []
+    for user in users:
+        if len(user) == 3:  # (display_name, username, id)
+            choiceList.append(f"{user[0]}: @{user[1]}")
+        else:  # (acct, id)
+            choiceList.append(f"{user[0]}")
+    choice = wx.Choice(dlg, choices=choiceList)
     ok = wx.Button(dlg, wx.ID_OK, _("OK"))
     ok.SetDefault()
     cancel = wx.Button(dlg, wx.ID_CANCEL, _("Cancel"))
@@ -30,7 +37,7 @@ def selectUserDialog(users: list) -> tuple:
     sizer.Add(cancel, wx.SizerFlags().Center())
 
     if dlg.ShowModal() == wx.ID_CANCEL:
-        return
+        return ()
     # return the selected user
     return users[choice.GetSelection()]
 
@@ -56,7 +63,7 @@ class ShowUserProfile(wx.Dialog):
         """Initialize update profile dialog
         Parameters:
         - display_name: The user's display name to show in the display name field
-        - username: The user's username
+        - url: The user's url
         - note: The users bio to show in the bio field
         - header: the users header pic link
         - avatar: The users avatar pic link
@@ -73,10 +80,10 @@ class ShowUserProfile(wx.Dialog):
         sizer.Add(nameLabel, wx.SizerFlags().Center())
         sizer.Add(name, wx.SizerFlags().Center())
 
-        usernameLabel = wx.StaticText(self.panel, label=_("Username: "))
-        username = self.createTextCtrl(username, size=(200, 30))
-        sizer.Add(usernameLabel, wx.SizerFlags().Center())
-        sizer.Add(username, wx.SizerFlags().Center())
+        urlLabel = wx.StaticText(self.panel, label=_("URL: "))
+        url = self.createTextCtrl(url, size=(200, 30))
+        sizer.Add(urlLabel, wx.SizerFlags().Center())
+        sizer.Add(url, wx.SizerFlags().Center())
 
         bioLabel = wx.StaticText(self.panel, label=_("Bio: "))
         bio = self.createTextCtrl(note, (400, 60))

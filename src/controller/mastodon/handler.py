@@ -296,16 +296,20 @@ class Handler(object):
         if not hasattr(buffer, 'get_item'):
             return  # Tell user?
         item = buffer.get_item()
+        if not item:
+            return  # empty buffer
 
-        if hasattr(item, 'username'):
+        holdUser = item.get('account')
+        if item.get('username'):
             # item is an account dict
             users = [(item.display_name, item.username, item.id)]
-        elif hasattr(item, 'mentions'):
+        elif item.get('mentions'):
             # statuse
             if item.reblog:
                 item = item.reblog
-            users = [(user.display_name, user.username, user.id) for user in item.mentions]
+            users = [(user.acct, user.id) for user in item.mentions]
             users.insert(0, (item.account.display_name, item.account.username, item.account.id))
+            holdUser = item.account
         elif hasattr(item, 'account'):
             # Notifications
             users = [(item.account.display_name, item.account.username, item.account.id)]
@@ -313,10 +317,17 @@ class Handler(object):
             dialogs.no_user()
             return
 
-        users = list(set(users))
-        selectedUser = showUserProfile.selectUserDialog(users)
-        log.debug(f"Selected user = {selectedUser}")
-        user = buffer.session.api.account(selectedUser[2])
+        if len(users) == 1:
+            user = holdUser
+        else:
+            users = list(set(users))
+            selectedUser = showUserProfile.selectUserDialog(users)
+            if not selectedUser:
+                return  # Canceled selection
+            elif selectedUser[-1] == holdUser.id:
+                user = holdUser
+            else:
+                user = buffer.session.api.account(selectedUser[-1])
         dlg = showUserProfile.ShowUserProfile(
                 user.display_name, user.url, html_filter(user.note), user.header, user.avatar,
                 [(field.name, html_filter(field.value)) for field in user.fields], False, False, False)
