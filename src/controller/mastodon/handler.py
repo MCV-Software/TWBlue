@@ -10,6 +10,7 @@ from wxUI.dialogs.mastodon import dialogs
 from wxUI.dialogs import userAliasDialogs
 from wxUI import commonMessageDialogs
 from wxUI.dialogs.mastodon import updateProfile as update_profile_dialogs
+from wxUI.dialogs.mastodon import showUserProfile
 from sessions.mastodon.utils import html_filter
 from . import userActions, settings
 
@@ -44,7 +45,7 @@ class Handler(object):
             addAlias=_("Add a&lias"),
             addToList=None,
             removeFromList=None,
-            details=None,
+            details=_("Show user profile"),
             favs=None,
             # In buffer Menu.
             trends=None,
@@ -288,3 +289,35 @@ class Handler(object):
                 del updated_data[key]
         log.debug(f"Updating users profile with: {updated_data}")
         call_threaded(session.api_call, "account_update_credentials", _("Update profile"), report_success=True, **updated_data)
+
+    def showUserProfile(self, buffer):
+        """Displays user profile in a dialog."""
+        log.debug("Scraping for users in handler")
+        if not hasattr(buffer, 'get_item'):
+            return  # Tell user?
+        item = buffer.get_item()
+
+        if hasattr(item, 'username'):
+            # item is an account dict
+            users = [(item.display_name, item.username, item.id)]
+        elif hasattr(item, 'mentions'):
+            # statuse
+            if item.reblog:
+                item = item.reblog
+            users = [(user.display_name, user.username, user.id) for user in item.mentions]
+            users.insert(0, (item.account.display_name, item.account.username, item.account.id))
+        elif hasattr(item, 'account'):
+            # Notifications
+            users = [(item.account.display_name, item.account.username, item.account.id)]
+        else:
+            dialogs.no_user()
+            return
+
+        users = list(set(users))
+        selectedUser = showUserProfile.selectUserDialog(users)
+        log.debug(f"Selected user = {selectedUser}")
+        user = buffer.session.api.account(selectedUser[2])
+        dlg = showUserProfile.ShowUserProfile(
+                user.display_name, user.url, html_filter(user.note), user.header, user.avatar,
+                [(field.name, html_filter(field.value)) for field in user.fields], False, False, False)
+        dlg.ShowModal()

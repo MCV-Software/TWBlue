@@ -53,3 +53,10 @@ def no_following():
     dlg = wx.MessageDialog(None, _("This user is not following anyone. {0} can't create a timeline.").format(application.name), _(u"Error"), wx.ICON_ERROR)
     dlg.ShowModal()
     dlg.Destroy()
+
+    dlg.Destroy()
+
+def no_user():
+    dlg = wx.MessageDialog(None, _("The focused item has no user in it. {} ca't open a user profile").format(application.name), _(u"Error"), wx.ICON_ERROR)
+    dlg.ShowModal()
+    dlg.Destroy()
