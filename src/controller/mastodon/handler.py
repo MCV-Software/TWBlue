@@ -291,7 +291,8 @@ class Handler(object):
         call_threaded(session.api_call, "account_update_credentials", _("Update profile"), report_success=True, **updated_data)
 
     def showUserProfile(self, buffer):
-        """Displays user profile in a dialog."""
+        """Displays user profile in a dialog.
+        This works as long as the focused item hass a 'account' key."""
         log.debug("Scraping for users in handler")
         if not hasattr(buffer, 'get_item'):
             return  # Tell user?
@@ -300,20 +301,15 @@ class Handler(object):
             return  # empty buffer
 
         holdUser = item.get('account')
-        if item.get('username'):
-            # item is an account dict
-            users = [(item.display_name, item.username, item.id)]
-        elif item.get('mentions'):
-            # statuse
+        users = [holdUser]
+        if item.get('mentions'):
+            # mentions in statuses
             if item.reblog:
                 item = item.reblog
             users = [(user.acct, user.id) for user in item.mentions]
             users.insert(0, (item.account.display_name, item.account.username, item.account.id))
             holdUser = item.account
-        elif hasattr(item, 'account'):
-            # Notifications
-            users = [(item.account.display_name, item.account.username, item.account.id)]
-        else:
+        elif not holdUser:
             dialogs.no_user()
             return
 
@@ -326,9 +322,10 @@ class Handler(object):
                 return  # Canceled selection
             elif selectedUser[-1] == holdUser.id:
                 user = holdUser
-            else:
+            else:  # We don't have this user's dictionary, get it!
                 user = buffer.session.api.account(selectedUser[-1])
         dlg = showUserProfile.ShowUserProfile(
-                user.display_name, user.url, html_filter(user.note), user.header, user.avatar,
-                [(field.name, html_filter(field.value)) for field in user.fields], False, False, False)
+                user.display_name, user.url, user.created_at, html_filter(user.note), user.header, user.avatar,
+                [(field.name, html_filter(field.value)) for field in user.fields], user.locked, user.bot, user.discoverable
+                )
         dlg.ShowModal()

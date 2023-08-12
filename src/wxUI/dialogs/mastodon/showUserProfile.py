@@ -2,7 +2,6 @@
 """Wx dialogs for showing a user's profile."""
 
 from io import BytesIO
-import os
 from typing import Tuple
 import requests
 import wx
@@ -59,7 +58,7 @@ class ShowUserProfile(wx.Dialog):
     ```
     """
 
-    def __init__(self, display_name: str, url: str, note: str, header: str, avatar: str, fields: list, locked: bool, bot: bool, discoverable: bool):
+    def __init__(self, display_name: str, url: str, created_at, note: str, header: str, avatar: str, fields: list, locked: bool, bot: bool, discoverable: bool):
         """Initialize update profile dialog
         Parameters:
         - display_name: The user's display name to show in the display name field
@@ -71,24 +70,29 @@ class ShowUserProfile(wx.Dialog):
         super().__init__(parent=None)
         self.SetTitle(_("{}'s Profile").format(display_name))
         self.panel = wx.Panel(self)
-        wrapper = wx.BoxSizer(wx.VERTICAL)
-        sizer = wx.GridSizer(2, 11, 5, 5)
+        wrapperSizer = wx.BoxSizer(wx.VERTICAL)
+        topSizer = wx.GridSizer(2, 10, 5, 5)
 
         # create widgets
         nameLabel = wx.StaticText(self.panel, label=_("Name: "))
         name = self.createTextCtrl(display_name, size=(200, 30))
-        sizer.Add(nameLabel, wx.SizerFlags().Center())
-        sizer.Add(name, wx.SizerFlags().Center())
+        topSizer.Add(nameLabel, wx.SizerFlags().Center())
+        topSizer.Add(name, wx.SizerFlags().Center())
 
         urlLabel = wx.StaticText(self.panel, label=_("URL: "))
         url = self.createTextCtrl(url, size=(200, 30))
-        sizer.Add(urlLabel, wx.SizerFlags().Center())
-        sizer.Add(url, wx.SizerFlags().Center())
+        topSizer.Add(urlLabel, wx.SizerFlags().Center())
+        topSizer.Add(url, wx.SizerFlags().Center())
+
+        joinLabel = wx.StaticText(self.panel, label=_("Joined at: "))
+        joinText = self.createTextCtrl(created_at.strftime('%d %B, %Y'), (80, 30))
+        topSizer.Add(joinLabel, wx.SizerFlags().Center())
+        topSizer.Add(joinText, wx.SizerFlags().Center())
 
         bioLabel = wx.StaticText(self.panel, label=_("Bio: "))
         bio = self.createTextCtrl(note, (400, 60))
-        sizer.Add(bioLabel, wx.SizerFlags().Center())
-        sizer.Add(bio, wx.SizerFlags().Center())
+        topSizer.Add(bioLabel, wx.SizerFlags().Center())
+        topSizer.Add(bio, wx.SizerFlags().Center())
 
         # header
         headerLabel = wx.StaticText(self.panel, label=_("Header: "))
@@ -104,11 +108,11 @@ class ShowUserProfile(wx.Dialog):
             headerImage = wx.StaticBitmap(self.panel, bitmap=image.ConvertToBitmap())
 
         headerImage.AcceptsFocusFromKeyboard = returnTrue
-        sizer.Add(headerLabel, wx.SizerFlags().Center())
-        sizer.Add(headerImage, wx.SizerFlags().Center())
+        topSizer.Add(headerLabel, wx.SizerFlags().Center())
+        topSizer.Add(headerImage, wx.SizerFlags().Center())
 
         # avatar
-        avatarLabel = wx.StaticText(self.panel, label=_("Avatar"))
+        avatarLabel = wx.StaticText(self.panel, label=_("Avatar: "))
         try:
             response = requests.get(avatar)
         except requests.exceptions.RequestException:
@@ -121,32 +125,59 @@ class ShowUserProfile(wx.Dialog):
             avatarImage = wx.StaticBitmap(self.panel, bitmap=image.ConvertToBitmap())
 
         avatarImage.AcceptsFocusFromKeyboard = returnTrue
-        sizer.Add(avatarLabel, wx.SizerFlags().Center())
-        sizer.Add(avatarImage, wx.SizerFlags().Center())
+        topSizer.Add(avatarLabel, wx.SizerFlags().Center())
+        topSizer.Add(avatarImage, wx.SizerFlags().Center())
 
         self.fields = []
         for num, (label, content) in enumerate(fields):
             labelSizer = wx.BoxSizer(wx.HORIZONTAL)
-            labelLabel = wx.StaticText(self.panel, label=_("Field {} - Label: ").format(num))
+            labelLabel = wx.StaticText(self.panel, label=_("Field {} - Label: ").format(num + 1))
             labelSizer.Add(labelLabel, wx.SizerFlags().Center().Border(wx.ALL, 5))
             labelText = self.createTextCtrl(label, (230, 30), True)
             labelSizer.Add(labelText, wx.SizerFlags().Expand().Border(wx.ALL, 5))
-            sizer.Add(labelSizer, 0, wx.CENTER)
+            topSizer.Add(labelSizer, 0, wx.CENTER)
 
             contentSizer = wx.BoxSizer(wx.HORIZONTAL)
             contentLabel = wx.StaticText(self.panel, label=_("Content: "))
             contentSizer.Add(contentLabel, wx.SizerFlags().Center())
             contentText = self.createTextCtrl(content, (400, 60), True)
             contentSizer.Add(contentText, wx.SizerFlags().Center())
-            sizer.Add(contentSizer, 0, wx.CENTER | wx.LEFT, 10)
+            topSizer.Add(contentSizer, 0, wx.CENTER | wx.LEFT, 10)
+
+        # 3 X 2 grid sizer
+        bottomSizer = wx.GridSizer(3, 2, 10, 5)
+        bullSwitch = {True: _('Yes'), False: _('No'), None: _('No')}
+        privateSizer = wx.BoxSizer(wx.HORIZONTAL)
+        privateLabel = wx.StaticText(self.panel, label=_("Private account: "))
+        private = self.createTextCtrl(bullSwitch[locked], (30, 30))
+        privateSizer.Add(privateLabel, wx.SizerFlags().Center())
+        privateSizer.Add(private, wx.SizerFlags().Center())
+        bottomSizer.Add(privateSizer, 0, wx.ALL | wx.CENTER)
+
+
+        botSizer = wx.BoxSizer(wx.HORIZONTAL)
+        botLabel = wx.StaticText(self.panel, label=_("Bot account: "))
+        botText = self.createTextCtrl(bullSwitch[bot], (30, 30))
+        botSizer.Add(botLabel, wx.SizerFlags().Center())
+        botSizer.Add(botText, wx.SizerFlags().Center())
+        bottomSizer.Add(botSizer, 0, wx.ALL | wx.CENTER)
+
+        discoverSizer = wx.BoxSizer(wx.HORIZONTAL)
+        discoverLabel = wx.StaticText(self.panel, label=_("Discoverable account: "))
+        discoverText = self.createTextCtrl(bullSwitch[discoverable], (30, 30))
+        discoverSizer.Add(discoverLabel, wx.SizerFlags().Center())
+        discoverSizer.Add(discoverText, wx.SizerFlags().Center())
+        bottomSizer.Add(discoverSizer, 0, wx.ALL | wx.CENTER)
+
 
         close = wx.Button(self.panel, wx.ID_CLOSE, _("Close"))
         self.SetEscapeId(close.GetId())
         close.SetDefault()
-        sizer.Add(close, wx.SizerFlags().Center())
-        wrapper.Add(sizer, 0, wx.CENTER)  # For padding
-        self.panel.SetSizerAndFit(wrapper)
-        sizer.Fit(self)
+        wrapperSizer.Add(topSizer, 0, wx.CENTER)
+        wrapperSizer.Add(bottomSizer, 0, wx.CENTER)
+        wrapperSizer.Add(close, wx.SizerFlags().Center())
+        self.panel.SetSizerAndFit(wrapperSizer)
+        topSizer.Fit(self)
         self.Center()
 
 
