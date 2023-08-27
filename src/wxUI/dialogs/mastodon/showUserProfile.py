@@ -2,9 +2,13 @@
 """Wx dialogs for showing a user's profile."""
 
 from io import BytesIO
+from pubsub import pub
 from typing import Tuple
 import requests
 import wx
+
+from sessions.mastodon.utils import html_filter
+
 
 def _(s):
     return s
@@ -58,46 +62,47 @@ class ShowUserProfile(wx.Dialog):
     ```
     """
 
-    def __init__(self, display_name: str, url: str, created_at, note: str, header: str, avatar: str, fields: list, locked: bool, bot: bool, discoverable: bool):
+    def __init__(self, user):
         """Initialize update profile dialog
         Parameters:
-        - display_name: The user's display name to show in the display name field
-        - url: The user's url
-        - note: The users bio to show in the bio field
-        - header: the users header pic link
-        - avatar: The users avatar pic link
+        - user: user dictionary
         """
         super().__init__(parent=None)
-        self.SetTitle(_("{}'s Profile").format(display_name))
+        self.user = user
+        self.SetTitle(_("{}'s Profile").format(user.display_name))
         self.panel = wx.Panel(self)
         wrapperSizer = wx.BoxSizer(wx.VERTICAL)
-        topSizer = wx.GridSizer(2, 10, 5, 5)
+        mainSizer = wx.GridSizer(12, 2, 5, 5)
 
         # create widgets
         nameLabel = wx.StaticText(self.panel, label=_("Name: "))
-        name = self.createTextCtrl(display_name, size=(200, 30))
-        topSizer.Add(nameLabel, wx.SizerFlags().Center())
-        topSizer.Add(name, wx.SizerFlags().Center())
+        name = self.createTextCtrl(user.display_name, size=(200, 30))
+        mainSizer.Add(nameLabel, wx.SizerFlags().Center())
+        mainSizer.Add(name, wx.SizerFlags().Center())
 
         urlLabel = wx.StaticText(self.panel, label=_("URL: "))
-        url = self.createTextCtrl(url, size=(200, 30))
-        topSizer.Add(urlLabel, wx.SizerFlags().Center())
-        topSizer.Add(url, wx.SizerFlags().Center())
-
-        joinLabel = wx.StaticText(self.panel, label=_("Joined at: "))
-        joinText = self.createTextCtrl(created_at.strftime('%d %B, %Y'), (80, 30))
-        topSizer.Add(joinLabel, wx.SizerFlags().Center())
-        topSizer.Add(joinText, wx.SizerFlags().Center())
+        url = self.createTextCtrl(user.url, size=(200, 30))
+        mainSizer.Add(urlLabel, wx.SizerFlags().Center())
+        mainSizer.Add(url, wx.SizerFlags().Center())
 
         bioLabel = wx.StaticText(self.panel, label=_("Bio: "))
-        bio = self.createTextCtrl(note, (400, 60))
-        topSizer.Add(bioLabel, wx.SizerFlags().Center())
-        topSizer.Add(bio, wx.SizerFlags().Center())
+        bio = self.createTextCtrl(html_filter(user.note), (400, 60))
+        mainSizer.Add(bioLabel, wx.SizerFlags().Center())
+        mainSizer.Add(bio, wx.SizerFlags().Center())
+
+        joinLabel = wx.StaticText(self.panel, label=_("Joined at: "))
+        joinText = self.createTextCtrl(user.created_at.strftime('%d %B, %Y'), (80, 30))
+        mainSizer.Add(joinLabel, wx.SizerFlags().Center())
+        mainSizer.Add(joinText, wx.SizerFlags().Center())
+
+        actions = wx.Button(self.panel, label=_("Actions"))
+        actions.Bind(wx.EVT_BUTTON, self.onAction)
+        mainSizer.Add(actions, wx.SizerFlags().Center())
 
         # header
         headerLabel = wx.StaticText(self.panel, label=_("Header: "))
         try:
-            response = requests.get(header)
+            response = requests.get(user.header)
         except requests.exceptions.RequestException:
             # Create empty image
             headerImage = wx.StaticBitmap()
@@ -108,13 +113,13 @@ class ShowUserProfile(wx.Dialog):
             headerImage = wx.StaticBitmap(self.panel, bitmap=image.ConvertToBitmap())
 
         headerImage.AcceptsFocusFromKeyboard = returnTrue
-        topSizer.Add(headerLabel, wx.SizerFlags().Center())
-        topSizer.Add(headerImage, wx.SizerFlags().Center())
+        mainSizer.Add(headerLabel, wx.SizerFlags().Center())
+        mainSizer.Add(headerImage, wx.SizerFlags().Center())
 
         # avatar
         avatarLabel = wx.StaticText(self.panel, label=_("Avatar: "))
         try:
-            response = requests.get(avatar)
+            response = requests.get(user.avatar)
         except requests.exceptions.RequestException:
             # Create empty image
             avatarImage = wx.StaticBitmap()
@@ -125,59 +130,69 @@ class ShowUserProfile(wx.Dialog):
             avatarImage = wx.StaticBitmap(self.panel, bitmap=image.ConvertToBitmap())
 
         avatarImage.AcceptsFocusFromKeyboard = returnTrue
-        topSizer.Add(avatarLabel, wx.SizerFlags().Center())
-        topSizer.Add(avatarImage, wx.SizerFlags().Center())
+        mainSizer.Add(avatarLabel, wx.SizerFlags().Center())
+        mainSizer.Add(avatarImage, wx.SizerFlags().Center())
 
         self.fields = []
-        for num, (label, content) in enumerate(fields):
+        for num, field in enumerate(user.fields):
             labelSizer = wx.BoxSizer(wx.HORIZONTAL)
             labelLabel = wx.StaticText(self.panel, label=_("Field {} - Label: ").format(num + 1))
             labelSizer.Add(labelLabel, wx.SizerFlags().Center().Border(wx.ALL, 5))
-            labelText = self.createTextCtrl(label, (230, 30), True)
+            labelText = self.createTextCtrl(html_filter(field.name), (230, 30), True)
             labelSizer.Add(labelText, wx.SizerFlags().Expand().Border(wx.ALL, 5))
-            topSizer.Add(labelSizer, 0, wx.CENTER)
+            mainSizer.Add(labelSizer, 0, wx.CENTER)
 
             contentSizer = wx.BoxSizer(wx.HORIZONTAL)
             contentLabel = wx.StaticText(self.panel, label=_("Content: "))
             contentSizer.Add(contentLabel, wx.SizerFlags().Center())
-            contentText = self.createTextCtrl(content, (400, 60), True)
+            contentText = self.createTextCtrl(html_filter(field.value), (400, 60), True)
             contentSizer.Add(contentText, wx.SizerFlags().Center())
-            topSizer.Add(contentSizer, 0, wx.CENTER | wx.LEFT, 10)
+            mainSizer.Add(contentSizer, 0, wx.CENTER | wx.LEFT, 10)
 
-        # 3 X 2 grid sizer
-        bottomSizer = wx.GridSizer(3, 2, 10, 5)
         bullSwitch = {True: _('Yes'), False: _('No'), None: _('No')}
         privateSizer = wx.BoxSizer(wx.HORIZONTAL)
         privateLabel = wx.StaticText(self.panel, label=_("Private account: "))
-        private = self.createTextCtrl(bullSwitch[locked], (30, 30))
+        private = self.createTextCtrl(bullSwitch[user.locked], (30, 30))
         privateSizer.Add(privateLabel, wx.SizerFlags().Center())
         privateSizer.Add(private, wx.SizerFlags().Center())
-        bottomSizer.Add(privateSizer, 0, wx.ALL | wx.CENTER)
-
+        mainSizer.Add(privateSizer, 0, wx.ALL | wx.CENTER)
 
         botSizer = wx.BoxSizer(wx.HORIZONTAL)
         botLabel = wx.StaticText(self.panel, label=_("Bot account: "))
-        botText = self.createTextCtrl(bullSwitch[bot], (30, 30))
+        botText = self.createTextCtrl(bullSwitch[user.bot], (30, 30))
         botSizer.Add(botLabel, wx.SizerFlags().Center())
         botSizer.Add(botText, wx.SizerFlags().Center())
-        bottomSizer.Add(botSizer, 0, wx.ALL | wx.CENTER)
+        mainSizer.Add(botSizer, 0, wx.ALL | wx.CENTER)
 
         discoverSizer = wx.BoxSizer(wx.HORIZONTAL)
         discoverLabel = wx.StaticText(self.panel, label=_("Discoverable account: "))
-        discoverText = self.createTextCtrl(bullSwitch[discoverable], (30, 30))
+        discoverText = self.createTextCtrl(bullSwitch[user.discoverable], (30, 30))
         discoverSizer.Add(discoverLabel, wx.SizerFlags().Center())
         discoverSizer.Add(discoverText, wx.SizerFlags().Center())
-        bottomSizer.Add(discoverSizer, 0, wx.ALL | wx.CENTER)
+        mainSizer.Add(discoverSizer, 0, wx.ALL | wx.CENTER)
 
+        posts = wx.Button(self.panel, label=_("{} posts. Click to open posts timeline").format(user.statuses_count))
+        # posts.SetToolTip(_("Click to open {}'s posts").format(user.display_name))
+        posts.Bind(wx.EVT_BUTTON, self.onPost)
+        mainSizer.Add(posts, wx.SizerFlags().Center())
+
+        following = wx.Button(self.panel, label=_("{} following. Click to open Following timeline").format(user.following_count))
+        mainSizer.Add(following, wx.SizerFlags().Center())
+        following.Bind(wx.EVT_BUTTON, self.onFollowing)
+
+        followers = wx.Button(self.panel, label=_("{} followers. Click to open followers timeline").format(user.followers_count))
+        mainSizer.Add(followers, wx.SizerFlags().Center())
+        followers.Bind(wx.EVT_BUTTON, self.onFollowers)
 
         close = wx.Button(self.panel, wx.ID_CLOSE, _("Close"))
         self.SetEscapeId(close.GetId())
         close.SetDefault()
-        wrapperSizer.Add(topSizer, 0, wx.CENTER)
-        wrapperSizer.Add(bottomSizer, 0, wx.CENTER)
+        wrapperSizer.Add(mainSizer, 0, wx.CENTER)
         wrapperSizer.Add(close, wx.SizerFlags().Center())
-        self.panel.SetSizerAndFit(wrapperSizer)
-        topSizer.Fit(self)
+        self.panel.SetSizer(wrapperSizer)
+        wrapperSizer.Fit(self.panel)
+        self.panel.Center()
+        mainSizer.Fit(self)
         self.Center()
 
 
@@ -195,3 +210,19 @@ class ShowUserProfile(wx.Dialog):
         textCtrl = wx.TextCtrl(self.panel, value=text, size=size, style=style)
         textCtrl.AcceptsFocusFromKeyboard = returnTrue
         return textCtrl
+
+    def onAction(self, *args):
+        """Opens the Open timeline dialog"""
+        pub.sendMessage('execute-action', action='follow')
+
+    def onPost(self, *args):
+        """Open this user's timeline"""
+        pub.sendMessage('execute-action', action='openPostTimeline', kwargs=dict(user=self.user))
+
+    def onFollowing(self, *args):
+        """Open following timeline for this user"""
+        pub.sendMessage('execute-action', action='openFollowingTimeline', kwargs=dict(user=self.user))
+
+    def onFollowers(self, *args):
+        """Open followers timeline for this user"""
+        pub.sendMessage('execute-action', action='openFollowersTimeline', kwargs=dict(user=self.user))

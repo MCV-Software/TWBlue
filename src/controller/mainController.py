@@ -986,9 +986,9 @@ class Controller(object):
     def repeat_item(self, *args, **kwargs):
         output.speak(self.get_current_buffer().get_message())
 
-    def execute_action(self, action):
+    def execute_action(self, action, kwargs={}):
         if hasattr(self, action):
-            getattr(self, action)()
+            getattr(self, action)(**kwargs)
 
     def update_buffers(self):
         for i in self.buffers[:]:
@@ -1102,4 +1102,37 @@ class Controller(object):
         buffer = self.get_best_buffer()
         handler = self.get_handler(type=buffer.session.type)
         if handler and hasattr(handler, 'showUserProfile'):
-            handler.showUserProfile(buffer=buffer)
+            handler.showUserProfile(buffer)
+
+    def openPostTimeline(self, *args, user=None):
+        """Opens selected user's posts timeline
+        Parameters:
+        args: Other argument. Useful when binding to widgets.
+        user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler
+        """
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler and hasattr(handler, 'openPostTimeline'):
+            handler.openPostTimeline(self, buffer, user)
+
+    def openFollowersTimeline(self, *args, user=None):
+        """Opens selected user's followers timeline
+        Parameters:
+        args: Other argument. Useful when binding to widgets.
+        user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler
+        """
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler and hasattr(handler, 'openFollowersTimeline'):
+            handler.openFollowersTimeline(self, buffer, user)
+
+    def openFollowingTimeline(self, *args, user=None):
+        """Opens selected user's  following timeline
+        Parameters:
+        args: Other argument. Useful when binding to widgets.
+        user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler
+        """
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler and hasattr(handler, 'openFollowingTimeline'):
+            handler.openFollowingTimeline(self, buffer, user)
