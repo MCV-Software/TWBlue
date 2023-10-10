@@ -38,3 +38,9 @@ def invalid_configuration():
 def dead_pid():
     return wx.MessageDialog(None, _(u"{0} quit unexpectedly the last time it was run. If the problem persists, please report it to the {0} developers.").format(application.name), _(u"Warning"), wx.OK).ShowModal()
 
+def cant_update_source() -> wx.MessageDialog:
+    """Shows a dialog telling a user he /she can't update because he / she is
+    running from source
+    """
+    dlg = wx.MessageDialog(None, _("Sorry, you can't update while running {} from source.").format(application.name), _("Error"), wx.OK)
+    return dlg.ShowModal()

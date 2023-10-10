@@ -8,6 +8,9 @@ from .wxUpdater import *
 logger = logging.getLogger("updater")
 
 def do_update(endpoint=application.update_url):
+    if not getattr(sys, 'frozen', False):
+        logger.debug("Running from source, aborting update check")
+        return False
     try:
         result = update.perform_update(endpoint=endpoint, current_version=application.version, app_name=application.name, update_available_callback=available_update_dialog, progress_callback=progress_callback, update_complete_callback=update_finished)
     except:
