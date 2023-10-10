@@ -15,7 +15,7 @@ actions = {
     "remove_from_favourites": _(u"Remove post from favorites"),
     "toggle_like": _("Add/remove post from favorites"),
     "follow": _(u"Open the user actions dialogue"),
-#    "user_details": _(u"See user details"),
+    "user_details": _(u"See user details"),
     "view_item": _(u"Show post"),
     "exit": _(u"Quit"),
     "open_timeline": _(u"Open user timeline"),

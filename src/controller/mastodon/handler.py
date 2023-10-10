@@ -304,7 +304,7 @@ class Handler(object):
         log.debug(f"Updating users profile with: {updated_data}")
         call_threaded(session.api_call, "account_update_credentials", _("Update profile"), report_success=True, **updated_data)
 
-    def showUserProfile(self, buffer):
+    def user_details(self, buffer):
         """Displays user profile in a dialog.
         This works as long as the focused item hass a 'account' key."""
         if not hasattr(buffer, 'get_item'):
