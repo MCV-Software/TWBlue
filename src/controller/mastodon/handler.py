@@ -10,6 +10,7 @@ from wxUI.dialogs.mastodon import dialogs
 from wxUI.dialogs import userAliasDialogs
 from wxUI import commonMessageDialogs
 from wxUI.dialogs.mastodon import updateProfile as update_profile_dialogs
+from wxUI.dialogs.mastodon import showUserProfile
 from sessions.mastodon.utils import html_filter
 from . import userActions, settings
 
@@ -44,7 +45,7 @@ class Handler(object):
             addAlias=_("Add a&lias"),
             addToList=None,
             removeFromList=None,
-            details=None,
+            details=_("Show user profile"),
             favs=None,
             # In buffer Menu.
             trends=None,
@@ -185,38 +186,52 @@ class Handler(object):
                 return
             user = u.user
             if action == "posts":
-                if user.statuses_count == 0:
-                    dialogs.no_posts()
-                    return
-                if user.id in buffer.session.settings["other_buffers"]["timelines"]:
-                    commonMessageDialogs.timeline_exist()
-                    return
-                timelines_position =controller.view.search("timelines", buffer.session.get_name())
-                pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=buffer.session.type, buffer_title=_("Timeline for {}").format(user.username,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, function="account_statuses", name="%s-timeline" % (user.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="tweet_timeline.ogg", id=user.id))
-                buffer.session.settings["other_buffers"]["timelines"].append(user.id)
-                buffer.session.sound.play("create_timeline.ogg")
+                self.openPostTimeline(controller, buffer, user)
             elif action == "followers":
-                if user.followers_count == 0:
-                    dialogs.no_followers()
-                    return
-                if user.id in buffer.session.settings["other_buffers"]["followers_timelines"]:
-                    commonMessageDialogs.timeline_exist()
-                    return
-                timelines_position =controller.view.search("timelines", buffer.session.get_name())
-                pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=buffer.session.type, buffer_title=_("Followers for {}").format(user.username,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_followers", name="%s-followers" % (user.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="new_event.ogg", id=user.id))
-                buffer.session.settings["other_buffers"]["followers_timelines"].append(user.id)
-                buffer.session.sound.play("create_timeline.ogg")
+                self.openFollowersTimeline(controller, buffer, user)
             elif action == "following":
-                if user.following_count == 0:
-                    dialogs.no_following()
-                    return
-                if user.id in buffer.session.settings["other_buffers"]["following_timelines"]:
-                    commonMessageDialogs.timeline_exist()
-                    return
-                timelines_position =controller.view.search("timelines", buffer.session.get_name())
-                pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=buffer.session.type, buffer_title=_("Following for {}").format(user.username,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_following", name="%s-followers" % (user.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="new_event.ogg", id=user.id))
-                buffer.session.settings["other_buffers"]["following_timelines"].append(user.id)
-                buffer.session.sound.play("create_timeline.ogg")
+                self.openFollowingTimeline(controller, buffer, user)
+
+    def openPostTimeline(self, controller, buffer, user):
+        """Opens post timeline for user"""
+        if user.statuses_count == 0:
+            dialogs.no_posts()
+            return
+        if user.id in buffer.session.settings["other_buffers"]["timelines"]:
+            commonMessageDialogs.timeline_exist()
+            return
+        timelines_position =controller.view.search("timelines", buffer.session.get_name())
+        pub.sendMessage("createBuffer", buffer_type="BaseBuffer", session_type=buffer.session.type, buffer_title=_("Timeline for {}").format(user.username,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, function="account_statuses", name="%s-timeline" % (user.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="tweet_timeline.ogg", id=user.id))
+        buffer.session.settings["other_buffers"]["timelines"].append(user.id)
+        buffer.session.sound.play("create_timeline.ogg")
+        buffer.session.settings.write()
+
+    def openFollowersTimeline(self, controller, buffer, user):
+        """Open followers timeline for user"""
+        if user.followers_count == 0:
+            dialogs.no_followers()
+            return
+        if user.id in buffer.session.settings["other_buffers"]["followers_timelines"]:
+            commonMessageDialogs.timeline_exist()
+            return
+        timelines_position =controller.view.search("timelines", buffer.session.get_name())
+        pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=buffer.session.type, buffer_title=_("Followers for {}").format(user.username,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_followers", name="%s-followers" % (user.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="new_event.ogg", id=user.id))
+        buffer.session.settings["other_buffers"]["followers_timelines"].append(user.id)
+        buffer.session.sound.play("create_timeline.ogg")
+        buffer.session.settings.write()
+
+    def openFollowingTimeline(self, controller, buffer, user):
+        """Open following timeline for user"""
+        if user.following_count == 0:
+            dialogs.no_following()
+            return
+        if user.id in buffer.session.settings["other_buffers"]["following_timelines"]:
+            commonMessageDialogs.timeline_exist()
+            return
+        timelines_position =controller.view.search("timelines", buffer.session.get_name())
+        pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=buffer.session.type, buffer_title=_("Following for {}").format(user.username,), parent_tab=timelines_position, start=True, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="account_following", name="%s-followers" % (user.id,), sessionObject=buffer.session, account=buffer.session.get_name(), sound="new_event.ogg", id=user.id))
+        buffer.session.settings["other_buffers"]["following_timelines"].append(user.id)
+        buffer.session.sound.play("create_timeline.ogg")
         buffer.session.settings.write()
 
     def account_settings(self, buffer, controller):
@@ -288,3 +303,42 @@ class Handler(object):
                 del updated_data[key]
         log.debug(f"Updating users profile with: {updated_data}")
         call_threaded(session.api_call, "account_update_credentials", _("Update profile"), report_success=True, **updated_data)
+
+    def showUserProfile(self, buffer):
+        """Displays user profile in a dialog.
+        This works as long as the focused item hass a 'account' key."""
+        if not hasattr(buffer, 'get_item'):
+            return  # Tell user?
+        item = buffer.get_item()
+        if not item:
+            return  # empty buffer
+
+        log.debug(f"Opening user profile. dictionary: {item}")
+        mentionedUsers = list()
+        holdUser = item.account if item.get('account') else None
+        if item.get('username'):  # account dict
+            holdUser = item
+        elif isinstance(item.get('mentions'), list):
+            # mentions in statuses
+            if item.reblog:
+                item = item.reblog
+            mentionedUsers = [(user.acct, user.id) for user in item.mentions]
+            holdUser = item.account
+        if not holdUser:
+            dialogs.no_user()
+            return
+
+        if len(mentionedUsers) == 0:
+            user = holdUser
+        else:
+            mentionedUsers.insert(0, (holdUser.display_name, holdUser.username, holdUser.id))
+            mentionedUsers = list(set(mentionedUsers))
+            selectedUser = showUserProfile.selectUserDialog(mentionedUsers)
+            if not selectedUser:
+                return  # Canceled selection
+            elif selectedUser[-1] == holdUser.id:
+                user = holdUser
+            else:  # We don't have this user's dictionary, get it!
+                user = buffer.session.api.account(selectedUser[-1])
+        dlg = showUserProfile.ShowUserProfile(user)
+        dlg.ShowModal()
