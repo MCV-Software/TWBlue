@@ -9,6 +9,7 @@ from twitter_text import parse_tweet, config
 from controller import messages
 from sessions.mastodon import templates
 from wxUI.dialogs.mastodon import postDialogs
+from extra.autocompletionUsers import completion
 
 def character_count(post_text, post_cw, character_limit=500):
     # We will use text for counting character limit only.
@@ -38,13 +39,16 @@ class post(messages.basicMessage):
         widgetUtils.connect_event(self.message.translate, widgetUtils.BUTTON_PRESSED, self.translate)
         widgetUtils.connect_event(self.message.add, widgetUtils.BUTTON_PRESSED, self.on_attach)
         widgetUtils.connect_event(self.message.remove_attachment, widgetUtils.BUTTON_PRESSED, self.remove_attachment)
-        # ToDo: Add autocomplete feature to mastodon and uncomment this.
-        # widgetUtils.connect_event(self.message.autocomplete_users, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
+        widgetUtils.connect_event(self.message.autocomplete_users, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
         widgetUtils.connect_event(self.message.add_post, widgetUtils.BUTTON_PRESSED, self.add_post)
         widgetUtils.connect_event(self.message.remove_post, widgetUtils.BUTTON_PRESSED, self.remove_post)
         self.attachments = []
         self.thread = []
         self.text_processor()
+
+    def autocomplete_users(self, *args, **kwargs):
+        c = completion.autocompletionUsers(self.message, self.session.session_id)
+        c.show_menu()
 
     def add_post(self, event, update_gui=True, *args, **kwargs):
         text = self.message.text.GetValue()

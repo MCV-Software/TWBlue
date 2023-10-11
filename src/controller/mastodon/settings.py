@@ -9,7 +9,8 @@ import output
 from collections import OrderedDict
 from wxUI import commonMessageDialogs
 from wxUI.dialogs.mastodon import configuration
-#from extra.autocompletionUsers import scan, manage
+from extra.autocompletionUsers import manage
+from extra.autocompletionUsers.mastodon import scan
 from extra.ocr import OCRSpace
 from controller.settings import globalSettingsController
 from . templateEditor import EditTemplate
@@ -29,8 +30,8 @@ class accountSettingsController(globalSettingsController):
 
     def create_config(self):
         self.dialog.create_general_account()
-#        widgetUtils.connect_event(self.dialog.general.userAutocompletionScan, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_scan)
-#        widgetUtils.connect_event(self.dialog.general.userAutocompletionManage, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_manage)
+        widgetUtils.connect_event(self.dialog.general.userAutocompletionScan, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_scan)
+        widgetUtils.connect_event(self.dialog.general.userAutocompletionManage, widgetUtils.BUTTON_PRESSED, self.on_autocompletion_manage)
         self.dialog.set_value("general", "disable_streaming", self.config["general"]["disable_streaming"])
         self.dialog.set_value("general", "relative_time", self.config["general"]["relative_times"])
         self.dialog.set_value("general", "read_preferences_from_instance", self.config["general"]["read_preferences_from_instance"])
