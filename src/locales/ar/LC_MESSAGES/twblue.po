@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-10-08 00:54+0000\n"
+"POT-Creation-Date: 2023-10-15 00:54+0000\n"
 "PO-Revision-Date: 2022-12-20 22:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: ar\n"
@@ -131,113 +131,113 @@ msgstr "جاري التشغيل"
 msgid "Stopped."
 msgstr "تم الإيقاف."
 
-#: controller/mainController.py:256
+#: controller/mainController.py:258
 msgid "Ready"
 msgstr "جاهز"
 
-#: controller/mainController.py:364 controller/mainController.py:645
-#: controller/mainController.py:664 controller/mainController.py:683
-#: controller/mainController.py:702
+#: controller/mainController.py:366 controller/mainController.py:651
+#: controller/mainController.py:670 controller/mainController.py:689
+#: controller/mainController.py:708
 msgid ""
 "No session is currently in focus. Focus a session with the next or "
 "previous session shortcut."
 msgstr "لا توجد جلسة مختارة. يرجى إستخدام مفاتيح التنقل بين الجلسات لتحديد جلسة."
 
-#: controller/mainController.py:368
+#: controller/mainController.py:370
 msgid "Empty buffer."
 msgstr "سياق زمني فارغ"
 
-#: controller/mainController.py:375
+#: controller/mainController.py:377
 msgid "{0} not found."
 msgstr "{0} لم يتم العثور عليه"
 
-#: controller/mainController.py:693 controller/mainController.py:712
+#: controller/mainController.py:699 controller/mainController.py:718
 #, python-format
 msgid "%s, %s of %s"
 msgstr "%s, %s من %s"
 
-#: controller/mainController.py:695 controller/mainController.py:714
-#: controller/mainController.py:742 controller/mainController.py:770
+#: controller/mainController.py:701 controller/mainController.py:720
+#: controller/mainController.py:748 controller/mainController.py:776
 #, python-format
 msgid "%s. Empty"
 msgstr "%s فارغة"
 
-#: controller/mainController.py:730 controller/mainController.py:734
-#: controller/mainController.py:758
+#: controller/mainController.py:736 controller/mainController.py:740
+#: controller/mainController.py:764
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: هذا الحساب لم يقم بتسجيل الدخول لتويتر."
 
-#: controller/mainController.py:740 controller/mainController.py:768
+#: controller/mainController.py:746 controller/mainController.py:774
 #, python-format
 msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s الخاصة %s"
 
-#: controller/mainController.py:762
+#: controller/mainController.py:768
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: هذا الحساب لم يقم بتسجيل الدخول لتويتر."
 
-#: controller/mainController.py:894 controller/mainController.py:910
+#: controller/mainController.py:900 controller/mainController.py:916
 #, fuzzy
 msgid "An error happened while trying to connect to the server. Please try later."
 msgstr "شيء غير متوقع حدث في أثناء الإبلاغ عن العطل. الرجاء المحاولة ثانيا لاحقا."
 
-#: controller/mainController.py:941
+#: controller/mainController.py:947
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "القراءة التلقائية للتغريدات الجديدة مفعلة لهذه الصفحة."
 
-#: controller/mainController.py:944
+#: controller/mainController.py:950
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "القراءة التلقائية للتغريدات الجديدة معطلة لهذه الصفحة."
 
-#: controller/mainController.py:951
+#: controller/mainController.py:957
 msgid "Session mute on"
 msgstr "تشغيل الوضع الصامت للجلسة"
 
-#: controller/mainController.py:954
+#: controller/mainController.py:960
 msgid "Session mute off"
 msgstr "تعطيل الوضع الصامت للجلسة"
 
-#: controller/mainController.py:963
+#: controller/mainController.py:969
 msgid "Buffer mute on"
 msgstr "تشغيل الوضع الصامت لهذه الصفحة."
 
-#: controller/mainController.py:966
+#: controller/mainController.py:972
 msgid "Buffer mute off"
 msgstr "تعطيل الوضع الصامت لهذه الصفحة."
 
-#: controller/mainController.py:983
+#: controller/mainController.py:989
 msgid "Copied"
 msgstr "تم النسخ"
 
-#: controller/mainController.py:1003
+#: controller/mainController.py:1009
 msgid "Unable to update this buffer."
 msgstr "غير قادر على تحديث هذه الصفحة"
 
-#: controller/mainController.py:1005
+#: controller/mainController.py:1011
 msgid "Updating buffer..."
 msgstr "تحديث الصفحة"
 
-#: controller/mainController.py:1008
+#: controller/mainController.py:1014
 msgid "{0} items retrieved"
 msgstr "(0) من العناصر جُلبت"
 
-#: controller/buffers/mastodon/base.py:122 controller/mainController.py:1012
-#: controller/mastodon/handler.py:94 controller/mastodon/handler.py:195
+#: controller/buffers/mastodon/base.py:122 controller/mainController.py:1018
+#: controller/mastodon/handler.py:95 controller/mastodon/handler.py:204
 msgid "Timeline for {}"
 msgstr "السياق الزمني ل{}"
 
-#: controller/buffers/mastodon/users.py:93 controller/mainController.py:1014
-#: controller/mastodon/handler.py:96 controller/mastodon/handler.py:206
+#: controller/buffers/mastodon/users.py:93 controller/mainController.py:1020
+#: controller/mastodon/handler.py:97 controller/mastodon/handler.py:218
 msgid "Followers for {}"
 msgstr "المتابِعون ل{}"
 
-#: controller/mainController.py:1016
+#: controller/mainController.py:1022
 msgid "Friends for {}"
 msgstr "قائمة الأصدقاء ل{}"
 
 # | msgid "Followers for {}"
-#: controller/buffers/mastodon/users.py:95 controller/mainController.py:1018
-#: controller/mastodon/handler.py:98 controller/mastodon/handler.py:217
+#: controller/buffers/mastodon/users.py:95 controller/mainController.py:1024
+#: controller/mastodon/handler.py:99 controller/mastodon/handler.py:232
 #, fuzzy
 msgid "Following for {}"
 msgstr "المتابِعون ل{}"
@@ -282,69 +282,69 @@ msgstr "قائمة ل{}"
 msgid "This action is not supported for this buffer"
 msgstr "هذا الإجراء غير ممكن في هذه الصفحة"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:66
-#: controller/mastodon/settings.py:193
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:67
+#: controller/mastodon/settings.py:194
 msgid "Home"
 msgstr "الصفحة الرئيسية"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:68
-#: controller/mastodon/settings.py:194
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:69
+#: controller/mastodon/settings.py:195
 msgid "Local"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:70
-#: controller/mastodon/settings.py:195
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:71
+#: controller/mastodon/settings.py:196
 msgid "Federated"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:72
-#: controller/mastodon/settings.py:196
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:73
+#: controller/mastodon/settings.py:197
 msgid "Mentions"
 msgstr "الإشارات"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:80
-#: controller/mastodon/settings.py:200
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:81
+#: controller/mastodon/settings.py:201
 msgid "Bookmarks"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:74
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:75
 msgid "Direct messages"
 msgstr "الرسائل الخاصة"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:76
-#: controller/mastodon/settings.py:198
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:77
+#: controller/mastodon/settings.py:199
 msgid "Sent"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:78
-#: controller/mastodon/settings.py:199
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:79
+#: controller/mastodon/settings.py:200
 msgid "Favorites"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:82
-#: controller/mastodon/settings.py:201
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:83
+#: controller/mastodon/settings.py:202
 msgid "Followers"
 msgstr "المتابِعون"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:84
-#: controller/mastodon/settings.py:202
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:85
+#: controller/mastodon/settings.py:203
 #, fuzzy
 msgid "Following"
 msgstr "إل&غاء المتابعة"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:88
-#: controller/mastodon/settings.py:203
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:89
+#: controller/mastodon/settings.py:204
 msgid "Blocked users"
 msgstr "المستخدمون المحظورون"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:86
-#: controller/mastodon/settings.py:204
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:87
+#: controller/mastodon/settings.py:205
 msgid "Muted users"
 msgstr "المستخدمون الذين كُتمت تنبيهاتهم"
 
 # | msgid "&Location"
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:90
-#: controller/mastodon/settings.py:205
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:91
+#: controller/mastodon/settings.py:206
 #, fuzzy
 msgid "Notifications"
 msgstr "الموقع"
@@ -534,184 +534,189 @@ msgstr "محادثة مع {0}"
 msgid "There are no more items in this buffer."
 msgstr "لا توجد إحداثيات في هذه التغريدة"
 
-#: controller/mastodon/handler.py:26 wxUI/dialogs/mastodon/updateProfile.py:34
+#: controller/mastodon/handler.py:27 wxUI/dialogs/mastodon/updateProfile.py:34
 #, fuzzy
 msgid "Update Profile"
 msgstr "حدّث الملف الشخصي"
 
-#: controller/mastodon/handler.py:27 wxUI/dialogs/mastodon/search.py:10
+#: controller/mastodon/handler.py:28 wxUI/dialogs/mastodon/search.py:10
 #: wxUI/view.py:19
 msgid "&Search"
 msgstr "البحث"
 
-#: controller/mastodon/handler.py:29 wxUI/view.py:22
+#: controller/mastodon/handler.py:30 wxUI/view.py:22
 msgid "Manage user aliases"
 msgstr ""
 
-#: controller/mastodon/handler.py:31 controller/mastodon/handler.py:55
+#: controller/mastodon/handler.py:32 controller/mastodon/handler.py:56
 #: wxUI/view.py:30
 msgid "&Post"
 msgstr ""
 
-#: controller/mastodon/handler.py:32 wxUI/dialogs/mastodon/menus.py:9
+#: controller/mastodon/handler.py:33 wxUI/dialogs/mastodon/menus.py:9
 #: wxUI/view.py:31
 msgid "Re&ply"
 msgstr "الرد"
 
-#: controller/mastodon/handler.py:33 wxUI/dialogs/mastodon/menus.py:7
+#: controller/mastodon/handler.py:34 wxUI/dialogs/mastodon/menus.py:7
 #: wxUI/view.py:32
 msgid "&Boost"
 msgstr ""
 
 # | msgid "&Add to list"
-#: controller/mastodon/handler.py:34 wxUI/dialogs/mastodon/menus.py:11
+#: controller/mastodon/handler.py:35 wxUI/dialogs/mastodon/menus.py:11
 #: wxUI/view.py:33
 #, fuzzy
 msgid "&Add to favorites"
 msgstr "الإضافة إلى قائمة"
 
 # | msgid "Remove from list"
-#: controller/mastodon/handler.py:35
+#: controller/mastodon/handler.py:36
 #, fuzzy
 msgid "Remove from favorites"
 msgstr "حذف من قائمة"
 
 # | msgid "&Show user"
-#: controller/mastodon/handler.py:36 wxUI/view.py:35
+#: controller/mastodon/handler.py:37 wxUI/view.py:35
 #, fuzzy
 msgid "&Show post"
 msgstr "&إظهر المستخدمين"
 
-#: controller/mastodon/handler.py:37 wxUI/view.py:36
+#: controller/mastodon/handler.py:38 wxUI/view.py:36
 msgid "View conversa&tion"
 msgstr "عرض المحادثة"
 
-#: controller/mastodon/handler.py:38 wxUI/view.py:37
+#: controller/mastodon/handler.py:39 wxUI/view.py:37
 msgid "Read text in picture"
 msgstr "اقرء النص الذي في الصورة"
 
-#: controller/mastodon/handler.py:39 wxUI/dialogs/mastodon/menus.py:25
+#: controller/mastodon/handler.py:40 wxUI/dialogs/mastodon/menus.py:25
 #: wxUI/view.py:39
 msgid "&Delete"
 msgstr "حذف"
 
-#: controller/mastodon/handler.py:41 wxUI/view.py:43
+#: controller/mastodon/handler.py:42 wxUI/view.py:43
 msgid "&Actions..."
 msgstr "إجراءات"
 
-#: controller/mastodon/handler.py:42 wxUI/view.py:44
+#: controller/mastodon/handler.py:43 wxUI/view.py:44
 msgid "&View timeline..."
 msgstr "&اعرِضِ السياق الزمني"
 
-#: controller/mastodon/handler.py:43 wxUI/view.py:45
+#: controller/mastodon/handler.py:44 wxUI/view.py:45
 msgid "Direct me&ssage"
 msgstr "رسالة خاصة"
 
-#: controller/mastodon/handler.py:44 wxUI/view.py:46
+#: controller/mastodon/handler.py:45 wxUI/view.py:46
 msgid "Add a&lias"
 msgstr ""
 
-#: controller/mastodon/handler.py:91
+#: controller/mastodon/handler.py:48
+#, fuzzy
+msgid "Show user profile"
+msgstr "إظهار الملف الشخصي للمستخدم"
+
+#: controller/mastodon/handler.py:92
 msgid "Timelines"
 msgstr "السياقات الزمنية"
 
-#: controller/mastodon/handler.py:103
+#: controller/mastodon/handler.py:104
 msgid "Searches"
 msgstr "عمليات البحث"
 
-#: controller/mastodon/handler.py:106 controller/mastodon/handler.py:156
-#: controller/mastodon/handler.py:161
+#: controller/mastodon/handler.py:107 controller/mastodon/handler.py:157
+#: controller/mastodon/handler.py:162
 msgid "Search for {}"
 msgstr "البحث عن {}"
 
-#: controller/mastodon/handler.py:127
+#: controller/mastodon/handler.py:128
 msgid "Conversation with {0}"
 msgstr "محادثة مع {0}"
 
-#: controller/mastodon/handler.py:247
+#: controller/mastodon/handler.py:262
 msgid "Add an user alias"
 msgstr ""
 
-#: controller/mastodon/handler.py:259
+#: controller/mastodon/handler.py:274
 msgid "Alias has been set correctly for {}."
 msgstr ""
 
-#: controller/mastodon/handler.py:290
+#: controller/mastodon/handler.py:305
 #, fuzzy
 msgid "Update profile"
 msgstr "حدّث الملف الشخصي"
 
-#: controller/mastodon/messages.py:90
+#: controller/mastodon/messages.py:94
 #, python-format
 msgid "%s - %s of %d characters"
 msgstr "%s - %s من %d characters%s - %s من 140 أحرف"
 
-#: controller/mastodon/messages.py:214
+#: controller/mastodon/messages.py:218
 msgid "Poll with {} options"
 msgstr ""
 
 # | msgid "List for {}"
-#: controller/mastodon/messages.py:238
+#: controller/mastodon/messages.py:242
 #, fuzzy
 msgid "Post from {}"
 msgstr "قائمة ل{}"
 
-#: controller/mastodon/messages.py:242 sessions/mastodon/templates.py:78
+#: controller/mastodon/messages.py:246 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 msgid "Public"
 msgstr "عامة"
 
 # | msgid "Accounts list"
-#: controller/mastodon/messages.py:242 sessions/mastodon/templates.py:78
+#: controller/mastodon/messages.py:246 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 #, fuzzy
 msgid "Not listed"
 msgstr "قائمة الحسابات"
 
 # | msgid "Followers"
-#: controller/mastodon/messages.py:242
+#: controller/mastodon/messages.py:246
 #, fuzzy
 msgid "followers only"
 msgstr "المتابِعون"
 
 # | msgid "Direct message"
-#: controller/mastodon/messages.py:242 sessions/mastodon/templates.py:78
+#: controller/mastodon/messages.py:246 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:48
 #, fuzzy
 msgid "Direct"
 msgstr "رسالة خاصة"
 
 # | msgid "Remove client"
-#: controller/mastodon/messages.py:249
+#: controller/mastodon/messages.py:253
 #, fuzzy
 msgid "Remote instance"
 msgstr "إحذف تطبيق"
 
-#: controller/mastodon/messages.py:272
+#: controller/mastodon/messages.py:276
 #, fuzzy
 msgid "Link copied to clipboard."
 msgstr "إنسخ إلى لوحة النسخ"
 
-#: controller/mastodon/settings.py:81
+#: controller/mastodon/settings.py:82
 #, python-format
 msgid "Account settings for %s"
 msgstr "إعدادات الحساب لب%s"
 
-#: controller/mastodon/settings.py:91 wxUI/dialogs/mastodon/configuration.py:55
+#: controller/mastodon/settings.py:92 wxUI/dialogs/mastodon/configuration.py:53
 msgid "Edit template for posts. Current template: {}"
 msgstr ""
 
-#: controller/mastodon/settings.py:100
-#: wxUI/dialogs/mastodon/configuration.py:57
+#: controller/mastodon/settings.py:101
+#: wxUI/dialogs/mastodon/configuration.py:55
 msgid "Edit template for conversations. Current template: {}"
 msgstr ""
 
-#: controller/mastodon/settings.py:109
-#: wxUI/dialogs/mastodon/configuration.py:59
+#: controller/mastodon/settings.py:110
+#: wxUI/dialogs/mastodon/configuration.py:57
 msgid "Edit template for persons. Current template: {}"
 msgstr ""
 
-#: controller/mastodon/settings.py:197
+#: controller/mastodon/settings.py:198
 msgid "Direct Messages"
 msgstr "رسائل خاصة"
 
@@ -870,16 +875,136 @@ msgid ""
 "selected language in {0}"
 msgstr "لقد حدث خطأ. لا يوجد قاموس للغة المختارة في {0}"
 
-#: extra/SpellChecker/wx_ui.py:79 wxUI/commonMessageDialogs.py:23
-#: wxUI/commonMessageDialogs.py:36 wxUI/dialogs/mastodon/dialogs.py:38
+#: extra/SpellChecker/wx_ui.py:79
+#: extra/autocompletionUsers/mastodon/wx_scan.py:44
+#: wxUI/commonMessageDialogs.py:23 wxUI/commonMessageDialogs.py:36
+#: wxUI/commonMessageDialogs.py:45 wxUI/dialogs/mastodon/dialogs.py:38
 #: wxUI/dialogs/mastodon/dialogs.py:43 wxUI/dialogs/mastodon/dialogs.py:48
-#: wxUI/dialogs/mastodon/dialogs.py:53
+#: wxUI/dialogs/mastodon/dialogs.py:53 wxUI/dialogs/mastodon/dialogs.py:60
 msgid "Error"
 msgstr "خطأ"
 
 #: extra/SpellChecker/wx_ui.py:82
 msgid "Spell check complete."
 msgstr "انتهاء التدقيق الإملائي"
+
+#: extra/autocompletionUsers/completion.py:39
+#: extra/autocompletionUsers/completion.py:57
+msgid "You have to start writing"
+msgstr ""
+
+# | msgid "There are no coordinates in this tweet"
+#: extra/autocompletionUsers/completion.py:49
+#: extra/autocompletionUsers/completion.py:66
+#, fuzzy
+msgid "There are no results in your users database"
+msgstr "لا توجد إحداثيات في هذه التغريدة"
+
+#: extra/autocompletionUsers/completion.py:51
+#, fuzzy
+msgid "Autocompletion only works for users."
+msgstr "&إكمال تلقائي للمستخدمين"
+
+#: extra/autocompletionUsers/wx_manage.py:9
+#, fuzzy
+msgid "Manage Autocompletion database"
+msgstr "إدارة قاعدة بيانات التعبئة التلقائية"
+
+#: extra/autocompletionUsers/wx_manage.py:12
+#, fuzzy
+msgid "Editing {0} users database"
+msgstr "تحرير قاعدة بيانات المستخدمين ل {0} "
+
+#: extra/autocompletionUsers/wx_manage.py:13
+#, fuzzy
+msgid "Username"
+msgstr "المستخدم"
+
+#: extra/autocompletionUsers/wx_manage.py:13 wxUI/dialogs/configuration.py:112
+msgid "Name"
+msgstr "الاسم"
+
+#: extra/autocompletionUsers/wx_manage.py:16
+#, fuzzy
+msgid "Add user"
+msgstr "المستخدم"
+
+#: extra/autocompletionUsers/wx_manage.py:17
+#, fuzzy
+msgid "Remove user"
+msgstr "احذف مستخدما"
+
+#: extra/autocompletionUsers/wx_manage.py:38
+msgid "Twitter username"
+msgstr ""
+
+#: extra/autocompletionUsers/wx_manage.py:38
+msgid "Add user to database"
+msgstr ""
+
+#: extra/autocompletionUsers/wx_manage.py:44
+#, fuzzy
+msgid "The user does not exist"
+msgstr "هذا المستخدم غير موجود"
+
+#: extra/autocompletionUsers/wx_manage.py:44
+#, fuzzy
+msgid "Error!"
+msgstr "خطأ"
+
+#: extra/autocompletionUsers/mastodon/scan.py:49
+msgid ""
+"Updating database... You can close this window now. A message will tell "
+"you when the process finishes."
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:8
+#, fuzzy
+msgid "Autocomplete users' settings"
+msgstr "&إكمال تلقائي للمستخدمين"
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:11
+msgid "Add followers to database"
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:12
+msgid "Add  following to database"
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:26
+#, fuzzy
+msgid "Updating autocompletion database"
+msgstr "إدارة قاعدة بيانات التعبئة التلقائية"
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:34
+msgid ""
+"This process will retrieve the users you selected from your Mastodon "
+"account, and add them to the user autocomplete database. Please note that"
+" if there are many users or you have tried to perform this action less "
+"than 15 minutes ago, TWBlue may reach a limit in API calls when trying to"
+" load the users into the database. If this happens, we will show you an "
+"error, in which case you will have to try this process again in a few "
+"minutes. If this process ends with no error, you will be redirected back "
+"to the account settings dialog. Do you want to continue?"
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:34
+#: wxUI/commonMessageDialogs.py:20
+msgid "Attention"
+msgstr "تنبيه"
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:40
+msgid "TWBlue has imported {} users successfully."
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:40
+#, fuzzy
+msgid "Done"
+msgstr "تم الإنتهاء"
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:44
+msgid "Error adding users from Mastodon. Please try again in about 15 minutes."
+msgstr ""
 
 #: extra/ocr/OCRSpace.py:7
 msgid "Detect automatically"
@@ -1289,7 +1414,8 @@ msgid "Execute action"
 msgstr "ينفذ المهمة"
 
 #: keystrokeEditor/wx_ui.py:21 wxUI/dialogs/configuration.py:229
-#: wxUI/dialogs/mastodon/configuration.py:174
+#: wxUI/dialogs/mastodon/configuration.py:172
+#: wxUI/dialogs/mastodon/showUserProfile.py:187
 #: wxUI/dialogs/userAliasDialogs.py:25
 msgid "Close"
 msgstr "إغلاق"
@@ -1328,6 +1454,7 @@ msgid "Key"
 msgstr "مفتاح"
 
 #: keystrokeEditor/wx_ui.py:70 wxUI/dialogs/find.py:21
+#: wxUI/dialogs/mastodon/showUserProfile.py:30
 #: wxUI/dialogs/userAliasDialogs.py:23
 msgid "OK"
 msgstr "موافق"
@@ -1409,6 +1536,11 @@ msgstr ""
 #: keystrokeEditor/actions/mastodon.py:17
 msgid "Open the user actions dialogue"
 msgstr "افتح صندوق الحوار لإجراءات المستخدم"
+
+#: keystrokeEditor/actions/mastodon.py:18
+#, fuzzy
+msgid "See user details"
+msgstr "احذف مستخدما"
 
 # | msgid "Show tweet"
 #: keystrokeEditor/actions/mastodon.py:19
@@ -1984,10 +2116,6 @@ msgstr "إفراغ السياق الزمني"
 msgid "Do you really want to destroy this buffer?"
 msgstr "هل أنت متأكد من رغبتك في إزالة هذه الصفحة؟"
 
-#: wxUI/commonMessageDialogs.py:20
-msgid "Attention"
-msgstr "تنبيه"
-
 #: wxUI/commonMessageDialogs.py:23
 msgid "That user does not exist"
 msgstr "هذا المستخدم غير موجود"
@@ -2045,6 +2173,10 @@ msgstr ""
 #: wxUI/commonMessageDialogs.py:39
 msgid "Warning"
 msgstr "تحذير"
+
+#: wxUI/commonMessageDialogs.py:45
+msgid "Sorry, you can't update while running {} from source."
+msgstr ""
 
 #: wxUI/sysTrayIcon.py:36 wxUI/view.py:25
 msgid "&Global settings"
@@ -2284,7 +2416,8 @@ msgstr "رسالة خاصة"
 msgid "Dismiss"
 msgstr ""
 
-#: wxUI/buffers/mastodon/user.py:19 wxUI/dialogs/userAliasDialogs.py:48
+#: wxUI/buffers/mastodon/user.py:19 wxUI/dialogs/mastodon/showUserProfile.py:98
+#: wxUI/dialogs/userAliasDialogs.py:48
 #, fuzzy
 msgid "Actions"
 msgstr "الإجراء"
@@ -2386,10 +2519,6 @@ msgid "Buffer"
 msgstr "الصفحة"
 
 #: wxUI/dialogs/configuration.py:112
-msgid "Name"
-msgstr "الاسم"
-
-#: wxUI/dialogs/configuration.py:112
 msgid "Status"
 msgstr "الحالة"
 
@@ -2435,7 +2564,7 @@ msgstr "الصفحةُ في أسفل القائمة بالفعل"
 msgid "{0} preferences"
 msgstr "{0} الخيارات"
 
-#: wxUI/dialogs/configuration.py:217 wxUI/dialogs/mastodon/configuration.py:146
+#: wxUI/dialogs/configuration.py:217 wxUI/dialogs/mastodon/configuration.py:144
 msgid "General"
 msgstr "عام"
 
@@ -2443,7 +2572,7 @@ msgstr "عام"
 msgid "Proxy"
 msgstr "خادم الوكيل"
 
-#: wxUI/dialogs/configuration.py:227 wxUI/dialogs/mastodon/configuration.py:172
+#: wxUI/dialogs/configuration.py:227 wxUI/dialogs/mastodon/configuration.py:170
 msgid "Save"
 msgstr "حفظ"
 
@@ -2455,7 +2584,7 @@ msgstr "إبحث في الصفحة الحالية"
 msgid "String"
 msgstr "جملة"
 
-#: wxUI/dialogs/find.py:23
+#: wxUI/dialogs/find.py:23 wxUI/dialogs/mastodon/showUserProfile.py:32
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -2565,26 +2694,26 @@ msgid ""
 "autocompletion database"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/configuration.py:17
+#: wxUI/dialogs/mastodon/configuration.py:16
 #, fuzzy
 msgid "Manage autocompletion database"
 msgstr "إدارة قاعدة بيانات التعبئة التلقائية"
 
-#: wxUI/dialogs/mastodon/configuration.py:23
+#: wxUI/dialogs/mastodon/configuration.py:21
 msgid "Disable Streaming API endpoints"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/configuration.py:25
+#: wxUI/dialogs/mastodon/configuration.py:23
 msgid "Relative timestamps"
 msgstr "أوقات نسبية"
 
-#: wxUI/dialogs/mastodon/configuration.py:27
+#: wxUI/dialogs/mastodon/configuration.py:25
 msgid ""
 "Read preferences from instance (default visibility when publishing and "
 "displaying sensitive content)"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/configuration.py:30
+#: wxUI/dialogs/mastodon/configuration.py:28
 msgid "Items on each API call"
 msgstr "عدد العناصر في كل تحديث"
 
@@ -2592,7 +2721,7 @@ msgstr "عدد العناصر في كل تحديث"
 # | "Inverted buffers: The newest tweets will be shown at the beginning while
 # "
 # | "the oldest at the end"
-#: wxUI/dialogs/mastodon/configuration.py:36
+#: wxUI/dialogs/mastodon/configuration.py:34
 #, fuzzy
 msgid ""
 "Inverted buffers: The newest items will be shown at the beginning while "
@@ -2601,19 +2730,19 @@ msgstr ""
 "عكس عرض التغريدات:  التغريدة الأحدث ستُعرَض في بداية القائمة بينما تكون "
 "التغريدة الأقدم في نهايتها."
 
-#: wxUI/dialogs/mastodon/configuration.py:38
+#: wxUI/dialogs/mastodon/configuration.py:36
 msgid "Ask confirmation before boosting a post"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/configuration.py:40
+#: wxUI/dialogs/mastodon/configuration.py:38
 msgid "Show screen names instead of full names"
 msgstr "تعرض أسماء الإستعارة بدلا من الأسماء الكاملة"
 
-#: wxUI/dialogs/mastodon/configuration.py:42
+#: wxUI/dialogs/mastodon/configuration.py:40
 msgid "hide emojis in usernames"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/configuration.py:44
+#: wxUI/dialogs/mastodon/configuration.py:42
 msgid ""
 "Number of items per buffer to cache in database (0 to disable caching, "
 "blank for unlimited)"
@@ -2621,65 +2750,65 @@ msgstr ""
 "عددُ العناصر في كل صفحة للحفظ في قاعدة البيانات (0 لتعطيل الحفظ، مسافة "
 "فارغة للحفظ غير المحدود)"
 
-#: wxUI/dialogs/mastodon/configuration.py:48
+#: wxUI/dialogs/mastodon/configuration.py:46
 msgid ""
 "Load cache for items in memory (much faster in big datasets but requires "
 "more RAM)"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/configuration.py:67
+#: wxUI/dialogs/mastodon/configuration.py:65
 msgid "Volume"
 msgstr "مستوا الصوت"
 
-#: wxUI/dialogs/mastodon/configuration.py:78
+#: wxUI/dialogs/mastodon/configuration.py:76
 msgid "Session mute"
 msgstr "كتمُ التنبيهات الصوتية للجلسة"
 
-#: wxUI/dialogs/mastodon/configuration.py:80
+#: wxUI/dialogs/mastodon/configuration.py:78
 msgid "Output device"
 msgstr "جهاز إخراج الصوت"
 
-#: wxUI/dialogs/mastodon/configuration.py:87
+#: wxUI/dialogs/mastodon/configuration.py:85
 msgid "Input device"
 msgstr "جهاز إدخال الصوت"
 
-#: wxUI/dialogs/mastodon/configuration.py:95
+#: wxUI/dialogs/mastodon/configuration.py:93
 msgid "Sound pack"
 msgstr "حزمة صوت"
 
 # | msgid "Indicate audio tweets with sound"
-#: wxUI/dialogs/mastodon/configuration.py:101
+#: wxUI/dialogs/mastodon/configuration.py:99
 #, fuzzy
 msgid "Indicate audio or video in posts with sound"
 msgstr "يشير إلى تغريدية صوتية من خلال  نغمة"
 
 # | msgid "Indicate tweets containing images with sound"
-#: wxUI/dialogs/mastodon/configuration.py:103
+#: wxUI/dialogs/mastodon/configuration.py:101
 #, fuzzy
 msgid "Indicate posts containing images with sound"
 msgstr "يشير إلى تغريدة تتضمن صور من خلال نغمة"
 
-#: wxUI/dialogs/mastodon/configuration.py:126
+#: wxUI/dialogs/mastodon/configuration.py:124
 msgid "Language for OCR"
 msgstr "لغة التعرّف الضوئي على النصلغة النتائج"
 
-#: wxUI/dialogs/mastodon/configuration.py:151
+#: wxUI/dialogs/mastodon/configuration.py:149
 msgid "Feedback"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/configuration.py:155
+#: wxUI/dialogs/mastodon/configuration.py:153
 msgid "Buffers"
 msgstr "الصفحات"
 
-#: wxUI/dialogs/mastodon/configuration.py:159
+#: wxUI/dialogs/mastodon/configuration.py:157
 msgid "Templates"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/configuration.py:163
+#: wxUI/dialogs/mastodon/configuration.py:161
 msgid "Sound"
 msgstr "الصوت"
 
-#: wxUI/dialogs/mastodon/configuration.py:167
+#: wxUI/dialogs/mastodon/configuration.py:165
 msgid "Extras"
 msgstr "إضافات"
 
@@ -2749,6 +2878,10 @@ msgstr "هذا المستخدم لا يوجد له أي مُتابعين. لا �
 #, fuzzy
 msgid "This user is not following anyone. {0} can't create a timeline."
 msgstr "هذا المستخدم لا يوجد له أي مُتابعين. لا يمكن فتح سياق زمني له."
+
+#: wxUI/dialogs/mastodon/dialogs.py:60
+msgid "The focused item has no user in it. {} ca't open a user profile"
+msgstr ""
 
 # | msgid "R&emove from list"
 #: wxUI/dialogs/mastodon/menus.py:13
@@ -3129,6 +3262,87 @@ msgstr "&موافق"
 #: wxUI/dialogs/mastodon/userTimeline.py:32
 msgid "&Close"
 msgstr "إغ&لاق"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:21
+#, fuzzy
+msgid "Select user"
+msgstr "اختيار رابط"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:72
+#, fuzzy
+msgid "{}'s Profile"
+msgstr "حدّث الملف الشخصي"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:78
+#, fuzzy
+msgid "Name: "
+msgstr "الاسم"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:83
+#, fuzzy
+msgid "URL: "
+msgstr "المستخدم:"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:88
+msgid "Bio: "
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:93
+msgid "Joined at: "
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:103
+#, fuzzy
+msgid "Header: "
+msgstr "إخفي"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:120
+msgid "Avatar: "
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:139
+msgid "Field {} - Label: "
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:146
+#, fuzzy
+msgid "Content: "
+msgstr "السياق"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:152
+msgid "Yes"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:152
+msgid "No"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:154
+#, fuzzy
+msgid "Private account: "
+msgstr "إحذف الحساب"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:161
+#, fuzzy
+msgid "Bot account: "
+msgstr "حسابفك ربط حساب الدروب بوكس."
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:168
+#, fuzzy
+msgid "Discoverable account: "
+msgstr "إحذف الحساب"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:174
+msgid "{} posts. Click to open posts timeline"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:179
+msgid "{} following. Click to open Following timeline"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:183
+msgid "{} followers. Click to open followers timeline"
+msgstr ""
 
 #: wxUI/dialogs/mastodon/updateProfile.py:42
 msgid "Display Name"
