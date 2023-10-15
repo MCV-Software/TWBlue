@@ -4,18 +4,19 @@
 # Riku <riku@riku22.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"Project-Id-Version:  \n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2023-10-15 00:54+0000\n"
-"PO-Revision-Date: 2023-08-28 01:51+0000\n"
+"PO-Revision-Date: 2023-10-16 03:58+0000\n"
 "Last-Translator: Riku <riku@riku22.net>\n"
+"Language-Team: Japanese <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese "
-"<https://weblate.mcvsoftware.com/projects/twblue/twblue/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.13.0\n"
 
 #: languageHandler.py:61
@@ -557,9 +558,8 @@ msgid "Add a&lias"
 msgstr "エイリアスを追加(&A)"
 
 #: controller/mastodon/handler.py:48
-#, fuzzy
 msgid "Show user profile"
-msgstr "ユーザーのプロフィールを表示(&P)"
+msgstr "ユーザーのプロフィールを表示"
 
 #: controller/mastodon/handler.py:92
 msgid "Timelines"
@@ -820,90 +820,79 @@ msgstr "スペルチェックが完了しました。"
 #: extra/autocompletionUsers/completion.py:39
 #: extra/autocompletionUsers/completion.py:57
 msgid "You have to start writing"
-msgstr ""
+msgstr "あなたは、書き込みを開始しなければなりません"
 
 #: extra/autocompletionUsers/completion.py:49
 #: extra/autocompletionUsers/completion.py:66
-#, fuzzy
 msgid "There are no results in your users database"
-msgstr "このバッファにはこれ以上アイテムがありません。"
+msgstr "ユーザーデータベースに見つかりませんでした"
 
 #: extra/autocompletionUsers/completion.py:51
-#, fuzzy
 msgid "Autocompletion only works for users."
-msgstr "ユーザーを自動保管(&C)"
+msgstr "オートコンプリートはユーザーに対してのみ機能します。"
 
 #: extra/autocompletionUsers/wx_manage.py:9
-#, fuzzy
 msgid "Manage Autocompletion database"
 msgstr "自動補完のデータベースを管理"
 
 #: extra/autocompletionUsers/wx_manage.py:12
-#, fuzzy
 msgid "Editing {0} users database"
-msgstr "ユーザーエイリアスを編集"
+msgstr "{0} のユーザーのデータベースを編集中"
 
 #: extra/autocompletionUsers/wx_manage.py:13
-#, fuzzy
 msgid "Username"
-msgstr "ユーザー"
+msgstr "ユーザー名"
 
 #: extra/autocompletionUsers/wx_manage.py:13 wxUI/dialogs/configuration.py:112
 msgid "Name"
 msgstr "名前"
 
 #: extra/autocompletionUsers/wx_manage.py:16
-#, fuzzy
 msgid "Add user"
-msgstr "ユーザー"
+msgstr "ユーザーを追加"
 
 #: extra/autocompletionUsers/wx_manage.py:17
-#, fuzzy
 msgid "Remove user"
-msgstr "ユーザーエイリアスを削除"
+msgstr "ユーザーを削除"
 
 #: extra/autocompletionUsers/wx_manage.py:38
 msgid "Twitter username"
-msgstr ""
+msgstr "Twitterユーザー名"
 
 #: extra/autocompletionUsers/wx_manage.py:38
-#, fuzzy
 msgid "Add user to database"
-msgstr "ユーザーエイリアスを追加"
+msgstr "ユーザーをデータベースに追加"
 
 #: extra/autocompletionUsers/wx_manage.py:44
-#, fuzzy
 msgid "The user does not exist"
 msgstr "そのユーザーは存在しません"
 
 #: extra/autocompletionUsers/wx_manage.py:44
-#, fuzzy
 msgid "Error!"
-msgstr "エラー"
+msgstr "エラー！"
 
 #: extra/autocompletionUsers/mastodon/scan.py:49
 msgid ""
 "Updating database... You can close this window now. A message will tell "
 "you when the process finishes."
-msgstr ""
+msgstr "データベースを更新しています... このウィンドウは今閉じても大丈夫です。プロセ"
+"スが完了するとメッセージが表示されます。"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:8
-#, fuzzy
 msgid "Autocomplete users' settings"
-msgstr "ユーザーを自動保管(&C)"
+msgstr "自動補完のユーザーの設定"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:11
 msgid "Add followers to database"
-msgstr ""
+msgstr "フォロワーをデータベースに追加"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:12
 msgid "Add  following to database"
-msgstr ""
+msgstr "フォロー中をデータベースに追加"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:26
-#, fuzzy
 msgid "Updating autocompletion database"
-msgstr "自動補完のデータベースを管理"
+msgstr "自動補完のデータベースを更新中"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:34
 msgid ""
@@ -916,6 +905,13 @@ msgid ""
 "minutes. If this process ends with no error, you will be redirected back "
 "to the account settings dialog. Do you want to continue?"
 msgstr ""
+"このプロセスでは、Mastodonアカウントから選択したユーザーを取得し、ユーザーの"
+"自動補完データベースに追加します。多数のユーザーがいる場合、または15分以内に"
+"このアクションを実行しようとした場合、TWBlueはユーザーをデータベースにロード"
+"しようとするとAPI呼び出しの制限に達する可能性があることに注意してください。こ"
+"の問題が発生した場合、エラーが表示されます。その場合は、数分後にこのプロセス"
+"をもう一度試す必要があります。このプロセスがエラーなしで終了すると、アカウン"
+"ト設定ダイアログにリダイレクトされます。続行しますか？"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:34
 #: wxUI/commonMessageDialogs.py:20
@@ -924,16 +920,16 @@ msgstr "確認"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:40
 msgid "TWBlue has imported {} users successfully."
-msgstr ""
+msgstr "TWBlue は {} ユーザーを正常にインポートしました。"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:40
-#, fuzzy
 msgid "Done"
-msgstr "完了！"
+msgstr "完了"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:44
 msgid "Error adding users from Mastodon. Please try again in about 15 minutes."
-msgstr ""
+msgstr "Mastodonからのユーザーの追加中にエラーが発生しました。15分ほど経ってからもう"
+"一度お試しください。"
 
 #: extra/ocr/OCRSpace.py:7
 msgid "Detect automatically"
@@ -1461,9 +1457,8 @@ msgid "Open the user actions dialogue"
 msgstr "ユーザーのアクションを選択する画面を表示"
 
 #: keystrokeEditor/actions/mastodon.py:18
-#, fuzzy
 msgid "See user details"
-msgstr "ユーザーエイリアスを削除"
+msgstr "ユーザーの詳細を表示"
 
 #: keystrokeEditor/actions/mastodon.py:19
 msgid "Show post"
@@ -2040,7 +2035,7 @@ msgstr "警告"
 
 #: wxUI/commonMessageDialogs.py:45
 msgid "Sorry, you can't update while running {} from source."
-msgstr ""
+msgstr "申し訳ありませんが、ソースから{}を実行している間は更新できません。"
 
 #: wxUI/sysTrayIcon.py:36 wxUI/view.py:25
 msgid "&Global settings"
@@ -2687,7 +2682,8 @@ msgstr "このユーザーは誰もフォローしていないため、 {0} の�
 
 #: wxUI/dialogs/mastodon/dialogs.py:60
 msgid "The focused item has no user in it. {} ca't open a user profile"
-msgstr ""
+msgstr "フォーカスされたアイテムにはユーザーが存在しません。 {} "
+"ユーザープロフィールを開けません"
 
 #: wxUI/dialogs/mastodon/menus.py:13
 msgid "R&emove from favorites"
@@ -3019,88 +3015,76 @@ msgid "&Close"
 msgstr "閉じる(&C)"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:21
-#, fuzzy
 msgid "Select user"
-msgstr "URLを選択"
+msgstr "ユーザーを選択"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:72
-#, fuzzy
 msgid "{}'s Profile"
-msgstr "プロフィールを更新"
+msgstr "{} のプロフィール"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:78
-#, fuzzy
 msgid "Name: "
-msgstr "名前"
+msgstr "名前: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:83
-#, fuzzy
 msgid "URL: "
-msgstr "ユーザー名: "
+msgstr "URL: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:88
-#, fuzzy
 msgid "Bio: "
-msgstr "自己紹介"
+msgstr "自己紹介: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:93
 msgid "Joined at: "
-msgstr ""
+msgstr "参加日: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:103
-#, fuzzy
 msgid "Header: "
-msgstr "ヘッダー"
+msgstr "ヘッダー: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:120
-#, fuzzy
 msgid "Avatar: "
-msgstr "アバター"
+msgstr "アバター: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:139
-#, fuzzy
 msgid "Field {} - Label: "
-msgstr "フィールド {}: ラベル"
+msgstr "フィールド {} - ラベル: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:146
-#, fuzzy
 msgid "Content: "
-msgstr "内容"
+msgstr "内容: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:152
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:152
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:154
-#, fuzzy
 msgid "Private account: "
-msgstr "承認制アカウント"
+msgstr "承認制アカウント: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:161
-#, fuzzy
 msgid "Bot account: "
-msgstr "ボットアカウント"
+msgstr "ボットアカウント: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:168
-#, fuzzy
 msgid "Discoverable account: "
-msgstr "発見可能なアカウント"
+msgstr "発見可能なアカウント: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:174
 msgid "{} posts. Click to open posts timeline"
-msgstr ""
+msgstr "{}件の投稿。クリックして投稿のタイムラインを開きます"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:179
 msgid "{} following. Click to open Following timeline"
-msgstr ""
+msgstr "{} フォロー中。クリックしてフォロー中のタイムラインを開きます"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:183
 msgid "{} followers. Click to open followers timeline"
-msgstr ""
+msgstr "{} フォロワー。クリックしてフォロワーのタイムラインを開きます"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:42
 msgid "Display Name"
@@ -4182,4 +4166,3 @@ msgstr "フォロー中(&L)"
 
 #~ msgid "Participation time (in days)"
 #~ msgstr "投票期間(日数)"
-
