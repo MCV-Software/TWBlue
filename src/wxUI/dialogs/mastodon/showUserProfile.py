@@ -6,12 +6,13 @@ from pubsub import pub
 from typing import Tuple
 import requests
 import wx
+from logging import getLogger
+from threading import Thread
 
 from sessions.mastodon.utils import html_filter
 
 
-def _(s):
-    return s
+log = getLogger(__name__)
 
 
 def selectUserDialog(users: list) -> tuple:
@@ -101,37 +102,19 @@ class ShowUserProfile(wx.Dialog):
 
         # header
         headerLabel = wx.StaticText(self.panel, label=_("Header: "))
-        try:
-            response = requests.get(user.header)
-        except requests.exceptions.RequestException:
-            # Create empty image
-            headerImage = wx.StaticBitmap()
-        else:
-            image_bytes = BytesIO(response.content)
-            image = wx.Image(image_bytes, wx.BITMAP_TYPE_ANY)
-            image.Rescale(300, 100, wx.IMAGE_QUALITY_HIGH)
-            headerImage = wx.StaticBitmap(self.panel, bitmap=image.ConvertToBitmap())
-
-        headerImage.AcceptsFocusFromKeyboard = returnTrue
+        # Create empty image
+        self.headerImage = wx.StaticBitmap(self.panel)
+        self.headerImage.AcceptsFocusFromKeyboard = returnTrue
         mainSizer.Add(headerLabel, wx.SizerFlags().Center())
-        mainSizer.Add(headerImage, wx.SizerFlags().Center())
+        mainSizer.Add(self.headerImage, wx.SizerFlags().Center())
 
         # avatar
         avatarLabel = wx.StaticText(self.panel, label=_("Avatar: "))
-        try:
-            response = requests.get(user.avatar)
-        except requests.exceptions.RequestException:
             # Create empty image
-            avatarImage = wx.StaticBitmap()
-        else:
-            image_bytes = BytesIO(response.content)
-            image = wx.Image(image_bytes, wx.BITMAP_TYPE_ANY)
-            image.Rescale(150, 150, wx.IMAGE_QUALITY_HIGH)
-            avatarImage = wx.StaticBitmap(self.panel, bitmap=image.ConvertToBitmap())
-
-        avatarImage.AcceptsFocusFromKeyboard = returnTrue
+        self.avatarImage = wx.StaticBitmap(self.panel)
+        self.avatarImage.AcceptsFocusFromKeyboard = returnTrue
         mainSizer.Add(avatarLabel, wx.SizerFlags().Center())
-        mainSizer.Add(avatarImage, wx.SizerFlags().Center())
+        mainSizer.Add(self.avatarImage, wx.SizerFlags().Center())
 
         self.fields = []
         for num, field in enumerate(user.fields):
@@ -194,6 +177,8 @@ class ShowUserProfile(wx.Dialog):
         self.panel.Center()
         mainSizer.Fit(self)
         self.Center()
+        imageDownloaderThread = Thread(target=self._getImages)
+        imageDownloaderThread.start()
 
 
     def createTextCtrl(self, text: str, size: Tuple[int, int], multiline: bool = False) -> wx.TextCtrl:
@@ -226,3 +211,29 @@ class ShowUserProfile(wx.Dialog):
     def onFollowers(self, *args):
         """Open followers timeline for this user"""
         pub.sendMessage('execute-action', action='openFollowersTimeline', kwargs=dict(user=self.user))
+
+    def _getImages(self):
+        """Downloads image from mastodon server
+        This method should run on a separate thread
+        """
+        log.debug("Downloading user's header and avatar images...")
+        try:
+            header = requests.get(self.user.header)
+            avatar = requests.get(self.user.avatar)
+        except requests.exceptions.RequestException as mess:
+            log.exception("An exception was raised while downloading images:", mess)
+            return
+        wx.CallAfter(self._drawImages, header.content, avatar.content)
+
+    def _drawImages(self, headerImageBytes, avatarImageBytes):
+        """Draws images on the bitmap ui"""
+    # log.debug("Drawing images...")
+        # Header
+        headerImage = wx.Image(BytesIO(headerImageBytes), wx.BITMAP_TYPE_ANY)
+        headerImage.Rescale(300, 100, wx.IMAGE_QUALITY_HIGH)
+        self.headerImage.SetBitmap(headerImage.ConvertToBitmap())
+
+        # Avatar
+        avatarImage = wx.Image(BytesIO(avatarImageBytes), wx.BITMAP_TYPE_ANY)
+        avatarImage.Rescale(150, 150, wx.IMAGE_QUALITY_HIGH)
+        self.avatarImage.SetBitmap(avatarImage.ConvertToBitmap())
