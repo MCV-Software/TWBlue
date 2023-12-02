@@ -72,7 +72,7 @@ class ShowUserProfile(wx.Dialog):
         self.SetTitle(_("{}'s Profile").format(user.display_name))
         self.panel = wx.Panel(self)
         wrapperSizer = wx.BoxSizer(wx.VERTICAL)
-        mainSizer = wx.GridSizer(12, 2, 5, 5)
+        mainSizer = wx.GridSizer(2, 5, 5)
 
         # create widgets
         nameLabel = wx.StaticText(self.panel, label=_("Name: "))
