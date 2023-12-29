@@ -1,7 +1,10 @@
 # Release a new TW Blue installer on github.
 # This workflow runs on push.
 name: Release
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - next-gen
 jobs:
   build:
   # Builds an x64 binary and an installer of TW Blue.
