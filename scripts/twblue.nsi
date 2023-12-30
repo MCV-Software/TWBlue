@@ -58,7 +58,8 @@ SetOutPath "$INSTDIR"
 ${If} ${RunningX64}
 File /r TWBlue64\*
 ${Else}
-File /r TWBlue\*
+messagebox MB_ICONSTOP "Error: This TWBlue installer is only compatible with 64-bit systems. TWBlue does not support 32 bit systems any more."
+Quit
 ${EndIf}
 CreateShortCut "$DESKTOP\TWBlue.lnk" "$INSTDIR\TWBlue.exe"
 !insertmacro MUI_STARTMENU_WRITE_BEGIN startmenu
