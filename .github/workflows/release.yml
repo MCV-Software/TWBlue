@@ -3,12 +3,13 @@
 name: Release
 on:
   push:
-    branches:
-      - next-gen
+    tags: ["release"]
+  workflow_dispatch:
+
 jobs:
   build:
   # Builds an x64 binary and an installer of TW Blue.
-    runs-on: windows-2019
+    runs-on: windows-latest
     steps:
       - name: clone repo
         uses: actions/checkout@v4
@@ -22,14 +23,6 @@ jobs:
       - name: Install python packages
         run: python -m pip install -r requirements.txt
 
-      - name: Get nsis
-        run: |
-          iwr -useb get.scoop.sh -outfile 'install.ps1'
-          .\install.ps1 -RunAsAdmin
-          scoop update
-          scoop bucket add extras
-          scoop install nsis
-
       - name: Build binary
         run: |
           .\scripts\build.ps1
@@ -37,12 +30,14 @@ jobs:
 
       - name: make installer
         run: |
-          cd src
-          python write_version_data.py
-          cd ../scripts
+          cd scripts
           makensis twblue.nsi
 
       - name: Create new release
         env:
           gh_token: ${{ github.token }}
-        run: gh release create snapshot -n "This release is a snapshot of the current development version of twblue." -p -t "Snapshot" scripts\TWBlue_setup.exe
+        run: |
+          mkdir .release-assets
+          mv scripts\TWBlue_setup.exe .release-assets\TWBlue_setup_$(cat version.txt).exe
+          7z a -tzip .release-assets\TWBlue_portable_$(cat version.txt).zip scripts\TWBlue64
+          gh release create release -p -t "Version $(cat version.txt)" .release-assets\TWBlue_setup_$(cat version.txt).exe .release-assets\TWBlue_portable_$(cat version.txt).zip

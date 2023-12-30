@@ -10,6 +10,7 @@ echo "done."
 
 echo "Building binary..."
 cd src
+python write_version_data.py
 python setup.py build
 cd ..
 echo "done."
