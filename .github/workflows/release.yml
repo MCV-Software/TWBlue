@@ -40,4 +40,4 @@ jobs:
           mkdir .release-assets
           mv scripts\TWBlue_setup.exe .release-assets\TWBlue_setup_$(cat version.txt).exe
           7z a -tzip .release-assets\TWBlue_portable_$(cat version.txt).zip scripts\TWBlue64
-          gh release create release -p -t "Version $(cat version.txt)" .release-assets\TWBlue_setup_$(cat version.txt).exe .release-assets\TWBlue_portable_$(cat version.txt).zip
+          gh release create release -n "New version of TWBlue." -t "Version $(cat version.txt)" .release-assets\TWBlue_setup_$(cat version.txt).exe .release-assets\TWBlue_portable_$(cat version.txt).zip
