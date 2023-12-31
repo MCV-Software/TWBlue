@@ -2,15 +2,10 @@
 """ Write version info (taken from the last commit) to application.py. This method has been implemented this way for running updates.
 This file is not intended to be called by the user. It will be used only by the Gitlab CI runner."""
 import os
-import requests
 from codecs import open
 
 print("Writing version data for update...")
-commit_info = requests.get("https://gitlab.com/api/v4/projects/23482196/repository/commits/next-gen")
-commit_info = commit_info.json()
-commit = commit_info["short_id"]
-print("Got new version info: {commit}".format(commit=commit,))
-new_version = commit_info["created_at"][:10].replace("-", ".")
+new_version = os.environ.get("GITHUB_REF_NAME")
 file = open("application.py", "r", encoding="utf-8")
 lines = file.readlines()
 lines[-1] = 'version = "{}"'.format(new_version)
@@ -29,9 +24,3 @@ file2 = open("..\\scripts\\twblue.nsi", "w", encoding="utf-8")
 file2.write(contents)
 file2.close()
 print("done")
-
-print("Writing new version to version.txt")
-version_txt = open("../version.txt", "w", encoding="utf8")
-version_txt.write(new_version)
-version_txt.close()
-print("Done.")
