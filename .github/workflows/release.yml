@@ -3,7 +3,8 @@
 name: Release
 on:
   push:
-    tags: ["release"]
+    tags:
+      - v20*
   workflow_dispatch:
 
 jobs:
