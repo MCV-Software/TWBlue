@@ -899,7 +899,7 @@ class Controller(object):
         except:
             output.speak(_(u"An error happened while trying to connect to the server. Please try later."))
             return
-        # There is no twblue.es/en, so if English is the language used this should be False anyway.
+        # There is no twblue.mcvsoftware.com/en, so if English is the language used this should be False anyway.
         if response.status_code == 200 and lang != "en":
             webbrowser.open_new_tab(final_url)
         else:
@@ -915,7 +915,7 @@ class Controller(object):
         except:
             output.speak(_(u"An error happened while trying to connect to the server. Please try later."))
             return
-        # There is no twblue.es/en, so if English is the language used this should be False anyway.
+        # There is no twblue.mcvsoftware.com/en, so if English is the language used this should be False anyway.
         if response.status_code == 200 and lang != "en":
             webbrowser.open_new_tab(final_url)
         else:

@@ -178,7 +178,7 @@ Visually, Towards the top of the main application window, can be found a menu ba
 * Sounds tutorial: Opens a dialog box where you can familiarize yourself with the different sounds of the program.
 * What's new in this version?: opens up a document with the list of changes from the current version to the earliest.
 * Check for updates: every time you open the program it automatically checks for new versions. If an update is available, it will ask you if you want to download the update. If you accept, the updating process will commence. When complete, TWBlue will be restarted. This item checks for new updates without having to restart the application.
-* TWBlue's website: visit our [home page](http://twblue.es) where you can find all relevant information and downloads for TWBlue and become a part of the community.
+* TWBlue's website: visit our [home page](https://twblue.mcvsoftware.com) where you can find all relevant information and downloads for TWBlue and become a part of the community.
 * Get soundpacks for TWBlue: 
 * Make a Donation: Opens a website from which you can donate to the TWBlue project. Donations are made through paypal and you don't need an account to donate.
 * About TWBlue: shows the credits of the program.
@@ -322,11 +322,11 @@ Tw Blue is free software, licensed under the GNU GPL license, either version 2 o
 
 The source code of the program is available on GitHub at <https://www.github.com/manuelcortez/twblue>.
 
-If you want to donate to the project, you can do so at <https://twblue.es/donate>. Thank you for your support!
+If you want to donate to the project, you can do so at <https://twblue.mcvsoftware.com/donate>. Thank you for your support!
 
 ## Contact
 
-If you still have questions after reading this document, if you wish to collaborate to the project in some other way, or if you simply want to get in touch with the application developer, follow the Twitter account [@tw\_blue2](https://twitter.com/tw_blue2) or [@manuelcortez00.](https://twitter.com/manuelcortez00) You can also visit [our website](https://twblue.es)
+If you still have questions after reading this document, if you wish to collaborate to the project in some other way, or if you simply want to get in touch with the application developer, follow the Twitter account [@tw\_blue2](https://twitter.com/tw_blue2) or [@manuelcortez00.](https://twitter.com/manuelcortez00) You can also visit [our website](https://twblue.mcvsoftware.com)
 
 ## Credits
 

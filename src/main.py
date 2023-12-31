@@ -104,7 +104,7 @@ def proxy_setup():
 def donation():
     dlg = commonMessageDialogs.donation()
     if dlg == widgetUtils.YES:
-        webbrowser.open_new_tab(_("https://twblue.es/donate"))
+        webbrowser.open_new_tab(_("https://twblue.mcvsoftware.com/donate"))
     config.app["app-settings"]["donation_dialog_displayed"] = True
 
 def check_pid():

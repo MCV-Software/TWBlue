@@ -5,7 +5,7 @@
 
 TWBlue is a free and open source application that allows you to interact with the main features of mastodon from the comfort of a windows software, with 2 different interfaces specially designed for screen reader users.
 
-See [TWBlue's webpage](https://twblue.es) for more details.
+See [TWBlue's webpage](https://twblue.mcvsoftware.com) for more details.
 
 ## Running TWBlue from source
 
