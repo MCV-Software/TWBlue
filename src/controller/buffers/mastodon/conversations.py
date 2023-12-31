@@ -51,7 +51,7 @@ class ConversationListBuffer(BaseBuffer):
                 results = getattr(self.session.api, self.function)(min_id=min_id, limit=count, *self.args, **self.kwargs)
                 results.reverse()
             except Exception as e:
-                log.exception("Error %s" % (str(e)))
+                log.exception("Error %s loading %s with args of %r and kwargs of %r" % (str(e), self.function, self.args, self.kwargs))
                 return
             new_position, number_of_items = self.order_buffer(results)
             log.debug("Number of items retrieved: %d" % (number_of_items,))
@@ -110,6 +110,9 @@ class ConversationListBuffer(BaseBuffer):
             self.session.db[self.name] = []
         objects = self.session.db[self.name]
         for i in data:
+            # Deleted conversations handling.
+            if i.last_status == None:
+                continue
             position = self.get_item_position(i)
             if position != None:
                 conversation = self.session.db[self.name][position]

@@ -14,6 +14,7 @@ TWBlue Changelog
     * Added possibility to vote in polls.
     * Added posts search. Take into account that Mastodon instances should be configured with full text search enabled. Search for posts only include posts the logged-in user has interacted with. ([#541](https://github.com/MCV-Software/TWBlue/pull/541))
     * Added user autocompletion settings in account settings dialog, so it is possible to ask TWBlue to scan mastodon accounts and add people from followers and following buffers. For now, user autocompletion can be used only when composing new posts or replies.
+    * TWBlue should be able to ignore deleted direct messages or messages from deleted accounts. Previously, a direct message that no longer existed in the instance caused errors when loading the direct messages buffer and could potentially affect notifications as well.
 
 ## changes in version 2023.4.13
 
