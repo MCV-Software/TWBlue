@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 name = 'TWBlue'
 short_name='twblue'
-update_url = 'https://twblue.es/updates/updates.php'
-mirror_update_url = 'https://raw.githubusercontent.com/mcv-software/TWBlue/next-gen/updates/updates.json'
+update_url = 'https://raw.githubusercontent.com/mcv-software/TWBlue/next-gen/updates/updates.json'
 authors = ["Manuel Cortéz", "José Manuel Delicado"]
 authorEmail = "manuel@manuelcortez.net"
 copyright = "Copyright (C) 2013-2023, MCV Software."
