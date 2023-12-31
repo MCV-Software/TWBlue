@@ -5,7 +5,7 @@ import os
 from codecs import open
 
 print("Writing version data for update...")
-new_version = os.environ.get("GITHUB_REF_NAME")
+new_version = os.environ.get("GITHUB_REF_NAME")[1:]
 file = open("application.py", "r", encoding="utf-8")
 lines = file.readlines()
 lines[-1] = 'version = "{}"'.format(new_version)
