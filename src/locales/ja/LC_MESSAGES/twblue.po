@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-12-24 00:55+0000\n"
+"POT-Creation-Date: 2023-12-31 00:55+0000\n"
 "PO-Revision-Date: 2023-10-16 03:58+0000\n"
 "Last-Translator: Riku <riku@riku22.net>\n"
 "Language: ja\n"
@@ -1329,7 +1329,7 @@ msgstr "現在の動作を実行"
 
 #: keystrokeEditor/wx_ui.py:21 wxUI/dialogs/configuration.py:229
 #: wxUI/dialogs/mastodon/configuration.py:172
-#: wxUI/dialogs/mastodon/showUserProfile.py:187
+#: wxUI/dialogs/mastodon/showUserProfile.py:170
 #: wxUI/dialogs/userAliasDialogs.py:25
 msgid "Close"
 msgstr "閉じる"
@@ -1367,7 +1367,7 @@ msgid "Key"
 msgstr "キー名"
 
 #: keystrokeEditor/wx_ui.py:70 wxUI/dialogs/find.py:21
-#: wxUI/dialogs/mastodon/showUserProfile.py:30
+#: wxUI/dialogs/mastodon/showUserProfile.py:31
 #: wxUI/dialogs/userAliasDialogs.py:23
 msgid "OK"
 msgstr "OK"
@@ -2261,7 +2261,7 @@ msgstr "ダイレクトメッセージ"
 msgid "Dismiss"
 msgstr "却下"
 
-#: wxUI/buffers/mastodon/user.py:19 wxUI/dialogs/mastodon/showUserProfile.py:98
+#: wxUI/buffers/mastodon/user.py:19 wxUI/dialogs/mastodon/showUserProfile.py:99
 #: wxUI/dialogs/userAliasDialogs.py:48
 msgid "Actions"
 msgstr "操作"
@@ -2424,7 +2424,7 @@ msgstr "現在のバッファ内を検索"
 msgid "String"
 msgstr "検索文字"
 
-#: wxUI/dialogs/find.py:23 wxUI/dialogs/mastodon/showUserProfile.py:32
+#: wxUI/dialogs/find.py:23 wxUI/dialogs/mastodon/showUserProfile.py:33
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -3003,75 +3003,75 @@ msgstr "OK(&O)"
 msgid "&Close"
 msgstr "閉じる(&C)"
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:21
+#: wxUI/dialogs/mastodon/showUserProfile.py:22
 msgid "Select user"
 msgstr "ユーザーを選択"
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:72
+#: wxUI/dialogs/mastodon/showUserProfile.py:73
 msgid "{}'s Profile"
 msgstr "{} のプロフィール"
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:78
+#: wxUI/dialogs/mastodon/showUserProfile.py:79
 msgid "Name: "
 msgstr "名前: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:83
+#: wxUI/dialogs/mastodon/showUserProfile.py:84
 msgid "URL: "
 msgstr "URL: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:88
+#: wxUI/dialogs/mastodon/showUserProfile.py:89
 msgid "Bio: "
 msgstr "自己紹介: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:93
+#: wxUI/dialogs/mastodon/showUserProfile.py:94
 msgid "Joined at: "
 msgstr "参加日: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:103
+#: wxUI/dialogs/mastodon/showUserProfile.py:104
 msgid "Header: "
 msgstr "ヘッダー: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:120
+#: wxUI/dialogs/mastodon/showUserProfile.py:112
 msgid "Avatar: "
 msgstr "アバター: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:139
+#: wxUI/dialogs/mastodon/showUserProfile.py:122
 msgid "Field {} - Label: "
 msgstr "フィールド {} - ラベル: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:146
+#: wxUI/dialogs/mastodon/showUserProfile.py:129
 msgid "Content: "
 msgstr "内容: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:152
+#: wxUI/dialogs/mastodon/showUserProfile.py:135
 msgid "Yes"
 msgstr "はい"
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:152
+#: wxUI/dialogs/mastodon/showUserProfile.py:135
 msgid "No"
 msgstr "いいえ"
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:154
+#: wxUI/dialogs/mastodon/showUserProfile.py:137
 msgid "Private account: "
 msgstr "承認制アカウント: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:161
+#: wxUI/dialogs/mastodon/showUserProfile.py:144
 msgid "Bot account: "
 msgstr "ボットアカウント: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:168
+#: wxUI/dialogs/mastodon/showUserProfile.py:151
 msgid "Discoverable account: "
 msgstr "発見可能なアカウント: "
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:174
+#: wxUI/dialogs/mastodon/showUserProfile.py:157
 msgid "{} posts. Click to open posts timeline"
 msgstr "{}件の投稿。クリックして投稿のタイムラインを開きます"
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:179
+#: wxUI/dialogs/mastodon/showUserProfile.py:162
 msgid "{} following. Click to open Following timeline"
 msgstr "{} フォロー中。クリックしてフォロー中のタイムラインを開きます"
 
-#: wxUI/dialogs/mastodon/showUserProfile.py:183
+#: wxUI/dialogs/mastodon/showUserProfile.py:166
 msgid "{} followers. Click to open followers timeline"
 msgstr "{} フォロワー。クリックしてフォロワーのタイムラインを開きます"
 
