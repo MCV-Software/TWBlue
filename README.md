@@ -1,7 +1,7 @@
 ﻿TWBlue
 ======
 
-[![Build status](https://ci.appveyor.com/api/projects/status/fml5fu7h1fj8vf6l?svg=true)](https://ci.appveyor.com/project/manuelcortez/twblue)
+![Release status badge](https://github.com/mcv-software/twblue/actions/workflows/release.yml/badge.svg)
 
 TWBlue is a free and open source application that allows you to interact with the main features of mastodon from the comfort of a windows software, with 2 different interfaces specially designed for screen reader users.
 
@@ -22,7 +22,6 @@ Although most dependencies can be found in the windows-dependencies directory, w
 #### Dependencies packaged in windows installers
 
 * [Python,](https://python.org) version 3.10.8  
-If you want to build both x86 and x64 binaries, you can install python x64 to C:\python310 and python x86 to C:\python310-32, for example.
 
 #### Dependencies that must be installed using pip
 
@@ -32,10 +31,6 @@ Python installs a tool called Pip that allows to install packages in a simple wa
 
 	You can also add the scripts folder to your path environment variable or choose the corresponding option when installing Python.  
 	Note: pip and setuptools are included in the Python installer since version 2.7.9.
-
-Note: If you are using Python for 32-bit systems, you will need to install WXPython for 32-bits before running the command for installing everything else. You can do so by running the following command:
-
-    `pip install --upgrade https://github.com/josephsl/wxpy32whl/blob/main/wxPython-4.2.0-cp310-cp310-win32.whl?raw=true`
 
 Pip is able to install packages listed in a special text file, called the requirements file. To install all remaining dependencies, perform the following command:
 
@@ -74,7 +69,7 @@ Now that you have installed all these packages, you can run TW Blue from source 
 
     `python main.py`
 
-	If necessary, change the first part of the command to reflect the location of your python executable. You can run TW Blue using python x86 and x64.
+	If necessary, change the first part of the command to reflect the location of your python executable.
 
 ### Generating the documentation
 
@@ -100,10 +95,8 @@ To build it, run the following command from the src folder:
 
 If you want to install TWBlue on your computer, you must create the installer first. Follow these steps:
 
-* Navigate to the src directory, and create a binary version for x86: C:\python37\python setup.py build
-* Move the dist directory to the scripts folder in this repo, and rename it to twblue
-* Repeat these steps with Python for x64: C:\python37x64\python setup.py build
-* Move the new dist directory to the scripts folder, and rename it to twblue64
+* Navigate to the src directory, and create a binary version: C:\python310\python setup.py build
+* Move the dist directory to the scripts folder in this repo, and rename it to twblue64
 * Go to the scripts folder, right click on the twblue.nsi file, and choose compyle unicode NSIS script
 * This may take a while. After the process, you will find the installer in the scripts folder
 
@@ -111,6 +104,8 @@ If you want to install TWBlue on your computer, you must create the installer fi
 
 To manage translations in TWBlue, you can install the [Babel package.](https://pypi.org/project/Babel/) You can extract message catalogs and generate the main template file with the following command:
 
+```bash
 pybabel extract -o twblue.pot --msgid-bugs-address "manuel@manuelcortez.net" --copyright-holder "MCV software" --input-dirs ..\src
+```
 
 Take into account, though, that we use [weblate](https://weblate.mcvsoftware.com) to track translation work for TWBlue. If you wish to be part of our translation team, please open an issue so we can create an account for you in Weblate.
