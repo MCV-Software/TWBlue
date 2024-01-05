@@ -9,7 +9,7 @@ TWBlue Changelog
     * If running from source, automatic updates will not be checked as this works only for distribution. ([#540](https://github.com/MCV-Software/TWBlue/pull/540))
     * Fixed the 'report an error' item in the help menu. Now this item redirects to our gitHub issue tracker. ([#524](https://github.com/MCV-Software/TWBlue/pull/524))
 * Mastodon:
-    * Implemented actions for the notifications buffer on a mastodon instance. Actions can be performed from the contextual menu on every notification, or by using invisible keystrokes. ([#517](https://github.com/mcv-software/twblue(issues/517))
+    * Implemented actions for the notifications buffer on a mastodon instance. Actions can be performed from the contextual menu on every notification, or by using invisible keystrokes. ([#517](https://github.com/mcv-software/twblue/issues/517))
     * Implemented update profile dialog. ([#547](https://github.com/MCV-Software/TWBlue/pull/547))
     * It is possible to display an user profile from the user menu within the menu bar, or by using the invisible keystroke for user details. ([#555](https://github.com/MCV-Software/TWBlue/pull/555))
     * Added possibility to vote in polls. This is mapped to Alt+Win+Shift+V in the invisible keymaps for windows 10/11.
