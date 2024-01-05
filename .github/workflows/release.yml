@@ -42,4 +42,5 @@ jobs:
           mv scripts\TWBlue_setup.exe .release-assets\TWBlue_setup_${{github.ref_name}}.exe
           cd scripts\TWBlue64
           7z a -tzip ..\..\release-assets\TWBlue_portable_${{github.ref_name}}.zip .
+          cd ..\..\
           gh release create release --draft -F "release-notes.md" -t "${{github.ref_name}}" .release-assets\TWBlue_setup_${{github.ref_name}}.exe .release-assets\TWBlue_portable_${{github.ref_name}}.zip
