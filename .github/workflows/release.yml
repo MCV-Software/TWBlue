@@ -34,13 +34,16 @@ jobs:
           cd scripts
           makensis twblue.nsi
 
+      - name: Create portable
+        working-directory: scripts\TWBlue64
+        run: |
+          7z a -tzip TWBlue_portable.zip .
+
       - name: Create new release
         env:
           gh_token: ${{ github.token }}
         run: |
           mkdir .release-assets
           mv scripts\TWBlue_setup.exe .release-assets\TWBlue_setup_${{github.ref_name}}.exe
-          cd scripts\TWBlue64
-          7z a -tzip ..\..\release-assets\TWBlue_portable_${{github.ref_name}}.zip .
-          cd ..\..\
+          mv scripts\TWBlue64\TWBlue_portable.zip .release-assets\TWBlue_portable_${{github.ref_name}}.zip
           gh release create release --draft -F "release-notes.md" -t "${{github.ref_name}}" .release-assets\TWBlue_setup_${{github.ref_name}}.exe .release-assets\TWBlue_portable_${{github.ref_name}}.zip
