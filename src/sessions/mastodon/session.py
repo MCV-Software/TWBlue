@@ -135,6 +135,10 @@ class Session(base.baseSession):
             else:
                 last_id = self.db[name][-1].id
         for i in data:
+            # handle empty notifications.
+            post_types = ["status", "mention", "reblog", "favourite", "update", "poll"]
+            if hasattr(i, "type") and i.type in post_types and i.status == None:
+                continue
             if ignore_older and last_id != None:
                 if i.id < last_id:
                     log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i.id))
