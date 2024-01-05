@@ -142,6 +142,17 @@ class Handler(object):
                 users = [user.acct for user in item.mentions if user.id != buffer.session.db["user_id"]]
             if item.account.acct not in users:
                 users.insert(0, item.account.acct)
+        elif buffer.type == "notificationsBuffer":
+            if buffer.is_post():
+                status = item.status
+                if status.reblog != None:
+                    users = [user.acct for user in status.reblog.mentions if user.id != buffer.session.db["user_id"]]
+                    if status.reblog.account.acct not in users and status.account.id != buffer.session.db["user_id"]:
+                        users.insert(0, status.reblog.account.acct)
+                else:
+                    users = [user.acct for user in status.mentions if user.id != buffer.session.db["user_id"]]
+        if item.account.acct not in users:
+            users.insert(0, item.account.acct)
         u = userActions.userActions(buffer.session, users)
 
     def search(self, controller, session, value):
@@ -316,6 +327,8 @@ class Handler(object):
         log.debug(f"Opening user profile. dictionary: {item}")
         mentionedUsers = list()
         holdUser = item.account if item.get('account') else None
+        if hasattr(item, "type") and item.type in ["status", "mention", "reblog", "favourite", "update", "poll"]: # statuses in Notification buffers
+            item = item.status
         if item.get('username'):  # account dict
             holdUser = item
         elif isinstance(item.get('mentions'), list):

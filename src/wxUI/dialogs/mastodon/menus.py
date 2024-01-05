@@ -26,3 +26,31 @@ class base(wx.Menu):
         self.Append(self.remove)
         self.userActions = wx.MenuItem(self, wx.ID_ANY, _(u"&User actions..."))
         self.Append(self.userActions)
+
+class notification(wx.Menu):
+    def __init__(self, item="status"):
+        super(notification, self).__init__()
+        valid_types = ["status", "mention", "reblog", "favourite", "update", "poll"]
+        if item in valid_types:
+            self.boost = wx.MenuItem(self, wx.ID_ANY, _("&Boost"))
+            self.Append(self.boost)
+            self.reply = wx.MenuItem(self, wx.ID_ANY, _(u"Re&ply"))
+            self.Append(self.reply)
+            self.fav = wx.MenuItem(self, wx.ID_ANY, _(u"&Add to favorites"))
+            self.Append(self.fav)
+            self.unfav = wx.MenuItem(self, wx.ID_ANY, _(u"R&emove from favorites"))
+            self.Append(self.unfav)
+            self.openUrl = wx.MenuItem(self, wx.ID_ANY, _("&Open URL"))
+            self.Append(self.openUrl)
+            self.play = wx.MenuItem(self, wx.ID_ANY, _(u"&Play audio"))
+            self.Append(self.play)
+        self.openInBrowser = wx.MenuItem(self, wx.ID_ANY, _(u"&Open in instance"))
+        self.Append(self.openInBrowser)
+        self.view = wx.MenuItem(self, wx.ID_ANY, _(u"&Show post"))
+        self.Append(self.view)
+        self.copy = wx.MenuItem(self, wx.ID_ANY, _(u"&Copy to clipboard"))
+        self.Append(self.copy)
+        self.remove = wx.MenuItem(self, wx.ID_ANY, _(u"&Dismiss"))
+        self.Append(self.remove)
+        self.userActions = wx.MenuItem(self, wx.ID_ANY, _(u"&User actions..."))
+        self.Append(self.userActions)

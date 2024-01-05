@@ -263,7 +263,10 @@ class BaseBuffer(base.Buffer):
         menu = menus.base()
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.reply, menuitem=menu.reply)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
-        widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.boost)
+        if self.can_share() == True:
+            widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.boost)
+        else:
+            menu.boost.Enable(False)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.fav, menuitem=menu.fav)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.unfav, menuitem=menu.unfav)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.url_, menuitem=menu.openUrl)
@@ -310,14 +313,16 @@ class BaseBuffer(base.Buffer):
         if index > -1 and self.session.db.get(self.name) != None:
             return self.session.db[self.name][index]
 
-    def can_share(self):
-        post = self.get_item()
-        if post.visibility == "direct":
+    def can_share(self, item=None):
+        if item == None:
+            item = self.get_item()
+        if item.visibility == "direct":
             return False
         return True
 
-    def reply(self, *args):
-        item = self.get_item()
+    def reply(self, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
         visibility = item.visibility
         if visibility == "direct":
             title = _("Conversation with {}").format(item.account.username)
@@ -352,8 +357,9 @@ class BaseBuffer(base.Buffer):
         if hasattr(post.message, "destroy"):
             post.message.destroy()
 
-    def send_message(self, *args, **kwargs):
-        item = self.get_item()
+    def send_message(self, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
         title = _("Conversation with {}").format(item.account.username)
         caption = _("Write your message here")
         if item.reblog != None:
@@ -378,11 +384,12 @@ class BaseBuffer(base.Buffer):
         if hasattr(post.message, "destroy"):
             post.message.destroy()
 
-    def share_item(self, *args, **kwargs):
-        if self.can_share() == False:
+    def share_item(self, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        if self.can_share(item=item) == False:
             return output.speak(_("This action is not supported on conversations."))
-        post = self.get_item()
-        id = post.id
+        id = item.id
         if self.session.settings["general"]["boost_mode"] == "ask":
             answer = mastodon_dialogs.boost_question()
             if answer == True:
@@ -407,12 +414,11 @@ class BaseBuffer(base.Buffer):
         pub.sendMessage("toggleShare", shareable=can_share)
         self.buffer.boost.Enable(can_share)
 
-    def audio(self, url='', *args, **kwargs):
+    def audio(self, item=None, *args, **kwargs):
         if sound.URLPlayer.player.is_playing():
             return sound.URLPlayer.stop_audio()
-        item = self.get_item()
         if item == None:
-            return
+            item = self.get_item()
         urls = utils.get_media_urls(item)
         if len(urls) == 1:
             url=urls[0]
@@ -428,25 +434,25 @@ class BaseBuffer(base.Buffer):
 #   except:
 #    log.error("Exception while executing audio method.")
 
-    def url(self, url='', announce=True, *args, **kwargs):
-        if url == '':
-            post = self.get_item()
-            if post.reblog != None:
-                urls = utils.find_urls(post.reblog)
-            else:
-                urls = utils.find_urls(post)
-            if len(urls) == 1:
-                url=urls[0]
-            elif len(urls) > 1:
-                urls_list = urlList.urlList()
-                urls_list.populate_list(urls)
-                if urls_list.get_response() == widgetUtils.OK:
-                    url=urls_list.get_string()
-                if hasattr(urls_list, "destroy"): urls_list.destroy()
-            if url != '':
-                if announce:
-                    output.speak(_(u"Opening URL..."), True)
-                webbrowser.open_new_tab(url)
+    def url(self, announce=True, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        if item.reblog != None:
+            urls = utils.find_urls(item.reblog)
+        else:
+            urls = utils.find_urls(item)
+        if len(urls) == 1:
+            url=urls[0]
+        elif len(urls) > 1:
+            urls_list = urlList.urlList()
+            urls_list.populate_list(urls)
+            if urls_list.get_response() == widgetUtils.OK:
+                url=urls_list.get_string()
+            if hasattr(urls_list, "destroy"): urls_list.destroy()
+        if url != '':
+            if announce:
+                output.speak(_(u"Opening URL..."), True)
+            webbrowser.open_new_tab(url)
 
     def clear_list(self):
         dlg = commonMessageDialogs.clear_list()
@@ -476,31 +482,37 @@ class BaseBuffer(base.Buffer):
         item = self.get_item()
         pass
 
-    def get_item_url(self):
-        post = self.get_item()
-        if post.reblog != None:
-            return post.reblog.url
-        return post.url
+    def get_item_url(self, item=None):
+        if item == None:
+            item = self.get_item()
+        if item.reblog != None:
+            return item.reblog.url
+        return item.url
 
-    def open_in_browser(self, *args, **kwargs):
-        url = self.get_item_url()
+    def open_in_browser(self, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        url = self.get_item_url(item=item)
         output.speak(_("Opening item in web browser..."))
         webbrowser.open(url)
 
-    def add_to_favorites(self):
-        item = self.get_item()
+    def add_to_favorites(self, item=None):
+        if item == None:
+            item = self.get_item()
         if item.reblog != None:
             item = item.reblog
         call_threaded(self.session.api_call, call_name="status_favourite", preexec_message=_("Adding to favorites..."), _sound="favourite.ogg", id=item.id)
 
-    def remove_from_favorites(self):
-        item = self.get_item()
+    def remove_from_favorites(self, item=None):
+        if item == None:
+            item = self.get_item()
         if item.reblog != None:
             item = item.reblog
         call_threaded(self.session.api_call, call_name="status_unfavourite", preexec_message=_("Removing from favorites..."), _sound="favourite.ogg", id=item.id)
 
-    def toggle_favorite(self, *args, **kwargs):
-        item = self.get_item()
+    def toggle_favorite(self, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
         if item.reblog != None:
             item = item.reblog
         try:
@@ -513,8 +525,9 @@ class BaseBuffer(base.Buffer):
         else:
             call_threaded(self.session.api_call, call_name="status_unfavourite", preexec_message=_("Removing from favorites..."), _sound="favourite.ogg", id=item.id)
 
-    def toggle_bookmark(self, *args, **kwargs):
-        item = self.get_item()
+    def toggle_bookmark(self, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
         if item.reblog != None:
             item = item.reblog
         try:
@@ -527,16 +540,17 @@ class BaseBuffer(base.Buffer):
         else:
             call_threaded(self.session.api_call, call_name="status_unbookmark", preexec_message=_("Removing from bookmarks..."), _sound="favourite.ogg", id=item.id)
 
-    def view_item(self):
-        post = self.get_item()
+    def view_item(self, item=None):
+        if item == None:
+            item = self.get_item()
         # Update object so we can retrieve newer stats
         try:
-            post = self.session.api.status(id=post.id)
+            item = self.session.api.status(id=item.id)
         except MastodonNotFoundError:
             output.speak(_("No status found with that ID"))
             return
 #        print(post)
-        msg = messages.viewPost(post, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url())
+        msg = messages.viewPost(item, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url(item=item))
 
     def ocr_image(self):
         post = self.get_item()
