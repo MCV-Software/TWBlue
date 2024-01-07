@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TWBlue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-12-31 00:55+0000\n"
+"POT-Creation-Date: 2024-01-07 00:55+0000\n"
 "PO-Revision-Date: 2022-12-20 22:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: hr\n"
@@ -99,7 +99,8 @@ msgid "User default"
 msgstr "Korisnički zadano"
 
 #: main.py:107
-msgid "https://twblue.es/donate"
+#, fuzzy
+msgid "https://twblue.mcvsoftware.com/donate"
 msgstr "https://twblue.es/donate"
 
 #: main.py:120
@@ -215,12 +216,12 @@ msgid "{0} items retrieved"
 msgstr "{0} stavaka preuzeto"
 
 #: controller/buffers/mastodon/base.py:122 controller/mainController.py:1018
-#: controller/mastodon/handler.py:95 controller/mastodon/handler.py:204
+#: controller/mastodon/handler.py:95 controller/mastodon/handler.py:215
 msgid "Timeline for {}"
 msgstr "Vremenska crta {}"
 
 #: controller/buffers/mastodon/users.py:93 controller/mainController.py:1020
-#: controller/mastodon/handler.py:97 controller/mastodon/handler.py:218
+#: controller/mastodon/handler.py:97 controller/mastodon/handler.py:229
 msgid "Followers for {}"
 msgstr "pratitelji za {}"
 
@@ -230,7 +231,7 @@ msgstr "prijatelji od {}"
 
 # | msgid "Followers for {}"
 #: controller/buffers/mastodon/users.py:95 controller/mainController.py:1024
-#: controller/mastodon/handler.py:99 controller/mastodon/handler.py:232
+#: controller/mastodon/handler.py:99 controller/mastodon/handler.py:243
 #, fuzzy
 msgid "Following for {}"
 msgstr "pratitelji za {}"
@@ -268,7 +269,7 @@ msgid "Edit alias for {}"
 msgstr "uredi alias za {}"
 
 #: controller/buffers/base/base.py:91
-#: controller/buffers/mastodon/conversations.py:231
+#: controller/buffers/mastodon/conversations.py:234
 #: controller/buffers/mastodon/search.py:80
 msgid "This action is not supported for this buffer"
 msgstr "Ova akcija nije podržana za ovaj spremnik"
@@ -358,7 +359,7 @@ msgid "Unknown buffer"
 msgstr "Nepoznat spremnik"
 
 #: controller/buffers/mastodon/base.py:67
-#: controller/buffers/mastodon/base.py:606 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:620 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:4
@@ -368,7 +369,7 @@ msgstr ""
 
 # | msgid "Write the tweet here"
 #: controller/buffers/mastodon/base.py:68
-#: controller/buffers/mastodon/base.py:607
+#: controller/buffers/mastodon/base.py:621
 #, fuzzy
 msgid "Write your post here"
 msgstr "ovdje upišite tweet"
@@ -399,126 +400,128 @@ msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Ovaj spremnik nije vremenska os; Ne može biti izbrisan."
 
 # | msgid "Conversation with {0}"
-#: controller/buffers/mastodon/base.py:323
-#: controller/buffers/mastodon/base.py:357
+#: controller/buffers/mastodon/base.py:328
+#: controller/buffers/mastodon/base.py:363
 #, fuzzy
 msgid "Conversation with {}"
 msgstr "Razgovor s {0}"
 
 # | msgid "Write the tweet here"
-#: controller/buffers/mastodon/base.py:324
-#: controller/buffers/mastodon/base.py:358
-#: controller/buffers/mastodon/conversations.py:175
+#: controller/buffers/mastodon/base.py:329
+#: controller/buffers/mastodon/base.py:364
+#: controller/buffers/mastodon/conversations.py:178
+#: controller/buffers/mastodon/notifications.py:115
 #: controller/buffers/mastodon/users.py:52
 #, fuzzy
 msgid "Write your message here"
 msgstr "ovdje upišite tweet"
 
 # | msgid "Reply to {arg0}"
-#: controller/buffers/mastodon/base.py:326
+#: controller/buffers/mastodon/base.py:331
 #, fuzzy
 msgid "Reply to {}"
 msgstr "Odgovori na {arg0}"
 
 # | msgid "Write the tweet here"
-#: controller/buffers/mastodon/base.py:327
+#: controller/buffers/mastodon/base.py:332
 #, fuzzy
 msgid "Write your reply here"
 msgstr "ovdje upišite tweet"
 
 # | msgid "This action is not supported on protected accounts."
-#: controller/buffers/mastodon/base.py:383
+#: controller/buffers/mastodon/base.py:391
 #, fuzzy
 msgid "This action is not supported on conversations."
 msgstr "Ova akcija nije podržana na zaštićenim računima."
 
-#: controller/buffers/mastodon/base.py:448
+#: controller/buffers/mastodon/base.py:454
 msgid "Opening URL..."
 msgstr "Otvaram URL..."
 
-#: controller/buffers/mastodon/base.py:461
+#: controller/buffers/mastodon/base.py:467
 msgid "You can delete only your own posts."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:487
+#: controller/buffers/mastodon/base.py:496
 msgid "Opening item in web browser..."
 msgstr "Otvaram stavku u web pregledniku..."
 
-#: controller/buffers/mastodon/base.py:494
-#: controller/buffers/mastodon/base.py:512
+#: controller/buffers/mastodon/base.py:504
+#: controller/buffers/mastodon/base.py:524
 msgid "Adding to favorites..."
 msgstr ""
 
 # | msgid "Remove from list"
-#: controller/buffers/mastodon/base.py:500
-#: controller/buffers/mastodon/base.py:514
+#: controller/buffers/mastodon/base.py:511
+#: controller/buffers/mastodon/base.py:526
 #, fuzzy
 msgid "Removing from favorites..."
 msgstr "Ukloni s popisa"
 
-#: controller/buffers/mastodon/base.py:509
-#: controller/buffers/mastodon/base.py:523
+#: controller/buffers/mastodon/base.py:521
 #: controller/buffers/mastodon/base.py:536
-#: controller/buffers/mastodon/conversations.py:207
+#: controller/buffers/mastodon/base.py:550
+#: controller/buffers/mastodon/conversations.py:210
 msgid "No status found with that ID"
 msgstr "Nema pronađenog statusa sa tim identifikatorom"
 
-#: controller/buffers/mastodon/base.py:526
+#: controller/buffers/mastodon/base.py:539
 msgid "Adding to bookmarks..."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:528
+#: controller/buffers/mastodon/base.py:541
 msgid "Removing from bookmarks..."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:550
+#: controller/buffers/mastodon/base.py:564
 msgid "Picture {0}"
 msgstr "slika {0}"
 
-#: controller/buffers/mastodon/base.py:551
+#: controller/buffers/mastodon/base.py:565
 msgid "Select the picture"
 msgstr "Označi sliku"
 
-#: controller/buffers/mastodon/base.py:574
+#: controller/buffers/mastodon/base.py:588
 msgid "Unable to extract text"
 msgstr "Ne mogu izvuči tekst."
 
-#: controller/buffers/mastodon/base.py:576
+#: controller/buffers/mastodon/base.py:590
 msgid "OCR Result"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:588
+#: controller/buffers/mastodon/base.py:602
 msgid "this poll no longer exists."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:591
+#: controller/buffers/mastodon/base.py:605
 msgid "This poll has already expired."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:594
+#: controller/buffers/mastodon/base.py:608
 msgid "You have already voted on this poll."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:603
+#: controller/buffers/mastodon/base.py:617
 #, fuzzy
 msgid "Sending vote..."
 msgstr "Rekodiram zvuk..."
 
 # | msgid "Conversation with {0}"
-#: controller/buffers/mastodon/conversations.py:174
+#: controller/buffers/mastodon/conversations.py:177
 #, fuzzy
 msgid "Reply to conversation with {}"
 msgstr "Razgovor s {0}"
 
-#: controller/buffers/mastodon/notifications.py:62
-msgid "Notification dismissed."
-msgstr ""
-
 # | msgid "Conversation with {0}"
+#: controller/buffers/mastodon/notifications.py:114
 #: controller/buffers/mastodon/users.py:51
 #, fuzzy
 msgid "New conversation with {}"
 msgstr "Razgovor s {0}"
+
+#: controller/buffers/mastodon/notifications.py:144
+msgid "Notification dismissed."
+msgstr ""
 
 # | msgid "There are no coordinates in this tweet"
 #: controller/buffers/mastodon/users.py:110
@@ -546,18 +549,18 @@ msgid "&Post"
 msgstr ""
 
 #: controller/mastodon/handler.py:33 wxUI/dialogs/mastodon/menus.py:9
-#: wxUI/view.py:31
+#: wxUI/dialogs/mastodon/menus.py:37 wxUI/view.py:31
 msgid "Re&ply"
 msgstr "od&govor"
 
 #: controller/mastodon/handler.py:34 wxUI/dialogs/mastodon/menus.py:7
-#: wxUI/view.py:32
+#: wxUI/dialogs/mastodon/menus.py:35 wxUI/view.py:32
 msgid "&Boost"
 msgstr ""
 
 # | msgid "&Add to list"
 #: controller/mastodon/handler.py:35 wxUI/dialogs/mastodon/menus.py:11
-#: wxUI/view.py:33
+#: wxUI/dialogs/mastodon/menus.py:39 wxUI/view.py:33
 #, fuzzy
 msgid "&Add to favorites"
 msgstr "&Dodaj u listu"
@@ -569,7 +572,8 @@ msgid "Remove from favorites"
 msgstr "Ukloni s popisa"
 
 # | msgid "&Show user"
-#: controller/mastodon/handler.py:37 wxUI/view.py:35
+#: controller/mastodon/handler.py:37 wxUI/dialogs/mastodon/menus.py:21
+#: wxUI/dialogs/mastodon/menus.py:49 wxUI/view.py:35
 #, fuzzy
 msgid "&Show post"
 msgstr "&Pokaži korisnika"
@@ -616,8 +620,8 @@ msgstr "Vremenske osi"
 msgid "Searches"
 msgstr "Pretrage"
 
-#: controller/mastodon/handler.py:107 controller/mastodon/handler.py:157
-#: controller/mastodon/handler.py:162
+#: controller/mastodon/handler.py:107 controller/mastodon/handler.py:168
+#: controller/mastodon/handler.py:173
 msgid "Search for {}"
 msgstr "Traži {}"
 
@@ -625,15 +629,15 @@ msgstr "Traži {}"
 msgid "Conversation with {0}"
 msgstr "Razgovor s {0}"
 
-#: controller/mastodon/handler.py:262
+#: controller/mastodon/handler.py:273
 msgid "Add an user alias"
 msgstr "Dodaj korisnički alias"
 
-#: controller/mastodon/handler.py:274
+#: controller/mastodon/handler.py:285
 msgid "Alias has been set correctly for {}."
 msgstr "Alias je ispravno dobavljen za {}."
 
-#: controller/mastodon/handler.py:305
+#: controller/mastodon/handler.py:316
 #, fuzzy
 msgid "Update profile"
 msgstr "&Osvježi profil"
@@ -1882,7 +1886,7 @@ msgstr ""
 msgid "Authorization error"
 msgstr "autorizacija"
 
-#: sessions/mastodon/session.py:182
+#: sessions/mastodon/session.py:186
 #, python-format
 msgid "%s succeeded."
 msgstr "%s uspjelo."
@@ -2898,34 +2902,36 @@ msgid "The focused item has no user in it. {} ca't open a user profile"
 msgstr ""
 
 # | msgid "R&emove from list"
-#: wxUI/dialogs/mastodon/menus.py:13
+#: wxUI/dialogs/mastodon/menus.py:13 wxUI/dialogs/mastodon/menus.py:41
 #, fuzzy
 msgid "R&emove from favorites"
 msgstr "U&kloni iz popisa"
 
-#: wxUI/dialogs/mastodon/menus.py:15
+#: wxUI/dialogs/mastodon/menus.py:15 wxUI/dialogs/mastodon/menus.py:43
 msgid "&Open URL"
 msgstr "&Otvori URL"
 
-#: wxUI/dialogs/mastodon/menus.py:17
-msgid "&Open in Twitter"
-msgstr "&Otvori na twitteru"
+# | msgid "Search on twitter"
+#: wxUI/dialogs/mastodon/menus.py:17 wxUI/dialogs/mastodon/menus.py:47
+#, fuzzy
+msgid "&Open in instance"
+msgstr "Traži na twitteru"
 
-#: wxUI/dialogs/mastodon/menus.py:19
+#: wxUI/dialogs/mastodon/menus.py:19 wxUI/dialogs/mastodon/menus.py:45
 msgid "&Play audio"
 msgstr "&Reproduciraj zvuk"
 
-#: wxUI/dialogs/mastodon/menus.py:21
-msgid "&Show tweet"
-msgstr "&Prikaži tweet"
-
-#: wxUI/dialogs/mastodon/menus.py:23
+#: wxUI/dialogs/mastodon/menus.py:23 wxUI/dialogs/mastodon/menus.py:51
 msgid "&Copy to clipboard"
 msgstr "&Kopiraj u međuspremnik"
 
-#: wxUI/dialogs/mastodon/menus.py:27
+#: wxUI/dialogs/mastodon/menus.py:27 wxUI/dialogs/mastodon/menus.py:55
 msgid "&User actions..."
 msgstr "&Akcije korisnika"
+
+#: wxUI/dialogs/mastodon/menus.py:53
+msgid "&Dismiss"
+msgstr ""
 
 #: wxUI/dialogs/mastodon/postDialogs.py:19
 #: wxUI/dialogs/mastodon/postDialogs.py:37
@@ -4545,4 +4551,10 @@ msgstr "Praćeni"
 
 #~ msgid "Participation time (in days)"
 #~ msgstr ""
+
+#~ msgid "&Open in Twitter"
+#~ msgstr "&Otvori na twitteru"
+
+#~ msgid "&Show tweet"
+#~ msgstr "&Prikaži tweet"
 
