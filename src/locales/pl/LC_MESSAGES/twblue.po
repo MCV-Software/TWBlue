@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tw Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2023-12-31 00:55+0000\n"
+"POT-Creation-Date: 2024-01-07 00:55+0000\n"
 "PO-Revision-Date: 2023-04-21 07:45+0000\n"
 "Last-Translator: zvonimir stanecic <zvonimirek222@yandex.com>\n"
 "Language: pl\n"
@@ -99,7 +99,8 @@ msgid "User default"
 msgstr "Domyślne dla użytkownika"
 
 #: main.py:107
-msgid "https://twblue.es/donate"
+#, fuzzy
+msgid "https://twblue.mcvsoftware.com/donate"
 msgstr "https://twblue.es/donate"
 
 #: main.py:120
@@ -216,12 +217,12 @@ msgid "{0} items retrieved"
 msgstr "{0} elementów dostarczono"
 
 #: controller/buffers/mastodon/base.py:122 controller/mainController.py:1018
-#: controller/mastodon/handler.py:95 controller/mastodon/handler.py:204
+#: controller/mastodon/handler.py:95 controller/mastodon/handler.py:215
 msgid "Timeline for {}"
 msgstr "Oś czasu {}"
 
 #: controller/buffers/mastodon/users.py:93 controller/mainController.py:1020
-#: controller/mastodon/handler.py:97 controller/mastodon/handler.py:218
+#: controller/mastodon/handler.py:97 controller/mastodon/handler.py:229
 msgid "Followers for {}"
 msgstr "śledzący dla {}"
 
@@ -231,7 +232,7 @@ msgstr "przyjaciele dla {}"
 
 # | msgid "Followers for {}"
 #: controller/buffers/mastodon/users.py:95 controller/mainController.py:1024
-#: controller/mastodon/handler.py:99 controller/mastodon/handler.py:232
+#: controller/mastodon/handler.py:99 controller/mastodon/handler.py:243
 msgid "Following for {}"
 msgstr "Śledzący użytkownika {}"
 
@@ -268,7 +269,7 @@ msgid "Edit alias for {}"
 msgstr "Edytuj alias dla {}"
 
 #: controller/buffers/base/base.py:91
-#: controller/buffers/mastodon/conversations.py:231
+#: controller/buffers/mastodon/conversations.py:234
 #: controller/buffers/mastodon/search.py:80
 msgid "This action is not supported for this buffer"
 msgstr "Ta operacja nie jest wspierana w tym buforze"
@@ -356,7 +357,7 @@ msgid "Unknown buffer"
 msgstr "Nieznany bufor"
 
 #: controller/buffers/mastodon/base.py:67
-#: controller/buffers/mastodon/base.py:606 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:620 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:4
@@ -366,7 +367,7 @@ msgstr "Post"
 
 # | msgid "Write the tweet here"
 #: controller/buffers/mastodon/base.py:68
-#: controller/buffers/mastodon/base.py:607
+#: controller/buffers/mastodon/base.py:621
 msgid "Write your post here"
 msgstr "Napisz swój post tutaj"
 
@@ -394,116 +395,118 @@ msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "Ta zakładka nie jest osią czasu; nie można jej usunąć."
 
 # | msgid "Conversation with {0}"
-#: controller/buffers/mastodon/base.py:323
-#: controller/buffers/mastodon/base.py:357
+#: controller/buffers/mastodon/base.py:328
+#: controller/buffers/mastodon/base.py:363
 msgid "Conversation with {}"
 msgstr "Konwersacja z {}"
 
 # | msgid "Write the tweet here"
-#: controller/buffers/mastodon/base.py:324
-#: controller/buffers/mastodon/base.py:358
-#: controller/buffers/mastodon/conversations.py:175
+#: controller/buffers/mastodon/base.py:329
+#: controller/buffers/mastodon/base.py:364
+#: controller/buffers/mastodon/conversations.py:178
+#: controller/buffers/mastodon/notifications.py:115
 #: controller/buffers/mastodon/users.py:52
 msgid "Write your message here"
 msgstr "Napisz swoją wiadomość tutaj"
 
 # | msgid "Reply to {arg0}"
-#: controller/buffers/mastodon/base.py:326
+#: controller/buffers/mastodon/base.py:331
 msgid "Reply to {}"
 msgstr "Odpowiedź dla {}"
 
 # | msgid "Write the tweet here"
-#: controller/buffers/mastodon/base.py:327
+#: controller/buffers/mastodon/base.py:332
 msgid "Write your reply here"
 msgstr "Napisz swoją odpowiedź tutaj"
 
-#: controller/buffers/mastodon/base.py:383
+#: controller/buffers/mastodon/base.py:391
 msgid "This action is not supported on conversations."
 msgstr "Ta akcja nie jest obsługiwana w konwersacjach."
 
-#: controller/buffers/mastodon/base.py:448
+#: controller/buffers/mastodon/base.py:454
 msgid "Opening URL..."
 msgstr "Otwieranie adresu..."
 
-#: controller/buffers/mastodon/base.py:461
+#: controller/buffers/mastodon/base.py:467
 msgid "You can delete only your own posts."
 msgstr "Możesz usuwać tylko swoje posty."
 
-#: controller/buffers/mastodon/base.py:487
+#: controller/buffers/mastodon/base.py:496
 msgid "Opening item in web browser..."
 msgstr "Otwieram element w przeglądarce..."
 
-#: controller/buffers/mastodon/base.py:494
-#: controller/buffers/mastodon/base.py:512
+#: controller/buffers/mastodon/base.py:504
+#: controller/buffers/mastodon/base.py:524
 msgid "Adding to favorites..."
 msgstr "Dodaję do ulubionych..."
 
 # | msgid "Remove from list"
-#: controller/buffers/mastodon/base.py:500
-#: controller/buffers/mastodon/base.py:514
+#: controller/buffers/mastodon/base.py:511
+#: controller/buffers/mastodon/base.py:526
 msgid "Removing from favorites..."
 msgstr "Usuwanie z ulubionych..."
 
-#: controller/buffers/mastodon/base.py:509
-#: controller/buffers/mastodon/base.py:523
+#: controller/buffers/mastodon/base.py:521
 #: controller/buffers/mastodon/base.py:536
-#: controller/buffers/mastodon/conversations.py:207
+#: controller/buffers/mastodon/base.py:550
+#: controller/buffers/mastodon/conversations.py:210
 msgid "No status found with that ID"
 msgstr "Nie znaleziono statusu o tym ID"
 
-#: controller/buffers/mastodon/base.py:526
+#: controller/buffers/mastodon/base.py:539
 msgid "Adding to bookmarks..."
 msgstr "Dodaję do zakładek..."
 
-#: controller/buffers/mastodon/base.py:528
+#: controller/buffers/mastodon/base.py:541
 msgid "Removing from bookmarks..."
 msgstr "Usuwam z zakładek..."
 
-#: controller/buffers/mastodon/base.py:550
+#: controller/buffers/mastodon/base.py:564
 msgid "Picture {0}"
 msgstr "zdjęcie {0}"
 
-#: controller/buffers/mastodon/base.py:551
+#: controller/buffers/mastodon/base.py:565
 msgid "Select the picture"
 msgstr "Wybierz zdjęcie"
 
-#: controller/buffers/mastodon/base.py:574
+#: controller/buffers/mastodon/base.py:588
 msgid "Unable to extract text"
 msgstr "nie można wyodrębnić tekst"
 
-#: controller/buffers/mastodon/base.py:576
+#: controller/buffers/mastodon/base.py:590
 msgid "OCR Result"
 msgstr "Wynik Ocr"
 
-#: controller/buffers/mastodon/base.py:588
+#: controller/buffers/mastodon/base.py:602
 msgid "this poll no longer exists."
 msgstr "Ta ankieta nie istnieje."
 
-#: controller/buffers/mastodon/base.py:591
+#: controller/buffers/mastodon/base.py:605
 msgid "This poll has already expired."
 msgstr "Ta ankieta już wygasła."
 
-#: controller/buffers/mastodon/base.py:594
+#: controller/buffers/mastodon/base.py:608
 msgid "You have already voted on this poll."
 msgstr "Głosowałeś już w tej ankiecie."
 
-#: controller/buffers/mastodon/base.py:603
+#: controller/buffers/mastodon/base.py:617
 msgid "Sending vote..."
 msgstr "Wysyłanie głosu..."
 
 # | msgid "Conversation with {0}"
-#: controller/buffers/mastodon/conversations.py:174
+#: controller/buffers/mastodon/conversations.py:177
 msgid "Reply to conversation with {}"
 msgstr "Odpowiedź do konwersacji z {}"
 
-#: controller/buffers/mastodon/notifications.py:62
-msgid "Notification dismissed."
-msgstr "Powiadomienie odrzucone."
-
 # | msgid "Conversation with {0}"
+#: controller/buffers/mastodon/notifications.py:114
 #: controller/buffers/mastodon/users.py:51
 msgid "New conversation with {}"
 msgstr "Nowa konwersacja z {}"
+
+#: controller/buffers/mastodon/notifications.py:144
+msgid "Notification dismissed."
+msgstr "Powiadomienie odrzucone."
 
 # | msgid "There are no coordinates in this tweet"
 #: controller/buffers/mastodon/users.py:110
@@ -530,18 +533,18 @@ msgid "&Post"
 msgstr "&Post"
 
 #: controller/mastodon/handler.py:33 wxUI/dialogs/mastodon/menus.py:9
-#: wxUI/view.py:31
+#: wxUI/dialogs/mastodon/menus.py:37 wxUI/view.py:31
 msgid "Re&ply"
 msgstr "&Odpowiedz"
 
 #: controller/mastodon/handler.py:34 wxUI/dialogs/mastodon/menus.py:7
-#: wxUI/view.py:32
+#: wxUI/dialogs/mastodon/menus.py:35 wxUI/view.py:32
 msgid "&Boost"
 msgstr "&Przekaż dalej"
 
 # | msgid "&Add to list"
 #: controller/mastodon/handler.py:35 wxUI/dialogs/mastodon/menus.py:11
-#: wxUI/view.py:33
+#: wxUI/dialogs/mastodon/menus.py:39 wxUI/view.py:33
 msgid "&Add to favorites"
 msgstr "Dodaj do &ulubionych"
 
@@ -551,7 +554,8 @@ msgid "Remove from favorites"
 msgstr "Usuń z ulubionych"
 
 # | msgid "&Show user"
-#: controller/mastodon/handler.py:37 wxUI/view.py:35
+#: controller/mastodon/handler.py:37 wxUI/dialogs/mastodon/menus.py:21
+#: wxUI/dialogs/mastodon/menus.py:49 wxUI/view.py:35
 msgid "&Show post"
 msgstr "&Pokaż post"
 
@@ -597,8 +601,8 @@ msgstr "Osi czasu"
 msgid "Searches"
 msgstr "Wyszukiwania"
 
-#: controller/mastodon/handler.py:107 controller/mastodon/handler.py:157
-#: controller/mastodon/handler.py:162
+#: controller/mastodon/handler.py:107 controller/mastodon/handler.py:168
+#: controller/mastodon/handler.py:173
 msgid "Search for {}"
 msgstr "Wyszukiwanie {}"
 
@@ -606,15 +610,15 @@ msgstr "Wyszukiwanie {}"
 msgid "Conversation with {0}"
 msgstr "Konwersacja z {0}"
 
-#: controller/mastodon/handler.py:262
+#: controller/mastodon/handler.py:273
 msgid "Add an user alias"
 msgstr "Dodawanie aliasu użytkownika"
 
-#: controller/mastodon/handler.py:274
+#: controller/mastodon/handler.py:285
 msgid "Alias has been set correctly for {}."
 msgstr "Alias został ustawiony poprawnie dla {}."
 
-#: controller/mastodon/handler.py:305
+#: controller/mastodon/handler.py:316
 #, fuzzy
 msgid "Update profile"
 msgstr "&Edytuj profil"
@@ -1841,7 +1845,7 @@ msgstr ""
 msgid "Authorization error"
 msgstr "Błąd autoryzacji"
 
-#: sessions/mastodon/session.py:182
+#: sessions/mastodon/session.py:186
 #, python-format
 msgid "%s succeeded."
 msgstr "%s powiódł się."
@@ -2836,33 +2840,36 @@ msgid "The focused item has no user in it. {} ca't open a user profile"
 msgstr ""
 
 # | msgid "R&emove from list"
-#: wxUI/dialogs/mastodon/menus.py:13
+#: wxUI/dialogs/mastodon/menus.py:13 wxUI/dialogs/mastodon/menus.py:41
 msgid "R&emove from favorites"
 msgstr "&Usuń z ulubionych"
 
-#: wxUI/dialogs/mastodon/menus.py:15
+#: wxUI/dialogs/mastodon/menus.py:15 wxUI/dialogs/mastodon/menus.py:43
 msgid "&Open URL"
 msgstr "Otwórz link"
 
-#: wxUI/dialogs/mastodon/menus.py:17
-msgid "&Open in Twitter"
-msgstr "&otwórz na twitterze"
+# | msgid "Search on twitter"
+#: wxUI/dialogs/mastodon/menus.py:17 wxUI/dialogs/mastodon/menus.py:47
+#, fuzzy
+msgid "&Open in instance"
+msgstr "Szukaj na instancji"
 
-#: wxUI/dialogs/mastodon/menus.py:19
+#: wxUI/dialogs/mastodon/menus.py:19 wxUI/dialogs/mastodon/menus.py:45
 msgid "&Play audio"
 msgstr "&Odtwórz audio"
 
-#: wxUI/dialogs/mastodon/menus.py:21
-msgid "&Show tweet"
-msgstr "&Pokaż tweet"
-
-#: wxUI/dialogs/mastodon/menus.py:23
+#: wxUI/dialogs/mastodon/menus.py:23 wxUI/dialogs/mastodon/menus.py:51
 msgid "&Copy to clipboard"
 msgstr "&Skopiuj do schowka"
 
-#: wxUI/dialogs/mastodon/menus.py:27
+#: wxUI/dialogs/mastodon/menus.py:27 wxUI/dialogs/mastodon/menus.py:55
 msgid "&User actions..."
 msgstr "Działania &użytkownika"
+
+#: wxUI/dialogs/mastodon/menus.py:53
+#, fuzzy
+msgid "&Dismiss"
+msgstr "Odrzuć"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:19
 #: wxUI/dialogs/mastodon/postDialogs.py:37
@@ -4426,4 +4433,10 @@ msgstr "&Śledzący"
 
 #~ msgid "Participation time (in days)"
 #~ msgstr ""
+
+#~ msgid "&Open in Twitter"
+#~ msgstr "&otwórz na twitterze"
+
+#~ msgid "&Show tweet"
+#~ msgstr "&Pokaż tweet"
 
