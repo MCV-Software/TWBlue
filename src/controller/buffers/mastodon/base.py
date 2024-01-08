@@ -320,7 +320,7 @@ class BaseBuffer(base.Buffer):
             return False
         return True
 
-    def reply(self, item=None, *args, **kwargs):
+    def reply(self, event=None, item=None, *args, **kwargs):
         if item == None:
             item = self.get_item()
         visibility = item.visibility
@@ -357,7 +357,7 @@ class BaseBuffer(base.Buffer):
         if hasattr(post.message, "destroy"):
             post.message.destroy()
 
-    def send_message(self, item=None, *args, **kwargs):
+    def send_message(self, event=None, item=None, *args, **kwargs):
         if item == None:
             item = self.get_item()
         title = _("Conversation with {}").format(item.account.username)
@@ -384,7 +384,7 @@ class BaseBuffer(base.Buffer):
         if hasattr(post.message, "destroy"):
             post.message.destroy()
 
-    def share_item(self, item=None, *args, **kwargs):
+    def share_item(self, event=None, item=None, *args, **kwargs):
         if item == None:
             item = self.get_item()
         if self.can_share(item=item) == False:
@@ -414,7 +414,7 @@ class BaseBuffer(base.Buffer):
         pub.sendMessage("toggleShare", shareable=can_share)
         self.buffer.boost.Enable(can_share)
 
-    def audio(self, item=None, *args, **kwargs):
+    def audio(self, event=None, item=None, *args, **kwargs):
         if sound.URLPlayer.player.is_playing():
             return sound.URLPlayer.stop_audio()
         if item == None:
@@ -489,7 +489,7 @@ class BaseBuffer(base.Buffer):
             return item.reblog.url
         return item.url
 
-    def open_in_browser(self, item=None, *args, **kwargs):
+    def open_in_browser(self, event=None, item=None, *args, **kwargs):
         if item == None:
             item = self.get_item()
         url = self.get_item_url(item=item)
@@ -510,7 +510,7 @@ class BaseBuffer(base.Buffer):
             item = item.reblog
         call_threaded(self.session.api_call, call_name="status_unfavourite", preexec_message=_("Removing from favorites..."), _sound="favourite.ogg", id=item.id)
 
-    def toggle_favorite(self, item=None, *args, **kwargs):
+    def toggle_favorite(self, event=None, item=None, *args, **kwargs):
         if item == None:
             item = self.get_item()
         if item.reblog != None:
@@ -525,7 +525,7 @@ class BaseBuffer(base.Buffer):
         else:
             call_threaded(self.session.api_call, call_name="status_unfavourite", preexec_message=_("Removing from favorites..."), _sound="favourite.ogg", id=item.id)
 
-    def toggle_bookmark(self, item=None, *args, **kwargs):
+    def toggle_bookmark(self, event=None, item=None, *args, **kwargs):
         if item == None:
             item = self.get_item()
         if item.reblog != None:
