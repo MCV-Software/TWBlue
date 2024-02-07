@@ -2,6 +2,11 @@ TWBlue Changelog
 
 ## changes in this version
 
+* Mastodon:
+    * Fixed an error that caused TWBlue to be unable to properly display the user action dialog from the followers or following buffer. ([#575](https://github.com/mcv-software/twblue/issues/575))
+
+## changes in version 2024.01.05
+
 * Core:
     * The TWBlue website will no longer be available on the twblue.es domain. Beginning in January 2024, TWBlue will live at https://twblue.mcvsoftware.com. Also, we will start releasing versions on [gitHub releases](https://github.com/mcv-software/twblue/releases) so it will be easier to track specific versions.
     * As of the first release of TWBlue in 2024, we will officially stop generating 32-bit (X86) compatible binaries due to the increasing difficulty of generating versions compatible with this architecture in modern Python.

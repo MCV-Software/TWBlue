@@ -151,7 +151,11 @@ class Handler(object):
                         users.insert(0, status.reblog.account.acct)
                 else:
                     users = [user.acct for user in status.mentions if user.id != buffer.session.db["user_id"]]
-        if item.account.acct not in users:
+        if hasattr(item, "account"):
+            acct = item.account.acct
+        else:
+            acct = item.acct
+        if acct not in users:
             users.insert(0, item.account.acct)
         u = userActions.userActions(buffer.session, users)
 
