@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2024-11-24 00:55+0000\n"
+"POT-Creation-Date: 2024-12-01 00:56+0000\n"
 "PO-Revision-Date: 2022-12-20 22:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: hu\n"
@@ -228,12 +228,12 @@ msgid "{0} items retrieved"
 msgstr "%s elem betöltve"
 
 #: controller/buffers/mastodon/base.py:122 controller/mainController.py:1026
-#: controller/mastodon/handler.py:97 controller/mastodon/handler.py:233
+#: controller/mastodon/handler.py:97 controller/mastodon/handler.py:240
 msgid "Timeline for {}"
 msgstr "{} idővonala"
 
 #: controller/buffers/mastodon/users.py:93 controller/mainController.py:1028
-#: controller/mastodon/handler.py:99 controller/mastodon/handler.py:247
+#: controller/mastodon/handler.py:99 controller/mastodon/handler.py:254
 #, fuzzy
 msgid "Followers for {}"
 msgstr "Követők"
@@ -244,7 +244,7 @@ msgid "Friends for {}"
 msgstr "{} listája"
 
 #: controller/buffers/mastodon/users.py:95 controller/mainController.py:1032
-#: controller/mastodon/handler.py:101 controller/mastodon/handler.py:261
+#: controller/mastodon/handler.py:101 controller/mastodon/handler.py:268
 #, fuzzy
 msgid "Following for {}"
 msgstr "Követők"
@@ -428,7 +428,7 @@ msgstr "Beszélgetés {0} nevű személlyel"
 #: controller/buffers/mastodon/base.py:329
 #: controller/buffers/mastodon/base.py:364
 #: controller/buffers/mastodon/conversations.py:181
-#: controller/buffers/mastodon/notifications.py:121
+#: controller/buffers/mastodon/notifications.py:122
 #: controller/buffers/mastodon/users.py:52
 #, fuzzy
 msgid "Write your message here"
@@ -530,13 +530,13 @@ msgid "Reply to conversation with {}"
 msgstr "Beszélgetés {0} nevű személlyel"
 
 # | msgid "Conversation with {0}"
-#: controller/buffers/mastodon/notifications.py:120
+#: controller/buffers/mastodon/notifications.py:121
 #: controller/buffers/mastodon/users.py:51
 #, fuzzy
 msgid "New conversation with {}"
 msgstr "Beszélgetés {0} nevű személlyel"
 
-#: controller/buffers/mastodon/notifications.py:150
+#: controller/buffers/mastodon/notifications.py:151
 msgid "Notification dismissed."
 msgstr ""
 
@@ -631,8 +631,7 @@ msgid "Show user profile"
 msgstr "&Felhasználó profiljának megjelenítése"
 
 #: controller/mastodon/handler.py:53
-#: wxUI/dialogs/mastodon/communityTimeline.py:9 wxUI/view.py:55
-msgid "Create community timeline"
+msgid "Create c&ommunity timeline"
 msgstr ""
 
 #: controller/mastodon/handler.py:94
@@ -643,8 +642,8 @@ msgstr "Idővonalak"
 msgid "Searches"
 msgstr "Keresések"
 
-#: controller/mastodon/handler.py:109 controller/mastodon/handler.py:186
-#: controller/mastodon/handler.py:191
+#: controller/mastodon/handler.py:109 controller/mastodon/handler.py:190
+#: controller/mastodon/handler.py:195
 msgid "Search for {}"
 msgstr "{} keresése"
 
@@ -661,15 +660,15 @@ msgstr "Felhasználó idővonalának megnyitása"
 msgid "Conversation with {0}"
 msgstr "Beszélgetés {0} nevű személlyel"
 
-#: controller/mastodon/handler.py:291
+#: controller/mastodon/handler.py:298
 msgid "Add an user alias"
 msgstr ""
 
-#: controller/mastodon/handler.py:303
+#: controller/mastodon/handler.py:310
 msgid "Alias has been set correctly for {}."
 msgstr ""
 
-#: controller/mastodon/handler.py:334
+#: controller/mastodon/handler.py:341
 #, fuzzy
 msgid "Update profile"
 msgstr "&Profil Frissítése"
@@ -760,17 +759,15 @@ msgstr "Másolás vágólapra"
 msgid "Account settings for %s"
 msgstr "%s fiókbeállításai"
 
-#: controller/mastodon/settings.py:92 wxUI/dialogs/mastodon/configuration.py:53
+#: controller/mastodon/settings.py:92
 msgid "Edit template for posts. Current template: {}"
 msgstr ""
 
 #: controller/mastodon/settings.py:101
-#: wxUI/dialogs/mastodon/configuration.py:55
 msgid "Edit template for conversations. Current template: {}"
 msgstr ""
 
 #: controller/mastodon/settings.py:110
-#: wxUI/dialogs/mastodon/configuration.py:57
 msgid "Edit template for persons. Current template: {}"
 msgstr ""
 
@@ -1029,11 +1026,11 @@ msgid "Autocomplete users' settings"
 msgstr "Felhasználók &autokiegészítése"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:11
-msgid "Add followers to database"
+msgid "Add &followers to database"
 msgstr ""
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:12
-msgid "Add  following to database"
+msgid "Add  f&ollowing to database"
 msgstr ""
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:26
@@ -1180,9 +1177,7 @@ msgstr "Billentyűparancs szerkesztése"
 msgid "Execute action"
 msgstr ""
 
-#: keystrokeEditor/wx_ui.py:21 wxUI/dialogs/configuration.py:253
-#: wxUI/dialogs/mastodon/configuration.py:172
-#: wxUI/dialogs/userAliasDialogs.py:25
+#: keystrokeEditor/wx_ui.py:21 wxUI/dialogs/userAliasDialogs.py:25
 msgid "Close"
 msgstr "Bezárás"
 
@@ -2009,6 +2004,10 @@ msgstr "&Listák megtekintése"
 msgid "&Update buffer"
 msgstr "Buffer kiürítése"
 
+#: wxUI/dialogs/mastodon/communityTimeline.py:9 wxUI/view.py:55
+msgid "Create community timeline"
+msgstr ""
+
 #: wxUI/view.py:56
 msgid "New &trending topics buffer..."
 msgstr "Új &trendelő témák buffer..."
@@ -2185,83 +2184,95 @@ msgid "Message"
 msgstr "Közvetlen üzenetek"
 
 #: wxUI/dialogs/configuration.py:15
-msgid "Language"
+#, fuzzy
+msgid "&Language"
 msgstr "Nyelv"
 
 #: wxUI/dialogs/configuration.py:22
-msgid "ask before exiting {0}"
+#, fuzzy
+msgid "&Ask before exiting {0}"
 msgstr "Megerősítés kérése a {0} bezárásakor"
 
 #: wxUI/dialogs/configuration.py:24
-msgid "Disable Streaming functions"
+msgid "&Disable Streaming functions"
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:27
-msgid "Buffer update interval, in minutes"
+msgid "&Buffer update interval, in minutes"
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:33
-msgid "Play a sound when {0} launches"
+#, fuzzy
+msgid "Pla&y a sound when {0} launches"
 msgstr "Hang lejátszása a {0} indulásakor"
 
 #: wxUI/dialogs/configuration.py:35
-msgid "Speak a message when {0} launches"
+#, fuzzy
+msgid "Sp&eak a message when {0} launches"
 msgstr "Üzenet bemondása a {0} indulásakor"
 
 #: wxUI/dialogs/configuration.py:37
-msgid "Use invisible interface's keyboard shortcuts while GUI is visible"
+#, fuzzy
+msgid "&Use invisible interface's keyboard shortcuts while GUI is visible"
 msgstr ""
 "A láthatatlan felület billentyűparancsainak használata a grafikus "
 "felületen"
 
 #: wxUI/dialogs/configuration.py:39
-msgid "Activate Sapi5 when any other screen reader is not being run"
+#, fuzzy
+msgid "A&ctivate Sapi5 when any other screen reader is not being run"
 msgstr "Aktiválja a Sapi5-öt ha nem fut más képernyőolvasó"
 
 #: wxUI/dialogs/configuration.py:41
-msgid "Hide GUI on launch"
+#, fuzzy
+msgid "&Hide GUI on launch"
 msgstr "Főablak elrejtése indításkor"
 
 #: wxUI/dialogs/configuration.py:43
-msgid "Read long posts in GUI"
+msgid "&Read long posts in GUI"
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:46
-msgid "Keymap"
+#, fuzzy
+msgid "&Keymap"
 msgstr "Billentyűparancsok"
 
 #: wxUI/dialogs/configuration.py:51
 #, fuzzy
-msgid "Check for updates when {0} launches"
+msgid "Check for u&pdates when {0} launches"
 msgstr "Üzenet bemondása a {0} indulásakor"
 
 #: wxUI/dialogs/configuration.py:61
 #, fuzzy
-msgid "Proxy type: "
+msgid "Proxy &type: "
 msgstr "Proxy kiszolgáló: "
 
 #: wxUI/dialogs/configuration.py:68
-msgid "Proxy server: "
+#, fuzzy
+msgid "Proxy s&erver: "
 msgstr "Proxy kiszolgáló: "
 
 #: wxUI/dialogs/configuration.py:74
-msgid "Port: "
+#, fuzzy
+msgid "&Port: "
 msgstr "Port: "
 
 #: wxUI/dialogs/configuration.py:80
-msgid "User: "
+#, fuzzy
+msgid "&User: "
 msgstr "Felhasználó"
 
 #: wxUI/dialogs/configuration.py:86
-msgid "Password: "
+#, fuzzy
+msgid "P&assword: "
 msgstr "Jelszó: "
 
 #: wxUI/dialogs/configuration.py:98
-msgid "Enable automatic speech feedback"
+msgid "Enable automatic s&peech feedback"
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:100
-msgid "Enable automatic Braille feedback"
+msgid "Enable automatic &Braille feedback"
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:108
@@ -2273,15 +2284,18 @@ msgid "Status"
 msgstr "Állapot"
 
 #: wxUI/dialogs/configuration.py:111
-msgid "Show/hide"
+#, fuzzy
+msgid "S&how/hide"
 msgstr "Megjelenítés/elrejtés"
 
 #: wxUI/dialogs/configuration.py:112
-msgid "Move up"
+#, fuzzy
+msgid "Move &up"
 msgstr "Mozgás fel"
 
 #: wxUI/dialogs/configuration.py:113
-msgid "Move down"
+#, fuzzy
+msgid "Move &down"
 msgstr "Mozgás le"
 
 #: wxUI/dialogs/configuration.py:123 wxUI/dialogs/configuration.py:188
@@ -2311,15 +2325,15 @@ msgid "The buffer is already at the bottom of the list."
 msgstr "A buffer már a lista alján van."
 
 #: wxUI/dialogs/configuration.py:205
-msgid "LibreTranslate API URL: "
+msgid "&LibreTranslate API URL: "
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:211
-msgid "LibreTranslate API Key (optional): "
+msgid "LibreTranslate API &Key (optional): "
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:217
-msgid "DeepL API Key: "
+msgid "&DeepL API Key: "
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:231
@@ -2340,8 +2354,21 @@ msgid "Translation services"
 msgstr "Lefordítva"
 
 #: wxUI/dialogs/configuration.py:251 wxUI/dialogs/mastodon/configuration.py:170
-msgid "Save"
+#, fuzzy
+msgid "&Save"
 msgstr "Mentés"
+
+#: wxUI/dialogs/configuration.py:253
+#: wxUI/dialogs/mastodon/communityTimeline.py:27
+#: wxUI/dialogs/mastodon/configuration.py:172
+#: wxUI/dialogs/mastodon/search.py:26
+#: wxUI/dialogs/mastodon/showUserProfile.py:170
+#: wxUI/dialogs/mastodon/updateProfile.py:132
+#: wxUI/dialogs/mastodon/userActions.py:38
+#: wxUI/dialogs/mastodon/userTimeline.py:32
+#, fuzzy
+msgid "&Close"
+msgstr "Bezárás"
 
 #: wxUI/dialogs/find.py:13
 msgid "Find in current buffer"
@@ -2484,16 +2511,6 @@ msgstr "Felhasználó idővonalának megnyitása"
 msgid "&OK"
 msgstr "OK"
 
-#: wxUI/dialogs/mastodon/communityTimeline.py:27
-#: wxUI/dialogs/mastodon/search.py:26
-#: wxUI/dialogs/mastodon/showUserProfile.py:170
-#: wxUI/dialogs/mastodon/updateProfile.py:132
-#: wxUI/dialogs/mastodon/userActions.py:38
-#: wxUI/dialogs/mastodon/userTimeline.py:32
-#, fuzzy
-msgid "&Close"
-msgstr "Bezárás"
-
 #: wxUI/dialogs/mastodon/configuration.py:14
 #, fuzzy
 msgid "User autocompletion settings"
@@ -2501,31 +2518,33 @@ msgstr "Felhasználók autokiegészítésének beállítása..."
 
 #: wxUI/dialogs/mastodon/configuration.py:15
 msgid ""
-"Scan account and add followers and following users to the user "
+"Scan acc&ount and add followers and following users to the user "
 "autocompletion database"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:16
 #, fuzzy
-msgid "Manage autocompletion database"
+msgid "&Manage autocompletion database"
 msgstr "Felhasználók automatikus kiegészítés adatbázisának kezelése"
 
 #: wxUI/dialogs/mastodon/configuration.py:21
-msgid "Disable Streaming API endpoints"
+msgid "&Disable Streaming API endpoints"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:23
-msgid "Relative timestamps"
+#, fuzzy
+msgid "&Relative timestamps"
 msgstr "Relatív idő"
 
 #: wxUI/dialogs/mastodon/configuration.py:25
 msgid ""
-"Read preferences from instance (default visibility when publishing and "
+"R&ead preferences from instance (default visibility when publishing and "
 "displaying sensitive content)"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:28
-msgid "Items on each API call"
+#, fuzzy
+msgid "&Items on each API call"
 msgstr "Elemek száma API hívásonként"
 
 # | msgid ""
@@ -2535,27 +2554,28 @@ msgstr "Elemek száma API hívásonként"
 #: wxUI/dialogs/mastodon/configuration.py:34
 #, fuzzy
 msgid ""
-"Inverted buffers: The newest items will be shown at the beginning while "
+"I&nverted buffers: The newest items will be shown at the beginning while "
 "the oldest at the end"
 msgstr ""
 "Fordított bufferek: a legutolsó tweet a lista tetején lesz, míg a "
 "legrégebbi a lista allján"
 
 #: wxUI/dialogs/mastodon/configuration.py:36
-msgid "Ask confirmation before boosting a post"
+msgid "&Ask confirmation before boosting a post"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:38
-msgid "Show screen names instead of full names"
+msgid "S&how screen names instead of full names"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:40
-msgid "hide emojis in usernames"
+msgid "Hide e&mojis in usernames"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:42
+#, fuzzy
 msgid ""
-"Number of items per buffer to cache in database (0 to disable caching, "
+"&Number of items per buffer to cache in database (0 to disable caching, "
 "blank for unlimited)"
 msgstr ""
 "Az adatbázisban tárolt elemek száma bufferenként (0 a letiltáshoz, vagy "
@@ -2563,41 +2583,58 @@ msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:46
 msgid ""
-"Load cache for items in memory (much faster in big datasets but requires "
-"more RAM)"
+"&Load cache for items in memory (much faster in big datasets but requires"
+" more RAM)"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:53
+msgid "Edit template for &posts. Current template: {}"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:55
+msgid "Edit template for c&onversations. Current template: {}"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:57
+msgid "Edit template for p&ersons. Current template: {}"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:65
-msgid "Volume"
+#, fuzzy
+msgid "&Volume"
 msgstr "Hangerő"
 
 #: wxUI/dialogs/mastodon/configuration.py:76
-msgid "Session mute"
+#, fuzzy
+msgid "S&ession mute"
 msgstr "Munkamenet némítás"
 
 #: wxUI/dialogs/mastodon/configuration.py:78
-msgid "Output device"
+#, fuzzy
+msgid "&Output device"
 msgstr "Kimeneti hangeszköz"
 
 #: wxUI/dialogs/mastodon/configuration.py:85
-msgid "Input device"
+#, fuzzy
+msgid "&Input device"
 msgstr "Bemeneti hangeszköz"
 
 #: wxUI/dialogs/mastodon/configuration.py:93
-msgid "Sound pack"
+#, fuzzy
+msgid "Sound &pack"
 msgstr "Hangcsomag"
 
 #: wxUI/dialogs/mastodon/configuration.py:99
-msgid "Indicate audio or video in posts with sound"
+msgid "Indicate &audio or video in posts with sound"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:101
-msgid "Indicate posts containing images with sound"
+msgid "Indicate posts containing i&mages with sound"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:124
 #, fuzzy
-msgid "Language for OCR"
+msgid "&Language for OCR"
 msgstr "Nyelv"
 
 #: wxUI/dialogs/mastodon/configuration.py:149
@@ -3629,7 +3666,7 @@ msgstr "Elhagyás"
 #~ msgstr "Felhasználók autokiegészítésének beállítása"
 
 #~ msgid "Add followers to database"
-#~ msgstr "Felhasználó hozzáadása az adatbázishoz"
+#~ msgstr ""
 
 #~ msgid "Add  friends to database"
 #~ msgstr "Felhasználó hozzáadása az adatbázishoz"
@@ -4579,5 +4616,68 @@ msgstr "Elhagyás"
 #~ msgstr ""
 
 #~ msgid "Field {}: Label"
+#~ msgstr ""
+
+#~ msgid "Add  following to database"
+#~ msgstr ""
+
+#~ msgid "Disable Streaming functions"
+#~ msgstr ""
+
+#~ msgid "Buffer update interval, in minutes"
+#~ msgstr ""
+
+#~ msgid "Read long posts in GUI"
+#~ msgstr ""
+
+#~ msgid "Enable automatic speech feedback"
+#~ msgstr ""
+
+#~ msgid "Enable automatic Braille feedback"
+#~ msgstr ""
+
+#~ msgid "LibreTranslate API URL: "
+#~ msgstr ""
+
+#~ msgid "LibreTranslate API Key (optional): "
+#~ msgstr ""
+
+#~ msgid "DeepL API Key: "
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Scan account and add followers and "
+#~ "following users to the user "
+#~ "autocompletion database"
+#~ msgstr ""
+
+#~ msgid "Disable Streaming API endpoints"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Read preferences from instance (default "
+#~ "visibility when publishing and displaying "
+#~ "sensitive content)"
+#~ msgstr ""
+
+#~ msgid "Ask confirmation before boosting a post"
+#~ msgstr ""
+
+#~ msgid "Show screen names instead of full names"
+#~ msgstr ""
+
+#~ msgid "hide emojis in usernames"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Load cache for items in memory "
+#~ "(much faster in big datasets but "
+#~ "requires more RAM)"
+#~ msgstr ""
+
+#~ msgid "Indicate audio or video in posts with sound"
+#~ msgstr ""
+
+#~ msgid "Indicate posts containing images with sound"
 #~ msgstr ""
 
