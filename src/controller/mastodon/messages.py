@@ -5,6 +5,7 @@ import wx
 import widgetUtils
 import config
 import output
+import languageHandler
 from twitter_text import parse_tweet, config
 from mastodon import MastodonError
 from controller import messages
@@ -32,9 +33,12 @@ class post(messages.basicMessage):
         self.max = session.char_limit
         self.title = title
         self.session = session
-        self.message = postDialogs.Post(caption=caption, text=text, *args, **kwargs)
+        langs = self.session.supported_languages
+        display_langs = [l.name for l in langs]
+        self.message = postDialogs.Post(caption=caption, text=text, languages=display_langs, *args, **kwargs)
         self.message.SetTitle(title)
         self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
+        self.set_language(self.session.default_language)
         widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
         widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
         widgetUtils.connect_event(self.message.spoiler, widgetUtils.ENTERED_TEXT, self.text_processor)
@@ -70,7 +74,21 @@ class post(messages.basicMessage):
         self.add_post(event=None, update_gui=False)
         return self.thread
 
-    def set_post_data(self, visibility, data):
+    def set_language(self, language=None):
+        """ Attempt to set the default language for a post. """
+        # language can be provided in a post (replying or recovering from errors).
+        # Also it can be provided in user preferences (retrieved in the session).
+        # If no language is provided, let's fallback to TWBlue's user language.
+        if language != None: 
+            language_code = language
+        else:
+            # Let's cut langcode_VARIANT to ISO-639 two letter code only.
+            language_code = languageHandler.curLang[:2]
+        for lang in self.session.supported_languages:
+            if lang.code == language_code:
+                self.message.language.SetStringSelection(lang.name)
+
+    def set_post_data(self, visibility, data, language):
         if len(data) == 0:
             return
         if len(data) > 1:
@@ -87,6 +105,7 @@ class post(messages.basicMessage):
         self.message.on_sensitivity_changed()
         for attachment in self.attachments:
             self.message.add_item(item=[attachment["file"], attachment["type"], attachment["description"]])
+        self.set_language(language)
         self.text_processor()
 
     def text_processor(self, *args, **kwargs):
@@ -230,6 +249,14 @@ class post(messages.basicMessage):
     def get_visibility(self):
         visibility_settings = ["public", "unlisted", "private", "direct"]
         return visibility_settings[self.message.visibility.GetSelection()]
+
+    def get_language(self):
+        langs = self.session.supported_languages
+        lang = self.message.language.GetSelection()
+        if lang >= 0:
+            print(langs[lang].code)
+            return langs[lang].code
+        return None
 
     def set_visibility(self, setting):
         visibility_settings = ["public", "unlisted", "private", "direct"]

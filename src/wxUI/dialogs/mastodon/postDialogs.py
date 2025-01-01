@@ -2,7 +2,7 @@
 import wx
 
 class Post(wx.Dialog):
-    def __init__(self, caption=_("Post"), text="", *args, **kwds):
+    def __init__(self, caption=_("Post"), text="", languages=[], *args, **kwds):
         super(Post, self).__init__(parent=None, id=wx.ID_ANY, *args, **kwds)
         main_sizer = wx.BoxSizer(wx.VERTICAL)
         post_sizer = wx.WrapSizer(wx.VERTICAL)
@@ -49,6 +49,12 @@ class Post(wx.Dialog):
         self.visibility = wx.ComboBox(self, wx.ID_ANY, choices=[_("Public"), _("Not listed"), _("Followers only"), _("Direct")], style=wx.CB_DROPDOWN | wx.CB_READONLY | wx.CB_SIMPLE)
         self.visibility.SetSelection(0)
         visibility_sizer.Add(self.visibility, 0, 0, 0)
+        language_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        post_actions_sizer.Add(language_sizer, 0, wx.RIGHT, 20)
+        lang_label = wx.StaticText(self, wx.ID_ANY, _("Language"))
+        language_sizer.Add(lang_label, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
+        self.language = wx.ComboBox(self, wx.ID_ANY, choices=languages, style=wx.CB_DROPDOWN | wx.CB_READONLY)
+        language_sizer.Add(self.language, 0, wx.ALIGN_CENTER_VERTICAL, 0)
         self.add = wx.Button(self, wx.ID_ANY, _("A&dd"))
         self.sensitive = wx.CheckBox(self, wx.ID_ANY, _("S&ensitive content"))
         self.sensitive.SetValue(False)
@@ -165,7 +171,6 @@ class Post(wx.Dialog):
     def unable_to_attach_poll(self, *args, **kwargs):
         return wx.MessageDialog(self, _("You can add a poll or media files. In order to add your poll, please remove other attachments first."), _("Error adding poll"), wx.ICON_ERROR).ShowModal()
 
-import wx
 
 class viewPost(wx.Dialog):
     def set_title(self, length):
