@@ -126,7 +126,7 @@ class NotificationsBuffer(BaseBuffer):
             response = post.message.ShowModal()
             if response == wx.ID_OK:
                 post_data = post.get_data()
-                call_threaded(self.session.send_post, posts=post_data, visibility="direct")
+                call_threaded(self.session.send_post, posts=post_data, visibility="direct", language=post.get_language())
             if hasattr(post.message, "destroy"):
                 post.message.destroy()
 

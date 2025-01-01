@@ -1086,10 +1086,10 @@ class Controller(object):
 #            if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
 #                self.notify(buffer.session, sound_to_play)
 
-    def mastodon_error_post(self, name, reply_to, visibility, posts):
+    def mastodon_error_post(self, name, reply_to, visibility, posts, language):
         home = self.search_buffer("home_timeline", name)
         if home != None:
-            wx.CallAfter(home.post_from_error, visibility=visibility, reply_to=reply_to, data=posts)
+            wx.CallAfter(home.post_from_error, visibility=visibility, reply_to=reply_to, data=posts, lang=language)
 
     def change_buffer_title(self, name, buffer, title):
         buffer_index = self.view.search(buffer, name)

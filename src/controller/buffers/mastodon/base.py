@@ -70,7 +70,7 @@ class BaseBuffer(base.Buffer):
         response = post.message.ShowModal()
         if response == wx.ID_OK:
             post_data = post.get_data()
-            call_threaded(self.session.send_post, posts=post_data, visibility=post.get_visibility(), **kwargs)
+            call_threaded(self.session.send_post, posts=post_data, visibility=post.get_visibility(), language=post.get_language(), **kwargs)
         if hasattr(post.message, "destroy"):
             post.message.destroy()
 
@@ -335,16 +335,19 @@ class BaseBuffer(base.Buffer):
             visibility = "unlisted"
         if item.reblog != None:
             users = ["@{} ".format(user.acct) for user in item.reblog.mentions if user.id != self.session.db["user_id"]]
+            language = item.reblog.language
             if item.reblog.account.acct != item.account.acct and "@{} ".format(item.reblog.account.acct) not in users:
                 users.append("@{} ".format(item.reblog.account.acct))
         else:
             users = ["@{} ".format(user.acct) for user in item.mentions if user.id != self.session.db["user_id"]]
+            language = item.language
         if "@{} ".format(item.account.acct) not in users and item.account.id != self.session.db["user_id"]:
             users.insert(0, "@{} ".format(item.account.acct))
         users_str = "".join(users)
         post = messages.post(session=self.session, title=title, caption=caption, text=users_str)
         visibility_settings = dict(public=0, unlisted=1, private=2, direct=3)
         post.message.visibility.SetSelection(visibility_settings.get(visibility))
+        post.set_language(language)
         # Respect content warning settings.
         if item.sensitive:
             post.message.sensitive.SetValue(item.sensitive)
@@ -353,7 +356,7 @@ class BaseBuffer(base.Buffer):
         response = post.message.ShowModal()
         if response == wx.ID_OK:
             post_data = post.get_data()
-            call_threaded(self.session.send_post, reply_to=item.id, posts=post_data, visibility=post.get_visibility())
+            call_threaded(self.session.send_post, reply_to=item.id, posts=post_data, visibility=post.get_visibility(), language=post.get_language())
         if hasattr(post.message, "destroy"):
             post.message.destroy()
 
@@ -380,7 +383,7 @@ class BaseBuffer(base.Buffer):
         response = post.message.ShowModal()
         if response == wx.ID_OK:
             post_data = post.get_data()
-            call_threaded(self.session.send_post, posts=post_data, visibility="direct", reply_to=item.id)
+            call_threaded(self.session.send_post, posts=post_data, visibility="direct", reply_to=item.id, language=post.get_language())
         if hasattr(post.message, "destroy"):
             post.message.destroy()
 
@@ -551,7 +554,7 @@ class BaseBuffer(base.Buffer):
         except MastodonNotFoundError:
             output.speak(_("No status found with that ID"))
             return
-#        print(post)
+        # print(item)
         msg = messages.viewPost(self.session, item, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url(item=item))
 
     def ocr_image(self):
@@ -621,14 +624,14 @@ class BaseBuffer(base.Buffer):
             return
         poll = self.session.api_call(call_name="poll_vote", id=poll.id, choices=options, preexec_message=_("Sending vote..."))
 
-    def post_from_error(self, visibility, reply_to, data):
+    def post_from_error(self, visibility, reply_to, data, lang):
         title = _("Post")
         caption = _("Write your post here")
         post = messages.post(session=self.session, title=title, caption=caption)
-        post.set_post_data(visibility=visibility, data=data)
+        post.set_post_data(visibility=visibility, data=data, language=language)
         response = post.message.ShowModal()
         if response == wx.ID_OK:
             post_data = post.get_data()
-            call_threaded(self.session.send_post, posts=post_data, reply_to=reply_to, visibility=post.get_visibility())
+            call_threaded(self.session.send_post, posts=post_data, reply_to=reply_to, visibility=post.get_visibility(), language=post.get_language())
         if hasattr(post.message, "destroy"):
             post.message.destroy()
