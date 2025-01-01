@@ -11,7 +11,7 @@ import config
 import config_utils
 import output
 import application
-from mastodon import MastodonError, MastodonAPIError, MastodonNotFoundError, MastodonUnauthorizedError
+from mastodon import MastodonError, MastodonAPIError, MastodonNotFoundError, MastodonUnauthorizedError, MastodonVersionError
 from pubsub import pub
 from mysc.thread_utils import call_threaded
 from sessions import base
@@ -19,7 +19,7 @@ from sessions.mastodon import utils, streaming
 
 log = logging.getLogger("sessions.mastodonSession")
 
-MASTODON_VERSION = "4.0.1"
+MASTODON_VERSION = "4.3.2"
 
 class Session(base.baseSession):
     version_check_mode = "created"
@@ -29,6 +29,7 @@ class Session(base.baseSession):
         super(Session, self).__init__(*args, **kwargs)
         self.config_spec = "mastodon.defaults"
         self.supported_languages = []
+        self.default_language = None
         self.type = "mastodon"
         self.db["pagination_info"] = dict()
         self.char_limit = 500
@@ -48,6 +49,9 @@ class Session(base.baseSession):
                     credentials = self.api.account_verify_credentials()
                     self.db["user_name"] = credentials["username"]
                     self.db["user_id"] = credentials["id"]
+                    if hasattr(credentials, "source") and hasattr(credentials.source, "language"):
+                        log.info(f"Setting default language on account {credentials.username} to {credentials.source.language}")
+                        self.default_language = credentials.source.language
                     self.settings["mastodon"]["user_name"] = credentials["username"]
                 self.logged = True
                 log.debug("Logged.")
@@ -113,7 +117,10 @@ class Session(base.baseSession):
         self.db["utc_offset"] = offset
         instance = self.api.instance()
         if len(self.supported_languages) == 0:
-            self.supported_languages = instance.languages
+            try:
+                self.supported_languages = self.api.instance_languages()
+            except (Exception, MastodonVersionError):
+                pass
         self.get_lists()
         self.get_muted_users()
         # determine instance custom characters limit.
@@ -207,17 +214,17 @@ class Session(base.baseSession):
             self.sound.play(_sound)
         return val
 
-    def send_post(self, reply_to=None, visibility=None, posts=[]):
+    def send_post(self, reply_to=None, visibility=None, language=None, posts=[]):
         """ Convenience function to send a thread. """
         in_reply_to_id = reply_to
         for obj in posts:
             text = obj.get("text")
             if len(obj["attachments"]) == 0:
                 try:
-                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
+                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language)
                 # If it fails, let's basically send an event with all passed info so we will catch it later.
                 except Exception as e:
-                    pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts)
+                    pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts, lang=language)
                     return
                 if item != None:
                     in_reply_to_id = item["id"]
@@ -231,11 +238,11 @@ class Session(base.baseSession):
                         for i in obj["attachments"]:
                             media = self.api_call("media_post", media_file=i["file"], description=i["description"], synchronous=True)
                             media_ids.append(media.id)
-                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"])
+                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language)
                     if item != None:
                         in_reply_to_id = item["id"]
                 except Exception as e:
-                    pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts)
+                    pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts, lang=language)
                     return
 
     def get_name(self):
