@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2024-12-29 00:55+0000\n"
+"POT-Creation-Date: 2025-01-05 00:55+0000\n"
 "PO-Revision-Date: 2022-12-20 22:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: he_il\n"
@@ -306,7 +306,7 @@ msgid "Sent"
 msgstr ""
 
 #: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:81
-#: controller/mastodon/settings.py:200 wxUI/dialogs/mastodon/postDialogs.py:224
+#: controller/mastodon/settings.py:200 wxUI/dialogs/mastodon/postDialogs.py:229
 msgid "Favorites"
 msgstr ""
 
@@ -356,17 +356,17 @@ msgid "Unknown buffer"
 msgstr ""
 
 #: controller/buffers/mastodon/base.py:67
-#: controller/buffers/mastodon/base.py:625 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:628 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:5
-#: wxUI/dialogs/mastodon/postDialogs.py:189 wxUI/sysTrayIcon.py:35
+#: wxUI/dialogs/mastodon/postDialogs.py:194 wxUI/sysTrayIcon.py:35
 msgid "Post"
 msgstr ""
 
 # | msgid "Write the tweet here"
 #: controller/buffers/mastodon/base.py:68
-#: controller/buffers/mastodon/base.py:626
+#: controller/buffers/mastodon/base.py:629
 #, fuzzy
 msgid "Write your post here"
 msgstr "כתוב את הציוץ כאן"
@@ -395,14 +395,14 @@ msgstr "החוצץ הזה אינו ציר זמן, הוא לא יכול להימ�
 
 # | msgid "Conversation with {0}"
 #: controller/buffers/mastodon/base.py:328
-#: controller/buffers/mastodon/base.py:363
+#: controller/buffers/mastodon/base.py:366
 #, fuzzy
 msgid "Conversation with {}"
 msgstr "שיחה עם ]0["
 
 # | msgid "Write the tweet here"
 #: controller/buffers/mastodon/base.py:329
-#: controller/buffers/mastodon/base.py:364
+#: controller/buffers/mastodon/base.py:367
 #: controller/buffers/mastodon/conversations.py:181
 #: controller/buffers/mastodon/notifications.py:122
 #: controller/buffers/mastodon/users.py:52
@@ -422,77 +422,77 @@ msgstr "השב ל[arge0]"
 msgid "Write your reply here"
 msgstr "כתוב את הציוץ כאן"
 
-#: controller/buffers/mastodon/base.py:391
+#: controller/buffers/mastodon/base.py:394
 #, fuzzy
 msgid "This action is not supported on conversations."
 msgstr "פעולה זו אינה נתמכת בחוצץ זה "
 
-#: controller/buffers/mastodon/base.py:456
+#: controller/buffers/mastodon/base.py:459
 msgid "Opening URL..."
 msgstr "פותח כתובת..."
 
-#: controller/buffers/mastodon/base.py:469
+#: controller/buffers/mastodon/base.py:472
 msgid "You can delete only your own posts."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:498
+#: controller/buffers/mastodon/base.py:501
 msgid "Opening item in web browser..."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:506
-#: controller/buffers/mastodon/base.py:526
+#: controller/buffers/mastodon/base.py:509
+#: controller/buffers/mastodon/base.py:529
 msgid "Adding to favorites..."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:513
-#: controller/buffers/mastodon/base.py:528
+#: controller/buffers/mastodon/base.py:516
+#: controller/buffers/mastodon/base.py:531
 msgid "Removing from favorites..."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:523
-#: controller/buffers/mastodon/base.py:538
-#: controller/buffers/mastodon/base.py:552
+#: controller/buffers/mastodon/base.py:526
+#: controller/buffers/mastodon/base.py:541
+#: controller/buffers/mastodon/base.py:555
 #: controller/buffers/mastodon/conversations.py:213
 msgid "No status found with that ID"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:541
+#: controller/buffers/mastodon/base.py:544
 msgid "Adding to bookmarks..."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:543
+#: controller/buffers/mastodon/base.py:546
 msgid "Removing from bookmarks..."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:566
+#: controller/buffers/mastodon/base.py:569
 msgid "Picture {0}"
 msgstr "תמונה ]0["
 
-#: controller/buffers/mastodon/base.py:567
+#: controller/buffers/mastodon/base.py:570
 msgid "Select the picture"
 msgstr "בחר את התמונה"
 
-#: controller/buffers/mastodon/base.py:590
+#: controller/buffers/mastodon/base.py:593
 msgid "Unable to extract text"
 msgstr "אין אפשרות לחלץ טקסט "
 
-#: controller/buffers/mastodon/base.py:592
+#: controller/buffers/mastodon/base.py:595
 msgid "OCR Result"
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:607
+#: controller/buffers/mastodon/base.py:610
 msgid "this poll no longer exists."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:610
+#: controller/buffers/mastodon/base.py:613
 msgid "This poll has already expired."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:613
+#: controller/buffers/mastodon/base.py:616
 msgid "You have already voted on this poll."
 msgstr ""
 
-#: controller/buffers/mastodon/base.py:622
+#: controller/buffers/mastodon/base.py:625
 #, fuzzy
 msgid "Sending vote..."
 msgstr "פותח כתובת..."
@@ -636,79 +636,79 @@ msgstr ""
 msgid "Update profile"
 msgstr ""
 
-#: controller/mastodon/messages.py:96
+#: controller/mastodon/messages.py:115
 #, python-format
 msgid "%s - %s of %d characters"
 msgstr ""
 
-#: controller/mastodon/messages.py:220
+#: controller/mastodon/messages.py:239
 msgid "Poll with {} options"
 msgstr ""
 
 # | msgid "List for {}"
-#: controller/mastodon/messages.py:246
+#: controller/mastodon/messages.py:273
 #, fuzzy
 msgid "Post from {}"
 msgstr "רשימה ל]["
 
-#: controller/mastodon/messages.py:250 sessions/mastodon/templates.py:78
+#: controller/mastodon/messages.py:277 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:49
 msgid "Public"
 msgstr ""
 
-#: controller/mastodon/messages.py:250 sessions/mastodon/templates.py:78
+#: controller/mastodon/messages.py:277 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:49
 msgid "Not listed"
 msgstr ""
 
 # | msgid "Followers"
-#: controller/mastodon/messages.py:250
+#: controller/mastodon/messages.py:277
 #, fuzzy
 msgid "followers only"
 msgstr "עוקבים"
 
-#: controller/mastodon/messages.py:250 sessions/mastodon/templates.py:78
+#: controller/mastodon/messages.py:277 sessions/mastodon/templates.py:78
 #: wxUI/dialogs/mastodon/postDialogs.py:49
 msgid "Direct"
 msgstr ""
 
-#: controller/mastodon/messages.py:257
+#: controller/mastodon/messages.py:284
 msgid "Remote instance"
 msgstr ""
 
 # | msgid "Conversation with {0}"
-#: controller/mastodon/messages.py:265 controller/mastodon/messages.py:293
+#: controller/mastodon/messages.py:292 controller/mastodon/messages.py:320
 #, fuzzy
 msgid "Unmute conversation"
 msgstr "שיחה עם ]0["
 
 # | msgid "Conversation with {0}"
-#: controller/mastodon/messages.py:289 wxUI/dialogs/mastodon/postDialogs.py:232
+#: controller/mastodon/messages.py:316 wxUI/dialogs/mastodon/postDialogs.py:237
 #, fuzzy
 msgid "Mute conversation"
 msgstr "שיחה עם ]0["
 
 # | msgid "Conversation with {0}"
-#: controller/mastodon/messages.py:290
+#: controller/mastodon/messages.py:317
 #, fuzzy
 msgid "Conversation unmuted."
 msgstr "שיחה עם ]0["
 
 # | msgid "Conversation with {0}"
-#: controller/mastodon/messages.py:294
+#: controller/mastodon/messages.py:321
 #, fuzzy
 msgid "Conversation muted."
 msgstr "שיחה עם ]0["
 
-#: controller/mastodon/messages.py:305
+#: controller/mastodon/messages.py:332
 msgid "people who boosted this post"
 msgstr ""
 
-#: controller/mastodon/messages.py:310
+#: controller/mastodon/messages.py:337
 msgid "people who favorited this post"
 msgstr ""
 
-#: controller/mastodon/messages.py:316
+#: controller/mastodon/messages.py:343
 msgid "Link copied to clipboard."
 msgstr ""
 
@@ -1503,44 +1503,44 @@ msgstr ""
 msgid "{username} wants to follow you."
 msgstr ""
 
-#: sessions/mastodon/session.py:65
+#: sessions/mastodon/session.py:69
 msgid "Please enter your instance URL."
 msgstr ""
 
-#: sessions/mastodon/session.py:65
+#: sessions/mastodon/session.py:69
 msgid "Mastodon instance"
 msgstr ""
 
-#: sessions/mastodon/session.py:76
+#: sessions/mastodon/session.py:80
 msgid ""
 "We could not connect to your mastodon instance. Please verify that the "
 "domain exists and the instance is accessible via a web browser."
 msgstr ""
 
-#: sessions/mastodon/session.py:76
+#: sessions/mastodon/session.py:80
 msgid "Instance error"
 msgstr ""
 
-#: sessions/mastodon/session.py:81
+#: sessions/mastodon/session.py:85
 msgid "Enter the verification code"
 msgstr ""
 
-#: sessions/mastodon/session.py:81
+#: sessions/mastodon/session.py:85
 msgid "PIN code authorization"
 msgstr ""
 
-#: sessions/mastodon/session.py:90
+#: sessions/mastodon/session.py:94
 msgid ""
 "We could not authorice your mastodon account to be used in TWBlue. This "
 "might be caused due to an incorrect verification code. Please try to add "
 "the session again."
 msgstr ""
 
-#: sessions/mastodon/session.py:90
+#: sessions/mastodon/session.py:94
 msgid "Authorization error"
 msgstr ""
 
-#: sessions/mastodon/session.py:205
+#: sessions/mastodon/session.py:212
 #, python-format
 msgid "%s succeeded."
 msgstr ""
@@ -1767,7 +1767,7 @@ msgstr ""
 msgid "We need your help"
 msgstr ""
 
-#: wxUI/commonMessageDialogs.py:33 wxUI/dialogs/mastodon/postDialogs.py:202
+#: wxUI/commonMessageDialogs.py:33 wxUI/dialogs/mastodon/postDialogs.py:207
 msgid "Information"
 msgstr ""
 
@@ -2003,14 +2003,14 @@ msgstr ""
 #: wxUI/buffers/mastodon/conversationList.py:11
 #: wxUI/buffers/mastodon/notifications.py:11
 #: wxUI/dialogs/mastodon/postDialogs.py:37
-#: wxUI/dialogs/mastodon/postDialogs.py:267
+#: wxUI/dialogs/mastodon/postDialogs.py:272
 msgid "Text"
 msgstr ""
 
 #: wxUI/buffers/mastodon/base.py:11
 #: wxUI/buffers/mastodon/conversationList.py:11
 #: wxUI/buffers/mastodon/notifications.py:11
-#: wxUI/dialogs/mastodon/postDialogs.py:211
+#: wxUI/dialogs/mastodon/postDialogs.py:216
 msgid "Date"
 msgstr ""
 
@@ -2559,7 +2559,7 @@ msgid "Type"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/postDialogs.py:26
-#: wxUI/dialogs/mastodon/postDialogs.py:135
+#: wxUI/dialogs/mastodon/postDialogs.py:141
 msgid "Description"
 msgstr ""
 
@@ -2579,247 +2579,251 @@ msgstr ""
 msgid "&Visibility"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:52
-msgid "A&dd"
-msgstr ""
-
-#: wxUI/dialogs/mastodon/postDialogs.py:53
-msgid "S&ensitive content"
+#: wxUI/dialogs/mastodon/postDialogs.py:54
+msgid "Language"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/postDialogs.py:58
+msgid "A&dd"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:59
+msgid "S&ensitive content"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:64
 msgid "Content warning"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:65
+#: wxUI/dialogs/mastodon/postDialogs.py:71
 msgid "Add p&ost"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:69
+#: wxUI/dialogs/mastodon/postDialogs.py:75
 msgid "Auto&complete users"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:71
+#: wxUI/dialogs/mastodon/postDialogs.py:77
 msgid "Check &spelling"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:73
+#: wxUI/dialogs/mastodon/postDialogs.py:79
 #, fuzzy
 msgid "&Translate"
 msgstr "תורגם"
 
-#: wxUI/dialogs/mastodon/postDialogs.py:100
+#: wxUI/dialogs/mastodon/postDialogs.py:106
 msgid "Post - {} characters"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:124
+#: wxUI/dialogs/mastodon/postDialogs.py:130
 msgid "Image"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:126
+#: wxUI/dialogs/mastodon/postDialogs.py:132
 msgid "Video"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:128
+#: wxUI/dialogs/mastodon/postDialogs.py:134
 msgid "Audio"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:130
+#: wxUI/dialogs/mastodon/postDialogs.py:136
 msgid "Poll"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:135
+#: wxUI/dialogs/mastodon/postDialogs.py:141
 msgid "please provide a description"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:142
+#: wxUI/dialogs/mastodon/postDialogs.py:148
 msgid "Select the picture to be uploaded"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:142
+#: wxUI/dialogs/mastodon/postDialogs.py:148
 msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:149
+#: wxUI/dialogs/mastodon/postDialogs.py:155
 msgid "Select the video to be uploaded"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:149
+#: wxUI/dialogs/mastodon/postDialogs.py:155
 msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:156
+#: wxUI/dialogs/mastodon/postDialogs.py:162
 msgid "Select the audio file to be uploaded"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:156
+#: wxUI/dialogs/mastodon/postDialogs.py:162
 msgid ""
 "Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, "
 "*.3gp)|*.mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:163
+#: wxUI/dialogs/mastodon/postDialogs.py:169
 msgid ""
 "It is not possible to add more attachments. Please take into account that"
 " You can add only a maximum of 4 images, or one audio, video or poll  per"
 " post. Please remove other attachments before continuing."
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:163
+#: wxUI/dialogs/mastodon/postDialogs.py:169
 msgid "Error adding attachment"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:166
+#: wxUI/dialogs/mastodon/postDialogs.py:172
 msgid ""
 "You can add a poll or media files. In order to add your poll, please "
 "remove other attachments first."
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:166
+#: wxUI/dialogs/mastodon/postDialogs.py:172
 msgid "Error adding poll"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:172
+#: wxUI/dialogs/mastodon/postDialogs.py:177
 #, python-format
 msgid "Post - %i characters "
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:195
+#: wxUI/dialogs/mastodon/postDialogs.py:200
 msgid "Image description"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:205
+#: wxUI/dialogs/mastodon/postDialogs.py:210
 msgid "Privacy"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:209
+#: wxUI/dialogs/mastodon/postDialogs.py:214
 msgid "Source"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:217
+#: wxUI/dialogs/mastodon/postDialogs.py:222
 msgid "Boosts"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:219
+#: wxUI/dialogs/mastodon/postDialogs.py:224
 msgid "View users who boosted this post"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:226
+#: wxUI/dialogs/mastodon/postDialogs.py:231
 msgid "View users who favorited this post"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:234
+#: wxUI/dialogs/mastodon/postDialogs.py:239
 msgid "Copy link to clipboard"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:236
-#: wxUI/dialogs/mastodon/postDialogs.py:275
+#: wxUI/dialogs/mastodon/postDialogs.py:241
+#: wxUI/dialogs/mastodon/postDialogs.py:280
 msgid "Check &spelling..."
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:237
-#: wxUI/dialogs/mastodon/postDialogs.py:276
+#: wxUI/dialogs/mastodon/postDialogs.py:242
+#: wxUI/dialogs/mastodon/postDialogs.py:281
 msgid "&Translate..."
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:238
-#: wxUI/dialogs/mastodon/postDialogs.py:277
+#: wxUI/dialogs/mastodon/postDialogs.py:243
+#: wxUI/dialogs/mastodon/postDialogs.py:282
 msgid "C&lose"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:289
+#: wxUI/dialogs/mastodon/postDialogs.py:294
 msgid "Add a poll"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:293
+#: wxUI/dialogs/mastodon/postDialogs.py:298
 msgid "Participation time"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "5 minutes"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "30 minutes"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "1 hour"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "6 hours"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "1 day"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "2 days"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "3 days"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "4 days"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "5 days"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "6 days"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:295
+#: wxUI/dialogs/mastodon/postDialogs.py:300
 msgid "7 days"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:299
+#: wxUI/dialogs/mastodon/postDialogs.py:304
 msgid "Choices"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:303
+#: wxUI/dialogs/mastodon/postDialogs.py:308
 msgid "Option 1"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:310
+#: wxUI/dialogs/mastodon/postDialogs.py:315
 msgid "Option 2"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:317
+#: wxUI/dialogs/mastodon/postDialogs.py:322
 msgid "Option 3"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:324
+#: wxUI/dialogs/mastodon/postDialogs.py:329
 msgid "Option 4"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:329
+#: wxUI/dialogs/mastodon/postDialogs.py:334
 msgid "Allow multiple choices per user"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:332
+#: wxUI/dialogs/mastodon/postDialogs.py:337
 msgid "Hide votes count until the poll expires"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:358
+#: wxUI/dialogs/mastodon/postDialogs.py:363
 msgid "Please make sure you have provided at least two options for the poll."
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:358
+#: wxUI/dialogs/mastodon/postDialogs.py:363
 msgid "Not enough information"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:363
+#: wxUI/dialogs/mastodon/postDialogs.py:368
 msgid "Vote in this poll"
 msgstr ""
 
-#: wxUI/dialogs/mastodon/postDialogs.py:366
+#: wxUI/dialogs/mastodon/postDialogs.py:371
 #, fuzzy
 msgid "Options"
 msgstr "איזכורים"
