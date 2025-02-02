@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.85\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2025-01-26 00:55+0000\n"
+"POT-Creation-Date: 2025-02-02 00:55+0000\n"
 "PO-Revision-Date: 2022-12-20 22:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
 
 #: languageHandler.py:61
 #, fuzzy
@@ -118,6 +118,7 @@ msgid "https://twblue.mcvsoftware.com/donate"
 msgstr "https://twblue.es/donate"
 
 #: main.py:118
+#, python-brace-format
 msgid ""
 "{0} is already running. Close the other instance before starting this "
 "one. If you're sure that {0} isn't running, try deleting the file at {1}."
@@ -152,6 +153,7 @@ msgid "Empty buffer."
 msgstr "Пустой буфер "
 
 #: controller/mainController.py:378
+#, python-brace-format
 msgid "{0} not found."
 msgstr "{0} не найден."
 
@@ -168,6 +170,7 @@ msgstr "%s. Пусто"
 
 #: controller/mainController.py:737 controller/mainController.py:741
 #: controller/mainController.py:765
+#, python-brace-format
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: Этот аккаунт не вошел в твиттер."
 
@@ -177,6 +180,7 @@ msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s из %s"
 
 #: controller/mainController.py:769
+#, python-brace-format
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: Этот аккаунт не вошел в твиттер"
 
@@ -223,27 +227,31 @@ msgid "Updating buffer..."
 msgstr "Обновление буфера..."
 
 #: controller/mainController.py:1022
+#, python-brace-format
 msgid "{0} items retrieved"
 msgstr "Показано {0} элементов "
 
 #: controller/buffers/mastodon/base.py:122 controller/mainController.py:1026
 #: controller/mastodon/handler.py:97 controller/mastodon/handler.py:240
+#, python-brace-format
 msgid "Timeline for {}"
 msgstr "Лента твитов {}"
 
 #: controller/buffers/mastodon/users.py:93 controller/mainController.py:1028
 #: controller/mastodon/handler.py:99 controller/mastodon/handler.py:254
+#, python-brace-format
 msgid "Followers for {}"
 msgstr "Читающие {}"
 
 #: controller/mainController.py:1030
+#, python-brace-format
 msgid "Friends for {}"
 msgstr "Читаемые {}"
 
 # | msgid "Followers for {}"
 #: controller/buffers/mastodon/users.py:95 controller/mainController.py:1032
 #: controller/mastodon/handler.py:101 controller/mastodon/handler.py:268
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Following for {}"
 msgstr "Читающие {}"
 
@@ -278,7 +286,7 @@ msgid "SOCKS v5 with DNS support"
 msgstr ""
 
 #: controller/userAlias.py:31
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Edit alias for {}"
 msgstr "Список {}"
 
@@ -359,16 +367,18 @@ msgid "Notifications"
 msgstr "Местоположение"
 
 #: controller/buffers/mastodon/base.py:58
+#, python-brace-format
 msgid "{username}'s timeline"
 msgstr "Лента твитов {username}"
 
 #: controller/buffers/mastodon/base.py:60
+#, python-brace-format
 msgid "{username}'s followers"
 msgstr "Читающие {username}"
 
 # | msgid "{username}'s followers"
 #: controller/buffers/mastodon/base.py:62
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username}'s following"
 msgstr "Читающие {username}"
 
@@ -394,13 +404,13 @@ msgstr "Напишите текст твита здесь"
 
 # | msgid "New tweet in {0}"
 #: controller/buffers/mastodon/base.py:138
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "New post in {0}"
 msgstr "Новый твит в {0}"
 
 # | msgid "{0} new tweets in {1}."
 #: controller/buffers/mastodon/base.py:144
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} new posts in {1}."
 msgstr "@{0} процитировал ваш твит: {1}"
 
@@ -421,7 +431,7 @@ msgstr "Этот буфер не является лентой и его нев�
 # | msgid "Conversation with {0}"
 #: controller/buffers/mastodon/base.py:328
 #: controller/buffers/mastodon/base.py:366
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Conversation with {}"
 msgstr "Беседа с {0}"
 
@@ -437,7 +447,7 @@ msgstr "Напишите текст твита здесь"
 
 # | msgid "Reply to {arg0}"
 #: controller/buffers/mastodon/base.py:331
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Reply to {}"
 msgstr "Ответ {arg0}"
 
@@ -492,6 +502,7 @@ msgid "Removing from bookmarks..."
 msgstr ""
 
 #: controller/buffers/mastodon/base.py:569
+#, python-brace-format
 msgid "Picture {0}"
 msgstr "Изображение {0}"
 
@@ -526,14 +537,14 @@ msgstr "Перекодирование аудио ..."
 
 # | msgid "Conversation with {0}"
 #: controller/buffers/mastodon/conversations.py:180
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Reply to conversation with {}"
 msgstr "Беседа с {0}"
 
 # | msgid "Conversation with {0}"
 #: controller/buffers/mastodon/notifications.py:121
 #: controller/buffers/mastodon/users.py:51
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "New conversation with {}"
 msgstr "Беседа с {0}"
 
@@ -644,6 +655,7 @@ msgstr "Результаты поиска"
 
 #: controller/mastodon/handler.py:109 controller/mastodon/handler.py:190
 #: controller/mastodon/handler.py:195
+#, python-brace-format
 msgid "Search for {}"
 msgstr "Поиск {}"
 
@@ -657,6 +669,7 @@ msgid "federated"
 msgstr "Лента твитов {username}"
 
 #: controller/mastodon/handler.py:142
+#, python-brace-format
 msgid "Conversation with {0}"
 msgstr "Беседа с {0}"
 
@@ -665,6 +678,7 @@ msgid "Add an user alias"
 msgstr ""
 
 #: controller/mastodon/handler.py:310
+#, python-brace-format
 msgid "Alias has been set correctly for {}."
 msgstr ""
 
@@ -679,12 +693,13 @@ msgid "%s - %s of %d characters"
 msgstr "%s - %s из %d символов"
 
 #: controller/mastodon/messages.py:239
+#, python-brace-format
 msgid "Poll with {} options"
 msgstr ""
 
 # | msgid "List for {}"
 #: controller/mastodon/messages.py:273
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Post from {}"
 msgstr "Список {}"
 
@@ -760,14 +775,17 @@ msgid "Account settings for %s"
 msgstr "Параметры аккаунта %s"
 
 #: controller/mastodon/settings.py:92
+#, python-brace-format
 msgid "Edit template for posts. Current template: {}"
 msgstr ""
 
 #: controller/mastodon/settings.py:101
+#, python-brace-format
 msgid "Edit template for conversations. Current template: {}"
 msgstr ""
 
 #: controller/mastodon/settings.py:110
+#, python-brace-format
 msgid "Edit template for persons. Current template: {}"
 msgstr ""
 
@@ -836,6 +854,7 @@ msgid "New event."
 msgstr "Новое событие."
 
 #: extra/SoundsTutorial/soundsTutorial_constants.py:19
+#, python-brace-format
 msgid "{0} is ready."
 msgstr "Добро пожаловать в {0} !"
 
@@ -921,6 +940,7 @@ msgid "&Add to personal dictionary"
 msgstr "&Добавить в личный словарь"
 
 #: extra/SpellChecker/wx_ui.py:79
+#, python-brace-format
 msgid ""
 "An error has occurred. There are no dictionaries available for the "
 "selected language in {0}"
@@ -962,7 +982,7 @@ msgid "Manage Autocompletion database"
 msgstr "Управление базой автозаполнения"
 
 #: extra/autocompletionUsers/wx_manage.py:12
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Editing {0} users database"
 msgstr "Редактирование базы данных {0} "
 
@@ -1045,6 +1065,7 @@ msgid "Attention"
 msgstr "Внимание!"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:40
+#, python-brace-format
 msgid "TWBlue has imported {} users successfully."
 msgstr ""
 
@@ -1435,6 +1456,7 @@ msgid "Adds an alias to an user"
 msgstr "В какой список вы хотите добавить пользователя?"
 
 #: sessionmanager/sessionManager.py:69
+#, python-brace-format
 msgid "{account_name}@{instance} (Mastodon)"
 msgstr ""
 
@@ -1505,6 +1527,7 @@ msgid "Do you really want to delete this account?"
 msgstr "Вы желаете удалить этот аккаунт?"
 
 #: sessions/base.py:125
+#, python-brace-format
 msgid ""
 "An exception occurred while saving the {app} database. It will be deleted"
 " and rebuilt automatically. If this error persists, send the error log to"
@@ -1512,6 +1535,7 @@ msgid ""
 msgstr ""
 
 #: sessions/base.py:165
+#, python-brace-format
 msgid ""
 "An exception occurred while loading the {app} database. It will be "
 "deleted and rebuilt automatically. If this error persists, send the error"
@@ -1527,7 +1551,7 @@ msgstr "dddd, MMMM D, YYYY H:m:s"
 # | msgid "{0}. Quoted  tweet from @{1}: {2}"
 #: sessions/mastodon/compose.py:17 sessions/mastodon/templates.py:73
 #: sessions/mastodon/templates.py:74
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Boosted from @{}: {}"
 msgstr "{0}. Процитированный твит от @{1}: {2}"
 
@@ -1546,48 +1570,52 @@ msgstr ""
 "Регистрация в  Twitterе %s"
 
 #: sessions/mastodon/compose.py:46
+#, python-brace-format
 msgid "Last message from {}: {}"
 msgstr ""
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:61
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} has posted: {status}"
 msgstr "Читающие {username}"
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:63
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} has mentioned you: {status}"
 msgstr "Читающие {username}"
 
 #: sessions/mastodon/compose.py:65
+#, python-brace-format
 msgid "{username} has boosted: {status}"
 msgstr ""
 
 #: sessions/mastodon/compose.py:67
+#, python-brace-format
 msgid "{username} has added to favorites: {status}"
 msgstr ""
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:69
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} has followed you."
 msgstr "Читающие {username}"
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:71
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} has joined the instance."
 msgstr "Читающие {username}"
 
 #: sessions/mastodon/compose.py:73 sessions/mastodon/templates.py:161
+#, python-brace-format
 msgid "A poll in which you have voted has expired: {status}"
 msgstr ""
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:75
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} wants to follow you."
 msgstr "Читающие {username}"
 
@@ -1658,11 +1686,12 @@ msgid "$display_name $text, $date"
 msgstr ""
 
 #: sessions/mastodon/templates.py:34
+#, python-brace-format
 msgid "Content warning: {}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:45
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Media description: {}"
 msgstr "Описание"
 
@@ -1673,22 +1702,27 @@ msgid "Followers only"
 msgstr "Читающие"
 
 #: sessions/mastodon/templates.py:147
+#, python-brace-format
 msgid "has posted: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:149
+#, python-brace-format
 msgid "has mentioned you: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:151
+#, python-brace-format
 msgid "has boosted: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:153
+#, python-brace-format
 msgid "has added to favorites: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:155
+#, python-brace-format
 msgid "has updated a status: {status}"
 msgstr ""
 
@@ -1827,6 +1861,7 @@ msgid "Done!"
 msgstr "Готово"
 
 #: wxUI/commonMessageDialogs.py:6
+#, python-brace-format
 msgid "Do you really want to close {0}?"
 msgstr "Вы действительно хотите закрыть {0}?"
 
@@ -1835,10 +1870,12 @@ msgid "Exit"
 msgstr "Выйти"
 
 #: wxUI/commonMessageDialogs.py:10
+#, python-brace-format
 msgid " {0} must be restarted for these changes to take effect."
 msgstr " {0} должен быть перезапущен, чтобы изменения вступили в силу."
 
 #: wxUI/commonMessageDialogs.py:10
+#, python-brace-format
 msgid "Restart {0} "
 msgstr "Перезагрузка {0} "
 
@@ -1883,6 +1920,7 @@ msgid "Existing timeline"
 msgstr "Существующая лента"
 
 #: wxUI/commonMessageDialogs.py:29
+#, python-brace-format
 msgid ""
 "If you like {0} we need your help to keep it going. Help us by donating "
 "to the project. This will help us pay for the server, the domain and some"
@@ -1909,6 +1947,7 @@ msgid "The configuration file is invalid."
 msgstr ""
 
 #: wxUI/commonMessageDialogs.py:39
+#, python-brace-format
 msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
@@ -1921,6 +1960,7 @@ msgid "Warning"
 msgstr "Внимание!"
 
 #: wxUI/commonMessageDialogs.py:45
+#, python-brace-format
 msgid "Sorry, you can't update while running {} from source."
 msgstr ""
 
@@ -2072,6 +2112,7 @@ msgid "&Report an error"
 msgstr "&Сообщить об ошибке"
 
 #: wxUI/view.py:79
+#, python-brace-format
 msgid "{0}'s &website"
 msgstr "Сайт {0}"
 
@@ -2080,6 +2121,7 @@ msgid "Get soundpacks for TWBlue"
 msgstr "Получить звуковые схемы для TWBlue"
 
 #: wxUI/view.py:81
+#, python-brace-format
 msgid "About &{0}"
 msgstr "О &{0}"
 
@@ -2112,6 +2154,7 @@ msgid "Address"
 msgstr "Адрес"
 
 #: wxUI/view.py:206
+#, python-brace-format
 msgid "Your {0} version is up to date"
 msgstr "У вас установлена самая последняя версия {0}   "
 
@@ -2191,7 +2234,7 @@ msgid "&Language"
 msgstr "Язык"
 
 #: wxUI/dialogs/configuration.py:22
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "&Ask before exiting {0}"
 msgstr "Показывать диалог перед выходом {0}"
 
@@ -2206,12 +2249,12 @@ msgid "&Buffer update interval, in minutes"
 msgstr "Интервал обновления буфера, в минутах"
 
 #: wxUI/dialogs/configuration.py:33
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Pla&y a sound when {0} launches"
 msgstr "Воспроизводить звук при запуске  {0}"
 
 #: wxUI/dialogs/configuration.py:35
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Sp&eak a message when {0} launches"
 msgstr "Произносить приветствие при запуске {0}"
 
@@ -2240,7 +2283,7 @@ msgid "&Keymap"
 msgstr "Клавиатурные команды"
 
 #: wxUI/dialogs/configuration.py:51
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Check for u&pdates when {0} launches"
 msgstr "Проверять на наличие обновлений при запуске {0}"
 
@@ -2341,6 +2384,7 @@ msgid "&DeepL API Key: "
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:231
+#, python-brace-format
 msgid "{0} preferences"
 msgstr "Параметры {0}"
 
@@ -2403,6 +2447,7 @@ msgid "Restore template"
 msgstr ""
 
 #: wxUI/dialogs/templateDialogs.py:48
+#, python-brace-format
 msgid "Restored template to {}."
 msgstr ""
 
@@ -2592,14 +2637,17 @@ msgid ""
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:53
+#, python-brace-format
 msgid "Edit template for &posts. Current template: {}"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:55
+#, python-brace-format
 msgid "Edit template for c&onversations. Current template: {}"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:57
+#, python-brace-format
 msgid "Edit template for p&ersons. Current template: {}"
 msgstr ""
 
@@ -2710,13 +2758,13 @@ msgstr ""
 
 # | msgid "This user has no tweets. {0} can't create a timeline."
 #: wxUI/dialogs/mastodon/dialogs.py:38
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "This user has no posts. {0} can't create a timeline."
 msgstr "У пользователя ещё нет твитов. Невозможно создать ленту."
 
 # | msgid "This user has no favorited tweets. {0} can't create a timeline."
 #: wxUI/dialogs/mastodon/dialogs.py:43
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "This user has no favorited posts. {0} can't create a timeline."
 msgstr ""
 "Пользователь ещё ничего не оценил как понравившееся. Невозможно создать "
@@ -2724,17 +2772,18 @@ msgstr ""
 
 # | msgid "This user has no followers. {0} can't create a timeline."
 #: wxUI/dialogs/mastodon/dialogs.py:48
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "This user has no followers yet. {0} can't create a timeline."
 msgstr "Этого пользователя ещё никто не читает. Невозможно создать ленту."
 
 # | msgid "This user has no followers. {0} can't create a timeline."
 #: wxUI/dialogs/mastodon/dialogs.py:53
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "This user is not following anyone. {0} can't create a timeline."
 msgstr "Этого пользователя ещё никто не читает. Невозможно создать ленту."
 
 #: wxUI/dialogs/mastodon/dialogs.py:60
+#, python-brace-format
 msgid "The focused item has no user in it. {} ca't open a user profile"
 msgstr ""
 
@@ -2848,7 +2897,7 @@ msgstr "Переведено"
 
 # | msgid "Tweet - %i characters "
 #: wxUI/dialogs/mastodon/postDialogs.py:106
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Post - {} characters"
 msgstr "Твит - Написано  %i символов"
 
@@ -3116,7 +3165,7 @@ msgid "Select user"
 msgstr "Выбрать ссылку"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:73
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{}'s Profile"
 msgstr "&Обновить профиль"
 
@@ -3153,6 +3202,7 @@ msgid "Avatar: "
 msgstr ""
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:122
+#, python-brace-format
 msgid "Field &{} - Label: "
 msgstr ""
 
@@ -3185,14 +3235,17 @@ msgid "&Discoverable account: "
 msgstr "Удалить аккаунт"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:157
+#, python-brace-format
 msgid "{} p&osts. Click to open posts timeline"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:162
+#, python-brace-format
 msgid "{} &following. Click to open Following timeline"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:166
+#, python-brace-format
 msgid "{} fo&llowers. Click to open followers timeline"
 msgstr ""
 
@@ -3224,6 +3277,7 @@ msgid "Change &avatar"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/updateProfile.py:102
+#, python-brace-format
 msgid "Field &{}: Label"
 msgstr ""
 

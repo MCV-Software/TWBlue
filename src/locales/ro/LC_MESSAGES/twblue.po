@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.80\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2025-01-26 00:55+0000\n"
+"POT-Creation-Date: 2025-02-02 00:55+0000\n"
 "PO-Revision-Date: 2022-12-20 22:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: ro\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
 
 #: languageHandler.py:61
 #, fuzzy
@@ -115,6 +115,7 @@ msgid "https://twblue.mcvsoftware.com/donate"
 msgstr "https://twblue.es/donate"
 
 #: main.py:118
+#, python-brace-format
 msgid ""
 "{0} is already running. Close the other instance before starting this "
 "one. If you're sure that {0} isn't running, try deleting the file at {1}."
@@ -152,6 +153,7 @@ msgid "Empty buffer."
 msgstr "Buffer gol."
 
 #: controller/mainController.py:378
+#, python-brace-format
 msgid "{0} not found."
 msgstr "{0}  Negăsit"
 
@@ -168,6 +170,7 @@ msgstr "%s. Gol"
 
 #: controller/mainController.py:737 controller/mainController.py:741
 #: controller/mainController.py:765
+#, python-brace-format
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: Acest cont nu este conectat la Twitter."
 
@@ -177,6 +180,7 @@ msgid "%s. %s, %s of %s"
 msgstr "%s. %s, %s din %s"
 
 #: controller/mainController.py:769
+#, python-brace-format
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: Acest cont nu este conectat la Twitter."
 
@@ -223,27 +227,31 @@ msgid "Updating buffer..."
 msgstr "Se actualizează buffe-rul..."
 
 #: controller/mainController.py:1022
+#, python-brace-format
 msgid "{0} items retrieved"
 msgstr "%s Articole salvate"
 
 #: controller/buffers/mastodon/base.py:122 controller/mainController.py:1026
 #: controller/mastodon/handler.py:97 controller/mastodon/handler.py:240
+#, python-brace-format
 msgid "Timeline for {}"
 msgstr "Cronologie pentru {}"
 
 #: controller/buffers/mastodon/users.py:93 controller/mainController.py:1028
 #: controller/mastodon/handler.py:99 controller/mastodon/handler.py:254
+#, python-brace-format
 msgid "Followers for {}"
 msgstr "Urmăritori pentru"
 
 #: controller/mainController.py:1030
+#, python-brace-format
 msgid "Friends for {}"
 msgstr "Prieteni pentru {}"
 
 # | msgid "Followers for {}"
 #: controller/buffers/mastodon/users.py:95 controller/mainController.py:1032
 #: controller/mastodon/handler.py:101 controller/mastodon/handler.py:268
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Following for {}"
 msgstr "Urmăritori pentru"
 
@@ -278,7 +286,7 @@ msgid "SOCKS v5 with DNS support"
 msgstr ""
 
 #: controller/userAlias.py:31
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Edit alias for {}"
 msgstr "Listă pentru {}"
 
@@ -359,16 +367,18 @@ msgid "Notifications"
 msgstr "&Locație"
 
 #: controller/buffers/mastodon/base.py:58
+#, python-brace-format
 msgid "{username}'s timeline"
 msgstr "Cronologia lui {username}"
 
 #: controller/buffers/mastodon/base.py:60
+#, python-brace-format
 msgid "{username}'s followers"
 msgstr "Urmăritorii lui {username}"
 
 # | msgid "{username}'s followers"
 #: controller/buffers/mastodon/base.py:62
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username}'s following"
 msgstr "Urmăritorii lui {username}"
 
@@ -394,13 +404,13 @@ msgstr "Scrie postarea aici"
 
 # | msgid "New tweet in {0}"
 #: controller/buffers/mastodon/base.py:138
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "New post in {0}"
 msgstr "Postare nouă în {0}"
 
 # | msgid "{0} new tweets in {1}."
 #: controller/buffers/mastodon/base.py:144
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} new posts in {1}."
 msgstr "{0} postări noi în {1}."
 
@@ -421,7 +431,7 @@ msgstr "Acest buffer nu este o cronologie și nu poate fi șters"
 # | msgid "Conversation with {0}"
 #: controller/buffers/mastodon/base.py:328
 #: controller/buffers/mastodon/base.py:366
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Conversation with {}"
 msgstr "Conversație cu {0}"
 
@@ -437,7 +447,7 @@ msgstr "Scrie postarea aici"
 
 # | msgid "Reply to {arg0}"
 #: controller/buffers/mastodon/base.py:331
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Reply to {}"
 msgstr "Răspuns către {arg0}"
 
@@ -492,6 +502,7 @@ msgid "Removing from bookmarks..."
 msgstr ""
 
 #: controller/buffers/mastodon/base.py:569
+#, python-brace-format
 msgid "Picture {0}"
 msgstr "Pictograma {0}"
 
@@ -526,14 +537,14 @@ msgstr "Înregistrare audio"
 
 # | msgid "Conversation with {0}"
 #: controller/buffers/mastodon/conversations.py:180
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Reply to conversation with {}"
 msgstr "Conversație cu {0}"
 
 # | msgid "Conversation with {0}"
 #: controller/buffers/mastodon/notifications.py:121
 #: controller/buffers/mastodon/users.py:51
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "New conversation with {}"
 msgstr "Conversație cu {0}"
 
@@ -644,6 +655,7 @@ msgstr "Căutări"
 
 #: controller/mastodon/handler.py:109 controller/mastodon/handler.py:190
 #: controller/mastodon/handler.py:195
+#, python-brace-format
 msgid "Search for {}"
 msgstr "Căutare pentru"
 
@@ -657,6 +669,7 @@ msgid "federated"
 msgstr "Cronologia lui {username}"
 
 #: controller/mastodon/handler.py:142
+#, python-brace-format
 msgid "Conversation with {0}"
 msgstr "Conversație cu {0}"
 
@@ -665,6 +678,7 @@ msgid "Add an user alias"
 msgstr ""
 
 #: controller/mastodon/handler.py:310
+#, python-brace-format
 msgid "Alias has been set correctly for {}."
 msgstr ""
 
@@ -679,12 +693,13 @@ msgid "%s - %s of %d characters"
 msgstr "%s - %s din %d caractere"
 
 #: controller/mastodon/messages.py:239
+#, python-brace-format
 msgid "Poll with {} options"
 msgstr ""
 
 # | msgid "List for {}"
 #: controller/mastodon/messages.py:273
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Post from {}"
 msgstr "Listă pentru {}"
 
@@ -760,14 +775,17 @@ msgid "Account settings for %s"
 msgstr "Setări cont %s"
 
 #: controller/mastodon/settings.py:92
+#, python-brace-format
 msgid "Edit template for posts. Current template: {}"
 msgstr ""
 
 #: controller/mastodon/settings.py:101
+#, python-brace-format
 msgid "Edit template for conversations. Current template: {}"
 msgstr ""
 
 #: controller/mastodon/settings.py:110
+#, python-brace-format
 msgid "Edit template for persons. Current template: {}"
 msgstr ""
 
@@ -836,6 +854,7 @@ msgid "New event."
 msgstr "Eveniment nou"
 
 #: extra/SoundsTutorial/soundsTutorial_constants.py:19
+#, python-brace-format
 msgid "{0} is ready."
 msgstr "{0} este gata"
 
@@ -921,6 +940,7 @@ msgid "&Add to personal dictionary"
 msgstr "Adaugă în dic&ționarul personal"
 
 #: extra/SpellChecker/wx_ui.py:79
+#, python-brace-format
 msgid ""
 "An error has occurred. There are no dictionaries available for the "
 "selected language in {0}"
@@ -964,7 +984,7 @@ msgid "Manage Autocompletion database"
 msgstr "Administrează baza de date cu autocompletări"
 
 #: extra/autocompletionUsers/wx_manage.py:12
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Editing {0} users database"
 msgstr "Se editează {0} baza de date a utilizatorilor"
 
@@ -1047,6 +1067,7 @@ msgid "Attention"
 msgstr "Atenție"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:40
+#, python-brace-format
 msgid "TWBlue has imported {} users successfully."
 msgstr ""
 
@@ -1437,6 +1458,7 @@ msgid "Adds an alias to an user"
 msgstr "Selectează o listă pentru a adăuga utilizatorul"
 
 #: sessionmanager/sessionManager.py:69
+#, python-brace-format
 msgid "{account_name}@{instance} (Mastodon)"
 msgstr ""
 
@@ -1509,6 +1531,7 @@ msgid "Do you really want to delete this account?"
 msgstr "Sunteți sigur că doriți ștergerea acestui cont?"
 
 #: sessions/base.py:125
+#, python-brace-format
 msgid ""
 "An exception occurred while saving the {app} database. It will be deleted"
 " and rebuilt automatically. If this error persists, send the error log to"
@@ -1516,6 +1539,7 @@ msgid ""
 msgstr ""
 
 #: sessions/base.py:165
+#, python-brace-format
 msgid ""
 "An exception occurred while loading the {app} database. It will be "
 "deleted and rebuilt automatically. If this error persists, send the error"
@@ -1531,7 +1555,7 @@ msgstr "dddd, MMMM D, YYYY H:m:s"
 # | msgid "{0}. Quoted  tweet from @{1}: {2}"
 #: sessions/mastodon/compose.py:17 sessions/mastodon/templates.py:73
 #: sessions/mastodon/templates.py:74
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Boosted from @{}: {}"
 msgstr "{0}.postare citată de la @{1}: {2}"
 
@@ -1550,48 +1574,52 @@ msgstr ""
 "%s. intrat pe  Twitter %s"
 
 #: sessions/mastodon/compose.py:46
+#, python-brace-format
 msgid "Last message from {}: {}"
 msgstr ""
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:61
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} has posted: {status}"
 msgstr "Urmăritorii lui {username}"
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:63
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} has mentioned you: {status}"
 msgstr "Urmăritorii lui {username}"
 
 #: sessions/mastodon/compose.py:65
+#, python-brace-format
 msgid "{username} has boosted: {status}"
 msgstr ""
 
 #: sessions/mastodon/compose.py:67
+#, python-brace-format
 msgid "{username} has added to favorites: {status}"
 msgstr ""
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:69
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} has followed you."
 msgstr "Urmăritorii lui {username}"
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:71
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} has joined the instance."
 msgstr "Urmăritorii lui {username}"
 
 #: sessions/mastodon/compose.py:73 sessions/mastodon/templates.py:161
+#, python-brace-format
 msgid "A poll in which you have voted has expired: {status}"
 msgstr ""
 
 # | msgid "{username}'s followers"
 #: sessions/mastodon/compose.py:75
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{username} wants to follow you."
 msgstr "Urmăritorii lui {username}"
 
@@ -1662,11 +1690,12 @@ msgid "$display_name $text, $date"
 msgstr ""
 
 #: sessions/mastodon/templates.py:34
+#, python-brace-format
 msgid "Content warning: {}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:45
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Media description: {}"
 msgstr "Descriere imagine"
 
@@ -1677,22 +1706,27 @@ msgid "Followers only"
 msgstr "Urmăritori"
 
 #: sessions/mastodon/templates.py:147
+#, python-brace-format
 msgid "has posted: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:149
+#, python-brace-format
 msgid "has mentioned you: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:151
+#, python-brace-format
 msgid "has boosted: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:153
+#, python-brace-format
 msgid "has added to favorites: {status}"
 msgstr ""
 
 #: sessions/mastodon/templates.py:155
+#, python-brace-format
 msgid "has updated a status: {status}"
 msgstr ""
 
@@ -1831,6 +1865,7 @@ msgid "Done!"
 msgstr "Închide!"
 
 #: wxUI/commonMessageDialogs.py:6
+#, python-brace-format
 msgid "Do you really want to close {0}?"
 msgstr "Ești sigur că vrei să închizi {0}?"
 
@@ -1839,10 +1874,12 @@ msgid "Exit"
 msgstr "Ieșire"
 
 #: wxUI/commonMessageDialogs.py:10
+#, python-brace-format
 msgid " {0} must be restarted for these changes to take effect."
 msgstr " {0}  Va trebui o repornire pentru a se aplica modificările."
 
 #: wxUI/commonMessageDialogs.py:10
+#, python-brace-format
 msgid "Restart {0} "
 msgstr "Repornire {0} "
 
@@ -1887,6 +1924,7 @@ msgid "Existing timeline"
 msgstr "Cronologie existentă"
 
 #: wxUI/commonMessageDialogs.py:29
+#, python-brace-format
 msgid ""
 "If you like {0} we need your help to keep it going. Help us by donating "
 "to the project. This will help us pay for the server, the domain and some"
@@ -1914,6 +1952,7 @@ msgid "The configuration file is invalid."
 msgstr ""
 
 #: wxUI/commonMessageDialogs.py:39
+#, python-brace-format
 msgid ""
 "{0} quit unexpectedly the last time it was run. If the problem persists, "
 "please report it to the {0} developers."
@@ -1926,6 +1965,7 @@ msgid "Warning"
 msgstr "Avertisment"
 
 #: wxUI/commonMessageDialogs.py:45
+#, python-brace-format
 msgid "Sorry, you can't update while running {} from source."
 msgstr ""
 
@@ -2077,6 +2117,7 @@ msgid "&Report an error"
 msgstr "&Raportează o eroare"
 
 #: wxUI/view.py:79
+#, python-brace-format
 msgid "{0}'s &website"
 msgstr "Site-ul {0}"
 
@@ -2085,6 +2126,7 @@ msgid "Get soundpacks for TWBlue"
 msgstr "Obține pachete de sunete pentru TWBlue"
 
 #: wxUI/view.py:81
+#, python-brace-format
 msgid "About &{0}"
 msgstr "&Despre {0}"
 
@@ -2117,6 +2159,7 @@ msgid "Address"
 msgstr "Adresă"
 
 #: wxUI/view.py:206
+#, python-brace-format
 msgid "Your {0} version is up to date"
 msgstr "Versiunea ta {0} este la zi"
 
@@ -2196,7 +2239,7 @@ msgid "&Language"
 msgstr "Limbă"
 
 #: wxUI/dialogs/configuration.py:22
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "&Ask before exiting {0}"
 msgstr "Întreabă-mă de acum înainte la ieșirea {0}"
 
@@ -2211,12 +2254,12 @@ msgid "&Buffer update interval, in minutes"
 msgstr "Intervalul de actualizare al buffer-ului, în minute"
 
 #: wxUI/dialogs/configuration.py:33
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Pla&y a sound when {0} launches"
 msgstr "Redă un sunet la pornirea {0}"
 
 #: wxUI/dialogs/configuration.py:35
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Sp&eak a message when {0} launches"
 msgstr "Rostește un mesaj de întâmpinare la pornirea  {0}"
 
@@ -2247,7 +2290,7 @@ msgid "&Keymap"
 msgstr "Hartă de taste"
 
 #: wxUI/dialogs/configuration.py:51
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Check for u&pdates when {0} launches"
 msgstr "Caută versiune nouă când {0} pornește"
 
@@ -2348,6 +2391,7 @@ msgid "&DeepL API Key: "
 msgstr ""
 
 #: wxUI/dialogs/configuration.py:231
+#, python-brace-format
 msgid "{0} preferences"
 msgstr "{0} preferinţe"
 
@@ -2410,6 +2454,7 @@ msgid "Restore template"
 msgstr ""
 
 #: wxUI/dialogs/templateDialogs.py:48
+#, python-brace-format
 msgid "Restored template to {}."
 msgstr ""
 
@@ -2600,14 +2645,17 @@ msgid ""
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:53
+#, python-brace-format
 msgid "Edit template for &posts. Current template: {}"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:55
+#, python-brace-format
 msgid "Edit template for c&onversations. Current template: {}"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/configuration.py:57
+#, python-brace-format
 msgid "Edit template for p&ersons. Current template: {}"
 msgstr ""
 
@@ -2716,29 +2764,30 @@ msgstr ""
 
 # | msgid "This user has no tweets. {0} can't create a timeline."
 #: wxUI/dialogs/mastodon/dialogs.py:38
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "This user has no posts. {0} can't create a timeline."
 msgstr "Acest utilizator nu are postări. {0}  Nu poți crea o cronologie."
 
 # | msgid "This user has no favorited tweets. {0} can't create a timeline."
 #: wxUI/dialogs/mastodon/dialogs.py:43
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "This user has no favorited posts. {0} can't create a timeline."
 msgstr "Acest utilizator nu are postări favorite. {0}  Nu poți crea o cronologie."
 
 # | msgid "This user has no followers. {0} can't create a timeline."
 #: wxUI/dialogs/mastodon/dialogs.py:48
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "This user has no followers yet. {0} can't create a timeline."
 msgstr "Acest utilizator nu are urmăritori. {0}  Nu poți crea o cronologie."
 
 # | msgid "This user has no followers. {0} can't create a timeline."
 #: wxUI/dialogs/mastodon/dialogs.py:53
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "This user is not following anyone. {0} can't create a timeline."
 msgstr "Acest utilizator nu are urmăritori. {0}  Nu poți crea o cronologie."
 
 #: wxUI/dialogs/mastodon/dialogs.py:60
+#, python-brace-format
 msgid "The focused item has no user in it. {} ca't open a user profile"
 msgstr ""
 
@@ -2852,7 +2901,7 @@ msgstr "Tradus"
 
 # | msgid "Tweet - %i characters "
 #: wxUI/dialogs/mastodon/postDialogs.py:106
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Post - {} characters"
 msgstr "Postare - %i caractere "
 
@@ -3120,7 +3169,7 @@ msgid "Select user"
 msgstr "Selectează URL"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:73
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{}'s Profile"
 msgstr "&Actualizare profil"
 
@@ -3157,6 +3206,7 @@ msgid "Avatar: "
 msgstr ""
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:122
+#, python-brace-format
 msgid "Field &{} - Label: "
 msgstr ""
 
@@ -3189,14 +3239,17 @@ msgid "&Discoverable account: "
 msgstr "Cont șters"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:157
+#, python-brace-format
 msgid "{} p&osts. Click to open posts timeline"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:162
+#, python-brace-format
 msgid "{} &following. Click to open Following timeline"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:166
+#, python-brace-format
 msgid "{} fo&llowers. Click to open followers timeline"
 msgstr ""
 
@@ -3228,6 +3281,7 @@ msgid "Change &avatar"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/updateProfile.py:102
+#, python-brace-format
 msgid "Field &{}: Label"
 msgstr ""
 
