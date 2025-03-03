@@ -75,6 +75,9 @@ def render_post(post, template, settings, relative_times=False, offset_hours=0):
     else:
         text = process_text(post, safe=False)
         safe_text = process_text(post)
+    filtered = utils.evaluate_filters(post=post, current_context="home")
+    if filtered != None:
+        text = _("hidden by filter {}").format(filtered)
     visibility_settings = dict(public=_("Public"), unlisted=_("Not listed"), private=_("Followers only"), direct=_("Direct"))
     visibility = visibility_settings.get(post.visibility)
     available_data.update(lang=post.language, text=text, safe_text=safe_text, visibility=visibility)
@@ -161,6 +164,9 @@ def render_notification(notification, template, post_template, settings, relativ
         text = _("A poll in which you have voted has expired: {status}").format(status=render_post(notification.status, post_template, settings, relative_times, offset_hours))
     elif notification.type == "follow_request":
         text = _("wants to follow you.")
+    filtered = utils.evaluate_filters(post=notification, current_context="notifications")
+    if filtered != None:
+        text = _("hidden by filter {}").format(filtered)
     available_data.update(text=text)
     result = Template(_(template)).safe_substitute(**available_data)
     result = result.replace(" . ", "")
