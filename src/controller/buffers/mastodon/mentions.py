@@ -56,6 +56,9 @@ class MentionsBuffer(BaseBuffer):
         items_db = self.session.db[self.name]
         for i in items:
             if utils.find_item(i, self.session.db[self.name]) == None:
+                filter_status = utils.evaluate_filters(post=i, current_context=utils.get_current_context(self.name))
+                if filter_status == "hide":
+                    continue
                 elements.append(i)
                 if self.session.settings["general"]["reverse_timelines"] == False:
                     items_db.insert(0, i)
