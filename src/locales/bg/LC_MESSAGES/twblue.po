@@ -1,0 +1,3226 @@
+# Bulgarian translations for PROJECT.
+# Copyright (C) 2025 MCV software
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
+"POT-Creation-Date: 2025-03-06 13:10-0600\n"
+"PO-Revision-Date: 2025-03-06 13:13-0600\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: bg\n"
+"Language-Team: bg <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../src/languageHandler.py:61
+msgctxt "languageName"
+msgid "Amharic"
+msgstr ""
+
+#: ../src/languageHandler.py:62
+msgctxt "languageName"
+msgid "Aragonese"
+msgstr ""
+
+#: ../src/languageHandler.py:63
+msgctxt "languageName"
+msgid "Spanish"
+msgstr ""
+
+#: ../src/languageHandler.py:64
+msgctxt "languageName"
+msgid "Portuguese"
+msgstr ""
+
+#: ../src/languageHandler.py:65
+msgctxt "languageName"
+msgid "Russian"
+msgstr ""
+
+#: ../src/languageHandler.py:66
+msgctxt "languageName"
+msgid "italian"
+msgstr ""
+
+#: ../src/languageHandler.py:67
+msgctxt "languageName"
+msgid "Turkey"
+msgstr ""
+
+#: ../src/languageHandler.py:68
+msgctxt "languageName"
+msgid "Galician"
+msgstr ""
+
+#: ../src/languageHandler.py:69
+msgctxt "languageName"
+msgid "Catala"
+msgstr ""
+
+#: ../src/languageHandler.py:70
+msgctxt "languageName"
+msgid "Vasque"
+msgstr ""
+
+#: ../src/languageHandler.py:71
+msgctxt "languageName"
+msgid "polish"
+msgstr ""
+
+#: ../src/languageHandler.py:72
+msgctxt "languageName"
+msgid "Arabic"
+msgstr ""
+
+#: ../src/languageHandler.py:73
+msgctxt "languageName"
+msgid "Nepali"
+msgstr ""
+
+#: ../src/languageHandler.py:74
+msgctxt "languageName"
+msgid "Serbian (Latin)"
+msgstr ""
+
+#: ../src/languageHandler.py:75
+msgctxt "languageName"
+msgid "Japanese"
+msgstr ""
+
+#: ../src/languageHandler.py:99
+msgid "User default"
+msgstr ""
+
+#: ../src/main.py:105
+msgid "https://twblue.mcvsoftware.com/donate"
+msgstr ""
+
+#: ../src/main.py:118
+#, python-brace-format
+msgid ""
+"{0} is already running. Close the other instance before starting this "
+"one. If you're sure that {0} isn't running, try deleting the file at {1}."
+" If you're unsure of how to do this, contact the {0} developers."
+msgstr ""
+
+#: ../src/sound.py:148
+msgid "Playing..."
+msgstr ""
+
+#: ../src/sound.py:161
+msgid "Stopped."
+msgstr ""
+
+#: ../src/controller/mainController.py:260
+msgid "Ready"
+msgstr ""
+
+#: ../src/controller/mainController.py:368
+#: ../src/controller/mainController.py:653
+#: ../src/controller/mainController.py:672
+#: ../src/controller/mainController.py:691
+#: ../src/controller/mainController.py:710
+msgid ""
+"No session is currently in focus. Focus a session with the next or "
+"previous session shortcut."
+msgstr ""
+
+#: ../src/controller/mainController.py:372
+msgid "Empty buffer."
+msgstr ""
+
+#: ../src/controller/mainController.py:379
+#, python-brace-format
+msgid "{0} not found."
+msgstr ""
+
+#: ../src/controller/mainController.py:701
+#: ../src/controller/mainController.py:720
+#, python-format
+msgid "%s, %s of %s"
+msgstr ""
+
+#: ../src/controller/mainController.py:703
+#: ../src/controller/mainController.py:722
+#: ../src/controller/mainController.py:750
+#: ../src/controller/mainController.py:778
+#, python-format
+msgid "%s. Empty"
+msgstr ""
+
+#: ../src/controller/mainController.py:738
+#: ../src/controller/mainController.py:742
+#: ../src/controller/mainController.py:766
+#, python-brace-format
+msgid "{0}: This account is not logged into Twitter."
+msgstr ""
+
+#: ../src/controller/mainController.py:748
+#: ../src/controller/mainController.py:776
+#, python-format
+msgid "%s. %s, %s of %s"
+msgstr ""
+
+#: ../src/controller/mainController.py:770
+#, python-brace-format
+msgid "{0}: This account is not logged into twitter."
+msgstr ""
+
+#: ../src/controller/mainController.py:909
+#: ../src/controller/mainController.py:925
+msgid "An error happened while trying to connect to the server. Please try later."
+msgstr ""
+
+#: ../src/controller/mainController.py:956
+msgid "The auto-reading of new tweets is enabled for this buffer"
+msgstr ""
+
+#: ../src/controller/mainController.py:959
+msgid "The auto-reading of new tweets is disabled for this buffer"
+msgstr ""
+
+#: ../src/controller/mainController.py:966
+msgid "Session mute on"
+msgstr ""
+
+#: ../src/controller/mainController.py:969
+msgid "Session mute off"
+msgstr ""
+
+#: ../src/controller/mainController.py:978
+msgid "Buffer mute on"
+msgstr ""
+
+#: ../src/controller/mainController.py:981
+msgid "Buffer mute off"
+msgstr ""
+
+#: ../src/controller/mainController.py:998
+msgid "Copied"
+msgstr ""
+
+#: ../src/controller/mainController.py:1018
+msgid "Unable to update this buffer."
+msgstr ""
+
+#: ../src/controller/mainController.py:1020
+msgid "Updating buffer..."
+msgstr ""
+
+#: ../src/controller/mainController.py:1023
+#, python-brace-format
+msgid "{0} items retrieved"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:122
+#: ../src/controller/mainController.py:1027
+#: ../src/controller/mastodon/handler.py:97
+#: ../src/controller/mastodon/handler.py:240
+#, python-brace-format
+msgid "Timeline for {}"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/users.py:93
+#: ../src/controller/mainController.py:1029
+#: ../src/controller/mastodon/handler.py:99
+#: ../src/controller/mastodon/handler.py:254
+#, python-brace-format
+msgid "Followers for {}"
+msgstr ""
+
+#: ../src/controller/mainController.py:1031
+#, python-brace-format
+msgid "Friends for {}"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/users.py:95
+#: ../src/controller/mainController.py:1033
+#: ../src/controller/mastodon/handler.py:101
+#: ../src/controller/mastodon/handler.py:268
+#, python-brace-format
+msgid "Following for {}"
+msgstr ""
+
+#: ../src/controller/messages.py:18
+msgid "Translated"
+msgstr ""
+
+#: ../src/controller/settings.py:60
+msgid "System default"
+msgstr ""
+
+#: ../src/controller/settings.py:60
+msgid "HTTP"
+msgstr ""
+
+#: ../src/controller/settings.py:60
+msgid "SOCKS v4"
+msgstr ""
+
+#: ../src/controller/settings.py:60
+msgid "SOCKS v4 with DNS support"
+msgstr ""
+
+#: ../src/controller/settings.py:60
+msgid "SOCKS v5"
+msgstr ""
+
+#: ../src/controller/settings.py:60
+msgid "SOCKS v5 with DNS support"
+msgstr ""
+
+#: ../src/controller/userAlias.py:31
+#, python-brace-format
+msgid "Edit alias for {}"
+msgstr ""
+
+#: ../src/controller/buffers/base/base.py:91
+#: ../src/controller/buffers/mastodon/conversations.py:237
+#: ../src/controller/buffers/mastodon/search.py:80
+msgid "This action is not supported for this buffer"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:69
+#: ../src/controller/mastodon/settings.py:194
+msgid "Home"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/buffers/mastodon/community.py:22
+#: ../src/controller/mastodon/handler.py:71
+#: ../src/controller/mastodon/handler.py:113
+#: ../src/controller/mastodon/settings.py:195
+msgid "Local"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/buffers/mastodon/community.py:22
+#: ../src/controller/mastodon/handler.py:73
+#: ../src/controller/mastodon/settings.py:196
+msgid "Federated"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:75
+#: ../src/controller/mastodon/settings.py:197
+msgid "Mentions"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:83
+#: ../src/controller/mastodon/settings.py:201
+msgid "Bookmarks"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:77
+msgid "Direct messages"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:79
+#: ../src/controller/mastodon/settings.py:199
+msgid "Sent"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:81
+#: ../src/controller/mastodon/settings.py:200
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:229
+msgid "Favorites"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:85
+#: ../src/controller/mastodon/settings.py:202
+msgid "Followers"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:87
+#: ../src/controller/mastodon/settings.py:203
+msgid "Following"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:91
+#: ../src/controller/mastodon/settings.py:204
+msgid "Blocked users"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:89
+#: ../src/controller/mastodon/settings.py:205
+msgid "Muted users"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:52
+#: ../src/controller/mastodon/handler.py:93
+#: ../src/controller/mastodon/settings.py:206
+#: ../src/wxUI/dialogs/mastodon/filters.py:80
+msgid "Notifications"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:58
+#, python-brace-format
+msgid "{username}'s timeline"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:60
+#, python-brace-format
+msgid "{username}'s followers"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:62
+#, python-brace-format
+msgid "{username}'s following"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:64
+msgid "Unknown buffer"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:67
+#: ../src/controller/buffers/mastodon/base.py:631
+#: ../src/wxUI/buffers/mastodon/base.py:24
+#: ../src/wxUI/buffers/mastodon/conversationList.py:24
+#: ../src/wxUI/buffers/mastodon/notifications.py:22
+#: ../src/wxUI/buffers/mastodon/user.py:18
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:5
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:194
+#: ../src/wxUI/sysTrayIcon.py:35
+msgid "Post"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:68
+#: ../src/controller/buffers/mastodon/base.py:632
+msgid "Write your post here"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:138
+#, python-brace-format
+msgid "New post in {0}"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:144
+#, python-brace-format
+msgid "{0} new posts in {1}."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:183
+#: ../src/controller/buffers/mastodon/community.py:90
+#: ../src/controller/buffers/mastodon/conversations.py:100
+#: ../src/controller/buffers/mastodon/mentions.py:82
+#: ../src/controller/buffers/mastodon/users.py:139
+#, python-format
+msgid "%s items retrieved"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:201
+#: ../src/controller/buffers/mastodon/users.py:206
+msgid "This buffer is not a timeline; it can't be deleted."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:331
+#: ../src/controller/buffers/mastodon/base.py:369
+#, python-brace-format
+msgid "Conversation with {}"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:332
+#: ../src/controller/buffers/mastodon/base.py:370
+#: ../src/controller/buffers/mastodon/conversations.py:181
+#: ../src/controller/buffers/mastodon/notifications.py:122
+#: ../src/controller/buffers/mastodon/users.py:52
+msgid "Write your message here"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:334
+#, python-brace-format
+msgid "Reply to {}"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:335
+msgid "Write your reply here"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:397
+msgid "This action is not supported on conversations."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:462
+msgid "Opening URL..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:475
+msgid "You can delete only your own posts."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:504
+msgid "Opening item in web browser..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:512
+#: ../src/controller/buffers/mastodon/base.py:532
+msgid "Adding to favorites..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:519
+#: ../src/controller/buffers/mastodon/base.py:534
+msgid "Removing from favorites..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:529
+#: ../src/controller/buffers/mastodon/base.py:544
+#: ../src/controller/buffers/mastodon/base.py:558
+#: ../src/controller/buffers/mastodon/conversations.py:213
+msgid "No status found with that ID"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:547
+msgid "Adding to bookmarks..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:549
+msgid "Removing from bookmarks..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:572
+#, python-brace-format
+msgid "Picture {0}"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:573
+msgid "Select the picture"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:596
+msgid "Unable to extract text"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:598
+msgid "OCR Result"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:613
+msgid "this poll no longer exists."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:616
+msgid "This poll has already expired."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:619
+msgid "You have already voted on this poll."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/base.py:628
+msgid "Sending vote..."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/conversations.py:180
+#, python-brace-format
+msgid "Reply to conversation with {}"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/notifications.py:121
+#: ../src/controller/buffers/mastodon/users.py:51
+#, python-brace-format
+msgid "New conversation with {}"
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/notifications.py:151
+msgid "Notification dismissed."
+msgstr ""
+
+#: ../src/controller/buffers/mastodon/users.py:110
+msgid "There are no more items in this buffer."
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:29
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:35
+msgid "Update Profile"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:30
+#: ../src/wxUI/dialogs/mastodon/search.py:10 ../src/wxUI/view.py:19
+msgid "&Search"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:32 ../src/wxUI/view.py:22
+msgid "Manage user aliases"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:34
+#: ../src/controller/mastodon/handler.py:58 ../src/wxUI/view.py:30
+msgid "&Post"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:35
+#: ../src/wxUI/dialogs/mastodon/menus.py:9
+#: ../src/wxUI/dialogs/mastodon/menus.py:37 ../src/wxUI/view.py:31
+msgid "Re&ply"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:36
+#: ../src/wxUI/dialogs/mastodon/menus.py:7
+#: ../src/wxUI/dialogs/mastodon/menus.py:35 ../src/wxUI/view.py:32
+msgid "&Boost"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:37
+#: ../src/wxUI/dialogs/mastodon/menus.py:11
+#: ../src/wxUI/dialogs/mastodon/menus.py:39 ../src/wxUI/view.py:33
+msgid "&Add to favorites"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:38
+msgid "Remove from favorites"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:39
+#: ../src/wxUI/dialogs/mastodon/menus.py:21
+#: ../src/wxUI/dialogs/mastodon/menus.py:49 ../src/wxUI/view.py:35
+msgid "&Show post"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:40 ../src/wxUI/view.py:36
+msgid "View conversa&tion"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:41 ../src/wxUI/view.py:37
+msgid "Read text in picture"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:42
+#: ../src/wxUI/dialogs/mastodon/menus.py:25 ../src/wxUI/view.py:39
+msgid "&Delete"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:44 ../src/wxUI/view.py:43
+msgid "&Actions..."
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:45 ../src/wxUI/view.py:44
+msgid "&View timeline..."
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:46 ../src/wxUI/view.py:45
+msgid "Direct me&ssage"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:47 ../src/wxUI/view.py:46
+msgid "Add a&lias"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:50
+msgid "Show user profile"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:53
+msgid "Create c&ommunity timeline"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:54 ../src/wxUI/view.py:57
+msgid "Create a &filter"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:94
+msgid "Timelines"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:106
+msgid "Searches"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:109
+#: ../src/controller/mastodon/handler.py:190
+#: ../src/controller/mastodon/handler.py:195
+#, python-brace-format
+msgid "Search for {}"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:110
+msgid "Communities"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:113
+msgid "federated"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:142
+#, python-brace-format
+msgid "Conversation with {0}"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:298
+msgid "Add an user alias"
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:310
+#, python-brace-format
+msgid "Alias has been set correctly for {}."
+msgstr ""
+
+#: ../src/controller/mastodon/handler.py:341
+msgid "Update profile"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:115
+#, python-format
+msgid "%s - %s of %d characters"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:239
+#, python-brace-format
+msgid "Poll with {} options"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:273
+#, python-brace-format
+msgid "Post from {}"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:277
+#: ../src/sessions/bluesky/templates.py:60
+#: ../src/sessions/mastodon/templates.py:81
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:49
+msgid "Public"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:277
+#: ../src/sessions/bluesky/templates.py:60
+#: ../src/sessions/mastodon/templates.py:81
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:49
+msgid "Not listed"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:277
+msgid "followers only"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:277
+#: ../src/sessions/bluesky/templates.py:60
+#: ../src/sessions/mastodon/templates.py:81
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:49
+msgid "Direct"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:284
+msgid "Remote instance"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:292
+#: ../src/controller/mastodon/messages.py:320
+msgid "Unmute conversation"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:316
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:237
+msgid "Mute conversation"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:317
+msgid "Conversation unmuted."
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:321
+msgid "Conversation muted."
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:332
+msgid "people who boosted this post"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:337
+msgid "people who favorited this post"
+msgstr ""
+
+#: ../src/controller/mastodon/messages.py:343
+msgid "Link copied to clipboard."
+msgstr ""
+
+#: ../src/controller/mastodon/settings.py:82
+#, python-format
+msgid "Account settings for %s"
+msgstr ""
+
+#: ../src/controller/mastodon/settings.py:92
+#, python-brace-format
+msgid "Edit template for posts. Current template: {}"
+msgstr ""
+
+#: ../src/controller/mastodon/settings.py:101
+#, python-brace-format
+msgid "Edit template for conversations. Current template: {}"
+msgstr ""
+
+#: ../src/controller/mastodon/settings.py:110
+#, python-brace-format
+msgid "Edit template for persons. Current template: {}"
+msgstr ""
+
+#: ../src/controller/mastodon/settings.py:198
+msgid "Direct Messages"
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:4
+msgid "Audio tweet."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:5
+msgid "User timeline buffer created."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:6
+msgid "Buffer destroied."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:7
+msgid "Direct message received."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:8
+msgid "Direct message sent."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:9
+msgid "Error."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:10
+msgid "Tweet liked."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:11
+msgid "Likes buffer updated."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:12
+msgid "Geotweet."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:13
+msgid "Tweet contains one or more images"
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:14
+msgid "Boundary reached."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:15
+msgid "List updated."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:16
+msgid "Too many characters."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:17
+msgid "Mention received."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:18
+msgid "New event."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:19
+#, python-brace-format
+msgid "{0} is ready."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:20
+msgid "Mention sent."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:21
+msgid "Tweet retweeted."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:22
+msgid "Search buffer updated."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:23
+msgid "Tweet received."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:24
+msgid "Tweet sent."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:25
+msgid "Trending topics buffer updated."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:26
+msgid "New tweet in user timeline buffer."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:27
+msgid "New follower."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/soundsTutorial_constants.py:28
+msgid "Volume changed."
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/wx_ui.py:8
+msgid "Sounds tutorial"
+msgstr ""
+
+#: ../src/extra/SoundsTutorial/wx_ui.py:11
+msgid "Press enter to listen to the sound for the selected event"
+msgstr ""
+
+#: ../src/extra/SpellChecker/spellchecker.py:56
+#, python-format
+msgid "Misspelled word: %s"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:27
+msgid "Misspelled word"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:32
+msgid "Context"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:37
+msgid "Suggestions"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:42
+msgid "&Ignore"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:43
+msgid "I&gnore all"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:44
+msgid "&Replace"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:45
+msgid "R&eplace all"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:46
+msgid "&Add to personal dictionary"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:79
+#, python-brace-format
+msgid ""
+"An error has occurred. There are no dictionaries available for the "
+"selected language in {0}"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:79
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:44
+#: ../src/wxUI/commonMessageDialogs.py:23
+#: ../src/wxUI/commonMessageDialogs.py:36
+#: ../src/wxUI/commonMessageDialogs.py:45
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:38
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:43
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:48
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:53
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:60
+msgid "Error"
+msgstr ""
+
+#: ../src/extra/SpellChecker/wx_ui.py:82
+msgid "Spell check complete."
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/completion.py:39
+#: ../src/extra/autocompletionUsers/completion.py:57
+msgid "You have to start writing"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/completion.py:49
+#: ../src/extra/autocompletionUsers/completion.py:66
+msgid "There are no results in your users database"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/completion.py:51
+msgid "Autocompletion only works for users."
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:9
+msgid "Manage Autocompletion database"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:12
+#, python-brace-format
+msgid "Editing {0} users database"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:13
+msgid "Username"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:13
+#: ../src/wxUI/dialogs/configuration.py:108
+msgid "Name"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:16
+msgid "Add user"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:17
+msgid "Remove user"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:38
+msgid "Twitter username"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:38
+msgid "Add user to database"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:44
+msgid "The user does not exist"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/wx_manage.py:44
+msgid "Error!"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/scan.py:49
+msgid ""
+"Updating database... You can close this window now. A message will tell "
+"you when the process finishes."
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:8
+msgid "Autocomplete users' settings"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:11
+msgid "Add &followers to database"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:12
+msgid "Add  f&ollowing to database"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:26
+msgid "Updating autocompletion database"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:34
+msgid ""
+"This process will retrieve the users you selected from your Mastodon "
+"account, and add them to the user autocomplete database. Please note that"
+" if there are many users or you have tried to perform this action less "
+"than 15 minutes ago, TWBlue may reach a limit in API calls when trying to"
+" load the users into the database. If this happens, we will show you an "
+"error, in which case you will have to try this process again in a few "
+"minutes. If this process ends with no error, you will be redirected back "
+"to the account settings dialog. Do you want to continue?"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:34
+#: ../src/wxUI/commonMessageDialogs.py:20
+msgid "Attention"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:40
+#, python-brace-format
+msgid "TWBlue has imported {} users successfully."
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:40
+msgid "Done"
+msgstr ""
+
+#: ../src/extra/autocompletionUsers/mastodon/wx_scan.py:44
+msgid "Error adding users from Mastodon. Please try again in about 15 minutes."
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Detect automatically"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Danish"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Dutch"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "English"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Finnish"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "French"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "German"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Hungarian"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Korean"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Italian"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Japanese"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Polish"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Portuguese"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Russian"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Spanish"
+msgstr ""
+
+#: ../src/extra/ocr/OCRSpace.py:7
+msgid "Turkish"
+msgstr ""
+
+#: ../src/extra/translator/wx_ui.py:25
+msgid "Translate message"
+msgstr ""
+
+#: ../src/extra/translator/wx_ui.py:29
+msgid "Translation engine"
+msgstr ""
+
+#: ../src/extra/translator/wx_ui.py:32
+msgid "Target language"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:8
+msgid "Keystroke editor"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:11
+msgid "Select a keystroke to edit"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:12
+#: ../src/wxUI/dialogs/mastodon/userActions.py:9
+#: ../src/wxUI/dialogs/mastodon/userActions.py:18
+#: ../src/wxUI/dialogs/mastodon/userActions.py:19
+msgid "Action"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:12
+msgid "Keystroke"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:17
+#: ../src/wxUI/dialogs/userAliasDialogs.py:53
+msgid "Edit"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:19 ../src/keystrokeEditor/wx_ui.py:49
+msgid "Undefine keystroke"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:20
+msgid "Execute action"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:21
+#: ../src/wxUI/dialogs/userAliasDialogs.py:25
+msgid "Close"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:41
+msgid "Undefined"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:49
+msgid "Are you sure you want to undefine this keystroke?"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:53
+msgid "Editing keystroke"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:56
+msgid "Control"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:57
+msgid "Alt"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:58
+msgid "Shift"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:59
+msgid "Windows"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:65
+msgid "Key"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:70 ../src/wxUI/dialogs/find.py:21
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:31
+#: ../src/wxUI/dialogs/userAliasDialogs.py:23
+msgid "OK"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:83
+msgid "You need to use the Windows key"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:83 ../src/keystrokeEditor/wx_ui.py:86
+msgid "Invalid keystroke"
+msgstr ""
+
+#: ../src/keystrokeEditor/wx_ui.py:86
+msgid "You must provide a character for the keystroke"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:3
+msgid "Go up in the current buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:4
+msgid "Go down in the current buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:5
+msgid "Go to the previous buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:6
+msgid "Go to the next buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:7
+msgid "Focus the next session"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:8
+msgid "Focus the previous session"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:9
+msgid "Show or hide the GUI"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:10
+msgid "Make a new post"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:11
+#: ../src/wxUI/buffers/mastodon/base.py:26
+#: ../src/wxUI/buffers/mastodon/conversationList.py:25
+msgid "Reply"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:12
+#: ../src/wxUI/buffers/mastodon/base.py:25
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:7
+msgid "Boost"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:13
+msgid "Send direct message"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:14
+msgid "Add post to favorites"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:15
+msgid "Remove post from favorites"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:16
+msgid "Add/remove post from favorites"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:17
+msgid "Open the user actions dialogue"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:18
+msgid "See user details"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:19
+msgid "Show post"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:20
+msgid "Quit"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:21
+msgid "Open user timeline"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:22
+msgid "Destroy buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:23
+msgid "Interact with the currently focused post."
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:24
+msgid "Open URL"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:25
+msgid "View in browser"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:26
+msgid "Increase volume by 5%"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:27
+msgid "Decrease volume by 5%"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:28
+msgid "Jump to the first element of a buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:29
+msgid "Jump to the last element of the current buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:30
+msgid "Jump 20 elements up in the current buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:31
+msgid "Jump 20 elements down in the current buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:33
+msgid "Delete post"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:34
+msgid "Empty the current buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:35
+msgid "Repeat last item"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:36
+msgid "Copy to clipboard"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:39
+msgid "Mute/unmute the active buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:40
+msgid "Mute/unmute the current session"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:41
+msgid "toggle the automatic reading of incoming tweets in the active buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:42
+msgid "Search on instance"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:43
+msgid "Find a string in the currently focused buffer"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:44
+msgid "Show the keystroke editor"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:46
+msgid "load previous items"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:48
+msgid "View conversation"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:49
+msgid "Check and download updates"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:50
+msgid "Opens the global settings dialogue"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:52
+msgid "Opens the account settings dialogue"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:53
+msgid "Try to play a media file"
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:54
+msgid "Updates the buffer and retrieves possible lost items there."
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:55
+msgid "Extracts the text from a picture and displays the result in a dialog."
+msgstr ""
+
+#: ../src/keystrokeEditor/actions/mastodon.py:56
+msgid "Adds an alias to an user"
+msgstr ""
+
+#: ../src/sessionmanager/sessionManager.py:69
+#, python-brace-format
+msgid "{account_name}@{instance} (Mastodon)"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:11
+msgid "Session manager"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:14
+msgid "Accounts list"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:16
+msgid "Account"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:20
+msgid "New account"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:22 ../src/sessionmanager/wxUI.py:79
+msgid "Remove account"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:24
+msgid "Global Settings"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:48
+msgid "You need to configure an account."
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:48
+msgid "Account Error"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:54
+msgid "Mastodon"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:59
+msgid ""
+"You will be prompted for your Mastodon data (instance URL, email address "
+"and password) so we can authorise TWBlue in your instance. Would you like"
+" to authorise your account now?"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:59
+msgid "Authorization"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:67
+#, python-format
+msgid "Authorized account %d"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:73
+msgid ""
+"Your access token is invalid or the authorization has failed. Please try "
+"again."
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:73
+msgid "Invalid user token"
+msgstr ""
+
+#: ../src/sessionmanager/wxUI.py:79
+msgid "Do you really want to delete this account?"
+msgstr ""
+
+#: ../src/sessions/base.py:125
+#, python-brace-format
+msgid ""
+"An exception occurred while saving the {app} database. It will be deleted"
+" and rebuilt automatically. If this error persists, send the error log to"
+" the {app} developers."
+msgstr ""
+
+#: ../src/sessions/base.py:165
+#, python-brace-format
+msgid ""
+"An exception occurred while loading the {app} database. It will be "
+"deleted and rebuilt automatically. If this error persists, send the error"
+" log to the {app} developers."
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:15 ../src/sessions/bluesky/compose.py:58
+#: ../src/sessions/mastodon/compose.py:15
+#: ../src/sessions/mastodon/compose.py:61
+msgid "dddd, MMMM D, YYYY H:m"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:17
+#: ../src/sessions/bluesky/templates.py:55
+#: ../src/sessions/bluesky/templates.py:56
+#: ../src/sessions/mastodon/compose.py:17
+#: ../src/sessions/mastodon/templates.py:73
+#: ../src/sessions/mastodon/templates.py:74
+#, python-brace-format
+msgid "Boosted from @{}: {}"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:33
+#: ../src/sessions/bluesky/templates.py:28
+#: ../src/sessions/mastodon/compose.py:36
+#: ../src/sessions/mastodon/templates.py:28
+msgid "dddd, MMMM D, YYYY H:m:s"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:35 ../src/sessions/mastodon/compose.py:38
+#, python-format
+msgid "%s (@%s). %s followers, %s following, %s posts. Joined %s"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:46 ../src/sessions/mastodon/compose.py:49
+#, python-brace-format
+msgid "Last message from {}: {}"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:61 ../src/sessions/mastodon/compose.py:64
+#, python-brace-format
+msgid "{username} has posted: {status}"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:63 ../src/sessions/mastodon/compose.py:66
+#, python-brace-format
+msgid "{username} has mentioned you: {status}"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:65 ../src/sessions/mastodon/compose.py:68
+#, python-brace-format
+msgid "{username} has boosted: {status}"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:67 ../src/sessions/mastodon/compose.py:70
+#, python-brace-format
+msgid "{username} has added to favorites: {status}"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:69 ../src/sessions/mastodon/compose.py:72
+#, python-brace-format
+msgid "{username} has followed you."
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:71 ../src/sessions/mastodon/compose.py:74
+#, python-brace-format
+msgid "{username} has joined the instance."
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:73 ../src/sessions/mastodon/compose.py:76
+#: ../src/sessions/mastodon/templates.py:164
+#, python-brace-format
+msgid "A poll in which you have voted has expired: {status}"
+msgstr ""
+
+#: ../src/sessions/bluesky/compose.py:75 ../src/sessions/mastodon/compose.py:78
+#, python-brace-format
+msgid "{username} wants to follow you."
+msgstr ""
+
+#: ../src/sessions/bluesky/templates.py:18
+#: ../src/sessions/mastodon/templates.py:18
+msgid "$display_name, $text $image_descriptions $date. $source"
+msgstr ""
+
+#: ../src/sessions/bluesky/templates.py:19
+#: ../src/sessions/mastodon/templates.py:19
+msgid "Dm to $recipient_display_name, $text $date"
+msgstr ""
+
+#: ../src/sessions/bluesky/templates.py:20
+#: ../src/sessions/mastodon/templates.py:20
+msgid ""
+"$display_name (@$screen_name). $followers followers, $following "
+"following, $posts posts. Joined $created_at."
+msgstr ""
+
+#: ../src/sessions/bluesky/templates.py:21
+#: ../src/sessions/mastodon/templates.py:21
+msgid "$display_name $text, $date"
+msgstr ""
+
+#: ../src/sessions/bluesky/templates.py:60
+#: ../src/sessions/mastodon/templates.py:81
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:49
+msgid "Followers only"
+msgstr ""
+
+#: ../src/sessions/mastodon/compose.py:22
+#: ../src/sessions/mastodon/compose.py:81
+#: ../src/sessions/mastodon/templates.py:80
+#: ../src/sessions/mastodon/templates.py:169
+#, python-brace-format
+msgid "hidden by filter {}"
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:69
+msgid "Please enter your instance URL."
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:69
+msgid "Mastodon instance"
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:80
+msgid ""
+"We could not connect to your mastodon instance. Please verify that the "
+"domain exists and the instance is accessible via a web browser."
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:80
+msgid "Instance error"
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:85
+msgid "Enter the verification code"
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:85
+msgid "PIN code authorization"
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:94
+msgid ""
+"We could not authorice your mastodon account to be used in TWBlue. This "
+"might be caused due to an incorrect verification code. Please try to add "
+"the session again."
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:94
+msgid "Authorization error"
+msgstr ""
+
+#: ../src/sessions/mastodon/session.py:215
+#, python-format
+msgid "%s succeeded."
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:34
+#, python-brace-format
+msgid "Content warning: {}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:45
+#, python-brace-format
+msgid "Media description: {}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:150
+#, python-brace-format
+msgid "has posted: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:152
+#, python-brace-format
+msgid "has mentioned you: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:154
+#, python-brace-format
+msgid "has boosted: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:156
+#, python-brace-format
+msgid "has added to favorites: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:158
+#, python-brace-format
+msgid "has updated a status: {status}"
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:160
+msgid "has followed you."
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:162
+msgid "has joined the instance."
+msgstr ""
+
+#: ../src/sessions/mastodon/templates.py:166
+msgid "wants to follow you."
+msgstr ""
+
+#: ../src/update/utils.py:29
+#, python-format
+msgid "%d day, "
+msgstr ""
+
+#: ../src/update/utils.py:31
+#, python-format
+msgid "%d days, "
+msgstr ""
+
+#: ../src/update/utils.py:33
+#, python-format
+msgid "%d hour, "
+msgstr ""
+
+#: ../src/update/utils.py:35
+#, python-format
+msgid "%d hours, "
+msgstr ""
+
+#: ../src/update/utils.py:37
+#, python-format
+msgid "%d minute, "
+msgstr ""
+
+#: ../src/update/utils.py:39
+#, python-format
+msgid "%d minutes, "
+msgstr ""
+
+#: ../src/update/utils.py:41
+#, python-format
+msgid "%s second"
+msgstr ""
+
+#: ../src/update/utils.py:43
+#, python-format
+msgid "%s seconds"
+msgstr ""
+
+#: ../src/update/wxUpdater.py:11
+#, python-format
+msgid ""
+"There's a new %s version available, released on %s. Would you like to "
+"download it now?\n"
+"\n"
+" %s version: %s\n"
+"\n"
+"Changes:\n"
+"%s"
+msgstr ""
+
+#: ../src/update/wxUpdater.py:14
+#, python-format
+msgid ""
+"There's a new %s version available, released on %s. Updates are not "
+"automatic in Windows 7, so you would need to visit TWBlue's download "
+"website to get the latest version.\n"
+"\n"
+" %s version: %s\n"
+"\n"
+"Changes:\n"
+"%s"
+msgstr ""
+
+#: ../src/update/wxUpdater.py:16
+#, python-format
+msgid "New version for %s"
+msgstr ""
+
+#: ../src/update/wxUpdater.py:23
+msgid "Download in Progress"
+msgstr ""
+
+#: ../src/update/wxUpdater.py:23
+msgid "Downloading the new version..."
+msgstr ""
+
+#: ../src/update/wxUpdater.py:33
+#, python-format
+msgid "Updating... %s of %s"
+msgstr ""
+
+#: ../src/update/wxUpdater.py:36
+msgid ""
+"The update has been downloaded and installed successfully. Press OK to "
+"continue."
+msgstr ""
+
+#: ../src/update/wxUpdater.py:36
+msgid "Done!"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:6
+#, python-brace-format
+msgid "Do you really want to close {0}?"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:6
+msgid "Exit"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:10
+#, python-brace-format
+msgid " {0} must be restarted for these changes to take effect."
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:10
+#, python-brace-format
+msgid "Restart {0} "
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:13
+msgid ""
+"Are you sure you want to delete this user from the database? This user "
+"will not appear in autocomplete results anymore."
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:13
+msgid "Confirm"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:16
+msgid ""
+"Do you really want to empty this buffer? It's  items will be removed from"
+" the list but not from Twitter"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:16
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:31
+msgid "Empty buffer"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:20
+msgid "Do you really want to destroy this buffer?"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:23
+msgid "That user does not exist"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:26
+msgid "A timeline for this user already exists. You can't open another"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:26
+msgid "Existing timeline"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:29
+#, python-brace-format
+msgid ""
+"If you like {0} we need your help to keep it going. Help us by donating "
+"to the project. This will help us pay for the server, the domain and some"
+" other things to ensure that {0} will be actively maintained. Your "
+"donation will give us the means to continue the development of {0}, and "
+"to keep {0} free. Would you like to donate now?"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:29
+msgid "We need your help"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:33
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:207
+msgid "Information"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:36
+msgid "The configuration file is invalid."
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:39
+#, python-brace-format
+msgid ""
+"{0} quit unexpectedly the last time it was run. If the problem persists, "
+"please report it to the {0} developers."
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:39
+msgid "Warning"
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:45
+#, python-brace-format
+msgid "Sorry, you can't update while running {} from source."
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:49
+msgid "the provided instance is invalid. Please try again."
+msgstr ""
+
+#: ../src/wxUI/commonMessageDialogs.py:49
+msgid "Invalid instance"
+msgstr ""
+
+#: ../src/wxUI/sysTrayIcon.py:36 ../src/wxUI/view.py:25
+msgid "&Global settings"
+msgstr ""
+
+#: ../src/wxUI/sysTrayIcon.py:37 ../src/wxUI/view.py:24
+msgid "Account se&ttings"
+msgstr ""
+
+#: ../src/wxUI/sysTrayIcon.py:39
+msgid "&Show / hide"
+msgstr ""
+
+#: ../src/wxUI/sysTrayIcon.py:40 ../src/wxUI/view.py:74
+msgid "&Documentation"
+msgstr ""
+
+#: ../src/wxUI/sysTrayIcon.py:41
+msgid "Check for &updates"
+msgstr ""
+
+#: ../src/wxUI/sysTrayIcon.py:42
+msgid "&Exit"
+msgstr ""
+
+#: ../src/wxUI/view.py:16
+msgid "&Manage accounts"
+msgstr ""
+
+#: ../src/wxUI/view.py:17
+msgid "&Update profile"
+msgstr ""
+
+#: ../src/wxUI/view.py:18
+msgid "&Hide window"
+msgstr ""
+
+#: ../src/wxUI/view.py:20
+msgid "&Lists manager"
+msgstr ""
+
+#: ../src/wxUI/view.py:23
+msgid "&Edit keystrokes"
+msgstr ""
+
+#: ../src/wxUI/view.py:26
+msgid "E&xit"
+msgstr ""
+
+#: ../src/wxUI/view.py:34
+msgid "&Remove from favorites"
+msgstr ""
+
+#: ../src/wxUI/view.py:47
+msgid "&Add to list"
+msgstr ""
+
+#: ../src/wxUI/view.py:48
+msgid "R&emove from list"
+msgstr ""
+
+#: ../src/wxUI/view.py:49
+msgid "Show user &profile"
+msgstr ""
+
+#: ../src/wxUI/view.py:50
+msgid "V&iew likes"
+msgstr ""
+
+#: ../src/wxUI/view.py:54
+msgid "&Update buffer"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/communityTimeline.py:9 ../src/wxUI/view.py:55
+msgid "Create community timeline"
+msgstr ""
+
+#: ../src/wxUI/view.py:56
+msgid "New &trending topics buffer..."
+msgstr ""
+
+#: ../src/wxUI/view.py:58
+msgid "&Manage filters"
+msgstr ""
+
+#: ../src/wxUI/view.py:59
+msgid "Find a string in the currently focused buffer..."
+msgstr ""
+
+#: ../src/wxUI/view.py:60
+msgid "&Load previous items"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userActions.py:21 ../src/wxUI/view.py:62
+msgid "&Mute"
+msgstr ""
+
+#: ../src/wxUI/view.py:63
+msgid "&Autoread"
+msgstr ""
+
+#: ../src/wxUI/view.py:64
+msgid "&Clear buffer"
+msgstr ""
+
+#: ../src/wxUI/view.py:65
+msgid "&Destroy"
+msgstr ""
+
+#: ../src/wxUI/view.py:69
+msgid "&Seek back 5 seconds"
+msgstr ""
+
+#: ../src/wxUI/view.py:70
+msgid "&Seek forward 5 seconds"
+msgstr ""
+
+#: ../src/wxUI/view.py:75
+msgid "Sounds &tutorial"
+msgstr ""
+
+#: ../src/wxUI/view.py:76
+msgid "&What's new in this version?"
+msgstr ""
+
+#: ../src/wxUI/view.py:77
+msgid "&Check for updates"
+msgstr ""
+
+#: ../src/wxUI/view.py:78
+msgid "&Report an error"
+msgstr ""
+
+#: ../src/wxUI/view.py:79
+#, python-brace-format
+msgid "{0}'s &website"
+msgstr ""
+
+#: ../src/wxUI/view.py:80
+msgid "Get soundpacks for TWBlue"
+msgstr ""
+
+#: ../src/wxUI/view.py:81
+#, python-brace-format
+msgid "About &{0}"
+msgstr ""
+
+#: ../src/wxUI/view.py:84
+msgid "&Application"
+msgstr ""
+
+#: ../src/wxUI/view.py:85
+msgid "&Tweet"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userActions.py:10 ../src/wxUI/view.py:86
+msgid "&User"
+msgstr ""
+
+#: ../src/wxUI/view.py:87
+msgid "&Buffer"
+msgstr ""
+
+#: ../src/wxUI/view.py:88
+msgid "&Audio"
+msgstr ""
+
+#: ../src/wxUI/view.py:89
+msgid "&Help"
+msgstr ""
+
+#: ../src/wxUI/view.py:175
+msgid "Address"
+msgstr ""
+
+#: ../src/wxUI/view.py:206
+#, python-brace-format
+msgid "Your {0} version is up to date"
+msgstr ""
+
+#: ../src/wxUI/view.py:206
+msgid "Update"
+msgstr ""
+
+#: ../src/wxUI/buffers/panels.py:12 ../src/wxUI/buffers/panels.py:20
+msgid "Login"
+msgstr ""
+
+#: ../src/wxUI/buffers/panels.py:14
+msgid "Log in automatically"
+msgstr ""
+
+#: ../src/wxUI/buffers/panels.py:22
+msgid "Logout"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/base.py:11
+#: ../src/wxUI/buffers/mastodon/conversationList.py:11
+#: ../src/wxUI/buffers/mastodon/user.py:8
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:10
+#: ../src/wxUI/dialogs/userAliasDialogs.py:14
+msgid "User"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/base.py:11
+#: ../src/wxUI/buffers/mastodon/conversationList.py:11
+#: ../src/wxUI/buffers/mastodon/notifications.py:11
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:37
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:272
+msgid "Text"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/base.py:11
+#: ../src/wxUI/buffers/mastodon/conversationList.py:11
+#: ../src/wxUI/buffers/mastodon/notifications.py:11
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:216
+msgid "Date"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/base.py:11
+#: ../src/wxUI/buffers/mastodon/conversationList.py:11
+msgid "Client"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/base.py:27
+msgid "Favorite"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/base.py:28
+msgid "Bookmark"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/base.py:29
+msgid "Direct message"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/notifications.py:23
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:23
+msgid "Dismiss"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/user.py:19
+#: ../src/wxUI/dialogs/userAliasDialogs.py:48
+msgid "Actions"
+msgstr ""
+
+#: ../src/wxUI/buffers/mastodon/user.py:20
+msgid "Message"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:15
+msgid "&Language"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:22
+#, python-brace-format
+msgid "&Ask before exiting {0}"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:24
+msgid "&Disable Streaming functions"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:27
+msgid "&Buffer update interval, in minutes"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:33
+#, python-brace-format
+msgid "Pla&y a sound when {0} launches"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:35
+#, python-brace-format
+msgid "Sp&eak a message when {0} launches"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:37
+msgid "&Use invisible interface's keyboard shortcuts while GUI is visible"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:39
+msgid "A&ctivate Sapi5 when any other screen reader is not being run"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:41
+msgid "&Hide GUI on launch"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:43
+msgid "&Read long posts in GUI"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:46
+msgid "&Keymap"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:51
+#, python-brace-format
+msgid "Check for u&pdates when {0} launches"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:61
+msgid "Proxy &type: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:68
+msgid "Proxy s&erver: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:74
+msgid "&Port: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:80
+msgid "&User: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:86
+msgid "P&assword: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:98
+msgid "Enable automatic s&peech feedback"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:100
+msgid "Enable automatic &Braille feedback"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:108
+msgid "Buffer"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:108
+msgid "Status"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:111
+msgid "S&how/hide"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:112
+msgid "Move &up"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:113
+msgid "Move &down"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:123
+#: ../src/wxUI/dialogs/configuration.py:188
+#: ../src/wxUI/dialogs/configuration.py:191
+#: ../src/wxUI/dialogs/configuration.py:196
+msgid "Show"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:125
+#: ../src/wxUI/dialogs/configuration.py:135
+#: ../src/wxUI/dialogs/configuration.py:159
+#: ../src/wxUI/dialogs/configuration.py:189
+msgid "Hide"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:133
+#: ../src/wxUI/dialogs/configuration.py:157
+msgid "Select a buffer first."
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:136
+#: ../src/wxUI/dialogs/configuration.py:160
+msgid "The buffer is hidden, show it first."
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:139
+msgid "The buffer is already at the top of the list."
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:163
+msgid "The buffer is already at the bottom of the list."
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:205
+msgid "&LibreTranslate API URL: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:211
+msgid "LibreTranslate API &Key (optional): "
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:217
+msgid "&DeepL API Key: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:231
+#, python-brace-format
+msgid "{0} preferences"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:237
+#: ../src/wxUI/dialogs/mastodon/configuration.py:144
+msgid "General"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:242
+msgid "Proxy"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:246
+msgid "Translation services"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:251
+#: ../src/wxUI/dialogs/mastodon/configuration.py:170
+msgid "&Save"
+msgstr ""
+
+#: ../src/wxUI/dialogs/configuration.py:253
+#: ../src/wxUI/dialogs/mastodon/communityTimeline.py:27
+#: ../src/wxUI/dialogs/mastodon/configuration.py:172
+#: ../src/wxUI/dialogs/mastodon/search.py:26
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:170
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:132
+#: ../src/wxUI/dialogs/mastodon/userActions.py:38
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:32
+msgid "&Close"
+msgstr ""
+
+#: ../src/wxUI/dialogs/find.py:13
+msgid "Find in current buffer"
+msgstr ""
+
+#: ../src/wxUI/dialogs/find.py:14
+msgid "String"
+msgstr ""
+
+#: ../src/wxUI/dialogs/find.py:23
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:33
+msgid "Cancel"
+msgstr ""
+
+#: ../src/wxUI/dialogs/templateDialogs.py:8
+msgid "Edit Template"
+msgstr ""
+
+#: ../src/wxUI/dialogs/templateDialogs.py:13
+msgid "Edit template"
+msgstr ""
+
+#: ../src/wxUI/dialogs/templateDialogs.py:17
+msgid "Available variables"
+msgstr ""
+
+#: ../src/wxUI/dialogs/templateDialogs.py:29
+msgid "Restore template"
+msgstr ""
+
+#: ../src/wxUI/dialogs/templateDialogs.py:48
+#, python-brace-format
+msgid "Restored template to {}."
+msgstr ""
+
+#: ../src/wxUI/dialogs/templateDialogs.py:52
+msgid ""
+"the template you have specified include variables that do not exists for "
+"the object. Please fix the template and try again. For your reference, "
+"you can see a list of all available variables in the variables list while"
+" editing your template."
+msgstr ""
+
+#: ../src/wxUI/dialogs/templateDialogs.py:52
+msgid "Invalid template"
+msgstr ""
+
+#: ../src/wxUI/dialogs/urlList.py:6
+msgid "Select URL"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userActions.py:13
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:13
+#: ../src/wxUI/dialogs/userAliasDialogs.py:13
+msgid "&Autocomplete users"
+msgstr ""
+
+#: ../src/wxUI/dialogs/userAliasDialogs.py:18
+msgid "Alias"
+msgstr ""
+
+#: ../src/wxUI/dialogs/userAliasDialogs.py:41
+msgid "Edit user aliases"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/search.py:19
+#: ../src/wxUI/dialogs/userAliasDialogs.py:43
+msgid "Users"
+msgstr ""
+
+#: ../src/wxUI/dialogs/userAliasDialogs.py:50
+msgid "Add alias"
+msgstr ""
+
+#: ../src/wxUI/dialogs/userAliasDialogs.py:51
+msgid "Adds a new user alias"
+msgstr ""
+
+#: ../src/wxUI/dialogs/userAliasDialogs.py:54
+msgid "Edit the currently focused user Alias."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:26
+#: ../src/wxUI/dialogs/userAliasDialogs.py:57
+msgid "Remove"
+msgstr ""
+
+#: ../src/wxUI/dialogs/userAliasDialogs.py:58
+msgid "Remove the currently focused user alias."
+msgstr ""
+
+#: ../src/wxUI/dialogs/userAliasDialogs.py:82
+msgid "Are you sure you want to delete this user alias?"
+msgstr ""
+
+#: ../src/wxUI/dialogs/userAliasDialogs.py:82
+msgid "Remove user alias"
+msgstr ""
+
+#: ../src/wxUI/dialogs/userAliasDialogs.py:93
+msgid "User alias"
+msgstr ""
+
+#: ../src/wxUI/dialogs/userList.py:27
+msgid "View profile"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/communityTimeline.py:10
+msgid "Community URL"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/communityTimeline.py:16
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:18
+msgid "Buffer type"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/communityTimeline.py:17
+msgid "&Local timeline"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/communityTimeline.py:18
+msgid "&Federated Timeline"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/communityTimeline.py:25
+#: ../src/wxUI/dialogs/mastodon/search.py:24
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:130
+#: ../src/wxUI/dialogs/mastodon/userActions.py:36
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:30
+msgid "&OK"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:14
+msgid "User autocompletion settings"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:15
+msgid ""
+"Scan acc&ount and add followers and following users to the user "
+"autocompletion database"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:16
+msgid "&Manage autocompletion database"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:21
+msgid "&Disable Streaming API endpoints"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:23
+msgid "&Relative timestamps"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:25
+msgid ""
+"R&ead preferences from instance (default visibility when publishing and "
+"displaying sensitive content)"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:28
+msgid "&Items on each API call"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:34
+msgid ""
+"I&nverted buffers: The newest items will be shown at the beginning while "
+"the oldest at the end"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:36
+msgid "&Ask confirmation before boosting a post"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:38
+msgid "S&how screen names instead of full names"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:40
+msgid "Hide e&mojis in usernames"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:42
+msgid ""
+"&Number of items per buffer to cache in database (0 to disable caching, "
+"blank for unlimited)"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:46
+msgid ""
+"&Load cache for items in memory (much faster in big datasets but requires"
+" more RAM)"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:53
+#, python-brace-format
+msgid "Edit template for &posts. Current template: {}"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:55
+#, python-brace-format
+msgid "Edit template for c&onversations. Current template: {}"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:57
+#, python-brace-format
+msgid "Edit template for p&ersons. Current template: {}"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:65
+msgid "&Volume"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:76
+msgid "S&ession mute"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:78
+msgid "&Output device"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:85
+msgid "&Input device"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:93
+msgid "Sound &pack"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:99
+msgid "Indicate &audio or video in posts with sound"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:101
+msgid "Indicate posts containing i&mages with sound"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:124
+msgid "&Language for OCR"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:149
+msgid "Feedback"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:153
+msgid "Buffers"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:157
+msgid "Templates"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:161
+msgid "Sound"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/configuration.py:165
+msgid "Extras"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:7
+msgid "Would you like to share this post?"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:15
+msgid ""
+"Do you really want to delete this post? It will be deleted from the "
+"instance as well."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:15
+msgid "Delete"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:23
+msgid ""
+"Are you sure you want to dismiss this notification? If you dismiss a "
+"mention notification, it also disappears from your mentions buffer. The "
+"post is not going to be deleted from the instance, though."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:31
+msgid ""
+"Do you really want to empty this buffer? It's  items will be removed from"
+" the list but not from the instance"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:38
+#, python-brace-format
+msgid "This user has no posts. {0} can't create a timeline."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:43
+#, python-brace-format
+msgid "This user has no favorited posts. {0} can't create a timeline."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:48
+#, python-brace-format
+msgid "This user has no followers yet. {0} can't create a timeline."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:53
+#, python-brace-format
+msgid "This user is not following anyone. {0} can't create a timeline."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/dialogs.py:60
+#, python-brace-format
+msgid "The focused item has no user in it. {} ca't open a user profile"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:12
+msgid "Keyword"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:13
+#: ../src/wxUI/dialogs/mastodon/filters.py:24
+msgid "Whole word"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:19
+msgid "Keyword:"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:25
+msgid "Add"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:34
+msgid "Palabras clave a filtrar:"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:43
+#: ../src/wxUI/dialogs/mastodon/filters.py:65
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:135
+msgid "Yes"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:43
+#: ../src/wxUI/dialogs/mastodon/filters.py:65
+#: ../src/wxUI/dialogs/mastodon/filters.py:69
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:135
+msgid "No"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:74
+msgid "New filter"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:78
+msgid "Home timeline"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:79
+msgid "Public statuses"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:81
+msgid "Threads"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:82
+msgid "Profiles"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:86
+msgid "Hide posts"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:87
+msgid "Set a content warning to posts"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:90
+msgid "Never"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:91
+msgid "Hours"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:92
+msgid "Days"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:93
+msgid "Weeks"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:94
+msgid "months"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:97
+msgid "Title:"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:103
+msgid "Apply to:"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:113
+msgid "Action:"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/filters.py:121
+msgid "Expires in:"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/menus.py:13
+#: ../src/wxUI/dialogs/mastodon/menus.py:41
+msgid "R&emove from favorites"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/menus.py:15
+#: ../src/wxUI/dialogs/mastodon/menus.py:43
+msgid "&Open URL"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/menus.py:17
+#: ../src/wxUI/dialogs/mastodon/menus.py:47
+msgid "&Open in instance"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/menus.py:19
+#: ../src/wxUI/dialogs/mastodon/menus.py:45
+msgid "&Play audio"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/menus.py:23
+#: ../src/wxUI/dialogs/mastodon/menus.py:51
+msgid "&Copy to clipboard"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/menus.py:27
+#: ../src/wxUI/dialogs/mastodon/menus.py:55
+msgid "&User actions..."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/menus.py:53
+msgid "&Dismiss"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:20
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:38
+msgid "Attachments"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:24
+msgid "File"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:25
+msgid "Type"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:26
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:141
+msgid "Description"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:28
+msgid "Remove Attachment"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:33
+msgid "Post in the thread"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:40
+msgid "Remove post"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:47
+msgid "&Visibility"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:54
+msgid "Language"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:58
+msgid "A&dd"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:59
+msgid "S&ensitive content"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:64
+msgid "Content warning"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:71
+msgid "Add p&ost"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:75
+msgid "Auto&complete users"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:77
+msgid "Check &spelling"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:79
+msgid "&Translate"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:106
+#, python-brace-format
+msgid "Post - {} characters"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:130
+msgid "Image"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:132
+msgid "Video"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:134
+msgid "Audio"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:136
+msgid "Poll"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:141
+msgid "please provide a description"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:148
+msgid "Select the picture to be uploaded"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:148
+msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:155
+msgid "Select the video to be uploaded"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:155
+msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:162
+msgid "Select the audio file to be uploaded"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:162
+msgid ""
+"Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, "
+"*.3gp)|*.mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:169
+msgid ""
+"It is not possible to add more attachments. Please take into account that"
+" You can add only a maximum of 4 images, or one audio, video or poll  per"
+" post. Please remove other attachments before continuing."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:169
+msgid "Error adding attachment"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:172
+msgid ""
+"You can add a poll or media files. In order to add your poll, please "
+"remove other attachments first."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:172
+msgid "Error adding poll"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:177
+#, python-format
+msgid "Post - %i characters "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:200
+msgid "Image description"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:210
+msgid "Privacy"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:214
+msgid "Source"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:222
+msgid "Boosts"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:224
+msgid "View users who boosted this post"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:231
+msgid "View users who favorited this post"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:239
+msgid "Copy link to clipboard"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:241
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:280
+msgid "Check &spelling..."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:242
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:281
+msgid "&Translate..."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:243
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:282
+msgid "C&lose"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:294
+msgid "Add a poll"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:298
+msgid "Participation time"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "5 minutes"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "30 minutes"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "1 hour"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "6 hours"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "1 day"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "2 days"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "3 days"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "4 days"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "5 days"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "6 days"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:300
+msgid "7 days"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:304
+msgid "Choices"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:308
+msgid "Option 1"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:315
+msgid "Option 2"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:322
+msgid "Option 3"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:329
+msgid "Option 4"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:334
+msgid "Allow multiple choices per user"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:337
+msgid "Hide votes count until the poll expires"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:363
+msgid "Please make sure you have provided at least two options for the poll."
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:363
+msgid "Not enough information"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:368
+msgid "Vote in this poll"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/postDialogs.py:371
+msgid "Options"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/search.py:9
+msgid "Search"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/search.py:18
+msgid "Posts"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:22
+msgid "Select user"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:73
+#, python-brace-format
+msgid "{}'s Profile"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:79
+msgid "&Name: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:84
+msgid "&URL: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:89
+msgid "&Bio: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:94
+msgid "&Joined at: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:99
+msgid "&Actions"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:104
+msgid "Header: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:112
+msgid "Avatar: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:122
+#, python-brace-format
+msgid "Field &{} - Label: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:129
+msgid "Content: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:137
+msgid "&Private account: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:144
+msgid "&Bot account: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:151
+msgid "&Discoverable account: "
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:157
+#, python-brace-format
+msgid "{} p&osts. Click to open posts timeline"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:162
+#, python-brace-format
+msgid "{} &following. Click to open Following timeline"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/showUserProfile.py:166
+#, python-brace-format
+msgid "{} fo&llowers. Click to open followers timeline"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:43
+msgid "&Display Name"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:50
+msgid "&Bio"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:58
+msgid "Header"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:71
+msgid "Change &header"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:79
+msgid "Avatar"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:92
+msgid "Change &avatar"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:102
+#, python-brace-format
+msgid "Field &{}: Label"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:110
+msgid "Content"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:120
+msgid "&Private account"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:122
+msgid "&Bot account"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:124
+msgid "&Discoverable account"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:167
+msgid "Select header image - max 2MB"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:172
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:194
+msgid "The selected file is larger than 2MB. Do you want to select another file?"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:173
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:195
+msgid "File more than 2MB"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/updateProfile.py:189
+msgid "Select avatar image - max 2MB"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userActions.py:19
+msgid "&Follow"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userActions.py:20
+msgid "U&nfollow"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userActions.py:22
+msgid "Unmu&te"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userActions.py:23
+msgid "&Block"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userActions.py:24
+msgid "Unbl&ock"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:9
+#, python-format
+msgid "Timeline for %s"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:19
+msgid "&Posts"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:20
+msgid "&Followers"
+msgstr ""
+
+#: ../src/wxUI/dialogs/mastodon/userTimeline.py:21
+msgid "Fo&llowing"
+msgstr ""
+
