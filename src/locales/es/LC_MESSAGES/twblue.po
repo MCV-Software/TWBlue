@@ -1,18 +1,19 @@
-# Manuel Cortez <manuel@manuelcortez.net>, 2022, 2023, 2024.
+# Manuel Cortez <manuel@manuelcortez.net>, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: TW Blue 0.84\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2025-03-02 00:55+0000\n"
-"PO-Revision-Date: 2024-05-23 15:59+0000\n"
+"PO-Revision-Date: 2025-03-07 17:15+0000\n"
 "Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
+"Language-Team: Spanish <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/es/>\n"
 "Language: es\n"
-"Language-Team: Spanish "
-"<https://weblate.mcvsoftware.com/projects/twblue/twblue/es/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.1\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: languageHandler.py:61
@@ -591,9 +592,8 @@ msgid "Show user profile"
 msgstr "Ver perfil del usuario"
 
 #: controller/mastodon/handler.py:53
-#, fuzzy
 msgid "Create c&ommunity timeline"
-msgstr "Crear línea temporal de comunidad"
+msgstr "Crear línea temporal de &comunidad"
 
 #: controller/mastodon/handler.py:94
 msgid "Timelines"
@@ -614,7 +614,6 @@ msgid "Communities"
 msgstr "Comunidades"
 
 #: controller/mastodon/handler.py:113
-#, fuzzy
 msgid "federated"
 msgstr "Federada"
 
@@ -918,7 +917,6 @@ msgid "Editing {0} users database"
 msgstr "Editando base de datos de usuarios para {}"
 
 #: extra/autocompletionUsers/wx_manage.py:13
-#, fuzzy
 msgid "Username"
 msgstr "Usuario"
 
@@ -963,14 +961,12 @@ msgid "Autocomplete users' settings"
 msgstr "Opciones de autocompletado de usuarios"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:11
-#, fuzzy
 msgid "Add &followers to database"
-msgstr "Añadir seguidores a base de datos"
+msgstr "Añadir &seguidores a base de datos"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:12
-#, fuzzy
 msgid "Add  f&ollowing to database"
-msgstr "añadir siguiendo a base de datos"
+msgstr "Añadir s&iguiendo a base de datos"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:26
 msgid "Updating autocompletion database"
@@ -1008,9 +1004,8 @@ msgid "TWBlue has imported {} users successfully."
 msgstr "TWBlue ha añadido {} usuarios correctamente."
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:40
-#, fuzzy
 msgid "Done"
-msgstr "¡Hecho!"
+msgstr "Hecho"
 
 #: extra/autocompletionUsers/mastodon/wx_scan.py:44
 msgid "Error adding users from Mastodon. Please try again in about 15 minutes."
@@ -1499,7 +1494,7 @@ msgid "{username} has posted: {status}"
 msgstr "{username} ha publicado: {status}"
 
 #: sessions/mastodon/compose.py:63
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{username} has mentioned you: {status}"
 msgstr "{username} te ha mencionado: {status}"
 
@@ -1621,7 +1616,7 @@ msgid "has posted: {status}"
 msgstr "Ha publicado: {status}"
 
 #: sessions/mastodon/templates.py:149
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "has mentioned you: {status}"
 msgstr "Te ha mencionado: {status}"
 
@@ -2125,98 +2120,85 @@ msgid "Message"
 msgstr "Mensaje"
 
 #: wxUI/dialogs/configuration.py:15
-#, fuzzy
 msgid "&Language"
-msgstr "Idioma"
+msgstr "&Idioma"
 
 #: wxUI/dialogs/configuration.py:22
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "&Ask before exiting {0}"
-msgstr "preguntar antes de salir de {0}"
+msgstr "Preguntar antes de salir de {0}"
 
 #: wxUI/dialogs/configuration.py:24
-#, fuzzy
 msgid "&Disable Streaming functions"
-msgstr "Desactivar funciones en tiempo real"
+msgstr "&Desactivar funciones en tiempo real"
 
 #: wxUI/dialogs/configuration.py:27
-#, fuzzy
 msgid "&Buffer update interval, in minutes"
-msgstr "Intervalo de actualización de los buffers, en minutos"
+msgstr "Intervalo de actualización de los &buffers, en minutos"
 
 #: wxUI/dialogs/configuration.py:33
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Pla&y a sound when {0} launches"
-msgstr "Reproducir un sonido cuando inicia {0}"
+msgstr "Reproducir un sonido cuando inicia &{0}"
 
 #: wxUI/dialogs/configuration.py:35
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Sp&eak a message when {0} launches"
-msgstr "Hablar un mensaje cuando {0} inicie"
+msgstr "&Hablar un mensaje cuando {0} inicie"
 
 #: wxUI/dialogs/configuration.py:37
-#, fuzzy
 msgid "&Use invisible interface's keyboard shortcuts while GUI is visible"
-msgstr "Usar los atajos de teclado de la interfaz invisible en la ventana gráfica"
+msgstr ""
+"Usar los &atajos de teclado de la interfaz invisible en la ventana gráfica"
 
 #: wxUI/dialogs/configuration.py:39
-#, fuzzy
 msgid "A&ctivate Sapi5 when any other screen reader is not being run"
-msgstr "Activar Sapi5 cuando no hay ningún lector de pantalla ejecutándose"
+msgstr "Activar Sapi5 &cuando no hay ningún lector de pantalla ejecutándose"
 
 #: wxUI/dialogs/configuration.py:41
-#, fuzzy
 msgid "&Hide GUI on launch"
-msgstr "Esconder interfaz gráfica al iniciar"
+msgstr "Esconder interfaz &gráfica al iniciar"
 
 #: wxUI/dialogs/configuration.py:43
 msgid "&Read long posts in GUI"
-msgstr ""
+msgstr "&Leer publicaciones largas en la interfaz gráfica"
 
 #: wxUI/dialogs/configuration.py:46
-#, fuzzy
 msgid "&Keymap"
-msgstr "Mapa de teclado"
+msgstr "Mapa de &teclado"
 
 #: wxUI/dialogs/configuration.py:51
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Check for u&pdates when {0} launches"
-msgstr "Comprobar actualizaciones cuando {0} inicie"
+msgstr "Comprobar ac&tualizaciones cuando {0} inicie"
 
 #: wxUI/dialogs/configuration.py:61
-#, fuzzy
 msgid "Proxy &type: "
-msgstr "Tipo de proxy: "
+msgstr "&Tipo de proxy: "
 
 #: wxUI/dialogs/configuration.py:68
-#, fuzzy
 msgid "Proxy s&erver: "
-msgstr "Servidor proxy: "
+msgstr "&Servidor proxy: "
 
 #: wxUI/dialogs/configuration.py:74
-#, fuzzy
 msgid "&Port: "
-msgstr "Puerto: "
+msgstr "&Puerto: "
 
 #: wxUI/dialogs/configuration.py:80
-#, fuzzy
 msgid "&User: "
-msgstr "Usuario: "
+msgstr "&Usuario: "
 
 #: wxUI/dialogs/configuration.py:86
-#, fuzzy
 msgid "P&assword: "
-msgstr "Contraseña: "
+msgstr "&Contraseña: "
 
 #: wxUI/dialogs/configuration.py:98
-#, fuzzy
 msgid "Enable automatic s&peech feedback"
-msgstr "Activar mensajes automáticos hablados"
+msgstr "Activar mensajes automáticos &hablados"
 
 #: wxUI/dialogs/configuration.py:100
-#, fuzzy
 msgid "Enable automatic &Braille feedback"
-msgstr "Activar mensajes automáticos en Braille"
+msgstr "Activar mensajes automáticos en &Braille"
 
 #: wxUI/dialogs/configuration.py:108
 msgid "Buffer"
@@ -2227,19 +2209,16 @@ msgid "Status"
 msgstr "Estado"
 
 #: wxUI/dialogs/configuration.py:111
-#, fuzzy
 msgid "S&how/hide"
-msgstr "Mostrar/ocultar"
+msgstr "&Mostrar/ocultar"
 
 #: wxUI/dialogs/configuration.py:112
-#, fuzzy
 msgid "Move &up"
-msgstr "Mover arriba"
+msgstr "Mover &arriba"
 
 #: wxUI/dialogs/configuration.py:113
-#, fuzzy
 msgid "Move &down"
-msgstr "Mover abajo"
+msgstr "Mover a&bajo"
 
 #: wxUI/dialogs/configuration.py:123 wxUI/dialogs/configuration.py:188
 #: wxUI/dialogs/configuration.py:191 wxUI/dialogs/configuration.py:196
@@ -2268,19 +2247,16 @@ msgid "The buffer is already at the bottom of the list."
 msgstr "El buffer ya se encuentra al final de la lista."
 
 #: wxUI/dialogs/configuration.py:205
-#, fuzzy
 msgid "&LibreTranslate API URL: "
-msgstr "URL de API LibreTranslate: "
+msgstr "URL de API &LibreTranslate: "
 
 #: wxUI/dialogs/configuration.py:211
-#, fuzzy
 msgid "LibreTranslate API &Key (optional): "
-msgstr "Clave de API para LibreTranslate (opcional): "
+msgstr "Clave de &API para LibreTranslate (opcional): "
 
 #: wxUI/dialogs/configuration.py:217
-#, fuzzy
 msgid "&DeepL API Key: "
-msgstr "Clave de API para DeepL: "
+msgstr "Clave de API para &DeepL: "
 
 #: wxUI/dialogs/configuration.py:231
 #, python-brace-format
@@ -2300,9 +2276,8 @@ msgid "Translation services"
 msgstr "Servicios de traducción"
 
 #: wxUI/dialogs/configuration.py:251 wxUI/dialogs/mastodon/configuration.py:170
-#, fuzzy
 msgid "&Save"
-msgstr "Guardar"
+msgstr "&Guardar"
 
 #: wxUI/dialogs/configuration.py:253
 #: wxUI/dialogs/mastodon/communityTimeline.py:27
@@ -2431,14 +2406,12 @@ msgid "Buffer type"
 msgstr "Tipo de buffer"
 
 #: wxUI/dialogs/mastodon/communityTimeline.py:17
-#, fuzzy
 msgid "&Local timeline"
-msgstr "Línea temporal local"
+msgstr "Línea temporal &local"
 
 #: wxUI/dialogs/mastodon/communityTimeline.py:18
-#, fuzzy
 msgid "&Federated Timeline"
-msgstr "Línea temporal pública"
+msgstr "Línea temporal &pública"
 
 #: wxUI/dialogs/mastodon/communityTimeline.py:25
 #: wxUI/dialogs/mastodon/search.py:24
@@ -2453,140 +2426,120 @@ msgid "User autocompletion settings"
 msgstr "Opciones de autocompletado de usuarios"
 
 #: wxUI/dialogs/mastodon/configuration.py:15
-#, fuzzy
 msgid ""
 "Scan acc&ount and add followers and following users to the user "
 "autocompletion database"
 msgstr ""
-"Escanear cuenta y añadir seguidores y siguiendo a la base de datos de "
+"Escanear &cuenta y añadir seguidores y siguiendo a la base de datos de "
 "autocompletado de usuarios"
 
 #: wxUI/dialogs/mastodon/configuration.py:16
-#, fuzzy
 msgid "&Manage autocompletion database"
-msgstr "Gestionar base de datos del autocompletado de usuarios"
+msgstr "&Gestionar base de datos del autocompletado de usuarios"
 
 #: wxUI/dialogs/mastodon/configuration.py:21
-#, fuzzy
 msgid "&Disable Streaming API endpoints"
-msgstr "Desactivar funciones en tiempo real"
+msgstr "&Desactivar funciones en tiempo real"
 
 #: wxUI/dialogs/mastodon/configuration.py:23
-#, fuzzy
 msgid "&Relative timestamps"
-msgstr "Tiempos relativos"
+msgstr "&Tiempos relativos"
 
 #: wxUI/dialogs/mastodon/configuration.py:25
-#, fuzzy
 msgid ""
 "R&ead preferences from instance (default visibility when publishing and "
 "displaying sensitive content)"
 msgstr ""
-"Leer preferencias de la instancia (visibilidad por defecto al publicar y "
+"&Leer preferencias de la instancia (visibilidad por defecto al publicar y "
 "mostrar contenido sensible)"
 
 #: wxUI/dialogs/mastodon/configuration.py:28
-#, fuzzy
 msgid "&Items on each API call"
-msgstr "Elementos por cada llamada a la API"
+msgstr "&Elementos por cada llamada a la API"
 
 #: wxUI/dialogs/mastodon/configuration.py:34
-#, fuzzy
 msgid ""
 "I&nverted buffers: The newest items will be shown at the beginning while "
 "the oldest at the end"
 msgstr ""
-"Buffers invertidos: los nuevos elementos se mostrarán al principio de las"
-" listas y los viejos al final"
+"Buffers &invertidos: los nuevos elementos se mostrarán al principio de las "
+"listas y los viejos al final"
 
 #: wxUI/dialogs/mastodon/configuration.py:36
-#, fuzzy
 msgid "&Ask confirmation before boosting a post"
-msgstr "Solicitar confirmación antes de impulsar una publicación"
+msgstr "&Solicitar confirmación antes de impulsar una publicación"
 
 #: wxUI/dialogs/mastodon/configuration.py:38
-#, fuzzy
 msgid "S&how screen names instead of full names"
-msgstr "Mostrar nombres de pantalla en lugar de nombres completos"
+msgstr "Mos&trar nombres de pantalla en lugar de nombres completos"
 
 #: wxUI/dialogs/mastodon/configuration.py:40
-#, fuzzy
 msgid "Hide e&mojis in usernames"
-msgstr "Esconder emojis en nombres de usuario"
+msgstr "Esconder &emojis en nombres de usuario"
 
 #: wxUI/dialogs/mastodon/configuration.py:42
-#, fuzzy
 msgid ""
 "&Number of items per buffer to cache in database (0 to disable caching, "
 "blank for unlimited)"
 msgstr ""
-"Número de elementos de cada buffer a conservar en la base de datos (dejar"
-" en blanco para guardarlos de forma ilimitada, 0 para desactivar la base "
-"de datos)"
+"&Número de elementos de cada buffer a conservar en la base de datos (dejar "
+"en blanco para guardarlos de forma ilimitada, 0 para desactivar la base de "
+"datos)"
 
 #: wxUI/dialogs/mastodon/configuration.py:46
-#, fuzzy
 msgid ""
 "&Load cache for items in memory (much faster in big datasets but requires"
 " more RAM)"
 msgstr ""
-"Cargar cache para elementos en RAM (es más rápido para listas muy grandes"
-" de elementos, pero requiere más memoria)"
+"Cargar &cache para elementos en RAM (es más rápido para listas muy grandes "
+"de elementos, pero requiere más memoria)"
 
 #: wxUI/dialogs/mastodon/configuration.py:53
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Edit template for &posts. Current template: {}"
-msgstr "Editar plantilla para publicaciones. Plantilla actual: {}"
+msgstr "Editar plantilla para &publicaciones. Plantilla actual: {}"
 
 #: wxUI/dialogs/mastodon/configuration.py:55
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Edit template for c&onversations. Current template: {}"
-msgstr "Editar plantilla para conversaciones. Plantilla actual: {}"
+msgstr "Editar plantilla para &conversaciones. Plantilla actual: {}"
 
 #: wxUI/dialogs/mastodon/configuration.py:57
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Edit template for p&ersons. Current template: {}"
-msgstr "Editar plantilla para usuarios. Plantilla actual: {}"
+msgstr "Editar plantilla para &usuarios. Plantilla actual: {}"
 
 #: wxUI/dialogs/mastodon/configuration.py:65
-#, fuzzy
 msgid "&Volume"
-msgstr "Volumen"
+msgstr "&Volumen"
 
 #: wxUI/dialogs/mastodon/configuration.py:76
-#, fuzzy
 msgid "S&ession mute"
-msgstr "Silencio de sesión"
+msgstr "Si&lencio de sesión"
 
 #: wxUI/dialogs/mastodon/configuration.py:78
-#, fuzzy
 msgid "&Output device"
-msgstr "Dispositivo de salida"
+msgstr "Dispositivo de &salida"
 
 #: wxUI/dialogs/mastodon/configuration.py:85
-#, fuzzy
 msgid "&Input device"
-msgstr "Dispositivo de entrada"
+msgstr "Dispositivo de &entrada"
 
 #: wxUI/dialogs/mastodon/configuration.py:93
-#, fuzzy
 msgid "Sound &pack"
-msgstr "Paquete de sonidos"
+msgstr "&Paquete de sonidos"
 
 #: wxUI/dialogs/mastodon/configuration.py:99
-#, fuzzy
 msgid "Indicate &audio or video in posts with sound"
-msgstr "Reproducir sonido en publicaciones que incluyan archivos multimedia"
+msgstr "Reproducir sonido en publicaciones que incluyan archivos &multimedia"
 
 #: wxUI/dialogs/mastodon/configuration.py:101
-#, fuzzy
 msgid "Indicate posts containing i&mages with sound"
-msgstr "Reproducir sonido en publicaciones que incluyan imágenes"
+msgstr "Reproducir sonido en publicaciones que incluyan &imágenes"
 
 #: wxUI/dialogs/mastodon/configuration.py:124
-#, fuzzy
 msgid "&Language for OCR"
-msgstr "Idioma para el OCR"
+msgstr "Idioma para el &OCR"
 
 #: wxUI/dialogs/mastodon/configuration.py:149
 msgid "Feedback"
@@ -2740,7 +2693,6 @@ msgid "&Visibility"
 msgstr "&Visibilidad"
 
 #: wxUI/dialogs/mastodon/postDialogs.py:54
-#, fuzzy
 msgid "Language"
 msgstr "Idioma"
 
@@ -3017,29 +2969,24 @@ msgid "{}'s Profile"
 msgstr "Perfil de {}"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:79
-#, fuzzy
 msgid "&Name: "
-msgstr "Nombre: "
+msgstr "&Nombre: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:84
-#, fuzzy
 msgid "&URL: "
-msgstr "URL: "
+msgstr "&URL: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:89
-#, fuzzy
 msgid "&Bio: "
-msgstr "Biografía: "
+msgstr "&Biografía: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:94
-#, fuzzy
 msgid "&Joined at: "
-msgstr "Se unió: "
+msgstr "Se &unió: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:99
-#, fuzzy
 msgid "&Actions"
-msgstr "Acciones"
+msgstr "A&cciones"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:104
 msgid "Header: "
@@ -3050,9 +2997,9 @@ msgid "Avatar: "
 msgstr "Avatar: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:122
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Field &{} - Label: "
-msgstr "Campo {} - Nombre: "
+msgstr "&Campo {} - Nombre: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:129
 msgid "Content: "
@@ -3067,86 +3014,76 @@ msgid "No"
 msgstr "No"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:137
-#, fuzzy
 msgid "&Private account: "
-msgstr "Cuenta privada: "
+msgstr "Cuenta &privada: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:144
-#, fuzzy
 msgid "&Bot account: "
-msgstr "Cuenta bot: "
+msgstr "Cuenta &bot: "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:151
-#, fuzzy
 msgid "&Discoverable account: "
-msgstr "Cuenta visible "
+msgstr "Cuenta &visible "
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:157
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{} p&osts. Click to open posts timeline"
-msgstr "{} publicaciones. Presiona para abrir línea temporal"
+msgstr "{} p&ublicaciones. Presiona para abrir línea temporal"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:162
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{} &following. Click to open Following timeline"
-msgstr "{} siguiendo. Presiona para abrir línea temporal"
+msgstr "{} &siguiendo. Presiona para abrir línea temporal"
 
 #: wxUI/dialogs/mastodon/showUserProfile.py:166
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{} fo&llowers. Click to open followers timeline"
-msgstr "{} seguidores. Presiona para abrir línea temporal"
+msgstr "{} s&eguidores. Presiona para abrir línea temporal"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:43
-#, fuzzy
 msgid "&Display Name"
-msgstr "Nombre"
+msgstr "N&ombre"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:50
-#, fuzzy
 msgid "&Bio"
-msgstr "Biografía"
+msgstr "&Biografía"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:58
 msgid "Header"
 msgstr "Imagen de cabecera"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:71
-#, fuzzy
 msgid "Change &header"
-msgstr "Cambiar imagen de cabecera"
+msgstr "Cambiar imagen de &cabecera"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:79
 msgid "Avatar"
 msgstr "Avatar"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:92
-#, fuzzy
 msgid "Change &avatar"
-msgstr "Cambiar imagen de avatar"
+msgstr "Cambiar imagen de &avatar"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:102
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Field &{}: Label"
-msgstr "Campo {}. Nombre"
+msgstr "Campo {}. &Nombre"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:110
 msgid "Content"
 msgstr "Contenido"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:120
-#, fuzzy
 msgid "&Private account"
-msgstr "Cuenta privada"
+msgstr "Cuenta &privada"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:122
-#, fuzzy
 msgid "&Bot account"
-msgstr "Cuenta bot"
+msgstr "Cuenta &bot"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:124
-#, fuzzy
 msgid "&Discoverable account"
-msgstr "Cuenta visible"
+msgstr "Cuenta &visible"
 
 #: wxUI/dialogs/mastodon/updateProfile.py:167
 msgid "Select header image - max 2MB"
@@ -4562,4 +4499,3 @@ msgstr "Siguiendo"
 
 #~ msgid "Read long posts in GUI"
 #~ msgstr ""
-
