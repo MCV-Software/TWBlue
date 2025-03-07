@@ -47,3 +47,6 @@ def cant_update_source() -> wx.MessageDialog:
 
 def invalid_instance():
     return wx.MessageDialog(None, _("the provided instance is invalid. Please try again."), _("Invalid instance"), wx.ICON_ERROR).ShowModal()
+
+def error_adding_filter():
+    return wx.MessageDialog(None, _("TWBlue was unable to add or update the filter with the specified settings. Please try again."), _("Error"), wx.ICON_ERROR).ShowModal()

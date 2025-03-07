@@ -14,7 +14,7 @@ from wxUI import commonMessageDialogs
 from wxUI.dialogs.mastodon import updateProfile as update_profile_dialogs
 from wxUI.dialogs.mastodon import showUserProfile, communityTimeline
 from sessions.mastodon.utils import html_filter
-from . import userActions, settings
+from . import userActions, settings, filters
 
 log = logging.getLogger("controller.mastodon.handler")
 
@@ -51,7 +51,7 @@ class Handler(object):
             favs=None,
             # In buffer Menu.
             community_timeline =_("Create c&ommunity timeline"),
-            filter=None,
+            filter=_("Create a &filter"),
             manage_filters=None
         )
         # Name for the "tweet" menu in the menu bar.
@@ -406,3 +406,12 @@ class Handler(object):
         buffer.session.settings.write()
         communities_position =controller.view.search("communities", buffer.session.get_name())
         pub.sendMessage("createBuffer", buffer_type="CommunityBuffer", session_type=buffer.session.type, buffer_title=title, parent_tab=communities_position, start=True, kwargs=dict(parent=controller.view.nb, function="timeline", name=tl_info, sessionObject=buffer.session, account=buffer.session.get_name(), sound="tweet_timeline.ogg", community_url=url, timeline=bufftype))
+
+    def create_filter(self, controller, buffer):
+        filterController = filters.FilterController(buffer.session)
+        try:
+            filter = filterController.get_response()
+        except MastodonError as error:
+            log.exception("Error adding filter.")
+            commonMessageDialogs.error_adding_filter()
+            return self.create_filter(controller=controller, buffer=buffer)

@@ -91,7 +91,7 @@ class FilterController(object):
             'context': [],
             'filter_action': self.dialog.actions[self.dialog.action_choice.GetSelection()],
             'expires_in': self.get_expires_in_seconds(selection=self.dialog.expiration_choice.GetSelection(), value=self.dialog.expiration_value.GetValue()),
-            'keywords': self.keywords
+            'keywords_attributes': self.keywords
         }
         for context, checkbox in self.dialog.context_checkboxes.items():
             if checkbox.GetValue():
@@ -99,4 +99,9 @@ class FilterController(object):
         return filter_data
 
     def get_response(self):
-        return self.dialog.ShowModal()
+        response = self.dialog.ShowModal()
+        if response == widgetUtils.OK:
+            filter_data = self.get_filter_data()
+            result = self.session.api.create_filter_v2(**filter_data)
+            return result
+        return None
