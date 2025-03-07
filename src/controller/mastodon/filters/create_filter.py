@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import widgetUtils
-from wxUI.dialogs.mastodon import filters as dialogs
+from wxUI.dialogs.mastodon.filters import create_filter as dialog
 from mastodon import MastodonAPIError
 
-class FilterController(object):
+class CreateFilterController(object):
     def __init__(self, session, filter_data=None):
-        super(FilterController, self).__init__()
+        super(CreateFilterController, self).__init__()
         self.session = session
         self.filter_data = filter_data
-        self.dialog = dialogs.MastodonFilterDialog(parent=None)
+        self.dialog = dialog.CreateFilterDialog(parent=None)
         if self.filter_data is not None:
             self.keywords = self.filter_data.get("keywords")
             self.load_filter_data()
@@ -72,6 +72,7 @@ class FilterController(object):
     def load_filter_data(self):
         if 'title' in self.filter_data:
             self.dialog.name_ctrl.SetValue(self.filter_data['title'])
+            self.dialog.SetTitle(_("Update Filter: {}").format(self.filter_data['title']))
         if 'context' in self.filter_data:
             for context in self.filter_data['context']:
                 if context in self.dialog.context_checkboxes:
@@ -81,6 +82,7 @@ class FilterController(object):
             self.dialog.action_choice.SetSelection(action_index)
         if 'expires_in' in self.filter_data:
             self.set_expires_in(self.filter_data['expires_in'])
+        print(self.filter_data)
         if 'keywords' in self.filter_data:
             self.keywords = self.filter_data['keywords']
             self.dialog.keyword_panel.set_keywords(self.filter_data['keywords'])
@@ -102,6 +104,9 @@ class FilterController(object):
         response = self.dialog.ShowModal()
         if response == widgetUtils.OK:
             filter_data = self.get_filter_data()
-            result = self.session.api.create_filter_v2(**filter_data)
+            if self.filter_data == None:
+                result = self.session.api.create_filter_v2(**filter_data)
+            else:
+                result = self.session.api.update_filter_v2(filter_id=self.filter_data['id'], **filter_data)
             return result
         return None

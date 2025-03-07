@@ -166,6 +166,7 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_aliases, self.view.manageAliases)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.report_error, self.view.reportError)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.create_filter, self.view.filter)
+        widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_filters, self.view.manage_filters)
 
     def set_systray_icon(self):
         self.systrayIcon = sysTrayIcon.SysTrayIcon()
@@ -1162,3 +1163,9 @@ class Controller(object):
         handler = self.get_handler(type=buffer.session.type)
         if handler and hasattr(handler, 'create_filter'):
             handler.create_filter(self, buffer)
+
+    def manage_filters(self, *args, **kwargs):
+        buffer = self.get_best_buffer()
+        handler = self.get_handler(type=buffer.session.type)
+        if handler and hasattr(handler, 'manage_filters'):
+            handler.manage_filters(self, buffer)

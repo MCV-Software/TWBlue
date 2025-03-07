@@ -50,3 +50,12 @@ def invalid_instance():
 
 def error_adding_filter():
     return wx.MessageDialog(None, _("TWBlue was unable to add or update the filter with the specified settings. Please try again."), _("Error"), wx.ICON_ERROR).ShowModal()
+
+def error_loading_filters():
+    return wx.MessageDialog(None, _("TWBlue was unable to load your filters from the instance. Please try again."), _("Error"), wx.ICON_ERROR).ShowModal()
+
+def remove_filter():
+    dlg = wx.MessageDialog(None, _("Do you really want to delete this filter ?"), _("Delete filter"), wx.ICON_QUESTION|wx.YES_NO)
+    return dlg.ShowModal()
+def error_removing_filters():
+    return wx.MessageDialog(None, _("TWBlue was unable to remove the filter you specified. Please try again."), _("Error"), wx.ICON_ERROR).ShowModal()
