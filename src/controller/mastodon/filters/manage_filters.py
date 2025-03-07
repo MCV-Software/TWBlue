@@ -43,6 +43,7 @@ class ManageFiltersController(object):
         try:
             filters = self.session.api.filters_v2()
             self.dialog.filter_list.DeleteAllItems()
+            self.on_filter_deselected(None)
             for i, filter_obj in enumerate(filters):
                 index = self.dialog.filter_list.InsertItem(i, filter_obj.title)
                 keyword_count = len(filter_obj.keywords)
