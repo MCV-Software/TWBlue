@@ -121,9 +121,13 @@ class BaseBuffer(base.Buffer):
             except Exception as e:
                 log.exception("Error %s" % (str(e)))
                 return
-            if pinned_posts != None and len(pinned_posts) > 0:
-                amount_of_pinned_posts = self.session.order_buffer(self.name, pinned_posts)
+            if self.session.settings["general"]["reverse_timelines"]:
+                if pinned_posts != None and len(pinned_posts) > 0:
+                    amount_of_pinned_posts = self.session.order_buffer(self.name, pinned_posts)
             number_of_items = self.session.order_buffer(self.name, results)
+            if self.session.settings["general"]["reverse_timelines"] == False:
+                if pinned_posts != None and len(pinned_posts) > 0:
+                    amount_of_pinned_posts = self.session.order_buffer(self.name, pinned_posts)
             if pinned_posts != None and len(pinned_posts) > 0:
                 number_of_items = amount_of_pinned_posts+number_of_items
             log.debug("Number of items retrieved: %d" % (number_of_items,))
