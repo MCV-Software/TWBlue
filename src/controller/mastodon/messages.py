@@ -254,7 +254,6 @@ class post(messages.basicMessage):
         langs = self.session.supported_languages
         lang = self.message.language.GetSelection()
         if lang >= 0:
-            print(langs[lang].code)
             return langs[lang].code
         return None
 

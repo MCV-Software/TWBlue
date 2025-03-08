@@ -572,7 +572,6 @@ class BaseBuffer(base.Buffer):
         except MastodonNotFoundError:
             output.speak(_("No status found with that ID"))
             return
-        # print(item)
         msg = messages.viewPost(self.session, item, offset_hours=self.session.db["utc_offset"], item_url=self.get_item_url(item=item))
 
     def ocr_image(self):
