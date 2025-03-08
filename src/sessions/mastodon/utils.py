@@ -1,6 +1,7 @@
 import re
 import demoji
 from html.parser import HTMLParser
+from datetime import datetime, timezone
 
 url_re = re.compile('<a\s*href=[\'|"](.*?)[\'"].*?>')
 
@@ -91,3 +92,59 @@ def demoji_user(name, settings):
         user = re.sub(r":(.*?):", "", user)
         return user
     return name
+
+def get_current_context(buffer: str) -> str:
+    """ Gets the name of a buffer and returns the context it belongs to. useful for filtering. """
+    if buffer == "home_timeline":
+        return "home"
+    elif buffer == "mentions" or buffer == "notifications":
+        return "notifications"
+
+def evaluate_filters(post: dict, current_context: str) -> str | None:
+    """
+    Evaluates the 'filtered' attribute of a Mastodon post to determine its visibility,
+    considering the current context, expiration, and matches (keywords or status).
+
+    Parameters:
+      post (dict): A dictionary representing a Mastodon post.
+      current_context (str): The context in which the post is displayed 
+                             (e.g., "home", "notifications", "public", "thread", or "profile").
+
+    Returns:
+      - "hide" if any applicable filter indicates the post should be hidden.
+      - A string with the filter's title if an applicable "warn" filter is present.
+      - None if no applicable filters are found, meaning the post should be shown normally.
+    """
+    filters = post.get("filtered", None)
+    if filters == None:
+        return
+    warn_filter_title = None
+    now = datetime.now(timezone.utc)
+    for result in filters:
+        filter_data = result.get("filter", {})
+        # Check if the filter applies to the current context.
+        filter_contexts = filter_data.get("context", [])
+        if current_context not in filter_contexts:
+            continue  # Skip filters not applicable in this context
+        # Check if the filter has expired.
+        expires_at = filter_data.get("expires_at")
+        if expires_at is not None:
+            # If expires_at is a string, attempt to parse it.
+            if isinstance(expires_at, str):
+                try:
+                    expiration_dt = datetime.fromisoformat(expires_at)
+                except ValueError:
+                    continue  # Skip if the date format is invalid
+            else:
+                expiration_dt = expires_at
+            if expiration_dt < now:
+                continue  # Skip expired filters
+        action = filter_data.get("filter_action", "")
+        if action == "hide":
+            return "hide"
+        elif action == "warn":
+            title = filter_data.get("title", "")
+            warn_filter_title = title if title else "warn"
+    if warn_filter_title:
+        return warn_filter_title
+    return None

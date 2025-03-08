@@ -170,6 +170,9 @@ class Session(base.baseSession):
                     log.error("Ignoring an older tweet... Last id: {0}, tweet id: {1}".format(last_id, i.id))
                     continue
             if utils.find_item(i, self.db[name]) == None:
+                filter_status = utils.evaluate_filters(post=i, current_context=utils.get_current_context(name))
+                if filter_status == "hide":
+                    continue
                 if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
                 else: objects.insert(0, i)
                 num = num+1

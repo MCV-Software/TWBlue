@@ -17,6 +17,9 @@ def compose_post(post, db, settings, relative_times, show_screen_names, safe=Tru
         text = _("Boosted from @{}: {}").format(post.reblog.account.acct, templates.process_text(post.reblog, safe=safe))
     else:
         text = templates.process_text(post, safe=safe)
+    filtered = utils.evaluate_filters(post=post, current_context="home")
+    if filtered != None:
+        text = _("hidden by filter {}").format(filtered)
     source = post.get("application", "")
     # "" means remote user, None for legacy apps so we should cover both sides.
     if source != None and source != "":
@@ -73,4 +76,7 @@ def compose_notification(notification, db, settings, relative_times, show_screen
         text = _("A poll in which you have voted has expired: {status}").format(status=",".join(compose_post(notification.status, db, settings, relative_times, show_screen_names, safe=safe)))
     elif notification.type == "follow_request":
         text = _("{username} wants to follow you.").format(username=user)
+    filtered = utils.evaluate_filters(post=notification, current_context="notifications")
+    if filtered != None:
+        text = _("hidden by filter {}").format(filtered)
     return [user, text, ts]
