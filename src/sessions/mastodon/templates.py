@@ -90,7 +90,7 @@ def render_post(post, template, settings, relative_times=False, offset_hours=0):
         image_descriptions = process_image_descriptions(post.media_attachments)
     available_data.update(image_descriptions=image_descriptions)
     # Process if the post is pinned
-    if post.pinned:
+    if post.get("pinned", False):
         pinned = _("Pinned.")
     else:
         pinned = ""
