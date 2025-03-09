@@ -4,15 +4,16 @@ msgstr ""
 "Project-Id-Version: TW Blue 0.84\n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
 "POT-Creation-Date: 2025-03-09 00:55+0000\n"
-"PO-Revision-Date: 2025-03-07 17:15+0000\n"
+"PO-Revision-Date: 2025-03-10 03:23+0000\n"
 "Last-Translator: Manuel Cortez <manuel@manuelcortez.net>\n"
+"Language-Team: Spanish <https://weblate.mcvsoftware.com/projects/twblue/"
+"twblue/es/>\n"
 "Language: es\n"
-"Language-Team: Spanish "
-"<https://weblate.mcvsoftware.com/projects/twblue/twblue/es/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.1\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: languageHandler.py:61
@@ -734,14 +735,14 @@ msgid "Direct Messages"
 msgstr "Mensajes directos"
 
 #: controller/mastodon/filters/create_filter.py:75
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Update Filter: {}"
-msgstr "Actualizar perfil"
+msgstr "Actualizar filtro: {}"
 
 #: controller/mastodon/filters/manage_filters.py:57
 #: wxUI/dialogs/mastodon/filters/create_filter.py:90
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: extra/SoundsTutorial/soundsTutorial_constants.py:4
 msgid "Audio tweet."
@@ -1502,7 +1503,7 @@ msgstr "Impulsado de @{}: {}"
 #: sessions/mastodon/templates.py:81 sessions/mastodon/templates.py:176
 #, python-brace-format
 msgid "hidden by filter {}"
-msgstr ""
+msgstr "Oculto por el filtro {}"
 
 #: sessions/mastodon/compose.py:36 sessions/mastodon/templates.py:28
 msgid "dddd, MMMM D, YYYY H:m:s"
@@ -1641,9 +1642,8 @@ msgid "Followers only"
 msgstr "Solo seguidores"
 
 #: sessions/mastodon/templates.py:94
-#, fuzzy
 msgid "Pinned."
-msgstr "Copiado"
+msgstr "Publicación fijada"
 
 #: sessions/mastodon/templates.py:157
 #, python-brace-format
@@ -1909,26 +1909,30 @@ msgid ""
 "TWBlue was unable to add or update the filter with the specified "
 "settings. Please try again."
 msgstr ""
+"TWBlue no ha podido crear o actualizar el filtro con las opciones "
+"proporcionadas. Por favor, prueba de nuevo."
 
 #: wxUI/commonMessageDialogs.py:55
 msgid ""
 "TWBlue was unable to load your filters from the instance. Please try "
 "again."
 msgstr ""
+"TWBlue no ha podido cargar los filtros desde tu instancia. Por favor, prueba "
+"de nuevo."
 
 #: wxUI/commonMessageDialogs.py:58
-#, fuzzy
 msgid "Do you really want to delete this filter ?"
-msgstr "¿Realmente deseas eliminar esta cuenta?"
+msgstr "¿Realmente deseas eliminar este filtro?"
 
 #: wxUI/commonMessageDialogs.py:58
-#, fuzzy
 msgid "Delete filter"
-msgstr "Crear &filtro"
+msgstr "Eliminar filtro"
 
 #: wxUI/commonMessageDialogs.py:61
 msgid "TWBlue was unable to remove the filter you specified. Please try again."
 msgstr ""
+"TWBlue no ha podido eliminar el filtro especificado. Por favor, prueba de "
+"nuevo."
 
 #: wxUI/sysTrayIcon.py:36 wxUI/view.py:25
 msgid "&Global settings"
@@ -3202,123 +3206,108 @@ msgid "Fo&llowing"
 msgstr "Siguiendo"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:12
-#, fuzzy
 msgid "Keyword"
-msgstr "Tecla"
+msgstr "Palabra clave"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:13
 #: wxUI/dialogs/mastodon/filters/create_filter.py:24
 msgid "Whole word"
-msgstr ""
+msgstr "Palabra completa"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:19
 msgid "Keyword:"
-msgstr ""
+msgstr "Palabra clave:"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:25
 #: wxUI/dialogs/mastodon/filters/manage_filters.py:22
-#, fuzzy
 msgid "Add"
-msgstr "Añadir..."
+msgstr "Añadir"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:34
 msgid "Palabras clave a filtrar:"
 msgstr ""
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:74
-#, fuzzy
 msgid "New filter"
-msgstr "Gestionar &filtros"
+msgstr "Nuevo filtro"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:78
-#, fuzzy
 msgid "Home timeline"
-msgstr "Líneas temporales"
+msgstr "Línea principal"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:79
 msgid "Public statuses"
-msgstr ""
+msgstr "Público"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:81
-#, fuzzy
 msgid "Threads"
-msgstr "Listo"
+msgstr "Hilos"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:82
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Profiles"
-msgstr "Perfil de {}"
+msgstr "Perfiles"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:86
-#, fuzzy
 msgid "Hide posts"
-msgstr "Publicaciones"
+msgstr "Ocultar publicaciones"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:87
-#, fuzzy
 msgid "Set a content warning to posts"
-msgstr "Advertencia de contenido"
+msgstr "Agregar advertencia de contenido a las publicaciones"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:91
-#, fuzzy
 msgid "Hours"
-msgstr "6 horas"
+msgstr "horas"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:92
-#, fuzzy
 msgid "Days"
-msgstr "7 días"
+msgstr "días"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:93
 msgid "Weeks"
-msgstr ""
+msgstr "semanas"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:94
 msgid "months"
-msgstr ""
+msgstr "meses"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:97
-#, fuzzy
 msgid "Title:"
-msgstr "Archivo"
+msgstr "Título:"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:104
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Apply to:"
-msgstr "Responder a {}"
+msgstr "Aplicar a:"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:114
-#, fuzzy
 msgid "Action:"
-msgstr "Acción"
+msgstr "Acción:"
 
 #: wxUI/dialogs/mastodon/filters/create_filter.py:122
 msgid "Expires in:"
-msgstr ""
+msgstr "Expira en:"
 
 #: wxUI/dialogs/mastodon/filters/manage_filters.py:10
-#, fuzzy
 msgid "Filters"
-msgstr "Archivo"
+msgstr "Filtros"
 
 #: wxUI/dialogs/mastodon/filters/manage_filters.py:15
-#, fuzzy
 msgid "Title"
-msgstr "Archivo"
+msgstr "Título"
 
 #: wxUI/dialogs/mastodon/filters/manage_filters.py:16
 msgid "Keywords"
-msgstr ""
+msgstr "Palabras clave"
 
 #: wxUI/dialogs/mastodon/filters/manage_filters.py:17
-#, fuzzy
 msgid "Contexts"
-msgstr "Contexto"
+msgstr "Contextos"
 
 #: wxUI/dialogs/mastodon/filters/manage_filters.py:19
-#, fuzzy
 msgid "Expires"
-msgstr "Extras"
+msgstr "Expiración"
 
 #~ msgid "Unable to find address in OpenStreetMap."
 #~ msgstr "Imposible encontrar dirección en Open Street Map."
@@ -4677,4 +4666,3 @@ msgstr "Extras"
 
 #~ msgid "Read long posts in GUI"
 #~ msgstr ""
-
