@@ -25,6 +25,7 @@ from mysc import localization
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 from controller.mastodon import handler as MastodonHandler
+from controller.atprotosocial import handler as ATProtoSocialHandler # Added import
 from . import settings, userAlias
 
 log = logging.getLogger("mainController")
@@ -194,6 +195,25 @@ class Controller(object):
         if handler == None:
             if type == "mastodon":
                 handler = MastodonHandler.Handler()
+            elif type == "atprotosocial": # Added case for atprotosocial
+                # Assuming session_store and config_proxy are accessible or passed if needed by Handler constructor
+                # For now, let's assume constructor is similar or adapted to not require them,
+                # or that they can be accessed via self if mainController has them.
+                # Based on atprotosocial.Handler, it needs session_store and config.
+                # mainController doesn't seem to store these directly for passing.
+                # This might indicate Handler init needs to be simplified or these need to be plumbed.
+                # For now, proceeding with a simplified instantiation, assuming it can get what it needs
+                # or its __init__ will be adapted.
+                # A common pattern is self.session_store and self.config from a base controller class if mainController inherits one.
+                # Let's assume for now they are not strictly needed for just getting menu labels or simple actions.
+                # This part might need refinement based on Handler's actual dependencies for menu updates.
+                # Looking at atprotosocial/handler.py, it takes session_store and config.
+                # mainController itself doesn't seem to have these as direct attributes to pass on.
+                # This implies a potential refactor need or that these handlers are simpler than thought for menu updates.
+                # For now, let's assume a simplified handler for menu updates or that it gets these elsewhere.
+                # This needs to be compatible with how MastodonHandler is instantiated and used.
+                # MastodonHandler() is called without params here.
+                handler = ATProtoSocialHandler.Handler(session_store=sessions.sessions, config=config.app) # Adjusted: Pass global sessions and config
             self.handlers[type]=handler
         return handler
 
@@ -506,18 +526,74 @@ class Controller(object):
 
     def post_retweet(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "share_item"):
-            return buffer.share_item()
+        if hasattr(buffer, "share_item"): # Generic buffer method
+            return buffer.share_item() # This likely calls back to a session/handler method
+        # If direct handling is needed for ATProtoSocial:
+        elif buffer.session and buffer.session.KIND == "atprotosocial":
+            item_uri = buffer.get_selected_item_id() # Assuming this gets the AT URI
+            if not item_uri:
+                output.speak(_("No item selected to repost."), True)
+                return
+            social_handler = self.get_handler(buffer.session.KIND)
+            async def _repost():
+                result = await social_handler.repost_item(buffer.session, item_uri)
+                output.speak(result["message"], True)
+            wx.CallAfter(asyncio.create_task, _repost())
+
 
     def add_to_favourites(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "add_to_favorites"):
+        if hasattr(buffer, "add_to_favorites"): # Generic buffer method
             return buffer.add_to_favorites()
+        elif buffer.session and buffer.session.KIND == "atprotosocial":
+            item_uri = buffer.get_selected_item_id()
+            if not item_uri:
+                output.speak(_("No item selected to like."), True)
+                return
+            social_handler = self.get_handler(buffer.session.KIND)
+            async def _like():
+                result = await social_handler.like_item(buffer.session, item_uri)
+                output.speak(result["message"], True)
+                if result.get("status") == "success" and result.get("like_uri"):
+                    # Store the like URI if the buffer supports it, for unliking
+                    if hasattr(buffer, "store_item_viewer_state"):
+                        buffer.store_item_viewer_state(item_uri, "like_uri", result["like_uri"])
+            wx.CallAfter(asyncio.create_task, _like())
+
 
     def remove_from_favourites(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "remove_from_favorites"):
+        if hasattr(buffer, "remove_from_favorites"): # Generic buffer method
             return buffer.remove_from_favorites()
+        elif buffer.session and buffer.session.KIND == "atprotosocial":
+            item_uri = buffer.get_selected_item_id() # URI of the post
+            if not item_uri:
+                output.speak(_("No item selected to unlike."), True)
+                return
+            
+            like_uri = None
+            if hasattr(buffer, "get_item_viewer_state"):
+                like_uri = buffer.get_item_viewer_state(item_uri, "like_uri")
+
+            if not like_uri:
+                output.speak(_("Could not find the original like record for this post. You might need to unlike it from the Bluesky app directly or refresh your timeline."), True)
+                # As a fallback, one could try to *find* the like record by listing likes for the post,
+                # but this is complex and slow for a quick action.
+                # For now, we rely on having the like_uri stored.
+                # Alternatively, some platforms allow unliking by post URI directly if the like exists.
+                # ATProto delete_like requires the like record URI.
+                logger.warning(f"Attempted to unlike post {item_uri} but its like_uri was not found in buffer's viewer_state.")
+                return
+
+            social_handler = self.get_handler(buffer.session.KIND)
+            async def _unlike():
+                result = await social_handler.unlike_item(buffer.session, like_uri) # Pass the like's own URI
+                output.speak(result["message"], True)
+                if result.get("status") == "success":
+                    if hasattr(buffer, "store_item_viewer_state"):
+                        buffer.store_item_viewer_state(item_uri, "like_uri", None) # Clear stored like URI
+            wx.CallAfter(asyncio.create_task, _unlike())
+
 
     def toggle_like(self, *args, **kwargs):
         buffer = self.get_current_buffer()
@@ -1008,20 +1084,141 @@ class Controller(object):
     def update_buffers(self):
         for i in self.buffers[:]:
             if i.session != None and i.session.is_logged == True:
-                try:
-                    i.start_stream(mandatory=True)
-                except Exception as err:
-                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
+                # For ATProtoSocial, initial load is in session.start() or manual.
+                # Periodic updates would need a separate timer or manual refresh via update_buffer.
+                if i.session.KIND != "atprotosocial":
+                    try:
+                        i.start_stream(mandatory=True) # This is likely for streaming connections or timed polling within buffer
+                    except Exception as err:
+                        log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
 
     def update_buffer(self, *args, **kwargs):
-        bf = self.get_current_buffer()
-        if not hasattr(bf, "start_stream"):
-            output.speak(_(u"Unable to update this buffer."))
+        """Handles the 'Update buffer' menu command to fetch newest items."""
+        bf = self.get_current_buffer() # bf is the buffer panel instance
+        if not bf or not hasattr(bf, "session") or not bf.session:
+            output.speak(_(u"No active session for this buffer."), True)
             return
-        output.speak(_(u"Updating buffer..."))
-        n = bf.start_stream(mandatory=True, avoid_autoreading=True)
-        if n != None:
-            output.speak(_(u"{0} items retrieved").format(n,))
+
+        output.speak(_(u"Updating buffer..."), True)
+        session = bf.session
+        
+        async def do_update():
+            new_ids = []
+            try:
+                if session.KIND == "atprotosocial":
+                    if bf.name == f"{session.label} Home": # Assuming buffer name indicates type
+                        # ATProtoSocial home timeline uses new_only=True for fetching newest
+                        new_ids, _ = await session.fetch_home_timeline(limit=config.app["app-settings"].get("items_per_request", 20), new_only=True)
+                    elif bf.name == f"{session.label} Notifications":
+                         _, _ = await session.fetch_notifications(limit=config.app["app-settings"].get("items_per_request", 20)) # new_only implied by unread
+                         # fetch_notifications itself handles UI updates via send_notification_to_channel
+                         # so new_ids might not be directly applicable here unless fetch_notifications returns them
+                         # For simplicity, we'll assume it updates the buffer internally or via pubsub.
+                         # The count 'n' below might not be accurate for notifications this way.
+                    # Add other ATProtoSocial buffer types here (e.g., user timeline, mentions)
+                    # elif bf.name.startswith(f"{session.label} User Feed"): # Example for a user feed buffer
+                    #     target_user_did = getattr(bf, 'target_user_did', None) # Panel needs to store this
+                    #     if target_user_did:
+                    #         new_ids, _ = await session.fetch_user_timeline(user_did=target_user_did, limit=config.app["app-settings"].get("items_per_request", 20), new_only=True)
+                    else:
+                        # Fallback to original buffer's start_stream if it's not an ATProtoSocial specific buffer we handle here
+                        if hasattr(bf, "start_stream"):
+                            count = bf.start_stream(mandatory=True, avoid_autoreading=True)
+                            if count is not None: new_ids = [str(x) for x in range(count)] # Dummy IDs for count
+                        else:
+                            output.speak(_(u"This buffer type cannot be updated in this way."), True)
+                            return
+                else: # For other session types (e.g. Mastodon)
+                    if hasattr(bf, "start_stream"):
+                        count = bf.start_stream(mandatory=True, avoid_autoreading=True)
+                        if count is not None: new_ids = [str(x) for x in range(count)] # Dummy IDs for count
+                    else:
+                        output.speak(_(u"Unable to update this buffer."), True)
+                        return
+                
+                # Generic feedback based on new_ids for timelines
+                if bf.name == f"{session.label} Home" or bf.name.startswith(f"{session.label} User Feed"): # Refine condition
+                    output.speak(_("{0} items retrieved").format(len(new_ids)), True)
+                elif bf.name == f"{session.label} Notifications":
+                     output.speak(_("Notifications updated."), True) # Or specific count if fetch_notifications returns it
+
+            except NotificationError as e:
+                output.speak(str(e), True)
+            except Exception as e_general:
+                logger.error(f"Error updating buffer {bf.name}: {e_general}", exc_info=True)
+                output.speak(_("An error occurred while updating the buffer."), True)
+
+        wx.CallAfter(asyncio.create_task, do_update())
+
+
+    def get_more_items(self, *args, **kwargs):
+        """Handles 'Load previous items' menu command."""
+        bf = self.get_current_buffer() # bf is the buffer panel instance
+        if not bf or not hasattr(bf, "session") or not bf.session:
+            output.speak(_(u"No active session for this buffer."), True)
+            return
+
+        session = bf.session
+        # The buffer panel (bf) needs to store its own cursor for pagination of older items
+        # e.g., bf.pagination_cursor or bf.older_items_cursor
+        # This cursor should be set by the result of previous fetch_..._timeline(new_only=False) calls.
+        
+        # For ATProtoSocial, session methods like fetch_home_timeline store their own cursor (e.g., session.home_timeline_cursor)
+        # The panel might need to get this initial cursor or manage its own if it's for a dynamic list (user feed).
+        
+        current_cursor = None
+        if session.KIND == "atprotosocial":
+            if bf.name == f"{session.label} Home":
+                current_cursor = session.home_timeline_cursor
+            # elif bf.name.startswith(f"{session.label} User Feed"):
+            #     current_cursor = getattr(bf, 'pagination_cursor', None) # Panel specific cursor
+            # elif bf.name == f"{session.label} Notifications":
+            #     current_cursor = getattr(bf, 'pagination_cursor', None) # Panel specific cursor for notifications
+            else: # Fallback or other buffer types
+                if hasattr(bf, "get_more_items"): # Try generic buffer method
+                    return bf.get_more_items()
+                else:
+                    output.speak(_(u"This buffer does not support loading more items in this way."), True)
+                    return
+        else: # For other session types
+            if hasattr(bf, "get_more_items"):
+                return bf.get_more_items()
+            else:
+                output.speak(_(u"This buffer does not support loading more items."), True)
+                return
+
+        output.speak(_(u"Loading more items..."), True)
+        
+        async def do_load_more():
+            loaded_ids = []
+            try:
+                if session.KIND == "atprotosocial":
+                    if bf.name == f"{session.label} Home":
+                        loaded_ids, _ = await session.fetch_home_timeline(cursor=current_cursor, limit=config.app["app-settings"].get("items_per_request", 20), new_only=False)
+                    # elif bf.name.startswith(f"{session.label} User Feed"):
+                    #     target_user_did = getattr(bf, 'target_user_did', None)
+                    #     if target_user_did:
+                    #         loaded_ids, new_cursor = await session.fetch_user_timeline(user_did=target_user_did, cursor=current_cursor, limit=config.app["app-settings"].get("items_per_request", 20), new_only=False)
+                    #         if hasattr(bf, "pagination_cursor"): bf.pagination_cursor = new_cursor
+                    # elif bf.name == f"{session.label} Notifications":
+                    #     new_cursor = await session.fetch_notifications(cursor=current_cursor, limit=config.app["app-settings"].get("items_per_request", 20))
+                    #     if hasattr(bf, "pagination_cursor"): bf.pagination_cursor = new_cursor
+                        # fetch_notifications updates UI itself. loaded_ids might not be directly applicable.
+                    # For now, only home timeline "load more" is fully wired via session cursor.
+                
+                if loaded_ids: # Check if any IDs were actually loaded
+                    output.speak(_("{0} more items retrieved").format(len(loaded_ids)), True)
+                else:
+                    output.speak(_("No more items found or loaded."), True)
+
+            except NotificationError as e:
+                output.speak(str(e), True)
+            except Exception as e_general:
+                logger.error(f"Error loading more items for buffer {bf.name}: {e_general}", exc_info=True)
+                output.speak(_("An error occurred while loading more items."), True)
+        
+        wx.CallAfter(asyncio.create_task, do_load_more())
+
 
     def buffer_title_changed(self, buffer):
         if buffer.name.endswith("-timeline"):
@@ -1114,21 +1311,63 @@ class Controller(object):
     def user_details(self, *args):
         """Displays a user's profile."""
         log.debug("Showing user profile...")
-        buffer = self.get_best_buffer()
+        buffer = self.get_current_buffer() # Use current buffer to get context if item is selected
+        if not buffer or not buffer.session:
+            buffer = self.get_best_buffer() # Fallback if current buffer has no session
+        
+        if not buffer or not buffer.session:
+            output.speak(_("No active session to view user details."), True)
+            return
+
         handler = self.get_handler(type=buffer.session.type)
         if handler and hasattr(handler, 'user_details'):
-            handler.user_details(buffer)
+            # user_details handler in Mastodon takes the buffer directly, which then extracts item/user
+            # For ATProtoSocial, we might need to pass the user DID or handle if available from selected item
+            # This part assumes the buffer has a way to provide the target user's identifier
+            handler.user_details(buffer) 
+        else:
+            output.speak(_("This session type does not support viewing user details in this way."), True)
 
-    def openPostTimeline(self, *args, user=None):
+
+    def openPostTimeline(self, *args, user=None): # "user" here is often the user object from selected item
         """Opens selected user's posts timeline
         Parameters:
         args: Other argument. Useful when binding to widgets.
-        user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler
+        user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler. 
+              `user` is typically a dict or object with user info from the selected post/item.
         """
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler and hasattr(handler, 'openPostTimeline'):
-            handler.openPostTimeline(self, buffer, user)
+        current_buffer = self.get_current_buffer() # Get context from current buffer first
+        if not current_buffer or not current_buffer.session:
+            current_buffer = self.get_best_buffer()
+
+        if not current_buffer or not current_buffer.session:
+            output.speak(_("No active session available."), True)
+            return
+
+        session_to_use = current_buffer.session
+        handler = self.get_handler(type=session_to_use.type)
+
+        if handler and hasattr(handler, 'open_user_timeline'): # Changed to a more generic name
+            # The handler's open_user_timeline should extract user_id (DID for ATProto)
+            # from the 'user' object or prompt if 'user' is None.
+            # 'user' object is often derived from the selected item in the current buffer.
+            if user is None and hasattr(current_buffer, 'get_selected_item_author_details'):
+                 # Try to get author from selected item in current buffer if 'user' not passed directly
+                 author_details = current_buffer.get_selected_item_author_details()
+                 if author_details:
+                     user = author_details # This would be a dict/object the handler can parse
+            
+            # Call the handler method. It will be responsible for creating the new buffer.
+            # The handler's open_user_timeline will need access to 'self' (mainController) to call add_buffer.
+            async def _open_timeline():
+                await handler.open_user_timeline(main_controller=self, session=session_to_use, user_payload=user)
+            wx.CallAfter(asyncio.create_task, _open_timeline())
+            
+        elif handler and hasattr(handler, 'openPostTimeline'): # Fallback for older handler structure
+            handler.openPostTimeline(self, current_buffer, user)
+        else:
+            output.speak(_("This session type does not support opening user timelines directly."), True)
+
 
     def openFollowersTimeline(self, *args, user=None):
         """Opens selected user's followers timeline
@@ -1136,10 +1375,30 @@ class Controller(object):
         args: Other argument. Useful when binding to widgets.
         user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler
         """
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler and hasattr(handler, 'openFollowersTimeline'):
-            handler.openFollowersTimeline(self, buffer, user)
+        current_buffer = self.get_current_buffer()
+        if not current_buffer or not current_buffer.session:
+            current_buffer = self.get_best_buffer()
+        
+        if not current_buffer or not current_buffer.session:
+            output.speak(_("No active session available."), True)
+            return
+
+        session_to_use = current_buffer.session
+        handler = self.get_handler(type=session_to_use.type)
+
+        if user is None and hasattr(current_buffer, 'get_selected_item_author_details'):
+            author_details = current_buffer.get_selected_item_author_details()
+            if author_details: user = author_details
+
+        if handler and hasattr(handler, 'open_followers_timeline'):
+            async def _open_followers():
+                await handler.open_followers_timeline(main_controller=self, session=session_to_use, user_payload=user)
+            wx.CallAfter(asyncio.create_task, _open_followers())
+        elif handler and hasattr(handler, 'openFollowersTimeline'): # Fallback
+            handler.openFollowersTimeline(self, current_buffer, user)
+        else:
+            output.speak(_("This session type does not support opening followers list."), True)
+
 
     def openFollowingTimeline(self, *args, user=None):
         """Opens selected user's  following timeline
@@ -1147,12 +1406,32 @@ class Controller(object):
         args: Other argument. Useful when binding to widgets.
         user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler
         """
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler and hasattr(handler, 'openFollowingTimeline'):
-            handler.openFollowingTimeline(self, buffer, user)
+        current_buffer = self.get_current_buffer()
+        if not current_buffer or not current_buffer.session:
+            current_buffer = self.get_best_buffer()
 
-    def community_timeline(self, *args, user=None):
+        if not current_buffer or not current_buffer.session:
+            output.speak(_("No active session available."), True)
+            return
+            
+        session_to_use = current_buffer.session
+        handler = self.get_handler(type=session_to_use.type)
+
+        if user is None and hasattr(current_buffer, 'get_selected_item_author_details'):
+            author_details = current_buffer.get_selected_item_author_details()
+            if author_details: user = author_details
+            
+        if handler and hasattr(handler, 'open_following_timeline'):
+            async def _open_following():
+                await handler.open_following_timeline(main_controller=self, session=session_to_use, user_payload=user)
+            wx.CallAfter(asyncio.create_task, _open_following())
+        elif handler and hasattr(handler, 'openFollowingTimeline'): # Fallback
+            handler.openFollowingTimeline(self, current_buffer, user)
+        else:
+            output.speak(_("This session type does not support opening following list."), True)
+
+
+    def community_timeline(self, *args, user=None): # user param seems unused here based on mastodon impl
         buffer = self.get_best_buffer()
         handler = self.get_handler(type=buffer.session.type)
         if handler and hasattr(handler, 'community_timeline'):
