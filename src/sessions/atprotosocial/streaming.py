@@ -81,7 +81,7 @@ class ATProtoSocialStreaming:
 
 
             # await self._firehose_client.start(on_message_handler)
-            
+
             # Placeholder loop to simulate receiving events
             while not self._should_stop:
                 await asyncio.sleep(1)
@@ -174,7 +174,7 @@ class ATProtoSocialStreaming:
     # For Bluesky Firehose, this might not be applicable as you usually connect and filter client-side.
     # However, if there were different Firehose endpoints (e.g., one for public posts, one for user-specific events),
     # this class might manage multiple connections or re-establish with new parameters.
-    
+
     # Example of how events might be processed (highly simplified):
     # This would be called by the on_message_handler in _connect
     # async def _process_firehose_message(self, message: models.ComAtprotoSyncSubscribeRepos.Message):

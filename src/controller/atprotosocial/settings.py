@@ -26,7 +26,7 @@ class ATProtoSocialSettingsForm(Form):
     """
     # Example fields - these should align with what ATProtoSocialSession.get_settings_inputs defines
     # and what ATProtoSocialSession.get_configurable_values expects for its config.
-    
+
     # instance_url = TextField(
     #     _("Instance URL"),
     #     default="https://bsky.social", # Default PDS for Bluesky
@@ -45,7 +45,7 @@ class ATProtoSocialSettingsForm(Form):
     )
     # Add more fields as needed for ATProtoSocial configuration.
     # For example, if there were specific notification settings, content filters, etc.
-    
+
     submit = SubmitField(_("Save ATProtoSocial Settings"))
 
 
@@ -62,7 +62,7 @@ async def get_settings_form(
         # form_data["instance_url"] = session.config_get("api_base_url", "https://bsky.social")
         form_data["handle"] = session.config_get("handle", "")
         # App password should not be pre-filled for security.
-        form_data["app_password"] = "" 
+        form_data["app_password"] = ""
     elif config: # Fallback to persisted config if no active session
         # form_data["instance_url"] = config.api_base_url.get("https://bsky.social")
         form_data["handle"] = config.handle.get("")
@@ -109,7 +109,7 @@ async def process_settings_form(
             # await session.stop() # Stop it
             # # Update session instance with new values directly or rely on it re-reading config
             # session.api_base_url = form.instance_url.data
-            # session.handle = form.handle.data 
+            # session.handle = form.handle.data
             # # App password should be handled carefully, session might need to re-login
             # await session.start() # Restart with new settings
             # Or, more simply, the session might have a reconfigure method:

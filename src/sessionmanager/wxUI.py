@@ -53,10 +53,10 @@ class sessionManagerWindow(wx.Dialog):
         menu = wx.Menu()
         mastodon = menu.Append(wx.ID_ANY, _("Mastodon"))
         menu.Bind(wx.EVT_MENU, self.on_new_mastodon_account, mastodon)
-        
+
         atprotosocial = menu.Append(wx.ID_ANY, _("ATProtoSocial (Bluesky)"))
         menu.Bind(wx.EVT_MENU, self.on_new_atprotosocial_account, atprotosocial)
-        
+
         self.PopupMenu(menu, self.new.GetPosition())
 
     def on_new_mastodon_account(self, *args, **kwargs):

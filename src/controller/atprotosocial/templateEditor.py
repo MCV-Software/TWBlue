@@ -34,7 +34,7 @@ class ATProtoSocialTemplateEditor:
         """
         # This would typically fetch template definitions from a default set
         # and override with any user-customized versions from config.
-        
+
         # Example structure for an editable template:
         # templates = [
         #     {
@@ -95,7 +95,7 @@ class ATProtoSocialTemplateEditor:
         """
         # content_to_render = custom_content if custom_content is not None else self._get_template_content(template_id)
         # sample_data = self._get_sample_data_for_template(template_id)
-        
+
         # try:
         #     # Use a templating engine (like Jinja2) to render the preview
         #     # from jinja2 import Template

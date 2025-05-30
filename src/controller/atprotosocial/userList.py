@@ -54,14 +54,14 @@ async def fetch_followers(
     #         # )
     #         # if not response or not response.followers:
     #         #     break
-            
+
     #         # for user_profile_view in response.followers:
     #         #     yield session.util._format_profile_data(user_profile_view) # Use a utility to standardize format
 
     #         # current_cursor = response.cursor
     #         # if not current_cursor or len(response.followers) < limit : # Or however the API indicates end of list
     #         #     break
-            
+
     #         # This is a placeholder loop for demonstration
     #         if current_cursor == "simulated_end_cursor": break # Stop after one simulated page
     #         for i in range(limit):
@@ -83,7 +83,7 @@ async def fetch_followers(
         logger.warning(f"Cannot fetch followers for {user_id}: ATProtoSocial session not ready.")
         # yield {} # Stop iteration if not ready
         return
-        
+
     try:
         followers_data = await session.util.get_followers(user_did=user_id, limit=limit, cursor=cursor)
         if followers_data:
@@ -92,7 +92,7 @@ async def fetch_followers(
                 yield session.util._format_profile_data(user_profile_view)
         else:
             logger.info(f"No followers data returned for user {user_id}.")
-            
+
     except Exception as e:
         logger.error(f"Error in fetch_followers for ATProtoSocial user {user_id}: {e}", exc_info=True)
         # Depending on desired error handling, could raise or yield an error marker
@@ -120,7 +120,7 @@ async def fetch_following(
                 yield session.util._format_profile_data(user_profile_view)
         else:
             logger.info(f"No following data returned for user {user_id}.")
-            
+
     except Exception as e:
         logger.error(f"Error in fetch_following for ATProtoSocial user {user_id}: {e}", exc_info=True)
 
@@ -129,7 +129,7 @@ async def search_users(
     session: ATProtoSocialSession,
     query: str,
     limit: int = 20,
-    cursor: str | None = None 
+    cursor: str | None = None
 ) -> AsyncGenerator[ATProtoSocialUserListItem, None]:
     """
     Searches for users on ATProtoSocial based on a query string.
@@ -147,7 +147,7 @@ async def search_users(
                 yield session.util._format_profile_data(user_profile_view)
         else:
             logger.info(f"No users found for search term '{query}'.")
-            
+
     except Exception as e:
         logger.error(f"Error in search_users for ATProtoSocial query '{query}': {e}", exc_info=True)
 
@@ -183,12 +183,12 @@ async def get_user_list_paginated(
         else:
             logger.error(f"Unknown list_type: {list_type}")
             return [], None
-            
+
     except Exception as e:
         logger.error(f"Error fetching paginated user list '{list_type}' for '{identifier}': {e}", exc_info=True)
         # Optionally re-raise or return empty with no cursor to indicate error
-        return [], None 
-        
+        return [], None
+
     return users_list, next_cursor
 
 
@@ -200,7 +200,7 @@ async def get_user_profile_details(session: ATProtoSocialSession, user_ident: st
     if not session.is_ready():
         logger.warning(f"Cannot get profile for {user_ident}: ATProtoSocial session not ready.")
         return None
-    
+
     try:
         profile_view_detailed = await session.util.get_user_profile(user_ident=user_ident)
         if profile_view_detailed:

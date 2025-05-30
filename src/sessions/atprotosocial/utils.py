@@ -36,7 +36,7 @@ class ATProtoSocialUtils:
         self._own_handle: str | None = self.session.db.get("handle") or self.session.config_get("handle")
 
     # --- Client Initialization and Management ---
-    
+
     async def _get_client(self) -> AsyncClient | None:
         """Returns the authenticated ATProto AsyncClient from the session."""
         if self.session.client and self.session.is_ready(): # is_ready checks if client is authenticated
@@ -46,7 +46,7 @@ class ATProtoSocialUtils:
             if not self._own_handle and self.session.client.me:
                  self._own_handle = self.session.client.me.handle
             return self.session.client
-        
+
         logger.warning("ATProtoSocialUtils: Client not available or not authenticated.")
         # Optionally, try to trigger re-authentication if appropriate,
         # but generally, the caller should ensure session is ready.
@@ -85,7 +85,7 @@ class ATProtoSocialUtils:
         """Returns the authenticated user's DID."""
         if not self._own_did: # If not set during init (e.g. session not fully loaded yet)
             self._own_did = self.session.db.get("did") or self.session.config_get("did")
-        
+
         # Fallback: try to get from client if it's alive and has .me property
         if not self._own_did and self.session.client and self.session.client.me:
             self._own_did = self.session.client.me.did
@@ -131,10 +131,10 @@ class ATProtoSocialUtils:
         try:
             # Prepare core post record
             post_record_data = {'text': text, 'created_at': client.get_current_time_iso()} # SDK handles datetime format
-            
+
             if langs:
                 post_record_data['langs'] = langs
-            
+
             # Facets (mentions, links, tags) should be processed before other embeds
             # as they are part of the main post record.
             facets = await self._extract_facets(text, tags) # Pass client for potential resolutions
@@ -146,7 +146,7 @@ class ATProtoSocialUtils:
             embed_to_add: models.AppBskyFeedPost.Embed | None = None
 
             # Embeds: images, quote posts, external links
-            # ATProto allows one main embed type: app.bsky.embed.images, app.bsky.embed.record (quote/post embed), 
+            # ATProto allows one main embed type: app.bsky.embed.images, app.bsky.embed.record (quote/post embed),
             # or app.bsky.embed.external.
             # Priority: 1. Quote, 2. Images. External embeds are not handled in this example.
             # If both quote and images are provided, quote takes precedence.
@@ -162,12 +162,12 @@ class ATProtoSocialUtils:
                         logger.warning(f"Quote URI provided ({quote_uri}), images will be ignored due to embed priority.")
                 else:
                     logger.warning(f"Could not create strong reference for quote URI: {quote_uri}. Quote will be omitted.")
-            
+
             # Handle media attachments (images) only if no quote embed was successfully created
             if not embed_to_add and media_ids:
                 logger.info(f"Attempting to add image embed with {len(media_ids)} media items.")
                 images_for_embed = []
-                for media_info in media_ids: 
+                for media_info in media_ids:
                     if isinstance(media_info, dict) and media_info.get("blob_ref"):
                         images_for_embed.append(
                             models.AppBskyEmbedImages.Image(
@@ -177,7 +177,7 @@ class ATProtoSocialUtils:
                         )
                 if images_for_embed:
                     embed_to_add = models.AppBskyEmbedImages.Main(images=images_for_embed)
-            
+
             if embed_to_add:
                 post_record_data['embed'] = embed_to_add
 
@@ -213,10 +213,10 @@ class ATProtoSocialUtils:
                 # post_labels.append(models.ComAtprotoLabelDefs.SelfLabel(val=cw_text)) # if cw_text is like "nudity"
             if is_sensitive and not any(l.val == "!warn" for l in post_labels): # Add generic !warn if sensitive and not already added by cw_text
                  post_labels.append(models.ComAtprotoLabelDefs.SelfLabel(val="!warn"))
-            
+
             if post_labels:
                  post_record_data['labels'] = models.ComAtprotoLabelDefs.SelfLabels(values=post_labels)
-            
+
             # Create the post record object
             final_post_record = models.AppBskyFeedPost.Main(**post_record_data)
 
@@ -228,7 +228,7 @@ class ATProtoSocialUtils:
                 )
             )
             logger.info(f"Successfully posted to ATProtoSocial. URI: {response.uri}")
-            return response.uri 
+            return response.uri
         except AtProtocolError as e:
             logger.error(f"Error posting status to ATProtoSocial: {e.error} - {e.message}", exc_info=True)
             raise NotificationError(_("Failed to post: {error} - {message}").format(error=e.error or "Error", message=e.message or "Protocol error")) from e
@@ -246,7 +246,7 @@ class ATProtoSocialUtils:
         if not self.get_own_did():
             logger.error("Cannot delete status: User DID not available.")
             return False
-            
+
         try:
             # Extract rkey from URI. URI format: at://<did>/<collection>/<rkey>
             uri_parts = post_uri.replace("at://", "").split("/")
@@ -289,9 +289,9 @@ class ATProtoSocialUtils:
         try:
             with open(file_path, "rb") as f:
                 image_data = f.read()
-            
+
             # The SDK's upload_blob takes bytes directly.
-            response = await client.com.atproto.repo.upload_blob(image_data, mime_type=mime_type) 
+            response = await client.com.atproto.repo.upload_blob(image_data, mime_type=mime_type)
             if response and response.blob:
                 logger.info(f"Media uploaded successfully: {file_path}, Blob CID: {response.blob.cid}")
                 # Return the actual blob object from the SDK, as it's needed for post creation.
@@ -335,7 +335,7 @@ class ATProtoSocialUtils:
         if not self.get_own_did():
             logger.error("Cannot follow user: Own DID not available.")
             return False
-            
+
         try:
             await client.com.atproto.repo.create_record(
                 models.ComAtprotoRepoCreateRecord.Input(
@@ -368,7 +368,7 @@ class ATProtoSocialUtils:
             if not follow_rkey:
                 logger.warning(f"Could not find follow record for user {user_did} to unfollow.")
                 return False
-            
+
             await client.com.atproto.repo.delete_record(
                 models.ComAtprotoRepoDeleteRecord.Input(
                     repo=self.get_own_did(),
@@ -384,7 +384,7 @@ class ATProtoSocialUtils:
             logger.error(f"Unexpected error unfollowing user {user_did}: {e}", exc_info=True)
         return False
 
-        
+
     # --- Notifications and Timelines (Illustrative - actual implementation is complex) ---
 
     async def get_notifications(self, limit: int = 20, cursor: str | None = None) -> tuple[list[ATNotification], str | None] | None:
@@ -417,7 +417,7 @@ class ATProtoSocialUtils:
             params = models.AppBskyFeedGetTimeline.Params(limit=limit, cursor=cursor)
             if algorithm: # Only add algorithm if it's specified, SDK might default to 'following'
                 params.algorithm = algorithm
-                
+
             response = await client.app.bsky.feed.get_timeline(params)
             # response.feed is a list of FeedViewPost items
             return response.feed, response.cursor
@@ -451,7 +451,7 @@ class ATProtoSocialUtils:
             # Actually, getAuthorFeed's `filter` param does not directly control inclusion of reposts in a way that
             # "posts_and_reposts" would imply. Reposts by the author of things *they reposted* are part of their feed.
             # A common default is 'posts_with_replies'. If we want to see their reposts, that's typically included by default.
-            
+
             current_filter_value = filter
             if current_filter_value not in ['posts_with_replies', 'posts_no_replies', 'posts_and_author_threads', 'posts_with_media']:
                 logger.warning(f"Invalid filter '{current_filter_value}' for getAuthorFeed. Defaulting to 'posts_with_replies'.")
@@ -546,7 +546,7 @@ class ATProtoSocialUtils:
     async def mute_user(self, user_did: str) -> bool:
         """Mutes a user by their DID."""
         client = await self._get_client()
-        if not client: 
+        if not client:
             logger.error("Cannot mute user: ATProto client not available.")
             return False
         try:
@@ -564,7 +564,7 @@ class ATProtoSocialUtils:
     async def unmute_user(self, user_did: str) -> bool:
         """Unmutes a user by their DID."""
         client = await self._get_client()
-        if not client: 
+        if not client:
             logger.error("Cannot unmute user: ATProto client not available.")
             return False
         try:
@@ -584,13 +584,13 @@ class ATProtoSocialUtils:
         Returns the AT URI of the block record on success, None on failure.
         """
         client = await self._get_client()
-        if not client: 
+        if not client:
             logger.error("Cannot block user: ATProto client not available.")
             return None
         if not self.get_own_did():
             logger.error("Cannot block user: Own DID not available.")
             return None
-            
+
         try:
             response = await client.com.atproto.repo.create_record(
                 models.ComAtprotoRepoCreateRecord.Input(
@@ -614,31 +614,31 @@ class ATProtoSocialUtils:
         client = await self._get_client()
         own_did = self.get_own_did()
         if not client or not own_did: return None
-        
+
         cursor = None
         try:
             while True:
                 response = await client.com.atproto.repo.list_records(
                     models.ComAtprotoRepoListRecords.Params(
                         repo=own_did,
-                        collection=ids.AppBskyGraphBlock, 
-                        limit=100, 
+                        collection=ids.AppBskyGraphBlock,
+                        limit=100,
                         cursor=cursor,
                     )
                 )
                 if not response or not response.records:
-                    break 
-                
+                    break
+
                 for record_item in response.records:
                     if record_item.value and isinstance(record_item.value, models.AppBskyGraphBlock.Main):
                         if record_item.value.subject == target_did:
                             return record_item.uri.split("/")[-1] # Extract rkey from URI
-                
+
                 cursor = response.cursor
                 if not cursor:
                     break
             logger.info(f"No active block record found for user {target_did} by {own_did}.")
-            return None 
+            return None
         except AtProtocolError as e:
             logger.error(f"Error listing block records for {own_did} to find {target_did}: {e.error} - {e.message}")
             return None
@@ -652,7 +652,7 @@ class ATProtoSocialUtils:
         if not client or not self.get_own_did():
             logger.error("Cannot repost: client or own DID not available.")
             return None
-        
+
         if not post_cid: # If CID is not provided, try to get it
             strong_ref = await self._get_strong_ref_for_uri(post_uri)
             if not strong_ref:
@@ -723,7 +723,7 @@ class ATProtoSocialUtils:
         if not client or not self.get_own_did():
             logger.error("Cannot delete like: client or own DID not available.")
             return False
-        
+
         try:
             # Extract rkey from like_uri
             # Format: at://<did>/app.bsky.feed.like/<rkey>
@@ -731,9 +731,9 @@ class ATProtoSocialUtils:
             if len(uri_parts) != 3 or uri_parts[1] != ids.AppBskyFeedLike:
                 logger.error(f"Invalid like URI format for deletion: {like_uri}")
                 return False
-            
+
             rkey = uri_parts[2]
-            
+
             await client.com.atproto.repo.delete_record(
                 models.ComAtprotoRepoDeleteRecord.Input(
                     repo=self.get_own_did(),
@@ -757,7 +757,7 @@ class ATProtoSocialUtils:
             logger.error("Cannot repost: client or own DID not available.")
             # raise NotificationError(_("Session not ready. Please log in.")) # Alternative
             return None
-        
+
         if not post_cid: # If CID is not provided, try to get it from the URI
             strong_ref_to_post = await self._get_strong_ref_for_uri(post_uri)
             if not strong_ref_to_post:
@@ -831,7 +831,7 @@ class ATProtoSocialUtils:
         if not client or not self.get_own_did():
             logger.error("Cannot delete like: client or own DID not available.")
             return False
-        
+
         try:
             # Extract rkey from like_uri
             # Format: at://<did>/app.bsky.feed.like/<rkey>
@@ -839,14 +839,14 @@ class ATProtoSocialUtils:
             if len(uri_parts) != 3 or uri_parts[1] != ids.AppBskyFeedLike: # Check collection is correct
                 logger.error(f"Invalid like URI format for deletion: {like_uri}")
                 return False # Or raise error
-            
+
             # own_did_from_uri = uri_parts[0] # This should match self.get_own_did()
             # if own_did_from_uri != self.get_own_did():
             #    logger.error(f"Attempting to delete a like not owned by the current user: {like_uri}")
             #    return False
 
             rkey = uri_parts[2]
-            
+
             await client.com.atproto.repo.delete_record(
                 models.ComAtprotoRepoDeleteRecord.Input(
                     repo=self.get_own_did(), # Must be own DID
@@ -870,7 +870,7 @@ class ATProtoSocialUtils:
     async def unblock_user(self, user_did: str) -> bool:
         """Unblocks a user by their DID. Requires finding the block record's rkey."""
         client = await self._get_client()
-        if not client: 
+        if not client:
             logger.error("Cannot unblock user: ATProto client not available.")
             return False
         if not self.get_own_did():
@@ -882,8 +882,8 @@ class ATProtoSocialUtils:
             if not block_rkey:
                 logger.warning(f"Could not find block record for user {user_did} to unblock. User might not be blocked.")
                 # Depending on desired UX, this could be True (idempotency) or False (strict "not found")
-                return False 
-            
+                return False
+
             await client.com.atproto.repo.delete_record(
                 models.ComAtprotoRepoDeleteRecord.Input(
                     repo=self.get_own_did(),
@@ -899,7 +899,7 @@ class ATProtoSocialUtils:
             logger.error(f"Unexpected error unblocking user {user_did}: {e}", exc_info=True)
         return False
 
-        
+
     # --- Helper Methods for Formatting and URI/DID manipulation ---
 
     def _format_profile_data(self, profile_model: models.AppBskyActorDefs.ProfileViewDetailed | models.AppBskyActorDefs.ProfileView | models.AppBskyActorDefs.ProfileViewBasic) -> dict[str, Any]:
@@ -929,7 +929,7 @@ class ATProtoSocialUtils:
         #    text_content = "Unsupported post record type"
         # else:
         #    text_content = record_data.text
-        
+
         return {
             "uri": post_view_model.uri,
             "cid": post_view_model.cid,
@@ -973,9 +973,9 @@ class ATProtoSocialUtils:
             if len(parts) != 3:
                 logger.error(f"Invalid AT URI for strong ref: {at_uri}")
                 return None
-            
+
             repo_did, collection, rkey = parts
-            
+
             # This is one way to get the CID if not already known.
             # If the CID is known, models.ComAtprotoRepoStrongRef.Main(uri=at_uri, cid=known_cid) is simpler.
             # However, for replies/quotes, the record must exist and be resolvable.
@@ -1000,7 +1000,7 @@ class ATProtoSocialUtils:
         client = await self._get_client()
         own_did = self.get_own_did()
         if not client or not own_did: return None
-        
+
         cursor = None
         try:
             while True:
@@ -1008,20 +1008,20 @@ class ATProtoSocialUtils:
                     models.ComAtprotoRepoListRecords.Params(
                         repo=own_did,
                         collection=ids.AppBskyGraphFollow, # "app.bsky.graph.follow"
-                        limit=100, 
+                        limit=100,
                         cursor=cursor,
                     )
                 )
                 if not response or not response.records:
-                    break 
-                
+                    break
+
                 for record_item in response.records:
                     # record_item.value is the actual follow record (AppBskyGraphFollow.Main)
                     if record_item.value and isinstance(record_item.value, models.AppBskyGraphFollow.Main):
                         if record_item.value.subject == target_did:
                             # The rkey is part of the URI: at://<did>/app.bsky.graph.follow/<rkey>
                             return record_item.uri.split("/")[-1]
-                
+
                 cursor = response.cursor
                 if not cursor:
                     break
@@ -1050,7 +1050,7 @@ class ATProtoSocialUtils:
             # For now, assume a simplified version or that client might expose it.
             # A full implementation needs to handle byte offsets correctly.
             # This is a complex part of posting.
-            
+
             # Placeholder for actual facet detection logic.
             # This would involve regex for mentions (@handle.bsky.social), links (http://...), and tags (#tag).
             # For mentions, DIDs need to be resolved. For links, URI needs to be validated.
@@ -1076,7 +1076,7 @@ class ATProtoSocialUtils:
             #    for tag in tags:
             #        # find occurrences of #tag in text and add facet
             #        pass
-            
+
             # If the SDK has a robust way to do this (even if it's a static method you import) use it.
             # e.g. from atproto. अमीर_text import RichText
             # rt = RichText(text)
@@ -1100,7 +1100,7 @@ class ATProtoSocialUtils:
         if not client:
             logger.error("ATProtoSocial client not available for reporting.")
             return False
-        
+
         try:
             # We need a strong reference to the post being reported.
             subject_strong_ref = await self._get_strong_ref_for_uri(post_uri)
@@ -1110,14 +1110,14 @@ class ATProtoSocialUtils:
 
             # The 'subject' for reporting a record is ComAtprotoRepoStrongRef.Main
             report_subject = models.ComAtprotoRepoStrongRef.Main(uri=subject_strong_ref.uri, cid=subject_strong_ref.cid)
-            
+
             # For reporting an account, it would be ComAtprotoAdminDefs.RepoRef(did=...)
 
             await client.com.atproto.moderation.create_report(
                 models.ComAtprotoModerationCreateReport.Input(
                     reasonType=reason_type, # e.g. lexicon_models.COM_ATPROTO_MODERATION_DEFS_REASONSPAM
                     reason=reason_text if reason_text else None,
-                    subject=report_subject 
+                    subject=report_subject
                 )
             )
             logger.info(f"Successfully reported post {post_uri} for reason {reason_type}.")
@@ -1138,7 +1138,7 @@ class ATProtoSocialUtils:
         my_did = self.get_own_did()
         if not my_did:
             return False
-        
+
         facets_to_check = None
         if isinstance(post_data, models.AppBskyFeedPost.Main):
             facets_to_check = post_data.facets
@@ -1151,7 +1151,7 @@ class ATProtoSocialUtils:
 
         if not facets_to_check:
             return False
-        
+
         for facet_item_model in facets_to_check:
             # Ensure facet_item_model is the correct SDK model type if it came from dict
             if isinstance(facet_item_model, models.AppBskyRichtextFacet.Main):

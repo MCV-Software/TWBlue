@@ -1,5 +1,51 @@
 TWBlue Changelog
 
+## Changes in version 2024.X.X (Upcoming - ATProtoSocial Integration)
+
+This version introduces comprehensive support for the AT Protocol (ATProto), enabling users to connect to and interact with Bluesky accounts.
+
+* Core:
+    * **New Protocol Support**: Added ATProtoSocial (Bluesky) as a new session type.
+    * **Session Management**: Users can add Bluesky accounts using their handle and an App Password. Includes session creation, loading, and management through the Session Manager.
+    * **UI Adaptation**:
+        * Menus (e.g., "Post", "User Actions") dynamically update labels and available actions based on whether an ATProtoSocial session is active (e.g., "Tweet" becomes "Post", "Retweet" becomes "Repost", "Favorite" becomes "Like").
+        * New compose dialog (`src/wxUI/dialogs/composeDialog.py`) created to be more generic and configurable by session type, supporting features like character limits, media attachments (images with alt text), language selection, content warnings, and quoting specific to Bluesky.
+        * New user profile dialog (`src/wxUI/dialogs/atprotosocial/showUserProfile.py`) for displaying Bluesky user details and performing actions.
+        * New UI panels (`src/wxUI/buffers/atprotosocial/panels.py`) for displaying Home timelines, User timelines, Notifications, and User Lists (Followers/Following) for Bluesky.
+* ATProtoSocial (Bluesky) Features:
+    * **Authentication**: Secure login using user handle and App Passwords.
+    * **Posting**:
+        * Create posts (skeets) with text.
+        * Attach images (up to 4, with alt text).
+        * Specify post language(s).
+        * Add content warnings (sensitive content labels).
+        * Quote other posts.
+        * Reply to posts.
+    * **Timelines**:
+        * View Home timeline (posts from followed users), with support for loading newer and older posts.
+        * View other users' timelines (their posts and replies).
+    * **Notifications**:
+        * Fetch and display notifications for likes, reposts, follows, mentions, replies, and quotes.
+        * Notifications are displayed in a dedicated buffer and trigger desktop alerts.
+    * **User Actions**:
+        * View user profiles (display name, handle, bio, counts, etc.).
+        * Follow / Unfollow users.
+        * Mute / Unmute users.
+        * Block / Unblock users.
+    * **User Interaction**:
+        * Like / Unlike posts.
+        * Repost / Unrepost posts (Unrepost might be deleting the repost record).
+    * **User Discovery**:
+        * Search for users by handle or display name.
+        * View lists of followers and accounts a user is following.
+    * **Content Display**:
+        * Posts are formatted for display, showing author, text, timestamp, embedded media (images, quotes, external links with placeholders), reply/repost/like counts, and CWs.
+        * Notifications are formatted for display in their buffer.
+* Developer / Internal:
+    * New session module: `sessions.atprotosocial` (Session, Utils, Compose, Streaming placeholders).
+    * New controller module: `controller.atprotosocial` (Handler, UserList, etc.).
+    * Extensive use of the `atproto` Python SDK for Bluesky API interactions.
+
 ## changes in this version
 
 In this version, we have focused on providing initial support for Mastodon filters and pinned posts. From TWBlue, it is now possible to initially use filters for posts in most buffers, as well as manage them (create, edit, and delete filters, in addition to adding keywords). A new variable has also been added for post templates in the invisible interface that allows displaying whether a post has been pinned by its author.

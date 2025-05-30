@@ -47,7 +47,7 @@ class Session(baseSession):
     _streaming_manager: ATProtoSocialStreaming | None = None
     _templates: ATProtoSocialTemplates | None = None
     _util: ATProtoSocialUtils | None = None
-    
+
     # Define ConfigurableValues for ATProtoSocial
     handle = ConfigurableValue("handle", "")
     app_password = ConfigurableValue("app_password", "", is_secret=True) # Mark as secret
@@ -58,7 +58,7 @@ class Session(baseSession):
         super().__init__(approval_api, user_id, channel_id)
         self.client: AsyncClient | None = None # Renamed from _client to avoid conflict with base class
         self._load_session_from_db()
-        
+
         # Timeline specific attributes
         self.home_timeline_buffer: list[str] = [] # Stores AT URIs of posts in home timeline
         self.home_timeline_cursor: str | None = None
@@ -77,7 +77,7 @@ class Session(baseSession):
             profile = await temp_client.login(handle, app_password)
             if profile and profile.access_jwt and profile.did and profile.handle:
                 self.client = temp_client # Assign the successfully logged-in client
-                
+
                 self.db["access_jwt"] = profile.access_jwt
                 self.db["refresh_jwt"] = profile.refresh_jwt
                 self.db["did"] = profile.did
@@ -88,7 +88,7 @@ class Session(baseSession):
                 if self._util:
                     self._util._own_did = profile.did
                     self._util._own_handle = profile.handle
-                
+
                 # Update config store as well
                 await config.sessions.atprotosocial[self.user_id].handle.set(profile.handle)
                 await config.sessions.atprotosocial[self.user_id].app_password.set(app_password) # Store the password used for login
@@ -118,7 +118,7 @@ class Session(baseSession):
         """Loads session details from DB and attempts to initialize the client."""
         access_jwt = self.db.get("access_jwt")
         handle = self.db.get("handle") # Or get from config: self.config_get("handle")
-        
+
         if access_jwt and handle:
             logger.info(f"ATProtoSocial: Found existing session for {handle} in DB. Initializing client.")
             # Create a new client instance and load session.
@@ -127,7 +127,7 @@ class Session(baseSession):
             # For simplicity here, we'll rely on re-login if needed or assume test_connection handles it.
             # A more robust way would be to use client.resume_session(profile_dict_from_db) if available
             # or store the output of client.export_session_string() and client = AsyncClient.import_session_string(...)
-            
+
             # For now, we won't auto-resume here but rely on start() or is_ready() to trigger login/test.
             # self.client = AsyncClient() # Create a placeholder client
             # TODO: Properly resume session with SDK if possible without re-login.
@@ -200,7 +200,7 @@ class Session(baseSession):
             logger.info("ATProtoSocial: Session not ready, attempting to re-establish from config.")
             handle = self.config_get("handle")
             app_password = self.config_get("app_password") # This might be empty if not re-saved
-            
+
             # Try to login if we have handle and app_password from config
             if handle and app_password:
                 try:
@@ -241,7 +241,7 @@ class Session(baseSession):
     @property
     def can_stream(self) -> bool:
         return self.CAN_STREAM
-    
+
     @property
     def util(self) -> ATProtoSocialUtils:
         if not self._util:
@@ -270,7 +270,7 @@ class Session(baseSession):
     async def start(self) -> None:
         logger.info(f"Starting ATProtoSocial session for user {self.user_id}")
         await self._ensure_dependencies_ready() # This will attempt login if needed
-        
+
         if self.is_ready():
             # Fetch initial home timeline
             try:
@@ -278,7 +278,7 @@ class Session(baseSession):
             except NotificationError as e:
                 logger.error(f"ATProtoSocial: Failed to fetch initial home timeline: {e}")
                 # Non-fatal, session can still start
-            
+
             if self.can_stream:
                 # TODO: Initialize and start streaming if applicable
                 # self.streaming_manager.start_streaming(self.handle_streaming_event)
@@ -316,7 +316,7 @@ class Session(baseSession):
         )
 
         media_blobs_for_post = [] # Will hold list of dicts: {"blob_ref": BlobRef, "alt_text": "..."}
-        
+
         # Media upload handling
         if files:
             # kwargs might contain 'media_alt_texts' as a list parallel to 'files'
@@ -345,7 +345,7 @@ class Session(baseSession):
                             message=_("File {filename} has an unsupported type and was not attached.").format(filename=file_path.split('/')[-1])
                         )
                         continue
-                    
+
                     alt_text = media_alt_texts[i]
                     # upload_media returns a dict like {"blob_ref": BlobRef, "alt_text": "..."} or None
                     media_blob_info = await self.util.upload_media(file_path, mime_type, alt_text=alt_text)
@@ -372,7 +372,7 @@ class Session(baseSession):
         if langs and not isinstance(langs, list):
             logger.warning(f"Invalid 'langs' format: {langs}. Expected list of strings. Ignoring.")
             langs = None
-        
+
         tags = kwargs.get("tags") # List of hashtags (without '#')
         if tags and not isinstance(tags, list):
             logger.warning(f"Invalid 'tags' format: {tags}. Expected list of strings. Ignoring.")
@@ -392,7 +392,7 @@ class Session(baseSession):
                 tags=tags,
                 # Any other specific params for Bluesky can be passed via kwargs if post_status handles them
             )
-            
+
             if post_uri:
                 logger.info(f"Message posted successfully to ATProtoSocial. URI: {post_uri}")
                 return post_uri
@@ -424,7 +424,7 @@ class Session(baseSession):
         # If it's a full URI, extract rkey. This logic might need refinement based on what `message_id` contains.
         if message_id.startswith("at://"):
             message_id = message_id.split("/")[-1]
-            
+
         return f"https://bsky.app/profile/{own_handle}/post/{message_id}"
 
 
@@ -546,10 +546,10 @@ class Session(baseSession):
         # 'action_type': 'api_call' (calls handle_user_command), 'link' (opens URL)
         # 'payload_params': list of params from user context to include in payload to handle_user_command
         # 'requires_target_user_did': True if the action needs a target user's DID
-        
+
         # Note: Current Approve UI might not distinguish visibility based on context (e.g., don't show "Follow" if already following).
         # This logic would typically reside in the UI or be supplemented by viewer state from profile data.
-        
+
         actions = [
             {
                 "id": "atp_view_profile_web", # Unique ID
@@ -672,10 +672,10 @@ class Session(baseSession):
         author = notification_item.author
         post_uri = notification_item.uri # URI of the like record itself
         subject_uri = notification_item.reasonSubject # URI of the post that was liked
-        
+
         title = _("{author_name} liked your post").format(author_name=author.displayName or author.handle)
         body = "" # Could fetch post content for body if desired, but title is often enough for likes
-        
+
         # Try to get the URL of the liked post
         url = None
         if subject_uri:
@@ -730,8 +730,8 @@ class Session(baseSession):
             author_id=author.did,
             author_avatar_url=author.avatar,
             timestamp=util.parse_iso_datetime(notification_item.indexedAt),
-            message_id=repost_uri, 
-            original_message_id=subject_uri, 
+            message_id=repost_uri,
+            original_message_id=subject_uri,
         )
 
     async def _handle_follow_notification(self, notification_item: utils.ATNotification) -> None:
@@ -786,7 +786,7 @@ class Session(baseSession):
         author = notification_item.author
         post_record = notification_item.record # The app.bsky.feed.post record (the reply post)
         reply_post_uri = notification_item.uri # URI of the reply post
-        
+
         # The subject of the reply notification is the user's original post that was replied to.
         # notification_item.reasonSubject might be null if the reply is to a post that was deleted
         # or if the notification structure is different. The reply record itself contains parent/root.
@@ -821,7 +821,7 @@ class Session(baseSession):
         author = notification_item.author
         post_record = notification_item.record # The app.bsky.feed.post record (the post that quotes)
         quoting_post_uri = notification_item.uri # URI of the post that contains the quote
-        
+
         # The subject of the quote notification is the user's original post that was quoted.
         quoted_post_uri = notification_item.reasonSubject
 
@@ -877,7 +877,7 @@ class Session(baseSession):
                 return None
 
             raw_notifications, next_cursor = notifications_tuple
-            
+
             if not raw_notifications:
                 logger.info("No new notifications found.")
                 # Consider updating last seen timestamp here if all caught up.
@@ -901,9 +901,9 @@ class Session(baseSession):
                             logger.error(f"Error handling notification type {item.reason} (URI: {item.uri}): {e}", exc_info=True)
                     else:
                         logger.warning(f"No handler for ATProtoSocial notification reason: {item.reason}")
-            
+
             logger.info(f"Processed {processed_count} ATProtoSocial notifications.")
-            
+
             # TODO: Implement marking notifications as seen.
             # This should probably be done after a short delay or user action.
             # If all fetched notifications were processed, and it was a full page,
@@ -930,7 +930,7 @@ class Session(baseSession):
         if not self.is_ready() or not self.client:
             logger.warning("Cannot mark notifications as seen: client not ready.")
             return
-        
+
         try:
             # seen_at should be an ISO 8601 timestamp. If None, defaults to now.
             # from atproto_client.models import get_or_create, ids, string_to_datetime # SDK specific import
@@ -975,21 +975,21 @@ class Session(baseSession):
         if not self.is_ready():
             logger.warning("Cannot fetch home timeline: session not ready.")
             raise NotificationError(_("Session is not active. Please log in or check your connection."))
-        
+
         logger.info(f"Fetching home timeline with cursor: {cursor}, limit: {limit}, new_only: {new_only}")
         try:
             timeline_data = await self.util.get_timeline(algorithm=None, limit=limit, cursor=cursor)
             if not timeline_data:
                 logger.info("No home timeline data returned from util.")
                 return [], cursor # Return current cursor if no data
-            
+
             feed_view_posts, next_cursor = timeline_data
             processed_ids = await self.order_buffer(
-                items=feed_view_posts, 
-                new_only=new_only, 
+                items=feed_view_posts,
+                new_only=new_only,
                 buffer_name="home_timeline_buffer"
             )
-            
+
             if new_only and next_cursor: # For fetching newest, cursor logic might differ or not be used this way
                 self.home_timeline_cursor = next_cursor # Bluesky cursors are typically for older items
             elif not new_only : # Fetching older items
@@ -1016,13 +1016,13 @@ class Session(baseSession):
             if not feed_data:
                 logger.info(f"No feed data returned for user {user_did}.")
                 return [], cursor
-            
+
             feed_view_posts, next_cursor = feed_data
             # For user timelines, we might not store them in a persistent session buffer like home_timeline_buffer,
             # but rather just process them into message_cache for direct display or a temporary view buffer.
             # For now, let's use a generic buffer name or imply it's for message_cache population.
             processed_ids = await self.order_buffer(
-                items=feed_view_posts, 
+                items=feed_view_posts,
                 new_only=new_only, # This might be always False or True depending on how user timeline view works
                 buffer_name=f"user_timeline_{user_did}" # Example of a dynamic buffer name, though not stored on session directly
             )
@@ -1043,7 +1043,7 @@ class Session(baseSession):
 
         added_ids: list[str] = []
         target_buffer_list: list[str] | None = getattr(self, buffer_name, None)
-        
+
         # If buffer_name is dynamic (e.g. user timelines), target_buffer_list might be None.
         # In such cases, items are added to message_cache, and added_ids are returned for direct use.
         # If it's a well-known buffer like home_timeline_buffer, it's updated.
@@ -1057,15 +1057,15 @@ class Session(baseSession):
             if not post_view or not post_view.uri:
                 logger.warning(f"FeedViewPost item missing post view or URI: {item}")
                 continue
-            
+
             post_uri = post_view.uri
-            
+
             # Cache the main post
             # self.util._format_post_data can convert PostView to a dict if needed by message_cache
             # For now, assume message_cache can store the PostView model directly or its dict representation
             formatted_post_data = self.util._format_post_data(post_view) # Ensure this returns a dict
             self.message_cache[post_uri] = formatted_post_data
-            
+
             # Handle replies - cache parent/root if present and not already cached
             if item.reply:
                 if item.reply.parent and item.reply.parent.uri not in self.message_cache:
@@ -1080,7 +1080,7 @@ class Session(baseSession):
             # For simplicity, the buffer stores the URI of the original post.
             # If a more complex object is needed in the buffer, this is where to construct it.
             # For example: {"type": "repost", "reposter": item.reason.by.handle, "post_uri": post_uri, "repost_time": item.reason.indexedAt}
-            
+
             if target_buffer_list is not None:
                 if post_uri not in target_buffer_list: # Avoid duplicates in the list itself
                     if new_only: # Add to the start (newer items)
@@ -1096,7 +1096,7 @@ class Session(baseSession):
                     setattr(self, buffer_name, target_buffer_list[:max_buffer_size])
                 else: # Trim from the start (newest - less common for this kind of buffer)
                     setattr(self, buffer_name, target_buffer_list[-max_buffer_size:])
-        
+
         self.cleanup_message_cache(buffers_to_check=[buffer_name] if target_buffer_list is not None else [])
         return added_ids
 
@@ -1129,13 +1129,13 @@ class Session(baseSession):
 
         # Add to message_cache
         self.message_cache[post_uri] = formatted_data
-        
+
         # Add to user's own posts buffer (self.posts_buffer is from baseSession)
         if post_uri not in self.posts_buffer:
             self.posts_buffer.insert(0, post_uri) # Add to the beginning (newest)
             if len(self.posts_buffer) > constants.MAX_BUFFER_SIZE:
                 self.posts_buffer = self.posts_buffer[:constants.MAX_BUFFER_SIZE]
-        
+
         # A user's own new post might appear on their home timeline if they follow themselves
         # or if the timeline algorithm includes own posts.
         # For now, explicitly adding to home_timeline_buffer if not present.
@@ -1147,6 +1147,39 @@ class Session(baseSession):
 
         self.cleanup_message_cache(buffers_to_check=["posts_buffer", "home_timeline_buffer"])
         logger.debug(f"Added new post {post_uri} to relevant buffers.")
+
+    # --- User List Fetching Wrapper ---
+    async def get_paginated_user_list(
+        self,
+        list_type: str, # "followers", "following", "search_users" (though search might be handled differently)
+        identifier: str, # User DID for followers/following, or search term
+        limit: int,
+        cursor: str | None
+    ) -> tuple[list[dict[str,Any]], str | None]: # Returns (list_of_formatted_user_dicts, next_cursor)
+        """
+        Wrapper to call the user list fetching functions from controller.userList.
+        This helps keep panel logic cleaner by calling a session method.
+        """
+        from controller.atprotosocial import userList as atpUserListCtrl # Local import
+
+        # Ensure the util methods used by get_user_list_paginated are available and client is ready
+        if not self.is_ready() or not self.util:
+            logger.warning(f"Session not ready for get_paginated_user_list (type: {list_type})")
+            return [], None
+
+        try:
+            # get_user_list_paginated is expected to return formatted dicts and a cursor
+            users_list, next_cursor = await atpUserListCtrl.get_user_list_paginated(
+                session=self, # Pass self (the session instance)
+                list_type=list_type,
+                identifier=identifier,
+                limit=limit,
+                cursor=cursor
+            )
+            return users_list, next_cursor
+        except Exception as e:
+            logger.error(f"Error in session.get_paginated_user_list for {list_type} of {identifier}: {e}", exc_info=True)
+            raise NotificationError(_("Failed to load user list: {error}").format(error=str(e)))
 
 
     def get_reporting_reasons(self) -> ReportingReasons | None:

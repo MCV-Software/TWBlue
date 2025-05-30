@@ -121,10 +121,10 @@ class sessionManagerController(object):
             else:
                 log.warning(f"Unknown session type '{i.get('type')}' for ID {i.get('id')}. Skipping.")
                 continue
-                
+
             s.get_configuration() # Assumes get_configuration() exists and is useful for all session types
                                   # For ATProtoSocial, this loads from its specific config file.
-            
+
             # Login is now primarily handled by session.start() via mainController,
             # which calls _ensure_dependencies_ready().
             # Explicit s.login() here might be redundant or premature if full app context isn't ready.
@@ -149,9 +149,9 @@ class sessionManagerController(object):
         # Generic settings for all account types.
         location = (str(time.time())[-6:]) # Unique ID for the session config directory
         log.debug("Creating %s session in the %s path" % (type, location))
-        
+
         s: sessions.base.baseSession | None = None # Type hint for session object
-        
+
         if type == "mastodon":
             s = MastodonSession.Session(location)
         elif type == "atprotosocial":
@@ -159,7 +159,7 @@ class sessionManagerController(object):
         # Add other session types here if needed (e.g., gotosocial)
         # elif type == "gotosocial":
         # s = GotosocialSession.Session(location)
-            
+
         if not s:
             log.error(f"Unsupported session type for creation: {type}")
             self.view.show_unauthorised_error() # Or a more generic "cannot create" error

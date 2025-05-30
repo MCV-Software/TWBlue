@@ -58,7 +58,7 @@ class Handler(BaseHandler):
             buffer_type="home_timeline", # Generic type, panel will adapt based on session kind
             user_id=user_id,
             name=_("{label} Home").format(label=session.label),
-            session_kind=self.SESSION_KIND 
+            session_kind=self.SESSION_KIND
         )
 
         # Notifications Buffer
@@ -68,10 +68,10 @@ class Handler(BaseHandler):
             name=_("{label} Notifications").format(label=session.label),
             session_kind=self.SESSION_KIND
         )
-        
+
         # Own Posts (Profile) Buffer - using "user_posts" which is often generic
         # self.main_controller.add_buffer(
-        #     buffer_type="user_posts", 
+        #     buffer_type="user_posts",
         #     user_id=user_id, # User whose posts to show (self in this case)
         #     target_user_id=session.util.get_own_did(), # Pass own DID as target
         #     name=_("{label} My Posts").format(label=session.label),
@@ -221,7 +221,7 @@ fromapprove.translation import translate as _ # For user-facing messages
             else:
                 logger.warning(f"Unknown ATProtoSocial user command: {command}")
                 return {"status": "error", "message": _("Unknown action: {command}").format(command=command)}
-            
+
             return {"status": "success" if success else "error", "message": message}
 
         except NotificationError as e: # Catch specific errors raised from utils
@@ -245,7 +245,7 @@ fromapprove.translation import translate as _ # For user-facing messages
             author_details = buffer.get_selected_item_author_details()
             if author_details and isinstance(author_details, dict):
                 user_ident = author_details.get("did") or author_details.get("handle")
-        
+
         if not user_ident:
             # Fallback or if no item selected, prompt for user
             # For now, just inform user if no selection. A dialog prompt could be added.
@@ -256,18 +256,13 @@ fromapprove.translation import translate as _ # For user-facing messages
         try:
             profile_data = await session.util.get_user_profile(user_ident)
             if profile_data:
-                # TODO: Integrate with a wx dialog for displaying profile.
-                # For now, show a simple message box with some details.
                 # Example: from src.wxUI.dialogs.mastodon.showUserProfile import UserProfileDialog
-                # profile_dialog = UserProfileDialog(self.main_controller.view, session, profile_data_dict)
-                # profile_dialog.Show()
-                formatted_info = f"User: {profile_data.displayName} (@{profile_data.handle})\n"
-                formatted_info += f"DID: {profile_data.did}\n"
-                formatted_info += f"Followers: {profile_data.followersCount or 0}\n"
-                formatted_info += f"Following: {profile_data.followsCount or 0}\n"
-                formatted_info += f"Posts: {profile_data.postsCount or 0}\n"
-                formatted_info += f"Bio: {profile_data.description or ''}"
-                wx.MessageBox(formatted_info, _("User Profile (ATProtoSocial)"), wx.OK | wx.ICON_INFORMATION, self.main_controller.view)
+                # For ATProtoSocial, we use the new dialog:
+                from wxUI.dialogs.atprotosocial.showUserProfile import ShowUserProfileDialog
+                # Ensure main_controller.view is the correct parent (main frame)
+                dialog = ShowUserProfileDialog(parent=self.main_controller.view, session=session, user_identifier=user_ident)
+                dialog.ShowModal() # Show as modal dialog
+                dialog.Destroy()
             else:
                 output.speak(_("Could not fetch profile for {user_ident}.").format(user_ident=user_ident), True)
         except Exception as e:
@@ -297,14 +292,14 @@ fromapprove.translation import translate as _ # For user-facing messages
             if not profile:
                 output.speak(_("User {user_ident} not found.").format(user_ident=user_ident), True)
                 return
-            
+
             buffer_name = _("{user_handle}'s Posts").format(user_handle=profile.handle)
             buffer_id = f"atp_user_feed_{profile.did}" # Unique ID for the buffer
 
             # Check if buffer already exists
             # existing_buffer = main_controller.search_buffer_by_id_or_properties(id=buffer_id) # Hypothetical method
             # For now, assume it might create duplicates if not handled by add_buffer logic
-            
+
             main_controller.add_buffer(
                 buffer_type="user_timeline", # This type will need a corresponding panel
                 user_id=session.uid, # The session user_id
@@ -333,7 +328,7 @@ fromapprove.translation import translate as _ # For user-facing messages
             dialog.Destroy()
             if not user_ident:
                 return
-        
+
         try:
             profile = await session.util.get_user_profile(user_ident) # Ensure user exists, get DID
             if not profile:
@@ -392,7 +387,7 @@ fromapprove.translation import translate as _ # For user-facing messages
         """Returns settings inputs for ATProtoSocial, potentially user-specific."""
         # This typically delegates to the Session class's method
         fromapprove.sessions.atprotosocial.session import Session as ATProtoSocialSession
-        
+
         current_config = {}
         if user_id:
             # Fetch existing config for the user if available to pre-fill values
@@ -412,11 +407,11 @@ fromapprove.translation import translate as _ # For user-facing messages
     async def update_settings(self, user_id: str, settings_data: dict[str, Any]) -> dict[str, Any]:
         """Updates settings for ATProtoSocial for a given user."""
         logger.info(f"Updating ATProtoSocial settings for user {user_id}")
-        
+
         # This is a simplified example. In a real scenario, you'd validate `settings_data`
         # and then update the configuration, possibly re-initializing the session or
         # informing it of the changes.
-        
+
         # config_manager = self.config.sessions.atprotosocial[user_id]
         # for key, value in settings_data.items():
         #     if hasattr(config_manager, key):
@@ -429,7 +424,7 @@ fromapprove.translation import translate as _ # For user-facing messages
         #     session = self._get_session(user_id)
         #     await session.stop() # Stop if it might be using old settings
         #     # Re-fetch config for the session or update it directly
-        #     # session.api_base_url = settings_data.get("api_base_url", session.api_base_url) 
+        #     # session.api_base_url = settings_data.get("api_base_url", session.api_base_url)
         #     # session.access_token = settings_data.get("access_token", session.access_token)
         #     if session.active: # Or based on some logic if it should auto-restart
         #         await session.start()
