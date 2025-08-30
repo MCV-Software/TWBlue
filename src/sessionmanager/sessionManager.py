@@ -12,6 +12,7 @@ import config_utils
 import config
 import application
 import asyncio # For async event handling
+import wx
 from pubsub import pub
 from controller import settings
 from sessions.mastodon import session as MastodonSession
@@ -37,8 +38,8 @@ class sessionManagerController(object):
         # Initialize the manager, responsible for storing session objects.
         manager.setup()
         self.view = view.sessionManagerWindow()
-        # Using CallAfter to handle async method from pubsub
-        pub.subscribe(lambda type: wx.CallAfter(asyncio.create_task, self.manage_new_account(type)), "sessionmanager.new_account")
+        # Handle new account synchronously on the UI thread
+        pub.subscribe(self.manage_new_account, "sessionmanager.new_account")
         pub.subscribe(self.remove_account, "sessionmanager.remove_account")
         if self.started == False:
             pub.subscribe(self.configuration, "sessionmanager.configuration")
@@ -122,7 +123,7 @@ class sessionManagerController(object):
                 log.warning(f"Unknown session type '{i.get('type')}' for ID {i.get('id')}. Skipping.")
                 continue
 
-            s.get_configuration() # Assumes get_configuration() exists and is useful for all session types
+            s.get_configuration() # Load per-session configuration
                                   # For ATProtoSocial, this loads from its specific config file.
 
             # Login is now primarily handled by session.start() via mainController,
@@ -138,6 +139,13 @@ class sessionManagerController(object):
             #     except Exception as e:
             #         log.exception(f"Exception during pre-emptive login check for session {s.uid} ({s.kind}).")
             #         continue
+            # Try to auto-login for ATProtoSocial so the app starts with buffers ready
+            try:
+                if i.get("type") == "atprotosocial":
+                    s.login()
+            except Exception:
+                log.exception("Auto-login failed for ATProtoSocial session %s", i.get("id"))
+
             sessions.sessions[i.get("id")] = s # Add to global session store
             self.new_sessions[i.get("id")] = s # Track as a new session for this manager instance
 #  self.view.destroy()
@@ -145,7 +153,7 @@ class sessionManagerController(object):
     def show_auth_error(self):
         error = view.auth_error() # This seems to be a generic auth error display
 
-    async def manage_new_account(self, type): # Made async
+    def manage_new_account(self, type):
         # Generic settings for all account types.
         location = (str(time.time())[-6:]) # Unique ID for the session config directory
         log.debug("Creating %s session in the %s path" % (type, location))
@@ -166,7 +174,7 @@ class sessionManagerController(object):
             return
 
         try:
-            result = await s.authorise() # Call the (now potentially async) authorise method
+            result = s.authorise()
             if result == True:
                 # Session config (handle, did for atproto) should be saved by authorise/login.
                 # Here we just update the session manager's internal list and UI.

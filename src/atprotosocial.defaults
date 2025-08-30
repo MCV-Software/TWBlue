@@ -1,0 +1,52 @@
+[atprotosocial]
+handle = string(default="")
+app_password = string(default="")
+did = string(default="")
+session_string = string(default="")
+user_name = string(default="")
+
+[general]
+relative_times = boolean(default=True)
+max_posts_per_call = integer(default=40)
+reverse_timelines = boolean(default=False)
+persist_size = integer(default=0)
+load_cache_in_memory = boolean(default=True)
+show_screen_names = boolean(default=False)
+hide_emojis = boolean(default=False)
+buffer_order = list(default=list('home', 'notifications'))
+disable_streaming = boolean(default=True)
+
+[sound]
+volume = float(default=1.0)
+input_device = string(default="Default")
+output_device = string(default="Default")
+session_mute = boolean(default=False)
+current_soundpack = string(default="FreakyBlue")
+indicate_audio = boolean(default=True)
+indicate_img = boolean(default=True)
+
+[other_buffers]
+timelines = list(default=list())
+searches = list(default=list())
+muted_buffers = list(default=list())
+autoread_buffers = list(default=list(notifications))
+
+[mysc]
+spelling_language = string(default="")
+save_followers_in_autocompletion_db = boolean(default=False)
+save_friends_in_autocompletion_db = boolean(default=False)
+ocr_language = string(default="")
+
+[reporting]
+braille_reporting = boolean(default=True)
+speech_reporting = boolean(default=True)
+
+[templates]
+post = string(default="$display_name, $safe_text $date.")
+person = string(default="$display_name (@$screen_name). $followers followers, $following following, $posts posts.")
+notification = string(default="$display_name $text, $date")
+
+[filters]
+
+[user-aliases]
+

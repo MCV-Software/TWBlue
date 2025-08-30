@@ -1,13 +1,9 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
-# fromapprove.controller.mastodon import messages as mastodon_messages # Example, if adapting
-fromapprove.translation import translate as _
-
-if TYPE_CHECKING:
-    fromapprove.sessions.atprotosocial.session import Session as ATProtoSocialSession # Adjusted import
+# Translation function is provided globally by TWBlue's language handler (_)
 
 logger = logging.getLogger(__name__)
 
@@ -19,14 +15,17 @@ logger = logging.getLogger(__name__)
 # Example: If ATProtoSocial develops a standard for "cards" or interactive messages,
 # functions to create those would go here. For now, we can imagine placeholders.
 
-def format_welcome_message(session: ATProtoSocialSession) -> dict[str, Any]:
+def format_welcome_message(session: Any) -> dict[str, Any]:
     """
     Generates a welcome message for a new ATProtoSocial session.
     This is just a placeholder and example.
     """
     # user_profile = session.util.get_own_profile_info() # Assuming this method exists and is async or cached
     # handle = user_profile.get("handle", _("your ATProtoSocial account")) if user_profile else _("your ATProtoSocial account")
-    handle = session.util.get_own_username() or _("your ATProtoSocial account")
+    # Expect session to expose username via db/settings
+    handle = (getattr(session, "db", {}).get("user_name")
+              or getattr(getattr(session, "settings", {}), "get", lambda *_: {})("atprotosocial").get("handle")
+              or _("your Bluesky account"))
 
 
     return {

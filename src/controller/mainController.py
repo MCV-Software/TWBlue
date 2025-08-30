@@ -94,6 +94,17 @@ class Controller(object):
         [results.append(self.search_buffer(i.name, i.account)) for i in buffers if i.account == account and (i.type != "account")]
         return results
 
+    def get_handler(self, type):
+        """Return the controller handler for a given session type."""
+        try:
+            if type == "mastodon":
+                return MastodonHandler.Handler()
+            if type == "atprotosocial":
+                return ATProtoSocialHandler.Handler()
+        except Exception:
+            log.exception("Error creating handler for type %s", type)
+        return None
+
     def bind_other_events(self):
         """ Binds the local application events with their functions."""
         log.debug("Binding other application events...")
@@ -193,29 +204,12 @@ class Controller(object):
 
     def get_handler(self, type):
         handler = self.handlers.get(type)
-        if handler == None:
+        if handler is None:
             if type == "mastodon":
                 handler = MastodonHandler.Handler()
-            elif type == "atprotosocial": # Added case for atprotosocial
-                # Assuming session_store and config_proxy are accessible or passed if needed by Handler constructor
-                # For now, let's assume constructor is similar or adapted to not require them,
-                # or that they can be accessed via self if mainController has them.
-                # Based on atprotosocial.Handler, it needs session_store and config.
-                # mainController doesn't seem to store these directly for passing.
-                # This might indicate Handler init needs to be simplified or these need to be plumbed.
-                # For now, proceeding with a simplified instantiation, assuming it can get what it needs
-                # or its __init__ will be adapted.
-                # A common pattern is self.session_store and self.config from a base controller class if mainController inherits one.
-                # Let's assume for now they are not strictly needed for just getting menu labels or simple actions.
-                # This part might need refinement based on Handler's actual dependencies for menu updates.
-                # Looking at atprotosocial/handler.py, it takes session_store and config.
-                # mainController itself doesn't seem to have these as direct attributes to pass on.
-                # This implies a potential refactor need or that these handlers are simpler than thought for menu updates.
-                # For now, let's assume a simplified handler for menu updates or that it gets these elsewhere.
-                # This needs to be compatible with how MastodonHandler is instantiated and used.
-                # MastodonHandler() is called without params here.
-                handler = ATProtoSocialHandler.Handler(session_store=sessions.sessions, config=config.app) # Adjusted: Pass global sessions and config
-            self.handlers[type]=handler
+            elif type == "atprotosocial":
+                handler = ATProtoSocialHandler.Handler()
+            self.handlers[type] = handler
         return handler
 
     def __init__(self):
@@ -256,14 +250,24 @@ class Controller(object):
         for i in sessions.sessions:
             log.debug("Working on session %s" % (i,))
             if sessions.sessions[i].is_logged == False:
-                self.create_ignored_session_buffer(sessions.sessions[i])
-                continue
-            # Valid types currently are mastodon (Work in progress)
-            # More can be added later.
-            valid_session_types = ["mastodon"]
+                # Try auto-login for ATProtoSocial sessions if credentials exist
+                try:
+                    if getattr(sessions.sessions[i], "type", None) == "atprotosocial":
+                        sessions.sessions[i].login()
+                except Exception:
+                    log.exception("Auto-login attempt failed for session %s", i)
+                if sessions.sessions[i].is_logged == False:
+                    self.create_ignored_session_buffer(sessions.sessions[i])
+                    continue
+            # Supported session types
+            valid_session_types = ["mastodon", "atprotosocial"]
             if sessions.sessions[i].type in valid_session_types:
-                handler = self.get_handler(type=sessions.sessions[i].type)
-                handler.create_buffers(sessions.sessions[i], controller=self)
+                try:
+                    handler = self.get_handler(type=sessions.sessions[i].type)
+                    if handler is not None:
+                        handler.create_buffers(sessions.sessions[i], controller=self)
+                except Exception:
+                    log.exception("Error creating buffers for session %s (%s)", i, sessions.sessions[i].type)
         log.debug("Setting updates to buffers every %d seconds..." % (60*config.app["app-settings"]["update_period"],))
         self.update_buffers_function = RepeatingTimer(60*config.app["app-settings"]["update_period"], self.update_buffers)
         self.update_buffers_function.start()
@@ -294,7 +298,10 @@ class Controller(object):
         session.login()
         handler = self.get_handler(type=session.type)
         if handler != None and hasattr(handler, "create_buffers"):
-            handler.create_buffers(session=session, controller=self, createAccounts=False)
+            try:
+                handler.create_buffers(session=session, controller=self, createAccounts=False)
+            except Exception:
+                log.exception("Error creating buffers after login for session %s (%s)", session.session_id, session.type)
         self.start_buffers(session)
         if hasattr(session, "start_streaming"):
             session.start_streaming()
@@ -308,102 +315,103 @@ class Controller(object):
         self.view.add_buffer(account.buffer , name=name)
 
     def create_buffer(self, buffer_type="baseBuffer", session_type="twitter", buffer_title="", parent_tab=None, start=False, kwargs={}):
+        # Copy kwargs to avoid mutating a shared dict across calls
+        if not isinstance(kwargs, dict):
+            kwargs = {}
+        else:
+            kwargs = dict(kwargs)
         log.debug("Creating buffer of type {0} with parent_tab of {2} arguments {1}".format(buffer_type, kwargs, parent_tab))
         if kwargs.get("parent") == None:
             kwargs["parent"] = self.view.nb
         if not hasattr(buffers, session_type) and session_type != "atprotosocial": # Allow atprotosocial to be handled separately
             raise AttributeError("Session type %s does not exist yet." % (session_type))
 
-        buffer_panel_class = None
-        if session_type == "atprotosocial":
-            from wxUI.buffers.atprotosocial import panels as ATProtoSocialPanels # Import new panels
-            if buffer_type == "home_timeline":
-                buffer_panel_class = ATProtoSocialPanels.ATProtoSocialHomeTimelinePanel
-                # kwargs for HomeTimelinePanel: parent, name, session
-                # 'name' is buffer_title, 'parent' is self.view.nb
-                # 'session' needs to be fetched based on user_id in kwargs
-                if "user_id" in kwargs and "session" not in kwargs: # Ensure session is passed
-                    kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
-                if "name" not in kwargs: kwargs["name"] = buffer_title
+        try:
+            buffer_panel_class = None
+            if session_type == "atprotosocial":
+                from wxUI.buffers.atprotosocial import panels as ATProtoSocialPanels # Import new panels
+                if buffer_type == "home_timeline":
+                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialHomeTimelinePanel
+                    # kwargs for HomeTimelinePanel: parent, name, session
+                    # 'name' is buffer_title, 'parent' is self.view.nb
+                    # 'session' needs to be fetched based on user_id in kwargs
+                    if "user_id" in kwargs and "session" not in kwargs: # Ensure session is passed
+                        kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
+                    # Clean unsupported kwarg for panel ctor
+                    if "user_id" in kwargs:
+                        kwargs.pop("user_id", None)
+                    if "name" not in kwargs: kwargs["name"] = buffer_title
 
-            elif buffer_type == "user_timeline":
-                buffer_panel_class = ATProtoSocialPanels.ATProtoSocialUserTimelinePanel
-                # kwargs for UserTimelinePanel: parent, name, session, target_user_did, target_user_handle
-                if "user_id" in kwargs and "session" not in kwargs:
-                    kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
-                if "name" not in kwargs: kwargs["name"] = buffer_title
-                # target_user_did and target_user_handle must be in kwargs from atprotosocial.Handler
+                elif buffer_type == "user_timeline":
+                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialUserTimelinePanel
+                    # kwargs for UserTimelinePanel: parent, name, session, target_user_did, target_user_handle
+                    if "user_id" in kwargs and "session" not in kwargs:
+                        kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
+                    kwargs.pop("user_id", None)
+                    if "name" not in kwargs: kwargs["name"] = buffer_title
+                    # target_user_did and target_user_handle must be in kwargs from atprotosocial.Handler
 
-            elif buffer_type == "notifications":
-                buffer_panel_class = ATProtoSocialPanels.ATProtoSocialNotificationPanel
-                if "user_id" in kwargs and "session" not in kwargs:
-                    kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
-                if "name" not in kwargs: kwargs["name"] = buffer_title
-                # target_user_did and target_user_handle must be in kwargs from atprotosocial.Handler
+                elif buffer_type == "notifications":
+                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialNotificationPanel
+                    if "user_id" in kwargs and "session" not in kwargs:
+                        kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
+                    kwargs.pop("user_id", None)
+                    if "name" not in kwargs: kwargs["name"] = buffer_title
+                    # target_user_did and target_user_handle must be in kwargs from atprotosocial.Handler
 
-            elif buffer_type == "notifications":
-                buffer_panel_class = ATProtoSocialPanels.ATProtoSocialNotificationPanel
-                if "user_id" in kwargs and "session" not in kwargs:
-                    kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
-                if "name" not in kwargs: kwargs["name"] = buffer_title
-            elif buffer_type == "user_list_followers" or buffer_type == "user_list_following":
-                buffer_panel_class = ATProtoSocialPanels.ATProtoSocialUserListPanel
-                if "user_id" in kwargs and "session" not in kwargs:
-                    kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
-                if "name" not in kwargs: kwargs["name"] = buffer_title
-                # Ensure 'list_type', 'target_user_did', 'target_user_handle' are in kwargs
-                if "list_type" not in kwargs: # Set based on buffer_type
-                    kwargs["list_type"] = buffer_type.split('_')[-1] # followers or following
-            else:
-                log.warning(f"Unsupported ATProtoSocial buffer type: {buffer_type}. Falling back to generic.")
-                # Fallback to trying to find it in generic buffers or error
-                # For now, let it try the old way if not found above
-                available_buffers = getattr(buffers, "base", None) # Or some generic panel module
-                if available_buffers and hasattr(available_buffers, buffer_type):
-                     buffer_panel_class = getattr(available_buffers, buffer_type)
-                elif available_buffers and hasattr(available_buffers, "TimelinePanel"): # Example generic
-                    buffer_panel_class = getattr(available_buffers, "TimelinePanel")
+                elif buffer_type == "notifications":
+                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialNotificationPanel
+                    if "user_id" in kwargs and "session" not in kwargs:
+                        kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
+                    kwargs.pop("user_id", None)
+                    if "name" not in kwargs: kwargs["name"] = buffer_title
+                elif buffer_type == "user_list_followers" or buffer_type == "user_list_following":
+                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialUserListPanel
+                elif buffer_type == "following_timeline":
+                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialFollowingTimelinePanel
+                    # Clean stray keys that this panel doesn't accept
+                    kwargs.pop("user_id", None)
+                    kwargs.pop("list_type", None)
+                    if "name" not in kwargs: kwargs["name"] = buffer_title
                 else:
-                    raise AttributeError(f"ATProtoSocial buffer type {buffer_type} not found in atprotosocial.panels or base panels.")
-        else: # Existing logic for other session types
-            available_buffers = getattr(buffers, session_type)
-            if not hasattr(available_buffers, buffer_type):
-                raise AttributeError("Specified buffer type does not exist: %s" % (buffer_type,))
-            buffer_panel_class = getattr(available_buffers, buffer_type)
+                    log.warning(f"Unsupported ATProtoSocial buffer type: {buffer_type}. Falling back to generic.")
+                    # Fallback to trying to find it in generic buffers or error
+                    available_buffers = getattr(buffers, "base", None) # Or some generic panel module
+                    if available_buffers and hasattr(available_buffers, buffer_type):
+                         buffer_panel_class = getattr(available_buffers, buffer_type)
+                    elif available_buffers and hasattr(available_buffers, "TimelinePanel"): # Example generic
+                        buffer_panel_class = getattr(available_buffers, "TimelinePanel")
+                    else:
+                        raise AttributeError(f"ATProtoSocial buffer type {buffer_type} not found in atprotosocial.panels or base panels.")
+            else: # Existing logic for other session types
+                available_buffers = getattr(buffers, session_type)
+                if not hasattr(available_buffers, buffer_type):
+                    raise AttributeError("Specified buffer type does not exist: %s" % (buffer_type,))
+                buffer_panel_class = getattr(available_buffers, buffer_type)
 
-        # Instantiate the panel
-        # Ensure 'parent' kwarg is correctly set if not already
-        if "parent" not in kwargs:
-            kwargs["parent"] = self.view.nb # self.view.nb is the wx.Treebook
+            # Instantiate the panel
+            # Ensure 'parent' kwarg is correctly set if not already
+            if "parent" not in kwargs:
+                kwargs["parent"] = self.view.nb # self.view.nb is the wx.Treebook
 
-        # Clean kwargs that are not meant for panel __init__ directly (like user_id, session_kind if used by add_buffer but not panel)
-        # This depends on what add_buffer and panel constructors expect.
-        # For now, assume kwargs are mostly for the panel.
+            buffer = buffer_panel_class(**kwargs) # This is the wx.Panel instance
 
-        buffer = buffer_panel_class(**kwargs) # This is the wx.Panel instance
-
-        if start: # 'start' usually means load initial data for the buffer
-            # The panels themselves should handle initial data loading in their __init__ or a separate load method
-            # For ATProtoSocial panels, this is wx.CallAfter(asyncio.create_task, self.load_initial_posts())
-            # The old `start_stream` logic might not apply directly.
-            if hasattr(buffer, "load_initial_data_async"): # A new conventional async method
-                 wx.CallAfter(asyncio.create_task, buffer.load_initial_data_async())
-            elif hasattr(buffer, "start_stream"): # Legacy way
-                 if kwargs.get("function") == "user_timeline": # This old check might be obsolete
+            if start:
                 try:
-                    buffer.start_stream(play_sound=False)
+                    if hasattr(buffer, "start_stream"):
+                        buffer.start_stream(mandatory=True, play_sound=False)
                 except ValueError:
                     commonMessageDialogs.unauthorized()
                     return
+            self.buffers.append(buffer)
+            if parent_tab == None:
+                log.debug("Appending buffer {}...".format(buffer,))
+                self.view.add_buffer(buffer.buffer, buffer_title)
             else:
-                call_threaded(buffer.start_stream)
-        self.buffers.append(buffer)
-        if parent_tab == None:
-            log.debug("Appending buffer {}...".format(buffer,))
-            self.view.add_buffer(buffer.buffer, buffer_title)
-        else:
-            self.view.insert_buffer(buffer.buffer, buffer_title, parent_tab)
-            log.debug("Inserting buffer {0} into control {1}".format(buffer, parent_tab))
+                self.view.insert_buffer(buffer.buffer, buffer_title, parent_tab)
+                log.debug("Inserting buffer {0} into control {1}".format(buffer, parent_tab))
+        except Exception:
+            log.exception("Error creating buffer '%s' for session_type '%s'", buffer_type, session_type)
 
     def set_buffer_positions(self, session):
         "Sets positions for buffers if values exist in the database."
@@ -589,6 +597,53 @@ class Controller(object):
             return
 
         session = buffer.session
+        # Compose for Bluesky (ATProto): dialog with attachments/CW/language
+        if getattr(session, "type", "") == "atprotosocial":
+            # In invisible interface, prefer a quick, minimal compose to avoid complex UI
+            if self.showing == False:
+                # Parent=None so it shows even if main window is hidden
+                dlg = wx.TextEntryDialog(None, _("Write your post:"), _("Compose"))
+                if dlg.ShowModal() == wx.ID_OK:
+                    text = dlg.GetValue().strip()
+                    dlg.Destroy()
+                    if not text:
+                        return
+                    try:
+                        uri = session.send_message(text)
+                        if uri:
+                            output.speak(_("Post sent successfully!"), True)
+                        else:
+                            output.speak(_("Failed to send post."), True)
+                    except Exception:
+                        log.exception("Error sending Bluesky post from invisible compose")
+                        output.speak(_("An error occurred while posting to Bluesky."), True)
+                else:
+                    dlg.Destroy()
+                return
+            from wxUI.dialogs.atprotosocial.postDialogs import Post as ATPostDialog
+            dlg = ATPostDialog()
+            if dlg.ShowModal() == wx.ID_OK:
+                text, files, cw_text, langs = dlg.get_payload()
+                dlg.Destroy()
+                if not text and not files:
+                    return
+                try:
+                    uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs)
+                    if uri:
+                        output.speak(_("Post sent successfully!"), True)
+                        try:
+                            if hasattr(buffer, "start_stream"):
+                                buffer.start_stream(mandatory=False, play_sound=False)
+                        except Exception:
+                            pass
+                    else:
+                        output.speak(_("Failed to send post."), True)
+                except Exception:
+                    log.exception("Error sending Bluesky post from compose dialog")
+                    output.speak(_("An error occurred while posting to Bluesky."), True)
+            else:
+                dlg.Destroy()
+            return
         # For a new post, reply_to_uri and quote_uri are None.
         # Import the new dialog
         from wxUI.dialogs.composeDialog import ComposeDialog
@@ -644,28 +699,67 @@ class Controller(object):
 
 
     def post_reply(self, *args, **kwargs):
-        buffer = self.get_current_buffer() # This is the panel instance
+        buffer = self.get_current_buffer()
         if not buffer or not buffer.session:
             output.speak(_("No active session to reply."), True)
             return
 
-        selected_item_uri = buffer.get_selected_item_id() # URI of the post to reply to
+        selected_item_uri = None
+        if hasattr(buffer, "get_selected_item_id"):
+            selected_item_uri = buffer.get_selected_item_id()
         if not selected_item_uri:
             output.speak(_("No item selected to reply to."), True)
             return
 
-        # Optionally, get initial text for reply (e.g., mentioning users)
-        # initial_text = buffer.session.compose_panel.get_reply_text(selected_item_uri, author_handle_of_selected_post)
-        # For now, simple empty initial text for reply.
-        initial_text = ""
-        # Get author handle for reply text (if needed by compose_panel.get_reply_text)
-        # author_handle = buffer.get_selected_item_author_handle() # Panel needs this method
-        # if author_handle:
-        #    initial_text = f"@{author_handle} "
+        session = buffer.session
+        if getattr(session, "type", "") == "atprotosocial":
+            if self.showing == False:
+                dlg = wx.TextEntryDialog(None, _("Write your reply:"), _("Reply"))
+                if dlg.ShowModal() == wx.ID_OK:
+                    text = dlg.GetValue().strip()
+                    dlg.Destroy()
+                    if not text:
+                        return
+                    try:
+                        uri = session.send_message(text, reply_to=selected_item_uri)
+                        if uri:
+                            output.speak(_("Reply sent."), True)
+                        else:
+                            output.speak(_("Failed to send reply."), True)
+                    except Exception:
+                        log.exception("Error sending Bluesky reply (invisible)")
+                        output.speak(_("An error occurred while replying."), True)
+                else:
+                    dlg.Destroy()
+                return
+            from wxUI.dialogs.atprotosocial.postDialogs import Post as ATPostDialog
+            dlg = ATPostDialog(caption=_("Reply"))
+            if dlg.ShowModal() == wx.ID_OK:
+                text, files, cw_text, langs = dlg.get_payload()
+                dlg.Destroy()
+                if not text and not files:
+                    return
+                try:
+                    uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs, reply_to=selected_item_uri)
+                    if uri:
+                        output.speak(_("Reply sent."), True)
+                        try:
+                            if hasattr(buffer, "start_stream"):
+                                buffer.start_stream(mandatory=False, play_sound=False)
+                        except Exception:
+                            pass
+                    else:
+                        output.speak(_("Failed to send reply."), True)
+                except Exception:
+                    log.exception("Error sending Bluesky reply (dialog)")
+                    output.speak(_("An error occurred while replying."), True)
+            else:
+                dlg.Destroy()
+            return
 
         from wxUI.dialogs.composeDialog import ComposeDialog
-        dialog = ComposeDialog(parent=self.view, session=buffer.session, reply_to_uri=selected_item_uri, initial_text=initial_text)
-        dialog.Show() # Or ShowModal, depending on how pubsub message for send is handled for dialog lifecycle
+        dialog = ComposeDialog(parent=self.view, session=buffer.session, reply_to_uri=selected_item_uri, initial_text="")
+        dialog.Show()
 
 
     def send_dm(self, *args, **kwargs):
@@ -675,40 +769,58 @@ class Controller(object):
 
     def post_retweet(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "share_item"): # Generic buffer method
-            return buffer.share_item() # This likely calls back to a session/handler method
-        # If direct handling is needed for ATProtoSocial:
-        elif buffer.session and buffer.session.KIND == "atprotosocial":
-            item_uri = buffer.get_selected_item_id() # URI of the post to potentially quote or repost
+        if hasattr(buffer, "share_item"):
+            return buffer.share_item()
+        session = getattr(buffer, "session", None)
+        if not session:
+            return
+        if getattr(session, "type", "") == "atprotosocial":
+            item_uri = None
+            if hasattr(buffer, "get_selected_item_id"):
+                item_uri = buffer.get_selected_item_id()
             if not item_uri:
                 output.speak(_("No item selected."), True)
                 return
 
-            session = buffer.session
-            # For ATProtoSocial, the "Share" menu item (which maps to post_retweet)
-            # will now open the ComposeDialog for quoting.
-            # A direct/quick repost action could be added as a separate menu item if desired.
+            if self.showing == False:
+                dlg = wx.TextEntryDialog(None, _("Write your quote (optional):"), _("Quote"))
+                if dlg.ShowModal() == wx.ID_OK:
+                    text = dlg.GetValue().strip()
+                    dlg.Destroy()
+                    try:
+                        uri = session.send_message(text, quote_uri=item_uri)
+                        if uri:
+                            output.speak(_("Quote posted."), True)
+                        else:
+                            output.speak(_("Failed to send quote."), True)
+                    except Exception:
+                        log.exception("Error sending Bluesky quote (invisible)")
+                        output.speak(_("An error occurred while posting the quote."), True)
+                else:
+                    dlg.Destroy()
+                return
 
-            initial_text = ""
-            # Attempt to get context from the selected item for the quote's initial text
-            # The buffer panel needs a method like get_selected_item_details_for_quote()
-            # which might return author handle and text snippet.
-            if hasattr(buffer, "get_selected_item_summary_for_quote"):
-                # This method should return a string like "QT @author_handle: text_snippet..."
-                # or just the text snippet.
-                quote_context_text = buffer.get_selected_item_summary_for_quote()
-                if quote_context_text:
-                    initial_text = quote_context_text + "\n\n" # Add space for user's own text
-            else: # Fallback if panel doesn't provide detailed quote summary
-                item_web_url = "" # Ideally, get the web URL of the post
-                if hasattr(buffer, "get_selected_item_web_url"):
-                    item_web_url = buffer.get_selected_item_web_url() or ""
-                initial_text = f"Quoting {item_web_url}\n\n"
-
-
-            from wxUI.dialogs.composeDialog import ComposeDialog
-            dialog = ComposeDialog(parent=self.view, session=session, quote_uri=item_uri, initial_text=initial_text)
-            dialog.Show() # Non-modal, send is handled via pubsub
+            from wxUI.dialogs.atprotosocial.postDialogs import Post as ATPostDialog
+            dlg = ATPostDialog(caption=_("Quote post"))
+            if dlg.ShowModal() == wx.ID_OK:
+                text, files, cw_text, langs = dlg.get_payload()
+                dlg.Destroy()
+                try:
+                    uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs, quote_uri=item_uri)
+                    if uri:
+                        output.speak(_("Quote posted."), True)
+                        try:
+                            if hasattr(buffer, "start_stream"):
+                                buffer.start_stream(mandatory=False, play_sound=False)
+                        except Exception:
+                            pass
+                    else:
+                        output.speak(_("Failed to send quote."), True)
+                except Exception:
+                    log.exception("Error sending Bluesky quote (dialog)")
+                    output.speak(_("An error occurred while posting the quote."), True)
+            else:
+                dlg.Destroy()
             return
 
     def add_to_favourites(self, *args, **kwargs):
@@ -1001,11 +1113,11 @@ class Controller(object):
         self.current_account = account
         buffer_object = self.get_first_buffer(account)
         if buffer_object == None:
-            output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
+            output.speak(_(u"{0}: This account is not logged in.").format(account), True)
             return
         buff = self.view.search(buffer_object.name, account)
         if buff == None:
-            output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
+            output.speak(_(u"{0}: This account is not logged in.").format(account), True)
             return
         self.view.change_buffer(buff)
         buffer = self.get_current_buffer()
@@ -1029,11 +1141,11 @@ class Controller(object):
         self.current_account = account
         buffer_object = self.get_first_buffer(account)
         if buffer_object == None:
-            output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
+            output.speak(_(u"{0}: This account is not logged in.").format(account), True)
             return
         buff = self.view.search(buffer_object.name, account)
         if buff == None:
-            output.speak(_(u"{0}: This account is not logged into twitter.").format(account), True)
+            output.speak(_(u"{0}: This account is not logged in.").format(account), True)
             return
         self.view.change_buffer(buff)
         buffer = self.get_current_buffer()

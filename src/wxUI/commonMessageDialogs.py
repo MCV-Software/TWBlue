@@ -59,3 +59,8 @@ def remove_filter():
     return dlg.ShowModal()
 def error_removing_filters():
     return wx.MessageDialog(None, _("TWBlue was unable to remove the filter you specified. Please try again."), _("Error"), wx.ICON_ERROR).ShowModal()
+
+def common_error(message):
+    """Show a generic error dialog with the provided message."""
+    dlg = wx.MessageDialog(None, message, _("Error"), wx.OK | wx.ICON_ERROR)
+    return dlg.ShowModal()
