@@ -141,7 +141,7 @@ class ShowUserProfile(wx.Dialog):
         mainSizer.Add(privateSizer, 0, wx.ALL | wx.CENTER)
 
         botSizer = wx.BoxSizer(wx.HORIZONTAL)
-        botLabel = wx.StaticText(self.panel, label=_("&Bot account: "))
+        botLabel = wx.StaticText(self.panel, label=_("B&ot account: "))
         botText = self.createTextCtrl(bullSwitch[user.bot], (30, 30))
         botSizer.Add(botLabel, wx.SizerFlags().Center())
         botSizer.Add(botText, wx.SizerFlags().Center())
@@ -154,7 +154,7 @@ class ShowUserProfile(wx.Dialog):
         discoverSizer.Add(discoverText, wx.SizerFlags().Center())
         mainSizer.Add(discoverSizer, 0, wx.ALL | wx.CENTER)
 
-        posts = wx.Button(self.panel, label=_("{} p&osts. Click to open posts timeline").format(user.statuses_count))
+        posts = wx.Button(self.panel, label=_("{} pos&ts. Click to open posts timeline").format(user.statuses_count))
         # posts.SetToolTip(_("Click to open {}'s posts").format(user.display_name))
         posts.Bind(wx.EVT_BUTTON, self.onPost)
         mainSizer.Add(posts, wx.SizerFlags().Center())
