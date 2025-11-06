@@ -248,33 +248,103 @@ class Session(base.baseSession):
                     pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts, lang=language)
                     return
 
-    def edit_post(self, post_id, visibility=None, language=None, posts=[]):
-        """ Convenience function to edit a post. Only the first item in posts list is used as threads cannot be edited. """
+    def edit_post(self, post_id, posts=[]):
+        """ Convenience function to edit a post. Only the first item in posts list is used as threads cannot be edited.
+
+        Note: According to Mastodon API, not all fields can be edited. Visibility, language, and reply context cannot be changed.
+
+        Args:
+            post_id: ID of the status to edit
+            posts: List with post data. Only first item is used.
+
+        Returns:
+            Updated status object or None on failure
+        """
         if len(posts) == 0:
-            return
+            log.warning("edit_post called with empty posts list")
+            return None
+
         obj = posts[0]
         text = obj.get("text")
+
+        if not text:
+            log.warning("edit_post called without text content")
+            return None
+
         media_ids = []
+        media_attributes = []
+
         try:
             poll = None
             # Handle poll attachments
             if len(obj["attachments"]) == 1 and obj["attachments"][0]["type"] == "poll":
-                poll = self.api.make_poll(options=obj["attachments"][0]["options"], expires_in=obj["attachments"][0]["expires_in"], multiple=obj["attachments"][0]["multiple"], hide_totals=obj["attachments"][0]["hide_totals"])
+                poll = self.api.make_poll(
+                    options=obj["attachments"][0]["options"],
+                    expires_in=obj["attachments"][0]["expires_in"],
+                    multiple=obj["attachments"][0]["multiple"],
+                    hide_totals=obj["attachments"][0]["hide_totals"]
+                )
+                log.debug("Editing post with poll (this will reset votes)")
             # Handle media attachments
             elif len(obj["attachments"]) > 0:
                 for i in obj["attachments"]:
                     # If attachment has an 'id', it's an existing media that we keep
                     if "id" in i:
                         media_ids.append(i["id"])
+                        # If existing media has metadata to update, use generate_media_edit_attributes
+                        if "description" in i or "focus" in i:
+                            media_attr = self.api.generate_media_edit_attributes(
+                                id=i["id"],
+                                description=i.get("description"),
+                                focus=i.get("focus")
+                            )
+                            media_attributes.append(media_attr)
                     # Otherwise it's a new file to upload
                     elif "file" in i:
-                        media = self.api_call("media_post", media_file=i["file"], description=i["description"], synchronous=True)
+                        description = i.get("description", "")
+                        focus = i.get("focus", None)
+                        media = self.api_call(
+                            "media_post",
+                            media_file=i["file"],
+                            description=description,
+                            focus=focus,
+                            synchronous=True
+                        )
                         media_ids.append(media.id)
+                        log.debug("Uploaded new media with id: {}".format(media.id))
+
+            # Prepare parameters for status_update
+            update_params = {
+                "id": post_id,
+                "status": text,
+                "_sound": "tweet_send.ogg",
+                "sensitive": obj.get("sensitive", False),
+                "spoiler_text": obj.get("spoiler_text", None),
+            }
+
+            # Add optional parameters only if provided
+            if media_ids:
+                update_params["media_ids"] = media_ids
+            if media_attributes:
+                update_params["media_attributes"] = media_attributes
+            if poll:
+                update_params["poll"] = poll
+
             # Call status_update API
-            item = self.api_call(call_name="status_update", id=post_id, status=text, _sound="tweet_send.ogg", media_ids=media_ids if len(media_ids) > 0 else None, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language)
+            log.debug("Editing post {} with params: {}".format(post_id, {k: v for k, v in update_params.items() if k not in ["_sound"]}))
+            item = self.api_call(call_name="status_update", **update_params)
+
+            if item:
+                log.info("Successfully edited post {}".format(post_id))
             return item
+
+        except MastodonAPIError as e:
+            log.exception("Mastodon API error updating post {}: {}".format(post_id, str(e)))
+            output.speak(_("Error editing post: {}").format(str(e)))
+            pub.sendMessage("mastodon.error_edit", name=self.get_name(), post_id=post_id, error=str(e))
+            return None
         except Exception as e:
-            log.exception("Error updating post: {}".format(str(e)))
+            log.exception("Unexpected error updating post {}: {}".format(post_id, str(e)))
             output.speak(_("Error editing post: {}").format(str(e)))
             return None
 
