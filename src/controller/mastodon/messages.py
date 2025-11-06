@@ -262,6 +262,47 @@ class post(messages.basicMessage):
         visibility_setting = visibility_settings.index(setting)
         self.message.visibility.SetSelection(setting)
 
+class editPost(post):
+    def __init__(self, session, item, title, caption, *args, **kwargs):
+        """ Initialize edit dialog with existing post data. """
+        # Extract text from post
+        if item.reblog != None:
+            item = item.reblog
+        text = item.content
+        # Remove HTML tags from content
+        import re
+        text = re.sub('<[^<]+?>', '', text)
+        # Initialize parent class
+        super(editPost, self).__init__(session, title, caption, text=text, *args, **kwargs)
+        # Store the post ID for editing
+        self.post_id = item.id
+        # Set visibility
+        visibility_settings = dict(public=0, unlisted=1, private=2, direct=3)
+        self.message.visibility.SetSelection(visibility_settings.get(item.visibility, 0))
+        # Set language
+        if item.language:
+            self.set_language(item.language)
+        # Set sensitive content and spoiler
+        if item.sensitive:
+            self.message.sensitive.SetValue(True)
+            if item.spoiler_text:
+                self.message.spoiler.ChangeValue(item.spoiler_text)
+            self.message.on_sensitivity_changed()
+        # Load existing media attachments
+        if hasattr(item, 'media_attachments') and len(item.media_attachments) > 0:
+            for media in item.media_attachments:
+                media_info = {
+                    "id": media.id,  # Keep the existing media ID
+                    "type": media.type,
+                    "file": media.url,  # URL of existing media
+                    "description": media.description or ""
+                }
+                self.attachments.append(media_info)
+                # Display in the attachment list
+                self.message.add_item(item=[media.url.split('/')[-1], media.type, media.description or ""])
+        # Update text processor to reflect the loaded content
+        self.text_processor()
+
 class viewPost(post):
     def __init__(self, session, post, offset_hours=0, date="", item_url=""):
         self.session = session

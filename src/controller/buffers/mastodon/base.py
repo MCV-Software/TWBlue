@@ -280,6 +280,12 @@ class BaseBuffer(base.Buffer):
             return
         menu = menus.base()
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.reply, menuitem=menu.reply)
+        # Enable/disable edit based on whether the post belongs to the user
+        item = self.get_item()
+        if item and item.account.id == self.session.db["user_id"] and item.reblog == None:
+            widgetUtils.connect_event(menu, widgetUtils.MENU, self.edit_status, menuitem=menu.edit)
+        else:
+            menu.edit.Enable(False)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
         if self.can_share() == True:
             widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.boost)
@@ -500,6 +506,25 @@ class BaseBuffer(base.Buffer):
                 self.session.sound.play("error.ogg")
                 log.exception("")
             self.session.db[self.name] = items
+
+    def edit_status(self, event=None, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        # Check if the post belongs to the current user
+        if item.account.id != self.session.db["user_id"] or item.reblog != None:
+            output.speak(_("You can only edit your own posts."))
+            return
+        # Create edit dialog with existing post data
+        title = _("Edit post")
+        caption = _("Edit your post here")
+        post = messages.editPost(session=self.session, item=item, title=title, caption=caption)
+        response = post.message.ShowModal()
+        if response == wx.ID_OK:
+            post_data = post.get_data()
+            # Call edit_post method in session
+            call_threaded(self.session.edit_post, post_id=post.post_id, posts=post_data, visibility=post.get_visibility(), language=post.get_language())
+        if hasattr(post.message, "destroy"):
+            post.message.destroy()
 
     def user_details(self):
         item = self.get_item()

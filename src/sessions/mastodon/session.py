@@ -248,6 +248,36 @@ class Session(base.baseSession):
                     pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts, lang=language)
                     return
 
+    def edit_post(self, post_id, visibility=None, language=None, posts=[]):
+        """ Convenience function to edit a post. Only the first item in posts list is used as threads cannot be edited. """
+        if len(posts) == 0:
+            return
+        obj = posts[0]
+        text = obj.get("text")
+        media_ids = []
+        try:
+            poll = None
+            # Handle poll attachments
+            if len(obj["attachments"]) == 1 and obj["attachments"][0]["type"] == "poll":
+                poll = self.api.make_poll(options=obj["attachments"][0]["options"], expires_in=obj["attachments"][0]["expires_in"], multiple=obj["attachments"][0]["multiple"], hide_totals=obj["attachments"][0]["hide_totals"])
+            # Handle media attachments
+            elif len(obj["attachments"]) > 0:
+                for i in obj["attachments"]:
+                    # If attachment has an 'id', it's an existing media that we keep
+                    if "id" in i:
+                        media_ids.append(i["id"])
+                    # Otherwise it's a new file to upload
+                    elif "file" in i:
+                        media = self.api_call("media_post", media_file=i["file"], description=i["description"], synchronous=True)
+                        media_ids.append(media.id)
+            # Call status_update API
+            item = self.api_call(call_name="status_update", id=post_id, status=text, _sound="tweet_send.ogg", media_ids=media_ids if len(media_ids) > 0 else None, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language)
+            return item
+        except Exception as e:
+            log.exception("Error updating post: {}".format(str(e)))
+            output.speak(_("Error editing post: {}").format(str(e)))
+            return None
+
     def get_name(self):
         instance = self.settings["mastodon"]["instance"]
         instance = instance.replace("https://", "")

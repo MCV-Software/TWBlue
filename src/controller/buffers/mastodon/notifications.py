@@ -161,6 +161,13 @@ class NotificationsBuffer(BaseBuffer):
         menu = menus.notification(notification.type)
         if self.is_post():
             widgetUtils.connect_event(menu, widgetUtils.MENU, self.reply, menuitem=menu.reply)
+            # Enable/disable edit based on whether the post belongs to the user
+            if hasattr(menu, 'edit'):
+                status = self.get_post()
+                if status and status.account.id == self.session.db["user_id"] and status.reblog == None:
+                    widgetUtils.connect_event(menu, widgetUtils.MENU, self.edit_status, menuitem=menu.edit)
+                else:
+                    menu.edit.Enable(False)
             widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
             if self.can_share() == True:
                 widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.boost)
