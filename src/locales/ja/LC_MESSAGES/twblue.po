@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
-"POT-Creation-Date: 2025-03-02 00:55+0000\n"
+"POT-Creation-Date: 2025-04-13 01:18+0000\n"
 "PO-Revision-Date: 2024-06-03 02:46+0000\n"
 "Last-Translator: Riku <riku@riku22.net>\n"
 "Language: ja\n"
@@ -117,118 +117,118 @@ msgstr "再生中…"
 msgid "Stopped."
 msgstr "停止。"
 
-#: controller/mainController.py:259
+#: controller/mainController.py:261
 msgid "Ready"
 msgstr "準備完了"
 
-#: controller/mainController.py:367 controller/mainController.py:652
-#: controller/mainController.py:671 controller/mainController.py:690
-#: controller/mainController.py:709
+#: controller/mainController.py:369 controller/mainController.py:654
+#: controller/mainController.py:673 controller/mainController.py:692
+#: controller/mainController.py:711
 msgid ""
 "No session is currently in focus. Focus a session with the next or "
 "previous session shortcut."
 msgstr "セッションが選択されていません。「次のセッション」または「前のセッション」のショートカットを利用して、セッションを選択してください。"
 
-#: controller/mainController.py:371
+#: controller/mainController.py:373
 msgid "Empty buffer."
 msgstr "からのバッファ。"
 
-#: controller/mainController.py:378
+#: controller/mainController.py:380
 #, python-brace-format
 msgid "{0} not found."
 msgstr "{0}が見つかりませんでした。"
 
-#: controller/mainController.py:700 controller/mainController.py:719
+#: controller/mainController.py:702 controller/mainController.py:721
 #, python-format
 msgid "%s, %s of %s"
 msgstr "%s %s/%s"
 
-#: controller/mainController.py:702 controller/mainController.py:721
-#: controller/mainController.py:749 controller/mainController.py:777
+#: controller/mainController.py:704 controller/mainController.py:723
+#: controller/mainController.py:751 controller/mainController.py:779
 #, python-format
 msgid "%s. Empty"
 msgstr "%sは、からです"
 
-#: controller/mainController.py:737 controller/mainController.py:741
-#: controller/mainController.py:765
+#: controller/mainController.py:739 controller/mainController.py:743
+#: controller/mainController.py:767
 #, python-brace-format
 msgid "{0}: This account is not logged into Twitter."
 msgstr "{0}: このアカウントは、まだTwitterにログインしていません。"
 
-#: controller/mainController.py:747 controller/mainController.py:775
+#: controller/mainController.py:749 controller/mainController.py:777
 #, python-format
 msgid "%s. %s, %s of %s"
 msgstr "セッション:%s %s %s/%s"
 
-#: controller/mainController.py:769
+#: controller/mainController.py:771
 #, python-brace-format
 msgid "{0}: This account is not logged into twitter."
 msgstr "{0}: このアカウントは、まだTwitterにログインしていません。"
 
-#: controller/mainController.py:908 controller/mainController.py:924
+#: controller/mainController.py:910 controller/mainController.py:926
 msgid "An error happened while trying to connect to the server. Please try later."
 msgstr "サーバーへの接続中に、予期しないエラーが発生しました。あとで再試行してください。"
 
-#: controller/mainController.py:955
+#: controller/mainController.py:957
 msgid "The auto-reading of new tweets is enabled for this buffer"
 msgstr "自動読み上げ 有効"
 
-#: controller/mainController.py:958
+#: controller/mainController.py:960
 msgid "The auto-reading of new tweets is disabled for this buffer"
 msgstr "自動読み上げ 無効"
 
-#: controller/mainController.py:965
+#: controller/mainController.py:967
 msgid "Session mute on"
 msgstr "このセッションのミュートを設定"
 
-#: controller/mainController.py:968
+#: controller/mainController.py:970
 msgid "Session mute off"
 msgstr "このセッションのミュートを解除"
 
-#: controller/mainController.py:977
+#: controller/mainController.py:979
 msgid "Buffer mute on"
 msgstr "このバッファのミュートを設定"
 
-#: controller/mainController.py:980
+#: controller/mainController.py:982
 msgid "Buffer mute off"
 msgstr "このバッファのミュートを解除"
 
-#: controller/mainController.py:997
+#: controller/mainController.py:999
 msgid "Copied"
 msgstr "コピーしました"
 
-#: controller/mainController.py:1017
+#: controller/mainController.py:1019
 msgid "Unable to update this buffer."
 msgstr "このバッファを更新できません。"
 
-#: controller/mainController.py:1019
+#: controller/mainController.py:1021
 msgid "Updating buffer..."
 msgstr "バッファを更新中…"
 
-#: controller/mainController.py:1022
+#: controller/mainController.py:1024
 #, python-brace-format
 msgid "{0} items retrieved"
 msgstr "{0}個のアイテムを取得しました"
 
-#: controller/buffers/mastodon/base.py:122 controller/mainController.py:1026
-#: controller/mastodon/handler.py:97 controller/mastodon/handler.py:240
+#: controller/buffers/mastodon/base.py:137 controller/mainController.py:1028
+#: controller/mastodon/handler.py:98 controller/mastodon/handler.py:241
 #, python-brace-format
 msgid "Timeline for {}"
 msgstr "{} のタイムライン"
 
-#: controller/buffers/mastodon/users.py:93 controller/mainController.py:1028
-#: controller/mastodon/handler.py:99 controller/mastodon/handler.py:254
+#: controller/buffers/mastodon/users.py:93 controller/mainController.py:1030
+#: controller/mastodon/handler.py:100 controller/mastodon/handler.py:255
 #, python-brace-format
 msgid "Followers for {}"
 msgstr "{}をフォローしているユーザー"
 
-#: controller/mainController.py:1030
+#: controller/mainController.py:1032
 #, python-brace-format
 msgid "Friends for {}"
 msgstr "{}がフォローしているユーザー"
 
-#: controller/buffers/mastodon/users.py:95 controller/mainController.py:1032
-#: controller/mastodon/handler.py:101 controller/mastodon/handler.py:268
+#: controller/buffers/mastodon/users.py:95 controller/mainController.py:1034
+#: controller/mastodon/handler.py:102 controller/mastodon/handler.py:269
 #, python-brace-format
 msgid "Following for {}"
 msgstr "{}をフォローしているユーザー"
@@ -272,70 +272,71 @@ msgstr "{}のエイリアスを編集"
 msgid "This action is not supported for this buffer"
 msgstr "この動作は、現在のバッファではサポートされていません"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:69
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:70
 #: controller/mastodon/settings.py:194
 msgid "Home"
 msgstr "ホーム"
 
 #: controller/buffers/mastodon/base.py:52
 #: controller/buffers/mastodon/community.py:22
-#: controller/mastodon/handler.py:71 controller/mastodon/handler.py:113
+#: controller/mastodon/handler.py:72 controller/mastodon/handler.py:114
 #: controller/mastodon/settings.py:195
 msgid "Local"
 msgstr "ローカル"
 
 #: controller/buffers/mastodon/base.py:52
 #: controller/buffers/mastodon/community.py:22
-#: controller/mastodon/handler.py:73 controller/mastodon/settings.py:196
+#: controller/mastodon/handler.py:74 controller/mastodon/settings.py:196
 msgid "Federated"
 msgstr "連合"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:75
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:76
 #: controller/mastodon/settings.py:197
 msgid "Mentions"
 msgstr "メンション"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:83
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:84
 #: controller/mastodon/settings.py:201
 msgid "Bookmarks"
 msgstr "ブックマーク"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:77
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:78
 msgid "Direct messages"
 msgstr "ダイレクトメッセージ"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:79
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:80
 #: controller/mastodon/settings.py:199
 msgid "Sent"
 msgstr "送信済み"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:81
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:82
 #: controller/mastodon/settings.py:200 wxUI/dialogs/mastodon/postDialogs.py:229
 msgid "Favorites"
 msgstr "お気に入り"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:85
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:86
 #: controller/mastodon/settings.py:202
 msgid "Followers"
 msgstr "フォロワー"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:87
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:88
 #: controller/mastodon/settings.py:203
 msgid "Following"
 msgstr "フォロー中"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:91
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:92
 #: controller/mastodon/settings.py:204
 msgid "Blocked users"
 msgstr "ブロックしたユーザー"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:89
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:90
 #: controller/mastodon/settings.py:205
 msgid "Muted users"
 msgstr "ミューとしたユーザー"
 
-#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:93
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:94
 #: controller/mastodon/settings.py:206
+#: wxUI/dialogs/mastodon/filters/create_filter.py:80
 msgid "Notifications"
 msgstr "通知"
 
@@ -359,7 +360,7 @@ msgid "Unknown buffer"
 msgstr "不明なバッファ"
 
 #: controller/buffers/mastodon/base.py:67
-#: controller/buffers/mastodon/base.py:628 wxUI/buffers/mastodon/base.py:24
+#: controller/buffers/mastodon/base.py:645 wxUI/buffers/mastodon/base.py:24
 #: wxUI/buffers/mastodon/conversationList.py:24
 #: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
 #: wxUI/dialogs/mastodon/postDialogs.py:5
@@ -368,128 +369,128 @@ msgid "Post"
 msgstr "投稿"
 
 #: controller/buffers/mastodon/base.py:68
-#: controller/buffers/mastodon/base.py:629
+#: controller/buffers/mastodon/base.py:646
 msgid "Write your post here"
 msgstr "投稿を入力"
 
-#: controller/buffers/mastodon/base.py:138
+#: controller/buffers/mastodon/base.py:153
 #, python-brace-format
 msgid "New post in {0}"
 msgstr "{0} への投稿"
 
-#: controller/buffers/mastodon/base.py:144
+#: controller/buffers/mastodon/base.py:159
 #, python-brace-format
 msgid "{0} new posts in {1}."
 msgstr "{1}の{0}個の新規投稿。"
 
-#: controller/buffers/mastodon/base.py:180
+#: controller/buffers/mastodon/base.py:198
 #: controller/buffers/mastodon/community.py:90
 #: controller/buffers/mastodon/conversations.py:100
-#: controller/buffers/mastodon/mentions.py:79
+#: controller/buffers/mastodon/mentions.py:82
 #: controller/buffers/mastodon/users.py:139
 #, python-format
 msgid "%s items retrieved"
 msgstr "%s個のアイテムを取得しました"
 
-#: controller/buffers/mastodon/base.py:198
+#: controller/buffers/mastodon/base.py:216
 #: controller/buffers/mastodon/users.py:206
 msgid "This buffer is not a timeline; it can't be deleted."
 msgstr "このバッファは、タイムラインではないため、削除できません。"
 
-#: controller/buffers/mastodon/base.py:328
-#: controller/buffers/mastodon/base.py:366
+#: controller/buffers/mastodon/base.py:346
+#: controller/buffers/mastodon/base.py:384
 #, python-brace-format
 msgid "Conversation with {}"
 msgstr "{0}との会話"
 
-#: controller/buffers/mastodon/base.py:329
-#: controller/buffers/mastodon/base.py:367
+#: controller/buffers/mastodon/base.py:347
+#: controller/buffers/mastodon/base.py:385
 #: controller/buffers/mastodon/conversations.py:181
 #: controller/buffers/mastodon/notifications.py:122
 #: controller/buffers/mastodon/users.py:52
 msgid "Write your message here"
 msgstr "メッセージを入力"
 
-#: controller/buffers/mastodon/base.py:331
+#: controller/buffers/mastodon/base.py:349
 #, python-brace-format
 msgid "Reply to {}"
 msgstr "{} への返信:"
 
-#: controller/buffers/mastodon/base.py:332
+#: controller/buffers/mastodon/base.py:350
 msgid "Write your reply here"
 msgstr "返信を入力"
 
-#: controller/buffers/mastodon/base.py:394
+#: controller/buffers/mastodon/base.py:412
 msgid "This action is not supported on conversations."
 msgstr "このアクションは、会話ではサポートされていません。"
 
-#: controller/buffers/mastodon/base.py:459
+#: controller/buffers/mastodon/base.py:477
 msgid "Opening URL..."
 msgstr "URLを開いています…"
 
-#: controller/buffers/mastodon/base.py:472
+#: controller/buffers/mastodon/base.py:490
 msgid "You can delete only your own posts."
 msgstr "自分の投稿のみを削除できます。"
 
-#: controller/buffers/mastodon/base.py:501
+#: controller/buffers/mastodon/base.py:519
 msgid "Opening item in web browser..."
 msgstr "ブラウザでアイテムを開いています…"
 
-#: controller/buffers/mastodon/base.py:509
-#: controller/buffers/mastodon/base.py:529
+#: controller/buffers/mastodon/base.py:527
+#: controller/buffers/mastodon/base.py:547
 msgid "Adding to favorites..."
 msgstr "お気に入りに追加中..."
 
-#: controller/buffers/mastodon/base.py:516
-#: controller/buffers/mastodon/base.py:531
+#: controller/buffers/mastodon/base.py:534
+#: controller/buffers/mastodon/base.py:549
 msgid "Removing from favorites..."
 msgstr "お気に入りから削除中..."
 
-#: controller/buffers/mastodon/base.py:526
-#: controller/buffers/mastodon/base.py:541
-#: controller/buffers/mastodon/base.py:555
+#: controller/buffers/mastodon/base.py:544
+#: controller/buffers/mastodon/base.py:559
+#: controller/buffers/mastodon/base.py:573
 #: controller/buffers/mastodon/conversations.py:213
 msgid "No status found with that ID"
 msgstr "そのIDのステータスが見つかりませんでした"
 
-#: controller/buffers/mastodon/base.py:544
+#: controller/buffers/mastodon/base.py:562
 msgid "Adding to bookmarks..."
 msgstr "ブックマークに追加中..."
 
-#: controller/buffers/mastodon/base.py:546
+#: controller/buffers/mastodon/base.py:564
 msgid "Removing from bookmarks..."
 msgstr "ブックマークから削除中..."
 
-#: controller/buffers/mastodon/base.py:569
+#: controller/buffers/mastodon/base.py:586
 #, python-brace-format
 msgid "Picture {0}"
 msgstr "画像{0}"
 
-#: controller/buffers/mastodon/base.py:570
+#: controller/buffers/mastodon/base.py:587
 msgid "Select the picture"
 msgstr "画像を選択"
 
-#: controller/buffers/mastodon/base.py:593
+#: controller/buffers/mastodon/base.py:610
 msgid "Unable to extract text"
 msgstr "テキストを抽出できません"
 
-#: controller/buffers/mastodon/base.py:595
+#: controller/buffers/mastodon/base.py:612
 msgid "OCR Result"
 msgstr "OCR結果"
 
-#: controller/buffers/mastodon/base.py:610
+#: controller/buffers/mastodon/base.py:627
 msgid "this poll no longer exists."
 msgstr "このアンケートはもう存在しません。"
 
-#: controller/buffers/mastodon/base.py:613
+#: controller/buffers/mastodon/base.py:630
 msgid "This poll has already expired."
 msgstr "このアンケートは既に期限切れです。"
 
-#: controller/buffers/mastodon/base.py:616
+#: controller/buffers/mastodon/base.py:633
 msgid "You have already voted on this poll."
 msgstr "あなたはすでにこのアンケートに投票しています。"
 
-#: controller/buffers/mastodon/base.py:625
+#: controller/buffers/mastodon/base.py:642
 msgid "Sending vote..."
 msgstr "投票を送信中..."
 
@@ -512,123 +513,131 @@ msgstr "通知を却下しました。"
 msgid "There are no more items in this buffer."
 msgstr "このバッファにはこれ以上アイテムがありません。"
 
-#: controller/mastodon/handler.py:29 wxUI/dialogs/mastodon/updateProfile.py:35
+#: controller/mastodon/handler.py:30 wxUI/dialogs/mastodon/updateProfile.py:35
 msgid "Update Profile"
 msgstr "プロフィールを更新"
 
-#: controller/mastodon/handler.py:30 wxUI/dialogs/mastodon/search.py:10
+#: controller/mastodon/handler.py:31 wxUI/dialogs/mastodon/search.py:10
 #: wxUI/view.py:19
 msgid "&Search"
 msgstr "検索(&S)"
 
-#: controller/mastodon/handler.py:32 wxUI/view.py:22
+#: controller/mastodon/handler.py:33 wxUI/view.py:22
 msgid "Manage user aliases"
 msgstr "ユーザーエイリアスの管理"
 
-#: controller/mastodon/handler.py:34 controller/mastodon/handler.py:58
+#: controller/mastodon/handler.py:35 controller/mastodon/handler.py:59
 #: wxUI/view.py:30
 msgid "&Post"
 msgstr "投稿(&P)"
 
-#: controller/mastodon/handler.py:35 wxUI/dialogs/mastodon/menus.py:9
+#: controller/mastodon/handler.py:36 wxUI/dialogs/mastodon/menus.py:9
 #: wxUI/dialogs/mastodon/menus.py:37 wxUI/view.py:31
 msgid "Re&ply"
 msgstr "リプライ(&P)"
 
-#: controller/mastodon/handler.py:36 wxUI/dialogs/mastodon/menus.py:7
+#: controller/mastodon/handler.py:37 wxUI/dialogs/mastodon/menus.py:7
 #: wxUI/dialogs/mastodon/menus.py:35 wxUI/view.py:32
 msgid "&Boost"
 msgstr "ブースト(&B)"
 
-#: controller/mastodon/handler.py:37 wxUI/dialogs/mastodon/menus.py:11
+#: controller/mastodon/handler.py:38 wxUI/dialogs/mastodon/menus.py:11
 #: wxUI/dialogs/mastodon/menus.py:39 wxUI/view.py:33
 msgid "&Add to favorites"
 msgstr "お気に入りへ追加(&A)"
 
-#: controller/mastodon/handler.py:38
+#: controller/mastodon/handler.py:39
 msgid "Remove from favorites"
 msgstr "お気に入りから削除リストから削除"
 
-#: controller/mastodon/handler.py:39 wxUI/dialogs/mastodon/menus.py:21
+#: controller/mastodon/handler.py:40 wxUI/dialogs/mastodon/menus.py:21
 #: wxUI/dialogs/mastodon/menus.py:49 wxUI/view.py:35
 msgid "&Show post"
 msgstr "投稿を表示(&S)"
 
-#: controller/mastodon/handler.py:40 wxUI/view.py:36
+#: controller/mastodon/handler.py:41 wxUI/view.py:36
 msgid "View conversa&tion"
 msgstr "会話を見る(&T)"
 
-#: controller/mastodon/handler.py:41 wxUI/view.py:37
+#: controller/mastodon/handler.py:42 wxUI/view.py:37
 msgid "Read text in picture"
 msgstr "画像からテキストを読み取り"
 
-#: controller/mastodon/handler.py:42 wxUI/dialogs/mastodon/menus.py:25
+#: controller/mastodon/handler.py:43 wxUI/dialogs/mastodon/menus.py:25
 #: wxUI/view.py:39
 msgid "&Delete"
 msgstr "削除(&D)"
 
-#: controller/mastodon/handler.py:44 wxUI/view.py:43
+#: controller/mastodon/handler.py:45 wxUI/view.py:43
 msgid "&Actions..."
 msgstr "操作(&A)"
 
-#: controller/mastodon/handler.py:45 wxUI/view.py:44
+#: controller/mastodon/handler.py:46 wxUI/view.py:44
 msgid "&View timeline..."
 msgstr "タイムラインを表示(&V)"
 
-#: controller/mastodon/handler.py:46 wxUI/view.py:45
+#: controller/mastodon/handler.py:47 wxUI/view.py:45
 msgid "Direct me&ssage"
 msgstr "ダイレクトメッセージ(&S)"
 
-#: controller/mastodon/handler.py:47 wxUI/view.py:46
+#: controller/mastodon/handler.py:48 wxUI/view.py:46
 msgid "Add a&lias"
 msgstr "エイリアスを追加(&A)"
 
-#: controller/mastodon/handler.py:50
+#: controller/mastodon/handler.py:51
 msgid "Show user profile"
 msgstr "ユーザーのプロフィールを表示"
 
-#: controller/mastodon/handler.py:53
+#: controller/mastodon/handler.py:54
 #, fuzzy
 msgid "Create c&ommunity timeline"
 msgstr "コミュニティのタイムラインを作成"
 
-#: controller/mastodon/handler.py:94
+#: controller/mastodon/handler.py:55 wxUI/view.py:57
+msgid "Create a &filter"
+msgstr "新しいフィルターを作成(&F)"
+
+#: controller/mastodon/handler.py:56 wxUI/view.py:58
+msgid "&Manage filters"
+msgstr "フィルターの管理(&M)"
+
+#: controller/mastodon/handler.py:95
 msgid "Timelines"
 msgstr "タイムライン"
 
-#: controller/mastodon/handler.py:106
+#: controller/mastodon/handler.py:107
 msgid "Searches"
 msgstr "検索"
 
-#: controller/mastodon/handler.py:109 controller/mastodon/handler.py:190
-#: controller/mastodon/handler.py:195
+#: controller/mastodon/handler.py:110 controller/mastodon/handler.py:191
+#: controller/mastodon/handler.py:196
 #, python-brace-format
 msgid "Search for {}"
 msgstr "{} の検索結果"
 
-#: controller/mastodon/handler.py:110
+#: controller/mastodon/handler.py:111
 msgid "Communities"
 msgstr "コミュニティ"
 
-#: controller/mastodon/handler.py:113
+#: controller/mastodon/handler.py:114
 msgid "federated"
 msgstr "連合"
 
-#: controller/mastodon/handler.py:142
+#: controller/mastodon/handler.py:143
 #, python-brace-format
 msgid "Conversation with {0}"
 msgstr "{0}との会話"
 
-#: controller/mastodon/handler.py:298
+#: controller/mastodon/handler.py:299
 msgid "Add an user alias"
 msgstr "ユーザーエイリアスを追加"
 
-#: controller/mastodon/handler.py:310
+#: controller/mastodon/handler.py:311
 #, python-brace-format
 msgid "Alias has been set correctly for {}."
 msgstr "{}のエイリアスが正しく設定されています。"
 
-#: controller/mastodon/handler.py:341
+#: controller/mastodon/handler.py:342
 msgid "Update profile"
 msgstr "プロフィールを更新"
 
@@ -642,59 +651,59 @@ msgstr "%s - %s/%d"
 msgid "Poll with {} options"
 msgstr "{}つの項目の投票"
 
-#: controller/mastodon/messages.py:273
+#: controller/mastodon/messages.py:272
 #, python-brace-format
 msgid "Post from {}"
 msgstr "{} からの投稿"
 
-#: controller/mastodon/messages.py:277 sessions/mastodon/templates.py:78
+#: controller/mastodon/messages.py:276 sessions/mastodon/templates.py:82
 #: wxUI/dialogs/mastodon/postDialogs.py:49
 msgid "Public"
 msgstr "公開"
 
-#: controller/mastodon/messages.py:277 sessions/mastodon/templates.py:78
+#: controller/mastodon/messages.py:276 sessions/mastodon/templates.py:82
 #: wxUI/dialogs/mastodon/postDialogs.py:49
 msgid "Not listed"
 msgstr "未収載"
 
-#: controller/mastodon/messages.py:277
+#: controller/mastodon/messages.py:276
 msgid "followers only"
 msgstr "フォロワーのみ"
 
-#: controller/mastodon/messages.py:277 sessions/mastodon/templates.py:78
+#: controller/mastodon/messages.py:276 sessions/mastodon/templates.py:82
 #: wxUI/dialogs/mastodon/postDialogs.py:49
 msgid "Direct"
 msgstr "指定された相手のみ"
 
-#: controller/mastodon/messages.py:284
+#: controller/mastodon/messages.py:283
 msgid "Remote instance"
 msgstr "リモートインスタンス"
 
-#: controller/mastodon/messages.py:292 controller/mastodon/messages.py:320
+#: controller/mastodon/messages.py:291 controller/mastodon/messages.py:319
 msgid "Unmute conversation"
 msgstr "会話のミュートを解除"
 
-#: controller/mastodon/messages.py:316 wxUI/dialogs/mastodon/postDialogs.py:237
+#: controller/mastodon/messages.py:315 wxUI/dialogs/mastodon/postDialogs.py:237
 msgid "Mute conversation"
 msgstr "会話をミュート"
 
-#: controller/mastodon/messages.py:317
+#: controller/mastodon/messages.py:316
 msgid "Conversation unmuted."
 msgstr "会話のミュートを解除しました。"
 
-#: controller/mastodon/messages.py:321
+#: controller/mastodon/messages.py:320
 msgid "Conversation muted."
 msgstr "会話をミュートしました。"
 
-#: controller/mastodon/messages.py:332
+#: controller/mastodon/messages.py:331
 msgid "people who boosted this post"
 msgstr "この投稿をブーストした人"
 
-#: controller/mastodon/messages.py:337
+#: controller/mastodon/messages.py:336
 msgid "people who favorited this post"
 msgstr "この投稿をお気に入りした人"
 
-#: controller/mastodon/messages.py:343
+#: controller/mastodon/messages.py:342
 msgid "Link copied to clipboard."
 msgstr "リンクをクリップボードへコピーしました。"
 
@@ -721,6 +730,16 @@ msgstr "人のテンプレートを編集します。現在のテンプレート
 #: controller/mastodon/settings.py:198
 msgid "Direct Messages"
 msgstr "ダイレクトメッセージ"
+
+#: controller/mastodon/filters/create_filter.py:75
+#, fuzzy, python-brace-format
+msgid "Update Filter: {}"
+msgstr "プロフィールを更新"
+
+#: controller/mastodon/filters/manage_filters.py:57
+#: wxUI/dialogs/mastodon/filters/create_filter.py:90
+msgid "Never"
+msgstr ""
 
 #: extra/SoundsTutorial/soundsTutorial_constants.py:4
 msgid "Audio tweet."
@@ -878,9 +897,11 @@ msgstr "エラーが発生しました。{0}で選択した言語用の辞書が
 #: extra/SpellChecker/wx_ui.py:79
 #: extra/autocompletionUsers/mastodon/wx_scan.py:44
 #: wxUI/commonMessageDialogs.py:23 wxUI/commonMessageDialogs.py:36
-#: wxUI/commonMessageDialogs.py:45 wxUI/dialogs/mastodon/dialogs.py:38
-#: wxUI/dialogs/mastodon/dialogs.py:43 wxUI/dialogs/mastodon/dialogs.py:48
-#: wxUI/dialogs/mastodon/dialogs.py:53 wxUI/dialogs/mastodon/dialogs.py:60
+#: wxUI/commonMessageDialogs.py:45 wxUI/commonMessageDialogs.py:52
+#: wxUI/commonMessageDialogs.py:55 wxUI/commonMessageDialogs.py:61
+#: wxUI/dialogs/mastodon/dialogs.py:38 wxUI/dialogs/mastodon/dialogs.py:43
+#: wxUI/dialogs/mastodon/dialogs.py:48 wxUI/dialogs/mastodon/dialogs.py:53
+#: wxUI/dialogs/mastodon/dialogs.py:60
 msgid "Error"
 msgstr "エラー"
 
@@ -1081,7 +1102,9 @@ msgstr "キーストロークエディタ"
 msgid "Select a keystroke to edit"
 msgstr "編集するキーストロークを選択"
 
-#: keystrokeEditor/wx_ui.py:12 wxUI/dialogs/mastodon/userActions.py:9
+#: keystrokeEditor/wx_ui.py:12
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:18
+#: wxUI/dialogs/mastodon/userActions.py:9
 #: wxUI/dialogs/mastodon/userActions.py:18
 #: wxUI/dialogs/mastodon/userActions.py:19
 msgid "Action"
@@ -1091,7 +1114,9 @@ msgstr "操作"
 msgid "Keystroke"
 msgstr "キーストローク"
 
-#: keystrokeEditor/wx_ui.py:17 wxUI/dialogs/userAliasDialogs.py:53
+#: keystrokeEditor/wx_ui.py:17
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:23
+#: wxUI/dialogs/userAliasDialogs.py:53
 msgid "Edit"
 msgstr "編集"
 
@@ -1442,66 +1467,72 @@ msgstr ""
 "{app} データベースの読み込み中に例外が発生しました。自動的に削除され、再構築されます。このエラーが続く場合は、エラーログを {app} "
 "開発者に送信してください。"
 
-#: sessions/mastodon/compose.py:15 sessions/mastodon/compose.py:58
+#: sessions/mastodon/compose.py:15 sessions/mastodon/compose.py:61
 msgid "dddd, MMMM D, YYYY H:m"
 msgstr "YYYY年MMMMD日(dddd) H時m分s秒"
 
-#: sessions/mastodon/compose.py:17 sessions/mastodon/templates.py:73
-#: sessions/mastodon/templates.py:74
+#: sessions/mastodon/compose.py:17 sessions/mastodon/templates.py:74
+#: sessions/mastodon/templates.py:75
 #, python-brace-format
 msgid "Boosted from @{}: {}"
 msgstr "@{} からブースト: {}"
 
-#: sessions/mastodon/compose.py:33 sessions/mastodon/templates.py:28
+#: sessions/mastodon/compose.py:22 sessions/mastodon/compose.py:81
+#: sessions/mastodon/templates.py:81 sessions/mastodon/templates.py:176
+#, python-brace-format
+msgid "hidden by filter {}"
+msgstr ""
+
+#: sessions/mastodon/compose.py:36 sessions/mastodon/templates.py:28
 msgid "dddd, MMMM D, YYYY H:m:s"
 msgstr "YYYY年MMMMD日(dddd) H時m分s秒"
 
-#: sessions/mastodon/compose.py:35
+#: sessions/mastodon/compose.py:38
 #, python-format
 msgid "%s (@%s). %s followers, %s following, %s posts. Joined %s"
 msgstr "%s (@%s)。%s フォロワー、%s フォロー中、%s 投稿。参加 %s"
 
-#: sessions/mastodon/compose.py:46
+#: sessions/mastodon/compose.py:49
 #, python-brace-format
 msgid "Last message from {}: {}"
 msgstr "{} からの最後のメッセージ: {}"
 
-#: sessions/mastodon/compose.py:61
+#: sessions/mastodon/compose.py:64
 #, python-brace-format
 msgid "{username} has posted: {status}"
 msgstr "{username} が投稿しました: {status}"
 
-#: sessions/mastodon/compose.py:63
+#: sessions/mastodon/compose.py:66
 #, python-brace-format
 msgid "{username} has mentioned you: {status}"
 msgstr "{username} があなたにメンションしました: {status}"
 
-#: sessions/mastodon/compose.py:65
+#: sessions/mastodon/compose.py:68
 #, python-brace-format
 msgid "{username} has boosted: {status}"
 msgstr "{username} がブーストしました: {status}"
 
-#: sessions/mastodon/compose.py:67
+#: sessions/mastodon/compose.py:70
 #, python-brace-format
 msgid "{username} has added to favorites: {status}"
 msgstr "{username} がお気に入りに追加しました: {status}"
 
-#: sessions/mastodon/compose.py:69
+#: sessions/mastodon/compose.py:72
 #, python-brace-format
 msgid "{username} has followed you."
 msgstr "{username} がフォローしました。"
 
-#: sessions/mastodon/compose.py:71
+#: sessions/mastodon/compose.py:74
 #, python-brace-format
 msgid "{username} has joined the instance."
 msgstr "{username} がインスタンスに参加しました。"
 
-#: sessions/mastodon/compose.py:73 sessions/mastodon/templates.py:161
+#: sessions/mastodon/compose.py:76 sessions/mastodon/templates.py:171
 #, python-brace-format
 msgid "A poll in which you have voted has expired: {status}"
 msgstr "あなたが投票した投票の有効期限が切れました: {status}"
 
-#: sessions/mastodon/compose.py:75
+#: sessions/mastodon/compose.py:78
 #, python-brace-format
 msgid "{username} wants to follow you."
 msgstr "{username} がフォローしようとしています。"
@@ -1543,7 +1574,7 @@ msgstr "TWBlueで使用するMastodonアカウントを認証できませんで�
 msgid "Authorization error"
 msgstr "認証エラー"
 
-#: sessions/mastodon/session.py:212
+#: sessions/mastodon/session.py:215
 #, python-format
 msgid "%s succeeded."
 msgstr "%sに成功しました。"
@@ -1578,44 +1609,49 @@ msgstr "コンテンツの警告: {}"
 msgid "Media description: {}"
 msgstr "メディアの説明: {}。"
 
-#: sessions/mastodon/templates.py:78 wxUI/dialogs/mastodon/postDialogs.py:49
+#: sessions/mastodon/templates.py:82 wxUI/dialogs/mastodon/postDialogs.py:49
 msgid "Followers only"
 msgstr "フォロワーのみ"
 
-#: sessions/mastodon/templates.py:147
+#: sessions/mastodon/templates.py:94
+#, fuzzy
+msgid "Pinned."
+msgstr "コピーしました"
+
+#: sessions/mastodon/templates.py:157
 #, python-brace-format
 msgid "has posted: {status}"
 msgstr "が投稿しました: {status}"
 
-#: sessions/mastodon/templates.py:149
+#: sessions/mastodon/templates.py:159
 #, python-brace-format
 msgid "has mentioned you: {status}"
 msgstr "があなたにメンションしました: {status}"
 
-#: sessions/mastodon/templates.py:151
+#: sessions/mastodon/templates.py:161
 #, python-brace-format
 msgid "has boosted: {status}"
 msgstr "がブーストしました: {status}"
 
-#: sessions/mastodon/templates.py:153
+#: sessions/mastodon/templates.py:163
 #, python-brace-format
 msgid "has added to favorites: {status}"
 msgstr "がお気に入りに追加しました: {status}"
 
-#: sessions/mastodon/templates.py:155
+#: sessions/mastodon/templates.py:165
 #, python-brace-format
 msgid "has updated a status: {status}"
 msgstr "がステータスを更新しました: {status}"
 
-#: sessions/mastodon/templates.py:157
+#: sessions/mastodon/templates.py:167
 msgid "has followed you."
 msgstr "がフォロー。"
 
-#: sessions/mastodon/templates.py:159
+#: sessions/mastodon/templates.py:169
 msgid "has joined the instance."
 msgstr "がインスタンスに参加しました。"
 
-#: sessions/mastodon/templates.py:163
+#: sessions/mastodon/templates.py:173
 msgid "wants to follow you."
 msgstr "がフォローしようとしています。"
 
@@ -1826,6 +1862,32 @@ msgstr "指定されたインスタンスは無効です。もう一度試して
 msgid "Invalid instance"
 msgstr "無効なインスタンス"
 
+#: wxUI/commonMessageDialogs.py:52
+msgid ""
+"TWBlue was unable to add or update the filter with the specified "
+"settings. Please try again."
+msgstr ""
+
+#: wxUI/commonMessageDialogs.py:55
+msgid ""
+"TWBlue was unable to load your filters from the instance. Please try "
+"again."
+msgstr ""
+
+#: wxUI/commonMessageDialogs.py:58
+#, fuzzy
+msgid "Do you really want to delete this filter ?"
+msgstr "本当にこのアカウントを削除しますか？"
+
+#: wxUI/commonMessageDialogs.py:58
+#, fuzzy
+msgid "Delete filter"
+msgstr "新しいフィルターを作成(&F)"
+
+#: wxUI/commonMessageDialogs.py:61
+msgid "TWBlue was unable to remove the filter you specified. Please try again."
+msgstr ""
+
 #: wxUI/sysTrayIcon.py:36 wxUI/view.py:25
 msgid "&Global settings"
 msgstr "全般設定(&G)"
@@ -1905,14 +1967,6 @@ msgstr "コミュニティのタイムラインを作成"
 #: wxUI/view.py:56
 msgid "New &trending topics buffer..."
 msgstr "新しいトレンドのバッファ(&T)"
-
-#: wxUI/view.py:57
-msgid "Create a &filter"
-msgstr "新しいフィルターを作成(&F)"
-
-#: wxUI/view.py:58
-msgid "&Manage filters"
-msgstr "フィルターの管理(&M)"
 
 #: wxUI/view.py:59
 msgid "Find a string in the currently focused buffer..."
@@ -2346,6 +2400,8 @@ msgstr "新しいユーザーエイリアスを追加"
 msgid "Edit the currently focused user Alias."
 msgstr "現在フォーカスされているユーザーエイリアスを編集します。"
 
+#: wxUI/dialogs/mastodon/filters/create_filter.py:26
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:24
 #: wxUI/dialogs/userAliasDialogs.py:57
 msgid "Remove"
 msgstr "削除"
@@ -2963,10 +3019,15 @@ msgstr "フィールド &{} - ラベル: "
 msgid "Content: "
 msgstr "内容: "
 
+#: wxUI/dialogs/mastodon/filters/create_filter.py:43
+#: wxUI/dialogs/mastodon/filters/create_filter.py:65
 #: wxUI/dialogs/mastodon/showUserProfile.py:135
 msgid "Yes"
 msgstr "はい"
 
+#: wxUI/dialogs/mastodon/filters/create_filter.py:43
+#: wxUI/dialogs/mastodon/filters/create_filter.py:65
+#: wxUI/dialogs/mastodon/filters/create_filter.py:69
 #: wxUI/dialogs/mastodon/showUserProfile.py:135
 msgid "No"
 msgstr "いいえ"
@@ -3097,6 +3158,125 @@ msgstr "フォロワー(&F)"
 #: wxUI/dialogs/mastodon/userTimeline.py:21
 msgid "Fo&llowing"
 msgstr "フォロー中(&L)"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:12
+#, fuzzy
+msgid "Keyword"
+msgstr "キー名"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:13
+#: wxUI/dialogs/mastodon/filters/create_filter.py:24
+msgid "Whole word"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:19
+msgid "Keyword:"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:25
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:22
+#, fuzzy
+msgid "Add"
+msgstr "追加(&D)"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:34
+msgid "Palabras clave a filtrar:"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:74
+#, fuzzy
+msgid "New filter"
+msgstr "フィルターの管理(&M)"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:78
+#, fuzzy
+msgid "Home timeline"
+msgstr "タイムライン"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:79
+msgid "Public statuses"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:81
+#, fuzzy
+msgid "Threads"
+msgstr "準備完了"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:82
+#, fuzzy
+msgid "Profiles"
+msgstr "{} のプロフィール"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:86
+#, fuzzy
+msgid "Hide posts"
+msgstr "投稿"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:87
+#, fuzzy
+msgid "Set a content warning to posts"
+msgstr "コンテンツ警告"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:91
+#, fuzzy
+msgid "Hours"
+msgstr "6時間"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:92
+#, fuzzy
+msgid "Days"
+msgstr "7日"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:93
+msgid "Weeks"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:94
+msgid "months"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:97
+#, fuzzy
+msgid "Title:"
+msgstr "ファイル"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:104
+#, fuzzy
+msgid "Apply to:"
+msgstr "{} への返信:"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:114
+#, fuzzy
+msgid "Action:"
+msgstr "操作"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:122
+msgid "Expires in:"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:10
+#, fuzzy
+msgid "Filters"
+msgstr "ファイル"
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:15
+#, fuzzy
+msgid "Title"
+msgstr "ファイル"
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:16
+msgid "Keywords"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:17
+#, fuzzy
+msgid "Contexts"
+msgstr "コンテキスト"
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:19
+#, fuzzy
+msgid "Expires"
+msgstr "その他"
 
 #~ msgid "Unable to find address in OpenStreetMap."
 #~ msgstr "OpenStreetMapでアドレスが見つかりません。"
