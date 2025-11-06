@@ -514,6 +514,29 @@ class BaseBuffer(base.Buffer):
         if item.account.id != self.session.db["user_id"] or item.reblog != None:
             output.speak(_("You can only edit your own posts."))
             return
+        # Check if post has a poll with votes - warn user before proceeding
+        if hasattr(item, 'poll') and item.poll is not None:
+            votes_count = item.poll.votes_count if hasattr(item.poll, 'votes_count') else 0
+            if votes_count > 0:
+                # Show confirmation dialog
+                warning_title = _("Warning: Poll with votes")
+                warning_message = _("This post contains a poll with {votes} votes.\n\n"
+                                   "According to Mastodon's API, editing this post will reset ALL votes to zero, "
+                                   "even if you don't modify the poll itself.\n\n"
+                                   "Do you want to continue editing?").format(votes=votes_count)
+                dialog = wx.MessageDialog(self.buffer, warning_message, warning_title,
+                                         wx.YES_NO | wx.NO_DEFAULT | wx.ICON_WARNING)
+                result = dialog.ShowModal()
+                dialog.Destroy()
+                if result != wx.ID_YES:
+                    output.speak(_("Edit cancelled"))
+                    return
+        # Log item info for debugging
+        log.debug("Editing status: id={}, has_media_attachments={}, media_count={}".format(
+            item.id,
+            hasattr(item, 'media_attachments'),
+            len(item.media_attachments) if hasattr(item, 'media_attachments') else 0
+        ))
         # Create edit dialog with existing post data
         title = _("Edit post")
         caption = _("Edit your post here")
@@ -522,7 +545,8 @@ class BaseBuffer(base.Buffer):
         if response == wx.ID_OK:
             post_data = post.get_data()
             # Call edit_post method in session
-            call_threaded(self.session.edit_post, post_id=post.post_id, posts=post_data, visibility=post.get_visibility(), language=post.get_language())
+            # Note: visibility and language cannot be changed when editing per Mastodon API
+            call_threaded(self.session.edit_post, post_id=post.post_id, posts=post_data)
         if hasattr(post.message, "destroy"):
             post.message.destroy()
 
