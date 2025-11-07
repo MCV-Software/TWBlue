@@ -449,6 +449,15 @@ class Controller(object):
             buffer = self.search_buffer(buffer.name, buffer.account)
             buffer.destroy_status()
 
+    def edit_post(self, *args, **kwargs):
+        """ Edits a post in the current buffer.
+        Users can only edit their own posts."""
+        buffer = self.view.get_current_buffer()
+        if hasattr(buffer, "account"):
+            buffer = self.search_buffer(buffer.name, buffer.account)
+            if hasattr(buffer, "edit_status"):
+                buffer.edit_status()
+
     def exit(self, *args, **kwargs):
         if config.app["app-settings"]["ask_at_exit"] == True:
             answer = commonMessageDialogs.exit_dialog(self.view)
