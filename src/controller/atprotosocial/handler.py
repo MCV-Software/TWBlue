@@ -61,6 +61,31 @@ class Handler:
             except Exception:
                 pass
 
+    def account_settings(self, buffer, controller):
+        """Open a minimal account settings dialog for Bluesky."""
+        try:
+            current_mode = None
+            try:
+                current_mode = buffer.session.settings["general"].get("boost_mode")
+            except Exception:
+                current_mode = None
+            ask_default = True if current_mode in (None, "ask") else False
+
+            from wxUI.dialogs.atprotosocial.configuration import AccountSettingsDialog
+            dlg = AccountSettingsDialog(controller.view, ask_before_boost=ask_default)
+            resp = dlg.ShowModal()
+            if resp == wx.ID_OK:
+                vals = dlg.get_values()
+                boost_mode = "ask" if vals.get("ask_before_boost") else "direct"
+                try:
+                    buffer.session.settings["general"]["boost_mode"] = boost_mode
+                    buffer.session.settings.write()
+                except Exception:
+                    logger.exception("Failed to persist Bluesky boost_mode setting")
+            dlg.Destroy()
+        except Exception:
+            logger.exception("Error opening Bluesky account settings dialog")
+
     async def handle_action(self, action_name: str, user_id: str, payload: dict[str, Any]) -> dict[str, Any] | None:
         logger.debug("handle_action stub: %s %s %s", action_name, user_id, payload)
         return None

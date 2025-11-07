@@ -5,6 +5,8 @@ import logging
 import wx
 import config
 from mysc.repeating_timer import RepeatingTimer
+import arrow
+import arrow
 from datetime import datetime
 
 from multiplatform_widgets import widgets
@@ -32,7 +34,7 @@ class ATProtoSocialHomeTimelinePanel(object):
         self.buffer.name = name
         # Ensure controller can resolve current account from the GUI panel
         self.buffer.account = self.account
-        self.items = []  # list of dicts: {uri, author, text, indexed_at}
+        self.items = []  # list of dicts: {uri, author, handle, display_name, text, indexed_at}
         self.cursor = None
         self._auto_timer = None
 
@@ -47,8 +49,14 @@ class ATProtoSocialHomeTimelinePanel(object):
             # The atproto SDK expects params, not raw kwargs
             try:
                 from atproto import models as at_models  # type: ignore
-                params = at_models.AppBskyFeedGetTimeline.Params(limit=count)
-                res = api.app.bsky.feed.get_timeline(params)
+                # Home: algorithmic/default timeline
+                try:
+                    params = at_models.AppBskyFeedGetTimeline.Params(limit=count)
+                    res = api.app.bsky.feed.get_timeline(params)
+                except Exception:
+                    # Some SDKs may require explicit algorithm for home; try behavioral
+                    params = at_models.AppBskyFeedGetTimeline.Params(limit=count, algorithm="behavioral")
+                    res = api.app.bsky.feed.get_timeline(params)
             except Exception:
                 # Fallback to plain dict params if typed models unavailable
                 res = api.app.bsky.feed.get_timeline({"limit": count})
@@ -59,17 +67,27 @@ class ATProtoSocialHomeTimelinePanel(object):
                 post = getattr(it, "post", None)
                 if not post:
                     continue
+                # No additional client-side filtering; server distinguishes timelines correctly
                 record = getattr(post, "record", None)
                 author = getattr(post, "author", None)
                 text = getattr(record, "text", "") if record else ""
                 handle = getattr(author, "handle", "") if author else ""
+                display_name = (
+                    getattr(author, "display_name", None)
+                    or getattr(author, "displayName", None)
+                    or ""
+                ) if author else ""
                 indexed_at = getattr(post, "indexed_at", None)
-                self.items.append({
+                item = {
                     "uri": getattr(post, "uri", ""),
-                    "author": handle,
+                    "author": display_name or handle,
+                    "handle": handle,
+                    "display_name": display_name,
                     "text": text,
                     "indexed_at": indexed_at,
-                })
+                }
+                self._append_item(item, to_top=self._reverse())
+            # Full rerender to ensure column widths and selection
             self._render_list(replace=True)
             return len(self.items)
         except Exception:
@@ -96,25 +114,51 @@ class ATProtoSocialHomeTimelinePanel(object):
                 post = getattr(it, "post", None)
                 if not post:
                     continue
+                # No additional client-side filtering
                 record = getattr(post, "record", None)
                 author = getattr(post, "author", None)
                 text = getattr(record, "text", "") if record else ""
                 handle = getattr(author, "handle", "") if author else ""
+                display_name = (
+                    getattr(author, "display_name", None)
+                    or getattr(author, "displayName", None)
+                    or ""
+                ) if author else ""
                 indexed_at = getattr(post, "indexed_at", None)
                 new_items.append({
                     "uri": getattr(post, "uri", ""),
-                    "author": handle,
+                    "author": display_name or handle,
+                    "handle": handle,
+                    "display_name": display_name,
                     "text": text,
                     "indexed_at": indexed_at,
                 })
             if not new_items:
                 return 0
-            self.items.extend(new_items)
+            for it in new_items:
+                self._append_item(it, to_top=self._reverse())
+            # Render only the newly added slice
             self._render_list(replace=False, start=len(self.items) - len(new_items))
             return len(new_items)
         except Exception:
             log.exception("Failed to load more Bluesky timeline items")
             return 0
+
+    # Alias to integrate with mainController expectations for ATProto
+    def load_more_posts(self, *args, **kwargs):
+        return self.get_more_items()
+
+    def _reverse(self) -> bool:
+        try:
+            return bool(self.session.settings["general"].get("reverse_timelines", False))
+        except Exception:
+            return False
+
+    def _append_item(self, item: dict, to_top: bool = False):
+        if to_top:
+            self.items.insert(0, item)
+        else:
+            self.items.append(item)
 
     def _render_list(self, replace: bool, start: int = 0):
         if replace:
@@ -124,14 +168,33 @@ class ATProtoSocialHomeTimelinePanel(object):
             dt = ""
             if it.get("indexed_at"):
                 try:
-                    # indexed_at is ISO format; show HH:MM or date
-                    dt = str(it["indexed_at"])[:16].replace("T", " ")
+                    # Mastodon-like date formatting: relative or full date
+                    rel = False
+                    try:
+                        rel = bool(self.session.settings["general"].get("relative_times", False))
+                    except Exception:
+                        rel = False
+                    ts = arrow.get(str(it["indexed_at"]))
+                    if rel:
+                        dt = ts.humanize(locale=languageHandler.curLang[:2])
+                    else:
+                        dt = ts.format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
                 except Exception:
-                    dt = ""
+                    try:
+                        dt = str(it["indexed_at"])[:16].replace("T", " ")
+                    except Exception:
+                        dt = ""
             text = it.get("text", "").replace("\n", " ")
             if len(text) > 200:
                 text = text[:197] + "..."
-            self.buffer.list.insert_item(False, it.get("author", ""), text, dt)
+            # Display name and handle like Mastodon: "Display (@handle)"
+            author_col = it.get("author", "")
+            handle = it.get("handle", "")
+            if handle and it.get("display_name"):
+                author_col = f"{it.get('display_name')} (@{handle})"
+            elif handle and not author_col:
+                author_col = f"@{handle}"
+            self.buffer.list.insert_item(False, author_col, text, dt)
 
     # For compatibility with controller expectations
     def save_positions(self):
@@ -150,6 +213,28 @@ class ATProtoSocialHomeTimelinePanel(object):
             return self.items[idx].get("uri")
         except Exception:
             return None
+
+    def get_message(self):
+        try:
+            idx = self.buffer.list.get_selected()
+            if idx is None or idx < 0:
+                return ""
+            it = self.items[idx]
+            author = it.get("display_name") or it.get("author") or ""
+            handle = it.get("handle")
+            if handle:
+                author = f"{author} (@{handle})" if author else f"@{handle}"
+            text = it.get("text", "").replace("\n", " ")
+            dt = ""
+            if it.get("indexed_at"):
+                try:
+                    dt = str(it["indexed_at"])[:16].replace("T", " ")
+                except Exception:
+                    dt = ""
+            parts = [p for p in [author, text, dt] if p]
+            return ", ".join(parts)
+        except Exception:
+            return ""
 
     # Auto-refresh support (polling) to simulate near real-time updates
     def _periodic_refresh(self):
@@ -215,7 +300,8 @@ class ATProtoSocialFollowingTimelinePanel(ATProtoSocialHomeTimelinePanel):
             count = 40
         try:
             api = self.session._ensure_client()
-            # Use plain dict params to ensure algorithm is passed regardless of SDK models version
+            # Following timeline via reverse-chronological algorithm on get_timeline
+            # Use plain dict to avoid typed-model mismatches across SDK versions
             res = api.app.bsky.feed.get_timeline({"limit": count, "algorithm": "reverse-chronological"})
             feed = getattr(res, "feed", [])
             self.cursor = getattr(res, "cursor", None)
@@ -228,13 +314,21 @@ class ATProtoSocialFollowingTimelinePanel(ATProtoSocialHomeTimelinePanel):
                 author = getattr(post, "author", None)
                 text = getattr(record, "text", "") if record else ""
                 handle = getattr(author, "handle", "") if author else ""
+                display_name = (
+                    getattr(author, "display_name", None)
+                    or getattr(author, "displayName", None)
+                    or ""
+                ) if author else ""
                 indexed_at = getattr(post, "indexed_at", None)
-                self.items.append({
+                item = {
                     "uri": getattr(post, "uri", ""),
-                    "author": handle,
+                    "author": display_name or handle,
+                    "handle": handle,
+                    "display_name": display_name,
                     "text": text,
                     "indexed_at": indexed_at,
-                })
+                }
+                self._append_item(item, to_top=self._reverse())
             self._render_list(replace=True)
             return len(self.items)
         except Exception:
@@ -242,3 +336,46 @@ class ATProtoSocialFollowingTimelinePanel(ATProtoSocialHomeTimelinePanel):
             self.buffer.list.clear()
             self.buffer.list.insert_item(False, _("Error"), _("Could not load timeline."), "")
             return 0
+
+    def get_more_items(self):
+        if not self.cursor:
+            return 0
+        try:
+            api = self.session._ensure_client()
+            # Pagination via reverse-chronological algorithm on get_timeline
+            res = api.app.bsky.feed.get_timeline({"limit": 40, "cursor": self.cursor, "algorithm": "reverse-chronological"})
+            feed = getattr(res, "feed", [])
+            self.cursor = getattr(res, "cursor", None)
+            new_items = []
+            for it in feed:
+                post = getattr(it, "post", None)
+                if not post:
+                    continue
+                record = getattr(post, "record", None)
+                author = getattr(post, "author", None)
+                text = getattr(record, "text", "") if record else ""
+                handle = getattr(author, "handle", "") if author else ""
+                display_name = (
+                    getattr(author, "display_name", None)
+                    or getattr(author, "displayName", None)
+                    or ""
+                ) if author else ""
+                indexed_at = getattr(post, "indexed_at", None)
+                new_items.append({
+                    "uri": getattr(post, "uri", ""),
+                    "author": display_name or handle,
+                    "handle": handle,
+                    "display_name": display_name,
+                    "text": text,
+                    "indexed_at": indexed_at,
+                })
+            if not new_items:
+                return 0
+            for it in new_items:
+                self._append_item(it, to_top=self._reverse())
+            self._render_list(replace=False, start=len(self.items) - len(new_items))
+            return len(new_items)
+        except Exception:
+            log.exception("Failed to load more items for following timeline")
+            return 0
+

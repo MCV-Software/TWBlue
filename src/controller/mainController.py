@@ -788,14 +788,33 @@ class Controller(object):
                     text = dlg.GetValue().strip()
                     dlg.Destroy()
                     try:
-                        uri = session.send_message(text, quote_uri=item_uri)
-                        if uri:
-                            output.speak(_("Quote posted."), True)
+                        if text:
+                            uri = session.send_message(text, quote_uri=item_uri)
+                            if uri:
+                                output.speak(_("Quote posted."), True)
+                            else:
+                                output.speak(_("Failed to send quote."), True)
                         else:
-                            output.speak(_("Failed to send quote."), True)
+                            # Confirm repost (share) depending on preference (boost_mode)
+                            ask = True
+                            try:
+                                ask = session.settings["general"].get("boost_mode", "ask") == "ask"
+                            except Exception:
+                                ask = True
+                            if ask:
+                                confirm = wx.MessageDialog(None, _("Would you like to share this post?"), _("Boost"), wx.YES_NO|wx.ICON_QUESTION)
+                                if confirm.ShowModal() != wx.ID_YES:
+                                    confirm.Destroy()
+                                    return
+                                confirm.Destroy()
+                            r_uri = session.repost(item_uri)
+                            if r_uri:
+                                output.speak(_("Post shared."), True)
+                            else:
+                                output.speak(_("Failed to share post."), True)
                     except Exception:
-                        log.exception("Error sending Bluesky quote (invisible)")
-                        output.speak(_("An error occurred while posting the quote."), True)
+                        log.exception("Error sharing/quoting Bluesky post (invisible)")
+                        output.speak(_("An error occurred while sharing the post."), True)
                 else:
                     dlg.Destroy()
                 return
@@ -806,19 +825,38 @@ class Controller(object):
                 text, files, cw_text, langs = dlg.get_payload()
                 dlg.Destroy()
                 try:
-                    uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs, quote_uri=item_uri)
-                    if uri:
-                        output.speak(_("Quote posted."), True)
-                        try:
-                            if hasattr(buffer, "start_stream"):
-                                buffer.start_stream(mandatory=False, play_sound=False)
-                        except Exception:
-                            pass
+                    if text or files or cw_text:
+                        uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs, quote_uri=item_uri)
+                        if uri:
+                            output.speak(_("Quote posted."), True)
+                            try:
+                                if hasattr(buffer, "start_stream"):
+                                    buffer.start_stream(mandatory=False, play_sound=False)
+                            except Exception:
+                                pass
+                        else:
+                            output.speak(_("Failed to send quote."), True)
                     else:
-                        output.speak(_("Failed to send quote."), True)
+                        # Confirm repost without comment depending on preference
+                        ask = True
+                        try:
+                            ask = session.settings["general"].get("boost_mode", "ask") == "ask"
+                        except Exception:
+                            ask = True
+                        if ask:
+                            confirm = wx.MessageDialog(self.view, _("Would you like to share this post?"), _("Boost"), wx.YES_NO|wx.ICON_QUESTION)
+                            if confirm.ShowModal() != wx.ID_YES:
+                                confirm.Destroy()
+                                return
+                            confirm.Destroy()
+                        r_uri = session.repost(item_uri)
+                        if r_uri:
+                            output.speak(_("Post shared."), True)
+                        else:
+                            output.speak(_("Failed to share post."), True)
                 except Exception:
-                    log.exception("Error sending Bluesky quote (dialog)")
-                    output.speak(_("An error occurred while posting the quote."), True)
+                    log.exception("Error sharing/quoting Bluesky post (dialog)")
+                    output.speak(_("An error occurred while sharing the post."), True)
             else:
                 dlg.Destroy()
             return

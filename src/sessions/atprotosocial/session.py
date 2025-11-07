@@ -77,6 +77,12 @@ class Session(base.baseSession):
             # Ensure db exists (can be set to None on logout paths)
             if not isinstance(self.db, dict):
                 self.db = {}
+            # Ensure general settings have a default for boost confirmations like Mastodon
+            try:
+                if "general" in self.settings and self.settings["general"].get("boost_mode") is None:
+                    self.settings["general"]["boost_mode"] = "ask"
+            except Exception:
+                pass
             api = self._ensure_client()
             # Prefer resuming session if we have one
             if session_string:
@@ -256,12 +262,61 @@ class Session(base.baseSession):
                     "images": embed_images,
                 }
 
-            # Reply-to handling (sets parent/root strong refs)
+            # Helper: normalize various incoming identifiers to an at:// URI
+            def _normalize_to_uri(identifier: str) -> str | None:
+                try:
+                    if not isinstance(identifier, str):
+                        return None
+                    if identifier.startswith("at://"):
+                        return identifier
+                    if "bsky.app/profile/" in identifier and "/post/" in identifier:
+                        # Accept full web URL and try to resolve via get_post_thread below
+                        return identifier
+                    # Accept bare rkey case by constructing a guess using own handle
+                    handle = self.db.get("user_name") or self.settings["atprotosocial"].get("handle")
+                    did = self.db.get("user_id") or self.settings["atprotosocial"].get("did")
+                    if handle and did and len(identifier) in (13, 14, 15):
+                        # rkey length is typically ~13 chars base32
+                        return f"at://{did}/app.bsky.feed.post/{identifier}"
+                except Exception:
+                    pass
+                return None
+
+            # Reply-to handling (sets correct root/parent strong refs)
             if reply_to:
-                parent_ref = _get_strong_ref(reply_to)
+                # Resolve to proper at:// uri when possible
+                reply_uri = _normalize_to_uri(reply_to) or reply_to
+                parent_ref = _get_strong_ref(reply_uri)
+                root_ref = parent_ref
+                # Try to fetch thread to find actual root for deep replies
+                try:
+                    # atproto SDK usually exposes get_post_thread
+                    thread_res = None
+                    try:
+                        thread_res = api.app.bsky.feed.get_post_thread({"uri": reply_uri})
+                    except Exception:
+                        # Try typed model call variant if available
+                        from atproto import models as at_models  # type: ignore
+                        params = at_models.AppBskyFeedGetPostThread.Params(uri=reply_uri)
+                        thread_res = api.app.bsky.feed.get_post_thread(params)
+                    thread = getattr(thread_res, "thread", None)
+                    # Walk to the root if present
+                    node = thread
+                    while node and getattr(node, "parent", None):
+                        node = getattr(node, "parent")
+                    root_uri = getattr(node, "post", None)
+                    if root_uri:
+                        root_uri = getattr(root_uri, "uri", None)
+                    if root_uri and isinstance(root_uri, str):
+                        maybe_root = _get_strong_ref(root_uri)
+                        if maybe_root:
+                            root_ref = maybe_root
+                except Exception:
+                    # If anything fails, keep parent as root for a simple two-level reply
+                    pass
                 if parent_ref:
                     record["reply"] = {
-                        "root": parent_ref,
+                        "root": root_ref or parent_ref,
                         "parent": parent_ref,
                     }
 
@@ -290,4 +345,50 @@ class Session(base.baseSession):
         except Exception:
             log.exception("Error sending Bluesky post")
             output.speak(_("An error occurred while posting to Bluesky."), True)
+            return None
+
+    def repost(self, post_uri: str, post_cid: str | None = None) -> str | None:
+        """Create a simple repost of a given post. Returns URI of the repost record or None."""
+        if not self.logged:
+            raise Exceptions.NotLoggedSessionError("You are not logged in yet.")
+        try:
+            api = self._ensure_client()
+
+            def _get_strong_ref(uri: str):
+                try:
+                    posts_res = api.app.bsky.feed.get_posts({"uris": [uri]})
+                    posts = getattr(posts_res, "posts", None) or []
+                except Exception:
+                    try:
+                        posts_res = api.app.bsky.feed.get_posts(uris=[uri])
+                        posts = getattr(posts_res, "posts", None) or []
+                    except Exception:
+                        posts = []
+                if posts:
+                    post0 = posts[0]
+                    s_uri = getattr(post0, "uri", uri)
+                    s_cid = getattr(post0, "cid", None) or (post0.get("cid") if isinstance(post0, dict) else None)
+                    if s_cid:
+                        return {"uri": s_uri, "cid": s_cid}
+                return None
+
+            if not post_cid:
+                strong = _get_strong_ref(post_uri)
+                if not strong:
+                    return None
+                post_uri = strong["uri"]
+                post_cid = strong["cid"]
+
+            out = api.com.atproto.repo.create_record({
+                "repo": api.me.did,
+                "collection": "app.bsky.feed.repost",
+                "record": {
+                    "$type": "app.bsky.feed.repost",
+                    "subject": {"uri": post_uri, "cid": post_cid},
+                    "createdAt": getattr(api, "get_current_time_iso", lambda: None)() or None,
+                },
+            })
+            return getattr(out, "uri", None)
+        except Exception:
+            log.exception("Error creating Bluesky repost record")
             return None
