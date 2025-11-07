@@ -76,6 +76,13 @@ def render_post(post, template, settings, relative_times=False, offset_hours=0):
     else:
         text = process_text(post, safe=False)
         safe_text = process_text(post)
+    # Handle quoted posts
+    if hasattr(post, 'quote') and post.quote != None and hasattr(post.quote, 'quoted_status') and post.quote.quoted_status != None:
+        quoted_user = post.quote.quoted_status.account.acct
+        quoted_text = process_text(post.quote.quoted_status, safe=False)
+        quoted_safe_text = process_text(post.quote.quoted_status, safe=True)
+        text = text + " " + _("Quoting @{}: {}").format(quoted_user, quoted_text)
+        safe_text = safe_text + " " + _("Quoting @{}: {}").format(quoted_user, quoted_safe_text)
     filtered = utils.evaluate_filters(post=post, current_context="home")
     if filtered != None:
         text = _("hidden by filter {}").format(filtered)
