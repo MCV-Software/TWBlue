@@ -119,7 +119,7 @@ class UpdateProfileDialog(wx.Dialog):
 
         self.locked = wx.CheckBox(panel, label=_("&Private account"))
         self.locked.SetValue(locked)
-        self.bot = wx.CheckBox(panel, label=_("&Bot account"))
+        self.bot = wx.CheckBox(panel, label=_("B&ot account"))
         self.bot.SetValue(bot)
         self.discoverable = wx.CheckBox(panel, label=_("&Discoverable account"))
         self.discoverable.SetValue(discoverable)
