@@ -3,23 +3,47 @@ import demoji
 from html.parser import HTMLParser
 from datetime import datetime, timezone
 
-url_re = re.compile('<a\s*href=[\'|"](.*?)[\'"].*?>')
+url_re = re.compile(r'<a\s*href=[\'|"](.*?)[\'"].*?>')
 
 class HTMLFilter(HTMLParser):
+    # Classes to ignore when parsing HTML
+    IGNORED_CLASSES = ["quote-inline"]
+
     text = ""
     first_paragraph = True
+    skip_depth = 0  # Track nesting depth of ignored elements
 
     def handle_data(self, data):
-        self.text += data
+        # Only add data if we're not inside an ignored element
+        if self.skip_depth == 0:
+            self.text += data
 
     def handle_starttag(self, tag, attrs):
-        if tag == "br":
-            self.text = self.text+"\n"
-        elif tag == "p":
-            if self.first_paragraph:
-                self.first_paragraph = False
-            else:
-                self.text = self.text+"\n\n"
+        # Check if this tag has a class that should be ignored
+        attrs_dict = dict(attrs)
+        tag_class = attrs_dict.get("class", "")
+
+        # Check if any ignored class is present in this tag
+        should_skip = any(ignored_class in tag_class for ignored_class in self.IGNORED_CLASSES)
+
+        if should_skip:
+            self.skip_depth += 1
+        elif self.skip_depth == 0:  # Only process tags if we're not skipping
+            if tag == "br":
+                self.text = self.text+"\n"
+            elif tag == "p":
+                if self.first_paragraph:
+                    self.first_paragraph = False
+                else:
+                    self.text = self.text+"\n\n"
+        else:
+            # We're inside a skipped element, increment depth for nested tags
+            self.skip_depth += 1
+
+    def handle_endtag(self, tag):
+        # Decrement skip depth when closing any tag while skipping
+        if self.skip_depth > 0:
+            self.skip_depth -= 1
 
 def html_filter(data):
     f = HTMLFilter()
