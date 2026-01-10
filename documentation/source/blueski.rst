@@ -1,12 +1,12 @@
-.. _atprotosocial_bluesky:
+.. _blueski_bluesky:
 
 **************************************
-ATProtoSocial (Bluesky) Integration
+Blueski (Bluesky) Integration
 **************************************
 
 TWBlue now supports the AT Protocol (ATProto), the decentralized social networking protocol that powers Bluesky. This allows you to interact with your Bluesky account directly within TWBlue.
 
-Adding an ATProtoSocial Account
+Adding a Blueski Account
 ===============================
 
 To connect your Bluesky account to TWBlue, you will need your user **handle** and an **App Password**.
@@ -22,7 +22,7 @@ Once you have your handle and the App Password:
 
 1.  Open TWBlue and go to the Session Manager (Application Menu -> Manage accounts).
 2.  Click on "New account".
-3.  Select "ATProtoSocial (Bluesky)" from the menu.
+3.  Select "Blueski (Bluesky)" from the menu.
 4.  A dialog will prompt you to confirm that you want to authorize your account. Click "Yes".
 5.  You will then be asked for your Bluesky Handle. Enter your full handle (e.g., ``@username.bsky.social`` or ``username.bsky.social``).
 6.  Next, you will be asked for the App Password you generated. Enter it carefully.
@@ -31,11 +31,12 @@ Once you have your handle and the App Password:
 Key Features
 ============
 
-Once your ATProtoSocial account is connected, you can use the following features in TWBlue:
+Once your Blueski account is connected, you can use the following features in TWBlue:
 
 *   **Posting**: Create new posts (often called "skeets") with text, images, and specify language.
 *   **Timelines**:
-    *   **Home Timeline (Skyline)**: View posts from users you follow.
+    *   **Discover (algorithmic)**: A home feed curated by Bluesky.
+    *   **Following (chronological)**: View posts from users you follow in order.
     *   **User Timelines**: View posts from specific users.
     *   **Mentions & Replies**: These will appear in your Notifications.
 *   **Notifications**: Receive notifications for likes, reposts, follows, mentions, replies, and quotes.
@@ -47,7 +48,7 @@ Once your ATProtoSocial account is connected, you can use the following features
 *   **User Search**: Search for users by their handle or display name.
 *   **Content Warnings**: Create posts with content warnings (sensitive content labels).
 
-Basic Concepts for ATProtoSocial
+Basic Concepts for Blueski
 ==================================
 
 *   **DID (Decentralized Identifier)**: A unique, permanent identifier for users and data on the AT Protocol. It doesn't change even if your handle does. You generally won't need to interact with DIDs directly in TWBlue, as handles are used more commonly.

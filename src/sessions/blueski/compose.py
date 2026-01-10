@@ -9,7 +9,7 @@ from approve.translation import translate as _
 from approve.util import parse_iso_datetime # For parsing ISO timestamps
 
 if TYPE_CHECKING:
-    from approve.sessions.atprotosocial.session import Session as ATProtoSocialSession
+    from approve.sessions.blueski.session import Session as BlueskiSession
     from atproto.xrpc_client import models # For type hinting ATProto models
 
 logger = logging.getLogger(__name__)
@@ -21,19 +21,19 @@ SUPPORTED_LANG_CHOICES_COMPOSE = {
 }
 
 
-class ATProtoSocialCompose:
+class BlueskiCompose:
     MAX_CHARS = 300
     MAX_MEDIA_ATTACHMENTS = 4
     MAX_LANGUAGES = 3
     MAX_IMAGE_SIZE_BYTES = 1_000_000
 
-    def __init__(self, session: ATProtoSocialSession) -> None:
+    def __init__(self, session: BlueskiSession) -> None:
         self.session = session
         self.supported_media_types: list[str] = ["image/jpeg", "image/png"]
         self.max_image_size_bytes: int = self.MAX_IMAGE_SIZE_BYTES
 
     def get_panel_configuration(self) -> dict[str, Any]:
-        """Returns configuration for the compose panel specific to ATProtoSocial."""
+        """Returns configuration for the compose panel specific to Blueski."""
         return {
             "max_chars": self.MAX_CHARS,
             "max_media_attachments": self.MAX_MEDIA_ATTACHMENTS,
@@ -206,7 +206,7 @@ class ATProtoSocialCompose:
 
         Args:
             notif_data: A dictionary representing the notification,
-                        typically from ATProtoSocialSession._handle_*_notification methods
+                        typically from BlueskiSession._handle_*_notification methods
                         which create an approve.notifications.Notification object and then
                         convert it to dict or pass relevant parts.
                         Expected keys: 'title', 'body', 'author_name', 'timestamp_dt', 'kind'.

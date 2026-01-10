@@ -25,7 +25,7 @@ from mysc import localization
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 from controller.mastodon import handler as MastodonHandler
-from controller.atprotosocial import handler as ATProtoSocialHandler # Added import
+from controller.blueski import handler as BlueskiHandler # Added import
 from . import settings, userAlias
 
 log = logging.getLogger("mainController")
@@ -99,8 +99,8 @@ class Controller(object):
         try:
             if type == "mastodon":
                 return MastodonHandler.Handler()
-            if type == "atprotosocial":
-                return ATProtoSocialHandler.Handler()
+            if type == "blueski":
+                return BlueskiHandler.Handler()
         except Exception:
             log.exception("Error creating handler for type %s", type)
         return None
@@ -207,8 +207,8 @@ class Controller(object):
         if handler is None:
             if type == "mastodon":
                 handler = MastodonHandler.Handler()
-            elif type == "atprotosocial":
-                handler = ATProtoSocialHandler.Handler()
+            elif type == "blueski":
+                handler = BlueskiHandler.Handler()
             self.handlers[type] = handler
         return handler
 
@@ -250,9 +250,9 @@ class Controller(object):
         for i in sessions.sessions:
             log.debug("Working on session %s" % (i,))
             if sessions.sessions[i].is_logged == False:
-                # Try auto-login for ATProtoSocial sessions if credentials exist
+                # Try auto-login for Blueski sessions if credentials exist
                 try:
-                    if getattr(sessions.sessions[i], "type", None) == "atprotosocial":
+                    if getattr(sessions.sessions[i], "type", None) == "blueski":
                         sessions.sessions[i].login()
                 except Exception:
                     log.exception("Auto-login attempt failed for session %s", i)
@@ -260,7 +260,7 @@ class Controller(object):
                     self.create_ignored_session_buffer(sessions.sessions[i])
                     continue
             # Supported session types
-            valid_session_types = ["mastodon", "atprotosocial"]
+            valid_session_types = ["mastodon", "blueski"]
             if sessions.sessions[i].type in valid_session_types:
                 try:
                     handler = self.get_handler(type=sessions.sessions[i].type)
@@ -323,15 +323,15 @@ class Controller(object):
         log.debug("Creating buffer of type {0} with parent_tab of {2} arguments {1}".format(buffer_type, kwargs, parent_tab))
         if kwargs.get("parent") == None:
             kwargs["parent"] = self.view.nb
-        if not hasattr(buffers, session_type) and session_type != "atprotosocial": # Allow atprotosocial to be handled separately
+        if not hasattr(buffers, session_type) and session_type != "blueski": # Allow blueski to be handled separately
             raise AttributeError("Session type %s does not exist yet." % (session_type))
 
         try:
             buffer_panel_class = None
-            if session_type == "atprotosocial":
-                from wxUI.buffers.atprotosocial import panels as ATProtoSocialPanels # Import new panels
+            if session_type == "blueski":
+                from wxUI.buffers.blueski import panels as BlueskiPanels # Import new panels
                 if buffer_type == "home_timeline":
-                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialHomeTimelinePanel
+                    buffer_panel_class = BlueskiPanels.BlueskiHomeTimelinePanel
                     # kwargs for HomeTimelinePanel: parent, name, session
                     # 'name' is buffer_title, 'parent' is self.view.nb
                     # 'session' needs to be fetched based on user_id in kwargs
@@ -343,38 +343,38 @@ class Controller(object):
                     if "name" not in kwargs: kwargs["name"] = buffer_title
 
                 elif buffer_type == "user_timeline":
-                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialUserTimelinePanel
+                    buffer_panel_class = BlueskiPanels.BlueskiUserTimelinePanel
                     # kwargs for UserTimelinePanel: parent, name, session, target_user_did, target_user_handle
                     if "user_id" in kwargs and "session" not in kwargs:
                         kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
                     kwargs.pop("user_id", None)
                     if "name" not in kwargs: kwargs["name"] = buffer_title
-                    # target_user_did and target_user_handle must be in kwargs from atprotosocial.Handler
+                    # target_user_did and target_user_handle must be in kwargs from blueski.Handler
 
                 elif buffer_type == "notifications":
-                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialNotificationPanel
+                    buffer_panel_class = BlueskiPanels.BlueskiNotificationPanel
                     if "user_id" in kwargs and "session" not in kwargs:
                         kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
                     kwargs.pop("user_id", None)
                     if "name" not in kwargs: kwargs["name"] = buffer_title
-                    # target_user_did and target_user_handle must be in kwargs from atprotosocial.Handler
+                    # target_user_did and target_user_handle must be in kwargs from blueski.Handler
 
                 elif buffer_type == "notifications":
-                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialNotificationPanel
+                    buffer_panel_class = BlueskiPanels.BlueskiNotificationPanel
                     if "user_id" in kwargs and "session" not in kwargs:
                         kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
                     kwargs.pop("user_id", None)
                     if "name" not in kwargs: kwargs["name"] = buffer_title
                 elif buffer_type == "user_list_followers" or buffer_type == "user_list_following":
-                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialUserListPanel
+                    buffer_panel_class = BlueskiPanels.BlueskiUserListPanel
                 elif buffer_type == "following_timeline":
-                    buffer_panel_class = ATProtoSocialPanels.ATProtoSocialFollowingTimelinePanel
+                    buffer_panel_class = BlueskiPanels.BlueskiFollowingTimelinePanel
                     # Clean stray keys that this panel doesn't accept
                     kwargs.pop("user_id", None)
                     kwargs.pop("list_type", None)
                     if "name" not in kwargs: kwargs["name"] = buffer_title
                 else:
-                    log.warning(f"Unsupported ATProtoSocial buffer type: {buffer_type}. Falling back to generic.")
+                    log.warning(f"Unsupported Blueski buffer type: {buffer_type}. Falling back to generic.")
                     # Fallback to trying to find it in generic buffers or error
                     available_buffers = getattr(buffers, "base", None) # Or some generic panel module
                     if available_buffers and hasattr(available_buffers, buffer_type):
@@ -382,7 +382,7 @@ class Controller(object):
                     elif available_buffers and hasattr(available_buffers, "TimelinePanel"): # Example generic
                         buffer_panel_class = getattr(available_buffers, "TimelinePanel")
                     else:
-                        raise AttributeError(f"ATProtoSocial buffer type {buffer_type} not found in atprotosocial.panels or base panels.")
+                        raise AttributeError(f"Blueski buffer type {buffer_type} not found in blueski.panels or base panels.")
             else: # Existing logic for other session types
                 available_buffers = getattr(buffers, session_type)
                 if not hasattr(available_buffers, buffer_type):
@@ -549,6 +549,15 @@ class Controller(object):
             buffer = self.search_buffer(buffer.name, buffer.account)
             buffer.destroy_status()
 
+    def edit_post(self, *args, **kwargs):
+        """ Edits a post in the current buffer.
+        Users can only edit their own posts."""
+        buffer = self.view.get_current_buffer()
+        if hasattr(buffer, "account"):
+            buffer = self.search_buffer(buffer.name, buffer.account)
+            if hasattr(buffer, "edit_status"):
+                buffer.edit_status()
+
     def exit(self, *args, **kwargs):
         if config.app["app-settings"]["ask_at_exit"] == True:
             answer = commonMessageDialogs.exit_dialog(self.view)
@@ -598,7 +607,7 @@ class Controller(object):
 
         session = buffer.session
         # Compose for Bluesky (ATProto): dialog with attachments/CW/language
-        if getattr(session, "type", "") == "atprotosocial":
+        if getattr(session, "type", "") == "blueski":
             # In invisible interface, prefer a quick, minimal compose to avoid complex UI
             if self.showing == False:
                 # Parent=None so it shows even if main window is hidden
@@ -620,7 +629,7 @@ class Controller(object):
                 else:
                     dlg.Destroy()
                 return
-            from wxUI.dialogs.atprotosocial.postDialogs import Post as ATPostDialog
+            from wxUI.dialogs.blueski.postDialogs import Post as ATPostDialog
             dlg = ATPostDialog()
             if dlg.ShowModal() == wx.ID_OK:
                 text, files, cw_text, langs = dlg.get_payload()
@@ -712,7 +721,7 @@ class Controller(object):
             return
 
         session = buffer.session
-        if getattr(session, "type", "") == "atprotosocial":
+        if getattr(session, "type", "") == "blueski":
             if self.showing == False:
                 dlg = wx.TextEntryDialog(None, _("Write your reply:"), _("Reply"))
                 if dlg.ShowModal() == wx.ID_OK:
@@ -732,7 +741,7 @@ class Controller(object):
                 else:
                     dlg.Destroy()
                 return
-            from wxUI.dialogs.atprotosocial.postDialogs import Post as ATPostDialog
+            from wxUI.dialogs.blueski.postDialogs import Post as ATPostDialog
             dlg = ATPostDialog(caption=_("Reply"))
             if dlg.ShowModal() == wx.ID_OK:
                 text, files, cw_text, langs = dlg.get_payload()
@@ -774,7 +783,7 @@ class Controller(object):
         session = getattr(buffer, "session", None)
         if not session:
             return
-        if getattr(session, "type", "") == "atprotosocial":
+        if getattr(session, "type", "") == "blueski":
             item_uri = None
             if hasattr(buffer, "get_selected_item_id"):
                 item_uri = buffer.get_selected_item_id()
@@ -819,7 +828,7 @@ class Controller(object):
                     dlg.Destroy()
                 return
 
-            from wxUI.dialogs.atprotosocial.postDialogs import Post as ATPostDialog
+            from wxUI.dialogs.blueski.postDialogs import Post as ATPostDialog
             dlg = ATPostDialog(caption=_("Quote post"))
             if dlg.ShowModal() == wx.ID_OK:
                 text, files, cw_text, langs = dlg.get_payload()
@@ -865,7 +874,7 @@ class Controller(object):
         buffer = self.get_current_buffer()
         if hasattr(buffer, "add_to_favorites"): # Generic buffer method
             return buffer.add_to_favorites()
-        elif buffer.session and buffer.session.KIND == "atprotosocial":
+        elif buffer.session and buffer.session.KIND == "blueski":
             item_uri = buffer.get_selected_item_id()
             if not item_uri:
                 output.speak(_("No item selected to like."), True)
@@ -894,7 +903,7 @@ class Controller(object):
         buffer = self.get_current_buffer()
         if hasattr(buffer, "remove_from_favorites"): # Generic buffer method
             return buffer.remove_from_favorites()
-        elif buffer.session and buffer.session.KIND == "atprotosocial":
+        elif buffer.session and buffer.session.KIND == "blueski":
             item_uri = buffer.get_selected_item_id()
             if not item_uri:
                 output.speak(_("No item selected to unlike."), True)
@@ -1423,9 +1432,9 @@ class Controller(object):
     def update_buffers(self):
         for i in self.buffers[:]:
             if i.session != None and i.session.is_logged == True:
-                # For ATProtoSocial, initial load is in session.start() or manual.
+                # For Blueski, initial load is in session.start() or manual.
                 # Periodic updates would need a separate timer or manual refresh via update_buffer.
-                if i.session.KIND != "atprotosocial":
+                if i.session.KIND != "blueski":
                     try:
                         i.start_stream(mandatory=True) # This is likely for streaming connections or timed polling within buffer
                     except Exception as err:
@@ -1444,7 +1453,7 @@ class Controller(object):
         async def do_update():
             new_ids = []
             try:
-                if session.KIND == "atprotosocial":
+                if session.KIND == "blueski":
                     if bf.name == f"{session.label} Home": # Assuming buffer name indicates type
                         # Its panel's load_initial_posts calls session.fetch_home_timeline
                         if hasattr(bf, "load_initial_posts"): # Generic for timeline panels
@@ -1462,7 +1471,7 @@ class Controller(object):
                         await bf.load_initial_users(limit=config.app["app-settings"].get("items_per_request", 30))
                         new_ids = [u.get("did") for u in getattr(bf, "user_list_data", []) if isinstance(u,dict)]
                     else:
-                        if hasattr(bf, "start_stream"): # Fallback for non-ATProtoSocial panels or unhandled types
+                        if hasattr(bf, "start_stream"): # Fallback for non-Blueski panels or unhandled types
                             count = bf.start_stream(mandatory=True, avoid_autoreading=True)
                             if count is not None: new_ids = [str(x) for x in range(count)] # Dummy IDs for count
                         else:
@@ -1506,14 +1515,14 @@ class Controller(object):
         # e.g., bf.pagination_cursor or bf.older_items_cursor
         # This cursor should be set by the result of previous fetch_..._timeline(new_only=False) calls.
 
-        # For ATProtoSocial, session methods like fetch_home_timeline store their own cursor (e.g., session.home_timeline_cursor)
+        # For Blueski, session methods like fetch_home_timeline store their own cursor (e.g., session.home_timeline_cursor)
         # The panel (bf) itself should manage its own cursor for "load more"
 
         current_cursor = None
         can_load_more_natively = False
 
-        if session.KIND == "atprotosocial":
-            if hasattr(bf, "load_more_posts"): # For ATProtoSocialUserTimelinePanel & ATProtoSocialHomeTimelinePanel
+        if session.KIND == "blueski":
+            if hasattr(bf, "load_more_posts"): # For BlueskiUserTimelinePanel & BlueskiHomeTimelinePanel
                 can_load_more_natively = True
             if hasattr(bf, "load_more_posts"):
                 can_load_more_natively = True
@@ -1530,7 +1539,7 @@ class Controller(object):
                 else:
                     output.speak(_(u"This buffer does not support loading more items in this way."), True)
                     return
-        else: # For other non-ATProtoSocial session types
+        else: # For other non-Blueski session types
             if hasattr(bf, "get_more_items"):
                 return bf.get_more_items()
             else:
@@ -1541,7 +1550,7 @@ class Controller(object):
 
         async def do_load_more():
             try:
-                if session.KIND == "atprotosocial":
+                if session.KIND == "blueski":
                     if hasattr(bf, "load_more_posts"):
                         await bf.load_more_posts(limit=config.app["app-settings"].get("items_per_request", 20))
                     elif hasattr(bf, "load_more_users"):
@@ -1664,7 +1673,7 @@ class Controller(object):
         if handler and hasattr(handler, 'user_details'):
             # The handler's user_details method is responsible for extracting context
             # (e.g., selected user) from the buffer and displaying the profile.
-            # For ATProtoSocial, handler.user_details calls the ShowUserProfileDialog.
+            # For Blueski, handler.user_details calls the ShowUserProfileDialog.
             # It's an async method, so needs to be called appropriately.
             async def _show_details():
                 await handler.user_details(buffer)

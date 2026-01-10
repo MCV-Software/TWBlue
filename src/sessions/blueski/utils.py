@@ -16,7 +16,7 @@ fromapprove.notifications import NotificationError
 
 
 if TYPE_CHECKING:
-    fromapprove.sessions.atprotosocial.session import Session as ATProtoSocialSession
+    fromapprove.sessions.blueski.session import Session as BlueskiSession
     # Define common type aliases if needed
     ATUserProfile = models.AppBskyActorDefs.ProfileViewDetailed
     ATPost = models.AppBskyFeedDefs.PostView
@@ -27,8 +27,8 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class ATProtoSocialUtils:
-    def __init__(self, session: ATProtoSocialSession) -> None:
+class BlueskiUtils:
+    def __init__(self, session: BlueskiSession) -> None:
         self.session = session
         # _own_did and _own_handle are now set by Session.login upon successful authentication
         # and directly on the util instance.
@@ -47,7 +47,7 @@ class ATProtoSocialUtils:
                  self._own_handle = self.session.client.me.handle
             return self.session.client
 
-        logger.warning("ATProtoSocialUtils: Client not available or not authenticated.")
+        logger.warning("BlueskiUtils: Client not available or not authenticated.")
         # Optionally, try to trigger re-authentication if appropriate,
         # but generally, the caller should ensure session is ready.
         # For example, by calling session.start() or session.authorise()
@@ -59,7 +59,7 @@ class ATProtoSocialUtils:
         """Retrieves the authenticated user's profile information."""
         client = await self._get_client()
         if not client or not self.get_own_did(): # Use getter for _own_did
-            logger.warning("ATProtoSocial client not available or user DID not known.")
+            logger.warning("Blueski client not available or user DID not known.")
             return None
         try:
             # client.me should be populated after login by the SDK
@@ -78,7 +78,7 @@ class ATProtoSocialUtils:
                     return response
                  return None
         except AtProtocolError as e:
-            logger.error(f"Error fetching own ATProtoSocial profile: {e}")
+            logger.error(f"Error fetching own Blueski profile: {e}")
             return None
 
     def get_own_did(self) -> str | None:
@@ -116,13 +116,13 @@ class ATProtoSocialUtils:
         **kwargs: Any
     ) -> str | None: # Returns the ATURI of the new post, or None on failure
         """
-        Posts a status (skeet) to ATProtoSocial.
+        Posts a status (skeet) to Blueski.
         Handles text, images, replies, quotes, and content warnings (labels).
         """
         client = await self._get_client()
         if not client:
-            logger.error("ATProtoSocial client not available for posting.")
-            raise NotificationError(_("Not connected to ATProtoSocial. Please check your connection settings or log in."))
+            logger.error("Blueski client not available for posting.")
+            raise NotificationError(_("Not connected to Blueski. Please check your connection settings or log in."))
 
         if not self.get_own_did():
             logger.error("Cannot post status: User DID not available.")
@@ -130,7 +130,7 @@ class ATProtoSocialUtils:
 
         try:
             # Prepare core post record
-            post_record_data = {'text': text, 'created_at': client.get_current_time_iso()} # SDK handles datetime format
+            post_record_data = {'text': text, 'createdAt': client.get_current_time_iso()} # SDK handles datetime format
 
             if langs:
                 post_record_data['langs'] = langs
@@ -227,13 +227,13 @@ class ATProtoSocialUtils:
                     record=final_post_record,
                 )
             )
-            logger.info(f"Successfully posted to ATProtoSocial. URI: {response.uri}")
+            logger.info(f"Successfully posted to Blueski. URI: {response.uri}")
             return response.uri
         except AtProtocolError as e:
-            logger.error(f"Error posting status to ATProtoSocial: {e.error} - {e.message}", exc_info=True)
+            logger.error(f"Error posting status to Blueski: {e.error} - {e.message}", exc_info=True)
             raise NotificationError(_("Failed to post: {error} - {message}").format(error=e.error or "Error", message=e.message or "Protocol error")) from e
         except Exception as e: # Catch any other unexpected errors
-            logger.error(f"Unexpected error posting status to ATProtoSocial: {e}", exc_info=True)
+            logger.error(f"Unexpected error posting status to Blueski: {e}", exc_info=True)
             raise NotificationError(_("An unexpected error occurred while posting: {error}").format(error=str(e))) from e
 
 
@@ -241,7 +241,7 @@ class ATProtoSocialUtils:
         """Deletes a status (post) given its AT URI."""
         client = await self._get_client()
         if not client:
-            logger.error("ATProtoSocial client not available for deleting post.")
+            logger.error("Blueski client not available for deleting post.")
             return False
         if not self.get_own_did():
             logger.error("Cannot delete status: User DID not available.")
@@ -268,10 +268,10 @@ class ATProtoSocialUtils:
                     rkey=rkey,
                 )
             )
-            logger.info(f"Successfully deleted post {post_uri} from ATProtoSocial.")
+            logger.info(f"Successfully deleted post {post_uri} from Blueski.")
             return True
         except AtProtocolError as e:
-            logger.error(f"Error deleting post {post_uri} from ATProtoSocial: {e.error} - {e.message}")
+            logger.error(f"Error deleting post {post_uri} from Blueski: {e.error} - {e.message}")
         except Exception as e:
             logger.error(f"Unexpected error deleting post {post_uri}: {e}", exc_info=True)
         return False
@@ -279,12 +279,12 @@ class ATProtoSocialUtils:
 
     async def upload_media(self, file_path: str, mime_type: str, alt_text: str | None = None) -> dict[str, Any] | None:
         """
-        Uploads media (image) to ATProtoSocial.
+        Uploads media (image) to Blueski.
         Returns a dictionary containing the SDK's BlobRef object and alt_text, or None on failure.
         """
         client = await self._get_client()
         if not client:
-            logger.error("ATProtoSocial client not available for media upload.")
+            logger.error("Blueski client not available for media upload.")
             return None
         try:
             with open(file_path, "rb") as f:
@@ -303,7 +303,7 @@ class ATProtoSocialUtils:
                 logger.error(f"Media upload failed for {file_path}, no blob in response.")
                 return None
         except AtProtocolError as e:
-            logger.error(f"Error uploading media {file_path} to ATProtoSocial: {e.error} - {e.message}", exc_info=True)
+            logger.error(f"Error uploading media {file_path} to Blueski: {e.error} - {e.message}", exc_info=True)
         except Exception as e:
             logger.error(f"Unexpected error uploading media {file_path}: {e}", exc_info=True)
         return None
@@ -341,7 +341,7 @@ class ATProtoSocialUtils:
                 models.ComAtprotoRepoCreateRecord.Input(
                     repo=self.get_own_did(),
                     collection=ids.AppBskyGraphFollow, # "app.bsky.graph.follow"
-                    record=models.AppBskyGraphFollow.Main(subject=user_did, created_at=client.get_current_time_iso()),
+                    record=models.AppBskyGraphFollow.Main(subject=user_did, createdAt=client.get_current_time_iso()),
                 )
             )
             logger.info(f"Successfully followed user {user_did}.")
@@ -596,7 +596,7 @@ class ATProtoSocialUtils:
                 models.ComAtprotoRepoCreateRecord.Input(
                     repo=self.get_own_did(),
                     collection=ids.AppBskyGraphBlock, # "app.bsky.graph.block"
-                    record=models.AppBskyGraphBlock.Main(subject=user_did, created_at=client.get_current_time_iso()),
+                    record=models.AppBskyGraphBlock.Main(subject=user_did, createdAt=client.get_current_time_iso()),
                 )
             )
             logger.info(f"Successfully blocked user {user_did}. Block record URI: {response.uri}")
@@ -1098,7 +1098,7 @@ class ATProtoSocialUtils:
         """
         client = await self._get_client()
         if not client:
-            logger.error("ATProtoSocial client not available for reporting.")
+            logger.error("Blueski client not available for reporting.")
             return False
 
         try:

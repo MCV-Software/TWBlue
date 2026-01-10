@@ -280,6 +280,12 @@ class BaseBuffer(base.Buffer):
             return
         menu = menus.base()
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.reply, menuitem=menu.reply)
+        # Enable/disable edit based on whether the post belongs to the user
+        item = self.get_item()
+        if item and item.account.id == self.session.db["user_id"] and item.reblog == None:
+            widgetUtils.connect_event(menu, widgetUtils.MENU, self.edit_status, menuitem=menu.edit)
+        else:
+            menu.edit.Enable(False)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
         if self.can_share() == True:
             widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.boost)
@@ -500,6 +506,49 @@ class BaseBuffer(base.Buffer):
                 self.session.sound.play("error.ogg")
                 log.exception("")
             self.session.db[self.name] = items
+
+    def edit_status(self, event=None, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        # Check if the post belongs to the current user
+        if item.account.id != self.session.db["user_id"] or item.reblog != None:
+            output.speak(_("You can only edit your own posts."))
+            return
+        # Check if post has a poll with votes - warn user before proceeding
+        if hasattr(item, 'poll') and item.poll is not None:
+            votes_count = item.poll.votes_count if hasattr(item.poll, 'votes_count') else 0
+            if votes_count > 0:
+                # Show confirmation dialog
+                warning_title = _("Warning: Poll with votes")
+                warning_message = _("This post contains a poll with {votes} votes.\n\n"
+                                   "According to Mastodon's API, editing this post will reset ALL votes to zero, "
+                                   "even if you don't modify the poll itself.\n\n"
+                                   "Do you want to continue editing?").format(votes=votes_count)
+                dialog = wx.MessageDialog(self.buffer, warning_message, warning_title,
+                                         wx.YES_NO | wx.NO_DEFAULT | wx.ICON_WARNING)
+                result = dialog.ShowModal()
+                dialog.Destroy()
+                if result != wx.ID_YES:
+                    output.speak(_("Edit cancelled"))
+                    return
+        # Log item info for debugging
+        log.debug("Editing status: id={}, has_media_attachments={}, media_count={}".format(
+            item.id,
+            hasattr(item, 'media_attachments'),
+            len(item.media_attachments) if hasattr(item, 'media_attachments') else 0
+        ))
+        # Create edit dialog with existing post data
+        title = _("Edit post")
+        caption = _("Edit your post here")
+        post = messages.editPost(session=self.session, item=item, title=title, caption=caption)
+        response = post.message.ShowModal()
+        if response == wx.ID_OK:
+            post_data = post.get_data()
+            # Call edit_post method in session
+            # Note: visibility and language cannot be changed when editing per Mastodon API
+            call_threaded(self.session.edit_post, post_id=post.post_id, posts=post_data)
+        if hasattr(post.message, "destroy"):
+            post.message.destroy()
 
     def user_details(self):
         item = self.get_item()

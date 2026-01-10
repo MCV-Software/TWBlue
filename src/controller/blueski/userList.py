@@ -7,39 +7,39 @@ fromapprove.translation import translate as _
 # fromapprove.controller.mastodon import userList as mastodon_user_list # If adapting
 
 if TYPE_CHECKING:
-    fromapprove.sessions.atprotosocial.session import Session as ATProtoSocialSession # Adjusted
-    # Define a type for what a user entry in a list might look like for ATProtoSocial
-    ATProtoSocialUserListItem = dict[str, Any] # e.g. {"did": "...", "handle": "...", "displayName": "..."}
+    fromapprove.sessions.blueski.session import Session as BlueskiSession # Adjusted
+    # Define a type for what a user entry in a list might look like for Blueski
+    BlueskiUserListItem = dict[str, Any] # e.g. {"did": "...", "handle": "...", "displayName": "..."}
 
 logger = logging.getLogger(__name__)
 
-# This file is responsible for fetching and managing lists of users from ATProtoSocial.
+# This file is responsible for fetching and managing lists of users from Blueski.
 # Examples include:
 # - Followers of a user
 # - Users a user is following
 # - Users who liked or reposted a post
-# - Users in a specific list or feed (if ATProtoSocial supports user lists like Twitter/Mastodon)
+# - Users in a specific list or feed (if Blueski supports user lists like Twitter/Mastodon)
 # - Search results for users
 
 # The structure will likely involve:
-# - A base class or functions for paginating through user lists from the ATProtoSocial API.
+# - A base class or functions for paginating through user lists from the Blueski API.
 # - Specific functions for each type of user list.
-# - Formatting ATProtoSocial user data into a consistent structure for UI display.
+# - Formatting Blueski user data into a consistent structure for UI display.
 
 async def fetch_followers(
-    session: ATProtoSocialSession,
+    session: BlueskiSession,
     user_id: str, # DID of the user whose followers to fetch
     limit: int = 20,
     cursor: str | None = None
-) -> AsyncGenerator[ATProtoSocialUserListItem, None]:
+) -> AsyncGenerator[BlueskiUserListItem, None]:
     """
-    Asynchronously fetches a list of followers for a given ATProtoSocial user.
+    Asynchronously fetches a list of followers for a given Blueski user.
     user_id is the DID of the target user.
     Yields user data dictionaries.
     """
     # client = await session.util._get_client() # Get authenticated client
     # if not client:
-    #     logger.warning(f"ATProtoSocial client not available for fetching followers of {user_id}.")
+    #     logger.warning(f"Blueski client not available for fetching followers of {user_id}.")
     #     return
 
     # current_cursor = cursor
@@ -80,7 +80,7 @@ async def fetch_followers(
 
     """
     if not session.is_ready():
-        logger.warning(f"Cannot fetch followers for {user_id}: ATProtoSocial session not ready.")
+        logger.warning(f"Cannot fetch followers for {user_id}: Blueski session not ready.")
         # yield {} # Stop iteration if not ready
         return
 
@@ -94,22 +94,22 @@ async def fetch_followers(
             logger.info(f"No followers data returned for user {user_id}.")
 
     except Exception as e:
-        logger.error(f"Error in fetch_followers for ATProtoSocial user {user_id}: {e}", exc_info=True)
+        logger.error(f"Error in fetch_followers for Blueski user {user_id}: {e}", exc_info=True)
         # Depending on desired error handling, could raise or yield an error marker
 
 
 async def fetch_following(
-    session: ATProtoSocialSession,
+    session: BlueskiSession,
     user_id: str, # DID of the user whose followed accounts to fetch
     limit: int = 20,
     cursor: str | None = None
-) -> AsyncGenerator[ATProtoSocialUserListItem, None]:
+) -> AsyncGenerator[BlueskiUserListItem, None]:
     """
-    Asynchronously fetches a list of users followed by a given ATProtoSocial user.
+    Asynchronously fetches a list of users followed by a given Blueski user.
     Yields user data dictionaries.
     """
     if not session.is_ready():
-        logger.warning(f"Cannot fetch following for {user_id}: ATProtoSocial session not ready.")
+        logger.warning(f"Cannot fetch following for {user_id}: Blueski session not ready.")
         return
 
     try:
@@ -122,21 +122,21 @@ async def fetch_following(
             logger.info(f"No following data returned for user {user_id}.")
 
     except Exception as e:
-        logger.error(f"Error in fetch_following for ATProtoSocial user {user_id}: {e}", exc_info=True)
+        logger.error(f"Error in fetch_following for Blueski user {user_id}: {e}", exc_info=True)
 
 
 async def search_users(
-    session: ATProtoSocialSession,
+    session: BlueskiSession,
     query: str,
     limit: int = 20,
     cursor: str | None = None
-) -> AsyncGenerator[ATProtoSocialUserListItem, None]:
+) -> AsyncGenerator[BlueskiUserListItem, None]:
     """
-    Searches for users on ATProtoSocial based on a query string.
+    Searches for users on Blueski based on a query string.
     Yields user data dictionaries.
     """
     if not session.is_ready():
-        logger.warning(f"Cannot search users for '{query}': ATProtoSocial session not ready.")
+        logger.warning(f"Cannot search users for '{query}': Blueski session not ready.")
         return
 
     try:
@@ -149,25 +149,25 @@ async def search_users(
             logger.info(f"No users found for search term '{query}'.")
 
     except Exception as e:
-        logger.error(f"Error in search_users for ATProtoSocial query '{query}': {e}", exc_info=True)
+        logger.error(f"Error in search_users for Blueski query '{query}': {e}", exc_info=True)
 
 # This function is designed to be called by an API endpoint that returns JSON
 async def get_user_list_paginated(
-    session: ATProtoSocialSession,
+    session: BlueskiSession,
     list_type: str, # "followers", "following", "search"
     identifier: str, # User DID for followers/following, or search query for search
     limit: int = 20,
     cursor: str | None = None
-) -> tuple[list[ATProtoSocialUserListItem], str | None]:
+) -> tuple[list[BlueskiUserListItem], str | None]:
     """
     Fetches a paginated list of users (followers, following, or search results)
     and returns the list and the next cursor.
     """
-    users_list: list[ATProtoSocialUserListItem] = []
+    users_list: list[BlueskiUserListItem] = []
     next_cursor: str | None = None
 
     if not session.is_ready():
-        logger.warning(f"Cannot fetch user list '{list_type}': ATProtoSocial session not ready.")
+        logger.warning(f"Cannot fetch user list '{list_type}': Blueski session not ready.")
         return [], None
 
     try:
@@ -192,13 +192,13 @@ async def get_user_list_paginated(
     return users_list, next_cursor
 
 
-async def get_user_profile_details(session: ATProtoSocialSession, user_ident: str) -> ATProtoSocialUserListItem | None:
+async def get_user_profile_details(session: BlueskiSession, user_ident: str) -> BlueskiUserListItem | None:
     """
     Fetches detailed profile information for a user by DID or handle.
     Returns a dictionary of formatted profile data, or None if not found/error.
     """
     if not session.is_ready():
-        logger.warning(f"Cannot get profile for {user_ident}: ATProtoSocial session not ready.")
+        logger.warning(f"Cannot get profile for {user_ident}: Blueski session not ready.")
         return None
 
     try:
@@ -222,4 +222,4 @@ async def get_user_profile_details(session: ATProtoSocialSession, user_ident: st
 # The UI part of Approve that displays user lists would call these functions.
 # Each function needs to handle pagination as provided by the ATProto API (usually cursor-based).
 
-logger.info("ATProtoSocial userList module loaded (placeholders).")
+logger.info("Blueski userList module loaded (placeholders).")

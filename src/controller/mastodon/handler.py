@@ -48,7 +48,7 @@ class Handler(object):
             addAlias=_("Add a&lias"),
             addToList=None,
             removeFromList=None,
-            details=_("Show user profile"),
+            details=_("S&how user profile"),
             favs=None,
             # In buffer Menu.
             community_timeline =_("Create c&ommunity timeline"),

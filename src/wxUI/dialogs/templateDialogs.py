@@ -26,7 +26,7 @@ class EditTemplateDialog(wx.Dialog):
         sizer_3.AddButton(self.button_SAVE)
         self.button_CANCEL = wx.Button(self, wx.ID_CANCEL)
         sizer_3.AddButton(self.button_CANCEL)
-        self.button_RESTORE = wx.Button(self, wx.ID_ANY, _("Restore template"))
+        self.button_RESTORE = wx.Button(self, wx.ID_ANY, _("&Restore template"))
         self.button_RESTORE.Bind(wx.EVT_BUTTON, self.on_restore)
         sizer_3.AddButton(self.button_CANCEL)
         sizer_3.Realize()

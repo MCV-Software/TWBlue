@@ -30,10 +30,10 @@ Global settings and session settings
 
 TWBlue has two different configuration dialogs: the global configuration dialog, which affects how TWBlue works for all sessions, and the session configuration dialog, which only affects how the current session works. You will find specific information about the session settings dialog for Twitter and Mastodon in its corresponding chapter in this guide.
 
-ATProtoSocial / Bluesky Specific Terms
+Blueski / Bluesky Specific Terms
 ++++++++++++++++++++++++++++++++++++++
 
-When using the ATProtoSocial (Bluesky) integration, you might encounter these terms:
+When using the Blueski (Bluesky) integration, you might encounter these terms:
 
 *   **Handle**: Your user-facing address on Bluesky (e.g., ``@username.bsky.social`` or a custom domain like ``@yourname.com``). This is what you use to log in with an App Password in TWBlue. Handles can be changed, but your DID remains the same.
 *   **App Password**: A specific password you generate within your Bluesky account settings (usually under Settings -> Advanced -> App passwords) for use with third-party applications like TWBlue. This is more secure than using your main account password, as each App Password can be revoked individually.

@@ -8,29 +8,29 @@ fromapprove.translation import translate as _
 
 if TYPE_CHECKING:
     fromapprove.config import ConfigSectionProxy
-    fromapprove.sessions.atprotosocial.session import Session as ATProtoSocialSession # Adjusted
+    fromapprove.sessions.blueski.session import Session as BlueskiSession # Adjusted
 
 logger = logging.getLogger(__name__)
 
-# This file is for defining forms and handling for ATProtoSocial-specific settings
+# This file is for defining forms and handling for Blueski-specific settings
 # that might be more complex than simple key-value pairs handled by Session.get_settings_inputs.
-# For ATProtoSocial, initial settings might be simple (handle, app password),
+# For Blueski, initial settings might be simple (handle, app password),
 # but this structure allows for expansion.
 
 
-class ATProtoSocialSettingsForm(Form):
+class BlueskiSettingsForm(Form):
     """
-    A settings form for ATProtoSocial sessions.
+    A settings form for Blueski sessions.
     This would mirror the kind of settings found in Session.get_settings_inputs
     but using the WTForms-like Form structure for more complex validation or layout.
     """
-    # Example fields - these should align with what ATProtoSocialSession.get_settings_inputs defines
-    # and what ATProtoSocialSession.get_configurable_values expects for its config.
+    # Example fields - these should align with what BlueskiSession.get_settings_inputs defines
+    # and what BlueskiSession.get_configurable_values expects for its config.
 
     # instance_url = TextField(
     #     _("Instance URL"),
     #     default="https://bsky.social", # Default PDS for Bluesky
-    #     description=_("The base URL of your ATProtoSocial PDS instance (e.g., https://bsky.social)."),
+    #     description=_("The base URL of your Blueski PDS instance (e.g., https://bsky.social)."),
     #     validators=[], # Add validators if needed, e.g., URL validator
     # )
     handle = TextField(
@@ -43,19 +43,19 @@ class ATProtoSocialSettingsForm(Form):
         description=_("Your Bluesky App Password. Generate this in your Bluesky account settings."),
         validators=[], # e.g., DataRequired()
     )
-    # Add more fields as needed for ATProtoSocial configuration.
+    # Add more fields as needed for Blueski configuration.
     # For example, if there were specific notification settings, content filters, etc.
 
-    submit = SubmitField(_("Save ATProtoSocial Settings"))
+    submit = SubmitField(_("Save Blueski Settings"))
 
 
 async def get_settings_form(
     user_id: str,
-    session: ATProtoSocialSession | None = None,
-    config: ConfigSectionProxy | None = None, # User-specific config for ATProtoSocial
-) -> ATProtoSocialSettingsForm:
+    session: BlueskiSession | None = None,
+    config: ConfigSectionProxy | None = None, # User-specific config for Blueski
+) -> BlueskiSettingsForm:
     """
-    Creates and pre-populates the ATProtoSocial settings form.
+    Creates and pre-populates the Blueski settings form.
     """
     form_data = {}
     if session: # If a session exists, use its current config
@@ -68,31 +68,31 @@ async def get_settings_form(
         form_data["handle"] = config.handle.get("")
         form_data["app_password"] = ""
 
-    form = ATProtoSocialSettingsForm(formdata=None, **form_data) # formdata=None for initial display
+    form = BlueskiSettingsForm(formdata=None, **form_data) # formdata=None for initial display
     return form
 
 
 async def process_settings_form(
-    form: ATProtoSocialSettingsForm,
+    form: BlueskiSettingsForm,
     user_id: str,
-    session: ATProtoSocialSession | None = None, # Pass if update should affect live session
-    config: ConfigSectionProxy | None = None, # User-specific config for ATProtoSocial
+    session: BlueskiSession | None = None, # Pass if update should affect live session
+    config: ConfigSectionProxy | None = None, # User-specific config for Blueski
 ) -> bool:
     """
-    Processes the submitted ATProtoSocial settings form and updates configuration.
+    Processes the submitted Blueski settings form and updates configuration.
     Returns True if successful, False otherwise.
     """
     if not form.validate(): # Assuming form has a validate method
-        logger.warning(f"ATProtoSocial settings form validation failed for user {user_id}: {form.errors}")
+        logger.warning(f"Blueski settings form validation failed for user {user_id}: {form.errors}")
         return False
 
     if not config and session: # Try to get config via session if not directly provided
         # This depends on how ConfigSectionProxy is obtained.
-        # config = approve.config.config.sessions.atprotosocial[user_id] # Example path
+        # config = approve.config.config.sessions.blueski[user_id] # Example path
         pass # Needs actual way to get config proxy
 
     if not config:
-        logger.error(f"Cannot process ATProtoSocial settings for user {user_id}: no config proxy available.")
+        logger.error(f"Cannot process Blueski settings for user {user_id}: no config proxy available.")
         return False
 
     try:
@@ -101,11 +101,11 @@ async def process_settings_form(
         await config.handle.set(form.handle.data)
         await config.app_password.set(form.app_password.data) # Ensure this is stored securely
 
-        logger.info(f"ATProtoSocial settings updated for user {user_id}.")
+        logger.info(f"Blueski settings updated for user {user_id}.")
 
         # If there's an active session, it might need to be reconfigured or restarted
         if session:
-            logger.info(f"Requesting ATProtoSocial session re-initialization for user {user_id} due to settings change.")
+            logger.info(f"Requesting Blueski session re-initialization for user {user_id} due to settings change.")
             # await session.stop() # Stop it
             # # Update session instance with new values directly or rely on it re-reading config
             # session.api_base_url = form.instance_url.data
@@ -118,11 +118,11 @@ async def process_settings_form(
 
         return True
     except Exception as e:
-        logger.error(f"Error saving ATProtoSocial settings for user {user_id}: {e}", exc_info=True)
+        logger.error(f"Error saving Blueski settings for user {user_id}: {e}", exc_info=True)
         return False
 
-# Any additional ATProtoSocial-specific settings views or handlers would go here.
-# For instance, if ATProtoSocial had features like "Relays" or "Feed Generators"
+# Any additional Blueski-specific settings views or handlers would go here.
+# For instance, if Blueski had features like "Relays" or "Feed Generators"
 # that needed UI configuration within Approve, those forms and handlers could be defined here.
 
-logger.info("ATProtoSocial settings module loaded (placeholders).")
+logger.info("Blueski settings module loaded (placeholders).")

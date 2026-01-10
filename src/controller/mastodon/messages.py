@@ -2,6 +2,7 @@
 import os
 import re
 import wx
+import logging
 import widgetUtils
 import config
 import output
@@ -13,6 +14,8 @@ from sessions.mastodon import templates
 from wxUI.dialogs.mastodon import postDialogs
 from extra.autocompletionUsers import completion
 from . import userList
+
+log = logging.getLogger("controller.mastodon.messages")
 
 def character_count(post_text, post_cw, character_limit=500):
     # We will use text for counting character limit only.
@@ -261,6 +264,108 @@ class post(messages.basicMessage):
         visibility_settings = ["public", "unlisted", "private", "direct"]
         visibility_setting = visibility_settings.index(setting)
         self.message.visibility.SetSelection(setting)
+
+class editPost(post):
+    def __init__(self, session, item, title, caption, *args, **kwargs):
+        """ Initialize edit dialog with existing post data.
+
+        Note: Per Mastodon API, visibility and language cannot be changed when editing.
+        These fields will be displayed but disabled in the UI.
+        """
+        # Extract text from post
+        if item.reblog != None:
+            item = item.reblog
+        text = item.content
+        # Remove HTML tags from content
+        import re
+        text = re.sub('<[^<]+?>', '', text)
+        # Initialize parent class
+        super(editPost, self).__init__(session, title, caption, text=text, *args, **kwargs)
+        # Store the post ID for editing
+        self.post_id = item.id
+        # Set visibility (read-only, cannot be changed)
+        visibility_settings = dict(public=0, unlisted=1, private=2, direct=3)
+        self.message.visibility.SetSelection(visibility_settings.get(item.visibility, 0))
+        self.message.visibility.Enable(False)  # Disable as it cannot be edited
+        # Set language (read-only, cannot be changed)
+        if item.language:
+            self.set_language(item.language)
+        self.message.language.Enable(False)  # Disable as it cannot be edited
+        # Set sensitive content and spoiler
+        if item.sensitive:
+            self.message.sensitive.SetValue(True)
+            if item.spoiler_text:
+                self.message.spoiler.ChangeValue(item.spoiler_text)
+            self.message.on_sensitivity_changed()
+        # Load existing poll (if any)
+        # Note: You cannot have both media and a poll, so check poll first
+        if hasattr(item, 'poll') and item.poll is not None:
+            log.debug("Loading existing poll for post {}".format(self.post_id))
+            poll = item.poll
+            # Extract poll options (just the text, not the votes)
+            poll_options = [option.title for option in poll.options]
+            # Calculate expires_in based on current time and expires_at
+            # For editing, we need to provide a new expiration time
+            # Since we can't get the original expires_in, use a default or let user configure
+            # For now, use 1 day (86400 seconds) as default
+            expires_in = 86400
+            if hasattr(poll, 'expires_at') and poll.expires_at and not poll.expired:
+                # Calculate remaining time if poll hasn't expired
+                from dateutil import parser as date_parser
+                import datetime
+                try:
+                    expires_at = poll.expires_at
+                    if isinstance(expires_at, str):
+                        expires_at = date_parser.parse(expires_at)
+                    now = datetime.datetime.now(datetime.timezone.utc)
+                    remaining = (expires_at - now).total_seconds()
+                    if remaining > 0:
+                        expires_in = int(remaining)
+                except Exception as e:
+                    log.warning("Could not calculate poll expiration: {}".format(e))
+
+            poll_info = {
+                "type": "poll",
+                "file": "",
+                "description": _("Poll with {} options").format(len(poll_options)),
+                "options": poll_options,
+                "expires_in": expires_in,
+                "multiple": poll.multiple if hasattr(poll, 'multiple') else False,
+                "hide_totals": poll.voters_count == 0 if hasattr(poll, 'voters_count') else False
+            }
+            self.attachments.append(poll_info)
+            self.message.add_item(item=[poll_info["file"], poll_info["type"], poll_info["description"]])
+            log.debug("Loaded poll with {} options. WARNING: Editing will reset all votes!".format(len(poll_options)))
+        # Load existing media attachments (only if no poll)
+        elif hasattr(item, 'media_attachments'):
+            log.debug("Loading existing media attachments for post {}".format(self.post_id))
+            log.debug("Item has media_attachments attribute, count: {}".format(len(item.media_attachments)))
+            if len(item.media_attachments) > 0:
+                for media in item.media_attachments:
+                    log.debug("Processing media: id={}, type={}, url={}".format(media.id, media.type, media.url))
+                    media_info = {
+                        "id": media.id,  # Keep the existing media ID
+                        "type": media.type,
+                        "file": media.url,  # URL of existing media
+                        "description": media.description or ""
+                    }
+                    # Include focus point if available
+                    if hasattr(media, 'meta') and media.meta and 'focus' in media.meta:
+                        focus = media.meta['focus']
+                        media_info["focus"] = (focus.get('x'), focus.get('y'))
+                        log.debug("Added focus point: {}".format(media_info["focus"]))
+                    self.attachments.append(media_info)
+                    # Display in the attachment list
+                    display_name = media.url.split('/')[-1]
+                    log.debug("Adding item to UI: name={}, type={}, desc={}".format(display_name, media.type, media.description or ""))
+                    self.message.add_item(item=[display_name, media.type, media.description or ""])
+                log.debug("Total attachments loaded: {}".format(len(self.attachments)))
+            else:
+                log.debug("media_attachments list is empty")
+        else:
+            log.debug("Item has no poll or media attachments")
+        # Update text processor to reflect the loaded content
+        self.text_processor()
 
 class viewPost(post):
     def __init__(self, session, post, offset_hours=0, date="", item_url=""):

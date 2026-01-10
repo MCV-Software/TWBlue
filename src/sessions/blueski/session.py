@@ -10,7 +10,7 @@ from sessions import session_exceptions as Exceptions
 import output
 import application
 
-log = logging.getLogger("sessions.atprotosocialSession")
+log = logging.getLogger("sessions.blueskiSession")
 
 # Optional import of atproto. Code handles absence gracefully.
 try:
@@ -27,14 +27,32 @@ class Session(base.baseSession):
     """
 
     name = "Bluesky"
-    KIND = "atprotosocial"
+    KIND = "blueski"
 
     def __init__(self, *args, **kwargs):
         super(Session, self).__init__(*args, **kwargs)
-        self.config_spec = "atprotosocial.defaults"
-        self.type = "atprotosocial"
+        self.config_spec = "blueski.defaults"
+        self.type = "blueski"
         self.char_limit = 300
         self.api = None
+
+    def _ensure_settings_namespace(self) -> None:
+        """Migrate legacy atprotosocial settings to blueski namespace."""
+        try:
+            if not self.settings:
+                return
+            if self.settings.get("blueski") is None and self.settings.get("atprotosocial") is not None:
+                self.settings["blueski"] = dict(self.settings["atprotosocial"])
+                try:
+                    del self.settings["atprotosocial"]
+                except Exception:
+                    pass
+                try:
+                    self.settings.write()
+                except Exception:
+                    pass
+        except Exception:
+            log.exception("Failed to migrate legacy Blueski settings")
 
     def get_name(self):
         """Return a human-friendly, stable account name for UI.
@@ -42,11 +60,12 @@ class Session(base.baseSession):
         Prefer the user's handle if available so accounts are uniquely
         identifiable, falling back to a generic network name otherwise.
         """
+        self._ensure_settings_namespace()
         try:
             # Prefer runtime DB, then persisted settings, then SDK client
             handle = (
                 self.db.get("user_name")
-                or (self.settings and self.settings.get("atprotosocial", {}).get("handle"))
+                or (self.settings and self.settings.get("blueski", {}).get("handle"))
                 or (getattr(getattr(self, "api", None), "me", None) and self.api.me.handle)
             )
             if handle:
@@ -65,11 +84,12 @@ class Session(base.baseSession):
         return self.api
 
     def login(self, verify_credentials=True):
-        if self.settings.get("atprotosocial") is None:
+        self._ensure_settings_namespace()
+        if self.settings.get("blueski") is None:
             raise Exceptions.RequireCredentialsSessionError
-        handle = self.settings["atprotosocial"].get("handle")
-        app_password = self.settings["atprotosocial"].get("app_password")
-        session_string = self.settings["atprotosocial"].get("session_string")
+        handle = self.settings["blueski"].get("handle")
+        app_password = self.settings["blueski"].get("app_password")
+        session_string = self.settings["blueski"].get("session_string")
         if not handle or (not app_password and not session_string):
             self.logged = False
             raise Exceptions.RequireCredentialsSessionError
@@ -100,10 +120,10 @@ class Session(base.baseSession):
             self.db["user_name"] = api.me.handle
             self.db["user_id"] = api.me.did
             # Persist DID in settings for session manager display
-            self.settings["atprotosocial"]["did"] = api.me.did
+            self.settings["blueski"]["did"] = api.me.did
             # Export session for future reuse
             try:
-                self.settings["atprotosocial"]["session_string"] = api.export_session_string()
+                self.settings["blueski"]["session_string"] = api.export_session_string()
             except Exception:
                 pass
             self.settings.write()
@@ -114,6 +134,7 @@ class Session(base.baseSession):
             self.logged = False
 
     def authorise(self):
+        self._ensure_settings_namespace()
         if self.logged:
             raise Exceptions.AlreadyAuthorisedError("Already authorised.")
         # Ask for handle
@@ -141,8 +162,8 @@ class Session(base.baseSession):
         # Create session folder and config, then attempt login
         self.create_session_folder()
         self.get_configuration()
-        self.settings["atprotosocial"]["handle"] = handle
-        self.settings["atprotosocial"]["app_password"] = app_password
+        self.settings["blueski"]["handle"] = handle
+        self.settings["blueski"]["app_password"] = app_password
         self.settings.write()
         try:
             self.login()
@@ -159,7 +180,8 @@ class Session(base.baseSession):
 
     def get_message_url(self, message_id, context=None):
         # message_id may be full at:// URI or rkey
-        handle = self.db.get("user_name") or self.settings["atprotosocial"].get("handle", "")
+        self._ensure_settings_namespace()
+        handle = self.db.get("user_name") or self.settings["blueski"].get("handle", "")
         rkey = message_id
         if isinstance(message_id, str) and message_id.startswith("at://"):
             parts = message_id.split("/")
@@ -169,6 +191,7 @@ class Session(base.baseSession):
     def send_message(self, message, files=None, reply_to=None, cw_text=None, is_sensitive=False, **kwargs):
         if not self.logged:
             raise Exceptions.NotLoggedSessionError("You are not logged in yet.")
+        self._ensure_settings_namespace()
         try:
             api = self._ensure_client()
             # Basic text-only post for now. Attachments and CW can be extended later.
@@ -273,8 +296,8 @@ class Session(base.baseSession):
                         # Accept full web URL and try to resolve via get_post_thread below
                         return identifier
                     # Accept bare rkey case by constructing a guess using own handle
-                    handle = self.db.get("user_name") or self.settings["atprotosocial"].get("handle")
-                    did = self.db.get("user_id") or self.settings["atprotosocial"].get("did")
+                    handle = self.db.get("user_name") or self.settings["blueski"].get("handle")
+                    did = self.db.get("user_id") or self.settings["blueski"].get("did")
                     if handle and did and len(identifier) in (13, 14, 15):
                         # rkey length is typically ~13 chars base32
                         return f"at://{did}/app.bsky.feed.post/{identifier}"

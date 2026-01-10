@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch, AsyncMock, MagicMock, PropertyMock
 
 # Assuming paths are set up correctly for test environment to find these
-from sessions.atprotosocial.session import Session as ATProtoSocialSession
+from sessions.blueski.session import Session as BlueskiSession
 from sessions.session_exceptions import SessionLoginError, SessionError
 from approve.notifications import NotificationError # Assuming this is the correct import path
 from atproto.xrpc_client.models.common import XrpcError
@@ -48,7 +48,7 @@ mock_wx.ICON_QUESTION = 32 # Example
 
 # Mock config objects
 # This structure tries to mimic how config is accessed in session.py
-# e.g., config.sessions.atprotosocial[user_id].handle
+# e.g., config.sessions.blueski[user_id].handle
 class MockConfigNode:
     def __init__(self, initial_value=None):
         self._value = initial_value
@@ -60,9 +60,9 @@ class MockUserSessionConfig:
         self.handle = MockConfigNode("")
         self.app_password = MockConfigNode("")
         self.did = MockConfigNode("")
-        # Add other config values if session.py uses them for atprotosocial
+        # Add other config values if session.py uses them for blueski
 
-class MockATProtoSocialConfig:
+class MockBlueskiConfig:
     def __init__(self):
         self._user_configs = {"test_user": MockUserSessionConfig()}
     def __getitem__(self, key):
@@ -70,31 +70,31 @@ class MockATProtoSocialConfig:
 
 class MockSessionsConfig:
     def __init__(self):
-        self.atprotosocial = MockATProtoSocialConfig()
+        self.blueski = MockBlueskiConfig()
 
 mock_config_global = MagicMock()
 mock_config_global.sessions = MockSessionsConfig()
 
 
-class TestATProtoSocialSession(unittest.IsolatedAsyncioTestCase):
+class TestBlueskiSession(unittest.IsolatedAsyncioTestCase):
 
-    @patch('sessions.atprotosocial.session.wx', mock_wx)
-    @patch('sessions.atprotosocial.session.config', mock_config_global)
+    @patch('sessions.blueski.session.wx', mock_wx)
+    @patch('sessions.blueski.session.config', mock_config_global)
     def setUp(self):
         self.mock_approval_api = MagicMock()
 
         # Reset mocks for user_config part of global mock_config_global for each test
         self.mock_user_config_instance = MockUserSessionConfig()
-        mock_config_global.sessions.atprotosocial.__getitem__.return_value = self.mock_user_config_instance
+        mock_config_global.sessions.blueski.__getitem__.return_value = self.mock_user_config_instance
 
-        self.session = ATProtoSocialSession(approval_api=self.mock_approval_api, user_id="test_user", channel_id="test_channel")
+        self.session = BlueskiSession(approval_api=self.mock_approval_api, user_id="test_user", channel_id="test_channel")
 
         self.session.db = {}
         self.session.save_db = AsyncMock()
         self.session.notify_session_ready = AsyncMock()
         self.session.send_text_notification = MagicMock()
 
-        # Mock the util property to return a MagicMock for ATProtoSocialUtils
+        # Mock the util property to return a MagicMock for BlueskiUtils
         self.mock_util_instance = AsyncMock() # Make it an AsyncMock if its methods are async
         self.mock_util_instance._own_did = None # These are set directly by session.login
         self.mock_util_instance._own_handle = None
@@ -104,12 +104,12 @@ class TestATProtoSocialSession(unittest.IsolatedAsyncioTestCase):
         self.session.util # Call property to ensure _util is set if it's lazy loaded
 
     def test_session_initialization(self):
-        self.assertIsInstance(self.session, ATProtoSocialSession)
-        self.assertEqual(self.session.KIND, "atprotosocial")
+        self.assertIsInstance(self.session, BlueskiSession)
+        self.assertEqual(self.session.KIND, "blueski")
         self.assertIsNone(self.session.client)
         self.assertEqual(self.session.user_id, "test_user")
 
-    @patch('sessions.atprotosocial.session.AsyncClient')
+    @patch('sessions.blueski.session.AsyncClient')
     async def test_login_successful(self, MockAsyncClient):
         mock_client_instance = MockAsyncClient.return_value
         # Use actual ATProto models for spec if possible for better type checking in mocks
@@ -142,7 +142,7 @@ class TestATProtoSocialSession(unittest.IsolatedAsyncioTestCase):
 
         self.session.notify_session_ready.assert_called_once()
 
-    @patch('sessions.atprotosocial.session.AsyncClient')
+    @patch('sessions.blueski.session.AsyncClient')
     async def test_login_failure_xrpc(self, MockAsyncClient):
         mock_client_instance = MockAsyncClient.return_value
         mock_client_instance.login = AsyncMock(side_effect=XrpcError(error="AuthenticationFailed", message="Invalid credentials"))
@@ -155,8 +155,8 @@ class TestATProtoSocialSession(unittest.IsolatedAsyncioTestCase):
         self.assertIsNone(self.session.client)
         self.session.notify_session_ready.assert_not_called()
 
-    @patch('sessions.atprotosocial.session.wx', new=mock_wx)
-    @patch.object(ATProtoSocialSession, 'login', new_callable=AsyncMock)
+    @patch('sessions.blueski.session.wx', new=mock_wx)
+    @patch.object(BlueskiSession, 'login', new_callable=AsyncMock)
     async def test_authorise_successful(self, mock_login_method):
         mock_login_method.return_value = True
 
@@ -174,8 +174,8 @@ class TestATProtoSocialSession(unittest.IsolatedAsyncioTestCase):
         # Further check if wx.MessageBox was called with success
         # This requires more complex mocking or inspection of calls to mock_wx.MessageBox
 
-    @patch('sessions.atprotosocial.session.wx', new=mock_wx)
-    @patch.object(ATProtoSocialSession, 'login', new_callable=AsyncMock)
+    @patch('sessions.blueski.session.wx', new=mock_wx)
+    @patch.object(BlueskiSession, 'login', new_callable=AsyncMock)
     async def test_authorise_login_fails_with_notification_error(self, mock_login_method):
         mock_login_method.side_effect = NotificationError("Specific login failure from mock.")
 
@@ -220,7 +220,7 @@ class TestATProtoSocialSession(unittest.IsolatedAsyncioTestCase):
             cw_text=None, is_sensitive=False, langs=["en", "es"], tags=None
         )
 
-    @patch('sessions.atprotosocial.session.os.path.basename', return_value="image.png") # Mock os.path.basename
+    @patch('sessions.blueski.session.os.path.basename', return_value="image.png") # Mock os.path.basename
     async def test_send_post_with_media(self, mock_basename):
         self.session.is_ready = MagicMock(return_value=True)
         mock_blob_info = {"blob_ref": MagicMock(spec=atp_models.ComAtprotoRepoStrongRef.Blob), "alt_text": "A test image"}
@@ -360,4 +360,3 @@ if 'wx' not in sys.modules: # type: ignore
     mock_wx_module.MessageBox = MockWxMessageBox
     mock_wx_module.CallAfter = MagicMock()
     mock_wx_module.GetApp = MagicMock()
->>>>>>> REPLACE

@@ -8,34 +8,34 @@ from typing import Any
 logger = logging.getLogger(__name__)
 
 # This file would typically contain functions to generate complex message bodies or
-# interactive components for ATProtoSocial, similar to how it might be done for Mastodon.
-# Since ATProtoSocial's interactive features (beyond basic posts) are still evolving
+# interactive components for Blueski, similar to how it might be done for Mastodon.
+# Since Blueski's interactive features (beyond basic posts) are still evolving
 # or client-dependent (like polls), this might be less complex initially.
 
-# Example: If ATProtoSocial develops a standard for "cards" or interactive messages,
+# Example: If Blueski develops a standard for "cards" or interactive messages,
 # functions to create those would go here. For now, we can imagine placeholders.
 
 def format_welcome_message(session: Any) -> dict[str, Any]:
     """
-    Generates a welcome message for a new ATProtoSocial session.
+    Generates a welcome message for a new Blueski session.
     This is just a placeholder and example.
     """
     # user_profile = session.util.get_own_profile_info() # Assuming this method exists and is async or cached
-    # handle = user_profile.get("handle", _("your ATProtoSocial account")) if user_profile else _("your ATProtoSocial account")
+    # handle = user_profile.get("handle", _("your Blueski account")) if user_profile else _("your Blueski account")
     # Expect session to expose username via db/settings
     handle = (getattr(session, "db", {}).get("user_name")
-              or getattr(getattr(session, "settings", {}), "get", lambda *_: {})("atprotosocial").get("handle")
+              or getattr(getattr(session, "settings", {}), "get", lambda *_: {})("blueski").get("handle")
               or _("your Bluesky account"))
 
 
     return {
-        "text": _("Welcome to Approve for ATProtoSocial! Your account {handle} is connected.").format(handle=handle),
-        # "blocks": [ # If ATProtoSocial supports a block kit like Slack or Discord
+        "text": _("Welcome to Approve for Blueski! Your account {handle} is connected.").format(handle=handle),
+        # "blocks": [ # If Blueski supports a block kit like Slack or Discord
         #     {
         #         "type": "section",
         #         "text": {
-        #             "type": "mrkdwn", # Or ATProtoSocial's equivalent
-        #             "text": _("Welcome to Approve for ATProtoSocial! Your account *{handle}* is connected.").format(handle=handle)
+        #             "type": "mrkdwn", # Or Blueski's equivalent
+        #             "text": _("Welcome to Approve for Blueski! Your account *{handle}* is connected.").format(handle=handle)
         #         }
         #     },
         #     {
@@ -44,7 +44,7 @@ def format_welcome_message(session: Any) -> dict[str, Any]:
         #             {
         #                 "type": "button",
         #                 "text": {"type": "plain_text", "text": _("Post your first Skeet")},
-        #                 "action_id": "atprotosocial_compose_new_post" # Example action ID
+        #                 "action_id": "blueski_compose_new_post" # Example action ID
         #             }
         #         ]
         #     }
@@ -65,16 +65,16 @@ def format_error_message(error_description: str, details: str | None = None) -> 
     #     ]
     return message
 
-# More functions could be added here as ATProtoSocial's capabilities become clearer
+# More functions could be added here as Blueski's capabilities become clearer
 # or as specific formatting needs for Approve arise. For example:
 # - Formatting a post for display with all its embeds and cards.
-# - Generating help messages specific to ATProtoSocial features.
+# - Generating help messages specific to Blueski features.
 # - Creating interactive messages for polls (if supported via some convention).
 
 # Example of adapting a function that might exist in mastodon_messages:
-# def build_post_summary_message(session: ATProtoSocialSession, post_uri: str, post_content: dict) -> dict[str, Any]:
+# def build_post_summary_message(session: BlueskiSession, post_uri: str, post_content: dict) -> dict[str, Any]:
 #     """
-#     Builds a summary message for an ATProtoSocial post.
+#     Builds a summary message for an Blueski post.
 #     """
 #     author_handle = post_content.get("author", {}).get("handle", "Unknown user")
 #     text_preview = post_content.get("text", "")[:100] # First 100 chars of text
@@ -88,4 +88,4 @@ def format_error_message(error_description: str, details: str | None = None) -> 
 #         # Potentially with "blocks" for richer formatting if the platform supports it
 #     }
 
-logger.info("ATProtoSocial messages module loaded (placeholders).")
+logger.info("Blueski messages module loaded (placeholders).")

@@ -11,10 +11,10 @@ from datetime import datetime
 
 from multiplatform_widgets import widgets
 
-log = logging.getLogger("wxUI.buffers.atprotosocial.panels")
+log = logging.getLogger("wxUI.buffers.blueski.panels")
 
 
-class ATProtoSocialHomeTimelinePanel(object):
+class BlueskiHomeTimelinePanel(object):
     """Minimal Home timeline buffer for Bluesky.
 
     Exposes a .buffer wx.Panel with a List control and provides
@@ -27,6 +27,7 @@ class ATProtoSocialHomeTimelinePanel(object):
         self.account = session.get_name()
         self.name = name
         self.type = "home_timeline"
+        self.timeline_algorithm = None
         self.invisible = True
         self.needs_init = True
         self.buffer = _HomePanel(parent, name)
@@ -49,17 +50,16 @@ class ATProtoSocialHomeTimelinePanel(object):
             # The atproto SDK expects params, not raw kwargs
             try:
                 from atproto import models as at_models  # type: ignore
-                # Home: algorithmic/default timeline
-                try:
-                    params = at_models.AppBskyFeedGetTimeline.Params(limit=count)
-                    res = api.app.bsky.feed.get_timeline(params)
-                except Exception:
-                    # Some SDKs may require explicit algorithm for home; try behavioral
-                    params = at_models.AppBskyFeedGetTimeline.Params(limit=count, algorithm="behavioral")
-                    res = api.app.bsky.feed.get_timeline(params)
+                params = at_models.AppBskyFeedGetTimeline.Params(
+                    limit=count,
+                    algorithm=self.timeline_algorithm
+                )
+                res = api.app.bsky.feed.get_timeline(params)
             except Exception:
-                # Fallback to plain dict params if typed models unavailable
-                res = api.app.bsky.feed.get_timeline({"limit": count})
+                payload = {"limit": count}
+                if self.timeline_algorithm:
+                    payload["algorithm"] = self.timeline_algorithm
+                res = api.app.bsky.feed.get_timeline(payload)
             feed = getattr(res, "feed", [])
             self.cursor = getattr(res, "cursor", None)
             self.items = []
@@ -103,10 +103,17 @@ class ATProtoSocialHomeTimelinePanel(object):
             api = self.session._ensure_client()
             try:
                 from atproto import models as at_models  # type: ignore
-                params = at_models.AppBskyFeedGetTimeline.Params(limit=40, cursor=self.cursor)
+                params = at_models.AppBskyFeedGetTimeline.Params(
+                    limit=40,
+                    cursor=self.cursor,
+                    algorithm=self.timeline_algorithm
+                )
                 res = api.app.bsky.feed.get_timeline(params)
             except Exception:
-                res = api.app.bsky.feed.get_timeline({"limit": 40, "cursor": self.cursor})
+                payload = {"limit": 40, "cursor": self.cursor}
+                if self.timeline_algorithm:
+                    payload["algorithm"] = self.timeline_algorithm
+                res = api.app.bsky.feed.get_timeline(payload)
             feed = getattr(res, "feed", [])
             self.cursor = getattr(res, "cursor", None)
             new_items = []
@@ -144,7 +151,7 @@ class ATProtoSocialHomeTimelinePanel(object):
             log.exception("Failed to load more Bluesky timeline items")
             return 0
 
-    # Alias to integrate with mainController expectations for ATProto
+    # Alias to integrate with mainController expectations for Blueski
     def load_more_posts(self, *args, **kwargs):
         return self.get_more_items()
 
@@ -281,12 +288,13 @@ class _HomePanel(wx.Panel):
         self.SetSizer(sizer)
 
 
-class ATProtoSocialFollowingTimelinePanel(ATProtoSocialHomeTimelinePanel):
+class BlueskiFollowingTimelinePanel(BlueskiHomeTimelinePanel):
     """Following-only timeline (reverse-chronological)."""
 
     def __init__(self, parent, name: str, session):
         super().__init__(parent, name, session)
         self.type = "following_timeline"
+        self.timeline_algorithm = "reverse-chronological"
         # Make sure the underlying wx panel also reflects this type
         try:
             self.buffer.type = "following_timeline"
@@ -302,7 +310,7 @@ class ATProtoSocialFollowingTimelinePanel(ATProtoSocialHomeTimelinePanel):
             api = self.session._ensure_client()
             # Following timeline via reverse-chronological algorithm on get_timeline
             # Use plain dict to avoid typed-model mismatches across SDK versions
-            res = api.app.bsky.feed.get_timeline({"limit": count, "algorithm": "reverse-chronological"})
+            res = api.app.bsky.feed.get_timeline({"limit": count, "algorithm": self.timeline_algorithm})
             feed = getattr(res, "feed", [])
             self.cursor = getattr(res, "cursor", None)
             self.items = []
@@ -343,7 +351,11 @@ class ATProtoSocialFollowingTimelinePanel(ATProtoSocialHomeTimelinePanel):
         try:
             api = self.session._ensure_client()
             # Pagination via reverse-chronological algorithm on get_timeline
-            res = api.app.bsky.feed.get_timeline({"limit": 40, "cursor": self.cursor, "algorithm": "reverse-chronological"})
+            res = api.app.bsky.feed.get_timeline({
+                "limit": 40,
+                "cursor": self.cursor,
+                "algorithm": self.timeline_algorithm
+            })
             feed = getattr(res, "feed", [])
             self.cursor = getattr(res, "cursor", None)
             new_items = []

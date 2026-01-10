@@ -24,13 +24,13 @@ class Handler:
             from pubsub import pub
             pub.sendMessage("core.create_account", name=name, session_id=session.session_id, logged=True)
         root_position = controller.view.search(name, name)
-        # Home timeline only for now
+        # Discover/home timeline
         from pubsub import pub
         pub.sendMessage(
             "createBuffer",
             buffer_type="home_timeline",
-            session_type="atprotosocial",
-            buffer_title=_("Home"),
+            session_type="blueski",
+            buffer_title=_("Discover"),
             parent_tab=root_position,
             start=True,
             kwargs=dict(parent=controller.view.nb, name="home_timeline", session=session)
@@ -39,8 +39,8 @@ class Handler:
         pub.sendMessage(
             "createBuffer",
             buffer_type="following_timeline",
-            session_type="atprotosocial",
-            buffer_title=_("Following"),
+            session_type="blueski",
+            buffer_title=_("Following (Chronological)"),
             parent_tab=root_position,
             start=False,
             kwargs=dict(parent=controller.view.nb, name="following_timeline", session=session)
@@ -71,7 +71,7 @@ class Handler:
                 current_mode = None
             ask_default = True if current_mode in (None, "ask") else False
 
-            from wxUI.dialogs.atprotosocial.configuration import AccountSettingsDialog
+            from wxUI.dialogs.blueski.configuration import AccountSettingsDialog
             dlg = AccountSettingsDialog(controller.view, ask_before_boost=ask_default)
             resp = dlg.ShowModal()
             if resp == wx.ID_OK:

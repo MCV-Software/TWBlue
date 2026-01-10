@@ -54,8 +54,8 @@ class sessionManagerWindow(wx.Dialog):
         mastodon = menu.Append(wx.ID_ANY, _("Mastodon"))
         menu.Bind(wx.EVT_MENU, self.on_new_mastodon_account, mastodon)
 
-        atprotosocial = menu.Append(wx.ID_ANY, _("ATProtoSocial (Bluesky)"))
-        menu.Bind(wx.EVT_MENU, self.on_new_atprotosocial_account, atprotosocial)
+        blueski = menu.Append(wx.ID_ANY, _("Blueski (Bluesky)"))
+        menu.Bind(wx.EVT_MENU, self.on_new_blueski_account, blueski)
 
         self.PopupMenu(menu, self.new.GetPosition())
 
@@ -66,12 +66,12 @@ class sessionManagerWindow(wx.Dialog):
         if response == wx.ID_YES:
             pub.sendMessage("sessionmanager.new_account", type="mastodon")
 
-    def on_new_atprotosocial_account(self, *args, **kwargs):
-        dlg = wx.MessageDialog(self, _("You will be prompted for your ATProtoSocial (Bluesky) data (user handle and App Password) to authorize TWBlue. Would you like to authorize your account now?"), _(u"ATProtoSocial Authorization"), wx.YES_NO)
+    def on_new_blueski_account(self, *args, **kwargs):
+        dlg = wx.MessageDialog(self, _("You will be prompted for your Blueski (Bluesky) data (user handle and App Password) to authorize TWBlue. Would you like to authorize your account now?"), _(u"Blueski Authorization"), wx.YES_NO)
         response = dlg.ShowModal()
         dlg.Destroy()
         if response == wx.ID_YES:
-            pub.sendMessage("sessionmanager.new_account", type="atprotosocial")
+            pub.sendMessage("sessionmanager.new_account", type="blueski")
 
     def add_new_session_to_list(self):
         total = self.list.get_count()

@@ -17,7 +17,7 @@ from pubsub import pub
 from controller import settings
 from sessions.mastodon import session as MastodonSession
 from sessions.gotosocial import session as GotosocialSession
-from sessions.atprotosocial import session as ATProtoSocialSession # Import ATProtoSocial session
+from sessions.blueski import session as BlueskiSession # Import Blueski session
 from . import manager
 from . import wxUI as view
 
@@ -74,21 +74,37 @@ class sessionManagerController(object):
                     if config_test["mastodon"]["instance"] != "" and config_test["mastodon"]["access_token"] != "": # Basic validation
                         sessionsList.append(name)
                         self.sessions.append(dict(type=config_test["mastodon"].get("type", "mastodon"), id=i))
-                elif config_test.get("atprotosocial") != None: # Check for ATProtoSocial config
-                    handle = config_test["atprotosocial"].get("handle")
-                    did = config_test["atprotosocial"].get("did") # DID confirms it was authorized
+                elif config_test.get("blueski") != None: # Check for Blueski config
+                    handle = config_test["blueski"].get("handle")
+                    did = config_test["blueski"].get("did") # DID confirms it was authorized
                     if handle and did:
                         name = _("{handle} (Bluesky)").format(handle=handle)
                         sessionsList.append(name)
-                        self.sessions.append(dict(type="atprotosocial", id=i))
+                        self.sessions.append(dict(type="blueski", id=i))
                     else: # Incomplete config, might be an old attempt or error
-                        log.warning(f"Incomplete ATProtoSocial session config found for {i}, skipping.")
+                        log.warning(f"Incomplete Blueski session config found for {i}, skipping.")
                         # Optionally delete malformed config here too
                         try:
-                            log.debug("Deleting incomplete ATProtoSocial session %s" % (i,))
+                            log.debug("Deleting incomplete Blueski session %s" % (i,))
                             shutil.rmtree(os.path.join(paths.config_path(), i))
                         except Exception as e:
-                            log.exception(f"Error deleting incomplete ATProtoSocial session {i}: {e}")
+                            log.exception(f"Error deleting incomplete Blueski session {i}: {e}")
+                        continue
+                elif config_test.get("atprotosocial") != None: # Legacy config namespace
+                    handle = config_test["atprotosocial"].get("handle")
+                    did = config_test["atprotosocial"].get("did")
+                    if handle and did:
+                        name = _("{handle} (Bluesky)").format(handle=handle)
+                        sessionsList.append(name)
+                        self.sessions.append(dict(type="blueski", id=i))
+                    else: # Incomplete config, might be an old attempt or error
+                        log.warning(f"Incomplete Blueski session config found for {i}, skipping.")
+                        # Optionally delete malformed config here too
+                        try:
+                            log.debug("Deleting incomplete Blueski session %s" % (i,))
+                            shutil.rmtree(os.path.join(paths.config_path(), i))
+                        except Exception as e:
+                            log.exception(f"Error deleting incomplete Blueski session {i}: {e}")
                         continue
                 else: # Unknown or other session type not explicitly handled here for display
                     try:
@@ -117,14 +133,14 @@ class sessionManagerController(object):
                 s = MastodonSession.Session(i.get("id"))
             elif i.get("type") == "gotosocial":
                 s = GotosocialSession.Session(i.get("id"))
-            elif i.get("type") == "atprotosocial": # Handle ATProtoSocial session type
-                s = ATProtoSocialSession.Session(i.get("id"))
+            elif i.get("type") == "blueski": # Handle Blueski session type
+                s = BlueskiSession.Session(i.get("id"))
             else:
                 log.warning(f"Unknown session type '{i.get('type')}' for ID {i.get('id')}. Skipping.")
                 continue
 
             s.get_configuration() # Load per-session configuration
-                                  # For ATProtoSocial, this loads from its specific config file.
+                                  # For Blueski, this loads from its specific config file.
 
             # Login is now primarily handled by session.start() via mainController,
             # which calls _ensure_dependencies_ready().
@@ -132,19 +148,19 @@ class sessionManagerController(object):
             # We'll rely on the mainController to call session.start() which handles login.
             # if i.get("id") not in config.app["sessions"]["ignored_sessions"]:
             #     try:
-            #         # For ATProtoSocial, login is async and handled by session.start()
+            #         # For Blueski, login is async and handled by session.start()
             #         # if not s.is_ready(): # Only attempt login if not already ready
             #         #    log.info(f"Session {s.uid} ({s.kind}) not ready, login will be attempted by start().")
             #         pass
             #     except Exception as e:
             #         log.exception(f"Exception during pre-emptive login check for session {s.uid} ({s.kind}).")
             #         continue
-            # Try to auto-login for ATProtoSocial so the app starts with buffers ready
+            # Try to auto-login for Blueski so the app starts with buffers ready
             try:
-                if i.get("type") == "atprotosocial":
+                if i.get("type") == "blueski":
                     s.login()
             except Exception:
-                log.exception("Auto-login failed for ATProtoSocial session %s", i.get("id"))
+                log.exception("Auto-login failed for Blueski session %s", i.get("id"))
 
             sessions.sessions[i.get("id")] = s # Add to global session store
             self.new_sessions[i.get("id")] = s # Track as a new session for this manager instance
@@ -162,8 +178,8 @@ class sessionManagerController(object):
 
         if type == "mastodon":
             s = MastodonSession.Session(location)
-        elif type == "atprotosocial":
-            s = ATProtoSocialSession.Session(location)
+        elif type == "blueski":
+            s = BlueskiSession.Session(location)
         # Add other session types here if needed (e.g., gotosocial)
         # elif type == "gotosocial":
         # s = GotosocialSession.Session(location)

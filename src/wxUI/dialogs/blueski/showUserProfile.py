@@ -6,9 +6,9 @@ from pubsub import pub
 
 from approve.translation import translate as _
 from approve.notifications import NotificationError
-# Assuming controller.atprotosocial.userList.get_user_profile_details and session.util._format_profile_data exist
+# Assuming controller.blueski.userList.get_user_profile_details and session.util._format_profile_data exist
 # For direct call to util:
-# from sessions.atprotosocial import utils as ATProtoSocialUtils
+# from sessions.blueski import utils as BlueskiUtils
 
 logger = logging.getLogger(__name__)
 
@@ -272,7 +272,7 @@ class ShowUserProfileDialog(wx.Dialog):
         self.SetTitle(f"{_('User Profile')} - {text}")
 
 ```python
-# Example of how this dialog might be called from atprotosocial.Handler.user_details:
+# Example of how this dialog might be called from blueski.Handler.user_details:
 # (This is conceptual, actual integration in handler.py will use the dialog)
 #
 # async def user_details(self, buffer_panel_or_user_ident):
