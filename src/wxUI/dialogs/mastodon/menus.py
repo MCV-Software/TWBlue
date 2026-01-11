@@ -14,6 +14,8 @@ class base(wx.Menu):
         self.Append(self.fav)
         self.unfav = wx.MenuItem(self, wx.ID_ANY, _(u"R&emove from favorites"))
         self.Append(self.unfav)
+        self.mute = wx.MenuItem(self, wx.ID_ANY, _(u"Mute/Unmute conversation"))
+        self.Append(self.mute)
         self.openUrl = wx.MenuItem(self, wx.ID_ANY, _("&Open URL"))
         self.Append(self.openUrl)
         self.openInBrowser = wx.MenuItem(self, wx.ID_ANY, _(u"&Open in instance"))

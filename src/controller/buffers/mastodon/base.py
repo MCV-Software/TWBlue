@@ -40,8 +40,30 @@ class BaseBuffer(base.Buffer):
         self.buffer.account = account
         self.bind_events()
         self.sound = sound
+        pub.subscribe(self.on_mute_cleanup, "mastodon.mute_cleanup")
         if "-timeline" in self.name or "-followers" in self.name or "-following" in self.name or "searchterm" in self.name:
             self.finished_timeline = False
+
+    def on_mute_cleanup(self, conversation_id, session_name):
+        if self.name != "home_timeline":
+            return
+        if session_name != self.session.get_name():
+            return
+        items_to_remove = []
+        for index, item in enumerate(self.session.db[self.name]):
+            c_id = None
+            if hasattr(item, "conversation_id"):
+                 c_id = item.conversation_id
+            elif isinstance(item, dict):
+                 c_id = item.get("conversation_id")
+            
+            if c_id == conversation_id:
+                items_to_remove.append(index)
+        
+        items_to_remove.sort(reverse=True)
+        for index in items_to_remove:
+            self.session.db[self.name].pop(index)
+            self.buffer.list.remove_item(index)
 
     def create_buffer(self, parent, name):
         self.buffer = buffers.mastodon.basePanel(parent, name)
@@ -293,6 +315,7 @@ class BaseBuffer(base.Buffer):
             menu.boost.Enable(False)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.fav, menuitem=menu.fav)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.unfav, menuitem=menu.unfav)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.mute_conversation, menuitem=menu.mute)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.url_, menuitem=menu.openUrl)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.audio, menuitem=menu.play)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
@@ -611,6 +634,22 @@ class BaseBuffer(base.Buffer):
             call_threaded(self.session.api_call, call_name="status_bookmark", preexec_message=_("Adding to bookmarks..."), _sound="favourite.ogg", id=item.id)
         else:
             call_threaded(self.session.api_call, call_name="status_unbookmark", preexec_message=_("Removing from bookmarks..."), _sound="favourite.ogg", id=item.id)
+
+    def mute_conversation(self, event=None, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        if item.reblog != None:
+            item = item.reblog
+        try:
+            item = self.session.api.status(item.id)
+        except MastodonNotFoundError:
+            output.speak(_("No status found with that ID"))
+            return
+        if item.muted == False:
+            call_threaded(self.session.api_call, call_name="status_mute", preexec_message=_("Muting conversation..."), _sound="favourite.ogg", id=item.id)
+            pub.sendMessage("mastodon.mute_cleanup", conversation_id=item.conversation_id, session_name=self.session.get_name())
+        else:
+            call_threaded(self.session.api_call, call_name="status_unmute", preexec_message=_("Unmuting conversation..."), _sound="favourite.ogg", id=item.id)
 
     def view_item(self, item=None):
         if item == None:
