@@ -735,6 +735,9 @@ class Controller(object):
         selected_item_uri = None
         if hasattr(buffer, "get_selected_item_id"):
             selected_item_uri = buffer.get_selected_item_id()
+        selected_item_cid = None
+        if hasattr(buffer, "get_selected_item_cid"):
+            selected_item_cid = buffer.get_selected_item_cid()
         if not selected_item_uri:
             output.speak(_("No item selected to reply to."), True)
             return
@@ -754,10 +757,10 @@ class Controller(object):
                     dlg.Destroy()
                     if not text:
                         return
-                    try:
-                        uri = session.send_message(text, reply_to=selected_item_uri)
-                        if uri:
-                            output.speak(_("Reply sent."), True)
+                try:
+                    uri = session.send_message(text, reply_to=selected_item_uri, reply_to_cid=selected_item_cid)
+                    if uri:
+                        output.speak(_("Reply sent."), True)
                         else:
                             output.speak(_("Failed to send reply."), True)
                     except Exception:
@@ -774,7 +777,7 @@ class Controller(object):
                 if not text and not files:
                     return
                 try:
-                    uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs, reply_to=selected_item_uri)
+                    uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs, reply_to=selected_item_uri, reply_to_cid=selected_item_cid)
                     if uri:
                         output.speak(_("Reply sent."), True)
                         try:

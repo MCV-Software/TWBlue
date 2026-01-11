@@ -328,7 +328,12 @@ class Session(base.baseSession):
             if reply_to:
                 # Resolve to proper at:// uri when possible
                 reply_uri = _normalize_to_uri(reply_to) or reply_to
-                parent_ref = _get_strong_ref(reply_uri)
+                reply_cid = kwargs.get("reply_to_cid")
+                parent_ref = None
+                if reply_uri and reply_cid:
+                    parent_ref = {"uri": reply_uri, "cid": reply_cid}
+                if not parent_ref:
+                    parent_ref = _get_strong_ref(reply_uri)
                 root_ref = parent_ref
                 # Try to fetch thread to find actual root for deep replies
                 try:

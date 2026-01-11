@@ -79,6 +79,7 @@ class BaseBuffer(base.Buffer):
         uri = self.get_selected_item_id()
         if not uri:
             uri = item.get("uri") if isinstance(item, dict) else getattr(item, "uri", None)
+        reply_cid = self.get_selected_item_cid()
         # Attempt to get CID if present for consistency, though send_message handles it
 
         def g(obj, key, default=None):
@@ -97,8 +98,13 @@ class BaseBuffer(base.Buffer):
         dlg = postDialogs.Post(caption=_("Reply"), text=initial_text)
         if dlg.ShowModal() == wx.ID_OK:
              text, files, cw, langs = dlg.get_payload()
-             self.session.send_message(message=text, files=files, reply_to=uri, cw_text=cw, langs=langs)
+             self.session.send_message(message=text, files=files, reply_to=uri, reply_to_cid=reply_cid, cw_text=cw, langs=langs)
              output.speak(_("Sending reply..."))
+             if getattr(self, "type", "") == "conversation":
+                 try:
+                     self.start_stream(mandatory=True, play_sound=False)
+                 except Exception:
+                     pass
         dlg.Destroy()
 
     def on_repost(self, evt):
@@ -437,6 +443,22 @@ class BaseBuffer(base.Buffer):
              return getattr(post, "uri", None)
 
          return getattr(item, "uri", None) or getattr(getattr(item, "post", None), "uri", None)
+
+    def get_selected_item_cid(self):
+         item = self.get_item()
+         if not item:
+             return None
+
+         if isinstance(item, dict):
+             cid = item.get("cid")
+             if cid:
+                 return cid
+             post = item.get("post") or item.get("record")
+             if isinstance(post, dict):
+                 return post.get("cid")
+             return getattr(post, "cid", None)
+
+         return getattr(item, "cid", None) or getattr(getattr(item, "post", None), "cid", None)
 
     def get_selected_item_author_details(self):
         item = self.get_item()
