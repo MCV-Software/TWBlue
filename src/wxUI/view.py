@@ -134,9 +134,9 @@ class mainFrame(wx.Frame):
         self.buffers[name] = buffer.GetId()
 
     def prepare(self):
-        self.sizer.Add(self.nb, 0, wx.ALL, 5)
+        self.sizer.Add(self.nb, 1, wx.ALL | wx.EXPAND, 5)
         self.panel.SetSizer(self.sizer)
-#  self.Maximize()
+        self.Maximize()
         self.sizer.Layout()
         self.SetClientSize(self.sizer.CalcMin())
 #  print self.GetSize()

@@ -9,8 +9,8 @@ class notificationsPanel(wx.Panel):
 
     def create_list(self):
         self.list = widgets.list(self, _("Text"), _("Date"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
-        self.list.set_windows_size(0, 320)
-        self.list.set_windows_size(2, 110)
+        self.list.set_windows_size(0, 600)
+        self.list.set_windows_size(1, 200)
         self.list.set_size()
 
     def __init__(self, parent, name):
@@ -25,7 +25,7 @@ class notificationsPanel(wx.Panel):
         btnSizer.Add(self.post, 0, wx.ALL, 5)
         btnSizer.Add(self.dismiss, 0, wx.ALL, 5)
         self.sizer.Add(btnSizer, 0, wx.ALL, 5)
-        self.sizer.Add(self.list.list, 0, wx.ALL|wx.EXPAND, 5)
+        self.sizer.Add(self.list.list, 1, wx.ALL|wx.EXPAND, 5)
         self.SetSizer(self.sizer)
         self.SetClientSize(self.sizer.CalcMin())
 

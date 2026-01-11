@@ -9,10 +9,10 @@ class basePanel(wx.Panel):
 
     def create_list(self):
         self.list = widgets.list(self, _(u"User"), _(u"Text"), _(u"Date"), _(u"Client"), style=wx.LC_REPORT|wx.LC_SINGLE_SEL|wx.LC_VRULES)
-        self.list.set_windows_size(0, 60)
-        self.list.set_windows_size(1, 320)
-        self.list.set_windows_size(2, 110)
-        self.list.set_windows_size(3, 84)
+        self.list.set_windows_size(0, 200)
+        self.list.set_windows_size(1, 600)
+        self.list.set_windows_size(2, 200)
+        self.list.set_windows_size(3, 200)
         self.list.set_size()
 
     def __init__(self, parent, name):
@@ -35,7 +35,7 @@ class basePanel(wx.Panel):
         btnSizer.Add(self.bookmark, 0, wx.ALL, 5)
         btnSizer.Add(self.dm, 0, wx.ALL, 5)
         self.sizer.Add(btnSizer, 0, wx.ALL, 5)
-        self.sizer.Add(self.list.list, 0, wx.ALL|wx.EXPAND, 5)
+        self.sizer.Add(self.list.list, 1, wx.ALL|wx.EXPAND, 5)
         self.SetSizer(self.sizer)
         self.SetClientSize(self.sizer.CalcMin())
 
