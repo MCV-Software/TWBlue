@@ -222,9 +222,10 @@ class Session(base.baseSession):
         in_reply_to_id = reply_to
         for obj in posts:
             text = obj.get("text")
+            scheduled_at = obj.get("scheduled_at")
             if len(obj["attachments"]) == 0:
                 try:
-                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language)
+                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language, scheduled_at=scheduled_at)
                 # If it fails, let's basically send an event with all passed info so we will catch it later.
                 except Exception as e:
                     pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts, lang=language)
@@ -241,7 +242,7 @@ class Session(base.baseSession):
                         for i in obj["attachments"]:
                             media = self.api_call("media_post", media_file=i["file"], description=i["description"], synchronous=True)
                             media_ids.append(media.id)
-                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language)
+                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language, scheduled_at=scheduled_at)
                     if item != None:
                         in_reply_to_id = item["id"]
                 except Exception as e:

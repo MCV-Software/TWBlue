@@ -65,6 +65,13 @@ class post(messages.basicMessage):
         postdata = dict(text=text, attachments=attachments, sensitive=self.message.sensitive.GetValue(), spoiler_text=None)
         if postdata.get("sensitive") == True:
             postdata.update(spoiler_text=self.message.spoiler.GetValue())
+        
+        # Check for scheduled post
+        if hasattr(self.message, 'get_scheduled_at'):
+            scheduled_at = self.message.get_scheduled_at()
+            if scheduled_at:
+                postdata['scheduled_at'] = scheduled_at
+
         self.thread.append(postdata)
         self.attachments = []
         if update_gui:
