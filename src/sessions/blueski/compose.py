@@ -4,12 +4,11 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any
 from datetime import datetime
-
-from approve.translation import translate as _
-from approve.util import parse_iso_datetime # For parsing ISO timestamps
+import arrow
+import languageHandler
 
 if TYPE_CHECKING:
-    from approve.sessions.blueski.session import Session as BlueskiSession
+    from sessions.blueski.session import Session as BlueskiSession
     from atproto.xrpc_client import models # For type hinting ATProto models
 
 logger = logging.getLogger(__name__)
@@ -94,12 +93,23 @@ class BlueskiCompose:
 
         post_text = getattr(record, 'text', '') if not isinstance(record, dict) else record.get('text', '')
 
+        reason = post_data.get("reason")
+        if reason:
+            rtype = getattr(reason, "$type", "") if not isinstance(reason, dict) else reason.get("$type", "")
+            if not rtype and not isinstance(reason, dict):
+                rtype = getattr(reason, "py_type", "")
+            if rtype and "reasonRepost" in rtype:
+                by = getattr(reason, "by", None) if not isinstance(reason, dict) else reason.get("by")
+                by_handle = getattr(by, "handle", "") if by and not isinstance(by, dict) else (by.get("handle", "") if by else "")
+                reason_line = _("Reposted by @{handle}").format(handle=by_handle) if by_handle else _("Reposted")
+                post_text = f"{reason_line}\n{post_text}" if post_text else reason_line
+
         created_at_str = getattr(record, 'createdAt', '') if not isinstance(record, dict) else record.get('createdAt', '')
         timestamp_str = ""
         if created_at_str:
             try:
-                dt_obj = parse_iso_datetime(created_at_str)
-                timestamp_str = dt_obj.strftime("%I:%M %p - %b %d, %Y") if dt_obj else created_at_str
+                ts = arrow.get(created_at_str)
+                timestamp_str = ts.format(_("dddd, MMMM D, YYYY H:m"), locale=languageHandler.curLang[:2])
             except Exception as e:
                 logger.debug(f"Could not parse timestamp {created_at_str}: {e}")
                 timestamp_str = created_at_str
@@ -143,8 +153,10 @@ class BlueskiCompose:
                     if alt_texts_present: embed_display += _(" (Alt text available)")
                     embed_display += "]"
 
-            elif embed_type in ['app.bsky.embed.record#view', 'app.bsky.embed.record']:
+            elif embed_type in ['app.bsky.embed.record#view', 'app.bsky.embed.record', 'app.bsky.embed.recordWithMedia#view', 'app.bsky.embed.recordWithMedia']:
                 record_embed_data = getattr(embed_data, 'record', None) if hasattr(embed_data, 'record') else embed_data.get('record', None)
+                if record_embed_data and isinstance(record_embed_data, dict):
+                    record_embed_data = record_embed_data.get("record") or record_embed_data
                 record_embed_type = getattr(record_embed_data, '$type', '')
                 if not record_embed_type and isinstance(record_embed_data, dict): record_embed_type = record_embed_data.get('$type', '')
 
@@ -243,3 +255,275 @@ class BlueskiCompose:
             display_parts.append(f"\"{body_snippet}\"")
 
         return " ".join(display_parts).strip()
+
+
+def compose_post(post, db, settings, relative_times, show_screen_names=False, safe=True):
+    """
+    Compose a Bluesky post into a list of strings [User, Text, Date, Source].
+    post: dict or ATProto model object.
+    """
+    # Extract data using getattr for models or .get for dicts
+    def g(obj, key, default=None):
+        if isinstance(obj, dict):
+            return obj.get(key, default)
+        return getattr(obj, key, default)
+
+    # Resolve Post View or Feed View structure
+    # Feed items often have .post field. Direct post objects don't.
+    actual_post = g(post, "post", post) 
+    
+    record = g(actual_post, "record", {})
+    author = g(actual_post, "author", {})
+    
+    # Author
+    handle = g(author, "handle", "")
+    display_name = g(author, "displayName") or g(author, "display_name") or handle or "Unknown"
+    
+    if show_screen_names:
+        user_str = f"@{handle}"
+    else:
+        # "Display Name (@handle)"
+        if handle and display_name != handle:
+            user_str = f"{display_name} (@{handle})"
+        else:
+            user_str = f"@{handle}"
+    
+    # Text
+    text = g(record, "text", "")
+
+    # Repost reason (so users know why they see an unfamiliar post)
+    reason = g(post, "reason", None)
+    if reason:
+        rtype = g(reason, "$type") or g(reason, "py_type")
+        if rtype and "reasonRepost" in rtype:
+            by = g(reason, "by", {})
+            by_handle = g(by, "handle", "")
+            reason_line = _("Reposted by @{handle}").format(handle=by_handle) if by_handle else _("Reposted")
+            text = f"{reason_line}\n{text}" if text else reason_line
+    
+    # Labels / Content Warning
+    labels = g(actual_post, "labels", [])
+    cw_text = ""
+    is_sensitive = False
+    
+    for label in labels:
+        val = g(label, "val", "")
+        if val in ["!warn", "porn", "sexual", "nudity", "gore", "graphic-media", "corpse", "self-harm", "hate", "spam", "impersonation"]:
+            is_sensitive = True
+            if not cw_text: cw_text = _("Sensitive Content")
+        elif val.startswith("warn:"):
+            is_sensitive = True
+            cw_text = val.split("warn:", 1)[-1].strip()
+
+    if cw_text:
+        text = f"CW: {cw_text}\n\n{text}"
+    
+    # Embeds (Images, Quotes)
+    embed = g(actual_post, "embed", None)
+    if embed:
+        etype = g(embed, "$type") or g(embed, "py_type")
+        if etype and ("images" in etype):
+            images = g(embed, "images", [])
+            if images:
+                text += f"\n[{len(images)} {_('Images')}]"
+        
+        # Handle Record (Quote) or RecordWithMedia (Quote + Media)
+        quote_rec = None
+        if etype and ("recordWithMedia" in etype):
+             # Extract the nested record
+             rec_embed = g(embed, "record", {})
+             if rec_embed:
+                 quote_rec = g(rec_embed, "record", None) or rec_embed
+             # Also check for media in the wrapper
+             media = g(embed, "media", {})
+             mtype = g(media, "$type") or g(media, "py_type")
+             if mtype and "images" in mtype:
+                 images = g(media, "images", [])
+                 if images: text += f"\n[{len(images)} {_('Images')}]"
+                 
+        elif etype and ("record" in etype):
+             # Direct quote
+             quote_rec = g(embed, "record", {})
+             if isinstance(quote_rec, dict):
+                 quote_rec = quote_rec.get("record") or quote_rec
+        
+        if quote_rec:
+             # It is likely a ViewRecord
+             # Check type (ViewRecord, ViewNotFound, ViewBlocked, etc)
+             qtype = g(quote_rec, "$type") or g(quote_rec, "py_type")
+             
+             if qtype and "viewNotFound" in qtype:
+                  text += f"\n[{_('Quoted post not found')}]"
+             elif qtype and "viewBlocked" in qtype:
+                  text += f"\n[{_('Quoted post blocked')}]"
+             elif qtype and "generatorView" in qtype:
+                  # Feed generator
+                  gen = g(quote_rec, "displayName", "Feed")
+                  text += f"\n[{_('Quoting Feed')}: {gen}]"
+             else:
+                  # Assume ViewRecord
+                  q_author = g(quote_rec, "author", {})
+                  q_handle = g(q_author, "handle", "unknown")
+                  
+                  q_val = g(quote_rec, "value", {})
+                  q_text = g(q_val, "text", "")
+
+                  if q_text:
+                      text += f"\n[{_('Quoting')} @{q_handle}: {q_text}]"
+                  else:
+                      text += f"\n[{_('Quoting')} @{q_handle}]"
+
+        elif etype and ("external" in etype):
+            ext = g(embed, "external", {})
+            uri = g(ext, "uri", "")
+            title = g(ext, "title", "")
+            text += f"\n[{_('Link')}: {title}]"
+
+    # Date
+    indexed_at = g(actual_post, "indexed_at", "")
+    ts_str = ""
+    if indexed_at:
+        try:
+             # Try arrow parsing
+             import arrow
+             ts = arrow.get(indexed_at)
+             if relative_times:
+                 ts_str = ts.humanize(locale=languageHandler.curLang[:2])
+             else:
+                 ts_str = ts.format(_("dddd, MMMM D, YYYY H:m"), locale=languageHandler.curLang[:2])
+        except Exception:
+             ts_str = str(indexed_at)[:16].replace("T", " ")
+
+    # Source (not always available in Bsky view, often just client)
+    # We'll leave it empty or mock it if needed
+    source = "Bluesky"
+
+
+    return [user_str, text, ts_str, source]
+
+def compose_user(user, db, settings, relative_times, show_screen_names=False, safe=True):
+    """
+    Compose a Bluesky user for list display.
+    Returns: [User summary string]
+    """
+    # Extract data using getattr for models or .get for dicts
+    def g(obj, key, default=None):
+        if isinstance(obj, dict):
+            return obj.get(key, default)
+        return getattr(obj, key, default)
+
+    handle = g(user, "handle", "unknown")
+    display_name = g(user, "displayName") or g(user, "display_name") or handle
+    followers = g(user, "followersCount", None)
+    following = g(user, "followsCount", None)
+    posts = g(user, "postsCount", None)
+    created_at = g(user, "createdAt", None)
+
+    ts = ""
+    if created_at:
+        try:
+            import arrow
+            original_date = arrow.get(created_at)
+            if relative_times:
+                ts = original_date.humanize(locale=languageHandler.curLang[:2])
+            else:
+                offset = db.get("utc_offset", 0) if isinstance(db, dict) else 0
+                ts = original_date.shift(hours=offset).format(_("dddd, MMMM D, YYYY H:m"), locale=languageHandler.curLang[:2])
+        except Exception:
+            ts = str(created_at)
+
+    parts = [f"{display_name} (@{handle})."]
+    if followers is not None and following is not None and posts is not None:
+        parts.append(_("{followers} followers, {following} following, {posts} posts.").format(
+            followers=followers, following=following, posts=posts
+        ))
+    if ts:
+        parts.append(_("Joined {date}").format(date=ts))
+
+    return [" ".join(parts).strip()]
+
+def compose_convo(convo, db, settings, relative_times, show_screen_names=False, safe=True):
+    """
+    Compose a Bluesky chat conversation for list display.
+    Returns: [Participants, Last Message, Date]
+    """
+    def g(obj, key, default=None):
+        if isinstance(obj, dict):
+            return obj.get(key, default)
+        return getattr(obj, key, default)
+
+    members = g(convo, "members", [])
+    self_did = db.get("user_id") if isinstance(db, dict) else None
+    others = []
+    for m in members:
+        did = g(m, "did", None)
+        if self_did and did == self_did:
+            continue
+        label = g(m, "displayName") or g(m, "display_name") or g(m, "handle", "unknown")
+        others.append(label)
+    if not others:
+        others = [g(m, "displayName") or g(m, "display_name") or g(m, "handle", "unknown") for m in members]
+    participants = ", ".join(others)
+    
+    last_msg_obj = g(convo, "lastMessage") or g(convo, "last_message")
+    last_text = ""
+    last_sender = ""
+    if last_msg_obj:
+        last_text = g(last_msg_obj, "text", "")
+        sender = g(last_msg_obj, "sender", None)
+        if sender:
+            last_sender = g(sender, "displayName") or g(sender, "display_name") or g(sender, "handle", "")
+    
+    # Date (using lastMessage.sentAt)
+    date_str = ""
+    sent_at = None
+    if last_msg_obj:
+        sent_at = g(last_msg_obj, "sentAt") or g(last_msg_obj, "sent_at")
+        
+    if sent_at:
+        try:
+            import arrow
+            ts = arrow.get(sent_at)
+            if relative_times:
+                date_str = ts.humanize(locale=languageHandler.curLang[:2])
+            else:
+                date_str = ts.format(_("dddd, MMMM D, YYYY H:m"), locale=languageHandler.curLang[:2])
+        except:
+            date_str = str(sent_at)[:16]
+
+    if last_sender and last_text:
+        last_text = _("Last message from {user}: {text}").format(user=last_sender, text=last_text)
+    elif last_text:
+        last_text = _("Last message: {text}").format(text=last_text)
+
+    return [participants, last_text, date_str]
+
+def compose_chat_message(msg, db, settings, relative_times, show_screen_names=False, safe=True):
+    """
+    Compose an individual chat message for display in a thread.
+    Returns: [Sender, Text, Date]
+    """
+    def g(obj, key, default=None):
+        if isinstance(obj, dict):
+            return obj.get(key, default)
+        return getattr(obj, key, default)
+
+    sender = g(msg, "sender", {})
+    handle = g(sender, "displayName") or g(sender, "display_name") or g(sender, "handle", "unknown")
+    
+    text = g(msg, "text", "")
+    
+    sent_at = g(msg, "sentAt") or g(msg, "sent_at")
+    date_str = ""
+    if sent_at:
+        try:
+            import arrow
+            ts = arrow.get(sent_at)
+            if relative_times:
+                date_str = ts.humanize(locale=languageHandler.curLang[:2])
+            else:
+                date_str = ts.format(_("dddd, MMMM D, YYYY H:m"), locale=languageHandler.curLang[:2])
+        except:
+            date_str = str(sent_at)[:16]
+            
+    return [handle, text, date_str]

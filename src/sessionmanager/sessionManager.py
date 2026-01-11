@@ -205,6 +205,10 @@ class sessionManagerController(object):
                 # But for immediate use if not restarting, it might need to be added to sessions.sessions
                 sessions.sessions[location] = s # Make it globally available immediately
                 self.new_sessions[location] = s
+                # Sync with global config
+                if location not in config.app["sessions"]["sessions"]:
+                    config.app["sessions"]["sessions"].append(location)
+                config.app.write()
 
 
             else: # Authorise returned False or None
@@ -232,6 +236,9 @@ class sessionManagerController(object):
         self.view.remove_session(index)
         self.removed_sessions.append(selected_account.get("id"))
         self.sessions.remove(selected_account)
+        if selected_account.get("id") in config.app["sessions"]["sessions"]:
+            config.app["sessions"]["sessions"].remove(selected_account.get("id"))
+        config.app.write()
         shutil.rmtree(path=os.path.join(paths.config_path(), selected_account.get("id")), ignore_errors=True)
 
     def configuration(self):

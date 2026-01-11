@@ -1,0 +1,4934 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021 ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TW Blue 0.85\n"
+"Report-Msgid-Bugs-To: manuel@manuelcortez.net\n"
+"POT-Creation-Date: 2025-04-13 01:18+0000\n"
+"PO-Revision-Date: 2022-12-20 22:43+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language: ru\n"
+"Language-Team: Russian "
+"<https://weblate.mcvsoftware.com/projects/twblue/twblue/ru/>\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: languageHandler.py:61
+#, fuzzy
+msgctxt "languageName"
+msgid "Amharic"
+msgstr "Амхарский"
+
+#: languageHandler.py:62
+#, fuzzy
+msgctxt "languageName"
+msgid "Aragonese"
+msgstr "Японский"
+
+#: languageHandler.py:63
+#, fuzzy
+msgctxt "languageName"
+msgid "Spanish"
+msgstr "Испанский"
+
+#: languageHandler.py:64
+#, fuzzy
+msgctxt "languageName"
+msgid "Portuguese"
+msgstr "Португальский"
+
+#: languageHandler.py:65
+#, fuzzy
+msgctxt "languageName"
+msgid "Russian"
+msgstr "Русский"
+
+#: languageHandler.py:66
+#, fuzzy
+msgctxt "languageName"
+msgid "italian"
+msgstr "Итальянский"
+
+#: languageHandler.py:67
+#, fuzzy
+msgctxt "languageName"
+msgid "Turkey"
+msgstr "Опция была недоступна"
+
+#: languageHandler.py:68
+#, fuzzy
+msgctxt "languageName"
+msgid "Galician"
+msgstr "Галисийский"
+
+#: languageHandler.py:69
+#, fuzzy
+msgctxt "languageName"
+msgid "Catala"
+msgstr "Каталонский"
+
+#: languageHandler.py:70
+#, fuzzy
+msgctxt "languageName"
+msgid "Vasque"
+msgstr "Баскский"
+
+#: languageHandler.py:71
+#, fuzzy
+msgctxt "languageName"
+msgid "polish"
+msgstr "Польский"
+
+#: languageHandler.py:72
+#, fuzzy
+msgctxt "languageName"
+msgid "Arabic"
+msgstr "Арабский"
+
+#: languageHandler.py:73
+#, fuzzy
+msgctxt "languageName"
+msgid "Nepali"
+msgstr "Непальский"
+
+#: languageHandler.py:74
+msgctxt "languageName"
+msgid "Serbian (Latin)"
+msgstr ""
+
+#: languageHandler.py:75
+#, fuzzy
+msgctxt "languageName"
+msgid "Japanese"
+msgstr "Японский"
+
+#: languageHandler.py:99
+msgid "User default"
+msgstr "По умолчанию"
+
+#: main.py:105
+#, fuzzy
+msgid "https://twblue.mcvsoftware.com/donate"
+msgstr "https://twblue.es/donate"
+
+#: main.py:118
+#, python-brace-format
+msgid ""
+"{0} is already running. Close the other instance before starting this "
+"one. If you're sure that {0} isn't running, try deleting the file at {1}."
+" If you're unsure of how to do this, contact the {0} developers."
+msgstr ""
+"{0} уже запущен. Закройте другой экземпляр, прежде чем запускать этот. "
+"Если вы уверены, что {0} не активен, попробуйте удалить файл по адресу "
+"{1}. Если вы не знаете, как это сделать, обратитесь к разработчикам {0}."
+
+#: sound.py:148
+msgid "Playing..."
+msgstr "Воспроизводится"
+
+#: sound.py:161
+msgid "Stopped."
+msgstr "Остановлено"
+
+#: controller/mainController.py:261
+msgid "Ready"
+msgstr "Готово"
+
+#: controller/mainController.py:369 controller/mainController.py:654
+#: controller/mainController.py:673 controller/mainController.py:692
+#: controller/mainController.py:711
+msgid ""
+"No session is currently in focus. Focus a session with the next or "
+"previous session shortcut."
+msgstr "Сессия не в фокусе. Перейдите, пожалуйста, к интересующей сессии."
+
+#: controller/mainController.py:373
+msgid "Empty buffer."
+msgstr "Пустой буфер "
+
+#: controller/mainController.py:380
+#, python-brace-format
+msgid "{0} not found."
+msgstr "{0} не найден."
+
+#: controller/mainController.py:702 controller/mainController.py:721
+#, python-format
+msgid "%s, %s of %s"
+msgstr "%s, %s из %s"
+
+#: controller/mainController.py:704 controller/mainController.py:723
+#: controller/mainController.py:751 controller/mainController.py:779
+#, python-format
+msgid "%s. Empty"
+msgstr "%s. Пусто"
+
+#: controller/mainController.py:739 controller/mainController.py:743
+#: controller/mainController.py:767
+#, python-brace-format
+msgid "{0}: This account is not logged into Twitter."
+msgstr "{0}: Этот аккаунт не вошел в твиттер."
+
+#: controller/mainController.py:749 controller/mainController.py:777
+#, python-format
+msgid "%s. %s, %s of %s"
+msgstr "%s. %s, %s из %s"
+
+#: controller/mainController.py:771
+#, python-brace-format
+msgid "{0}: This account is not logged into twitter."
+msgstr "{0}: Этот аккаунт не вошел в твиттер"
+
+#: controller/mainController.py:910 controller/mainController.py:926
+msgid "An error happened while trying to connect to the server. Please try later."
+msgstr ""
+"При попытке подключиться к серверу произошла ошибка. Пожалуйста, "
+"попробуйте позже."
+
+#: controller/mainController.py:957
+msgid "The auto-reading of new tweets is enabled for this buffer"
+msgstr "Авточтение новых твитов в этом буфере включено"
+
+#: controller/mainController.py:960
+msgid "The auto-reading of new tweets is disabled for this buffer"
+msgstr "Авточтение новых твитов в этом буфере выключено"
+
+#: controller/mainController.py:967
+msgid "Session mute on"
+msgstr "Звуки для сессии отключены"
+
+#: controller/mainController.py:970
+msgid "Session mute off"
+msgstr "Звуки для сессии включены"
+
+#: controller/mainController.py:979
+msgid "Buffer mute on"
+msgstr "Звуки в буфере отключены"
+
+#: controller/mainController.py:982
+msgid "Buffer mute off"
+msgstr "Звуки в буфере включены"
+
+#: controller/mainController.py:999
+msgid "Copied"
+msgstr "Скопировано"
+
+#: controller/mainController.py:1019
+msgid "Unable to update this buffer."
+msgstr "Невозможно обновить этот буфер"
+
+#: controller/mainController.py:1021
+msgid "Updating buffer..."
+msgstr "Обновление буфера..."
+
+#: controller/mainController.py:1024
+#, python-brace-format
+msgid "{0} items retrieved"
+msgstr "Показано {0} элементов "
+
+#: controller/buffers/mastodon/base.py:137 controller/mainController.py:1028
+#: controller/mastodon/handler.py:98 controller/mastodon/handler.py:241
+#, python-brace-format
+msgid "Timeline for {}"
+msgstr "Лента твитов {}"
+
+#: controller/buffers/mastodon/users.py:93 controller/mainController.py:1030
+#: controller/mastodon/handler.py:100 controller/mastodon/handler.py:255
+#, python-brace-format
+msgid "Followers for {}"
+msgstr "Читающие {}"
+
+#: controller/mainController.py:1032
+#, python-brace-format
+msgid "Friends for {}"
+msgstr "Читаемые {}"
+
+# | msgid "Followers for {}"
+#: controller/buffers/mastodon/users.py:95 controller/mainController.py:1034
+#: controller/mastodon/handler.py:102 controller/mastodon/handler.py:269
+#, fuzzy, python-brace-format
+msgid "Following for {}"
+msgstr "Читающие {}"
+
+#: controller/messages.py:18
+#, fuzzy
+msgid "Translated"
+msgstr "Переведено"
+
+#: controller/settings.py:60
+#, fuzzy
+msgid "System default"
+msgstr "По умолчанию"
+
+#: controller/settings.py:60
+msgid "HTTP"
+msgstr ""
+
+#: controller/settings.py:60
+msgid "SOCKS v4"
+msgstr ""
+
+#: controller/settings.py:60
+msgid "SOCKS v4 with DNS support"
+msgstr ""
+
+#: controller/settings.py:60
+msgid "SOCKS v5"
+msgstr ""
+
+#: controller/settings.py:60
+msgid "SOCKS v5 with DNS support"
+msgstr ""
+
+#: controller/userAlias.py:31
+#, fuzzy, python-brace-format
+msgid "Edit alias for {}"
+msgstr "Список {}"
+
+#: controller/buffers/base/base.py:91
+#: controller/buffers/mastodon/conversations.py:237
+#: controller/buffers/mastodon/search.py:80
+msgid "This action is not supported for this buffer"
+msgstr "Это действие не поддерживается в данном буфере"
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:70
+#: controller/mastodon/settings.py:194
+msgid "Home"
+msgstr "Ваша лента"
+
+#: controller/buffers/mastodon/base.py:52
+#: controller/buffers/mastodon/community.py:22
+#: controller/mastodon/handler.py:72 controller/mastodon/handler.py:114
+#: controller/mastodon/settings.py:195
+msgid "Local"
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:52
+#: controller/buffers/mastodon/community.py:22
+#: controller/mastodon/handler.py:74 controller/mastodon/settings.py:196
+msgid "Federated"
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:76
+#: controller/mastodon/settings.py:197
+msgid "Mentions"
+msgstr "Упоминания"
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:84
+#: controller/mastodon/settings.py:201
+msgid "Bookmarks"
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:78
+msgid "Direct messages"
+msgstr "Личные сообщения"
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:80
+#: controller/mastodon/settings.py:199
+msgid "Sent"
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:82
+#: controller/mastodon/settings.py:200 wxUI/dialogs/mastodon/postDialogs.py:229
+msgid "Favorites"
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:86
+#: controller/mastodon/settings.py:202
+msgid "Followers"
+msgstr "Читающие"
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:88
+#: controller/mastodon/settings.py:203
+#, fuzzy
+msgid "Following"
+msgstr "П&ерестать читать"
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:92
+#: controller/mastodon/settings.py:204
+msgid "Blocked users"
+msgstr "Заблокированные пользователи"
+
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:90
+#: controller/mastodon/settings.py:205
+msgid "Muted users"
+msgstr "Отключенные пользователи"
+
+# | msgid "&Location"
+#: controller/buffers/mastodon/base.py:52 controller/mastodon/handler.py:94
+#: controller/mastodon/settings.py:206
+#: wxUI/dialogs/mastodon/filters/create_filter.py:80
+#, fuzzy
+msgid "Notifications"
+msgstr "Местоположение"
+
+#: controller/buffers/mastodon/base.py:58
+#, python-brace-format
+msgid "{username}'s timeline"
+msgstr "Лента твитов {username}"
+
+#: controller/buffers/mastodon/base.py:60
+#, python-brace-format
+msgid "{username}'s followers"
+msgstr "Читающие {username}"
+
+# | msgid "{username}'s followers"
+#: controller/buffers/mastodon/base.py:62
+#, fuzzy, python-brace-format
+msgid "{username}'s following"
+msgstr "Читающие {username}"
+
+#: controller/buffers/mastodon/base.py:64
+msgid "Unknown buffer"
+msgstr "Неизвестно"
+
+#: controller/buffers/mastodon/base.py:67
+#: controller/buffers/mastodon/base.py:645 wxUI/buffers/mastodon/base.py:24
+#: wxUI/buffers/mastodon/conversationList.py:24
+#: wxUI/buffers/mastodon/notifications.py:22 wxUI/buffers/mastodon/user.py:18
+#: wxUI/dialogs/mastodon/postDialogs.py:5
+#: wxUI/dialogs/mastodon/postDialogs.py:194 wxUI/sysTrayIcon.py:35
+msgid "Post"
+msgstr ""
+
+# | msgid "Write the tweet here"
+#: controller/buffers/mastodon/base.py:68
+#: controller/buffers/mastodon/base.py:646
+#, fuzzy
+msgid "Write your post here"
+msgstr "Напишите текст твита здесь"
+
+# | msgid "New tweet in {0}"
+#: controller/buffers/mastodon/base.py:153
+#, fuzzy, python-brace-format
+msgid "New post in {0}"
+msgstr "Новый твит в {0}"
+
+# | msgid "{0} new tweets in {1}."
+#: controller/buffers/mastodon/base.py:159
+#, fuzzy, python-brace-format
+msgid "{0} new posts in {1}."
+msgstr "@{0} процитировал ваш твит: {1}"
+
+#: controller/buffers/mastodon/base.py:198
+#: controller/buffers/mastodon/community.py:90
+#: controller/buffers/mastodon/conversations.py:100
+#: controller/buffers/mastodon/mentions.py:82
+#: controller/buffers/mastodon/users.py:139
+#, python-format
+msgid "%s items retrieved"
+msgstr "Показано %s элементов "
+
+#: controller/buffers/mastodon/base.py:216
+#: controller/buffers/mastodon/users.py:206
+msgid "This buffer is not a timeline; it can't be deleted."
+msgstr "Этот буфер не является лентой и его невозможно удалить."
+
+# | msgid "Conversation with {0}"
+#: controller/buffers/mastodon/base.py:346
+#: controller/buffers/mastodon/base.py:384
+#, fuzzy, python-brace-format
+msgid "Conversation with {}"
+msgstr "Беседа с {0}"
+
+# | msgid "Write the tweet here"
+#: controller/buffers/mastodon/base.py:347
+#: controller/buffers/mastodon/base.py:385
+#: controller/buffers/mastodon/conversations.py:181
+#: controller/buffers/mastodon/notifications.py:122
+#: controller/buffers/mastodon/users.py:52
+#, fuzzy
+msgid "Write your message here"
+msgstr "Напишите текст твита здесь"
+
+# | msgid "Reply to {arg0}"
+#: controller/buffers/mastodon/base.py:349
+#, fuzzy, python-brace-format
+msgid "Reply to {}"
+msgstr "Ответ {arg0}"
+
+# | msgid "Write the tweet here"
+#: controller/buffers/mastodon/base.py:350
+#, fuzzy
+msgid "Write your reply here"
+msgstr "Напишите текст твита здесь"
+
+#: controller/buffers/mastodon/base.py:412
+#, fuzzy
+msgid "This action is not supported on conversations."
+msgstr "Это действие не поддерживается в данном буфере"
+
+#: controller/buffers/mastodon/base.py:477
+msgid "Opening URL..."
+msgstr "Открытие ссылки"
+
+#: controller/buffers/mastodon/base.py:490
+msgid "You can delete only your own posts."
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:519
+msgid "Opening item in web browser..."
+msgstr "Открыть в браузере"
+
+#: controller/buffers/mastodon/base.py:527
+#: controller/buffers/mastodon/base.py:547
+msgid "Adding to favorites..."
+msgstr ""
+
+# | msgid "Remove from list"
+#: controller/buffers/mastodon/base.py:534
+#: controller/buffers/mastodon/base.py:549
+#, fuzzy
+msgid "Removing from favorites..."
+msgstr "Удалить из списка"
+
+#: controller/buffers/mastodon/base.py:544
+#: controller/buffers/mastodon/base.py:559
+#: controller/buffers/mastodon/base.py:573
+#: controller/buffers/mastodon/conversations.py:213
+msgid "No status found with that ID"
+msgstr "Сообщение не найдено."
+
+#: controller/buffers/mastodon/base.py:562
+msgid "Adding to bookmarks..."
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:564
+msgid "Removing from bookmarks..."
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:586
+#, python-brace-format
+msgid "Picture {0}"
+msgstr "Изображение {0}"
+
+#: controller/buffers/mastodon/base.py:587
+msgid "Select the picture"
+msgstr "Выберите изображение"
+
+#: controller/buffers/mastodon/base.py:610
+msgid "Unable to extract text"
+msgstr "Не удаётся распознать текст."
+
+#: controller/buffers/mastodon/base.py:612
+msgid "OCR Result"
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:627
+msgid "this poll no longer exists."
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:630
+msgid "This poll has already expired."
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:633
+msgid "You have already voted on this poll."
+msgstr ""
+
+#: controller/buffers/mastodon/base.py:642
+#, fuzzy
+msgid "Sending vote..."
+msgstr "Перекодирование аудио ..."
+
+# | msgid "Conversation with {0}"
+#: controller/buffers/mastodon/conversations.py:180
+#, fuzzy, python-brace-format
+msgid "Reply to conversation with {}"
+msgstr "Беседа с {0}"
+
+# | msgid "Conversation with {0}"
+#: controller/buffers/mastodon/notifications.py:121
+#: controller/buffers/mastodon/users.py:51
+#, fuzzy, python-brace-format
+msgid "New conversation with {}"
+msgstr "Беседа с {0}"
+
+#: controller/buffers/mastodon/notifications.py:151
+msgid "Notification dismissed."
+msgstr ""
+
+# | msgid "There are no coordinates in this tweet"
+#: controller/buffers/mastodon/users.py:110
+#, fuzzy
+msgid "There are no more items in this buffer."
+msgstr "Координаты отсутствуют"
+
+#: controller/mastodon/handler.py:30 wxUI/dialogs/mastodon/updateProfile.py:35
+#, fuzzy
+msgid "Update Profile"
+msgstr "&Обновить профиль"
+
+#: controller/mastodon/handler.py:31 wxUI/dialogs/mastodon/search.py:10
+#: wxUI/view.py:19
+msgid "&Search"
+msgstr "&Поиск"
+
+#: controller/mastodon/handler.py:33 wxUI/view.py:22
+msgid "Manage user aliases"
+msgstr ""
+
+#: controller/mastodon/handler.py:35 controller/mastodon/handler.py:59
+#: wxUI/view.py:30
+msgid "&Post"
+msgstr ""
+
+#: controller/mastodon/handler.py:36 wxUI/dialogs/mastodon/menus.py:9
+#: wxUI/dialogs/mastodon/menus.py:37 wxUI/view.py:31
+msgid "Re&ply"
+msgstr "Отве&тить"
+
+#: controller/mastodon/handler.py:37 wxUI/dialogs/mastodon/menus.py:7
+#: wxUI/dialogs/mastodon/menus.py:35 wxUI/view.py:32
+msgid "&Boost"
+msgstr ""
+
+# | msgid "&Add to list"
+#: controller/mastodon/handler.py:38 wxUI/dialogs/mastodon/menus.py:11
+#: wxUI/dialogs/mastodon/menus.py:39 wxUI/view.py:33
+#, fuzzy
+msgid "&Add to favorites"
+msgstr "&Добавить в список"
+
+# | msgid "Remove from list"
+#: controller/mastodon/handler.py:39
+#, fuzzy
+msgid "Remove from favorites"
+msgstr "Удалить из списка"
+
+# | msgid "&Show user"
+#: controller/mastodon/handler.py:40 wxUI/dialogs/mastodon/menus.py:21
+#: wxUI/dialogs/mastodon/menus.py:49 wxUI/view.py:35
+#, fuzzy
+msgid "&Show post"
+msgstr "Показать пользователя"
+
+#: controller/mastodon/handler.py:41 wxUI/view.py:36
+msgid "View conversa&tion"
+msgstr "Просмотр беседы"
+
+#: controller/mastodon/handler.py:42 wxUI/view.py:37
+msgid "Read text in picture"
+msgstr "Читать текст, представленный на изображении"
+
+#: controller/mastodon/handler.py:43 wxUI/dialogs/mastodon/menus.py:25
+#: wxUI/view.py:39
+msgid "&Delete"
+msgstr "&Удалить"
+
+#: controller/mastodon/handler.py:45 wxUI/view.py:43
+msgid "&Actions..."
+msgstr "Действия"
+
+#: controller/mastodon/handler.py:46 wxUI/view.py:44
+msgid "&View timeline..."
+msgstr "Показать ленту"
+
+#: controller/mastodon/handler.py:47 wxUI/view.py:45
+msgid "Direct me&ssage"
+msgstr "&Личное сообщение"
+
+#: controller/mastodon/handler.py:48 wxUI/view.py:46
+msgid "Add a&lias"
+msgstr ""
+
+#: controller/mastodon/handler.py:51
+#, fuzzy
+msgid "Show user profile"
+msgstr "&Показать профиль пользователя"
+
+#: controller/mastodon/handler.py:54
+msgid "Create c&ommunity timeline"
+msgstr ""
+
+#: controller/mastodon/handler.py:55 wxUI/view.py:57
+msgid "Create a &filter"
+msgstr "Создать новый фильтр"
+
+#: controller/mastodon/handler.py:56 wxUI/view.py:58
+msgid "&Manage filters"
+msgstr "&Управление фильтрами"
+
+#: controller/mastodon/handler.py:95
+msgid "Timelines"
+msgstr "Ленты"
+
+#: controller/mastodon/handler.py:107
+msgid "Searches"
+msgstr "Результаты поиска"
+
+#: controller/mastodon/handler.py:110 controller/mastodon/handler.py:191
+#: controller/mastodon/handler.py:196
+#, python-brace-format
+msgid "Search for {}"
+msgstr "Поиск {}"
+
+#: controller/mastodon/handler.py:111
+msgid "Communities"
+msgstr ""
+
+#: controller/mastodon/handler.py:114
+#, fuzzy
+msgid "federated"
+msgstr "Лента твитов {username}"
+
+#: controller/mastodon/handler.py:143
+#, python-brace-format
+msgid "Conversation with {0}"
+msgstr "Беседа с {0}"
+
+#: controller/mastodon/handler.py:299
+msgid "Add an user alias"
+msgstr ""
+
+#: controller/mastodon/handler.py:311
+#, python-brace-format
+msgid "Alias has been set correctly for {}."
+msgstr ""
+
+#: controller/mastodon/handler.py:342
+#, fuzzy
+msgid "Update profile"
+msgstr "&Обновить профиль"
+
+#: controller/mastodon/messages.py:115
+#, python-format
+msgid "%s - %s of %d characters"
+msgstr "%s - %s из %d символов"
+
+#: controller/mastodon/messages.py:239
+#, python-brace-format
+msgid "Poll with {} options"
+msgstr ""
+
+# | msgid "List for {}"
+#: controller/mastodon/messages.py:272
+#, fuzzy, python-brace-format
+msgid "Post from {}"
+msgstr "Список {}"
+
+#: controller/mastodon/messages.py:276 sessions/mastodon/templates.py:82
+#: wxUI/dialogs/mastodon/postDialogs.py:49
+msgid "Public"
+msgstr "Публичный"
+
+# | msgid "Accounts list"
+#: controller/mastodon/messages.py:276 sessions/mastodon/templates.py:82
+#: wxUI/dialogs/mastodon/postDialogs.py:49
+#, fuzzy
+msgid "Not listed"
+msgstr "Список аккаунтов"
+
+# | msgid "Followers"
+#: controller/mastodon/messages.py:276
+#, fuzzy
+msgid "followers only"
+msgstr "Читающие"
+
+# | msgid "Direct message"
+#: controller/mastodon/messages.py:276 sessions/mastodon/templates.py:82
+#: wxUI/dialogs/mastodon/postDialogs.py:49
+#, fuzzy
+msgid "Direct"
+msgstr "Личное сообщение"
+
+# | msgid "Remove client"
+#: controller/mastodon/messages.py:283
+#, fuzzy
+msgid "Remote instance"
+msgstr "Удалить  клиент"
+
+#: controller/mastodon/messages.py:291 controller/mastodon/messages.py:319
+#, fuzzy
+msgid "Unmute conversation"
+msgstr "Просмотр беседы"
+
+#: controller/mastodon/messages.py:315 wxUI/dialogs/mastodon/postDialogs.py:237
+#, fuzzy
+msgid "Mute conversation"
+msgstr "Просмотр беседы"
+
+# | msgid "Conversation with {0}"
+#: controller/mastodon/messages.py:316
+#, fuzzy
+msgid "Conversation unmuted."
+msgstr "Беседа с {0}"
+
+# | msgid "Conversation with {0}"
+#: controller/mastodon/messages.py:320
+#, fuzzy
+msgid "Conversation muted."
+msgstr "Беседа с {0}"
+
+#: controller/mastodon/messages.py:331
+msgid "people who boosted this post"
+msgstr ""
+
+#: controller/mastodon/messages.py:336
+msgid "people who favorited this post"
+msgstr ""
+
+#: controller/mastodon/messages.py:342
+#, fuzzy
+msgid "Link copied to clipboard."
+msgstr "Скопировать в буфер обмена"
+
+#: controller/mastodon/settings.py:82
+#, python-format
+msgid "Account settings for %s"
+msgstr "Параметры аккаунта %s"
+
+#: controller/mastodon/settings.py:92
+#, python-brace-format
+msgid "Edit template for posts. Current template: {}"
+msgstr ""
+
+#: controller/mastodon/settings.py:101
+#, python-brace-format
+msgid "Edit template for conversations. Current template: {}"
+msgstr ""
+
+#: controller/mastodon/settings.py:110
+#, python-brace-format
+msgid "Edit template for persons. Current template: {}"
+msgstr ""
+
+#: controller/mastodon/settings.py:198
+msgid "Direct Messages"
+msgstr "Личные сообщения"
+
+#: controller/mastodon/filters/create_filter.py:75
+#, fuzzy, python-brace-format
+msgid "Update Filter: {}"
+msgstr "&Обновить профиль"
+
+#: controller/mastodon/filters/manage_filters.py:57
+#: wxUI/dialogs/mastodon/filters/create_filter.py:90
+msgid "Never"
+msgstr ""
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:4
+msgid "Audio tweet."
+msgstr "Аудиотвит."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:5
+msgid "User timeline buffer created."
+msgstr "Создан буфер для ленты пользователя."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:6
+msgid "Buffer destroied."
+msgstr "Буфер удалён."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:7
+msgid "Direct message received."
+msgstr "Личное сообщение получено."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:8
+msgid "Direct message sent."
+msgstr "Личное сообщение отправлено."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:9
+msgid "Error."
+msgstr "Ошибка."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:10
+msgid "Tweet liked."
+msgstr "Твит отмечен как понравившийся."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:11
+msgid "Likes buffer updated."
+msgstr "Буфер Понравившиеся обновлён."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:12
+msgid "Geotweet."
+msgstr "Твит с геолокацией."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:13
+msgid "Tweet contains one or more images"
+msgstr "Твит содержит один или более изображений"
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:14
+msgid "Boundary reached."
+msgstr "Достигнута граница."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:15
+msgid "List updated."
+msgstr "Список обновлён."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:16
+msgid "Too many characters."
+msgstr "Слишком много символов."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:17
+msgid "Mention received."
+msgstr "Упоминание получено."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:18
+msgid "New event."
+msgstr "Новое событие."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:19
+#, python-brace-format
+msgid "{0} is ready."
+msgstr "Добро пожаловать в {0} !"
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:20
+msgid "Mention sent."
+msgstr "Упоминание отправлено."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:21
+msgid "Tweet retweeted."
+msgstr "Твит ретвитнут."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:22
+msgid "Search buffer updated."
+msgstr "Поиск обновлён."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:23
+msgid "Tweet received."
+msgstr "Твит получен."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:24
+msgid "Tweet sent."
+msgstr "Твит отправлен."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:25
+msgid "Trending topics buffer updated."
+msgstr "Тренды обновлены."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:26
+msgid "New tweet in user timeline buffer."
+msgstr "Новый твит в ленте пользователя."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:27
+msgid "New follower."
+msgstr "Новый читатель."
+
+#: extra/SoundsTutorial/soundsTutorial_constants.py:28
+msgid "Volume changed."
+msgstr "Громкость изменена."
+
+#: extra/SoundsTutorial/wx_ui.py:8
+msgid "Sounds tutorial"
+msgstr "Гид по звукам"
+
+#: extra/SoundsTutorial/wx_ui.py:11
+msgid "Press enter to listen to the sound for the selected event"
+msgstr "Нажмите клавишу Enter, чтобы прослушать  звук для выбранного события"
+
+#: extra/SpellChecker/spellchecker.py:56
+#, python-format
+msgid "Misspelled word: %s"
+msgstr "Слово с ошибкой: %s"
+
+#: extra/SpellChecker/wx_ui.py:27
+msgid "Misspelled word"
+msgstr "Слово с ошибкой"
+
+#: extra/SpellChecker/wx_ui.py:32
+msgid "Context"
+msgstr "Контекст"
+
+#: extra/SpellChecker/wx_ui.py:37
+msgid "Suggestions"
+msgstr "Предложения"
+
+#: extra/SpellChecker/wx_ui.py:42
+msgid "&Ignore"
+msgstr "Игнорировать"
+
+#: extra/SpellChecker/wx_ui.py:43
+msgid "I&gnore all"
+msgstr "&Игнорировать все"
+
+#: extra/SpellChecker/wx_ui.py:44
+msgid "&Replace"
+msgstr "&Заменить"
+
+#: extra/SpellChecker/wx_ui.py:45
+msgid "R&eplace all"
+msgstr "З&аменить все"
+
+#: extra/SpellChecker/wx_ui.py:46
+msgid "&Add to personal dictionary"
+msgstr "&Добавить в личный словарь"
+
+#: extra/SpellChecker/wx_ui.py:79
+#, python-brace-format
+msgid ""
+"An error has occurred. There are no dictionaries available for the "
+"selected language in {0}"
+msgstr "Ошибка. В программе {0}  отсутствуют словари для выбранного языка."
+
+#: extra/SpellChecker/wx_ui.py:79
+#: extra/autocompletionUsers/mastodon/wx_scan.py:44
+#: wxUI/commonMessageDialogs.py:23 wxUI/commonMessageDialogs.py:36
+#: wxUI/commonMessageDialogs.py:45 wxUI/commonMessageDialogs.py:52
+#: wxUI/commonMessageDialogs.py:55 wxUI/commonMessageDialogs.py:61
+#: wxUI/dialogs/mastodon/dialogs.py:38 wxUI/dialogs/mastodon/dialogs.py:43
+#: wxUI/dialogs/mastodon/dialogs.py:48 wxUI/dialogs/mastodon/dialogs.py:53
+#: wxUI/dialogs/mastodon/dialogs.py:60
+msgid "Error"
+msgstr "Ошибка"
+
+#: extra/SpellChecker/wx_ui.py:82
+msgid "Spell check complete."
+msgstr "Проверка орфографии завершена"
+
+#: extra/autocompletionUsers/completion.py:39
+#: extra/autocompletionUsers/completion.py:57
+msgid "You have to start writing"
+msgstr ""
+
+# | msgid "There are no coordinates in this tweet"
+#: extra/autocompletionUsers/completion.py:49
+#: extra/autocompletionUsers/completion.py:66
+#, fuzzy
+msgid "There are no results in your users database"
+msgstr "Координаты отсутствуют"
+
+#: extra/autocompletionUsers/completion.py:51
+#, fuzzy
+msgid "Autocompletion only works for users."
+msgstr "&Автозаполнение пользователей"
+
+#: extra/autocompletionUsers/wx_manage.py:9
+#, fuzzy
+msgid "Manage Autocompletion database"
+msgstr "Управление базой автозаполнения"
+
+#: extra/autocompletionUsers/wx_manage.py:12
+#, fuzzy, python-brace-format
+msgid "Editing {0} users database"
+msgstr "Редактирование базы данных {0} "
+
+#: extra/autocompletionUsers/wx_manage.py:13
+#, fuzzy
+msgid "Username"
+msgstr "Пользователь"
+
+#: extra/autocompletionUsers/wx_manage.py:13 wxUI/dialogs/configuration.py:108
+msgid "Name"
+msgstr "Имя"
+
+#: extra/autocompletionUsers/wx_manage.py:16
+#, fuzzy
+msgid "Add user"
+msgstr "Пользователь"
+
+#: extra/autocompletionUsers/wx_manage.py:17
+#, fuzzy
+msgid "Remove user"
+msgstr "Удалить пользователя"
+
+#: extra/autocompletionUsers/wx_manage.py:38
+msgid "Twitter username"
+msgstr ""
+
+#: extra/autocompletionUsers/wx_manage.py:38
+msgid "Add user to database"
+msgstr ""
+
+#: extra/autocompletionUsers/wx_manage.py:44
+#, fuzzy
+msgid "The user does not exist"
+msgstr "Пользователь не существует"
+
+#: extra/autocompletionUsers/wx_manage.py:44
+#, fuzzy
+msgid "Error!"
+msgstr "Ошибка"
+
+#: extra/autocompletionUsers/mastodon/scan.py:49
+msgid ""
+"Updating database... You can close this window now. A message will tell "
+"you when the process finishes."
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:8
+#, fuzzy
+msgid "Autocomplete users' settings"
+msgstr "&Автозаполнение пользователей"
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:11
+msgid "Add &followers to database"
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:12
+msgid "Add  f&ollowing to database"
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:26
+#, fuzzy
+msgid "Updating autocompletion database"
+msgstr "Управление базой автозаполнения"
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:34
+msgid ""
+"This process will retrieve the users you selected from your Mastodon "
+"account, and add them to the user autocomplete database. Please note that"
+" if there are many users or you have tried to perform this action less "
+"than 15 minutes ago, TWBlue may reach a limit in API calls when trying to"
+" load the users into the database. If this happens, we will show you an "
+"error, in which case you will have to try this process again in a few "
+"minutes. If this process ends with no error, you will be redirected back "
+"to the account settings dialog. Do you want to continue?"
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:34
+#: wxUI/commonMessageDialogs.py:20
+msgid "Attention"
+msgstr "Внимание!"
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:40
+#, python-brace-format
+msgid "TWBlue has imported {} users successfully."
+msgstr ""
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:40
+#, fuzzy
+msgid "Done"
+msgstr "Готово"
+
+#: extra/autocompletionUsers/mastodon/wx_scan.py:44
+msgid "Error adding users from Mastodon. Please try again in about 15 minutes."
+msgstr ""
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Detect automatically"
+msgstr "Автоматическое определение"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Danish"
+msgstr "Датский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Dutch"
+msgstr "Голландский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "English"
+msgstr "Английский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Finnish"
+msgstr "Финский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "French"
+msgstr "Французский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "German"
+msgstr "Немецкий"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Hungarian"
+msgstr "Венгерский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Korean"
+msgstr "Корейский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Italian"
+msgstr "Итальянский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Japanese"
+msgstr "Японский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Polish"
+msgstr "Польский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Portuguese"
+msgstr "Португальский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Russian"
+msgstr "Русский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Spanish"
+msgstr "Испанский"
+
+#: extra/ocr/OCRSpace.py:7
+msgid "Turkish"
+msgstr "Турецкий"
+
+#: extra/translator/wx_ui.py:25
+msgid "Translate message"
+msgstr "Перевести сообщение"
+
+#: extra/translator/wx_ui.py:29
+#, fuzzy
+msgid "Translation engine"
+msgstr "Переведено"
+
+#: extra/translator/wx_ui.py:32
+msgid "Target language"
+msgstr "Язык перевода"
+
+#: keystrokeEditor/wx_ui.py:8
+msgid "Keystroke editor"
+msgstr "Редактор горячих клавиш"
+
+#: keystrokeEditor/wx_ui.py:11
+msgid "Select a keystroke to edit"
+msgstr "Выберите горячую клавишу  для редактирования"
+
+#: keystrokeEditor/wx_ui.py:12
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:18
+#: wxUI/dialogs/mastodon/userActions.py:9
+#: wxUI/dialogs/mastodon/userActions.py:18
+#: wxUI/dialogs/mastodon/userActions.py:19
+msgid "Action"
+msgstr "Действие"
+
+#: keystrokeEditor/wx_ui.py:12
+msgid "Keystroke"
+msgstr "Горячая клавиша"
+
+#: keystrokeEditor/wx_ui.py:17
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:23
+#: wxUI/dialogs/userAliasDialogs.py:53
+msgid "Edit"
+msgstr "Редактировать"
+
+#: keystrokeEditor/wx_ui.py:19 keystrokeEditor/wx_ui.py:49
+#, fuzzy
+msgid "Undefine keystroke"
+msgstr "Редактирование"
+
+#: keystrokeEditor/wx_ui.py:20
+msgid "Execute action"
+msgstr "Действие"
+
+#: keystrokeEditor/wx_ui.py:21 wxUI/dialogs/userAliasDialogs.py:25
+msgid "Close"
+msgstr "Закрыть"
+
+#: keystrokeEditor/wx_ui.py:41
+msgid "Undefined"
+msgstr ""
+
+#: keystrokeEditor/wx_ui.py:49
+#, fuzzy
+msgid "Are you sure you want to undefine this keystroke?"
+msgstr "Вы желаете удалить этот список?"
+
+#: keystrokeEditor/wx_ui.py:53
+msgid "Editing keystroke"
+msgstr "Редактирование"
+
+#: keystrokeEditor/wx_ui.py:56
+msgid "Control"
+msgstr "Контрол"
+
+#: keystrokeEditor/wx_ui.py:57
+msgid "Alt"
+msgstr "Альт"
+
+#: keystrokeEditor/wx_ui.py:58
+msgid "Shift"
+msgstr "Шифт"
+
+#: keystrokeEditor/wx_ui.py:59
+msgid "Windows"
+msgstr "Виндовс"
+
+#: keystrokeEditor/wx_ui.py:65
+msgid "Key"
+msgstr "Клавиша"
+
+#: keystrokeEditor/wx_ui.py:70 wxUI/dialogs/find.py:21
+#: wxUI/dialogs/mastodon/showUserProfile.py:31
+#: wxUI/dialogs/userAliasDialogs.py:23
+msgid "OK"
+msgstr "OK"
+
+#: keystrokeEditor/wx_ui.py:83
+msgid "You need to use the Windows key"
+msgstr "Вы должны использовать клавишу \"виндовс\""
+
+#: keystrokeEditor/wx_ui.py:83 keystrokeEditor/wx_ui.py:86
+msgid "Invalid keystroke"
+msgstr "Неправильная комбинация клавиш"
+
+#: keystrokeEditor/wx_ui.py:86
+msgid "You must provide a character for the keystroke"
+msgstr "Вы должны указать букву при создании горячей клавиши"
+
+#: keystrokeEditor/actions/mastodon.py:3
+msgid "Go up in the current buffer"
+msgstr "Наверх в текущем буфере"
+
+#: keystrokeEditor/actions/mastodon.py:4
+msgid "Go down in the current buffer"
+msgstr "Вниз в текущем буфере"
+
+#: keystrokeEditor/actions/mastodon.py:5
+msgid "Go to the previous buffer"
+msgstr "Предыдущий буфер"
+
+#: keystrokeEditor/actions/mastodon.py:6
+msgid "Go to the next buffer"
+msgstr "Следующий буфер"
+
+#: keystrokeEditor/actions/mastodon.py:7
+msgid "Focus the next session"
+msgstr "Показать следующую сессию"
+
+#: keystrokeEditor/actions/mastodon.py:8
+msgid "Focus the previous session"
+msgstr "Показать предыдущую сессию"
+
+#: keystrokeEditor/actions/mastodon.py:9
+msgid "Show or hide the GUI"
+msgstr "Показать / скрыть интерфейс"
+
+# | msgid "Create a new list"
+#: keystrokeEditor/actions/mastodon.py:10
+#, fuzzy
+msgid "Make a new post"
+msgstr "Создать новый список"
+
+#: keystrokeEditor/actions/mastodon.py:11 wxUI/buffers/mastodon/base.py:26
+#: wxUI/buffers/mastodon/conversationList.py:25
+msgid "Reply"
+msgstr "Ответ"
+
+#: keystrokeEditor/actions/mastodon.py:12 wxUI/buffers/mastodon/base.py:25
+#: wxUI/dialogs/mastodon/dialogs.py:7
+msgid "Boost"
+msgstr ""
+
+#: keystrokeEditor/actions/mastodon.py:13
+msgid "Send direct message"
+msgstr "Отправить личное сообщение"
+
+#: keystrokeEditor/actions/mastodon.py:14
+msgid "Add post to favorites"
+msgstr ""
+
+# | msgid "Remove from list"
+#: keystrokeEditor/actions/mastodon.py:15
+#, fuzzy
+msgid "Remove post from favorites"
+msgstr "Удалить из списка"
+
+#: keystrokeEditor/actions/mastodon.py:16
+msgid "Add/remove post from favorites"
+msgstr ""
+
+#: keystrokeEditor/actions/mastodon.py:17
+msgid "Open the user actions dialogue"
+msgstr "Открыть меню действий"
+
+#: keystrokeEditor/actions/mastodon.py:18
+#, fuzzy
+msgid "See user details"
+msgstr "Удалить пользователя"
+
+# | msgid "Show tweet"
+#: keystrokeEditor/actions/mastodon.py:19
+#, fuzzy
+msgid "Show post"
+msgstr "Показать твит"
+
+#: keystrokeEditor/actions/mastodon.py:20
+msgid "Quit"
+msgstr "Выход"
+
+#: keystrokeEditor/actions/mastodon.py:21
+msgid "Open user timeline"
+msgstr "Открыть ленту пользователя"
+
+#: keystrokeEditor/actions/mastodon.py:22
+msgid "Destroy buffer"
+msgstr "Удалить буфер"
+
+# | msgid "Interact with the currently focused tweet."
+#: keystrokeEditor/actions/mastodon.py:23
+#, fuzzy
+msgid "Interact with the currently focused post."
+msgstr "Работать с твитом в фокусе"
+
+#: keystrokeEditor/actions/mastodon.py:24
+msgid "Open URL"
+msgstr "Открыть ссылку"
+
+# | msgid "View in Twitter"
+#: keystrokeEditor/actions/mastodon.py:25
+#, fuzzy
+msgid "View in browser"
+msgstr "Посмотреть в Твиттере"
+
+#: keystrokeEditor/actions/mastodon.py:26
+msgid "Increase volume by 5%"
+msgstr "Увеличить громкость на 5%"
+
+#: keystrokeEditor/actions/mastodon.py:27
+msgid "Decrease volume by 5%"
+msgstr "Уменьшить громкость   на 5%"
+
+#: keystrokeEditor/actions/mastodon.py:28
+msgid "Jump to the first element of a buffer"
+msgstr "Перейти к первому элементу"
+
+#: keystrokeEditor/actions/mastodon.py:29
+msgid "Jump to the last element of the current buffer"
+msgstr "Перейти к последнему элементу"
+
+#: keystrokeEditor/actions/mastodon.py:30
+msgid "Jump 20 elements up in the current buffer"
+msgstr "Перейти на 20 элементов вверх"
+
+#: keystrokeEditor/actions/mastodon.py:31
+msgid "Jump 20 elements down in the current buffer"
+msgstr "Перейти на 20 элементов вниз"
+
+# | msgid "Delete"
+#: keystrokeEditor/actions/mastodon.py:33
+#, fuzzy
+msgid "Delete post"
+msgstr "Удалить"
+
+#: keystrokeEditor/actions/mastodon.py:34
+msgid "Empty the current buffer"
+msgstr "Очистить этот буфер"
+
+#: keystrokeEditor/actions/mastodon.py:35
+msgid "Repeat last item"
+msgstr "Повторить последний элемент"
+
+#: keystrokeEditor/actions/mastodon.py:36
+msgid "Copy to clipboard"
+msgstr "Скопировать в буфер обмена"
+
+#: keystrokeEditor/actions/mastodon.py:39
+msgid "Mute/unmute the active buffer"
+msgstr "Отключение / включение звука в текущем буфере"
+
+#: keystrokeEditor/actions/mastodon.py:40
+msgid "Mute/unmute the current session"
+msgstr "Выключить/включить звуки сессии"
+
+#: keystrokeEditor/actions/mastodon.py:41
+msgid "toggle the automatic reading of incoming tweets in the active buffer"
+msgstr "Включить / отключить авточтение твитов в текущем буфере"
+
+# | msgid "Search on twitter"
+#: keystrokeEditor/actions/mastodon.py:42
+#, fuzzy
+msgid "Search on instance"
+msgstr "Искать в твиттере"
+
+#: keystrokeEditor/actions/mastodon.py:43
+msgid "Find a string in the currently focused buffer"
+msgstr "Найти строку в буфере"
+
+#: keystrokeEditor/actions/mastodon.py:44
+msgid "Show the keystroke editor"
+msgstr "Показать редактор горячих клавиш"
+
+#: keystrokeEditor/actions/mastodon.py:46
+msgid "load previous items"
+msgstr "Загрузить предыдущие элементы"
+
+#: keystrokeEditor/actions/mastodon.py:48
+msgid "View conversation"
+msgstr "Просмотр беседы"
+
+#: keystrokeEditor/actions/mastodon.py:49
+msgid "Check and download updates"
+msgstr "Проверить наличие обновлений"
+
+#: keystrokeEditor/actions/mastodon.py:50
+msgid "Opens the global settings dialogue"
+msgstr "Открыть основные настройки"
+
+#: keystrokeEditor/actions/mastodon.py:52
+msgid "Opens the account settings dialogue"
+msgstr "Открыть настройки аккаунта"
+
+# | msgid "Try to play an audio file"
+#: keystrokeEditor/actions/mastodon.py:53
+#, fuzzy
+msgid "Try to play a media file"
+msgstr "Попытка воспроизведения аудио"
+
+#: keystrokeEditor/actions/mastodon.py:54
+msgid "Updates the buffer and retrieves possible lost items there."
+msgstr "Обновить буфер и загрузить возможно утерянные элементы."
+
+#: keystrokeEditor/actions/mastodon.py:55
+msgid "Extracts the text from a picture and displays the result in a dialog."
+msgstr ""
+"Распознать текст, представленный на изображении, и отобразить результат в"
+" окне."
+
+#: keystrokeEditor/actions/mastodon.py:56
+#, fuzzy
+msgid "Adds an alias to an user"
+msgstr "В какой список вы хотите добавить пользователя?"
+
+#: sessionmanager/sessionManager.py:69
+#, python-brace-format
+msgid "{account_name}@{instance} (Mastodon)"
+msgstr ""
+
+#: sessionmanager/wxUI.py:11
+msgid "Session manager"
+msgstr "Управление сессиями"
+
+#: sessionmanager/wxUI.py:14
+msgid "Accounts list"
+msgstr "Список аккаунтов"
+
+#: sessionmanager/wxUI.py:16
+msgid "Account"
+msgstr "Аккаунт"
+
+#: sessionmanager/wxUI.py:20
+msgid "New account"
+msgstr "Добавить аккаунт"
+
+#: sessionmanager/wxUI.py:22 sessionmanager/wxUI.py:79
+msgid "Remove account"
+msgstr "Удалить аккаунт"
+
+#: sessionmanager/wxUI.py:24
+msgid "Global Settings"
+msgstr "Основные настройки"
+
+#: sessionmanager/wxUI.py:48
+msgid "You need to configure an account."
+msgstr "Вам нужно настроить учетную запись."
+
+#: sessionmanager/wxUI.py:48
+msgid "Account Error"
+msgstr "Ошибка при создании аккаунта"
+
+#: sessionmanager/wxUI.py:54
+msgid "Mastodon"
+msgstr ""
+
+#: sessionmanager/wxUI.py:59
+msgid ""
+"You will be prompted for your Mastodon data (instance URL, email address "
+"and password) so we can authorise TWBlue in your instance. Would you like"
+" to authorise your account now?"
+msgstr ""
+
+#: sessionmanager/wxUI.py:59
+msgid "Authorization"
+msgstr "Авторизация"
+
+#: sessionmanager/wxUI.py:67
+#, python-format
+msgid "Authorized account %d"
+msgstr "Авторизованный аккаунт %d"
+
+#: sessionmanager/wxUI.py:73
+msgid ""
+"Your access token is invalid or the authorization has failed. Please try "
+"again."
+msgstr "Не удалось получить разрешение на доступ. Попробуйте, пожалуйста, ещё раз."
+
+#: sessionmanager/wxUI.py:73
+msgid "Invalid user token"
+msgstr "Неверный маркер"
+
+#: sessionmanager/wxUI.py:79
+msgid "Do you really want to delete this account?"
+msgstr "Вы желаете удалить этот аккаунт?"
+
+#: sessions/base.py:125
+#, python-brace-format
+msgid ""
+"An exception occurred while saving the {app} database. It will be deleted"
+" and rebuilt automatically. If this error persists, send the error log to"
+" the {app} developers."
+msgstr ""
+
+#: sessions/base.py:165
+#, python-brace-format
+msgid ""
+"An exception occurred while loading the {app} database. It will be "
+"deleted and rebuilt automatically. If this error persists, send the error"
+" log to the {app} developers."
+msgstr ""
+
+# | msgid "dddd, MMMM D, YYYY H:m:s"
+#: sessions/mastodon/compose.py:15 sessions/mastodon/compose.py:61
+#, fuzzy
+msgid "dddd, MMMM D, YYYY H:m"
+msgstr "dddd, MMMM D, YYYY H:m:s"
+
+# | msgid "{0}. Quoted  tweet from @{1}: {2}"
+#: sessions/mastodon/compose.py:17 sessions/mastodon/templates.py:74
+#: sessions/mastodon/templates.py:75
+#, fuzzy, python-brace-format
+msgid "Boosted from @{}: {}"
+msgstr "{0}. Процитированный твит от @{1}: {2}"
+
+#: sessions/mastodon/compose.py:22 sessions/mastodon/compose.py:81
+#: sessions/mastodon/templates.py:81 sessions/mastodon/templates.py:176
+#, python-brace-format
+msgid "hidden by filter {}"
+msgstr ""
+
+#: sessions/mastodon/compose.py:36 sessions/mastodon/templates.py:28
+msgid "dddd, MMMM D, YYYY H:m:s"
+msgstr "dddd, MMMM D, YYYY H:m:s"
+
+# | msgid ""
+# | "%s (@%s). %s followers, %s friends, %s tweets. Last tweeted %s. Joined "
+# | "Twitter %s"
+#: sessions/mastodon/compose.py:38
+#, fuzzy, python-format
+msgid "%s (@%s). %s followers, %s following, %s posts. Joined %s"
+msgstr ""
+"%s (@%s). %s читателей, %s читаемых, %s твитов. Последний твит был  %s. "
+"Регистрация в  Twitterе %s"
+
+#: sessions/mastodon/compose.py:49
+#, python-brace-format
+msgid "Last message from {}: {}"
+msgstr ""
+
+# | msgid "{username}'s followers"
+#: sessions/mastodon/compose.py:64
+#, fuzzy, python-brace-format
+msgid "{username} has posted: {status}"
+msgstr "Читающие {username}"
+
+# | msgid "{username}'s followers"
+#: sessions/mastodon/compose.py:66
+#, fuzzy, python-brace-format
+msgid "{username} has mentioned you: {status}"
+msgstr "Читающие {username}"
+
+#: sessions/mastodon/compose.py:68
+#, python-brace-format
+msgid "{username} has boosted: {status}"
+msgstr ""
+
+#: sessions/mastodon/compose.py:70
+#, python-brace-format
+msgid "{username} has added to favorites: {status}"
+msgstr ""
+
+# | msgid "{username}'s followers"
+#: sessions/mastodon/compose.py:72
+#, fuzzy, python-brace-format
+msgid "{username} has followed you."
+msgstr "Читающие {username}"
+
+# | msgid "{username}'s followers"
+#: sessions/mastodon/compose.py:74
+#, fuzzy, python-brace-format
+msgid "{username} has joined the instance."
+msgstr "Читающие {username}"
+
+#: sessions/mastodon/compose.py:76 sessions/mastodon/templates.py:171
+#, python-brace-format
+msgid "A poll in which you have voted has expired: {status}"
+msgstr ""
+
+# | msgid "{username}'s followers"
+#: sessions/mastodon/compose.py:78
+#, fuzzy, python-brace-format
+msgid "{username} wants to follow you."
+msgstr "Читающие {username}"
+
+#: sessions/mastodon/session.py:69
+msgid "Please enter your instance URL."
+msgstr ""
+
+#: sessions/mastodon/session.py:69
+msgid "Mastodon instance"
+msgstr ""
+
+#: sessions/mastodon/session.py:80
+msgid ""
+"We could not connect to your mastodon instance. Please verify that the "
+"domain exists and the instance is accessible via a web browser."
+msgstr ""
+
+# | msgid "&Report an error"
+#: sessions/mastodon/session.py:80
+#, fuzzy
+msgid "Instance error"
+msgstr "&Сообщить об ошибке"
+
+#: sessions/mastodon/session.py:85
+msgid "Enter the verification code"
+msgstr ""
+
+# | msgid "Authorization"
+#: sessions/mastodon/session.py:85
+#, fuzzy
+msgid "PIN code authorization"
+msgstr "Авторизация"
+
+#: sessions/mastodon/session.py:94
+msgid ""
+"We could not authorice your mastodon account to be used in TWBlue. This "
+"might be caused due to an incorrect verification code. Please try to add "
+"the session again."
+msgstr ""
+
+# | msgid "Authorization"
+#: sessions/mastodon/session.py:94
+#, fuzzy
+msgid "Authorization error"
+msgstr "Авторизация"
+
+#: sessions/mastodon/session.py:215
+#, python-format
+msgid "%s succeeded."
+msgstr "%s успешно."
+
+#: sessions/mastodon/templates.py:18
+msgid "$display_name, $text $image_descriptions $date. $source"
+msgstr ""
+
+#: sessions/mastodon/templates.py:19
+msgid "Dm to $recipient_display_name, $text $date"
+msgstr ""
+
+#: sessions/mastodon/templates.py:20
+msgid ""
+"$display_name (@$screen_name). $followers followers, $following "
+"following, $posts posts. Joined $created_at."
+msgstr ""
+
+#: sessions/mastodon/templates.py:21
+msgid "$display_name $text, $date"
+msgstr ""
+
+#: sessions/mastodon/templates.py:34
+#, python-brace-format
+msgid "Content warning: {}"
+msgstr ""
+
+#: sessions/mastodon/templates.py:45
+#, fuzzy, python-brace-format
+msgid "Media description: {}"
+msgstr "Описание"
+
+# | msgid "Followers"
+#: sessions/mastodon/templates.py:82 wxUI/dialogs/mastodon/postDialogs.py:49
+#, fuzzy
+msgid "Followers only"
+msgstr "Читающие"
+
+#: sessions/mastodon/templates.py:94
+#, fuzzy
+msgid "Pinned."
+msgstr "Скопировано"
+
+#: sessions/mastodon/templates.py:157
+#, python-brace-format
+msgid "has posted: {status}"
+msgstr ""
+
+#: sessions/mastodon/templates.py:159
+#, python-brace-format
+msgid "has mentioned you: {status}"
+msgstr ""
+
+#: sessions/mastodon/templates.py:161
+#, python-brace-format
+msgid "has boosted: {status}"
+msgstr ""
+
+#: sessions/mastodon/templates.py:163
+#, python-brace-format
+msgid "has added to favorites: {status}"
+msgstr ""
+
+#: sessions/mastodon/templates.py:165
+#, python-brace-format
+msgid "has updated a status: {status}"
+msgstr ""
+
+# | msgid "{0} is following you."
+#: sessions/mastodon/templates.py:167
+#, fuzzy
+msgid "has followed you."
+msgstr "{0} читает вас."
+
+# | msgid "Remove client"
+#: sessions/mastodon/templates.py:169
+#, fuzzy
+msgid "has joined the instance."
+msgstr "Удалить  клиент"
+
+# | msgid "{0} is following you."
+#: sessions/mastodon/templates.py:173
+#, fuzzy
+msgid "wants to follow you."
+msgstr "{0} читает вас."
+
+#: update/utils.py:29
+#, python-format
+msgid "%d day, "
+msgstr "%d день"
+
+#: update/utils.py:31
+#, python-format
+msgid "%d days, "
+msgstr "%d дней"
+
+#: update/utils.py:33
+#, python-format
+msgid "%d hour, "
+msgstr "%d час"
+
+#: update/utils.py:35
+#, python-format
+msgid "%d hours, "
+msgstr "%d часов"
+
+#: update/utils.py:37
+#, python-format
+msgid "%d minute, "
+msgstr "%d минута"
+
+#: update/utils.py:39
+#, python-format
+msgid "%d minutes, "
+msgstr "%d минут"
+
+#: update/utils.py:41
+#, python-format
+msgid "%s second"
+msgstr "%s секунда"
+
+#: update/utils.py:43
+#, python-format
+msgid "%s seconds"
+msgstr "%s секунд"
+
+#: update/wxUpdater.py:11
+#, python-format
+msgid ""
+"There's a new %s version available, released on %s. Would you like to "
+"download it now?\n"
+"\n"
+" %s version: %s\n"
+"\n"
+"Changes:\n"
+"%s"
+msgstr ""
+"Доступна новая  версия клиента %s, дата выхода - %s. Хотите загрузить её?"
+"\n"
+"\n"
+"\n"
+" Версия %s: %s\n"
+"\n"
+"Изменения:\n"
+"%s"
+
+# | msgid ""
+# | "There's a new %s version available, released on %s. Would you like to "
+# | "download it now?\n"
+# | "\n"
+# | " %s version: %s\n"
+# | "Changes:\n"
+# | "%s"
+#: update/wxUpdater.py:14
+#, fuzzy, python-format
+msgid ""
+"There's a new %s version available, released on %s. Updates are not "
+"automatic in Windows 7, so you would need to visit TWBlue's download "
+"website to get the latest version.\n"
+"\n"
+" %s version: %s\n"
+"\n"
+"Changes:\n"
+"%s"
+msgstr ""
+"Доступна новая  версия клиента %s, дата выхода - %s. Хотите загрузить её?"
+"\n"
+"\n"
+"\n"
+" Версия %s: %s\n"
+"\n"
+"Изменения:\n"
+"%s"
+
+#: update/wxUpdater.py:16
+#, python-format
+msgid "New version for %s"
+msgstr "Новая версия %s"
+
+#: update/wxUpdater.py:23
+msgid "Download in Progress"
+msgstr "Загрузка"
+
+#: update/wxUpdater.py:23
+msgid "Downloading the new version..."
+msgstr "Обновление загружается"
+
+#: update/wxUpdater.py:33
+#, python-format
+msgid "Updating... %s of %s"
+msgstr "Обновлено... %s из %s"
+
+#: update/wxUpdater.py:36
+msgid ""
+"The update has been downloaded and installed successfully. Press OK to "
+"continue."
+msgstr "Обновление загружено и установлено. Нажмите ok, чтобы продолжить."
+
+#: update/wxUpdater.py:36
+msgid "Done!"
+msgstr "Готово"
+
+#: wxUI/commonMessageDialogs.py:6
+#, python-brace-format
+msgid "Do you really want to close {0}?"
+msgstr "Вы действительно хотите закрыть {0}?"
+
+#: wxUI/commonMessageDialogs.py:6
+msgid "Exit"
+msgstr "Выйти"
+
+#: wxUI/commonMessageDialogs.py:10
+#, python-brace-format
+msgid " {0} must be restarted for these changes to take effect."
+msgstr " {0} должен быть перезапущен, чтобы изменения вступили в силу."
+
+#: wxUI/commonMessageDialogs.py:10
+#, python-brace-format
+msgid "Restart {0} "
+msgstr "Перезагрузка {0} "
+
+#: wxUI/commonMessageDialogs.py:13
+msgid ""
+"Are you sure you want to delete this user from the database? This user "
+"will not appear in autocomplete results anymore."
+msgstr ""
+"Вы уверены, что хотите удалить этого пользователя из базы данных?  Он "
+"больше не появится в списке автозаполнения."
+
+#: wxUI/commonMessageDialogs.py:13
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: wxUI/commonMessageDialogs.py:16
+msgid ""
+"Do you really want to empty this buffer? It's  items will be removed from"
+" the list but not from Twitter"
+msgstr ""
+"Вы действительно хотите очистить этот буфер? Твиты останутся на сервере, "
+"но будут удалены из списка."
+
+#: wxUI/commonMessageDialogs.py:16 wxUI/dialogs/mastodon/dialogs.py:31
+msgid "Empty buffer"
+msgstr "Пустой буфер"
+
+#: wxUI/commonMessageDialogs.py:20
+msgid "Do you really want to destroy this buffer?"
+msgstr "Вы действительно хотите удалить этот буфер?"
+
+#: wxUI/commonMessageDialogs.py:23
+msgid "That user does not exist"
+msgstr "Пользователь не существует"
+
+#: wxUI/commonMessageDialogs.py:26
+msgid "A timeline for this user already exists. You can't open another"
+msgstr "Лента пользователя уже существует. Невозможно открыть еще одну."
+
+#: wxUI/commonMessageDialogs.py:26
+msgid "Existing timeline"
+msgstr "Существующая лента"
+
+#: wxUI/commonMessageDialogs.py:29
+#, python-brace-format
+msgid ""
+"If you like {0} we need your help to keep it going. Help us by donating "
+"to the project. This will help us pay for the server, the domain and some"
+" other things to ensure that {0} will be actively maintained. Your "
+"donation will give us the means to continue the development of {0}, and "
+"to keep {0} free. Would you like to donate now?"
+msgstr ""
+"Если вам нравится {0}, помогите нам в его развитии. Внесите пожертвование"
+" для проекта. Это поможет нам оплачивать сервер, домен и другие расходы "
+"по поддержанию {0}. Благодаря вашему пожертвованию, у нас будут средства "
+"на развитие {0}, и {0} сможет оставаться бесплатным. Хотите внести "
+"пожертвование сейчас?"
+
+#: wxUI/commonMessageDialogs.py:29
+msgid "We need your help"
+msgstr "Нам нужна ваша помощь"
+
+#: wxUI/commonMessageDialogs.py:33 wxUI/dialogs/mastodon/postDialogs.py:207
+msgid "Information"
+msgstr "Информация "
+
+#: wxUI/commonMessageDialogs.py:36
+msgid "The configuration file is invalid."
+msgstr ""
+
+#: wxUI/commonMessageDialogs.py:39
+#, python-brace-format
+msgid ""
+"{0} quit unexpectedly the last time it was run. If the problem persists, "
+"please report it to the {0} developers."
+msgstr ""
+"{0} неожиданно закончил свою работу при последнем запуске. Если проблема "
+"не устранена, пожалуйста, сообщите об этом разработчикам {0}."
+
+#: wxUI/commonMessageDialogs.py:39
+msgid "Warning"
+msgstr "Внимание!"
+
+#: wxUI/commonMessageDialogs.py:45
+#, python-brace-format
+msgid "Sorry, you can't update while running {} from source."
+msgstr ""
+
+#: wxUI/commonMessageDialogs.py:49
+msgid "the provided instance is invalid. Please try again."
+msgstr ""
+
+#: wxUI/commonMessageDialogs.py:49
+#, fuzzy
+msgid "Invalid instance"
+msgstr "Неправильная комбинация клавиш"
+
+#: wxUI/commonMessageDialogs.py:52
+msgid ""
+"TWBlue was unable to add or update the filter with the specified "
+"settings. Please try again."
+msgstr ""
+
+#: wxUI/commonMessageDialogs.py:55
+msgid ""
+"TWBlue was unable to load your filters from the instance. Please try "
+"again."
+msgstr ""
+
+#: wxUI/commonMessageDialogs.py:58
+#, fuzzy
+msgid "Do you really want to delete this filter ?"
+msgstr "Вы желаете удалить этот аккаунт?"
+
+#: wxUI/commonMessageDialogs.py:58
+#, fuzzy
+msgid "Delete filter"
+msgstr "Создать новый фильтр"
+
+#: wxUI/commonMessageDialogs.py:61
+msgid "TWBlue was unable to remove the filter you specified. Please try again."
+msgstr ""
+
+#: wxUI/sysTrayIcon.py:36 wxUI/view.py:25
+msgid "&Global settings"
+msgstr "Основные настройки"
+
+#: wxUI/sysTrayIcon.py:37 wxUI/view.py:24
+msgid "Account se&ttings"
+msgstr "Настройки учётной записи"
+
+#: wxUI/sysTrayIcon.py:39
+msgid "&Show / hide"
+msgstr "Показать / скрыть"
+
+#: wxUI/sysTrayIcon.py:40 wxUI/view.py:74
+msgid "&Documentation"
+msgstr "&Документация"
+
+#: wxUI/sysTrayIcon.py:41
+msgid "Check for &updates"
+msgstr "Проверить обновления"
+
+#: wxUI/sysTrayIcon.py:42
+msgid "&Exit"
+msgstr "Выход"
+
+#: wxUI/view.py:16
+msgid "&Manage accounts"
+msgstr "Управление аккаунтами"
+
+#: wxUI/view.py:17
+msgid "&Update profile"
+msgstr "&Обновить профиль"
+
+#: wxUI/view.py:18
+msgid "&Hide window"
+msgstr "& Скрыть окно "
+
+#: wxUI/view.py:20
+msgid "&Lists manager"
+msgstr "&Менеджер списков"
+
+#: wxUI/view.py:23
+msgid "&Edit keystrokes"
+msgstr "&Редактировать горячие клавиши"
+
+#: wxUI/view.py:26
+msgid "E&xit"
+msgstr "Вы&ход"
+
+# | msgid "Remove from list"
+#: wxUI/view.py:34
+#, fuzzy
+msgid "&Remove from favorites"
+msgstr "Удалить из списка"
+
+#: wxUI/view.py:47
+msgid "&Add to list"
+msgstr "&Добавить в список"
+
+#: wxUI/view.py:48
+msgid "R&emove from list"
+msgstr "&Удалить из списка"
+
+#: wxUI/view.py:49
+msgid "Show user &profile"
+msgstr "&Показать профиль пользователя"
+
+#: wxUI/view.py:50
+msgid "V&iew likes"
+msgstr "Просмотреть Понравившиеся"
+
+#: wxUI/view.py:54
+msgid "&Update buffer"
+msgstr "Обновить буфер"
+
+#: wxUI/dialogs/mastodon/communityTimeline.py:9 wxUI/view.py:55
+msgid "Create community timeline"
+msgstr ""
+
+#: wxUI/view.py:56
+msgid "New &trending topics buffer..."
+msgstr "Новый буфер для трендов"
+
+#: wxUI/view.py:59
+msgid "Find a string in the currently focused buffer..."
+msgstr "Найти строку в этом буфере"
+
+#: wxUI/view.py:60
+msgid "&Load previous items"
+msgstr "&Загрузить предыдущие элементы"
+
+#: wxUI/dialogs/mastodon/userActions.py:21 wxUI/view.py:62
+msgid "&Mute"
+msgstr "&Отключить"
+
+#: wxUI/view.py:63
+msgid "&Autoread"
+msgstr "Авточтение"
+
+#: wxUI/view.py:64
+msgid "&Clear buffer"
+msgstr "&Очистить буфер"
+
+#: wxUI/view.py:65
+msgid "&Destroy"
+msgstr "Закрыть и удалить"
+
+#: wxUI/view.py:69
+msgid "&Seek back 5 seconds"
+msgstr "&Перемотать назад на 5 секунд"
+
+#: wxUI/view.py:70
+msgid "&Seek forward 5 seconds"
+msgstr "Пер&емотать вперёд на 5 секунд"
+
+#: wxUI/view.py:75
+msgid "Sounds &tutorial"
+msgstr "&Гид по звукам"
+
+#: wxUI/view.py:76
+msgid "&What's new in this version?"
+msgstr "&Что нового в этой версии?"
+
+#: wxUI/view.py:77
+msgid "&Check for updates"
+msgstr "&Проверить обновления"
+
+#: wxUI/view.py:78
+msgid "&Report an error"
+msgstr "&Сообщить об ошибке"
+
+#: wxUI/view.py:79
+#, python-brace-format
+msgid "{0}'s &website"
+msgstr "Сайт {0}"
+
+#: wxUI/view.py:80
+msgid "Get soundpacks for TWBlue"
+msgstr "Получить звуковые схемы для TWBlue"
+
+#: wxUI/view.py:81
+#, python-brace-format
+msgid "About &{0}"
+msgstr "О &{0}"
+
+#: wxUI/view.py:84
+msgid "&Application"
+msgstr "&Приложение"
+
+#: wxUI/view.py:85
+msgid "&Tweet"
+msgstr "&Твит"
+
+#: wxUI/dialogs/mastodon/userActions.py:10 wxUI/view.py:86
+msgid "&User"
+msgstr "&Пользователь"
+
+#: wxUI/view.py:87
+msgid "&Buffer"
+msgstr "&Буфер"
+
+#: wxUI/view.py:88
+msgid "&Audio"
+msgstr "&Аудио"
+
+#: wxUI/view.py:89
+msgid "&Help"
+msgstr "&Помощь"
+
+#: wxUI/view.py:175
+msgid "Address"
+msgstr "Адрес"
+
+#: wxUI/view.py:206
+#, python-brace-format
+msgid "Your {0} version is up to date"
+msgstr "У вас установлена самая последняя версия {0}   "
+
+#: wxUI/view.py:206
+msgid "Update"
+msgstr "Обновление"
+
+#: wxUI/buffers/panels.py:12 wxUI/buffers/panels.py:20
+msgid "Login"
+msgstr "Войти в выбранную учётную запись"
+
+#: wxUI/buffers/panels.py:14
+msgid "Log in automatically"
+msgstr "Входить автоматически"
+
+#: wxUI/buffers/panels.py:22
+msgid "Logout"
+msgstr "Выйти из учётной записи"
+
+#: wxUI/buffers/mastodon/base.py:11
+#: wxUI/buffers/mastodon/conversationList.py:11 wxUI/buffers/mastodon/user.py:8
+#: wxUI/dialogs/mastodon/userTimeline.py:10 wxUI/dialogs/userAliasDialogs.py:14
+msgid "User"
+msgstr "Пользователь"
+
+#: wxUI/buffers/mastodon/base.py:11
+#: wxUI/buffers/mastodon/conversationList.py:11
+#: wxUI/buffers/mastodon/notifications.py:11
+#: wxUI/dialogs/mastodon/postDialogs.py:37
+#: wxUI/dialogs/mastodon/postDialogs.py:272
+msgid "Text"
+msgstr "Текст"
+
+#: wxUI/buffers/mastodon/base.py:11
+#: wxUI/buffers/mastodon/conversationList.py:11
+#: wxUI/buffers/mastodon/notifications.py:11
+#: wxUI/dialogs/mastodon/postDialogs.py:216
+msgid "Date"
+msgstr "Дата"
+
+#: wxUI/buffers/mastodon/base.py:11
+#: wxUI/buffers/mastodon/conversationList.py:11
+msgid "Client"
+msgstr "Клиент"
+
+#: wxUI/buffers/mastodon/base.py:27
+msgid "Favorite"
+msgstr ""
+
+#: wxUI/buffers/mastodon/base.py:28
+msgid "Bookmark"
+msgstr ""
+
+#: wxUI/buffers/mastodon/base.py:29
+msgid "Direct message"
+msgstr "Личное сообщение"
+
+#: wxUI/buffers/mastodon/notifications.py:23
+#: wxUI/dialogs/mastodon/dialogs.py:23
+msgid "Dismiss"
+msgstr ""
+
+#: wxUI/buffers/mastodon/user.py:19 wxUI/dialogs/userAliasDialogs.py:48
+#, fuzzy
+msgid "Actions"
+msgstr "Действие"
+
+# | msgid "Direct Messages"
+#: wxUI/buffers/mastodon/user.py:20
+#, fuzzy
+msgid "Message"
+msgstr "Личные сообщения"
+
+#: wxUI/dialogs/configuration.py:15
+#, fuzzy
+msgid "&Language"
+msgstr "Язык"
+
+#: wxUI/dialogs/configuration.py:22
+#, fuzzy, python-brace-format
+msgid "&Ask before exiting {0}"
+msgstr "Показывать диалог перед выходом {0}"
+
+#: wxUI/dialogs/configuration.py:24
+#, fuzzy
+msgid "&Disable Streaming functions"
+msgstr "Отключение Стриминга"
+
+#: wxUI/dialogs/configuration.py:27
+#, fuzzy
+msgid "&Buffer update interval, in minutes"
+msgstr "Интервал обновления буфера, в минутах"
+
+#: wxUI/dialogs/configuration.py:33
+#, fuzzy, python-brace-format
+msgid "Pla&y a sound when {0} launches"
+msgstr "Воспроизводить звук при запуске  {0}"
+
+#: wxUI/dialogs/configuration.py:35
+#, fuzzy, python-brace-format
+msgid "Sp&eak a message when {0} launches"
+msgstr "Произносить приветствие при запуске {0}"
+
+#: wxUI/dialogs/configuration.py:37
+#, fuzzy
+msgid "&Use invisible interface's keyboard shortcuts while GUI is visible"
+msgstr "Использовать горячие клавиши невидимого интерфейса в окне программы"
+
+#: wxUI/dialogs/configuration.py:39
+#, fuzzy
+msgid "A&ctivate Sapi5 when any other screen reader is not being run"
+msgstr "Активировать sapi5, когда не один скринридер не запущен"
+
+#: wxUI/dialogs/configuration.py:41
+#, fuzzy
+msgid "&Hide GUI on launch"
+msgstr "Скрывать интерфейс при старте"
+
+#: wxUI/dialogs/configuration.py:43
+msgid "&Read long posts in GUI"
+msgstr ""
+
+#: wxUI/dialogs/configuration.py:46
+#, fuzzy
+msgid "&Keymap"
+msgstr "Клавиатурные команды"
+
+#: wxUI/dialogs/configuration.py:51
+#, fuzzy, python-brace-format
+msgid "Check for u&pdates when {0} launches"
+msgstr "Проверять на наличие обновлений при запуске {0}"
+
+#: wxUI/dialogs/configuration.py:61
+#, fuzzy
+msgid "Proxy &type: "
+msgstr "Тип Прокси: "
+
+#: wxUI/dialogs/configuration.py:68
+#, fuzzy
+msgid "Proxy s&erver: "
+msgstr "Прокси-сервер: "
+
+#: wxUI/dialogs/configuration.py:74
+#, fuzzy
+msgid "&Port: "
+msgstr "Порт: "
+
+#: wxUI/dialogs/configuration.py:80
+#, fuzzy
+msgid "&User: "
+msgstr "Пользователь: "
+
+#: wxUI/dialogs/configuration.py:86
+#, fuzzy
+msgid "P&assword: "
+msgstr "Пароль: "
+
+#: wxUI/dialogs/configuration.py:98
+#, fuzzy
+msgid "Enable automatic s&peech feedback"
+msgstr "Включить автоматический речевой вывод"
+
+#: wxUI/dialogs/configuration.py:100
+#, fuzzy
+msgid "Enable automatic &Braille feedback"
+msgstr "Включить автоматический брайлевский вывод"
+
+#: wxUI/dialogs/configuration.py:108
+msgid "Buffer"
+msgstr "Буфер"
+
+#: wxUI/dialogs/configuration.py:108
+msgid "Status"
+msgstr "Статус"
+
+#: wxUI/dialogs/configuration.py:111
+#, fuzzy
+msgid "S&how/hide"
+msgstr "Показать/скрыть"
+
+#: wxUI/dialogs/configuration.py:112
+#, fuzzy
+msgid "Move &up"
+msgstr "Вверх"
+
+#: wxUI/dialogs/configuration.py:113
+#, fuzzy
+msgid "Move &down"
+msgstr "Вниз"
+
+#: wxUI/dialogs/configuration.py:123 wxUI/dialogs/configuration.py:188
+#: wxUI/dialogs/configuration.py:191 wxUI/dialogs/configuration.py:196
+msgid "Show"
+msgstr "Показывается"
+
+#: wxUI/dialogs/configuration.py:125 wxUI/dialogs/configuration.py:135
+#: wxUI/dialogs/configuration.py:159 wxUI/dialogs/configuration.py:189
+msgid "Hide"
+msgstr "Скрыт"
+
+#: wxUI/dialogs/configuration.py:133 wxUI/dialogs/configuration.py:157
+msgid "Select a buffer first."
+msgstr "Сначала выберите буфер"
+
+#: wxUI/dialogs/configuration.py:136 wxUI/dialogs/configuration.py:160
+msgid "The buffer is hidden, show it first."
+msgstr "Буфер скрыт, но его можно показать."
+
+#: wxUI/dialogs/configuration.py:139
+msgid "The buffer is already at the top of the list."
+msgstr "Буфер находится наверху списка."
+
+#: wxUI/dialogs/configuration.py:163
+msgid "The buffer is already at the bottom of the list."
+msgstr "Буфер находится на последней позиции в списке"
+
+#: wxUI/dialogs/configuration.py:205
+msgid "&LibreTranslate API URL: "
+msgstr ""
+
+#: wxUI/dialogs/configuration.py:211
+msgid "LibreTranslate API &Key (optional): "
+msgstr ""
+
+#: wxUI/dialogs/configuration.py:217
+msgid "&DeepL API Key: "
+msgstr ""
+
+#: wxUI/dialogs/configuration.py:231
+#, python-brace-format
+msgid "{0} preferences"
+msgstr "Параметры {0}"
+
+#: wxUI/dialogs/configuration.py:237 wxUI/dialogs/mastodon/configuration.py:144
+msgid "General"
+msgstr "Общие"
+
+#: wxUI/dialogs/configuration.py:242
+msgid "Proxy"
+msgstr "Прокси"
+
+#: wxUI/dialogs/configuration.py:246
+#, fuzzy
+msgid "Translation services"
+msgstr "Переведено"
+
+#: wxUI/dialogs/configuration.py:251 wxUI/dialogs/mastodon/configuration.py:170
+#, fuzzy
+msgid "&Save"
+msgstr "Сохранить"
+
+#: wxUI/dialogs/configuration.py:253
+#: wxUI/dialogs/mastodon/communityTimeline.py:27
+#: wxUI/dialogs/mastodon/configuration.py:172
+#: wxUI/dialogs/mastodon/search.py:26
+#: wxUI/dialogs/mastodon/showUserProfile.py:170
+#: wxUI/dialogs/mastodon/updateProfile.py:132
+#: wxUI/dialogs/mastodon/userActions.py:38
+#: wxUI/dialogs/mastodon/userTimeline.py:32
+msgid "&Close"
+msgstr "Закрыть"
+
+#: wxUI/dialogs/find.py:13
+msgid "Find in current buffer"
+msgstr "Поиск в буфере"
+
+#: wxUI/dialogs/find.py:14
+msgid "String"
+msgstr "Строка"
+
+#: wxUI/dialogs/find.py:23 wxUI/dialogs/mastodon/showUserProfile.py:33
+msgid "Cancel"
+msgstr "Отменить"
+
+#: wxUI/dialogs/templateDialogs.py:8
+msgid "Edit Template"
+msgstr ""
+
+#: wxUI/dialogs/templateDialogs.py:13
+msgid "Edit template"
+msgstr ""
+
+#: wxUI/dialogs/templateDialogs.py:17
+#, fuzzy
+msgid "Available variables"
+msgstr "Недоступно"
+
+#: wxUI/dialogs/templateDialogs.py:29
+msgid "Restore template"
+msgstr ""
+
+#: wxUI/dialogs/templateDialogs.py:48
+#, python-brace-format
+msgid "Restored template to {}."
+msgstr ""
+
+#: wxUI/dialogs/templateDialogs.py:52
+msgid ""
+"the template you have specified include variables that do not exists for "
+"the object. Please fix the template and try again. For your reference, "
+"you can see a list of all available variables in the variables list while"
+" editing your template."
+msgstr ""
+
+#: wxUI/dialogs/templateDialogs.py:52
+#, fuzzy
+msgid "Invalid template"
+msgstr "Неправильная комбинация клавиш"
+
+#: wxUI/dialogs/urlList.py:6
+msgid "Select URL"
+msgstr "Выбрать ссылку"
+
+#: wxUI/dialogs/mastodon/userActions.py:13
+#: wxUI/dialogs/mastodon/userTimeline.py:13 wxUI/dialogs/userAliasDialogs.py:13
+msgid "&Autocomplete users"
+msgstr "&Автозаполнение"
+
+#: wxUI/dialogs/userAliasDialogs.py:18
+#, fuzzy
+msgid "Alias"
+msgstr "Ошибка возникает всегда"
+
+#: wxUI/dialogs/userAliasDialogs.py:41
+#, fuzzy
+msgid "Edit user aliases"
+msgstr "Редактирование базы данных {0} "
+
+#: wxUI/dialogs/mastodon/search.py:19 wxUI/dialogs/userAliasDialogs.py:43
+msgid "Users"
+msgstr "Пользователи"
+
+#: wxUI/dialogs/userAliasDialogs.py:50
+#, fuzzy
+msgid "Add alias"
+msgstr "Добавить в список"
+
+#: wxUI/dialogs/userAliasDialogs.py:51
+msgid "Adds a new user alias"
+msgstr ""
+
+#: wxUI/dialogs/userAliasDialogs.py:54
+#, fuzzy
+msgid "Edit the currently focused user Alias."
+msgstr "Работать с твитом в фокусе"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:26
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:24
+#: wxUI/dialogs/userAliasDialogs.py:57
+msgid "Remove"
+msgstr "Удалить"
+
+#: wxUI/dialogs/userAliasDialogs.py:58
+#, fuzzy
+msgid "Remove the currently focused user alias."
+msgstr "Найти строку в этом буфере"
+
+#: wxUI/dialogs/userAliasDialogs.py:82
+#, fuzzy
+msgid "Are you sure you want to delete this user alias?"
+msgstr "Вы желаете удалить этот список?"
+
+#: wxUI/dialogs/userAliasDialogs.py:82
+#, fuzzy
+msgid "Remove user alias"
+msgstr "Удалить пользователя"
+
+#: wxUI/dialogs/userAliasDialogs.py:93
+#, fuzzy
+msgid "User alias"
+msgstr "Профиль"
+
+#: wxUI/dialogs/userList.py:27
+#, fuzzy
+msgid "View profile"
+msgstr "&Обновить профиль"
+
+#: wxUI/dialogs/mastodon/communityTimeline.py:10
+#, fuzzy
+msgid "Community URL"
+msgstr "Контрол"
+
+#: wxUI/dialogs/mastodon/communityTimeline.py:16
+#: wxUI/dialogs/mastodon/userTimeline.py:18
+msgid "Buffer type"
+msgstr "Тип буфера:"
+
+#: wxUI/dialogs/mastodon/communityTimeline.py:17
+#, fuzzy
+msgid "&Local timeline"
+msgstr "Ленты"
+
+#: wxUI/dialogs/mastodon/communityTimeline.py:18
+#, fuzzy
+msgid "&Federated Timeline"
+msgstr "Лента твитов {username}"
+
+#: wxUI/dialogs/mastodon/communityTimeline.py:25
+#: wxUI/dialogs/mastodon/search.py:24
+#: wxUI/dialogs/mastodon/updateProfile.py:130
+#: wxUI/dialogs/mastodon/userActions.py:36
+#: wxUI/dialogs/mastodon/userTimeline.py:30
+msgid "&OK"
+msgstr "ОК"
+
+#: wxUI/dialogs/mastodon/configuration.py:14
+#, fuzzy
+msgid "User autocompletion settings"
+msgstr "Настройки автозаполнения"
+
+#: wxUI/dialogs/mastodon/configuration.py:15
+msgid ""
+"Scan acc&ount and add followers and following users to the user "
+"autocompletion database"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:16
+#, fuzzy
+msgid "&Manage autocompletion database"
+msgstr "Управление базой автозаполнения"
+
+#: wxUI/dialogs/mastodon/configuration.py:21
+#, fuzzy
+msgid "&Disable Streaming API endpoints"
+msgstr "Отключение Стриминга"
+
+#: wxUI/dialogs/mastodon/configuration.py:23
+#, fuzzy
+msgid "&Relative timestamps"
+msgstr "Относительное время"
+
+#: wxUI/dialogs/mastodon/configuration.py:25
+msgid ""
+"R&ead preferences from instance (default visibility when publishing and "
+"displaying sensitive content)"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:28
+#, fuzzy
+msgid "&Items on each API call"
+msgstr "Элементов при каждом вызове API"
+
+# | msgid ""
+# | "Inverted buffers: The newest tweets will be shown at the beginning while
+# "
+# | "the oldest at the end"
+#: wxUI/dialogs/mastodon/configuration.py:34
+#, fuzzy
+msgid ""
+"I&nverted buffers: The newest items will be shown at the beginning while "
+"the oldest at the end"
+msgstr ""
+"Отображение твитов:  Самые новые  твиты будут показаны в начале списка, а"
+"  самые старые в конце"
+
+#: wxUI/dialogs/mastodon/configuration.py:36
+msgid "&Ask confirmation before boosting a post"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:38
+#, fuzzy
+msgid "S&how screen names instead of full names"
+msgstr "Показывать имя пользователя twitter вместо полного имени."
+
+#: wxUI/dialogs/mastodon/configuration.py:40
+msgid "Hide e&mojis in usernames"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:42
+#, fuzzy
+msgid ""
+"&Number of items per buffer to cache in database (0 to disable caching, "
+"blank for unlimited)"
+msgstr ""
+"Количество элементов для каждого буфера  в кэше. 0 - отключить "
+"кэширование, пустая строка - лемит не имеет значения."
+
+#: wxUI/dialogs/mastodon/configuration.py:46
+msgid ""
+"&Load cache for items in memory (much faster in big datasets but requires"
+" more RAM)"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:53
+#, python-brace-format
+msgid "Edit template for &posts. Current template: {}"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:55
+#, python-brace-format
+msgid "Edit template for c&onversations. Current template: {}"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:57
+#, python-brace-format
+msgid "Edit template for p&ersons. Current template: {}"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:65
+#, fuzzy
+msgid "&Volume"
+msgstr "Громкость"
+
+#: wxUI/dialogs/mastodon/configuration.py:76
+#, fuzzy
+msgid "S&ession mute"
+msgstr "Выключение звуков сессии"
+
+#: wxUI/dialogs/mastodon/configuration.py:78
+#, fuzzy
+msgid "&Output device"
+msgstr "Устройства воспроизведения"
+
+#: wxUI/dialogs/mastodon/configuration.py:85
+#, fuzzy
+msgid "&Input device"
+msgstr "Устройство записи"
+
+#: wxUI/dialogs/mastodon/configuration.py:93
+#, fuzzy
+msgid "Sound &pack"
+msgstr "Звуковая схема"
+
+# | msgid "Indicate audio tweets with sound"
+#: wxUI/dialogs/mastodon/configuration.py:99
+#, fuzzy
+msgid "Indicate &audio or video in posts with sound"
+msgstr "Воспроизводить звук на твитах, содержащих аудио"
+
+# | msgid "Indicate tweets containing images with sound"
+#: wxUI/dialogs/mastodon/configuration.py:101
+#, fuzzy
+msgid "Indicate posts containing i&mages with sound"
+msgstr "Воспроизводить звук на твитах, содержащих изображения"
+
+#: wxUI/dialogs/mastodon/configuration.py:124
+#, fuzzy
+msgid "&Language for OCR"
+msgstr "Язык результатов OCR"
+
+#: wxUI/dialogs/mastodon/configuration.py:149
+msgid "Feedback"
+msgstr "Вывод"
+
+#: wxUI/dialogs/mastodon/configuration.py:153
+msgid "Buffers"
+msgstr "Буферы"
+
+#: wxUI/dialogs/mastodon/configuration.py:157
+msgid "Templates"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/configuration.py:161
+msgid "Sound"
+msgstr "Звук"
+
+#: wxUI/dialogs/mastodon/configuration.py:165
+msgid "Extras"
+msgstr "Дополнительно"
+
+# | msgid "Would you like to add a comment to this tweet?"
+#: wxUI/dialogs/mastodon/dialogs.py:7
+#, fuzzy
+msgid "Would you like to share this post?"
+msgstr "Желаете добавить комментарий к этому твиту?"
+
+# | msgid ""
+# | "Do you really want to delete this tweet? It will be deleted from Twitter
+# "
+# | "as well."
+#: wxUI/dialogs/mastodon/dialogs.py:15
+#, fuzzy
+msgid ""
+"Do you really want to delete this post? It will be deleted from the "
+"instance as well."
+msgstr ""
+"Вы действительно хотите удалить этот твит? Он также будет удален из "
+"Твиттера."
+
+#: wxUI/dialogs/mastodon/dialogs.py:15
+msgid "Delete"
+msgstr "Удалить"
+
+#: wxUI/dialogs/mastodon/dialogs.py:23
+msgid ""
+"Are you sure you want to dismiss this notification? If you dismiss a "
+"mention notification, it also disappears from your mentions buffer. The "
+"post is not going to be deleted from the instance, though."
+msgstr ""
+
+# | msgid ""
+# | "Do you really want to empty this buffer? It's  items will be removed from
+# "
+# | "the list but not from Twitter"
+#: wxUI/dialogs/mastodon/dialogs.py:31
+#, fuzzy
+msgid ""
+"Do you really want to empty this buffer? It's  items will be removed from"
+" the list but not from the instance"
+msgstr ""
+"Вы действительно хотите очистить этот буфер? Твиты останутся на сервере, "
+"но будут удалены из списка."
+
+# | msgid "This user has no tweets. {0} can't create a timeline."
+#: wxUI/dialogs/mastodon/dialogs.py:38
+#, fuzzy, python-brace-format
+msgid "This user has no posts. {0} can't create a timeline."
+msgstr "У пользователя ещё нет твитов. Невозможно создать ленту."
+
+# | msgid "This user has no favorited tweets. {0} can't create a timeline."
+#: wxUI/dialogs/mastodon/dialogs.py:43
+#, fuzzy, python-brace-format
+msgid "This user has no favorited posts. {0} can't create a timeline."
+msgstr ""
+"Пользователь ещё ничего не оценил как понравившееся. Невозможно создать "
+"ленту."
+
+# | msgid "This user has no followers. {0} can't create a timeline."
+#: wxUI/dialogs/mastodon/dialogs.py:48
+#, fuzzy, python-brace-format
+msgid "This user has no followers yet. {0} can't create a timeline."
+msgstr "Этого пользователя ещё никто не читает. Невозможно создать ленту."
+
+# | msgid "This user has no followers. {0} can't create a timeline."
+#: wxUI/dialogs/mastodon/dialogs.py:53
+#, fuzzy, python-brace-format
+msgid "This user is not following anyone. {0} can't create a timeline."
+msgstr "Этого пользователя ещё никто не читает. Невозможно создать ленту."
+
+#: wxUI/dialogs/mastodon/dialogs.py:60
+#, python-brace-format
+msgid "The focused item has no user in it. {} ca't open a user profile"
+msgstr ""
+
+# | msgid "R&emove from list"
+#: wxUI/dialogs/mastodon/menus.py:13 wxUI/dialogs/mastodon/menus.py:41
+#, fuzzy
+msgid "R&emove from favorites"
+msgstr "&Удалить из списка"
+
+#: wxUI/dialogs/mastodon/menus.py:15 wxUI/dialogs/mastodon/menus.py:43
+msgid "&Open URL"
+msgstr "&Открыть  ссылку"
+
+# | msgid "Search on twitter"
+#: wxUI/dialogs/mastodon/menus.py:17 wxUI/dialogs/mastodon/menus.py:47
+#, fuzzy
+msgid "&Open in instance"
+msgstr "Искать в твиттере"
+
+#: wxUI/dialogs/mastodon/menus.py:19 wxUI/dialogs/mastodon/menus.py:45
+msgid "&Play audio"
+msgstr "Воспроизвести аудио"
+
+#: wxUI/dialogs/mastodon/menus.py:23 wxUI/dialogs/mastodon/menus.py:51
+msgid "&Copy to clipboard"
+msgstr "Скопировать в буфер обмена "
+
+#: wxUI/dialogs/mastodon/menus.py:27 wxUI/dialogs/mastodon/menus.py:55
+msgid "&User actions..."
+msgstr "&Действия"
+
+#: wxUI/dialogs/mastodon/menus.py:53
+msgid "&Dismiss"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:20
+#: wxUI/dialogs/mastodon/postDialogs.py:38
+msgid "Attachments"
+msgstr "Вложения"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:24
+msgid "File"
+msgstr "Файл"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:25
+msgid "Type"
+msgstr "Тип"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:26
+#: wxUI/dialogs/mastodon/postDialogs.py:141
+msgid "Description"
+msgstr "Описание"
+
+# | msgid "Remove client"
+#: wxUI/dialogs/mastodon/postDialogs.py:28
+#, fuzzy
+msgid "Remove Attachment"
+msgstr "Удалить  клиент"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:33
+msgid "Post in the thread"
+msgstr ""
+
+# | msgid "Remove from list"
+#: wxUI/dialogs/mastodon/postDialogs.py:40
+#, fuzzy
+msgid "Remove post"
+msgstr "Удалить из списка"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:47
+msgid "&Visibility"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:54
+#, fuzzy
+msgid "Language"
+msgstr "Язык"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:58
+msgid "A&dd"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:59
+msgid "S&ensitive content"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:64
+msgid "Content warning"
+msgstr ""
+
+# | msgid "Add to list"
+#: wxUI/dialogs/mastodon/postDialogs.py:71
+#, fuzzy
+msgid "Add p&ost"
+msgstr "Добавить в список"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:75
+msgid "Auto&complete users"
+msgstr "&Автозаполнение пользователей"
+
+# | msgid "Check &spelling..."
+#: wxUI/dialogs/mastodon/postDialogs.py:77
+#, fuzzy
+msgid "Check &spelling"
+msgstr "Проверка орфографии"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:79
+#, fuzzy
+msgid "&Translate"
+msgstr "Переведено"
+
+# | msgid "Tweet - %i characters "
+#: wxUI/dialogs/mastodon/postDialogs.py:106
+#, fuzzy, python-brace-format
+msgid "Post - {} characters"
+msgstr "Твит - Написано  %i символов"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:130
+msgid "Image"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:132
+#, fuzzy
+msgid "Video"
+msgstr "Скрыт"
+
+# | msgid "&Audio"
+#: wxUI/dialogs/mastodon/postDialogs.py:134
+#, fuzzy
+msgid "Audio"
+msgstr "&Аудио"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:136
+msgid "Poll"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:141
+msgid "please provide a description"
+msgstr "Опишите это изображение"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:148
+msgid "Select the picture to be uploaded"
+msgstr "Выберите картинку, которую желаете загрузить"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:148
+msgid "Image files (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+msgstr "Файлы изображений (*.png, *.jpg, *.gif)|*.png; *.jpg; *.gif"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:155
+#, fuzzy
+msgid "Select the video to be uploaded"
+msgstr "Выберите картинку, которую желаете загрузить"
+
+# | msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+#: wxUI/dialogs/mastodon/postDialogs.py:155
+#, fuzzy
+msgid "Video files (*.mp4, *.mov, *.m4v, *.webm)| *.mp4; *.m4v; *.mov; *.webm"
+msgstr "Файлы (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:162
+msgid "Select the audio file to be uploaded"
+msgstr "Выберите аудио файл, который хотите загрузить"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:162
+msgid ""
+"Audio files (*.mp3, *.ogg, *.wav, *.flac, *.opus, *.aac, *.m4a, "
+"*.3gp)|*.mp3; *.ogg; *.wav; *.flac; *.opus; *.aac; *.m4a; *.3gp"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:169
+msgid ""
+"It is not possible to add more attachments. Please take into account that"
+" You can add only a maximum of 4 images, or one audio, video or poll  per"
+" post. Please remove other attachments before continuing."
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:169
+#, fuzzy
+msgid "Error adding attachment"
+msgstr "Прикрепить вложение"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:172
+msgid ""
+"You can add a poll or media files. In order to add your poll, please "
+"remove other attachments first."
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:172
+#, fuzzy
+msgid "Error adding poll"
+msgstr "Прикрепить вложение"
+
+# | msgid "Tweet - %i characters "
+#: wxUI/dialogs/mastodon/postDialogs.py:177
+#, fuzzy, python-format
+msgid "Post - %i characters "
+msgstr "Твит - Написано  %i символов"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:200
+msgid "Image description"
+msgstr "Описание"
+
+# | msgid "Private"
+#: wxUI/dialogs/mastodon/postDialogs.py:210
+#, fuzzy
+msgid "Privacy"
+msgstr "Личный"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:214
+#, fuzzy
+msgid "Source"
+msgstr "Клиент"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:222
+msgid "Boosts"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:224
+msgid "View users who boosted this post"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:231
+msgid "View users who favorited this post"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:239
+#, fuzzy
+msgid "Copy link to clipboard"
+msgstr "Скопировать в буфер обмена"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:241
+#: wxUI/dialogs/mastodon/postDialogs.py:280
+msgid "Check &spelling..."
+msgstr "Проверка орфографии"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:242
+#: wxUI/dialogs/mastodon/postDialogs.py:281
+msgid "&Translate..."
+msgstr "Перевести"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:243
+#: wxUI/dialogs/mastodon/postDialogs.py:282
+msgid "C&lose"
+msgstr "За&крыть"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:294
+msgid "Add a poll"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:298
+msgid "Participation time"
+msgstr ""
+
+# | msgid "%d minutes, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "5 minutes"
+msgstr "%d минут"
+
+# | msgid "%d minutes, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "30 minutes"
+msgstr "%d минут"
+
+# | msgid "%d hour, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "1 hour"
+msgstr "%d час"
+
+# | msgid "%d hours, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "6 hours"
+msgstr "%d часов"
+
+# | msgid "%d day, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "1 day"
+msgstr "%d день"
+
+# | msgid "%d days, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "2 days"
+msgstr "%d дней"
+
+# | msgid "%d days, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "3 days"
+msgstr "%d дней"
+
+# | msgid "%d days, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "4 days"
+msgstr "%d дней"
+
+# | msgid "%d days, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "5 days"
+msgstr "%d дней"
+
+# | msgid "%d days, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "6 days"
+msgstr "%d дней"
+
+# | msgid "%d days, "
+#: wxUI/dialogs/mastodon/postDialogs.py:300
+#, fuzzy
+msgid "7 days"
+msgstr "%d дней"
+
+#: wxUI/dialogs/mastodon/postDialogs.py:304
+msgid "Choices"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:308
+msgid "Option 1"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:315
+msgid "Option 2"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:322
+msgid "Option 3"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:329
+msgid "Option 4"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:334
+msgid "Allow multiple choices per user"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:337
+msgid "Hide votes count until the poll expires"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:363
+msgid "Please make sure you have provided at least two options for the poll."
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:363
+#, fuzzy
+msgid "Not enough information"
+msgstr "Информация "
+
+#: wxUI/dialogs/mastodon/postDialogs.py:368
+msgid "Vote in this poll"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/postDialogs.py:371
+#, fuzzy
+msgid "Options"
+msgstr "Действие"
+
+# | msgid "&Search"
+#: wxUI/dialogs/mastodon/search.py:9
+#, fuzzy
+msgid "Search"
+msgstr "&Поиск"
+
+#: wxUI/dialogs/mastodon/search.py:18
+msgid "Posts"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:22
+#, fuzzy
+msgid "Select user"
+msgstr "Выбрать ссылку"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:73
+#, fuzzy, python-brace-format
+msgid "{}'s Profile"
+msgstr "&Обновить профиль"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:79
+#, fuzzy
+msgid "&Name: "
+msgstr "Имя"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:84
+#, fuzzy
+msgid "&URL: "
+msgstr "Пользователь: "
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:89
+msgid "&Bio: "
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:94
+msgid "&Joined at: "
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:99
+#, fuzzy
+msgid "&Actions"
+msgstr "Действие"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:104
+#, fuzzy
+msgid "Header: "
+msgstr "Скрыт"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:112
+msgid "Avatar: "
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:122
+#, python-brace-format
+msgid "Field &{} - Label: "
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:129
+#, fuzzy
+msgid "Content: "
+msgstr "Контекст"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:43
+#: wxUI/dialogs/mastodon/filters/create_filter.py:65
+#: wxUI/dialogs/mastodon/showUserProfile.py:135
+msgid "Yes"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:43
+#: wxUI/dialogs/mastodon/filters/create_filter.py:65
+#: wxUI/dialogs/mastodon/filters/create_filter.py:69
+#: wxUI/dialogs/mastodon/showUserProfile.py:135
+msgid "No"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:137
+#, fuzzy
+msgid "&Private account: "
+msgstr "Удалить аккаунт"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:144
+#, fuzzy
+msgid "&Bot account: "
+msgstr "Аккаунт"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:151
+#, fuzzy
+msgid "&Discoverable account: "
+msgstr "Удалить аккаунт"
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:157
+#, python-brace-format
+msgid "{} p&osts. Click to open posts timeline"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:162
+#, python-brace-format
+msgid "{} &following. Click to open Following timeline"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/showUserProfile.py:166
+#, python-brace-format
+msgid "{} fo&llowers. Click to open followers timeline"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:43
+msgid "&Display Name"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:50
+#, fuzzy
+msgid "&Bio"
+msgstr "&Заблокировать"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:58
+#, fuzzy
+msgid "Header"
+msgstr "Скрыт"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:71
+#, fuzzy
+msgid "Change &header"
+msgstr "Скрыт"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:79
+msgid "Avatar"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:92
+msgid "Change &avatar"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:102
+#, python-brace-format
+msgid "Field &{}: Label"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:110
+#, fuzzy
+msgid "Content"
+msgstr "Контекст"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:120
+#, fuzzy
+msgid "&Private account"
+msgstr "Удалить аккаунт"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:122
+#, fuzzy
+msgid "&Bot account"
+msgstr "Аккаунт"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:124
+#, fuzzy
+msgid "&Discoverable account"
+msgstr "Удалить аккаунт"
+
+#: wxUI/dialogs/mastodon/updateProfile.py:167
+msgid "Select header image - max 2MB"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:172
+#: wxUI/dialogs/mastodon/updateProfile.py:194
+msgid "The selected file is larger than 2MB. Do you want to select another file?"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:173
+#: wxUI/dialogs/mastodon/updateProfile.py:195
+msgid "File more than 2MB"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/updateProfile.py:189
+msgid "Select avatar image - max 2MB"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/userActions.py:19
+msgid "&Follow"
+msgstr "&Начать читать"
+
+#: wxUI/dialogs/mastodon/userActions.py:20
+msgid "U&nfollow"
+msgstr "П&ерестать читать"
+
+#: wxUI/dialogs/mastodon/userActions.py:22
+msgid "Unmu&te"
+msgstr "Вк&лючить"
+
+#: wxUI/dialogs/mastodon/userActions.py:23
+msgid "&Block"
+msgstr "&Заблокировать"
+
+#: wxUI/dialogs/mastodon/userActions.py:24
+msgid "Unbl&ock"
+msgstr "Разбл&окировать"
+
+#: wxUI/dialogs/mastodon/userTimeline.py:9
+#, python-format
+msgid "Timeline for %s"
+msgstr "Лента твитов %s"
+
+#: wxUI/dialogs/mastodon/userTimeline.py:19
+msgid "&Posts"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/userTimeline.py:20
+msgid "&Followers"
+msgstr "Читающие"
+
+#: wxUI/dialogs/mastodon/userTimeline.py:21
+#, fuzzy
+msgid "Fo&llowing"
+msgstr "П&ерестать читать"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:12
+#, fuzzy
+msgid "Keyword"
+msgstr "Клавиша"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:13
+#: wxUI/dialogs/mastodon/filters/create_filter.py:24
+msgid "Whole word"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:19
+msgid "Keyword:"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:25
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:22
+#, fuzzy
+msgid "Add"
+msgstr "Адрес"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:34
+msgid "Palabras clave a filtrar:"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:74
+#, fuzzy
+msgid "New filter"
+msgstr "&Управление фильтрами"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:78
+#, fuzzy
+msgid "Home timeline"
+msgstr "Ленты"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:79
+msgid "Public statuses"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:81
+#, fuzzy
+msgid "Threads"
+msgstr "Готово"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:82
+#, fuzzy
+msgid "Profiles"
+msgstr "&Обновить профиль"
+
+# | msgid "Delete"
+#: wxUI/dialogs/mastodon/filters/create_filter.py:86
+#, fuzzy
+msgid "Hide posts"
+msgstr "Удалить"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:87
+msgid "Set a content warning to posts"
+msgstr ""
+
+# | msgid "%d hours, "
+#: wxUI/dialogs/mastodon/filters/create_filter.py:91
+#, fuzzy
+msgid "Hours"
+msgstr "%d часов"
+
+# | msgid "%d days, "
+#: wxUI/dialogs/mastodon/filters/create_filter.py:92
+#, fuzzy
+msgid "Days"
+msgstr "%d дней"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:93
+msgid "Weeks"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:94
+msgid "months"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:97
+#, fuzzy
+msgid "Title:"
+msgstr "Файл"
+
+# | msgid "Reply to {arg0}"
+#: wxUI/dialogs/mastodon/filters/create_filter.py:104
+#, fuzzy
+msgid "Apply to:"
+msgstr "Ответ {arg0}"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:114
+#, fuzzy
+msgid "Action:"
+msgstr "Действие"
+
+#: wxUI/dialogs/mastodon/filters/create_filter.py:122
+msgid "Expires in:"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:10
+#, fuzzy
+msgid "Filters"
+msgstr "Файл"
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:15
+#, fuzzy
+msgid "Title"
+msgstr "Файл"
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:16
+msgid "Keywords"
+msgstr ""
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:17
+#, fuzzy
+msgid "Contexts"
+msgstr "Контекст"
+
+#: wxUI/dialogs/mastodon/filters/manage_filters.py:19
+#, fuzzy
+msgid "Expires"
+msgstr "Дополнительно"
+
+#~ msgid "There are no results for the coordinates in this tweet"
+#~ msgstr "Отсутствуют координаты"
+
+#~ msgid "This list is already opened"
+#~ msgstr "Список уже открыт"
+
+# | msgid "Timeline for {}"
+#~ msgid "Timelines for {}"
+#~ msgstr "Лента твитов {}"
+
+#~ msgid "{account_name} (Mastodon)"
+#~ msgstr ""
+
+#~ msgid "URL of mastodon instance:"
+#~ msgstr ""
+
+# | msgid "View &address"
+#~ msgid "Email address:"
+#~ msgstr "Просмотреть адрес"
+
+# | msgid "Password: "
+#~ msgid "Password:"
+#~ msgstr "Пароль: "
+
+# | msgid "Item"
+#~ msgid "&Item"
+#~ msgstr "Элемент"
+
+#~ msgid "Visibility"
+#~ msgstr ""
+
+#~ msgid "Sensitive content"
+#~ msgstr ""
+
+#~ msgid "Allow multiple votes per user"
+#~ msgstr ""
+
+#~ msgid "{username} has mentionned you: {status}"
+#~ msgstr ""
+
+#~ msgid "has mentionned you: {status}"
+#~ msgstr ""
+
+#~ msgid "Likes for {}"
+#~ msgstr "Понравившиеся {}"
+
+#~ msgid "Trending topics for %s"
+#~ msgstr "Тренды по %s"
+
+#~ msgid "Select user"
+#~ msgstr "Выберите пользователя"
+
+#~ msgid "Sent direct messages"
+#~ msgstr "Отправленные личные сообщения"
+
+#~ msgid "Sent tweets"
+#~ msgstr "Отправленные твиты"
+
+#~ msgid "Likes"
+#~ msgstr "Понравившиеся"
+
+#~ msgid "Friends"
+#~ msgstr "Читаемые"
+
+#~ msgid "{username}'s likes"
+#~ msgstr "Понравившееся {username}"
+
+#~ msgid "{username}'s friends"
+#~ msgstr "Список читаемых {username}"
+
+#~ msgid "Tweet"
+#~ msgstr "Твит"
+
+#~ msgid "Write the tweet here"
+#~ msgstr "Напишите текст твита здесь"
+
+#~ msgid "New tweet in {0}"
+#~ msgstr "Новый твит в {0}"
+
+#~ msgid "{0} new tweets in {1}."
+#~ msgstr "@{0} процитировал ваш твит: {1}"
+
+#~ msgid "Reply to {arg0}"
+#~ msgstr "Ответ {arg0}"
+
+#~ msgid "Reply to %s"
+#~ msgstr "Ответ %s"
+
+#~ msgid "Direct message to %s"
+#~ msgstr "Личное сообщение для  %s"
+
+#~ msgid "New direct message"
+#~ msgstr "Новое личное сообщение"
+
+#~ msgid "This action is not supported on protected accounts."
+#~ msgstr "Это действие не поддерживается в данном буфере"
+
+#~ msgid "Quote"
+#~ msgstr "Комментарий к твиту"
+
+#~ msgid "Add your comment to the tweet"
+#~ msgstr "Напишите ваш комментарий к этому твиту"
+
+#~ msgid "User details"
+#~ msgstr "Профиль"
+
+#~ msgid "MMM D, YYYY. H:m"
+#~ msgstr "MMM D, YYYY. H:m"
+
+#~ msgid "There are no coordinates in this tweet"
+#~ msgstr "Координаты отсутствуют"
+
+#~ msgid "Error decoding coordinates. Try again later."
+#~ msgstr "Ошибка. Координаты не найдены. Попробуйте, пожалуйста, немного позднее."
+
+#~ msgid "Invalid buffer"
+#~ msgstr "Недопустимый буфер"
+
+#~ msgid "{0} new direct messages."
+#~ msgstr "Новое личное сообщение"
+
+#~ msgid "This action is not supported in the buffer yet."
+#~ msgstr "Это действие не поддерживается в данном буфере"
+
+#~ msgid ""
+#~ "Getting more items cannot be done "
+#~ "in this buffer. Use the direct "
+#~ "messages buffer instead."
+#~ msgstr ""
+#~ "Невозможно получить больше элементов в "
+#~ "данном буфере, используйте буфер личных "
+#~ "сообщений вместо этого."
+
+#~ msgid "Mention"
+#~ msgstr "Упомянуть"
+
+#~ msgid "Mention to %s"
+#~ msgstr "Упоминание   %s"
+
+#~ msgid "{0} new followers."
+#~ msgstr "{0} новых читателей."
+
+#~ msgid "This action is not supported in the buffer, yet."
+#~ msgstr "Это действие пока не поддерживается в буфере."
+
+#~ msgid "&Retweet"
+#~ msgstr "&Ретвитнуть"
+
+#~ msgid "&Like"
+#~ msgstr "&Нравится"
+
+#~ msgid "&Unlike"
+#~ msgstr "н&е нравится"
+
+#~ msgid "View &address"
+#~ msgstr "Просмотреть адрес"
+
+#~ msgid "&View lists"
+#~ msgstr "&Просмотр списков"
+
+# | msgid "V&iew likes"
+#~ msgid "View likes"
+#~ msgstr "Просмотреть Понравившиеся"
+
+#~ msgid "Likes timelines"
+#~ msgstr "Понравившиеся ленты"
+
+#~ msgid "Followers timelines"
+#~ msgstr "Ленты читающих"
+
+#~ msgid "Following timelines"
+#~ msgstr "Ленты читающих"
+
+#~ msgid "Lists"
+#~ msgstr "Списки"
+
+#~ msgid "List for {}"
+#~ msgstr "Список {}"
+
+#~ msgid "Filters cannot be applied on this buffer"
+#~ msgstr "Фильтрация в данном буфере невозможна"
+
+#~ msgid "View item"
+#~ msgstr "&просмотреть обьект"
+
+#~ msgid "Ask"
+#~ msgstr "Вопрос"
+
+#~ msgid "Retweet without comments"
+#~ msgstr "Ретвитнуть без комментария"
+
+#~ msgid "Retweet with comments"
+#~ msgstr "Ретвитнуть с комментарием"
+
+#~ msgid "Edit template for tweets. Current template: {}"
+#~ msgstr ""
+
+#~ msgid "Edit template for direct messages. Current template: {}"
+#~ msgstr ""
+
+#~ msgid "Edit template for sent direct messages. Current template: {}"
+#~ msgstr ""
+
+#~ msgid "User has been suspended"
+#~ msgstr "Аккаунт этого пользователя был заморожен"
+
+#~ msgid "Information for %s"
+#~ msgstr "Информация о %s"
+
+#~ msgid "Discarded"
+#~ msgstr "Отменено"
+
+#~ msgid "Username: @%s\n"
+#~ msgstr "Имя пользователя: @%s\n"
+
+#~ msgid "Name: %s\n"
+#~ msgstr "Имя: %s\n"
+
+#~ msgid "Location: %s\n"
+#~ msgstr "Откуда: %s\n"
+
+#~ msgid "URL: %s\n"
+#~ msgstr "Сайт: %s\n"
+
+#~ msgid "Bio: %s\n"
+#~ msgstr "Кратко о себе: %s\n"
+
+#~ msgid "Yes"
+#~ msgstr "Да"
+
+#~ msgid "No"
+#~ msgstr "Нет"
+
+#~ msgid "Protected: %s\n"
+#~ msgstr "Защищённый аккаунт: %s\n"
+
+#~ msgid "Relationship: "
+#~ msgstr ""
+
+#~ msgid "You follow {0}. "
+#~ msgstr "Вы читаете {0}. "
+
+#~ msgid "{0} is following you."
+#~ msgstr "{0} читает вас."
+
+#~ msgid ""
+#~ "Followers: %s\n"
+#~ " Friends: %s\n"
+#~ msgstr ""
+#~ "Читающих: %s\n"
+#~ " Читаемых: %s\n"
+
+#~ msgid "Verified: %s\n"
+#~ msgstr "Проверен:  %s\n"
+
+#~ msgid "Tweets: %s\n"
+#~ msgstr "Твитов: %s\n"
+
+#~ msgid "Likes: %s"
+#~ msgstr "Понравившихся: %s"
+
+#~ msgid "You can't ignore direct messages"
+#~ msgstr "Вы не можете игнорировать личные сообщения"
+
+#~ msgid "Attaching..."
+#~ msgstr "Добавление"
+
+#~ msgid "Pause"
+#~ msgstr "Пауза"
+
+#~ msgid "&Resume"
+#~ msgstr "&Продолжить"
+
+#~ msgid "Resume"
+#~ msgstr "&Продолжить"
+
+#~ msgid "&Pause"
+#~ msgstr "Пауза"
+
+#~ msgid "&Stop"
+#~ msgstr "Остановить"
+
+#~ msgid "Recording"
+#~ msgstr "Запись"
+
+#~ msgid "Stopped"
+#~ msgstr "Остановлено"
+
+#~ msgid "&Record"
+#~ msgstr "Записать"
+
+#~ msgid "&Play"
+#~ msgstr "Воспроизвести"
+
+#~ msgid "Recoding audio..."
+#~ msgstr "Перекодирование аудио ..."
+
+#~ msgid "Error in file upload: {0}"
+#~ msgstr "Ошибка при загрузке файла: {0}"
+
+#~ msgid "Transferred"
+#~ msgstr "Передано"
+
+#~ msgid "Total file size"
+#~ msgstr "Общий размер файла"
+
+#~ msgid "Transfer rate"
+#~ msgstr "Скорость передачи"
+
+#~ msgid "Time left"
+#~ msgstr "Оставшееся время"
+
+#~ msgid "Attach audio"
+#~ msgstr "Добавить аудио"
+
+#~ msgid "&Add an existing file"
+#~ msgstr "Добавить существующий файл"
+
+#~ msgid "&Discard"
+#~ msgstr "Очистить"
+
+#~ msgid "Upload to"
+#~ msgstr "Загрузить в"
+
+#~ msgid "Attach"
+#~ msgstr "Добавить"
+
+#~ msgid "&Cancel"
+#~ msgstr "Отменить"
+
+#~ msgid "Audio Files (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+#~ msgstr "Файлы (*.mp3, *.ogg, *.wav)|*.mp3; *.ogg; *.wav"
+
+#~ msgid "You have to start writing"
+#~ msgstr "Вы должны начать писать"
+
+#~ msgid "There are no results in your users database"
+#~ msgstr "Пользователя нет в базе данных"
+
+#~ msgid "Autocompletion only works for users."
+#~ msgstr "Автозаполнение работает только для пользователей."
+
+#~ msgid ""
+#~ "Updating database... You can close this"
+#~ " window now. A message will tell "
+#~ "you when the process finishes."
+#~ msgstr ""
+#~ "Обновление базы данных ... Вы можете "
+#~ "закрыть это окно сейчас. Вам будет "
+#~ "сообщено, когда процесс завершится."
+
+#~ msgid "Manage Autocompletion database"
+#~ msgstr "Управление базой автозаполнения"
+
+#~ msgid "Editing {0} users database"
+#~ msgstr "Редактирование базы данных {0} "
+
+#~ msgid "Username"
+#~ msgstr "Имя пользователя"
+
+#~ msgid "Add user"
+#~ msgstr "Добавить пользователя"
+
+#~ msgid "Remove user"
+#~ msgstr "Удалить пользователя"
+
+#~ msgid "Twitter username"
+#~ msgstr "Имя в твиттере"
+
+#~ msgid "Add user to database"
+#~ msgstr "Добавить пользователя в базу данных"
+
+#~ msgid "The user does not exist"
+#~ msgstr "Пользователь не существует"
+
+#~ msgid "Error!"
+#~ msgstr "Ошибка"
+
+#~ msgid "Autocomplete users' settings"
+#~ msgstr "Настройки автозаполнения "
+
+#~ msgid "Add followers to database"
+#~ msgstr ""
+
+#~ msgid "Add  friends to database"
+#~ msgstr "Добавить пользователя в базу данных"
+
+#~ msgid "Updating autocompletion database"
+#~ msgstr "Управление базой автозаполнения"
+
+#~ msgid ""
+#~ "This process will retrieve the users "
+#~ "you selected from Twitter, and add "
+#~ "them to the user autocomplete database."
+#~ " Please note that if there are "
+#~ "many users or you have tried to"
+#~ " perform this action less than 15 "
+#~ "minutes ago, TWBlue may reach a "
+#~ "limit in Twitter API calls when "
+#~ "trying to load the users into the"
+#~ " database. If this happens, we will"
+#~ " show you an error, in which "
+#~ "case you will have to try this "
+#~ "process again in a few minutes. If"
+#~ " this process ends with no error, "
+#~ "you will be redirected back to the"
+#~ " account settings dialog. Do you want"
+#~ " to continue?"
+#~ msgstr ""
+
+#~ msgid "TWBlue has imported {} users successfully."
+#~ msgstr ""
+
+#~ msgid "Done"
+#~ msgstr "Готово"
+
+#~ msgid "Error adding users from Twitter. Please try again in about 15 minutes."
+#~ msgstr ""
+
+#~ msgid "New tweet"
+#~ msgstr "Новый твит"
+
+#~ msgid "Retweet"
+#~ msgstr "Ретвит"
+
+#~ msgid "Like a tweet"
+#~ msgstr "Нравится"
+
+#~ msgid "Like/unlike a tweet"
+#~ msgstr "Оценить твит"
+
+#~ msgid "Unlike a tweet"
+#~ msgstr "Не нравится"
+
+#~ msgid "See user details"
+#~ msgstr "Просмотреть профиль"
+
+#~ msgid "Show tweet"
+#~ msgstr "Показать твит"
+
+#~ msgid "Interact with the currently focused tweet."
+#~ msgstr "Работать с твитом в фокусе"
+
+#~ msgid "View in Twitter"
+#~ msgstr "Посмотреть в Твиттере"
+
+#~ msgid "Edit profile"
+#~ msgstr "Редактировать профиль"
+
+#~ msgid "Delete a tweet or direct message"
+#~ msgstr "Удалить твит или личное сообщение"
+
+#~ msgid "Add to list"
+#~ msgstr "Добавить в список"
+
+#~ msgid "Remove from list"
+#~ msgstr "Удалить из списка"
+
+#~ msgid "Search on twitter"
+#~ msgstr "Искать в твиттере"
+
+#~ msgid "Show lists for a specified user"
+#~ msgstr "Показать списки конкретного пользователя"
+
+#~ msgid "Get geolocation"
+#~ msgstr "узнать местоположение"
+
+#~ msgid "Display the tweet's geolocation in a dialog"
+#~ msgstr "Показывать геолокацию в диалоговом окне"
+
+#~ msgid "Create a trending topics buffer"
+#~ msgstr "Просмотр популярных тем"
+
+#~ msgid ""
+#~ "Opens the list manager, which allows "
+#~ "you to create, edit, delete and "
+#~ "open lists in buffers."
+#~ msgstr ""
+#~ "Открыть меню, позволяющее создавать, "
+#~ "редактировать, удалять и открывать списки "
+#~ "в буферах."
+
+#~ msgid "Opens the list manager"
+#~ msgstr "Открывает менеджер списков"
+
+#~ msgid "{account_name} (Twitter)"
+#~ msgstr ""
+
+# | msgid "View in Twitter"
+#~ msgid "Twitter"
+#~ msgstr "Посмотреть в Твиттере"
+
+#~ msgid ""
+#~ "The request to authorize your Twitter"
+#~ " account will be opened in your "
+#~ "browser. You only need to do this"
+#~ " once. Would you like to continue?"
+#~ msgstr ""
+#~ "Сейчас будет открыта страница, где вы"
+#~ " сможете разрешить доступ к своей "
+#~ "учётной записи в twitter. Это нужно "
+#~ "сделать единожды. Желаете продолжить?"
+
+#~ msgid ""
+#~ "TWBlue is unable to authenticate the "
+#~ "account for {} in Twitter. It "
+#~ "might be due to an invalid or "
+#~ "expired token, revoqued access to the"
+#~ " application, or after an account "
+#~ "reactivation. Please remove the account "
+#~ "manually from your Twitter sessions in"
+#~ " order to stop seeing this message."
+#~ msgstr ""
+
+#~ msgid "Authentication error for session {}"
+#~ msgstr ""
+
+#~ msgid "Dm to %s "
+#~ msgstr "Личное сообщение для  %s "
+
+#~ msgid "{0}. Quoted  tweet from @{1}: {2}"
+#~ msgstr "{0}. Процитированный твит от @{1}: {2}"
+
+#~ msgid "Unavailable"
+#~ msgstr "Недоступно"
+
+#~ msgid ""
+#~ "%s (@%s). %s followers, %s friends, "
+#~ "%s tweets. Last tweeted %s. Joined "
+#~ "Twitter %s"
+#~ msgstr ""
+#~ "%s (@%s). %s читателей, %s читаемых, "
+#~ "%s твитов. Последний твит был  %s. "
+#~ "Регистрация в  Twitterе %s"
+
+#~ msgid "No description available"
+#~ msgstr "Описание отсутствует"
+
+#~ msgid "private"
+#~ msgstr "Личный"
+
+#~ msgid "public"
+#~ msgstr "Публичный"
+
+#~ msgid "Enter your PIN code here"
+#~ msgstr "Введите PIN код здесь."
+
+#~ msgid "Authorising account..."
+#~ msgstr "Авторизация аккаунта..."
+
+#~ msgid ""
+#~ "We could not authorice your Twitter "
+#~ "account to be used in TWBlue. This"
+#~ " might be caused due to an "
+#~ "incorrect verification code. Please try "
+#~ "to add the session again."
+#~ msgstr ""
+
+#~ msgid "%s failed.  Reason: %s"
+#~ msgstr "%s неудалось.  Причина: %s"
+
+#~ msgid "Deleted account"
+#~ msgstr "Добавить аккаунт"
+
+#~ msgid "$sender_display_name, $text $date"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "$display_name (@$screen_name). $followers followers,"
+#~ " $following following, $tweets tweets. "
+#~ "Joined Twitter $created_at."
+#~ msgstr ""
+
+#~ msgid "Image description: {}."
+#~ msgstr "Описание"
+
+#~ msgid "RT @{}: {} Quote from @{}: {}"
+#~ msgstr "{0}. Процитированный твит от @{1}: {2}"
+
+# | msgid "{0}. Quoted  tweet from @{1}: {2}"
+#~ msgid "RT @{}: {}"
+#~ msgstr "{0}. Процитированный твит от @{1}: {2}"
+
+# | msgid "{0}. Quoted  tweet from @{1}: {2}"
+#~ msgid "{} Quote from @{}: {}"
+#~ msgstr "{0}. Процитированный твит от @{1}: {2}"
+
+#~ msgid "Sorry, you are not authorised to see this status."
+#~ msgstr "Извините, но вы не авторизованы и не можете увидеть это сообщение."
+
+#~ msgid "Error {0}"
+#~ msgstr "Код ошибки {0}"
+
+#~ msgid "{user_1}, {user_2} and {all_users} more: {text}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This retweet is over 140 characters. "
+#~ "Would you like to post it as "
+#~ "a mention to the poster with your"
+#~ " comments and a link to the "
+#~ "original tweet?"
+#~ msgstr ""
+#~ "Этот ретвит больше ста сорока символов."
+#~ " Вы можете опубликовать свой твит и"
+#~ " в вашем твите появится ссылка на "
+#~ "ретвит. Хотите продолжить?"
+
+#~ msgid "Would you like to add a comment to this tweet?"
+#~ msgstr "Желаете добавить комментарий к этому твиту?"
+
+#~ msgid ""
+#~ "Do you really want to delete this"
+#~ " tweet? It will be deleted from "
+#~ "Twitter as well."
+#~ msgstr ""
+#~ "Вы действительно хотите удалить этот "
+#~ "твит? Он также будет удален из "
+#~ "Твиттера."
+
+#~ msgid "Enter the name of the client : "
+#~ msgstr "Введите имя клиента : "
+
+#~ msgid "Add client"
+#~ msgstr "Добавить клиент"
+
+#~ msgid "This user has no tweets, so you can't open a timeline for them."
+#~ msgstr "У пользователя ещё нет твитов. Невозможно открыть его ленту."
+
+#~ msgid ""
+#~ "This is a protected Twitter user, "
+#~ "which means you can't open a "
+#~ "timeline using the Streaming API. The"
+#~ " user's tweets will not update due"
+#~ " to a twitter policy. Do you "
+#~ "want to continue?"
+#~ msgstr ""
+#~ "Лента этого пользователя защищена, Это "
+#~ "значит, что ее нельзя открыть в "
+#~ "данном приложении. Твиты этого пользователя"
+#~ " не будут обновляться, согласно политике"
+#~ " Твиттера."
+
+#~ msgid ""
+#~ "This is a protected user account, "
+#~ "you need to follow this user to"
+#~ " view their tweets or likes."
+#~ msgstr ""
+#~ "Учётная запись защищена. Вы должны "
+#~ "начать читать этого пользователя, чтобы "
+#~ "просматривать его твиты или понравившиеся "
+#~ "ему записи."
+
+#~ msgid "This user has no tweets. {0} can't create a timeline."
+#~ msgstr "У пользователя ещё нет твитов. Невозможно создать ленту."
+
+#~ msgid "This user has no favorited tweets. {0} can't create a timeline."
+#~ msgstr ""
+#~ "Пользователь ещё ничего не оценил как"
+#~ " понравившееся. Невозможно создать ленту."
+
+#~ msgid "This user has no followers. {0} can't create a timeline."
+#~ msgstr "Этого пользователя ещё никто не читает. Невозможно создать ленту."
+
+#~ msgid "This user has no friends. {0} can't create a timeline."
+#~ msgstr "Пользователь ещё никого не читает. Невозможно создать ленту."
+
+#~ msgid "Geolocation data: {0}"
+#~ msgstr "Узнать местоположение"
+
+#~ msgid "Geo data for this tweet"
+#~ msgstr "Местоположение для этого твита"
+
+#~ msgid "You have been blocked from viewing  this content"
+#~ msgstr "Вы были заблокированы от просмотра этого содержимого"
+
+#~ msgid ""
+#~ "You have been blocked from viewing  "
+#~ "someone's content. In order to avoid "
+#~ "conflicts with the full session, TWBlue"
+#~ " will remove the affected timeline."
+#~ msgstr ""
+#~ "Один из пользователей, чья лента была"
+#~ " открыта в клиенте, заблокировал вас "
+#~ "и вы больше не можете просматривать "
+#~ "содержимое его твитов. Воизбежание ошибок "
+#~ "сессии, клиент удалит данную ленту."
+
+#~ msgid ""
+#~ "TWBlue cannot load this timeline because"
+#~ " the user has been suspended from "
+#~ "Twitter."
+#~ msgstr ""
+#~ "TWBlue не может показать ленту данного"
+#~ " пользователя, так как его аккаунт "
+#~ "был заблокирован Твиттером."
+
+#~ msgid "Do you really want to delete this filter?"
+#~ msgstr "Вы действительно желаете удалить этот фильтр?"
+
+#~ msgid "This filter already exists. Please use a different title"
+#~ msgstr "Такой фильтр уже существует. Пожалуйста, используйте другое название"
+
+#~ msgid "&Show direct message"
+#~ msgstr "Показать личное сообщение"
+
+#~ msgid "&Show event"
+#~ msgstr "Показать событие"
+
+#~ msgid "Direct &message"
+#~ msgstr "Личное &сообщение"
+
+#~ msgid "&Show user"
+#~ msgstr "Показать пользователя"
+
+#~ msgid "Search topic"
+#~ msgstr "Поиск в теме"
+
+#~ msgid "&Tweet about this trend"
+#~ msgstr "Твитнуть об этом тренде"
+
+#~ msgid "&Show item"
+#~ msgstr "Показать элемент"
+
+#~ msgid "Update &profile"
+#~ msgstr "Обновить профиль"
+
+#~ msgid "Event"
+#~ msgstr "Событие"
+
+#~ msgid "Remove event"
+#~ msgstr "Удалить событие"
+
+#~ msgid "Trending topic"
+#~ msgstr "Тренды"
+
+#~ msgid "Tweet about this trend"
+#~ msgstr "Твитнуть о тренде"
+
+#~ msgid ""
+#~ "Scan account and add friends and "
+#~ "followers to the user autocompletion "
+#~ "database"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Inverted buffers: The newest tweets will"
+#~ " be shown at the beginning while "
+#~ "the oldest at the end"
+#~ msgstr ""
+#~ "Отображение твитов:  Самые новые  твиты "
+#~ "будут показаны в начале списка, а  "
+#~ "самые старые в конце"
+
+#~ msgid "Retweet mode"
+#~ msgstr "Режим ретвита"
+
+#~ msgid ""
+#~ "Load cache for tweets in memory "
+#~ "(much faster in big datasets but "
+#~ "requires more RAM)"
+#~ msgstr ""
+
+#~ msgid "Ignored clients"
+#~ msgstr "Игнорируемые клиенты"
+
+#~ msgid "Remove client"
+#~ msgstr "Удалить  клиент"
+
+#~ msgid "Indicate audio tweets with sound"
+#~ msgstr "Воспроизводить звук на твитах, содержащих аудио"
+
+#~ msgid "Indicate geotweets with sound"
+#~ msgstr "Воспроизводить звук на твитах, содержащих геолокацию"
+
+#~ msgid "Indicate tweets containing images with sound"
+#~ msgstr "Воспроизводить звук на твитах, содержащих изображения"
+
+#~ msgid "API Key for SndUp"
+#~ msgstr "API ключ SndUp"
+
+#~ msgid "Create a filter  for this buffer"
+#~ msgstr "Создать фильтр для этого буфера"
+
+#~ msgid "Filter title"
+#~ msgstr "Название фильтра"
+
+#~ msgid "Filter by word"
+#~ msgstr "Фильтровать по слову"
+
+#~ msgid "Ignore tweets wich contain the following word"
+#~ msgstr "Игнорировать твиты, содержащие следующее слово"
+
+#~ msgid "Ignore tweets without the following word"
+#~ msgstr "Игнорировать твиты, несодержащие следующего слова"
+
+#~ msgid "word"
+#~ msgstr "Слово"
+
+#~ msgid "Allow retweets"
+#~ msgstr "Показывать ретвиты"
+
+#~ msgid "Allow quoted tweets"
+#~ msgstr "Показывать процетированные твиты"
+
+#~ msgid "Allow replies"
+#~ msgstr "Показывать ответы"
+
+#~ msgid "Use this term as a regular expression"
+#~ msgstr "Использовать этот термин как регулярное выражение"
+
+#~ msgid "Filter by language"
+#~ msgstr "Фильтровать по языку"
+
+#~ msgid "Load tweets in the following languages"
+#~ msgstr "Загружать твиты на следующих языках"
+
+#~ msgid "Ignore tweets in the following languages"
+#~ msgstr "Игнорировать твиты на следующих языках"
+
+#~ msgid "Don't filter by language"
+#~ msgstr "Не фильтровать по языку"
+
+#~ msgid "Supported languages"
+#~ msgstr "Поддерживаемые языки"
+
+#~ msgid "Add selected language to filter"
+#~ msgstr "Добавить выбранный язык к фильтру"
+
+#~ msgid "Selected languages"
+#~ msgstr "Выбранные языки"
+
+#~ msgid "You must define a name for the filter before creating it."
+#~ msgstr ""
+
+#~ msgid "Missing filter name"
+#~ msgstr ""
+
+#~ msgid "Manage filters"
+#~ msgstr "Управление фильтрами"
+
+#~ msgid "Filters"
+#~ msgstr "Фильтры"
+
+#~ msgid "Filter"
+#~ msgstr "Фильтр"
+
+#~ msgid "Lists manager"
+#~ msgstr "Менеджер Списков"
+
+#~ msgid "List"
+#~ msgstr "Список"
+
+#~ msgid "Owner"
+#~ msgstr "Создатель"
+
+#~ msgid "Members"
+#~ msgstr "Участников"
+
+#~ msgid "mode"
+#~ msgstr "Режим"
+
+#~ msgid "Create a new list"
+#~ msgstr "Создать новый список"
+
+#~ msgid "Open in buffer"
+#~ msgstr "Открыть в буфере"
+
+#~ msgid "Viewing lists for %s"
+#~ msgstr "Просмотр списков пользователя  %s"
+
+#~ msgid "Subscribe"
+#~ msgstr "Подписаться"
+
+#~ msgid "Unsubscribe"
+#~ msgstr "Отписаться"
+
+#~ msgid "Name (20 characters maximun)"
+#~ msgstr "Название (максимум 20 символов)"
+
+#~ msgid "Mode"
+#~ msgstr "Режим"
+
+#~ msgid "Private"
+#~ msgstr "Личный"
+
+#~ msgid "Editing the list %s"
+#~ msgstr "Редактирование списка %s"
+
+#~ msgid "Select a list to add the user"
+#~ msgstr "В какой список вы хотите добавить пользователя?"
+
+#~ msgid "Add"
+#~ msgstr "Добавить"
+
+#~ msgid "Select a list to remove the user"
+#~ msgstr "Из какого списка вы хотите удалить пользователя?"
+
+#~ msgid "Do you really want to delete this list?"
+#~ msgstr "Вы желаете удалить этот список?"
+
+#~ msgid "Search on Twitter"
+#~ msgstr "Поиск в твиттере"
+
+#~ msgid "Tweets"
+#~ msgstr "Твиты"
+
+#~ msgid "&Language for results: "
+#~ msgstr "Язык результатов"
+
+#~ msgid "any"
+#~ msgstr "Любой"
+
+#~ msgid "Results &type: "
+#~ msgstr "&Тип результатов:"
+
+#~ msgid "Mixed"
+#~ msgstr "Смешанные"
+
+#~ msgid "Recent"
+#~ msgstr "Недавние"
+
+#~ msgid "Popular"
+#~ msgstr "Популярные"
+
+#~ msgid "Details"
+#~ msgstr "Детали"
+
+#~ msgid "&Go to URL"
+#~ msgstr "&Перейти по ссылке"
+
+#~ msgid "View trending topics"
+#~ msgstr "Просмотр трендов"
+
+#~ msgid "Trending topics by"
+#~ msgstr "Сортировать по"
+
+#~ msgid "Country"
+#~ msgstr "Стране"
+
+#~ msgid "City"
+#~ msgstr "Городу"
+
+#~ msgid "&Location"
+#~ msgstr "Местоположение"
+
+#~ msgid "Update your profile"
+#~ msgstr "Обновить свой профиль"
+
+#~ msgid "&Name (50 characters maximum)"
+#~ msgstr "Имя (максимум 50 символов)"
+
+#~ msgid "&Website"
+#~ msgstr "Сайт"
+
+#~ msgid "&Bio (160 characters maximum)"
+#~ msgstr "Кратко о  себе  (максимум 160 символов)"
+
+#~ msgid "Upload a &picture"
+#~ msgstr "Загрузить фото"
+
+#~ msgid "Upload a picture"
+#~ msgstr "Загрузить фото"
+
+#~ msgid "Discard image"
+#~ msgstr "Удалить фото"
+
+#~ msgid "&Report as spam"
+#~ msgstr "&Сообщить о спаме"
+
+#~ msgid "&Ignore tweets from this client"
+#~ msgstr "Игнорировать твиты, которые отправляются из этого клиента"
+
+#~ msgid "&Tweets"
+#~ msgstr "Твиты"
+
+#~ msgid "&Likes"
+#~ msgstr "Понравившееся"
+
+#~ msgid "F&riends"
+#~ msgstr "Чи&таемые"
+
+#~ msgid "Delete attachment"
+#~ msgstr "Удалить  вложение"
+
+#~ msgid "Added Tweets"
+#~ msgstr "Отправленные твиты"
+
+#~ msgid "Delete tweet"
+#~ msgstr "Отправленные твиты"
+
+#~ msgid "A&dd..."
+#~ msgstr ""
+
+#~ msgid "Add t&weet"
+#~ msgstr "Нравится"
+
+#~ msgid "&Attach audio..."
+#~ msgstr "Добавить аудио"
+
+#~ msgid "Sen&d"
+#~ msgstr "Отправи&ть"
+
+#~ msgid "Video files (*.mp4)|*.mp4"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "It is not possible to add more "
+#~ "attachments. Please make sure your tweet"
+#~ " complies with Twitter'S attachment rules."
+#~ " You can add only one video or"
+#~ " GIF in every tweet, and a "
+#~ "maximum of 4 photos."
+#~ msgstr ""
+
+#~ msgid "&Mention to all"
+#~ msgstr "Упомянуть всех"
+
+#~ msgid "&Recipient"
+#~ msgstr "П&олучатель"
+
+#~ msgid "Tweet - %i characters "
+#~ msgstr "Твит - Написано  %i символов"
+
+#~ msgid "Retweets: "
+#~ msgstr "Ретвиты:"
+
+#~ msgid "Likes: "
+#~ msgstr "Понравившиеся"
+
+#~ msgid "View"
+#~ msgstr "Вид"
+
+#~ msgid "Item"
+#~ msgstr "Элемент"
+
+#~ msgid "&Expand URL"
+#~ msgstr "Ра&звернуть ссылку"
+
+#~ msgid "Participation time (in days)"
+#~ msgstr ""
+
+#~ msgid "&Open in Twitter"
+#~ msgstr "Открыть в &Твиттере"
+
+#~ msgid "&Show tweet"
+#~ msgstr "&Показать твит"
+
+#~ msgid "Translated"
+#~ msgstr "Переведено"
+
+#~ msgid "Afrikaans"
+#~ msgstr "Африкаанс"
+
+#~ msgid "Albanian"
+#~ msgstr "Албанский"
+
+#~ msgid "Amharic"
+#~ msgstr "Амхарский"
+
+#~ msgid "Arabic"
+#~ msgstr "Арабский"
+
+#~ msgid "Armenian"
+#~ msgstr "Армянский"
+
+#~ msgid "Azerbaijani"
+#~ msgstr "Азербайджанский"
+
+#~ msgid "Basque"
+#~ msgstr "Баскский"
+
+#~ msgid "Belarusian"
+#~ msgstr "Белорусский"
+
+#~ msgid "Bengali"
+#~ msgstr "Бенгальский"
+
+#~ msgid "Bihari"
+#~ msgstr "Бихари"
+
+#~ msgid "Bulgarian"
+#~ msgstr "Болгарский"
+
+#~ msgid "Burmese"
+#~ msgstr "Бирманский"
+
+#~ msgid "Catalan"
+#~ msgstr "Каталонский"
+
+#~ msgid "Cherokee"
+#~ msgstr "Чероки"
+
+#~ msgid "Chinese"
+#~ msgstr "Китайский"
+
+#~ msgid "Chinese_simplified"
+#~ msgstr "Китайский (Упрощённый)"
+
+#~ msgid "Chinese_traditional"
+#~ msgstr "Китайский (традиционный)"
+
+#~ msgid "Croatian"
+#~ msgstr "Хорватский"
+
+#~ msgid "Czech"
+#~ msgstr "Чешский"
+
+#~ msgid "Dhivehi"
+#~ msgstr "Дивехи"
+
+#~ msgid "Esperanto"
+#~ msgstr "Эсперанто"
+
+#~ msgid "Estonian"
+#~ msgstr "Эстонский"
+
+#~ msgid "Filipino"
+#~ msgstr "Филиппинский"
+
+#~ msgid "Galician"
+#~ msgstr "Галисийский"
+
+#~ msgid "Georgian"
+#~ msgstr "Грузинский"
+
+#~ msgid "Greek"
+#~ msgstr "Греческий"
+
+#~ msgid "Guarani"
+#~ msgstr "Гуарани"
+
+#~ msgid "Gujarati"
+#~ msgstr "Гуджарати"
+
+#~ msgid "Hebrew"
+#~ msgstr "Иврит"
+
+#~ msgid "Hindi"
+#~ msgstr "Хинди"
+
+#~ msgid "Icelandic"
+#~ msgstr "Исландский"
+
+#~ msgid "Indonesian"
+#~ msgstr "Индонезийский"
+
+#~ msgid "Inuktitut"
+#~ msgstr "Инуктитут"
+
+#~ msgid "Irish"
+#~ msgstr "Ирландский"
+
+#~ msgid "Kannada"
+#~ msgstr "Каннада"
+
+#~ msgid "Kazakh"
+#~ msgstr "Казахский"
+
+#~ msgid "Khmer"
+#~ msgstr "Кхмерский"
+
+#~ msgid "Kurdish"
+#~ msgstr "Курдский"
+
+#~ msgid "Kyrgyz"
+#~ msgstr "Киргизский"
+
+#~ msgid "Laothian"
+#~ msgstr "Лаосский"
+
+#~ msgid "Latvian"
+#~ msgstr "Латышский"
+
+#~ msgid "Lithuanian"
+#~ msgstr "Литовский"
+
+#~ msgid "Macedonian"
+#~ msgstr "Македонский"
+
+#~ msgid "Malay"
+#~ msgstr "Малайский"
+
+#~ msgid "Malayalam"
+#~ msgstr "Малаялам"
+
+#~ msgid "Maltese"
+#~ msgstr "Мальтийский"
+
+#~ msgid "Marathi"
+#~ msgstr "Маратхи"
+
+#~ msgid "Mongolian"
+#~ msgstr "Монгольский"
+
+#~ msgid "Nepali"
+#~ msgstr "Непальский"
+
+#~ msgid "Norwegian"
+#~ msgstr "Норвежский"
+
+#~ msgid "Oriya"
+#~ msgstr "Ория"
+
+#~ msgid "Pashto"
+#~ msgstr "Пушту"
+
+#~ msgid "Persian"
+#~ msgstr "Фарси"
+
+#~ msgid "Punjabi"
+#~ msgstr "Панджаби"
+
+#~ msgid "Romanian"
+#~ msgstr "Румынский"
+
+#~ msgid "Sanskrit"
+#~ msgstr "Санскрит"
+
+#~ msgid "Serbian"
+#~ msgstr "Сербский"
+
+#~ msgid "Sindhi"
+#~ msgstr "Синдхи"
+
+#~ msgid "Sinhalese"
+#~ msgstr "Сингальский"
+
+#~ msgid "Slovak"
+#~ msgstr "Словацкий"
+
+#~ msgid "Slovenian"
+#~ msgstr "Словенский"
+
+#~ msgid "Swahili"
+#~ msgstr "Суахили"
+
+#~ msgid "Swedish"
+#~ msgstr "Шведский"
+
+#~ msgid "Tajik"
+#~ msgstr "Таджикский"
+
+#~ msgid "Tamil"
+#~ msgstr "Тамильский"
+
+#~ msgid "Tagalog"
+#~ msgstr "Тагальский"
+
+#~ msgid "Telugu"
+#~ msgstr "Телугу"
+
+#~ msgid "Thai"
+#~ msgstr "Тайский"
+
+#~ msgid "Tibetan"
+#~ msgstr "Тибетский"
+
+#~ msgid "Ukrainian"
+#~ msgstr "Украинский"
+
+#~ msgid "Urdu"
+#~ msgstr "Урду"
+
+#~ msgid "Uzbek"
+#~ msgstr "Узбекский"
+
+#~ msgid "Uighur"
+#~ msgstr "Уйгурский"
+
+#~ msgid "Vietnamese"
+#~ msgstr "Вьетнамский"
+
+#~ msgid "Welsh"
+#~ msgstr "Валлийский"
+
+#~ msgid "Yiddish"
+#~ msgstr "Идиш"
+
+#~ msgid ""
+#~ "TWBlue has detected that you're running"
+#~ " windows 10 and has changed the "
+#~ "default keymap to the Windows 10 "
+#~ "keymap. It means that some keyboard "
+#~ "shorcuts could be different. Please "
+#~ "check the keystroke editor by pressing"
+#~ " Alt+Win+K to see all available "
+#~ "keystrokes for this keymap."
+#~ msgstr ""
+#~ "TWBlue  было определено , что вы "
+#~ "используете windows 10 и список "
+#~ "клавиатурных команд по умолчанию был "
+#~ "заменен на горячие клавиши для Windows"
+#~ " 10. Это значит, что некоторые "
+#~ "сочетания клавиш могут отличаться. Чтобы "
+#~ "посмотреть все доступные комбинации клавиш,"
+#~ " откройте редактор горячих клавиш нажав "
+#~ "Альт +Win+K."
+
+#~ msgid "Boosts: "
+#~ msgstr ""
+
+#~ msgid "Favorites: "
+#~ msgstr ""
+
+#~ msgid "Date: "
+#~ msgstr "Дата: "
+
+#~ msgid "Community for {}"
+#~ msgstr ""
+
+#~ msgid "Run {0} at Windows startup"
+#~ msgstr "Запускать {0} при старте Windows."
+
+#~ msgid "Use Codeofdusk's longtweet handlers (may decrease client performance)"
+#~ msgstr "Использование удлинителя твитов (может вызвать торможение клиента)"
+
+#~ msgid "Remember state for mention all and long tweet"
+#~ msgstr "Запоминать состояние для упоминаний всех пользователей и длинных твитов"
+
+#~ msgid "Bio: "
+#~ msgstr ""
+
+#~ msgid "Joined at: "
+#~ msgstr ""
+
+#~ msgid "Field {} - Label: "
+#~ msgstr ""
+
+#~ msgid "{} posts. Click to open posts timeline"
+#~ msgstr ""
+
+#~ msgid "{} following. Click to open Following timeline"
+#~ msgstr ""
+
+#~ msgid "{} followers. Click to open followers timeline"
+#~ msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr ""
+
+#~ msgid "Bio"
+#~ msgstr ""
+
+#~ msgid "Change header"
+#~ msgstr ""
+
+#~ msgid "Change avatar"
+#~ msgstr ""
+
+#~ msgid "Field {}: Label"
+#~ msgstr ""
+
+#~ msgid "Add  following to database"
+#~ msgstr ""
+
+#~ msgid "Read long posts in GUI"
+#~ msgstr ""
+
+#~ msgid "LibreTranslate API URL: "
+#~ msgstr ""
+
+#~ msgid "LibreTranslate API Key (optional): "
+#~ msgstr ""
+
+#~ msgid "DeepL API Key: "
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Scan account and add followers and "
+#~ "following users to the user "
+#~ "autocompletion database"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Read preferences from instance (default "
+#~ "visibility when publishing and displaying "
+#~ "sensitive content)"
+#~ msgstr ""
+
+#~ msgid "Ask confirmation before boosting a post"
+#~ msgstr ""
+
+#~ msgid "hide emojis in usernames"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Load cache for items in memory "
+#~ "(much faster in big datasets but "
+#~ "requires more RAM)"
+#~ msgstr ""
+

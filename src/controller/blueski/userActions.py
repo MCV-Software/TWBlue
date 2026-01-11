@@ -1,75 +1,98 @@
-from __future__ import annotations
-
+# -*- coding: utf-8 -*-
 import logging
-from typing import TYPE_CHECKING, Any
+import widgetUtils
+import output
+from wxUI.dialogs.blueski import userActions as userActionsDialog
+import languageHandler
 
-fromapprove.translation import translate as _
-# fromapprove.controller.mastodon import userActions as mastodon_user_actions # If adapting
-
-if TYPE_CHECKING:
-    fromapprove.sessions.blueski.session import Session as BlueskiSession # Adjusted
-
-logger = logging.getLogger(__name__)
-
-# This file defines user-specific actions that can be performed on Blueski entities,
-# typically represented as buttons or links in the UI, often on user profiles or posts.
-
-# For Blueski, actions might include:
-# - Viewing a user's profile on Bluesky/Blueski instance.
-# - Following/Unfollowing a user.
-# - Muting/Blocking a user.
-# - Reporting a user.
-# - Fetching a user's latest posts.
-
-# These actions are often presented in a context menu or as direct buttons.
-# The `get_user_actions` method in the BlueskiSession class would define these.
-# This file would contain the implementation or further handling logic if needed,
-# or if actions are too complex for simple lambda/method calls in the session class.
-
-# Example structure for defining an action:
-# (This might be more detailed if actions require forms or multi-step processes)
-
-# def view_profile_action(session: BlueskiSession, user_id: str) -> dict[str, Any]:
-#     """
-#     Generates data for a "View Profile on Blueski" action.
-#     user_id here would be the Blueski DID or handle.
-#     """
-#     # profile_url = f"https://bsky.app/profile/{user_id}" # Example, construct from handle or DID
-#     # This might involve resolving DID to handle or vice-versa if only one is known.
-#     # handle = await session.util.get_username_from_user_id(user_id) or user_id
-#     # profile_url = f"https://bsky.app/profile/{handle}"
-
-#     return {
-#         "id": "blueski_view_profile",
-#         "label": _("View Profile on Bluesky"),
-#         "icon": "external-link-alt", # FontAwesome icon name
-#         "action_type": "link", # "link", "modal", "api_call"
-#         "url": profile_url, # For "link" type
-#         # "api_endpoint": "/api/blueski/user_action", # For "api_call"
-#         # "payload": {"action": "view_profile", "target_user_id": user_id},
-#         "confirmation_required": False,
-#     }
+log = logging.getLogger("controller.blueski.userActions")
 
 
-# async def follow_user_action_handler(session: BlueskiSession, target_user_id: str) -> dict[str, Any]:
-#     """
-#     Handles the 'follow_user' action for Blueski.
-#     target_user_id should be the DID of the user to follow.
-#     """
-#     # success = await session.util.follow_user(target_user_id)
-#     # if success:
-#     #     return {"status": "success", "message": _("User {target_user_id} followed.").format(target_user_id=target_user_id)}
-#     # else:
-#     #     return {"status": "error", "message": _("Failed to follow user {target_user_id}.").format(target_user_id=target_user_id)}
-#     return {"status": "pending", "message": "Follow action not implemented yet."}
+class BasicUserSelector(object):
+    def __init__(self, session, users=None):
+        super(BasicUserSelector, self).__init__()
+        self.session = session
+        self.create_dialog(users=users or [])
+
+    def create_dialog(self, users):
+        pass
+
+    def resolve_profile(self, actor):
+        try:
+            return self.session.get_profile(actor)
+        except Exception:
+            log.exception("Error resolving Bluesky profile for %s.", actor)
+            return None
 
 
-# The list of available actions is typically defined in the Session class,
-# e.g., BlueskiSession.get_user_actions(). That method would return a list
-# of dictionaries, and this file might provide handlers for more complex actions
-# if they aren't simple API calls defined directly in the session's util.
+class userActions(BasicUserSelector):
+    def __init__(self, *args, **kwargs):
+        super(userActions, self).__init__(*args, **kwargs)
+        if self.dialog.get_response() == widgetUtils.OK:
+            self.process_action()
 
-# For now, this file can be a placeholder if most actions are simple enough
-# to be handled directly by the session.util methods or basic handler routes.
+    def create_dialog(self, users):
+        self.dialog = userActionsDialog.UserActionsDialog(users)
 
-logger.info("Blueski userActions module loaded (placeholders).")
+    def process_action(self):
+        action = self.dialog.get_action()
+        actor = self.dialog.get_user().strip()
+        if not actor:
+            output.speak(_("No user specified."), True)
+            return
+
+        profile = self.resolve_profile(actor)
+        if not profile:
+            output.speak(_("User not found."), True)
+            return
+
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        did = g(profile, "did")
+        viewer = g(profile, "viewer") or {}
+
+        if not did:
+            output.speak(_("User identifier not available."), True)
+            return
+
+        if action == "follow":
+            if self.session.follow_user(did):
+                output.speak(_("Followed."))
+            else:
+                output.speak(_("Failed to follow user."), True)
+        elif action == "unfollow":
+            follow_uri = g(viewer, "following")
+            if not follow_uri:
+                output.speak(_("Follow information not available."), True)
+                return
+            if self.session.unfollow_user(follow_uri):
+                output.speak(_("Unfollowed."))
+            else:
+                output.speak(_("Failed to unfollow user."), True)
+        elif action == "mute":
+            if self.session.mute_user(did):
+                output.speak(_("Muted."))
+            else:
+                output.speak(_("Failed to mute user."), True)
+        elif action == "unmute":
+            if self.session.unmute_user(did):
+                output.speak(_("Unmuted."))
+            else:
+                output.speak(_("Failed to unmute user."), True)
+        elif action == "block":
+            if self.session.block_user(did):
+                output.speak(_("Blocked."))
+            else:
+                output.speak(_("Failed to block user."), True)
+        elif action == "unblock":
+            block_uri = g(viewer, "blocking")
+            if not block_uri:
+                output.speak(_("Block information not available."), True)
+                return
+            if self.session.unblock_user(block_uri):
+                output.speak(_("Unblocked."))
+            else:
+                output.speak(_("Failed to unblock user."), True)

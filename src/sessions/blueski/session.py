@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from typing import Any
 
 import wx
@@ -66,6 +67,7 @@ class Session(base.baseSession):
             handle = (
                 self.db.get("user_name")
                 or (self.settings and self.settings.get("blueski", {}).get("handle"))
+                or (self.settings and self.settings.get("atprotosocial", {}).get("handle"))
                 or (getattr(getattr(self, "api", None), "me", None) and self.api.me.handle)
             )
             if handle:
@@ -129,9 +131,10 @@ class Session(base.baseSession):
             self.settings.write()
             self.logged = True
             log.debug("Logged in to Bluesky as %s", api.me.handle)
-        except Exception:
+        except Exception as e:
             log.exception("Bluesky login failed")
             self.logged = False
+            raise e
 
     def authorise(self):
         self._ensure_settings_namespace()
@@ -175,7 +178,7 @@ class Session(base.baseSession):
                 _("We could not log in to Bluesky. Please verify your handle and app password."),
                 _("Login error"), wx.ICON_ERROR
             )
-            return
+            return False
         return True
 
     def get_message_url(self, message_id, context=None):
@@ -207,6 +210,22 @@ class Session(base.baseSession):
                 "$type": "app.bsky.feed.post",
                 "text": text,
             }
+            
+            # Facets (Links and Mentions)
+            try:
+                facets = self._get_facets(text, api)
+                if facets:
+                    record["facets"] = facets
+            except:
+                pass
+
+            # Labels (CW)
+            if cw_text:
+                record["labels"] = {
+                    "$type": "com.atproto.label.defs#selfLabels",
+                    "values": [{"val": "warn"}]
+                }
+
             # createdAt
             try:
                 record["createdAt"] = api.get_current_time_iso()
@@ -360,15 +379,163 @@ class Session(base.baseSession):
                 uri = None
             if not uri:
                 raise RuntimeError("Post did not return a URI")
-            # Store last post id if useful
-            self.db.setdefault("sent", [])
-            self.db["sent"].append(dict(id=uri, text=message))
-            self.save_persistent_data()
+
             return uri
         except Exception:
             log.exception("Error sending Bluesky post")
             output.speak(_("An error occurred while posting to Bluesky."), True)
             return None
+
+    def _get_facets(self, text, api):
+        facets = []
+        # Mentions
+        for m in re.finditer(r'@([a-zA-Z0-9.-]+)', text):
+            handle = m.group(1)
+            try:
+                # We should probably cache this identity lookup
+                res = api.com.atproto.identity.resolve_handle({'handle': handle})
+                did = res.did
+                facets.append({
+                    'index': {
+                        'byteStart': len(text[:m.start()].encode('utf-8')),
+                        'byteEnd': len(text[:m.end()].encode('utf-8'))
+                    },
+                    'features': [{'$type': 'app.bsky.richtext.facet#mention', 'did': did}]
+                })
+            except:
+                continue
+        # Links
+        for m in re.finditer(r'(https?://[^\s]+)', text):
+            url = m.group(1)
+            facets.append({
+                'index': {
+                    'byteStart': len(text[:m.start()].encode('utf-8')),
+                    'byteEnd': len(text[:m.end()].encode('utf-8'))
+                },
+                'features': [{'$type': 'app.bsky.richtext.facet#link', 'uri': url}]
+            })
+        return facets
+
+    def delete_post(self, uri: str) -> bool:
+        """Delete a post by its AT URI."""
+        api = self._ensure_client()
+        try:
+             # at://did:plc:xxx/app.bsky.feed.post/rkey
+             parts = uri.split("/")
+             rkey = parts[-1]
+             api.com.atproto.repo.delete_record({
+                 "repo": api.me.did,
+                 "collection": "app.bsky.feed.post",
+                 "rkey": rkey
+             })
+             return True
+        except:
+             log.exception("Error deleting Bluesky post")
+             return False
+
+    def block_user(self, did: str) -> bool:
+        """Block a user by their DID."""
+        api = self._ensure_client()
+        try:
+             api.com.atproto.repo.create_record({
+                 "repo": api.me.did,
+                 "collection": "app.bsky.graph.block",
+                 "record": {
+                     "$type": "app.bsky.graph.block",
+                     "subject": did,
+                     "createdAt": api.get_current_time_iso()
+                 }
+             })
+             return True
+        except:
+             log.exception("Error blocking Bluesky user")
+             return False
+
+    def unblock_user(self, block_uri: str) -> bool:
+        """Unblock a user by the URI of the block record."""
+        api = self._ensure_client()
+        try:
+             parts = block_uri.split("/")
+             rkey = parts[-1]
+             api.com.atproto.repo.delete_record({
+                 "repo": api.me.did,
+                 "collection": "app.bsky.graph.block",
+                 "rkey": rkey
+             })
+             return True
+        except:
+             log.exception("Error unblocking Bluesky user")
+             return False
+
+    def get_profile(self, actor: str) -> Any:
+        api = self._ensure_client()
+        try:
+            return api.app.bsky.actor.get_profile({"actor": actor})
+        except Exception:
+            log.exception("Error fetching Bluesky profile for %s", actor)
+            return None
+
+    def follow_user(self, did: str) -> bool:
+        api = self._ensure_client()
+        try:
+            api.com.atproto.repo.create_record({
+                "repo": api.me.did,
+                "collection": "app.bsky.graph.follow",
+                "record": {
+                    "$type": "app.bsky.graph.follow",
+                    "subject": did,
+                    "createdAt": api.get_current_time_iso()
+                }
+            })
+            return True
+        except Exception:
+            log.exception("Error following Bluesky user")
+            return False
+
+    def unfollow_user(self, follow_uri: str) -> bool:
+        api = self._ensure_client()
+        try:
+            parts = follow_uri.split("/")
+            rkey = parts[-1]
+            api.com.atproto.repo.delete_record({
+                "repo": api.me.did,
+                "collection": "app.bsky.graph.follow",
+                "rkey": rkey
+            })
+            return True
+        except Exception:
+            log.exception("Error unfollowing Bluesky user")
+            return False
+
+    def mute_user(self, did: str) -> bool:
+        api = self._ensure_client()
+        try:
+            graph = api.app.bsky.graph
+            if hasattr(graph, "mute_actor"):
+                graph.mute_actor({"actor": did})
+            elif hasattr(graph, "muteActor"):
+                graph.muteActor({"actor": did})
+            else:
+                return False
+            return True
+        except Exception:
+            log.exception("Error muting Bluesky user")
+            return False
+
+    def unmute_user(self, did: str) -> bool:
+        api = self._ensure_client()
+        try:
+            graph = api.app.bsky.graph
+            if hasattr(graph, "unmute_actor"):
+                graph.unmute_actor({"actor": did})
+            elif hasattr(graph, "unmuteActor"):
+                graph.unmuteActor({"actor": did})
+            else:
+                return False
+            return True
+        except Exception:
+            log.exception("Error unmuting Bluesky user")
+            return False
 
     def repost(self, post_uri: str, post_cid: str | None = None) -> str | None:
         """Create a simple repost of a given post. Returns URI of the repost record or None."""
@@ -415,3 +582,80 @@ class Session(base.baseSession):
         except Exception:
             log.exception("Error creating Bluesky repost record")
             return None
+
+    def like(self, post_uri: str, post_cid: str | None = None) -> str | None:
+        """Create a like for a given post."""
+        if not self.logged:
+             raise Exceptions.NotLoggedSessionError("You are not logged in yet.")
+        try:
+             api = self._ensure_client()
+             
+             # Resolve strong ref if needed
+             def _get_strong_ref(uri: str):
+                try:
+                    posts_res = api.app.bsky.feed.get_posts({"uris": [uri]})
+                    posts = getattr(posts_res, "posts", None) or []
+                except Exception:
+                    try: posts_res = api.app.bsky.feed.get_posts(uris=[uri])
+                    except: posts_res = None
+                    posts = getattr(posts_res, "posts", None) or []
+                if posts:
+                    p = posts[0]
+                    return {"uri": getattr(p, "uri", uri), "cid": getattr(p, "cid", None)}
+                return None
+
+             if not post_cid:
+                 strong = _get_strong_ref(post_uri)
+                 if not strong: return None
+                 post_uri = strong["uri"]
+                 post_cid = strong["cid"]
+            
+             out = api.com.atproto.repo.create_record({
+                 "repo": api.me.did,
+                 "collection": "app.bsky.feed.like",
+                 "record": {
+                     "$type": "app.bsky.feed.like",
+                     "subject": {"uri": post_uri, "cid": post_cid},
+                     "createdAt": getattr(api, "get_current_time_iso", lambda: None)() or None,
+                 },
+             })
+             return getattr(out, "uri", None)
+        except Exception:
+             log.exception("Error creating Bluesky like")
+             return None
+
+    def get_followers(self, actor: str | None = None, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
+        api = self._ensure_client()
+        actor = actor or api.me.did
+        res = api.app.bsky.graph.get_followers({"actor": actor, "limit": limit, "cursor": cursor})
+        return {"items": res.followers, "cursor": res.cursor}
+
+    def get_follows(self, actor: str | None = None, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
+        api = self._ensure_client()
+        actor = actor or api.me.did
+        res = api.app.bsky.graph.get_follows({"actor": actor, "limit": limit, "cursor": cursor})
+        return {"items": res.follows, "cursor": res.cursor}
+
+    def get_blocks(self, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
+        api = self._ensure_client()
+        res = api.app.bsky.graph.get_blocks({"limit": limit, "cursor": cursor})
+        return {"items": res.blocks, "cursor": res.cursor}
+
+    def list_convos(self, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
+        api = self._ensure_client()
+        res = api.chat.bsky.convo.list_convos({"limit": limit, "cursor": cursor})
+        return {"items": res.convos, "cursor": res.cursor}
+
+    def get_convo_messages(self, convo_id: str, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
+        api = self._ensure_client()
+        res = api.chat.bsky.convo.get_messages({"convoId": convo_id, "limit": limit, "cursor": cursor})
+        return {"items": res.messages, "cursor": res.cursor}
+
+    def send_chat_message(self, convo_id: str, text: str) -> Any:
+        api = self._ensure_client()
+        return api.chat.bsky.convo.send_message({
+            "convoId": convo_id,
+            "message": {
+                "text": text
+            }
+        })

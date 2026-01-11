@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 import wx
-import asyncio
 import logging
-from pubsub import pub
+import languageHandler
+import builtins
+from threading import Thread
 
-from approve.translation import translate as _
-from approve.notifications import NotificationError
-# Assuming controller.blueski.userList.get_user_profile_details and session.util._format_profile_data exist
-# For direct call to util:
-# from sessions.blueski import utils as BlueskiUtils
+_ = getattr(builtins, "_", lambda s: s)
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +22,7 @@ class ShowUserProfileDialog(wx.Dialog):
         self.SetMinSize((400, 300))
         self.CentreOnParent()
 
-        wx.CallAfter(asyncio.create_task, self.load_profile_data())
+        Thread(target=self.load_profile_data, daemon=True).start()
 
     def _init_ui(self):
         panel = wx.Panel(self)
@@ -36,17 +33,23 @@ class ShowUserProfileDialog(wx.Dialog):
         self.info_grid_sizer.AddGrowableCol(1, 1)
 
         fields = [
-            (_("Display Name:"), "displayName"), (_("Handle:"), "handle"), (_("DID:"), "did"),
-            (_("Followers:"), "followersCount"), (_("Following:"), "followsCount"), (_("Posts:"), "postsCount"),
-            (_("Bio:"), "description")
+            (_("&Name:"), "displayName"), (_("&Handle:"), "handle"), (_("&DID:"), "did"),
+            (_("&Followers:"), "followersCount"), (_("&Following:"), "followsCount"), (_("&Posts:"), "postsCount"),
+            (_("&Bio:"), "description")
         ]
         self.profile_field_ctrls = {}
 
         for label_text, data_key in fields:
             lbl = wx.StaticText(panel, label=label_text)
-            val_ctrl = wx.TextCtrl(panel, style=wx.TE_READONLY | wx.TE_MULTILINE if data_key == "description" else wx.TE_READONLY | wx.BORDER_NONE)
+            style = wx.TE_READONLY | wx.TE_PROCESS_TAB
+            if data_key == "description":
+                style |= wx.TE_MULTILINE
+            else:
+                style |= wx.BORDER_NONE
+            val_ctrl = wx.TextCtrl(panel, style=style)
             if data_key != "description": # Make it look like a label
                  val_ctrl.SetBackgroundColour(panel.GetBackgroundColour())
+            val_ctrl.AcceptsFocusFromKeyboard = lambda: True
 
             self.info_grid_sizer.Add(lbl, 0, wx.ALIGN_RIGHT | wx.ALIGN_TOP | wx.ALL, 2)
             self.info_grid_sizer.Add(val_ctrl, 1, wx.EXPAND | wx.ALL, 2)
@@ -89,51 +92,62 @@ class ShowUserProfileDialog(wx.Dialog):
         main_sizer.Add(actions_sizer, 0, wx.ALIGN_CENTER | wx.TOP | wx.BOTTOM, 10)
 
         # Close Button
-        close_btn = wx.Button(panel, wx.ID_CANCEL, _("Close"))
+        close_btn = wx.Button(panel, wx.ID_CANCEL, _("&Close"))
         close_btn.SetDefault() # Allow Esc to close
         main_sizer.Add(close_btn, 0, wx.ALIGN_RIGHT | wx.ALL, 10)
+        self.SetEscapeId(close_btn.GetId())
 
         panel.SetSizer(main_sizer)
         self.Fit() # Fit dialog to content
 
-    async def load_profile_data(self):
-        self.SetStatusText(_("Loading profile..."))
+    def load_profile_data(self):
+        wx.CallAfter(self.SetStatusText, _("Loading profile..."))
         for ctrl in self.profile_field_ctrls.values():
-            ctrl.SetValue(_("Loading..."))
+            wx.CallAfter(ctrl.SetValue, _("Loading..."))
 
         # Initially hide all action buttons until state is known
-        self.follow_btn.Hide()
-        self.unfollow_btn.Hide()
-        self.mute_btn.Hide()
-        self.unmute_btn.Hide()
-        self.block_btn.Hide()
-        self.unblock_btn.Hide()
+        wx.CallAfter(self.follow_btn.Hide)
+        wx.CallAfter(self.unfollow_btn.Hide)
+        wx.CallAfter(self.mute_btn.Hide)
+        wx.CallAfter(self.unmute_btn.Hide)
+        wx.CallAfter(self.block_btn.Hide)
+        wx.CallAfter(self.unblock_btn.Hide)
 
         try:
-            raw_profile = await self.session.util.get_user_profile(self.user_identifier)
-            if raw_profile:
-                self.profile_data = self.session.util._format_profile_data(raw_profile) # This should return a dict
-                self.target_user_did = self.profile_data.get("did") # Store the canonical DID
-                self.user_identifier = self.target_user_did # Update identifier to resolved DID for consistency
-
-                self.update_ui_fields()
-                self.update_action_buttons_state()
-                self.SetTitle(_("Profile: {handle}").format(handle=self.profile_data.get("handle", "")))
-                self.SetStatusText(_("Profile loaded."))
-            else:
-                for ctrl in self.profile_field_ctrls.values():
-                    ctrl.SetValue(_("Not found."))
-                self.SetStatusText(_("Profile not found for '{ident}'.").format(ident=self.user_identifier))
-                wx.MessageBox(_("User profile for '{ident}' not found.").format(ident=self.user_identifier), _("Error"), wx.OK | wx.ICON_ERROR, self)
+            api = self.session._ensure_client()
+            try:
+                raw_profile = api.app.bsky.actor.get_profile({"actor": self.user_identifier})
+            except Exception:
+                raw_profile = None
+            wx.CallAfter(self._apply_profile_data, raw_profile)
 
         except Exception as e:
             logger.error(f"Error loading profile for {self.user_identifier}: {e}", exc_info=True)
+            wx.CallAfter(self._apply_profile_error, e)
+
+    def _apply_profile_data(self, raw_profile):
+        if raw_profile:
+            self.profile_data = self._format_profile_data(raw_profile)
+            self.target_user_did = self.profile_data.get("did")
+            self.user_identifier = self.target_user_did or self.user_identifier
+
+            self.update_ui_fields()
+            self.update_action_buttons_state()
+            self.SetTitle(_("Profile: {handle}").format(handle=self.profile_data.get("handle", "")))
+            self.SetStatusText(_("Profile loaded."))
+        else:
             for ctrl in self.profile_field_ctrls.values():
-                ctrl.SetValue(_("Error loading."))
-            self.SetStatusText(_("Error loading profile."))
-            wx.MessageBox(_("Error loading profile: {error}").format(error=str(e)), _("Error"), wx.OK | wx.ICON_ERROR, self)
-        finally:
-            self.Layout() # Refresh layout after hiding/showing buttons
+                ctrl.SetValue(_("Not found."))
+            self.SetStatusText(_("Profile not found for '{ident}'.").format(ident=self.user_identifier))
+            wx.MessageBox(_("User profile for '{ident}' not found.").format(ident=self.user_identifier), _("Error"), wx.OK | wx.ICON_ERROR, self)
+        self.Layout()
+
+    def _apply_profile_error(self, err):
+        for ctrl in self.profile_field_ctrls.values():
+            ctrl.SetValue(_("Error loading."))
+        self.SetStatusText(_("Error loading profile."))
+        wx.MessageBox(_("Error loading profile: {error}").format(error=str(err)), _("Error"), wx.OK | wx.ICON_ERROR, self)
+        self.Layout()
 
     def update_ui_fields(self):
         if not self.profile_data:
@@ -159,7 +173,7 @@ class ShowUserProfileDialog(wx.Dialog):
         self.Layout()
 
     def update_action_buttons_state(self):
-        if not self.profile_data or not self.target_user_did or self.target_user_did == self.session.util.get_own_did():
+        if not self.profile_data or not self.target_user_did or self.target_user_did == self._get_own_did():
             self.follow_btn.Hide()
             self.unfollow_btn.Hide()
             self.mute_btn.Hide()
@@ -218,80 +232,70 @@ class ShowUserProfileDialog(wx.Dialog):
                 return
             dlg.Destroy()
 
-        async def do_action():
-            wx.BeginBusyCursor()
-            self.SetStatusText(_("Performing action: {action}...").format(action=command))
-            action_button = event.GetEventObject()
-            if action_button: action_button.Disable() # Disable the clicked button
+        wx.BeginBusyCursor()
+        self.SetStatusText(_("Performing action: {action}...").format(action=command))
+        action_button = event.GetEventObject()
+        if action_button:
+            action_button.Disable()
 
-            try:
-                # Ensure controller_handler is available on the session
-                if not hasattr(self.session, 'controller_handler') or not self.session.controller_handler:
-                     app = wx.GetApp()
-                     if hasattr(app, 'mainController'):
-                         self.session.controller_handler = app.mainController.get_handler(self.session.KIND)
-                     if not self.session.controller_handler: # Still not found
-                         raise RuntimeError("Controller handler not found for session.")
+        try:
+            if command == "block_user" and hasattr(self.session, "block_user"):
+                ok = self.session.block_user(self.target_user_did)
+                if not ok:
+                    raise RuntimeError(_("Failed to block user."))
+            elif command == "unblock_user" and hasattr(self.session, "unblock_user"):
+                viewer_state = self.profile_data.get("viewer", {}) if self.profile_data else {}
+                block_uri = viewer_state.get("blocking")
+                if not block_uri:
+                    raise RuntimeError(_("Block information not available."))
+                ok = self.session.unblock_user(block_uri)
+                if not ok:
+                    raise RuntimeError(_("Failed to unblock user."))
+            else:
+                raise RuntimeError(_("This action is not supported yet."))
 
-                result = await self.session.controller_handler.handle_user_command(
-                    command=command,
-                    user_id=self.session.uid,
-                    target_user_id=self.target_user_did,
-                    payload={}
-                )
-                wx.EndBusyCursor()
-                # Use CallAfter for UI updates from async task
-                wx.CallAfter(wx.MessageBox, result.get("message", _("Action completed.")),
-                              _("Success") if result.get("status") == "success" else _("Error"),
-                              wx.OK | (wx.ICON_INFORMATION if result.get("status") == "success" else wx.ICON_ERROR),
-                              self)
+            wx.EndBusyCursor()
+            wx.MessageBox(_("Action completed."), _("Success"), wx.OK | wx.ICON_INFORMATION, self)
+            wx.CallAfter(asyncio.create_task, self.load_profile_data())
+        except Exception as e:
+            wx.EndBusyCursor()
+            if action_button:
+                action_button.Enable()
+            self.SetStatusText(_("Action failed."))
+            wx.MessageBox(str(e), _("Error"), wx.OK | wx.ICON_ERROR, self)
 
-                if result.get("status") == "success":
-                    # Re-fetch profile data to update UI (especially button states)
-                    wx.CallAfter(asyncio.create_task, self.load_profile_data())
-                else: # Re-enable button if action failed
-                    if action_button: wx.CallAfter(action_button.Enable, True)
-                    self.SetStatusText(_("Action failed."))
+    def _get_own_did(self):
+        if isinstance(self.session.db, dict):
+            did = self.session.db.get("user_id")
+            if did:
+                return did
+        try:
+            api = self.session._ensure_client()
+            if getattr(api, "me", None):
+                return api.me.did
+        except Exception:
+            pass
+        return None
 
+    def _format_profile_data(self, profile_model):
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
 
-            except NotificationError as e:
-                wx.EndBusyCursor()
-                if action_button: wx.CallAfter(action_button.Enable, True)
-                self.SetStatusText(_("Action failed."))
-                wx.CallAfter(wx.MessageBox, str(e), _("Action Error"), wx.OK | wx.ICON_ERROR, self)
-            except Exception as e:
-                wx.EndBusyCursor()
-                if action_button: wx.CallAfter(action_button.Enable, True)
-                self.SetStatusText(_("Action failed."))
-                logger.error(f"Error performing user action '{command}' on {self.target_user_did}: {e}", exc_info=True)
-                wx.CallAfter(wx.MessageBox, _("An unexpected error occurred: {error}").format(error=str(e)), _("Error"), wx.OK | wx.ICON_ERROR, self)
-
-        asyncio.create_task(do_action()) # No wx.CallAfter needed for starting the task itself
+        return {
+            "did": g(profile_model, "did"),
+            "handle": g(profile_model, "handle"),
+            "displayName": g(profile_model, "displayName") or g(profile_model, "display_name") or g(profile_model, "handle"),
+            "description": g(profile_model, "description"),
+            "avatar": g(profile_model, "avatar"),
+            "banner": g(profile_model, "banner"),
+            "followersCount": g(profile_model, "followersCount"),
+            "followsCount": g(profile_model, "followsCount"),
+            "postsCount": g(profile_model, "postsCount"),
+            "viewer": g(profile_model, "viewer") or {},
+        }
 
     def SetStatusText(self, text): # Simple status text for dialog title
         self.SetTitle(f"{_('User Profile')} - {text}")
 
-```python
-# Example of how this dialog might be called from blueski.Handler.user_details:
-# (This is conceptual, actual integration in handler.py will use the dialog)
-#
-# async def user_details(self, buffer_panel_or_user_ident):
-#     session = self._get_session(self.current_user_id_from_context) # Get current session
-#     user_identifier_to_show = None
-#     if isinstance(buffer_panel_or_user_ident, str): # It's a DID or handle
-#         user_identifier_to_show = buffer_panel_or_user_ident
-#     elif hasattr(buffer_panel_or_user_ident, 'get_selected_item_author_details'): # It's a panel
-#         author_details = buffer_panel_or_user_ident.get_selected_item_author_details()
-#         if author_details:
-#             user_identifier_to_show = author_details.get("did") or author_details.get("handle")
-#
-#     if not user_identifier_to_show:
-#         # Optionally prompt for user_identifier if not found
-#         output.speak(_("No user selected or identified to view details."), True)
-#         return
-#
-#     dialog = ShowUserProfileDialog(self.main_controller.view, session, user_identifier_to_show)
-#     dialog.ShowModal()
-#     dialog.Destroy()
-
-```

@@ -5,6 +5,7 @@ import logging
 import webbrowser
 import wx
 import requests
+import asyncio
 import keystrokeEditor
 import sessions
 import widgetUtils
@@ -293,9 +294,52 @@ class Controller(object):
         pub.sendMessage("core.create_account", name=session.get_name(), session_id=session.session_id)
 
     def login_account(self, session_id):
+        session = None
         for i in sessions.sessions:
-            if sessions.sessions[i].session_id == session_id: session = sessions.sessions[i]
-        session.login()
+            if sessions.sessions[i].session_id == session_id:
+                session = sessions.sessions[i]
+                break
+        if not session:
+            return
+        
+        old_name = session.get_name()
+        try:
+            session.login()
+        except Exception as e:
+            log.exception("Login failed for session %s", session_id)
+            output.speak(_("Login failed for {0}: {1}").format(old_name, str(e)), True)
+            return
+
+        if not session.logged:
+            output.speak(_("Login failed for {0}. Please check your credentials.").format(old_name), True)
+            return
+
+        new_name = session.get_name()
+        if old_name != new_name:
+            log.info(f"Account name changed from {old_name} to {new_name} after login")
+            if self.current_account == old_name:
+                self.current_account = new_name
+            if old_name in self.accounts:
+                idx = self.accounts.index(old_name)
+                self.accounts[idx] = new_name
+            else:
+                self.accounts.append(new_name)
+            
+            # Update root buffer name and account
+            for b in self.buffers:
+                if b.account == old_name:
+                    b.account = new_name
+                    if hasattr(b, "buffer"):
+                        b.buffer.account = new_name
+                    # If this is the root node, its name matches old_name (e.g. "Bluesky")
+                    if b.name == old_name:
+                        b.name = new_name
+                        if hasattr(b, "buffer"):
+                            b.buffer.name = new_name
+            
+            # Update tree node label
+            self.change_buffer_title(old_name, old_name, new_name)
+
         handler = self.get_handler(type=session.type)
         if handler != None and hasattr(handler, "create_buffers"):
             try:
@@ -329,60 +373,35 @@ class Controller(object):
         try:
             buffer_panel_class = None
             if session_type == "blueski":
-                from wxUI.buffers.blueski import panels as BlueskiPanels # Import new panels
-                if buffer_type == "home_timeline":
-                    buffer_panel_class = BlueskiPanels.BlueskiHomeTimelinePanel
-                    # kwargs for HomeTimelinePanel: parent, name, session
-                    # 'name' is buffer_title, 'parent' is self.view.nb
-                    # 'session' needs to be fetched based on user_id in kwargs
-                    if "user_id" in kwargs and "session" not in kwargs: # Ensure session is passed
-                        kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
-                    # Clean unsupported kwarg for panel ctor
-                    if "user_id" in kwargs:
-                        kwargs.pop("user_id", None)
-                    if "name" not in kwargs: kwargs["name"] = buffer_title
+                from controller.buffers.blueski import timeline as BlueskiTimelines
+                from controller.buffers.blueski import user as BlueskiUsers
+                from controller.buffers.blueski import chat as BlueskiChats
+                
+                if "user_id" in kwargs and "session" not in kwargs:
+                     kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
+                
+                if "name" not in kwargs: kwargs["name"] = buffer_title
 
-                elif buffer_type == "user_timeline":
-                    buffer_panel_class = BlueskiPanels.BlueskiUserTimelinePanel
-                    # kwargs for UserTimelinePanel: parent, name, session, target_user_did, target_user_handle
-                    if "user_id" in kwargs and "session" not in kwargs:
-                        kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
-                    kwargs.pop("user_id", None)
-                    if "name" not in kwargs: kwargs["name"] = buffer_title
-                    # target_user_did and target_user_handle must be in kwargs from blueski.Handler
+                buffer_map = {
+                    "home_timeline": BlueskiTimelines.HomeTimeline,
+                    "following_timeline": BlueskiTimelines.FollowingTimeline,
+                    "notifications": BlueskiTimelines.NotificationBuffer,
+                    "conversation": BlueskiTimelines.Conversation,
+                    "likes": BlueskiTimelines.LikesBuffer,
+                    "UserBuffer": BlueskiUsers.UserBuffer,
+                    "FollowersBuffer": BlueskiUsers.FollowersBuffer,
+                    "FollowingBuffer": BlueskiUsers.FollowingBuffer,
+                    "BlocksBuffer": BlueskiUsers.BlocksBuffer,
+                    "ConversationListBuffer": BlueskiChats.ConversationListBuffer,
+                    "ChatMessageBuffer": BlueskiChats.ChatBuffer,
+                    "chat_messages": BlueskiChats.ChatBuffer,
+                }
 
-                elif buffer_type == "notifications":
-                    buffer_panel_class = BlueskiPanels.BlueskiNotificationPanel
-                    if "user_id" in kwargs and "session" not in kwargs:
-                        kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
-                    kwargs.pop("user_id", None)
-                    if "name" not in kwargs: kwargs["name"] = buffer_title
-                    # target_user_did and target_user_handle must be in kwargs from blueski.Handler
-
-                elif buffer_type == "notifications":
-                    buffer_panel_class = BlueskiPanels.BlueskiNotificationPanel
-                    if "user_id" in kwargs and "session" not in kwargs:
-                        kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
-                    kwargs.pop("user_id", None)
-                    if "name" not in kwargs: kwargs["name"] = buffer_title
-                elif buffer_type == "user_list_followers" or buffer_type == "user_list_following":
-                    buffer_panel_class = BlueskiPanels.BlueskiUserListPanel
-                elif buffer_type == "following_timeline":
-                    buffer_panel_class = BlueskiPanels.BlueskiFollowingTimelinePanel
-                    # Clean stray keys that this panel doesn't accept
-                    kwargs.pop("user_id", None)
-                    kwargs.pop("list_type", None)
-                    if "name" not in kwargs: kwargs["name"] = buffer_title
-                else:
-                    log.warning(f"Unsupported Blueski buffer type: {buffer_type}. Falling back to generic.")
-                    # Fallback to trying to find it in generic buffers or error
-                    available_buffers = getattr(buffers, "base", None) # Or some generic panel module
-                    if available_buffers and hasattr(available_buffers, buffer_type):
-                         buffer_panel_class = getattr(available_buffers, buffer_type)
-                    elif available_buffers and hasattr(available_buffers, "TimelinePanel"): # Example generic
-                        buffer_panel_class = getattr(available_buffers, "TimelinePanel")
-                    else:
-                        raise AttributeError(f"Blueski buffer type {buffer_type} not found in blueski.panels or base panels.")
+                buffer_panel_class = buffer_map.get(buffer_type)
+                if buffer_panel_class is None:
+                    # Fallback for others including user_timeline to HomeTimeline for now
+                    log.warning(f"Unsupported Blueski buffer type: {buffer_type}. Falling back to HomeTimeline.")
+                    buffer_panel_class = BlueskiTimelines.HomeTimeline
             else: # Existing logic for other session types
                 available_buffers = getattr(buffers, session_type)
                 if not hasattr(available_buffers, buffer_type):
@@ -722,6 +741,12 @@ class Controller(object):
 
         session = buffer.session
         if getattr(session, "type", "") == "blueski":
+            author_handle = ""
+            if hasattr(buffer, "get_selected_item_author_details"):
+                details = buffer.get_selected_item_author_details()
+                if details:
+                    author_handle = details.get("handle", "") or details.get("did", "")
+            initial_text = f"@{author_handle} " if author_handle and not author_handle.startswith("@") else (f"{author_handle} " if author_handle else "")
             if self.showing == False:
                 dlg = wx.TextEntryDialog(None, _("Write your reply:"), _("Reply"))
                 if dlg.ShowModal() == wx.ID_OK:
@@ -742,7 +767,7 @@ class Controller(object):
                     dlg.Destroy()
                 return
             from wxUI.dialogs.blueski.postDialogs import Post as ATPostDialog
-            dlg = ATPostDialog(caption=_("Reply"))
+            dlg = ATPostDialog(caption=_("Reply"), text=initial_text)
             if dlg.ShowModal() == wx.ID_OK:
                 text, files, cw_text, langs = dlg.get_payload()
                 dlg.Destroy()
@@ -1432,13 +1457,10 @@ class Controller(object):
     def update_buffers(self):
         for i in self.buffers[:]:
             if i.session != None and i.session.is_logged == True:
-                # For Blueski, initial load is in session.start() or manual.
-                # Periodic updates would need a separate timer or manual refresh via update_buffer.
-                if i.session.KIND != "blueski":
-                    try:
-                        i.start_stream(mandatory=True) # This is likely for streaming connections or timed polling within buffer
-                    except Exception as err:
-                        log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
+                try:
+                    i.start_stream(mandatory=True)
+                except Exception as err:
+                    log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
 
     def update_buffer(self, *args, **kwargs):
         """Handles the 'Update buffer' menu command to fetch newest items."""
@@ -1454,50 +1476,27 @@ class Controller(object):
             new_ids = []
             try:
                 if session.KIND == "blueski":
-                    if bf.name == f"{session.label} Home": # Assuming buffer name indicates type
-                        # Its panel's load_initial_posts calls session.fetch_home_timeline
-                        if hasattr(bf, "load_initial_posts"): # Generic for timeline panels
-                            await bf.load_initial_posts(limit=config.app["app-settings"].get("items_per_request", 20))
-                            new_ids = getattr(bf, "item_uris", [])
-                        else: # Should not happen if panel is correctly typed
-                            logger.warning(f"Home timeline panel for {session.KIND} missing load_initial_posts")
-                    elif bf.type == "notifications" and hasattr(bf, "refresh_notifications"):
-                        await bf.refresh_notifications(limit=config.app["app-settings"].get("items_per_request", 20))
-                        new_ids = []
-                    elif bf.type == "user_timeline" and hasattr(bf, "load_initial_posts"):
-                        await bf.load_initial_posts(limit=config.app["app-settings"].get("items_per_request", 20))
-                        new_ids = getattr(bf, "item_uris", [])
-                    elif bf.type in ["user_list_followers", "user_list_following"] and hasattr(bf, "load_initial_users"):
-                        await bf.load_initial_users(limit=config.app["app-settings"].get("items_per_request", 30))
-                        new_ids = [u.get("did") for u in getattr(bf, "user_list_data", []) if isinstance(u,dict)]
+                    if hasattr(bf, "start_stream"):
+                        count = bf.start_stream(mandatory=True)
+                        if count: new_ids = [str(x) for x in range(count)]
                     else:
-                        if hasattr(bf, "start_stream"): # Fallback for non-Blueski panels or unhandled types
-                            count = bf.start_stream(mandatory=True, avoid_autoreading=True)
-                            if count is not None: new_ids = [str(x) for x in range(count)] # Dummy IDs for count
-                        else:
-                            output.speak(_(u"This buffer type cannot be updated in this way."), True)
-                            return
-                else: # For other session types (e.g. Mastodon)
+                        output.speak(_(u"This buffer type cannot be updated."), True)
+                        return
+                else: # Generic fallback for other sessions
                     if hasattr(bf, "start_stream"):
                         count = bf.start_stream(mandatory=True, avoid_autoreading=True)
-                        if count is not None: new_ids = [str(x) for x in range(count)] # Dummy IDs for count
+                        if count: new_ids = [str(x) for x in range(count)]
                     else:
                         output.speak(_(u"Unable to update this buffer."), True)
                         return
 
-                # Generic feedback based on new_ids for timelines or user lists
+                # Generic feedback
                 if bf.type in ["home_timeline", "user_timeline"]:
                     output.speak(_("{0} posts retrieved").format(len(new_ids)), True)
-                elif bf.type in ["user_list_followers", "user_list_following"]:
-                    output.speak(_("{0} users retrieved").format(len(new_ids)), True)
                 elif bf.type == "notifications":
                      output.speak(_("Notifications updated."), True)
-                # else, original start_stream might have given feedback
-
-            except NotificationError as e:
-                output.speak(str(e), True) # Ensure output.speak is on main thread if called from here
-            except Exception as e_general:
-                logger.error(f"Error updating buffer {bf.name}: {e_general}", exc_info=True)
+            except Exception as e:
+                log.exception("Error updating buffer %s", bf.name)
                 output.speak(_("An error occurred while updating the buffer."), True)
 
         wx.CallAfter(asyncio.create_task, do_update())
@@ -1674,10 +1673,9 @@ class Controller(object):
             # The handler's user_details method is responsible for extracting context
             # (e.g., selected user) from the buffer and displaying the profile.
             # For Blueski, handler.user_details calls the ShowUserProfileDialog.
-            # It's an async method, so needs to be called appropriately.
-            async def _show_details():
-                await handler.user_details(buffer)
-            wx.CallAfter(asyncio.create_task, _show_details())
+            result = handler.user_details(buffer)
+            if asyncio.iscoroutine(result):
+                call_threaded(asyncio.run, result)
         else:
             output.speak(_("This session type does not support viewing user details in this way."), True)
 
@@ -1737,9 +1735,9 @@ class Controller(object):
             if author_details: user = author_details
 
         if handler and hasattr(handler, 'open_followers_timeline'):
-            async def _open_followers():
-                await handler.open_followers_timeline(main_controller=self, session=session_to_use, user_payload=user)
-            wx.CallAfter(asyncio.create_task, _open_followers())
+            result = handler.open_followers_timeline(main_controller=self, session=session_to_use, user_payload=user)
+            if asyncio.iscoroutine(result):
+                call_threaded(asyncio.run, result)
         elif handler and hasattr(handler, 'openFollowersTimeline'): # Fallback
             handler.openFollowersTimeline(self, current_buffer, user)
         else:
@@ -1768,9 +1766,9 @@ class Controller(object):
             if author_details: user = author_details
 
         if handler and hasattr(handler, 'open_following_timeline'):
-            async def _open_following():
-                await handler.open_following_timeline(main_controller=self, session=session_to_use, user_payload=user)
-            wx.CallAfter(asyncio.create_task, _open_following())
+            result = handler.open_following_timeline(main_controller=self, session=session_to_use, user_payload=user)
+            if asyncio.iscoroutine(result):
+                call_threaded(asyncio.run, result)
         elif handler and hasattr(handler, 'openFollowingTimeline'): # Fallback
             handler.openFollowingTimeline(self, current_buffer, user)
         else:

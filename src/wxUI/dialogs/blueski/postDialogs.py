@@ -9,7 +9,10 @@ class Post(wx.Dialog):
         main_sizer = wx.BoxSizer(wx.VERTICAL)
 
         # Text
+        post_label = wx.StaticText(self, wx.ID_ANY, caption)
+        main_sizer.Add(post_label, 0, wx.ALL, 6)
         self.text = wx.TextCtrl(self, wx.ID_ANY, text, style=wx.TE_MULTILINE)
+        self.Bind(wx.EVT_CHAR_HOOK, self.handle_keys, self.text)
         self.text.SetMinSize((400, 160))
         main_sizer.Add(self.text, 1, wx.EXPAND | wx.ALL, 6)
 
@@ -58,6 +61,7 @@ class Post(wx.Dialog):
 
         self.SetSizer(main_sizer)
         main_sizer.Fit(self)
+        self.SetEscapeId(cancel.GetId())
         self.Layout()
 
         # Bindings
@@ -65,6 +69,13 @@ class Post(wx.Dialog):
         self.btn_remove.Bind(wx.EVT_BUTTON, self.on_remove)
         self.attach_list.Bind(wx.EVT_LIST_ITEM_SELECTED, lambda evt: self.btn_remove.Enable(True))
         self.attach_list.Bind(wx.EVT_LIST_ITEM_DESELECTED, lambda evt: self.btn_remove.Enable(False))
+
+    def handle_keys(self, event):
+        shift = event.ShiftDown()
+        if event.GetKeyCode() == wx.WXK_RETURN and not shift and hasattr(self, "send"):
+            self.EndModal(wx.ID_OK)
+        else:
+            event.Skip()
 
     def on_add(self, evt):
         if self.attach_list.GetItemCount() >= 4:
