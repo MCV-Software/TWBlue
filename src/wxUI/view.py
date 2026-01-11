@@ -19,7 +19,7 @@ class mainFrame(wx.Frame):
         self.menuitem_search = self.menubar_application.Append(wx.ID_ANY, _(u"&Search"))
         self.lists = self.menubar_application.Append(wx.ID_ANY, _(u"&Lists manager"))
         self.lists.Enable(False)
-        self.manageAliases = self.menubar_application.Append(wx.ID_ANY, _("Manage user aliases"))
+        self.manageAliases = self.menubar_application.Append(wx.ID_ANY, _("M&anage user aliases"))
         self.keystroke_editor = self.menubar_application.Append(wx.ID_ANY, _(u"&Edit keystrokes"))
         self.account_settings = self.menubar_application.Append(wx.ID_ANY, _(u"Account se&ttings"))
         self.prefs = self.menubar_application.Append(wx.ID_PREFERENCES, _(u"&Global settings"))
@@ -56,7 +56,7 @@ class mainFrame(wx.Frame):
         self.trends = self.menubar_buffer.Append(wx.ID_ANY, _(u"New &trending topics buffer..."))
         self.filter = self.menubar_buffer.Append(wx.ID_ANY, _(u"Create a &filter"))
         self.manage_filters = self.menubar_buffer.Append(wx.ID_ANY, _(u"&Manage filters"))
-        self.find = self.menubar_buffer.Append(wx.ID_ANY, _(u"Find a string in the currently focused buffer..."))
+        self.find = self.menubar_buffer.Append(wx.ID_ANY, _(u"F&ind a string in the currently focused buffer..."))
         self.load_previous_items = self.menubar_buffer.Append(wx.ID_ANY, _(u"&Load previous items"))
         self.menubar_buffer.AppendSeparator()
         self.mute_buffer = self.menubar_buffer.AppendCheckItem(wx.ID_ANY, _(u"&Mute"))
@@ -66,8 +66,8 @@ class mainFrame(wx.Frame):
 
         # audio menu
         self.menubar_audio = wx.Menu()
-        self.seekLeft = self.menubar_audio.Append(wx.ID_ANY, _(u"&Seek back 5 seconds"))
-        self.seekRight = self.menubar_audio.Append(wx.ID_ANY, _(u"&Seek forward 5 seconds"))
+        self.seekLeft = self.menubar_audio.Append(wx.ID_ANY, _(u"Seek &back 5 seconds"))
+        self.seekRight = self.menubar_audio.Append(wx.ID_ANY, _(u"Seek &forward 5 seconds"))
 
     # Help Menu
         self.menubar_help = wx.Menu()

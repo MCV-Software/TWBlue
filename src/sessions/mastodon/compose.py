@@ -17,6 +17,11 @@ def compose_post(post, db, settings, relative_times, show_screen_names, safe=Tru
         text = _("Boosted from @{}: {}").format(post.reblog.account.acct, templates.process_text(post.reblog, safe=safe))
     else:
         text = templates.process_text(post, safe=safe)
+    # Handle quoted posts
+    if hasattr(post, 'quote') and post.quote != None and hasattr(post.quote, 'quoted_status') and post.quote.quoted_status != None:
+        quoted_user = post.quote.quoted_status.account.acct
+        quoted_text = templates.process_text(post.quote.quoted_status, safe=safe)
+        text = text + " " + _("Quoting @{}: {}").format(quoted_user, quoted_text)
     filtered = utils.evaluate_filters(post=post, current_context="home")
     if filtered != None:
         text = _("hidden by filter {}").format(filtered)
