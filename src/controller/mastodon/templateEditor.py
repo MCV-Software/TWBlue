@@ -2,7 +2,7 @@
 import re
 import wx
 from typing import List
-from sessions.mastodon.templates import post_variables, conversation_variables, person_variables
+from sessions.mastodon.templates import post_variables, conversation_variables, person_variables, announcement_variables
 from wxUI.dialogs import templateDialogs
 
 class EditTemplate(object):
@@ -13,6 +13,8 @@ class EditTemplate(object):
             self.variables = post_variables
         elif type == "conversation":
             self.variables = conversation_variables
+        elif type == "announcement":
+            self.variables = announcement_variables
         else:
             self.variables = person_variables
         self.template: str = template

@@ -52,10 +52,12 @@ class accountSettingsController(globalSettingsController):
         post_template = self.config["templates"]["post"]
         conversation_template = self.config["templates"]["conversation"]
         person_template = self.config["templates"]["person"]
-        self.dialog.create_templates(post_template=post_template, conversation_template=conversation_template, person_template=person_template)
+        announcement_template = self.config.get("templates", {}).get("announcement", "$text. Published $published_at. $read")
+        self.dialog.create_templates(post_template=post_template, conversation_template=conversation_template, person_template=person_template, announcement_template=announcement_template)
         widgetUtils.connect_event(self.dialog.templates.post, widgetUtils.BUTTON_PRESSED, self.edit_post_template)
         widgetUtils.connect_event(self.dialog.templates.conversation, widgetUtils.BUTTON_PRESSED, self.edit_conversation_template)
         widgetUtils.connect_event(self.dialog.templates.person, widgetUtils.BUTTON_PRESSED, self.edit_person_template)
+        widgetUtils.connect_event(self.dialog.templates.announcement, widgetUtils.BUTTON_PRESSED, self.edit_announcement_template)
         self.dialog.create_other_buffers()
         buffer_values = self.get_buffers_list()
         self.dialog.buffers.insert_buffers(buffer_values)
@@ -108,6 +110,15 @@ class accountSettingsController(globalSettingsController):
             self.config["templates"]["person"] = result
             self.config.write()
             self.dialog.templates.person.SetLabel(_("Edit template for persons. Current template: {}").format(result))
+
+    def edit_announcement_template(self, *args, **kwargs):
+        template = self.config.get("templates", {}).get("announcement", "$text. Published $published_at. $read")
+        control = EditTemplate(template=template, type="announcement")
+        result = control.run_dialog()
+        if result != "": # Template has been saved.
+            self.config["templates"]["announcement"] = result
+            self.config.write()
+            self.dialog.templates.announcement.SetLabel(_("Edit template for announcements. Current template: {}").format(result))
 
     def save_configuration(self):
         if self.config["general"]["relative_times"] != self.dialog.get_value("general", "relative_time"):

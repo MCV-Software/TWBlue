@@ -54,6 +54,7 @@ post = string(default="$display_name, $safe_text $image_descriptions $date. $vis
 person = string(default="$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
 conversation = string(default="Conversation with $users. Last message: $last_post")
 notification = string(default="$display_name $text, $date")
+announcement = string(default="$text. Published $published_at. $read")
 
 [filters]
 
