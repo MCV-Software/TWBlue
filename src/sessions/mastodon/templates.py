@@ -13,12 +13,14 @@ post_variables = ["date", "display_name", "screen_name", "source", "lang", "safe
 person_variables = ["display_name", "screen_name", "description", "followers", "following", "favorites", "posts", "created_at"]
 conversation_variables = ["users", "last_post"]
 notification_variables = ["display_name", "screen_name", "text", "date"]
+announcement_variables = ["text", "published_at", "updated_at", "starts_at", "ends_at", "read"]
 
 # Default, translatable templates.
 post_default_template = _("$display_name, $text $image_descriptions $date. $source")
 dm_sent_default_template = _("Dm to $recipient_display_name, $text $date")
 person_default_template = _("$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
 notification_default_template = _("$display_name $text, $date")
+announcement_default_template = _("$text. Published $published_at. $read")
 
 def process_date(field, relative_times=True, offset_hours=0):
     original_date = arrow.get(field)
@@ -184,4 +186,24 @@ def render_notification(notification, template, post_template, settings, relativ
     available_data.update(text=text)
     result = Template(_(template)).safe_substitute(**available_data)
     result = result.replace(" . ", "")
+    return result
+
+def render_announcement(announcement, template, settings, relative_times=False, offset_hours=0):
+    """ Renders any given announcement according to the passed template. """
+    global announcement_variables
+    available_data = dict()
+    # Process dates
+    for date_field in ["published_at", "updated_at", "starts_at", "ends_at"]:
+        if hasattr(announcement, date_field) and getattr(announcement, date_field) is not None:
+            available_data[date_field] = process_date(getattr(announcement, date_field), relative_times, offset_hours)
+        else:
+            available_data[date_field] = ""
+    
+    available_data["text"] = utils.html_filter(announcement.content)
+    if announcement.read:
+        available_data["read"] = _("Read")
+    else:
+        available_data["read"] = _("Unread")
+        
+    result = Template(_(template)).safe_substitute(**available_data)
     return result

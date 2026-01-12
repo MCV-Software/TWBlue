@@ -204,6 +204,7 @@ class accountSettingsController(globalSettingsController):
         all_buffers['blocked']=_("Blocked users")
         all_buffers['muted']=_("Muted users")
         all_buffers['notifications']=_("Notifications")
+        all_buffers['announcements']=_("Announcements")
         list_buffers = []
         hidden_buffers=[]
         all_buffers_keys = list(all_buffers.keys())

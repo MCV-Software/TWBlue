@@ -24,6 +24,9 @@ TWBlue Changelog
         * Posts from muted conversations will now be visually hidden from the Home timeline immediately upon muting, ensuring a cleaner experience.
         * Added a new invisible shortcut to toggle mute on the focused conversation: `Alt+Windows+Shift+Delete` (Default) or `Control+Alt+Windows+Backspace` (Windows 10/11).
         * The action is also available in the context menu of the post.
+    * **Announcements:** Added support for viewing server announcements.
+        * New dedicated buffer for "Announcements" where you can read instance-wide news.
+        * Added ability to dismiss (mark as read) announcements directly from the buffer.
 
 ## Changes in version 2025.3.8
 
