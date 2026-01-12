@@ -2,6 +2,8 @@ TWBlue Changelog
 
 ## changes in this version
 
+In this version, we have focused on expanding content management capabilities within Mastodon. It is now possible to edit sent posts and schedule them for future publication. Additionally, support for reading quoted posts has been implemented, and a new buffer for server announcements is available. On the Core side, visual stability has been prioritized to ensure proper window display, along with an expansion of keyboard shortcuts.
+
 * Core:
     * Fixed a critical issue where buffers were not visible on screen in certain configurations. Now the main window maximizes correctly and visual fixes have been applied to ensure content is accessible. ([#886](https://github.com/mcv-software/twblue/issues/886))
     * Keyboard shortcut improvements: Several shortcuts have been added and fixed to improve efficiency and avoid conflicts:
