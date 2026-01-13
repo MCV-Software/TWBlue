@@ -29,11 +29,13 @@ jobs:
           .\scripts\build.ps1
           mv src/dist scripts\TWBlue64
 
-      - name: Setup NSIS
-        working-directory: scripts
-        uses: joncloud/makensis-action@v5
-        with:
-          script-file: twblue.nsi
+      - name: Install NSIS
+        run: choco install nsis
+
+      - name: make installer
+        run: |
+          cd scripts
+          makensis twblue.nsi
 
       - name: Create portable
         working-directory: scripts\TWBlue64
