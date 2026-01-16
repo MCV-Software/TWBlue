@@ -2,6 +2,11 @@ TWBlue Changelog
 
 ## changes in this version
 
+* Core:
+    * Expanded the keystroke editor actions list. Now, many previously hidden or unassignable actions are available to be mapped to custom keyboard shortcuts.
+
+## Changes in version 2026.01.13
+
 In this version, we have focused on expanding content management capabilities within Mastodon. It is now possible to edit sent posts and schedule them for future publication. Additionally, support for reading quoted posts has been implemented, and a new buffer for server announcements is available. On the Core side, visual stability has been prioritized to ensure proper window display, along with an expansion of keyboard shortcuts.
 
 * Core:
