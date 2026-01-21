@@ -4,6 +4,8 @@ TWBlue Changelog
 
 * Core:
     * Expanded the keystroke editor actions list. Now, many previously hidden or unassignable actions are available to be mapped to custom keyboard shortcuts.
+* Mastodon:
+    * Fixed an issue where HTML entities were not decoded when editing a post. ([#893](https://github.com/mcv-software/twblue/issues/893))
 
 ## Changes in version 2026.01.13
 

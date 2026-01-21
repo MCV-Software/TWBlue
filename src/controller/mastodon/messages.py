@@ -10,7 +10,7 @@ import languageHandler
 from twitter_text import parse_tweet, config
 from mastodon import MastodonError
 from controller import messages
-from sessions.mastodon import templates
+from sessions.mastodon import templates, utils
 from wxUI.dialogs.mastodon import postDialogs
 from extra.autocompletionUsers import completion
 from . import userList
@@ -282,10 +282,7 @@ class editPost(post):
         # Extract text from post
         if item.reblog != None:
             item = item.reblog
-        text = item.content
-        # Remove HTML tags from content
-        import re
-        text = re.sub('<[^<]+?>', '', text)
+        text = utils.html_filter(item.content)
         # Initialize parent class
         super(editPost, self).__init__(session, title, caption, text=text, *args, **kwargs)
         # Store the post ID for editing
