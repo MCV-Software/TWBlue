@@ -311,8 +311,10 @@ class BaseBuffer(base.Buffer):
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
         if self.can_share() == True:
             widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.boost)
+            widgetUtils.connect_event(menu, widgetUtils.MENU, self.quote, menuitem=menu.quote)
         else:
             menu.boost.Enable(False)
+            menu.quote.Enable(False)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.fav, menuitem=menu.fav)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.unfav, menuitem=menu.unfav)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.mute_conversation, menuitem=menu.mute)
@@ -442,10 +444,29 @@ class BaseBuffer(base.Buffer):
         id = item.id
         if self.session.settings["general"]["boost_mode"] == "ask":
             answer = mastodon_dialogs.boost_question()
-            if answer == True:
+            if answer == 1:
                 self._direct_boost(id)
+            elif answer == 2:
+                self.quote(item=item)
         else:
             self._direct_boost(id)
+
+    def quote(self, event=None, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        if self.can_share(item=item) == False:
+            return output.speak(_("This action is not supported on conversations."))
+        
+        title = _("Quote post")
+        caption = _("Write your comment here")
+        post = messages.post(session=self.session, title=title, caption=caption)
+        
+        response = post.message.ShowModal()
+        if response == wx.ID_OK:
+            post_data = post.get_data()
+            call_threaded(self.session.send_post, quote_id=item.id, posts=post_data, visibility=post.get_visibility(), language=post.get_language(), **kwargs)
+        if hasattr(post.message, "destroy"):
+            post.message.destroy()
 
     def _direct_boost(self, id):
         item = self.session.api_call(call_name="status_reblog", _sound="retweet_send.ogg", id=id)

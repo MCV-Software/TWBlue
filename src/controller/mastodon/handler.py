@@ -35,6 +35,7 @@ class Handler(object):
             compose=_("&Post"),
             reply=_("Re&ply"),
             share=_("&Boost"),
+            quote=_("&Quote"),
             fav=_("&Add to favorites"),
             unfav=_("Remove from favorites"),
             view=_("&Show post"),
