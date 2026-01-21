@@ -160,7 +160,7 @@ class BaseBuffer(base.Buffer):
                     self.username = self.session.db[self.name][0]["account"].username
                     pub.sendMessage("core.change_buffer_title", name=self.session.get_name(), buffer=self.name, title=_("Timeline for {}").format(self.username))
                 self.finished_timeline = True
-            self.put_items_on_list(number_of_items)
+            self.put_items_on_list(number_of_items, results)
             if number_of_items > 0 and  self.name != "sent_posts" and self.name != "sent_direct_messages" and self.sound != None and self.session.settings["sound"]["session_mute"] == False and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and play_sound == True:
                 self.session.sound.play(self.sound)
             # Autoread settings
@@ -247,7 +247,7 @@ class BaseBuffer(base.Buffer):
             output.speak(_(u"This buffer is not a timeline; it can't be deleted."), True)
             return False
 
-    def put_items_on_list(self, number_of_items):
+    def put_items_on_list(self, number_of_items, new_items=None):
         list_to_use = self.session.db[self.name]
         if number_of_items == 0 and self.session.settings["general"]["persist_size"] == 0: return
         log.debug("The list contains %d items " % (self.buffer.list.get_count(),))
@@ -261,7 +261,10 @@ class BaseBuffer(base.Buffer):
                 self.buffer.list.insert_item(False, *post)
             self.buffer.set_position(self.session.settings["general"]["reverse_timelines"])
         elif self.buffer.list.get_count() > 0 and number_of_items > 0:
-            if self.session.settings["general"]["reverse_timelines"] == False:
+            if new_items:
+                for item in new_items:
+                    self.add_new_item(item)
+            elif self.session.settings["general"]["reverse_timelines"] == False:
                 items = list_to_use[len(list_to_use)-number_of_items:]
                 for i in items:
                     post = self.compose_function(i, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
@@ -279,10 +282,18 @@ class BaseBuffer(base.Buffer):
         if self.session.settings["general"]["read_preferences_from_instance"]:
             safe = self.session.expand_spoilers == False
         post = self.compose_function(item, self.session.db, self.session.settings, self.session.settings["general"]["relative_times"], self.session.settings["general"]["show_screen_names"], safe=safe)
-        if self.session.settings["general"]["reverse_timelines"] == False:
-            self.buffer.list.insert_item(False, *post)
-        else:
-            self.buffer.list.insert_item(True, *post)
+        
+        try:
+            # We trust the DB to have the correct order (handled by order_buffer)
+            index = self.session.db[self.name].index(item)
+            self.buffer.list.insert_item(index, *post)
+        except ValueError:
+            # Fallback if somehow item isn't in DB yet (race condition?), default to simple append/prepend based on settings
+            if self.session.settings["general"]["reverse_timelines"] == False:
+                self.buffer.list.insert_item(False, *post)
+            else:
+                self.buffer.list.insert_item(True, *post)
+
         if self.name in self.session.settings["other_buffers"]["autoread_buffers"] and self.name not in self.session.settings["other_buffers"]["muted_buffers"] and self.session.settings["sound"]["session_mute"] == False:
             output.speak(" ".join(post[:2]), speech=self.session.settings["reporting"]["speech_reporting"], braille=self.session.settings["reporting"]["braille_reporting"])
 

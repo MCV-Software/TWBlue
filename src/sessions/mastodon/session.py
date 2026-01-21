@@ -156,10 +156,12 @@ class Session(base.baseSession):
             self.db[name] = []
         objects = self.db[name]
         if ignore_older and len(self.db[name]) > 0:
+            # We use the newest chronological ID to avoid ignoring new items 
+            # if pinned posts are at the start/end of the list.
             if self.settings["general"]["reverse_timelines"] == False:
-                last_id = self.db[name][0].id
+                last_id = max(item.id for item in self.db[name])
             else:
-                last_id = self.db[name][-1].id
+                last_id = max(item.id for item in self.db[name])
         for i in data:
             # handle empty notifications.
             post_types = ["status", "mention", "reblog", "favourite", "update", "poll"]
@@ -173,8 +175,37 @@ class Session(base.baseSession):
                 filter_status = utils.evaluate_filters(post=i, current_context=utils.get_current_context(name))
                 if filter_status == "hide":
                     continue
-                if self.settings["general"]["reverse_timelines"] == False: objects.append(i)
-                else: objects.insert(0, i)
+                
+                is_pinned = getattr(i, "pinned", False) or (isinstance(i, dict) and i.get("pinned", False))
+                
+                if self.settings["general"]["reverse_timelines"] == False: 
+                    # Standard (Old -> New). Pinned items are at the end.
+                    if is_pinned:
+                        objects.append(i)
+                    else:
+                        # Insert before pinned items
+                        insert_idx = len(objects)
+                        for obj in reversed(objects):
+                            obj_pinned = getattr(obj, "pinned", False) or (isinstance(obj, dict) and obj.get("pinned", False))
+                            if obj_pinned:
+                                insert_idx -= 1
+                            else:
+                                break
+                        objects.insert(insert_idx, i)
+                else: 
+                    # Reverse (New -> Old). Pinned items are at the start.
+                    if is_pinned:
+                        objects.insert(0, i)
+                    else:
+                        # Insert after pinned items
+                        insert_idx = 0
+                        for obj in objects:
+                            obj_pinned = getattr(obj, "pinned", False) or (isinstance(obj, dict) and obj.get("pinned", False))
+                            if obj_pinned:
+                                insert_idx += 1
+                            else:
+                                break
+                        objects.insert(insert_idx, i)
                 num = num+1
         self.db[name] = objects
         return num
