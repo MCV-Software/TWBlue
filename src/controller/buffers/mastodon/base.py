@@ -328,6 +328,15 @@ class BaseBuffer(base.Buffer):
             widgetUtils.connect_event(menu, widgetUtils.MENU, self.edit_status, menuitem=menu.edit)
         else:
             menu.edit.Enable(False)
+        # Enable/disable pin based on whether the post belongs to the user
+        if item and item.account.id == self.session.db["user_id"] and item.reblog == None and item.visibility in ["public", "unlisted"]:
+            widgetUtils.connect_event(menu, widgetUtils.MENU, self.pin_status, menuitem=menu.pin)
+            if item.pinned:
+                menu.pin.SetItemLabel(_("Unpin"))
+            else:
+                menu.pin.SetItemLabel(_("Pin"))
+        else:
+            menu.pin.Enable(False)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
         if self.can_share() == True:
             widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.boost)
@@ -613,6 +622,25 @@ class BaseBuffer(base.Buffer):
             call_threaded(self.session.edit_post, post_id=post.post_id, posts=post_data)
         if hasattr(post.message, "destroy"):
             post.message.destroy()
+
+    def pin_status(self, event=None, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        # Check if the post belongs to the current user
+        if item.account.id != self.session.db["user_id"] or item.reblog != None:
+            output.speak(_("You can only pin your own posts."))
+            return
+        
+        try:
+            item = self.session.api.status(item.id)
+        except MastodonNotFoundError:
+            output.speak(_("No status found with that ID"))
+            return
+
+        if item.pinned:
+            call_threaded(self.session.unpin_post, post_id=item.id)
+        else:
+            call_threaded(self.session.pin_post, post_id=item.id)
 
     def user_details(self):
         item = self.get_item()

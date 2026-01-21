@@ -56,6 +56,7 @@ actions = {
     "add_alias": _("Adds an alias to an user"),
     "mute_conversation": _("Mute/Unmute conversation"),
     "edit_post": _(u"Edit the selected post"),
+    "pin_post": _(u"Pin/Unpin the selected post"),
     "vote": _(u"Vote in the selected poll"),
     "open_favs_timeline": _(u"Open favorites timeline"),
     "community_timeline": _(u"Open local/federated timeline"),

@@ -411,6 +411,24 @@ class Session(base.baseSession):
             output.speak(_("Error editing post: {}").format(str(e)))
             return None
 
+    def pin_post(self, post_id):
+        """ Pins a post. """
+        try:
+            item = self.api_call(call_name="status_pin", id=post_id, _sound="pin.ogg", report_success=True, action=_("Pin"))
+            return item
+        except MastodonAPIError as e:
+            output.speak(_("Error pinning post: {}").format(str(e)))
+            return None
+
+    def unpin_post(self, post_id):
+        """ Unpins a post. """
+        try:
+            item = self.api_call(call_name="status_unpin", id=post_id, _sound="unpin.ogg", report_success=True, action=_("Unpin"))
+            return item
+        except MastodonAPIError as e:
+            output.speak(_("Error unpinning post: {}").format(str(e)))
+            return None
+
     def get_name(self):
         instance = self.settings["mastodon"]["instance"]
         instance = instance.replace("https://", "")
