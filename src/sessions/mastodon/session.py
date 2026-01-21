@@ -177,6 +177,9 @@ class Session(base.baseSession):
                     continue
                 
                 is_pinned = getattr(i, "pinned", False) or (isinstance(i, dict) and i.get("pinned", False))
+                # Only apply pinning logic in user timelines or the 'sent' buffer.
+                if not name.endswith("-timeline") and name != "sent":
+                    is_pinned = False
                 
                 if self.settings["general"]["reverse_timelines"] == False: 
                     # Standard (Old -> New). Pinned items are at the end.
