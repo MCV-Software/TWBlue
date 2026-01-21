@@ -126,14 +126,16 @@ class BaseBuffer(base.Buffer):
             min_id = None
             # toDo: Implement reverse timelines properly here.
             if (self.name != "favorites" and self.name != "bookmarks") and self.name in self.session.db and len(self.session.db[self.name]) > 0:
-                if self.session.settings["general"]["reverse_timelines"]:
-                    min_id = self.session.db[self.name][0].id
-                else:
-                    min_id = self.session.db[self.name][-1].id
+                # We use the maximum ID present in the buffer to ensure we only request posts 
+                # that are newer than our most recent chronological post. 
+                # This prevents old pinned posts from pulling in hundreds of previous statuses.
+                min_id = max(item.id for item in self.session.db[self.name])
             # loads pinned posts from user accounts.
             # Load those posts only when there are no items previously loaded.
             if "-timeline" in self.name and "account_statuses" in self.function and len(self.session.db.get(self.name, [])) == 0:
                 pinned_posts = self.session.api.account_statuses(pinned=True, limit=count, *self.args, **self.kwargs)
+                for p in pinned_posts:
+                    p["pinned"] = True
                 pinned_posts.reverse()
             else:
                 pinned_posts = None
@@ -182,10 +184,17 @@ class BaseBuffer(base.Buffer):
 
     def get_more_items(self):
         elements = []
-        if self.session.settings["general"]["reverse_timelines"] == False:
-            max_id = self.session.db[self.name][0].id
+        if len(self.session.db[self.name]) == 0:
+            return
+        # We use the minimum ID in the buffer to correctly request the next page of older items.
+        # This prevents old pinned posts from causing us to skip chronological posts.
+        # We try to exclude pinned posts from this calculation as they are usually outliers at the top.
+        unpinned_ids = [item.id for item in self.session.db[self.name] if not getattr(item, "pinned", False)]
+        if unpinned_ids:
+            max_id = min(unpinned_ids)
         else:
-            max_id = self.session.db[self.name][-1].id
+            max_id = min(item.id for item in self.session.db[self.name])
+        
         try:
             items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_posts_per_call"], *self.args, **self.kwargs)
         except Exception as e:

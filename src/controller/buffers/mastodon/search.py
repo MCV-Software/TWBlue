@@ -33,10 +33,7 @@ class SearchBuffer(BaseBuffer):
             self.execution_time = current_time
             min_id = None
             if self.name in self.session.db and len(self.session.db[self.name]) > 0:
-                if self.session.settings["general"]["reverse_timelines"]:
-                    min_id = self.session.db[self.name][0].id
-                else:
-                    min_id = self.session.db[self.name][-1].id
+                min_id = max(item.id for item in self.session.db[self.name])
             try:
                 results = getattr(self.session.api, self.function)(min_id=min_id, **self.kwargs)
             except Exception as mess:
