@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any, AsyncGenerator
 
+import widgetUtils
 from wxUI.dialogs.blueski.showUserProfile import ShowUserProfileDialog
 from controller.userList import UserListController
 from controller.blueski import userActions as user_actions_controller
@@ -230,6 +231,17 @@ logger.info("Blueski userList module loaded (placeholders).")
 
 
 class BlueskyUserList(UserListController):
+    def __init__(self, users, session, title, fetch_fn=None, cursor=None):
+        self.session = session
+        self.users = self.process_users(users)
+        self._fetch_fn = fetch_fn
+        self._cursor = cursor
+        from wxUI.dialogs import userList
+        self.dialog = userList.UserListDialog(title=title, users=[user.get("display_name") for user in self.users])
+        widgetUtils.connect_event(self.dialog.actions_button, widgetUtils.BUTTON_PRESSED, self.on_actions)
+        widgetUtils.connect_event(self.dialog.details_button, widgetUtils.BUTTON_PRESSED, self.on_details)
+        self._enable_pagination()
+        self.dialog.ShowModal()
     def process_users(self, users):
         def g(obj, key, default=None):
             if isinstance(obj, dict):
@@ -265,3 +277,33 @@ class BlueskyUserList(UserListController):
         dlg = ShowUserProfileDialog(self.dialog, self.session, user_ident)
         dlg.ShowModal()
         dlg.Destroy()
+
+    def _enable_pagination(self):
+        if not self._fetch_fn:
+            return
+        if not self._cursor:
+            return
+        self.dialog.load_more_button.Show()
+        widgetUtils.connect_event(self.dialog.load_more_button, widgetUtils.BUTTON_PRESSED, self.load_more)
+        self.dialog.Layout()
+
+    def load_more(self, *args, **kwargs):
+        if not self._fetch_fn:
+            return
+        if not self._cursor:
+            self.dialog.load_more_button.Disable()
+            return
+        try:
+            res = self._fetch_fn(cursor=self._cursor)
+            items = res.get("items", []) if isinstance(res, dict) else []
+            self._cursor = res.get("cursor") if isinstance(res, dict) else None
+            new_users = self.process_users(items)
+            if not new_users:
+                self.dialog.load_more_button.Disable()
+                return
+            self.users.extend(new_users)
+            self.dialog.add_users([u.get("display_name") for u in new_users])
+            if not self._cursor:
+                self.dialog.load_more_button.Disable()
+        except Exception:
+            self.dialog.load_more_button.Disable()

@@ -277,7 +277,9 @@ class viewPost(base_messages.basicMessage):
             res = self.session.get_post_reposts(self.post_uri, limit=50)
             users = res.get("items", [])
             from controller.blueski.userList import BlueskyUserList
-            BlueskyUserList(session=self.session, users=users, title=_("people who reposted this post"))
+            BlueskyUserList(session=self.session, users=users, title=_("people who reposted this post"),
+                            fetch_fn=lambda cursor=None: self.session.get_post_reposts(self.post_uri, limit=50, cursor=cursor),
+                            cursor=res.get("cursor") if isinstance(res, dict) else None)
         except Exception:
             pass
 
@@ -288,6 +290,8 @@ class viewPost(base_messages.basicMessage):
             res = self.session.get_post_likes(self.post_uri, limit=50)
             users = res.get("items", [])
             from controller.blueski.userList import BlueskyUserList
-            BlueskyUserList(session=self.session, users=users, title=_("people who liked this post"))
+            BlueskyUserList(session=self.session, users=users, title=_("people who liked this post"),
+                            fetch_fn=lambda cursor=None: self.session.get_post_likes(self.post_uri, limit=50, cursor=cursor),
+                            cursor=res.get("cursor") if isinstance(res, dict) else None)
         except Exception:
             pass
