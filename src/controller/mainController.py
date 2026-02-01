@@ -1366,13 +1366,14 @@ class Controller(object):
 
         output.speak(_(u"Updating buffer..."), True)
         session = bf.session
-        
+
         import threading
+        is_blueski = (getattr(session, "KIND", None) == "blueski" or getattr(session, "type", None) == "blueski")
 
         def do_update_sync():
             new_ids = []
             try:
-                if session.KIND == "blueski":
+                if is_blueski:
                     if hasattr(bf, "start_stream"):
                         count = bf.start_stream(mandatory=True)
                         if count: new_ids = [str(x) for x in range(count)]
@@ -1397,7 +1398,7 @@ class Controller(object):
                 log.exception("Error updating buffer %s", bf.name)
                 wx.CallAfter(output.speak, _("An error occurred while updating the buffer."), True)
         
-        if session.KIND == "blueski":
+        if is_blueski:
              threading.Thread(target=do_update_sync).start()
         else:
              # Original async logic for others if needed, but likely they are sync too. 
