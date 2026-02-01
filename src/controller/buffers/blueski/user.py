@@ -52,10 +52,58 @@ class FollowersBuffer(UserBuffer):
         kwargs["api_method"] = "get_followers"
         super(FollowersBuffer, self).__init__(*args, **kwargs)
 
+    def remove_buffer(self, force=False):
+        if not force:
+            from wxUI import commonMessageDialogs
+            import widgetUtils
+            dlg = commonMessageDialogs.remove_buffer()
+            if dlg != widgetUtils.YES:
+                return False
+        try:
+            self.session.db.pop(self.name, None)
+        except Exception:
+            pass
+        try:
+            key = self.kwargs.get("handle") or self.kwargs.get("actor") or self.kwargs.get("id")
+            timelines = self.session.settings["other_buffers"].get("followers_timelines") or []
+            if isinstance(timelines, str):
+                timelines = [t for t in timelines.split(",") if t]
+            if key in timelines:
+                timelines.remove(key)
+                self.session.settings["other_buffers"]["followers_timelines"] = timelines
+                self.session.settings.write()
+        except Exception:
+            log.exception("Error updating Bluesky followers timelines settings")
+        return True
+
 class FollowingBuffer(UserBuffer):
     def __init__(self, *args, **kwargs):
         kwargs["api_method"] = "get_follows"
         super(FollowingBuffer, self).__init__(*args, **kwargs)
+
+    def remove_buffer(self, force=False):
+        if not force:
+            from wxUI import commonMessageDialogs
+            import widgetUtils
+            dlg = commonMessageDialogs.remove_buffer()
+            if dlg != widgetUtils.YES:
+                return False
+        try:
+            self.session.db.pop(self.name, None)
+        except Exception:
+            pass
+        try:
+            key = self.kwargs.get("handle") or self.kwargs.get("actor") or self.kwargs.get("id")
+            timelines = self.session.settings["other_buffers"].get("following_timelines") or []
+            if isinstance(timelines, str):
+                timelines = [t for t in timelines.split(",") if t]
+            if key in timelines:
+                timelines.remove(key)
+                self.session.settings["other_buffers"]["following_timelines"] = timelines
+                self.session.settings.write()
+        except Exception:
+            log.exception("Error updating Bluesky following timelines settings")
+        return True
 
 class BlocksBuffer(UserBuffer):
     def __init__(self, *args, **kwargs):

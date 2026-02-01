@@ -171,6 +171,49 @@ class Handler:
         except Exception:
             logger.exception("Failed to restore Bluesky timeline buffers")
 
+        # Saved followers/following timelines
+        try:
+            followers = session.settings["other_buffers"].get("followers_timelines")
+            if followers is None:
+                followers = []
+            if isinstance(followers, str):
+                followers = [t for t in followers.split(",") if t]
+            for actor in followers:
+                handle = actor
+                title = _("Followers for {user}").format(user=handle)
+                pub.sendMessage(
+                    "createBuffer",
+                    buffer_type="FollowersBuffer",
+                    session_type="blueski",
+                    buffer_title=title,
+                    parent_tab=timelines_position,
+                    start=False,
+                    kwargs=dict(parent=controller.view.nb, name=f"{handle}-followers", session=session, actor=actor, handle=handle)
+                )
+        except Exception:
+            logger.exception("Failed to restore Bluesky followers buffers")
+
+        try:
+            following = session.settings["other_buffers"].get("following_timelines")
+            if following is None:
+                following = []
+            if isinstance(following, str):
+                following = [t for t in following.split(",") if t]
+            for actor in following:
+                handle = actor
+                title = _("Following for {user}").format(user=handle)
+                pub.sendMessage(
+                    "createBuffer",
+                    buffer_type="FollowingBuffer",
+                    session_type="blueski",
+                    buffer_title=title,
+                    parent_tab=timelines_position,
+                    start=False,
+                    kwargs=dict(parent=controller.view.nb, name=f"{handle}-following", session=session, actor=actor, handle=handle)
+                )
+        except Exception:
+            logger.exception("Failed to restore Bluesky following buffers")
+
         # Start the background poller for real-time-like updates
         try:
             session.start_streaming()
@@ -514,21 +557,27 @@ class Handler:
 
     def _open_user_list(self, main_controller, session, actor, handle, list_type):
         account_name = session.get_name()
-        own_actor = session.db.get("user_id") or session.db.get("user_name")
-        own_handle = session.db.get("user_name")
-        if actor == own_actor or (own_handle and actor == own_handle):
-            name = "followers" if list_type == "followers" else "following"
-            index = main_controller.view.search(name, account_name)
-            if index is not None:
-                main_controller.view.change_buffer(index)
-                return
-
         list_name = f"{handle}-{list_type}"
         if main_controller.search_buffer(list_name, account_name):
             index = main_controller.view.search(list_name, account_name)
             if index is not None:
                 main_controller.view.change_buffer(index)
             return
+
+        settings_key = "followers_timelines" if list_type == "followers" else "following_timelines"
+        try:
+            stored = session.settings["other_buffers"].get(settings_key)
+            if stored is None:
+                stored = []
+            if isinstance(stored, str):
+                stored = [t for t in stored.split(",") if t]
+            key = handle or actor
+            if key in stored:
+                from wxUI import commonMessageDialogs
+                commonMessageDialogs.timeline_exist()
+                return
+        except Exception:
+            stored = None
 
         title = _("Followers for {user}").format(user=handle) if list_type == "followers" else _("Following for {user}").format(user=handle)
         from pubsub import pub
@@ -537,10 +586,22 @@ class Handler:
             buffer_type="FollowersBuffer" if list_type == "followers" else "FollowingBuffer",
             session_type="blueski",
             buffer_title=title,
-            parent_tab=main_controller.view.search(account_name, account_name),
+            parent_tab=main_controller.view.search("timelines", account_name),
             start=True,
-            kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor)
+            kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor, handle=handle)
         )
+        try:
+            if stored is None:
+                stored = session.settings["other_buffers"].get(settings_key) or []
+                if isinstance(stored, str):
+                    stored = [t for t in stored.split(",") if t]
+            key = handle or actor
+            if key:
+                stored.append(key)
+                session.settings["other_buffers"][settings_key] = stored
+                session.settings.write()
+        except Exception:
+            logger.exception("Failed to persist Bluesky %s buffer", list_type)
 
     def delete(self, buffer, controller):
         """Standard action for delete key / menu item"""
