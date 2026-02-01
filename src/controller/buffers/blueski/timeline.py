@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+import output
 from .base import BaseBuffer
 from wxUI.buffers.blueski import panels as BlueskiPanels
 from pubsub import pub
@@ -11,7 +12,8 @@ class HomeTimeline(BaseBuffer):
         super(HomeTimeline, self).__init__(*args, **kwargs)
         self.type = "home_timeline"
         self.feed_uri = None
-        
+        self.next_cursor = None
+
     def create_buffer(self, parent, name):
         # Override to use HomePanel
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -22,13 +24,13 @@ class HomeTimeline(BaseBuffer):
         try:
              count = self.session.settings["general"].get("max_posts_per_call", 50)
         except: pass
-        
+
         api = self.session._ensure_client()
-        
+
         # Discover Logic
         if not self.feed_uri:
             self.feed_uri = self._resolve_discover_feed(api)
-            
+
         items = []
         try:
             res = None
@@ -38,15 +40,39 @@ class HomeTimeline(BaseBuffer):
             else:
                  # Fallback to standard timeline
                  res = api.app.bsky.feed.get_timeline({"limit": count})
-            
+
             feed = getattr(res, "feed", [])
             items = list(feed)
-            
+            self.next_cursor = getattr(res, "cursor", None)
+
         except Exception:
             log.exception("Failed to fetch home timeline")
             return 0
-            
+
         return self.process_items(items, play_sound)
+
+    def get_more_items(self):
+        if not self.next_cursor:
+            return
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except:
+            pass
+        api = self.session._ensure_client()
+        try:
+            if self.feed_uri:
+                res = api.app.bsky.feed.get_feed({"feed": self.feed_uri, "limit": count, "cursor": self.next_cursor})
+            else:
+                res = api.app.bsky.feed.get_timeline({"limit": count, "cursor": self.next_cursor})
+            feed = getattr(res, "feed", [])
+            items = list(feed)
+            self.next_cursor = getattr(res, "cursor", None)
+            added = self.process_items(items, play_sound=False)
+            if added:
+                output.speak(_(u"%s items retrieved") % (str(added)), True)
+        except Exception:
+            log.exception("Error fetching more home timeline items")
 
     def _resolve_discover_feed(self, api):
         # Reuse logic from panels.py
@@ -76,7 +102,8 @@ class FollowingTimeline(BaseBuffer):
     def __init__(self, *args, **kwargs):
         super(FollowingTimeline, self).__init__(*args, **kwargs)
         self.type = "following_timeline"
-        
+        self.next_cursor = None
+
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name) # Reuse HomePanel layout
         self.buffer.session = self.session
@@ -85,18 +112,39 @@ class FollowingTimeline(BaseBuffer):
          count = 50
          try: count = self.session.settings["general"].get("max_posts_per_call", 50)
          except: pass
-         
+
          api = self.session._ensure_client()
          try:
              # Force reverse-chronological
              res = api.app.bsky.feed.get_timeline({"limit": count, "algorithm": "reverse-chronological"})
              feed = getattr(res, "feed", [])
              items = list(feed)
+             self.next_cursor = getattr(res, "cursor", None)
          except Exception:
              log.exception("Error fetching following timeline")
              return 0
-         
+
          return self.process_items(items, play_sound)
+
+    def get_more_items(self):
+        if not self.next_cursor:
+            return
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except:
+            pass
+        api = self.session._ensure_client()
+        try:
+            res = api.app.bsky.feed.get_timeline({"limit": count, "algorithm": "reverse-chronological", "cursor": self.next_cursor})
+            feed = getattr(res, "feed", [])
+            items = list(feed)
+            self.next_cursor = getattr(res, "cursor", None)
+            added = self.process_items(items, play_sound=False)
+            if added:
+                output.speak(_(u"%s items retrieved") % (str(added)), True)
+        except Exception:
+            log.exception("Error fetching more following timeline items")
 
 class NotificationBuffer(BaseBuffer):
     def __init__(self, *args, **kwargs):
@@ -105,6 +153,7 @@ class NotificationBuffer(BaseBuffer):
         super(NotificationBuffer, self).__init__(*args, **kwargs)
         self.type = "notifications"
         self.sound = "notification_received.ogg"
+        self.next_cursor = None
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.NotificationPanel(parent, name)
@@ -124,6 +173,7 @@ class NotificationBuffer(BaseBuffer):
         try:
             res = api.app.bsky.notification.list_notifications({"limit": count})
             notifications = getattr(res, "notifications", [])
+            self.next_cursor = getattr(res, "cursor", None)
             if not notifications:
                 return 0
 
@@ -133,6 +183,27 @@ class NotificationBuffer(BaseBuffer):
         except Exception:
             log.exception("Error fetching Bluesky notifications")
             return 0
+
+    def get_more_items(self):
+        if not self.next_cursor:
+            return
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except:
+            pass
+        api = self.session._ensure_client()
+        if not api:
+            return
+        try:
+            res = api.app.bsky.notification.list_notifications({"limit": count, "cursor": self.next_cursor})
+            notifications = getattr(res, "notifications", [])
+            self.next_cursor = getattr(res, "cursor", None)
+            added = self.process_items(list(notifications), play_sound=False)
+            if added:
+                output.speak(_(u"%s items retrieved") % (str(added)), True)
+        except Exception:
+            log.exception("Error fetching more notifications")
 
     def add_new_item(self, notification):
         """Add a single new notification from streaming/polling."""
@@ -207,6 +278,7 @@ class LikesBuffer(BaseBuffer):
     def __init__(self, *args, **kwargs):
         super(LikesBuffer, self).__init__(*args, **kwargs)
         self.type = "likes"
+        self.next_cursor = None
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -223,11 +295,33 @@ class LikesBuffer(BaseBuffer):
         try:
             res = api.app.bsky.feed.get_actor_likes({"actor": api.me.did, "limit": count})
             items = getattr(res, "feed", None) or getattr(res, "items", None) or []
+            self.next_cursor = getattr(res, "cursor", None)
         except Exception:
             log.exception("Error fetching likes")
             return 0
 
         return self.process_items(list(items), play_sound)
+
+    def get_more_items(self):
+        if not self.next_cursor:
+            return
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except:
+            pass
+        api = self.session._ensure_client()
+        if not api:
+            return
+        try:
+            res = api.app.bsky.feed.get_actor_likes({"actor": api.me.did, "limit": count, "cursor": self.next_cursor})
+            items = getattr(res, "feed", None) or getattr(res, "items", None) or []
+            self.next_cursor = getattr(res, "cursor", None)
+            added = self.process_items(list(items), play_sound=False)
+            if added:
+                output.speak(_(u"%s items retrieved") % (str(added)), True)
+        except Exception:
+            log.exception("Error fetching more likes")
 
 
 class MentionsBuffer(BaseBuffer):
@@ -239,6 +333,7 @@ class MentionsBuffer(BaseBuffer):
         super(MentionsBuffer, self).__init__(*args, **kwargs)
         self.type = "mentions"
         self.sound = "mention_received.ogg"
+        self.next_cursor = None
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.NotificationPanel(parent, name)
@@ -258,6 +353,7 @@ class MentionsBuffer(BaseBuffer):
         try:
             res = api.app.bsky.notification.list_notifications({"limit": count})
             notifications = getattr(res, "notifications", [])
+            self.next_cursor = getattr(res, "cursor", None)
             if not notifications:
                 return 0
 
@@ -276,6 +372,33 @@ class MentionsBuffer(BaseBuffer):
             log.exception("Error fetching Bluesky mentions")
             return 0
 
+    def get_more_items(self):
+        if not self.next_cursor:
+            return
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except:
+            pass
+        api = self.session._ensure_client()
+        if not api:
+            return
+        try:
+            res = api.app.bsky.notification.list_notifications({"limit": count, "cursor": self.next_cursor})
+            notifications = getattr(res, "notifications", [])
+            self.next_cursor = getattr(res, "cursor", None)
+            # Filter only mentions and replies
+            mentions = [
+                n for n in notifications
+                if getattr(n, "reason", "") in ("mention", "reply", "quote")
+            ]
+            if mentions:
+                added = self.process_items(mentions, play_sound=False)
+                if added:
+                    output.speak(_(u"%s items retrieved") % (str(added)), True)
+        except Exception:
+            log.exception("Error fetching more mentions")
+
     def add_new_item(self, notification):
         """Add a single new mention from streaming/polling."""
         reason = getattr(notification, "reason", "")
@@ -290,6 +413,7 @@ class SentBuffer(BaseBuffer):
     def __init__(self, *args, **kwargs):
         super(SentBuffer, self).__init__(*args, **kwargs)
         self.type = "sent"
+        self.next_cursor = None
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -314,6 +438,7 @@ class SentBuffer(BaseBuffer):
                 "filter": "posts_no_replies"
             })
             items = getattr(res, "feed", [])
+            self.next_cursor = getattr(res, "cursor", None)
 
             if not items:
                 return 0
@@ -324,6 +449,32 @@ class SentBuffer(BaseBuffer):
             log.exception("Error fetching sent posts")
             return 0
 
+    def get_more_items(self):
+        if not self.next_cursor:
+            return
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except:
+            pass
+        api = self.session._ensure_client()
+        if not api or not api.me:
+            return
+        try:
+            res = api.app.bsky.feed.get_author_feed({
+                "actor": api.me.did,
+                "limit": count,
+                "filter": "posts_no_replies",
+                "cursor": self.next_cursor
+            })
+            items = getattr(res, "feed", [])
+            self.next_cursor = getattr(res, "cursor", None)
+            added = self.process_items(list(items), play_sound=False)
+            if added:
+                output.speak(_(u"%s items retrieved") % (str(added)), True)
+        except Exception:
+            log.exception("Error fetching more sent posts")
+
 
 class UserTimeline(BaseBuffer):
     """Buffer for posts by a specific user."""
@@ -333,6 +484,8 @@ class UserTimeline(BaseBuffer):
         self.handle = kwargs.get("handle")
         super(UserTimeline, self).__init__(*args, **kwargs)
         self.type = "user_timeline"
+        self.next_cursor = None
+        self._resolved_actor = None
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -372,16 +525,43 @@ class UserTimeline(BaseBuffer):
                             actor = did
                 except Exception:
                     pass
+            self._resolved_actor = actor
             res = api.app.bsky.feed.get_author_feed({
                 "actor": actor,
                 "limit": count,
             })
             items = getattr(res, "feed", []) or []
+            self.next_cursor = getattr(res, "cursor", None)
         except Exception:
             log.exception("Error fetching user timeline")
             return 0
 
         return self.process_items(list(items), play_sound)
+
+    def get_more_items(self):
+        if not self.next_cursor or not self._resolved_actor:
+            return
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except:
+            pass
+        api = self.session._ensure_client()
+        if not api:
+            return
+        try:
+            res = api.app.bsky.feed.get_author_feed({
+                "actor": self._resolved_actor,
+                "limit": count,
+                "cursor": self.next_cursor
+            })
+            items = getattr(res, "feed", []) or []
+            self.next_cursor = getattr(res, "cursor", None)
+            added = self.process_items(list(items), play_sound=False)
+            if added:
+                output.speak(_(u"%s items retrieved") % (str(added)), True)
+        except Exception:
+            log.exception("Error fetching more user timeline items")
 
     def remove_buffer(self, force=False):
         if not force:
@@ -419,6 +599,7 @@ class SearchBuffer(BaseBuffer):
         self.search_query = kwargs.pop("query", "")
         super(SearchBuffer, self).__init__(*args, **kwargs)
         self.type = "search"
+        self.next_cursor = None
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -445,6 +626,7 @@ class SearchBuffer(BaseBuffer):
                 "limit": count
             })
             posts = getattr(res, "posts", [])
+            self.next_cursor = getattr(res, "cursor", None)
 
             if not posts:
                 return 0
@@ -459,6 +641,31 @@ class SearchBuffer(BaseBuffer):
             log.exception("Error searching Bluesky posts")
             return 0
 
+    def get_more_items(self):
+        if not self.next_cursor or not self.search_query:
+            return
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except:
+            pass
+        api = self.session._ensure_client()
+        if not api:
+            return
+        try:
+            res = api.app.bsky.feed.search_posts({
+                "q": self.search_query,
+                "limit": count,
+                "cursor": self.next_cursor
+            })
+            posts = getattr(res, "posts", [])
+            self.next_cursor = getattr(res, "cursor", None)
+            added = self.process_items(list(posts), play_sound=False)
+            if added:
+                output.speak(_(u"%s items retrieved") % (str(added)), True)
+        except Exception:
+            log.exception("Error fetching more search results")
+
     def remove_buffer(self, force=False):
         """Search buffers can always be removed."""
         if not force:
@@ -471,4 +678,16 @@ class SearchBuffer(BaseBuffer):
             self.session.db.pop(self.name, None)
         except Exception:
             pass
+        # Also remove from saved searches
+        try:
+            searches = self.session.settings["other_buffers"].get("searches")
+            if searches:
+                if isinstance(searches, str):
+                    searches = [s for s in searches.split(",") if s]
+                if self.search_query in searches:
+                    searches.remove(self.search_query)
+                    self.session.settings["other_buffers"]["searches"] = searches
+                    self.session.settings.write()
+        except Exception:
+            log.exception("Error updating saved searches")
         return True

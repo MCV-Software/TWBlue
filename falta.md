@@ -51,7 +51,7 @@ Hecho. La terminología es consistente: Bluesky usa "repost/like" (nativo AT Pro
 ## 9) Paginación en listados
 - Bluesky: implementada en Reposts/Likes y Followers/Following.
 - Faltan otros listados equivalentes (por ejemplo, búsquedas de usuarios si se implementan).
-Parcial. Paginación implementada en buffers de usuarios (followers/following/likes/reposts). Pendiente en timelines principales.
+Hecho. Paginación implementada en todos los buffers: HomeTimeline, FollowingTimeline, NotificationBuffer, LikesBuffer, MentionsBuffer, SentBuffer, UserTimeline, SearchBuffer, FollowersBuffer, FollowingBuffer, PostUserListBuffer.
 
 ## 10) Accesibilidad/teclado
 - Verificar atajos en todos los nuevos diálogos/buffers.

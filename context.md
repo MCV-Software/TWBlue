@@ -12,6 +12,7 @@ Se está siguiendo `falta.md` por orden. Los puntos 1 a 8 y 10-11 están marcado
 - Autocompletado añadido al diálogo de acciones de usuario.
 - Atajos de teclado (&) añadidos a botones del perfil.
 - Persistencia de búsquedas implementada (se guardan y restauran al reiniciar).
+- Paginación completa en todos los buffers: HomeTimeline, FollowingTimeline, NotificationBuffer, LikesBuffer, MentionsBuffer, SentBuffer, UserTimeline, SearchBuffer.
 
 ## Cambios anteriores
 - Activado autocompletado en el diálogo "Ver timeline..." y validación de usuario.
@@ -21,11 +22,13 @@ Se está siguiendo `falta.md` por orden. Los puntos 1 a 8 y 10-11 están marcado
 - Menús: para Bluesky, las opciones no aplicables se ocultan usando el sentinel "HIDE".
 
 ## Puntos pendientes
-- 9) Paginación en timelines principales (home, notifications, user timelines, search) - parcial.
+Ninguno. Todos los puntos de falta.md están completados.
 
 ## Notas técnicas
 - `update_menus` en `src/controller/mainController.py` interpreta `"HIDE"` para ocultar entradas.
 - Buffers de Reposts/Likes usan `PostUserListBuffer` con cursor para paginación.
 - Las búsquedas ahora se guardan en `session.settings["other_buffers"]["searches"]`.
 - Perfil de usuario descarga imágenes en thread separado para no bloquear UI.
+- Paginación usa patrón: `self.next_cursor` guardado en `start_stream()`, usado en `get_more_items()`.
+- El menú "load_previous_items" activa `get_more_items()` en el buffer actual.
 
