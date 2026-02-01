@@ -350,7 +350,51 @@ class Handler:
             ask_default = True if current_mode in (None, "ask") else False
 
             from wxUI.dialogs.blueski.configuration import AccountSettingsDialog
+            from .templateEditor import EditTemplate
             dlg = AccountSettingsDialog(controller.view, ask_before_boost=ask_default)
+            try:
+                if buffer.session.settings.get("templates") is None:
+                    buffer.session.settings["templates"] = {}
+                templates_cfg = buffer.session.settings.get("templates", {})
+                template_state = {
+                    "post": templates_cfg.get("post", "$display_name, $safe_text $date."),
+                    "person": templates_cfg.get("person", "$display_name (@$screen_name). $followers followers, $following following, $posts posts."),
+                    "notification": templates_cfg.get("notification", "$display_name $text, $date"),
+                }
+                dlg.set_template_labels(template_state["post"], template_state["person"], template_state["notification"])
+
+                def edit_post_template(*args, **kwargs):
+                    control = EditTemplate(template=template_state["post"], type="post")
+                    result = control.run_dialog()
+                    if result:
+                        buffer.session.settings["templates"]["post"] = result
+                        buffer.session.settings.write()
+                        template_state["post"] = result
+                        dlg.set_template_labels(template_state["post"], template_state["person"], template_state["notification"])
+
+                def edit_person_template(*args, **kwargs):
+                    control = EditTemplate(template=template_state["person"], type="person")
+                    result = control.run_dialog()
+                    if result:
+                        buffer.session.settings["templates"]["person"] = result
+                        buffer.session.settings.write()
+                        template_state["person"] = result
+                        dlg.set_template_labels(template_state["post"], template_state["person"], template_state["notification"])
+
+                def edit_notification_template(*args, **kwargs):
+                    control = EditTemplate(template=template_state["notification"], type="notification")
+                    result = control.run_dialog()
+                    if result:
+                        buffer.session.settings["templates"]["notification"] = result
+                        buffer.session.settings.write()
+                        template_state["notification"] = result
+                        dlg.set_template_labels(template_state["post"], template_state["person"], template_state["notification"])
+
+                widgetUtils.connect_event(dlg.template_post, widgetUtils.BUTTON_PRESSED, edit_post_template)
+                widgetUtils.connect_event(dlg.template_person, widgetUtils.BUTTON_PRESSED, edit_person_template)
+                widgetUtils.connect_event(dlg.template_notification, widgetUtils.BUTTON_PRESSED, edit_notification_template)
+            except Exception as e:
+                logger.error("Failed to init Bluesky templates editor: %s", e)
             resp = dlg.ShowModal()
             if resp == wx.ID_OK:
                 vals = dlg.get_values()

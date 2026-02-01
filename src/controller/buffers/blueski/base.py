@@ -10,7 +10,7 @@ import languageHandler
 from pubsub import pub
 from controller.buffers.base import base
 from controller.blueski import messages as blueski_messages
-from sessions.blueski import compose, utils
+from sessions.blueski import compose, utils, templates
 from mysc.thread_utils import call_threaded
 from wxUI.buffers.blueski import panels as BlueskiPanels
 from wxUI import commonMessageDialogs
@@ -739,11 +739,31 @@ class BaseBuffer(base.Buffer):
          item = self.get_item()
          if item is None:
               return
-         # Use the compose function to get the full formatted text
-         # Bluesky compose returns [user, text, date, source]
-         composed = self.compose_function(item, self.session.db, self.session.settings, self.session.settings["general"].get("relative_times", False), self.session.settings["general"].get("show_screen_names", False))
-         # Join them for a full readout similar to Mastodon's template render
-         return " ".join(composed)
+         relative_times = self.session.settings["general"].get("relative_times", False)
+         offset_hours = 0
+         if isinstance(self.session.db, dict):
+             offset_hours = self.session.db.get("utc_offset", 0) or 0
+         template_settings = self.session.settings.get("templates", {})
+         try:
+             if self.type == "notifications":
+                 template = template_settings.get("notification", "$display_name $text, $date")
+                 post_template = template_settings.get("post", "$display_name, $safe_text $date.")
+                 return templates.render_notification(item, template, post_template, self.session.settings, relative_times, offset_hours)
+             if self.type in ("user", "post_user_list"):
+                 template = template_settings.get("person", "$display_name (@$screen_name). $followers followers, $following following, $posts posts.")
+                 return templates.render_user(item, template, self.session.settings, relative_times, offset_hours)
+             template = template_settings.get("post", "$display_name, $safe_text $date.")
+             return templates.render_post(item, template, self.session.settings, relative_times, offset_hours)
+         except Exception:
+             # Fallback to compose if any template render fails.
+             composed = self.compose_function(
+                 item,
+                 self.session.db,
+                 self.session.settings,
+                 relative_times,
+                 self.session.settings["general"].get("show_screen_names", False),
+             )
+             return " ".join(composed)
 
     def view_conversation(self, *args, **kwargs):
          item = self.get_item()
