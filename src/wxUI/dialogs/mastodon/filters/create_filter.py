@@ -31,7 +31,7 @@ class FilterKeywordPanel(wx.Panel):
         button_sizer.Add(self.add_button, 0, wx.RIGHT, 5)
         button_sizer.Add(self.remove_button, 0)
         main_sizer = wx.BoxSizer(wx.VERTICAL)
-        main_sizer.Add(wx.StaticText(self, label=_("Palabras clave a filtrar:")), 0, wx.BOTTOM, 5)
+        main_sizer.Add(wx.StaticText(self, label=_("Keywords to filter:")), 0, wx.BOTTOM, 5)
         main_sizer.Add(list_panel, 1, wx.EXPAND | wx.BOTTOM, 5)
         main_sizer.Add(input_sizer, 0, wx.EXPAND | wx.BOTTOM, 5)
         main_sizer.Add(button_sizer, 0, wx.ALIGN_RIGHT)

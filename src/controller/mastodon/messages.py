@@ -10,7 +10,7 @@ import languageHandler
 from twitter_text import parse_tweet, config
 from mastodon import MastodonError
 from controller import messages
-from sessions.mastodon import templates
+from sessions.mastodon import templates, utils
 from wxUI.dialogs.mastodon import postDialogs
 from extra.autocompletionUsers import completion
 from . import userList
@@ -65,6 +65,13 @@ class post(messages.basicMessage):
         postdata = dict(text=text, attachments=attachments, sensitive=self.message.sensitive.GetValue(), spoiler_text=None)
         if postdata.get("sensitive") == True:
             postdata.update(spoiler_text=self.message.spoiler.GetValue())
+        
+        # Check for scheduled post
+        if hasattr(self.message, 'get_scheduled_at'):
+            scheduled_at = self.message.get_scheduled_at()
+            if scheduled_at:
+                postdata['scheduled_at'] = scheduled_at
+
         self.thread.append(postdata)
         self.attachments = []
         if update_gui:
@@ -275,10 +282,7 @@ class editPost(post):
         # Extract text from post
         if item.reblog != None:
             item = item.reblog
-        text = item.content
-        # Remove HTML tags from content
-        import re
-        text = re.sub('<[^<]+?>', '', text)
+        text = utils.html_filter(item.content)
         # Initialize parent class
         super(editPost, self).__init__(session, title, caption, text=text, *args, **kwargs)
         # Store the post ID for editing

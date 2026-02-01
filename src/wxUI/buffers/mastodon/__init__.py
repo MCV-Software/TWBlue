@@ -3,3 +3,4 @@ from .base import basePanel
 from .conversationList import conversationListPanel
 from .notifications import notificationsPanel
 from .user import userPanel
+from .announcements import announcementsPanel

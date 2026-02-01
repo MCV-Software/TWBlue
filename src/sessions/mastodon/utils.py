@@ -140,6 +140,11 @@ def evaluate_filters(post: dict, current_context: str) -> str | None:
       - None if no applicable filters are found, meaning the post should be shown normally.
     """
     filters = post.get("filtered", None)
+
+    # Automatically hide muted conversations from home timeline.
+    if current_context == "home" and post.get("muted") == True:
+        return "hide"
+
     if filters == None:
         return
     warn_filter_title = None

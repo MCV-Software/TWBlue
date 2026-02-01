@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import wx
+import wx.adv
+import datetime
 
 class Post(wx.Dialog):
     def __init__(self, caption=_("Post"), text="", languages=[], *args, **kwds):
@@ -60,6 +62,28 @@ class Post(wx.Dialog):
         self.sensitive.SetValue(False)
         self.sensitive.Bind(wx.EVT_CHECKBOX, self.on_sensitivity_changed)
         main_sizer.Add(self.sensitive, 0, wx.ALL, 5)
+
+        # Scheduled post section
+        scheduled_box = wx.BoxSizer(wx.HORIZONTAL)
+        self.scheduled = wx.CheckBox(self, wx.ID_ANY, _("Schedule &post"))
+        self.scheduled.SetValue(False)
+        self.scheduled.Bind(wx.EVT_CHECKBOX, self.on_schedule_changed)
+        scheduled_box.Add(self.scheduled, 0, wx.ALL, 5)
+        
+        # Default to now + 6 minutes to be safe for the 5 minute minimum
+        future_dt = wx.DateTime.Now()
+        future_dt.Add(wx.TimeSpan(0, 6, 0, 0))
+        
+        self.date_picker = wx.adv.DatePickerCtrl(self, wx.ID_ANY, dt=future_dt, style=wx.adv.DP_DROPDOWN | wx.adv.DP_SHOWCENTURY)
+        self.date_picker.Enable(False)
+        scheduled_box.Add(self.date_picker, 0, wx.ALL, 5)
+        
+        self.time_picker = wx.adv.TimePickerCtrl(self, wx.ID_ANY, dt=future_dt)
+        self.time_picker.Enable(False)
+        scheduled_box.Add(self.time_picker, 0, wx.ALL, 5)
+        
+        main_sizer.Add(scheduled_box, 0, wx.ALL, 5)
+
         spoiler_box = wx.BoxSizer(wx.HORIZONTAL)
         spoiler_label = wx.StaticText(self, wx.ID_ANY, _("Content warning"))
         self.spoiler = wx.TextCtrl(self, wx.ID_ANY)
@@ -80,8 +104,9 @@ class Post(wx.Dialog):
         text_actions_sizer.Add(self.translate, 0, 0, 0)
         btn_sizer = wx.StdDialogButtonSizer()
         main_sizer.Add(btn_sizer, 0, wx.ALIGN_RIGHT | wx.ALL, 4)
-        self.send = wx.Button(self, wx.ID_OK, "")
+        self.send = wx.Button(self, wx.ID_ANY, _("&Send"))
         self.send.SetDefault()
+        self.send.Bind(wx.EVT_BUTTON, self.validate_and_send)
         btn_sizer.AddButton(self.send)
         self.close = wx.Button(self, wx.ID_CLOSE, "")
         btn_sizer.AddButton(self.close)
@@ -95,12 +120,49 @@ class Post(wx.Dialog):
         """ Allows to react to certain keyboard events from the text control. """
         shift=event.ShiftDown()
         if event.GetKeyCode() == wx.WXK_RETURN and shift==False and hasattr(self,'send'):
-            self.EndModal(wx.ID_OK)
+            self.validate_and_send()
         else:
             event.Skip()
 
+    def validate_and_send(self, event=None):
+        scheduled_at = self.get_scheduled_at()
+        if scheduled_at:
+            min_time = datetime.datetime.now() + datetime.timedelta(minutes=5)
+            if scheduled_at < min_time:
+                wx.MessageDialog(self, 
+                    _("Scheduled posts must be set at least 5 minutes in the future. Please adjust the time."), 
+                    _("Invalid scheduled time"), 
+                    wx.ICON_ERROR | wx.OK).ShowModal()
+                return
+        self.EndModal(wx.ID_OK)
+
     def on_sensitivity_changed(self, *args, **kwargs):
         self.spoiler.Enable(self.sensitive.GetValue())
+
+    def on_schedule_changed(self, *args, **kwargs):
+        enabled = self.scheduled.GetValue()
+        self.date_picker.Enable(enabled)
+        self.time_picker.Enable(enabled)
+
+    def get_scheduled_at(self):
+        if not self.scheduled.GetValue():
+            return None
+        
+        # Get date from date picker
+        wx_date = self.date_picker.GetValue()
+        # Get time from time picker
+        wx_time = self.time_picker.GetValue()
+        
+        # Combine into a python datetime object
+        dt = datetime.datetime(
+            wx_date.GetYear(),
+            wx_date.GetMonth() + 1, # wx.DateTime months are 0-11
+            wx_date.GetDay(),
+            wx_time.GetHour(),
+            wx_time.GetMinute(),
+            wx_time.GetSecond()
+        )
+        return dt
 
     def set_title(self, chars):
         self.SetTitle(_("Post - {} characters").format(chars))

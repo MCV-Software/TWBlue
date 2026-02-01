@@ -40,8 +40,30 @@ class BaseBuffer(base.Buffer):
         self.buffer.account = account
         self.bind_events()
         self.sound = sound
+        pub.subscribe(self.on_mute_cleanup, "mastodon.mute_cleanup")
         if "-timeline" in self.name or "-followers" in self.name or "-following" in self.name or "searchterm" in self.name:
             self.finished_timeline = False
+
+    def on_mute_cleanup(self, conversation_id, session_name):
+        if self.name != "home_timeline":
+            return
+        if session_name != self.session.get_name():
+            return
+        items_to_remove = []
+        for index, item in enumerate(self.session.db[self.name]):
+            c_id = None
+            if hasattr(item, "conversation_id"):
+                 c_id = item.conversation_id
+            elif isinstance(item, dict):
+                 c_id = item.get("conversation_id")
+            
+            if c_id == conversation_id:
+                items_to_remove.append(index)
+        
+        items_to_remove.sort(reverse=True)
+        for index in items_to_remove:
+            self.session.db[self.name].pop(index)
+            self.buffer.list.remove_item(index)
 
     def create_buffer(self, parent, name):
         self.buffer = buffers.mastodon.basePanel(parent, name)
@@ -104,14 +126,16 @@ class BaseBuffer(base.Buffer):
             min_id = None
             # toDo: Implement reverse timelines properly here.
             if (self.name != "favorites" and self.name != "bookmarks") and self.name in self.session.db and len(self.session.db[self.name]) > 0:
-                if self.session.settings["general"]["reverse_timelines"]:
-                    min_id = self.session.db[self.name][0].id
-                else:
-                    min_id = self.session.db[self.name][-1].id
+                # We use the maximum ID present in the buffer to ensure we only request posts 
+                # that are newer than our most recent chronological post. 
+                # This prevents old pinned posts from pulling in hundreds of previous statuses.
+                min_id = max(item.id for item in self.session.db[self.name])
             # loads pinned posts from user accounts.
             # Load those posts only when there are no items previously loaded.
             if "-timeline" in self.name and "account_statuses" in self.function and len(self.session.db.get(self.name, [])) == 0:
                 pinned_posts = self.session.api.account_statuses(pinned=True, limit=count, *self.args, **self.kwargs)
+                for p in pinned_posts:
+                    p["pinned"] = True
                 pinned_posts.reverse()
             else:
                 pinned_posts = None
@@ -160,10 +184,17 @@ class BaseBuffer(base.Buffer):
 
     def get_more_items(self):
         elements = []
-        if self.session.settings["general"]["reverse_timelines"] == False:
-            max_id = self.session.db[self.name][0].id
+        if len(self.session.db[self.name]) == 0:
+            return
+        # We use the minimum ID in the buffer to correctly request the next page of older items.
+        # This prevents old pinned posts from causing us to skip chronological posts.
+        # We try to exclude pinned posts from this calculation as they are usually outliers at the top.
+        unpinned_ids = [item.id for item in self.session.db[self.name] if not getattr(item, "pinned", False)]
+        if unpinned_ids:
+            max_id = min(unpinned_ids)
         else:
-            max_id = self.session.db[self.name][-1].id
+            max_id = min(item.id for item in self.session.db[self.name])
+        
         try:
             items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_posts_per_call"], *self.args, **self.kwargs)
         except Exception as e:
@@ -289,10 +320,13 @@ class BaseBuffer(base.Buffer):
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
         if self.can_share() == True:
             widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.boost)
+            widgetUtils.connect_event(menu, widgetUtils.MENU, self.quote, menuitem=menu.quote)
         else:
             menu.boost.Enable(False)
+            menu.quote.Enable(False)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.fav, menuitem=menu.fav)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.unfav, menuitem=menu.unfav)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.mute_conversation, menuitem=menu.mute)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.url_, menuitem=menu.openUrl)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.audio, menuitem=menu.play)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
@@ -419,10 +453,29 @@ class BaseBuffer(base.Buffer):
         id = item.id
         if self.session.settings["general"]["boost_mode"] == "ask":
             answer = mastodon_dialogs.boost_question()
-            if answer == True:
+            if answer == 1:
                 self._direct_boost(id)
+            elif answer == 2:
+                self.quote(item=item)
         else:
             self._direct_boost(id)
+
+    def quote(self, event=None, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        if self.can_share(item=item) == False:
+            return output.speak(_("This action is not supported on conversations."))
+        
+        title = _("Quote post")
+        caption = _("Write your comment here")
+        post = messages.post(session=self.session, title=title, caption=caption)
+        
+        response = post.message.ShowModal()
+        if response == wx.ID_OK:
+            post_data = post.get_data()
+            call_threaded(self.session.send_post, quote_id=item.id, posts=post_data, visibility=post.get_visibility(), language=post.get_language(), **kwargs)
+        if hasattr(post.message, "destroy"):
+            post.message.destroy()
 
     def _direct_boost(self, id):
         item = self.session.api_call(call_name="status_reblog", _sound="retweet_send.ogg", id=id)
@@ -611,6 +664,22 @@ class BaseBuffer(base.Buffer):
             call_threaded(self.session.api_call, call_name="status_bookmark", preexec_message=_("Adding to bookmarks..."), _sound="favourite.ogg", id=item.id)
         else:
             call_threaded(self.session.api_call, call_name="status_unbookmark", preexec_message=_("Removing from bookmarks..."), _sound="favourite.ogg", id=item.id)
+
+    def mute_conversation(self, event=None, item=None, *args, **kwargs):
+        if item == None:
+            item = self.get_item()
+        if item.reblog != None:
+            item = item.reblog
+        try:
+            item = self.session.api.status(item.id)
+        except MastodonNotFoundError:
+            output.speak(_("No status found with that ID"))
+            return
+        if item.muted == False:
+            call_threaded(self.session.api_call, call_name="status_mute", preexec_message=_("Muting conversation..."), _sound="favourite.ogg", id=item.id)
+            pub.sendMessage("mastodon.mute_cleanup", conversation_id=item.conversation_id, session_name=self.session.get_name())
+        else:
+            call_threaded(self.session.api_call, call_name="status_unmute", preexec_message=_("Unmuting conversation..."), _sound="favourite.ogg", id=item.id)
 
     def view_item(self, item=None):
         if item == None:

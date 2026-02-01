@@ -85,3 +85,9 @@ def compose_notification(notification, db, settings, relative_times, show_screen
     if filtered != None:
         text = _("hidden by filter {}").format(filtered)
     return [user, text, ts]
+
+def compose_announcement(announcement, db, settings, relative_times, show_screen_names, safe=False):
+    # Use the default template or a configured one if available
+    template = settings.get("templates", {}).get("announcement", templates.announcement_default_template)
+    text = templates.render_announcement(announcement, template, settings, relative_times, db["utc_offset"])
+    return [text]

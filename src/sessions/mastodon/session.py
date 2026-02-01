@@ -217,36 +217,68 @@ class Session(base.baseSession):
             self.sound.play(_sound)
         return val
 
-    def send_post(self, reply_to=None, visibility=None, language=None, posts=[]):
+    def _send_quote_post(self, text, quote_id, visibility, sensitive, spoiler_text, language, scheduled_at, in_reply_to_id=None, media_ids=[], poll=None):
+        """Internal helper to send a quote post using direct API call."""
+        params = {
+            'status': text,
+            'visibility': visibility,
+            'quoted_status_id': quote_id,
+        }
+        if in_reply_to_id:
+            params['in_reply_to_id'] = in_reply_to_id
+        if sensitive:
+            params['sensitive'] = sensitive
+        if spoiler_text:
+            params['spoiler_text'] = spoiler_text
+        if language:
+            params['language'] = language
+        if scheduled_at:
+            if hasattr(scheduled_at, 'isoformat'):
+                params['scheduled_at'] = scheduled_at.isoformat()
+            else:
+                 params['scheduled_at'] = scheduled_at
+        if media_ids:
+            params['media_ids'] = media_ids
+        if poll:
+            params['poll'] = poll
+
+        # Use the internal API request method directly
+        return self.api._Mastodon__api_request('POST', '/api/v1/statuses', params)
+
+    def send_post(self, reply_to=None, quote_id=None, visibility=None, language=None, posts=[]):
         """ Convenience function to send a thread. """
         in_reply_to_id = reply_to
         for obj in posts:
             text = obj.get("text")
-            if len(obj["attachments"]) == 0:
+            scheduled_at = obj.get("scheduled_at")
+            
+            # Prepare media and polls first as they are needed for both standard and quote posts
+            media_ids = []
+            poll = None
+            if len(obj["attachments"]) > 0:
                 try:
-                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg",  in_reply_to_id=in_reply_to_id, visibility=visibility, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language)
-                # If it fails, let's basically send an event with all passed info so we will catch it later.
-                except Exception as e:
-                    pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts, lang=language)
-                    return
-                if item != None:
-                    in_reply_to_id = item["id"]
-            else:
-                media_ids = []
-                try:
-                    poll = None
                     if len(obj["attachments"]) == 1 and obj["attachments"][0]["type"] == "poll":
                         poll = self.api.make_poll(options=obj["attachments"][0]["options"], expires_in=obj["attachments"][0]["expires_in"], multiple=obj["attachments"][0]["multiple"], hide_totals=obj["attachments"][0]["hide_totals"])
                     else:
                         for i in obj["attachments"]:
                             media = self.api_call("media_post", media_file=i["file"], description=i["description"], synchronous=True)
                             media_ids.append(media.id)
-                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language)
-                    if item != None:
-                        in_reply_to_id = item["id"]
                 except Exception as e:
-                    pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts, lang=language)
+                    pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts, language=language)
                     return
+
+            try:
+                if quote_id:
+                    item = self._send_quote_post(text, quote_id, visibility, obj["sensitive"], obj["spoiler_text"], language, scheduled_at, in_reply_to_id, media_ids, poll)
+                    self.sound.play("tweet_send.ogg")
+                else:
+                    item = self.api_call(call_name="status_post", status=text, _sound="tweet_send.ogg", in_reply_to_id=in_reply_to_id, media_ids=media_ids, visibility=visibility, poll=poll, sensitive=obj["sensitive"], spoiler_text=obj["spoiler_text"], language=language, scheduled_at=scheduled_at)
+                
+                if item != None:
+                    in_reply_to_id = item["id"]
+            except Exception as e:
+                pub.sendMessage("mastodon.error_post", name=self.get_name(), reply_to=reply_to, visibility=visibility, posts=posts, language=language)
+                return
 
     def edit_post(self, post_id, posts=[]):
         """ Convenience function to edit a post. Only the first item in posts list is used as threads cannot be edited.
