@@ -253,12 +253,22 @@ def compose_user(user, db, settings, relative_times, show_screen_names=False, sa
             return obj.get(key, default)
         return getattr(obj, key, default)
 
-    handle = g(user, "handle", "unknown")
-    display_name = g(user, "displayName") or g(user, "display_name") or handle
-    followers = g(user, "followersCount", 0) or 0
-    following = g(user, "followsCount", 0) or 0
-    posts = g(user, "postsCount", 0) or 0
-    created_at = g(user, "createdAt", None)
+    def resolve_profile(obj):
+        if g(obj, "handle") or g(obj, "did"):
+            return obj
+        for key in ("subject", "actor", "profile", "user"):
+            nested = g(obj, key)
+            if nested and (g(nested, "handle") or g(nested, "did")):
+                return nested
+        return obj
+
+    profile = resolve_profile(user)
+    handle = g(profile, "handle", "unknown")
+    display_name = g(profile, "displayName") or g(profile, "display_name") or handle
+    followers = g(profile, "followersCount", 0) or 0
+    following = g(profile, "followsCount", 0) or 0
+    posts = g(profile, "postsCount", 0) or 0
+    created_at = g(profile, "createdAt", None)
 
     ts = ""
     if created_at:

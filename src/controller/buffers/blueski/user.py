@@ -37,7 +37,7 @@ class UserBuffer(BaseBuffer):
                 res = getattr(self.session, api_method)(actor=actor, limit=count)
             else:
                 res = getattr(self.session, api_method)(limit=count)
-            items = res.get("items", [])
+            items = self._hydrate_profiles(res.get("items", []) or [])
             self.next_cursor = res.get("cursor")
             return self.process_items(items, play_sound)
         except Exception as e:
@@ -61,13 +61,119 @@ class UserBuffer(BaseBuffer):
                 res = getattr(self.session, api_method)(actor=actor, limit=count, cursor=self.next_cursor)
             else:
                 res = getattr(self.session, api_method)(limit=count, cursor=self.next_cursor)
-            items = res.get("items", [])
+            items = self._hydrate_profiles(res.get("items", []) or [])
             self.next_cursor = res.get("cursor")
             added = self.process_items(items, play_sound=False)
             if added:
                 output.speak(_(u"%s items retrieved") % (str(added)), True)
         except Exception as e:
             log.error("Error fetching more user list items for %s: %s", self.name, e)
+
+    def _hydrate_profiles(self, items):
+        if not items:
+            return []
+
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        def resolve_profile(obj):
+            if g(obj, "handle") or g(obj, "did"):
+                return obj
+            for key in ("subject", "actor", "profile", "user"):
+                nested = g(obj, key)
+                if nested and (g(nested, "handle") or g(nested, "did")):
+                    return nested
+            return obj
+
+        actors = []
+        for item in items:
+            profile = resolve_profile(item)
+            did = g(profile, "did")
+            handle = g(profile, "handle")
+            if did:
+                actors.append(did)
+            elif handle:
+                actors.append(handle)
+
+        if not actors:
+            return items
+
+        profiles = []
+        if actors and hasattr(self.session, "get_profiles"):
+            try:
+                res = self.session.get_profiles(actors)
+                profiles = res.get("items", []) or []
+            except Exception:
+                profiles = []
+        # If batch profiles lack counts, hydrate with detailed profiles.
+        if hasattr(self.session, "get_profile"):
+            def counts_missing(profile_obj):
+                p1 = g(profile_obj, "followersCount", None)
+                p2 = g(profile_obj, "followsCount", None)
+                p3 = g(profile_obj, "postsCount", None)
+                if p1 is None and p2 is None and p3 is None:
+                    return True
+                return (p1 or 0) == 0 and (p2 or 0) == 0 and (p3 or 0) == 0
+
+            if not profiles:
+                for actor in actors:
+                    try:
+                        p = self.session.get_profile(actor)
+                        if p:
+                            profiles.append(p)
+                    except Exception:
+                        pass
+            else:
+                for idx, p in enumerate(profiles):
+                    if counts_missing(p):
+                        did = g(p, "did") or g(p, "handle")
+                        if not did:
+                            continue
+                        try:
+                            detailed = self.session.get_profile(did)
+                            if detailed:
+                                profiles[idx] = detailed
+                        except Exception:
+                            pass
+
+        profile_map = {}
+        for p in profiles:
+            did = g(p, "did")
+            handle = g(p, "handle")
+            if did:
+                profile_map[did] = p
+            if handle and handle not in profile_map:
+                profile_map[handle] = p
+
+        def needs_replace(item, profile):
+            if profile is None:
+                return False
+            base = resolve_profile(item)
+            f1 = g(base, "followersCount", None)
+            f2 = g(base, "followsCount", None)
+            f3 = g(base, "postsCount", None)
+            p1 = g(profile, "followersCount", None)
+            p2 = g(profile, "followsCount", None)
+            p3 = g(profile, "postsCount", None)
+            if f1 is None and f2 is None and f3 is None:
+                return True
+            if (f1 or 0) == 0 and (f2 or 0) == 0 and (f3 or 0) == 0:
+                return (p1 or 0) != 0 or (p2 or 0) != 0 or (p3 or 0) != 0
+            return False
+
+        enriched = []
+        for item in items:
+            base = resolve_profile(item)
+            did = g(base, "did")
+            handle = g(base, "handle")
+            profile = profile_map.get(did) or profile_map.get(handle)
+            if needs_replace(item, profile):
+                enriched.append(profile)
+            else:
+                enriched.append(item)
+        return enriched
 
 class FollowersBuffer(UserBuffer):
     def __init__(self, *args, **kwargs):

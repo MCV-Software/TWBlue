@@ -485,6 +485,17 @@ class Session(base.baseSession):
             log.exception("Error fetching Bluesky profile for %s", actor)
             return None
 
+    def get_profiles(self, actors: list[str]) -> dict[str, Any]:
+        api = self._ensure_client()
+        if not actors:
+            return {"items": []}
+        try:
+            res = api.app.bsky.actor.get_profiles({"actors": actors})
+            return {"items": getattr(res, "profiles", []) or []}
+        except Exception:
+            log.exception("Error fetching Bluesky profiles batch")
+            return {"items": []}
+
     def get_post_likes(self, uri: str, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
         api = self._ensure_client()
         try:
