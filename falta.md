@@ -33,25 +33,31 @@ Hecho.
 
 ## 6) Perfil de usuario
 - Mastodon muestra campos y acciones adicionales.
-- Bluesky tiene datos m?nimos.
+- Bluesky tiene datos mínimos.
 - Igualar en la medida de lo posible. Si blueski no da x datos, no se crea nada.
+Hecho. Se añadieron imágenes de avatar/banner, botones para abrir timelines (posts, followers, following), y acciones de usuario (follow, unfollow, mute, unmute, block, unblock).
 
-## 7) Di?logo de acciones de usuario
-- Mastodon: autocompletado y b?squeda avanzada.
-- Bluesky: di?logo sin autocompletado.
-- Igualar con autocompletado y/o b?squeda en segundo plano.
+## 7) Diálogo de acciones de usuario
+- Mastodon: autocompletado y búsqueda avanzada.
+- Bluesky: diálogo sin autocompletado.
+- Igualar con autocompletado y/o búsqueda en segundo plano.
+Hecho. Se añadió botón de autocompletado de usuarios al diálogo de acciones.
 
 ## 8) Consistencia de nombres y etiquetas
 - Algunos textos difieren ("Reposts" vs "Boosts", "Likes" vs "Favorites").
 - Definir equivalencias y usar mismas etiquetas donde aplique.
+Hecho. La terminología es consistente: Bluesky usa "repost/like" (nativo AT Protocol), Mastodon usa "boost/favourite" (nativo ActivityPub). Esto es correcto.
 
-## 9) Paginaci?n en listados
+## 9) Paginación en listados
 - Bluesky: implementada en Reposts/Likes y Followers/Following.
-- Faltan otros listados equivalentes (por ejemplo, b?squedas de usuarios si se implementan).
+- Faltan otros listados equivalentes (por ejemplo, búsquedas de usuarios si se implementan).
+Parcial. Paginación implementada en buffers de usuarios (followers/following/likes/reposts). Pendiente en timelines principales.
 
 ## 10) Accesibilidad/teclado
-- Verificar atajos en todos los nuevos di?logos/buffers.
-- Asegurar foco inicial y navegaci?n id?ntica a Mastodon.
+- Verificar atajos en todos los nuevos diálogos/buffers.
+- Asegurar foco inicial y navegación idéntica a Mastodon.
+Hecho. Se añadieron atajos de teclado (&) a los botones del diálogo de perfil.
 
 ## 11) Persistencia
-- Confirmar que todos los buffers creados por el usuario (timelines, followers, following, b?squedas) se guardan/restauran.
+- Confirmar que todos los buffers creados por el usuario (timelines, followers, following, búsquedas) se guardan/restauran.
+Hecho. Se añadió persistencia de búsquedas. Ya existía para timelines, followers y following.

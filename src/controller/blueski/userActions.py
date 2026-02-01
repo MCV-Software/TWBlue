@@ -3,6 +3,7 @@ import logging
 import widgetUtils
 import output
 from wxUI.dialogs.blueski import userActions as userActionsDialog
+from extra.autocompletionUsers import completion
 import languageHandler
 
 log = logging.getLogger("controller.blueski.userActions")
@@ -24,6 +25,10 @@ class BasicUserSelector(object):
             log.exception("Error resolving Bluesky profile for %s.", actor)
             return None
 
+    def autocomplete_users(self, *args, **kwargs):
+        c = completion.autocompletionUsers(self.dialog, self.session.session_id)
+        c.show_menu("free")
+
 
 class userActions(BasicUserSelector):
     def __init__(self, *args, **kwargs):
@@ -33,6 +38,7 @@ class userActions(BasicUserSelector):
 
     def create_dialog(self, users):
         self.dialog = userActionsDialog.UserActionsDialog(users)
+        widgetUtils.connect_event(self.dialog.autocompletion, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
 
     def process_action(self):
         action = self.dialog.get_action()

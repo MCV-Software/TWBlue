@@ -14,8 +14,10 @@ class UserActionsDialog(wx.Dialog):
         default_user = users[0] if users else ""
         self.cb = wx.ComboBox(panel, -1, choices=users, value=default_user)
         self.cb.SetFocus()
+        self.autocompletion = wx.Button(panel, -1, _(u"&Autocomplete users"))
         userSizer.Add(userLabel, 0, wx.ALL, 5)
         userSizer.Add(self.cb, 0, wx.ALL, 5)
+        userSizer.Add(self.autocompletion, 0, wx.ALL, 5)
 
         actionSizer = wx.BoxSizer(wx.VERTICAL)
         label2 = wx.StaticText(panel, -1, _(u"Action"))
@@ -82,4 +84,10 @@ class UserActionsDialog(wx.Dialog):
 
     def get_user(self):
         return self.cb.GetValue()
+
+    def get_position(self):
+        return self.cb.GetPosition()
+
+    def popup_menu(self, menu):
+        self.PopupMenu(menu, self.cb.GetPosition())
 

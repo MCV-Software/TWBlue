@@ -1,28 +1,31 @@
 # Contexto de trabajo
 
 ## Objetivo final
-Igualar la experiencia de Bluesky con Mastodon en la interfaz (men?s, di?logos, buffers y accesos), manteniendo las diferencias s?lo cuando el protocolo lo exige. Mastodon es la referencia.
+Igualar la experiencia de Bluesky con Mastodon en la interfaz (menús, diálogos, buffers y accesos), manteniendo las diferencias sólo cuando el protocolo lo exige. Mastodon es la referencia.
 
 ## Estado actual
-Se est? siguiendo `falta.md` por orden. Los puntos 1 a 5 ya est?n marcados como "Hecho".
+Se está siguiendo `falta.md` por orden. Los puntos 1 a 8 y 10-11 están marcados como "Hecho". Punto 9 parcialmente completado.
 
-## Cambios recientes
-- Activado autocompletado en el di?logo "Ver timeline..." y validaci?n de usuario.
-- Reposts/Likes ahora abren buffers con paginaci?n bajo "Timelines".
-- Restauraci?n de followers/following propios sin duplicar.
-- Estructura del ?rbol: se a?adi? "Searches" en Bluesky.
-- Men?s: para Bluesky, las opciones no aplicables se ocultan (etiqueta vac?a) usando el sentinel "HIDE" en `handler.menus`.
+## Cambios recientes (sesión actual)
+- Perfil de usuario mejorado: imágenes de avatar/banner, botones de timeline (posts, followers, following).
+- Acciones de usuario en perfil: follow, unfollow, mute, unmute, block, unblock.
+- Autocompletado añadido al diálogo de acciones de usuario.
+- Atajos de teclado (&) añadidos a botones del perfil.
+- Persistencia de búsquedas implementada (se guardan y restauran al reiniciar).
 
-## Puntos pendientes (seg?n falta.md)
-- 6) Perfil de usuario (igualar estructura si el protocolo permite).
-- 7) Di?logo de acciones de usuario (autocompletado/b?squeda avanzada).
-- 8) Consistencia de nombres/etiquetas.
-- 9) Paginaci?n en listados restantes.
-- 10) Accesibilidad/teclado.
-- 11) Persistencia total (b?squedas y otros buffers).
+## Cambios anteriores
+- Activado autocompletado en el diálogo "Ver timeline..." y validación de usuario.
+- Reposts/Likes ahora abren buffers con paginación bajo "Timelines".
+- Restauración de followers/following propios sin duplicar.
+- Estructura del árbol: se añadió "Searches" en Bluesky.
+- Menús: para Bluesky, las opciones no aplicables se ocultan usando el sentinel "HIDE".
 
-## Notas t?cnicas
-- `update_menus` en `src/controller/mainController.py` interpreta `"HIDE"` para ocultar entradas (label vac?o + disabled).
-- Buffers de Reposts/Likes usan `PostUserListBuffer` y `get_post_likes/get_post_reposts` con cursor.
-- El nodo "Searches" ahora existe en Bluesky y se usa al crear b?squedas.
+## Puntos pendientes
+- 9) Paginación en timelines principales (home, notifications, user timelines, search) - parcial.
+
+## Notas técnicas
+- `update_menus` en `src/controller/mainController.py` interpreta `"HIDE"` para ocultar entradas.
+- Buffers de Reposts/Likes usan `PostUserListBuffer` con cursor para paginación.
+- Las búsquedas ahora se guardan en `session.settings["other_buffers"]["searches"]`.
+- Perfil de usuario descarga imágenes en thread separado para no bloquear UI.
 

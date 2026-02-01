@@ -188,6 +188,29 @@ class Handler:
             start=False,
             kwargs=dict(parent=controller.view.nb, name="searches", account=name)
         )
+        searches_position = controller.view.search("searches", name)
+
+        # Saved searches
+        try:
+            searches = session.settings["other_buffers"].get("searches")
+            if searches is None:
+                searches = []
+            if isinstance(searches, str):
+                searches = [s for s in searches.split(",") if s]
+            for query in searches:
+                buffer_name = f"search_{query[:20]}"
+                title = _("Search: {query}").format(query=query)
+                pub.sendMessage(
+                    "createBuffer",
+                    buffer_type="SearchBuffer",
+                    session_type="blueski",
+                    buffer_title=title,
+                    parent_tab=searches_position,
+                    start=False,
+                    kwargs=dict(parent=controller.view.nb, name=buffer_name, session=session, query=query)
+                )
+        except Exception:
+            logger.exception("Failed to restore Bluesky search buffers")
 
         # Saved user timelines
         try:
@@ -835,3 +858,17 @@ class Handler:
                 query=query
             )
         )
+
+        # Save search to settings for persistence
+        try:
+            searches = session.settings["other_buffers"].get("searches")
+            if searches is None:
+                searches = []
+            if isinstance(searches, str):
+                searches = [s for s in searches.split(",") if s]
+            if query not in searches:
+                searches.append(query)
+                session.settings["other_buffers"]["searches"] = searches
+                session.settings.write()
+        except Exception:
+            logger.exception("Failed to save search to settings")
