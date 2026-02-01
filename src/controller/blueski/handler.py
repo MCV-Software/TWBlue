@@ -64,17 +64,7 @@ class Handler:
             controller.accounts.append(name)
 
         root_position = controller.view.search(name, name)
-        # Discover/home timeline
         from pubsub import pub
-        pub.sendMessage(
-            "createBuffer",
-            buffer_type="home_timeline",
-            session_type="blueski",
-            buffer_title=_("Discover"),
-            parent_tab=root_position,
-            start=True,
-            kwargs=dict(parent=controller.view.nb, name="home_timeline", session=session)
-        )
         # Home (Following-only timeline - reverse-chronological)
         pub.sendMessage(
             "createBuffer",
@@ -82,8 +72,18 @@ class Handler:
             session_type="blueski",
             buffer_title=_("Home"),
             parent_tab=root_position,
-            start=False,
+            start=True,
             kwargs=dict(parent=controller.view.nb, name="following_timeline", session=session)
+        )
+        # Discover timeline
+        pub.sendMessage(
+            "createBuffer",
+            buffer_type="home_timeline",
+            session_type="blueski",
+            buffer_title=_("Discover"),
+            parent_tab=root_position,
+            start=False,
+            kwargs=dict(parent=controller.view.nb, name="home_timeline", session=session)
         )
         # Mentions (replies, mentions, quotes)
         pub.sendMessage(
@@ -140,7 +140,7 @@ class Handler:
             "createBuffer",
             buffer_type="FollowingBuffer",
             session_type="blueski",
-            buffer_title=_("Followings"),
+            buffer_title=_("Following"),
             parent_tab=root_position,
             start=False,
             kwargs=dict(parent=controller.view.nb, name="following", session=session)
@@ -209,8 +209,8 @@ class Handler:
                     start=False,
                     kwargs=dict(parent=controller.view.nb, name=buffer_name, session=session, query=query)
                 )
-        except Exception:
-            logger.exception("Failed to restore Bluesky search buffers")
+        except Exception as e:
+            logger.error("Failed to restore Bluesky search buffers: %s", e)
 
         # Saved user timelines
         try:
@@ -242,8 +242,8 @@ class Handler:
                     start=False,
                     kwargs=dict(parent=controller.view.nb, name=f"{handle}-timeline", session=session, actor=actor, handle=handle)
                 )
-        except Exception:
-            logger.exception("Failed to restore Bluesky timeline buffers")
+        except Exception as e:
+            logger.error("Failed to restore Bluesky timeline buffers: %s", e)
 
         # Saved followers/following timelines
         try:
@@ -279,8 +279,8 @@ class Handler:
                     start=False,
                     kwargs=dict(parent=controller.view.nb, name=f"{handle}-followers", session=session, actor=actor, handle=handle)
                 )
-        except Exception:
-            logger.exception("Failed to restore Bluesky followers buffers")
+        except Exception as e:
+            logger.error("Failed to restore Bluesky followers buffers: %s", e)
 
         try:
             following = session.settings["other_buffers"].get("following_timelines")
@@ -315,14 +315,14 @@ class Handler:
                     start=False,
                     kwargs=dict(parent=controller.view.nb, name=f"{handle}-following", session=session, actor=actor, handle=handle)
                 )
-        except Exception:
-            logger.exception("Failed to restore Bluesky following buffers")
+        except Exception as e:
+            logger.error("Failed to restore Bluesky following buffers: %s", e)
 
         # Start the background poller for real-time-like updates
         try:
             session.start_streaming()
-        except Exception:
-            logger.exception("Failed to start Bluesky streaming for session %s", name)
+        except Exception as e:
+            logger.error("Failed to start Bluesky streaming for session %s: %s", name, e)
 
     def start_buffer(self, controller, buffer):
         """Start a newly created Bluesky buffer."""
@@ -358,11 +358,11 @@ class Handler:
                 try:
                     buffer.session.settings["general"]["boost_mode"] = boost_mode
                     buffer.session.settings.write()
-                except Exception:
-                    logger.exception("Failed to persist Bluesky boost_mode setting")
+                except Exception as e:
+                    logger.error("Failed to persist Bluesky boost_mode setting: %s", e)
             dlg.Destroy()
-        except Exception:
-            logger.exception("Error opening Bluesky account settings dialog")
+        except Exception as e:
+            logger.error("Error opening Bluesky account settings dialog: %s", e)
 
     def user_details(self, buffer):
         """Show user profile dialog for the selected user/post."""
@@ -670,8 +670,8 @@ class Handler:
                 timelines.append(key)
                 session.settings["other_buffers"]["timelines"] = timelines
                 session.settings.write()
-        except Exception:
-            logger.exception("Failed to persist Bluesky timeline buffer")
+        except Exception as e:
+            logger.error("Failed to persist Bluesky timeline buffer: %s", e)
 
     def _resolve_actor(self, session, user_payload):
         def g(obj, key, default=None):
@@ -785,8 +785,8 @@ class Handler:
                 stored.append(key)
                 session.settings["other_buffers"][settings_key] = stored
                 session.settings.write()
-        except Exception:
-            logger.exception("Failed to persist Bluesky %s buffer", list_type)
+        except Exception as e:
+            logger.error("Failed to persist Bluesky %s buffer: %s", list_type, e)
 
     def delete(self, buffer, controller):
         """Standard action for delete key / menu item"""
@@ -870,5 +870,5 @@ class Handler:
                 searches.append(query)
                 session.settings["other_buffers"]["searches"] = searches
                 session.settings.write()
-        except Exception:
-            logger.exception("Failed to save search to settings")
+        except Exception as e:
+            logger.error("Failed to save search to settings: %s", e)

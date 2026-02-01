@@ -20,19 +20,15 @@ class ConversationListBuffer(BaseBuffer):
         self.buffer.session = self.session
 
     def start_stream(self, mandatory=False, play_sound=True):
-        count = self.session.settings["general"].get("max_posts_per_call", 50)
+        count = self.get_max_items()
         try:
             res = self.session.list_convos(limit=count)
             items = res.get("items", [])
-            
-            # Clear to avoid list weirdness on refreshes?
-            # Chat list usually replaces content on fetch
             self.session.db[self.name] = []
             self.buffer.list.clear()
-            
             return self.process_items(items, play_sound)
-        except Exception:
-            log.exception("Error fetching conversations")
+        except Exception as e:
+            log.error("Error fetching conversations: %s", e)
             return 0
 
     def url(self, *args, **kwargs):
@@ -80,23 +76,18 @@ class ChatBuffer(BaseBuffer):
         self.buffer.session = self.session
 
     def start_stream(self, mandatory=False, play_sound=True):
-        if not self.convo_id: return 0
-        count = self.session.settings["general"].get("max_posts_per_call", 50)
+        if not self.convo_id:
+            return 0
+        count = self.get_max_items()
         try:
             res = self.session.get_convo_messages(self.convo_id, limit=count)
             items = res.get("items", [])
-            # Message order in API is often Oldest...Newest or vice versa.
-            # We want them in order and only new ones.
-            # For chat, let's just clear and show last N messages for simplicity now.
             self.session.db[self.name] = []
             self.buffer.list.clear()
-            
-            # API usually returns newest first. We want newest at bottom.
             items = list(reversed(items))
-            
             return self.process_items(items, play_sound)
-        except Exception:
-            log.exception("Error fetching chat messages")
+        except Exception as e:
+            log.error("Error fetching chat messages: %s", e)
             return 0
 
     def on_reply(self, evt):

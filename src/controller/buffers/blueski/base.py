@@ -40,8 +40,12 @@ class BaseBuffer(base.Buffer):
         # Initialize DB list if needed
         if self.name not in self.session.db:
             self.session.db[self.name] = []
-            
+
         self.bind_events()
+
+    def get_max_items(self):
+        """Get max items per call from settings."""
+        return self.session.settings["general"]["max_posts_per_call"]
 
     def create_buffer(self, parent, name):
         # Default to HomePanel, can be overridden
@@ -115,8 +119,8 @@ class BaseBuffer(base.Buffer):
                     original_date = arrow.get(indexed_at)
                     ts = original_date.humanize(locale=languageHandler.curLang[:2])
                     self.buffer.list.list.SetItem(index, 2, ts)
-            except Exception:
-                log.exception("Error updating relative time on focus")
+            except Exception as e:
+                log.error("Error updating relative time on focus: %s", e)
 
         # Read long posts in GUI
         if config.app["app-settings"].get("read_long_posts_in_gui", False) and self.buffer.list.list.HasFocus():
@@ -325,8 +329,8 @@ class BaseBuffer(base.Buffer):
                 self.buffer.list.list.SetItem(index, 1, post_data[1])  # Text
                 self.buffer.list.list.SetItem(index, 2, post_data[2])  # Date
                 # Note: compose_post returns 4 items but list only has 3 columns
-        except Exception:
-            log.exception("Error refreshing list item after like")
+        except Exception as e:
+            log.error("Error refreshing list item after like: %s", e)
         
     def add_to_favorites(self, *args, **kwargs):
         self.toggle_favorite(confirm=False)
@@ -370,8 +374,8 @@ class BaseBuffer(base.Buffer):
                              self.session.send_chat_message(convo_id, text)
                              self.session.sound.play("dm_sent.ogg")
                              output.speak(_("Message sent."), True)
-                        except:
-                             log.exception("Error sending Bluesky DM (invisible)")
+                        except Exception as e:
+                             log.error("Error sending Bluesky DM: %s", e)
                              output.speak(_("Failed to send message."), True)
               dlg.Destroy()
               return
@@ -392,8 +396,8 @@ class BaseBuffer(base.Buffer):
             return
         try:
             blueski_messages.viewPost(self.session, item)
-        except Exception:
-            log.exception("Error opening Bluesky post viewer")
+        except Exception as e:
+            log.error("Error opening Bluesky post viewer: %s", e)
 
     def url_(self, *args, **kwargs):
         self.url()
@@ -596,8 +600,8 @@ class BaseBuffer(base.Buffer):
                      except Exception:
                          pass
                  output.speak(_("Deleted."))
-             except Exception:
-                 log.exception("Error deleting Bluesky post")
+             except Exception as e:
+                 log.error("Error deleting Bluesky post: %s", e)
                  output.speak(_("Could not delete."), True)
 
 
