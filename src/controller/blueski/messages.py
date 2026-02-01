@@ -274,12 +274,28 @@ class viewPost(base_messages.basicMessage):
         if not self.post_uri:
             return
         try:
-            res = self.session.get_post_reposts(self.post_uri, limit=50)
-            users = res.get("items", [])
-            from controller.blueski.userList import BlueskyUserList
-            BlueskyUserList(session=self.session, users=users, title=_("people who reposted this post"),
-                            fetch_fn=lambda cursor=None: self.session.get_post_reposts(self.post_uri, limit=50, cursor=cursor),
-                            cursor=res.get("cursor") if isinstance(res, dict) else None)
+            import application
+            controller = application.app.controller
+            account_name = self.session.get_name()
+            list_name = f"{self.post_uri}-reposts"
+            existing = controller.search_buffer(list_name, account_name)
+            if existing:
+                index = controller.view.search(list_name, account_name)
+                if index is not None:
+                    controller.view.change_buffer(index)
+                return
+            title = _("people who reposted this post")
+            from pubsub import pub
+            pub.sendMessage(
+                "createBuffer",
+                buffer_type="PostUserListBuffer",
+                session_type="blueski",
+                buffer_title=title,
+                parent_tab=controller.view.search("timelines", account_name),
+                start=True,
+                kwargs=dict(parent=controller.view.nb, name=list_name, session=self.session,
+                            post_uri=self.post_uri, api_method="get_post_reposts")
+            )
         except Exception:
             pass
 
@@ -287,11 +303,27 @@ class viewPost(base_messages.basicMessage):
         if not self.post_uri:
             return
         try:
-            res = self.session.get_post_likes(self.post_uri, limit=50)
-            users = res.get("items", [])
-            from controller.blueski.userList import BlueskyUserList
-            BlueskyUserList(session=self.session, users=users, title=_("people who liked this post"),
-                            fetch_fn=lambda cursor=None: self.session.get_post_likes(self.post_uri, limit=50, cursor=cursor),
-                            cursor=res.get("cursor") if isinstance(res, dict) else None)
+            import application
+            controller = application.app.controller
+            account_name = self.session.get_name()
+            list_name = f"{self.post_uri}-likes"
+            existing = controller.search_buffer(list_name, account_name)
+            if existing:
+                index = controller.view.search(list_name, account_name)
+                if index is not None:
+                    controller.view.change_buffer(index)
+                return
+            title = _("people who liked this post")
+            from pubsub import pub
+            pub.sendMessage(
+                "createBuffer",
+                buffer_type="PostUserListBuffer",
+                session_type="blueski",
+                buffer_title=title,
+                parent_tab=controller.view.search("timelines", account_name),
+                start=True,
+                kwargs=dict(parent=controller.view.nb, name=list_name, session=self.session,
+                            post_uri=self.post_uri, api_method="get_post_likes")
+            )
         except Exception:
             pass

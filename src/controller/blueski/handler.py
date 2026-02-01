@@ -5,6 +5,8 @@ import wx
 import asyncio
 import output
 from mysc.thread_utils import call_threaded
+import widgetUtils
+from extra.autocompletionUsers import completion
 from wxUI.dialogs.blueski.showUserProfile import ShowUserProfileDialog
 from typing import Any
 import languageHandler  # Ensure _() injection
@@ -18,9 +20,36 @@ class Handler:
     def __init__(self):
         super().__init__()
         self.menus = dict(
-            compose="&Post",
+            # Application menu
+            updateProfile="HIDE",
+            menuitem_search=_("&Search"),
+            lists="HIDE",
+            manageAliases="HIDE",
+            # Item menu
+            compose=_("&Post"),
+            reply=_("Re&ply"),
+            share=_("&Boost"),
+            fav=_("&Add to favorites"),
+            unfav="HIDE",
+            view=_("&Show post"),
+            view_conversation=_("View conversa&tion"),
+            ocr="HIDE",
+            delete=_("&Delete"),
+            # User menu
+            follow=_("&Actions..."),
+            timeline=_("&View timeline..."),
+            dm=_("Direct me&ssage"),
+            addAlias="HIDE",
+            addToList="HIDE",
+            removeFromList="HIDE",
+            details=_("S&how user profile"),
+            favs="HIDE",
+            # Buffer menu
+            community_timeline="HIDE",
+            filter="HIDE",
+            manage_filters="HIDE",
         )
-        self.item_menu = "&Post"
+        self.item_menu = _("&Post")
 
     def create_buffers(self, session, createAccounts=True, controller=None):
         name = session.get_name()
@@ -149,6 +178,17 @@ class Handler:
         )
         timelines_position = controller.view.search("timelines", name)
 
+        # Searches container (Bluesky supports search buffers)
+        pub.sendMessage(
+            "createBuffer",
+            buffer_type="EmptyBuffer",
+            session_type="base",
+            buffer_title=_("Searches"),
+            parent_tab=root_position,
+            start=False,
+            kwargs=dict(parent=controller.view.nb, name="searches", account=name)
+        )
+
         # Saved user timelines
         try:
             timelines = session.settings["other_buffers"].get("timelines")
@@ -202,6 +242,10 @@ class Handler:
                             handle = g(profile, "handle") or actor
                 except Exception:
                     handle = actor
+                own_actor = session.db.get("user_id") or session.db.get("user_name")
+                own_handle = session.db.get("user_name")
+                if actor == own_actor or (own_handle and actor == own_handle) or (handle and own_handle and handle == own_handle):
+                    continue
                 title = _("Followers for {user}").format(user=handle)
                 pub.sendMessage(
                     "createBuffer",
@@ -234,6 +278,10 @@ class Handler:
                             handle = g(profile, "handle") or actor
                 except Exception:
                     handle = actor
+                own_actor = session.db.get("user_id") or session.db.get("user_name")
+                own_handle = session.db.get("user_name")
+                if actor == own_actor or (own_handle and actor == own_handle) or (handle and own_handle and handle == own_handle):
+                    continue
                 title = _("Following for {user}").format(user=handle)
                 pub.sendMessage(
                     "createBuffer",
@@ -498,8 +546,16 @@ class Handler:
         from wxUI.dialogs.mastodon import userTimeline as userTimelineDialog
         dlg = userTimelineDialog.UserTimeline(users=users, default=default)
         try:
+            widgetUtils.connect_event(
+                dlg.autocompletion,
+                widgetUtils.BUTTON_PRESSED,
+                lambda *args, **kwargs: completion.autocompletionUsers(dlg, buffer.session.session_id).show_menu("free"),
+            )
+        except Exception:
+            pass
+        try:
             if hasattr(dlg, "autocompletion"):
-                dlg.autocompletion.Enable(False)
+                dlg.autocompletion.Enable(True)
         except Exception:
             pass
         if dlg.ShowModal() != wx.ID_OK:
@@ -512,6 +568,13 @@ class Handler:
 
         if user.startswith("@"):
             user = user[1:]
+        try:
+            profile = buffer.session.get_profile(user)
+            if profile is None:
+                output.speak(_("User not found."), True)
+                return
+        except Exception:
+            pass
         user_payload = {"handle": user}
         if action == "posts":
             result = self.open_user_timeline(main_controller=controller, session=buffer.session, user_payload=user_payload)
@@ -642,6 +705,16 @@ class Handler:
         own_handle = session.db.get("user_name")
         if actor == own_actor or (own_handle and actor == own_handle) or (handle and own_handle and handle == own_handle):
             name = "followers" if list_type == "followers" else "following"
+            try:
+                stored = session.settings["other_buffers"].get("followers_timelines" if list_type == "followers" else "following_timelines") or []
+                if isinstance(stored, str):
+                    stored = [t for t in stored.split(",") if t]
+                if actor in stored:
+                    stored.remove(actor)
+                    session.settings["other_buffers"]["followers_timelines" if list_type == "followers" else "following_timelines"] = stored
+                    session.settings.write()
+            except Exception:
+                pass
             index = main_controller.view.search(name, account_name)
             if index is not None:
                 main_controller.view.change_buffer(index)
@@ -753,7 +826,7 @@ class Handler:
             buffer_type="SearchBuffer",
             session_type="blueski",
             buffer_title=title,
-            parent_tab=controller.view.search(account_name, account_name),
+            parent_tab=controller.view.search("searches", account_name),
             start=True,
             kwargs=dict(
                 parent=controller.view.nb,

@@ -401,6 +401,7 @@ class Controller(object):
                     "FollowersBuffer": BlueskiUsers.FollowersBuffer,
                     "FollowingBuffer": BlueskiUsers.FollowingBuffer,
                     "BlocksBuffer": BlueskiUsers.BlocksBuffer,
+                    "PostUserListBuffer": BlueskiUsers.PostUserListBuffer,
                     "ConversationListBuffer": BlueskiChats.ConversationListBuffer,
                     "ChatMessageBuffer": BlueskiChats.ChatBuffer,
                     "chat_messages": BlueskiChats.ChatBuffer,
@@ -1075,7 +1076,10 @@ class Controller(object):
             for m in list(handler.menus.keys()):
                 if hasattr(self.view, m):
                     menu_item = getattr(self.view, m)
-                    if handler.menus[m] == None:
+                    if handler.menus[m] == "HIDE":
+                        menu_item.Enable(False)
+                        menu_item.SetItemLabel("")
+                    elif handler.menus[m] == None:
                         menu_item.Enable(False)
                     else:
                         menu_item.Enable(True)

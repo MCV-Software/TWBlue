@@ -10,5 +10,5 @@ from .timeline import (
     UserTimeline,
     SearchBuffer,
 )
-from .user import FollowersBuffer, FollowingBuffer, BlocksBuffer
+from .user import FollowersBuffer, FollowingBuffer, BlocksBuffer, PostUserListBuffer
 from .chat import ConversationListBuffer, ChatBuffer as ChatMessageBuffer
