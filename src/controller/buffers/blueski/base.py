@@ -492,31 +492,6 @@ class BaseBuffer(base.Buffer):
                  log.exception("Error deleting Bluesky post")
                  output.speak(_("Could not delete."), True)
 
-    def url(self, *args, **kwargs):
-        item = self.get_item()
-        if not item: return
-        
-        uri = item.get("uri") if isinstance(item, dict) else getattr(item, "uri", None)
-        # Convert at:// uri to https://bsky.app link
-        if uri and "at://" in uri and "app.bsky.feed.post" in uri:
-             parts = uri.split("/")
-             # at://did:plc:xxx/app.bsky.feed.post/rkey
-             did = parts[2]
-             rkey = parts[-1]
-             
-             # Need handle for prettier url, but did works? bluesky web supports profile/did/post/rkey?
-             # Let's try to find handle if possible
-             handle = None
-             if isinstance(item, dict):
-                  handle = item.get("handle")
-             else:
-                  handle = getattr(getattr(item, "author", None), "handle", None)
-             
-             target = handle if handle else did
-             link = f"https://bsky.app/profile/{target}/post/{rkey}"
-             
-             import webbrowser
-             webbrowser.open(link)
 
     def audio(self, *args, **kwargs):
         output.speak(_("Audio playback not supported for Bluesky yet."))
@@ -537,9 +512,6 @@ class BaseBuffer(base.Buffer):
          composed = self.compose_function(item, self.session.db, self.session.settings, self.session.settings["general"].get("relative_times", False), self.session.settings["general"].get("show_screen_names", False))
          # Join them for a full readout similar to Mastodon's template render
          return " ".join(composed)
-
-    def view_item(self, *args, **kwargs):
-         self.view_conversation()
 
     def view_conversation(self, *args, **kwargs):
          item = self.get_item()
