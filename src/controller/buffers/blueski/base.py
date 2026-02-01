@@ -605,11 +605,72 @@ class BaseBuffer(base.Buffer):
                  output.speak(_("Could not delete."), True)
 
 
-    def audio(self, *args, **kwargs):
-        output.speak(_("Audio playback not supported for Bluesky yet."))
-        
-    # Helper to map standard keys if they don't invoke the methods above via get_event
-    # But usually get_event is enough.
+    def audio(self, event=None, item=None, *args, **kwargs):
+        """Play audio/video from the current post."""
+        if sound.URLPlayer.player.is_playing():
+            return sound.URLPlayer.stop_audio()
+        if item is None:
+            item = self.get_item()
+        if not item:
+            return
+        urls = utils.get_media_urls(item)
+        if not urls:
+            output.speak(_("This post has no playable media."), True)
+            return
+        url = ""
+        if len(urls) == 1:
+            url = urls[0]
+        elif len(urls) > 1:
+            from wxUI.dialogs import urlList
+            urls_list = urlList.urlList()
+            urls_list.populate_list(urls)
+            if urls_list.get_response() == widgetUtils.OK:
+                url = urls_list.get_string()
+            if hasattr(urls_list, "destroy"):
+                urls_list.destroy()
+        if url:
+            sound.URLPlayer.play(url, self.session.settings["sound"]["volume"])
+
+    def ocr_image(self, *args, **kwargs):
+        """Perform OCR on images in the current post."""
+        post = self.get_item()
+        if not post:
+            return
+
+        image_list = utils.get_image_urls(post)
+        if not image_list:
+            return
+
+        if len(image_list) > 1:
+            from wxUI.dialogs import urlList
+            labels = [_("Picture {0}").format(i + 1) for i in range(len(image_list))]
+            dialog = urlList.urlList(title=_("Select the picture"))
+            dialog.populate_list(labels)
+            if dialog.get_response() != widgetUtils.OK:
+                return
+            img = image_list[dialog.get_item()]
+        else:
+            img = image_list[0]
+
+        url = img.get("url")
+        if not url:
+            return
+
+        from extra import ocr as ocr_module
+        api = ocr_module.OCRSpace.OCRSpaceAPI()
+        try:
+            text = api.OCR_URL(url)
+        except ocr_module.OCRSpace.APIError:
+            output.speak(_("Unable to extract text"), True)
+            return
+        except Exception as e:
+            log.error("OCR error: %s", e)
+            output.speak(_("Unable to extract text"), True)
+            return
+
+        viewer = blueski_messages.text(title=_("OCR Result"), text=text["ParsedText"])
+        viewer.message.ShowModal()
+        viewer.message.Destroy()
     
     # Also implement "view_item" if standard keymap uses it
     def get_formatted_message(self):

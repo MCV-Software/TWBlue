@@ -30,30 +30,84 @@ def is_audio_or_video(post):
     if not embed:
         return False
 
-    etype = g(embed, "$type") or g(embed, "py_type")
+    etype = g(embed, "$type") or g(embed, "py_type") or ""
 
     # Check for video embed
-    if etype and "video" in etype.lower():
+    if "video" in etype.lower():
         return True
 
     # Check for external link that might be video (YouTube, etc.)
-    if etype and "external" in etype:
+    if "external" in etype.lower():
         ext = g(embed, "external", {})
         uri = g(ext, "uri", "")
-        # Common video hosting sites
         video_hosts = ["youtube.com", "youtu.be", "vimeo.com", "twitch.tv", "dailymotion.com"]
         for host in video_hosts:
             if host in uri.lower():
                 return True
 
     # Check in recordWithMedia wrapper
-    if etype and "recordWithMedia" in etype:
+    if "recordwithmedia" in etype.lower():
         media = g(embed, "media", {})
-        mtype = g(media, "$type") or g(media, "py_type")
-        if mtype and "video" in mtype.lower():
+        mtype = g(media, "$type") or g(media, "py_type") or ""
+        if "video" in mtype.lower():
             return True
+        if "external" in mtype.lower():
+            ext = g(media, "external", {})
+            uri = g(ext, "uri", "")
+            video_hosts = ["youtube.com", "youtu.be", "vimeo.com", "twitch.tv", "dailymotion.com"]
+            for host in video_hosts:
+                if host in uri.lower():
+                    return True
 
     return False
+
+
+def _extract_images_from_embed(embed):
+    """Extract image URLs from an embed object."""
+    images = []
+    if not embed:
+        return images
+
+    etype = g(embed, "$type") or g(embed, "py_type") or ""
+
+    def extract_images(img_list):
+        result = []
+        for img in (img_list or []):
+            url = None
+            # Try all possible URL field names
+            for key in ["fullsize", "thumb", "url", "uri", "src"]:
+                val = g(img, key)
+                if val and isinstance(val, str) and val.startswith("http"):
+                    url = val
+                    break
+            # Also check for nested 'image' object
+            if not url:
+                image_obj = g(img, "image", {})
+                if image_obj:
+                    for key in ["ref", "$link", "url", "uri"]:
+                        val = g(image_obj, key)
+                        if val:
+                            url = val
+                            break
+            if url:
+                result.append({
+                    "url": url,
+                    "alt": g(img, "alt", "") or ""
+                })
+        return result
+
+    # Direct images embed (app.bsky.embed.images or app.bsky.embed.images#view)
+    if "images" in etype.lower():
+        images.extend(extract_images(g(embed, "images", [])))
+
+    # Check in recordWithMedia wrapper
+    if "recordwithmedia" in etype.lower():
+        media = g(embed, "media", {})
+        mtype = g(media, "$type") or g(media, "py_type") or ""
+        if "images" in mtype.lower():
+            images.extend(extract_images(g(media, "images", [])))
+
+    return images
 
 
 def is_image(post):
@@ -68,25 +122,22 @@ def is_image(post):
     """
     actual_post = g(post, "post", post)
     embed = g(actual_post, "embed", None)
-    if not embed:
-        return False
+    return len(_extract_images_from_embed(embed)) > 0
 
-    etype = g(embed, "$type") or g(embed, "py_type")
 
-    # Direct images embed
-    if etype and "images" in etype:
-        images = g(embed, "images", [])
-        return len(images) > 0
+def get_image_urls(post):
+    """
+    Get URLs for image attachments from post for OCR.
 
-    # Check in recordWithMedia wrapper
-    if etype and "recordWithMedia" in etype:
-        media = g(embed, "media", {})
-        mtype = g(media, "$type") or g(media, "py_type")
-        if mtype and "images" in mtype:
-            images = g(media, "images", [])
-            return len(images) > 0
+    Args:
+        post: Bluesky post object
 
-    return False
+    Returns:
+        list: List of dicts with 'url' and 'alt' keys
+    """
+    actual_post = g(post, "post", post)
+    embed = g(actual_post, "embed", None)
+    return _extract_images_from_embed(embed)
 
 
 def get_media_urls(post):
@@ -105,24 +156,44 @@ def get_media_urls(post):
     if not embed:
         return urls
 
-    etype = g(embed, "$type") or g(embed, "py_type")
+    etype = g(embed, "$type") or g(embed, "py_type") or ""
 
-    # Video embed
-    if etype and "video" in etype.lower():
-        playlist = g(embed, "playlist", None)
+    def extract_video_urls(video_embed):
+        """Extract URLs from a video embed object."""
+        result = []
+        # Playlist URL (HLS stream)
+        playlist = g(video_embed, "playlist", None)
         if playlist:
-            urls.append(playlist)
+            result.append(playlist)
         # Alternative URL fields
-        for key in ["url", "uri", "thumb"]:
-            val = g(embed, key)
-            if val and val not in urls:
-                urls.append(val)
+        for key in ["url", "uri"]:
+            val = g(video_embed, key)
+            if val and val not in result:
+                result.append(val)
+        return result
+
+    # Direct video embed (app.bsky.embed.video#view)
+    if "video" in etype.lower():
+        urls.extend(extract_video_urls(embed))
+
+    # Check in recordWithMedia wrapper
+    if "recordWithMedia" in etype or "record_with_media" in etype.lower():
+        media = g(embed, "media", {})
+        mtype = g(media, "$type") or g(media, "py_type") or ""
+        if "video" in mtype.lower():
+            urls.extend(extract_video_urls(media))
+        # Also check for external in media
+        if "external" in mtype.lower():
+            ext = g(media, "external", {})
+            uri = g(ext, "uri", "")
+            if uri and uri not in urls:
+                urls.append(uri)
 
     # External links (YouTube, etc.)
-    if etype and "external" in etype:
+    if "external" in etype.lower():
         ext = g(embed, "external", {})
         uri = g(ext, "uri", "")
-        if uri:
+        if uri and uri not in urls:
             urls.append(uri)
 
     return urls

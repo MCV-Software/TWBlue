@@ -215,10 +215,39 @@ class Conversation(BaseBuffer):
             traverse(thread)
             self.session.db[self.name] = []
             self.buffer.list.clear()
-            return self.process_items(final_items, play_sound)
+            # Don't use process_items() because it applies reverse logic.
+            # Conversations should always be chronological (oldest first).
+            return self._add_items_chronological(final_items, play_sound)
         except Exception as e:
             log.error("Error fetching thread: %s", e)
             return 0
+
+    def _add_items_chronological(self, items, play_sound=True):
+        """Add items in chronological order (oldest first) without reverse logic."""
+        if not items:
+            return 0
+
+        safe = True
+        relative_times = self.session.settings["general"].get("relative_times", False)
+        show_screen_names = self.session.settings["general"].get("show_screen_names", False)
+
+        for item in items:
+            self.session.db[self.name].append(item)
+            post = self.compose_function(item, self.session.db, self.session.settings,
+                                         relative_times=relative_times,
+                                         show_screen_names=show_screen_names,
+                                         safe=safe)
+            self.buffer.list.insert_item(False, *post)
+
+        # Select the root post (first item after ancestors, or just the first)
+        total = self.buffer.list.get_count()
+        if total > 0:
+            self.buffer.list.select_item(0)
+
+        if play_sound and self.sound and not self.session.settings["sound"]["session_mute"]:
+            self.session.sound.play(self.sound)
+
+        return len(items)
 
 
 class LikesBuffer(BaseBuffer):

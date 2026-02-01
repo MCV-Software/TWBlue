@@ -203,3 +203,28 @@ class viewPost(wx.Dialog):
         if hasattr(self, buttonName):
             return getattr(self, buttonName).Enable()
 
+
+class viewText(wx.Dialog):
+    def __init__(self, title="", text="", *args, **kwargs):
+        super(viewText, self).__init__(parent=None, id=wx.ID_ANY, size=(850, 850), title=title)
+        panel = wx.Panel(self)
+        label = wx.StaticText(panel, -1, _("Text"))
+        self.text = wx.TextCtrl(panel, -1, text, style=wx.TE_READONLY | wx.TE_MULTILINE, size=(250, 180))
+        self.text.SetFocus()
+        textBox = wx.BoxSizer(wx.HORIZONTAL)
+        textBox.Add(label, 0, wx.ALL, 5)
+        textBox.Add(self.text, 1, wx.EXPAND, 5)
+        mainBox = wx.BoxSizer(wx.VERTICAL)
+        mainBox.Add(textBox, 0, wx.ALL, 5)
+        self.spellcheck = wx.Button(panel, -1, _("Check &spelling..."), size=wx.DefaultSize)
+        self.translateButton = wx.Button(panel, -1, _("&Translate..."), size=wx.DefaultSize)
+        cancelButton = wx.Button(panel, wx.ID_CANCEL, _("C&lose"), size=wx.DefaultSize)
+        cancelButton.SetDefault()
+        buttonsBox = wx.BoxSizer(wx.HORIZONTAL)
+        buttonsBox.Add(self.spellcheck, 0, wx.ALL, 5)
+        buttonsBox.Add(self.translateButton, 0, wx.ALL, 5)
+        buttonsBox.Add(cancelButton, 0, wx.ALL, 5)
+        mainBox.Add(buttonsBox, 0, wx.ALL, 5)
+        panel.SetSizer(mainBox)
+        self.SetClientSize(mainBox.CalcMin())
+

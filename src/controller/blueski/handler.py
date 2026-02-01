@@ -33,7 +33,7 @@ class Handler:
             unfav="HIDE",
             view=_("&Show post"),
             view_conversation=_("View conversa&tion"),
-            ocr="HIDE",
+            ocr=_("&OCR"),
             delete=_("&Delete"),
             # User menu
             follow=_("&Actions..."),

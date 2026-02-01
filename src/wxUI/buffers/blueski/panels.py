@@ -49,8 +49,8 @@ class HomePanel(wx.Panel):
     # But for now, simple list is what the previous code had.
     
     def set_focus_function(self, func):
-        self.list.list.Bind(wx.EVT_SET_FOCUS, func)
-        
+        self.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, func)
+
     def set_position(self, reverse):
         if reverse:
             self.list.select_item(0)
@@ -93,8 +93,8 @@ class UserPanel(wx.Panel):
         self.SetSizer(self.sizer)
 
     def set_focus_function(self, func):
-        self.list.list.Bind(wx.EVT_SET_FOCUS, func)
-        
+        self.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, func)
+
     def set_position(self, reverse):
         if reverse:
             self.list.select_item(0)
@@ -124,7 +124,7 @@ class ChatPanel(wx.Panel):
         self.SetSizer(self.sizer)
 
     def set_focus_function(self, func):
-        self.list.list.Bind(wx.EVT_SET_FOCUS, func)
+        self.list.list.Bind(wx.EVT_LIST_ITEM_FOCUSED, func)
 
     def set_focus_in_list(self):
         self.list.list.SetFocus()
