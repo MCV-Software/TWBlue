@@ -64,7 +64,7 @@ class FollowersBuffer(UserBuffer):
         except Exception:
             pass
         try:
-            key = self.kwargs.get("handle") or self.kwargs.get("actor") or self.kwargs.get("id")
+            key = self.kwargs.get("actor") or self.kwargs.get("handle") or self.kwargs.get("id")
             timelines = self.session.settings["other_buffers"].get("followers_timelines") or []
             if isinstance(timelines, str):
                 timelines = [t for t in timelines.split(",") if t]
@@ -93,7 +93,7 @@ class FollowingBuffer(UserBuffer):
         except Exception:
             pass
         try:
-            key = self.kwargs.get("handle") or self.kwargs.get("actor") or self.kwargs.get("id")
+            key = self.kwargs.get("actor") or self.kwargs.get("handle") or self.kwargs.get("id")
             timelines = self.session.settings["other_buffers"].get("following_timelines") or []
             if isinstance(timelines, str):
                 timelines = [t for t in timelines.split(",") if t]

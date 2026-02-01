@@ -158,6 +158,17 @@ class Handler:
                 timelines = [t for t in timelines.split(",") if t]
             for actor in timelines:
                 handle = actor
+                try:
+                    if isinstance(actor, str) and actor.startswith("did:"):
+                        profile = session.get_profile(actor)
+                        if profile:
+                            def g(obj, key, default=None):
+                                if isinstance(obj, dict):
+                                    return obj.get(key, default)
+                                return getattr(obj, key, default)
+                            handle = g(profile, "handle") or actor
+                except Exception:
+                    handle = actor
                 title = _("Timeline for {user}").format(user=handle)
                 pub.sendMessage(
                     "createBuffer",
@@ -180,6 +191,17 @@ class Handler:
                 followers = [t for t in followers.split(",") if t]
             for actor in followers:
                 handle = actor
+                try:
+                    if isinstance(actor, str) and actor.startswith("did:"):
+                        profile = session.get_profile(actor)
+                        if profile:
+                            def g(obj, key, default=None):
+                                if isinstance(obj, dict):
+                                    return obj.get(key, default)
+                                return getattr(obj, key, default)
+                            handle = g(profile, "handle") or actor
+                except Exception:
+                    handle = actor
                 title = _("Followers for {user}").format(user=handle)
                 pub.sendMessage(
                     "createBuffer",
@@ -201,6 +223,17 @@ class Handler:
                 following = [t for t in following.split(",") if t]
             for actor in following:
                 handle = actor
+                try:
+                    if isinstance(actor, str) and actor.startswith("did:"):
+                        profile = session.get_profile(actor)
+                        if profile:
+                            def g(obj, key, default=None):
+                                if isinstance(obj, dict):
+                                    return obj.get(key, default)
+                                return getattr(obj, key, default)
+                            handle = g(profile, "handle") or actor
+                except Exception:
+                    handle = actor
                 title = _("Following for {user}").format(user=handle)
                 pub.sendMessage(
                     "createBuffer",
@@ -411,6 +444,7 @@ class Handler:
                 return obj.get(key, default)
             return getattr(obj, key, default)
 
+        users = []
         handle = None
         if hasattr(buffer, "get_selected_item_author_details"):
             details = buffer.get_selected_item_author_details()
@@ -427,9 +461,42 @@ class Handler:
         if not handle:
             output.speak(_("No user selected."), True)
             return
+        users.append(handle)
+
+        # Add mentioned users if available (facets)
+        record = g(g(item, "post"), "record") or g(item, "record")
+        facets = g(record, "facets", []) if record else []
+        handle_cache = {}
+
+        def resolve_handle(did):
+            if did in handle_cache:
+                return handle_cache[did]
+            try:
+                profile = buffer.session.get_profile(did)
+                if profile:
+                    h = g(profile, "handle")
+                    if h:
+                        handle_cache[did] = h
+                        return h
+            except Exception:
+                pass
+            return None
+
+        self_did = buffer.session.db.get("user_id")
+        for facet in facets or []:
+            features = g(facet, "features", []) or []
+            for feat in features:
+                ftype = g(feat, "$type") or g(feat, "py_type") or ""
+                if "facet#mention" in ftype:
+                    did = g(feat, "did")
+                    if not did or did == self_did:
+                        continue
+                    h = resolve_handle(did)
+                    if h and h not in users:
+                        users.append(h)
 
         from wxUI.dialogs.mastodon import userTimeline as userTimelineDialog
-        dlg = userTimelineDialog.UserTimeline(users=[handle], default=default)
+        dlg = userTimelineDialog.UserTimeline(users=users, default=default)
         try:
             if hasattr(dlg, "autocompletion"):
                 dlg.autocompletion.Enable(False)
@@ -479,20 +546,9 @@ class Handler:
             output.speak(_("No user selected."), True)
             return
 
-        # If we only have a handle, try to resolve DID for reliability
-        try:
-            if isinstance(actor, str) and not actor.startswith("did:"):
-                profile = session.get_profile(actor)
-                if profile:
-                    def g(obj, key, default=None):
-                        if isinstance(obj, dict):
-                            return obj.get(key, default)
-                        return getattr(obj, key, default)
-                    did = g(profile, "did")
-                    if did:
-                        actor = did
-        except Exception:
-            pass
+        actor, handle = self._resolve_actor(session, {"did": actor, "handle": handle})
+        if not handle:
+            handle = actor
 
         account_name = session.get_name()
         list_name = f"{handle}-timeline"
@@ -519,7 +575,7 @@ class Handler:
                 timelines = []
             if isinstance(timelines, str):
                 timelines = [t for t in timelines.split(",") if t]
-            key = handle or actor
+            key = actor or handle
             if key in timelines:
                 from wxUI import commonMessageDialogs
                 commonMessageDialogs.timeline_exist()
@@ -550,13 +606,46 @@ class Handler:
             handle = handle.strip()
             if handle.startswith("@"):
                 handle = handle[1:]
+        # Resolve handle -> DID when possible, and keep handle for titles
+        try:
+            if isinstance(actor, str) and not actor.startswith("did:"):
+                profile = session.get_profile(actor)
+                if profile:
+                    did = g(profile, "did")
+                    if did:
+                        actor = did
+                    if not handle:
+                        handle = g(profile, "handle")
+        except Exception:
+            pass
+
         if not actor:
             actor = session.db.get("user_id") or session.db.get("user_name")
             handle = session.db.get("user_name") or actor
+
+        if not handle and isinstance(actor, str):
+            try:
+                if actor.startswith("did:"):
+                    profile = session.get_profile(actor)
+                    if profile:
+                        handle = g(profile, "handle")
+            except Exception:
+                pass
+
         return actor, handle
 
     def _open_user_list(self, main_controller, session, actor, handle, list_type):
         account_name = session.get_name()
+        if not handle:
+            handle = actor
+        own_actor = session.db.get("user_id") or session.db.get("user_name")
+        own_handle = session.db.get("user_name")
+        if actor == own_actor or (own_handle and actor == own_handle) or (handle and own_handle and handle == own_handle):
+            name = "followers" if list_type == "followers" else "following"
+            index = main_controller.view.search(name, account_name)
+            if index is not None:
+                main_controller.view.change_buffer(index)
+                return
         list_name = f"{handle}-{list_type}"
         if main_controller.search_buffer(list_name, account_name):
             index = main_controller.view.search(list_name, account_name)
@@ -571,7 +660,7 @@ class Handler:
                 stored = []
             if isinstance(stored, str):
                 stored = [t for t in stored.split(",") if t]
-            key = handle or actor
+            key = actor or handle
             if key in stored:
                 from wxUI import commonMessageDialogs
                 commonMessageDialogs.timeline_exist()
@@ -595,7 +684,7 @@ class Handler:
                 stored = session.settings["other_buffers"].get(settings_key) or []
                 if isinstance(stored, str):
                     stored = [t for t in stored.split(",") if t]
-            key = handle or actor
+            key = actor or handle
             if key:
                 stored.append(key)
                 session.settings["other_buffers"][settings_key] = stored
