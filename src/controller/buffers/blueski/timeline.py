@@ -368,6 +368,12 @@ class SearchBuffer(BaseBuffer):
 
     def remove_buffer(self, force=False):
         """Search buffers can always be removed."""
+        if not force:
+            from wxUI import commonMessageDialogs
+            import widgetUtils
+            dlg = commonMessageDialogs.remove_buffer()
+            if dlg != widgetUtils.YES:
+                return False
         try:
             self.session.db.pop(self.name, None)
         except Exception:

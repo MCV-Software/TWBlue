@@ -290,9 +290,23 @@ class Handler:
         if not uri: return
         
         # Buffer Title
-        author = getattr(item, "author", None) or (item.get("post", {}).get("author") if isinstance(item, dict) else None)
-        handle = getattr(author, "handle", "unknown") if author else "unknown"
-        title = _("Conversation with {0}").format(handle)
+        handle = None
+        display_name = None
+        if hasattr(buffer, "get_selected_item_author_details"):
+            details = buffer.get_selected_item_author_details()
+            if details:
+                handle = details.get("handle")
+        if not handle:
+            def g(obj, key, default=None):
+                if isinstance(obj, dict):
+                    return obj.get(key, default)
+                return getattr(obj, key, default)
+            author = g(item, "author") or g(g(item, "post"), "author")
+            if author:
+                handle = g(author, "handle")
+                display_name = g(author, "displayName") or g(author, "display_name")
+        label = handle or display_name or _("Unknown")
+        title = _("Conversation with {0}").format(label)
         
         from pubsub import pub
         pub.sendMessage(

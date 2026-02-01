@@ -10,6 +10,7 @@ from controller.buffers.base import base
 from controller.blueski import messages as blueski_messages
 from sessions.blueski import compose
 from wxUI.buffers.blueski import panels as BlueskiPanels
+from wxUI import commonMessageDialogs
 
 log = logging.getLogger("controller.buffers.blueski.base")
 
@@ -504,12 +505,10 @@ class BaseBuffer(base.Buffer):
          import application
          controller = application.app.controller
          
+         details = self.get_selected_item_author_details()
          handle = "Unknown"
-         if isinstance(item, dict):
-             handle = item.get("author", {}).get("handle", "Unknown")
-         else:
-             handle = getattr(getattr(item, "author", None), "handle", "Unknown")
-             
+         if details:
+             handle = details.get("handle") or "Unknown"
          title = _("Conversation: {0}").format(handle)
          
          controller.create_buffer(
@@ -690,6 +689,10 @@ class BaseBuffer(base.Buffer):
 
     def remove_buffer(self, force=False):
         if self.type in ("conversation", "chat_messages") or self.name.lower().startswith("conversation"):
+            if not force:
+                dlg = commonMessageDialogs.remove_buffer()
+                if dlg != widgetUtils.YES:
+                    return False
             try:
                 self.session.db.pop(self.name, None)
             except Exception:
