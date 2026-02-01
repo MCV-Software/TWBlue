@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 import logging
 import wx
+import arrow
 import output
 import sound
 import config
 import widgetUtils
+import languageHandler
 from pubsub import pub
 from controller.buffers.base import base
 from controller.blueski import messages as blueski_messages
-from sessions.blueski import compose
+from sessions.blueski import compose, utils
 from wxUI.buffers.blueski import panels as BlueskiPanels
 from wxUI import commonMessageDialogs
+from wxUI.dialogs.blueski import menus
 
 log = logging.getLogger("controller.buffers.blueski.base")
 
@@ -47,8 +50,12 @@ class BaseBuffer(base.Buffer):
 
     def bind_events(self):
         # Bind essential events
+        log.debug("Binding events for buffer %s" % self.name)
+        self.buffer.set_focus_function(self.onFocus)
         widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
-        
+        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
+        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
+
         # Buttons
         if hasattr(self.buffer, "post"):
              self.buffer.post.Bind(wx.EVT_BUTTON, self.on_post)
@@ -62,7 +69,121 @@ class BaseBuffer(base.Buffer):
              self.buffer.dm.Bind(wx.EVT_BUTTON, self.on_dm)
         if hasattr(self.buffer, "actions"):
              self.buffer.actions.Bind(wx.EVT_BUTTON, self.user_actions)
-             
+
+    def get_buffer_name(self):
+        """Get human-readable buffer name."""
+        basic_buffers = dict(
+            home_timeline=_("Home"),
+            notifications=_("Notifications"),
+            mentions=_("Mentions"),
+            sent=_("Sent"),
+            likes=_("Likes"),
+            chats=_("Chats"),
+        )
+        if self.name in basic_buffers:
+            return basic_buffers[self.name]
+        if hasattr(self, "username"):
+            if "timeline" in self.name.lower():
+                return _("{username}'s timeline").format(username=self.username)
+            if "followers" in self.name.lower():
+                return _("{username}'s followers").format(username=self.username)
+            if "following" in self.name.lower():
+                return _("{username}'s following").format(username=self.username)
+        return self.name
+
+    def onFocus(self, *args, **kwargs):
+        """Handle focus event for accessibility features."""
+        post = self.get_item()
+        if not post:
+            return
+
+        # Update relative time display
+        if self.session.settings["general"].get("relative_times", False):
+            try:
+                index = self.buffer.list.get_selected()
+                if index < 0:
+                    return
+
+                def g(obj, key, default=None):
+                    if isinstance(obj, dict):
+                        return obj.get(key, default)
+                    return getattr(obj, key, default)
+
+                actual_post = g(post, "post", post)
+                indexed_at = g(actual_post, "indexed_at", "") or g(actual_post, "indexedAt", "")
+                if indexed_at:
+                    original_date = arrow.get(indexed_at)
+                    ts = original_date.humanize(locale=languageHandler.curLang[:2])
+                    self.buffer.list.list.SetItem(index, 2, ts)
+            except Exception:
+                log.exception("Error updating relative time on focus")
+
+        # Read long posts in GUI
+        if config.app["app-settings"].get("read_long_posts_in_gui", False) and self.buffer.list.list.HasFocus():
+            wx.CallLater(40, output.speak, self.get_message(), interrupt=True)
+
+        # Audio/video indicator sound
+        if self.session.settings["sound"].get("indicate_audio", False) and utils.is_audio_or_video(post):
+            self.session.sound.play("audio.ogg")
+
+        # Image indicator sound
+        if self.session.settings["sound"].get("indicate_img", False) and utils.is_image(post):
+            self.session.sound.play("image.ogg")
+
+    def auto_read(self, number_of_items):
+        """Automatically read new items for accessibility."""
+        if number_of_items == 0:
+            return
+        if self.name in self.session.settings["other_buffers"].get("muted_buffers", []):
+            return
+        if self.session.settings["sound"].get("session_mute", False):
+            return
+        if self.name not in self.session.settings["other_buffers"].get("autoread_buffers", []):
+            return
+
+        safe = True
+        relative_times = self.session.settings["general"].get("relative_times", False)
+        show_screen_names = self.session.settings["general"].get("show_screen_names", False)
+
+        if number_of_items == 1:
+            if self.session.settings["general"].get("reverse_timelines", False):
+                post = self.session.db[self.name][0]
+            else:
+                post = self.session.db[self.name][-1]
+            output.speak(_("New post in {0}").format(self.get_buffer_name()))
+            output.speak(" ".join(self.compose_function(post, self.session.db, self.session.settings, relative_times, show_screen_names, safe=safe)))
+        elif number_of_items > 1:
+            output.speak(_("{0} new posts in {1}.").format(number_of_items, self.get_buffer_name()))
+
+    def show_menu(self, ev, pos=0, *args, **kwargs):
+        """Show context menu for current item."""
+        if self.buffer.list.get_count() == 0:
+            return
+        menu = menus.baseMenu()
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.reply, menuitem=menu.reply)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.repost)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.add_to_favorites, menuitem=menu.like)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.url_, menuitem=menu.openUrl)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
+        widgetUtils.connect_event(menu, widgetUtils.MENU, self.destroy_status, menuitem=menu.remove)
+        if pos != 0:
+            self.buffer.PopupMenu(menu, pos)
+        else:
+            self.buffer.PopupMenu(menu, self.buffer.list.list.GetPosition())
+
+    def show_menu_by_key(self, ev):
+        """Show context menu when pressing menu key."""
+        if self.buffer.list.get_count() == 0:
+            return
+        if ev.GetKeyCode() == wx.WXK_WINDOWS_MENU:
+            self.show_menu(widgetUtils.MENU, pos=self.buffer.list.list.GetPosition())
+
+    def copy(self, *args, **kwargs):
+        """Copy post to clipboard."""
+        pub.sendMessage("execute-action", action="copy_to_clipboard")
+
     def on_post(self, evt):
         from wxUI.dialogs.blueski import postDialogs
         dlg = postDialogs.Post(caption=_("New Post"))
@@ -197,7 +318,7 @@ class BaseBuffer(base.Buffer):
                 
                 # Update the item in place (only 3 columns: Author, Post, Date)
                 self.buffer.list.list.SetItem(index, 0, post_data[0])  # Author
-                self.buffer.list.list.SetItem(index, 1, post_data[1])  # Text (with ♥ indicator)
+                self.buffer.list.list.SetItem(index, 1, post_data[1])  # Text
                 self.buffer.list.list.SetItem(index, 2, post_data[2])  # Date
                 # Note: compose_post returns 4 items but list only has 3 columns
         except Exception:
@@ -584,7 +705,7 @@ class BaseBuffer(base.Buffer):
             "handle": g(author, "handle"),
         }
     
-    def process_items(self, items, play_sound=True):
+    def process_items(self, items, play_sound=True, avoid_autoreading=False):
         """
         Process list of items (FeedViewPost objects), update DB, and update UI.
         Returns number of new items.
@@ -679,8 +800,73 @@ class BaseBuffer(base.Buffer):
         # Play sound
         if play_sound and self.sound and not self.session.settings["sound"]["session_mute"]:
              self.session.sound.play(self.sound)
-             
+
+        # Auto-read for accessibility
+        if not avoid_autoreading and len(new_items) > 0:
+            self.auto_read(len(new_items))
+
         return len(new_items)
+
+    def add_new_item(self, item):
+        """Add a single new item from streaming."""
+        safe = True
+        relative_times = self.session.settings["general"].get("relative_times", False)
+        show_screen_names = self.session.settings["general"].get("show_screen_names", False)
+        post = self.compose_function(item, self.session.db, self.session.settings, relative_times, show_screen_names, safe=safe)
+
+        if self.session.settings["general"].get("reverse_timelines", False):
+            self.buffer.list.insert_item(True, *post)
+            self.session.db[self.name].insert(0, item)
+        else:
+            self.buffer.list.insert_item(False, *post)
+            self.session.db[self.name].append(item)
+
+        # Auto-read single item
+        if self.name in self.session.settings["other_buffers"].get("autoread_buffers", []) and \
+           self.name not in self.session.settings["other_buffers"].get("muted_buffers", []) and \
+           not self.session.settings["sound"].get("session_mute", False):
+            output.speak(" ".join(post[:2]),
+                        speech=self.session.settings["reporting"].get("speech_reporting", True),
+                        braille=self.session.settings["reporting"].get("braille_reporting", True))
+
+    def update_item(self, item, position):
+        """Update an existing item at the specified position."""
+        safe = True
+        relative_times = self.session.settings["general"].get("relative_times", False)
+        show_screen_names = self.session.settings["general"].get("show_screen_names", False)
+        post = self.compose_function(item, self.session.db, self.session.settings, relative_times, show_screen_names, safe=safe)
+        self.buffer.list.list.SetItem(position, 1, post[1])
+
+    def open_in_browser(self, *args, **kwargs):
+        """Open the current post in web browser."""
+        item = self.get_item()
+        if not item:
+            return
+
+        import webbrowser
+
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        uri = g(item, "uri") or g(g(item, "post"), "uri")
+        author = g(item, "author") or g(g(item, "post"), "author")
+        handle = g(author, "handle")
+
+        if uri and handle:
+            if "app.bsky.feed.post" in uri:
+                rkey = uri.split("/")[-1]
+                url = f"https://bsky.app/profile/{handle}/post/{rkey}"
+                output.speak(_("Opening in browser..."))
+                webbrowser.open(url)
+                return
+
+        # Fallback to profile
+        if handle:
+            url = f"https://bsky.app/profile/{handle}"
+            output.speak(_("Opening profile in browser..."))
+            webbrowser.open(url)
 
     def save_positions(self):
         try:
