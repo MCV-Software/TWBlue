@@ -159,21 +159,27 @@ class Conversation(BaseBuffer):
                 res = api.app.bsky.feed.get_post_thread(params)
             except Exception:
                 res = api.app.bsky.feed.get_post_thread({"uri": self.root_uri})
-            thread = getattr(res, "thread", None)
-            if not thread:
-                return 0
 
             def g(obj, key, default=None):
                 if isinstance(obj, dict):
                     return obj.get(key, default)
                 return getattr(obj, key, default)
 
-            # Find the root of the thread tree
-            curr = thread
-            while g(curr, "parent"):
-                curr = g(curr, "parent")
+            thread = getattr(res, "thread", None) or (res.get("thread") if isinstance(res, dict) else None)
+            if not thread:
+                return 0
 
             final_items = []
+
+            # Add parent chain (oldest to newest) if available
+            ancestors = []
+            parent = g(thread, "parent")
+            while parent:
+                ppost = g(parent, "post")
+                if ppost:
+                    ancestors.insert(0, ppost)
+                parent = g(parent, "parent")
+            final_items.extend(ancestors)
 
             def traverse(node):
                 if not node:
@@ -185,7 +191,7 @@ class Conversation(BaseBuffer):
                 for r in replies:
                     traverse(r)
 
-            traverse(curr)
+            traverse(thread)
             
             # Clear existing items to avoid duplication when refreshing a thread view (which changes structure little)
             self.session.db[self.name] = [] 
@@ -324,6 +330,7 @@ class UserTimeline(BaseBuffer):
 
     def __init__(self, *args, **kwargs):
         self.actor = kwargs.get("actor")
+        self.handle = kwargs.get("handle")
         super(UserTimeline, self).__init__(*args, **kwargs)
         self.type = "user_timeline"
 
@@ -341,13 +348,19 @@ class UserTimeline(BaseBuffer):
         except Exception:
             pass
 
+        actor = self.actor
+        if isinstance(actor, str):
+            actor = actor.strip()
+            if actor.startswith("@"):
+                actor = actor[1:]
+
         api = self.session._ensure_client()
         if not api:
             return 0
 
         try:
             res = api.app.bsky.feed.get_author_feed({
-                "actor": self.actor,
+                "actor": actor,
                 "limit": count,
             })
             items = getattr(res, "feed", []) or []
@@ -356,6 +369,34 @@ class UserTimeline(BaseBuffer):
             return 0
 
         return self.process_items(list(items), play_sound)
+
+    def remove_buffer(self, force=False):
+        if not force:
+            from wxUI import commonMessageDialogs
+            import widgetUtils
+            dlg = commonMessageDialogs.remove_buffer()
+            if dlg != widgetUtils.YES:
+                return False
+        try:
+            self.session.db.pop(self.name, None)
+        except Exception:
+            pass
+        try:
+            timelines = self.session.settings["other_buffers"].get("timelines")
+            if timelines is None:
+                timelines = []
+            if isinstance(timelines, str):
+                timelines = [t for t in timelines.split(",") if t]
+            actor = self.actor or ""
+            handle = self.handle or ""
+            for key in (actor, handle):
+                if key in timelines:
+                    timelines.remove(key)
+            self.session.settings["other_buffers"]["timelines"] = timelines
+            self.session.settings.write()
+        except Exception:
+            log.exception("Error updating Bluesky timelines settings")
+        return True
 
 
 class SearchBuffer(BaseBuffer):

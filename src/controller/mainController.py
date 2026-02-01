@@ -1739,10 +1739,9 @@ class Controller(object):
                  if author_details:
                      user_payload = author_details
 
-            async def _open_timeline():
-                # Pass self (mainController) to the handler method so it can call self.add_buffer
-                await handler.open_user_timeline(main_controller=self, session=session_to_use, user_payload=user_payload)
-            wx.CallAfter(asyncio.create_task, _open_timeline())
+            result = handler.open_user_timeline(main_controller=self, session=session_to_use, user_payload=user_payload)
+            if asyncio.iscoroutine(result):
+                call_threaded(asyncio.run, result)
 
         elif hasattr(handler, 'openPostTimeline'): # Fallback for older handler structure
             # This path might not correctly pass main_controller if the old handler expects it differently

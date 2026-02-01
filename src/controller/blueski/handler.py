@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import logging
 import wx
+import asyncio
 import output
+from mysc.thread_utils import call_threaded
 from wxUI.dialogs.blueski.showUserProfile import ShowUserProfileDialog
 from typing import Any
 import languageHandler  # Ensure _() injection
@@ -134,6 +136,28 @@ class Handler:
             start=False,
             kwargs=dict(parent=controller.view.nb, name="direct_messages", session=session)
         )
+
+        # Saved user timelines
+        try:
+            timelines = session.settings["other_buffers"].get("timelines")
+            if timelines is None:
+                timelines = []
+            if isinstance(timelines, str):
+                timelines = [t for t in timelines.split(",") if t]
+            for actor in timelines:
+                handle = actor
+                title = _("Timeline for {user}").format(user=handle)
+                pub.sendMessage(
+                    "createBuffer",
+                    buffer_type="UserTimeline",
+                    session_type="blueski",
+                    buffer_title=title,
+                    parent_tab=root_position,
+                    start=False,
+                    kwargs=dict(parent=controller.view.nb, name=f"{handle}-timeline", session=session, actor=actor, handle=handle)
+                )
+        except Exception:
+            logger.exception("Failed to restore Bluesky timeline buffers")
 
         # Start the background poller for real-time-like updates
         try:
@@ -319,6 +343,66 @@ class Handler:
             kwargs=dict(parent=controller.view.nb, name=title, session=buffer.session, uri=uri)
         )
 
+    def open_timeline(self, controller, buffer, default="posts"):
+        if not hasattr(buffer, "get_item"):
+            return
+        item = buffer.get_item()
+        if not item:
+            output.speak(_("No user selected."), True)
+            return
+
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        handle = None
+        if hasattr(buffer, "get_selected_item_author_details"):
+            details = buffer.get_selected_item_author_details()
+            if details:
+                handle = details.get("handle") or details.get("did")
+        if not handle:
+            if g(item, "handle") or g(item, "did"):
+                handle = g(item, "handle") or g(item, "did")
+            else:
+                author = g(item, "author") or g(g(item, "post"), "author")
+                if author:
+                    handle = g(author, "handle") or g(author, "did")
+
+        if not handle:
+            output.speak(_("No user selected."), True)
+            return
+
+        from wxUI.dialogs.mastodon import userTimeline as userTimelineDialog
+        dlg = userTimelineDialog.UserTimeline(users=[handle], default=default)
+        try:
+            if hasattr(dlg, "autocompletion"):
+                dlg.autocompletion.Enable(False)
+        except Exception:
+            pass
+        if dlg.ShowModal() != wx.ID_OK:
+            dlg.Destroy()
+            return
+
+        action = dlg.get_action()
+        user = dlg.get_user().strip() or handle
+        dlg.Destroy()
+
+        if user.startswith("@"):
+            user = user[1:]
+        user_payload = {"handle": user}
+        if action == "posts":
+            result = self.open_user_timeline(main_controller=controller, session=buffer.session, user_payload=user_payload)
+        elif action == "followers":
+            result = self.open_followers_timeline(main_controller=controller, session=buffer.session, user_payload=user_payload)
+        elif action == "following":
+            result = self.open_following_timeline(main_controller=controller, session=buffer.session, user_payload=user_payload)
+        else:
+            return
+
+        if asyncio.iscoroutine(result):
+            call_threaded(asyncio.run, result)
+
     def open_followers_timeline(self, main_controller, session, user_payload=None):
         actor, handle = self._resolve_actor(session, user_payload)
         if not actor:
@@ -333,12 +417,27 @@ class Handler:
             return
         self._open_user_list(main_controller, session, actor, handle, list_type="following")
 
-    async def open_user_timeline(self, main_controller, session, user_payload=None):
+    def open_user_timeline(self, main_controller, session, user_payload=None):
         """Open posts timeline for a user (Alt+Win+I)."""
         actor, handle = self._resolve_actor(session, user_payload)
         if not actor:
             output.speak(_("No user selected."), True)
             return
+
+        # If we only have a handle, try to resolve DID for reliability
+        try:
+            if isinstance(actor, str) and not actor.startswith("did:"):
+                profile = session.get_profile(actor)
+                if profile:
+                    def g(obj, key, default=None):
+                        if isinstance(obj, dict):
+                            return obj.get(key, default)
+                        return getattr(obj, key, default)
+                    did = g(profile, "did")
+                    if did:
+                        actor = did
+        except Exception:
+            pass
 
         account_name = session.get_name()
         list_name = f"{handle}-timeline"
@@ -357,8 +456,21 @@ class Handler:
             buffer_title=title,
             parent_tab=main_controller.view.search(account_name, account_name),
             start=True,
-            kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor)
+            kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor, handle=handle)
         )
+        try:
+            timelines = session.settings["other_buffers"].get("timelines")
+            if timelines is None:
+                timelines = []
+            if isinstance(timelines, str):
+                timelines = [t for t in timelines.split(",") if t]
+            key = handle or actor
+            if key and key not in timelines:
+                timelines.append(key)
+                session.settings["other_buffers"]["timelines"] = timelines
+                session.settings.write()
+        except Exception:
+            logger.exception("Failed to persist Bluesky timeline buffer")
 
     def _resolve_actor(self, session, user_payload):
         def g(obj, key, default=None):
@@ -371,6 +483,14 @@ class Handler:
         if user_payload:
             actor = g(user_payload, "did") or g(user_payload, "handle")
             handle = g(user_payload, "handle") or g(user_payload, "did")
+        if isinstance(actor, str):
+            actor = actor.strip()
+            if actor.startswith("@"):
+                actor = actor[1:]
+        if isinstance(handle, str):
+            handle = handle.strip()
+            if handle.startswith("@"):
+                handle = handle[1:]
         if not actor:
             actor = session.db.get("user_id") or session.db.get("user_name")
             handle = session.db.get("user_name") or actor
