@@ -13,7 +13,7 @@ class HomeTimeline(BaseBuffer):
         self.type = "home_timeline"
         self.feed_uri = None
         self.next_cursor = None
-        self.sound = "tweet_timeline.ogg"
+        self.sound = "tweet_received.ogg"
 
     def create_buffer(self, parent, name):
         # Override to use HomePanel
@@ -104,7 +104,7 @@ class FollowingTimeline(BaseBuffer):
         super(FollowingTimeline, self).__init__(*args, **kwargs)
         self.type = "following_timeline"
         self.next_cursor = None
-        self.sound = "tweet_timeline.ogg"
+        self.sound = "tweet_received.ogg"
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name) # Reuse HomePanel layout

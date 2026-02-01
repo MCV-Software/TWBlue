@@ -80,6 +80,7 @@ class FollowersBuffer(UserBuffer):
     def __init__(self, *args, **kwargs):
         kwargs["api_method"] = "get_followers"
         super(FollowersBuffer, self).__init__(*args, **kwargs)
+        self.sound = "update_followers.ogg"
 
     def remove_buffer(self, force=False):
         if not force:
@@ -109,6 +110,7 @@ class FollowingBuffer(UserBuffer):
     def __init__(self, *args, **kwargs):
         kwargs["api_method"] = "get_follows"
         super(FollowingBuffer, self).__init__(*args, **kwargs)
+        self.sound = "update_followers.ogg"
 
     def remove_buffer(self, force=False):
         if not force:

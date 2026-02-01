@@ -107,6 +107,7 @@ class ChatBuffer(BaseBuffer):
             if text:
                  try:
                       self.session.send_chat_message(self.convo_id, text)
+                      self.session.sound.play("dm_sent.ogg")
                       output.speak(_("Message sent."))
                       # Refresh
                       self.start_stream(mandatory=True, play_sound=False)

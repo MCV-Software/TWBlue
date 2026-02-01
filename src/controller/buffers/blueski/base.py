@@ -190,7 +190,8 @@ class BaseBuffer(base.Buffer):
         if dlg.ShowModal() == wx.ID_OK:
             text, files, cw, langs = dlg.get_payload()
             self.session.send_message(message=text, files=files, cw_text=cw, langs=langs)
-            output.speak(_("Sending..."))
+            self.session.sound.play("tweet_send.ogg")
+            output.speak(_("Sent."))
         dlg.Destroy()
 
     def on_reply(self, evt):
@@ -222,7 +223,8 @@ class BaseBuffer(base.Buffer):
         if dlg.ShowModal() == wx.ID_OK:
              text, files, cw, langs = dlg.get_payload()
              self.session.send_message(message=text, files=files, reply_to=uri, reply_to_cid=reply_cid, cw_text=cw, langs=langs)
-             output.speak(_("Sending reply..."))
+             self.session.sound.play("reply_send.ogg")
+             output.speak(_("Reply sent."))
              if getattr(self, "type", "") == "conversation":
                  try:
                      self.start_stream(mandatory=True, play_sound=False)
@@ -243,6 +245,7 @@ class BaseBuffer(base.Buffer):
                   return
 
         self.session.repost(uri)
+        self.session.sound.play("retweet_send.ogg")
         output.speak(_("Reposted."))
 
     def on_like(self, evt):
@@ -285,7 +288,8 @@ class BaseBuffer(base.Buffer):
         if not like_uri:
             output.speak(_("Failed to like post."), True)
             return
-            
+
+        self.session.sound.play("favourite.ogg")
         output.speak(_("Liked."))
         
         # Update the viewer state in the item
@@ -364,6 +368,7 @@ class BaseBuffer(base.Buffer):
                              res = dm_client.chat.bsky.convo.get_convo_for_members({"members": [did]})
                              convo_id = res.convo.id
                              self.session.send_chat_message(convo_id, text)
+                             self.session.sound.play("dm_sent.ogg")
                              output.speak(_("Message sent."), True)
                         except:
                              log.exception("Error sending Bluesky DM (invisible)")
