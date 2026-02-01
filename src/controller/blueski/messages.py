@@ -232,6 +232,7 @@ class viewPost(base_messages.basicMessage):
         if not data:
             output.speak(_("No post available to view."), True)
             return
+        self.post_uri = _g(_g(item, "post", item), "uri") or _g(item, "uri")
         title = _("Post from {}").format(data["author"])
         self.message = postDialogs.viewPost(
             text=data["text"],
@@ -251,6 +252,14 @@ class viewPost(base_messages.basicMessage):
             self.message.enable_button("share")
             self.item_url = data["item_url"]
             widgetUtils.connect_event(self.message.share, widgetUtils.BUTTON_PRESSED, self.share)
+        if self.post_uri:
+            try:
+                self.message.reposts_button.Enable(True)
+                self.message.likes_button.Enable(True)
+                widgetUtils.connect_event(self.message.reposts_button, widgetUtils.BUTTON_PRESSED, self.on_reposts)
+                widgetUtils.connect_event(self.message.likes_button, widgetUtils.BUTTON_PRESSED, self.on_likes)
+            except Exception:
+                pass
         self.message.ShowModal()
 
     def text_processor(self):
@@ -260,3 +269,25 @@ class viewPost(base_messages.basicMessage):
         if hasattr(self, "item_url"):
             output.copy(self.item_url)
             output.speak(_("Link copied to clipboard."))
+
+    def on_reposts(self, *args, **kwargs):
+        if not self.post_uri:
+            return
+        try:
+            res = self.session.get_post_reposts(self.post_uri, limit=50)
+            users = res.get("items", [])
+            from controller.blueski.userList import BlueskyUserList
+            BlueskyUserList(session=self.session, users=users, title=_("people who reposted this post"))
+        except Exception:
+            pass
+
+    def on_likes(self, *args, **kwargs):
+        if not self.post_uri:
+            return
+        try:
+            res = self.session.get_post_likes(self.post_uri, limit=50)
+            users = res.get("items", [])
+            from controller.blueski.userList import BlueskyUserList
+            BlueskyUserList(session=self.session, users=users, title=_("people who liked this post"))
+        except Exception:
+            pass

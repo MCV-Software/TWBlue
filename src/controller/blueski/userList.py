@@ -3,6 +3,10 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any, AsyncGenerator
 
+from wxUI.dialogs.blueski.showUserProfile import ShowUserProfileDialog
+from controller.userList import UserListController
+from controller.blueski import userActions as user_actions_controller
+
 fromapprove.translation import translate as _
 # fromapprove.controller.mastodon import userList as mastodon_user_list # If adapting
 
@@ -223,3 +227,41 @@ async def get_user_profile_details(session: BlueskiSession, user_ident: str) -> 
 # Each function needs to handle pagination as provided by the ATProto API (usually cursor-based).
 
 logger.info("Blueski userList module loaded (placeholders).")
+
+
+class BlueskyUserList(UserListController):
+    def process_users(self, users):
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        processed = []
+        for item in users or []:
+            actor = g(item, "actor") or g(item, "user") or item
+            did = g(actor, "did")
+            handle = g(actor, "handle")
+            display_name = g(actor, "displayName") or g(actor, "display_name") or handle or "Unknown"
+            label = f"{display_name} (@{handle})" if handle and display_name != handle else (f"@{handle}" if handle else display_name)
+            processed.append(dict(did=did, handle=handle, display_name=label))
+        return processed
+
+    def on_actions(self, *args, **kwargs):
+        idx = self.dialog.user_list.GetSelection()
+        if idx < 0 or idx >= len(self.users):
+            return
+        handle = self.users[idx].get("handle")
+        if not handle:
+            return
+        user_actions_controller.userActions(self.session, [handle])
+
+    def on_details(self, *args, **kwargs):
+        idx = self.dialog.user_list.GetSelection()
+        if idx < 0 or idx >= len(self.users):
+            return
+        user_ident = self.users[idx].get("did") or self.users[idx].get("handle")
+        if not user_ident:
+            return
+        dlg = ShowUserProfileDialog(self.dialog, self.session, user_ident)
+        dlg.ShowModal()
+        dlg.Destroy()

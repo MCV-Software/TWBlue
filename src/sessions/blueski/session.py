@@ -485,6 +485,35 @@ class Session(base.baseSession):
             log.exception("Error fetching Bluesky profile for %s", actor)
             return None
 
+    def get_post_likes(self, uri: str, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
+        api = self._ensure_client()
+        try:
+            params = {"uri": uri, "limit": limit}
+            if cursor:
+                params["cursor"] = cursor
+            res = api.app.bsky.feed.get_likes(params)
+            return {"items": getattr(res, "likes", []) or [], "cursor": getattr(res, "cursor", None)}
+        except Exception:
+            log.exception("Error fetching Bluesky likes for %s", uri)
+            return {"items": [], "cursor": None}
+
+    def get_post_reposts(self, uri: str, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
+        api = self._ensure_client()
+        try:
+            params = {"uri": uri, "limit": limit}
+            if cursor:
+                params["cursor"] = cursor
+            # SDK uses get_reposted_by (camel or snake)
+            feed = api.app.bsky.feed
+            if hasattr(feed, "get_reposted_by"):
+                res = feed.get_reposted_by(params)
+            else:
+                res = feed.get_repostedBy(params)
+            return {"items": getattr(res, "reposted_by", None) or getattr(res, "repostedBy", None) or getattr(res, "reposted_by", []) or [], "cursor": getattr(res, "cursor", None)}
+        except Exception:
+            log.exception("Error fetching Bluesky reposts for %s", uri)
+            return {"items": [], "cursor": None}
+
     def follow_user(self, did: str) -> bool:
         api = self._ensure_client()
         try:
