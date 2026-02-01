@@ -123,19 +123,83 @@ class BaseBuffer(base.Buffer):
         output.speak(_("Reposted."))
 
     def on_like(self, evt):
-        self.toggle_favorite(confirm=True)
+        self.toggle_favorite(confirm=False)
 
     def toggle_favorite(self, confirm=False, *args, **kwargs):
         item = self.get_item()
-        if not item: return
-        uri = item.get("uri") if isinstance(item, dict) else getattr(item, "uri", None)
+        if not item: 
+            output.speak(_("No item to like."), True)
+            return
+        
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+        
+        uri = g(item, "uri")
+        if not uri:
+            post = g(item, "post") or g(item, "record")
+            uri = g(post, "uri") if post else None
+        
+        if not uri:
+            output.speak(_("Could not find post identifier."), True)
+            return
         
         if confirm:
              if wx.MessageBox(_("Like this post?"), _("Confirm"), wx.YES_NO | wx.ICON_QUESTION) != wx.YES:
                   return
 
-        self.session.like(uri)
+        # Check if already liked
+        viewer = g(item, "viewer")
+        already_liked = g(viewer, "like") if viewer else None
+        
+        if already_liked:
+            output.speak(_("Already liked."), True)
+            return
+
+        # Perform the like
+        like_uri = self.session.like(uri)
+        if not like_uri:
+            output.speak(_("Failed to like post."), True)
+            return
+            
         output.speak(_("Liked."))
+        
+        # Update the viewer state in the item
+        if isinstance(item, dict):
+            if "viewer" not in item:
+                item["viewer"] = {}
+            item["viewer"]["like"] = like_uri
+        else:
+            # For SDK models, create or update viewer
+            if not hasattr(item, "viewer") or item.viewer is None:
+                # Create a simple object to hold the like state
+                class Viewer:
+                    def __init__(self):
+                        self.like = None
+                item.viewer = Viewer()
+            item.viewer.like = like_uri
+        
+        # Refresh the displayed item in the list
+        try:
+            index = self.buffer.list.get_selected()
+            if index > -1:
+                # Recompose and update the list item
+                safe = True
+                relative_times = self.session.settings["general"].get("relative_times", False)
+                show_screen_names = self.session.settings["general"].get("show_screen_names", False)
+                post_data = self.compose_function(item, self.session.db, self.session.settings, 
+                                                   relative_times=relative_times, 
+                                                   show_screen_names=show_screen_names, 
+                                                   safe=safe)
+                
+                # Update the item in place (only 3 columns: Author, Post, Date)
+                self.buffer.list.list.SetItem(index, 0, post_data[0])  # Author
+                self.buffer.list.list.SetItem(index, 1, post_data[1])  # Text (with ♥ indicator)
+                self.buffer.list.list.SetItem(index, 2, post_data[2])  # Date
+                # Note: compose_post returns 4 items but list only has 3 columns
+        except Exception:
+            log.exception("Error refreshing list item after like")
         
     def add_to_favorites(self, *args, **kwargs):
         self.toggle_favorite(confirm=False)
@@ -172,8 +236,9 @@ class BaseBuffer(base.Buffer):
                    if text:
                         try:
                              api = self.session._ensure_client()
+                             dm_client = api.with_bsky_chat_proxy()
                              # Get or create conversation
-                             res = api.chat.bsky.convo.get_convo_for_members({"members": [did]})
+                             res = dm_client.chat.bsky.convo.get_convo_for_members({"members": [did]})
                              convo_id = res.convo.id
                              self.session.send_chat_message(convo_id, text)
                              output.speak(_("Message sent."), True)
@@ -185,6 +250,46 @@ class BaseBuffer(base.Buffer):
 
          # If showing, we'll just open the chat buffer for now as it's more structured
          self.view_chat_with_user(did, handle)
+
+    def url(self, *args, **kwargs):
+        item = self.get_item()
+        if not item: return
+
+        import webbrowser
+        
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        uri = g(item, "uri")
+        author = g(item, "author") or g(g(item, "post"), "author")
+        handle = g(author, "handle")
+
+        if uri and handle:
+            # URI format: at://did:plc:xxx/app.bsky.feed.post/rkey
+            if "app.bsky.feed.post" in uri:
+                rkey = uri.split("/")[-1]
+                url = f"https://bsky.app/profile/{handle}/post/{rkey}"
+                webbrowser.open(url)
+                return
+            elif "app.bsky.feed.like" in uri:
+                 # It's a like notification, try to get the subject
+                 subject = g(item, "subject")
+                 subject_uri = g(subject, "uri") if subject else None
+                 if subject_uri:
+                      rkey = subject_uri.split("/")[-1]
+                      # We might not have the handle of the post author here easily if it's not in the notification
+                      # But let's try...
+                      # Actually, notification items usually have enough info or we can't deep direct link easily without fetching.
+                      # For now, let's just open the profile of the liker
+                      pass
+                      
+        # Fallback to profile
+        if handle:
+             url = f"https://bsky.app/profile/{handle}"
+             webbrowser.open(url)
+             return
 
     def user_actions(self, *args, **kwargs):
         pub.sendMessage("execute-action", action="follow")

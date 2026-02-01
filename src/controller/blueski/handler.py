@@ -44,15 +44,25 @@ class Handler:
             start=True,
             kwargs=dict(parent=controller.view.nb, name="home_timeline", session=session)
         )
-        # Following-only timeline (reverse-chronological)
+        # Home (Following-only timeline - reverse-chronological)
         pub.sendMessage(
             "createBuffer",
             buffer_type="following_timeline",
             session_type="blueski",
-            buffer_title=_("Following (Chronological)"),
+            buffer_title=_("Home"),
             parent_tab=root_position,
             start=False,
             kwargs=dict(parent=controller.view.nb, name="following_timeline", session=session)
+        )
+        # Mentions (replies, mentions, quotes)
+        pub.sendMessage(
+            "createBuffer",
+            buffer_type="MentionsBuffer",
+            session_type="blueski",
+            buffer_title=_("Mentions"),
+            parent_tab=root_position,
+            start=False,
+            kwargs=dict(parent=controller.view.nb, name="mentions", session=session)
         )
         # Notifications
         pub.sendMessage(
@@ -63,6 +73,16 @@ class Handler:
             parent_tab=root_position,
             start=False,
             kwargs=dict(parent=controller.view.nb, name="notifications", session=session)
+        )
+        # Sent posts
+        pub.sendMessage(
+            "createBuffer",
+            buffer_type="SentBuffer",
+            session_type="blueski",
+            buffer_title=_("Sent"),
+            parent_tab=root_position,
+            start=False,
+            kwargs=dict(parent=controller.view.nb, name="sent", session=session)
         )
         # Likes
         pub.sendMessage(
@@ -84,12 +104,12 @@ class Handler:
             start=False,
             kwargs=dict(parent=controller.view.nb, name="followers", session=session)
         )
-        # Following (Users)
+        # Followings (Users you follow)
         pub.sendMessage(
             "createBuffer",
             buffer_type="FollowingBuffer",
             session_type="blueski",
-            buffer_title=_("Following (Users)"),
+            buffer_title=_("Followings"),
             parent_tab=root_position,
             start=False,
             kwargs=dict(parent=controller.view.nb, name="following", session=session)
@@ -114,6 +134,12 @@ class Handler:
             start=False,
             kwargs=dict(parent=controller.view.nb, name="direct_messages", session=session)
         )
+
+        # Start the background poller for real-time-like updates
+        try:
+            session.start_streaming()
+        except Exception:
+            logger.exception("Failed to start Bluesky streaming for session %s", name)
 
     def start_buffer(self, controller, buffer):
         """Start a newly created Bluesky buffer."""
@@ -343,10 +369,10 @@ class Handler:
         """Standard action for delete key / menu item"""
         item = buffer.get_item()
         if not item: return
-        
+
         uri = getattr(item, "uri", None) or (item.get("post", {}).get("uri") if isinstance(item, dict) else None)
         if not uri: return
-        
+
         import wx
         if wx.MessageBox(_("Are you sure you want to delete this post?"), _("Delete post"), wx.YES_NO | wx.ICON_QUESTION) == wx.YES:
             if buffer.session.delete_post(uri):
@@ -358,3 +384,54 @@ class Handler:
             else:
                 import output
                 output.speak(_("Failed to delete post."))
+
+    def search(self, controller, session):
+        """Open search dialog and create search buffer for results."""
+        dlg = wx.TextEntryDialog(
+            controller.view,
+            _("Enter search term:"),
+            _("Search Bluesky")
+        )
+        if dlg.ShowModal() != wx.ID_OK:
+            dlg.Destroy()
+            return
+
+        query = dlg.GetValue().strip()
+        dlg.Destroy()
+
+        if not query:
+            return
+
+        # Create unique buffer name for this search
+        buffer_name = f"search_{query[:20]}"
+        account_name = session.get_name()
+
+        # Check if buffer already exists
+        existing = controller.search_buffer(buffer_name, account_name)
+        if existing:
+            # Navigate to existing buffer
+            index = controller.view.search(buffer_name, account_name)
+            if index is not None:
+                controller.view.change_buffer(index)
+                # Refresh search
+                existing.search_query = query
+                existing.start_stream(mandatory=True, play_sound=False)
+            return
+
+        # Create new search buffer
+        title = _("Search: {query}").format(query=query)
+        from pubsub import pub
+        pub.sendMessage(
+            "createBuffer",
+            buffer_type="SearchBuffer",
+            session_type="blueski",
+            buffer_title=title,
+            parent_tab=controller.view.search(account_name, account_name),
+            start=True,
+            kwargs=dict(
+                parent=controller.view.nb,
+                name=buffer_name,
+                session=session,
+                query=query
+            )
+        )

@@ -6,6 +6,8 @@ from typing import Any
 
 import wx
 
+from pubsub import pub
+
 from sessions import base
 from sessions import session_exceptions as Exceptions
 import output
@@ -36,6 +38,9 @@ class Session(base.baseSession):
         self.type = "blueski"
         self.char_limit = 300
         self.api = None
+        self.poller = None
+        # Subscribe to pub/sub events from the poller
+        pub.subscribe(self.on_notification, "blueski.notification_received")
 
     def _ensure_settings_namespace(self) -> None:
         """Migrate legacy atprotosocial settings to blueski namespace."""
@@ -648,19 +653,119 @@ class Session(base.baseSession):
 
     def list_convos(self, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
         api = self._ensure_client()
-        res = api.chat.bsky.convo.list_convos({"limit": limit, "cursor": cursor})
+        # Chat API requires using the chat proxy
+        dm_client = api.with_bsky_chat_proxy()
+        res = dm_client.chat.bsky.convo.list_convos({"limit": limit, "cursor": cursor})
         return {"items": res.convos, "cursor": res.cursor}
 
     def get_convo_messages(self, convo_id: str, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
         api = self._ensure_client()
-        res = api.chat.bsky.convo.get_messages({"convoId": convo_id, "limit": limit, "cursor": cursor})
+        dm_client = api.with_bsky_chat_proxy()
+        res = dm_client.chat.bsky.convo.get_messages({"convoId": convo_id, "limit": limit, "cursor": cursor})
         return {"items": res.messages, "cursor": res.cursor}
 
     def send_chat_message(self, convo_id: str, text: str) -> Any:
         api = self._ensure_client()
-        return api.chat.bsky.convo.send_message({
+        dm_client = api.with_bsky_chat_proxy()
+        return dm_client.chat.bsky.convo.send_message({
             "convoId": convo_id,
             "message": {
                 "text": text
             }
         })
+
+    # Streaming/Polling methods
+
+    def start_streaming(self):
+        """Start the background poller for notifications."""
+        if not self.logged:
+            log.debug("Cannot start Bluesky poller: not logged in.")
+            return
+
+        if self.poller is not None and self.poller.is_alive():
+            log.debug("Bluesky poller already running for %s", self.get_name())
+            return
+
+        try:
+            from sessions.blueski.streaming import BlueskyPoller
+            poll_interval = 60
+            try:
+                poll_interval = self.settings["general"].get("update_period", 60)
+            except Exception:
+                pass
+
+            self.poller = BlueskyPoller(
+                session=self,
+                session_name=self.get_name(),
+                poll_interval=poll_interval
+            )
+            self.poller.start()
+            log.info("Started Bluesky poller for session %s", self.get_name())
+        except Exception:
+            log.exception("Failed to start Bluesky poller")
+
+    def stop_streaming(self):
+        """Stop the background poller."""
+        if self.poller is not None:
+            self.poller.stop()
+            self.poller = None
+            log.info("Stopped Bluesky poller for session %s", self.get_name())
+
+    def on_notification(self, notification, session_name):
+        """Handle notification received from the poller via pub/sub."""
+        # Discard if notification is for a different session
+        if self.get_name() != session_name:
+            return
+
+        # Add notification to the notifications buffer
+        try:
+            num = self.order_buffer("notifications", [notification])
+            if num > 0:
+                pub.sendMessage(
+                    "blueski.new_item",
+                    session_name=self.get_name(),
+                    item=notification,
+                    _buffers=["notifications"]
+                )
+        except Exception:
+            log.exception("Error processing Bluesky notification")
+
+    def order_buffer(self, buffer_name, items):
+        """Add items to the specified buffer's database.
+
+        Returns the number of new items added.
+        """
+        if buffer_name not in self.db:
+            self.db[buffer_name] = []
+
+        # Get existing URIs to avoid duplicates
+        existing_uris = set()
+        for item in self.db[buffer_name]:
+            uri = None
+            if isinstance(item, dict):
+                uri = item.get("uri")
+            else:
+                uri = getattr(item, "uri", None)
+            if uri:
+                existing_uris.add(uri)
+
+        # Add new items
+        new_count = 0
+        for item in items:
+            uri = None
+            if isinstance(item, dict):
+                uri = item.get("uri")
+            else:
+                uri = getattr(item, "uri", None)
+
+            if uri and uri in existing_uris:
+                continue
+
+            if uri:
+                existing_uris.add(uri)
+
+            # Insert at beginning (newest first)
+            self.db[buffer_name].insert(0, item)
+            new_count += 1
+
+        return new_count

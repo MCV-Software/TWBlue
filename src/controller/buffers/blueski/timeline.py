@@ -100,28 +100,43 @@ class FollowingTimeline(BaseBuffer):
 
 class NotificationBuffer(BaseBuffer):
     def __init__(self, *args, **kwargs):
+        # Override compose_func before calling super().__init__
+        kwargs["compose_func"] = "compose_notification"
         super(NotificationBuffer, self).__init__(*args, **kwargs)
         self.type = "notifications"
-        
+        self.sound = "notification_received.ogg"
+
     def create_buffer(self, parent, name):
-        self.buffer = BlueskiPanels.NotificationPanel(parent, name) 
+        self.buffer = BlueskiPanels.NotificationPanel(parent, name)
         self.buffer.session = self.session
 
     def start_stream(self, mandatory=False, play_sound=True):
-         count = 50
-         api = self.session._ensure_client()
-         try:
-             res = api.app.bsky.notification.list_notifications({"limit": count})
-             notifs = getattr(res, "notifications", [])
-             items = []
-             # Notifications are not FeedViewPost. They have different structure.
-             # self.compose_function expects FeedViewPost-like structure (post, author, etc).
-             # We need to map them or have a different compose function.
-             # For now, let's skip items to avoid crash
-             # Or attempt to map.
-         except:
-             return 0
-         return 0
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except Exception:
+            pass
+
+        api = self.session._ensure_client()
+        if not api:
+            return 0
+
+        try:
+            res = api.app.bsky.notification.list_notifications({"limit": count})
+            notifications = getattr(res, "notifications", [])
+            if not notifications:
+                return 0
+
+            # Process notifications using the notification compose function
+            return self.process_items(list(notifications), play_sound)
+
+        except Exception:
+            log.exception("Error fetching Bluesky notifications")
+            return 0
+
+    def add_new_item(self, notification):
+        """Add a single new notification from streaming/polling."""
+        return self.process_items([notification], play_sound=True)
 
 class Conversation(BaseBuffer):
     def __init__(self, *args, **kwargs):
@@ -207,3 +222,154 @@ class LikesBuffer(BaseBuffer):
             return 0
 
         return self.process_items(list(items), play_sound)
+
+
+class MentionsBuffer(BaseBuffer):
+    """Buffer for mentions and replies to the current user."""
+
+    def __init__(self, *args, **kwargs):
+        # Use notification compose function since mentions come from notifications
+        kwargs["compose_func"] = "compose_notification"
+        super(MentionsBuffer, self).__init__(*args, **kwargs)
+        self.type = "mentions"
+        self.sound = "mention_received.ogg"
+
+    def create_buffer(self, parent, name):
+        self.buffer = BlueskiPanels.NotificationPanel(parent, name)
+        self.buffer.session = self.session
+
+    def start_stream(self, mandatory=False, play_sound=True):
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except Exception:
+            pass
+
+        api = self.session._ensure_client()
+        if not api:
+            return 0
+
+        try:
+            res = api.app.bsky.notification.list_notifications({"limit": count})
+            notifications = getattr(res, "notifications", [])
+            if not notifications:
+                return 0
+
+            # Filter only mentions and replies
+            mentions = [
+                n for n in notifications
+                if getattr(n, "reason", "") in ("mention", "reply", "quote")
+            ]
+
+            if not mentions:
+                return 0
+
+            return self.process_items(mentions, play_sound)
+
+        except Exception:
+            log.exception("Error fetching Bluesky mentions")
+            return 0
+
+    def add_new_item(self, notification):
+        """Add a single new mention from streaming/polling."""
+        reason = getattr(notification, "reason", "")
+        if reason in ("mention", "reply", "quote"):
+            return self.process_items([notification], play_sound=True)
+        return 0
+
+
+class SentBuffer(BaseBuffer):
+    """Buffer for posts sent by the current user."""
+
+    def __init__(self, *args, **kwargs):
+        super(SentBuffer, self).__init__(*args, **kwargs)
+        self.type = "sent"
+
+    def create_buffer(self, parent, name):
+        self.buffer = BlueskiPanels.HomePanel(parent, name)
+        self.buffer.session = self.session
+
+    def start_stream(self, mandatory=False, play_sound=True):
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except Exception:
+            pass
+
+        api = self.session._ensure_client()
+        if not api or not api.me:
+            return 0
+
+        try:
+            # Get author's own posts (excluding replies)
+            res = api.app.bsky.feed.get_author_feed({
+                "actor": api.me.did,
+                "limit": count,
+                "filter": "posts_no_replies"
+            })
+            items = getattr(res, "feed", [])
+
+            if not items:
+                return 0
+
+            return self.process_items(list(items), play_sound)
+
+        except Exception:
+            log.exception("Error fetching sent posts")
+            return 0
+
+
+class SearchBuffer(BaseBuffer):
+    """Buffer for search results (posts)."""
+
+    def __init__(self, *args, **kwargs):
+        self.search_query = kwargs.pop("query", "")
+        super(SearchBuffer, self).__init__(*args, **kwargs)
+        self.type = "search"
+
+    def create_buffer(self, parent, name):
+        self.buffer = BlueskiPanels.HomePanel(parent, name)
+        self.buffer.session = self.session
+
+    def start_stream(self, mandatory=False, play_sound=True):
+        if not self.search_query:
+            return 0
+
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except Exception:
+            pass
+
+        api = self.session._ensure_client()
+        if not api:
+            return 0
+
+        try:
+            # Search posts
+            res = api.app.bsky.feed.search_posts({
+                "q": self.search_query,
+                "limit": count
+            })
+            posts = getattr(res, "posts", [])
+
+            if not posts:
+                return 0
+
+            # Clear existing results for new search
+            self.session.db[self.name] = []
+            self.buffer.list.clear()
+
+            return self.process_items(list(posts), play_sound)
+
+        except Exception:
+            log.exception("Error searching Bluesky posts")
+            return 0
+
+    def remove_buffer(self, force=False):
+        """Search buffers can always be removed."""
+        try:
+            self.session.db.pop(self.name, None)
+        except Exception:
+            pass
+        return True

@@ -21,7 +21,7 @@ def character_count(post_text, post_cw, character_limit=500):
     # We will use text for counting character limit only.
     full_text = post_text+post_cw
     # find remote users as Mastodon doesn't count the domain in char limit.
-    users = re.findall("@[\w\.-]+@[\w\.-]+", full_text)
+    users = re.findall(r"@[\w\.-]+@[\w\.-]+", full_text)
     for user in users:
         domain = user.split("@")[-1]
         full_text = full_text.replace("@"+domain, "")

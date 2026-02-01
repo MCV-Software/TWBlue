@@ -20,7 +20,7 @@ class EditTemplate(object):
         self.template: str = template
 
     def validate_template(self, template: str) -> bool:
-        used_variables: List[str] = re.findall("\$\w+", template)
+        used_variables: List[str] = re.findall(r"\$\w+", template)
         validated: bool = True
         for var in used_variables:
             if var[1:] not in self.variables:

@@ -128,6 +128,9 @@ class Controller(object):
         pub.subscribe(self.mastodon_new_conversation, "mastodon.conversation_received")
         pub.subscribe(self.mastodon_error_post, "mastodon.error_post")
 
+        # Bluesky specific events.
+        pub.subscribe(self.blueski_new_item, "blueski.new_item")
+
         # connect application events to GUI
         widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_hide, menuitem=self.view.show_hide)
@@ -388,6 +391,12 @@ class Controller(object):
                     "notifications": BlueskiTimelines.NotificationBuffer,
                     "conversation": BlueskiTimelines.Conversation,
                     "likes": BlueskiTimelines.LikesBuffer,
+                    "MentionsBuffer": BlueskiTimelines.MentionsBuffer,
+                    "mentions": BlueskiTimelines.MentionsBuffer,
+                    "SentBuffer": BlueskiTimelines.SentBuffer,
+                    "sent": BlueskiTimelines.SentBuffer,
+                    "SearchBuffer": BlueskiTimelines.SearchBuffer,
+                    "search": BlueskiTimelines.SearchBuffer,
                     "UserBuffer": BlueskiUsers.UserBuffer,
                     "FollowersBuffer": BlueskiUsers.FollowersBuffer,
                     "FollowingBuffer": BlueskiUsers.FollowingBuffer,
@@ -757,10 +766,10 @@ class Controller(object):
                     dlg.Destroy()
                     if not text:
                         return
-                try:
-                    uri = session.send_message(text, reply_to=selected_item_uri, reply_to_cid=selected_item_cid)
-                    if uri:
-                        output.speak(_("Reply sent."), True)
+                    try:
+                        uri = session.send_message(text, reply_to=selected_item_uri, reply_to_cid=selected_item_cid)
+                        if uri:
+                            output.speak(_("Reply sent."), True)
                         else:
                             output.speak(_("Failed to send reply."), True)
                     except Exception:
@@ -902,29 +911,13 @@ class Controller(object):
         buffer = self.get_current_buffer()
         if hasattr(buffer, "add_to_favorites"): # Generic buffer method
             return buffer.add_to_favorites()
+        elif hasattr(buffer, "toggle_favorite"):
+            return buffer.toggle_favorite()
         elif buffer.session and buffer.session.KIND == "blueski":
-            item_uri = buffer.get_selected_item_id()
-            if not item_uri:
-                output.speak(_("No item selected to like."), True)
-                return
-            social_handler = self.get_handler(buffer.session.KIND)
-            async def _like():
-                result = await social_handler.like_item(buffer.session, item_uri)
-                wx.CallAfter(output.speak, result["message"], True) # Ensure UI updates on main thread
-                if result.get("status") == "success" and result.get("like_uri"):
-                    if hasattr(buffer, "store_item_viewer_state"):
-                        # Ensure store_item_viewer_state is called on main thread if it modifies UI/shared data
-                        wx.CallAfter(buffer.store_item_viewer_state, item_uri, "like_uri", result["like_uri"])
-                        # Also update the item in message_cache to reflect the like
-                        if buffer.session and hasattr(buffer.session, "message_cache") and item_uri in buffer.session.message_cache:
-                            cached_post = buffer.session.message_cache[item_uri]
-                            if isinstance(cached_post, dict) and isinstance(cached_post.get("viewer"), dict):
-                                cached_post["viewer"]["like"] = result["like_uri"]
-                            elif hasattr(cached_post, "viewer") and cached_post.viewer: # SDK model
-                                cached_post.viewer.like = result["like_uri"]
-                            # No need to call buffer.update_item here unless it re-renders from scratch
-                            # The visual feedback might come from a list refresh or specific item update later
-            asyncio.create_task(_like()) # wx.CallAfter for the task itself if _like might interact with UI before await
+             # Fallback if buffer doesn't have the method but session is blueski (e.g. ChatBuffer)
+             # Chat messages can't be liked yet in this implementation, or handled by specific buffer
+             output.speak(_("This item cannot be liked."), True)
+             return
 
 
     def remove_from_favourites(self, *args, **kwargs):
@@ -1475,7 +1468,12 @@ class Controller(object):
         output.speak(_(u"Updating buffer..."), True)
         session = bf.session
 
-        async def do_update():
+        output.speak(_(u"Updating buffer..."), True)
+        session = bf.session
+        
+        import threading
+
+        def do_update_sync():
             new_ids = []
             try:
                 if session.KIND == "blueski":
@@ -1483,26 +1481,34 @@ class Controller(object):
                         count = bf.start_stream(mandatory=True)
                         if count: new_ids = [str(x) for x in range(count)]
                     else:
-                        output.speak(_(u"This buffer type cannot be updated."), True)
+                        wx.CallAfter(output.speak, _(u"This buffer type cannot be updated."), True)
                         return
                 else: # Generic fallback for other sessions
+                     # If they are async, this might be tricky in a thread without a loop
+                     # But most old sessions in TWBlue are sync (using threads)
                     if hasattr(bf, "start_stream"):
                         count = bf.start_stream(mandatory=True, avoid_autoreading=True)
                         if count: new_ids = [str(x) for x in range(count)]
                     else:
-                        output.speak(_(u"Unable to update this buffer."), True)
+                        wx.CallAfter(output.speak, _(u"Unable to update this buffer."), True)
                         return
 
                 # Generic feedback
-                if bf.type in ["home_timeline", "user_timeline"]:
-                    output.speak(_("{0} posts retrieved").format(len(new_ids)), True)
-                elif bf.type == "notifications":
-                     output.speak(_("Notifications updated."), True)
+                if bf.type in ["home_timeline", "user_timeline", "notifications", "mentions"]:
+                    wx.CallAfter(output.speak, _("{0} new items.").format(len(new_ids)), True)
+                
             except Exception as e:
                 log.exception("Error updating buffer %s", bf.name)
-                output.speak(_("An error occurred while updating the buffer."), True)
-
-        wx.CallAfter(asyncio.create_task, do_update())
+                wx.CallAfter(output.speak, _("An error occurred while updating the buffer."), True)
+        
+        if session.KIND == "blueski":
+             threading.Thread(target=do_update_sync).start()
+        else:
+             # Original async logic for others if needed, but likely they are sync too. 
+             # Assuming TWBlue architecture is mostly thread-based for legacy sessions.
+             # If we have an async loop running, we could use it for async-capable sessions.
+             # For safety, let's use the thread approach generally if we are not sure about the loop state.
+             threading.Thread(target=do_update_sync).start()
 
 
     def get_more_items(self, *args, **kwargs):
@@ -1636,6 +1642,33 @@ class Controller(object):
 #            sound_to_play = "dm_received.ogg"
 #            if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
 #                self.notify(buffer.session, sound_to_play)
+
+    def blueski_new_item(self, item, session_name, _buffers):
+        """Handle new items from Bluesky polling."""
+        sound_to_play = None
+        for buff in _buffers:
+            buffer = self.search_buffer(buff, session_name)
+            if buffer is None or buffer.session.get_name() != session_name:
+                continue
+            if hasattr(buffer, "add_new_item"):
+                buffer.add_new_item(item)
+            # Determine sound to play
+            if buff == "notifications":
+                sound_to_play = "notification_received.ogg"
+            elif buff == "home_timeline":
+                sound_to_play = "tweet_received.ogg"
+            elif "timeline" in buff:
+                sound_to_play = "tweet_timeline.ogg"
+            else:
+                sound_to_play = None
+            # Play sound if buffer is not muted
+            if sound_to_play is not None:
+                try:
+                    muted = buffer.session.settings["other_buffers"].get("muted_buffers", [])
+                    if buff not in muted:
+                        self.notify(buffer.session, sound_to_play)
+                except Exception:
+                    pass
 
     def mastodon_error_post(self, name, reply_to, visibility, posts, language):
         home = self.search_buffer("home_timeline", name)
