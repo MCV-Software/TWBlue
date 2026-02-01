@@ -638,70 +638,10 @@ class Controller(object):
         buffer = self.get_best_buffer()
         alias_controller = userAlias.userAliasController(buffer.session.settings)
 
-    def post_tweet(self, event=None): # This is the "New Post" menu item
-        """Opens the compose dialog for a new post."""
+    def post_tweet(self, event=None):
         buffer = self.get_best_buffer()
-        if not buffer or not buffer.session:
-            output.speak(_("No active session to compose a post."), True)
-            return
-
-        session = buffer.session
-        # Compose for Bluesky (ATProto): dialog with attachments/CW/language
-        if getattr(session, "type", "") == "blueski":
-            # In invisible interface, prefer a quick, minimal compose to avoid complex UI
-            if self.showing == False:
-                # Parent=None so it shows even if main window is hidden
-                dlg = wx.TextEntryDialog(None, _("Write your post:"), _("Compose"))
-                if dlg.ShowModal() == wx.ID_OK:
-                    text = dlg.GetValue().strip()
-                    dlg.Destroy()
-                    if not text:
-                        return
-                    try:
-                        uri = session.send_message(text)
-                        if uri:
-                            output.speak(_("Post sent successfully!"), True)
-                        else:
-                            output.speak(_("Failed to send post."), True)
-                    except Exception:
-                        log.exception("Error sending Bluesky post from invisible compose")
-                        output.speak(_("An error occurred while posting to Bluesky."), True)
-                else:
-                    dlg.Destroy()
-                return
-            from wxUI.dialogs.blueski.postDialogs import Post as ATPostDialog
-            dlg = ATPostDialog()
-            if dlg.ShowModal() == wx.ID_OK:
-                text, files, cw_text, langs = dlg.get_payload()
-                dlg.Destroy()
-                if not text and not files:
-                    return
-                try:
-                    uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs)
-                    if uri:
-                        output.speak(_("Post sent successfully!"), True)
-                        try:
-                            if hasattr(buffer, "start_stream"):
-                                buffer.start_stream(mandatory=False, play_sound=False)
-                        except Exception:
-                            pass
-                    else:
-                        output.speak(_("Failed to send post."), True)
-                except Exception:
-                    log.exception("Error sending Bluesky post from compose dialog")
-                    output.speak(_("An error occurred while posting to Bluesky."), True)
-            else:
-                dlg.Destroy()
-            return
-        # For a new post, reply_to_uri and quote_uri are None.
-        # Import the new dialog
-        from wxUI.dialogs.composeDialog import ComposeDialog
-        # Pass self.view as parent
-        dialog = ComposeDialog(parent=self.view, session=session)
-        # We don't call dialog.ShowModal() directly if its on_send uses pubsub.
-        # The dialog will be shown, and its on_send will publish a message.
-        # mainController.handle_compose_dialog_send will handle the rest.
-        dialog.Show() # Use Show() for non-modal if pubsub handles closing, or ShowModal() if dialog handles its lifecycle
+        if hasattr(buffer, "post_status"):
+            buffer.post_status()
 
     def handle_compose_dialog_send(self, session, text, files, reply_to, cw_text, is_sensitive, kwargs, dialog_instance):
         """Handles the actual sending of a post after ComposeDialog publishes data."""
@@ -749,81 +689,8 @@ class Controller(object):
 
     def post_reply(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if not buffer:
-            return
-        # Use buffer's own reply method if available (handles Mastodon and most cases)
         if hasattr(buffer, "reply"):
             return buffer.reply()
-        # Fallback for buffers without reply method
-        if not buffer.session:
-            output.speak(_("No active session to reply."), True)
-            return
-
-        selected_item_uri = None
-        if hasattr(buffer, "get_selected_item_id"):
-            selected_item_uri = buffer.get_selected_item_id()
-        selected_item_cid = None
-        if hasattr(buffer, "get_selected_item_cid"):
-            selected_item_cid = buffer.get_selected_item_cid()
-        if not selected_item_uri:
-            output.speak(_("No item selected to reply to."), True)
-            return
-
-        session = buffer.session
-        if getattr(session, "type", "") == "blueski":
-            author_handle = ""
-            if hasattr(buffer, "get_selected_item_author_details"):
-                details = buffer.get_selected_item_author_details()
-                if details:
-                    author_handle = details.get("handle", "") or details.get("did", "")
-            initial_text = f"@{author_handle} " if author_handle and not author_handle.startswith("@") else (f"{author_handle} " if author_handle else "")
-            if self.showing == False:
-                dlg = wx.TextEntryDialog(None, _("Write your reply:"), _("Reply"))
-                if dlg.ShowModal() == wx.ID_OK:
-                    text = dlg.GetValue().strip()
-                    dlg.Destroy()
-                    if not text:
-                        return
-                    try:
-                        uri = session.send_message(text, reply_to=selected_item_uri, reply_to_cid=selected_item_cid)
-                        if uri:
-                            output.speak(_("Reply sent."), True)
-                        else:
-                            output.speak(_("Failed to send reply."), True)
-                    except Exception:
-                        log.exception("Error sending Bluesky reply (invisible)")
-                        output.speak(_("An error occurred while replying."), True)
-                else:
-                    dlg.Destroy()
-                return
-            from wxUI.dialogs.blueski.postDialogs import Post as ATPostDialog
-            dlg = ATPostDialog(caption=_("Reply"), text=initial_text)
-            if dlg.ShowModal() == wx.ID_OK:
-                text, files, cw_text, langs = dlg.get_payload()
-                dlg.Destroy()
-                if not text and not files:
-                    return
-                try:
-                    uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs, reply_to=selected_item_uri, reply_to_cid=selected_item_cid)
-                    if uri:
-                        output.speak(_("Reply sent."), True)
-                        try:
-                            if hasattr(buffer, "start_stream"):
-                                buffer.start_stream(mandatory=False, play_sound=False)
-                        except Exception:
-                            pass
-                    else:
-                        output.speak(_("Failed to send reply."), True)
-                except Exception:
-                    log.exception("Error sending Bluesky reply (dialog)")
-                    output.speak(_("An error occurred while replying."), True)
-            else:
-                dlg.Destroy()
-            return
-
-        from wxUI.dialogs.composeDialog import ComposeDialog
-        dialog = ComposeDialog(parent=self.view, session=buffer.session, reply_to_uri=selected_item_uri, initial_text="")
-        dialog.Show()
 
 
     def send_dm(self, *args, **kwargs):

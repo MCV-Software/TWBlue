@@ -11,6 +11,7 @@ from pubsub import pub
 from controller.buffers.base import base
 from controller.blueski import messages as blueski_messages
 from sessions.blueski import compose, utils
+from mysc.thread_utils import call_threaded
 from wxUI.buffers.blueski import panels as BlueskiPanels
 from wxUI import commonMessageDialogs
 from wxUI.dialogs.blueski import menus
@@ -193,9 +194,23 @@ class BaseBuffer(base.Buffer):
         dlg = postDialogs.Post(caption=_("New Post"))
         if dlg.ShowModal() == wx.ID_OK:
             text, files, cw, langs = dlg.get_payload()
-            self.session.send_message(message=text, files=files, cw_text=cw, langs=langs)
-            self.session.sound.play("tweet_send.ogg")
-            output.speak(_("Sent."))
+            if not text and not files:
+                dlg.Destroy()
+                return
+            def do_send():
+                try:
+                    uri = self.session.send_message(message=text, files=files, cw_text=cw, langs=langs)
+                    if uri:
+                        wx.CallAfter(self.session.sound.play, "tweet_send.ogg")
+                        wx.CallAfter(output.speak, _("Sent."))
+                        if hasattr(self, "start_stream"):
+                            wx.CallAfter(self.start_stream, False, False)
+                    else:
+                        wx.CallAfter(output.speak, _("Failed to send post."), True)
+                except Exception:
+                    log.exception("Error sending Bluesky post")
+                    wx.CallAfter(output.speak, _("An error occurred while posting."), True)
+            call_threaded(do_send)
         dlg.Destroy()
 
     def on_reply(self, evt):
@@ -226,14 +241,33 @@ class BaseBuffer(base.Buffer):
         dlg = postDialogs.Post(caption=_("Reply"), text=initial_text)
         if dlg.ShowModal() == wx.ID_OK:
              text, files, cw, langs = dlg.get_payload()
-             self.session.send_message(message=text, files=files, reply_to=uri, reply_to_cid=reply_cid, cw_text=cw, langs=langs)
-             self.session.sound.play("reply_send.ogg")
-             output.speak(_("Reply sent."))
-             if getattr(self, "type", "") == "conversation":
+             if not text and not files:
+                 dlg.Destroy()
+                 return
+             def do_send():
                  try:
-                     self.start_stream(mandatory=True, play_sound=False)
+                     uri_resp = self.session.send_message(
+                         message=text,
+                         files=files,
+                         reply_to=uri,
+                         reply_to_cid=reply_cid,
+                         cw_text=cw,
+                         langs=langs
+                     )
+                     if uri_resp:
+                         wx.CallAfter(self.session.sound.play, "reply_send.ogg")
+                         wx.CallAfter(output.speak, _("Reply sent."))
+                         if getattr(self, "type", "") == "conversation":
+                             try:
+                                 wx.CallAfter(self.start_stream, True, False)
+                             except Exception:
+                                 pass
+                     else:
+                         wx.CallAfter(output.speak, _("Failed to send reply."), True)
                  except Exception:
-                     pass
+                     log.exception("Error sending Bluesky reply")
+                     wx.CallAfter(output.speak, _("An error occurred while replying."), True)
+             call_threaded(do_send)
         dlg.Destroy()
 
     def on_repost(self, evt):
