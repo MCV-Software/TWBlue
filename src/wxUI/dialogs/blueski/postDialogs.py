@@ -112,3 +112,94 @@ class Post(wx.Dialog):
             })
         return text, files, cw_text, (lang and [lang] or [])
 
+
+class viewPost(wx.Dialog):
+    def set_title(self, length):
+        self.SetTitle(_("Post - %i characters ") % length)
+
+    def __init__(self, text="", reposts_count=0, likes_count=0, source="", date="", privacy="", *args, **kwargs):
+        super(viewPost, self).__init__(parent=None, id=wx.ID_ANY, size=(850, 850))
+        self.init_ui(text, reposts_count, likes_count, source, date, privacy)
+
+    def init_ui(self, text, reposts_count, likes_count, source, date, privacy):
+        panel = wx.Panel(self)
+        main_sizer = wx.BoxSizer(wx.VERTICAL)
+        main_sizer.Add(self.create_text_section(panel, text), 1, wx.EXPAND | wx.ALL, 5)
+        main_sizer.Add(self.create_image_description_section(panel), 1, wx.EXPAND | wx.ALL, 5)
+        main_sizer.Add(self.create_info_section(panel, privacy, reposts_count, likes_count, source, date), 0, wx.EXPAND | wx.ALL, 5)
+        main_sizer.Add(self.create_buttons_section(panel), 0, wx.ALIGN_RIGHT | wx.ALL, 5)
+        panel.SetSizer(main_sizer)
+        self.SetClientSize(main_sizer.CalcMin())
+
+    def create_text_section(self, panel, text):
+        sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Post")), wx.VERTICAL)
+        self.text = wx.TextCtrl(panel, -1, text, style=wx.TE_READONLY | wx.TE_MULTILINE)
+        sizer.Add(self.text, 1, wx.EXPAND | wx.ALL, 5)
+        return sizer
+
+    def create_image_description_section(self, panel):
+        sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Image description")), wx.VERTICAL)
+        self.image_description = wx.TextCtrl(panel, -1, style=wx.TE_READONLY | wx.TE_MULTILINE)
+        self.image_description.Enable(False)
+        sizer.Add(self.image_description, 1, wx.EXPAND | wx.ALL, 5)
+        return sizer
+
+    def create_info_section(self, panel, privacy, reposts_count, likes_count, source, date):
+        sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Information")), wx.VERTICAL)
+        flex_sizer = wx.FlexGridSizer(cols=3, hgap=10, vgap=10)
+        flex_sizer.AddGrowableCol(1)
+        flex_sizer.Add(wx.StaticText(panel, -1, _("Privacy")), 0, wx.ALIGN_CENTER_VERTICAL)
+        flex_sizer.Add(wx.TextCtrl(panel, -1, privacy, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
+        flex_sizer.Add(self.create_reposts_section(panel, reposts_count), 1, wx.EXPAND | wx.ALL, 5)
+        flex_sizer.Add(self.create_likes_section(panel, likes_count), 1, wx.EXPAND | wx.ALL, 5)
+        flex_sizer.Add(wx.StaticText(panel, -1, _("Source")), 0, wx.ALIGN_CENTER_VERTICAL)
+        flex_sizer.Add(wx.TextCtrl(panel, -1, source, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
+        flex_sizer.Add(wx.StaticText(panel, -1, _("Date")), 0, wx.ALIGN_CENTER_VERTICAL)
+        flex_sizer.Add(wx.TextCtrl(panel, -1, date, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
+        sizer.Add(flex_sizer, 1, wx.EXPAND | wx.ALL, 5)
+        return sizer
+
+    def create_reposts_section(self, panel, reposts_count):
+        sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Reposts")), wx.VERTICAL)
+        self.reposts_button = wx.Button(panel, -1, str(reposts_count))
+        self.reposts_button.Enable(False)
+        sizer.Add(self.reposts_button, 1, wx.EXPAND | wx.ALL, 5)
+        return sizer
+
+    def create_likes_section(self, panel, likes_count):
+        sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Likes")), wx.VERTICAL)
+        self.likes_button = wx.Button(panel, -1, str(likes_count))
+        self.likes_button.Enable(False)
+        sizer.Add(self.likes_button, 1, wx.EXPAND | wx.ALL, 5)
+        return sizer
+
+    def create_buttons_section(self, panel):
+        sizer = wx.BoxSizer(wx.HORIZONTAL)
+        self.share = wx.Button(panel, wx.ID_ANY, _("&Copy link to clipboard"))
+        self.share.Enable(False)
+        self.spellcheck = wx.Button(panel, wx.ID_ANY, _("Check &spelling..."))
+        self.translateButton = wx.Button(panel, wx.ID_ANY, _("&Translate..."))
+        cancelButton = wx.Button(panel, wx.ID_CANCEL, _("C&lose"))
+        cancelButton.SetDefault()
+        sizer.Add(self.share, 0, wx.ALL, 5)
+        sizer.Add(self.spellcheck, 0, wx.ALL, 5)
+        sizer.Add(self.translateButton, 0, wx.ALL, 5)
+        sizer.Add(cancelButton, 0, wx.ALL, 5)
+        return sizer
+
+    def set_text(self, text):
+        self.text.ChangeValue(text)
+
+    def get_text(self):
+        return self.text.GetValue()
+
+    def text_focus(self):
+        self.text.SetFocus()
+
+    def onSelect(self, ev):
+        self.text.SelectAll()
+
+    def enable_button(self, buttonName):
+        if hasattr(self, buttonName):
+            return getattr(self, buttonName).Enable()
+

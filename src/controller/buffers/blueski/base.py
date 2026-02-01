@@ -7,6 +7,7 @@ import config
 import widgetUtils
 from pubsub import pub
 from controller.buffers.base import base
+from controller.blueski import messages as blueski_messages
 from sessions.blueski import compose
 from wxUI.buffers.blueski import panels as BlueskiPanels
 
@@ -257,35 +258,15 @@ class BaseBuffer(base.Buffer):
     def view_item(self, item=None):
         if item is None:
             item = self.get_item()
-        if not item: return
-
-        import wx
-        
-        def g(obj, key, default=None):
-            if isinstance(obj, dict):
-                return obj.get(key, default)
-            return getattr(obj, key, default)
-
-        # Handle simplified objects vs full feed items
-        post = g(item, "post", item)
-        author = g(post, "author")
-        record = g(post, "record")
-        
-        handle = g(author, "handle", "Unknown")
-        display_name = g(author, "displayName", handle)
-        text = g(record, "text", "")
-        created_at = g(record, "createdAt", "")
-        
-        # Stats
-        reply_count = g(post, "replyCount", 0)
-        repost_count = g(post, "repostCount", 0)
-        like_count = g(post, "likeCount", 0)
-        
-        content = f"{display_name} (@{handle})\n{created_at}\n\n{text}\n\n💬 {reply_count}  🔁 {repost_count}  ♥ {like_count}"
-        
-        dlg = wx.MessageDialog(self.buffer, content, _("View Post"), wx.OK | wx.ICON_INFORMATION)
-        dlg.ShowModal()
-        dlg.Destroy()
+        if not item:
+            return
+        if not blueski_messages.has_post_data(item):
+            pub.sendMessage("execute-action", action="user_details")
+            return
+        try:
+            blueski_messages.viewPost(self.session, item)
+        except Exception:
+            log.exception("Error opening Bluesky post viewer")
 
     def url_(self, *args, **kwargs):
         self.url()
