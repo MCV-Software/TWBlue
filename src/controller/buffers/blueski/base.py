@@ -32,7 +32,7 @@ class BaseBuffer(base.Buffer):
         self.invisible = True
         compose_func = kwargs.get("compose_func", "compose_post")
         self.compose_function = getattr(compose, compose_func)
-        self.sound = sound
+        self.sound = kwargs.get("sound", None)
         
         # Initialize DB list if needed
         if self.name not in self.session.db:

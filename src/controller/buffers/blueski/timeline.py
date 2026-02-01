@@ -13,6 +13,7 @@ class HomeTimeline(BaseBuffer):
         self.type = "home_timeline"
         self.feed_uri = None
         self.next_cursor = None
+        self.sound = "tweet_timeline.ogg"
 
     def create_buffer(self, parent, name):
         # Override to use HomePanel
@@ -103,6 +104,7 @@ class FollowingTimeline(BaseBuffer):
         super(FollowingTimeline, self).__init__(*args, **kwargs)
         self.type = "following_timeline"
         self.next_cursor = None
+        self.sound = "tweet_timeline.ogg"
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name) # Reuse HomePanel layout
@@ -215,6 +217,7 @@ class Conversation(BaseBuffer):
         self.type = "conversation"
         # We need the root URI or the URI of the post to show thread for
         self.root_uri = kwargs.get("uri")
+        self.sound = "search_updated.ogg"
         
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -279,6 +282,7 @@ class LikesBuffer(BaseBuffer):
         super(LikesBuffer, self).__init__(*args, **kwargs)
         self.type = "likes"
         self.next_cursor = None
+        self.sound = "favourite.ogg"
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -414,6 +418,7 @@ class SentBuffer(BaseBuffer):
         super(SentBuffer, self).__init__(*args, **kwargs)
         self.type = "sent"
         self.next_cursor = None
+        # No sound for sent posts (user's own posts)
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -486,6 +491,7 @@ class UserTimeline(BaseBuffer):
         self.type = "user_timeline"
         self.next_cursor = None
         self._resolved_actor = None
+        self.sound = "tweet_timeline.ogg"
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -600,6 +606,7 @@ class SearchBuffer(BaseBuffer):
         super(SearchBuffer, self).__init__(*args, **kwargs)
         self.type = "search"
         self.next_cursor = None
+        self.sound = "search_updated.ogg"
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)

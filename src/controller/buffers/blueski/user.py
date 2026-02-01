@@ -14,6 +14,7 @@ class UserBuffer(BaseBuffer):
         super(UserBuffer, self).__init__(*args, **kwargs)
         self.type = "user"
         self.next_cursor = None
+        self.sound = "new_event.ogg"
         
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.UserPanel(parent, name)

@@ -13,6 +13,7 @@ class ConversationListBuffer(BaseBuffer):
         kwargs["compose_func"] = "compose_convo"
         super(ConversationListBuffer, self).__init__(*args, **kwargs)
         self.type = "chat"
+        self.sound = "dm_received.ogg"
         
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.ChatPanel(parent, name)
@@ -72,6 +73,7 @@ class ChatBuffer(BaseBuffer):
         super(ChatBuffer, self).__init__(*args, **kwargs)
         self.type = "chat_messages"
         self.convo_id = kwargs.get("convo_id")
+        self.sound = "dm_received.ogg"
         
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.ChatMessagePanel(parent, name)
