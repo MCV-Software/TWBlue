@@ -35,6 +35,7 @@ class Handler(object):
             compose=_("&Post"),
             reply=_("Re&ply"),
             share=_("&Boost"),
+            quote=_("&Quote"),
             fav=_("&Add to favorites"),
             unfav=_("Remove from favorites"),
             view=_("&Show post"),
@@ -92,6 +93,8 @@ class Handler(object):
                 pub.sendMessage("createBuffer", buffer_type="UserBuffer", session_type=session.type, buffer_title=_("Blocked users"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, compose_func="compose_user", function="blocks", name="blocked", sessionObject=session, account=name))
             elif i == 'notifications':
                 pub.sendMessage("createBuffer", buffer_type="NotificationsBuffer", session_type=session.type, buffer_title=_("Notifications"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, compose_func="compose_notification", function="notifications", name="notifications", sessionObject=session, account=name))
+            elif i == 'announcements':
+                pub.sendMessage("createBuffer", buffer_type="AnnouncementsBuffer", session_type=session.type, buffer_title=_("Announcements"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, function="announcements", name="announcements", sessionObject=session, account=name, sound="new_event.ogg"))
         pub.sendMessage("createBuffer", buffer_type="EmptyBuffer", session_type="base", buffer_title=_("Timelines"), parent_tab=root_position, start=False, kwargs=dict(parent=controller.view.nb, name="timelines", account=name))
         timelines_position =controller.view.search("timelines", name)
         for i in session.settings["other_buffers"]["timelines"]:

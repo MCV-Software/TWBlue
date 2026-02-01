@@ -190,28 +190,20 @@ class BaseBuffer(base.Buffer):
         pub.sendMessage("execute-action", action="copy_to_clipboard")
 
     def on_post(self, evt):
-        from wxUI.dialogs.blueski import postDialogs
-        dlg = postDialogs.Post(caption=_("New Post"))
-        if dlg.ShowModal() == wx.ID_OK:
-            text, files, cw, langs = dlg.get_payload()
-            if not text and not files:
-                dlg.Destroy()
-                return
-            def do_send():
-                try:
-                    uri = self.session.send_message(message=text, files=files, cw_text=cw, langs=langs)
-                    if uri:
-                        wx.CallAfter(self.session.sound.play, "tweet_send.ogg")
-                        wx.CallAfter(output.speak, _("Sent."))
-                        if hasattr(self, "start_stream"):
-                            wx.CallAfter(self.start_stream, False, False)
-                    else:
-                        wx.CallAfter(output.speak, _("Failed to send post."), True)
-                except Exception:
-                    log.exception("Error sending Bluesky post")
-                    wx.CallAfter(output.speak, _("An error occurred while posting."), True)
-            call_threaded(do_send)
-        dlg.Destroy()
+        dlg = blueski_messages.post(session=self.session, title=_("New Post"), caption=_("New Post"))
+        if dlg.message.ShowModal() == wx.ID_OK:
+            text, files, cw, langs = dlg.get_data()
+            self._send_post_async(
+                text=text,
+                files=files,
+                cw_text=cw,
+                langs=langs,
+                success_message=_("Sent."),
+                error_message=_("An error occurred while posting."),
+                sound="tweet_send.ogg",
+                refresh_args=(False, False),
+            )
+        dlg.message.Destroy()
 
     def on_reply(self, evt):
         item = self.get_item()
@@ -237,38 +229,71 @@ class BaseBuffer(base.Buffer):
         handle = g(author, "handle", "")
         initial_text = f"@{handle} " if handle and not handle.startswith("@") else (f"{handle} " if handle else "")
 
-        from wxUI.dialogs.blueski import postDialogs
-        dlg = postDialogs.Post(caption=_("Reply"), text=initial_text)
-        if dlg.ShowModal() == wx.ID_OK:
-             text, files, cw, langs = dlg.get_payload()
-             if not text and not files:
-                 dlg.Destroy()
-                 return
-             def do_send():
-                 try:
-                     uri_resp = self.session.send_message(
-                         message=text,
-                         files=files,
-                         reply_to=uri,
-                         reply_to_cid=reply_cid,
-                         cw_text=cw,
-                         langs=langs
-                     )
-                     if uri_resp:
-                         wx.CallAfter(self.session.sound.play, "reply_send.ogg")
-                         wx.CallAfter(output.speak, _("Reply sent."))
-                         if getattr(self, "type", "") == "conversation":
-                             try:
-                                 wx.CallAfter(self.start_stream, True, False)
-                             except Exception:
-                                 pass
-                     else:
-                         wx.CallAfter(output.speak, _("Failed to send reply."), True)
-                 except Exception:
-                     log.exception("Error sending Bluesky reply")
-                     wx.CallAfter(output.speak, _("An error occurred while replying."), True)
-             call_threaded(do_send)
-        dlg.Destroy()
+        dlg = blueski_messages.post(session=self.session, title=_("Reply"), caption=_("Reply"), text=initial_text)
+        if dlg.message.ShowModal() == wx.ID_OK:
+             text, files, cw, langs = dlg.get_data()
+             refresh_args = (True, False) if getattr(self, "type", "") == "conversation" else None
+             self._send_post_async(
+                 text=text,
+                 files=files,
+                 cw_text=cw,
+                 langs=langs,
+                 reply_to=uri,
+                 reply_to_cid=reply_cid,
+                 success_message=_("Reply sent."),
+                 error_message=_("An error occurred while replying."),
+                 sound="reply_send.ogg",
+                 refresh_args=refresh_args,
+             )
+        dlg.message.Destroy()
+
+    def _send_post_async(
+        self,
+        *,
+        text,
+        files,
+        cw_text,
+        langs,
+        reply_to=None,
+        reply_to_cid=None,
+        success_message="",
+        error_message="",
+        sound=None,
+        refresh_args=None,
+    ):
+        if not text and not files:
+            return
+
+        def do_send():
+            try:
+                uri_resp = self.session.send_message(
+                    message=text,
+                    files=files,
+                    reply_to=reply_to,
+                    reply_to_cid=reply_to_cid,
+                    cw_text=cw_text,
+                    langs=langs,
+                )
+                if uri_resp:
+                    if sound:
+                        wx.CallAfter(self.session.sound.play, sound)
+                    if success_message:
+                        wx.CallAfter(output.speak, success_message)
+                    if refresh_args and hasattr(self, "start_stream"):
+                        try:
+                            wx.CallAfter(self.start_stream, *refresh_args)
+                        except Exception:
+                            pass
+                else:
+                    wx.CallAfter(output.speak, _("Failed to send post."), True)
+            except Exception:
+                log.exception("Error sending Bluesky post")
+                if error_message:
+                    wx.CallAfter(output.speak, error_message, True)
+                else:
+                    wx.CallAfter(output.speak, _("An error occurred while posting."), True)
+
+        call_threaded(do_send)
 
     def on_repost(self, evt):
         self.share_item(confirm=True)

@@ -42,10 +42,22 @@ class MentionsBuffer(BaseBuffer):
 
     def get_more_items(self):
         elements = []
-        if self.session.settings["general"]["reverse_timelines"] == False:
-            max_id = self.session.db[self.name][0].id
-        else:
-            max_id = self.session.db[self.name][-1].id
+        if len(self.session.db[self.name]) == 0:
+            return
+        
+        # In mentions buffer, items are notification objects which don't have 'pinned' attribute directly.
+        # But we check the status attached to the notification if it exists.
+        # However, notifications are strictly chronological usually. Pinned mentions don't exist?
+        # But let's stick to the safe ID extraction.
+        # The logic here is tricky because self.session.db stores notification objects, but sometimes just dicts?
+        # Let's assume they are objects with 'id' attribute.
+        # Notifications don't have 'pinned', so we just take the min ID. 
+        # But wait, did I change this file previously to use min()? Yes.
+        # Is there any case where a notification ID is "pinned" (old)? No.
+        # So min() should be fine here. But for consistency with other buffers if any weird logic exists...
+        # Actually, let's keep min() as notifications don't support pinning.
+        
+        max_id = min(item.id for item in self.session.db[self.name])
         try:
             items = getattr(self.session.api, self.function)(max_id=max_id, limit=self.session.settings["general"]["max_posts_per_call"], types=["mention"], *self.args, **self.kwargs)
         except Exception as e:

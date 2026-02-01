@@ -6,6 +6,8 @@ class base(wx.Menu):
         super(base, self).__init__()
         self.boost = wx.MenuItem(self, wx.ID_ANY, _("&Boost"))
         self.Append(self.boost)
+        self.quote = wx.MenuItem(self, wx.ID_ANY, _("&Quote"))
+        self.Append(self.quote)
         self.reply = wx.MenuItem(self, wx.ID_ANY, _(u"Re&ply"))
         self.Append(self.reply)
         self.edit = wx.MenuItem(self, wx.ID_ANY, _(u"&Edit"))
@@ -38,6 +40,8 @@ class notification(wx.Menu):
         if item in valid_types:
             self.boost = wx.MenuItem(self, wx.ID_ANY, _("&Boost"))
             self.Append(self.boost)
+            self.quote = wx.MenuItem(self, wx.ID_ANY, _("&Quote"))
+            self.Append(self.quote)
             self.reply = wx.MenuItem(self, wx.ID_ANY, _(u"Re&ply"))
             self.Append(self.reply)
             self.edit = wx.MenuItem(self, wx.ID_ANY, _(u"&Edit"))

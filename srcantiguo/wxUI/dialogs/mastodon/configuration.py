@@ -47,7 +47,7 @@ class generalAccount(wx.Panel, baseDialog.BaseWXDialog):
         self.SetSizer(sizer)
 
 class templates(wx.Panel, baseDialog.BaseWXDialog):
-    def __init__(self, parent, post_template, conversation_template, person_template):
+    def __init__(self, parent, post_template, conversation_template, person_template, announcement_template):
         super(templates, self).__init__(parent)
         sizer = wx.BoxSizer(wx.VERTICAL)
         self.post = wx.Button(self, wx.ID_ANY, _("Edit template for &posts. Current template: {}").format(post_template))
@@ -56,6 +56,8 @@ class templates(wx.Panel, baseDialog.BaseWXDialog):
         sizer.Add(self.conversation, 0, wx.ALL, 5)
         self.person = wx.Button(self, wx.ID_ANY, _("Edit template for p&ersons. Current template: {}").format(person_template))
         sizer.Add(self.person, 0, wx.ALL, 5)
+        self.announcement = wx.Button(self, wx.ID_ANY, _("Edit template for &announcements. Current template: {}").format(announcement_template))
+        sizer.Add(self.announcement, 0, wx.ALL, 5)
         self.SetSizer(sizer)
 
 class sound(wx.Panel):
@@ -152,8 +154,8 @@ class configurationDialog(baseDialog.BaseWXDialog):
         self.buffers = other_buffers(self.notebook)
         self.notebook.AddPage(self.buffers, _(u"Buffers"))
 
-    def create_templates(self, post_template, conversation_template, person_template):
-        self.templates = templates(self.notebook, post_template=post_template, conversation_template=conversation_template, person_template=person_template)
+    def create_templates(self, post_template, conversation_template, person_template, announcement_template):
+        self.templates = templates(self.notebook, post_template=post_template, conversation_template=conversation_template, person_template=person_template, announcement_template=announcement_template)
         self.notebook.AddPage(self.templates, _("Templates"))
 
     def create_sound(self, output_devices, input_devices, soundpacks):

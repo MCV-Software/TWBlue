@@ -98,6 +98,24 @@ def format_error_message(error_description: str, details: str | None = None) -> 
 logger.info("Blueski messages module loaded (placeholders).")
 
 
+class post(base_messages.basicMessage):
+    def __init__(self, session: Any, title: str, caption: str, text: str = "", *args, **kwargs):
+        self.session = session
+        self.title = title
+        self.message = postDialogs.Post(caption=caption, text=text, *args, **kwargs)
+        try:
+            self.message.SetTitle(title)
+            self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
+        except Exception:
+            pass
+
+    def get_data(self):
+        return self.message.get_payload()
+
+    def text_processor(self):
+        pass
+
+
 def _g(obj: Any, key: str, default: Any = None) -> Any:
     if isinstance(obj, dict):
         return obj.get(key, default)

@@ -2,11 +2,43 @@
 import wx
 import application
 
+class BoostDialog(wx.Dialog):
+    def __init__(self):
+        super(BoostDialog, self).__init__(None, title=_("Boost"))
+        p = wx.Panel(self)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        lbl = wx.StaticText(p, wx.ID_ANY, _("What would you like to do with this post?"))
+        sizer.Add(lbl, 0, wx.ALL, 10)
+        
+        btn_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        self.btn_boost = wx.Button(p, wx.ID_ANY, _("Boost"))
+        self.btn_quote = wx.Button(p, wx.ID_ANY, _("Quote"))
+        self.btn_cancel = wx.Button(p, wx.ID_CANCEL, _("Cancel"))
+        
+        btn_sizer.Add(self.btn_boost, 0, wx.ALL, 5)
+        btn_sizer.Add(self.btn_quote, 0, wx.ALL, 5)
+        btn_sizer.Add(self.btn_cancel, 0, wx.ALL, 5)
+        
+        sizer.Add(btn_sizer, 0, wx.ALIGN_CENTER)
+        p.SetSizer(sizer)
+        sizer.Fit(self)
+        
+        self.btn_boost.Bind(wx.EVT_BUTTON, self.on_boost)
+        self.btn_quote.Bind(wx.EVT_BUTTON, self.on_quote)
+        self.result = 0
+
+    def on_boost(self, event):
+        self.result = 1
+        self.EndModal(wx.ID_OK)
+
+    def on_quote(self, event):
+        self.result = 2
+        self.EndModal(wx.ID_OK)
+
 def boost_question():
-    result = False
-    dlg = wx.MessageDialog(None, _("Would you like to share this post?"), _("Boost"), wx.YES_NO|wx.ICON_QUESTION)
-    if dlg.ShowModal() == wx.ID_YES:
-        result = True
+    dlg = BoostDialog()
+    dlg.ShowModal()
+    result = dlg.result
     dlg.Destroy()
     return result
 

@@ -3,7 +3,7 @@ import sys
 import application
 import platform
 import os
-from cx_Freeze import setup, Executable, winmsvcr
+from cx_Freeze import setup, Executable
 from requests import certs
 
 def get_architecture_files():
@@ -34,7 +34,7 @@ def find_accessible_output2_datafiles():
 
 base = None
 if sys.platform == 'win32':
-    base = 'Win32GUI'
+    base = 'GUI'
 
 build_exe_options = dict(
     build_exe="dist",
@@ -51,8 +51,6 @@ executables = [
     Executable('main.py', base=base, target_name="twblue")
 ]
 
-winmsvcr.FILES = ()
-winmsvcr.FILES_TO_DUPLICATE = ()
 setup(name=application.name,
       version=application.version,
       description=application.description,

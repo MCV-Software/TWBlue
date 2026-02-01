@@ -33,10 +33,7 @@ class CommunityBuffer(base.BaseBuffer):
             min_id = None
             # toDo: Implement reverse timelines properly here.
             if self.name in self.session.db and len(self.session.db[self.name]) > 0:
-                if self.session.settings["general"]["reverse_timelines"]:
-                    min_id = self.session.db[self.name][0].id
-                else:
-                    min_id = self.session.db[self.name][-1].id
+                min_id = max(item.id for item in self.session.db[self.name])
             try:
                 results = self.community_api.timeline(timeline=self.timeline, min_id=min_id, limit=count, *self.args, **self.kwargs)
                 results.reverse()
@@ -55,10 +52,15 @@ class CommunityBuffer(base.BaseBuffer):
 
     def get_more_items(self):
         elements = []
-        if self.session.settings["general"]["reverse_timelines"] == False:
-            max_id = self.session.db[self.name][0].id
+        if len(self.session.db[self.name]) == 0:
+            return
+        
+        unpinned_ids = [item.id for item in self.session.db[self.name] if not getattr(item, "pinned", False)]
+        if unpinned_ids:
+            max_id = min(unpinned_ids)
         else:
-            max_id = self.session.db[self.name][-1].id
+            max_id = min(item.id for item in self.session.db[self.name])
+
         try:
             items = self.community_api.timeline(timeline=self.timeline, max_id=max_id, limit=self.session.settings["general"]["max_posts_per_call"], *self.args, **self.kwargs)
         except Exception as e:
