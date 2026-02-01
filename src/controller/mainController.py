@@ -254,10 +254,12 @@ class Controller(object):
         for i in sessions.sessions:
             log.debug("Working on session %s" % (i,))
             if sessions.sessions[i].is_logged == False:
-                # Try auto-login for Blueski sessions if credentials exist
+                if sessions.sessions[i].session_id in config.app["sessions"]["ignored_sessions"]:
+                    self.create_ignored_session_buffer(sessions.sessions[i])
+                    continue
+                # Try auto-login for sessions if credentials exist
                 try:
-                    if getattr(sessions.sessions[i], "type", None) == "blueski":
-                        sessions.sessions[i].login()
+                    sessions.sessions[i].login()
                 except Exception:
                     log.exception("Auto-login attempt failed for session %s", i)
                 if sessions.sessions[i].is_logged == False:
@@ -280,11 +282,8 @@ class Controller(object):
         """ Starts all buffer objects. Loads their items."""
         for i in sessions.sessions:
             if sessions.sessions[i].is_logged == False: continue
-            self.start_buffers(sessions.sessions[i])
-            self.set_buffer_positions(sessions.sessions[i])
-            if hasattr(sessions.sessions[i], "start_streaming"):
-                sessions.sessions[i].start_streaming()
-        if config.app["app-settings"]["play_ready_sound"] == True:
+            call_threaded(self._start_session_buffers, sessions.sessions[i])
+        if len(sessions.sessions) > 0 and config.app["app-settings"]["play_ready_sound"] == True:
             sessions.sessions[list(sessions.sessions.keys())[0]].sound.play("ready.ogg")
         if config.app["app-settings"]["speak_ready_msg"] == True:
             output.speak(_(u"Ready"))
@@ -292,6 +291,16 @@ class Controller(object):
         if len(self.accounts) > 0:
             b = self.get_first_buffer(self.accounts[0])
             self.update_menus(handler=self.get_handler(b.session.type))
+
+    def _start_session_buffers(self, session):
+        """Helper to start buffers for a session in a background thread."""
+        try:
+            self.start_buffers(session)
+            self.set_buffer_positions(session)
+            if hasattr(session, "start_streaming"):
+                session.start_streaming()
+        except Exception:
+            log.exception("Error starting buffers for session %s", session.session_id)
 
     def create_ignored_session_buffer(self, session):
         pub.sendMessage("core.create_account", name=session.get_name(), session_id=session.session_id)
@@ -740,7 +749,13 @@ class Controller(object):
 
     def post_reply(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if not buffer or not buffer.session:
+        if not buffer:
+            return
+        # Use buffer's own reply method if available (handles Mastodon and most cases)
+        if hasattr(buffer, "reply"):
+            return buffer.reply()
+        # Fallback for buffers without reply method
+        if not buffer.session:
             output.speak(_("No active session to reply."), True)
             return
 
@@ -1052,6 +1067,8 @@ class Controller(object):
 
     def buffer_changed(self, *args, **kwargs):
         buffer = self.get_current_buffer()
+        if buffer is None:
+            return
         old_account = self.current_account
         new_account = buffer.account
         if new_account != old_account:
@@ -1175,6 +1192,9 @@ class Controller(object):
         output.speak(msg, True)
 
     def next_account(self, *args, **kwargs):
+        if not self.accounts:
+            output.speak(_("No accounts available."), True)
+            return
         try:
             index = self.accounts.index(self.current_account)
         except ValueError:
@@ -1203,6 +1223,9 @@ class Controller(object):
         output.speak(msg, True)
 
     def previous_account(self, *args, **kwargs):
+        if not self.accounts:
+            output.speak(_("No accounts available."), True)
+            return
         try:
             index = self.accounts.index(self.current_account)
         except ValueError:

@@ -220,6 +220,40 @@ Para integrar Bluesky en TWBlue, también se modificaron:
 4. Introducir App Password (desde Configuración > App Passwords en bsky.app)
 5. Los buffers se crearán automáticamente
 
+## Correcciones Recientes
+
+### Orden de Conversaciones
+- Las conversaciones ahora se muestran en orden cronológico correcto (más antiguo arriba, más reciente abajo)
+- Se añadió método `_add_items_chronological()` en `timeline.py` para manejar el orden específico de conversaciones
+
+### Detección de Imágenes y Sonido Indicador
+- Corregido el evento de foco en paneles: cambiado de `wx.EVT_SET_FOCUS` a `wx.EVT_LIST_ITEM_FOCUSED`
+- `EVT_SET_FOCUS` solo se disparaba al entrar al control, no al moverse entre elementos
+- `EVT_LIST_ITEM_FOCUSED` se dispara correctamente al navegar entre posts con las flechas
+- Simplificada función `is_image()` para detectar imágenes sin requerir URLs válidas
+
+### Funcionalidad OCR
+- Implementada función `ocr_image()` en `base.py` para extraer texto de imágenes
+- Usa `extra.ocr.OCRSpace.OCRSpaceAPI()` para el reconocimiento
+- Soporta selección de imagen cuando hay múltiples imágenes en un post
+- Creada clase `text` en `controller/blueski/messages.py` como visor de resultados OCR
+- Creado diálogo `viewText` en `wxUI/dialogs/blueski/postDialogs.py`
+- **Independiente de Mastodon**: no hay dependencias entre módulos blueski y mastodon
+
+### Reproducción Multimedia
+- Implementada función `audio()` en `base.py` para reproducir vídeos y audio
+- Usa `sound.URLPlayer` para la reproducción
+- Soporta selección de URL cuando hay múltiples medios
+- Función `get_media_urls()` en utils.py extrae URLs de vídeos, streams HLS y enlaces externos (YouTube, Vimeo, etc.)
+
+### Utilidades (`sessions/blueski/utils.py`)
+- `is_image(post)`: Detecta si un post tiene imágenes (simplificado, no requiere URLs válidas)
+- `is_audio_or_video(post)`: Detecta contenido de audio/vídeo
+- `get_image_urls(post)`: Extrae URLs de imágenes para OCR
+- `get_media_urls(post)`: Extrae URLs de medios para reproducción
+- `find_urls(post)`: Encuentra URLs en el contenido del post
+- `_extract_images_from_embed(embed)`: Helper compartido para extracción de imágenes
+
 ## Limitaciones Conocidas
 
 - No hay streaming en tiempo real (se usa polling)

@@ -44,7 +44,7 @@ class Session(base.baseSession):
         if self.settings["mastodon"]["access_token"] != None and self.settings["mastodon"]["instance"] != None:
             try:
                 log.debug("Logging in to Mastodon instance {}...".format(self.settings["mastodon"]["instance"]))
-                self.api = mastodon.Mastodon(access_token=self.settings["mastodon"]["access_token"], api_base_url=self.settings["mastodon"]["instance"], mastodon_version=MASTODON_VERSION, user_agent="TWBlue/{}".format(application.version), version_check_mode=self.version_check_mode)
+                self.api = mastodon.Mastodon(access_token=self.settings["mastodon"]["access_token"], api_base_url=self.settings["mastodon"]["instance"], mastodon_version=MASTODON_VERSION, user_agent="TWBlue/{}".format(application.version), version_check_mode=self.version_check_mode, request_timeout=30)
                 if verify_credentials == True:
                     credentials = self.api.account_verify_credentials()
                     self.db["user_name"] = credentials["username"]

@@ -122,7 +122,27 @@ def is_image(post):
     """
     actual_post = g(post, "post", post)
     embed = g(actual_post, "embed", None)
-    return len(_extract_images_from_embed(embed)) > 0
+    if not embed:
+        return False
+
+    etype = g(embed, "$type") or g(embed, "py_type") or ""
+
+    # Direct images embed
+    if "images" in etype.lower():
+        images = g(embed, "images", [])
+        if images and len(images) > 0:
+            return True
+
+    # Check in recordWithMedia wrapper
+    if "recordwithmedia" in etype.lower():
+        media = g(embed, "media", {})
+        mtype = g(media, "$type") or g(media, "py_type") or ""
+        if "images" in mtype.lower():
+            images = g(media, "images", [])
+            if images and len(images) > 0:
+                return True
+
+    return False
 
 
 def get_image_urls(post):
