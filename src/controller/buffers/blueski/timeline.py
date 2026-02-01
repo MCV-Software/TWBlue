@@ -319,6 +319,45 @@ class SentBuffer(BaseBuffer):
             return 0
 
 
+class UserTimeline(BaseBuffer):
+    """Buffer for posts by a specific user."""
+
+    def __init__(self, *args, **kwargs):
+        self.actor = kwargs.get("actor")
+        super(UserTimeline, self).__init__(*args, **kwargs)
+        self.type = "user_timeline"
+
+    def create_buffer(self, parent, name):
+        self.buffer = BlueskiPanels.HomePanel(parent, name)
+        self.buffer.session = self.session
+
+    def start_stream(self, mandatory=False, play_sound=True):
+        if not self.actor:
+            return 0
+
+        count = 50
+        try:
+            count = self.session.settings["general"].get("max_posts_per_call", 50)
+        except Exception:
+            pass
+
+        api = self.session._ensure_client()
+        if not api:
+            return 0
+
+        try:
+            res = api.app.bsky.feed.get_author_feed({
+                "actor": self.actor,
+                "limit": count,
+            })
+            items = getattr(res, "feed", []) or []
+        except Exception:
+            log.exception("Error fetching user timeline")
+            return 0
+
+        return self.process_items(list(items), play_sound)
+
+
 class SearchBuffer(BaseBuffer):
     """Buffer for search results (posts)."""
 

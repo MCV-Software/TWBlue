@@ -404,6 +404,8 @@ class Controller(object):
                     "ConversationListBuffer": BlueskiChats.ConversationListBuffer,
                     "ChatMessageBuffer": BlueskiChats.ChatBuffer,
                     "chat_messages": BlueskiChats.ChatBuffer,
+                    "UserTimeline": BlueskiTimelines.UserTimeline,
+                    "user_timeline": BlueskiTimelines.UserTimeline,
                 }
 
                 buffer_panel_class = buffer_map.get(buffer_type)

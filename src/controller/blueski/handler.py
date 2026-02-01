@@ -333,6 +333,33 @@ class Handler:
             return
         self._open_user_list(main_controller, session, actor, handle, list_type="following")
 
+    async def open_user_timeline(self, main_controller, session, user_payload=None):
+        """Open posts timeline for a user (Alt+Win+I)."""
+        actor, handle = self._resolve_actor(session, user_payload)
+        if not actor:
+            output.speak(_("No user selected."), True)
+            return
+
+        account_name = session.get_name()
+        list_name = f"{handle}-timeline"
+        if main_controller.search_buffer(list_name, account_name):
+            index = main_controller.view.search(list_name, account_name)
+            if index is not None:
+                main_controller.view.change_buffer(index)
+            return
+
+        title = _("Timeline for {user}").format(user=handle)
+        from pubsub import pub
+        pub.sendMessage(
+            "createBuffer",
+            buffer_type="UserTimeline",
+            session_type="blueski",
+            buffer_title=title,
+            parent_tab=main_controller.view.search(account_name, account_name),
+            start=True,
+            kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor)
+        )
+
     def _resolve_actor(self, session, user_payload):
         def g(obj, key, default=None):
             if isinstance(obj, dict):

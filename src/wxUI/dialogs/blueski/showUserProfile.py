@@ -283,6 +283,13 @@ class ShowUserProfileDialog(wx.Dialog):
                 return obj.get(key, default)
             return getattr(obj, key, default)
 
+        def get_count(*keys):
+            for k in keys:
+                val = g(profile_model, k)
+                if val is not None:
+                    return val
+            return None
+
         return {
             "did": g(profile_model, "did"),
             "handle": g(profile_model, "handle"),
@@ -290,9 +297,9 @@ class ShowUserProfileDialog(wx.Dialog):
             "description": g(profile_model, "description"),
             "avatar": g(profile_model, "avatar"),
             "banner": g(profile_model, "banner"),
-            "followersCount": g(profile_model, "followersCount"),
-            "followsCount": g(profile_model, "followsCount"),
-            "postsCount": g(profile_model, "postsCount"),
+            "followersCount": get_count("followersCount", "followers_count"),
+            "followsCount": get_count("followsCount", "follows_count", "followingCount", "following_count"),
+            "postsCount": get_count("postsCount", "posts_count"),
             "viewer": g(profile_model, "viewer") or {},
         }
 

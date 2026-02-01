@@ -7,6 +7,7 @@ from .timeline import (
     LikesBuffer,
     MentionsBuffer,
     SentBuffer,
+    UserTimeline,
     SearchBuffer,
 )
 from .user import FollowersBuffer, FollowingBuffer, BlocksBuffer
