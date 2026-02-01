@@ -137,6 +137,18 @@ class Handler:
             kwargs=dict(parent=controller.view.nb, name="direct_messages", session=session)
         )
 
+        # Timelines container
+        pub.sendMessage(
+            "createBuffer",
+            buffer_type="EmptyBuffer",
+            session_type="base",
+            buffer_title=_("Timelines"),
+            parent_tab=root_position,
+            start=False,
+            kwargs=dict(parent=controller.view.nb, name="timelines", account=name)
+        )
+        timelines_position = controller.view.search("timelines", name)
+
         # Saved user timelines
         try:
             timelines = session.settings["other_buffers"].get("timelines")
@@ -152,7 +164,7 @@ class Handler:
                     buffer_type="UserTimeline",
                     session_type="blueski",
                     buffer_title=title,
-                    parent_tab=root_position,
+                    parent_tab=timelines_position,
                     start=False,
                     kwargs=dict(parent=controller.view.nb, name=f"{handle}-timeline", session=session, actor=actor, handle=handle)
                 )
@@ -454,7 +466,7 @@ class Handler:
             buffer_type="UserTimeline",
             session_type="blueski",
             buffer_title=title,
-            parent_tab=main_controller.view.search(account_name, account_name),
+            parent_tab=main_controller.view.search("timelines", account_name),
             start=True,
             kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor, handle=handle)
         )
@@ -465,7 +477,11 @@ class Handler:
             if isinstance(timelines, str):
                 timelines = [t for t in timelines.split(",") if t]
             key = handle or actor
-            if key and key not in timelines:
+            if key in timelines:
+                from wxUI import commonMessageDialogs
+                commonMessageDialogs.timeline_exist()
+                return
+            if key:
                 timelines.append(key)
                 session.settings["other_buffers"]["timelines"] = timelines
                 session.settings.write()

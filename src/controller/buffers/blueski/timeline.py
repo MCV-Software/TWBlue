@@ -359,6 +359,19 @@ class UserTimeline(BaseBuffer):
             return 0
 
         try:
+            if isinstance(actor, str) and not actor.startswith("did:"):
+                try:
+                    profile = self.session.get_profile(actor)
+                    if profile:
+                        def g(obj, key, default=None):
+                            if isinstance(obj, dict):
+                                return obj.get(key, default)
+                            return getattr(obj, key, default)
+                        did = g(profile, "did")
+                        if did:
+                            actor = did
+                except Exception:
+                    pass
             res = api.app.bsky.feed.get_author_feed({
                 "actor": actor,
                 "limit": count,
