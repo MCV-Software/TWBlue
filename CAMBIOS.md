@@ -260,3 +260,16 @@ Para integrar Bluesky en TWBlue, también se modificaron:
 - Las listas de Bluesky no están implementadas aún
 - Los starter packs no están soportados
 - La moderación de contenido es básica (solo CW)
+
+## Correcciones Recientes (2026-02-01)
+
+### Flujo de compose y rendimiento (Bluesky)
+- Compose vuelve a ser local por buffer (como en el codigo original), sin capa intermedia.
+- Envio de post/reply en thread para evitar bloqueos de UI.
+- Helper `controller/blueski/messages.py::post` centraliza el dialogo y el payload.
+- DM en chats Bluesky se envian en thread con refresco de buffer.
+
+### Sesiones y UI
+- Autologin en todas las sesiones (excepto ignoradas) para iniciar buffers al abrir.
+- Correccion de "Actualizar buffer" cuando la sesion no tiene `KIND`.
+- Menu de nueva cuenta muestra solo "Bluesky" (sin duplicados).
