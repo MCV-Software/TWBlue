@@ -251,6 +251,46 @@ class BaseBuffer(base.Buffer):
          # If showing, we'll just open the chat buffer for now as it's more structured
          self.view_chat_with_user(did, handle)
 
+    def view(self, *args, **kwargs):
+        self.view_item()
+
+    def view_item(self, item=None):
+        if item is None:
+            item = self.get_item()
+        if not item: return
+
+        import wx
+        
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        # Handle simplified objects vs full feed items
+        post = g(item, "post", item)
+        author = g(post, "author")
+        record = g(post, "record")
+        
+        handle = g(author, "handle", "Unknown")
+        display_name = g(author, "displayName", handle)
+        text = g(record, "text", "")
+        created_at = g(record, "createdAt", "")
+        
+        # Stats
+        reply_count = g(post, "replyCount", 0)
+        repost_count = g(post, "repostCount", 0)
+        like_count = g(post, "likeCount", 0)
+        
+        content = f"{display_name} (@{handle})\n{created_at}\n\n{text}\n\n💬 {reply_count}  🔁 {repost_count}  ♥ {like_count}"
+        
+        dlg = wx.MessageDialog(self.buffer, content, _("View Post"), wx.OK | wx.ICON_INFORMATION)
+        dlg.ShowModal()
+        dlg.Destroy()
+
+    def url_(self, *args, **kwargs):
+        self.url()
+
+
     def url(self, *args, **kwargs):
         item = self.get_item()
         if not item: return
