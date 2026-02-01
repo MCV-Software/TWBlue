@@ -54,7 +54,7 @@ class sessionManagerWindow(wx.Dialog):
         mastodon = menu.Append(wx.ID_ANY, _("Mastodon"))
         menu.Bind(wx.EVT_MENU, self.on_new_mastodon_account, mastodon)
 
-        blueski = menu.Append(wx.ID_ANY, _("Blueski (Bluesky)"))
+        blueski = menu.Append(wx.ID_ANY, _("Bluesky"))
         menu.Bind(wx.EVT_MENU, self.on_new_blueski_account, blueski)
 
         self.PopupMenu(menu, self.new.GetPosition())
@@ -67,7 +67,7 @@ class sessionManagerWindow(wx.Dialog):
             pub.sendMessage("sessionmanager.new_account", type="mastodon")
 
     def on_new_blueski_account(self, *args, **kwargs):
-        dlg = wx.MessageDialog(self, _("You will be prompted for your Blueski (Bluesky) data (user handle and App Password) to authorize TWBlue. Would you like to authorize your account now?"), _(u"Blueski Authorization"), wx.YES_NO)
+        dlg = wx.MessageDialog(self, _("You will be prompted for your Bluesky data (user handle and App Password) to authorize TWBlue. Would you like to authorize your account now?"), _(u"Bluesky Authorization"), wx.YES_NO)
         response = dlg.ShowModal()
         dlg.Destroy()
         if response == wx.ID_YES:
