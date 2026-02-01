@@ -5,6 +5,7 @@ import output
 from .base import BaseBuffer
 from wxUI.buffers.blueski import panels as BlueskiPanels
 from sessions.blueski import compose
+from mysc.thread_utils import call_threaded
 
 log = logging.getLogger("controller.buffers.blueski.chat")
 
@@ -96,14 +97,15 @@ class ChatBuffer(BaseBuffer):
         if dlg.ShowModal() == wx.ID_OK:
             text = dlg.GetValue()
             if text:
-                 try:
-                      self.session.send_chat_message(self.convo_id, text)
-                      self.session.sound.play("dm_sent.ogg")
-                      output.speak(_("Message sent."))
-                      # Refresh
-                      self.start_stream(mandatory=True, play_sound=False)
-                 except:
-                      output.speak(_("Failed to send message."))
+                 def do_send():
+                      try:
+                           self.session.send_chat_message(self.convo_id, text)
+                           wx.CallAfter(self.session.sound.play, "dm_sent.ogg")
+                           wx.CallAfter(output.speak, _("Message sent."))
+                           wx.CallAfter(self.start_stream, True, False)
+                      except Exception:
+                           wx.CallAfter(output.speak, _("Failed to send message."), True)
+                 call_threaded(do_send)
         dlg.Destroy()
 
     def send_message(self, *args, **kwargs):
