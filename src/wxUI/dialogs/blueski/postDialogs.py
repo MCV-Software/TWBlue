@@ -49,6 +49,16 @@ class Post(wx.Dialog):
         lang_row.Add(self.lang_choice, 0, wx.ALIGN_CENTER_VERTICAL)
         main_sizer.Add(lang_row, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM, 6)
 
+        # Text actions (spellcheck, translate, autocomplete)
+        text_actions_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        self.autocomplete_users = wx.Button(self, wx.ID_ANY, _("Auto&complete users"))
+        text_actions_sizer.Add(self.autocomplete_users, 0, wx.ALL, 2)
+        self.spellcheck = wx.Button(self, wx.ID_ANY, _("Check &spelling"))
+        text_actions_sizer.Add(self.spellcheck, 0, wx.ALL, 2)
+        self.translate = wx.Button(self, wx.ID_ANY, _("&Translate"))
+        text_actions_sizer.Add(self.translate, 0, wx.ALL, 2)
+        main_sizer.Add(text_actions_sizer, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM, 6)
+
         # Buttons
         btn_sizer = wx.StdDialogButtonSizer()
         self.send = wx.Button(self, wx.ID_OK, _("Send"))

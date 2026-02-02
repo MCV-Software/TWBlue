@@ -9,6 +9,7 @@ import output
 import widgetUtils
 from controller import messages as base_messages
 from wxUI.dialogs.blueski import postDialogs
+from extra.autocompletionUsers import completion
 
 # Translation function is provided globally by TWBlue's language handler (_)
 
@@ -99,6 +100,9 @@ logger.info("Blueski messages module loaded (placeholders).")
 
 
 class post(base_messages.basicMessage):
+    # Bluesky character limit
+    MAX_CHARS = 300
+
     def __init__(self, session: Any, title: str, caption: str, text: str = "", *args, **kwargs):
         self.session = session
         self.title = title
@@ -108,12 +112,29 @@ class post(base_messages.basicMessage):
             self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
         except Exception:
             pass
+        # Connect events for text processing and buttons
+        widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
+        widgetUtils.connect_event(self.message.spoiler, widgetUtils.ENTERED_TEXT, self.text_processor)
+        widgetUtils.connect_event(self.message.spellcheck, widgetUtils.BUTTON_PRESSED, self.spellcheck)
+        widgetUtils.connect_event(self.message.translate, widgetUtils.BUTTON_PRESSED, self.translate)
+        widgetUtils.connect_event(self.message.autocomplete_users, widgetUtils.BUTTON_PRESSED, self.autocomplete_users)
+        # Initial text processing to show character count
+        self.text_processor()
 
     def get_data(self):
         return self.message.get_payload()
 
-    def text_processor(self):
-        pass
+    def text_processor(self, *args, **kwargs):
+        text = self.message.text.GetValue()
+        cw = self.message.spoiler.GetValue() if self.message.spoiler.IsEnabled() else ""
+        char_count = len(text) + len(cw)
+        self.message.SetTitle(_("%s - %s of %d characters") % (self.title, char_count, self.MAX_CHARS))
+        if char_count > self.MAX_CHARS:
+            self.session.sound.play("max_length.ogg")
+
+    def autocomplete_users(self, *args, **kwargs):
+        c = completion.autocompletionUsers(self.message, self.session.session_id)
+        c.show_menu()
 
 
 def _g(obj: Any, key: str, default: Any = None) -> Any:
