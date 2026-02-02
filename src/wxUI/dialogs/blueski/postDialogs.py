@@ -228,3 +228,45 @@ class viewText(wx.Dialog):
         panel.SetSizer(mainBox)
         self.SetClientSize(mainBox.CalcMin())
 
+
+class RepostDialog(wx.Dialog):
+    def __init__(self):
+        super(RepostDialog, self).__init__(None, title=_("Repost"))
+        p = wx.Panel(self)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        lbl = wx.StaticText(p, wx.ID_ANY, _("What would you like to do with this post?"))
+        sizer.Add(lbl, 0, wx.ALL, 10)
+
+        btn_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        self.btn_repost = wx.Button(p, wx.ID_ANY, _("Repost"))
+        self.btn_quote = wx.Button(p, wx.ID_ANY, _("Quote"))
+        self.btn_cancel = wx.Button(p, wx.ID_CANCEL, _("Cancel"))
+
+        btn_sizer.Add(self.btn_repost, 0, wx.ALL, 5)
+        btn_sizer.Add(self.btn_quote, 0, wx.ALL, 5)
+        btn_sizer.Add(self.btn_cancel, 0, wx.ALL, 5)
+
+        sizer.Add(btn_sizer, 0, wx.ALIGN_CENTER)
+        p.SetSizer(sizer)
+        sizer.Fit(self)
+
+        self.btn_repost.Bind(wx.EVT_BUTTON, self.on_repost)
+        self.btn_quote.Bind(wx.EVT_BUTTON, self.on_quote)
+        self.result = 0
+
+    def on_repost(self, event):
+        self.result = 1
+        self.EndModal(wx.ID_OK)
+
+    def on_quote(self, event):
+        self.result = 2
+        self.EndModal(wx.ID_OK)
+
+
+def repost_question():
+    dlg = RepostDialog()
+    dlg.ShowModal()
+    result = dlg.result
+    dlg.Destroy()
+    return result
+

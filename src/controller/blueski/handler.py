@@ -475,10 +475,16 @@ class Handler:
             buffer.on_like(None)
             
     def follow(self, buffer):
-        """Standard action for Ctrl+Win+S"""
+        """Standard action for Ctrl+Win+S - Opens user actions dialog"""
+        if not hasattr(buffer, "get_item"):
+            return
         session = getattr(buffer, "session", None)
         if not session:
             output.speak(_("No active session."), True)
+            return
+
+        item = buffer.get_item()
+        if not item:
             return
 
         def g(obj, key, default=None):
@@ -486,20 +492,63 @@ class Handler:
                 return obj.get(key, default)
             return getattr(obj, key, default)
 
-        user_ident = None
-        item = buffer.get_item() if hasattr(buffer, "get_item") else None
-        if item:
-            if g(item, "handle") or g(item, "did"):
-                user_ident = g(item, "handle") or g(item, "did")
-            else:
-                author = g(item, "author")
-                if not author:
-                    post = g(item, "post") or g(item, "record")
-                    author = g(post, "author") if post else None
-                if author:
-                    user_ident = g(author, "handle") or g(author, "did")
+        users = []
+        buffer_type = getattr(buffer, "type", "")
 
-        users = [user_ident] if user_ident else []
+        if buffer_type in ("user", "post_user_list"):
+            # User buffer - item is a user object
+            handle = g(item, "handle")
+            if handle:
+                users = [handle]
+        elif buffer_type == "notifications":
+            # Notification buffer
+            author = g(item, "author")
+            if author:
+                handle = g(author, "handle")
+                if handle:
+                    users.append(handle)
+            # Also check for post author in the notification subject
+            record = g(item, "record")
+            if record:
+                subject = g(record, "subject")
+                if subject:
+                    subject_author = g(subject, "author")
+                    if subject_author:
+                        subject_handle = g(subject_author, "handle")
+                        if subject_handle and subject_handle not in users:
+                            users.append(subject_handle)
+        else:
+            # Post buffer - extract author and mentioned users
+            # Get the actual post (could be nested in "post" key)
+            actual_post = g(item, "post", item)
+            record = g(actual_post, "record") or {}
+
+            # Extract mentions from facets
+            facets = g(record, "facets") or []
+            for facet in facets:
+                features = g(facet, "features") or []
+                for feature in features:
+                    ftype = g(feature, "$type") or g(feature, "py_type") or ""
+                    if "mention" in ftype.lower():
+                        mention_did = g(feature, "did")
+                        # We'd need to resolve DID to handle, but for simplicity just skip
+                        # The main author will be added below
+
+            # Get the post author
+            author = g(actual_post, "author") or g(item, "author")
+            if author:
+                handle = g(author, "handle")
+                if handle and handle not in users:
+                    users.insert(0, handle)
+
+        # Ensure we have at least the author if no users found
+        if not users:
+            author = g(item, "author") or g(g(item, "post"), "author")
+            if author:
+                handle = g(author, "handle")
+                if handle:
+                    users = [handle]
+
         from controller.blueski import userActions as user_actions_controller
         user_actions_controller.userActions(session, users)
 

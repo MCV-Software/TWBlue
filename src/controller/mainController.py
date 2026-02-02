@@ -1426,7 +1426,7 @@ class Controller(object):
         current_cursor = None
         can_load_more_natively = False
 
-        if session.KIND == "blueski":
+        if getattr(session, "KIND", None) == "blueski":
             if hasattr(bf, "load_more_posts"): # For BlueskiUserTimelinePanel & BlueskiHomeTimelinePanel
                 can_load_more_natively = True
             if hasattr(bf, "load_more_posts"):

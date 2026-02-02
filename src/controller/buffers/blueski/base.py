@@ -167,9 +167,13 @@ class BaseBuffer(base.Buffer):
         menu = menus.baseMenu()
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.reply, menuitem=menu.reply)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.share_item, menuitem=menu.repost)
+        if hasattr(menu, "quote"):
+            widgetUtils.connect_event(menu, widgetUtils.MENU, self.quote, menuitem=menu.quote)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.add_to_favorites, menuitem=menu.like)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.user_actions, menuitem=menu.userActions)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.url_, menuitem=menu.openUrl)
+        if hasattr(menu, "openInBrowser"):
+            widgetUtils.connect_event(menu, widgetUtils.MENU, self.open_in_browser, menuitem=menu.openInBrowser)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.view, menuitem=menu.view)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.copy, menuitem=menu.copy)
         widgetUtils.connect_event(menu, widgetUtils.MENU, self.destroy_status, menuitem=menu.remove)
@@ -296,20 +300,88 @@ class BaseBuffer(base.Buffer):
         call_threaded(do_send)
 
     def on_repost(self, evt):
-        self.share_item(confirm=True)
+        self.share_item()
 
-    def share_item(self, confirm=False, *args, **kwargs):
-        item = self.get_item()
-        if not item: return
-        uri = item.get("uri") if isinstance(item, dict) else getattr(item, "uri", None)
-        
-        if confirm:
-             if wx.MessageBox(_("Repost this?"), _("Confirm"), wx.YES_NO | wx.ICON_QUESTION) != wx.YES:
-                  return
+    def share_item(self, event=None, item=None, *args, **kwargs):
+        if item is None:
+            item = self.get_item()
+        if not item:
+            return
 
-        self.session.repost(uri)
-        self.session.sound.play("retweet_send.ogg")
-        output.speak(_("Reposted."))
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        # Get the URI for reposting
+        uri = g(item, "uri") or g(g(item, "post"), "uri")
+        cid = g(item, "cid") or g(g(item, "post"), "cid")
+        if not uri:
+            output.speak(_("Could not find post to repost."), True)
+            return
+
+        # Check boost_mode setting
+        boost_mode = self.session.settings["general"].get("boost_mode", "ask")
+        if boost_mode == "ask":
+            from wxUI.dialogs.blueski.postDialogs import repost_question
+            answer = repost_question()
+            if answer == 1:
+                self._direct_repost(uri)
+            elif answer == 2:
+                self.quote(item=item)
+        else:
+            self._direct_repost(uri)
+
+    def _direct_repost(self, uri):
+        try:
+            self.session.repost(uri)
+            self.session.sound.play("retweet_send.ogg")
+            output.speak(_("Reposted."))
+        except Exception as e:
+            log.error("Error reposting: %s", e)
+            output.speak(_("Failed to repost."), True)
+
+    def quote(self, event=None, item=None, *args, **kwargs):
+        if item is None:
+            item = self.get_item()
+        if not item:
+            return
+
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        uri = g(item, "uri") or g(g(item, "post"), "uri")
+        if not uri:
+            output.speak(_("Could not find post to quote."), True)
+            return
+
+        title = _("Quote post")
+        caption = _("Write your comment here")
+        dlg = blueski_messages.post(session=self.session, title=title, caption=caption)
+        if dlg.message.ShowModal() == wx.ID_OK:
+            text, files, cw, langs = dlg.get_data()
+            if text or files:
+                def do_quote():
+                    try:
+                        result = self.session.send_message(
+                            message=text,
+                            files=files,
+                            cw_text=cw,
+                            langs=langs,
+                            quote_uri=uri,
+                        )
+                        if result:
+                            wx.CallAfter(self.session.sound.play, "retweet_send.ogg")
+                            wx.CallAfter(output.speak, _("Quote posted."))
+                        else:
+                            wx.CallAfter(output.speak, _("Failed to post quote."), True)
+                    except Exception as e:
+                        log.error("Error posting quote: %s", e)
+                        wx.CallAfter(output.speak, _("Failed to post quote."), True)
+                call_threaded(do_quote)
+        dlg.message.Destroy()
 
     def on_like(self, evt):
         self.toggle_favorite(confirm=False)
@@ -419,28 +491,24 @@ class BaseBuffer(base.Buffer):
          if not did:
               return
 
-         if self.showing == False:
-              dlg = wx.TextEntryDialog(None, _("Message to {0}:").format(handle), _("Send Message"))
-              if dlg.ShowModal() == wx.ID_OK:
-                   text = dlg.GetValue()
-                   if text:
-                        try:
-                             api = self.session._ensure_client()
-                             dm_client = api.with_bsky_chat_proxy()
-                             # Get or create conversation
-                             res = dm_client.chat.bsky.convo.get_convo_for_members({"members": [did]})
-                             convo_id = res.convo.id
-                             self.session.send_chat_message(convo_id, text)
-                             self.session.sound.play("dm_sent.ogg")
-                             output.speak(_("Message sent."), True)
-                        except Exception as e:
-                             log.error("Error sending Bluesky DM: %s", e)
-                             output.speak(_("Failed to send message."), True)
-              dlg.Destroy()
-              return
-
-         # If showing, we'll just open the chat buffer for now as it's more structured
-         self.view_chat_with_user(did, handle)
+         # Show simple text entry dialog for sending DM
+         dlg = wx.TextEntryDialog(None, _("Message to {0}:").format(handle), _("Send Message"))
+         if dlg.ShowModal() == wx.ID_OK:
+             text = dlg.GetValue()
+             if text:
+                 try:
+                     api = self.session._ensure_client()
+                     dm_client = api.with_bsky_chat_proxy()
+                     # Get or create conversation
+                     res = dm_client.chat.bsky.convo.get_convo_for_members({"members": [did]})
+                     convo_id = res.convo.id
+                     self.session.send_chat_message(convo_id, text)
+                     self.session.sound.play("dm_sent.ogg")
+                     output.speak(_("Message sent."), True)
+                 except Exception as e:
+                     log.error("Error sending Bluesky DM: %s", e)
+                     output.speak(_("Failed to send message."), True)
+         dlg.Destroy()
 
     def view(self, *args, **kwargs):
         self.view_item()
@@ -461,46 +529,31 @@ class BaseBuffer(base.Buffer):
     def url_(self, *args, **kwargs):
         self.url()
 
-
-    def url(self, *args, **kwargs):
-        item = self.get_item()
-        if not item: return
+    def url(self, announce=True, item=None, *args, **kwargs):
+        """Open URLs found in the post content."""
+        if item is None:
+            item = self.get_item()
+        if not item:
+            return
 
         import webbrowser
-        
-        def g(obj, key, default=None):
-            if isinstance(obj, dict):
-                return obj.get(key, default)
-            return getattr(obj, key, default)
+        from wxUI.dialogs import urlList
 
-        uri = g(item, "uri")
-        author = g(item, "author") or g(g(item, "post"), "author")
-        handle = g(author, "handle")
-
-        if uri and handle:
-            # URI format: at://did:plc:xxx/app.bsky.feed.post/rkey
-            if "app.bsky.feed.post" in uri:
-                rkey = uri.split("/")[-1]
-                url = f"https://bsky.app/profile/{handle}/post/{rkey}"
-                webbrowser.open(url)
-                return
-            elif "app.bsky.feed.like" in uri:
-                 # It's a like notification, try to get the subject
-                 subject = g(item, "subject")
-                 subject_uri = g(subject, "uri") if subject else None
-                 if subject_uri:
-                      rkey = subject_uri.split("/")[-1]
-                      # We might not have the handle of the post author here easily if it's not in the notification
-                      # But let's try...
-                      # Actually, notification items usually have enough info or we can't deep direct link easily without fetching.
-                      # For now, let's just open the profile of the liker
-                      pass
-                      
-        # Fallback to profile
-        if handle:
-             url = f"https://bsky.app/profile/{handle}"
-             webbrowser.open(url)
-             return
+        urls = utils.find_urls(item)
+        url = ""
+        if len(urls) == 1:
+            url = urls[0]
+        elif len(urls) > 1:
+            urls_list = urlList.urlList()
+            urls_list.populate_list(urls)
+            if urls_list.get_response() == widgetUtils.OK:
+                url = urls_list.get_string()
+            if hasattr(urls_list, "destroy"):
+                urls_list.destroy()
+        if url != '':
+            if announce:
+                output.speak(_(u"Opening URL..."), True)
+            webbrowser.open_new_tab(url)
 
     def user_actions(self, *args, **kwargs):
         pub.sendMessage("execute-action", action="follow")
@@ -617,13 +670,10 @@ class BaseBuffer(base.Buffer):
 
     def reply(self, *args, **kwargs):
         self.on_reply(None)
-        
+
     def post_status(self, *args, **kwargs):
         self.on_post(None)
-        
-    def share_item(self, *args, **kwargs):
-        self.on_repost(None)
-        
+
     def destroy_status(self, *args, **kwargs):
          # Delete post
         item = self.get_item()
@@ -1007,14 +1057,14 @@ class BaseBuffer(base.Buffer):
             if "app.bsky.feed.post" in uri:
                 rkey = uri.split("/")[-1]
                 url = f"https://bsky.app/profile/{handle}/post/{rkey}"
-                output.speak(_("Opening in browser..."))
+                output.speak(_("Opening item in web browser..."))
                 webbrowser.open(url)
                 return
 
         # Fallback to profile
         if handle:
             url = f"https://bsky.app/profile/{handle}"
-            output.speak(_("Opening profile in browser..."))
+            output.speak(_("Opening item in web browser..."))
             webbrowser.open(url)
 
     def save_positions(self):
