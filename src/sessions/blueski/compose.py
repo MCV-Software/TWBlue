@@ -297,10 +297,10 @@ def compose_user(user, db, settings, relative_times, show_screen_names=False, sa
     profile = resolve_profile(user)
     handle = g(profile, "handle", "unknown")
     display_name = g(profile, "displayName") or g(profile, "display_name") or handle
-    followers = g(profile, "followersCount", 0) or 0
-    following = g(profile, "followsCount", 0) or 0
-    posts = g(profile, "postsCount", 0) or 0
-    created_at = g(profile, "createdAt", None)
+    followers = g(profile, "followersCount") or g(profile, "followers_count") or 0
+    following = g(profile, "followsCount") or g(profile, "follows_count") or 0
+    posts = g(profile, "postsCount") or g(profile, "posts_count") or 0
+    created_at = g(profile, "createdAt") or g(profile, "created_at")
 
     ts = ""
     if created_at:

@@ -186,13 +186,24 @@ def render_post(post, template, settings, relative_times=False, offset_hours=0):
 
 
 def render_user(user, template, settings, relative_times=True, offset_hours=0):
-    display_name = _g(user, "displayName") or _g(user, "display_name") or _g(user, "handle", "")
-    screen_name = _g(user, "handle", "")
-    description = _g(user, "description", "") or ""
-    followers = _g(user, "followersCount", 0) or 0
-    following = _g(user, "followsCount", 0) or 0
-    posts = _g(user, "postsCount", 0) or 0
-    created_at = _g(user, "createdAt")
+    # Resolve nested profile structure (subject, actor, profile, user)
+    def resolve_profile(obj):
+        if _g(obj, "handle") or _g(obj, "did"):
+            return obj
+        for key in ("subject", "actor", "profile", "user"):
+            nested = _g(obj, key)
+            if nested and (_g(nested, "handle") or _g(nested, "did")):
+                return nested
+        return obj
+
+    profile = resolve_profile(user)
+    display_name = _g(profile, "displayName") or _g(profile, "display_name") or _g(profile, "handle", "")
+    screen_name = _g(profile, "handle", "")
+    description = _g(profile, "description", "") or ""
+    followers = _g(profile, "followersCount") or _g(profile, "followers_count") or 0
+    following = _g(profile, "followsCount") or _g(profile, "follows_count") or 0
+    posts = _g(profile, "postsCount") or _g(profile, "posts_count") or 0
+    created_at = _g(profile, "createdAt") or _g(profile, "created_at")
     created = ""
     if created_at:
         created = process_date(created_at, relative_times, offset_hours)

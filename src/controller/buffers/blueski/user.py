@@ -110,9 +110,9 @@ class UserBuffer(BaseBuffer):
         # If batch profiles lack counts, hydrate with detailed profiles.
         if hasattr(self.session, "get_profile"):
             def counts_missing(profile_obj):
-                p1 = g(profile_obj, "followersCount", None)
-                p2 = g(profile_obj, "followsCount", None)
-                p3 = g(profile_obj, "postsCount", None)
+                p1 = g(profile_obj, "followersCount") or g(profile_obj, "followers_count")
+                p2 = g(profile_obj, "followsCount") or g(profile_obj, "follows_count")
+                p3 = g(profile_obj, "postsCount") or g(profile_obj, "posts_count")
                 if p1 is None and p2 is None and p3 is None:
                     return True
                 return (p1 or 0) == 0 and (p2 or 0) == 0 and (p3 or 0) == 0
@@ -151,12 +151,12 @@ class UserBuffer(BaseBuffer):
             if profile is None:
                 return False
             base = resolve_profile(item)
-            f1 = g(base, "followersCount", None)
-            f2 = g(base, "followsCount", None)
-            f3 = g(base, "postsCount", None)
-            p1 = g(profile, "followersCount", None)
-            p2 = g(profile, "followsCount", None)
-            p3 = g(profile, "postsCount", None)
+            f1 = g(base, "followersCount") or g(base, "followers_count")
+            f2 = g(base, "followsCount") or g(base, "follows_count")
+            f3 = g(base, "postsCount") or g(base, "posts_count")
+            p1 = g(profile, "followersCount") or g(profile, "followers_count")
+            p2 = g(profile, "followsCount") or g(profile, "follows_count")
+            p3 = g(profile, "postsCount") or g(profile, "posts_count")
             if f1 is None and f2 is None and f3 is None:
                 return True
             if (f1 or 0) == 0 and (f2 or 0) == 0 and (f3 or 0) == 0:
