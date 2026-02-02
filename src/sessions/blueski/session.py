@@ -12,8 +12,45 @@ from sessions import base
 from sessions import session_exceptions as Exceptions
 import output
 import application
+import languageHandler
 
 log = logging.getLogger("sessions.blueskiSession")
+
+
+class Language:
+    """Simple language object with code and name attributes, mimicking Mastodon.py format."""
+    def __init__(self, code: str, name: str):
+        self.code = code
+        self.name = name
+
+    def __repr__(self):
+        return f"Language({self.code}, {self.name})"
+
+
+def get_supported_languages():
+    """Returns the list of supported languages with translated names."""
+    return [
+        Language("", _("Not set")),
+        Language("en", _("English")),
+        Language("es", _("Spanish")),
+        Language("fr", _("French")),
+        Language("de", _("German")),
+        Language("it", _("Italian")),
+        Language("pt", _("Portuguese")),
+        Language("ja", _("Japanese")),
+        Language("ko", _("Korean")),
+        Language("zh", _("Chinese")),
+        Language("ru", _("Russian")),
+        Language("ar", _("Arabic")),
+        Language("hi", _("Hindi")),
+        Language("nl", _("Dutch")),
+        Language("pl", _("Polish")),
+        Language("tr", _("Turkish")),
+        Language("uk", _("Ukrainian")),
+        Language("ca", _("Catalan")),
+        Language("eu", _("Basque")),
+        Language("gl", _("Galician")),
+    ]
 
 # Optional import of atproto. Code handles absence gracefully.
 try:
@@ -39,6 +76,8 @@ class Session(base.baseSession):
         self.char_limit = 300
         self.api = None
         self.poller = None
+        self.supported_languages = get_supported_languages()
+        self.default_language = languageHandler.curLang[:2]
         # Subscribe to pub/sub events from the poller
         pub.subscribe(self.on_notification, "blueski.notification_received")
 

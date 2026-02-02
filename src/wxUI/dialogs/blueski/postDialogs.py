@@ -3,7 +3,7 @@ import wx
 
 
 class Post(wx.Dialog):
-    def __init__(self, caption=_("Post"), text="", *args, **kwds):
+    def __init__(self, caption=_("Post"), text="", languages=[], *args, **kwds):
         super(Post, self).__init__(parent=None, id=wx.ID_ANY, *args, **kwds)
         self.SetTitle(caption)
         main_sizer = wx.BoxSizer(wx.VERTICAL)
@@ -43,10 +43,10 @@ class Post(wx.Dialog):
 
         # Language (single optional)
         lang_row = wx.BoxSizer(wx.HORIZONTAL)
-        lang_row.Add(wx.StaticText(self, label=_("Language")), 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 4)
-        self.lang_choice = wx.ComboBox(self, wx.ID_ANY, choices=["", "en", "es", "fr", "de", "ja", "pt", "ru", "zh"], style=wx.CB_DROPDOWN | wx.CB_READONLY)
-        self.lang_choice.SetSelection(0)
-        lang_row.Add(self.lang_choice, 0, wx.ALIGN_CENTER_VERTICAL)
+        lang_row.Add(wx.StaticText(self, label=_("&Language")), 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 4)
+        self.language = wx.ComboBox(self, wx.ID_ANY, choices=languages, style=wx.CB_DROPDOWN | wx.CB_READONLY)
+        self.language.SetSelection(0)
+        lang_row.Add(self.language, 0, wx.ALIGN_CENTER_VERTICAL)
         main_sizer.Add(lang_row, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM, 6)
 
         # Text actions (spellcheck, translate, autocomplete)
@@ -113,14 +113,14 @@ class Post(wx.Dialog):
     def get_payload(self):
         text = self.text.GetValue().strip()
         cw_text = self.spoiler.GetValue().strip() if self.sensitive.GetValue() else None
-        lang = self.lang_choice.GetValue().strip() or None
+        lang_index = self.language.GetSelection()
         files = []
         for i in range(self.attach_list.GetItemCount()):
             files.append({
                 "path": self.attach_list.GetItemText(i, 0),
                 "alt": self.attach_list.GetItemText(i, 1),
             })
-        return text, files, cw_text, (lang and [lang] or [])
+        return text, files, cw_text, lang_index
 
 
 class viewPost(wx.Dialog):

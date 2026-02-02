@@ -4,8 +4,11 @@ Utility functions for Bluesky session.
 """
 
 import logging
+import re
 
 log = logging.getLogger("sessions.blueski.utils")
+
+url_re = re.compile(r'https?://[^\s<>\[\]()"\',]+[^\s<>\[\]()"\',.:;!?]')
 
 
 def g(obj, key, default=None):
@@ -253,6 +256,14 @@ def find_urls(post):
             uri = g(ext, "uri", "")
             if uri and uri not in urls:
                 urls.append(uri)
+
+    # Also search plain text for URLs using regex (fallback)
+    text = g(record, "text", "")
+    if text:
+        text_urls = url_re.findall(text)
+        for u in text_urls:
+            if u not in urls:
+                urls.append(u)
 
     return urls
 

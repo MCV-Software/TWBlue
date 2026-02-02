@@ -106,12 +106,16 @@ class post(base_messages.basicMessage):
     def __init__(self, session: Any, title: str, caption: str, text: str = "", *args, **kwargs):
         self.session = session
         self.title = title
-        self.message = postDialogs.Post(caption=caption, text=text, *args, **kwargs)
+        langs = session.supported_languages
+        display_langs = [l.name for l in langs]
+        self.message = postDialogs.Post(caption=caption, text=text, languages=display_langs, *args, **kwargs)
         try:
             self.message.SetTitle(title)
             self.message.text.SetInsertionPoint(len(self.message.text.GetValue()))
         except Exception:
             pass
+        # Set default language
+        self.set_language(session.default_language)
         # Connect events for text processing and buttons
         widgetUtils.connect_event(self.message.text, widgetUtils.ENTERED_TEXT, self.text_processor)
         widgetUtils.connect_event(self.message.spoiler, widgetUtils.ENTERED_TEXT, self.text_processor)
@@ -121,8 +125,32 @@ class post(base_messages.basicMessage):
         # Initial text processing to show character count
         self.text_processor()
 
+    def set_language(self, language_code=None):
+        """Set the language selection based on language code."""
+        if language_code is None:
+            language_code = languageHandler.curLang[:2]
+        for idx, lang in enumerate(self.session.supported_languages):
+            if lang.code == language_code:
+                self.message.language.SetSelection(idx)
+                return
+        # If not found, select first item (Not set)
+        self.message.language.SetSelection(0)
+
+    def get_language(self):
+        """Get the selected language code."""
+        langs = self.session.supported_languages
+        idx = self.message.language.GetSelection()
+        if idx >= 0 and idx < len(langs):
+            return langs[idx].code
+        return None
+
     def get_data(self):
-        return self.message.get_payload()
+        text, files, cw_text, lang_index = self.message.get_payload()
+        langs = self.session.supported_languages
+        lang_code = None
+        if lang_index >= 0 and lang_index < len(langs):
+            lang_code = langs[lang_index].code
+        return text, files, cw_text, ([lang_code] if lang_code else [])
 
     def text_processor(self, *args, **kwargs):
         text = self.message.text.GetValue()
