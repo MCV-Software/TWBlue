@@ -237,12 +237,12 @@ def find_urls(post):
     record = g(actual_post, "record", {})
 
     # Check facets for link annotations
-    facets = g(record, "facets", [])
+    facets = g(record, "facets", []) or []
     for facet in facets:
-        features = g(facet, "features", [])
+        features = g(facet, "features", []) or []
         for feature in features:
             ftype = g(feature, "$type") or g(feature, "py_type")
-            if ftype and "link" in ftype:
+            if ftype and "link" in ftype.lower():
                 uri = g(feature, "uri", "")
                 if uri and uri not in urls:
                     urls.append(uri)

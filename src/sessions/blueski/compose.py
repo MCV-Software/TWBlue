@@ -76,6 +76,33 @@ def compose_post(post, db, settings, relative_times, show_screen_names=False, sa
     else:
         text = original_text
 
+    # Check facets for links not visible in text and append them
+    facets = g(record, "facets", []) or []
+    hidden_urls = []
+    for facet in facets:
+        features = g(facet, "features", []) or []
+        for feature in features:
+            ftype = g(feature, "$type") or g(feature, "py_type") or ""
+            if "link" in ftype.lower():
+                uri = g(feature, "uri", "")
+                if uri and uri not in text and uri not in hidden_urls:
+                    # Check if a truncated version is in text (e.g., "example.com/path...")
+                    # by checking if the domain is present
+                    domain_match = False
+                    try:
+                        from urllib.parse import urlparse
+                        parsed = urlparse(uri)
+                        domain = parsed.netloc.replace("www.", "")
+                        if domain and domain in text:
+                            domain_match = True
+                    except:
+                        pass
+                    if not domain_match:
+                        hidden_urls.append(uri)
+
+    if hidden_urls:
+        text += " " + " ".join(f"[{url}]" for url in hidden_urls)
+
     # Labels / Content Warning
     labels = g(actual_post, "labels", [])
     cw_text = ""
@@ -113,6 +140,11 @@ def compose_post(post, db, settings, relative_times, show_screen_names=False, sa
                 images = g(media, "images", [])
                 if images:
                     text += f" [{len(images)} {_('images')}]"
+            elif mtype and "external" in mtype:
+                ext = g(media, "external", {})
+                title = g(ext, "title", "")
+                if title:
+                    text += f" [{_('Link')}: {title}]"
 
         elif etype and ("record" in etype):
             quote_rec = g(embed, "record", {})

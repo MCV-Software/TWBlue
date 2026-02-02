@@ -619,8 +619,8 @@ class BaseBuffer(base.Buffer):
         try:
              reverse = self.session.settings["general"].get("reverse_timelines", False)
         except: pass
-        
-        if number_of_items == 0: 
+
+        if number_of_items == 0:
             return
 
         safe = True
@@ -641,9 +641,9 @@ class BaseBuffer(base.Buffer):
 
         elif count > 0 and number_of_items > 0:
              if not reverse:
-                 items = list_to_use[:number_of_items] # If we prepended items for normal (oldest first) timeline... wait. 
+                 items = list_to_use[:number_of_items] # If we prepended items for normal (oldest first) timeline... wait.
                  # Standard flow: "New items" come from API.
-                 # If standard timeline (oldest at top, newest at bottom): new items appended to DB. 
+                 # If standard timeline (oldest at top, newest at bottom): new items appended to DB.
                  # UI: append to bottom.
                  items = list_to_use[len(list_to_use)-number_of_items:]
                  for i in items:
@@ -651,16 +651,16 @@ class BaseBuffer(base.Buffer):
                      self.buffer.list.insert_item(False, *post)
              else:
                  # Reverse timeline (Newest at top).
-                 # New items appended to DB? Or inserted at 0? 
-                 # Mastodon BaseBuffer: 
+                 # New items appended to DB? Or inserted at 0?
+                 # Mastodon BaseBuffer:
                  # if reverse_timelines == False: items_db.insert(0, i) (Wait, insert at 0?)
                  # Actually let's look at `get_more_items` in Mastodon BaseBuffer again.
                  # "if self.session.settings["general"]["reverse_timelines"] == False: items_db.insert(0, i)"
                  # This means for standard timeline, new items (newer time) go to index 0?
                  # No, standard timeline usually has oldest at top. Retrieve "more items" usually means "newer items" or "older items" depending on context (streaming vs styling).
-                 
+
                  # Let's trust that we just need to insert based on how we updated DB in start_stream.
-                 
+
                  # For now, simplistic approach:
                  items = list_to_use[0:number_of_items] # Assuming we inserted at 0 in DB
                  # items.reverse() if needed?

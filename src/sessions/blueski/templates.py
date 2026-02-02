@@ -92,6 +92,34 @@ def process_date(field, relative_times=True, offset_hours=0):
     return original_date.shift(hours=offset_hours).format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
 
 
+def _extract_link_info(post, record):
+    """Extract link information from post embeds and facets."""
+    embed = _g(post, "embed")
+    if not embed:
+        return None
+
+    etype = _g(embed, "$type") or _g(embed, "py_type") or ""
+
+    # Direct external embed
+    if "external" in etype.lower():
+        ext = _g(embed, "external", {})
+        title = _g(ext, "title", "")
+        if title:
+            return title
+
+    # RecordWithMedia with external
+    if "recordWithMedia" in etype:
+        media = _g(embed, "media", {})
+        mtype = _g(media, "$type") or _g(media, "py_type") or ""
+        if "external" in mtype.lower():
+            ext = _g(media, "external", {})
+            title = _g(ext, "title", "")
+            if title:
+                return title
+
+    return None
+
+
 def render_post(post, template, settings, relative_times=False, offset_hours=0):
     actual_post = _g(post, "post", post)
     record = _g(actual_post, "record") or _g(post, "record") or {}
@@ -118,10 +146,19 @@ def render_post(post, template, settings, relative_times=False, offset_hours=0):
         original_handle = _g(author, "handle", "")
         text = _("Reposted from @{handle}: {text}").format(handle=original_handle, text=text)
 
+    # Add link indicator for external embeds
+    link_title = _extract_link_info(actual_post, record)
+    if link_title:
+        text += f" [{_('Link')}: {link_title}]"
+
     cw_text = _extract_cw_text(actual_post, record)
     safe_text = text
     if cw_text:
-        safe_text = _("Content warning: {cw}").format(cw=cw_text)
+        # Include link info in safe_text even with content warning
+        if link_title:
+            safe_text = _("Content warning: {cw}").format(cw=cw_text) + f" [{_('Link')}: {link_title}]"
+        else:
+            safe_text = _("Content warning: {cw}").format(cw=cw_text)
 
     created_at = _g(record, "createdAt") or _g(record, "created_at")
     indexed_at = _g(actual_post, "indexedAt") or _g(actual_post, "indexed_at")
