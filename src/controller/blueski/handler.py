@@ -73,7 +73,7 @@ class Handler:
             buffer_title=_("Home"),
             parent_tab=root_position,
             start=True,
-            kwargs=dict(parent=controller.view.nb, name="following_timeline", session=session)
+            kwargs=dict(parent=controller.view.nb, name="following_timeline", session=session, sound="tweet_received.ogg")
         )
         # Discover timeline
         pub.sendMessage(
@@ -83,7 +83,7 @@ class Handler:
             buffer_title=_("Discover"),
             parent_tab=root_position,
             start=False,
-            kwargs=dict(parent=controller.view.nb, name="home_timeline", session=session)
+            kwargs=dict(parent=controller.view.nb, name="home_timeline", session=session, sound="tweet_received.ogg")
         )
         # Mentions (replies, mentions, quotes)
         pub.sendMessage(
@@ -93,7 +93,7 @@ class Handler:
             buffer_title=_("Mentions"),
             parent_tab=root_position,
             start=False,
-            kwargs=dict(parent=controller.view.nb, name="mentions", session=session)
+            kwargs=dict(parent=controller.view.nb, name="mentions", session=session, sound="mention_received.ogg")
         )
         # Notifications
         pub.sendMessage(
@@ -103,7 +103,7 @@ class Handler:
             buffer_title=_("Notifications"),
             parent_tab=root_position,
             start=False,
-            kwargs=dict(parent=controller.view.nb, name="notifications", session=session)
+            kwargs=dict(parent=controller.view.nb, name="notifications", session=session, sound="new_event.ogg")
         )
         # Sent posts
         pub.sendMessage(
@@ -113,7 +113,7 @@ class Handler:
             buffer_title=_("Sent"),
             parent_tab=root_position,
             start=False,
-            kwargs=dict(parent=controller.view.nb, name="sent", session=session)
+            kwargs=dict(parent=controller.view.nb, name="sent", session=session, sound="tweet_received.ogg")
         )
         # Likes
         pub.sendMessage(
@@ -123,7 +123,7 @@ class Handler:
             buffer_title=_("Likes"),
             parent_tab=root_position,
             start=False,
-            kwargs=dict(parent=controller.view.nb, name="likes", session=session)
+            kwargs=dict(parent=controller.view.nb, name="likes", session=session, sound="favourite.ogg")
         )
         # Followers
         pub.sendMessage(
@@ -133,7 +133,7 @@ class Handler:
             buffer_title=_("Followers"),
             parent_tab=root_position,
             start=False,
-            kwargs=dict(parent=controller.view.nb, name="followers", session=session)
+            kwargs=dict(parent=controller.view.nb, name="followers", session=session, sound="update_followers.ogg")
         )
         # Followings (Users you follow)
         pub.sendMessage(
@@ -143,7 +143,7 @@ class Handler:
             buffer_title=_("Following"),
             parent_tab=root_position,
             start=False,
-            kwargs=dict(parent=controller.view.nb, name="following", session=session)
+            kwargs=dict(parent=controller.view.nb, name="following", session=session, sound="update_followers.ogg")
         )
         # Blocks
         pub.sendMessage(
@@ -163,7 +163,7 @@ class Handler:
             buffer_title=_("Chats"),
             parent_tab=root_position,
             start=False,
-            kwargs=dict(parent=controller.view.nb, name="direct_messages", session=session)
+            kwargs=dict(parent=controller.view.nb, name="direct_messages", session=session, sound="dm_received.ogg")
         )
 
         # Timelines container
@@ -207,7 +207,7 @@ class Handler:
                     buffer_title=title,
                     parent_tab=searches_position,
                     start=False,
-                    kwargs=dict(parent=controller.view.nb, name=buffer_name, session=session, query=query)
+                    kwargs=dict(parent=controller.view.nb, name=buffer_name, session=session, query=query, sound="search_updated.ogg")
                 )
         except Exception as e:
             logger.error("Failed to restore Bluesky search buffers: %s", e)
@@ -240,7 +240,7 @@ class Handler:
                     buffer_title=title,
                     parent_tab=timelines_position,
                     start=False,
-                    kwargs=dict(parent=controller.view.nb, name=f"{handle}-timeline", session=session, actor=actor, handle=handle)
+                    kwargs=dict(parent=controller.view.nb, name=f"{handle}-timeline", session=session, actor=actor, handle=handle, sound="tweet_timeline.ogg")
                 )
         except Exception as e:
             logger.error("Failed to restore Bluesky timeline buffers: %s", e)
@@ -277,7 +277,7 @@ class Handler:
                     buffer_title=title,
                     parent_tab=timelines_position,
                     start=False,
-                    kwargs=dict(parent=controller.view.nb, name=f"{handle}-followers", session=session, actor=actor, handle=handle)
+                    kwargs=dict(parent=controller.view.nb, name=f"{handle}-followers", session=session, actor=actor, handle=handle, sound="new_event.ogg")
                 )
         except Exception as e:
             logger.error("Failed to restore Bluesky followers buffers: %s", e)
@@ -313,7 +313,7 @@ class Handler:
                     buffer_title=title,
                     parent_tab=timelines_position,
                     start=False,
-                    kwargs=dict(parent=controller.view.nb, name=f"{handle}-following", session=session, actor=actor, handle=handle)
+                    kwargs=dict(parent=controller.view.nb, name=f"{handle}-following", session=session, actor=actor, handle=handle, sound="new_event.ogg")
                 )
         except Exception as e:
             logger.error("Failed to restore Bluesky following buffers: %s", e)
@@ -592,7 +592,7 @@ class Handler:
             buffer_title=title,
             parent_tab=controller.view.search(buffer.session.get_name(), buffer.session.get_name()) if hasattr(buffer.session, "get_name") else None,
             start=True,
-            kwargs=dict(parent=controller.view.nb, name=title, session=buffer.session, uri=uri)
+            kwargs=dict(parent=controller.view.nb, name=title, session=buffer.session, uri=uri, sound="search_updated.ogg")
         )
 
     def open_timeline(self, controller, buffer, default="posts"):
@@ -746,7 +746,7 @@ class Handler:
             buffer_title=title,
             parent_tab=main_controller.view.search("timelines", account_name),
             start=True,
-            kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor, handle=handle)
+            kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor, handle=handle, sound="tweet_timeline.ogg")
         )
         try:
             timelines = session.settings["other_buffers"].get("timelines")
@@ -866,7 +866,7 @@ class Handler:
             buffer_title=title,
             parent_tab=main_controller.view.search("timelines", account_name),
             start=True,
-            kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor, handle=handle)
+            kwargs=dict(parent=main_controller.view.nb, name=list_name, session=session, actor=actor, handle=handle, sound="new_event.ogg")
         )
         try:
             if stored is None:
@@ -948,7 +948,8 @@ class Handler:
                 parent=controller.view.nb,
                 name=buffer_name,
                 session=session,
-                query=query
+                query=query,
+                sound="search_updated.ogg"
             )
         )
 

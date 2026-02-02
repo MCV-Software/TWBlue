@@ -1072,6 +1072,12 @@ class BaseBuffer(base.Buffer):
             self.session.db[self.name+"_pos"] = self.buffer.list.get_selected()
         except: pass
 
+    def clear_list(self):
+        dlg = commonMessageDialogs.clear_list()
+        if dlg == widgetUtils.YES:
+            self.session.db[self.name] = []
+            self.buffer.list.clear()
+
     def remove_buffer(self, force=False):
         if self.type in ("conversation", "chat_messages") or self.name.lower().startswith("conversation"):
             if not force:

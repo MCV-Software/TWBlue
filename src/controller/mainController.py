@@ -439,7 +439,10 @@ class Controller(object):
             if start:
                 try:
                     if hasattr(buffer, "start_stream"):
-                        buffer.start_stream(mandatory=True, play_sound=False)
+                        if kwargs.get("function") == "user_timeline":
+                            buffer.start_stream(mandatory=True, play_sound=False)
+                        else:
+                            buffer.start_stream(mandatory=True, play_sound=True)
                 except ValueError:
                     commonMessageDialogs.unauthorized()
                     return
