@@ -68,6 +68,70 @@ class ConversationListBuffer(BaseBuffer):
                 return conversation[attr]
         return None
 
+    def _get_members_key(self, conversation):
+        """Fallback key when convo id is missing: stable member DID list."""
+        members = getattr(conversation, "members", None) or (conversation.get("members") if isinstance(conversation, dict) else None) or []
+        dids = []
+        for m in members:
+            did = getattr(m, "did", None) or (m.get("did") if isinstance(m, dict) else None)
+            if did:
+                dids.append(did)
+        if not dids:
+            return None
+        dids.sort()
+        return tuple(dids)
+
+    def _get_last_message_key(self, conversation):
+        """Key for detecting conversation updates based on last message."""
+        last_msg = getattr(conversation, "lastMessage", None) or (conversation.get("lastMessage") if isinstance(conversation, dict) else None)
+        if not last_msg:
+            return None
+
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        for attr in ("id", "messageId", "message_id", "msgId", "msg_id"):
+            val = g(last_msg, attr)
+            if val:
+                return val
+
+        sent_at = g(last_msg, "sentAt") or g(last_msg, "sent_at")
+        sender = g(last_msg, "sender") or {}
+        sender_did = g(sender, "did")
+        text = g(last_msg, "text")
+        if sent_at or sender_did or text:
+            return (sent_at, sender_did, text)
+        return None
+
+    def get_formatted_message(self):
+        """Return last message text for current conversation."""
+        conversation = self.get_conversation()
+        if not conversation:
+            return None
+        return self.compose_function(
+            conversation,
+            self.session.db,
+            self.session.settings,
+            self.session.settings["general"].get("relative_times", False),
+            self.session.settings["general"].get("show_screen_names", False),
+        )[1]
+
+    def get_message(self):
+        """Return a readable summary for the selected conversation."""
+        conversation = self.get_conversation()
+        if not conversation:
+            return None
+        composed = self.compose_function(
+            conversation,
+            self.session.db,
+            self.session.settings,
+            self.session.settings["general"].get("relative_times", False),
+            self.session.settings["general"].get("show_screen_names", False),
+        )
+        return " ".join(composed)
+
     def on_new_chat(self, *args, **kwargs):
         """Start a new conversation by entering a handle."""
         dlg = wx.TextEntryDialog(None, _("Enter the handle of the user (e.g., user.bsky.social):"), _("New Chat"))
@@ -113,18 +177,79 @@ class ConversationListBuffer(BaseBuffer):
                 call_threaded(do_create)
         dlg.Destroy()
 
-    def start_stream(self, mandatory=False, play_sound=True):
+    def start_stream(self, mandatory=False, play_sound=True, avoid_autoreading=False):
         count = self.get_max_items()
         try:
             res = self.session.list_convos(limit=count)
             items = res.get("items", [])
-            self.session.db[self.name] = []
-            self.buffer.list.clear()
-            return self.process_items(items, play_sound)
+            return self._merge_conversations(items, play_sound, avoid_autoreading=avoid_autoreading)
         except Exception:
             log.exception("Error fetching conversations")
             output.speak(_("Error loading conversations."), True)
             return 0
+
+    def _merge_conversations(self, items, play_sound=True, avoid_autoreading=False):
+        """Merge conversation list, updating items without duplicating or re-alerting."""
+        if self.session.db.get(self.name) is None:
+            self.session.db[self.name] = []
+
+        # Track current selection to restore after refresh
+        selected_key = None
+        current_convo = self.get_conversation()
+        if current_convo:
+            selected_key = self.get_convo_id(current_convo) or self._get_members_key(current_convo)
+
+        existing = {}
+        existing_last = {}
+        for convo in self.session.db[self.name]:
+            key = self.get_convo_id(convo) or self._get_members_key(convo)
+            if key is None:
+                continue
+            existing[key] = convo
+            existing_last[key] = self._get_last_message_key(convo)
+
+        new_db = []
+        new_count = 0
+        for convo in items:
+            key = self.get_convo_id(convo) or self._get_members_key(convo)
+            new_db.append(convo)
+            if key is None:
+                new_count += 1
+                continue
+            if key not in existing:
+                new_count += 1
+                continue
+            if self._get_last_message_key(convo) != existing_last.get(key):
+                new_count += 1
+
+        # Replace DB with latest ordered list from API
+        self.session.db[self.name] = new_db
+
+        # Rebuild list UI to keep ordering consistent with API
+        self.buffer.list.clear()
+        safe = True
+        relative_times = self.session.settings["general"].get("relative_times", False)
+        show_screen_names = self.session.settings["general"].get("show_screen_names", False)
+        for convo in new_db:
+            row = self.compose_function(convo, self.session.db, self.session.settings, relative_times, show_screen_names, safe=safe)
+            self.buffer.list.insert_item(False, *row)
+
+        # Restore selection if possible
+        if selected_key is not None:
+            for idx, convo in enumerate(new_db):
+                key = self.get_convo_id(convo) or self._get_members_key(convo)
+                if key == selected_key:
+                    self.buffer.list.select_item(idx)
+                    break
+
+        # Sound and auto-read only when something actually changed
+        if new_count > 0:
+            if play_sound and self.sound and not self.session.settings["sound"].get("session_mute", False):
+                self.session.sound.play(self.sound)
+            if not avoid_autoreading:
+                self.auto_read(new_count)
+
+        return new_count
 
     def fav(self):
         pass
@@ -246,8 +371,6 @@ class ChatBuffer(BaseBuffer):
         try:
             res = self.session.get_convo_messages(self.convo_id, limit=count)
             items = res.get("items", [])
-            self.session.db[self.name] = []
-            self.buffer.list.clear()
             items = list(reversed(items))
             return self.process_items(items, play_sound)
         except Exception:
