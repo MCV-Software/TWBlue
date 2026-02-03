@@ -108,6 +108,9 @@ class BaseBuffer(base.Buffer):
                 index = self.buffer.list.get_selected()
                 if index < 0:
                     return
+                # Only update if the list has at least 3 columns (Author, Text, Date)
+                if self.buffer.list.list.GetColumnCount() < 3:
+                    return
 
                 def g(obj, key, default=None):
                     if isinstance(obj, dict):
@@ -474,41 +477,46 @@ class BaseBuffer(base.Buffer):
         self.send_message()
 
     def send_message(self, *args, **kwargs):
-         # Global shortcut for DM
-         item = self.get_item()
-         if not item:
-              output.speak(_("No user selected to message."), True)
+         # Global shortcut for DM - similar to Mastodon's implementation
+
+         # Use the robust author extraction method
+         author_details = self.get_selected_item_author_details()
+         if not author_details:
+              output.speak(_("No item selected."), True)
               return
-         
-         author = getattr(item, "author", None) or (item.get("post", {}).get("author") if isinstance(item, dict) else None)
-         if not author:
-              # Try item itself if it's a user object (UserBuffer)
-              author = item
-         
-         did = getattr(author, "did", None) or author.get("did")
-         handle = getattr(author, "handle", "unknown") or (author.get("handle") if isinstance(author, dict) else "unknown")
+
+         did = author_details.get("did")
+         handle = author_details.get("handle") or "unknown"
 
          if not did:
+              output.speak(_("Could not identify user to message."), True)
               return
 
-         # Show simple text entry dialog for sending DM
-         dlg = wx.TextEntryDialog(None, _("Message to {0}:").format(handle), _("Send Message"))
-         if dlg.ShowModal() == wx.ID_OK:
-             text = dlg.GetValue()
+         # Use full post dialog like Mastodon
+         title = _("Conversation with {0}").format(handle)
+         caption = _("Write your message here")
+         initial_text = "@{} ".format(handle)
+
+         post = blueski_messages.post(session=self.session, title=title, caption=caption, text=initial_text)
+         if post.message.ShowModal() == wx.ID_OK:
+             text, files, cw_text, langs = post.get_data()
              if text:
-                 try:
-                     api = self.session._ensure_client()
-                     dm_client = api.with_bsky_chat_proxy()
-                     # Get or create conversation
-                     res = dm_client.chat.bsky.convo.get_convo_for_members({"members": [did]})
-                     convo_id = res.convo.id
-                     self.session.send_chat_message(convo_id, text)
-                     self.session.sound.play("dm_sent.ogg")
-                     output.speak(_("Message sent."), True)
-                 except Exception as e:
-                     log.error("Error sending Bluesky DM: %s", e)
-                     output.speak(_("Failed to send message."), True)
-         dlg.Destroy()
+                 def do_send():
+                     try:
+                         api = self.session._ensure_client()
+                         dm_client = api.with_bsky_chat_proxy()
+                         # Get or create conversation
+                         res = dm_client.chat.bsky.convo.get_convo_for_members({"members": [did]})
+                         convo_id = res.convo.id
+                         self.session.send_chat_message(convo_id, text)
+                         wx.CallAfter(self.session.sound.play, "dm_sent.ogg")
+                         wx.CallAfter(output.speak, _("Message sent."))
+                     except Exception as e:
+                         log.error("Error sending Bluesky DM: %s", e)
+                         wx.CallAfter(output.speak, _("Failed to send message."), True)
+                 call_threaded(do_send)
+         if hasattr(post.message, "Destroy"):
+             post.message.Destroy()
 
     def view(self, *args, **kwargs):
         self.view_item()
@@ -800,7 +808,7 @@ class BaseBuffer(base.Buffer):
                  post_template = template_settings.get("post", "$display_name, $safe_text $date.")
                  return templates.render_notification(item, template, post_template, self.session.settings, relative_times, offset_hours)
              if self.type in ("user", "post_user_list"):
-                 template = template_settings.get("person", "$display_name (@$screen_name). $followers followers, $following following, $posts posts.")
+                 template = template_settings.get("person", "$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
                  return templates.render_user(item, template, self.session.settings, relative_times, offset_hours)
              template = template_settings.get("post", "$display_name, $safe_text $date.")
              return templates.render_post(item, template, self.session.settings, relative_times, offset_hours)
@@ -888,20 +896,43 @@ class BaseBuffer(base.Buffer):
             return getattr(obj, key, default)
 
         author = None
+
+        # Check if item itself is a user object (UserBuffer, FollowersBuffer, etc.)
         if g(item, "did") or g(item, "handle"):
             author = item
         else:
-            author = g(item, "author")
+            # Use the same pattern as compose_post: get actual_post first
+            # This handles FeedViewPost (item.post) and PostView (item itself)
+            actual_post = g(item, "post", item)
+            author = g(actual_post, "author")
+
+            # If still no author, try other nested structures
             if not author:
-                post = g(item, "post") or g(item, "record")
-                author = g(post, "author") if post else None
+                # Try record.author
+                record = g(item, "record")
+                if record:
+                    author = g(record, "author")
+
+            # Try subject (for notifications)
+            if not author:
+                subject = g(item, "subject")
+                if subject:
+                    actual_subject = g(subject, "post", subject)
+                    author = g(actual_subject, "author")
 
         if not author:
             return None
 
+        did = g(author, "did")
+        handle = g(author, "handle")
+
+        # Only return if we have at least did or handle
+        if not did and not handle:
+            return None
+
         return {
-            "did": g(author, "did"),
-            "handle": g(author, "handle"),
+            "did": did,
+            "handle": handle,
         }
     
     def process_items(self, items, play_sound=True, avoid_autoreading=False):

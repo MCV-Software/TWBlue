@@ -290,6 +290,7 @@ class Controller(object):
         self.started = True
         if len(self.accounts) > 0:
             b = self.get_first_buffer(self.accounts[0])
+            self.menubar_current_handler = b.session.type
             self.update_menus(handler=self.get_handler(b.session.type))
 
     def _start_session_buffers(self, session):
@@ -698,8 +699,13 @@ class Controller(object):
 
     def send_dm(self, *args, **kwargs):
         buffer = self.get_current_buffer()
+        if buffer is None:
+            output.speak(_("No buffer selected."), True)
+            return
         if hasattr(buffer, "send_message"):
             buffer.send_message()
+        else:
+            output.speak(_("Cannot send messages from this buffer."), True)
 
     def post_retweet(self, *args, **kwargs):
         buffer = self.get_current_buffer()
@@ -959,20 +965,80 @@ class Controller(object):
         self.view.check_menuitem("autoread", autoread)
 
     def update_menus(self, handler):
+        # Initialize storage for hidden menu items if not present
+        if not hasattr(self, "_hidden_menu_items"):
+            self._hidden_menu_items = {}
+        if not hasattr(self, "_original_menu_labels"):
+            self._original_menu_labels = {}
+
         if hasattr(handler, "menus"):
             for m in list(handler.menus.keys()):
                 if hasattr(self.view, m):
                     menu_item = getattr(self.view, m)
+                    # Store original label on first encounter
+                    if m not in self._original_menu_labels:
+                        self._original_menu_labels[m] = menu_item.GetItemLabel()
+
                     if handler.menus[m] == "HIDE":
-                        menu_item.Enable(False)
-                        menu_item.SetItemLabel("")
+                        # Actually hide the menu item by removing it from parent menu
+                        if m not in self._hidden_menu_items:
+                            try:
+                                parent_menu = menu_item.GetMenu()
+                                if parent_menu:
+                                    # Store menu item info for restoration
+                                    position = self._find_menu_item_position(parent_menu, menu_item)
+                                    item_id = menu_item.GetId()
+                                    # Remove returns the removed item - store that reference
+                                    removed_item = parent_menu.Remove(item_id)
+                                    if removed_item:
+                                        self._hidden_menu_items[m] = {
+                                            "menu": parent_menu,
+                                            "item": removed_item,
+                                            "position": position
+                                        }
+                            except Exception as e:
+                                log.error(f"Error hiding menu item {m}: {e}")
                     elif handler.menus[m] == None:
+                        # Restore if hidden, then disable
+                        self._restore_menu_item(m)
                         menu_item.Enable(False)
                     else:
+                        # Restore if hidden, then enable with new label
+                        self._restore_menu_item(m)
                         menu_item.Enable(True)
                         menu_item.SetItemLabel(handler.menus[m])
         if hasattr(handler, "item_menu"):
             self.view.menubar.SetMenuLabel(1, handler.item_menu)
+
+    def _find_menu_item_position(self, menu, item):
+        """Find the position of a menu item within its parent menu."""
+        for i, menu_item in enumerate(menu.GetMenuItems()):
+            if menu_item.GetId() == item.GetId():
+                return i
+        return -1
+
+    def _restore_menu_item(self, name):
+        """Restore a previously hidden menu item."""
+        if not hasattr(self, "_hidden_menu_items"):
+            return
+        if name not in self._hidden_menu_items:
+            return
+        info = self._hidden_menu_items[name]
+        parent_menu = info["menu"]
+        item = info["item"]
+        position = info["position"]
+        try:
+            # Re-insert at original position
+            if position >= 0 and position < parent_menu.GetMenuItemCount():
+                parent_menu.Insert(position, item)
+            else:
+                parent_menu.Append(item)
+            # Restore original label if available
+            if hasattr(self, "_original_menu_labels") and name in self._original_menu_labels:
+                item.SetItemLabel(self._original_menu_labels[name])
+        except Exception as e:
+            log.error(f"Error restoring menu item {name}: {e}")
+        del self._hidden_menu_items[name]
 
     def fix_wrong_buffer(self):
         buf = self.get_best_buffer()

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import logging
 import wx
+import widgetUtils
 import output
 from .base import BaseBuffer
+from controller.blueski import messages as blueski_messages
 from wxUI.buffers.blueski import panels as BlueskiPanels
 from sessions.blueski import compose
 from mysc.thread_utils import call_threaded
@@ -10,15 +12,106 @@ from mysc.thread_utils import call_threaded
 log = logging.getLogger("controller.buffers.blueski.chat")
 
 class ConversationListBuffer(BaseBuffer):
+    """Buffer for listing conversations, similar to Mastodon's ConversationListBuffer."""
+
     def __init__(self, *args, **kwargs):
         kwargs["compose_func"] = "compose_convo"
         super(ConversationListBuffer, self).__init__(*args, **kwargs)
         self.type = "chat"
         self.sound = "dm_received.ogg"
-        
+
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.ChatPanel(parent, name)
         self.buffer.session = self.session
+
+    def bind_events(self):
+        """Bind events like Mastodon's ConversationListBuffer."""
+        self.buffer.set_focus_function(self.onFocus)
+        widgetUtils.connect_event(self.buffer.list.list, widgetUtils.KEYPRESS, self.get_event)
+        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_ITEM_RIGHT_CLICK, self.show_menu)
+        widgetUtils.connect_event(self.buffer.list.list, wx.EVT_LIST_KEY_DOWN, self.show_menu_by_key)
+        # Buttons
+        if hasattr(self.buffer, "post"):
+            widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.on_post, self.buffer.post)
+        if hasattr(self.buffer, "reply"):
+            widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.reply, self.buffer.reply)
+        if hasattr(self.buffer, "new_chat"):
+            widgetUtils.connect_event(self.buffer, widgetUtils.BUTTON_PRESSED, self.on_new_chat, self.buffer.new_chat)
+
+    def get_item(self):
+        """Get the last message from the selected conversation (like Mastodon)."""
+        index = self.buffer.list.get_selected()
+        if index > -1 and self.session.db.get(self.name) is not None and len(self.session.db[self.name]) > index:
+            convo = self.session.db[self.name][index]
+            # Return lastMessage for compatibility with item-based operations
+            last_msg = getattr(convo, "lastMessage", None) or (convo.get("lastMessage") if isinstance(convo, dict) else None)
+            return last_msg
+        return None
+
+    def get_conversation(self):
+        """Get the full conversation object."""
+        index = self.buffer.list.get_selected()
+        if index > -1 and self.session.db.get(self.name) is not None and len(self.session.db[self.name]) > index:
+            return self.session.db[self.name][index]
+        return None
+
+    def get_convo_id(self, conversation):
+        """Extract conversation ID from a conversation object, handling different field names."""
+        if not conversation:
+            return None
+        # Try different possible field names for the conversation ID
+        for attr in ("id", "convo_id", "convoId"):
+            val = getattr(conversation, attr, None)
+            if val:
+                return val
+            if isinstance(conversation, dict) and attr in conversation:
+                return conversation[attr]
+        return None
+
+    def on_new_chat(self, *args, **kwargs):
+        """Start a new conversation by entering a handle."""
+        dlg = wx.TextEntryDialog(None, _("Enter the handle of the user (e.g., user.bsky.social):"), _("New Chat"))
+        if dlg.ShowModal() == wx.ID_OK:
+            handle = dlg.GetValue().strip()
+            if handle:
+                if handle.startswith("@"):
+                    handle = handle[1:]
+                def do_create():
+                    try:
+                        # Resolve handle to DID
+                        profile = self.session.get_profile(handle)
+                        if not profile:
+                            wx.CallAfter(output.speak, _("User not found."), True)
+                            return
+                        did = getattr(profile, "did", None) or (profile.get("did") if isinstance(profile, dict) else None)
+                        if not did:
+                            wx.CallAfter(output.speak, _("Could not get user ID."), True)
+                            return
+                        # Get or create conversation
+                        convo = self.session.get_or_create_convo([did])
+                        if not convo:
+                            wx.CallAfter(output.speak, _("Could not create conversation."), True)
+                            return
+                        convo_id = self.get_convo_id(convo)
+                        user_handle = getattr(profile, "handle", None) or (profile.get("handle") if isinstance(profile, dict) else None) or handle
+                        title = _("Chat: {0}").format(user_handle)
+                        # Create the buffer
+                        import application
+                        wx.CallAfter(
+                            application.app.controller.create_buffer,
+                            buffer_type="chat_messages",
+                            session_type="blueski",
+                            buffer_title=title,
+                            kwargs={"session": self.session, "convo_id": convo_id, "name": title},
+                            start=True
+                        )
+                        # Refresh conversation list
+                        wx.CallAfter(self.start_stream, True, False)
+                    except Exception:
+                        log.exception("Error creating new conversation")
+                        wx.CallAfter(output.speak, _("Error creating conversation."), True)
+                call_threaded(do_create)
+        dlg.Destroy()
 
     def start_stream(self, mandatory=False, play_sound=True):
         count = self.get_max_items()
@@ -28,33 +121,98 @@ class ConversationListBuffer(BaseBuffer):
             self.session.db[self.name] = []
             self.buffer.list.clear()
             return self.process_items(items, play_sound)
-        except Exception as e:
-            log.error("Error fetching conversations: %s", e)
+        except Exception:
+            log.exception("Error fetching conversations")
+            output.speak(_("Error loading conversations."), True)
             return 0
 
+    def fav(self):
+        pass
+
+    def unfav(self):
+        pass
+
+    def can_share(self):
+        return False
+
     def url(self, *args, **kwargs):
-        # In chat list, Enter (URL) should open the chat conversation buffer
+        """Enter key opens the chat conversation buffer."""
         self.view_chat()
 
     def send_message(self, *args, **kwargs):
-        # Global shortcut for DM
-        self.view_chat()
+        """Global DM shortcut - reply to conversation."""
+        return self.reply()
+
+    def reply(self, *args, **kwargs):
+        """Reply to the selected conversation (like Mastodon)."""
+        conversation = self.get_conversation()
+        if not conversation:
+            output.speak(_("No conversation selected."), True)
+            return
+
+        convo_id = self.get_convo_id(conversation)
+        if not convo_id:
+            log.error("Could not get conversation ID from conversation object")
+            output.speak(_("Could not identify conversation."), True)
+            return
+
+        # Get participants for title
+        members = getattr(conversation, "members", []) or (conversation.get("members", []) if isinstance(conversation, dict) else [])
+        user_did = self.session.db.get("user_id")
+        others = [m for m in members if (getattr(m, "did", None) or (m.get("did") if isinstance(m, dict) else None)) != user_did]
+        if not others:
+            others = members
+
+        if others:
+            first_user = others[0]
+            username = getattr(first_user, "handle", None) or (first_user.get("handle") if isinstance(first_user, dict) else None) or "unknown"
+        else:
+            username = "unknown"
+
+        title = _("Conversation with {0}").format(username)
+        caption = _("Write your message here")
+        initial_text = "@{} ".format(username)
+
+        post = blueski_messages.post(session=self.session, title=title, caption=caption, text=initial_text)
+        if post.message.ShowModal() == wx.ID_OK:
+            text, files, cw_text, langs = post.get_data()
+            if text:
+                def do_send():
+                    try:
+                        self.session.send_chat_message(convo_id, text)
+                        wx.CallAfter(self.session.sound.play, "dm_sent.ogg")
+                        wx.CallAfter(output.speak, _("Message sent."))
+                        wx.CallAfter(self.start_stream, True, False)
+                    except Exception:
+                        log.exception("Error sending message")
+                        wx.CallAfter(output.speak, _("Failed to send message."), True)
+                call_threaded(do_send)
+        if hasattr(post.message, "Destroy"):
+            post.message.Destroy()
 
     def view_chat(self):
-        item = self.get_item()
-        if not item: return
-        
-        convo_id = getattr(item, "id", None) or item.get("id")
-        if not convo_id: return
-        
+        """Open the conversation in a separate buffer."""
+        conversation = self.get_conversation()
+        if not conversation:
+            output.speak(_("No conversation selected."), True)
+            return
+
+        convo_id = self.get_convo_id(conversation)
+        if not convo_id:
+            log.error("Could not get conversation ID from conversation object: %r", conversation)
+            output.speak(_("Could not identify conversation."), True)
+            return
+
         # Determine participants names for title
-        members = getattr(item, "members", []) or item.get("members", [])
-        others = [m for m in members if (getattr(m, "did", None) or m.get("did")) != self.session.db["user_id"]]
-        if not others: others = members
-        names = ", ".join([getattr(m, "handle", "unknown") or m.get("handle") for m in others])
-        
+        members = getattr(conversation, "members", []) or (conversation.get("members", []) if isinstance(conversation, dict) else [])
+        user_did = self.session.db.get("user_id")
+        others = [m for m in members if (getattr(m, "did", None) or (m.get("did") if isinstance(m, dict) else None)) != user_did]
+        if not others:
+            others = members
+        names = ", ".join([getattr(m, "handle", None) or (m.get("handle") if isinstance(m, dict) else None) or "unknown" for m in others])
+
         title = _("Chat: {0}").format(names)
-        
+
         import application
         application.app.controller.create_buffer(
             buffer_type="chat_messages",
@@ -64,14 +222,19 @@ class ConversationListBuffer(BaseBuffer):
             start=True
         )
 
+    def destroy_status(self):
+        pass
+
 class ChatBuffer(BaseBuffer):
+    """Buffer for displaying messages in a conversation, similar to Mastodon's ConversationBuffer."""
+
     def __init__(self, *args, **kwargs):
         kwargs["compose_func"] = "compose_chat_message"
         super(ChatBuffer, self).__init__(*args, **kwargs)
         self.type = "chat_messages"
         self.convo_id = kwargs.get("convo_id")
         self.sound = "dm_received.ogg"
-        
+
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.ChatMessagePanel(parent, name)
         self.buffer.session = self.session
@@ -87,27 +250,76 @@ class ChatBuffer(BaseBuffer):
             self.buffer.list.clear()
             items = list(reversed(items))
             return self.process_items(items, play_sound)
-        except Exception as e:
-            log.error("Error fetching chat messages: %s", e)
+        except Exception:
+            log.exception("Error fetching chat messages")
             return 0
 
+    def get_more_items(self):
+        output.speak(_("This action is not supported for this buffer"), True)
+
+    def fav(self):
+        pass
+
+    def unfav(self):
+        pass
+
+    def can_share(self):
+        return False
+
+    def destroy_status(self):
+        pass
+
+    def url(self, *args, **kwargs):
+        """Enter key opens reply dialog in chat."""
+        self.on_reply(None)
+
     def on_reply(self, evt):
-        # Open a text entry chat box
-        dlg = wx.TextEntryDialog(None, _("Message:"), _("Send Message"), style=wx.TE_MULTILINE | wx.OK | wx.CANCEL)
-        if dlg.ShowModal() == wx.ID_OK:
-            text = dlg.GetValue()
+        """Open dialog to send a message in this conversation."""
+        if not self.convo_id:
+            output.speak(_("Cannot send message: no conversation selected."), True)
+            return
+
+        # Get conversation title from buffer name or use generic
+        title = _("Send Message")
+        if self.name and self.name.startswith(_("Chat: ")):
+            title = self.name
+        caption = _("Write your message here")
+
+        post = blueski_messages.post(session=self.session, title=title, caption=caption, text="")
+        if post.message.ShowModal() == wx.ID_OK:
+            text, files, cw_text, langs = post.get_data()
             if text:
-                 def do_send():
-                      try:
-                           self.session.send_chat_message(self.convo_id, text)
-                           wx.CallAfter(self.session.sound.play, "dm_sent.ogg")
-                           wx.CallAfter(output.speak, _("Message sent."))
-                           wx.CallAfter(self.start_stream, True, False)
-                      except Exception:
-                           wx.CallAfter(output.speak, _("Failed to send message."), True)
-                 call_threaded(do_send)
-        dlg.Destroy()
+                def do_send():
+                    try:
+                        self.session.send_chat_message(self.convo_id, text)
+                        wx.CallAfter(self.session.sound.play, "dm_sent.ogg")
+                        wx.CallAfter(output.speak, _("Message sent."))
+                        wx.CallAfter(self.start_stream, True, False)
+                    except Exception:
+                        log.exception("Error sending chat message")
+                        wx.CallAfter(output.speak, _("Failed to send message."), True)
+                call_threaded(do_send)
+        if hasattr(post.message, "Destroy"):
+            post.message.Destroy()
+
+    def reply(self, *args, **kwargs):
+        """Handle reply action (from menu or keyboard shortcut)."""
+        self.on_reply(None)
 
     def send_message(self, *args, **kwargs):
-         # Global shortcut for DM
-         self.on_reply(None)
+        """Global shortcut for DM."""
+        self.on_reply(None)
+
+    def remove_buffer(self, force=False):
+        """Allow removing this buffer."""
+        from wxUI import commonMessageDialogs
+        if force == False:
+            dlg = commonMessageDialogs.remove_buffer()
+        else:
+            dlg = widgetUtils.YES
+        if dlg == widgetUtils.YES:
+            if self.name in self.session.db:
+                self.session.db.pop(self.name)
+            return True
+        elif dlg == widgetUtils.NO:
+            return False

@@ -528,12 +528,18 @@ class Session(base.baseSession):
         api = self._ensure_client()
         if not actors:
             return {"items": []}
-        try:
-            res = api.app.bsky.actor.get_profiles({"actors": actors})
-            return {"items": getattr(res, "profiles", []) or []}
-        except Exception:
-            log.exception("Error fetching Bluesky profiles batch")
-            return {"items": []}
+        # API limit is 25 actors per request, batch if needed
+        all_profiles = []
+        batch_size = 25
+        for i in range(0, len(actors), batch_size):
+            batch = actors[i:i + batch_size]
+            try:
+                res = api.app.bsky.actor.get_profiles({"actors": batch})
+                profiles = getattr(res, "profiles", []) or []
+                all_profiles.extend(profiles)
+            except Exception:
+                log.exception("Error fetching Bluesky profiles batch")
+        return {"items": all_profiles}
 
     def get_post_likes(self, uri: str, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
         api = self._ensure_client()
@@ -734,24 +740,57 @@ class Session(base.baseSession):
         api = self._ensure_client()
         # Chat API requires using the chat proxy
         dm_client = api.with_bsky_chat_proxy()
-        res = dm_client.chat.bsky.convo.list_convos({"limit": limit, "cursor": cursor})
-        return {"items": res.convos, "cursor": res.cursor}
+        dm = dm_client.chat.bsky.convo
+        params = {"limit": limit}
+        if cursor:
+            params["cursor"] = cursor
+        try:
+            res = dm.list_convos(params)
+            return {"items": res.convos, "cursor": getattr(res, "cursor", None)}
+        except Exception:
+            log.exception("Error listing conversations")
+            return {"items": [], "cursor": None}
 
     def get_convo_messages(self, convo_id: str, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
         api = self._ensure_client()
         dm_client = api.with_bsky_chat_proxy()
-        res = dm_client.chat.bsky.convo.get_messages({"convoId": convo_id, "limit": limit, "cursor": cursor})
-        return {"items": res.messages, "cursor": res.cursor}
+        dm = dm_client.chat.bsky.convo
+        params = {"convoId": convo_id, "limit": limit}
+        if cursor:
+            params["cursor"] = cursor
+        try:
+            res = dm.get_messages(params)
+            return {"items": res.messages, "cursor": getattr(res, "cursor", None)}
+        except Exception:
+            log.exception("Error getting conversation messages")
+            return {"items": [], "cursor": None}
 
     def send_chat_message(self, convo_id: str, text: str) -> Any:
         api = self._ensure_client()
         dm_client = api.with_bsky_chat_proxy()
-        return dm_client.chat.bsky.convo.send_message({
-            "convoId": convo_id,
-            "message": {
-                "text": text
-            }
-        })
+        dm = dm_client.chat.bsky.convo
+        try:
+            return dm.send_message({
+                "convoId": convo_id,
+                "message": {
+                    "text": text
+                }
+            })
+        except Exception:
+            log.exception("Error sending chat message")
+            raise
+
+    def get_or_create_convo(self, members: list[str]) -> dict[str, Any] | None:
+        """Get or create a conversation with the given members (DIDs)."""
+        api = self._ensure_client()
+        dm_client = api.with_bsky_chat_proxy()
+        dm = dm_client.chat.bsky.convo
+        try:
+            res = dm.get_convo_for_members({"members": members})
+            return res.convo
+        except Exception:
+            log.exception("Error getting/creating conversation")
+            return None
 
     # Streaming/Polling methods
 

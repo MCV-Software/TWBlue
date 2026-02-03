@@ -227,32 +227,42 @@ def render_notification(notification, template, post_template, settings, relativ
     screen_name = _g(author, "handle", "")
     reason = _g(notification, "reason", "unknown")
     record = _g(notification, "record") or {}
+
+    # Get post text - try multiple locations depending on notification type
     post_text = _g(record, "text", "") or ""
 
+    # For likes and reposts: try to get the subject post text
+    if not post_text and reason in ("like", "repost"):
+        # First check for hydrated subject text (added by NotificationBuffer)
+        post_text = _g(notification, "_subject_text", "") or ""
+
+        # Check if there's a reasonSubject with embedded post data
+        if not post_text:
+            reason_subject = _g(notification, "reasonSubject") or _g(notification, "reason_subject")
+            if reason_subject:
+                subject_record = _g(reason_subject, "record", {})
+                post_text = _g(subject_record, "text", "") or ""
+
+        # Check subject in record
+        if not post_text:
+            subject = _g(record, "subject", {})
+            post_text = _g(subject, "text", "") or ""
+
+    # Format: action text without username (username is already in display_name for template)
     if reason == "like":
-        text = _("{username} has added to favorites: {status}").format(
-            username=display_name, status=post_text
-        ) if post_text else _("{username} has added to favorites").format(username=display_name)
+        text = _("has added to favorites: {status}").format(status=post_text) if post_text else _("has added to favorites")
     elif reason == "repost":
-        text = _("{username} has reposted: {status}").format(
-            username=display_name, status=post_text
-        ) if post_text else _("{username} has reposted").format(username=display_name)
+        text = _("has reposted: {status}").format(status=post_text) if post_text else _("has reposted")
     elif reason == "follow":
-        text = _("{username} has followed you.").format(username=display_name)
+        text = _("has followed you.")
     elif reason == "mention":
-        text = _("{username} has mentioned you: {status}").format(
-            username=display_name, status=post_text
-        ) if post_text else _("{username} has mentioned you").format(username=display_name)
+        text = _("has mentioned you: {status}").format(status=post_text) if post_text else _("has mentioned you")
     elif reason == "reply":
-        text = _("{username} has replied: {status}").format(
-            username=display_name, status=post_text
-        ) if post_text else _("{username} has replied").format(username=display_name)
+        text = _("has replied: {status}").format(status=post_text) if post_text else _("has replied")
     elif reason == "quote":
-        text = _("{username} has quoted your post: {status}").format(
-            username=display_name, status=post_text
-        ) if post_text else _("{username} has quoted your post").format(username=display_name)
+        text = _("has quoted your post: {status}").format(status=post_text) if post_text else _("has quoted your post")
     else:
-        text = "{user}: {reason}".format(user=display_name or screen_name, reason=reason)
+        text = reason
 
     indexed_at = _g(notification, "indexedAt") or _g(notification, "indexed_at")
     date = process_date(indexed_at, relative_times, offset_hours) if indexed_at else ""

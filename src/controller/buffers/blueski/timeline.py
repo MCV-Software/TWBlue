@@ -128,6 +128,67 @@ class NotificationBuffer(BaseBuffer):
         self.buffer = BlueskiPanels.NotificationPanel(parent, name)
         self.buffer.session = self.session
 
+    def _hydrate_notifications(self, notifications):
+        """Fetch subject post text for like/repost notifications."""
+        if not notifications:
+            return notifications
+
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        # Collect URIs for likes/reposts that need subject post text
+        uris_to_fetch = []
+        for notif in notifications:
+            reason = g(notif, "reason", "")
+            if reason in ("like", "repost"):
+                reason_subject = g(notif, "reasonSubject") or g(notif, "reason_subject")
+                if reason_subject and isinstance(reason_subject, str):
+                    uris_to_fetch.append(reason_subject)
+
+        if not uris_to_fetch:
+            return notifications
+
+        # Fetch posts in batch
+        posts_map = {}
+        try:
+            api = self.session._ensure_client()
+            if api and uris_to_fetch:
+                # getPosts accepts up to 25 URIs at a time
+                for i in range(0, len(uris_to_fetch), 25):
+                    batch = uris_to_fetch[i:i+25]
+                    res = api.app.bsky.feed.get_posts({"uris": batch})
+                    for post in getattr(res, "posts", []):
+                        uri = g(post, "uri")
+                        if uri:
+                            record = g(post, "record", {})
+                            text = g(record, "text", "")
+                            posts_map[uri] = text
+        except Exception as e:
+            log.error("Error fetching subject posts for notifications: %s", e)
+
+        # Attach subject post text to notifications
+        enriched = []
+        for notif in notifications:
+            reason = g(notif, "reason", "")
+            if reason in ("like", "repost"):
+                reason_subject = g(notif, "reasonSubject") or g(notif, "reason_subject")
+                if reason_subject and reason_subject in posts_map:
+                    # Create a modified notification with subject post text
+                    if isinstance(notif, dict):
+                        notif = dict(notif)
+                        notif["_subject_text"] = posts_map[reason_subject]
+                    else:
+                        # For ATProto model objects, add as attribute
+                        try:
+                            notif._subject_text = posts_map[reason_subject]
+                        except AttributeError:
+                            pass
+            enriched.append(notif)
+
+        return enriched
+
     def start_stream(self, mandatory=False, play_sound=True):
         count = self.get_max_items()
         api = self.session._ensure_client()
@@ -139,6 +200,7 @@ class NotificationBuffer(BaseBuffer):
             self.next_cursor = getattr(res, "cursor", None)
             if not notifications:
                 return 0
+            notifications = self._hydrate_notifications(notifications)
             return self.process_items(notifications, play_sound)
         except Exception as e:
             log.error("Error fetching notifications: %s", e)
@@ -155,6 +217,7 @@ class NotificationBuffer(BaseBuffer):
             res = api.app.bsky.notification.list_notifications({"limit": count, "cursor": self.next_cursor})
             notifications = list(getattr(res, "notifications", []))
             self.next_cursor = getattr(res, "cursor", None)
+            notifications = self._hydrate_notifications(notifications)
             added = self.process_items(notifications, play_sound=False)
             if added:
                 output.speak(_(u"%s items retrieved") % added, True)
@@ -162,7 +225,8 @@ class NotificationBuffer(BaseBuffer):
             log.error("Error fetching more notifications: %s", e)
 
     def add_new_item(self, notification):
-        return self.process_items([notification], play_sound=True)
+        notifications = self._hydrate_notifications([notification])
+        return self.process_items(notifications, play_sound=True)
 
 
 class Conversation(BaseBuffer):

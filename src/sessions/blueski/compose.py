@@ -222,42 +222,65 @@ def compose_notification(notification, db, settings, relative_times, show_screen
     # Notification reason/type
     reason = g(notification, "reason", "unknown")
 
-    # Get post text if available
+    # Get post text - try multiple locations depending on notification type
     record = g(notification, "record", {})
+    post_text = ""
+
+    # For mentions, replies, quotes: text is in the record itself
     post_text = g(record, "text", "")
 
-    # Format like Mastodon: "{username} has action: {status}"
+    # For likes and reposts: try to get the subject post text
+    if not post_text and reason in ("like", "repost"):
+        # First check for hydrated subject text (added by NotificationBuffer)
+        post_text = g(notification, "_subject_text", "")
+
+        # Check if there's a reasonSubject with embedded post data
+        if not post_text:
+            reason_subject = g(notification, "reasonSubject") or g(notification, "reason_subject")
+            if reason_subject:
+                # Sometimes the subject post is embedded
+                subject_record = g(reason_subject, "record", {})
+                post_text = g(subject_record, "text", "")
+
+        # Check if there's subject post data in other locations
+        if not post_text:
+            subject = g(record, "subject", {})
+            subject_text = g(subject, "text", "")
+            if subject_text:
+                post_text = subject_text
+
+    # Format: action text without username (username is already in column 0)
     if reason == "like":
         if post_text:
-            text = _("{username} has added to favorites: {status}").format(username=user_str, status=post_text)
+            text = _("has added to favorites: {status}").format(status=post_text)
         else:
-            text = _("{username} has added to favorites").format(username=user_str)
+            text = _("has added to favorites")
     elif reason == "repost":
         if post_text:
-            text = _("{username} has reposted: {status}").format(username=user_str, status=post_text)
+            text = _("has reposted: {status}").format(status=post_text)
         else:
-            text = _("{username} has reposted").format(username=user_str)
+            text = _("has reposted")
     elif reason == "follow":
-        text = _("{username} has followed you.").format(username=user_str)
+        text = _("has followed you.")
     elif reason == "mention":
         if post_text:
-            text = _("{username} has mentioned you: {status}").format(username=user_str, status=post_text)
+            text = _("has mentioned you: {status}").format(status=post_text)
         else:
-            text = _("{username} has mentioned you").format(username=user_str)
+            text = _("has mentioned you")
     elif reason == "reply":
         if post_text:
-            text = _("{username} has replied: {status}").format(username=user_str, status=post_text)
+            text = _("has replied: {status}").format(status=post_text)
         else:
-            text = _("{username} has replied").format(username=user_str)
+            text = _("has replied")
     elif reason == "quote":
         if post_text:
-            text = _("{username} has quoted your post: {status}").format(username=user_str, status=post_text)
+            text = _("has quoted your post: {status}").format(status=post_text)
         else:
-            text = _("{username} has quoted your post").format(username=user_str)
+            text = _("has quoted your post")
     elif reason == "starterpack-joined":
-        text = _("{username} has joined your starter pack.").format(username=user_str)
+        text = _("has joined your starter pack.")
     else:
-        text = f"{user_str}: {reason}"
+        text = reason
 
     # Date
     indexed_at = g(notification, "indexedAt", "") or g(notification, "indexed_at", "")
@@ -315,10 +338,10 @@ def compose_user(user, db, settings, relative_times, show_screen_names=False, sa
             ts = ""
 
     # Format like Mastodon: "Name (@handle). X followers, Y following, Z posts. Joined date"
-    if ts:
-        return [_("%s (@%s). %s followers, %s following, %s posts. Joined %s") % (display_name, handle, followers, following, posts, ts)]
-    else:
-        return [_("%s (@%s). %s followers, %s following, %s posts.") % (display_name, handle, followers, following, posts)]
+    # Use the exact same translatable string as Mastodon (sessions/mastodon/compose.py)
+    if not ts:
+        ts = _("unknown")
+    return [_("%s (@%s). %s followers, %s following, %s posts. Joined %s") % (display_name, handle, followers, following, posts, ts)]
 
 
 def compose_convo(convo, db, settings, relative_times, show_screen_names=False, safe=True):
