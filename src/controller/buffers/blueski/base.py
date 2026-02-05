@@ -954,9 +954,14 @@ class BaseBuffer(base.Buffer):
                     return post.get("uri")
                 if it.get("uri"):
                     return it.get("uri")
-                for key in ("id", "convoId", "convo_id", "messageId", "message_id", "msgId", "msg_id"):
+                for key in ("id", "cid", "rev", "convoId", "convo_id", "messageId", "message_id", "msgId", "msg_id"):
                     if it.get(key):
                         return it.get(key)
+                nested = it.get("message") or it.get("record")
+                if isinstance(nested, dict):
+                    for key in ("id", "cid", "rev", "messageId", "message_id", "msgId", "msg_id"):
+                        if nested.get(key):
+                            return nested.get(key)
                 if it.get("did"):
                     return it.get("did")
                 if it.get("handle"):
@@ -965,27 +970,33 @@ class BaseBuffer(base.Buffer):
                 if isinstance(author, dict):
                     return author.get("did") or author.get("handle")
                 # Chat message fallback
-                sent_at = it.get("sentAt") or it.get("sent_at")
-                sender = it.get("sender") or {}
+                sent_at = it.get("sentAt") or it.get("sent_at") or it.get("createdAt") or it.get("created_at")
+                sender = it.get("sender") or (nested.get("sender") if isinstance(nested, dict) else {}) or {}
                 sender_did = sender.get("did") if isinstance(sender, dict) else None
-                text = it.get("text")
+                text = it.get("text") or (nested.get("text") if isinstance(nested, dict) else None)
                 if sent_at or sender_did or text:
                     return (sent_at, sender_did, text)
                 return None
             post = getattr(it, "post", None)
             if post is not None:
                 return getattr(post, "uri", None)
-            for attr in ("uri", "id", "convoId", "convo_id", "messageId", "message_id", "msgId", "msg_id", "did", "handle"):
+            for attr in ("uri", "id", "cid", "rev", "convoId", "convo_id", "messageId", "message_id", "msgId", "msg_id", "did", "handle"):
                 val = getattr(it, attr, None)
                 if val:
                     return val
+            nested = getattr(it, "message", None) or getattr(it, "record", None)
+            if nested is not None:
+                for attr in ("id", "cid", "rev", "messageId", "message_id", "msgId", "msg_id"):
+                    val = getattr(nested, attr, None)
+                    if val:
+                        return val
             author = getattr(it, "author", None)
             if author is not None:
                 return getattr(author, "did", None) or getattr(author, "handle", None)
-            sent_at = getattr(it, "sentAt", None) or getattr(it, "sent_at", None)
-            sender = getattr(it, "sender", None)
+            sent_at = getattr(it, "sentAt", None) or getattr(it, "sent_at", None) or getattr(it, "createdAt", None) or getattr(it, "created_at", None)
+            sender = getattr(it, "sender", None) or (getattr(nested, "sender", None) if nested is not None else None)
             sender_did = getattr(sender, "did", None) if sender is not None else None
-            text = getattr(it, "text", None)
+            text = getattr(it, "text", None) or (getattr(nested, "text", None) if nested is not None else None)
             if sent_at or sender_did or text:
                 return (sent_at, sender_did, text)
             return None

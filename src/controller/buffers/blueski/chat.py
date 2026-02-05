@@ -92,15 +92,22 @@ class ConversationListBuffer(BaseBuffer):
                 return obj.get(key, default)
             return getattr(obj, key, default)
 
-        for attr in ("id", "messageId", "message_id", "msgId", "msg_id"):
+        for attr in ("id", "messageId", "message_id", "msgId", "msg_id", "cid", "rev"):
             val = g(last_msg, attr)
             if val:
                 return val
 
-        sent_at = g(last_msg, "sentAt") or g(last_msg, "sent_at")
-        sender = g(last_msg, "sender") or {}
+        nested = g(last_msg, "message") or g(last_msg, "record")
+        if nested:
+            for attr in ("id", "messageId", "message_id", "msgId", "msg_id", "cid", "rev"):
+                val = g(nested, attr)
+                if val:
+                    return val
+
+        sent_at = g(last_msg, "sentAt") or g(last_msg, "sent_at") or g(last_msg, "createdAt") or g(last_msg, "created_at")
+        sender = g(last_msg, "sender") or (g(nested, "sender") if nested else {}) or {}
         sender_did = g(sender, "did")
-        text = g(last_msg, "text")
+        text = g(last_msg, "text") or (g(nested, "text") if nested else None)
         if sent_at or sender_did or text:
             return (sent_at, sender_did, text)
         return None
@@ -210,11 +217,13 @@ class ConversationListBuffer(BaseBuffer):
 
         new_db = []
         new_count = 0
+        first_load = len(self.session.db[self.name]) == 0
         for convo in items:
             key = self.get_convo_id(convo) or self._get_members_key(convo)
             new_db.append(convo)
             if key is None:
-                new_count += 1
+                if first_load:
+                    new_count += 1
                 continue
             if key not in existing:
                 new_count += 1
