@@ -805,12 +805,12 @@ class BaseBuffer(base.Buffer):
          try:
              if self.type == "notifications":
                  template = template_settings.get("notification", "$display_name $text, $date")
-                 post_template = template_settings.get("post", "$display_name, $safe_text $date.")
+                 post_template = template_settings.get("post", "$display_name, $reply_to$safe_text $date.")
                  return templates.render_notification(item, template, post_template, self.session.settings, relative_times, offset_hours)
              if self.type in ("user", "post_user_list"):
                  template = template_settings.get("person", "$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
                  return templates.render_user(item, template, self.session.settings, relative_times, offset_hours)
-             template = template_settings.get("post", "$display_name, $safe_text $date.")
+             template = template_settings.get("post", "$display_name, $reply_to$safe_text $date.")
              return templates.render_post(item, template, self.session.settings, relative_times, offset_hours)
          except Exception:
              # Fallback to compose if any template render fails.
@@ -934,6 +934,85 @@ class BaseBuffer(base.Buffer):
             "did": did,
             "handle": handle,
         }
+
+    def _hydrate_reply_handles(self, items):
+        """Populate _reply_to_handle on items when reply metadata lacks hydrated author."""
+        if not items:
+            return
+
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+
+        def set_handle(obj, handle):
+            if not obj or not handle:
+                return
+            if isinstance(obj, dict):
+                obj["_reply_to_handle"] = handle
+            else:
+                try:
+                    setattr(obj, "_reply_to_handle", handle)
+                except Exception:
+                    pass
+
+        def get_parent_uri(item):
+            actual_post = g(item, "post", item)
+            record = g(actual_post, "record", {}) or {}
+            reply = g(record, "reply", None)
+            if not reply:
+                return None
+            parent = g(reply, "parent", None) or reply
+            return g(parent, "uri", None)
+
+        unresolved_by_parent_uri = {}
+        for item in items:
+            if utils.extract_reply_to_handle(item):
+                continue
+            parent_uri = get_parent_uri(item)
+            if not parent_uri:
+                continue
+            unresolved_by_parent_uri.setdefault(parent_uri, []).append(item)
+
+        if not unresolved_by_parent_uri:
+            return
+
+        api = self.session._ensure_client()
+        if not api:
+            return
+
+        uris = list(unresolved_by_parent_uri.keys())
+        uri_to_handle = {}
+        chunk_size = 25
+
+        for start in range(0, len(uris), chunk_size):
+            chunk = uris[start:start + chunk_size]
+            try:
+                try:
+                    res = api.app.bsky.feed.get_posts({"uris": chunk})
+                except Exception:
+                    res = api.app.bsky.feed.get_posts(uris=chunk)
+                posts = list(getattr(res, "posts", None) or [])
+                for parent_post in posts:
+                    uri = g(parent_post, "uri", None)
+                    author = g(parent_post, "author", None) or {}
+                    handle = g(author, "handle", None)
+                    if uri and handle:
+                        uri_to_handle[uri] = handle
+            except Exception as e:
+                log.debug("Could not hydrate reply handles for chunk: %s", e)
+
+        if not uri_to_handle:
+            return
+
+        for parent_uri, item_list in unresolved_by_parent_uri.items():
+            handle = uri_to_handle.get(parent_uri)
+            if not handle:
+                continue
+            for item in item_list:
+                set_handle(item, handle)
+                actual_post = g(item, "post", item)
+                set_handle(actual_post, handle)
     
     def process_items(self, items, play_sound=True, avoid_autoreading=False):
         """
@@ -1016,6 +1095,8 @@ class BaseBuffer(base.Buffer):
                 
         if not new_items:
             return 0
+
+        self._hydrate_reply_handles(new_items)
             
         # Add to DB
         # Reverse timeline setting
@@ -1064,6 +1145,7 @@ class BaseBuffer(base.Buffer):
 
     def add_new_item(self, item):
         """Add a single new item from streaming."""
+        self._hydrate_reply_handles([item])
         safe = True
         relative_times = self.session.settings["general"].get("relative_times", False)
         show_screen_names = self.session.settings["general"].get("show_screen_names", False)

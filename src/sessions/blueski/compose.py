@@ -11,6 +11,7 @@ list controls. They follow the TWBlue compose function pattern:
 import logging
 import arrow
 import languageHandler
+from sessions.blueski import utils
 
 log = logging.getLogger("sessions.blueski.compose")
 
@@ -76,6 +77,13 @@ def compose_post(post, db, settings, relative_times, show_screen_names=False, sa
     else:
         text = original_text
 
+    reply_to_handle = utils.extract_reply_to_handle(post)
+    if reply_to_handle:
+        if text:
+            text = _("Replying to @{}: {}").format(reply_to_handle, text)
+        else:
+            text = _("Replying to @{}").format(reply_to_handle)
+
     # Check facets for links not visible in text and append them
     facets = g(record, "facets", []) or []
     hidden_urls = []
@@ -117,7 +125,7 @@ def compose_post(post, db, settings, relative_times, show_screen_names=False, sa
     if cw_text:
         text = f"CW: {cw_text}\n\n{text}"
 
-    # Embeds (Images, Quotes, Links)
+    # Embeds (Images, Links)
     embed = g(actual_post, "embed", None)
     if embed:
         etype = g(embed, "$type") or g(embed, "py_type")
@@ -128,12 +136,7 @@ def compose_post(post, db, settings, relative_times, show_screen_names=False, sa
             if images:
                 text += f" [{len(images)} {_('images')}]"
 
-        # Quote posts
-        quote_rec = None
         if etype and ("recordWithMedia" in etype):
-            rec_embed = g(embed, "record", {})
-            if rec_embed:
-                quote_rec = g(rec_embed, "record", None) or rec_embed
             media = g(embed, "media", {})
             mtype = g(media, "$type") or g(media, "py_type")
             if mtype and "images" in mtype:
@@ -145,36 +148,32 @@ def compose_post(post, db, settings, relative_times, show_screen_names=False, sa
                 title = g(ext, "title", "")
                 if title:
                     text += f" [{_('Link')}: {title}]"
-
-        elif etype and ("record" in etype):
-            quote_rec = g(embed, "record", {})
-            if isinstance(quote_rec, dict):
-                quote_rec = quote_rec.get("record") or quote_rec
-
-        if quote_rec:
-            qtype = g(quote_rec, "$type") or g(quote_rec, "py_type")
-            if qtype and "viewNotFound" in qtype:
-                text += f" [{_('Quoted post not found')}]"
-            elif qtype and "viewBlocked" in qtype:
-                text += f" [{_('Quoted post blocked')}]"
-            elif qtype and "generatorView" in qtype:
-                gen = g(quote_rec, "displayName", "Feed")
-                text += f" [{_('Quoting Feed')}: {gen}]"
-            else:
-                q_author = g(quote_rec, "author", {})
-                q_handle = g(q_author, "handle", "unknown")
-                q_val = g(quote_rec, "value", {})
-                q_text = g(q_val, "text", "")
-                if q_text:
-                    text += " " + _("Quoting @{}: {}").format(q_handle, q_text)
-                else:
-                    text += " " + _("Quoting @{}").format(q_handle)
-
         elif etype and ("external" in etype):
             ext = g(embed, "external", {})
             title = g(ext, "title", "")
             if title:
                 text += f" [{_('Link')}: {title}]"
+
+    quote_info = utils.extract_quoted_post_info(post)
+    if quote_info:
+        if quote_info["kind"] == "not_found":
+            text += f" [{_('Quoted post not found')}]"
+        elif quote_info["kind"] == "blocked":
+            text += f" [{_('Quoted post blocked')}]"
+        elif quote_info["kind"] == "feed":
+            text += f" [{_('Quoting Feed')}: {quote_info.get('feed_name', 'Feed')}]"
+        else:
+            q_handle = quote_info.get("handle", "unknown")
+            q_text = quote_info.get("text", "")
+            if q_text:
+                text += " " + _("Quoting @{}: {}").format(q_handle, q_text)
+            else:
+                text += " " + _("Quoting @{}").format(q_handle)
+
+            # Add full URLs from quoted content when they are not visible in text.
+            for uri in quote_info.get("urls", []):
+                if uri and uri not in text:
+                    text += f" [{uri}]"
 
     # Date
     indexed_at = g(actual_post, "indexed_at", "") or g(actual_post, "indexedAt", "")

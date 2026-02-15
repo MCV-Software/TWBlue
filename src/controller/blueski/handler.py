@@ -357,7 +357,7 @@ class Handler:
                     buffer.session.settings["templates"] = {}
                 templates_cfg = buffer.session.settings.get("templates", {})
                 template_state = {
-                    "post": templates_cfg.get("post", "$display_name, $safe_text $date."),
+                    "post": templates_cfg.get("post", "$display_name, $reply_to$safe_text $date."),
                     "person": templates_cfg.get("person", "$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at."),
                     "notification": templates_cfg.get("notification", "$display_name $text, $date"),
                 }

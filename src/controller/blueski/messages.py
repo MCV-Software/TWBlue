@@ -8,6 +8,7 @@ import languageHandler
 import output
 import widgetUtils
 from controller import messages as base_messages
+from sessions.blueski import utils as bluesky_utils
 from wxUI.dialogs.blueski import postDialogs
 from extra.autocompletionUsers import completion
 
@@ -258,6 +259,29 @@ def _extract_post_view_data(session: Any, item: Any) -> dict[str, Any] | None:
         author_label = display_name
 
     text = _g(record, "text", "") or ""
+    reply_to_handle = bluesky_utils.extract_reply_to_handle(item)
+    if reply_to_handle:
+        if text:
+            text = _("Replying to @{handle}: {text}").format(handle=reply_to_handle, text=text)
+        else:
+            text = _("Replying to @{handle}").format(handle=reply_to_handle)
+
+    quote_info = bluesky_utils.extract_quoted_post_info(item)
+    if quote_info:
+        if quote_info["kind"] == "not_found":
+            text += f" [{_('Quoted post not found')}]"
+        elif quote_info["kind"] == "blocked":
+            text += f" [{_('Quoted post blocked')}]"
+        elif quote_info["kind"] == "feed":
+            text += f" [{_('Quoting Feed')}: {quote_info.get('feed_name', 'Feed')}]"
+        else:
+            q_handle = quote_info.get("handle", "unknown")
+            q_text = quote_info.get("text", "")
+            if q_text:
+                text += " " + _("Quoting @{handle}: {text}").format(handle=q_handle, text=q_text)
+            else:
+                text += " " + _("Quoting @{handle}").format(handle=q_handle)
+
     cw_text = _extract_cw_text(post, record)
     if cw_text:
         text = f"CW: {cw_text}\n\n{text}" if text else f"CW: {cw_text}"

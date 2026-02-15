@@ -2,12 +2,14 @@
 import arrow
 import languageHandler
 from string import Template
+from sessions.blueski import utils
 
 
 post_variables = [
     "date",
     "display_name",
     "screen_name",
+    "reply_to",
     "source",
     "lang",
     "safe_text",
@@ -146,10 +148,31 @@ def render_post(post, template, settings, relative_times=False, offset_hours=0):
         original_handle = _g(author, "handle", "")
         text = _("Reposted from @{handle}: {text}").format(handle=original_handle, text=text)
 
+    quote_info = utils.extract_quoted_post_info(post)
+    if quote_info:
+        if quote_info["kind"] == "not_found":
+            text += f" [{_('Quoted post not found')}]"
+        elif quote_info["kind"] == "blocked":
+            text += f" [{_('Quoted post blocked')}]"
+        elif quote_info["kind"] == "feed":
+            text += f" [{_('Quoting Feed')}: {quote_info.get('feed_name', 'Feed')}]"
+        else:
+            q_handle = quote_info.get("handle", "unknown")
+            q_text = quote_info.get("text", "")
+            if q_text:
+                text += " " + _("Quoting @{handle}: {text}").format(handle=q_handle, text=q_text)
+            else:
+                text += " " + _("Quoting @{handle}").format(handle=q_handle)
+
     # Add link indicator for external embeds
     link_title = _extract_link_info(actual_post, record)
     if link_title:
         text += f" [{_('Link')}: {link_title}]"
+
+    reply_to_handle = utils.extract_reply_to_handle(post)
+    reply_to = ""
+    if reply_to_handle:
+        reply_to = _("Replying to @{handle}. ").format(handle=reply_to_handle)
 
     cw_text = _extract_cw_text(actual_post, record)
     safe_text = text
@@ -159,6 +182,13 @@ def render_post(post, template, settings, relative_times=False, offset_hours=0):
             safe_text = _("Content warning: {cw}").format(cw=cw_text) + f" [{_('Link')}: {link_title}]"
         else:
             safe_text = _("Content warning: {cw}").format(cw=cw_text)
+
+    # Backward compatibility: older user templates may not include $reply_to.
+    # In that case, prepend the reply marker directly so users still get context.
+    if reply_to and "$reply_to" not in template:
+        text = reply_to + text
+        safe_text = reply_to + safe_text
+        reply_to = ""
 
     created_at = _g(record, "createdAt") or _g(record, "created_at")
     indexed_at = _g(actual_post, "indexedAt") or _g(actual_post, "indexed_at")
@@ -174,6 +204,7 @@ def render_post(post, template, settings, relative_times=False, offset_hours=0):
         date=date,
         display_name=display_name,
         screen_name=screen_name,
+        reply_to=reply_to,
         source="Bluesky",
         lang=lang,
         safe_text=safe_text,

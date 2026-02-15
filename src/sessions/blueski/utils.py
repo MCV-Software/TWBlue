@@ -265,6 +265,13 @@ def find_urls(post):
             if u not in urls:
                 urls.append(u)
 
+    # Include URLs from quoted post, if present.
+    quote_info = extract_quoted_post_info(post)
+    if quote_info and quote_info.get("kind") == "post":
+        for uri in quote_info.get("urls", []):
+            if uri and uri not in urls:
+                urls.append(uri)
+
     return urls
 
 
@@ -289,3 +296,149 @@ def find_item(item, items_list):
             return i
 
     return None
+
+
+def _resolve_quoted_record_from_embed(embed):
+    """Resolve quoted record payload from a Bluesky embed structure."""
+    if not embed:
+        return None
+
+    etype = (g(embed, "$type") or g(embed, "py_type") or "").lower()
+
+    candidate = None
+    if "recordwithmedia" in etype:
+        record_view = g(embed, "record")
+        candidate = g(record_view, "record") or record_view
+    elif "record" in etype:
+        candidate = g(embed, "record") or embed
+    else:
+        record_view = g(embed, "record")
+        if record_view is not None:
+            candidate = g(record_view, "record") or record_view
+
+    if not candidate:
+        return None
+
+    # Unwrap one extra layer if still wrapped in a record-view container.
+    nested = g(candidate, "record")
+    nested_type = (g(nested, "$type") or g(nested, "py_type") or "").lower() if nested else ""
+    if nested and ("view" in nested_type or "record" in nested_type):
+        return nested
+
+    return candidate
+
+
+def extract_reply_to_handle(post):
+    """
+    Best-effort extraction of the replied-to handle for a Bluesky post.
+
+    Returns:
+        str | None: Handle (without @) when available.
+    """
+    actual_post = g(post, "post", post)
+
+    # Fast path: pre-hydrated by buffers/session.
+    cached = g(post, "_reply_to_handle", None) or g(actual_post, "_reply_to_handle", None)
+    if cached:
+        return cached
+
+    # Feed views frequently include hydrated reply context.
+    reply_view = g(post, "reply", None) or g(actual_post, "reply", None)
+    if reply_view:
+        parent = g(reply_view, "parent", None) or g(reply_view, "post", None) or reply_view
+        parent_post = g(parent, "post", None) or parent
+        parent_author = g(parent_post, "author", None) or g(parent, "author", None)
+        handle = g(parent_author, "handle", None)
+        if handle:
+            return handle
+
+    # Some payloads include parent author directly under record.reply.parent.
+    record = g(actual_post, "record", {}) or {}
+    record_reply = g(record, "reply", None)
+    if record_reply:
+        parent = g(record_reply, "parent", None) or record_reply
+        parent_post = g(parent, "post", None) or parent
+        parent_author = g(parent_post, "author", None) or g(parent, "author", None)
+        handle = g(parent_author, "handle", None)
+        if handle:
+            return handle
+
+    # When only record.reply is available, we generally only have strong refs.
+    # No handle can be resolved here without extra API calls.
+    return None
+
+
+def extract_quoted_post_info(post):
+    """
+    Extract quoted content metadata from a Bluesky post.
+
+    Returns:
+        dict | None: one of:
+        - {"kind": "not_found"}
+        - {"kind": "blocked"}
+        - {"kind": "feed", "feed_name": "..."}
+        - {"kind": "post", "handle": "...", "text": "...", "urls": ["..."]}
+    """
+    actual_post = g(post, "post", post)
+    record = g(actual_post, "record", {}) or {}
+    embed = g(actual_post, "embed", None) or g(record, "embed", None)
+    quote_rec = _resolve_quoted_record_from_embed(embed)
+    if not quote_rec:
+        return None
+
+    qtype = (g(quote_rec, "$type") or g(quote_rec, "py_type") or "").lower()
+    if "viewnotfound" in qtype:
+        return {"kind": "not_found"}
+    if "viewblocked" in qtype:
+        return {"kind": "blocked"}
+    if "generatorview" in qtype:
+        return {"kind": "feed", "feed_name": g(quote_rec, "displayName", "Feed")}
+
+    q_author = g(quote_rec, "author", {}) or {}
+    q_handle = g(q_author, "handle", "unknown") or "unknown"
+
+    q_value = g(quote_rec, "value") or g(quote_rec, "record") or {}
+    q_text = g(q_value, "text", "") or g(quote_rec, "text", "")
+    if not q_text:
+        nested_value = g(q_value, "value") or {}
+        q_text = g(nested_value, "text", "")
+
+    q_urls = []
+
+    q_facets = g(q_value, "facets", []) or []
+    for facet in q_facets:
+        features = g(facet, "features", []) or []
+        for feature in features:
+            ftype = (g(feature, "$type") or g(feature, "py_type") or "").lower()
+            if "link" in ftype:
+                uri = g(feature, "uri", "")
+                if uri and uri not in q_urls:
+                    q_urls.append(uri)
+
+    q_embed = g(quote_rec, "embed", None) or g(q_value, "embed", None)
+    if q_embed:
+        q_etype = (g(q_embed, "$type") or g(q_embed, "py_type") or "").lower()
+        if "external" in q_etype:
+            ext = g(q_embed, "external", {})
+            uri = g(ext, "uri", "")
+            if uri and uri not in q_urls:
+                q_urls.append(uri)
+        if "recordwithmedia" in q_etype:
+            media = g(q_embed, "media", {})
+            mtype = (g(media, "$type") or g(media, "py_type") or "").lower()
+            if "external" in mtype:
+                ext = g(media, "external", {})
+                uri = g(ext, "uri", "")
+                if uri and uri not in q_urls:
+                    q_urls.append(uri)
+
+    for uri in url_re.findall(q_text or ""):
+        if uri not in q_urls:
+            q_urls.append(uri)
+
+    return {
+        "kind": "post",
+        "handle": q_handle,
+        "text": q_text or "",
+        "urls": q_urls,
+    }
