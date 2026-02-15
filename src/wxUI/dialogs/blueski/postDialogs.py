@@ -17,14 +17,18 @@ class Post(wx.Dialog):
         main_sizer.Add(self.text, 1, wx.EXPAND | wx.ALL, 6)
 
         # Sensitive + CW
-        cw_box = wx.BoxSizer(wx.HORIZONTAL)
-        self.sensitive = wx.CheckBox(self, wx.ID_ANY, _("Sensitive content (CW)"))
+        self.sensitive = wx.CheckBox(self, wx.ID_ANY, _("S&ensitive content"))
+        self.sensitive.SetValue(False)
+        self.sensitive.Bind(wx.EVT_CHECKBOX, self.on_sensitivity_changed)
+        main_sizer.Add(self.sensitive, 0, wx.ALL, 5)
+
+        spoiler_box = wx.BoxSizer(wx.HORIZONTAL)
+        spoiler_label = wx.StaticText(self, wx.ID_ANY, _("Content warning"))
         self.spoiler = wx.TextCtrl(self, wx.ID_ANY)
         self.spoiler.Enable(False)
-        self.sensitive.Bind(wx.EVT_CHECKBOX, lambda evt: self.spoiler.Enable(self.sensitive.GetValue()))
-        cw_box.Add(self.sensitive, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 4)
-        cw_box.Add(self.spoiler, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 4)
-        main_sizer.Add(cw_box, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 2)
+        spoiler_box.Add(spoiler_label, 0, wx.ALL, 5)
+        spoiler_box.Add(self.spoiler, 1, wx.ALL, 10)
+        main_sizer.Add(spoiler_box, 0, wx.EXPAND | wx.ALL, 5)
 
         # Attachments (images only)
         attach_box = wx.StaticBoxSizer(wx.VERTICAL, self, _("Attachments (images)"))
@@ -61,17 +65,18 @@ class Post(wx.Dialog):
 
         # Buttons
         btn_sizer = wx.StdDialogButtonSizer()
-        self.send = wx.Button(self, wx.ID_OK, _("Send"))
+        self.send = wx.Button(self, wx.ID_ANY, _("&Send"))
         self.send.SetDefault()
+        self.send.Bind(wx.EVT_BUTTON, lambda evt: self.EndModal(wx.ID_OK))
         btn_sizer.AddButton(self.send)
-        cancel = wx.Button(self, wx.ID_CANCEL, _("Cancel"))
-        btn_sizer.AddButton(cancel)
+        self.close = wx.Button(self, wx.ID_CLOSE, "")
+        btn_sizer.AddButton(self.close)
         btn_sizer.Realize()
         main_sizer.Add(btn_sizer, 0, wx.ALIGN_RIGHT | wx.ALL, 4)
 
         self.SetSizer(main_sizer)
         main_sizer.Fit(self)
-        self.SetEscapeId(cancel.GetId())
+        self.SetEscapeId(self.close.GetId())
         self.Layout()
 
         # Bindings
@@ -86,6 +91,9 @@ class Post(wx.Dialog):
             self.EndModal(wx.ID_OK)
         else:
             event.Skip()
+
+    def on_sensitivity_changed(self, *args, **kwargs):
+        self.spoiler.Enable(self.sensitive.GetValue())
 
     def on_add(self, evt):
         if self.attach_list.GetItemCount() >= 4:
@@ -219,13 +227,14 @@ class viewText(wx.Dialog):
         super(viewText, self).__init__(parent=None, id=wx.ID_ANY, size=(850, 850), title=title)
         panel = wx.Panel(self)
         label = wx.StaticText(panel, -1, _("Text"))
-        self.text = wx.TextCtrl(panel, -1, text, style=wx.TE_READONLY | wx.TE_MULTILINE, size=(250, 180))
+        self.text = wx.TextCtrl(panel, -1, text, style=wx.TE_READONLY | wx.TE_MULTILINE)
+        self.text.SetMinSize((500, 300))
         self.text.SetFocus()
         textBox = wx.BoxSizer(wx.HORIZONTAL)
         textBox.Add(label, 0, wx.ALL, 5)
         textBox.Add(self.text, 1, wx.EXPAND, 5)
         mainBox = wx.BoxSizer(wx.VERTICAL)
-        mainBox.Add(textBox, 0, wx.ALL, 5)
+        mainBox.Add(textBox, 1, wx.EXPAND | wx.ALL, 5)
         self.spellcheck = wx.Button(panel, -1, _("Check &spelling..."), size=wx.DefaultSize)
         self.translateButton = wx.Button(panel, -1, _("&Translate..."), size=wx.DefaultSize)
         cancelButton = wx.Button(panel, wx.ID_CANCEL, _("C&lose"), size=wx.DefaultSize)
@@ -236,7 +245,8 @@ class viewText(wx.Dialog):
         buttonsBox.Add(cancelButton, 0, wx.ALL, 5)
         mainBox.Add(buttonsBox, 0, wx.ALL, 5)
         panel.SetSizer(mainBox)
-        self.SetClientSize(mainBox.CalcMin())
+        self.SetMinSize((600, 400))
+        self.Layout()
 
 
 class RepostDialog(wx.Dialog):
