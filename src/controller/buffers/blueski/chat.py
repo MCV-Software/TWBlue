@@ -166,16 +166,9 @@ class ConversationListBuffer(BaseBuffer):
                         convo_id = self.get_convo_id(convo)
                         user_handle = getattr(profile, "handle", None) or (profile.get("handle") if isinstance(profile, dict) else None) or handle
                         title = _("Chat: {0}").format(user_handle)
-                        # Create the buffer
+                        # Create the buffer under direct_messages node
                         import application
-                        wx.CallAfter(
-                            application.app.controller.create_buffer,
-                            buffer_type="chat_messages",
-                            session_type="blueski",
-                            buffer_title=title,
-                            kwargs={"session": self.session, "convo_id": convo_id, "name": title},
-                            start=True
-                        )
+                        wx.CallAfter(self._create_chat_buffer, application.app.controller, title, convo_id)
                         # Refresh conversation list
                         wx.CallAfter(self.start_stream, True, False)
                     except Exception:
@@ -325,7 +318,7 @@ class ConversationListBuffer(BaseBuffer):
             post.message.Destroy()
 
     def view_chat(self):
-        """Open the conversation in a separate buffer."""
+        """Open the conversation in a separate buffer (nested under Chats node)."""
         conversation = self.get_conversation()
         if not conversation:
             output.speak(_("No conversation selected."), True)
@@ -348,13 +341,38 @@ class ConversationListBuffer(BaseBuffer):
         title = _("Chat: {0}").format(names)
 
         import application
-        application.app.controller.create_buffer(
+        self._create_chat_buffer(application.app.controller, title, convo_id)
+
+    def _create_chat_buffer(self, controller, title, convo_id):
+        """Create a chat buffer under the direct_messages node, avoiding duplicates."""
+        account_name = self.session.get_name()
+
+        # Avoid duplicates: if buffer already exists, navigate to it
+        existing = controller.search_buffer(title, account_name)
+        if existing:
+            index = controller.view.search(title, account_name)
+            if index is not None:
+                controller.view.change_buffer(index)
+            return
+
+        # Insert under direct_messages node (like Mastodon's ConversationBuffer)
+        chats_position = controller.view.search("direct_messages", account_name)
+        if chats_position is None:
+            chats_position = controller.view.search(account_name, account_name)
+
+        controller.create_buffer(
             buffer_type="chat_messages",
             session_type="blueski",
             buffer_title=title,
+            parent_tab=chats_position,
             kwargs={"session": self.session, "convo_id": convo_id, "name": title},
             start=True
         )
+
+        # Navigate to the newly created buffer
+        new_index = controller.view.search(title, account_name)
+        if new_index is not None:
+            controller.view.change_buffer(new_index)
 
     def destroy_status(self):
         pass
