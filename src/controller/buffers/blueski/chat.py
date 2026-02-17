@@ -369,10 +369,21 @@ class ConversationListBuffer(BaseBuffer):
             start=True
         )
 
-        # Navigate to the newly created buffer
+        # Navigate to the newly created buffer and announce it
         new_index = controller.view.search(title, account_name)
         if new_index is not None:
             controller.view.change_buffer(new_index)
+            buffer_obj = controller.search_buffer(title, account_name)
+            if buffer_obj and hasattr(buffer_obj.buffer, "list"):
+                try:
+                    count = buffer_obj.buffer.list.get_count()
+                    if count > 0:
+                        msg = _("{0}, {1} of {2}").format(title, buffer_obj.buffer.list.get_selected()+1, count)
+                    else:
+                        msg = _("{0}. Empty").format(title)
+                except Exception:
+                    msg = _("{0}. Empty").format(title)
+                output.speak(msg, True)
 
     def destroy_status(self):
         pass
@@ -459,6 +470,40 @@ class ChatBuffer(BaseBuffer):
     def send_message(self, *args, **kwargs):
         """Global shortcut for DM."""
         self.on_reply(None)
+
+    def get_message(self):
+        """Return a readable summary for the selected chat message."""
+        item = self.get_item()
+        if item is None:
+            return None
+        composed = self.compose_function(
+            item, self.session.db, self.session.settings,
+            self.session.settings["general"].get("relative_times", False),
+            self.session.settings["general"].get("show_screen_names", False),
+        )
+        return " ".join(composed)
+
+    def get_formatted_message(self):
+        """Return the text content of the selected chat message."""
+        item = self.get_item()
+        if item is None:
+            return None
+        composed = self.compose_function(
+            item, self.session.db, self.session.settings,
+            self.session.settings["general"].get("relative_times", False),
+            self.session.settings["general"].get("show_screen_names", False),
+        )
+        return composed[1]
+
+    def view_item(self, item=None):
+        """View the selected chat message in a dialog."""
+        msg = self.get_formatted_message()
+        if not msg:
+            output.speak(_("No message selected."), True)
+            return
+        viewer = blueski_messages.text(title=_("Chat message"), text=msg)
+        viewer.message.ShowModal()
+        viewer.message.Destroy()
 
     def remove_buffer(self, force=False):
         """Allow removing this buffer."""

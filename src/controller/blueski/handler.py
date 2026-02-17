@@ -554,6 +554,10 @@ class Handler:
 
     def open_conversation(self, controller, buffer):
         """Standard action for Control+Win+C"""
+        # If this is a chat conversation list, open the selected chat
+        if buffer.type == "chat" and hasattr(buffer, "view_chat"):
+            buffer.view_chat()
+            return
         item = buffer.get_item()
         if not item:
             return
