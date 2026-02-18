@@ -751,6 +751,18 @@ class Session(base.baseSession):
             log.exception("Error listing conversations")
             return {"items": [], "cursor": None}
 
+    def get_convo(self, convo_id: str):
+        """Fetch a single conversation by ID, returning the convo object or None."""
+        api = self._ensure_client()
+        dm_client = api.with_bsky_chat_proxy()
+        dm = dm_client.chat.bsky.convo
+        try:
+            res = dm.get_convo({"convoId": convo_id})
+            return res.convo
+        except Exception:
+            log.exception("Error fetching conversation %s", convo_id)
+            return None
+
     def get_convo_messages(self, convo_id: str, limit: int = 50, cursor: str | None = None) -> dict[str, Any]:
         api = self._ensure_client()
         dm_client = api.with_bsky_chat_proxy()

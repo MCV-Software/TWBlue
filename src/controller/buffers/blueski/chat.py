@@ -95,21 +95,21 @@ class ConversationListBuffer(BaseBuffer):
         for attr in ("id", "messageId", "message_id", "msgId", "msg_id", "cid", "rev"):
             val = g(last_msg, attr)
             if val:
-                return val
+                return str(val)
 
         nested = g(last_msg, "message") or g(last_msg, "record")
         if nested:
             for attr in ("id", "messageId", "message_id", "msgId", "msg_id", "cid", "rev"):
                 val = g(nested, attr)
                 if val:
-                    return val
+                    return str(val)
 
         sent_at = g(last_msg, "sentAt") or g(last_msg, "sent_at") or g(last_msg, "createdAt") or g(last_msg, "created_at")
         sender = g(last_msg, "sender") or (g(nested, "sender") if nested else {}) or {}
         sender_did = g(sender, "did")
         text = g(last_msg, "text") or (g(nested, "text") if nested else None)
         if sent_at or sender_did or text:
-            return (sent_at, sender_did, text)
+            return (str(sent_at) if sent_at else None, str(sender_did) if sender_did else None, str(text) if text else None)
         return None
 
     def get_formatted_message(self):
@@ -181,11 +181,32 @@ class ConversationListBuffer(BaseBuffer):
         try:
             res = self.session.list_convos(limit=count)
             items = res.get("items", [])
+            self._build_member_maps(items)
             return self._merge_conversations(items, play_sound, avoid_autoreading=avoid_autoreading)
         except Exception:
             log.exception("Error fetching conversations")
             output.speak(_("Error loading conversations."), True)
             return 0
+
+    def _build_member_maps(self, convos):
+        """Build DID→name maps from conversation members and store in db for chat buffers."""
+        def g(obj, key, default=None):
+            if isinstance(obj, dict):
+                return obj.get(key, default)
+            return getattr(obj, key, default)
+        for convo in convos:
+            convo_id = self.get_convo_id(convo)
+            if not convo_id:
+                continue
+            members = g(convo, "members", []) or []
+            member_map = {}
+            for m in members:
+                did = g(m, "did", None)
+                if did:
+                    name = g(m, "display_name") or g(m, "displayName") or g(m, "handle", "unknown")
+                    member_map[did] = name
+            if member_map:
+                self.session.db["convo_" + str(convo_id) + "_members"] = member_map
 
     def _merge_conversations(self, items, play_sound=True, avoid_autoreading=False):
         """Merge conversation list, updating items without duplicating or re-alerting."""
@@ -395,14 +416,34 @@ class ChatBuffer(BaseBuffer):
         self.type = "chat_messages"
         self.convo_id = kwargs.get("convo_id")
         self.sound = "dm_received.ogg"
+        self._member_map_loaded = False
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.ChatMessagePanel(parent, name)
         self.buffer.session = self.session
 
+    def _update_member_map(self):
+        """Fetch conversation members to build a DID-to-name map for sender resolution."""
+        try:
+            convo = self.session.get_convo(self.convo_id)
+            if not convo:
+                return
+            member_map = {}
+            for m in getattr(convo, "members", []) or []:
+                did = getattr(m, "did", None)
+                if did:
+                    name = getattr(m, "display_name", None) or getattr(m, "handle", None) or "unknown"
+                    member_map[did] = name
+            self.session.db[self.name + "_members"] = member_map
+        except Exception:
+            log.exception("Error fetching conversation members for DID resolution")
+
     def start_stream(self, mandatory=False, play_sound=True):
         if not self.convo_id:
             return 0
+        if not self._member_map_loaded:
+            self._update_member_map()
+            self._member_map_loaded = True
         count = self.get_max_items()
         try:
             res = self.session.get_convo_messages(self.convo_id, limit=count)

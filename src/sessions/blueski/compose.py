@@ -366,17 +366,25 @@ def compose_convo(convo, db, settings, relative_times, show_screen_names=False, 
     members = g(convo, "members", [])
     self_did = db.get("user_id") if isinstance(db, dict) else None
 
+    # Build a local DID→name map from conversation members for sender resolution
+    member_names = {}
+    for m in members:
+        did = g(m, "did", None)
+        if did:
+            name = g(m, "display_name") or g(m, "displayName") or g(m, "handle", "unknown")
+            member_names[did] = name
+
     # Get other participants (exclude self)
     others = []
     for m in members:
         did = g(m, "did", None)
         if self_did and did == self_did:
             continue
-        label = g(m, "displayName") or g(m, "display_name") or g(m, "handle", "unknown")
+        label = member_names.get(did, "unknown") if did else g(m, "display_name") or g(m, "displayName") or g(m, "handle", "unknown")
         others.append(label)
 
     if not others:
-        others = [g(m, "displayName") or g(m, "display_name") or g(m, "handle", "unknown") for m in members]
+        others = [member_names.get(g(m, "did"), "unknown") if g(m, "did") else "unknown" for m in members]
 
     participants = ", ".join(others)
 
@@ -389,7 +397,14 @@ def compose_convo(convo, db, settings, relative_times, show_screen_names=False, 
         last_text = g(last_msg_obj, "text", "")
         sender = g(last_msg_obj, "sender", None)
         if sender:
-            last_sender = g(sender, "displayName") or g(sender, "display_name") or g(sender, "handle", "")
+            last_sender = g(sender, "display_name") or g(sender, "displayName") or g(sender, "handle")
+            if not last_sender:
+                # Resolve DID via local member map
+                sdid = g(sender, "did")
+                if sdid:
+                    last_sender = member_names.get(sdid, "")
+                if not last_sender:
+                    last_sender = sdid or ""
 
     # Date
     date_str = ""
@@ -434,7 +449,16 @@ def compose_chat_message(msg, db, settings, relative_times, show_screen_names=Fa
         return getattr(obj, key, default)
 
     sender = g(msg, "sender", {})
-    handle = g(sender, "displayName") or g(sender, "display_name") or g(sender, "handle", "unknown")
+    sender_did = g(sender, "did")
+    handle = g(sender, "display_name") or g(sender, "displayName") or g(sender, "handle")
+    if not handle and sender_did and isinstance(db, dict):
+        # Look up DID in member maps stored by ChatBuffer
+        for key, val in db.items():
+            if key.endswith("_members") and isinstance(val, dict) and sender_did in val:
+                handle = val[sender_did]
+                break
+    if not handle:
+        handle = sender_did or "unknown"
 
     text = g(msg, "text", "")
 

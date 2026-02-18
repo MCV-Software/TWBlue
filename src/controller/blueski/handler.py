@@ -95,6 +95,16 @@ class Handler:
             start=False,
             kwargs=dict(parent=controller.view.nb, name="mentions", session=session, sound="mention_received.ogg")
         )
+        # Chats
+        pub.sendMessage(
+            "createBuffer",
+            buffer_type="ConversationListBuffer",
+            session_type="blueski",
+            buffer_title=_("Chats"),
+            parent_tab=root_position,
+            start=False,
+            kwargs=dict(parent=controller.view.nb, name="direct_messages", session=session, sound="dm_received.ogg")
+        )
         # Notifications
         pub.sendMessage(
             "createBuffer",
@@ -154,16 +164,6 @@ class Handler:
             parent_tab=root_position,
             start=False,
             kwargs=dict(parent=controller.view.nb, name="blocked", session=session)
-        )
-        # Chats
-        pub.sendMessage(
-            "createBuffer",
-            buffer_type="ConversationListBuffer",
-            session_type="blueski",
-            buffer_title=_("Chats"),
-            parent_tab=root_position,
-            start=False,
-            kwargs=dict(parent=controller.view.nb, name="direct_messages", session=session, sound="dm_received.ogg")
         )
 
         # Timelines container

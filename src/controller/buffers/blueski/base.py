@@ -1046,13 +1046,13 @@ class BaseBuffer(base.Buffer):
                 author = it.get("author")
                 if isinstance(author, dict):
                     return author.get("did") or author.get("handle")
-                # Chat message fallback
+                # Chat message fallback — use str() to ensure stable hash/comparison
                 sent_at = it.get("sentAt") or it.get("sent_at") or it.get("createdAt") or it.get("created_at")
                 sender = it.get("sender") or (nested.get("sender") if isinstance(nested, dict) else {}) or {}
                 sender_did = sender.get("did") if isinstance(sender, dict) else None
                 text = it.get("text") or (nested.get("text") if isinstance(nested, dict) else None)
                 if sent_at or sender_did or text:
-                    return (sent_at, sender_did, text)
+                    return (str(sent_at) if sent_at else None, str(sender_did) if sender_did else None, str(text) if text else None)
                 return None
             post = getattr(it, "post", None)
             if post is not None:
@@ -1075,7 +1075,7 @@ class BaseBuffer(base.Buffer):
             sender_did = getattr(sender, "did", None) if sender is not None else None
             text = getattr(it, "text", None) or (getattr(nested, "text", None) if nested is not None else None)
             if sent_at or sender_did or text:
-                return (sent_at, sender_did, text)
+                return (str(sent_at) if sent_at else None, str(sender_did) if sender_did else None, str(text) if text else None)
             return None
 
         for item in self.session.db[self.name]:
