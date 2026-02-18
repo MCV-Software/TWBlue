@@ -436,6 +436,7 @@ class Controller(object):
                 kwargs["parent"] = self.view.nb # self.view.nb is the wx.Treebook
 
             buffer = buffer_panel_class(**kwargs) # This is the wx.Panel instance
+            buffer.controller = self
 
             if start:
                 try:

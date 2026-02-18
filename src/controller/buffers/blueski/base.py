@@ -530,7 +530,7 @@ class BaseBuffer(base.Buffer):
             pub.sendMessage("execute-action", action="user_details")
             return
         try:
-            blueski_messages.viewPost(self.session, item)
+            blueski_messages.viewPost(self.session, item, controller=getattr(self, "controller", None))
         except Exception as e:
             log.error("Error opening Bluesky post viewer: %s", e)
 
@@ -572,9 +572,8 @@ class BaseBuffer(base.Buffer):
              res = api.chat.bsky.convo.get_convo_for_members({"members": [did]})
              convo_id = res.convo.id
              
-             import application
              title = _("Chat: {0}").format(handle)
-             application.app.controller.create_buffer(
+             self.controller.create_buffer(
                  buffer_type="chat_messages",
                  session_type="blueski",
                  buffer_title=title,
@@ -830,9 +829,8 @@ class BaseBuffer(base.Buffer):
          uri = item.get("uri") if isinstance(item, dict) else getattr(item, "uri", None)
          if not uri: return
          
-         import application
-         controller = application.app.controller
-         
+         controller = self.controller
+
          details = self.get_selected_item_author_details()
          handle = "Unknown"
          if details:

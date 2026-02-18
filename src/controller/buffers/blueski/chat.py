@@ -167,8 +167,7 @@ class ConversationListBuffer(BaseBuffer):
                         user_handle = getattr(profile, "handle", None) or (profile.get("handle") if isinstance(profile, dict) else None) or handle
                         title = _("Chat: {0}").format(user_handle)
                         # Create the buffer under direct_messages node
-                        import application
-                        wx.CallAfter(self._create_chat_buffer, application.app.controller, title, convo_id)
+                        wx.CallAfter(self._create_chat_buffer, self.controller, title, convo_id)
                         # Refresh conversation list
                         wx.CallAfter(self.start_stream, True, False)
                     except Exception:
@@ -340,8 +339,7 @@ class ConversationListBuffer(BaseBuffer):
 
         title = _("Chat: {0}").format(names)
 
-        import application
-        self._create_chat_buffer(application.app.controller, title, convo_id)
+        self._create_chat_buffer(self.controller, title, convo_id)
 
     def _create_chat_buffer(self, controller, title, convo_id):
         """Create a chat buffer under the direct_messages node, avoiding duplicates."""

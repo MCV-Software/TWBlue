@@ -317,8 +317,9 @@ def _extract_post_view_data(session: Any, item: Any) -> dict[str, Any] | None:
 
 
 class viewPost(base_messages.basicMessage):
-    def __init__(self, session: Any, item: Any):
+    def __init__(self, session: Any, item: Any, controller: Any = None):
         self.session = session
+        self.controller = controller
         data = _extract_post_view_data(session, item)
         if not data:
             output.speak(_("No post available to view."), True)
@@ -362,11 +363,10 @@ class viewPost(base_messages.basicMessage):
             output.speak(_("Link copied to clipboard."))
 
     def on_reposts(self, *args, **kwargs):
-        if not self.post_uri:
+        if not self.post_uri or not self.controller:
             return
         try:
-            import application
-            controller = application.app.controller
+            controller = self.controller
             account_name = self.session.get_name()
             list_name = f"{self.post_uri}-reposts"
             existing = controller.search_buffer(list_name, account_name)
@@ -391,11 +391,10 @@ class viewPost(base_messages.basicMessage):
             pass
 
     def on_likes(self, *args, **kwargs):
-        if not self.post_uri:
+        if not self.post_uri or not self.controller:
             return
         try:
-            import application
-            controller = application.app.controller
+            controller = self.controller
             account_name = self.session.get_name()
             list_name = f"{self.post_uri}-likes"
             existing = controller.search_buffer(list_name, account_name)
