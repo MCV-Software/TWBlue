@@ -905,12 +905,13 @@ class Handler:
                 import output
                 output.speak(_("Failed to delete post."))
 
-    def search(self, controller, session):
+    def search(self, controller, session, value=""):
         """Open search dialog and create search buffer for results."""
         dlg = wx.TextEntryDialog(
             controller.view,
             _("Enter search term:"),
-            _("Search Bluesky")
+            _("Search Bluesky"),
+            value
         )
         if dlg.ShowModal() != wx.ID_OK:
             dlg.Destroy()
