@@ -16,6 +16,7 @@ This is the user guide for the latest available version of TWBlue. The purpose o
    system_requirements
    installation
    basic_concepts
+   blueski
    usage
    global_settings
    credits

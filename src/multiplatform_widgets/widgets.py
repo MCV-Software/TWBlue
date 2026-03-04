@@ -63,13 +63,17 @@ class list(object):
 
     def get_selected(self):
         if self.system == "Windows":
-            return self.list.GetFocusedItem()
+            item = self.list.GetFocusedItem()
+            if item == -1:
+                item = self.list.GetFirstSelected()
+            return item
         else:
             return self.list.GetSelection()
 
     def select_item(self, pos):
         if self.system == "Windows":
             self.list.Focus(pos)
+            self.list.Select(pos)
         else:
             self.list.SetSelection(pos)
 

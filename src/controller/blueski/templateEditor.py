@@ -2,8 +2,9 @@
 import re
 import wx
 from typing import List
-from sessions.mastodon.templates import post_variables, conversation_variables, person_variables, announcement_variables
+from sessions.blueski.templates import post_variables, person_variables, notification_variables
 from wxUI.dialogs import templateDialogs
+
 
 class EditTemplate(object):
     def __init__(self, template: str, type: str) -> None:
@@ -11,16 +12,14 @@ class EditTemplate(object):
         self.default_template = template
         if type == "post":
             self.variables = post_variables
-        elif type == "conversation":
-            self.variables = conversation_variables
-        elif type == "announcement":
-            self.variables = announcement_variables
+        elif type == "notification":
+            self.variables = notification_variables
         else:
             self.variables = person_variables
         self.template: str = template
 
     def validate_template(self, template: str) -> bool:
-        used_variables: List[str] = re.findall("\$\w+", template)
+        used_variables: List[str] = re.findall(r"\$\w+", template)
         validated: bool = True
         for var in used_variables:
             if var[1:] not in self.variables:
@@ -28,7 +27,11 @@ class EditTemplate(object):
         return validated
 
     def run_dialog(self) -> str:
-        dialog = templateDialogs.EditTemplateDialog(template=self.template, variables=self.variables, default_template=self.default_template)
+        dialog = templateDialogs.EditTemplateDialog(
+            template=self.template,
+            variables=self.variables,
+            default_template=self.default_template,
+        )
         response = dialog.ShowModal()
         if response == wx.ID_SAVE:
             validated: bool = self.validate_template(dialog.template.GetValue())

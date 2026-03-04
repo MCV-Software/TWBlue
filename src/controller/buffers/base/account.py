@@ -10,7 +10,7 @@ from . import base
 log = logging.getLogger("controller.buffers.base.account")
 
 class AccountBuffer(base.Buffer):
-    def __init__(self, parent, name, account, account_id):
+    def __init__(self, parent, name, account, account_id, session=None):
         super(AccountBuffer, self).__init__(parent, None, name)
         log.debug("Initializing buffer %s, account %s" % (name, account,))
         self.buffer = buffers.accountPanel(parent, name)

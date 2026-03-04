@@ -59,7 +59,9 @@ class baseSession(object):
         if not os.path.exists(path):
             log.debug("Creating %s path" % (os.path.join(paths.config_path(), path),))
             os.mkdir(path)
-            config.app["sessions"]["sessions"].append(id)
+            if self.session_id not in config.app["sessions"]["sessions"]:
+                config.app["sessions"]["sessions"].append(self.session_id)
+            config.app.write()
 
     def get_configuration(self):
         """ Get settings for a session."""

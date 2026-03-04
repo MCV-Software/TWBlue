@@ -5,6 +5,7 @@ import logging
 import webbrowser
 import wx
 import requests
+import asyncio
 import keystrokeEditor
 import sessions
 import widgetUtils
@@ -25,6 +26,7 @@ from mysc import localization
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
 from controller.mastodon import handler as MastodonHandler
+from controller.blueski import handler as BlueskiHandler # Added import
 from . import settings, userAlias
 
 log = logging.getLogger("mainController")
@@ -93,6 +95,17 @@ class Controller(object):
         [results.append(self.search_buffer(i.name, i.account)) for i in buffers if i.account == account and (i.type != "account")]
         return results
 
+    def get_handler(self, type):
+        """Return the controller handler for a given session type."""
+        try:
+            if type == "mastodon":
+                return MastodonHandler.Handler()
+            if type == "blueski":
+                return BlueskiHandler.Handler()
+        except Exception:
+            log.exception("Error creating handler for type %s", type)
+        return None
+
     def bind_other_events(self):
         """ Binds the local application events with their functions."""
         log.debug("Binding other application events...")
@@ -107,12 +120,16 @@ class Controller(object):
         pub.subscribe(self.invisible_shorcuts_changed, "invisible-shorcuts-changed")
         pub.subscribe(self.create_account_buffer, "core.create_account")
         pub.subscribe(self.change_buffer_title, "core.change_buffer_title")
+        pub.subscribe(self.handle_compose_dialog_send, "compose_dialog.send_post") # For new compose dialog
 
         # Mastodon specific events.
         pub.subscribe(self.mastodon_new_item, "mastodon.new_item")
         pub.subscribe(self.mastodon_updated_item, "mastodon.updated_item")
         pub.subscribe(self.mastodon_new_conversation, "mastodon.conversation_received")
         pub.subscribe(self.mastodon_error_post, "mastodon.error_post")
+
+        # Bluesky specific events.
+        pub.subscribe(self.blueski_new_item, "blueski.new_item")
 
         # connect application events to GUI
         widgetUtils.connect_event(self.view, widgetUtils.CLOSE_EVENT, self.exit_)
@@ -191,10 +208,12 @@ class Controller(object):
 
     def get_handler(self, type):
         handler = self.handlers.get(type)
-        if handler == None:
+        if handler is None:
             if type == "mastodon":
                 handler = MastodonHandler.Handler()
-            self.handlers[type]=handler
+            elif type == "blueski":
+                handler = BlueskiHandler.Handler()
+            self.handlers[type] = handler
         return handler
 
     def __init__(self):
@@ -204,7 +223,7 @@ class Controller(object):
         # main window
         self.view = view.mainFrame()
         # buffers list.
-        self.buffers = []
+        self.buffers: list[buffers.base.Buffer] = [] # Added type hint
         self.started = False
         # accounts list.
         self.accounts = []
@@ -235,14 +254,26 @@ class Controller(object):
         for i in sessions.sessions:
             log.debug("Working on session %s" % (i,))
             if sessions.sessions[i].is_logged == False:
-                self.create_ignored_session_buffer(sessions.sessions[i])
-                continue
-            # Valid types currently are mastodon (Work in progress)
-            # More can be added later.
-            valid_session_types = ["mastodon"]
+                if sessions.sessions[i].session_id in config.app["sessions"]["ignored_sessions"]:
+                    self.create_ignored_session_buffer(sessions.sessions[i])
+                    continue
+                # Try auto-login for sessions if credentials exist
+                try:
+                    sessions.sessions[i].login()
+                except Exception:
+                    log.exception("Auto-login attempt failed for session %s", i)
+                if sessions.sessions[i].is_logged == False:
+                    self.create_ignored_session_buffer(sessions.sessions[i])
+                    continue
+            # Supported session types
+            valid_session_types = ["mastodon", "blueski"]
             if sessions.sessions[i].type in valid_session_types:
-                handler = self.get_handler(type=sessions.sessions[i].type)
-                handler.create_buffers(sessions.sessions[i], controller=self)
+                try:
+                    handler = self.get_handler(type=sessions.sessions[i].type)
+                    if handler is not None:
+                        handler.create_buffers(sessions.sessions[i], controller=self)
+                except Exception:
+                    log.exception("Error creating buffers for session %s (%s)", i, sessions.sessions[i].type)
         log.debug("Setting updates to buffers every %d seconds..." % (60*config.app["app-settings"]["update_period"],))
         self.update_buffers_function = RepeatingTimer(60*config.app["app-settings"]["update_period"], self.update_buffers)
         self.update_buffers_function.start()
@@ -251,29 +282,83 @@ class Controller(object):
         """ Starts all buffer objects. Loads their items."""
         for i in sessions.sessions:
             if sessions.sessions[i].is_logged == False: continue
-            self.start_buffers(sessions.sessions[i])
-            self.set_buffer_positions(sessions.sessions[i])
-            if hasattr(sessions.sessions[i], "start_streaming"):
-                sessions.sessions[i].start_streaming()
-        if config.app["app-settings"]["play_ready_sound"] == True:
+            call_threaded(self._start_session_buffers, sessions.sessions[i])
+        if len(sessions.sessions) > 0 and config.app["app-settings"]["play_ready_sound"] == True:
             sessions.sessions[list(sessions.sessions.keys())[0]].sound.play("ready.ogg")
         if config.app["app-settings"]["speak_ready_msg"] == True:
             output.speak(_(u"Ready"))
         self.started = True
         if len(self.accounts) > 0:
             b = self.get_first_buffer(self.accounts[0])
+            self.menubar_current_handler = b.session.type
             self.update_menus(handler=self.get_handler(b.session.type))
+
+    def _start_session_buffers(self, session):
+        """Helper to start buffers for a session in a background thread."""
+        try:
+            self.start_buffers(session)
+            self.set_buffer_positions(session)
+            if hasattr(session, "start_streaming"):
+                session.start_streaming()
+        except Exception:
+            log.exception("Error starting buffers for session %s", session.session_id)
 
     def create_ignored_session_buffer(self, session):
         pub.sendMessage("core.create_account", name=session.get_name(), session_id=session.session_id)
 
     def login_account(self, session_id):
+        session = None
         for i in sessions.sessions:
-            if sessions.sessions[i].session_id == session_id: session = sessions.sessions[i]
-        session.login()
+            if sessions.sessions[i].session_id == session_id:
+                session = sessions.sessions[i]
+                break
+        if not session:
+            return
+        
+        old_name = session.get_name()
+        try:
+            session.login()
+        except Exception as e:
+            log.exception("Login failed for session %s", session_id)
+            output.speak(_("Login failed for {0}: {1}").format(old_name, str(e)), True)
+            return
+
+        if not session.logged:
+            output.speak(_("Login failed for {0}. Please check your credentials.").format(old_name), True)
+            return
+
+        new_name = session.get_name()
+        if old_name != new_name:
+            log.info(f"Account name changed from {old_name} to {new_name} after login")
+            if self.current_account == old_name:
+                self.current_account = new_name
+            if old_name in self.accounts:
+                idx = self.accounts.index(old_name)
+                self.accounts[idx] = new_name
+            else:
+                self.accounts.append(new_name)
+            
+            # Update root buffer name and account
+            for b in self.buffers:
+                if b.account == old_name:
+                    b.account = new_name
+                    if hasattr(b, "buffer"):
+                        b.buffer.account = new_name
+                    # If this is the root node, its name matches old_name (e.g. "Bluesky")
+                    if b.name == old_name:
+                        b.name = new_name
+                        if hasattr(b, "buffer"):
+                            b.buffer.name = new_name
+            
+            # Update tree node label
+            self.change_buffer_title(old_name, old_name, new_name)
+
         handler = self.get_handler(type=session.type)
         if handler != None and hasattr(handler, "create_buffers"):
-            handler.create_buffers(session=session, controller=self, createAccounts=False)
+            try:
+                handler.create_buffers(session=session, controller=self, createAccounts=False)
+            except Exception:
+                log.exception("Error creating buffers after login for session %s (%s)", session.session_id, session.type)
         self.start_buffers(session)
         if hasattr(session, "start_streaming"):
             session.start_streaming()
@@ -287,31 +372,91 @@ class Controller(object):
         self.view.add_buffer(account.buffer , name=name)
 
     def create_buffer(self, buffer_type="baseBuffer", session_type="twitter", buffer_title="", parent_tab=None, start=False, kwargs={}):
+        # Copy kwargs to avoid mutating a shared dict across calls
+        if not isinstance(kwargs, dict):
+            kwargs = {}
+        else:
+            kwargs = dict(kwargs)
         log.debug("Creating buffer of type {0} with parent_tab of {2} arguments {1}".format(buffer_type, kwargs, parent_tab))
         if kwargs.get("parent") == None:
             kwargs["parent"] = self.view.nb
-        if not hasattr(buffers, session_type):
+        if not hasattr(buffers, session_type) and session_type != "blueski": # Allow blueski to be handled separately
             raise AttributeError("Session type %s does not exist yet." % (session_type))
-        available_buffers = getattr(buffers, session_type)
-        if not hasattr(available_buffers, buffer_type):
-            raise AttributeError("Specified buffer type does not exist: %s" % (buffer_type,))
-        buffer = getattr(available_buffers, buffer_type)(**kwargs)
-        if start:
-            if kwargs.get("function") == "user_timeline":
+
+        try:
+            buffer_panel_class = None
+            if session_type == "blueski":
+                from controller.buffers.blueski import timeline as BlueskiTimelines
+                from controller.buffers.blueski import user as BlueskiUsers
+                from controller.buffers.blueski import chat as BlueskiChats
+                
+                if "user_id" in kwargs and "session" not in kwargs:
+                     kwargs["session"] = sessions.sessions.get(kwargs["user_id"])
+                
+                if "name" not in kwargs: kwargs["name"] = buffer_title
+
+                buffer_map = {
+                    "home_timeline": BlueskiTimelines.HomeTimeline,
+                    "following_timeline": BlueskiTimelines.FollowingTimeline,
+                    "notifications": BlueskiTimelines.NotificationBuffer,
+                    "conversation": BlueskiTimelines.Conversation,
+                    "likes": BlueskiTimelines.LikesBuffer,
+                    "MentionsBuffer": BlueskiTimelines.MentionsBuffer,
+                    "mentions": BlueskiTimelines.MentionsBuffer,
+                    "SentBuffer": BlueskiTimelines.SentBuffer,
+                    "sent": BlueskiTimelines.SentBuffer,
+                    "SearchBuffer": BlueskiTimelines.SearchBuffer,
+                    "search": BlueskiTimelines.SearchBuffer,
+                    "UserBuffer": BlueskiUsers.UserBuffer,
+                    "FollowersBuffer": BlueskiUsers.FollowersBuffer,
+                    "FollowingBuffer": BlueskiUsers.FollowingBuffer,
+                    "BlocksBuffer": BlueskiUsers.BlocksBuffer,
+                    "PostUserListBuffer": BlueskiUsers.PostUserListBuffer,
+                    "ConversationListBuffer": BlueskiChats.ConversationListBuffer,
+                    "ChatMessageBuffer": BlueskiChats.ChatBuffer,
+                    "chat_messages": BlueskiChats.ChatBuffer,
+                    "UserTimeline": BlueskiTimelines.UserTimeline,
+                    "user_timeline": BlueskiTimelines.UserTimeline,
+                }
+
+                buffer_panel_class = buffer_map.get(buffer_type)
+                if buffer_panel_class is None:
+                    # Fallback for others including user_timeline to HomeTimeline for now
+                    log.warning(f"Unsupported Blueski buffer type: {buffer_type}. Falling back to HomeTimeline.")
+                    buffer_panel_class = BlueskiTimelines.HomeTimeline
+            else: # Existing logic for other session types
+                available_buffers = getattr(buffers, session_type)
+                if not hasattr(available_buffers, buffer_type):
+                    raise AttributeError("Specified buffer type does not exist: %s" % (buffer_type,))
+                buffer_panel_class = getattr(available_buffers, buffer_type)
+
+            # Instantiate the panel
+            # Ensure 'parent' kwarg is correctly set if not already
+            if "parent" not in kwargs:
+                kwargs["parent"] = self.view.nb # self.view.nb is the wx.Treebook
+
+            buffer = buffer_panel_class(**kwargs) # This is the wx.Panel instance
+            buffer.controller = self
+
+            if start:
                 try:
-                    buffer.start_stream(play_sound=False)
+                    if hasattr(buffer, "start_stream"):
+                        if kwargs.get("function") == "user_timeline":
+                            buffer.start_stream(mandatory=True, play_sound=False)
+                        else:
+                            buffer.start_stream(mandatory=True, play_sound=True)
                 except ValueError:
                     commonMessageDialogs.unauthorized()
                     return
+            self.buffers.append(buffer)
+            if parent_tab == None:
+                log.debug("Appending buffer {}...".format(buffer,))
+                self.view.add_buffer(buffer.buffer, buffer_title)
             else:
-                call_threaded(buffer.start_stream)
-        self.buffers.append(buffer)
-        if parent_tab == None:
-            log.debug("Appending buffer {}...".format(buffer,))
-            self.view.add_buffer(buffer.buffer, buffer_title)
-        else:
-            self.view.insert_buffer(buffer.buffer, buffer_title, parent_tab)
-            log.debug("Inserting buffer {0} into control {1}".format(buffer, parent_tab))
+                self.view.insert_buffer(buffer.buffer, buffer_title, parent_tab)
+                log.debug("Inserting buffer {0} into control {1}".format(buffer, parent_tab))
+        except Exception:
+            log.exception("Error creating buffer '%s' for session_type '%s'", buffer_type, session_type)
 
     def set_buffer_positions(self, session):
         "Sets positions for buffers if values exist in the database."
@@ -511,30 +656,216 @@ class Controller(object):
         if hasattr(buffer, "post_status"):
             buffer.post_status()
 
+    def handle_compose_dialog_send(self, session, text, files, reply_to, cw_text, is_sensitive, kwargs, dialog_instance):
+        """Handles the actual sending of a post after ComposeDialog publishes data."""
+        async def do_send_post():
+            try:
+                wx.CallAfter(dialog_instance.send_btn.Disable)
+                wx.CallAfter(wx.BeginBusyCursor)
+
+                post_uri = await session.send_message(
+                    message=text,
+                    files=files,
+                    reply_to=reply_to,
+                    cw_text=cw_text,
+                    is_sensitive=is_sensitive,
+                    **kwargs
+                )
+                if post_uri:
+                    output.speak(_("Post sent successfully!"), True)
+                    wx.CallAfter(dialog_instance.EndModal, wx.ID_OK)
+                    # Optionally, add to relevant buffer or update UI
+                    # This might involve fetching the new post and adding to message_cache and posts_buffer
+                    # new_post_data = await session.util.get_post_by_uri(post_uri) # Assuming such a util method
+                    # if new_post_data:
+                    #    await self.check_buffers(new_post_data) # check_buffers needs to handle PostView or dict
+                else:
+                    # This case should ideally be handled by send_message raising an error
+                    output.speak(_("Failed to send post. The server did not confirm the post creation."), True)
+                    wx.CallAfter(dialog_instance.send_btn.Enable, True)
+
+            except NotificationError as e:
+                logger.error(f"NotificationError sending post via dialog: {e}", exc_info=True)
+                output.speak(_("Error sending post: {error}").format(error=str(e)), True)
+                wx.CallAfter(wx.MessageBox, str(e), _("Post Error"), wx.OK | wx.ICON_ERROR, dialog_instance)
+                if not dialog_instance.IsBeingDeleted(): wx.CallAfter(dialog_instance.send_btn.Enable, True)
+            except Exception as e:
+                logger.error(f"Unexpected error sending post via dialog: {e}", exc_info=True)
+                output.speak(_("An unexpected error occurred: {error}").format(error=str(e)), True)
+                wx.CallAfter(wx.MessageBox, str(e), _("Error"), wx.OK | wx.ICON_ERROR, dialog_instance)
+                if not dialog_instance.IsBeingDeleted(): wx.CallAfter(dialog_instance.send_btn.Enable, True)
+            finally:
+                if not dialog_instance.IsBeingDeleted(): wx.CallAfter(wx.EndBusyCursor)
+
+        asyncio.create_task(do_send_post())
+
+
     def post_reply(self, *args, **kwargs):
         buffer = self.get_current_buffer()
         if hasattr(buffer, "reply"):
             return buffer.reply()
 
+
     def send_dm(self, *args, **kwargs):
         buffer = self.get_current_buffer()
+        if buffer is None:
+            output.speak(_("No buffer selected."), True)
+            return
         if hasattr(buffer, "send_message"):
             buffer.send_message()
+        else:
+            output.speak(_("Cannot send messages from this buffer."), True)
 
     def post_retweet(self, *args, **kwargs):
         buffer = self.get_current_buffer()
         if hasattr(buffer, "share_item"):
             return buffer.share_item()
+        session = getattr(buffer, "session", None)
+        if not session:
+            return
+        if getattr(session, "type", "") == "blueski":
+            item_uri = None
+            if hasattr(buffer, "get_selected_item_id"):
+                item_uri = buffer.get_selected_item_id()
+            if not item_uri:
+                output.speak(_("No item selected."), True)
+                return
+
+            if self.showing == False:
+                dlg = wx.TextEntryDialog(None, _("Write your quote (optional):"), _("Quote"))
+                if dlg.ShowModal() == wx.ID_OK:
+                    text = dlg.GetValue().strip()
+                    dlg.Destroy()
+                    try:
+                        if text:
+                            uri = session.send_message(text, quote_uri=item_uri)
+                            if uri:
+                                output.speak(_("Quote posted."), True)
+                            else:
+                                output.speak(_("Failed to send quote."), True)
+                        else:
+                            # Confirm repost (share) depending on preference (boost_mode)
+                            ask = True
+                            try:
+                                ask = session.settings["general"].get("boost_mode", "ask") == "ask"
+                            except Exception:
+                                ask = True
+                            if ask:
+                                confirm = wx.MessageDialog(None, _("Would you like to share this post?"), _("Boost"), wx.YES_NO|wx.ICON_QUESTION)
+                                if confirm.ShowModal() != wx.ID_YES:
+                                    confirm.Destroy()
+                                    return
+                                confirm.Destroy()
+                            r_uri = session.repost(item_uri)
+                            if r_uri:
+                                output.speak(_("Post shared."), True)
+                            else:
+                                output.speak(_("Failed to share post."), True)
+                    except Exception:
+                        log.exception("Error sharing/quoting Bluesky post (invisible)")
+                        output.speak(_("An error occurred while sharing the post."), True)
+                else:
+                    dlg.Destroy()
+                return
+
+            from wxUI.dialogs.blueski.postDialogs import Post as ATPostDialog
+            dlg = ATPostDialog(caption=_("Quote post"))
+            if dlg.ShowModal() == wx.ID_OK:
+                text, files, cw_text, langs = dlg.get_payload()
+                dlg.Destroy()
+                try:
+                    if text or files or cw_text:
+                        uri = session.send_message(text, files=files, cw_text=cw_text, is_sensitive=bool(cw_text), languages=langs, quote_uri=item_uri)
+                        if uri:
+                            output.speak(_("Quote posted."), True)
+                            try:
+                                if hasattr(buffer, "start_stream"):
+                                    buffer.start_stream(mandatory=False, play_sound=False)
+                            except Exception:
+                                pass
+                        else:
+                            output.speak(_("Failed to send quote."), True)
+                    else:
+                        # Confirm repost without comment depending on preference
+                        ask = True
+                        try:
+                            ask = session.settings["general"].get("boost_mode", "ask") == "ask"
+                        except Exception:
+                            ask = True
+                        if ask:
+                            confirm = wx.MessageDialog(self.view, _("Would you like to share this post?"), _("Boost"), wx.YES_NO|wx.ICON_QUESTION)
+                            if confirm.ShowModal() != wx.ID_YES:
+                                confirm.Destroy()
+                                return
+                            confirm.Destroy()
+                        r_uri = session.repost(item_uri)
+                        if r_uri:
+                            output.speak(_("Post shared."), True)
+                        else:
+                            output.speak(_("Failed to share post."), True)
+                except Exception:
+                    log.exception("Error sharing/quoting Bluesky post (dialog)")
+                    output.speak(_("An error occurred while sharing the post."), True)
+            else:
+                dlg.Destroy()
+            return
 
     def add_to_favourites(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "add_to_favorites"):
+        if hasattr(buffer, "add_to_favorites"): # Generic buffer method
             return buffer.add_to_favorites()
+        elif hasattr(buffer, "toggle_favorite"):
+            return buffer.toggle_favorite()
+        elif buffer.session and buffer.session.KIND == "blueski":
+             # Fallback if buffer doesn't have the method but session is blueski (e.g. ChatBuffer)
+             # Chat messages can't be liked yet in this implementation, or handled by specific buffer
+             output.speak(_("This item cannot be liked."), True)
+             return
+
 
     def remove_from_favourites(self, *args, **kwargs):
         buffer = self.get_current_buffer()
-        if hasattr(buffer, "remove_from_favorites"):
+        if hasattr(buffer, "remove_from_favorites"): # Generic buffer method
             return buffer.remove_from_favorites()
+        elif buffer.session and buffer.session.KIND == "blueski":
+            item_uri = buffer.get_selected_item_id()
+            if not item_uri:
+                output.speak(_("No item selected to unlike."), True)
+                return
+
+            like_uri = None
+            # Check viewer state from message_cache first, then panel's internal viewer_states
+            if buffer.session and hasattr(buffer.session, "message_cache") and item_uri in buffer.session.message_cache:
+                cached_post = buffer.session.message_cache[item_uri]
+                if isinstance(cached_post, dict) and isinstance(cached_post.get("viewer"), dict):
+                    like_uri = cached_post["viewer"].get("like")
+                elif hasattr(cached_post, "viewer") and cached_post.viewer: # SDK model
+                    like_uri = cached_post.viewer.like
+
+            if not like_uri and hasattr(buffer, "get_item_viewer_state"): # Fallback to panel's state if any
+                like_uri = buffer.get_item_viewer_state(item_uri, "like_uri")
+
+            if not like_uri:
+                output.speak(_("Could not find the original like record for this post, or it's already unliked."), True)
+                logger.warning(f"Attempted to unlike post {item_uri} but its like_uri was not found.")
+                return
+
+            social_handler = self.get_handler(buffer.session.KIND)
+            async def _unlike():
+                result = await social_handler.unlike_item(buffer.session, like_uri)
+                wx.CallAfter(output.speak, result["message"], True)
+                if result.get("status") == "success":
+                    if hasattr(buffer, "store_item_viewer_state"):
+                        wx.CallAfter(buffer.store_item_viewer_state, item_uri, "like_uri", None)
+                    # Also update the item in message_cache
+                    if buffer.session and hasattr(buffer.session, "message_cache") and item_uri in buffer.session.message_cache:
+                        cached_post = buffer.session.message_cache[item_uri]
+                        if isinstance(cached_post, dict) and isinstance(cached_post.get("viewer"), dict):
+                             cached_post["viewer"]["like"] = None
+                        elif hasattr(cached_post, "viewer") and cached_post.viewer:
+                             cached_post.viewer.like = None
+            asyncio.create_task(_unlike())
+
 
     def toggle_like(self, *args, **kwargs):
         buffer = self.get_current_buffer()
@@ -621,6 +952,8 @@ class Controller(object):
 
     def buffer_changed(self, *args, **kwargs):
         buffer = self.get_current_buffer()
+        if buffer is None:
+            return
         old_account = self.current_account
         new_account = buffer.account
         if new_account != old_account:
@@ -641,17 +974,80 @@ class Controller(object):
         self.view.check_menuitem("autoread", autoread)
 
     def update_menus(self, handler):
+        # Initialize storage for hidden menu items if not present
+        if not hasattr(self, "_hidden_menu_items"):
+            self._hidden_menu_items = {}
+        if not hasattr(self, "_original_menu_labels"):
+            self._original_menu_labels = {}
+
         if hasattr(handler, "menus"):
             for m in list(handler.menus.keys()):
                 if hasattr(self.view, m):
                     menu_item = getattr(self.view, m)
-                    if handler.menus[m] == None:
+                    # Store original label on first encounter
+                    if m not in self._original_menu_labels:
+                        self._original_menu_labels[m] = menu_item.GetItemLabel()
+
+                    if handler.menus[m] == "HIDE":
+                        # Actually hide the menu item by removing it from parent menu
+                        if m not in self._hidden_menu_items:
+                            try:
+                                parent_menu = menu_item.GetMenu()
+                                if parent_menu:
+                                    # Store menu item info for restoration
+                                    position = self._find_menu_item_position(parent_menu, menu_item)
+                                    item_id = menu_item.GetId()
+                                    # Remove returns the removed item - store that reference
+                                    removed_item = parent_menu.Remove(item_id)
+                                    if removed_item:
+                                        self._hidden_menu_items[m] = {
+                                            "menu": parent_menu,
+                                            "item": removed_item,
+                                            "position": position
+                                        }
+                            except Exception as e:
+                                log.error(f"Error hiding menu item {m}: {e}")
+                    elif handler.menus[m] == None:
+                        # Restore if hidden, then disable
+                        self._restore_menu_item(m)
                         menu_item.Enable(False)
                     else:
+                        # Restore if hidden, then enable with new label
+                        self._restore_menu_item(m)
                         menu_item.Enable(True)
                         menu_item.SetItemLabel(handler.menus[m])
         if hasattr(handler, "item_menu"):
             self.view.menubar.SetMenuLabel(1, handler.item_menu)
+
+    def _find_menu_item_position(self, menu, item):
+        """Find the position of a menu item within its parent menu."""
+        for i, menu_item in enumerate(menu.GetMenuItems()):
+            if menu_item.GetId() == item.GetId():
+                return i
+        return -1
+
+    def _restore_menu_item(self, name):
+        """Restore a previously hidden menu item."""
+        if not hasattr(self, "_hidden_menu_items"):
+            return
+        if name not in self._hidden_menu_items:
+            return
+        info = self._hidden_menu_items[name]
+        parent_menu = info["menu"]
+        item = info["item"]
+        position = info["position"]
+        try:
+            # Re-insert at original position
+            if position >= 0 and position < parent_menu.GetMenuItemCount():
+                parent_menu.Insert(position, item)
+            else:
+                parent_menu.Append(item)
+            # Restore original label if available
+            if hasattr(self, "_original_menu_labels") and name in self._original_menu_labels:
+                item.SetItemLabel(self._original_menu_labels[name])
+        except Exception as e:
+            log.error(f"Error restoring menu item {name}: {e}")
+        del self._hidden_menu_items[name]
 
     def fix_wrong_buffer(self):
         buf = self.get_best_buffer()
@@ -741,6 +1137,9 @@ class Controller(object):
         output.speak(msg, True)
 
     def next_account(self, *args, **kwargs):
+        if not self.accounts:
+            output.speak(_("No accounts available."), True)
+            return
         try:
             index = self.accounts.index(self.current_account)
         except ValueError:
@@ -753,11 +1152,11 @@ class Controller(object):
         self.current_account = account
         buffer_object = self.get_first_buffer(account)
         if buffer_object == None:
-            output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
+            output.speak(_(u"{0}: This account is not logged in.").format(account), True)
             return
         buff = self.view.search(buffer_object.name, account)
         if buff == None:
-            output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
+            output.speak(_(u"{0}: This account is not logged in.").format(account), True)
             return
         self.view.change_buffer(buff)
         buffer = self.get_current_buffer()
@@ -769,6 +1168,9 @@ class Controller(object):
         output.speak(msg, True)
 
     def previous_account(self, *args, **kwargs):
+        if not self.accounts:
+            output.speak(_("No accounts available."), True)
+            return
         try:
             index = self.accounts.index(self.current_account)
         except ValueError:
@@ -781,11 +1183,11 @@ class Controller(object):
         self.current_account = account
         buffer_object = self.get_first_buffer(account)
         if buffer_object == None:
-            output.speak(_(u"{0}: This account is not logged into Twitter.").format(account), True)
+            output.speak(_(u"{0}: This account is not logged in.").format(account), True)
             return
         buff = self.view.search(buffer_object.name, account)
         if buff == None:
-            output.speak(_(u"{0}: This account is not logged into twitter.").format(account), True)
+            output.speak(_(u"{0}: This account is not logged in.").format(account), True)
             return
         self.view.change_buffer(buff)
         buffer = self.get_current_buffer()
@@ -1031,14 +1433,125 @@ class Controller(object):
                     log.exception("Error %s starting buffer %s on account %s, with args %r and kwargs %r." % (str(err), i.name, i.account, i.args, i.kwargs))
 
     def update_buffer(self, *args, **kwargs):
-        bf = self.get_current_buffer()
-        if not hasattr(bf, "start_stream"):
-            output.speak(_(u"Unable to update this buffer."))
+        """Handles the 'Update buffer' menu command to fetch newest items."""
+        bf = self.get_current_buffer() # bf is the buffer panel instance
+        if not bf or not hasattr(bf, "session") or not bf.session:
+            output.speak(_(u"No active session for this buffer."), True)
             return
-        output.speak(_(u"Updating buffer..."))
-        n = bf.start_stream(mandatory=True, avoid_autoreading=True)
-        if n != None:
-            output.speak(_(u"{0} items retrieved").format(n,))
+
+        output.speak(_(u"Updating buffer..."), True)
+        session = bf.session
+
+        output.speak(_(u"Updating buffer..."), True)
+        session = bf.session
+
+        import threading
+        is_blueski = (getattr(session, "KIND", None) == "blueski" or getattr(session, "type", None) == "blueski")
+
+        def do_update_sync():
+            new_ids = []
+            try:
+                if is_blueski:
+                    if hasattr(bf, "start_stream"):
+                        count = bf.start_stream(mandatory=True)
+                        if count: new_ids = [str(x) for x in range(count)]
+                    else:
+                        wx.CallAfter(output.speak, _(u"This buffer type cannot be updated."), True)
+                        return
+                else: # Generic fallback for other sessions
+                     # If they are async, this might be tricky in a thread without a loop
+                     # But most old sessions in TWBlue are sync (using threads)
+                    if hasattr(bf, "start_stream"):
+                        count = bf.start_stream(mandatory=True, avoid_autoreading=True)
+                        if count: new_ids = [str(x) for x in range(count)]
+                    else:
+                        wx.CallAfter(output.speak, _(u"Unable to update this buffer."), True)
+                        return
+
+                # Generic feedback
+                if bf.type in ["home_timeline", "user_timeline", "notifications", "mentions"]:
+                    wx.CallAfter(output.speak, _("{0} new items.").format(len(new_ids)), True)
+                
+            except Exception as e:
+                log.exception("Error updating buffer %s", bf.name)
+                wx.CallAfter(output.speak, _("An error occurred while updating the buffer."), True)
+        
+        if is_blueski:
+             threading.Thread(target=do_update_sync).start()
+        else:
+             # Original async logic for others if needed, but likely they are sync too. 
+             # Assuming TWBlue architecture is mostly thread-based for legacy sessions.
+             # If we have an async loop running, we could use it for async-capable sessions.
+             # For safety, let's use the thread approach generally if we are not sure about the loop state.
+             threading.Thread(target=do_update_sync).start()
+
+
+    def get_more_items(self, *args, **kwargs):
+        """Handles 'Load previous items' menu command."""
+        bf = self.get_current_buffer() # bf is the buffer panel instance
+        if not bf or not hasattr(bf, "session") or not bf.session:
+            output.speak(_(u"No active session for this buffer."), True)
+            return
+
+        session = bf.session
+        # The buffer panel (bf) needs to store its own cursor for pagination of older items
+        # e.g., bf.pagination_cursor or bf.older_items_cursor
+        # This cursor should be set by the result of previous fetch_..._timeline(new_only=False) calls.
+
+        # For Blueski, session methods like fetch_home_timeline store their own cursor (e.g., session.home_timeline_cursor)
+        # The panel (bf) itself should manage its own cursor for "load more"
+
+        current_cursor = None
+        can_load_more_natively = False
+
+        if getattr(session, "KIND", None) == "blueski":
+            if hasattr(bf, "load_more_posts"): # For BlueskiUserTimelinePanel & BlueskiHomeTimelinePanel
+                can_load_more_natively = True
+            if hasattr(bf, "load_more_posts"):
+                can_load_more_natively = True
+            elif hasattr(bf, "load_more_users"):
+                can_load_more_natively = True
+            elif bf.type == "notifications" and hasattr(bf, "load_more_notifications"): # Check for specific load_more
+                 can_load_more_natively = True
+            elif bf.type == "notifications" and hasattr(bf, "refresh_notifications"): # Fallback for notifications to refresh
+                 # If load_more_notifications doesn't exist, 'Load More' will just refresh.
+                 can_load_more_natively = True # It will call refresh_notifications via the final 'else'
+            else:
+                if hasattr(bf, "get_more_items"):
+                    return bf.get_more_items()
+                else:
+                    output.speak(_(u"This buffer does not support loading more items in this way."), True)
+                    return
+        else: # For other non-Blueski session types
+            if hasattr(bf, "get_more_items"):
+                return bf.get_more_items()
+            else:
+                output.speak(_(u"This buffer does not support loading more items."), True)
+                return
+
+        output.speak(_(u"Loading more items..."), True)
+
+        async def do_load_more():
+            try:
+                if session.KIND == "blueski":
+                    if hasattr(bf, "load_more_posts"):
+                        await bf.load_more_posts(limit=config.app["app-settings"].get("items_per_request", 20))
+                    elif hasattr(bf, "load_more_users"):
+                        await bf.load_more_users(limit=config.app["app-settings"].get("items_per_request", 30))
+                    elif bf.type == "notifications" and hasattr(bf, "refresh_notifications"):
+                        # This will re-fetch recent, not older. A true "load_more_notifications(cursor=...)" is needed for that.
+                        wx.CallAfter(output.speak, _("Refreshing notifications..."), True)
+                        await bf.refresh_notifications(limit=config.app["app-settings"].get("items_per_request", 20))
+                    # Feedback is handled by panel methods for consistency
+
+            except NotificationError as e:
+                wx.CallAfter(output.speak, str(e), True)
+            except Exception as e_general:
+                logger.error(f"Error loading more items for buffer {bf.name}: {e_general}", exc_info=True)
+                output.speak(_("An error occurred while loading more items."), True)
+
+        wx.CallAfter(asyncio.create_task, do_load_more())
+
 
     def buffer_title_changed(self, buffer):
         if buffer.name.endswith("-timeline"):
@@ -1105,6 +1618,33 @@ class Controller(object):
 #            if "direct_messages" not in buffer.session.settings["other_buffers"]["muted_buffers"]:
 #                self.notify(buffer.session, sound_to_play)
 
+    def blueski_new_item(self, item, session_name, _buffers):
+        """Handle new items from Bluesky polling."""
+        sound_to_play = None
+        for buff in _buffers:
+            buffer = self.search_buffer(buff, session_name)
+            if buffer is None or buffer.session.get_name() != session_name:
+                continue
+            if hasattr(buffer, "add_new_item"):
+                buffer.add_new_item(item)
+            # Determine sound to play
+            if buff == "notifications":
+                sound_to_play = "notification_received.ogg"
+            elif buff == "home_timeline":
+                sound_to_play = "tweet_received.ogg"
+            elif "timeline" in buff:
+                sound_to_play = "tweet_timeline.ogg"
+            else:
+                sound_to_play = None
+            # Play sound if buffer is not muted
+            if sound_to_play is not None:
+                try:
+                    muted = buffer.session.settings["other_buffers"].get("muted_buffers", [])
+                    if buff not in muted:
+                        self.notify(buffer.session, sound_to_play)
+                except Exception:
+                    pass
+
     def mastodon_error_post(self, name, reply_to, visibility, posts, language):
         home = self.search_buffer("home_timeline", name)
         if home != None:
@@ -1131,21 +1671,57 @@ class Controller(object):
     def user_details(self, *args):
         """Displays a user's profile."""
         log.debug("Showing user profile...")
-        buffer = self.get_best_buffer()
+        buffer = self.get_current_buffer() # Use current buffer to get context if item is selected
+        if not buffer or not buffer.session:
+            buffer = self.get_best_buffer() # Fallback if current buffer has no session
+
+        if not buffer or not buffer.session:
+            output.speak(_("No active session to view user details."), True)
+            return
+
         handler = self.get_handler(type=buffer.session.type)
         if handler and hasattr(handler, 'user_details'):
-            handler.user_details(buffer)
+            # The handler's user_details method is responsible for extracting context
+            # (e.g., selected user) from the buffer and displaying the profile.
+            # For Blueski, handler.user_details calls the ShowUserProfileDialog.
+            result = handler.user_details(buffer)
+            if asyncio.iscoroutine(result):
+                call_threaded(asyncio.run, result)
+        else:
+            output.speak(_("This session type does not support viewing user details in this way."), True)
 
-    def openPostTimeline(self, *args, user=None):
-        """Opens selected user's posts timeline
-        Parameters:
-        args: Other argument. Useful when binding to widgets.
-        user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler
-        """
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler and hasattr(handler, 'openPostTimeline'):
-            handler.openPostTimeline(self, buffer, user)
+
+    def openPostTimeline(self, *args, user=None): # "user" here is often the user object from selected item
+        """Opens selected user's posts timeline. Renamed to open_user_timeline in handlers for clarity."""
+        current_buffer = self.get_current_buffer()
+        if not current_buffer or not current_buffer.session:
+            current_buffer = self.get_best_buffer()
+
+        if not current_buffer or not current_buffer.session:
+            output.speak(_("No active session available."), True)
+            return
+
+        session_to_use = current_buffer.session
+        handler = self.get_handler(type=session_to_use.type)
+
+        # Prefer the new standardized 'open_user_timeline'
+        if hasattr(handler, 'open_user_timeline'):
+            user_payload = user # Use passed 'user' if available
+            if user_payload is None and hasattr(current_buffer, 'get_selected_item_author_details'):
+                 author_details = current_buffer.get_selected_item_author_details()
+                 if author_details:
+                     user_payload = author_details
+
+            result = handler.open_user_timeline(main_controller=self, session=session_to_use, user_payload=user_payload)
+            if asyncio.iscoroutine(result):
+                call_threaded(asyncio.run, result)
+
+        elif hasattr(handler, 'openPostTimeline'): # Fallback for older handler structure
+            # This path might not correctly pass main_controller if the old handler expects it differently
+            handler.openPostTimeline(self, current_buffer, user)
+        else:
+            output.speak(_("This session type does not support opening user timelines directly."), True)
+
 
     def openFollowersTimeline(self, *args, user=None):
         """Opens selected user's followers timeline
@@ -1153,10 +1729,30 @@ class Controller(object):
         args: Other argument. Useful when binding to widgets.
         user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler
         """
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler and hasattr(handler, 'openFollowersTimeline'):
-            handler.openFollowersTimeline(self, buffer, user)
+        current_buffer = self.get_current_buffer()
+        if not current_buffer or not current_buffer.session:
+            current_buffer = self.get_best_buffer()
+
+        if not current_buffer or not current_buffer.session:
+            output.speak(_("No active session available."), True)
+            return
+
+        session_to_use = current_buffer.session
+        handler = self.get_handler(type=session_to_use.type)
+
+        if user is None and hasattr(current_buffer, 'get_selected_item_author_details'):
+            author_details = current_buffer.get_selected_item_author_details()
+            if author_details: user = author_details
+
+        if handler and hasattr(handler, 'open_followers_timeline'):
+            result = handler.open_followers_timeline(main_controller=self, session=session_to_use, user_payload=user)
+            if asyncio.iscoroutine(result):
+                call_threaded(asyncio.run, result)
+        elif handler and hasattr(handler, 'openFollowersTimeline'): # Fallback
+            handler.openFollowersTimeline(self, current_buffer, user)
+        else:
+            output.speak(_("This session type does not support opening followers list."), True)
+
 
     def openFollowingTimeline(self, *args, user=None):
         """Opens selected user's  following timeline
@@ -1164,12 +1760,32 @@ class Controller(object):
         args: Other argument. Useful when binding to widgets.
         user: if specified, open this user timeline. It is currently mandatory, but could be optional when user selection is implemented in handler
         """
-        buffer = self.get_best_buffer()
-        handler = self.get_handler(type=buffer.session.type)
-        if handler and hasattr(handler, 'openFollowingTimeline'):
-            handler.openFollowingTimeline(self, buffer, user)
+        current_buffer = self.get_current_buffer()
+        if not current_buffer or not current_buffer.session:
+            current_buffer = self.get_best_buffer()
 
-    def community_timeline(self, *args, user=None):
+        if not current_buffer or not current_buffer.session:
+            output.speak(_("No active session available."), True)
+            return
+
+        session_to_use = current_buffer.session
+        handler = self.get_handler(type=session_to_use.type)
+
+        if user is None and hasattr(current_buffer, 'get_selected_item_author_details'):
+            author_details = current_buffer.get_selected_item_author_details()
+            if author_details: user = author_details
+
+        if handler and hasattr(handler, 'open_following_timeline'):
+            result = handler.open_following_timeline(main_controller=self, session=session_to_use, user_payload=user)
+            if asyncio.iscoroutine(result):
+                call_threaded(asyncio.run, result)
+        elif handler and hasattr(handler, 'openFollowingTimeline'): # Fallback
+            handler.openFollowingTimeline(self, current_buffer, user)
+        else:
+            output.speak(_("This session type does not support opening following list."), True)
+
+
+    def community_timeline(self, *args, user=None): # user param seems unused here based on mastodon impl
         buffer = self.get_best_buffer()
         handler = self.get_handler(type=buffer.session.type)
         if handler and hasattr(handler, 'community_timeline'):

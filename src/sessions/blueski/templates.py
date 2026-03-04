@@ -1,0 +1,307 @@
+# -*- coding: utf-8 -*-
+import arrow
+import languageHandler
+from string import Template
+from sessions.blueski import utils
+
+
+post_variables = [
+    "date",
+    "display_name",
+    "screen_name",
+    "reply_to",
+    "source",
+    "lang",
+    "safe_text",
+    "text",
+    "image_descriptions",
+    "visibility",
+    "pinned",
+]
+person_variables = [
+    "display_name",
+    "screen_name",
+    "description",
+    "followers",
+    "following",
+    "favorites",
+    "posts",
+    "created_at",
+]
+notification_variables = ["display_name", "screen_name", "text", "date"]
+
+
+def _g(obj, key, default=None):
+    if isinstance(obj, dict):
+        return obj.get(key, default)
+    return getattr(obj, key, default)
+
+
+def _extract_labels(obj):
+    labels = _g(obj, "labels", None)
+    if labels is None:
+        return []
+    if isinstance(labels, dict):
+        return labels.get("values", []) or []
+    if isinstance(labels, list):
+        return labels
+    return []
+
+
+def _extract_cw_text(post, record):
+    labels = _extract_labels(post) + _extract_labels(record)
+    for label in labels:
+        val = _g(label, "val", "")
+        if val == "warn":
+            return _("Sensitive Content")
+        if isinstance(val, str) and val.startswith("warn:"):
+            return val.split("warn:", 1)[-1].strip()
+    return ""
+
+
+def _extract_image_descriptions(post, record):
+    def collect_images(embed):
+        if not embed:
+            return []
+        etype = _g(embed, "$type") or _g(embed, "py_type") or ""
+        if "recordWithMedia" in etype:
+            media = _g(embed, "media")
+            mtype = _g(media, "$type") or _g(media, "py_type") or ""
+            if "images" in mtype:
+                return list(_g(media, "images", []) or [])
+            return []
+        if "images" in etype:
+            return list(_g(embed, "images", []) or [])
+        return []
+
+    images = []
+    images.extend(collect_images(_g(post, "embed")))
+    if not images:
+        images.extend(collect_images(_g(record, "embed")))
+
+    descriptions = []
+    for idx, img in enumerate(images, start=1):
+        alt = _g(img, "alt", "") or ""
+        if alt:
+            descriptions.append(_("Media description {index}: {alt}").format(index=idx, alt=alt))
+    return "\n".join(descriptions)
+
+
+def process_date(field, relative_times=True, offset_hours=0):
+    original_date = arrow.get(field)
+    if relative_times:
+        return original_date.humanize(locale=languageHandler.curLang[:2])
+    return original_date.shift(hours=offset_hours).format(_("dddd, MMMM D, YYYY H:m:s"), locale=languageHandler.curLang[:2])
+
+
+def _extract_link_info(post, record):
+    """Extract link information from post embeds and facets."""
+    embed = _g(post, "embed")
+    if not embed:
+        return None
+
+    etype = _g(embed, "$type") or _g(embed, "py_type") or ""
+
+    # Direct external embed
+    if "external" in etype.lower():
+        ext = _g(embed, "external", {})
+        title = _g(ext, "title", "")
+        if title:
+            return title
+
+    # RecordWithMedia with external
+    if "recordWithMedia" in etype:
+        media = _g(embed, "media", {})
+        mtype = _g(media, "$type") or _g(media, "py_type") or ""
+        if "external" in mtype.lower():
+            ext = _g(media, "external", {})
+            title = _g(ext, "title", "")
+            if title:
+                return title
+
+    return None
+
+
+def render_post(post, template, settings, relative_times=False, offset_hours=0):
+    actual_post = _g(post, "post", post)
+    record = _g(actual_post, "record") or _g(post, "record") or {}
+    author = _g(actual_post, "author") or _g(post, "author") or {}
+
+    reason = _g(post, "reason")
+    is_repost = False
+    reposter = None
+    if reason:
+        rtype = _g(reason, "$type") or _g(reason, "py_type") or ""
+        if "reasonRepost" in rtype:
+            is_repost = True
+            reposter = _g(reason, "by")
+
+    if is_repost and reposter:
+        display_name = _g(reposter, "displayName") or _g(reposter, "display_name") or _g(reposter, "handle", "")
+        screen_name = _g(reposter, "handle", "")
+    else:
+        display_name = _g(author, "displayName") or _g(author, "display_name") or _g(author, "handle", "")
+        screen_name = _g(author, "handle", "")
+
+    text = _g(record, "text", "") or ""
+    if is_repost:
+        original_handle = _g(author, "handle", "")
+        text = _("Reposted from @{handle}: {text}").format(handle=original_handle, text=text)
+
+    quote_info = utils.extract_quoted_post_info(post)
+    if quote_info:
+        if quote_info["kind"] == "not_found":
+            text += f" [{_('Quoted post not found')}]"
+        elif quote_info["kind"] == "blocked":
+            text += f" [{_('Quoted post blocked')}]"
+        elif quote_info["kind"] == "feed":
+            text += f" [{_('Quoting Feed')}: {quote_info.get('feed_name', 'Feed')}]"
+        else:
+            q_handle = quote_info.get("handle", "unknown")
+            q_text = quote_info.get("text", "")
+            if q_text:
+                text += " " + _("Quoting @{handle}: {text}").format(handle=q_handle, text=q_text)
+            else:
+                text += " " + _("Quoting @{handle}").format(handle=q_handle)
+
+    # Add link indicator for external embeds
+    link_title = _extract_link_info(actual_post, record)
+    if link_title:
+        text += f" [{_('Link')}: {link_title}]"
+
+    reply_to_handle = utils.extract_reply_to_handle(post)
+    reply_to = ""
+    if reply_to_handle:
+        reply_to = _("Replying to @{handle}. ").format(handle=reply_to_handle)
+
+    cw_text = _extract_cw_text(actual_post, record)
+    safe_text = text
+    if cw_text:
+        # Include link info in safe_text even with content warning
+        if link_title:
+            safe_text = _("Content warning: {cw}").format(cw=cw_text) + f" [{_('Link')}: {link_title}]"
+        else:
+            safe_text = _("Content warning: {cw}").format(cw=cw_text)
+
+    # Backward compatibility: older user templates may not include $reply_to.
+    # In that case, prepend the reply marker directly so users still get context.
+    if reply_to and "$reply_to" not in template:
+        text = reply_to + text
+        safe_text = reply_to + safe_text
+        reply_to = ""
+
+    created_at = _g(record, "createdAt") or _g(record, "created_at")
+    indexed_at = _g(actual_post, "indexedAt") or _g(actual_post, "indexed_at")
+    date_field = created_at or indexed_at
+    date = process_date(date_field, relative_times, offset_hours) if date_field else ""
+
+    langs = _g(record, "langs") or _g(record, "languages") or []
+    lang = langs[0] if isinstance(langs, list) and langs else ""
+
+    image_descriptions = _extract_image_descriptions(actual_post, record)
+
+    available_data = dict(
+        date=date,
+        display_name=display_name,
+        screen_name=screen_name,
+        reply_to=reply_to,
+        source="Bluesky",
+        lang=lang,
+        safe_text=safe_text,
+        text=text,
+        image_descriptions=image_descriptions,
+        visibility=_("Public"),
+        pinned="",
+    )
+    return Template(_(template)).safe_substitute(**available_data)
+
+
+def render_user(user, template, settings, relative_times=True, offset_hours=0):
+    # Resolve nested profile structure (subject, actor, profile, user)
+    def resolve_profile(obj):
+        if _g(obj, "handle") or _g(obj, "did"):
+            return obj
+        for key in ("subject", "actor", "profile", "user"):
+            nested = _g(obj, key)
+            if nested and (_g(nested, "handle") or _g(nested, "did")):
+                return nested
+        return obj
+
+    profile = resolve_profile(user)
+    display_name = _g(profile, "displayName") or _g(profile, "display_name") or _g(profile, "handle", "")
+    screen_name = _g(profile, "handle", "")
+    description = _g(profile, "description", "") or ""
+    followers = _g(profile, "followersCount") or _g(profile, "followers_count") or 0
+    following = _g(profile, "followsCount") or _g(profile, "follows_count") or 0
+    posts = _g(profile, "postsCount") or _g(profile, "posts_count") or 0
+    created_at = _g(profile, "createdAt") or _g(profile, "created_at")
+    created = ""
+    if created_at:
+        created = process_date(created_at, relative_times, offset_hours)
+
+    available_data = dict(
+        display_name=display_name,
+        screen_name=screen_name,
+        description=description,
+        followers=followers,
+        following=following,
+        favorites="",
+        posts=posts,
+        created_at=created,
+    )
+    return Template(_(template)).safe_substitute(**available_data)
+
+
+def render_notification(notification, template, post_template, settings, relative_times=False, offset_hours=0):
+    author = _g(notification, "author") or {}
+    display_name = _g(author, "displayName") or _g(author, "display_name") or _g(author, "handle", "")
+    screen_name = _g(author, "handle", "")
+    reason = _g(notification, "reason", "unknown")
+    record = _g(notification, "record") or {}
+
+    # Get post text - try multiple locations depending on notification type
+    post_text = _g(record, "text", "") or ""
+
+    # For likes and reposts: try to get the subject post text
+    if not post_text and reason in ("like", "repost"):
+        # First check for hydrated subject text (added by NotificationBuffer)
+        post_text = _g(notification, "_subject_text", "") or ""
+
+        # Check if there's a reasonSubject with embedded post data
+        if not post_text:
+            reason_subject = _g(notification, "reasonSubject") or _g(notification, "reason_subject")
+            if reason_subject:
+                subject_record = _g(reason_subject, "record", {})
+                post_text = _g(subject_record, "text", "") or ""
+
+        # Check subject in record
+        if not post_text:
+            subject = _g(record, "subject", {})
+            post_text = _g(subject, "text", "") or ""
+
+    # Format: action text without username (username is already in display_name for template)
+    if reason == "like":
+        text = _("has added to favorites: {status}").format(status=post_text) if post_text else _("has added to favorites")
+    elif reason == "repost":
+        text = _("has reposted: {status}").format(status=post_text) if post_text else _("has reposted")
+    elif reason == "follow":
+        text = _("has followed you.")
+    elif reason == "mention":
+        text = _("has mentioned you: {status}").format(status=post_text) if post_text else _("has mentioned you")
+    elif reason == "reply":
+        text = _("has replied: {status}").format(status=post_text) if post_text else _("has replied")
+    elif reason == "quote":
+        text = _("has quoted your post: {status}").format(status=post_text) if post_text else _("has quoted your post")
+    else:
+        text = reason
+
+    indexed_at = _g(notification, "indexedAt") or _g(notification, "indexed_at")
+    date = process_date(indexed_at, relative_times, offset_hours) if indexed_at else ""
+
+    available_data = dict(
+        display_name=display_name,
+        screen_name=screen_name,
+        text=text,
+        date=date,
+    )
+    return Template(_(template)).safe_substitute(**available_data)

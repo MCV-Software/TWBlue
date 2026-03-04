@@ -71,6 +71,50 @@ Now that you have installed all these packages, you can run TW Blue from source 
 
 	If necessary, change the first part of the command to reflect the location of your python executable.
 
+### Development bootstrap (Windows / PowerShell)
+
+If you are starting fresh in this repository, run:
+
+```powershell
+./scripts/bootstrap-dev.ps1
+```
+
+This script initializes submodules, creates `.venv` (unless you opt out), and installs dependencies.
+
+Useful options:
+
+```powershell
+# Recreate virtual environment from scratch
+./scripts/bootstrap-dev.ps1 -RecreateVenv
+
+# Upgrade pip tooling before installing requirements
+./scripts/bootstrap-dev.ps1 -UpgradePip
+
+# Use system Python instead of .venv
+./scripts/bootstrap-dev.ps1 -SystemPython
+```
+
+### Running tests (Windows / PowerShell)
+
+After bootstrap, run tests with:
+
+```powershell
+./scripts/run-tests.ps1
+```
+
+Useful options:
+
+```powershell
+# Run only Bluesky tests
+./scripts/run-tests.ps1 -PytestTargets src/test/sessions/blueski -PytestArgs "-q"
+
+# Run only a specific test file
+./scripts/run-tests.ps1 -PytestTargets src/test/sessions/blueski/test_blueski_quotes.py -PytestArgs "-q"
+
+# Use system Python instead of .venv
+./scripts/run-tests.ps1 -SystemPython
+```
+
 ### Generating the documentation
 
 To generate the documentation in html format, navigate to the doc folder inside this repo. After that, run these commands:  
