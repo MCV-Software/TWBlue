@@ -26,8 +26,15 @@ class UserListDialog(wx.Dialog):
         buttons_sizer.Add(self.actions_button, 0, wx.RIGHT, 10)
         self.details_button = wx.Button(panel, wx.ID_ANY, _("&View profile"))
         buttons_sizer.Add(self.details_button, 0, wx.RIGHT, 10)
+        self.load_more_button = wx.Button(panel, wx.ID_ANY, _("&Load more"))
+        self.load_more_button.Hide()
+        buttons_sizer.Add(self.load_more_button, 0, wx.RIGHT, 10)
         close_button = wx.Button(panel, wx.ID_CANCEL, "&Close")
         buttons_sizer.Add(close_button, 0)
         main_sizer.Add(buttons_sizer, 0, wx.ALIGN_CENTER | wx.BOTTOM, 15)
         panel.SetSizer(main_sizer)
 #        self.SetSizerAndFit(main_sizer)
+
+    def add_users(self, users):
+        for user in users:
+            self.user_list.Append(user)

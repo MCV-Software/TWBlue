@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(find:*)",
+      "Bash(python:*)",
+      "Bash(git checkout:*)",
+      "WebSearch",
+      "WebFetch(domain:bsky.app)",
+      "Bash(cmd /c \"dir /s /b %APPDATA%\\\\twblue\\\\*.log 2>nul\")",
+      "Bash(cmd /c \"dir /s /b %TEMP%\\\\twblue*.log 2>nul\")",
+      "Bash(cmd /c \"type C:\\\\Users\\\\Usuario\\\\Desktop\\\\repos\\\\twblue\\\\src\\\\logs\\\\debug.log | findstr /n . | findstr /r \"^[0-9]*:\" | tail -50\")",
+      "WebFetch(domain:atproto.blue)",
+      "Bash(fc:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(pip show:*)"
+    ]
+  }
+}
