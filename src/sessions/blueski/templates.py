@@ -69,9 +69,13 @@ def _extract_image_descriptions(post, record):
             mtype = _g(media, "$type") or _g(media, "py_type") or ""
             if "images" in mtype:
                 return list(_g(media, "images", []) or [])
+            if "gallery" in mtype:
+                return list(_g(media, "items", []) or [])
             return []
         if "images" in etype:
             return list(_g(embed, "images", []) or [])
+        if "gallery" in etype:
+            return list(_g(embed, "items", []) or [])
         return []
 
     images = []

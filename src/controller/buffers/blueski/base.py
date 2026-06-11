@@ -804,12 +804,12 @@ class BaseBuffer(base.Buffer):
          try:
              if self.type == "notifications":
                  template = template_settings.get("notification", "$display_name $text, $date")
-                 post_template = template_settings.get("post", "$display_name, $reply_to$safe_text $date.")
+                 post_template = template_settings.get("post", "$display_name, $reply_to$safe_text $image_descriptions $date.")
                  return templates.render_notification(item, template, post_template, self.session.settings, relative_times, offset_hours)
              if self.type in ("user", "post_user_list"):
                  template = template_settings.get("person", "$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
                  return templates.render_user(item, template, self.session.settings, relative_times, offset_hours)
-             template = template_settings.get("post", "$display_name, $reply_to$safe_text $date.")
+             template = template_settings.get("post", "$display_name, $reply_to$safe_text $image_descriptions $date.")
              return templates.render_post(item, template, self.session.settings, relative_times, offset_hours)
          except Exception:
              # Fallback to compose if any template render fails.
