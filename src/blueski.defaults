@@ -44,7 +44,7 @@ braille_reporting = boolean(default=True)
 speech_reporting = boolean(default=True)
 
 [templates]
-post = string(default="$display_name, $reply_to$safe_text $date.")
+post = string(default="$display_name, $reply_to$safe_text $image_descriptions $date.")
 person = string(default="$display_name (@$screen_name). $followers followers, $following following, $posts posts. Joined $created_at.")
 notification = string(default="$display_name $text, $date")
 

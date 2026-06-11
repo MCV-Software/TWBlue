@@ -96,6 +96,18 @@ class Session(base.baseSession):
                     self.settings.write()
                 except Exception:
                     pass
+            # Upgrade old default post templates so image descriptions are read.
+            old_post_templates = (
+                "$display_name, $safe_text $date.",
+                "$display_name, $reply_to$safe_text $date.",
+            )
+            templates_cfg = self.settings.get("templates")
+            if templates_cfg is not None and templates_cfg.get("post") in old_post_templates:
+                templates_cfg["post"] = "$display_name, $reply_to$safe_text $image_descriptions $date."
+                try:
+                    self.settings.write()
+                except Exception:
+                    pass
         except Exception:
             log.exception("Failed to migrate legacy Blueski settings")
 
