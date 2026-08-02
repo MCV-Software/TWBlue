@@ -64,3 +64,6 @@ def common_error(message):
     """Show a generic error dialog with the provided message."""
     dlg = wx.MessageDialog(None, message, _("Error"), wx.OK | wx.ICON_ERROR)
     return dlg.ShowModal()
+
+def unsupported_image():
+    return wx.MessageDialog(None, _("TWBlue was unable to load the selected image. Please make sure the file is a valid image and try again."), _("Error"), wx.ICON_ERROR).ShowModal()

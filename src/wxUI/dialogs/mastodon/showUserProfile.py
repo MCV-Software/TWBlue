@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Wx dialogs for showing a user's profile."""
 
-from io import BytesIO
 from pubsub import pub
 from typing import Tuple
 import requests
@@ -10,6 +9,7 @@ from logging import getLogger
 from threading import Thread
 
 from sessions.mastodon.utils import html_filter
+from mysc.image_utils import load_scaled_image
 
 
 log = getLogger(__name__)
@@ -229,11 +229,11 @@ class ShowUserProfile(wx.Dialog):
         """Draws images on the bitmap ui"""
     # log.debug("Drawing images...")
         # Header
-        headerImage = wx.Image(BytesIO(headerImageBytes), wx.BITMAP_TYPE_ANY)
-        headerImage.Rescale(300, 100, wx.IMAGE_QUALITY_HIGH)
-        self.headerImage.SetBitmap(headerImage.ConvertToBitmap())
+        headerImage = load_scaled_image(headerImageBytes, 300, 100)
+        if headerImage is not None:
+            self.headerImage.SetBitmap(headerImage.ConvertToBitmap())
 
         # Avatar
-        avatarImage = wx.Image(BytesIO(avatarImageBytes), wx.BITMAP_TYPE_ANY)
-        avatarImage.Rescale(150, 150, wx.IMAGE_QUALITY_HIGH)
-        self.avatarImage.SetBitmap(avatarImage.ConvertToBitmap())
+        avatarImage = load_scaled_image(avatarImageBytes, 150, 150)
+        if avatarImage is not None:
+            self.avatarImage.SetBitmap(avatarImage.ConvertToBitmap())

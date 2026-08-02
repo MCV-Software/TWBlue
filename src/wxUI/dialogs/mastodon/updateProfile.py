@@ -1,13 +1,41 @@
 # -*- coding: utf-8 -*-
 import os
-import requests
-from io import BytesIO
+from logging import getLogger
+from typing import Optional
 
+import requests
 import wx
+
+from mysc.image_utils import load_scaled_image
+from wxUI import commonMessageDialogs
+
+log = getLogger("wxUI.dialogs.mastodon.updateProfile")
+
+#: Formats accepted when the user picks a new header or avatar.
+IMAGE_WILDCARD = "Images (*.png;*.jpg;*.jpeg;*.gif;*.webp)|*.png;*.jpg;*.jpeg;*.gif;*.webp"
 
 
 def return_true():
     return True
+
+
+def download_scaled_image(url: str, width: int, height: int) -> Optional[wx.Image]:
+    """ Downloads an image and decodes it, scaled to the given size.
+
+    :param url: URL of the image to download.
+    :param width: Width, in pixels, of the resulting image.
+    :param height: Height, in pixels, of the resulting image.
+    :returns: The decoded wx.Image, or None if it could not be downloaded or decoded.
+    """
+    if not url:
+        return None
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+    except requests.exceptions.RequestException:
+        log.exception("Unable to download image from %s", url)
+        return None
+    return load_scaled_image(response.content, width, height)
 
 
 class UpdateProfileDialog(wx.Dialog):
@@ -56,16 +84,12 @@ class UpdateProfileDialog(wx.Dialog):
 
         # header
         header_label = wx.StaticText(panel, label=_("Header"))
-        try:
-            response = requests.get(self.header)
-        except requests.exceptions.RequestException:
-            # Create empty image
-            self.header_image = wx.StaticBitmap()
+        header_bitmap = download_scaled_image(self.header, 300, 100)
+        if header_bitmap is None:
+            # The image is unavailable or in a format we cannot decode, so show an empty placeholder.
+            self.header_image = wx.StaticBitmap(panel)
         else:
-            image_bytes = BytesIO(response.content)
-            image = wx.Image(image_bytes, wx.BITMAP_TYPE_ANY)
-            image.Rescale(300, 100, wx.IMAGE_QUALITY_HIGH)
-            self.header_image = wx.StaticBitmap(panel, bitmap=image.ConvertToBitmap())
+            self.header_image = wx.StaticBitmap(panel, bitmap=header_bitmap.ConvertToBitmap())
 
         self.header_image.AcceptsFocusFromKeyboard = return_true
         self.change_header = wx.Button(panel, label=_("Change &header"))
@@ -77,16 +101,12 @@ class UpdateProfileDialog(wx.Dialog):
 
         # avatar
         avatar_label = wx.StaticText(panel, label=_("Avatar"))
-        try:
-            response = requests.get(self.avatar)
-        except requests.exceptions.RequestException:
-            # Create empty image
-            self.avatar_image = wx.StaticBitmap()
+        avatar_bitmap = download_scaled_image(self.avatar, 150, 150)
+        if avatar_bitmap is None:
+            # The image is unavailable or in a format we cannot decode, so show an empty placeholder.
+            self.avatar_image = wx.StaticBitmap(panel)
         else:
-            image_bytes = BytesIO(response.content)
-            image = wx.Image(image_bytes, wx.BITMAP_TYPE_ANY)
-            image.Rescale(150, 150, wx.IMAGE_QUALITY_HIGH)
-            self.avatar_image = wx.StaticBitmap(panel, bitmap=image.ConvertToBitmap())
+            self.avatar_image = wx.StaticBitmap(panel, bitmap=avatar_bitmap.ConvertToBitmap())
 
         self.avatar_image.AcceptsFocusFromKeyboard = return_true
         self.change_avatar = wx.Button(panel, label=_("Change &avatar"))
@@ -163,8 +183,7 @@ class UpdateProfileDialog(wx.Dialog):
     def on_change_header(self, *args):
         """Display a dialog for the user to choose a picture and update the
         appropriate attribute"""
-        wildcard = "Images (*.png;*.jpg;*.gif)|*.png;*.jpg;*.gif"
-        dlg = wx.FileDialog(self, _("Select header image - max 2MB"), wildcard=wildcard)
+        dlg = wx.FileDialog(self, _("Select header image - max 2MB"), wildcard=IMAGE_WILDCARD)
         if dlg.ShowModal() == wx.CLOSE:
             return
         if os.path.getsize(dlg.GetPath()) > 2097152:
@@ -178,15 +197,15 @@ class UpdateProfileDialog(wx.Dialog):
             return self.on_change_header() if result == wx.YES else None
 
         self.header = dlg.GetPath()
-        image = wx.Image(self.header, wx.BITMAP_TYPE_ANY)
-        image.Rescale(150, 150, wx.IMAGE_QUALITY_HIGH)
+        image = load_scaled_image(self.header, 150, 150)
+        if image is None:
+            return commonMessageDialogs.unsupported_image()
         self.header_image.SetBitmap(image.ConvertToBitmap())
 
     def on_change_avatar(self, *args):
         """Display a dialog for the user to choose a picture and update the
         appropriate attribute"""
-        wildcard = "Images (*.png;*.jpg;*.gif)|*.png;*.jpg;*.gif"
-        dlg = wx.FileDialog(self, _("Select avatar image - max 2MB"), wildcard=wildcard)
+        dlg = wx.FileDialog(self, _("Select avatar image - max 2MB"), wildcard=IMAGE_WILDCARD)
         if dlg.ShowModal() == wx.CLOSE:
             return
         if os.path.getsize(dlg.GetPath()) > 2097152:
@@ -200,6 +219,7 @@ class UpdateProfileDialog(wx.Dialog):
             return self.on_change_avatar() if result == wx.YES else None
 
         self.avatar = dlg.GetPath()
-        image = wx.Image(self.avatar, wx.BITMAP_TYPE_ANY)
-        image.Rescale(150, 150, wx.IMAGE_QUALITY_HIGH)
+        image = load_scaled_image(self.avatar, 150, 150)
+        if image is None:
+            return commonMessageDialogs.unsupported_image()
         self.avatar_image.SetBitmap(image.ConvertToBitmap())
