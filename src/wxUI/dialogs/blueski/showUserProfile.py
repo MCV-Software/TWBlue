@@ -4,9 +4,10 @@ import logging
 import languageHandler
 import builtins
 import requests
-from io import BytesIO
 from threading import Thread
 from pubsub import pub
+
+from mysc.image_utils import load_scaled_image
 
 _ = getattr(builtins, "_", lambda s: s)
 
@@ -233,14 +234,14 @@ class ShowUserProfileDialog(wx.Dialog):
         """Draws downloaded images on the bitmap controls."""
         try:
             if banner_bytes:
-                banner_image = wx.Image(BytesIO(banner_bytes), wx.BITMAP_TYPE_ANY)
-                banner_image.Rescale(300, 100, wx.IMAGE_QUALITY_HIGH)
-                self.bannerImage.SetBitmap(banner_image.ConvertToBitmap())
+                banner_image = load_scaled_image(banner_bytes, 300, 100)
+                if banner_image is not None:
+                    self.bannerImage.SetBitmap(banner_image.ConvertToBitmap())
 
             if avatar_bytes:
-                avatar_image = wx.Image(BytesIO(avatar_bytes), wx.BITMAP_TYPE_ANY)
-                avatar_image.Rescale(150, 150, wx.IMAGE_QUALITY_HIGH)
-                self.avatarImage.SetBitmap(avatar_image.ConvertToBitmap())
+                avatar_image = load_scaled_image(avatar_bytes, 150, 150)
+                if avatar_image is not None:
+                    self.avatarImage.SetBitmap(avatar_image.ConvertToBitmap())
 
             self.Layout()
             self.Fit()
