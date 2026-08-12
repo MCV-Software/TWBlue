@@ -2,6 +2,7 @@
 import wx
 import wx.adv
 import application
+import sys
 
 class mainFrame(wx.Frame):
     """ Main class of the Frame. This is the Main Window."""
@@ -79,6 +80,9 @@ class mainFrame(wx.Frame):
         self.visit_website = self.menubar_help.Append(-1, _(u"{0}'s &website").format(application.name,))
         self.get_soundpacks = self.menubar_help.Append(-1, _(u"Get soundpacks for TWBlue"))
         self.about = self.menubar_help.Append(-1, _(u"About &{0}").format(application.name,))
+        if not hasattr(sys, "frozen"):
+            self.menubar_help.AppendSeparator()
+            self.diagnostics = self.menubar_help.Append(wx.ID_ANY, _("Runtime &diagnostics"))
 
         # Add all to the menu Bar
         self.menubar.Append(self.menubar_application, _(u"&Application"))

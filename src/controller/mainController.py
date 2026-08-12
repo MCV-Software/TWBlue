@@ -18,6 +18,7 @@ from pubsub import pub
 from extra import SoundsTutorial
 from update import updater
 from wxUI import view, dialogs, commonMessageDialogs, sysTrayIcon
+from wxUI.dialogs import diagnostics
 from keyboard_handler.wx_handler import WXKeyboardHandler
 from sessionmanager import manager, sessionManager
 from controller import buffers
@@ -25,6 +26,7 @@ from mysc import restart
 from mysc import localization
 from mysc.thread_utils import call_threaded
 from mysc.repeating_timer import RepeatingTimer
+from mysc.memory_utils import get_process_usage
 from controller.mastodon import handler as MastodonHandler
 from controller.blueski import handler as BlueskiHandler # Added import
 from . import settings, userAlias
@@ -185,6 +187,9 @@ class Controller(object):
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.create_filter, self.view.filter)
         widgetUtils.connect_event(self.view, widgetUtils.MENU, self.manage_filters, self.view.manage_filters)
 
+        if hasattr(self.view, "diagnostics"):
+            widgetUtils.connect_event(self.view, widgetUtils.MENU, self.show_diagnostics, self.view.diagnostics)
+
     def set_systray_icon(self):
         self.systrayIcon = sysTrayIcon.SysTrayIcon()
         widgetUtils.connect_event(self.systrayIcon, widgetUtils.MENU, self.post_tweet, menuitem=self.systrayIcon.post)
@@ -233,6 +238,7 @@ class Controller(object):
         self.menubar_current_handler = ""
         # Handlers are special objects as they manage the mapping of available features and events in different social networks.
         self.handlers = dict()
+        self.diagnostics_dialog = None
         self.view.prepare()
         self.bind_other_events()
         self.set_systray_icon()
@@ -620,6 +626,9 @@ class Controller(object):
             self.exit_()
 
     def exit_(self, *args, **kwargs):
+        if self.diagnostics_dialog is not None and not self.diagnostics_dialog.IsBeingDeleted():
+            self.diagnostics_dialog.Destroy()
+            self.diagnostics_dialog = None
         for i in self.buffers: i.save_positions()
         log.debug("Exiting...")
         log.debug("Saving global configuration...")
@@ -634,6 +643,36 @@ class Controller(object):
         if os.path.exists(pidpath):
             os.remove(pidpath)
         widgetUtils.exit_application()
+
+    def get_diagnostics_snapshot(self):
+        """Return the source-only resource counters displayed by the diagnostics dialog."""
+        process_usage = get_process_usage()
+        return {
+            "rss": process_usage.memory.rss,
+            "private": process_usage.memory.private,
+            "vms": process_usage.memory.vms,
+            "cpu_percent": process_usage.cpu_percent,
+            "threads": process_usage.threads,
+            "sessions": len(sessions.sessions),
+            "buffers": len(self.buffers),
+        }
+
+    def show_diagnostics(self, *args, **kwargs):
+        """Show live resource diagnostics when running from source."""
+        if hasattr(sys, "frozen"):
+            return
+        if self.diagnostics_dialog is None or self.diagnostics_dialog.IsBeingDeleted():
+            self.diagnostics_dialog = diagnostics.DiagnosticsDialog(
+                self.view,
+                snapshot_provider=self.get_diagnostics_snapshot,
+                on_close=self.close_diagnostics,
+            )
+        self.diagnostics_dialog.Show()
+        self.diagnostics_dialog.Raise()
+
+    def close_diagnostics(self):
+        """Clear the dialog reference after it has stopped its timer."""
+        self.diagnostics_dialog = None
 
     def follow(self, *args, **kwargs):
         buffer = self.get_current_buffer()
