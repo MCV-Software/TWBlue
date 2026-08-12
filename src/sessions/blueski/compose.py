@@ -136,6 +136,11 @@ def compose_post(post, db, settings, relative_times, show_screen_names=False, sa
             if images:
                 text += f" [{len(images)} {_('images')}]"
 
+        if etype and ("gallery" in etype):
+            items = g(embed, "items", [])
+            if items:
+                text += f" [{len(items)} {_('images')}]"
+
         if etype and ("recordWithMedia" in etype):
             media = g(embed, "media", {})
             mtype = g(media, "$type") or g(media, "py_type")
@@ -143,6 +148,10 @@ def compose_post(post, db, settings, relative_times, show_screen_names=False, sa
                 images = g(media, "images", [])
                 if images:
                     text += f" [{len(images)} {_('images')}]"
+            elif mtype and "gallery" in mtype:
+                items = g(media, "items", [])
+                if items:
+                    text += f" [{len(items)} {_('images')}]"
             elif mtype and "external" in mtype:
                 ext = g(media, "external", {})
                 title = g(ext, "title", "")

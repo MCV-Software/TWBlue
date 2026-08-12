@@ -55,6 +55,7 @@ This version introduces comprehensive support for the AT Protocol (ATProto), ena
     * Fixed an issue where pinned posts could cause the retrieval of large amounts of old content during buffer updates or when loading more items.
     * Added support for sending quoted posts! You can now quote other users' posts from the context menu or the new Boost dialog. ([#860](https://github.com/mcv-software/twblue/issues/860))
     * Fixed an issue where HTML entities were not decoded when editing a post. ([#893](https://github.com/mcv-software/twblue/issues/893))
+    * Fixed an error that displayed an "Unknown image format" dialog when viewing someone's profile or updating your own, if the avatar or header was served in a format TWBlue could not read, such as WebP. ([#977](https://github.com/mcv-software/twblue/issues/977))
 
 ## Changes in version 2026.01.13
 

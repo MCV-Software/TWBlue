@@ -78,7 +78,7 @@ def _extract_images_from_embed(embed):
         for img in (img_list or []):
             url = None
             # Try all possible URL field names
-            for key in ["fullsize", "thumb", "url", "uri", "src"]:
+            for key in ["fullsize", "thumb", "thumbnail", "url", "uri", "src"]:
                 val = g(img, key)
                 if val and isinstance(val, str) and val.startswith("http"):
                     url = val
@@ -103,12 +103,18 @@ def _extract_images_from_embed(embed):
     if "images" in etype.lower():
         images.extend(extract_images(g(embed, "images", [])))
 
+    # Gallery embed (app.bsky.embed.gallery or app.bsky.embed.gallery#view)
+    if "gallery" in etype.lower():
+        images.extend(extract_images(g(embed, "items", [])))
+
     # Check in recordWithMedia wrapper
     if "recordwithmedia" in etype.lower():
         media = g(embed, "media", {})
         mtype = g(media, "$type") or g(media, "py_type") or ""
         if "images" in mtype.lower():
             images.extend(extract_images(g(media, "images", [])))
+        if "gallery" in mtype.lower():
+            images.extend(extract_images(g(media, "items", [])))
 
     return images
 
@@ -136,6 +142,12 @@ def is_image(post):
         if images and len(images) > 0:
             return True
 
+    # Gallery embed
+    if "gallery" in etype.lower():
+        items = g(embed, "items", [])
+        if items and len(items) > 0:
+            return True
+
     # Check in recordWithMedia wrapper
     if "recordwithmedia" in etype.lower():
         media = g(embed, "media", {})
@@ -143,6 +155,10 @@ def is_image(post):
         if "images" in mtype.lower():
             images = g(media, "images", [])
             if images and len(images) > 0:
+                return True
+        if "gallery" in mtype.lower():
+            items = g(media, "items", [])
+            if items and len(items) > 0:
                 return True
 
     return False
