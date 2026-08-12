@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
-import re
 import wx
 import logging
 import widgetUtils
 import config
 import output
 import languageHandler
-from twitter_text import parse_tweet, config
-from mastodon import MastodonError
+from mastodon import Mastodon, MastodonError
 from controller import messages
 from sessions.mastodon import templates, utils
 from wxUI.dialogs.mastodon import postDialogs
@@ -17,18 +15,9 @@ from . import userList
 
 log = logging.getLogger("controller.mastodon.messages")
 
-def character_count(post_text, post_cw, character_limit=500):
-    # We will use text for counting character limit only.
-    full_text = post_text+post_cw
-    # find remote users as Mastodon doesn't count the domain in char limit.
-    users = re.findall("@[\w\.-]+@[\w\.-]+", full_text)
-    for user in users:
-        domain = user.split("@")[-1]
-        full_text = full_text.replace("@"+domain, "")
-    options = config.config.get("defaults")
-    options.update(max_weighted_tweet_length=character_limit, default_weight=100)
-    parsed = parse_tweet(full_text, options=options)
-    return parsed.weightedLength
+def character_count(post_text, post_cw):
+    """Return the Mastodon-compatible length of a status and its content warning."""
+    return Mastodon.get_status_length(post_text, post_cw)
 
 class post(messages.basicMessage):
     def __init__(self, session, title, caption, text="", *args, **kwargs):
@@ -121,7 +110,7 @@ class post(messages.basicMessage):
     def text_processor(self, *args, **kwargs):
         text = self.message.text.GetValue()
         cw = self.message.spoiler.GetValue()
-        results = character_count(text, cw, character_limit=self.max)
+        results = character_count(text, cw)
         self.message.SetTitle(_("%s - %s of %d characters") % (self.title, results, self.max))
         if results > self.max:
             self.session.sound.play("max_length.ogg")
