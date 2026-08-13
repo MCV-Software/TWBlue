@@ -49,10 +49,16 @@ class list(object):
     def remove_item(self, pos):
         """ Deletes an item from the list."""
         if self.system == "Windows":
-            if pos > 0: self.list.Focus(pos-1)
+            if not 0 <= pos < self.list.GetItemCount():
+                return
+            if pos > 0:
+                self.list.Focus(pos-1)
             self.list.DeleteItem(pos)
         else:
-            if pos > 0: self.list.SetSelection(pos-1)
+            if not 0 <= pos < self.list.GetCount():
+                return
+            if pos > 0:
+                self.list.SetSelection(pos-1)
             self.list.Delete(pos)
 
     def clear(self):
@@ -71,10 +77,15 @@ class list(object):
             return self.list.GetSelection()
 
     def select_item(self, pos):
+        """Select an existing item without sending invalid native list commands."""
         if self.system == "Windows":
+            if not 0 <= pos < self.list.GetItemCount():
+                return
             self.list.Focus(pos)
             self.list.Select(pos)
         else:
+            if not 0 <= pos < self.list.GetCount():
+                return
             self.list.SetSelection(pos)
 
     def get_count(self):
