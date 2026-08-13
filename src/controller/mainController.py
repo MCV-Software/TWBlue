@@ -473,6 +473,8 @@ class Controller(object):
     def logout_account(self, session_id):
         for i in sessions.sessions:
             if sessions.sessions[i].session_id == session_id: session = sessions.sessions[i]
+        if hasattr(session, "stop_streaming"):
+            session.stop_streaming()
         name =session.get_name()
         delete_buffers = []
         for i in self.buffers:
@@ -635,6 +637,8 @@ class Controller(object):
         for item in sessions.sessions:
             if sessions.sessions[item].logged == False:
                 continue
+            if hasattr(sessions.sessions[item], "stop_streaming"):
+                sessions.sessions[item].stop_streaming()
             sessions.sessions[item].sound.cleaner.cancel()
             log.debug("Saving database for " +    sessions.sessions[item].session_id)
             sessions.sessions[item].save_persistent_data()

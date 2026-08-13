@@ -3,11 +3,11 @@ import os
 import paths
 import time
 import logging
+import threading
 import webbrowser
 import wx
 import mastodon
 import demoji
-import config
 import config_utils
 import output
 import application
@@ -36,6 +36,9 @@ class Session(base.baseSession):
         self.post_visibility = "public"
         self.expand_spoilers = False
         self.software = "mastodon"
+        self.user_stream = None
+        self.direct_stream = None
+        self._stream_lock = threading.Lock()
         pub.subscribe(self.on_status, "mastodon.status_received")
         pub.subscribe(self.on_status_updated, "mastodon.status_updated")
         pub.subscribe(self.on_notification, "mastodon.notification_received")
@@ -444,19 +447,34 @@ class Session(base.baseSession):
             return
         if self.software == "gotosocial":
             return
-        listener = streaming.StreamListener(session_name=self.get_name(), user_id=self.db["user_id"])
-        try:
-            stream_healthy = self.api.stream_healthy()
-            if stream_healthy == True:
-                self.user_stream = self.api.stream_user(listener, run_async=True, reconnect_async=True, reconnect_async_wait_sec=30)
-                self.direct_stream = self.api.stream_direct(listener, run_async=True, reconnect_async=True, reconnect_async_wait_sec=30)
-                log.debug("Started streams for session {}.".format(self.get_name()))
-        except Exception as e:
-            log.exception("Detected streaming unhealthy in {} session.".format(self.get_name()))
+        with self._stream_lock:
+            if any(stream is not None and stream.is_alive() for stream in (self.user_stream, self.direct_stream)):
+                log.debug("Streams for session {} are already running.".format(self.get_name()))
+                return
+            listener = streaming.StreamListener(session_name=self.get_name(), user_id=self.db["user_id"])
+            try:
+                stream_healthy = self.api.stream_healthy()
+                if stream_healthy == True:
+                    self.user_stream = self.api.stream_user(listener, run_async=True, reconnect_async=True, reconnect_async_wait_sec=30)
+                    self.direct_stream = self.api.stream_direct(listener, run_async=True, reconnect_async=True, reconnect_async_wait_sec=30)
+                    log.debug("Started streams for session {}.".format(self.get_name()))
+            except Exception:
+                log.exception("Detected streaming unhealthy in {} session.".format(self.get_name()))
 
     def stop_streaming(self):
-        if config.app["app-settings"]["no_streaming"]:
-            return
+        with self._stream_lock:
+            streams = (self.user_stream, self.direct_stream)
+            self.user_stream = None
+            self.direct_stream = None
+            for stream in streams:
+                if stream is None:
+                    continue
+                try:
+                    stream.close()
+                except Exception:
+                    log.exception("Unable to stop a stream for session {}.".format(self.get_name()))
+            if any(stream is not None for stream in streams):
+                log.debug("Stopped streams for session {}.".format(self.get_name()))
 
     def check_streams(self):
         pass
