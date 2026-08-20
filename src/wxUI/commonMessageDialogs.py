@@ -48,6 +48,20 @@ def cant_update_source() -> wx.MessageDialog:
 def invalid_instance():
     return wx.MessageDialog(None, _("the provided instance is invalid. Please try again."), _("Invalid instance"), wx.ICON_ERROR).ShowModal()
 
+def mastodon_login_failed(instance):
+    message = _(
+        "TWBlue could not sign in to the Mastodon instance {instance}. "
+        "The instance may be temporarily unavailable or your credentials "
+        "may no longer be valid.\n\nWould you like to keep this account "
+        "configuration? Choosing No will permanently remove it."
+    ).format(instance=instance)
+    return wx.MessageDialog(
+        None,
+        message,
+        _("Mastodon login failed"),
+        wx.YES_NO | wx.YES_DEFAULT | wx.ICON_ERROR,
+    ).ShowModal()
+
 def error_adding_filter():
     return wx.MessageDialog(None, _("TWBlue was unable to add or update the filter with the specified settings. Please try again."), _("Error"), wx.ICON_ERROR).ShowModal()
 

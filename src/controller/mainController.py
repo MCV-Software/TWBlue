@@ -3,6 +3,7 @@ import os
 import sys
 import logging
 import webbrowser
+import shutil
 import wx
 import requests
 import asyncio
@@ -12,6 +13,7 @@ import widgetUtils
 import config
 import languageHandler
 import application
+import paths
 import sound
 import output
 from pubsub import pub
@@ -257,29 +259,33 @@ class Controller(object):
     def do_work(self):
         """ Creates the buffer objects for all accounts. This does not starts the buffer streams, only creates the objects."""
         log.debug("Creating buffers for all sessions...")
-        for i in sessions.sessions:
+        # Take a copy because a user can choose to remove a session after a
+        # failed login, which removes it from the global session collection.
+        for i, session in list(sessions.sessions.items()):
             log.debug("Working on session %s" % (i,))
-            if sessions.sessions[i].is_logged == False:
-                if sessions.sessions[i].session_id in config.app["sessions"]["ignored_sessions"]:
-                    self.create_ignored_session_buffer(sessions.sessions[i])
+            if session.is_logged == False:
+                if session.session_id in config.app["sessions"]["ignored_sessions"]:
+                    self.create_ignored_session_buffer(session)
                     continue
                 # Try auto-login for sessions if credentials exist
                 try:
-                    sessions.sessions[i].login()
+                    session.login()
                 except Exception:
                     log.exception("Auto-login attempt failed for session %s", i)
-                if sessions.sessions[i].is_logged == False:
-                    self.create_ignored_session_buffer(sessions.sessions[i])
+                if session.is_logged == False:
+                    if session.type == "mastodon" and self.handle_failed_mastodon_login(session):
+                        continue
+                    self.create_ignored_session_buffer(session)
                     continue
             # Supported session types
             valid_session_types = ["mastodon", "blueski"]
-            if sessions.sessions[i].type in valid_session_types:
+            if session.type in valid_session_types:
                 try:
-                    handler = self.get_handler(type=sessions.sessions[i].type)
+                    handler = self.get_handler(type=session.type)
                     if handler is not None:
-                        handler.create_buffers(sessions.sessions[i], controller=self)
+                        handler.create_buffers(session, controller=self)
                 except Exception:
-                    log.exception("Error creating buffers for session %s (%s)", i, sessions.sessions[i].type)
+                    log.exception("Error creating buffers for session %s (%s)", i, session.type)
         log.debug("Setting updates to buffers every %d seconds..." % (60*config.app["app-settings"]["update_period"],))
         self.update_buffers_function = RepeatingTimer(60*config.app["app-settings"]["update_period"], self.update_buffers)
         self.update_buffers_function.start()
@@ -311,6 +317,38 @@ class Controller(object):
 
     def create_ignored_session_buffer(self, session):
         pub.sendMessage("core.create_account", name=session.get_name(), session_id=session.session_id)
+
+    def handle_failed_mastodon_login(self, session):
+        """Offer to keep or remove a Mastodon session that could not log in.
+
+        Returns ``True`` when the session was removed from this application
+        run, so callers must not create its disconnected account buffer.
+        """
+        instance = session.settings["mastodon"]["instance"]
+        if commonMessageDialogs.mastodon_login_failed(instance) == wx.ID_YES:
+            return False
+
+        session_path = os.path.join(paths.config_path(), session.session_id)
+        try:
+            # A session can have an on-disk cache open, depending on its
+            # configuration. Close it before deleting the session directory.
+            if hasattr(session.db, "close"):
+                session.db.close()
+            shutil.rmtree(session_path)
+        except Exception:
+            log.exception("Unable to remove failed Mastodon session %s", session.session_id)
+            commonMessageDialogs.common_error(
+                _("The account configuration could not be removed. It has been kept.")
+            )
+            return False
+
+        for setting in ("sessions", "ignored_sessions"):
+            if session.session_id in config.app["sessions"][setting]:
+                config.app["sessions"][setting].remove(session.session_id)
+        config.app.write()
+        sessions.sessions.pop(session.session_id, None)
+        log.info("Removed Mastodon session %s after failed login", session.session_id)
+        return True
 
     def login_account(self, session_id):
         session = None
