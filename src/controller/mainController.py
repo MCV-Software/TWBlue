@@ -2,6 +2,7 @@
 import os
 import sys
 import logging
+import threading
 import webbrowser
 import shutil
 import wx
@@ -1520,13 +1521,16 @@ class Controller(object):
             output.speak(_(u"No active session for this buffer."), True)
             return
 
-        output.speak(_(u"Updating buffer..."), True)
-        session = bf.session
+        update_lock = getattr(bf, "_manual_update_lock", None)
+        if update_lock is None:
+            update_lock = threading.Lock()
+            bf._manual_update_lock = update_lock
+        if not update_lock.acquire(blocking=False):
+            output.speak(_(u"Updating buffer..."), True)
+            return
 
         output.speak(_(u"Updating buffer..."), True)
         session = bf.session
-
-        import threading
         is_blueski = (getattr(session, "KIND", None) == "blueski" or getattr(session, "type", None) == "blueski")
 
         def do_update_sync():
@@ -1556,15 +1560,10 @@ class Controller(object):
             except Exception as e:
                 log.exception("Error updating buffer %s", bf.name)
                 wx.CallAfter(output.speak, _("An error occurred while updating the buffer."), True)
-        
-        if is_blueski:
-             threading.Thread(target=do_update_sync).start()
-        else:
-             # Original async logic for others if needed, but likely they are sync too. 
-             # Assuming TWBlue architecture is mostly thread-based for legacy sessions.
-             # If we have an async loop running, we could use it for async-capable sessions.
-             # For safety, let's use the thread approach generally if we are not sure about the loop state.
-             threading.Thread(target=do_update_sync).start()
+            finally:
+                update_lock.release()
+
+        call_threaded(do_update_sync)
 
 
     def get_more_items(self, *args, **kwargs):
