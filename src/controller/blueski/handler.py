@@ -587,16 +587,28 @@ class Handler:
                 display_name = g(author, "displayName") or g(author, "display_name")
         label = handle or display_name or _("Unknown")
         title = _("Conversation with {0}").format(label)
-        
+        # The buffer name identifies the buffer and keys its entry in session.db, so
+        # it has to be derived from the post instead of the author. Two threads from
+        # the same account would otherwise share a single database entry.
+        buffer_name = "%s-conversation" % (uri,)
+        account_name = buffer.session.get_name() if hasattr(buffer.session, "get_name") else None
+
+        # If this thread is already open, go to it rather than opening it twice.
+        if account_name != None and controller.search_buffer(buffer_name, account_name):
+            index = controller.view.search(buffer_name, account_name)
+            if index is not None:
+                controller.view.change_buffer(index)
+            return
+
         from pubsub import pub
         pub.sendMessage(
             "createBuffer",
             buffer_type="conversation",
             session_type="blueski",
             buffer_title=title,
-            parent_tab=controller.view.search(buffer.session.get_name(), buffer.session.get_name()) if hasattr(buffer.session, "get_name") else None,
+            parent_tab=controller.view.search(account_name, account_name) if account_name != None else None,
             start=True,
-            kwargs=dict(parent=controller.view.nb, name=title, session=buffer.session, uri=uri, sound="search_updated.ogg")
+            kwargs=dict(parent=controller.view.nb, name=buffer_name, session=buffer.session, uri=uri, sound="search_updated.ogg")
         )
 
     def open_timeline(self, controller, buffer, default="posts"):
