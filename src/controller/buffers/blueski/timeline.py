@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+import wx
 import output
 from .base import BaseBuffer
 from wxUI.buffers.blueski import panels as BlueskiPanels
@@ -237,6 +238,9 @@ class Conversation(BaseBuffer):
         self.type = "conversation"
         self.root_uri = kwargs.get("uri")
         self.sound = "search_updated.ogg"
+        # Set while a refresh is in flight. This buffer rebuilds itself from scratch
+        # on every call, so two overlapping runs would show every post twice.
+        self.loading = False
 
     def create_buffer(self, parent, name):
         self.buffer = BlueskiPanels.HomePanel(parent, name)
@@ -245,11 +249,15 @@ class Conversation(BaseBuffer):
     def start_stream(self, mandatory=False, play_sound=True):
         if not self.root_uri:
             return 0
-        api = self.session._ensure_client()
+        if self.loading == True:
+            return 0
+        self.loading = True
         try:
+            api = self.session._ensure_client()
             res = api.app.bsky.feed.get_post_thread({"uri": self.root_uri, "depth": 100, "parentHeight": 100})
             thread = getattr(res, "thread", None)
             if not thread:
+                self.loading = False
                 return 0
 
             def g(obj, key, default=None):
@@ -277,14 +285,42 @@ class Conversation(BaseBuffer):
                     traverse(r)
 
             traverse(thread)
+
+            # A post must only show up once, no matter how the thread is shaped.
+            seen = set()
+            unique_items = []
+            for item in final_items:
+                uri = g(item, "uri")
+                if uri:
+                    if uri in seen:
+                        continue
+                    seen.add(uri)
+                unique_items.append(item)
+            final_items = unique_items
+        except Exception as e:
+            log.error("Error fetching thread: %s", e)
+            self.loading = False
+            return 0
+        # The list control may only be touched from the GUI thread, and start_stream
+        # is also called from the update timer, which runs in a background thread.
+        if wx.IsMainThread():
+            self._rebuild_list(final_items, play_sound)
+        else:
+            wx.CallAfter(self._rebuild_list, final_items, play_sound)
+        return len(final_items)
+
+    def _rebuild_list(self, items, play_sound=True):
+        """Replace the contents of this buffer with the given thread items."""
+        try:
             self.session.db[self.name] = []
             self.buffer.list.clear()
             # Don't use process_items() because it applies reverse logic.
             # Conversations should always be chronological (oldest first).
-            return self._add_items_chronological(final_items, play_sound)
+            self._add_items_chronological(items, play_sound)
         except Exception as e:
-            log.error("Error fetching thread: %s", e)
-            return 0
+            log.error("Error building thread: %s", e)
+        finally:
+            self.loading = False
 
     def _add_items_chronological(self, items, play_sound=True):
         """Add items in chronological order (oldest first) without reverse logic."""
@@ -295,7 +331,17 @@ class Conversation(BaseBuffer):
         relative_times = self.session.settings["general"].get("relative_times", False)
         show_screen_names = self.session.settings["general"].get("show_screen_names", False)
 
+        # Unlike process_items(), this method does not deduplicate on its own, so
+        # guard against a post reaching the list more than once.
+        added = 0
+        seen = set()
         for item in items:
+            uri = item.get("uri") if isinstance(item, dict) else getattr(item, "uri", None)
+            if uri:
+                if uri in seen:
+                    continue
+                seen.add(uri)
+            added += 1
             self.session.db[self.name].append(item)
             post = self.compose_function(item, self.session.db, self.session.settings,
                                          relative_times=relative_times,
@@ -311,7 +357,7 @@ class Conversation(BaseBuffer):
         if play_sound and self.sound and not self.session.settings["sound"]["session_mute"]:
             self.session.sound.play(self.sound)
 
-        return len(items)
+        return added
 
 
 class LikesBuffer(BaseBuffer):

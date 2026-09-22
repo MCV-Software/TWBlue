@@ -493,6 +493,9 @@ class Controller(object):
                 except ValueError:
                     commonMessageDialogs.unauthorized()
                     return
+                # This buffer has already retrieved its items, so start_buffers()
+                # must not start it a second time.
+                buffer.needs_init = False
             self.buffers.append(buffer)
             if parent_tab == None:
                 log.debug("Appending buffer {}...".format(buffer,))
@@ -1180,6 +1183,31 @@ class Controller(object):
 #        except:
 #            pass
 
+    def announce_buffer_position(self, buffer, with_account=False):
+        """ Speaks the current buffer name plus the position within its list.
+
+        If the list holds items but none of them is focused yet, this focuses one
+        before speaking. Otherwise get_selected() returns -1 and we would announce
+        a position of "0 of n", which does not exist."""
+        try:
+            count = buffer.buffer.list.get_count()
+            if count == 0:
+                raise ValueError("Empty buffer")
+            selected = buffer.buffer.list.get_selected()
+            if selected < 0:
+                reverse = False
+                if getattr(buffer, "session", None) != None:
+                    reverse = buffer.session.settings["general"].get("reverse_timelines", False)
+                selected = 0 if reverse else count-1
+                buffer.buffer.list.select_item(selected)
+            if with_account == True:
+                msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), selected+1, count)
+            else:
+                msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), selected+1, count)
+        except:
+            msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
+        output.speak(msg, True)
+
     def left(self, *args, **kwargs):
         buff = self.view.get_current_buffer_pos()
         buffer = self.get_current_buffer()
@@ -1193,11 +1221,7 @@ class Controller(object):
         while self.get_current_buffer().invisible == False: self.skip_buffer(False)
         buffer = self.get_current_buffer()
         if self.showing == True: buffer.buffer.set_focus_in_list()
-        try:
-            msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
-        except:
-            msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
-        output.speak(msg, True)
+        self.announce_buffer_position(buffer)
 
     def right(self, *args, **kwargs):
         buff = self.view.get_current_buffer_pos()
@@ -1212,11 +1236,7 @@ class Controller(object):
         while self.get_current_buffer().invisible == False: self.skip_buffer(True)
         buffer = self.get_current_buffer()
         if self.showing == True: buffer.buffer.set_focus_in_list()
-        try:
-            msg = _(u"%s, %s of %s") % (self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
-        except:
-            msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
-        output.speak(msg, True)
+        self.announce_buffer_position(buffer)
 
     def next_account(self, *args, **kwargs):
         if not self.accounts:
@@ -1243,11 +1263,7 @@ class Controller(object):
         self.view.change_buffer(buff)
         buffer = self.get_current_buffer()
         if self.showing == True: buffer.buffer.set_focus_in_list()
-        try:
-            msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
-        except:
-            msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
-        output.speak(msg, True)
+        self.announce_buffer_position(buffer, with_account=True)
 
     def previous_account(self, *args, **kwargs):
         if not self.accounts:
@@ -1274,11 +1290,7 @@ class Controller(object):
         self.view.change_buffer(buff)
         buffer = self.get_current_buffer()
         if self.showing == True: buffer.buffer.set_focus_in_list()
-        try:
-            msg = _(u"%s. %s, %s of %s") % (buffer.account, self.view.get_buffer_text(), buffer.buffer.list.get_selected()+1, buffer.buffer.list.get_count())
-        except:
-            msg = _(u"%s. Empty") % (self.view.get_buffer_text(),)
-        output.speak(msg, True)
+        self.announce_buffer_position(buffer, with_account=True)
 
     def go_home(self):
         buffer = self.get_current_buffer()

@@ -257,12 +257,25 @@ class ConversationListBuffer(BaseBuffer):
             self.buffer.list.insert_item(False, *row)
 
         # Restore selection if possible
+        restored = False
         if selected_key is not None:
             for idx, convo in enumerate(new_db):
                 key = self.get_convo_id(convo) or self._get_members_key(convo)
                 if key == selected_key:
                     self.buffer.list.select_item(idx)
+                    restored = True
                     break
+        # This buffer rebuilds its list on every refresh and does not go through
+        # put_items_on_list(), so nothing would be focused on the first load or
+        # whenever the previously selected conversation is gone. Screen readers
+        # then announce the position as "0 of n", so focus an item ourselves.
+        if restored == False:
+            total = self.buffer.list.get_count()
+            if total > 0:
+                if self.session.settings["general"].get("reverse_timelines", False):
+                    self.buffer.list.select_item(0)
+                else:
+                    self.buffer.list.select_item(total-1)
 
         # Sound and auto-read only when something actually changed
         if new_count > 0:
@@ -397,7 +410,11 @@ class ConversationListBuffer(BaseBuffer):
                 try:
                     count = buffer_obj.buffer.list.get_count()
                     if count > 0:
-                        msg = _("{0}, {1} of {2}").format(title, buffer_obj.buffer.list.get_selected()+1, count)
+                        selected = buffer_obj.buffer.list.get_selected()
+                        if selected < 0:
+                            selected = count-1
+                            buffer_obj.buffer.list.select_item(selected)
+                        msg = _("{0}, {1} of {2}").format(title, selected+1, count)
                     else:
                         msg = _("{0}. Empty").format(title)
                 except Exception:
