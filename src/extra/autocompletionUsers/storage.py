@@ -25,8 +25,13 @@ class storage(object):
         return self.cursor.fetchall()
 
     def set_user(self, screen_name, user_name, from_a_buffer):
+        """Insert a user into the database.
+        
+        :returns: True if the user was inserted (new), False if already existed.
+        """
         self.cursor.execute("""insert or ignore into users values(?, ?, ?)""", (screen_name, user_name, from_a_buffer))
         self.connection.commit()
+        return self.cursor.rowcount > 0
 
     def remove_user(self, user):
         self.cursor.execute("""DELETE FROM users WHERE user = ?""", (user,))
@@ -48,5 +53,8 @@ from_a_buffer INTEGER
 )""")
 
     def __del__(self):
-        self.cursor.close()
-        self.connection.close()
+        try:
+            self.cursor.close()
+            self.connection.close()
+        except Exception:
+            pass  # Already closed
