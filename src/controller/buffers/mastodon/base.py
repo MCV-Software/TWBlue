@@ -449,7 +449,7 @@ class BaseBuffer(base.Buffer):
                 users.append("@{} ".format(item.reblog.account.acct))
         else:
             users = ["@{} ".format(user.acct) for user in item.mentions if user.id != self.session.db["user_id"]]
-        if item.account.acct not in users and item.account.id != self.session.db["user_id"]:
+        if "@{} ".format(item.account.acct) not in users and item.account.id != self.session.db["user_id"]:
             users.insert(0, "@{} ".format(item.account.acct))
         users_str = "".join(users)
         post = messages.post(session=self.session, title=title, caption=caption, text=users_str)

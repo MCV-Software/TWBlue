@@ -331,9 +331,8 @@ class ConversationListBuffer(BaseBuffer):
 
         title = _("Conversation with {0}").format(username)
         caption = _("Write your message here")
-        initial_text = "@{} ".format(username)
 
-        post = blueski_messages.post(session=self.session, title=title, caption=caption, text=initial_text)
+        post = blueski_messages.post(session=self.session, title=title, caption=caption)
         if post.message.ShowModal() == wx.ID_OK:
             text, files, cw_text, langs = post.get_data()
             if text:
