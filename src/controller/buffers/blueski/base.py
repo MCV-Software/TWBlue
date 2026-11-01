@@ -224,19 +224,8 @@ class BaseBuffer(base.Buffer):
         reply_cid = self.get_selected_item_cid()
         # Attempt to get CID if present for consistency, though send_message handles it
 
-        def g(obj, key, default=None):
-            if isinstance(obj, dict):
-                return obj.get(key, default)
-            return getattr(obj, key, default)
-
-        author = g(item, "author")
-        if not author:
-            post = g(item, "post") or g(item, "record")
-            author = g(post, "author") if post else None
-        handle = g(author, "handle", "")
-        initial_text = f"@{handle} " if handle and not handle.startswith("@") else (f"{handle} " if handle else "")
-
-        dlg = blueski_messages.post(session=self.session, title=_("Reply"), caption=_("Reply"), text=initial_text)
+        # No "@handle" prefill: the reply reference (parent/root) already notifies the author.
+        dlg = blueski_messages.post(session=self.session, title=_("Reply"), caption=_("Reply"))
         if dlg.message.ShowModal() == wx.ID_OK:
              text, files, cw, langs = dlg.get_data()
              refresh_args = (True, False) if getattr(self, "type", "") == "conversation" else None
@@ -495,9 +484,8 @@ class BaseBuffer(base.Buffer):
          # Use full post dialog like Mastodon
          title = _("Conversation with {0}").format(handle)
          caption = _("Write your message here")
-         initial_text = "@{} ".format(handle)
 
-         post = blueski_messages.post(session=self.session, title=title, caption=caption, text=initial_text)
+         post = blueski_messages.post(session=self.session, title=title, caption=caption)
          if post.message.ShowModal() == wx.ID_OK:
              text, files, cw_text, langs = post.get_data()
              if text:
