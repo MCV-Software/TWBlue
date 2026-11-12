@@ -254,13 +254,13 @@ class viewPost(wx.Dialog):
 
     def create_text_section(self, panel, text):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Post")), wx.VERTICAL)
-        self.text = wx.TextCtrl(panel, -1, text, style=wx.TE_READONLY | wx.TE_MULTILINE)
+        self.text = wx.TextCtrl(sizer.GetStaticBox(), -1, text, style=wx.TE_READONLY | wx.TE_MULTILINE)
         sizer.Add(self.text, 1, wx.EXPAND | wx.ALL, 5)
         return sizer
 
     def create_image_description_section(self, panel):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Image description")), wx.VERTICAL)
-        self.image_description = wx.TextCtrl(panel, -1, style=wx.TE_READONLY | wx.TE_MULTILINE)
+        self.image_description = wx.TextCtrl(sizer.GetStaticBox(), -1, style=wx.TE_READONLY | wx.TE_MULTILINE)
         self.image_description.Enable(False)
         sizer.Add(self.image_description, 1, wx.EXPAND | wx.ALL, 5)
         return sizer
@@ -269,27 +269,27 @@ class viewPost(wx.Dialog):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Information")), wx.VERTICAL)
         flex_sizer = wx.FlexGridSizer(cols=3, hgap=10, vgap=10)
         flex_sizer.AddGrowableCol(1)
-        flex_sizer.Add(wx.StaticText(panel, -1, _("Privacy")), 0, wx.ALIGN_CENTER_VERTICAL)
-        flex_sizer.Add(wx.TextCtrl(panel, -1, privacy, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
-        flex_sizer.Add(self.create_boosts_section(panel, boosts_count), 1, wx.EXPAND | wx.ALL, 5)
-        flex_sizer.Add(self.create_favorites_section(panel, favs_count), 1, wx.EXPAND | wx.ALL, 5)
-        flex_sizer.Add(wx.StaticText(panel, -1, _("Source")), 0, wx.ALIGN_CENTER_VERTICAL)
-        flex_sizer.Add(wx.TextCtrl(panel, -1, source, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
-        flex_sizer.Add(wx.StaticText(panel, -1, _("Date")), 0, wx.ALIGN_CENTER_VERTICAL)
-        flex_sizer.Add(wx.TextCtrl(panel, -1, date, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
+        flex_sizer.Add(wx.StaticText(sizer.GetStaticBox(), -1, _("Privacy")), 0, wx.ALIGN_CENTER_VERTICAL)
+        flex_sizer.Add(wx.TextCtrl(sizer.GetStaticBox(), -1, privacy, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
+        flex_sizer.Add(self.create_boosts_section(sizer.GetStaticBox(), boosts_count), 1, wx.EXPAND | wx.ALL, 5)
+        flex_sizer.Add(self.create_favorites_section(sizer.GetStaticBox(), favs_count), 1, wx.EXPAND | wx.ALL, 5)
+        flex_sizer.Add(wx.StaticText(sizer.GetStaticBox(), -1, _("Source")), 0, wx.ALIGN_CENTER_VERTICAL)
+        flex_sizer.Add(wx.TextCtrl(sizer.GetStaticBox(), -1, source, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
+        flex_sizer.Add(wx.StaticText(sizer.GetStaticBox(), -1, _("Date")), 0, wx.ALIGN_CENTER_VERTICAL)
+        flex_sizer.Add(wx.TextCtrl(sizer.GetStaticBox(), -1, date, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
         sizer.Add(flex_sizer, 1, wx.EXPAND | wx.ALL, 5)
         return sizer
 
     def create_boosts_section(self, panel, boosts_count):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Boosts")), wx.VERTICAL)
-        self.boosts_button = wx.Button(panel, -1, str(boosts_count))
+        self.boosts_button = wx.Button(sizer.GetStaticBox(), -1, str(boosts_count))
         self.boosts_button.SetToolTip(_("View users who boosted this post"))
         sizer.Add(self.boosts_button, 1, wx.EXPAND | wx.ALL, 5)
         return sizer
 
     def create_favorites_section(self, panel, favs_count):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Favorites")), wx.VERTICAL)
-        self.favorites_button = wx.Button(panel, -1, str(favs_count))
+        self.favorites_button = wx.Button(sizer.GetStaticBox(), -1, str(favs_count))
         self.favorites_button.SetToolTip(_("View users who favorited this post"))
         sizer.Add(self.favorites_button, 1, wx.EXPAND | wx.ALL, 5)
         return sizer
@@ -367,30 +367,30 @@ class poll(wx.Dialog):
         sizer_1.Add(sizer_2, 1, wx.EXPAND, 0)
         option1_sizer = wx.BoxSizer(wx.HORIZONTAL)
         sizer_2.Add(option1_sizer, 1, wx.EXPAND, 0)
-        label_2 = wx.StaticText(self, wx.ID_ANY, _("Option &1"))
+        label_2 = wx.StaticText(sizer_2.GetStaticBox(), wx.ID_ANY, _("Option &1"))
         option1_sizer.Add(label_2, 0, 0, 0)
-        self.option1 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.option1 = wx.TextCtrl(sizer_2.GetStaticBox(), wx.ID_ANY, "")
         self.option1.SetMaxLength(25)
         option1_sizer.Add(self.option1, 0, 0, 0)
         option2_sizer = wx.BoxSizer(wx.HORIZONTAL)
         sizer_2.Add(option2_sizer, 1, wx.EXPAND, 0)
-        label_3 = wx.StaticText(self, wx.ID_ANY, _("Option &2"))
+        label_3 = wx.StaticText(sizer_2.GetStaticBox(), wx.ID_ANY, _("Option &2"))
         option2_sizer.Add(label_3, 0, 0, 0)
-        self.option2 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.option2 = wx.TextCtrl(sizer_2.GetStaticBox(), wx.ID_ANY, "")
         self.option2.SetMaxLength(25)
         option2_sizer.Add(self.option2, 0, 0, 0)
         option3_sizer = wx.BoxSizer(wx.HORIZONTAL)
         sizer_2.Add(option3_sizer, 1, wx.EXPAND, 0)
-        label_4 = wx.StaticText(self, wx.ID_ANY, _("Option &3"))
+        label_4 = wx.StaticText(sizer_2.GetStaticBox(), wx.ID_ANY, _("Option &3"))
         option3_sizer.Add(label_4, 0, 0, 0)
-        self.option3 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.option3 = wx.TextCtrl(sizer_2.GetStaticBox(), wx.ID_ANY, "")
         self.option3.SetMaxLength(25)
         option3_sizer.Add(self.option3, 0, 0, 0)
         option4_sizer = wx.BoxSizer(wx.HORIZONTAL)
         sizer_2.Add(option4_sizer, 1, wx.EXPAND, 0)
-        label_5 = wx.StaticText(self, wx.ID_ANY, _("Option &4"))
+        label_5 = wx.StaticText(sizer_2.GetStaticBox(), wx.ID_ANY, _("Option &4"))
         option4_sizer.Add(label_5, 0, 0, 0)
-        self.option4 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.option4 = wx.TextCtrl(sizer_2.GetStaticBox(), wx.ID_ANY, "")
         self.option4.SetMaxLength(25)
         option4_sizer.Add(self.option4, 0, 0, 0)
         self.multiple = wx.CheckBox(self, wx.ID_ANY, _("&Allow multiple choices per user"))
@@ -435,12 +435,13 @@ class attachedPoll(wx.Dialog):
         if multiple == False:
             for option in range(len(self.poll_options)):
                 if option == 0:
-                    setattr(self, "option{}".format(option), wx.RadioButton(self, wx.ID_ANY, poll_options[option],  style=wx.RB_GROUP))
+                    setattr(self, "option{}".format(option), wx.RadioButton(sizer_2.GetStaticBox(), wx.ID_ANY, poll_options[option],  style=wx.RB_GROUP))
                 else:
-                    setattr(self, "option{}".format(option), wx.RadioButton(self, wx.ID_ANY, poll_options[option]))
+                    setattr(self, "option{}".format(option), wx.RadioButton(sizer_2.GetStaticBox(), wx.ID_ANY, poll_options[option]))
         else:
             for option in range(len(self.poll_options)):
-                setattr(self, "option{}".format(option), wx.CheckBox(self, wx.ID_ANY, poll_options[option]))
+                setattr(self, "option{}".format(option), wx.CheckBox(sizer_2.GetStaticBox(), wx.ID_ANY, poll_options[option]))
+        for option in range(len(self.poll_options)):
             sizer_2.Add(getattr(self, "option{}".format(option)), 1, wx.EXPAND, 0)
         btn_sizer = wx.StdDialogButtonSizer()
         sizer_1.Add(btn_sizer, 0, wx.ALIGN_RIGHT | wx.ALL, 4)
