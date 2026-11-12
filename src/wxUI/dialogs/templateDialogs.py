@@ -16,7 +16,7 @@ class EditTemplateDialog(wx.Dialog):
         sizer_1.Add(self.template, 0, 0, 0)
         sizer_2 = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, _("Available variables")), wx.HORIZONTAL)
         mainSizer.Add(sizer_2, 1, wx.EXPAND, 0)
-        self.variables = wx.ListBox(self, wx.ID_ANY, choices=["$"+v for v in variables])
+        self.variables = wx.ListBox(sizer_2.GetStaticBox(), wx.ID_ANY, choices=["$"+v for v in variables])
         self.variables.Bind(wx.EVT_CHAR_HOOK, self.on_keypress)
         sizer_2.Add(self.variables, 0, 0, 0)
         sizer_3 = wx.StdDialogButtonSizer()

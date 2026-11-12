@@ -32,13 +32,13 @@ class Post(wx.Dialog):
 
         # Attachments (images only)
         attach_box = wx.StaticBoxSizer(wx.VERTICAL, self, _("Attachments (images)"))
-        self.attach_list = wx.ListCtrl(self, style=wx.LC_REPORT | wx.LC_SINGLE_SEL)
+        self.attach_list = wx.ListCtrl(attach_box.GetStaticBox(), style=wx.LC_REPORT | wx.LC_SINGLE_SEL)
         self.attach_list.InsertColumn(0, _("File"))
         self.attach_list.InsertColumn(1, _("Alt"))
         attach_box.Add(self.attach_list, 1, wx.EXPAND | wx.ALL, 5)
         btn_row = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_add = wx.Button(self, wx.ID_ADD, _("Add image..."))
-        self.btn_remove = wx.Button(self, wx.ID_REMOVE, _("Remove"))
+        self.btn_add = wx.Button(attach_box.GetStaticBox(), wx.ID_ADD, _("Add image..."))
+        self.btn_remove = wx.Button(attach_box.GetStaticBox(), wx.ID_REMOVE, _("Remove"))
         self.btn_remove.Enable(False)
         btn_row.Add(self.btn_add, 0, wx.ALL, 2)
         btn_row.Add(self.btn_remove, 0, wx.ALL, 2)
@@ -151,13 +151,13 @@ class viewPost(wx.Dialog):
 
     def create_text_section(self, panel, text):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Post")), wx.VERTICAL)
-        self.text = wx.TextCtrl(panel, -1, text, style=wx.TE_READONLY | wx.TE_MULTILINE)
+        self.text = wx.TextCtrl(sizer.GetStaticBox(), -1, text, style=wx.TE_READONLY | wx.TE_MULTILINE)
         sizer.Add(self.text, 1, wx.EXPAND | wx.ALL, 5)
         return sizer
 
     def create_image_description_section(self, panel):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Image description")), wx.VERTICAL)
-        self.image_description = wx.TextCtrl(panel, -1, style=wx.TE_READONLY | wx.TE_MULTILINE)
+        self.image_description = wx.TextCtrl(sizer.GetStaticBox(), -1, style=wx.TE_READONLY | wx.TE_MULTILINE)
         self.image_description.Enable(False)
         sizer.Add(self.image_description, 1, wx.EXPAND | wx.ALL, 5)
         return sizer
@@ -166,27 +166,27 @@ class viewPost(wx.Dialog):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Information")), wx.VERTICAL)
         flex_sizer = wx.FlexGridSizer(cols=3, hgap=10, vgap=10)
         flex_sizer.AddGrowableCol(1)
-        flex_sizer.Add(wx.StaticText(panel, -1, _("Privacy")), 0, wx.ALIGN_CENTER_VERTICAL)
-        flex_sizer.Add(wx.TextCtrl(panel, -1, privacy, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
-        flex_sizer.Add(self.create_reposts_section(panel, reposts_count), 1, wx.EXPAND | wx.ALL, 5)
-        flex_sizer.Add(self.create_likes_section(panel, likes_count), 1, wx.EXPAND | wx.ALL, 5)
-        flex_sizer.Add(wx.StaticText(panel, -1, _("Source")), 0, wx.ALIGN_CENTER_VERTICAL)
-        flex_sizer.Add(wx.TextCtrl(panel, -1, source, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
-        flex_sizer.Add(wx.StaticText(panel, -1, _("Date")), 0, wx.ALIGN_CENTER_VERTICAL)
-        flex_sizer.Add(wx.TextCtrl(panel, -1, date, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
+        flex_sizer.Add(wx.StaticText(sizer.GetStaticBox(), -1, _("Privacy")), 0, wx.ALIGN_CENTER_VERTICAL)
+        flex_sizer.Add(wx.TextCtrl(sizer.GetStaticBox(), -1, privacy, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
+        flex_sizer.Add(self.create_reposts_section(sizer.GetStaticBox(), reposts_count), 1, wx.EXPAND | wx.ALL, 5)
+        flex_sizer.Add(self.create_likes_section(sizer.GetStaticBox(), likes_count), 1, wx.EXPAND | wx.ALL, 5)
+        flex_sizer.Add(wx.StaticText(sizer.GetStaticBox(), -1, _("Source")), 0, wx.ALIGN_CENTER_VERTICAL)
+        flex_sizer.Add(wx.TextCtrl(sizer.GetStaticBox(), -1, source, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
+        flex_sizer.Add(wx.StaticText(sizer.GetStaticBox(), -1, _("Date")), 0, wx.ALIGN_CENTER_VERTICAL)
+        flex_sizer.Add(wx.TextCtrl(sizer.GetStaticBox(), -1, date, style=wx.TE_READONLY | wx.TE_MULTILINE), 1, wx.EXPAND)
         sizer.Add(flex_sizer, 1, wx.EXPAND | wx.ALL, 5)
         return sizer
 
     def create_reposts_section(self, panel, reposts_count):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Reposts")), wx.VERTICAL)
-        self.reposts_button = wx.Button(panel, -1, str(reposts_count))
+        self.reposts_button = wx.Button(sizer.GetStaticBox(), -1, str(reposts_count))
         self.reposts_button.Enable(False)
         sizer.Add(self.reposts_button, 1, wx.EXPAND | wx.ALL, 5)
         return sizer
 
     def create_likes_section(self, panel, likes_count):
         sizer = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Likes")), wx.VERTICAL)
-        self.likes_button = wx.Button(panel, -1, str(likes_count))
+        self.likes_button = wx.Button(sizer.GetStaticBox(), -1, str(likes_count))
         self.likes_button.Enable(False)
         sizer.Add(self.likes_button, 1, wx.EXPAND | wx.ALL, 5)
         return sizer

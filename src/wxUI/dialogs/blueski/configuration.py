@@ -16,9 +16,9 @@ class AccountSettingsDialog(wx.Dialog):
         sizer.Add(self.ask_before_boost, 0, wx.ALL, 8)
 
         templates_box = wx.StaticBoxSizer(wx.StaticBox(panel, wx.ID_ANY, _("Templates")), wx.VERTICAL)
-        self.template_post = wx.Button(panel, wx.ID_ANY, _("Edit template for posts"))
-        self.template_person = wx.Button(panel, wx.ID_ANY, _("Edit template for persons"))
-        self.template_notification = wx.Button(panel, wx.ID_ANY, _("Edit template for notifications"))
+        self.template_post = wx.Button(templates_box.GetStaticBox(), wx.ID_ANY, _("Edit template for posts"))
+        self.template_person = wx.Button(templates_box.GetStaticBox(), wx.ID_ANY, _("Edit template for persons"))
+        self.template_notification = wx.Button(templates_box.GetStaticBox(), wx.ID_ANY, _("Edit template for notifications"))
         templates_box.Add(self.template_post, 0, wx.ALL, 4)
         templates_box.Add(self.template_person, 0, wx.ALL, 4)
         templates_box.Add(self.template_notification, 0, wx.ALL, 4)

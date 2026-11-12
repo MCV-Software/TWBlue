@@ -18,7 +18,7 @@ class UserListDialog(wx.Dialog):
         main_sizer.Add(title_text, 0, wx.ALIGN_CENTER | wx.TOP, 10)
         user_list_box = wx.StaticBox(panel, wx.ID_ANY, "Users")
         user_list_sizer = wx.StaticBoxSizer(user_list_box, wx.VERTICAL)
-        self.user_list = wx.ListBox(panel, wx.ID_ANY, choices=self.users, style=wx.LB_SINGLE)
+        self.user_list = wx.ListBox(user_list_box, wx.ID_ANY, choices=self.users, style=wx.LB_SINGLE)
         user_list_sizer.Add(self.user_list, 1, wx.EXPAND | wx.ALL, 10)
         main_sizer.Add(user_list_sizer, 1, wx.EXPAND | wx.ALL, 15)
         buttons_sizer = wx.BoxSizer(wx.HORIZONTAL)
