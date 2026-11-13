@@ -15,6 +15,8 @@ from wxUI.dialogs.mastodon import updateProfile as update_profile_dialogs
 from wxUI.dialogs.mastodon import showUserProfile, communityTimeline
 from sessions.mastodon.utils import html_filter
 from . import userActions, settings
+from .profile import ProfileController
+from threading import Thread
 from .filters import create_filter, manage_filters
 
 log = logging.getLogger("controller.mastodon.handler")
@@ -381,9 +383,12 @@ class Handler(object):
             elif selectedUser[-1] == holdUser.id:
                 user = holdUser
             else:  # We don't have this user's dictionary, get it!
-                user = buffer.session.api.account(selectedUser[-1])
-        dlg = showUserProfile.ShowUserProfile(user)
-        dlg.ShowModal()
+                user = None
+        identifier = user.id if user is not None else selectedUser[-1]
+        view = showUserProfile.ProfileView(buffer.session)
+        controller = ProfileController(buffer.session, view,
+            lambda query: Thread(target=query, daemon=True).start(), wx.CallAfter)
+        controller.load(identifier)
 
     def community_timeline(self, controller, buffer):
         dlg = communityTimeline.CommunityTimeline()
