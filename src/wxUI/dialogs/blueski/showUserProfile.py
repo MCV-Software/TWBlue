@@ -3,11 +3,12 @@ import wx
 import logging
 import languageHandler
 import builtins
-import requests
 from threading import Thread
 from pubsub import pub
 
 from mysc.image_utils import load_scaled_image
+from controller.blueski.profile import ProfileController
+from controller.blueski.profile_format import format_profile
 
 _ = getattr(builtins, "_", lambda s: s)
 
@@ -23,6 +24,7 @@ class ShowUserProfileDialog(wx.Dialog):
 
         self.session = session
         self.user_identifier = user_identifier
+        self._action_busy = False
         self.profile_data = None # Will store the formatted profile dict
         self.target_user_did = None # Will store the resolved DID of the profile being viewed
 
@@ -30,7 +32,13 @@ class ShowUserProfileDialog(wx.Dialog):
         self.SetMinSize((400, 300))
         self.CentreOnParent()
 
-        Thread(target=self.load_profile_data, daemon=True).start()
+        self.profile_controller = ProfileController(
+            session, self,
+            execute=lambda query: Thread(target=query, daemon=True).start(),
+            dispatch=wx.CallAfter,
+        )
+        self.Bind(wx.EVT_WINDOW_DESTROY, self._on_profile_destroy)
+        self.load_profile_data()
 
     def _init_ui(self):
         self.panel = wx.Panel(self)
@@ -128,39 +136,41 @@ class ShowUserProfileDialog(wx.Dialog):
         self.panel.SetSizer(main_sizer)
         self.Fit()
 
+    def Destroy(self):
+        # wx may defer destruction until idle; invalidate callbacks immediately.
+        self.profile_controller.close()
+        if self._action_busy:
+            wx.EndBusyCursor()
+            self._action_busy = False
+        return super().Destroy()
+
+    def _on_profile_destroy(self, event):
+        if event.GetEventObject() is self:
+            self.profile_controller.close()
+            if self._action_busy:
+                wx.EndBusyCursor()
+                self._action_busy = False
+        event.Skip()
+
     def load_profile_data(self):
-        wx.CallAfter(self.SetStatusText, _("Loading profile..."))
+        # Preserve the existing entry point; the controller schedules the query.
+        self.profile_controller.load(self.user_identifier)
+
+    def show_profile_loading(self):
+        self.SetStatusText(_("Loading profile..."))
         for ctrl in self.profile_field_ctrls.values():
-            wx.CallAfter(ctrl.SetValue, _("Loading..."))
-
-        # Initially hide all action buttons until state is known
-        wx.CallAfter(self.follow_btn.Hide)
-        wx.CallAfter(self.unfollow_btn.Hide)
-        wx.CallAfter(self.mute_btn.Hide)
-        wx.CallAfter(self.unmute_btn.Hide)
-        wx.CallAfter(self.block_btn.Hide)
-        wx.CallAfter(self.unblock_btn.Hide)
-
-        try:
-            api = self.session._ensure_client()
-            try:
-                raw_profile = api.app.bsky.actor.get_profile({"actor": self.user_identifier})
-            except Exception:
-                raw_profile = None
-            wx.CallAfter(self._apply_profile_data, raw_profile)
-
-        except Exception as e:
-            logger.error(f"Error loading profile for {self.user_identifier}: {e}", exc_info=True)
-            wx.CallAfter(self._apply_profile_error, e)
+            ctrl.SetValue(_("Loading..."))
+        for button in (self.follow_btn, self.unfollow_btn, self.mute_btn,
+                       self.unmute_btn, self.block_btn, self.unblock_btn):
+            button.Hide()
 
     def _apply_profile_data(self, raw_profile):
         if raw_profile:
-            self.profile_data = self._format_profile_data(raw_profile)
+            self.profile_data = raw_profile
             self.target_user_did = self.profile_data.get("did")
             self.user_identifier = self.target_user_did or self.user_identifier
 
             self.update_ui_fields()
-            self.update_action_buttons_state()
             self.SetTitle(_("Profile: {handle}").format(handle=self.profile_data.get("handle", "")))
             self.SetStatusText(_("Profile loaded."))
         else:
@@ -201,34 +211,12 @@ class ShowUserProfileDialog(wx.Dialog):
         self.following_btn.SetLabel(_("{count} &following. Click to open following timeline").format(count=following_count))
 
         # Start image download in background thread
-        Thread(target=self._download_images, daemon=True).start()
+        self._download_images()
         self.Layout()
 
     def _download_images(self):
-        """Downloads avatar and banner images from Bluesky server."""
-        avatar_url = self.profile_data.get("avatar") if self.profile_data else None
-        banner_url = self.profile_data.get("banner") if self.profile_data else None
-
-        avatar_bytes = None
-        banner_bytes = None
-
-        try:
-            if banner_url:
-                resp = requests.get(banner_url, timeout=10)
-                if resp.status_code == 200:
-                    banner_bytes = resp.content
-        except Exception as e:
-            logger.debug(f"Failed to download banner: {e}")
-
-        try:
-            if avatar_url:
-                resp = requests.get(avatar_url, timeout=10)
-                if resp.status_code == 200:
-                    avatar_bytes = resp.content
-        except Exception as e:
-            logger.debug(f"Failed to download avatar: {e}")
-
-        wx.CallAfter(self._draw_images, banner_bytes, avatar_bytes)
+        data = self.profile_data or {}
+        self.profile_controller.load_images(data.get("banner"), data.get("avatar"))
 
     def _draw_images(self, banner_bytes, avatar_bytes):
         """Draws downloaded images on the bitmap controls."""
@@ -264,46 +252,17 @@ class ShowUserProfileDialog(wx.Dialog):
             pub.sendMessage('execute-action', action='openFollowersTimeline', kwargs=dict(user=self.profile_data))
 
     def update_action_buttons_state(self):
-        if not self.profile_data or not self.target_user_did or self.target_user_did == self._get_own_did():
-            self.follow_btn.Hide()
-            self.unfollow_btn.Hide()
-            self.mute_btn.Hide()
-            self.unmute_btn.Hide()
-            self.block_btn.Hide()
-            self.unblock_btn.Hide()
-            self.Layout()
-            return
+        actions = self.profile_controller.available_actions(self.profile_data)
+        self.show_profile_actions(actions)
 
-        viewer_state = self.profile_data.get("viewer", {})
-        is_following = bool(viewer_state.get("following"))
-        is_muted = bool(viewer_state.get("muted"))
-        # 'blocking' in viewer state is the URI of *our* block record, if we are blocking them.
-        is_blocking_them = bool(viewer_state.get("blocking"))
-        # 'blockedBy' means *they* are blocking us. If true, most actions might fail or be hidden.
-        is_blocked_by_them = bool(viewer_state.get("blockedBy"))
-
-        if is_blocked_by_them: # If they block us, we can't do much.
-            self.follow_btn.Hide()
-            self.unfollow_btn.Hide()
-            self.mute_btn.Hide()
-            self.unmute_btn.Hide()
-            # We can still block them, or unblock them if we previously did.
-            self.block_btn.Show(not is_blocking_them)
-            self.unblock_btn.Show(is_blocking_them)
-            self.Layout()
-            return
-
-        self.follow_btn.Show(not is_following and not is_blocking_them)
-        self.unfollow_btn.Show(is_following and not is_blocking_them)
-
-        self.mute_btn.Show(not is_muted and not is_blocking_them)
-        self.unmute_btn.Show(is_muted and not is_blocking_them)
-
-        self.block_btn.Show(not is_blocking_them) # Show block if we are not currently blocking them (even if they block us)
-        self.unblock_btn.Show(is_blocking_them)   # Show unblock if we are currently blocking them
-
-        self.Layout() # Refresh sizer to show/hide buttons correctly
-
+    def show_profile_actions(self, actions):
+        for command, button in {
+            "follow_user": self.follow_btn, "unfollow_user": self.unfollow_btn,
+            "mute_user": self.mute_btn, "unmute_user": self.unmute_btn,
+            "block_user": self.block_btn, "unblock_user": self.unblock_btn,
+        }.items():
+            button.Show(command in actions)
+        self.Layout()
 
     def on_user_action(self, event, command: str):
         if not self.target_user_did: # Should be set by load_profile_data
@@ -323,90 +282,38 @@ class ShowUserProfileDialog(wx.Dialog):
                 return
             dlg.Destroy()
 
+        self.profile_controller.act(
+            command, self.target_user_did, dict(self.profile_data.get("viewer", {})),
+            self.user_identifier,
+        )
+
+    def show_action_loading(self, command):
+        self._action_busy = True
         wx.BeginBusyCursor()
         self.SetStatusText(_("Performing action: {action}...").format(action=command))
-        action_button = event.GetEventObject()
-        if action_button:
-            action_button.Disable()
+        for button in (self.follow_btn, self.unfollow_btn, self.mute_btn,
+                       self.unmute_btn, self.block_btn, self.unblock_btn):
+            button.Disable()
 
-        try:
-            ok = False
-            if command == "follow_user" and hasattr(self.session, "follow_user"):
-                ok = self.session.follow_user(self.target_user_did)
-            elif command == "unfollow_user" and hasattr(self.session, "unfollow_user"):
-                viewer_state = self.profile_data.get("viewer", {}) if self.profile_data else {}
-                follow_uri = viewer_state.get("following")
-                if follow_uri:
-                    ok = self.session.unfollow_user(follow_uri)
-                else:
-                    raise RuntimeError(_("Follow information not available."))
-            elif command == "mute_user" and hasattr(self.session, "mute_user"):
-                ok = self.session.mute_user(self.target_user_did)
-            elif command == "unmute_user" and hasattr(self.session, "unmute_user"):
-                ok = self.session.unmute_user(self.target_user_did)
-            elif command == "block_user" and hasattr(self.session, "block_user"):
-                ok = self.session.block_user(self.target_user_did)
-            elif command == "unblock_user" and hasattr(self.session, "unblock_user"):
-                viewer_state = self.profile_data.get("viewer", {}) if self.profile_data else {}
-                block_uri = viewer_state.get("blocking")
-                if not block_uri:
-                    raise RuntimeError(_("Block information not available."))
-                ok = self.session.unblock_user(block_uri)
-            else:
-                raise RuntimeError(_("This action is not supported yet."))
-
-            if not ok:
-                raise RuntimeError(_("Action failed."))
-
+    def finish_user_action(self, error):
+        if self._action_busy:
             wx.EndBusyCursor()
+            self._action_busy = False
+        for button in (self.follow_btn, self.unfollow_btn, self.mute_btn,
+                       self.unmute_btn, self.block_btn, self.unblock_btn):
+            button.Enable()
+        if error is None:
             wx.MessageBox(_("Action completed."), _("Success"), wx.OK | wx.ICON_INFORMATION, self)
-            # Reload profile data in a new thread
-            Thread(target=self.load_profile_data, daemon=True).start()
-        except Exception as e:
-            wx.EndBusyCursor()
-            if action_button:
-                action_button.Enable()
+        else:
             self.SetStatusText(_("Action failed."))
-            wx.MessageBox(str(e), _("Error"), wx.OK | wx.ICON_ERROR, self)
+            wx.MessageBox(_(str(error)), _("Error"), wx.OK | wx.ICON_ERROR, self)
 
     def _get_own_did(self):
-        if isinstance(self.session.db, dict):
-            did = self.session.db.get("user_id")
-            if did:
-                return did
-        try:
-            api = self.session._ensure_client()
-            if getattr(api, "me", None):
-                return api.me.did
-        except Exception:
-            pass
-        return None
+        return self.profile_controller.own_did()
 
     def _format_profile_data(self, profile_model):
-        def g(obj, key, default=None):
-            if isinstance(obj, dict):
-                return obj.get(key, default)
-            return getattr(obj, key, default)
-
-        def get_count(*keys):
-            for k in keys:
-                val = g(profile_model, k)
-                if val is not None:
-                    return val
-            return None
-
-        return {
-            "did": g(profile_model, "did"),
-            "handle": g(profile_model, "handle"),
-            "displayName": g(profile_model, "displayName") or g(profile_model, "display_name") or g(profile_model, "handle"),
-            "description": g(profile_model, "description"),
-            "avatar": g(profile_model, "avatar"),
-            "banner": g(profile_model, "banner"),
-            "followersCount": get_count("followersCount", "followers_count"),
-            "followsCount": get_count("followsCount", "follows_count", "followingCount", "following_count"),
-            "postsCount": get_count("postsCount", "posts_count"),
-            "viewer": g(profile_model, "viewer") or {},
-        }
+        # Compatibility entry point; formatting is independent of wx.
+        return format_profile(profile_model)
 
     def SetStatusText(self, text): # Simple status text for dialog title
         self.SetTitle(f"{_('User Profile')} - {text}")

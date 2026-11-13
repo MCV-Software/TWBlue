@@ -529,6 +529,12 @@ class Session(base.baseSession):
              log.exception("Error unblocking Bluesky user")
              return False
 
+    def get_own_did(self):
+        did = self.db.get("user_id") if self.db is not None else None
+        if did:
+            return did
+        return getattr(getattr(self.api, "me", None), "did", None)
+
     def get_profile(self, actor: str) -> Any:
         api = self._ensure_client()
         try:
