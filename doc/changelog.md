@@ -1,61 +1,47 @@
 TWBlue Changelog
 
-## Changes in version 2024.X.X (Upcoming - ATProtoSocial Integration)
-
-This version introduces comprehensive support for the AT Protocol (ATProto), enabling users to connect to and interact with Bluesky accounts.
-
-* Core:
-    * **New Protocol Support**: Added ATProtoSocial (Bluesky) as a new session type.
-    * **Session Management**: Users can add Bluesky accounts using their handle and an App Password. Includes session creation, loading, and management through the Session Manager.
-    * **UI Adaptation**:
-        * Menus (e.g., "Post", "User Actions") dynamically update labels and available actions based on whether an ATProtoSocial session is active (e.g., "Tweet" becomes "Post", "Retweet" becomes "Repost", "Favorite" becomes "Like").
-        * New compose dialog (`src/wxUI/dialogs/composeDialog.py`) created to be more generic and configurable by session type, supporting features like character limits, media attachments (images with alt text), language selection, content warnings, and quoting specific to Bluesky.
-        * New user profile dialog (`src/wxUI/dialogs/atprotosocial/showUserProfile.py`) for displaying Bluesky user details and performing actions.
-        * New UI panels (`src/wxUI/buffers/atprotosocial/panels.py`) for displaying Home timelines, User timelines, Notifications, and User Lists (Followers/Following) for Bluesky.
-* ATProtoSocial (Bluesky) Features:
-    * **Authentication**: Secure login using user handle and App Passwords.
-    * **Posting**:
-        * Create posts (skeets) with text.
-        * Attach images (up to 4, with alt text).
-        * Specify post language(s).
-        * Add content warnings (sensitive content labels).
-        * Quote other posts.
-        * Reply to posts.
-    * **Timelines**:
-        * View Home timeline (posts from followed users), with support for loading newer and older posts.
-        * View other users' timelines (their posts and replies).
-    * **Notifications**:
-        * Fetch and display notifications for likes, reposts, follows, mentions, replies, and quotes.
-        * Notifications are displayed in a dedicated buffer and trigger desktop alerts.
-    * **User Actions**:
-        * View user profiles (display name, handle, bio, counts, etc.).
-        * Follow / Unfollow users.
-        * Mute / Unmute users.
-        * Block / Unblock users.
-    * **User Interaction**:
-        * Like / Unlike posts.
-        * Repost / Unrepost posts (Unrepost might be deleting the repost record).
-    * **User Discovery**:
-        * Search for users by handle or display name.
-        * View lists of followers and accounts a user is following.
-    * **Content Display**:
-        * Posts are formatted for display, showing author, text, timestamp, embedded media (images, quotes, external links with placeholders), reply/repost/like counts, and CWs.
-        * Notifications are formatted for display in their buffer.
-* Developer / Internal:
-    * New session module: `sessions.atprotosocial` (Session, Utils, Compose, Streaming placeholders).
-    * New controller module: `controller.atprotosocial` (Handler, UserList, etc.).
-    * Extensive use of the `atproto` Python SDK for Bluesky API interactions.
-
 ## changes in this version
 
+This release adds Bluesky support and improves profile dialogs, keyboard navigation, and the reliability of Mastodon sessions.
+
 * Core:
-    * Expanded the keystroke editor actions list. Now, many previously hidden or unassignable actions are available to be mapped to custom keyboard shortcuts.
+    * Added more actions to the keystroke editor, including account management, filters, aliases, community timelines, favorites timelines, post pinning, and media seeking. These actions can be assigned custom shortcuts.
+    * Added runtime diagnostics when running TWBlue from source, showing memory, CPU, thread, session, and buffer counts.
+    * Changed profile dialogs to announce successful actions without an additional modal confirmation dialog. Blocking and unfollowing ask for confirmation before the action is performed.
+    * Changed profile updates after user actions to preserve the current window and focus. When an action button is replaced, focus moves to its inverse action.
+    * Changed profile queries, image downloads, and user actions to run in the background. Responses arriving after a profile dialog is closed are ignored.
+    * Fixed post-action refresh failures clearing the visible profile or losing focus. TWBlue now reports that the action completed but the profile could not be refreshed, without repeating the action.
+    * Fixed list insertion and selection problems that could make the displayed order differ from the post read or acted on in the invisible interface, or announce an invalid position such as "0 of 1". ([#1038](https://github.com/MCV-Software/TWBlue/pull/1038), [#1002](https://github.com/MCV-Software/TWBlue/pull/1002))
+    * Fixed overlapping manual buffer updates and unnecessary duplicate initialization of buffers.
+    * Fixed focus and keyboard navigation problems in post, poll, template, alias, user-list, and configuration dialogs, as well as missing options in the poll voting dialog. ([#1037](https://github.com/MCV-Software/TWBlue/pull/1037))
+    * Fixed an "Unknown image format" error when viewing or updating profiles whose images use formats such as WebP. ([#977](https://github.com/MCV-Software/TWBlue/issues/977), [#978](https://github.com/MCV-Software/TWBlue/pull/978))
+    * Changed the internal organization of profile views, controllers, and session operations, with automated tests for profile actions, account settings, persistence, and focus handling.
 * Mastodon:
-    * Added the ability to pin and unpin your own posts directly from TWBlue. This action acts as a toggle and can be accessed from the post's context menu or by assigning a keyboard shortcut in the keystroke editor.
-    * Fixed an issue where pinned posts could cause the retrieval of large amounts of old content during buffer updates or when loading more items.
-    * Added support for sending quoted posts! You can now quote other users' posts from the context menu or the new Boost dialog. ([#860](https://github.com/mcv-software/twblue/issues/860))
-    * Fixed an issue where HTML entities were not decoded when editing a post. ([#893](https://github.com/mcv-software/twblue/issues/893))
-    * Fixed an error that displayed an "Unknown image format" dialog when viewing someone's profile or updating your own, if the avatar or header was served in a format TWBlue could not read, such as WebP. ([#977](https://github.com/mcv-software/twblue/issues/977))
+    * Added the ability to send quoted posts from the post context menu or the Boost dialog. ([#858](https://github.com/MCV-Software/TWBlue/issues/858))
+    * Added pinning and unpinning of your own posts from the context menu or a custom keyboard shortcut.
+    * Changed the profile dialog to offer an experience consistent with Bluesky, while retaining account fields, registration date, and private-account, bot, and discoverability information. These profile improvements also apply to GoToSocial accounts.
+    * Added direct follow, mute, and block controls and their inverse actions to the profile dialog, according to the account relationship, including an option to cancel a pending follow request.
+    * Changed handling of sign-in failures: TWBlue reports the problem and lets you choose whether to keep the account configuration.
+    * Fixed ordering and pagination around pinned posts, which could cause old content to be fetched again or appear in the wrong position.
+    * Fixed character counting when composing posts, using Mastodon's counting rules.
+    * Fixed HTML entity decoding when editing posts. ([#893](https://github.com/mcv-software/twblue/issues/893))
+    * Fixed duplicated recipient mentions in direct messages. ([#1024](https://github.com/MCV-Software/TWBlue/pull/1024))
+    * Fixed duplicate streaming connections and improved their cleanup when reconnecting or closing a session.
+* Bluesky:
+    * Added support for adding and managing Bluesky accounts using a handle and an App Password, alongside existing Mastodon and GoToSocial accounts. ([#912](https://github.com/MCV-Software/TWBlue/pull/912))
+    * Added Home (accounts you follow), Discover, Mentions, Notifications, Sent, Likes, Followers, Following, and Blocked Users buffers, as well as user timelines and searches.
+    * Added posting, replies, quotes, reposts, likes, and deletion of your own posts. Posts can include images with alternative text and a selected language.
+    * Added conversation views and chats, including sending and reading messages through the invisible interface. Open chats are grouped under the Chats buffer.
+    * Added profile viewing and user actions: follow, unfollow, mute, unmute, block, and unblock.
+    * Changed the reading of replies, quoted posts, quoted links, and image descriptions to include their context more clearly. Default post templates now include image descriptions while preserving custom templates. ([#912](https://github.com/MCV-Software/TWBlue/pull/912), [#959](https://github.com/MCV-Software/TWBlue/pull/959))
+    * Changed replies and direct messages to no longer start with an unnecessary prefilled @handle. Replies retain their parent and conversation context without requiring a textual mention. ([#1024](https://github.com/MCV-Software/TWBlue/pull/1024))
+    * Fixed duplicated conversation buffers when opening an existing chat or thread. ([#1002](https://github.com/MCV-Software/TWBlue/pull/1002))
+    * Fixed duplicated posts in conversation views, repeated refreshes, and incorrect selection announcements in chats. Conversations opened from different posts now retain their own content. ([#1002](https://github.com/MCV-Software/TWBlue/pull/1002))
+    * Fixed sender names that appeared as unknown in chats and reduced false new-message notifications.
+    * Fixed problems with opening URLs and searching from shortcuts.
+    * Fixed the Home buffer remaining empty when posts contain image galleries. ([#959](https://github.com/MCV-Software/TWBlue/pull/959))
+    * Fixed account credentials being saved before sign-in was verified. Credentials are now saved only after a successful sign-in.
+    * Fixed conversion of older account settings not being retried after a saving failure.
 
 ## Changes in version 2026.01.13
 
