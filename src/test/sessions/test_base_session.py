@@ -1,37 +1,26 @@
-# -*- coding: utf-8 -*-
-import sys
-import types
 import pytest
-import os
 import sqlitedict
-import shutil
+from pathlib import Path
 from unittest import mock
-
-# Mock sound module, so LibVLc won't complain.
-sound_module = types.ModuleType("sound")
-sys.modules["sound"] = sound_module
-sound_module.soundManager = mock.MagicMock(name="sound.soundManager")
 from sessions import base
 
-# path where we will save our test config, as we can't rely on paths module due to pytest's paths being different.
-session_path = os.path.join(os.getcwd(), "config", "testing")
 
 @pytest.fixture
-def session():
-    """ Configures a fake base session from where we can test things. """
-    global session_path
+def session(tmp_path):
+    """Use actual defaults with isolated storage and no audio initialization."""
+    (tmp_path / "testing").mkdir()
     s = base.baseSession("testing")
-    if os.path.exists(session_path) == False:
-        os.mkdir(session_path)
-    # Patches paths.app_path and paths.config_path, so we will not have issues during session configuration.
-    with mock.patch("paths.app_path", return_value=os.getcwd()) as app_path:
-        with mock.patch("paths.config_path", return_value=os.path.join(os.getcwd(), "config")) as config_path:
-            s.get_configuration()
+    s.config_spec = "mastodon.defaults"
+    source = Path(__file__).resolve().parents[2]
+    with mock.patch("paths.app_path", return_value=str(source)), mock.patch(
+        "paths.config_path", return_value=str(tmp_path)
+    ), mock.patch.object(s, "init_sound"):
+        s.get_configuration()
+        try:
             yield s
-            # Session's cleanup code.
-            if os.path.exists(session_path):
-                shutil.rmtree(session_path)
-            del s
+        finally:
+            if isinstance(s.db, sqlitedict.SqliteDict):
+                s.db.close()
 
 @pytest.fixture
 def dataset():
@@ -67,6 +56,8 @@ def test_cache_in_disk_limited_dataset(session, dataset):
     # Might cause an out of sync error between the GUI lists and the database.
     # So we perform the changes to buffer size when loading data during app startup if the DB is read from disk.
     session.save_persistent_data()
+    if isinstance(session.db, sqlitedict.SqliteDict):
+        session.db.close()
     session.db = dict()
     session.load_persistent_data()
     assert isinstance(session.db, sqlitedict.SqliteDict)
@@ -89,6 +80,8 @@ def test_cache_in_disk_limited_dataset_unreversed(session):
     # Might cause an out of sync error between the GUI lists and the database.
     # So we perform the changes to buffer size when loading data during app startup if the DB is read from disk.
     session.save_persistent_data()
+    if isinstance(session.db, sqlitedict.SqliteDict):
+        session.db.close()
     session.db = dict()
     session.load_persistent_data()
     assert isinstance(session.db, sqlitedict.SqliteDict)
@@ -114,6 +107,8 @@ def test_cache_in_disk_limited_dataset_reversed(session):
     # Might cause an out of sync error between the GUI lists and the database.
     # So we perform the changes to buffer size when loading data during app startup if the DB is read from disk.
     session.save_persistent_data()
+    if isinstance(session.db, sqlitedict.SqliteDict):
+        session.db.close()
     session.db = dict()
     session.load_persistent_data()
     assert isinstance(session.db, sqlitedict.SqliteDict)
@@ -136,6 +131,8 @@ def test_cache_in_memory_unlimited_size(session, dataset):
     session.db["home_timeline"] = dataset["home_timeline"]
     session.db["mentions_timeline"] = dataset["mentions_timeline"]
     session.save_persistent_data()
+    if isinstance(session.db, sqlitedict.SqliteDict):
+        session.db.close()
     session.db = dict()
     session.load_persistent_data()
     assert isinstance(session.db, dict)
@@ -152,6 +149,8 @@ def test_cache_in_memory_limited_dataset(session, dataset):
     session.db["home_timeline"] = dataset["home_timeline"]
     session.db["mentions_timeline"] = dataset["mentions_timeline"]
     session.save_persistent_data()
+    if isinstance(session.db, sqlitedict.SqliteDict):
+        session.db.close()
     session.db = dict()
     session.load_persistent_data()
     assert isinstance(session.db, dict)
@@ -170,6 +169,8 @@ def test_cache_in_memory_limited_dataset_unreversed(session):
     session.db["home_timeline"] = dataset["home_timeline"]
     session.db["mentions_timeline"] = dataset["mentions_timeline"]
     session.save_persistent_data()
+    if isinstance(session.db, sqlitedict.SqliteDict):
+        session.db.close()
     session.db = dict()
     session.load_persistent_data()
     assert isinstance(session.db, dict)
@@ -190,6 +191,8 @@ def test_cache_in_memory_limited_dataset_reversed(session):
     session.db["home_timeline"] = dataset["home_timeline"]
     session.db["mentions_timeline"] = dataset["mentions_timeline"]
     session.save_persistent_data()
+    if isinstance(session.db, sqlitedict.SqliteDict):
+        session.db.close()
     session.db = dict()
     session.load_persistent_data()
     assert isinstance(session.db, dict)
