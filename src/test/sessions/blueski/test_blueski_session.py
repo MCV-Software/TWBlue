@@ -185,7 +185,10 @@ def test_old_default_template_upgrades_and_persists(session, legacy_config, old_
     assert saved['templates']['post'] == '$display_name, $reply_to$safe_text $image_descriptions $date.'
 
 
-def test_failed_migration_write_preserves_file_but_changes_memory(session, legacy_config, monkeypatch):
+@pytest.mark.parametrize('template', ['My custom $safe_text', '$display_name, $safe_text $date.'])
+def test_failed_migration_write_rolls_back_and_can_retry(session, legacy_config, monkeypatch, template):
+    legacy_config['templates']['post'] = template
+    legacy_config.write()
     path = Path(legacy_config.filename)
     original = path.read_bytes()
     write = Mock(side_effect=OSError('write denied'))
@@ -194,9 +197,11 @@ def test_failed_migration_write_preserves_file_but_changes_memory(session, legac
     write.assert_called_once()
     assert path.read_bytes() == original
     assert 'atprotosocial' in ConfigObj(str(path))
-    # Existing implementation swallows write failures and migrates in memory.
-    assert 'atprotosocial' not in session.settings
-    assert session.settings['blueski']['custom'] == 'keep'
+    assert 'blueski' not in session.settings
+    assert session.settings['templates']['post'] == template
+    assert session.settings['atprotosocial']['custom'] == 'keep'
+    monkeypatch.setattr(legacy_config, 'write', ConfigObj.write.__get__(legacy_config))
     session._ensure_settings_namespace()
-    # It currently does not retry persistence on a second invocation.
-    write.assert_called_once()
+    saved = ConfigObj(str(path))
+    assert 'atprotosocial' not in saved
+    assert saved['blueski']['custom'] == 'keep'

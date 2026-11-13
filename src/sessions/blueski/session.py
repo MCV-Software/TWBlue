@@ -83,20 +83,15 @@ class Session(base.baseSession):
 
     def _ensure_settings_namespace(self) -> None:
         """Migrate legacy atprotosocial settings to blueski namespace."""
+        if not self.settings:
+            return
+        original = self.settings.dict()
+        changed = False
         try:
-            if not self.settings:
-                return
             if self.settings.get("blueski") is None and self.settings.get("atprotosocial") is not None:
                 self.settings["blueski"] = dict(self.settings["atprotosocial"])
-                try:
-                    del self.settings["atprotosocial"]
-                except Exception:
-                    pass
-                try:
-                    self.settings.write()
-                except Exception:
-                    pass
-            # Upgrade old default post templates so image descriptions are read.
+                del self.settings["atprotosocial"]
+                changed = True
             old_post_templates = (
                 "$display_name, $safe_text $date.",
                 "$display_name, $reply_to$safe_text $date.",
@@ -104,11 +99,13 @@ class Session(base.baseSession):
             templates_cfg = self.settings.get("templates")
             if templates_cfg is not None and templates_cfg.get("post") in old_post_templates:
                 templates_cfg["post"] = "$display_name, $reply_to$safe_text $image_descriptions $date."
-                try:
-                    self.settings.write()
-                except Exception:
-                    pass
+                changed = True
+            if changed:
+                self.settings.write()
         except Exception:
+            # Keep the in-memory configuration eligible for a later retry.
+            self.settings.clear()
+            self.settings.update(original)
             log.exception("Failed to migrate legacy Blueski settings")
 
     def get_name(self):
