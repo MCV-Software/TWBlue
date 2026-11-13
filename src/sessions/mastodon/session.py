@@ -112,6 +112,29 @@ class Session(base.baseSession):
         self.settings.write()
         return True
 
+    def get_profile(self, account_id):
+        return self.api.account(account_id)
+
+    def get_own_account_id(self):
+        return self.db.get("user_id")
+
+    def get_profile_relationship(self, account_id):
+        relationships = self.api.account_relationships(account_id)
+        if not relationships:
+            raise RuntimeError('Could not retrieve account relationship.')
+        return relationships[0]
+
+    def lookup_account(self, account):
+        return self.api.account_lookup(account)
+
+    def perform_user_action(self, action, account_id):
+        methods = dict(follow='account_follow', unfollow='account_unfollow',
+                       mute='account_mute', unmute='account_unmute',
+                       block='account_block', unblock='account_unblock')
+        if action not in methods:
+            raise ValueError('Unsupported user action')
+        return getattr(self.api, methods[action])(account_id)
+
     def get_user_info(self):
         """ Retrieves some information required by TWBlue for setup."""
         # retrieve the current user's UTC offset so we can calculate dates properly.
