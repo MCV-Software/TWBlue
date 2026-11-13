@@ -102,6 +102,9 @@ def test_authorization_cancellation_has_no_account_side_effects(session, authori
 
 def test_authorization_success_uses_entered_credentials(session, authorization_ui):
     def login(handle, password):
+        session.settings.write.assert_not_called()
+        session.create_session_folder.assert_not_called()
+        session.get_configuration.assert_not_called()
         session.api.me = SimpleNamespace(handle=handle, did='did:plc:alice')
     session.api.login.side_effect = login
     assert session.authorise() is True
@@ -121,10 +124,10 @@ def test_authorization_rejection_reports_error_and_does_not_activate(session, au
     assert not session.logged
     assert 'did' not in session.settings['blueski']
     authorization_ui.error.assert_called_once()
-    # Characterize current behavior: credentials are written BEFORE login.
-    # Transactional authorization would be a separate behavior change.
-    assert session.settings['blueski']['app_password'] == 'fake-password'
-    session.settings.write.assert_called_once()
+    assert session.settings['blueski']['app_password'] == 'fake'
+    session.settings.write.assert_not_called()
+    session.create_session_folder.assert_not_called()
+    session.get_configuration.assert_not_called()
 
 
 def test_authorization_already_logged_does_not_prompt(session, authorization_ui):

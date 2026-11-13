@@ -218,13 +218,17 @@ class Session(base.baseSession):
             return
         app_password = pwd.GetValue().strip()
         pwd.Destroy()
-        # Create session folder and config, then attempt login
-        self.create_session_folder()
-        self.get_configuration()
-        self.settings["blueski"]["handle"] = handle
-        self.settings["blueski"]["app_password"] = app_password
-        self.settings.write()
         try:
+            # Verify the submitted credentials before creating or writing account data.
+            api = self._ensure_client()
+            api.login(handle, app_password)
+            if getattr(api, "me", None) is None:
+                raise RuntimeError("Bluesky SDK client has no 'me' after login")
+            self.create_session_folder()
+            self.get_configuration()
+            self.settings["blueski"]["handle"] = handle
+            self.settings["blueski"]["app_password"] = app_password
+            self.settings["blueski"]["session_string"] = ""
             self.login()
         except Exceptions.RequireCredentialsSessionError:
             return
