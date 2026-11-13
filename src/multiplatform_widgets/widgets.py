@@ -36,15 +36,25 @@ class list(object):
             self.list = wx.ListBox(parent, -1, choices=[])
 
     def insert_item(self, reversed, *item):
-        """ Inserts an item on the list, depending on the OS."""
+        """ Inserts an item on the list, depending on the OS.
+
+        `reversed` is normally a bool (False: append, True: insert at the top).
+        It can also be an int (not bool), in which case it is the exact position where the item is inserted."""
+        exact_position = isinstance(reversed, int) and not isinstance(reversed, bool)
         if self.system == "Windows":
-            if reversed == False: items = self.list.GetItemCount()
+            count = self.list.GetItemCount()
+            if exact_position:
+                items = max(0, min(reversed, count))
+            elif reversed == False: items = count
             else: items = 0
             self.list.InsertItem(items, item[0])
             for i in range(1, len(self.columns)):
                 self.list.SetItem(items, i, item[i])
         else:
-            self.list.Append(" ".join(item))
+            if exact_position:
+                self.list.Insert(" ".join(item), max(0, min(reversed, self.list.GetCount())))
+            else:
+                self.list.Append(" ".join(item))
 
     def remove_item(self, pos):
         """ Deletes an item from the list."""
