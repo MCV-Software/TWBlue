@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import wx
 import logging
+import output
 import languageHandler
 import builtins
 from threading import Thread
@@ -25,6 +26,8 @@ class ShowUserProfileDialog(wx.Dialog):
         self.session = session
         self.user_identifier = user_identifier
         self._action_busy = False
+        self._focus_after_refresh = None
+        self._action_focus = None
         self.profile_data = None # Will store the formatted profile dict
         self.target_user_did = None # Will store the resolved DID of the profile being viewed
 
@@ -158,6 +161,8 @@ class ShowUserProfileDialog(wx.Dialog):
 
     def show_profile_loading(self):
         self.SetStatusText(_("Loading profile..."))
+        if self.profile_data:
+            return
         for ctrl in self.profile_field_ctrls.values():
             ctrl.SetValue(_("Loading..."))
         for button in (self.follow_btn, self.unfollow_btn, self.mute_btn,
@@ -165,6 +170,9 @@ class ShowUserProfileDialog(wx.Dialog):
             button.Hide()
 
     def _apply_profile_data(self, raw_profile):
+        if not raw_profile and self.profile_data:
+            self._refresh_failed()
+            return
         if raw_profile:
             self.profile_data = raw_profile
             self.target_user_did = self.profile_data.get("did")
@@ -179,8 +187,12 @@ class ShowUserProfileDialog(wx.Dialog):
             self.SetStatusText(_("Profile not found for '{ident}'.").format(ident=self.user_identifier))
             wx.MessageBox(_("User profile for '{ident}' not found.").format(ident=self.user_identifier), _("Error"), wx.OK | wx.ICON_ERROR, self)
         self.Layout()
+        self._restore_action_focus()
 
     def _apply_profile_error(self, err):
+        if self.profile_data:
+            self._refresh_failed()
+            return
         for ctrl in self.profile_field_ctrls.values():
             ctrl.SetValue(_("Error loading."))
         self.SetStatusText(_("Error loading profile."))
@@ -288,6 +300,8 @@ class ShowUserProfileDialog(wx.Dialog):
         )
 
     def show_action_loading(self, command):
+        self._action_focus = wx.Window.FindFocus()
+        self._action_command = command
         self._action_busy = True
         wx.BeginBusyCursor()
         self.SetStatusText(_("Performing action: {action}...").format(action=command))
@@ -303,10 +317,34 @@ class ShowUserProfileDialog(wx.Dialog):
                        self.unmute_btn, self.block_btn, self.unblock_btn):
             button.Enable()
         if error is None:
-            wx.MessageBox(_("Action completed."), _("Success"), wx.OK | wx.ICON_INFORMATION, self)
+            self._focus_after_refresh = self._action_focus
+            self.SetStatusText(_("Action completed."))
+            output.speak(_("Action completed."), True)
         else:
             self.SetStatusText(_("Action failed."))
             wx.MessageBox(_(str(error)), _("Error"), wx.OK | wx.ICON_ERROR, self)
+            self._focus_after_refresh = self._action_focus
+            self._restore_action_focus()
+
+    def _refresh_failed(self):
+        self.update_action_buttons_state()
+        message = _("Action completed, but the profile could not be refreshed.")
+        self.SetStatusText(message)
+        output.speak(message, True)
+        self._restore_action_focus()
+
+    def _restore_action_focus(self):
+        target = self._focus_after_refresh
+        if target is None:
+            return
+        if not target or not target.IsShown() or not target.IsEnabled():
+            inverse = {'follow_user': self.unfollow_btn, 'unfollow_user': self.follow_btn,
+                       'mute_user': self.unmute_btn, 'unmute_user': self.mute_btn,
+                       'block_user': self.unblock_btn, 'unblock_user': self.block_btn}
+            target = inverse.get(getattr(self, '_action_command', None))
+        if target and target.IsShown() and target.IsEnabled():
+            target.SetFocus()
+        self._focus_after_refresh = None
 
     def _get_own_did(self):
         return self.profile_controller.own_did()

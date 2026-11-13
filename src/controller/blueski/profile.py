@@ -94,7 +94,7 @@ class ProfileController:
 
         def deliver(method, value):
             if not self._closed and generation == self._generation:
-                if method == '_apply_profile_data':
+                if method == '_apply_profile_data' and value:
                     self.view.show_profile_actions(self.available_actions(value))
                 getattr(self.view, method)(value)
 
